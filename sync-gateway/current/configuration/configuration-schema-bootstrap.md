@@ -2,7 +2,7 @@
 title: Bootstrap Configuration
 description: Reference data on the contents of Sync Gateway's bootstrap
   configuration, which determines its run time behavior.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-21T04:43:23.418Z
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-bootstrap.adoc
   xref: xref:sync-gateway:configuration:configuration-schema-bootstrap.adoc[]
@@ -230,25 +230,13 @@ This schema identifies all the configurable properties.
 
 #### `api`
 
-Type
-
-object (readOnly)
-
-Description
+Type: object (readOnly)
 
 Configuration settings for modifying how the REST API is interacted with.
 
 #### `api.admin_interface`
 
-Type
-
-string
-
-Default
-
-127.0.0.1:4985
-
-Description
+Type: string (Default 127.0.0.1:4985)
 
 Network interface to bind admin API to.
 
@@ -256,39 +244,19 @@ By default, this will only be accessible to the localhost.
 
 #### `api.admin_interface_authentication`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Whether the admin API requires authentication
 
 #### `api.compress_responses`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 If false, disables compression of HTTP responses
 
 #### `api.cors.headers`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
 
@@ -296,11 +264,7 @@ A recommended minimum set of values should be `["Accept-Encoding", "Authorizatio
 
 #### `api.cors.login_origin`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed origins to apply to public `/{db}/_session` API.
 
@@ -310,35 +274,19 @@ If configured, `Authorization` must be included in headers.
 
 #### `api.cors.max_age`
 
-Type
-
-integer
-
-Default
-
-0
-
-Description
+Type: integer (Default 0)
 
 Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `api.cors.origin`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `api.enable_advanced_auth_dp`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether to enable the DP permissions check feature of admin auth.
 
@@ -346,59 +294,31 @@ Defaults to `true` if using Enterprise Edition or `false` if using Community Edi
 
 #### `api.hide_product_version`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether product versions removed from Server headers and REST API responses
 
 #### `api.https.tls_cert_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 The TLS cert file to use for the REST APIs
 
 #### `api.https.tls_key_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 The TLS key file to use for the REST APIs
 
 #### `api.https.tls_minimum_version`
 
-Type
-
-string
-
-Default
-
-tlsv1.2
-
-Description
+Type: string (Default tlsv1.2)
 
 The minimum allowable TLS version for the REST APIs
 
 #### `api.idle_timeout`
 
-Type
-
-string
-
-Default
-
-90s
-
-Description
+Type: string (Default 90s)
 
 The maximum amount of time to wait for the next request when keep-alives are enabled.
 
@@ -406,29 +326,13 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `api.max_connections`
 
-Type
-
-number
-
-Default
-
-0
-
-Description
+Type: number (Default 0)
 
 Max of incoming HTTP connections to accept
 
 #### `api.metrics_interface`
 
-Type
-
-string
-
-Default
-
-127.0.0.1:4986
-
-Description
+Type: string (Default 127.0.0.1:4986)
 
 Network interface to bind metrics API to.
 
@@ -436,53 +340,25 @@ By default, this will only be accessible to the localhost.
 
 #### `api.metrics_interface_authentication`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Whether the metrics API requires authentication
 
 #### `api.profile_interface`
 
-Type
-
-string
-
-Description
+Type: string
 
 Network interface to bind profiling API to
 
 #### `api.public_interface`
 
-Type
-
-string
-
-Default
-
-:4984
-
-Description
+Type: string (Default :4984)
 
 Network interface to bind public API to
 
 #### `api.read_header_timeout`
 
-Type
-
-string
-
-Default
-
-5s
-
-Description
+Type: string (Default 5s)
 
 The amount of time allowed to read request headers.
 
@@ -490,11 +366,7 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `api.server_read_timeout`
 
-Type
-
-string
-
-Description
+Type: string
 
 Maximum duration before timing out read of the HTTP(S) request.
 
@@ -502,11 +374,7 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `api.server_write_timeout`
 
-Type
-
-string
-
-Description
+Type: string
 
 Maximum duration before timing out write of the HTTP(S) response.
 
@@ -514,49 +382,25 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `auth.bcrypt_cost`
 
-Type
-
-integer
-
-Default
-
-10
-
-Description
+Type: integer (Default 10)
 
 Cost to use for bcrypt password hashes
 
 #### `bootstrap`
 
-Type
-
-object (readOnly)
-
-Description
+Type: object (readOnly)
 
 Configuration settings for interacting with Couchbase Server.
 
 #### `bootstrap.ca_cert_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Root CA cert path for TLS connection
 
 #### `bootstrap.config_update_frequency`
 
-Type
-
-string
-
-Default
-
-10s
-
-Description
+Type: string (Default 10s)
 
 How often to poll Couchbase Server for new config changes.
 
@@ -564,29 +408,13 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `bootstrap.group_id`
 
-Type
-
-string
-
-Default
-
-default
-
-Description
+Type: string (Default default)
 
 The config group ID to use when discovering databases. Allows for non-homogenous configuration.
 
 #### `bootstrap.node_heartbeat_expiry`
 
-Type
-
-string
-
-Default
-
-60s
-
-Description
+Type: string (Default 60s)
 
 How long since a node's last heartbeat before its cluster compat registry entry is pruned. Minimum is 2x the configured `config_update_frequency`.
 
@@ -594,21 +422,13 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `bootstrap.password`
 
-Type
-
-string
-
-Description
+Type: string
 
 Password for authenticating to server
 
 #### `bootstrap.server`
 
-Type
-
-string
-
-Description
+Type: string
 
 Couchbase Server connection string/URL for bootstrap configuration. The connection string should only reference Couchbase Server Data (KV) nodes. Using other node types (Query, Index, Analytics, or Search nodes) is not supported. **Connection String Format**Sync Gateway supports the ability to resolve DNS SRV records for alternate hostnames, or specifying multiple hostnames explicitly. See the [Couchbase Go SDK documentation on DNS SRV records](https://docs.couchbase.com/go-sdk/current/howtos/managing-connections.html#using-dns-srv-records) for more details. Sync Gateway supports both the couchbases:// for TLS and couchbase:// schemes for insecure connection. The supported schemes match that of the Couchbase Server SDKs. **Examples of valid server values:**
 
@@ -625,307 +445,175 @@ Couchbase Server connection string/URL for bootstrap configuration. The connecti
 
 #### `bootstrap.server_tls_skip_verify`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Allow empty server CA Cert Path without attempting to use system root pool
 
 #### `bootstrap.use_system_metadata_collection`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, Sync Gateway uses the `_system._mobile` metadata collection and triggers a one-time migration of any metadata in the default collection.
 
 #### `bootstrap.use_tls_server`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Enforces a secure or non-secure server scheme
 
 #### `bootstrap.username`
 
-Type
-
-string
-
-Description
+Type: string
 
 Username for authenticating to server.
 
 #### `bootstrap.x509_cert_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Cert path (public key) for X.509 bucket auth
 
 #### `bootstrap.x509_key_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Key path (private key) for X.509 bucket auth
 
 #### `bucket_credentials`
 
-Type
-
-object (readOnly)
-
-Description
+Type: object (readOnly)
 
 A map of bucket names to credentials, that can be used instead of the bootstrap ones.
 
 #### `bucket_credentials.{bucketname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 The configuration for the credentials set.
 
 #### `bucket_credentials.{bucketname…​}.password`
 
-Type
-
-string
-
-Description
+Type: string
 
 Password for authenticating to the bucket. This value is always redacted.
 
 #### `bucket_credentials.{bucketname…​}.username`
 
-Type
-
-string
-
-Description
+Type: string
 
 Username for authenticating to the bucket
 
 #### `bucket_credentials.{bucketname…​}.x509_cert_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Cert path (public key) for X.509 bucket auth
 
 #### `bucket_credentials.{bucketname…​}.x509_key_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Key path (private key) for X.509 bucket auth
 
 #### `database_credentials`
 
-Type
-
-object (readOnly)
-
-Description
+Type: object (readOnly)
 
 A map of database name to credentials, that can be used instead of the bootstrap ones.
 
 #### `database_credentials.{databasename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 The configuration for the credentials set.
 
 #### `database_credentials.{databasename…​}.password`
 
-Type
-
-string
-
-Description
+Type: string
 
 Password for authenticating to the bucket. This value is always redacted.
 
 #### `database_credentials.{databasename…​}.username`
 
-Type
-
-string
-
-Description
+Type: string
 
 Username for authenticating to the bucket
 
 #### `database_credentials.{databasename…​}.x509_cert_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Cert path (public key) for X.509 bucket auth
 
 #### `database_credentials.{databasename…​}.x509_key_path`
 
-Type
-
-string
-
-Description
+Type: string
 
 Key path (private key) for X.509 bucket auth
 
 #### `heap_profile_collection_threshold`
 
-Type
-
-integer (readOnly)
-
-Description
+Type: integer (readOnly)
 
 Threshold in bytes for automatic collection of heap profiles. If not specified, defaults to 85% of the lesser of cgroup or system memory.
 
 #### `heap_profile_disable_collection`
 
-Type
-
-boolean (readOnly)
-
-Description
+Type: boolean (readOnly)
 
 Disables automatic heap profile collection.
 
 #### `logging`
 
-Type
-
-object
-
-Description
+Type: object
 
 The configuration settings for modifying Sync Gateway logging.
 
 #### `logging.audit.audit_log_file_path`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The path to write audit log files to
 
 #### `logging.audit.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Toggle for this log output
 
 #### `logging.audit.enabled_events`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 List of enabled global audit events.
 
 #### `logging.audit.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.audit.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-6
-
-Description
+Type: integer (Default 6)
 
 The maximum number of days to retain old log files.
 
 #### `logging.audit.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.audit.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.audit.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -933,131 +621,67 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.console.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-10
-
-Description
+Type: integer (readOnly) (Default 10)
 
 The size of the log collation buffer. The default is 10 if the output is stderr, or 1000 if to a file.
 
 #### `logging.console.color_enabled`
 
-Type
-
-boolean (readOnly)
-
-Description
+Type: boolean (readOnly)
 
 Log with color for the console output
 
 #### `logging.console.enabled`
 
-Type
-
-boolean (readOnly)
-
-Description
+Type: boolean (readOnly)
 
 Toggle for this log output
 
 #### `logging.console.file_output`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 Override the default stderr output, and write to the file specified instead
 
 #### `logging.console.log_keys`
 
-Type
-
-array
-
-Description
+Type: array
 
 Log Keys for the console output
 
 #### `logging.console.log_level`
 
-Type
-
-string
-
-Default
-
-info
-
-Description
+Type: string (Default info)
 
 Log Level for the console output
 
 #### `logging.console.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.console.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-0
-
-Description
+Type: integer (Default 0)
 
 The maximum number of days to retain old log files. By default, there is no rotation, max\_age=0.
 
 #### `logging.console.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.console.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.console.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1065,97 +689,49 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.debug`
 
-Type
-
-object
-
-Description
+Type: object
 
 Debug logging configuration.
 
 #### `logging.debug.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-1000
-
-Description
+Type: integer (readOnly) (Default 1000)
 
 The size of the log collation buffer
 
 #### `logging.debug.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Toggle for this log output
 
 #### `logging.debug.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.debug.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-2
-
-Description
+Type: integer (Default 2)
 
 The maximum number of days to retain old log files.
 
 #### `logging.debug.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.debug.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.debug.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1163,101 +739,49 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.error`
 
-Type
-
-object
-
-Description
+Type: object
 
 Error logging configuration.
 
 #### `logging.error.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-0
-
-Description
+Type: integer (readOnly) (Default 0)
 
 The size of the log collation buffer.
 
 #### `logging.error.enabled`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Toggle for this log output
 
 #### `logging.error.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.error.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-360
-
-Description
+Type: integer (Default 360)
 
 The maximum number of days to retain old log files.
 
 #### `logging.error.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.error.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.error.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1265,101 +789,49 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.info`
 
-Type
-
-object
-
-Description
+Type: object
 
 Info logging configuration.
 
 #### `logging.info.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-0
-
-Description
+Type: integer (readOnly) (Default 0)
 
 The size of the log collation buffer
 
 #### `logging.info.enabled`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Toggle for this log output
 
 #### `logging.info.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.info.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-6
-
-Description
+Type: integer (Default 6)
 
 The maximum number of days to retain old log files.
 
 #### `logging.info.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.info.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.info.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1367,125 +839,61 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.log_file_path`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 Absolute or relative path on the filesystem to the log file directory. A relative path is from the directory that contains the Sync Gateway executable file.
 
 #### `logging.redaction_level`
 
-Type
-
-string (readOnly)
-
-Default
-
-partial
-
-Description
+Type: string (readOnly) (Default partial)
 
 Redaction level to apply to log output.
 
 #### `logging.stats`
 
-Type
-
-object
-
-Description
+Type: object
 
 Trace logging configuration.
 
 #### `logging.stats.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-0
-
-Description
+Type: integer (readOnly) (Default 0)
 
 The size of the log collation buffer
 
 #### `logging.stats.enabled`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Toggle for this log output
 
 #### `logging.stats.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.stats.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-6
-
-Description
+Type: integer (Default 6)
 
 The maximum number of days to retain old log files.
 
 #### `logging.stats.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.stats.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.stats.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1493,97 +901,49 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.trace`
 
-Type
-
-object
-
-Description
+Type: object
 
 Trace logging configuration.
 
 #### `logging.trace.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-1000
-
-Description
+Type: integer (readOnly) (Default 1000)
 
 The size of the log collation buffer
 
 #### `logging.trace.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Toggle for this log output
 
 #### `logging.trace.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.trace.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-2
-
-Description
+Type: integer (Default 2)
 
 The maximum number of days to retain old log files.
 
 #### `logging.trace.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.trace.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.trace.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1591,101 +951,49 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `logging.warn`
 
-Type
-
-object
-
-Description
+Type: object
 
 Warning logging configuration.
 
 #### `logging.warn.collation_buffer_size`
 
-Type
-
-integer (readOnly)
-
-Default
-
-0
-
-Description
+Type: integer (readOnly) (Default 0)
 
 The size of the log collation buffer
 
 #### `logging.warn.enabled`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Toggle for this log output
 
 #### `logging.warn.rotation.localtime`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, it uses the computer's local time to format the backup timestamp.
 
 #### `logging.warn.rotation.max_age`
 
-Type
-
-integer
-
-Default
-
-180
-
-Description
+Type: integer (Default 180)
 
 The maximum number of days to retain old log files.
 
 #### `logging.warn.rotation.max_size`
 
-Type
-
-integer
-
-Default
-
-100
-
-Description
+Type: integer (Default 100)
 
 The maximum size in MB of the log file before it gets rotated.
 
 #### `logging.warn.rotation.rotated_logs_size_limit`
 
-Type
-
-integer
-
-Default
-
-1024
-
-Description
+Type: integer (Default 1024)
 
 Max Size (in mb) of log files before deletion
 
 #### `logging.warn.rotation.rotation_interval`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the interval at which log files are rotated, even if max\_size is not reached.
 
@@ -1693,73 +1001,37 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `max_file_descriptors`
 
-Type
-
-number (readOnly)
-
-Default
-
-5000
-
-Description
+Type: number (readOnly) (Default 5000)
 
 Max of open file descriptors (RLIMIT\_NOFILE)
 
 #### `replicator.blip_compression`
 
-Type
-
-integer
-
-Description
+Type: integer
 
 BLIP data compression level (0-9)
 
 #### `replicator.max_concurrent_changes_batches`
 
-Type
-
-integer
-
-Default
-
-2
-
-Description
+Type: integer (Default 2)
 
 Maximum number of changes batches to process concurrently per replication (1-5)"
 
 #### `replicator.max_concurrent_replications`
 
-Type
-
-integer
-
-Description
+Type: integer
 
 Maximum number of concurrent replication connections allowed. If set to 0 this limit will be ignored.
 
 #### `replicator.max_concurrent_revs`
 
-Type
-
-integer
-
-Default
-
-5
-
-Description
+Type: integer (Default 5)
 
 Maximum number of revs to process concurrently per replication (5-200)
 
 #### `replicator.max_heartbeat`
 
-Type
-
-string
-
-Description
+Type: string
 
 Max heartbeat value for `_changes` request.
 
@@ -1767,35 +1039,19 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `unsupported`
 
-Type
-
-object (readOnly)
-
-Description
+Type: object (readOnly)
 
 Settings that are not officially supported. It is highly recommended these are **not** used.
 
 #### `unsupported.allow_dbconfig_env_vars`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Can be set to false to skip environment variable expansion in database configs
 
 #### `unsupported.diagnostic_interface`
 
-Type
-
-string
-
-Description
+Type: string
 
 Network interface to bind diagnotic API to.
 
@@ -1803,45 +1059,25 @@ By default, this API will not be run unless this string is specified.
 
 #### `unsupported.http2.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether HTTP2 support is enabled
 
 #### `unsupported.serverless`
 
-Type
-
-object
-
-Description
+Type: object
 
 Configuration for when SG is running in serverless mode
 
 #### `unsupported.serverless.enabled`
 
-Type
-
-boolean (readOnly)
-
-Description
+Type: boolean (readOnly)
 
 Run SG in to serverless mode
 
 #### `unsupported.serverless.min_config_fetch_interval`
 
-Type
-
-string
-
-Default
-
-1s
-
-Description
+Type: string (Default 1s)
 
 How long database configs should be kept for in Sync Gateway before refreshing. Set to 0 to fetch configs everytime. This is used for requested databases that SG does not know about.
 
@@ -1849,15 +1085,7 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `unsupported.stats_log_frequency`
 
-Type
-
-string
-
-Default
-
-1m
-
-Description
+Type: string (Default 1m)
 
 How often should stats be written to stats logs.
 
@@ -1865,31 +1093,19 @@ This is a duration and therefore can be provided with units "h", "m", "s", "ms",
 
 #### `unsupported.use_gocb_fast_fail_retry`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 When true, errors on initial connection to Couchbase Server will fail instantaneously. Enabling this will surface authentication errors quickly, but can cause some Sync Gateway operations to shut down databases with intermittent Couchbase Server connection errors.
 
 #### `unsupported.use_stdlib_json`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Bypass the jsoniter package and use Go's stdlib instead
 
 #### `unsupported.use_xattr_config`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Store database configurations in system xattrs
 

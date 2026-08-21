@@ -1,6 +1,6 @@
 ---
 title: Resync your App Endpoint
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-21T04:43:23.418Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/resync.adoc
   xref: xref:app-services::app-endpoints/resync.adoc[]
@@ -11,6 +11,8 @@ antora:
 
 # Resync your App Endpoint
 
+## [](#concepts)Concepts
+
 All document changes made on the Couchbase Lite client app or on the Capella server are automatically synchronized with App Services. Every change is processed by the [Access Control function](access-control-data-validation.md).
 
 If the Read Access Policies (defined in the Access Control function via [Channel assignments](../security/channels.md)) change on the server bucket, use the Resync feature to apply those changes to existing documents.
@@ -19,23 +21,67 @@ You can manage Resync of documents per collection within a scope. For more infor
 
 ## [](#basics)Basics
 
-You can access the Access Control function from two locations:
+You can access Resync from two locations:
 
-* The ****Resync** button is on the Security tab in your App Endpoint settings, located in the Linked Collections table.
+* From the Linked Collections table:
 
-  * The ****Resync** button lets you resync one or multiple collections
+  * Go to **Security** **Access and Validation**, select one or more collections in the **Linked Collections** table, and then click **Resync**.
+* From a collection's Access Control page:
+
+  * Click a collection name in the **Linked Collections** table to open its Access Control page, and then click **Resync**.
+  * Initiates resync only on that linked collection.
 
 > [!NOTE]
 > Only one Resync can be in progress at a given time for a collection or a batch of collections.
 
-* The ****Resync** button directly within the Access Control function of a given linked collection.
+To manually resync, select one or more linked collections and click ****Resync**.
 
-  * This button initiates the resync only on the selected linked collection.
+## [](#pause-and-resync)Pause and Resync
 
-To manually resync an App Endpoint, click on the ****Resync** button. If the App Endpoint is running, you will be prompted to ****Pause Endpoint** first. The resync will then proceed automatically. Once the resync is complete, you can ****Resume App Endpoint** from the same page.
+If the App Endpoint is running, resyncing requires it to be paused first. You're prompted to confirm:
+
+> [!NOTE]
+> Pause App Endpoint and Resync
+> 
+> Resyncing now will pause your App Endpoint. Apps cannot connect to your App Endpoint during a resync.
+
+Click ****Pause and Resync** to continue, or ****Cancel** to back out.
+
+## [](#monitor-resync-progress)Monitor Resync Progress
+
+Once you confirm, the App Endpoint status changes to **RESYNCING**, and an information panel appears above the collections list.
+
+### [](#resync-in-progress)Resync in Progress
+
+The panel displays:
+
+* The number of linked collections being resynced.
+* The number of documents processed and changed, against the estimated total, for example: `Processed 0 and changed 0 of ~3072 estimated documents.`
+
+> [!NOTE]
+> The estimated total is based on the number of documents in the collection at the start of the resync. This number does not update if documents are added to or removed from the collection while the resync is running.
+
+Each linked collection being resynced shows an **App Endpoint resync in progress** status.
+
+To cancel the operation before it finishes, click ****Stop Resync**.
+
+> [!NOTE]
+> If you stop a resync and start it again, the processed and changed document counts reset to zero.
+
+### [](#resync-complete)Resync Complete
+
+When the resync finishes, the panel updates to confirm completion, for example: `Document resync complete: 3072 documents processed.`
+
+The App Endpoint remains **paused** after the resync completes. A banner reminds you that applications cannot connect to or access the endpoint until you resume it.
+
+Click **Resume app endpoint** to bring it back online.
 
 > [!CAUTION]
 > Resuming the App Endpoint cancels any ongoing Resync operation.
+
+Once resumed, the App Endpoint status returns to **ONLINE**, and a confirmation banner, **Successfully resumed App Endpoint**, appears.
+
+Click the close icon (**x**) to dismiss any notification.
 
 ## [](#resync-considerations)Resync Considerations
 
@@ -46,7 +92,7 @@ If the Access Control Function is changed, App Services can reprocess all existi
 * In the Resync state, no user's full access privileges are known until all documents have been scanned.
 
 > [!IMPORTANT]
-> During the resync process the App Endpoint will be offline, during this period no end user requests will be processed, which will impact data synchronization between your mobile and IoT applications and Server.
+> During the resync process the App Endpoint will be offline. During this period no end user requests will be processed, which will impact data synchronization between your mobile and IoT applications and Server.
 
 ## [](#see-also)See Also
 

@@ -1,7 +1,7 @@
 ---
 title: Database Security
 description: Using Sync Gateway's Admin REST API to configure users and roles
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-21T04:43:23.418Z
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-db-security.adoc
   xref: xref:sync-gateway:configuration:configuration-schema-db-security.adoc[]
@@ -128,21 +128,13 @@ The configuration settings described here are provisioned through the Admin REST
 
 #### `admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the role for the default collection. See `collection_access` for channels in named collections.
 
 #### `all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the role has been granted access to for the default collection.
 
@@ -150,51 +142,31 @@ These channels could have been assigned by the Sync function or using the `admin
 
 #### `collection_access`
 
-Type
-
-object
-
-Description
+Type: object
 
 A set of access grants by scope and collection for a specific collection.
 
 #### `collection_access.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope, containing a set of collections.
 
 #### `collection_access.{scopename…​}.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name, defines access collections in this scope.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user in this collection.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to in this collection.
 
@@ -202,31 +174,19 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `collection_access.{scopename…​}.{collectionname…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for this collection.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT channels were updated for this collection.
 
 #### `name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the role.
 
@@ -262,31 +222,19 @@ Role names can only have alphanumeric ASCII characters and underscores.
 
 #### `admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user for the default collection. See `collection_access` for channels in named collections.
 
 #### `admin_roles`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of roles to explicitly grant to the user.
 
 #### `all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to for the default collection. See `collection_access` for channels in named collections.
 
@@ -294,51 +242,31 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `collection_access`
 
-Type
-
-object
-
-Description
+Type: object
 
 A set of access grants by scope and collection for a specific collection.
 
 #### `collection_access.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope, containing a set of collections.
 
 #### `collection_access.{scopename…​}.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name, defines access collections in this scope.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user in this collection.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to in this collection.
 
@@ -346,91 +274,55 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `collection_access.{scopename…​}.{collectionname…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for this collection.
 
 #### `collection_access.{scopename…​}.{collectionname…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT channels were updated for this collection.
 
 #### `disabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, the user will not be able to login to the account as it is disabled.
 
 #### `email`
 
-Type
-
-string
-
-Description
+Type: string
 
 The email address of the user.
 
 #### `jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for the default collection.
 
 #### `jwt_issuer`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The issuer of the last JSON Web Token that the user last used to sign in.
 
 #### `jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT roles/channels were updated.
 
 #### `jwt_roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The roles that the user has been added to through roles\_claim.
 
 #### `name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the user.
 
@@ -438,11 +330,7 @@ User names can only have alphanumeric ASCII characters and underscores.
 
 #### `password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password of the user.
 
@@ -450,11 +338,7 @@ Mandatory. unless `allow_empty_password` is `true` in the database configs.
 
 #### `roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the roles that the user has been granted access to.
 
