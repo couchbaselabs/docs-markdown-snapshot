@@ -1,9 +1,9 @@
 ---
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/ref/pages/index.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/ref/pages/index.adoc
   xref: xref:cxx-sdk:ref:index.adoc[]
 ---
 

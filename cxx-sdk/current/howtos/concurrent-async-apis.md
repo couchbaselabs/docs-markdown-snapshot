@@ -2,9 +2,9 @@
 title: Async APIs
 description: The Couchbase C&#43;&#43; SDK allows the use, and mixing, of two
   asynchronous APIs.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:cxx-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -70,4 +70,4 @@ It's really down to you and the needs of your application. If you're already wri
 
 ### [](#bulk-operations)Bulk Operations
 
-The C++ source repo contains an example of [implementing a bulk get](https://github.com/couchbase/couchbase-cxx-client/blob/1.3.2/examples/bulk%5Fbase%5Fapi.cxx). Careful benchmarking would be required to ensure that this approach is beneficial for your particular workload.
+The C++ source repo contains an example of [implementing a bulk get](https://github.com/couchbase/couchbase-cxx-client/blob/1.4.0/examples/bulk%5Fbase%5Fapi.cxx). Careful benchmarking would be required to ensure that this approach is beneficial for your particular workload.

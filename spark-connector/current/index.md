@@ -1,8 +1,8 @@
 ---
 title: Introduction
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/index.adoc
+  editUrl: https://github.com/couchbase/docs-spark/edit/release/4.0/modules/ROOT/pages/index.adoc
   xref: xref:spark-connector::index.adoc[]
 ---
 
@@ -23,20 +23,21 @@ The Couchbase Spark Connector supports any type of Couchbase cluster. Users of C
 
 ## [](#compatibility)Compatibility
 
-Every version of the Couchbase Spark connector is compiled against a specific Apache Spark target.
+### [](#apache-spark-4-x-users)Apache Spark 4.x users
 
-E.g. if you are using Apache Spark 3.5.x, you should use a 3.5.x version of the Couchbase Spark Connector.
+From the 4.0.0 release, the Couchbase Spark Connector is changing release models to better accommodate the [upcoming changes to the Apache Spark release model](https://spark.apache.org/versioning-policy.html).
 
-__Table 1\. Couchbase Spark Connector compatibility__
-| Couchbase Spark Connector version | Apache Spark target version |
-| --------------------------------- | --------------------------- |
-| 3.5.x                             | 3.5.x                       |
-| 3.3.x                             | 3.3.x                       |
-| 3.2.x                             | 3.2.x                       |
-| 3.1.x                             | 3.1.x                       |
-| 3.0.x                             | 3.0.x                       |
+Apache Spark now aim to release one major each year (N.0.0), followed by two feature minor releases (N.1.0 and N.2.0), then one long-term support (LTS) release N.3.0\. This will be adopted fully from 5.0.0, and is being transitioned to mid-major with the upcoming Apache Spark 4.3.0 release.
 
-Note that if the internal Spark APIs do not break between minor versions, it is possible to use different version combinations. The table above shows the combination Couchbase tests and supports.
+The connector will now also have one major each year, with connector 4.X releases (2026/27) corresponding to the Apache Spark 4.X major, and connector 5.x releases (expected 2027/28) for Apache Spark 5.x, etc.
+
+Each 4.x connector release will aim where possible to be compatible with a useful subset of Apache Spark 4.x releases, particularly the latest patch of each minor that is currently supported by Apache. Apache plan to support N.0.0, N.1.0 and N.2.0 for 6 months apiece, and the LTS N.3.0 for 18 months. The connector will aim to follow the same support model.
+
+See the [release notes](release-notes.md) for details of which Apache Spark versions are tested and fully supported for each connector release. Users may try Apache Spark 4.x releases that are not listed there, though untested combinations will not be officially supported.
+
+### [](#apache-spark-3-5-users)Apache Spark 3.5 users
+
+Apache Spark 3.5.x users should use the latest 3.5.x of the Couchbase Spark Connector.
 
 ### [](#interface-stability)Interface Stability
 

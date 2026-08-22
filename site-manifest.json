@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1787287795465,
+  "generated": 1787373518268,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -25550,2890 +25550,6 @@
               "title": "Upgrade"
             }
           ]
-        },
-        {
-          "version": "2.8",
-          "url": "/couchbase-lite/2.8/index.html",
-          "pages": [
-            {
-              "module": "android",
-              "path": "= Compatibility.adoc",
-              "url": "/couchbase-lite/2.8/android/=%20Compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/android-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/android-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/android/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/android/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities&#8201;&#8212;&#8201;Working with Peer-to-Peer Syncs"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "advance/java-android-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "android-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "android",
-              "path": "blob.adoc",
-              "url": "/couchbase-lite/2.8/android/blob.md",
-              "title": "Working with Blobs&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "android",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-lite/2.8/android/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "android",
-              "path": "conflict.adoc",
-              "url": "/couchbase-lite/2.8/android/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "module": "android",
-              "path": "database.adoc",
-              "url": "/couchbase-lite/2.8/android/database.md",
-              "title": "Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "android",
-              "path": "dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/android/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "module": "android",
-              "path": "dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/android/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "module": "android",
-              "path": "document.adoc",
-              "url": "/couchbase-lite/2.8/android/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "documents.adoc",
-              "url": "/couchbase-lite/2.8/android/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "android",
-              "path": "fts.adoc",
-              "url": "/couchbase-lite/2.8/android/fts.md",
-              "title": "Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/android/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "android",
-              "path": "gs-build.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "module": "android",
-              "path": "gs-install.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-install.md",
-              "title": "Installing Couchbase Lite on Android"
-            },
-            {
-              "module": "android",
-              "path": "gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-prereqs.md",
-              "title": "Preparing for Couchbase Lite on Android"
-            },
-            {
-              "module": "android",
-              "path": "indexing.adoc",
-              "url": "/couchbase-lite/2.8/android/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android-prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/android/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java-android.adoc",
-              "url": "/couchbase-lite/2.8/android/quickstart.md",
-              "title": "Couchbase Lite on Android"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "java.adoc",
-              "url": "/couchbase-lite/2.8/android/quickstart.md",
-              "title": "Couchbase Lite on Android"
-            },
-            {
-              "module": "android",
-              "path": "landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/android/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "android",
-              "path": "landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/android/landing-replications.md",
-              "title": "Data Syncs"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-blob.adoc",
-              "url": "/couchbase-lite/2.8/android/blob.md",
-              "title": "Working with Blobs&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-conflict.adoc",
-              "url": "/couchbase-lite/2.8/android/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-database.adoc",
-              "url": "/couchbase-lite/2.8/android/database.md",
-              "title": "Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/android/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-document.adoc",
-              "url": "/couchbase-lite/2.8/android/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-fts.adoc",
-              "url": "/couchbase-lite/2.8/android/fts.md",
-              "title": "Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-indexing.adoc",
-              "url": "/couchbase-lite/2.8/android/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/android/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/android/landing-replications.md",
-              "title": "Data Syncs"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-query-date-time.adoc",
-              "url": "/couchbase-lite/2.8/android/query-date-time.md",
-              "title": "Date and Time Functions - Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-query-live.adoc",
-              "url": "/couchbase-lite/2.8/android/query-live.md",
-              "title": "Live Query&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/android/query-predictive.md",
-              "title": "Predictive Query&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/android/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-query.adoc",
-              "url": "/couchbase-lite/2.8/android/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "learn/java-android-replication.adoc",
-              "url": "/couchbase-lite/2.8/android/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "module": "android",
-              "path": "p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/android/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities&#8201;&#8212;&#8201;Working with Peer-to-Peer Syncs"
-            },
-            {
-              "module": "android",
-              "path": "p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "module": "android",
-              "path": "p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "module": "android",
-              "path": "p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "module": "android",
-              "path": "p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "module": "android",
-              "path": "p2psync.adoc",
-              "url": "/couchbase-lite/2.8/android/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "android",
-              "path": "prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/android/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/java-android-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/android/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/java-android-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/java-android-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/java-android-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/android/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/java-android-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/android/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "product/swift-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/android/=%20Compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "android",
-              "path": "query-date-time.adoc",
-              "url": "/couchbase-lite/2.8/android/query-date-time.md",
-              "title": "Date and Time Functions - Working with Queries"
-            },
-            {
-              "module": "android",
-              "path": "query-live.adoc",
-              "url": "/couchbase-lite/2.8/android/query-live.md",
-              "title": "Live Query&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "module": "android",
-              "path": "query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/android/query-predictive.md",
-              "title": "Predictive Query&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "module": "android",
-              "path": "query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/android/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "query.adoc",
-              "url": "/couchbase-lite/2.8/android/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "android",
-              "path": "querybuilder.adoc",
-              "url": "/couchbase-lite/2.8/android/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "android",
-              "path": "quickstart.adoc",
-              "url": "/couchbase-lite/2.8/android/quickstart.md",
-              "title": "Couchbase Lite on Android"
-            },
-            {
-              "module": "android",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/android/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "refer/java-android-refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/android/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "android",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/android/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "android",
-              "path": "replication.adoc",
-              "url": "/couchbase-lite/2.8/android/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "start/java-android-gs-build.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "start/java-android-gs-install.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-install.md",
-              "title": "Installing Couchbase Lite on Android"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "start/java-android-gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/android/gs-prereqs.md",
-              "title": "Preparing for Couchbase Lite on Android"
-            },
-            {
-              "module": "android",
-              "path": "support-notices.adoc",
-              "url": "/couchbase-lite/2.8/android/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "android",
-              "path": "supported-os.adoc",
-              "url": "/couchbase-lite/2.8/android/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/android/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "alias": true,
-              "module": "android",
-              "path": "swift-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/android/=%20Compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "android",
-              "path": "thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/android/thread-safety.md"
-            },
-            {
-              "module": "android",
-              "path": "troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "module": "android",
-              "path": "troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "android",
-              "path": "troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "android",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "android",
-              "path": "troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/android/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/csharp/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "advance/csharp-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "csharp",
-              "path": "blob.adoc",
-              "url": "/couchbase-lite/2.8/csharp/blob.md",
-              "title": "Working with Blobs&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "csharp",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-lite/2.8/csharp/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "csharp",
-              "path": "conflict.adoc",
-              "url": "/couchbase-lite/2.8/csharp/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/csharp/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/csharp/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "csharp.adoc",
-              "url": "/couchbase-lite/2.8/csharp/quickstart.md",
-              "title": "Couchbase Lite on C#.Net"
-            },
-            {
-              "module": "csharp",
-              "path": "database.adoc",
-              "url": "/couchbase-lite/2.8/csharp/database.md",
-              "title": "Working with Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "csharp",
-              "path": "dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/csharp/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "module": "csharp",
-              "path": "dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/csharp/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "module": "csharp",
-              "path": "document.adoc",
-              "url": "/couchbase-lite/2.8/csharp/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "csharp",
-              "path": "fts.adoc",
-              "url": "/couchbase-lite/2.8/csharp/fts.md",
-              "title": "Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "get-started-install.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/csharp/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "csharp",
-              "path": "gs-build.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "gs-get-started.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "module": "csharp",
-              "path": "gs-install.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "module": "csharp",
-              "path": "gs-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-supported-os.md",
-              "title": "Supported Versions"
-            },
-            {
-              "module": "csharp",
-              "path": "index.adoc",
-              "url": "/couchbase-lite/2.8/csharp/index.md",
-              "title": "Couchbase Lite on C#.Net"
-            },
-            {
-              "module": "csharp",
-              "path": "indexing.adoc",
-              "url": "/couchbase-lite/2.8/csharp/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "module": "csharp",
-              "path": "landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/csharp/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "csharp",
-              "path": "landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/csharp/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-blob.adoc",
-              "url": "/couchbase-lite/2.8/csharp/blob.md",
-              "title": "Working with Blobs&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-conflict.adoc",
-              "url": "/couchbase-lite/2.8/csharp/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-database.adoc",
-              "url": "/couchbase-lite/2.8/csharp/database.md",
-              "title": "Working with Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/csharp/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-document.adoc",
-              "url": "/couchbase-lite/2.8/csharp/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-fts.adoc",
-              "url": "/couchbase-lite/2.8/csharp/fts.md",
-              "title": "Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-indexing.adoc",
-              "url": "/couchbase-lite/2.8/csharp/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/csharp/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/csharp/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-query-live.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-query.adoc",
-              "url": "/couchbase-lite/2.8/csharp/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-replication.adoc",
-              "url": "/couchbase-lite/2.8/csharp/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "learn/csharp-thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/csharp/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "module": "csharp",
-              "path": "p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "module": "csharp",
-              "path": "p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "module": "csharp",
-              "path": "p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "module": "csharp",
-              "path": "p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "module": "csharp",
-              "path": "p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "module": "csharp",
-              "path": "p2psync.adoc",
-              "url": "/couchbase-lite/2.8/csharp/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "csharp",
-              "path": "prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/csharp/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "product/csharp-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/csharp/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "product/csharp-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "product/csharp-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "product/csharp-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/csharp/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "product/csharp-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/csharp/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "csharp",
-              "path": "query-live.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "module": "csharp",
-              "path": "query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "module": "csharp",
-              "path": "query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/csharp/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "query.adoc",
-              "url": "/couchbase-lite/2.8/csharp/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "csharp",
-              "path": "querybuilder.adoc",
-              "url": "/couchbase-lite/2.8/csharp/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "csharp",
-              "path": "quickstart.adoc",
-              "url": "/couchbase-lite/2.8/csharp/quickstart.md",
-              "title": "Couchbase Lite on C#.Net"
-            },
-            {
-              "module": "csharp",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/csharp/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "refer/csharp-refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/csharp/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "csharp",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "csharp",
-              "path": "replication.adoc",
-              "url": "/couchbase-lite/2.8/csharp/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "start/csharp-gs-build.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "start/csharp-gs-get-started.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "start/csharp-gs-install.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "start/csharp-gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-install.md",
-              "title": "Installing Couchbase Lite on .Net"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "start/csharp-gs-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/csharp/gs-supported-os.md",
-              "title": "Supported Versions"
-            },
-            {
-              "module": "csharp",
-              "path": "support-notices.adoc",
-              "url": "/couchbase-lite/2.8/csharp/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "csharp",
-              "path": "supported-os.adoc",
-              "url": "/couchbase-lite/2.8/csharp/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "csharp",
-              "path": "supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/csharp/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "csharp",
-              "path": "thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/csharp/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "module": "csharp",
-              "path": "troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "module": "csharp",
-              "path": "troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "csharp",
-              "path": "troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "csharp",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "csharp",
-              "path": "troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/csharp/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "advance/java-dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/java/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "advance/java-p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "advance/java-p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "advance/java-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "advance/java-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "java",
-              "path": "blob.adoc",
-              "url": "/couchbase-lite/2.8/java/blob.md",
-              "title": "Blobs"
-            },
-            {
-              "module": "java",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-lite/2.8/java/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "java",
-              "path": "conflict.adoc",
-              "url": "/couchbase-lite/2.8/java/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "module": "java",
-              "path": "database.adoc",
-              "url": "/couchbase-lite/2.8/java/database.md",
-              "title": "Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "java",
-              "path": "dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/java/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "module": "java",
-              "path": "dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/java/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "module": "java",
-              "path": "document.adoc",
-              "url": "/couchbase-lite/2.8/java/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "documents.adoc",
-              "url": "/couchbase-lite/2.8/java/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "java",
-              "path": "fts.adoc",
-              "url": "/couchbase-lite/2.8/java/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/java/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "java",
-              "path": "gs-build.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "module": "java",
-              "path": "gs-install.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-install.md",
-              "title": "Couchbase Lite on Java&#8201;&#8212;&#8201;Installing"
-            },
-            {
-              "module": "java",
-              "path": "gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-prereqs.md",
-              "title": "Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites"
-            },
-            {
-              "module": "java",
-              "path": "index.adoc",
-              "url": "/couchbase-lite/2.8/java/index.md",
-              "title": "Couchbase Lite on Java"
-            },
-            {
-              "module": "java",
-              "path": "indexing.adoc",
-              "url": "/couchbase-lite/2.8/java/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-platform.adoc",
-              "url": "/couchbase-lite/2.8/java/quickstart.md",
-              "title": "Couchbase Lite on Java"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/java/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/java/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "java-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "java",
-              "path": "landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/java/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "java",
-              "path": "landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/java/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-blob.adoc",
-              "url": "/couchbase-lite/2.8/java/blob.md",
-              "title": "Blobs"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-conflict.adoc",
-              "url": "/couchbase-lite/2.8/java/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-database.adoc",
-              "url": "/couchbase-lite/2.8/java/database.md",
-              "title": "Databases&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/java/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-document.adoc",
-              "url": "/couchbase-lite/2.8/java/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-fts.adoc",
-              "url": "/couchbase-lite/2.8/java/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-indexing.adoc",
-              "url": "/couchbase-lite/2.8/java/indexing.md",
-              "title": "Indexing your Data"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/java/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/java/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-query-date-time.adoc",
-              "url": "/couchbase-lite/2.8/java/query-date-time.md",
-              "title": "Date and Time Functions"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-query-live.adoc",
-              "url": "/couchbase-lite/2.8/java/query-live.md",
-              "title": "Live Query"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/java/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/java/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-query.adoc",
-              "url": "/couchbase-lite/2.8/java/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "learn/java-replication.adoc",
-              "url": "/couchbase-lite/2.8/java/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "module": "java",
-              "path": "p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "module": "java",
-              "path": "p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "module": "java",
-              "path": "p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "module": "java",
-              "path": "p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "module": "java",
-              "path": "p2psync.adoc",
-              "url": "/couchbase-lite/2.8/java/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "java",
-              "path": "prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/java/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "product/java-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/java/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "product/java-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "product/java-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "product/java-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/java/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "product/java-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/java/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "java",
-              "path": "query-date-time.adoc",
-              "url": "/couchbase-lite/2.8/java/query-date-time.md",
-              "title": "Date and Time Functions"
-            },
-            {
-              "module": "java",
-              "path": "query-live.adoc",
-              "url": "/couchbase-lite/2.8/java/query-live.md",
-              "title": "Live Query"
-            },
-            {
-              "module": "java",
-              "path": "query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/java/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "module": "java",
-              "path": "query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/java/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "query.adoc",
-              "url": "/couchbase-lite/2.8/java/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "java",
-              "path": "querybuilder.adoc",
-              "url": "/couchbase-lite/2.8/java/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "java",
-              "path": "quickstart.adoc",
-              "url": "/couchbase-lite/2.8/java/quickstart.md",
-              "title": "Couchbase Lite on Java"
-            },
-            {
-              "module": "java",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/java/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "refer/java-refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/java/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "java",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/java/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "java",
-              "path": "replication.adoc",
-              "url": "/couchbase-lite/2.8/java/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "start/java-gs-build.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "start/java-gs-install.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-install.md",
-              "title": "Couchbase Lite on Java&#8201;&#8212;&#8201;Installing"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "start/java-gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/java/gs-prereqs.md",
-              "title": "Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites"
-            },
-            {
-              "module": "java",
-              "path": "support-notices.adoc",
-              "url": "/couchbase-lite/2.8/java/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "java",
-              "path": "supported-os.adoc",
-              "url": "/couchbase-lite/2.8/java/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "java",
-              "path": "supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/java/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "java",
-              "path": "troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "module": "java",
-              "path": "troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "java",
-              "path": "troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "java",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/java/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/objc/dep-upgrade.md",
-              "title": "Upgrade Couchbase Lite"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "advance/objc-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "objc",
-              "path": "blob.adoc",
-              "url": "/couchbase-lite/2.8/objc/blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "module": "objc",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-lite/2.8/objc/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "objc",
-              "path": "conflict.adoc",
-              "url": "/couchbase-lite/2.8/objc/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "module": "objc",
-              "path": "database.adoc",
-              "url": "/couchbase-lite/2.8/objc/database.md",
-              "title": "Database for Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/objc/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "module": "objc",
-              "path": "dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/objc/dep-upgrade.md",
-              "title": "Upgrade Couchbase Lite"
-            },
-            {
-              "module": "objc",
-              "path": "document.adoc",
-              "url": "/couchbase-lite/2.8/objc/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "documents.adoc",
-              "url": "/couchbase-lite/2.8/objc/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "objc",
-              "path": "fts.adoc",
-              "url": "/couchbase-lite/2.8/objc/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/objc/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "objc",
-              "path": "gs-build.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "module": "objc",
-              "path": "gs-install.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-install.md",
-              "title": "Installation - Couchbase Lite on Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-prereqs.md",
-              "title": "Prerequisites&#8201;&#8212;&#8201;Couchbase Lite for Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "index.adoc",
-              "url": "/couchbase-lite/2.8/objc/index.md",
-              "title": "Couchbase Lite on Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "indexing.adoc",
-              "url": "/couchbase-lite/2.8/objc/indexing.md",
-              "title": "Indexes and Indexing"
-            },
-            {
-              "module": "objc",
-              "path": "landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/objc/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "objc",
-              "path": "landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/objc/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-blob.adoc",
-              "url": "/couchbase-lite/2.8/objc/blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-conflict.adoc",
-              "url": "/couchbase-lite/2.8/objc/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-database.adoc",
-              "url": "/couchbase-lite/2.8/objc/database.md",
-              "title": "Database for Objective-C"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/objc/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-document.adoc",
-              "url": "/couchbase-lite/2.8/objc/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-fts.adoc",
-              "url": "/couchbase-lite/2.8/objc/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-indexing.adoc",
-              "url": "/couchbase-lite/2.8/objc/indexing.md",
-              "title": "Indexes and Indexing"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/objc/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/objc/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync.md",
-              "title": "Pe= Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-query-live.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-query.adoc",
-              "url": "/couchbase-lite/2.8/objc/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-replication.adoc",
-              "url": "/couchbase-lite/2.8/objc/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "learn/objc-thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/objc/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/objc/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/objc/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "objc.adoc",
-              "url": "/couchbase-lite/2.8/objc/quickstart.md",
-              "title": "Couchbase Lite on Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "module": "objc",
-              "path": "p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "module": "objc",
-              "path": "p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "module": "objc",
-              "path": "p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "module": "objc",
-              "path": "p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "module": "objc",
-              "path": "p2psync.adoc",
-              "url": "/couchbase-lite/2.8/objc/p2psync.md",
-              "title": "Pe= Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "objc",
-              "path": "prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/objc/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "product/objc-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/objc/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "product/objc-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "product/objc-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "product/objc-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/objc/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "product/objc-supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/objc/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "objc",
-              "path": "query-live.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "module": "objc",
-              "path": "query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-predictive.md",
-              "title": "Predictive Query"
-            },
-            {
-              "module": "objc",
-              "path": "query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/objc/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "query.adoc",
-              "url": "/couchbase-lite/2.8/objc/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "objc",
-              "path": "querybuilder.adoc",
-              "url": "/couchbase-lite/2.8/objc/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "objc",
-              "path": "quickstart.adoc",
-              "url": "/couchbase-lite/2.8/objc/quickstart.md",
-              "title": "Couchbase Lite on Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/objc/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "refer/objc-refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/objc/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "objc",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/objc/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "objc",
-              "path": "replication.adoc",
-              "url": "/couchbase-lite/2.8/objc/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "start/objc-gs-build.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "start/objc-gs-install.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-install.md",
-              "title": "Installation - Couchbase Lite on Objective-C"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "start/objc-gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/objc/gs-prereqs.md",
-              "title": "Prerequisites&#8201;&#8212;&#8201;Couchbase Lite for Objective-C"
-            },
-            {
-              "module": "objc",
-              "path": "support-notices.adoc",
-              "url": "/couchbase-lite/2.8/objc/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "objc",
-              "path": "supported-os.adoc",
-              "url": "/couchbase-lite/2.8/objc/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "objc",
-              "path": "supportnotices.adoc",
-              "url": "/couchbase-lite/2.8/objc/support-notices.md",
-              "title": "Support Notices"
-            },
-            {
-              "module": "objc",
-              "path": "thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/objc/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "module": "objc",
-              "path": "troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "module": "objc",
-              "path": "troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "objc",
-              "path": "troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "objc",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "objc",
-              "path": "troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/objc/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "android/ref-api.adoc",
-              "url": "/couchbase-lite/2.8/index.md",
-              "title": "Introduction"
-            },
-            {
-              "module": "ROOT",
-              "path": "cbl-whatsnew.adoc",
-              "url": "/couchbase-lite/2.8/cbl-whatsnew.md",
-              "title": "What&#8217;s New"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "ROOT",
-              "path": "index.adoc",
-              "url": "/couchbase-lite/2.8/index.md",
-              "title": "Introduction"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "introduction.adoc",
-              "url": "/couchbase-lite/2.8/index.md",
-              "title": "Introduction"
-            },
-            {
-              "module": "ROOT",
-              "path": "javascript.adoc",
-              "url": "/couchbase-lite/2.8/javascript.md",
-              "title": "JavaScript"
-            },
-            {
-              "module": "ROOT",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/swift/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "advance/swift-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "swift",
-              "path": "blob.adoc",
-              "url": "/couchbase-lite/2.8/swift/blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "module": "swift",
-              "path": "compatibility.adoc",
-              "url": "/couchbase-lite/2.8/swift/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "module": "swift",
-              "path": "conflict.adoc",
-              "url": "/couchbase-lite/2.8/swift/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "module": "swift",
-              "path": "database.adoc",
-              "url": "/couchbase-lite/2.8/swift/database.md",
-              "title": "Database for Swift"
-            },
-            {
-              "module": "swift",
-              "path": "dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/swift/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "module": "swift",
-              "path": "dep-upgrade.adoc",
-              "url": "/couchbase-lite/2.8/swift/dep-upgrade.md",
-              "title": "Upgrade"
-            },
-            {
-              "module": "swift",
-              "path": "document.adoc",
-              "url": "/couchbase-lite/2.8/swift/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "module": "swift",
-              "path": "fts.adoc",
-              "url": "/couchbase-lite/2.8/swift/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "glossary.adoc",
-              "url": "/couchbase-lite/2.8/swift/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "swift",
-              "path": "gs-build.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "module": "swift",
-              "path": "gs-install.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-install.md",
-              "title": "Install Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-prereqs.md",
-              "title": "Prerequisites for Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "index.adoc",
-              "url": "/couchbase-lite/2.8/swift/index.md",
-              "title": "Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "indexing.adoc",
-              "url": "/couchbase-lite/2.8/swift/indexing.md",
-              "title": "Indexing"
-            },
-            {
-              "module": "swift",
-              "path": "landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/swift/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "swift",
-              "path": "landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/swift/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/save-swift-blob.adoc",
-              "url": "/couchbase-lite/2.8/swift/save-blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-blob.adoc",
-              "url": "/couchbase-lite/2.8/swift/blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-conflict.adoc",
-              "url": "/couchbase-lite/2.8/swift/conflict.md",
-              "title": "Handling Data Conflicts"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-database.adoc",
-              "url": "/couchbase-lite/2.8/swift/database.md",
-              "title": "Database for Swift"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-dbreplica.adoc",
-              "url": "/couchbase-lite/2.8/swift/dbreplica.md",
-              "title": "Data Sync Locally on Device"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-document.adoc",
-              "url": "/couchbase-lite/2.8/swift/document.md",
-              "title": "Documents&#8201;&#8212;&#8201;Data Model"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-fts.adoc",
-              "url": "/couchbase-lite/2.8/swift/fts.md",
-              "title": "Using Full-Text Search"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-indexing.adoc",
-              "url": "/couchbase-lite/2.8/swift/indexing.md",
-              "title": "Indexing"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-landing-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/swift/landing-p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-landing-replications.adoc",
-              "url": "/couchbase-lite/2.8/swift/landing-replications.md",
-              "title": "Data Sync"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-p2psync.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-query-live.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-predictive.md",
-              "title": "Predictive Queries"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-query.adoc",
-              "url": "/couchbase-lite/2.8/swift/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-replication.adoc",
-              "url": "/couchbase-lite/2.8/swift/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/swift/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "learn/swift-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-queries%20copy.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "swift",
-              "path": "p2p-managing-tls-id.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2p-managing-tls-id.md",
-              "title": "Managing TLS Identities"
-            },
-            {
-              "module": "swift",
-              "path": "p2psync-custom.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-custom.md",
-              "title": "Integrate a Custom Built Listener"
-            },
-            {
-              "module": "swift",
-              "path": "p2psync-websocket-using-active.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket-using-active.md",
-              "title": "Active Peer"
-            },
-            {
-              "module": "swift",
-              "path": "p2psync-websocket-using-passive.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket-using-passive.md",
-              "title": "Passive Peer"
-            },
-            {
-              "module": "swift",
-              "path": "p2psync-websocket.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync-websocket.md",
-              "title": "Data Sync Peer-to-Peer"
-            },
-            {
-              "module": "swift",
-              "path": "p2psync.adoc",
-              "url": "/couchbase-lite/2.8/swift/p2psync.md",
-              "title": "Peer-to-Peer Device Sync"
-            },
-            {
-              "module": "swift",
-              "path": "prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/swift/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "product/swift-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/swift/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "product/swift-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "product/swift-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "product/swift-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/swift/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "module": "swift",
-              "path": "query-live.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-live.md",
-              "title": "Live Queries"
-            },
-            {
-              "module": "swift",
-              "path": "query-predictive.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-predictive.md",
-              "title": "Predictive Queries"
-            },
-            {
-              "module": "swift",
-              "path": "query-troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/swift/query-troubleshooting.md",
-              "title": "Query Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "query.adoc",
-              "url": "/couchbase-lite/2.8/swift/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "swift",
-              "path": "querybuilder.adoc",
-              "url": "/couchbase-lite/2.8/swift/querybuilder.md",
-              "title": "QueryBuilder"
-            },
-            {
-              "module": "swift",
-              "path": "quickstart.adoc",
-              "url": "/couchbase-lite/2.8/swift/quickstart.md",
-              "title": "Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/swift/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "refer/swift-refer-glossary.adoc",
-              "url": "/couchbase-lite/2.8/swift/refer-glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "module": "swift",
-              "path": "release-notes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "module": "swift",
-              "path": "replication.adoc",
-              "url": "/couchbase-lite/2.8/swift/replication.md",
-              "title": "Data Sync using Sync Gateway"
-            },
-            {
-              "module": "swift",
-              "path": "save-blob.adoc",
-              "url": "/couchbase-lite/2.8/swift/save-blob.md",
-              "title": "Working with Blobs"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "start/swift-gs-build.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-build.md",
-              "title": "Build and Run"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "start/swift-gs-install.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-install.md",
-              "title": "Install Couchbase Lite on Swift"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "start/swift-gs-prereqs.adoc",
-              "url": "/couchbase-lite/2.8/swift/gs-prereqs.md",
-              "title": "Prerequisites for Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "supported-os.adoc",
-              "url": "/couchbase-lite/2.8/swift/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-compatibility.adoc",
-              "url": "/couchbase-lite/2.8/swift/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-prebuilt-database.adoc",
-              "url": "/couchbase-lite/2.8/swift/prebuilt-database.md",
-              "title": "Pre-built Database"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-release-notes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-releasenotes.adoc",
-              "url": "/couchbase-lite/2.8/swift/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-supported-os.adoc",
-              "url": "/couchbase-lite/2.8/swift/supported-os.md",
-              "title": "Supported Operating System Versions"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift-troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "alias": true,
-              "module": "swift",
-              "path": "swift.adoc",
-              "url": "/couchbase-lite/2.8/swift/quickstart.md",
-              "title": "Couchbase Lite on Swift"
-            },
-            {
-              "module": "swift",
-              "path": "thread-safety.adoc",
-              "url": "/couchbase-lite/2.8/swift/thread-safety.md",
-              "title": "Thread Safety"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting-crashes.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-crashes.md",
-              "title": "Crash Logs"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting-landing.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-landing.md",
-              "title": "Troubleshooting"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting-logs.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-logs.md",
-              "title": "Using Logs for Troubleshooting"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting-queries copy.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-queries%20copy.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting-queries.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting-queries.md",
-              "title": "Troubleshooting Queries"
-            },
-            {
-              "module": "swift",
-              "path": "troubleshooting.adoc",
-              "url": "/couchbase-lite/2.8/swift/troubleshooting.md",
-              "title": "Troubleshooting"
-            }
-          ]
         }
       ]
     },
@@ -28612,10 +25728,10 @@
     {
       "name": "cxx-sdk",
       "title": "C++ SDK",
-      "latest": "1.3",
+      "latest": "1.4",
       "versions": [
         {
-          "version": "1.3",
+          "version": "1.4",
           "url": "/cxx-sdk/current/hello-world/overview.html",
           "pages": [
             {
@@ -28807,7 +25923,7 @@
               "module": "hello-world",
               "path": "overview.adoc",
               "url": "/cxx-sdk/current/hello-world/overview.md",
-              "title": "Couchbase C++ SDK 1.3"
+              "title": "Couchbase C++ SDK 1.4"
             },
             {
               "module": "hello-world",
@@ -29160,7 +26276,7 @@
               "module": "ROOT",
               "path": "index.adoc",
               "url": "/cxx-sdk/current/hello-world/overview.md",
-              "title": "Couchbase C++ SDK 1.3"
+              "title": "Couchbase C++ SDK 1.4"
             },
             {
               "alias": true,
@@ -29195,6 +26311,585 @@
               "module": "ROOT",
               "path": "sdk-xattr-example.adoc",
               "url": "/cxx-sdk/current/howtos/subdocument-operations.md",
+              "title": "Sub-Document Operations"
+            }
+          ]
+        },
+        {
+          "version": "1.3",
+          "url": "/cxx-sdk/1.3/hello-world/overview.html",
+          "pages": [
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "analytics-for-sdk-users.adoc",
+              "url": "/cxx-sdk/1.3/howtos/analytics-using-sdk.md",
+              "title": "Analytics"
+            },
+            {
+              "module": "concept-docs",
+              "path": "best-practices.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/best-practices.md",
+              "title": "Best Practices"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "buckets-and-clusters.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/management-api.md",
+              "title": "Managing Couchbase Clusters from the SDK"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "certificate-based-authentication.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sdk-authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "choosing-the-right-service.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/querying-your-data.md",
+              "title": "Querying Your Data"
+            },
+            {
+              "module": "concept-docs",
+              "path": "compression.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/compression.md",
+              "title": "Compression"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "concepts.adoc",
+              "url": "/cxx-sdk/1.3/ref/index.md",
+              "title": "Reference Pages"
+            },
+            {
+              "module": "concept-docs",
+              "path": "data-durability-acid-transactions.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/data-durability-acid-transactions.md",
+              "title": "Data Modelling, Durability, and Consistency"
+            },
+            {
+              "module": "concept-docs",
+              "path": "data-model.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/data-model.md",
+              "title": "Data Model"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "data-services.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/querying-your-data.md",
+              "title": "Querying Your Data"
+            },
+            {
+              "module": "concept-docs",
+              "path": "documents.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/documents.md",
+              "title": "Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "durability-replication-failure-considerations.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/durability-replication-failure-considerations.md",
+              "title": "Failure Considerations"
+            },
+            {
+              "module": "concept-docs",
+              "path": "encryption.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/encryption.md",
+              "title": "Field Level Encryption"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "errors.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/best-practices.md",
+              "title": "Best Practices"
+            },
+            {
+              "module": "concept-docs",
+              "path": "full-text-search-overview.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/full-text-search-overview.md",
+              "title": "Search"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "health-check.adoc",
+              "url": "/cxx-sdk/1.3/howtos/health-check.md",
+              "title": "Health Check"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "http-services.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/querying-your-data.md",
+              "title": "Querying Your Data"
+            },
+            {
+              "module": "concept-docs",
+              "path": "management-api.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/management-api.md",
+              "title": "Managing Couchbase Clusters from the SDK"
+            },
+            {
+              "module": "concept-docs",
+              "path": "n1ql-query.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/n1ql-query.md",
+              "title": "Querying with SQL++"
+            },
+            {
+              "module": "concept-docs",
+              "path": "nonjson.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/nonjson.md",
+              "title": "Non-JSON Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "querying-your-data.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/querying-your-data.md",
+              "title": "Querying Your Data"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "rbac.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/best-practices.md",
+              "title": "Best Practices"
+            },
+            {
+              "module": "concept-docs",
+              "path": "response-time-observability.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/response-time-observability.md",
+              "title": "Tracing"
+            },
+            {
+              "module": "concept-docs",
+              "path": "subdocument-operations.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/subdocument-operations.md",
+              "title": "Sub-Documents"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions-cleanup.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/transactions-cleanup.md",
+              "title": "Cleanup"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions-error-handling.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/transactions-error-handling.md",
+              "title": "Error Handling"
+            },
+            {
+              "module": "concept-docs",
+              "path": "transactions.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/transactions.md",
+              "title": "Transaction Concepts"
+            },
+            {
+              "alias": true,
+              "module": "concept-docs",
+              "path": "understanding-views.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/migrating-sdk-code-to-3.n.md",
+              "title": "Migrating from SDK2 to SDK3 API"
+            },
+            {
+              "module": "concept-docs",
+              "path": "xattr.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/xattr.md",
+              "title": "XATTR &amp; Virtual XATTR"
+            },
+            {
+              "module": "hello-world",
+              "path": "overview.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/overview.md",
+              "title": "Couchbase C++ SDK 1.3"
+            },
+            {
+              "module": "hello-world",
+              "path": "platform-help.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/platform-help.md",
+              "title": "Platform Introduction"
+            },
+            {
+              "module": "hello-world",
+              "path": "sample-application.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/sample-application.md",
+              "title": "Quickstart in Couchbase with C&#43;&#43;"
+            },
+            {
+              "module": "hello-world",
+              "path": "start-using-sdk.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/start-using-sdk.md",
+              "title": "Hello World"
+            },
+            {
+              "module": "hello-world",
+              "path": "student-record-developer-tutorial.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/student-record-developer-tutorial.md",
+              "title": "Couchbase Tutorial: A Student Record System"
+            },
+            {
+              "module": "howtos",
+              "path": "analytics-using-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/analytics-using-sdk.md",
+              "title": "Analytics"
+            },
+            {
+              "module": "howtos",
+              "path": "collecting-information-and-logging.adoc",
+              "url": "/cxx-sdk/1.3/howtos/collecting-information-and-logging.md",
+              "title": "Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "concurrent-async-apis.adoc",
+              "url": "/cxx-sdk/1.3/howtos/concurrent-async-apis.md",
+              "title": "Async APIs"
+            },
+            {
+              "module": "howtos",
+              "path": "concurrent-document-mutations.adoc",
+              "url": "/cxx-sdk/1.3/howtos/concurrent-document-mutations.md",
+              "title": "Concurrent Document Mutations"
+            },
+            {
+              "module": "howtos",
+              "path": "distributed-acid-transactions-from-the-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/distributed-acid-transactions-from-the-sdk.md",
+              "title": "Using Couchbase Transactions"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "document-operations.adoc",
+              "url": "/cxx-sdk/1.3/howtos/kv-operations.md",
+              "title": "Data Operations"
+            },
+            {
+              "module": "howtos",
+              "path": "encrypting-using-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/encrypting-using-sdk.md",
+              "title": "Field Level Encryption from the SDK"
+            },
+            {
+              "module": "howtos",
+              "path": "error-handling.adoc",
+              "url": "/cxx-sdk/1.3/howtos/error-handling.md",
+              "title": "Handling Errors"
+            },
+            {
+              "module": "howtos",
+              "path": "full-text-searching-with-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/full-text-searching-with-sdk.md",
+              "title": "Search"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "handling-error-conditions.adoc",
+              "url": "/cxx-sdk/1.3/howtos/error-handling.md",
+              "title": "Handling Errors"
+            },
+            {
+              "module": "howtos",
+              "path": "health-check.adoc",
+              "url": "/cxx-sdk/1.3/howtos/health-check.md",
+              "title": "Health Check"
+            },
+            {
+              "module": "howtos",
+              "path": "kv-operations.adoc",
+              "url": "/cxx-sdk/1.3/howtos/kv-operations.md",
+              "title": "Data Operations"
+            },
+            {
+              "module": "howtos",
+              "path": "managing-connections.adoc",
+              "url": "/cxx-sdk/1.3/howtos/managing-connections.md",
+              "title": "Managing Connections"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "n1ql-queries-with-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sqlpp-queries-with-sdk.md",
+              "title": "Querying with SQL++"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "n1ql-query.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sqlpp-queries-with-sdk.md",
+              "title": "Querying with SQL++"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-metrics.adoc",
+              "url": "/cxx-sdk/1.3/howtos/observability-metrics.md",
+              "title": "Metrics Reporting"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-orphan-logger.adoc",
+              "url": "/cxx-sdk/1.3/howtos/observability-orphan-logger.md",
+              "title": "Orphaned Requests Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-tracing.adoc",
+              "url": "/cxx-sdk/1.3/howtos/observability-tracing.md",
+              "title": "Request Tracing"
+            },
+            {
+              "module": "howtos",
+              "path": "provisioning-cluster-resources.adoc",
+              "url": "/cxx-sdk/1.3/howtos/provisioning-cluster-resources.md",
+              "title": "Provisioning Cluster Resources"
+            },
+            {
+              "module": "howtos",
+              "path": "sdk-authentication.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sdk-authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "module": "howtos",
+              "path": "sdk-user-management-example.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sdk-user-management-example.md",
+              "title": "User Management"
+            },
+            {
+              "module": "howtos",
+              "path": "slow-operations-logging.adoc",
+              "url": "/cxx-sdk/1.3/howtos/slow-operations-logging.md",
+              "title": "Slow Operations Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "sqlpp-queries-with-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sqlpp-queries-with-sdk.md",
+              "title": "Querying with SQL++"
+            },
+            {
+              "module": "howtos",
+              "path": "subdocument-operations.adoc",
+              "url": "/cxx-sdk/1.3/howtos/subdocument-operations.md",
+              "title": "Sub-Document Operations"
+            },
+            {
+              "module": "howtos",
+              "path": "synchronous-replication.adoc",
+              "url": "/cxx-sdk/1.3/howtos/synchronous-replication.md",
+              "title": "Synchronous Replication"
+            },
+            {
+              "module": "howtos",
+              "path": "tracing-from-the-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/tracing-from-the-sdk.md",
+              "title": "Tracing from the .NET SDK"
+            },
+            {
+              "module": "howtos",
+              "path": "transactions-tracing.adoc",
+              "url": "/cxx-sdk/1.3/howtos/transactions-tracing.md",
+              "title": "Tracing"
+            },
+            {
+              "module": "howtos",
+              "path": "troubleshooting-cloud-connections.adoc",
+              "url": "/cxx-sdk/1.3/howtos/troubleshooting-cloud-connections.md",
+              "title": "Troubleshooting Cloud Connections"
+            },
+            {
+              "module": "howtos",
+              "path": "unit-testing.adoc",
+              "url": "/cxx-sdk/1.3/howtos/unit-testing.md",
+              "title": "Unit Testing"
+            },
+            {
+              "module": "howtos",
+              "path": "vector-searching-with-sdk.adoc",
+              "url": "/cxx-sdk/1.3/howtos/vector-searching-with-sdk.md",
+              "title": "Vector Search"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "view-queries-with-sdk.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/migrating-sdk-code-to-3.n.md",
+              "title": "Migrating from SDK2 to SDK3 API"
+            },
+            {
+              "alias": true,
+              "module": "howtos",
+              "path": "working-with-collections.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/migrating-sdk-code-to-3.n.md",
+              "title": "Migrating from SDK2 to SDK3 API"
+            },
+            {
+              "alias": true,
+              "module": "project-docs",
+              "path": "compatibility-versions-features.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/compatibility.md",
+              "title": "Compatibility"
+            },
+            {
+              "module": "project-docs",
+              "path": "compatibility.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/compatibility.md",
+              "title": "Compatibility"
+            },
+            {
+              "module": "project-docs",
+              "path": "deployment.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/deployment.md",
+              "title": "Deployment"
+            },
+            {
+              "module": "project-docs",
+              "path": "get-involved.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/get-involved.md",
+              "title": "Get Involved"
+            },
+            {
+              "module": "project-docs",
+              "path": "metadoc-about-these-sdk-docs.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/metadoc-about-these-sdk-docs.md",
+              "title": "About These Docs"
+            },
+            {
+              "module": "project-docs",
+              "path": "migrating-sdk-code-to-3.n.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/migrating-sdk-code-to-3.n.md",
+              "title": "Migrating from SDK2 to SDK3 API"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-full-installation.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/sdk-full-installation.md",
+              "title": "Full Installation of the C&#43;&#43; SDK"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-licenses.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/sdk-licenses.md",
+              "title": "Licenses"
+            },
+            {
+              "module": "project-docs",
+              "path": "sdk-release-notes.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/sdk-release-notes.md",
+              "title": "SDK Release Notes"
+            },
+            {
+              "module": "project-docs",
+              "path": "third-party-integrations.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/third-party-integrations.md",
+              "title": "Integrations &amp; Ecosystem"
+            },
+            {
+              "module": "ref",
+              "path": "client-settings.adoc",
+              "url": "/cxx-sdk/1.3/ref/client-settings.md",
+              "title": "Client Settings"
+            },
+            {
+              "module": "ref",
+              "path": "data-structures.adoc",
+              "url": "/cxx-sdk/1.3/ref/data-structures.md",
+              "title": "Data Structures"
+            },
+            {
+              "module": "ref",
+              "path": "error-codes.adoc",
+              "url": "/cxx-sdk/1.3/ref/error-codes.md",
+              "title": "Error Messages"
+            },
+            {
+              "module": "ref",
+              "path": "glossary.adoc",
+              "url": "/cxx-sdk/1.3/ref/glossary.md",
+              "title": "Glossary"
+            },
+            {
+              "module": "ref",
+              "path": "index.adoc",
+              "url": "/cxx-sdk/1.3/ref/index.md",
+              "title": "Reference Pages"
+            },
+            {
+              "module": "ref",
+              "path": "travel-app-data-model.adoc",
+              "url": "/cxx-sdk/1.3/ref/travel-app-data-model.md",
+              "title": "Travel Sample Data Model"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "compatibility-versions-features.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/compatibility.md",
+              "title": "Compatibility"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "encryption.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/encryption.md",
+              "title": "Field Level Encryption"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "full-text-search-overview.adoc",
+              "url": "/cxx-sdk/1.3/concept-docs/full-text-search-overview.md",
+              "title": "Search"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "index.adoc",
+              "url": "/cxx-sdk/1.3/hello-world/overview.md",
+              "title": "Couchbase C++ SDK 1.3"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "overview.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/compatibility.md",
+              "title": "Compatibility"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-authentication-overview.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sdk-authentication.md",
+              "title": "Authentication"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-licenses.adoc",
+              "url": "/cxx-sdk/1.3/project-docs/sdk-licenses.md",
+              "title": "Licenses"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-user-management-example.adoc",
+              "url": "/cxx-sdk/1.3/howtos/sdk-user-management-example.md",
+              "title": "User Management"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "sdk-xattr-example.adoc",
+              "url": "/cxx-sdk/1.3/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
             }
           ]
@@ -59470,20 +57165,146 @@
         {
           "version": "",
           "displayVersion": "default",
-          "url": "/mcp-server/intro.html",
+          "url": "/mcp-server/get-started/overview.html",
           "pages": [
+            {
+              "module": "configuration",
+              "path": "choosing-a-setup.adoc",
+              "url": "/mcp-server/configuration/choosing-a-setup.md",
+              "title": "Choosing a Setup"
+            },
+            {
+              "module": "configuration",
+              "path": "disabling-tools.adoc",
+              "url": "/mcp-server/configuration/disabling-tools.md",
+              "title": "Disabling Tools"
+            },
+            {
+              "module": "configuration",
+              "path": "elicitation-for-tools.adoc",
+              "url": "/mcp-server/configuration/elicitation-for-tools.md",
+              "title": "Elicitation / Confirmation for Tool Calls"
+            },
+            {
+              "module": "configuration",
+              "path": "environment-variables.adoc",
+              "url": "/mcp-server/configuration/environment-variables.md",
+              "title": "Environment Variables &amp; Command Line Arguments"
+            },
+            {
+              "module": "configuration",
+              "path": "idp-compatibility.adoc",
+              "url": "/mcp-server/configuration/idp-compatibility.md",
+              "title": "IDP Compatibility"
+            },
+            {
+              "module": "configuration",
+              "path": "index.adoc",
+              "url": "/mcp-server/configuration/index.md",
+              "title": "Configuration"
+            },
+            {
+              "module": "configuration",
+              "path": "logging.adoc",
+              "url": "/mcp-server/configuration/logging.md",
+              "title": "Logging"
+            },
+            {
+              "module": "configuration",
+              "path": "oauth-overview.adoc",
+              "url": "/mcp-server/configuration/oauth-overview.md",
+              "title": "OAuth Authentication"
+            },
+            {
+              "module": "configuration",
+              "path": "read-only-mode.adoc",
+              "url": "/mcp-server/configuration/read-only-mode.md",
+              "title": "Read-Only Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "streamable-http.adoc",
+              "url": "/mcp-server/configuration/streamable-http.md",
+              "title": "Streamable HTTP Transport Mode"
+            },
+            {
+              "module": "configuration",
+              "path": "token-verification.adoc",
+              "url": "/mcp-server/configuration/token-verification.md",
+              "title": "Token Verification &amp; PRM"
+            },
+            {
+              "module": "get-started",
+              "path": "overview.adoc",
+              "url": "/mcp-server/get-started/overview.md",
+              "title": "Couchbase MCP Server"
+            },
+            {
+              "module": "get-started",
+              "path": "prerequisites.adoc",
+              "url": "/mcp-server/get-started/prerequisites.md",
+              "title": "Prerequisites"
+            },
+            {
+              "module": "get-started",
+              "path": "quickstart.adoc",
+              "url": "/mcp-server/get-started/quickstart.md",
+              "title": "Quick Start"
+            },
+            {
+              "module": "get-started",
+              "path": "registries.adoc",
+              "url": "/mcp-server/get-started/registries.md",
+              "title": "Registries"
+            },
+            {
+              "module": "learn",
+              "path": "architecture.adoc",
+              "url": "/mcp-server/learn/architecture.md",
+              "title": "Architecture"
+            },
+            {
+              "module": "learn",
+              "path": "tools.adoc",
+              "url": "/mcp-server/learn/tools.md",
+              "title": "Tools"
+            },
+            {
+              "module": "reference",
+              "path": "build-from-source.adoc",
+              "url": "/mcp-server/reference/build-from-source.md",
+              "title": "Build from Source"
+            },
+            {
+              "module": "reference",
+              "path": "license.adoc",
+              "url": "/mcp-server/reference/license.md",
+              "title": "License"
+            },
+            {
+              "module": "reference",
+              "path": "release-notes.adoc",
+              "url": "/mcp-server/reference/release-notes.md",
+              "title": "Release Notes"
+            },
+            {
+              "module": "reference",
+              "path": "troubleshooting.adoc",
+              "url": "/mcp-server/reference/troubleshooting.md",
+              "title": "Troubleshooting"
+            },
             {
               "alias": true,
               "module": "ROOT",
               "path": "index.adoc",
-              "url": "/mcp-server/intro.md",
-              "title": "Capella MCP Server"
+              "url": "/mcp-server/get-started/overview.md",
+              "title": "Couchbase MCP Server"
             },
             {
-              "module": "ROOT",
-              "path": "intro.adoc",
-              "url": "/mcp-server/intro.md",
-              "title": "Capella MCP Server"
+              "module": "security",
+              "path": "security.adoc",
+              "url": "/mcp-server/security/security.md",
+              "title": "Security"
             }
           ]
         }
@@ -113562,36 +111383,11 @@
     {
       "name": "shared-mobile",
       "title": "Couchbase Mobile",
-      "latest": "2.8",
+      "latest": "3.1",
       "versions": [
         {
           "version": "3.1",
           "displayVersion": "3.1 BETA",
-          "url": "/shared-mobile/3.1/cbmintro.html",
-          "pages": [
-            {
-              "module": "ROOT",
-              "path": "cbmintro.adoc",
-              "url": "/shared-mobile/3.1/cbmintro.md",
-              "title": "Introduction to Couchbase Mobile"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "index.adoc",
-              "url": "/shared-mobile/3.1/cbmintro.md",
-              "title": "Introduction to Couchbase Mobile"
-            },
-            {
-              "module": "ROOT",
-              "path": "siteintro.adoc",
-              "url": "/shared-mobile/3.1/siteintro.md",
-              "title": "Couchbase Mobile - Embedded Database on the Edge"
-            }
-          ]
-        },
-        {
-          "version": "2.8",
           "url": "/shared-mobile/current/cbmintro.html",
           "pages": [
             {
@@ -113626,10 +111422,10 @@
     {
       "name": "spark-connector",
       "title": "Spark Connector",
-      "latest": "3.5",
+      "latest": "4.0",
       "versions": [
         {
-          "version": "3.5",
+          "version": "4.0",
           "url": "/spark-connector/current/index.html",
           "pages": [
             {
@@ -113732,6 +111528,108 @@
               "module": "ROOT",
               "path": "working-with-rdds.adoc",
               "url": "/spark-connector/current/working-with-rdds.md",
+              "title": "Working With RDDs"
+            }
+          ]
+        },
+        {
+          "version": "3.5",
+          "url": "/spark-connector/3.5/index.html",
+          "pages": [
+            {
+              "module": "ROOT",
+              "path": "columnar.adoc",
+              "url": "/spark-connector/3.5/columnar.md",
+              "title": "Capella Columnar Support"
+            },
+            {
+              "module": "ROOT",
+              "path": "configuration.adoc",
+              "url": "/spark-connector/3.5/configuration.md",
+              "title": "Configuration"
+            },
+            {
+              "module": "ROOT",
+              "path": "databricks.adoc",
+              "url": "/spark-connector/3.5/databricks.md",
+              "title": "Databricks Support"
+            },
+            {
+              "module": "ROOT",
+              "path": "dev-workflow.adoc",
+              "url": "/spark-connector/3.5/dev-workflow.md",
+              "title": "Development Workflow"
+            },
+            {
+              "module": "ROOT",
+              "path": "download-links.adoc",
+              "url": "/spark-connector/3.5/download-links.md",
+              "title": "Download and API Reference"
+            },
+            {
+              "module": "ROOT",
+              "path": "getting-started.adoc",
+              "url": "/spark-connector/3.5/getting-started.md",
+              "title": "Getting Started (Scala)"
+            },
+            {
+              "module": "ROOT",
+              "path": "index.adoc",
+              "url": "/spark-connector/3.5/index.md",
+              "title": "Introduction"
+            },
+            {
+              "module": "ROOT",
+              "path": "java-api.adoc",
+              "url": "/spark-connector/3.5/java-api.md",
+              "title": "Java API"
+            },
+            {
+              "module": "ROOT",
+              "path": "migration.adoc",
+              "url": "/spark-connector/3.5/migration.md",
+              "title": "Migration Guide"
+            },
+            {
+              "module": "ROOT",
+              "path": "pyspark.adoc",
+              "url": "/spark-connector/3.5/pyspark.md",
+              "title": "Getting Started (PySpark)"
+            },
+            {
+              "module": "ROOT",
+              "path": "release-notes.adoc",
+              "url": "/spark-connector/3.5/release-notes.md",
+              "title": "Release Notes"
+            },
+            {
+              "module": "ROOT",
+              "path": "spark-shell.adoc",
+              "url": "/spark-connector/3.5/spark-shell.md",
+              "title": "Using the Spark Shell"
+            },
+            {
+              "module": "ROOT",
+              "path": "spark-sql.adoc",
+              "url": "/spark-connector/3.5/spark-sql.md",
+              "title": "DataFrames, Datasets, and SQL"
+            },
+            {
+              "module": "ROOT",
+              "path": "streaming.adoc",
+              "url": "/spark-connector/3.5/streaming.md",
+              "title": "Spark Structured Streaming Support"
+            },
+            {
+              "module": "ROOT",
+              "path": "subdocument.adoc",
+              "url": "/spark-connector/3.5/subdocument.md",
+              "title": "Sub-document DataFrame KV persistence"
+            },
+            {
+              "module": "ROOT",
+              "path": "working-with-rdds.adoc",
+              "url": "/spark-connector/3.5/working-with-rdds.md",
               "title": "Working With RDDs"
             }
           ]
@@ -122708,919 +120606,6 @@
               "path": "write-access.adoc",
               "url": "/sync-gateway/3.0/access-control-how-control-document-access.md",
               "title": "Control Document Access"
-            }
-          ]
-        },
-        {
-          "version": "2.8",
-          "url": "/sync-gateway/2.8/index.html",
-          "pages": [
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "admin-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api-admin.md",
-              "title": "Admin REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/adv-rest-api-client.adoc",
-              "url": "/sync-gateway/2.8/rest-api-client-app.md",
-              "title": "REST API Client Application"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/adv-sgw-cfg-import-filter.adoc",
-              "url": "/sync-gateway/2.8/import-filter.md",
-              "title": "Import Filter"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/adv-sgw-cfg-sync-function.adoc",
-              "url": "/sync-gateway/2.8/sync-function.md",
-              "title": "Sync Function"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/conflict-resolution.adoc",
-              "url": "/sync-gateway/2.8/conflict-resolution.md",
-              "title": "Conflict Resolution"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/deploy/upgrade.adoc",
-              "url": "/sync-gateway/2.8/upgrading.md",
-              "title": "Upgrading Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/kubernetes/deploy-cluster.adoc",
-              "url": "/sync-gateway/2.8/deploy-cluster-to-kubernetes.md",
-              "title": "Deploying a Sync Gateway Cluster"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "advance/logging.adoc",
-              "url": "/sync-gateway/2.8/logging.md",
-              "title": "Logging"
-            },
-            {
-              "module": "ROOT",
-              "path": "authentication-certs.adoc",
-              "url": "/sync-gateway/2.8/authentication-certs.md",
-              "title": "TLS Certificate Authentication"
-            },
-            {
-              "module": "ROOT",
-              "path": "authentication-users.adoc",
-              "url": "/sync-gateway/2.8/authentication-users.md",
-              "title": "User Authentication"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "authentication.adoc",
-              "url": "/sync-gateway/2.8/authentication-users.md",
-              "title": "User Authentication"
-            },
-            {
-              "module": "ROOT",
-              "path": "channels.adoc",
-              "url": "/sync-gateway/2.8/channels.md",
-              "title": "Channels"
-            },
-            {
-              "module": "ROOT",
-              "path": "command-line-options.adoc",
-              "url": "/sync-gateway/2.8/command-line-options.md",
-              "title": "Using the Command Line"
-            },
-            {
-              "module": "ROOT",
-              "path": "compatibility.adoc",
-              "url": "/sync-gateway/2.8/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "config-properties.adoc",
-              "url": "/sync-gateway/2.8/configuration-properties.md",
-              "title": "Configuration File"
-            },
-            {
-              "module": "ROOT",
-              "path": "configuration-properties.adoc",
-              "url": "/sync-gateway/2.8/configuration-properties.md",
-              "title": "Configuration File"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "configuring-ssl.adoc",
-              "url": "/sync-gateway/2.8/authentication-certs.md",
-              "title": "TLS Certificate Authentication"
-            },
-            {
-              "module": "ROOT",
-              "path": "conflict-resolution.adoc",
-              "url": "/sync-gateway/2.8/conflict-resolution.md",
-              "title": "Conflict Resolution"
-            },
-            {
-              "module": "ROOT",
-              "path": "couchbase-mobile-index.adoc",
-              "url": "/sync-gateway/2.8/couchbase-mobile-index.md",
-              "title": "Couchbase Mobile"
-            },
-            {
-              "module": "ROOT",
-              "path": "data-modeling.adoc",
-              "url": "/sync-gateway/2.8/data-modeling.md",
-              "title": "Data Modelling"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "data-routing.adoc",
-              "url": "/sync-gateway/2.8/channels.md",
-              "title": "Channels"
-            },
-            {
-              "module": "ROOT",
-              "path": "database-offline.adoc",
-              "url": "/sync-gateway/2.8/database-offline.md",
-              "title": "Take Database Offline/Online"
-            },
-            {
-              "module": "ROOT",
-              "path": "delta-sync.adoc",
-              "url": "/sync-gateway/2.8/delta-sync.md",
-              "title": "Delta Sync"
-            },
-            {
-              "module": "ROOT",
-              "path": "deploy-cluster-to-kubernetes.adoc",
-              "url": "/sync-gateway/2.8/deploy-cluster-to-kubernetes.md",
-              "title": "Deploying a Sync Gateway Cluster"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "deploy-cluster.adoc",
-              "url": "/sync-gateway/2.8/deploy-cluster-to-kubernetes.md",
-              "title": "Deploying a Sync Gateway Cluster"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "deployment-considerations.adoc",
-              "url": "/sync-gateway/2.8/authentication-certs.md",
-              "title": "TLS Certificate Authentication"
-            },
-            {
-              "module": "ROOT",
-              "path": "deployment.adoc",
-              "url": "/sync-gateway/2.8/deployment.md",
-              "title": "Deployment"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "get-started-access-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api-access.md",
-              "title": "REST API Access"
-            },
-            {
-              "module": "ROOT",
-              "path": "get-started-install.adoc",
-              "url": "/sync-gateway/2.8/get-started-install.md",
-              "title": "Install Sync Gateway"
-            },
-            {
-              "module": "ROOT",
-              "path": "get-started-prepare.adoc",
-              "url": "/sync-gateway/2.8/get-started-prepare.md",
-              "title": "Prepare to Install Sync Gateway"
-            },
-            {
-              "module": "ROOT",
-              "path": "get-started-verify-install.adoc",
-              "url": "/sync-gateway/2.8/get-started-verify-install.md",
-              "title": "Verify a Sync Gateway Install"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "getting-started.adoc",
-              "url": "/sync-gateway/2.8/get-started-install.md",
-              "title": "Install Sync Gateway"
-            },
-            {
-              "module": "ROOT",
-              "path": "glossary.adoc",
-              "url": "/sync-gateway/2.8/glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "icr-sgreplicate.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-overview.md",
-              "title": "Inter-Sync Gateway Replication"
-            },
-            {
-              "module": "ROOT",
-              "path": "import-filter.adoc",
-              "url": "/sync-gateway/2.8/import-filter.md",
-              "title": "Import Filter"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "import-filters.adoc",
-              "url": "/sync-gateway/2.8/import-filter.md",
-              "title": "Import Filter"
-            },
-            {
-              "module": "ROOT",
-              "path": "import-process.adoc",
-              "url": "/sync-gateway/2.8/import-process.md",
-              "title": "Import Process"
-            },
-            {
-              "module": "ROOT",
-              "path": "index.adoc",
-              "url": "/sync-gateway/2.8/index.md",
-              "title": "Sync Gateway Quick Start"
-            },
-            {
-              "module": "ROOT",
-              "path": "indexing.adoc",
-              "url": "/sync-gateway/2.8/indexing.md",
-              "title": "Indexes versus Views"
-            },
-            {
-              "module": "ROOT",
-              "path": "integrating-external-stores.adoc",
-              "url": "/sync-gateway/2.8/integrating-external-stores.md",
-              "title": "Integrating External Stores"
-            },
-            {
-              "module": "ROOT",
-              "path": "introduction.adoc",
-              "url": "/sync-gateway/2.8/introduction.md",
-              "title": "Introduction"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/authentication.adoc",
-              "url": "/sync-gateway/2.8/authentication-users.md",
-              "title": "User Authentication"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/concept-fundamentals-data-tombstones.adoc",
-              "url": "/sync-gateway/2.8/what-are-tombstones.md",
-              "title": "Tombstones"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/concept-tombstones.adoc",
-              "url": "/sync-gateway/2.8/what-are-tombstones.md",
-              "title": "Tombstones"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-admin.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-manage.md",
-              "title": "Manage Inter-Sync Gateway Replications"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-conflict-resolution.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-conflict-resolution.md",
-              "title": "Enhanced Conflict Resolution"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-monitoring.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-monitor.md",
-              "title": "Replication Monitoring and Statistics"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-running.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-run.md",
-              "title": "Initialize Inter-Sync Gateway Replications"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-sgreplicate-sgr1.adoc",
-              "url": "/sync-gateway/2.8/legacy-sg-replicate.md",
-              "title": "SG Replicate"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/icr-sgreplicate.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-overview.md",
-              "title": "Inter-Sync Gateway Replication"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/logging-legacy-pre2-1.adoc",
-              "url": "/sync-gateway/2.8/legacy-logging-pre2-1.md",
-              "title": "Log Rotation [DEPRECATED]"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/read-access.adoc",
-              "url": "/sync-gateway/2.8/read-access.md",
-              "title": "Read Access"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/roles.adoc",
-              "url": "/sync-gateway/2.8/roles.md",
-              "title": "Roles"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/sync-gateway-channels.adoc",
-              "url": "/sync-gateway/2.8/channels.md",
-              "title": "Channels"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/users-and-roles.adoc",
-              "url": "/sync-gateway/2.8/users.md",
-              "title": "Users"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/what-are-tombstones.adoc",
-              "url": "/sync-gateway/2.8/what-are-tombstones.md",
-              "title": "Tombstones"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "learn/write-access.adoc",
-              "url": "/sync-gateway/2.8/write-access.md",
-              "title": "Write Security"
-            },
-            {
-              "module": "ROOT",
-              "path": "legacy-logging-pre2-1.adoc",
-              "url": "/sync-gateway/2.8/legacy-logging-pre2-1.md",
-              "title": "Log Rotation [DEPRECATED]"
-            },
-            {
-              "module": "ROOT",
-              "path": "legacy-sg-replicate.adoc",
-              "url": "/sync-gateway/2.8/legacy-sg-replicate.md",
-              "title": "SG Replicate"
-            },
-            {
-              "module": "ROOT",
-              "path": "load-balancer.adoc",
-              "url": "/sync-gateway/2.8/load-balancer.md",
-              "title": "Load Balancer"
-            },
-            {
-              "module": "ROOT",
-              "path": "logging.adoc",
-              "url": "/sync-gateway/2.8/logging.md",
-              "title": "Logging"
-            },
-            {
-              "module": "ROOT",
-              "path": "managing-tombstones.adoc",
-              "url": "/sync-gateway/2.8/managing-tombstones.md",
-              "title": "Managing Tombstones"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "official-support.adoc",
-              "url": "/sync-gateway/2.8/supported-environments.md",
-              "title": "Supported Environments"
-            },
-            {
-              "module": "ROOT",
-              "path": "oldindex.adoc",
-              "url": "/sync-gateway/2.8/oldindex.md",
-              "title": "Introduction"
-            },
-            {
-              "module": "ROOT",
-              "path": "oldquickstart.adoc",
-              "url": "/sync-gateway/2.8/oldquickstart.md",
-              "title": "Sync Gateway Quickstart"
-            },
-            {
-              "module": "ROOT",
-              "path": "os-level-tuning.adoc",
-              "url": "/sync-gateway/2.8/os-level-tuning.md",
-              "title": "OS Level Tuning"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "pn-release-notes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "pn-releasenotes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "pn-supported-os.adoc",
-              "url": "/sync-gateway/2.8/supported-environments.md",
-              "title": "Supported Environments"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "prodnotes/pn-compatibility.adoc",
-              "url": "/sync-gateway/2.8/compatibility.md",
-              "title": "Compatibility"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "prodnotes/pn-release-notes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "prodnotes/pn-releasenotes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "prodnotes/pn-supported-os.adoc",
-              "url": "/sync-gateway/2.8/supported-environments.md",
-              "title": "Supported Environments"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "public-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api.md",
-              "title": "Public REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "quickstart.adoc",
-              "url": "/sync-gateway/2.8/index.md",
-              "title": "Sync Gateway Quick Start"
-            },
-            {
-              "module": "ROOT",
-              "path": "read-access.adoc",
-              "url": "/sync-gateway/2.8/read-access.md",
-              "title": "Read Access"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer-sgw-glossary.adoc",
-              "url": "/sync-gateway/2.8/glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/admin-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api-admin.md",
-              "title": "Admin REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/config-properties.adoc",
-              "url": "/sync-gateway/2.8/configuration-properties.md",
-              "title": "Configuration File"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/public-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api.md",
-              "title": "Public REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/refer-sgw-glossary.adoc",
-              "url": "/sync-gateway/2.8/glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/rest-api-admin.adoc",
-              "url": "/sync-gateway/2.8/rest-api-admin.md",
-              "title": "Admin REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/rest-api-metrics.adoc",
-              "url": "/sync-gateway/2.8/rest-api-metrics.md",
-              "title": "Metrics REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "refer/rest-api-public.adoc",
-              "url": "/sync-gateway/2.8/rest-api.md",
-              "title": "Public REST API"
-            },
-            {
-              "module": "ROOT",
-              "path": "release-notes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "releasenotes.adoc",
-              "url": "/sync-gateway/2.8/release-notes.md",
-              "title": "Release Notes"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "resolving-conflicts.adoc",
-              "url": "/sync-gateway/2.8/sync-sgreplicate-resolving-conflicts-legacy.md",
-              "title": "Conflict Resolution with 1.x client"
-            },
-            {
-              "module": "ROOT",
-              "path": "rest-api-access.adoc",
-              "url": "/sync-gateway/2.8/rest-api-access.md",
-              "title": "REST API Access"
-            },
-            {
-              "module": "ROOT",
-              "path": "rest-api-admin.adoc",
-              "url": "/sync-gateway/2.8/rest-api-admin.md",
-              "title": "Admin REST API"
-            },
-            {
-              "module": "ROOT",
-              "path": "rest-api-client-app.adoc",
-              "url": "/sync-gateway/2.8/rest-api-client-app.md",
-              "title": "REST API Client Application"
-            },
-            {
-              "module": "ROOT",
-              "path": "rest-api-metrics.adoc",
-              "url": "/sync-gateway/2.8/rest-api-metrics.md",
-              "title": "Metrics REST API"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "rest-api-public.adoc",
-              "url": "/sync-gateway/2.8/rest-api.md",
-              "title": "Public REST API"
-            },
-            {
-              "module": "ROOT",
-              "path": "rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api.md",
-              "title": "Public REST API"
-            },
-            {
-              "module": "ROOT",
-              "path": "resync.adoc",
-              "url": "/sync-gateway/2.8/resync.md",
-              "title": "Resync"
-            },
-            {
-              "module": "ROOT",
-              "path": "revisions.adoc",
-              "url": "/sync-gateway/2.8/revisions.md",
-              "title": "Revisions"
-            },
-            {
-              "module": "ROOT",
-              "path": "roles.adoc",
-              "url": "/sync-gateway/2.8/roles.md",
-              "title": "Roles"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "running-replications.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-run.md",
-              "title": "Initialize Inter-Sync Gateway Replications"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "security.adoc",
-              "url": "/sync-gateway/2.8/authentication-certs.md",
-              "title": "TLS Certificate Authentication"
-            },
-            {
-              "module": "ROOT",
-              "path": "server-compatibility-collections.adoc",
-              "url": "/sync-gateway/2.8/server-compatibility-collections.md",
-              "title": "Collections&#8201;&#8212;&#8201;Server Compatibility"
-            },
-            {
-              "module": "ROOT",
-              "path": "server-compatibility-eventing.adoc",
-              "url": "/sync-gateway/2.8/server-compatibility-eventing.md",
-              "title": "Eventing&#8201;&#8212;&#8201;Server Compatibility"
-            },
-            {
-              "module": "ROOT",
-              "path": "server-compatibility-transactions.adoc",
-              "url": "/sync-gateway/2.8/server-compatibility-transactions.md",
-              "title": "Transactions&#8201;&#8212;&#8201;Server Compatibility"
-            },
-            {
-              "module": "ROOT",
-              "path": "server-compatibility-xdcr.adoc",
-              "url": "/sync-gateway/2.8/server-compatibility-xdcr.md",
-              "title": "XDCR&#8201;&#8212;&#8201;Server Compatibility"
-            },
-            {
-              "module": "ROOT",
-              "path": "server-integration.adoc",
-              "url": "/sync-gateway/2.8/server-integration.md",
-              "title": "Changes Feed"
-            },
-            {
-              "module": "ROOT",
-              "path": "setting-up-dr-cluster.adoc",
-              "url": "/sync-gateway/2.8/setting-up-dr-cluster.md",
-              "title": "Setting up Disaster Recovery"
-            },
-            {
-              "module": "ROOT",
-              "path": "sgcollect-info.adoc",
-              "url": "/sync-gateway/2.8/sgcollect-info.md",
-              "title": "SG Collect Info"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sgw-glossary.adoc",
-              "url": "/sync-gateway/2.8/glossary.md",
-              "title": "Glossary"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sgw-whatsnew.adoc",
-              "url": "/sync-gateway/2.8/whatsnew.md",
-              "title": "What&#8217;s New"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "shared-bucket-access.adoc",
-              "url": "/sync-gateway/2.8/sync-with-couchbase-server.md",
-              "title": "Sync with Couchbase Server"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "start/get-started-access-rest-api.adoc",
-              "url": "/sync-gateway/2.8/rest-api-access.md",
-              "title": "REST API Access"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "start/get-started-install.adoc",
-              "url": "/sync-gateway/2.8/get-started-install.md",
-              "title": "Install Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "start/get-started-prepare.adoc",
-              "url": "/sync-gateway/2.8/get-started-prepare.md",
-              "title": "Prepare to Install Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "start/get-started-verify-install.adoc",
-              "url": "/sync-gateway/2.8/get-started-verify-install.md",
-              "title": "Verify a Sync Gateway Install"
-            },
-            {
-              "module": "ROOT",
-              "path": "stats-monitoring.adoc",
-              "url": "/sync-gateway/2.8/stats-monitoring.md",
-              "title": "View Statistics and Metrics"
-            },
-            {
-              "module": "ROOT",
-              "path": "stats-prometheus.adoc",
-              "url": "/sync-gateway/2.8/stats-prometheus.md",
-              "title": "Integrate Prometheus"
-            },
-            {
-              "module": "ROOT",
-              "path": "supported-environments.adoc",
-              "url": "/sync-gateway/2.8/supported-environments.md",
-              "title": "Supported Environments"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "supported-os.adoc",
-              "url": "/sync-gateway/2.8/supported-environments.md",
-              "title": "Supported Environments"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sync-from-client.adoc",
-              "url": "/sync-gateway/2.8/sync-using-app.md",
-              "title": "Sync with Couchbase Lite"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sync-function-api.adoc",
-              "url": "/sync-gateway/2.8/sync-function.md",
-              "title": "Sync Function"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-function.adoc",
-              "url": "/sync-gateway/2.8/sync-function.md",
-              "title": "Sync Function"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sync-gateway-channels.adoc",
-              "url": "/sync-gateway/2.8/channels.md",
-              "title": "Channels"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-inter-syncgateway-conflict-resolution.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-conflict-resolution.md",
-              "title": "Enhanced Conflict Resolution"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-inter-syncgateway-manage.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-manage.md",
-              "title": "Manage Inter-Sync Gateway Replications"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-inter-syncgateway-monitor.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-monitor.md",
-              "title": "Replication Monitoring and Statistics"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-inter-syncgateway-overview.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-overview.md",
-              "title": "Inter-Sync Gateway Replication"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-inter-syncgateway-run.adoc",
-              "url": "/sync-gateway/2.8/sync-inter-syncgateway-run.md",
-              "title": "Initialize Inter-Sync Gateway Replications"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-sgreplicate-resolving-conflicts-legacy.adoc",
-              "url": "/sync-gateway/2.8/sync-sgreplicate-resolving-conflicts-legacy.md",
-              "title": "Conflict Resolution with 1.x client"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-using-app.adoc",
-              "url": "/sync-gateway/2.8/sync-using-app.md",
-              "title": "Sync with Couchbase Lite"
-            },
-            {
-              "module": "ROOT",
-              "path": "sync-with-couchbase-server.adoc",
-              "url": "/sync-gateway/2.8/sync-with-couchbase-server.md",
-              "title": "Sync with Couchbase Server"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "sync-with-server.adoc",
-              "url": "/sync-gateway/2.8/sync-with-couchbase-server.md",
-              "title": "Sync with Couchbase Server"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "upgrade.adoc",
-              "url": "/sync-gateway/2.8/upgrading.md",
-              "title": "Upgrading Sync Gateway"
-            },
-            {
-              "module": "ROOT",
-              "path": "upgrading.adoc",
-              "url": "/sync-gateway/2.8/upgrading.md",
-              "title": "Upgrading Sync Gateway"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "users-and-roles.adoc",
-              "url": "/sync-gateway/2.8/users.md",
-              "title": "Users"
-            },
-            {
-              "module": "ROOT",
-              "path": "users.adoc",
-              "url": "/sync-gateway/2.8/users.md",
-              "title": "Users"
-            },
-            {
-              "module": "ROOT",
-              "path": "webhooks.adoc",
-              "url": "/sync-gateway/2.8/webhooks.md",
-              "title": "Webhooks"
-            },
-            {
-              "module": "ROOT",
-              "path": "what-are-tombstones.adoc",
-              "url": "/sync-gateway/2.8/what-are-tombstones.md",
-              "title": "Tombstones"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "what-is-new.adoc",
-              "url": "/sync-gateway/2.8/whatsnew.md",
-              "title": "What&#8217;s New"
-            },
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "whats-new.adoc",
-              "url": "/sync-gateway/2.8/whatsnew.md",
-              "title": "What&#8217;s New"
-            },
-            {
-              "module": "ROOT",
-              "path": "whatsnew.adoc",
-              "url": "/sync-gateway/2.8/whatsnew.md",
-              "title": "What&#8217;s New"
-            },
-            {
-              "module": "ROOT",
-              "path": "write-access.adoc",
-              "url": "/sync-gateway/2.8/write-access.md",
-              "title": "Write Security"
             }
           ]
         }

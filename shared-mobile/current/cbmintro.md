@@ -1,8 +1,8 @@
 ---
 title: Introduction to Couchbase Mobile
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-mobile/edit/release/2.8/modules/ROOT/pages/cbmintro.adoc
+  editUrl: https://github.com/couchbase/docs-mobile/edit/release/3.1/modules/ROOT/pages/cbmintro.adoc
   xref: xref:shared-mobile::cbmintro.adoc[]
 ---
 
@@ -22,6 +22,9 @@ Couchbase Mobile brings the power of NoSQL to the edge. it delivers an always-on
 * storage (Couchbase Server)
 
 The two Couchbase Mobile components (Sync Gateway and Couchbase Lite), combine with Couchbase Server to provide fast, efficient bidirectional synchronization of data between the edge and the cloud. Enabling you to deploy your offline-first mobile and embedded applications with greater agility on premises or in any cloud.
+
+* Sync Gateway is an internet-facing synchronization mechanism designed to provide data synchronization for large-scale interactive web, mobile, and IoT applications.
+* Couchbase Lite is an embedded, NoSQL JSON Document Style database for your mobile apps. It natively supports all major operating systems and platforms. Its NoSQL client database provides CRUD, full-text search and query capabilities that runs locally on the device.
 
 ###### 
 

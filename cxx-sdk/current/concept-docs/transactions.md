@@ -1,9 +1,9 @@
 ---
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/transactions.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/transactions.adoc
   xref: xref:cxx-sdk:concept-docs:transactions.adoc[]
 ---
 

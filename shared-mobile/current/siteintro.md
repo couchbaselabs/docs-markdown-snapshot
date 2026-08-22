@@ -1,8 +1,8 @@
 ---
 title: Couchbase Mobile - Embedded Database on the Edge
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-mobile/edit/release/2.8/modules/ROOT/pages/siteintro.adoc
+  editUrl: https://github.com/couchbase/docs-mobile/edit/release/3.1/modules/ROOT/pages/siteintro.adoc
   xref: xref:shared-mobile::siteintro.adoc[]
 ---
 

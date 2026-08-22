@@ -3,9 +3,9 @@ title: Health Check
 description: Health Check provides <code>ping()</code> and
   <code>diagnostics()</code> tests for the health of the network and the
   cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/health-check.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/health-check.adoc
   xref: xref:cxx-sdk:howtos:health-check.adoc[]
 ---
 

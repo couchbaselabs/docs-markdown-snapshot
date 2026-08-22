@@ -2,9 +2,9 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/response-time-observability.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/response-time-observability.adoc
   xref: xref:cxx-sdk:concept-docs:response-time-observability.adoc[]
 ---
 

@@ -2,9 +2,9 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/n1ql-query.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/n1ql-query.adoc
   xref: xref:cxx-sdk:concept-docs:n1ql-query.adoc[]
 ---
 

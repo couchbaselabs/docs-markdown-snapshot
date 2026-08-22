@@ -3,7 +3,7 @@ title: 3<sup>rd</sup> Party Integrations
 description: The Couchbase Java SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/third-party-integrations.adoc
   xref: xref:3.11@java-sdk:project-docs:third-party-integrations.adoc[]
@@ -24,7 +24,7 @@ Couchbase engineers are involved to a greater or lesser degree with projects tha
 
 The Couchbase Java SDK is a first class citizen in the [Spring Data](https://spring.io/projects/spring-data-couchbase) world, and there are many examples of using the SDK with [Spring Boot](https://blog.couchbase.com/couchbase-spring-boot-spring-data/) and Spring Data (and Spring Data JPA). Quarkus integration is covererd in the [Couchbase Quarkus Java Extension docs](../../../quarkus-extension/current/overview.md).
 
-Couchbase also supports integrating with [Spark](../../../spark-connector/current/java-api.md).
+Couchbase also supports integrating with [Spark](../../../spark-connector/3.5/java-api.md).
 
 ## [](#across-the-ecosystem)Across the Ecosystem
 

@@ -1,8 +1,8 @@
 ---
 title: Capella Operational Management API Reference
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-reference/pages/index.adoc
   xref: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -5289,6 +5289,8 @@ Copy
 * "lastError": "string",
 * "docsChanged": 100,
 * "docsProcessed": 500,
+* "docsTargeted": 1000,
+* "docsErrored": 10,
 * "collections_processing": {
   * "scope1": [
     * "collection_1",
@@ -18311,8 +18313,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Owner
 
-Valid fields to sort the results are: "id", "name".
-
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
@@ -18331,7 +18331,9 @@ _token_
 | namerequired   | string \[ 2 .. 128 \] characters Username for the database credential. The name should adhere to the following rules: The name must be between 2 & 128 characters. The name cannot contain spaces. The name cannot contain the following characters - ) ( > < , ; : " \\ / \] \[ ? = } { The name cannot begin with @ character.                                                                                                                                                   |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | password       | string \>= 8 characters A password associated with the database credential. If this field is left empty, a password will be auto-generated. The password should adhere to the following rules: The password should have at least 8 characters. Characters used for the password should contain at least one uppercase (A-Z), one lowercase (a-z), one numerical (0-9), and one special character. The password must not contain any of the following characters: < > ; . \* & \| £ |
-| accessrequired | Array of objects (Access) Describes the access information of the database credential.                                                                                                                                                                                                                                                                                                                                                                                             |
+| credentialType | string Default: "basic" Enum: "basic" "advanced" The type of credential to create. Credential types determine the level of access control: basic: Uses bucket-level access permissions. When omitted, this is the default. advanced: Uses capella user roles for fine-grained RBAC access. When basic is used, the access field is required and userRoles must not be provided. When advanced is used, the userRoles field is required and access must not be provided.            |
+| access         | Array of objects (CredentialAccess) Describes the access information of the database credential. Required when creating a basic credential type. Must not be provided when creating an advanced credential type with user roles.                                                                                                                                                                                                                                                   |
+| userRoles      | Array of strings A list of Capella user role names to assign to the database credential. Required when creating an advanced credential type. Must not be provided when creating a basic credential type with access. The provided user roles must already exist in the cluster.                                                                                                                                                                                                    |
 
 ### Responses
 
@@ -18373,7 +18375,7 @@ application/json
 
 Example
 
-ReadWriteOnSomeCollectionsReadAndWriteOnAllCollectionsInABucketAndScopeReadAccessOnAllBucketsSeparateAccessForDifferentScopesWriteAccessForAllBucketsMultipleLevelOfAccessReadWriteOnSomeCollections
+ReadWriteOnSomeCollectionsReadAndWriteOnAllCollectionsInABucketAndScopeReadAccessOnAllBucketsSeparateAccessForDifferentScopesWriteAccessForAllBucketsMultipleLevelOfAccessAdvancedCredentialWithUserRolesReadWriteOnSomeCollections
 
 Copy
 
@@ -18457,6 +18459,10 @@ _token_
 
 Successfully fetched the cluster's database credential information based on the userId.
 
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
 **403** 
 
 The client does not have the necessary permissions to access this resource.
@@ -18464,6 +18470,10 @@ The client does not have the necessary permissions to access this resource.
 **404** 
 
 The requested resource was not found.
+
+**422** 
+
+Request validation error.
 
 **429** 
 
@@ -18480,8 +18490,10 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 ### Response samples 
 
 * 200
+* 400
 * 403
 * 404
+* 422
 * 429
 * 500
 
@@ -18507,9 +18519,7 @@ Copy
   * {
     * "privileges": [
       * "data_reader",
-      * "data_writer",
-      * "read",
-      * "write"  
+      * "data_writer"  
       ],
     * "resources": {
       * "buckets": [
@@ -18529,6 +18539,10 @@ Copy
             ]  
       }  
   }  
+],
+* "userRoles": [
+  * "readInventory",
+  * "analyticsReader"  
 ]
 }`
 
@@ -18562,9 +18576,10 @@ _token_
 
 ##### Request Body schema: application/json
 
-| access   | Array of objects (Access) Describes the access information of the database credential. |
-| -------- | -------------------------------------------------------------------------------------- |
-| password | string The updated password of the database credential.                                |
+| access    | Array of objects (CredentialAccess) Describes the access information of the database credential. Used when updating a basic credential type. Must not be provided when updating an advanced credential type with user roles.                                                                                                                                                                                     |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| password  | string The updated password of the database credential.                                                                                                                                                                                                                                                                                                                                                          |
+| userRoles | Array of strings A list of Capella user role names to assign to the database credential. Used when updating an advanced credential type. Must not be provided when updating a basic credential type with access. The provided user roles must already exist in the cluster. If provided, the list must contain at least one user role name. Omit the field to leave the currently assigned user roles unchanged. |
 
 ### Responses
 
@@ -18583,6 +18598,10 @@ The client does not have the necessary permissions to access this resource.
 **404** 
 
 The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
 
 **422** 
 
@@ -18607,6 +18626,10 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 Content type
 
 application/json
+
+Example
+
+UpdateDatabaseCredentialsUpdateAdvancedDatabaseCredentialsUpdateDatabaseCredentials
 
 Copy
 
@@ -18645,6 +18668,7 @@ Copy
 * 400
 * 403
 * 404
+* 412
 * 422
 * 429
 * 500
@@ -19146,13 +19170,13 @@ _token_
 
 required
 
-| description          | string The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code                 | string The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| eventSource          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| eventMetadataStorage | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| settings             | object Runtime settings that control how the eventing function is executed. Every field is optional, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| bindings             | object A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the eventing function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. When a binding category (buckets, urls, or constants) is supplied, the corresponding list on the function is replaced in full with the value provided. Categories that are omitted are left unchanged. To remove every binding in a category, supply an empty array. Aliases must be unique across all three binding types. |
+| description          | string The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code                 | string The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| eventSource          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| eventMetadataStorage | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| settings             | object Runtime settings that control how the eventing function is executed. Every field is optional, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| bindings             | object A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the eventing function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. When a binding category (buckets, urls, or constants) is supplied, the corresponding list on the function is replaced in full with the value provided. Because of this, each binding is validated and defaulted exactly as it is on create. Categories that are omitted are left unchanged. To remove every binding in a category, supply an empty array. Aliases must be unique across all three binding types. |
 
 ### Responses
 

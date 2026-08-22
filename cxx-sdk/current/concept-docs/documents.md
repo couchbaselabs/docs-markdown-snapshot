@@ -2,9 +2,9 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/documents.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/documents.adoc
   xref: xref:cxx-sdk:concept-docs:documents.adoc[]
 ---
 

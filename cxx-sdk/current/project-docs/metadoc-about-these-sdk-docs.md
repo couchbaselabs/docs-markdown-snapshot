@@ -2,9 +2,9 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
   xref: xref:cxx-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -15,7 +15,7 @@ antora:
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
-Welcome to the [C++ SDK 1.3](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+Welcome to the [C++ SDK 1.4](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 

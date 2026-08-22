@@ -3,9 +3,9 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/compatibility.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/compatibility.adoc
   xref: xref:cxx-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -16,7 +16,7 @@ antora:
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
-The Couchbase C++ SDK 1.3 Client supports C++ 17, or more recent versions.
+The Couchbase C++ SDK 1.4 Client supports C++ 17, or more recent versions.
 
 ## [](#platform-compatibility)Platform Compatibility
 
@@ -24,32 +24,33 @@ The Couchbase C++ SDK 1.3 Client supports C++ 17, or more recent versions.
 
 In general, the SDK should run on any modern platform with the correct compiler and version of `cmake`, and the Couchbase C++ SDK can be expected to run on all of the Operating Systems supported by [Couchbase Server](../../../server/current/install/install-platforms.md).
 
-The C++ SDK is tested and supported on the following OSs and platforms:
+The C++ SDK will run on, and is supported on, the following OSs and platforms. The SDK has been tested on a representative subset of the platforms listed below.
 
 ### GNU/Linux
 
 * Amazon Linux 2 & AL2023.
-* Red Hat Enterprise Linux 8 & 9;
-* Oracle Linux 8 & 9.
-* Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
-* Debian 11 (_Bullseye_) & Debian 12 (_Bookworm_).
-* SUSE Enterprise Linux 12 & 15
-* Alpine Linux 3.18
+* Red Hat Enterprise Linux 8, 9, & 10.
+* Oracle Linux 8, 9, & 10.
+* Ubuntu (LTS) 26.04 (_Resolute_), 24.04 (_Noble_), & 22.04 (_Jammy_) .
+* Debian 12 (_Bookworm_) & Debian 13 (_Trixie_).
+* Alpine Linux 3.21 - 3.24.
 
 ### Microsoft Windows
 
 * Microsoft Windows 10 & 11;
-* Windows Server 2019 & 2022.
+* Windows Server 2019, 2022, & 2025.
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (June 2024): 14 (Sonoma), 13 (Ventura), and 12 (Monterey). M1 ARM architecture is fully supported in the C++ SDK.
-
-### ARM Processor Support
-
-ARM64: support for ARMv8 CPUs, such as the Amazon Graviton series and Apple M1 ARM processors.
+The current and previous two releases of OS X. At time of writing (August 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
 The SDK should also be expected to run on other commonly-available GNU/Linux distributions which support an appropriate compiler, but not all combinations can be tested.
+
+#### [](#platforms-chipsets-and-virtual-environments)Platforms, Chipsets, and Virtual Environments
+
+Couchbase SDKs can be expected to run on modern ARM chips (such as AWS Graviton) and virtualised platforms (such as Microsoft Hyper-V). Nevertheless, there are so many products available that not all can be tested — as such, we do not call out specific support for any particular product. Please contact our support organisation if you run into any issues.
+
+As always, running the very latest version of the SDKs will pick up any fixes already made to platform support (see the [Release Notes](sdk-release-notes.md)).
 
 ### [](#network-requirements)Network Requirements
 
@@ -73,15 +74,15 @@ Couchbase SDKs are tested against a variety of different environments to ensure 
 The matrix below denotes the version of Couchbase Server, the version of the C++ SDK and whether the SDK is:
 
 * ✖ **Unsupported**: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
-* ◎ **Compatible**: This combination has been tested previously, and should be compatible. This combination is not recommended by our technical support organization. It is best to upgrade either the SDK or the Couchbase version you are using.
+* ◎ **Compatible**: This combination has been tested previously, and should be compatible. evertheless, this combination is not recommended by our technical support organization, as not all of the latest features are supported by it. It is best to upgrade either the SDK or the Couchbase version you are using.
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                      | 1.0   | 1.1   | 1.2   | 1.3   |
-| -------------------- | ----- | ----- | ----- | ----- |
-| **Server 7.0 - 7.2** | **✔** | **✔** | **✔** | **✔** |
-| **Server 7.6** ①     | **✔** | **✔** | **✔** | **✔** |
-| **Server 8.0** ①     | **✔** | **✔** | **✔** | **✔** |
+|                  | 1.0   | 1.1   | 1.2, 1.3 | 1.4   |
+| ---------------- | ----- | ----- | -------- | ----- |
+| **Server 8.0** ① | **✔** | **✔** | **✔**    | **✔** |
+| **Server 7.6** ① | **✔** | **✔** | **✔**    | **✔** |
+| **Server 7.2**   | **◎** | **◎** | **✔**    | **✔** |
 
 ① Server 7.6 & 8.0 are compatible with all supported (not yet End-of-Life) versions of the C++ SDK, but for full support of the latest features you need to upgrade to a recent version of the SDK. See the [Feature Availablity matrix below](#couchbase-new-feature-availability-matrix) and the [Release Notes page](sdk-release-notes.md).
 

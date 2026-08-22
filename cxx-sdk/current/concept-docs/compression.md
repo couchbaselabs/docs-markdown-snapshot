@@ -1,9 +1,9 @@
 ---
 title: Compression
 description: Data compression to reduce traffic costs from app to Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-22T04:32:17.641Z
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/compression.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/concept-docs/pages/compression.adoc
   xref: xref:cxx-sdk:concept-docs:compression.adoc[]
 ---
 
