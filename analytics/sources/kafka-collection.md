@@ -1,6 +1,6 @@
 ---
 title: Create a Kafka Pipeline Collection
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-25T04:30:40.250Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/kafka-collection.adoc
   xref: xref:analytics:sources:kafka-collection.adoc[]
@@ -48,7 +48,10 @@ You can have Capella Analytics report any messages it fails to load to a Kafka t
 
 Change Data Capture
 
-Whether Change Data Capture (CDC) applies, and if so, the source.
+Whether Change Data Capture (CDC) applies, and if so, the source. Capella Analytics also supports Oracle and SQL Server as CDC sources via the Debezium connector:
+
+* `ORACLE` — See [Stream CDC Data from Oracle](debezium-oracle.md).
+* `SQLSERVER` — See [Stream CDC Data from SQL Server](debezium-sqlserver.md).
 
 ## [](#create-a-collection-for-a-kafka-data-link)Create a Collection for a Kafka Data Link
 
@@ -66,8 +69,9 @@ The name must start with a letter (A-Z, a-z) and contain only upper- and lowerca
 7. In the **Primary Key** field, enter the name of the primary key and its data type in the format `KEY_NAME:DATA_TYPE`. See the [requirements](#reqs) for examples.
 8. Supply one or more **Kafka Topics** in a comma-separated list. If you supply multiple topics, the choices you make in the remaining fields must apply to all of them. Also enter the name of the [dead letter queue](#deadletter) topic (if any).
 9. Select the data serialization type used for keys and values.
-10. Select Change Data Capture (CDC) if applicable. Capella Analytics currently supports CDC via the Debezium and MOLO17 connectors for real-time database integrations.
-11. Specify the CDC Source: MONGODB, MYSQLDB, POSTGRESQL, or DynamoDB.
+10. If applicable, select **Change Data Capture (CDC)** . Capella Analytics currently supports CDC via the Debezium and MOLO17 connectors for real-time database integrations.  
+To specify the CDC source type (Oracle or SQL Server) and connector, use a SQL++ `CREATE COLLECTION` statement with a `cdcDetails` clause instead of the UI. See [Stream CDC Data from Oracle](debezium-oracle.md) or [Stream CDC Data from SQL Server](debezium-sqlserver.md).
+11. Specify the CDC Source: `MONGODB`, `MYSQLDB`, `POSTGRESQL`, or `DynamoDB`.
 12. Choose **Create Collection**. Your collection appears under the specified database and scope in the explorer.  
 If the link is [connected](connect-link.md), the data stream from the specified topic or topics into this Capella Analytics collection begins immediately. If the link is not connected, see [Connect or Disconnect a Remote Link](connect-link.md).
 
@@ -78,4 +82,6 @@ You can also use an SQL++ statement to create a remote Kafka collection, see [CR
 * [Connect or Disconnect a Remote Link](connect-link.md)
 * [Delete a Collection or Link](delete-entity.md)
 * [CREATE a Remote Collection](../sqlpp/5%5Fddl%5Fremote.md#createkafka)
+* [Stream CDC Data from Oracle](debezium-oracle.md)
+* [Stream CDC Data from SQL Server](debezium-sqlserver.md)
 * [Access and Organize Data in Capella Analytics Services](database-objects.md)

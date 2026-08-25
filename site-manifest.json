@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1787546477312,
+  "generated": 1787632583783,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -644,6 +644,18 @@
             },
             {
               "module": "sources",
+              "path": "debezium-oracle.adoc",
+              "url": "/analytics/sources/debezium-oracle.md",
+              "title": "Stream CDC Data from Oracle"
+            },
+            {
+              "module": "sources",
+              "path": "debezium-sqlserver.adoc",
+              "url": "/analytics/sources/debezium-sqlserver.md",
+              "title": "Stream CDC Data from SQL Server"
+            },
+            {
+              "module": "sources",
               "path": "delete-entity.adoc",
               "url": "/analytics/sources/delete-entity.md",
               "title": "Delete a Collection or Link"
@@ -965,6 +977,12 @@
               "path": "5_dml_truncate.adoc",
               "url": "/analytics/sqlpp/5_dml_truncate.md",
               "title": "TRUNCATE Statements"
+            },
+            {
+              "module": "sqlpp",
+              "path": "5_dml_update.adoc",
+              "url": "/analytics/sqlpp/5_dml_update.md",
+              "title": "UPDATE Statements"
             },
             {
               "module": "sqlpp",
@@ -6938,6 +6956,20 @@
             {
               "alias": true,
               "module": "sources",
+              "path": "debezium-oracle.adoc",
+              "url": "/analytics/sources/debezium-oracle.md",
+              "title": "Stream CDC Data from Oracle"
+            },
+            {
+              "alias": true,
+              "module": "sources",
+              "path": "debezium-sqlserver.adoc",
+              "url": "/analytics/sources/debezium-sqlserver.md",
+              "title": "Stream CDC Data from SQL Server"
+            },
+            {
+              "alias": true,
+              "module": "sources",
               "path": "delete-entity.adoc",
               "url": "/analytics/sources/delete-entity.md",
               "title": "Delete a Collection or Link"
@@ -7323,6 +7355,13 @@
             {
               "alias": true,
               "module": "sqlpp",
+              "path": "5_dml_update.adoc",
+              "url": "/analytics/sqlpp/5_dml_update.md",
+              "title": "UPDATE Statements"
+            },
+            {
+              "alias": true,
+              "module": "sqlpp",
               "path": "5_dml_upsert.adoc",
               "url": "/analytics/sqlpp/5_dml_upsert.md",
               "title": "UPSERT INTO Statements"
@@ -7347,6 +7386,13 @@
               "path": "5b_cbo.adoc",
               "url": "/analytics/sqlpp/5b_cbo.md",
               "title": "Cost-Based Optimizer for Capella Analytics Services"
+            },
+            {
+              "alias": true,
+              "module": "sqlpp",
+              "path": "7_using_index.adoc",
+              "url": "/analytics/sqlpp/7_using_index.md",
+              "title": "Indexes"
             },
             {
               "alias": true,

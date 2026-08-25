@@ -3,7 +3,7 @@ title: About Capella Analytics
 description: Capella Analytics is a JSON-native NoSQL analytical database with
   GenAI capabilities. Use it to bring data from multiple sources together and
   run complex analytical queries to get timely insights from data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-25T04:30:40.250Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/intro/pages/intro.adoc
   xref: xref:analytics:intro:intro.adoc[]
@@ -30,7 +30,7 @@ Capella Analytics offers the following features:
 * An enhanced MPP-based computation engine, allowing for real-time calculations regardless of data size.
 * Zero ETL and real-time ingestion capabilities powered by Confluent Kafka and Amazon Manage Streaming for [Apache Kafka](../sources/remote-kafka.md) (MSK), which provide the ability to connect, capture, and extract data from nearly any database or application. This process also transforms the extracted data into developer-friendly JSON structures while in transit.
 * File-based reads, imports and exports for data stored in cloud object stores including JSON, Parquet, Avro, TSV, and CSV.
-* Reading Delta tables stored in S3 is supported.
+* Read-only access to Delta Lake tables stored in cloud object stores.
 * Conversational coding using [Capella iQ](../query/iq.md), to allow developers to use the power of a large language model (LLM) for SQL++ development.
 * Native support for [Tableau and PowerBI](../query/bi.md) for analytic development and visualization.
 

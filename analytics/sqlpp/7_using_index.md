@@ -1,7 +1,7 @@
 ---
 title: Indexes
-description: You use indexes to speed up queries on remote and standalone collections.
-pubDate: 2026-08-17T09:53:44.266Z
+description: You use indexes to accelerate queries on remote and standalone collections.
+pubDate: 2026-08-25T04:30:40.250Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/7_using_index.adoc
   xref: xref:analytics:sqlpp:7_using_index.adoc[]
@@ -12,16 +12,16 @@ antora:
 
 # Indexes
 
-> You use indexes to speed up queries on remote and standalone collections. 
+> You use indexes to accelerate queries on remote and standalone collections. 
 
-Indexes can speed up queries if you apply them properly. The sections in this topic describe scenarios in which you can use indexes to speed up query processing.
+Indexes can accelerate queries if you apply them properly. The sections in this topic describe scenarios in which you can use indexes to accelerate query processing.
 
 > [!NOTE]
-> You cannot index external collections. To make your queries on external data stores more efficient, when you create the collection you can choose to specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md).
+> You cannot index external collections. To make your queries on external data stores more efficient, when you create the collection you can choose to specify a location path that's as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md).
 
 ## [](#Indexes)Indexes
 
-An index is a materialized access path for data in a collection. You can create more than one index on the same collection. Each index name must be unique within a collection. Creating an index fails if there is an existing index with the same name in the target collection and `IF NOT EXISTS` is not specified.
+An index is a materialized lookup structure for data in a collection. You can create more than one index on the same collection. Each index name must be unique within a collection. Creating an index fails if there is an existing index with the same name in the target collection and `IF NOT EXISTS` is not specified.
 
 For each JSON document ingested into a collection, the system computes the indexed key for each index.
 
@@ -29,19 +29,19 @@ In the case of a secondary index, the index key is computed by extracting the ta
 
 After the system builds the indexed key, it's inserted into the secondary index. If the system cannot build the indexed key, there is no entry made in the index for this object.
 
-Secondary indexes are automatically maintained by the system during data ingestion - that's when a corresponding remote link is connected and starts populating its collections. In addition, they're automatically rebalanced when their shadow collections are rebalanced (scaled up or scaled down).
+Secondary indexes are automatically maintained by the system during data ingestion — that's when a corresponding remote link is connected and starts populating its collections. In addition, they're automatically rebalanced when their shadow collections are rebalanced, scaled out or scaled in.
 
-## [](#Standard%5Findexes)Standard Indexes
+To accommodate varying query predicates, secondary indexes can be configured on either a single field or across multiple fields. For example, to define a standard single-field index on the `name` attribute, use the following statement:
 
-Standard indexes are heterogeneous, meaning they do not require or allow explicit specification of the field path within a column. Mixing heterogeneous fields with schema-declared fields in index definitions is not supported. This limitation applies specifically to typed collections. See the following example:
+```SQL++
+CREATE INDEX idx_name ON user(name);
+```
 
-CREATE TYPE userType AS {id: int, age: int};
-CREATE COLLECTION user(userType) PRIMARY KEY id;
+To optimize queries targeting multiple fields simultaneously, construct a composite index using the following syntax:
 
-// The following index creation is not permitted:
-CREATE INDEX idx_name_age ON user(name, age);
-
-In this example, `age` is part of the declared schema (`userType`), while `name` is a heterogeneous field. Indexes cannot span both types.
+```SQL++
+CREATE INDEX idx_age_name ON user(age, name);
+```
 
 ### [](#Selection%5Fqueries)Indexing for Selection Queries
 
@@ -49,8 +49,8 @@ The query optimizer chooses to use a secondary index for query execution if both
 
 * The query contains a conjunctive equality or range predicate over one or more fields, or a join predicate: see the [next section](#Join%5Fqueries). The conjunctive predicate has a form:  
 QualifiedName Operator Literal ( AND field Operator Literal )+  
-where `Operator` is `=`, `>`, `>=`, `<`, `<=`, or `BETWEEN`;
-* There is an index with a key, such that the corresponding fields in the predicate form a prefix of that key. For example, suppose that there is an index on collection `foo` with key fields `c_s` and `c_d`.
+where `Operator` is `=`, `>`, `>=`, `<`, `<=`, or `BETWEEN`.
+* An index exists with a key, such that the corresponding fields in the predicate form a prefix of that key. For example, suppose that there is an index on collection `foo` with key fields `c_s` and `c_d`.
 
 ```SQL++
  CREATE INDEX idx_s_d ON foo(c_s, c_d);
@@ -64,7 +64,7 @@ The following query uses the index because it has an equality predicate `=` on a
  WHERE f.c_s = 'world';
 ```
 
-As shown in the following example, to prevent an available index from being used for a particular query predicate, you can include a `skip-index` hint. This can be used when there are many matching objects.
+As shown in the following example, to prevent an available index from being used for a particular query predicate — for example, because the query matches a large number of objects — you can include a `skip-index` hint.
 
 > [!TIP]
 > The query optimizer automatically makes these decisions for you in most cases.
@@ -75,12 +75,12 @@ As shown in the following example, to prevent an available index from being used
  WHERE f.c_s /*+ skip-index */ = 'world';
 ```
 
-If multiple indexes are eligible access paths, there can be two cases:
+If multiple indexes are eligible for query execution, there can be 2 cases:
 
 * Two or more indexes are sharing the same prefix and the predicate is on that prefix. For example: `indexA` is on (c1, c2), `indexB` is on (c1, c3) and the predicate is on c1 (c1 = 100). In this case, the query optimizer picks one of the indexes.
-* No indexes share the same prefix and the predicate refers to fields from each individual index. For example: `indexA` in on (c1) and `indexB` is on (c2), the predicate is on c1 and c2 (c1 = 100 and c2 = 200). In this case, both indexes will be used to retrieve matched primary keys and then the key sets will be intersected to further filter retrieved primary keys.
+* No indexes share the same prefix and the predicate refers to fields from each individual index. For example: `indexA` is on (c1) and `indexB` is on (c2), the predicate is on c1 and c2 (c1 = 100 and c2 = 200). In this case, both indexes are used to retrieve matched primary keys, and the key sets are intersected to filter retrieved primary keys further.
 
-The following queries use the index 'idx\_age':
+The following queries use the index `idx_age`:
 
 // Index
 CREATE INDEX idx_age ON user(age);
@@ -99,9 +99,35 @@ SELECT * FROM user WHERE age < 30;
 { "id": 1, "age": 10 }
 { "id": 2, "age": 20 }
 
+#### [](#covering%5Findexes)Covering Indexes
+
+A covering index is an index that contains all the information required to satisfy a query, including both the fields used in filtering conditions and the fields returned in the result set. Since all necessary data is available within the index, the optimizer creates a query plan that only scans the index. This reduces I/O operations and can significantly improve query performance.
+
+The optimizer can be configured to generate query plans that rely exclusively on index scans by using the `compiler.index.covering` directive. This directive is enabled by default, so the optimizer prefers covering index plans whenever possible. If `compiler.index.covering` is disabled, query execution plans access both the indexes and their underlying data records.
+
+As a practical example, consider the `idx_name` index on the `user` collection created in the previous section. For the following query:
+
+```SQL++
+SELECT u.name
+FROM user u
+WHERE u.name = 'name1';
+```
+
+Because the requested `name` attribute is contained entirely within `idx_name`, the query optimizer leverages this secondary index to satisfy the request directly, bypassing access to the primary records altogether.
+
+The query optimizer evaluates and prioritizes indexes based on their filtering efficiency and selectivity. Consequently, the sequence of columns defined in a composite index is critical. Consider the following query:
+
+```SQL++
+SELECT u.age
+FROM user u
+WHERE u.name = 'name1';
+```
+
+If both `idx_age_name` (defined on `age`, `name`) and `idx_name` (defined on `name`) are available, the optimizer selects `idx_name`. Although `idx_age_name` contains all required attributes, the optimizer prioritizes the index whose leading column aligns with the query predicate (`u.name`). For a composite index to be considered an optimal candidate for execution plans, the filtering criteria must be positioned as the leading fields.
+
 ### [](#Join%5Fqueries)Indexing for Join Queries
 
-SQL++ for Enterprise Analytics supports joins from standard SQL in the following forms:
+SQL++ for Capella Analytics supports joins from standard SQL in the following forms:
 
 * Inner join:  
 SELECT * FROM ds_outer, ds_inner WHERE <predicate>;  
@@ -134,17 +160,17 @@ Array indexes accelerate a query that involves some array-valued field. This ena
 
 In Capella Analytics, array indexes are **not** meant to serve as covering indexes. Instead, array indexes are meant only to accelerate queries involving multi-valued fields.
 
-There are also some differences between array indexes and standard indexes concerning how the query optimizer uses them. See [Array Index Parameter](appendix%5F2%5Fparameters.md#ArrayIndexFlag).
+Array indexes and standard indexes also differ in how the query optimizer uses them. See [Array Index Parameter](appendix%5F2%5Fparameters.md#ArrayIndexFlag).
 
 > [!NOTE]
-> Array indexes do not support heterogeneous indexing. This limitation exists because array indexes cannot store `NULL` or `MISSING` values. When creating an array index, you have the option to exclude `NULL` and `MISSING` values. However, excluding these values means the index will not optimize queries that rely on the presence of `NULL` fields in the documents.
+> Array indexes do not support heterogeneous indexing. This limitation exists because array indexes cannot store `NULL` or `MISSING` values. When creating an array index, you have the option to exclude `NULL` and `MISSING` values. However, excluding these values means the index does not optimize queries that rely on the presence of `NULL` fields in the documents.
 
 ### [](#QuantificationQueries)Quantification Queries
 
 A common use case for array indexes involves quantifying some or all elements within an array. Quantification queries have two variants: existential and universal.
 
 * **Existential** queries ask if **any** element in some array satisfies a given predicate. Membership queries are a specific type of existential query, asking if any element in some array is equal to a particular value.
-* **Universal** queries ask if **all** elements in some array satisfy a particular predicate. Empty arrays are not stored in an array index, meaning that you must also specify that the array is non-empty to tell Capella Analytics that it's possible to use an array index as an access method for the given query.
+* **Universal** queries ask if **all** elements in some array satisfy a particular predicate. Empty arrays are not stored in an array index, meaning that you must also specify that the array is non-empty to tell Capella Analytics that it's possible to use an array index as a retrieval method for the given query.
 
 The examples that follow suppose the existence of a collection named `products`, containing two fields: `productno`, an integer, and `categories`, an array of strings in the Commerce dataset. You can follow the instructions for the [Commerce example dataset](../intro/examples.md) to set up a standalone collection for this data.
 
@@ -204,7 +230,7 @@ Take note of the `LEN(o.items) > 0` conjunct. Array indexes cannot be used for q
 
 ### [](#ExplicitUnnestQueries)Explicit Unnesting Queries
 
-You can also use array indexes to accelerate queries that involve the explicit unnesting of array fields. You can express the same membership / existential example above using an explicit `UNNEST` query. To keep the same cardinality as the query above, that is, to undo the `UNNEST`, the query adds a `DISTINCT` clause. The `pCategoriesIdx` index is still used.
+You can also use array indexes to accelerate queries that involve the explicit unnesting of array fields. You can express the same membership / existential example in the preceding section using an explicit `UNNEST` query. To maintain the same cardinality as the preceding query and undo the `UNNEST`, the query adds a `DISTINCT` clause. The `pCategoriesIdx` index is still used.
 
 ```SQL++
  SELECT DISTINCT p
@@ -224,7 +250,7 @@ In this case, even though you do not want to filter the results by price, you mu
 
 ### [](#JoinQueries)Join Queries
 
-Finally, array indexes can also be used for index nested-loop joins if the field being joined is located within an array. You can create an array index on the `itemno` field in the `items` array of the `orders` collection as follows.
+Array indexes can also be used for index nested-loop joins if the field being joined is located within an array. You can create an array index on the `itemno` field in the `items` array of the `orders` collection as follows.
 
 ```SQL++
  CREATE INDEX oProductIDIdx
@@ -299,7 +325,7 @@ The following statement indexes the `qty` field in a triple-nested `items` array
  EXCLUDE UNKNOWN KEY;
 ```
 
-The queries that follow use the indexes above. The first query uses the `oItemItemQtyIdx` index through nested existential quantification. The second query uses the `oItemItemItemQtyIdx` index with three unnesting clauses.
+The queries that follow use the preceding indexes. The first query uses the `oItemItemQtyIdx` index through nested existential quantification. The second query uses the `oItemItemItemQtyIdx` index with three unnesting clauses.
 
 ```SQL++
 SELECT o

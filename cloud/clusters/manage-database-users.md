@@ -2,7 +2,7 @@
 title: Manage Cluster Access Credentials
 description: Cluster access credentials provide programmatic and
   application-level access to data on a cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-25T04:30:40.250Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-database-users.adoc
   xref: xref:cloud:clusters:manage-database-users.adoc[]
@@ -22,7 +22,7 @@ For more information about cluster access credentials, see [Cluster Access](clus
 > [!TIP]
 > Capella Management API
 > 
-> In addition to the UI, you can configure your cluster access credentials using the [Capella Management REST API](../management-api-reference/index.md#tag/Database-Credentials).
+> In addition to the UI, you can configure your cluster access credentials and roles using the Capella Management REST API. For more information, see the [Database Credentials API](../management-api-reference/index.md#tag/Database-Credentials) and [Database Roles API](../management-api-reference/index.md#tag/Database-Roles).
 
 ## [](#prerequisites)Prerequisites
 
@@ -37,9 +37,17 @@ To manage cluster access credentials, you need the following:
 
 ## [](#accessing-database-credentials)View Cluster Access Credentials and Access Roles
 
-The **Access Control** page lists all the cluster access credentials and available access roles for the current cluster. You can manage existing cluster access credentials and access roles from this page or create new ones.
+To view cluster access credentials and access roles with the Management REST API, see:
 
-To view the **Access Control** page:
+* [List Database Credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/listDatabaseCredentials).
+* [Get Database Credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/getDatabaseCredential).
+* [List Capella Privileges](../management-api-reference/index.md#tag/Database-Roles/operation/listCapellaPrivileges).
+* [List Database Roles](../management-api-reference/index.md#tag/Database-Roles/operation/listDatabaseRoles).
+* [Get Database Role](../management-api-reference/index.md#tag/Database-Roles/operation/getDatabaseRole).
+
+In the UI, the **Access Control** page lists all the cluster access credentials and available access roles for the current cluster. You can manage existing cluster access credentials and access roles from this page or create new ones.
+
+To view the **Access Control** page in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -53,7 +61,9 @@ To view the **Access Control** page:
 
 ## [](#create-database-credentials)Create Cluster Access Credentials
 
-To create new cluster access credentials:
+To create cluster access credentials with the Management REST API, see [Create Database Credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/postDatabaseCredential).
+
+To create new cluster access credentials in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -98,7 +108,9 @@ Selecting **Auto-generate password** generates a random password that meets the 
 
 ## [](#modify-database-credentials)Edit Cluster Access Credentials
 
-To edit existing cluster access credentials:
+To edit cluster access credentials with the Management REST API, see [Update Database Credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/putDatabaseCredential).
+
+To edit existing cluster access credentials in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -126,7 +138,9 @@ To edit existing cluster access credentials:
 > [!WARNING]
 > Deleting cluster access credentials can cause an application that's using them to stop functioning. Always make sure that you have updated your application to use new credentials before deleting cluster access credentials.
 
-To delete existing cluster access credentials:
+To delete cluster access credentials with the Management REST API, see [Delete Database Credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/deleteDatabaseCredential).
+
+To delete existing cluster access credentials in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -148,7 +162,9 @@ You can create access roles that bundle specific privileges together to simplify
 > [!TIP]
 > You can also create an access role while creating advanced cluster access credentials by clicking **Add New Role** on the **Create Cluster Access** page.
 
-To create a new access role:
+To create a cluster access role with the Management REST API, see [Create Database Role](../management-api-reference/index.md#tag/Database-Roles/operation/postDatabaseRole).
+
+To create a new access role in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -176,7 +192,9 @@ For example, some privileges default to **All Scopes** access, but you can chang
 
 You can edit access roles to modify their assigned privileges and resource access levels.
 
-To edit an access role:
+To edit a cluster access role with the Management REST API, see [Update Database Role](../management-api-reference/index.md#tag/Database-Roles/operation/putDatabaseRole).
+
+To edit an access role in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 
@@ -198,7 +216,9 @@ You can add more privileges, remove existing ones, or change resource access lev
 > [!CAUTION]
 > You must remove an access role from all cluster access credentials before you can delete it. Deleting an access role is irreversible.
 
-To delete an access role:
+To delete a cluster access role with the Management REST API, see [Delete Database Role](../management-api-reference/index.md#tag/Database-Roles/operation/deleteDatabaseRole).
+
+To delete an access role in the UI:
 
 1. Open the **Cluster Access** page for your cluster:
 

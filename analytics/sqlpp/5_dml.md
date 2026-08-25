@@ -3,7 +3,7 @@ title: DML Statements
 description: This section describes the SQL++ for Capella Analytics Data
   Manipulation Language (DML) statements you use to query and manipulate data in
   collections.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-25T04:30:40.250Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml.adoc
   xref: xref:analytics:sqlpp:5_dml.adoc[]
@@ -23,6 +23,7 @@ You use the following statements to populate and update standalone collections:
 * [COPY INTO Statements](5%5Fdml%5Fcopy%5Fin.md)
 * [INSERT INTO Statements](5%5Fdml%5Finsert.md)
 * [UPSERT INTO Statements](5%5Fdml%5Fupsert.md)
+* [UPDATE Statements](5%5Fdml%5Fupdate.md)
 * [DELETE Statements](5%5Fdml%5Fdelete.md)
 * [CREATE COLLECTION AS Statements](5%5Fdml%5Fcreate%5Fas.md)
 
