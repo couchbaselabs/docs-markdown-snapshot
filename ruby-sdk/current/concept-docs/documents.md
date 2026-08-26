@@ -2,7 +2,7 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/documents.adoc
   xref: xref:ruby-sdk:concept-docs:documents.adoc[]
@@ -119,7 +119,9 @@ You can also specify additional options when storing a document in Couchbase
 > If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
 > 
 > ```ruby
-> Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents.rb[]
+> collection.mutate_in('airline_10', [
+>   MutateInSpec.upsert('msrp', 18)
+> ])
 > ```
 > 
 > or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
@@ -163,13 +165,24 @@ SELECT * FROM `travel-sample`.inventory.airport WHERE META().id = "airport_1254"
 You can also retrieve _parts_ of documents using [sub-document operations](subdocument-operations.md), by specifying one or more sections of the document to be retrieved
 
 ```ruby
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents.rb[]
+users_collection = bucket.scope('tenant_agent_00').collection('users')
+result = users_collection.lookup_in('1', [
+  LookupInSpec.get('credit_cards[0].type'),
+  LookupInSpec.get('credit_cards[0].expiration')
+])
+
+puts("Card Type: #{result.content(0)}")
+puts("Expiry: #{result.content(1)}")
 ```
 
 The same behaviour could be achieved by using get with projections:
 
 ```ruby
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents.rb[]
+options = Collection::GetOptions.new
+options.project(%w[credit_cards[0].type credit_cards[0].expiration])
+res = users_collection.get('1', options)
+
+puts("Result: #{res.content}")
 ```
 
 ## [](#counters)Counters
@@ -182,7 +195,15 @@ You can atomically increment or decrement the numerical value of special counter
 A document may be used as a counter if its value is a simple ASCII number, like `42`. Couchbase allows you to increment and decrement these values atomically using a special `counter` operation in the `Binary.Collection`. The example below shows a counter being initialised, then being incremented and decremented:
 
 ```ruby
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents.rb[]
+counter_doc_id = 'counter-doc'
+# Increment by 1, creating doc if needed.
+# By using `initial: 1` we set the starting count(non-negative) to 1 if the document needs to be created.
+# If it already exists, the count will increase by 1.
+collection.binary.increment(counter_doc_id, Options::Increment(initial: 1))
+# Decrement by 1
+collection.binary.decrement(counter_doc_id, Options::Decrement())
+# Decrement by 5
+collection.binary.decrement(counter_doc_id, Options::Decrement(delta: 5))
 ```
 
 In the above example, a counter is created by using the `counter` method with an `initial` value. The initial value is the value the counter uses if the counter ID does not yet exist.
@@ -196,7 +217,16 @@ Couchbase counters are 64-bit unsigned integers in Couchbase and do not wrap aro
 [CAS](../howtos/concurrent-document-mutations.md) values are not used with counter operations since counter operations are atomic. The intent of the counter operation is to simply increment the current server-side value of the document. If you wish to only increment the document if it is at a certain value, then you may use a normal `replace` function with CAS:
 
 ```ruby
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$documents.rb[]
+result = collection.get('counter-doc')
+value = result.content
+
+increment_amnt = 5
+opts = Collection::ReplaceOptions.new
+opts.cas = result.cas
+
+puts("Current value: #{value}")
+collection.replace('counter-doc', value + increment_amnt, opts) if value.zero?
+puts("RESULT: #{value + increment_amnt}")
 ```
 
 You can also use [sub-document counter operations](subdocument-operations.md) to increment numeric values _within_ a document containing other content. An example can be found in the [practical sub-doc page](../howtos/subdocument-operations.md#counters-and-numeric-fields).

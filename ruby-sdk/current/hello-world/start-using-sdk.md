@@ -1,7 +1,7 @@
 ---
 title: Start Using the Ruby SDK
 description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:ruby-sdk:hello-world:start-using-sdk.adoc[]
@@ -163,7 +163,7 @@ Start a new project (in VS Code or RubyMine, etc.) and create a file `cb-test.rb
 Firstly, you will need to have `require` statement at the top of your Ruby program:
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+require "couchbase"
 ```
 
 ### [](#connect)Connect
@@ -176,7 +176,16 @@ Connect to your cluster by calling the `Cluster.connect()` method and pass it yo
 From version 3.3, the Ruby SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$cloud.rb[]
+# Update these credentials for your Capella instance!
+options = Cluster::Options::Cluster.new
+options.authenticate("username", "Password!123")
+
+# Sets a pre-configured profile called "wan-development" to help avoid latency issues
+# when accessing Capella from a different Wide Area Network
+# or Availability Zone (e.g. your laptop).
+options.apply_profile("wan_development")
+
+cluster = Cluster.connect("couchbases://cb.<your-endpoint>.cloud.couchbase.com", options)
 ```
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 3.4 introduces a `wan_development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
@@ -185,7 +194,10 @@ When accessing Capella from a different Wide Area Network or Availability Zone, 
 > The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+# Update these credentials for your Local instance!
+options = Cluster::ClusterOptions.new
+options.authenticate("username", "Password!123")
+cluster = Cluster.connect("couchbase://localhost", options)
 ```
 
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here. For production deployments, you will want to use a secure server, with `couchbases://`.
@@ -193,7 +205,8 @@ For developing locally on the same machine as Couchbase Server, your URI can be 
 Following successful authentication, add this code snippet to access your `Bucket`:
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+# get a bucket reference
+bucket = cluster.bucket("travel-sample")
 ```
 
 > [!TIP]
@@ -210,7 +223,9 @@ Collections allow Documents to be grouped by purpose or theme, according to spec
 Here we refer to the `users` collection within the `tenant_agent_00` scope from the Travel Sample bucket as an example, but you may replace this with your own data.
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+# get a user-defined collection reference
+scope = bucket.scope("tenant_agent_00")
+collection = scope.collection("users")
 ```
 
 [Data operations](../howtos/kv-operations.md), like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.get()` and `Collection.upsert()`.
@@ -218,7 +233,22 @@ Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc -
 To get you started the following code creates a new document in a custom scope and collection and then fetches it again, printing the result.
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+# Upsert Document
+upsert_result = collection.upsert(
+  "my-document-key",
+  {
+    "name" => "Ted",
+    "age" => 31
+  }
+)
+p cas: upsert_result.cas
+#=> {:cas=>223322674373654}
+
+# Get Document
+get_result = collection.get("my-document-key")
+p cas: get_result.cas,
+  name: get_result.content["name"]
+#=> {:cas=>223322674373654, :name=>"Ted"}
 ```
 
 ### [](#sql-lookup)SQL++ Lookup
@@ -228,7 +258,11 @@ Couchbase SQL++ queries can be performed at the `Cluster` or `Scope` level by in
 Cluster level queries require you to specify the fully qualified keyspace each time (e.g. `travel-sample.inventory.airline`). However, with a Scope level query you only need to specify the Collection name — which in this case is `airline`:
 
 ```rb
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+inventory_scope = bucket.scope("inventory")
+result = inventory_scope.query('SELECT * FROM airline WHERE id = 10;')
+result.rows.each do |row|
+  p row
+end
 ```
 
 You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-queries-with-sdk.md).
@@ -236,7 +270,7 @@ You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-querie
 After completing operations, finish with (otherwise resources will be released by garbage collector):
 
 ```ruby
-Unresolved include directive in modules/hello-world/pages/start-using-sdk.adoc - include::example$start_using.rb[]
+cluster.disconnect
 ```
 
 ## [](#next-steps)Next Steps

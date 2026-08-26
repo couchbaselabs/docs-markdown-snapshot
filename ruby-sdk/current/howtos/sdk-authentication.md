@@ -2,7 +2,7 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/sdk-authentication.adoc
   xref: xref:ruby-sdk:howtos:sdk-authentication.adoc[]
@@ -22,7 +22,10 @@ Our [Getting Started](../hello-world/start-using-sdk.md) guide covered the basic
 Our [Getting Started](../hello-world/start-using-sdk.md) guide introduced basic authentication against a Couchbase cluster:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::hello-world:example$start_using.rb[]
+# Update these credentials for your Local instance!
+options = Cluster::ClusterOptions.new
+options.authenticate("username", "Password!123")
+cluster = Cluster.connect("couchbase://localhost", options)
 ```
 
 Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization](../../../server/current/learn/security/authorization-overview.md). For a list of available roles and corresponding privileges, see [Roles](../../../server/current/learn/security/roles.md).
@@ -42,7 +45,9 @@ For a more detailed conceptual description of using certificates, see [Certifica
 For sample procedures whereby certificates can be generated and deployed, see [Manage Certificates](../../../server/current/manage/manage-security/manage-certificates.md). The rest of this document assumes that the processes there, or something similar, have been followed:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::example$auth.rb[]
+# @see https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html
+options.authenticator = CertificateAuthenticator.new("/tmp/certificate.pem", "/tmp/private.key")
+Cluster.connect("couchbases://localhost?trust_certificate=/tmp/ca.pem", options)
 ```
 
 ## [](#ldap)LDAP
@@ -53,5 +58,7 @@ If you are on a network where access is controlled by LDAP, the SDK will work tr
 > If [LDAP](../../../server/current/manage/manage-security/configure-ldap.md#understanding-ldap-authentication) is enabled, Couchbase Server will only allow PLAIN sasl authentication which by default, for good security, the SDK will not allow. Although this can be overridden in a development environment, by explicitly enabling PLAIN in the password authenticator, _the secure solution_ is [to use TLS](managing-connections.md#ssl).
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/sdk-authentication.adoc - include::example$auth.rb[]
+# Creates a LDAP compatible password authenticator which is INSECURE if not used with TLS (uses PLAIN sasl mechanism).
+options.authenticator = PasswordAuthenticator.ldap_compatible("Administrator", "password")
+Cluster.connect("couchbase://localhost", options)
 ```

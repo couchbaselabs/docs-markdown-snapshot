@@ -2,7 +2,7 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/vector-searching-with-sdk.adoc
   xref: xref:ruby-sdk:howtos:vector-searching-with-sdk.adoc[]
@@ -85,7 +85,14 @@ Couchbase Server 7.6.0 (7.6.2 for base64-encoded vectors) — or recent Capella 
 In this first example we are performing a single vector query:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::example$search.rb[]
+request = SearchRequest.new(
+  VectorSearch.new(VectorQuery.new('vector_field', vector_query))
+)
+result = scope.search('vector-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
 ```
 
 Let's break this down. We create a `SearchRequest`, which can contain a traditional FTS query `SearchQuery` and/or the new `VectorSearch`. Here we are just using the latter.
@@ -136,7 +143,26 @@ See the [API reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client
 You can run multiple vector queries together:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::example$search.rb[]
+request = SearchRequest.new(
+  VectorSearch.new(
+    [
+      VectorQuery.new('vector_field', vector_query) do |q|
+        q.num_candidates = 2
+        q.boost = 0.3
+      end,
+      VectorQuery.new('vector_field', another_vector_query) do |q|
+        q.num_candidates = 5
+        q.boost = 0.7
+      end,
+    ],
+    Options::VectorSearch.new(vector_query_combination: :and)
+  )
+)
+result = scope.search('vector-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
 ```
 
 How the results are combined (ANDed or ORed) can be controlled with the `vector_query_combination` attribute of `Options::VectorSearch`.
@@ -146,7 +172,15 @@ How the results are combined (ANDed or ORed) can be controlled with the `vector_
 You can combine a traditional FTS query with vector queries:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/vector-searching-with-sdk.adoc - include::example$search.rb[]
+request = SearchRequest.new(
+  VectorSearch.new(VectorQuery.new('vector_field', vector_query))
+)
+request.search_query(SearchQuery.match_all)
+result = scope.search('vector-and-fts-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
 ```
 
 Scoring for these hybrid search queries combines the boost multipliers to get to the final score.

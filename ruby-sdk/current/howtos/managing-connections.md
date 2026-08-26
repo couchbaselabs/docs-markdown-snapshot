@@ -1,7 +1,7 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Ruby SDK to a Couchbase cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/managing-connections.adoc
   xref: xref:ruby-sdk:howtos:managing-connections.adoc[]
@@ -36,7 +36,9 @@ cluster = Cluster.connect("couchbase://localhost", options)
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::example$managing_connections.rb[]
+options = Couchbase::ClusterOptions.new
+options.authenticator = Couchbase::PasswordAuthenticator.new("Administrator", "password")
+cluster = Cluster.connect("couchbase://192.168.56.101,192.168.56.102", options)
 ```
 
 > [!TIP]
@@ -79,7 +81,9 @@ On the server side, each server node must be configured to advertise its externa
 On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports explicitly in the connection string.
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::example$managing_connections.rb[]
+options = Couchbase::ClusterOptions.new
+options.authenticator = Couchbase::PasswordAuthenticator.new("Administrator", "password")
+cluster = Cluster.connect("couchbase://192.168.42.101:12000,192.168.42.102:12002", options)
 ```
 
 > [!TIP]
@@ -163,7 +167,9 @@ F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
 The next step is to enable encryption by connecting to a cluster with the 'couchbases://' protocol in the connection string and pass it the path to the certificate file via '?trust\_certificate=…​' in the connection string itself.
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::example$managing_connections.rb[]
+options = Couchbase::ClusterOptions.new
+options.authenticator = Couchbase::PasswordAuthenticator.new("Administrator", "password")
+cluster = Cluster("couchbases://127.0.0.1?trust_certificate=/path/to/certificate.pem", options)
 ```
 
 Then use this custom `Cluster` when opening the connection to the cluster.
@@ -217,7 +223,9 @@ _couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node3.example.com.
 DNS SRV bootstrapping is enabled by default in the Ruby SDK. In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::example$managing_connections.rb[]
+options = Couchbase::ClusterOptions.new
+options.authenticator = Couchbase::PasswordAuthenticator.new("Administrator", "password")
+cluster = Cluster.connect("couchbases://couchbase.example.com?enable_dns_srv=true", options)
 ```
 
 If the DNS SRV records could not be loaded properly you'll get the message logged and the given host name will be used as an A record lookup.

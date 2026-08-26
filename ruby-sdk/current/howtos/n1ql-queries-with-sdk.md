@@ -3,7 +3,7 @@ title: Query
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-08-26T04:30:42.267Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/n1ql-queries-with-sdk.adoc
   xref: xref:ruby-sdk:howtos:n1ql-queries-with-sdk.adoc[]
@@ -36,7 +36,19 @@ Note that building indexes is covered in more detail on the [Query concept page]
 Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.metrics = true
+result = cluster.query('SELECT * FROM `travel-sample` LIMIT 10', options)
+result.rows.each do |row|
+  puts row
+end
+#=>
+# {"travel-sample"=>{"callsign"=>"MILE-AIR", "country"=>"United States", "iata"=>"Q5", "icao"=>"MLA", "id"=>10, "name"=>"40-Mile Air", "type"=>"airline"}}
+# {"travel-sample"=>{"callsign"=>"TXW", "country"=>"United States", "iata"=>"TQ", "icao"=>"TXW", "id"=>10123, "name"=>"Texas Wings", "type"=>"airline"}}
+# ...
+
+puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
+#=> Reported execution time: 11.377766ms
 ```
 
 A query is always performed at the `Cluster` level, using the `query()` method. It takes the statement as a required argument and then allows additional options if needed.
@@ -44,7 +56,11 @@ A query is always performed at the `Cluster` level, using the `query()` method. 
 A complete list of `QueryOptions` can be found in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Options/Query.html). Here we pass `readonly` to explicitly mark a query as being read only, and not mutating any documents on the server side.
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.readonly = true
+cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
+    options)
 ```
 
 ## [](#queries-placeholders)Queries & Placeholders
@@ -54,13 +70,25 @@ Placeholders allow you to specify variable constraints for an otherwise constant
 Positional parameter example:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.positional_parameters(["France"])
+result = cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport" AND country = ?',
+    options)
+puts "Airports in France: #{result.rows.first["airport_count"]}"
+#=> Airports in France: 221
 ```
 
 Named parameter example:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.named_parameters({"country" => "France"})
+result = cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport" AND country = $country',
+    options)
+puts "Airports in France: #{result.rows.first["airport_count"]}"
+#=> Airports in France: 221
 ```
 
 ## [](#the-query-result)The Query Result
@@ -68,7 +96,13 @@ Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc 
 When performing a query, the response you receive is a `QueryResult`. If no exception gets raised the request succeeded and provides access to both the rows returned and also associated `QueryMetaData`.
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.client_context_id = "user-44-#{rand}"
+result = cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
+    options)
+puts "client_context_id: #{result.meta_data.client_context_id}"
+#=> client_context_id: user-44-0.9899233780544747
 ```
 
 The `QueryMetaData` provides insight into some basic profiling/timing information as well as information like the `clientContextId`.
@@ -87,7 +121,13 @@ __Table 1\. QueryMetaData__
 For example, here is how you can print the `executionTime` of a query:
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.metrics = true
+result = cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
+    options)
+puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
+#=> Reported execution time: 2.516245ms
 ```
 
 ## [](#scan-consistency)Scan Consistency
@@ -101,7 +141,13 @@ Setting a staleness parameter for queries, with `scan_consistency`, enables a tr
 ScanConsisteny (request\_plus)
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+options = Cluster::QueryOptions.new
+options.scan_consistency = :request_plus
+result = cluster.query(
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
+    options)
+puts "Airports in the database: #{result.rows.first["airport_count"]}"
+#=> Airports in the database: 1968
 ```
 
 ## [](#querying-at-scope-level)Querying at Scope Level
@@ -111,7 +157,24 @@ It is possible to query off the [Scope level](../../../server/current/learn/data
 The code snippet below shows how to run a simple query to fetch 10 random rows from travel-sample and print the results, the assumption is that the `airline` collection exists within a scope `us`.
 
 ```ruby
-Unresolved include directive in modules/howtos/pages/n1ql-queries-with-sdk.adoc - include::example$queries.rb[]
+bucket = cluster.bucket("travel-sample")
+
+myscope = bucket.scope("us")
+mycollection = "airline"
+
+options = Couchbase::Cluster::QueryOptions.new
+options.metrics = true
+result = myscope.query("SELECT * FROM #{mycollection} LIMIT 10", options)
+result.rows.each do |row|
+  puts row
+end
+puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
+
+#=>
+#{"airline"=>{"callsign"=>"TXW", "iata"=>"TQ", "icao"=>"TXW", "name"=>"Texas Wings"}}
+#{"airline"=>{"callsign"=>"SASQUATCH", "iata"=>"K5", "icao"=>"SQH", "name"=>"SeaPort Airlines"}}
+
+#Reported execution time: 3.620224ms
 ```
 
 A complete list of `QueryOptions` can be found in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Options/Query.html).
