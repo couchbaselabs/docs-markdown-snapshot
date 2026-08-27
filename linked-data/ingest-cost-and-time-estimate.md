@@ -210,6 +210,37 @@ matches the first-party rate this document was already built on. The one open
 question is durability of that rate past 2026-08-31, not whether Bedrock costs
 more today.
 
+## First real-scale wave on Bedrock (round 5, 115 pages, 2026-08-27)
+
+The wave-chunked plan's first real (non-trial) wave: completing `cloud/n1ql/`
+(115 pages, 10 parallel batches of ~12 pages each) rather than the 3-page
+round 4 trial. Real numbers, for comparison against the wave-sizing estimates
+above:
+
+- **Token usage: ~1.5M tokens for 115 pages (~13,000 tokens/page)** — close to
+  round 2's original ~11,700 tokens/page benchmark, not round 4's ~20,700.
+  Round 4's higher rate now reads like a content-density artifact of that
+  specific 3-page batch (dense, novel transaction concepts), not a Bedrock
+  effect or a new baseline — this wave's 115-page sample is far more reliable
+  evidence either way.
+- **Cost: roughly $4-5**, using the same blended-rate method as the rest of
+  this document — under the ~$4-7/wave estimate from the wave-sizing plan, and
+  under the $7 approved for this run.
+- **Wall-clock: all 10 batches completed within the same working session**,
+  comfortably inside the "single sitting" framing from the wave-sizing plan;
+  exact per-batch timing wasn't tracked precisely enough to refine the
+  earlier 45-minute-to-2-hour estimate, but nothing suggests it needs revising
+  up or down.
+- **No batch hit a session/usage-limit interruption** this time (round 2's
+  100-page run had one). Good news, but n=1 at this scale under Bedrock —
+  not yet enough to conclude interruptions are rarer here than on direct API
+  access.
+
+Net effect on the wave-sizing plan: no changes needed. Cost and architecture
+both held at the scale actually tried; the main new information is
+qualitative (see `poc/reconciliation.md` round 5) rather than a correction to
+any number in this document.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation
