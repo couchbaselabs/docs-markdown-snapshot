@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/nest",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/nest.md",
+  "concepts": [
+    { "candidate_id": "n1ql:nest", "label": "NEST clause (ANSI NEST, Lookup NEST, Index NEST)", "reused_or_minted": "minted - matches the n1ql: statement/clause-concept convention; no prior term in registry" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (Basic cluster access credentials)", "reused_or_minted": "reused - same concept minted for DELETE/MERGE in this directory" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (Advanced cluster access credentials)", "reused_or_minted": "reused - same concept minted for DELETE's RETURNING clause in delete.json in this directory" }
+  ],
+  "relations": [
+    { "subject": "n1ql:nest", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:nest", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |" },
+    { "subject": "n1ql:nest", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole", "finding": "As with the other data-plane statements/clauses in this batch, no management-plane capella-role gate appears here - only the credential-type/privilege pair - consistent with round 2's finding that requiresCapellaRole is reserved for a different (management-plane) surface." },
+  "cross_component_finding": "The Advanced-credential privilege for NEST's read access is named 'Query Read' here, but merge.md's Advanced-credential privilege for the structurally equivalent read access to its source keyspace is named 'Query Select' - both are 'read the keyspace for a join/merge source' operations, yet the docs use two different privilege names for what may be the same underlying permission. This may be a genuine two-privilege distinction (e.g. Query Select for SELECT-clause projection vs. Query Read for join/nest access) or simply inconsistent terminology across pages; flagging for reconciliation rather than assuming they're identical or minting a merge relation between them without evidence.",
+  "cross_product_finding": "Recurrence of docs-issues/capella-pages-cite-server-versions.json: the LATERAL keyword note reads 'In clusters using Couchbase Server 7.6 and later, you can use the LATERAL keyword as a visual reminder...' - a literal server version citation on a Capella clause page."
+}

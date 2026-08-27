@@ -1,0 +1,97 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/transactions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/transactions.md",
+  "concepts": [
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - already minted in begin-transaction.json/commit-transaction.json, same batch/round; this page IS that concept's source page" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json/commit-transaction.json" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "minted in this batch (upsert.json, same batch)" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "minted in this batch (update.json, same batch)" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:txid", "label": "txid request-level parameter", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:tximplicit", "label": "tximplicit request-level parameter (implicit single-statement transaction)", "reused_or_minted": "reused - minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:txstmtnum", "label": "txstmtnum request-level parameter", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:kvtimeout", "label": "kvtimeout request-level parameter", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:durability-level", "label": "durability_level request-level parameter", "reused_or_minted": "reused - minted in commit-transaction.json" },
+    { "candidate_id": "n1ql:txtimeout", "label": "txtimeout request-level parameter", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:atrcollection", "label": "atrcollection request-level parameter (active transaction record location)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:scan-consistency", "label": "scan_consistency request-level parameter", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Web Console Query tab", "reused_or_minted": "minted - a Capella data-plane access surface, distinct from any existing registry concept" },
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "minted - sibling access-surface concept to capella:query-tab" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:cbq",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To create a Couchbase transaction using SQL++, you can use: * The [cbq shell](../n1ql-intro/cbq.md)"
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "capella:query-tab",
+      "reused_or_minted_predicate": "minted - new axis of gating not covered by existing predicates (requiresCapellaRole/incompatibleWithCredentialType/requiresUiMode all describe identity, credential, or UI-mode gates; this is about which client/access surface can execute the statement family at all). Modeled on the shape of incompatibleWithCredentialType.",
+      "evidence": "Couchbase Transactions are not supported via the Couchbase Capella Query tab or the Data API (Query Service passthrough). The Query Service requires that the whole transaction must be executed by a single node, and there is currently no way for the Query tab or the Data API to enforce this."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "capella:data-api",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "Couchbase Transactions are not supported via the Couchbase Capella Query tab or the Data API (Query Service passthrough). The Query Service requires that the whole transaction must be executed by a single node, and there is currently no way for the Query tab or the Data API to enforce this."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "The 'Permissions' section names no specific privilege at all - it only says generically 'users must have the relevant cluster access privileges, with permissions on the relevant buckets, scopes and collections' and points to the general Manage Cluster Access Credentials page, unlike the DML statement pages in this batch (update.md, upsert.md) which name exact Basic/Advanced privileges per statement. The transaction-statement family sits outside the credential-type-keyed privilege model this round otherwise confirmed extends cleanly to collections/UDFs/sequences."
+  },
+  "cross_component_finding": "This overview page introduces a third gating axis beyond RBAC/edition/deployment/UI-mode already in the registry: an access-surface gate (incompatibleWithAccessSurface) - the statement family works via cbq shell and SDKs but is explicitly excluded from the Capella Query tab and the Data API because 'the whole transaction must be executed by a single node, and there is currently no way for the Query tab or the Data API to enforce this.' This same shape recurs verbatim in this batch's using-ai.md (USING AI is also excluded from the Query tab, plus Couchbase Shell/cbsh) - two independent statements in this batch hit the identical constraint, suggesting incompatibleWithAccessSurface is a real recurring axis, not a one-off.",
+  "cross_product_finding": "Per task brief: checked whether this page's own content links or relates to the Java SDK's distributed-transaction feature (sdk:distributed-transaction). It does not name or link to it directly, but it does say 'Some Couchbase SDKs provide APIs to support Couchbase transactions. For more information, see [Transactions](../../../server/current/learn/data/transactions.md) in the Server documentation' - a link to server/'s transaction overview, not to any SDK-specific page, and the SDK feature name is never mentioned. Flagging as an open question per the task brief: this SQL++ statement family and the Java SDK's distributed ACID transactions are plausibly the same underlying server-side mechanism exposed via two different client surfaces (cbq shell/SDK query-mode vs. SDK transaction lambda), but no relation is asserted since this page gives no explicit textual cross-reference to the SDK feature."
+}

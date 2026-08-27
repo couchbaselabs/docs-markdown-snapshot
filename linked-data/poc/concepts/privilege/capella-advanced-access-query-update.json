@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-update",
+  "label": "Query Update (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates UPDATE and similar mutation statements",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Part of the per-statement-family Advanced-credential privilege catalog found in round 5 - see reconciliation.md round 5. The prepare.json extraction reused privilege:capella-advanced-access-query-index for PREPARE's own 'Query Update' requirement rather than this concept - flagged in reconciliation.md as a likely mis-map worth correcting whenever this registry is next consumed downstream (not hand-edited in the original extraction record)."
+}

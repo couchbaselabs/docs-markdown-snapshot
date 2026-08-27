@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/insert",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/insert.md",
+  "concepts": [
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "minted - Capella DML statement, first occurrence in this batch" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:explain", "label": "EXPLAIN statement", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-advanced-access-query-insert", "label": "Query Insert (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - sibling of privilege:capella-advanced-access-query-index, distinct from Query Read/Query Index; named specifically for the INSERT half of this statement's RBAC table" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" },
+    { "candidate_id": "sdk:document-expiration", "label": "Document expiration (Java SDK KV Operations)", "reused_or_minted": "reused - minted in indexing-meta-info.json in this same batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:insert", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused predicate, reused object", "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause |" },
+    { "subject": "n1ql:insert", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-insert", "reused_or_minted_predicate": "reused predicate, minted object", "evidence": "| Advanced | [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |" },
+    { "subject": "n1ql:insert", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused predicate, reused object - required in addition to Write only when the statement includes a SELECT or RETURNING clause", "evidence": "The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `SELECT` or `RETURNING` clause." },
+    { "subject": "n1ql:insert", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused predicate, reused object - Advanced-credential counterpart, same conditional", "evidence": "To execute the following statement, your client must have `Write` / `Query Insert` and `Read` / `Query Read` privileges on `hotel`." },
+    { "subject": "n1ql:insert", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)..." },
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "n1ql:upsert", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Use the [UPSERT](upsert.md) statement if you want to overwrite a document with the same key, in case it already exists." },
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "n1ql:explain", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For detailed explanation about the EXPLAIN plan, see the [EXPLAIN](explain.md) statement." },
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "sdk:document-expiration", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "An integer, or an expression resolving to an integer, representing the [document expiration](../../../java-sdk/current/howtos/kv-operations.md#document-expiration)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "INSERT names no capella-role:* management-plane gate at all - only the credential-type-keyed data-plane privilege pair. Confirms the round-2 hypothesis that the management-plane role gate is specific to management/administrative statements (CREATE BUCKET, GRANT/REVOKE, CREATE USER, etc.) and does not apply to ordinary DML statements like INSERT."
+  },
+  "cross_product_finding": "RECURRENCE of the known anomaly logged in docs-issues/capella-pages-cite-server-versions.json, twice on this one page: 'Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query' (appears identically in both the Insert Values OPTIONS description and the Insert Select OPTIONS description). Also extends the credential-type/privilege model one step further than earlier batch pages: INSERT is the first statement in this batch to require a *pair* of privileges simultaneously (Write/Query Insert for the insert target, plus Read/Query Read on every keyspace referenced by an optional SELECT or RETURNING clause) rather than a single privilege - minted privilege:capella-advanced-access-query-insert to complete the parallel Write/Read/Insert/Index privilege family alongside the already-promoted capella-basic-access-write and capella-advanced-access-query-index."
+}

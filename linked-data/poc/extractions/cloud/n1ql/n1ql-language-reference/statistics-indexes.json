@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/statistics-indexes",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/statistics-indexes.md",
+  "concepts": [
+    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - already minted in statistics-index.json from this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:statistics-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Cost-Based Optimizer](cost-based-optimizer.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No access-control content on this page (the multi-index UPDATE STATISTICS / ANALYZE ... INDEX (...) syntax). As with statistics-index.md, the only Capella-specific note is the GSI-only index-type restriction: 'In Couchbase Capella, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted.'"
+  },
+  "cross_product_finding": "Same GSI-only restriction as statistics-index.json (identical sentence, repeated verbatim across the statistics-index/statistics-indexes pair) - treated the same way: flagged, not promoted to behavesDifferentlyUnder, per the index-partitioning.json precedent for 'In Couchbase Capella, ...' deployment-default sentences that aren't clause-level toggles."
+}

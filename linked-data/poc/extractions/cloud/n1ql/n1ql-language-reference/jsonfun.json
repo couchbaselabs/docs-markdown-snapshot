@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/jsonfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/jsonfun.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Pure function reference (DECODE_JSON, ENCODE_JSON, ENCODED_SIZE, POLY_LENGTH) with no Prerequisites/RBAC section, no keyspace references, and no cross-links to other pages. These functions operate on in-query expressions/values rather than keyspace data, so they sit outside the credential-type-keyed privilege model entirely - consistent with this batch's expectation that pure function/operator reference pages carry no ontology content."
+  }
+}

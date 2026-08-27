@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-global-function-execute",
+  "label": "Global Function Execute (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates EXECUTE FUNCTION at global scope",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Execute-side sibling of privilege:capella-advanced-access-global-function-manage - see reconciliation.md round 5."
+}

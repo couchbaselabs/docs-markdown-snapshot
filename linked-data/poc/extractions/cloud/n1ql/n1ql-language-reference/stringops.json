@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/stringops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/stringops.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "n1ql:stringops",
+      "predicate": "seeAlso",
+      "object": "n1ql:comparisonops",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Refer to [Comparison Operators](comparisonops.md) for string comparisons."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure operator reference page (the `||` concatenation operator only). No privileges, roles, credential types, editions, or version gates. Consistent with the batch guidance that pure function/operator reference pages should have empty or near-empty concepts/relations."
+  }
+}

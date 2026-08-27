@@ -1,0 +1,28 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/cost-based-optimizer",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/cost-based-optimizer.md",
+  "concepts": [
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - same concept id independently minted for server/n1ql/n1ql-language-reference/cost-based-optimizer.json (cross-product reuse); CBO is the same query-planning subsystem documented for both Capella and Couchbase Server" },
+    { "candidate_id": "n1ql:rules-based-optimizer", "label": "Rules-Based Optimizer (RBO, legacy fallback)", "reused_or_minted": "reused - same concept id as server/'s extraction" },
+    { "candidate_id": "n1ql:hash-join", "label": "Hash join method", "reused_or_minted": "reused - same concept id as server/'s extraction" },
+    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - same concept id as server/'s extraction, and as cloud/auto-update-statistics.json" },
+    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics (AUS)", "reused_or_minted": "reused - same concept id as cloud/n1ql-language-reference/auto-update-statistics.json" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "minted - seeAlso target" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "minted - named as one of the statement types the CBO can plan for" }
+  ],
+  "relations": [
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "requiresPriorExecutionOf", "object": "n1ql:update-statistics", "reused_or_minted_predicate": "minted - matches predicate independently minted in extractions/server/n1ql/n1ql-language-reference/cost-based-optimizer.json for the identical fact pattern (not yet promoted to relations/)", "evidence": "Before you can use the cost-based optimizer with a query, you must first gather the statistics that it needs." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "requiresSetting", "object": "use_cbo", "reused_or_minted_predicate": "reused", "evidence": "The [request-level](../n1ql-manage/query-settings.md#use%5Fcbo%5Freq) `use_cbo` parameter specifies whether the cost-based optimizer is enabled per request." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:update-statistics", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Refer to the documentation for the [UPDATE STATISTICS](updatestatistics.md) statement to see examples of how to generate optimizer statistics" },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Optimizer Hints](optimizer-hints.md) overview" },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:auto-update-statistics", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Auto Update Statistics](auto-update-statistics.md)" },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:select", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The cost-based optimizer can generate a query plan for [SELECT](selectintro.md), [UPDATE](update.md), [DELETE](delete.md), [MERGE](merge.md), and [INSERT INTO with SELECT](insert.md) queries." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / availableInEdition",
+    "finding": "server/'s equivalent page gates the whole CBO feature behind Enterprise Edition ('a feature available in Couchbase Server Enterprise Edition'). This Capella page states 'The cost-based optimizer is enabled by default. You can enable or disable it as required' with no edition qualifier whatsoever - consistent with Capella having no editions. This is a clean instance of the edition-gate simply disappearing on Capella rather than being awkwardly ported, unlike the version-citation anomaly below."
+  },
+  "cross_component_finding": "Recurrence of the known issue docs-issues/capella-pages-cite-server-versions.json: this page states 'In Couchbase Server 7.6 and later, the Query service automatically gathers statistics whenever an index is created or built' and 'an opt-in feature called Auto Update Statistics (AUS) is available starting with Couchbase Server 8.0', despite Capella having no discrete version numbers.",
+  "cross_product_finding": "Confirms the server/-vs-Capella edition/version split observed elsewhere: the EE-only gate from server/'s CBO page is dropped entirely here (no edition gate replaces it - Capella doesn't gate CBO by any credential type or role either), while the two server-version citations for statistics-gathering behavior are retained verbatim. So the edition gate and the version gate are handled inconsistently on the same page: one is correctly adapted for Capella (removed), the other is not (left as a literal server version)."
+}

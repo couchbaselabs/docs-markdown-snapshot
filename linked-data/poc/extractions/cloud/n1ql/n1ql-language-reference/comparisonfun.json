@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/comparisonfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/comparisonfun.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "Pure function reference page (GREATEST, LEAST) with no access-control or version content. Only cross-reference is to collation rules (datatypes.md#collation) governing how mixed-type comparisons are ordered - a language-semantics detail, not an ontology-worthy relation. No candidate concepts or relations found; expected near-empty extraction per batch guidance."
+  }
+}

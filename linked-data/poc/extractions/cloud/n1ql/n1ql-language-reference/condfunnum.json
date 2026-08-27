@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/condfunnum",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/condfunnum.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "Pure function reference page (IFINF, IFNAN, IFNANORINF, NANIF, NEGINFIF, POSINFIF) with no access-control or version content. No candidate concepts or relations found; expected near-empty extraction per batch guidance."
+  },
+  "cross_component_finding": "Every function on this page is documented with an explicit underscore-spelled synonym ('This function has a synonym `IF_INF()`' for IFINF, `IF_NAN()` for IFNAN, `IF_NAN_OR_INF()` for IFNANORINF, `NAN_IF()` for NANIF, `NEGINF_IF()` for NEGINFIF, `POSINF_IF()` for POSINFIF) - the same recurring pattern flagged in bitwisefun.json (BITTEST/ISBITSET). These are single functions exposed under two spellings, not two independently-invokable statements, so forcing them into the isSynonymOf relation (whose established examples are distinct-statement pairs like DROP INDEX/DROP VECTOR INDEX) would blur that distinction; flagging the pattern's recurrence for reconciliation rather than minting 6 alias-concept pairs."
+}

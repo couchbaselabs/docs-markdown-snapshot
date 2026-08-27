@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-delete",
+  "label": "Query Delete (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates DELETE",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Part of the per-statement-family Advanced-credential privilege catalog found in round 5 - see reconciliation.md round 5."
+}

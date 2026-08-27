@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/conditionalops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/conditionalops.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "Pure operator reference page (simple CASE expressions, searched CASE expressions) with no access-control or version content. No candidate concepts or relations found; expected near-empty extraction per batch guidance."
+  }
+}

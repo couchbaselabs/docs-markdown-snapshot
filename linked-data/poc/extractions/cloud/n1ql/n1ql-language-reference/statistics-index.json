@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/statistics-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/statistics-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already minted in statistics-delete.json from this batch" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:statistics-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Cost-Based Optimizer](cost-based-optimizer.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No access-control content on this page. The single UPDATE STATISTICS FOR INDEX ... syntax page carries only a Capella-specific index-type restriction, not a privilege/role/credential gate: 'In Couchbase Capella, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted.'"
+  },
+  "cross_product_finding": "Same GSI-only restriction noted in linked-data/poc/extractions/.../index-partitioning.json's cross_product_finding for max_parallelism defaults: this is a deployment-specific ('In Couchbase Capella, ...') default/restriction rather than an edition- or version-gated difference, so it doesn't cleanly fit requiresEdition/availableSince/behavesDifferentlyUnder as currently scoped. Flagging rather than minting a relation, consistent with the earlier index-partitioning.json precedent."
+}

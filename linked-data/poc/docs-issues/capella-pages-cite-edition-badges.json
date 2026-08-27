@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-pages-cite-edition-badges",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "A sibling anomaly to docs-issues/capella-pages-cite-server-versions.json, found during round 5's 115-page cloud/n1ql/ sweep: several Capella pages carry '[ENTERPRISE EDITION]' badges or Enterprise/Community edition citations despite Capella having no edition split at all (edition:enterprise/edition:community is a server/-only concept). Distinct from the version-string anomaly - this is about a licensing-tier badge, not a release-number citation - but the same likely root cause: server/ reference content copied without full adaptation to Capella's model.",
+  "about": [
+    "cloud/n1ql/n1ql-language-reference/cost-based-optimizer",
+    "cloud/n1ql/n1ql-language-reference/metafun",
+    "cloud/n1ql/n1ql-language-reference/n1ql-error-codes",
+    "cloud/n1ql/n1ql-language-reference/negative-keyspace-hints",
+    "cloud/n1ql/n1ql-language-reference/window",
+    "cloud/n1ql/n1ql-language-reference/windowfun"
+  ],
+  "foundDuring": "round 5 (115-page cloud/n1ql/ sweep)",
+  "status": "open"
+}

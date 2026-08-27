@@ -1,0 +1,81 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/altergroup",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/altergroup.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:alter-group",
+      "label": "ALTER GROUP statement",
+      "reused_or_minted": "minted - no existing match; n1ql: namespace per convention"
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "Capella data-plane RBAC role",
+      "reused_or_minted": "reused - the rbac-role manipulated by this statement's ROLE/ROLES clause is the same coarse RBAC role family as GRANT/REVOKE"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)"
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Project Owner](../../projects/project-roles.md#project-owner-role)"
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)"
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md)."
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Use the ALTER GROUP statement to modify an existing group within the Couchbase Server Role-Based Access Control (RBAC) system. You can update the group's description and its roles."
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When you update a role for a group, all users in the group inherit the updated permissions automatically."
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:grant",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you want to add or remove specific roles without affecting the others, use the [GRANT](grant.md) and [REVOKE](revoke.md) statements instead."
+    },
+    {
+      "subject": "n1ql:alter-group",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/creategroup",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To create a group, see [CREATE GROUP](creategroup.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Same as ALTER BUCKET/ALTER USER in this batch: purely management-plane capella-role gated, explicitly excluded from data-plane cluster access credentials, no Basic/Advanced privilege pair named."
+  },
+  "cross_component_finding": "The page names the underlying model 'Couchbase Server Role-Based Access Control (RBAC) system' even on a Capella doc page - the terminology itself is carried over from server/ unchanged, though this is a naming/branding observation rather than a version-string citation (so not logged as a recurrence of the version-string issue). Worth the reconciler noting alongside that known issue as a related-but-distinct terminology-carryover pattern.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/operators",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/operators.md",
+  "concepts": [
+    { "candidate_id": "n1ql:operators-overview", "label": "Operators Overview (index/table-of-contents page for all SQL++ operator categories)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" },
+    { "candidate_id": "n1ql:arithmetic-operators", "label": "Arithmetic Operators", "reused_or_minted": "minted - not found among sibling extractions already present in this directory" },
+    { "candidate_id": "n1ql:collection-ops", "label": "Collection Operators", "reused_or_minted": "reused - matches the candidate_id already minted in collectionops.json in this directory" },
+    { "candidate_id": "n1ql:comparison-operators", "label": "Comparison Operators", "reused_or_minted": "minted - not found among sibling extractions already present in this directory" },
+    { "candidate_id": "n1ql:conditional-operators", "label": "Conditional Operators", "reused_or_minted": "minted - not found among sibling extractions already present in this directory" },
+    { "candidate_id": "n1ql:construction-operators", "label": "Construction Operators", "reused_or_minted": "reused - matches the candidate_id already minted in constructionops.json in this directory" },
+    { "candidate_id": "n1ql:logical-operators", "label": "Logical Operators", "reused_or_minted": "reused - same concept minted for logicalops.md in this batch" },
+    { "candidate_id": "n1ql:nested-operators", "label": "Nested Operators and Expressions", "reused_or_minted": "reused - same concept minted for nestedops.md in this batch" },
+    { "candidate_id": "n1ql:sequence-operators", "label": "Sequence Operators", "reused_or_minted": "minted - page-level; a more specific sibling concept n1ql:next-val-for already exists in sequenceops.json in this directory but this link targets the whole page" },
+    { "candidate_id": "n1ql:string-operators", "label": "String Operators", "reused_or_minted": "minted - not found among sibling extractions already present in this directory" }
+  ],
+  "relations": [
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:arithmetic-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Arithmetic Operators](arithmetic.md) to perform basic mathematical operations (such as addition, subtraction, multiplication, and divisions) on numbers." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:collection-ops", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Collection Operators](collectionops.md) to evaluate expressions on collections or objects." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:comparison-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Comparison Operators](comparisonops.md) to compare two expressions." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:conditional-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Conditional Operators](conditionalops.md) to evaluate conditional logic in an expression." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:construction-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Construction Operators](constructionops.md) to construct arrays and objects." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:logical-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Logical Operators](logicalops.md) to combine operators using Boolean logic." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:nested-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Nested Operators and Expressions](nestedops.md) to access nested elements and embedded arrays." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:sequence-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Sequence Operators](sequenceops.md) to access values in a sequence." },
+    { "subject": "n1ql:operators-overview", "predicate": "seeAlso", "object": "n1ql:string-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [String Operators](stringops.md) to concatenate two expressions." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "Pure index/overview page (operator category list plus an operator-precedence table) with no privileges, credential-type gating, capella-role gating, or version/edition citations - none of the nine operator categories are individually access-controlled at this overview level." }
+}

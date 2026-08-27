@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/execute",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/execute.md",
+  "concepts": [
+    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement (runs a prepared statement)", "reused_or_minted": "minted - not present in the registry slice provided; n1ql: namespace per convention" },
+    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq command line shell", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:data-api-intro", "label": "Manage Data with the Data API (Query Service passthrough)", "reused_or_minted": "minted" },
+    { "candidate_id": "sdk:prepared-statement-query-optimization", "label": "Prepared Statements for Query Optimization (Java SDK)", "reused_or_minted": "minted" },
+    { "candidate_id": "sdk:parameterized-queries", "label": "Parameterized Queries (Java SDK)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:execute", "predicate": "seeAlso", "object": "n1ql:prepare", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For information on preparing a statement for execution, refer to [PREPARE](prepare.md)." },
+    { "subject": "n1ql:execute", "predicate": "seeAlso", "object": "n1ql:cbq", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For information on using prepared statements with the `cbq` command line shell, refer to [cbq: The Command Line Shell for SQL++](../n1ql-intro/cbq.md)." },
+    { "subject": "n1ql:execute", "predicate": "seeAlso", "object": "data-api:data-api-intro", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For information on using prepared statements with the Data API (Query Service passthrough), refer to [Manage Data with the Data API](../../data-api-guide/data-api-intro.md)." },
+    { "subject": "n1ql:execute", "predicate": "seeAlso", "object": "sdk:prepared-statement-query-optimization", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For information on using prepared statements with an SDK, refer to [Prepared Statements for Query Optimization](../../../java-sdk/current/concept-docs/n1ql-query.md#prepared-statements-for-query-optimization) and [Parameterized Queries](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md#parameterized-queries)." },
+    { "subject": "n1ql:execute", "predicate": "seeAlso", "object": "sdk:parameterized-queries", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For information on using prepared statements with an SDK, refer to [Prepared Statements for Query Optimization](../../../java-sdk/current/concept-docs/n1ql-query.md#prepared-statements-for-query-optimization) and [Parameterized Queries](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md#parameterized-queries)." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "Unlike every other statement page in this batch, EXECUTE has no Prerequisites/privilege table at all. Its Prerequisites section covers only query-context matching ('To execute a prepared statement, the query context must be the same as it was when the prepared statement was created') - there is no textual evidence for what privilege, if any, governs running a prepared statement (presumably inherited from whatever privileges the underlying prepared statement required, but the page never says so)." },
+  "cross_product_finding": "This is not the transaction-statement family this round was told to watch for, but it is the same shape of cross-product link: EXECUTE's Related section links directly and by name to two Java SDK pages ('Prepared Statements for Query Optimization' and 'Parameterized Queries', ../../../java-sdk/current/...). This is page-attested textual evidence of a Capella N1QL -> Java SDK cross-reference, distinct from and unrelated to sdk:distributed-transaction (no transaction content on this page at all)."
+}

@@ -1,0 +1,67 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/update",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/update.md",
+  "concepts": [
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention, sibling of existing n1ql:insert/n1ql:delete/n1ql:select" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - already promoted in registry" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials, for SELECT/RETURNING clauses)", "reused_or_minted": "reused - already minted in comma.json, same round" },
+    { "candidate_id": "privilege:capella-advanced-access-query-update", "label": "Query Update (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - sibling of privilege:capella-advanced-access-query-index/query-read, distinct privilege for UPDATE specifically" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - already minted in comma.json, same round" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:hints", "label": "USE Clause (hints.md)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement (RETURNING Clause reference)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause (Keyspace Reference)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:update",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-write",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:update",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:update",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-update",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:update",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:update",
+      "predicate": "seeAlso",
+      "object": "n1ql:optimizer-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can supply hints to the optimizer within a specially formatted hint comment. For more information, see [Optimizer Hints](optimizer-hints.md)."
+    },
+    {
+      "subject": "n1ql:update",
+      "predicate": "seeAlso",
+      "object": "n1ql:hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information, see [USE Clause](hints.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "As with every other DDL/DML statement in this round, UPDATE carries no Capella management-plane role gate (requiresCapellaRole) - the access model here is entirely the credential-type-keyed data-plane privilege pair, confirming that round 2's model extends cleanly to a core DML statement."
+  },
+  "cross_component_finding": "The credential-type/privilege-pair model held up exactly as hypothesized, but with a wrinkle: this page names FOUR distinct privileges, not the round-2 pair (Write/Query Index) - Write and Read under Basic, Query Update and Query Read under Advanced - because UPDATE's own DML action and its optional SELECT/RETURNING clause are each gated separately. The registry's promoted privilege:capella-advanced-access-query-index does not apply here at all (that's specific to index-management statements); this page instead needs privilege:capella-advanced-access-query-update (minted) and reuses privilege:capella-basic-access-read/privilege:capella-advanced-access-query-read (already minted in comma.json this round). This suggests the credential-type-keyed privilege family is broader and more granular (one named privilege per DML verb) than the round-2 'pair' framing implied - reconciliation should treat capella-basic-access-write/read and capella-advanced-access-query-{index,update,read,insert,...} as members of one open family, not a fixed pair. Separately, a side note states: 'A user with the Data Manage privilege may set documents to expire. When the document expires, the Data Service deletes the document, even though the user may not have the Query Delete privilege' - an asymmetry where one privilege (Data Manage) grants a side-effect capability (expiration-triggered deletion) normally gated by a different privilege (Query Delete) - not modeled as a relation here since it's a passing aside rather than a formal per-statement grant, but worth flagging as a genuine RBAC nuance.",
+  "cross_product_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions: the Optimizer Hints subsection is headed 'Couchbase Server 8.0' as its version gate, a literal 'Couchbase Server X.Y' string on a Capella page. Flagging as a recurrence, not a new issue."
+}

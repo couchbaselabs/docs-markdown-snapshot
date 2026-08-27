@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/dropcollection",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropcollection.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-collection", "label": "DROP COLLECTION statement", "reused_or_minted": "minted - matches the n1ql: statement-concept convention; no prior term in registry" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same concept as promoted in concepts/privilege/capella-basic-access-write.json" },
+    { "candidate_id": "privilege:capella-advanced-access-scope-admin", "label": "Scope Admin (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same minted concept as createcollection.json/createscope.json" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" },
+    { "candidate_id": "n1ql:create-collection", "label": "CREATE COLLECTION statement", "reused_or_minted": "reused - same concept as createcollection.json; this page is DROP COLLECTION's structural inverse" }
+  ],
+  "relations": [
+    { "subject": "n1ql:drop-collection", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:drop-collection", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-scope-admin", "reused_or_minted_predicate": "reused predicate; reused object", "evidence": "| Advanced | [Scope Admin](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:drop-collection", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:drop-collection", "predicate": "seeAlso", "object": "capella:about-buckets-scopes-collections", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For an overview of scopes and collections, see [Buckets, Scopes, and Collections](../../clusters/data-service/about-buckets-scopes-collections.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince (server-version citation)",
+    "finding": "No server-version citation on this page, unlike createcollection.md's WITH-clause gate - DROP COLLECTION has no comparable optional clause to gate."
+  },
+  "cross_component_finding": "The Prerequisites, Syntax structure, and IF [NOT] EXISTS clause wording all mirror createcollection.md almost verbatim with DROP/CREATE and EXISTS/NOT EXISTS swapped - confirms the credential-type/privilege pair model holds identically for both directions of collection DDL."
+}

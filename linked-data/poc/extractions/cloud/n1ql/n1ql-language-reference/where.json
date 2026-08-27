@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/where",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/where.md",
+  "concepts": [
+    { "candidate_id": "n1ql:where-clause", "label": "WHERE clause", "reused_or_minted": "minted - no existing match in registry; n1ql: namespace per convention, '-clause' suffix matches n1ql:orderby-clause naming pattern" }
+  ],
+  "relations": [
+    { "subject": "n1ql:where-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/logicalops", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can construct complex conditional expressions, for example by using the [logical operators](logicalops.md) `AND`, `OR`, and `NOT`." },
+    { "subject": "n1ql:where-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-intro/queriesandresults", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "No Prerequisites section at all on this page - unlike WITH, WINDOW, and the DDL/DCL statement pages in this batch/registry, WHERE is documented with no privilege table, no credential-type branching, and no capella-role gate whatsoever. This is consistent with WHERE being a pure filtering clause used inside a query whose data access is already gated by the FROM/keyspace-selection privilege elsewhere in the same statement - the docs don't re-state privileges per clause, only per top-level statement/keyspace-access point. Useful negative data point for the batch hypothesis: the credential-type/capella-role model attaches to statements and keyspace-access points, not to every clause."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

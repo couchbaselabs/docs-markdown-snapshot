@@ -1,0 +1,41 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/statements",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/statements.md",
+  "concepts": [
+    { "candidate_id": "n1ql:statement-category-ddl", "label": "Data Definition Language (DDL) statement category", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statement-category-dcl", "label": "Data Control Language (DCL) statement category", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statement-category-dml", "label": "Data Manipulation Language (DML) statement category", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statement-category-dql", "label": "Data Query Language (DQL) statement category", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statement-category-tcl", "label": "Transaction Control Language (TCL) statement category", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statement-category-utility", "label": "Utility statement category", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:statement-category-tcl",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[BEGIN TRANSACTION](begin-transaction.md)  \n[COMMIT TRANSACTION](commit-transaction.md)  \n[ROLLBACK TRANSACTION](rollback-transaction.md)  \n[SAVEPOINT](savepoint.md)  \n[SET TRANSACTION](set-transaction.md)"
+    },
+    {
+      "subject": "n1ql:statement-category-tcl",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[SET TRANSACTION](set-transaction.md)"
+    },
+    {
+      "subject": "n1ql:statement-category-ddl",
+      "predicate": "seeAlso",
+      "object": "n1ql:createsequence",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[CREATE SEQUENCE](createsequence.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is purely a navigational index of statement links grouped by DDL/DCL/DML(DQL/TCL/Utility) category - it asserts no privileges, roles, credential-type restrictions, or version gates of its own. All access-control content lives on the individual statement pages, not here."
+  },
+  "cross_component_finding": "The page groups BEGIN TRANSACTION, COMMIT TRANSACTION, ROLLBACK TRANSACTION, SAVEPOINT, and SET TRANSACTION together under 'Transaction Control Language (TCL)' ('Transaction control language (TCL) statements enable you to work with Couchbase transactions.'), confirming these five pages form a single coherent statement family as assumed elsewhere in this round's extractions."
+}

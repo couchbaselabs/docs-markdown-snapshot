@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/flex-indexes",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/flex-indexes.md",
+  "concepts": [
+    { "candidate_id": "n1ql:flex-index", "label": "Flex Index feature (run a SQL++ query as a full-text search query)", "reused_or_minted": "minted" },
+    { "candidate_id": "search:full-text-index", "label": "Full-Text Search (FTS) index", "reused_or_minted": "minted - search: namespace used elsewhere in server/ extractions for this product area" },
+    { "candidate_id": "n1ql:hints", "label": "USE Clause", "reused_or_minted": "minted - also the subject page of hints.json in this same batch" },
+    { "candidate_id": "n1ql:searchfun", "label": "Search Functions", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "minted" },
+    { "candidate_id": "search:create-search-indexes", "label": "Creating (Search) Indexes guide", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:flex-index", "predicate": "dependsOnService", "object": "search:full-text-index", "reused_or_minted_predicate": "reused", "evidence": "The _Flex Index_ feature provides the ability for a SQL++ query to leverage either a global secondary index or full-text index transparently with standard SQL++ syntax, simplifying the application development process." },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "n1ql:hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Use the `USING FTS` hint in the SQL++ query. For full details, refer to [USE Clause](hints.md#index-type)." },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "n1ql:searchfun", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "It is possible to perform a full-text search within a SQL++ query using [search functions](searchfun.md)." },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "GSI indexes are online and searchable after they have been built. For further details, refer to [BUILD INDEX](build-index.md)." },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "search:create-search-indexes", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For a general introduction to creating full-text indexes, refer to [Creating Indexes](../../search/create-search-indexes.md)." }
+  ],
+  "cross_component_finding": "This page draws an explicit architectural contrast between two index services that Flex Index unifies under one SQL++ syntax: 'a global secondary index (GSI) uses a B-tree structure for fast exact search, whereas full-text search (FTS) uses an inverted index to provide efficient term search.' It also contrasts their availability lifecycles: 'Full-text indexes are online and searchable as soon as they are created. GSI indexes are online and searchable after they have been built' - GSI has the staged scheduled/building/online lifecycle that index-state models, but FTS per this page has no equivalent staged lifecycle at all.",
+  "notable_absence": { "predicate": "requiresUiMode", "finding": "The page's Search-index setup walkthrough refers to an 'Advanced' settings panel in the Capella Web Console's index-creation screens - 'click the **Advanced** heading to display the Advanced settings panel' - which is textually identical to the registry's ui-mode:advanced label, but this is a different, unrelated UI affordance (the FTS index's default-analyzer setting), not the query-statement-level Advanced UI gate that ui-mode:advanced models. Not linked, to avoid false conflation between two same-named but unrelated 'Advanced' UI panels." }
+}

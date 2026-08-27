@@ -1,0 +1,64 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/begin-transaction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/begin-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:tximplicit", "label": "tximplicit query parameter (implicit single-statement transaction)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `BEGIN TRANSACTION` statement enables you to begin a sequence of statements as an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:tximplicit",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can also specify a single DML statement as an ACID transaction by setting the [tximplicit](../n1ql-manage/query-settings.md#tximplicit) query parameter."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Unlike the DDL statements in this round (GRANT/REVOKE/CREATE BUCKET etc.), BEGIN TRANSACTION carries no access-control gate at all - no Capella role requirement, no credential-type restriction, no named-role privilege. The only prerequisite content on the page is behavioral (the statement must begin with BEGIN/START and contain WORK/TRAN/TRANSACTION) and routing-related (all statements in a transaction are pinned to the same Query node)."
+  },
+  "cross_component_finding": "The page links out to server/'s transaction overview ('For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md)') and to a footnote requiring 'cbq shell version 2.0 or above' for automatic transaction ID handling - both server/-shared, cbq-shell-specific concerns rather than anything Capella-specific. This SQL++ transaction-statement family (BEGIN/COMMIT/ROLLBACK/SAVEPOINT/SET TRANSACTION) reads as shared source content presented unchanged on the Capella docs tree, similar in spirit to (though not an instance of) the server-version-citation anomaly - here it's shared server/ conceptual content and cbq-shell version gating rather than a literal 'Couchbase Server X.Y' string, so not logged against that specific docs-issue.",
+  "cross_product_finding": "Open question (per task brief): no textual evidence on this page connects SQL++'s BEGIN TRANSACTION to the Java SDK's distributed-transaction feature (sdk:distributed-transaction). The page's only related-links are to other SQL++ transaction statements, the server/ transaction overview, and a Couchbase blog post ('Couchbase Transactions: Elastic, Scalable, and Distributed') - no SDK cross-reference is present, so no relation is asserted. Flagging as open: whether SQL++ transactions (this statement family) and the Java SDK's distributed ACID transactions (sdk:distributed-transaction) are the same underlying server-side transaction mechanism exposed through two different client surfaces is plausible but unconfirmed by any page text seen so far."
+}

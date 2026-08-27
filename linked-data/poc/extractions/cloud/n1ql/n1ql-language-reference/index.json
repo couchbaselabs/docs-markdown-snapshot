@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:sql-plus-plus", "label": "SQL++ language (Couchbase Capella's query language)", "reused_or_minted": "minted - top-level umbrella concept for this reference guide's subject. Distinct from cbl:server-sql-plusplus-dialect / cbl:sql-plus-plus-mobile, which are Couchbase Lite/Sync Gateway's own SQL++ dialects for a different product surface; no textual evidence on this page links the two, so not related." },
+    { "candidate_id": "n1ql:statements", "label": "Statements (SQL++ statement reference)", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:literals", "label": "Literals", "reused_or_minted": "reused - minted on literals.json in this same batch" },
+    { "candidate_id": "n1ql:identifiers", "label": "Identifiers", "reused_or_minted": "reused - minted on identifiers.json in this same batch" },
+    { "candidate_id": "n1ql:nested-operators", "label": "Nested operators (nested path expressions)", "reused_or_minted": "minted - target of a structural link (nestedops.md)" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "reused - minted on keyspace-hints.json in this same batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:sql-plus-plus", "predicate": "seeAlso", "object": "n1ql:statements", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details, see [Statements](statements.md)." },
+    { "subject": "n1ql:sql-plus-plus", "predicate": "seeAlso", "object": "n1ql:literals", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Literal values](literals.md)" },
+    { "subject": "n1ql:sql-plus-plus", "predicate": "seeAlso", "object": "n1ql:identifiers", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Identifiers](identifiers.md)" },
+    { "subject": "n1ql:sql-plus-plus", "predicate": "seeAlso", "object": "n1ql:nested-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can use [nested operators](nestedops.md) to access sub-document fields within a document." },
+    { "subject": "n1ql:sql-plus-plus", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "In Couchbase Capella you can supply hints to the optimizer within a specially-formatted _hint comment_. For further details, refer to [Optimizer Hints](optimizer-hints.md)." }
+  ],
+  "cross_component_finding": "This page defines DDL/DCL/DML as the three top-level SQL++ statement categories ('Data Definition Language (DDL) statements enable you to create and modify database objects... Data Control Language (DCL) statements enable you to control which users or groups have access to data... Data Manipulation Language (DML) statements enable you to create, read, update, and delete data'). This categorization scheme is not yet modeled in the registry as a concept scheme (unlike index-state or cluster-access-credential-type), and no other page in this 12-page batch states it explicitly, so it is not minted here - flagging for the reconciler in case it recurs with enough frequency across the fuller corpus to warrant an n1ql:statement-category scheme. Separately, this page states 'The Couchbase implementation of SQL++ was formerly known as [N1QL]' - a product-branding/rename fact, not modeled as a relation to avoid conflating it with the unrelated cbl: namespace's own SQL++ dialect concepts."
+}

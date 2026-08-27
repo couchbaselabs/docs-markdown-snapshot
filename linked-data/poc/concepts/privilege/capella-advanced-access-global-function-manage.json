@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-global-function-manage",
+  "label": "Global Function Manage (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates CREATE/DROP FUNCTION at global (cluster-wide) scope",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Part of the per-statement-family Advanced-credential privilege catalog found in round 5 - see reconciliation.md round 5. createfunction.json's finding that this privilege is keyed by BOTH credential type AND function scope (global vs. scoped) simultaneously is the genuinely new two-axis shape this round surfaced - see privilege:capella-advanced-access-query-manage (the scoped-function sibling)."
+}

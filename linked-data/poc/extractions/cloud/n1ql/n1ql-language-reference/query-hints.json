@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/query-hints",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/query-hints.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-hints", "label": "Query Block Hints (e.g. ORDERED)", "reused_or_minted": "minted - matches n1ql:<kebab-case> convention" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints (hint-comment syntax)", "reused_or_minted": "reused - same candidate_id minted in this batch's optimizer-hints.json" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - already minted in server/n1ql/n1ql-language-reference/cost-based-optimizer.json" },
+    { "candidate_id": "n1ql:keyspace-hints", "label": "Keyspace Hints", "reused_or_minted": "reused - same candidate_id minted in optimizer-hints.json" },
+    { "candidate_id": "n1ql:selectclause", "label": "SELECT Clause", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:optimizer-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "A query hint is a type of [optimizer hint](optimizer-hints.md)."
+    },
+    {
+      "subject": "n1ql:query-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:selectclause",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This hint is only available in the [SELECT Clause](selectclause.md)."
+    },
+    {
+      "subject": "n1ql:query-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Understand the Cost-Based Optimizer for Queries](cost-based-optimizer.md)"
+    },
+    {
+      "subject": "n1ql:query-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:keyspace-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Keyspace Hints](keyspace-hints.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole",
+    "finding": "Currently SQL++ supports exactly one query block hint (ORDERED), and it carries no independent access-control requirement - like optimizer-hints.md, any privilege gate belongs to the SELECT statement the hint decorates, not the hint syntax itself."
+  }
+}

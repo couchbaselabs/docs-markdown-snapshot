@@ -1,0 +1,66 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/prepare",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/prepare.md",
+  "concepts": [
+    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" },
+    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "minted" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials, for a prepared SELECT)", "reused_or_minted": "reused - same candidate_id minted in this round's comma.json" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials, for a prepared SELECT)", "reused_or_minted": "reused - same candidate_id as comma.json" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials, for a prepared UPDATE)", "reused_or_minted": "reused - promoted concept, per registry" },
+    { "candidate_id": "privilege:capella-advanced-access-query-index", "label": "Query Update (privilege required under Advanced cluster access credentials, for a prepared UPDATE)", "reused_or_minted": "minted - the page names the Advanced-credential privilege for UPDATE as 'Query Update', a sibling of the promoted privilege:capella-advanced-access-query-index (which the registry describes as covering index-management statements); this is a distinct write-keyed member of the same credential-type privilege family, not the promoted concept itself - flagged for reconciliation to decide whether a dedicated privilege:capella-advanced-access-query-update should be minted instead of reusing this id" },
+    { "candidate_id": "sdk:sqlpp-queries-with-sdk", "label": "Running SQL++ Queries from the Java SDK (Parameterized Queries)", "reused_or_minted": "reused - already minted in java-sdk/howtos/sqlpp-queries-with-sdk.json" },
+    { "candidate_id": "sdk:prepared-statements-for-query-optimization", "label": "Prepared Statements for Query Optimization (Java SDK concept doc)", "reused_or_minted": "minted - no existing sdk: concept covers this specific concept-docs page" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; privilege depends on the statement being prepared, here illustrated with a SELECT",
+      "evidence": "For example, if the statement being prepared is a `SELECT` statement: | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-index",
+      "reused_or_minted_predicate": "minted - see concepts note; asserting on the same id as the promoted concept pending reconciliation",
+      "evidence": "To execute the following statement, user must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `hotel`."
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "seeAlso",
+      "object": "n1ql:execute",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For information on executing the prepared statement, refer to [EXECUTE](execute.md)."
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "seeAlso",
+      "object": "sdk:prepared-statements-for-query-optimization",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For information on using prepared statements with an SDK, refer to [Prepared Statements for Query Optimization](../../../java-sdk/current/concept-docs/n1ql-query.md#prepared-statements-for-query-optimization) and [Parameterized Queries](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md#parameterized-queries)."
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "seeAlso",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "...and [Parameterized Queries](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md#parameterized-queries)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "PREPARE, like the other read/write query statements in this batch, gates purely on the data-plane credential-type privilege pair (keyed to whatever statement is being prepared) and never on a management-plane capella-role:*. This is a genuine cross-product finding worth flagging distinctly: this is the first page in this round where the credential-type privilege explicitly varies *per prepared statement type* rather than being fixed for the page - the same PREPARE statement can require Read/Query Read (if preparing a SELECT) or Write+Read/Query Update+Query Read (if preparing an UPDATE). The privilege model composes with whatever DML the PREPARE wraps, rather than PREPARE having its own fixed privilege."
+  },
+  "cross_component_finding": "The Statement Cache section explicitly names both products in the same sentence - 'Prepared statements are stored in the prepared statement cache until you restart the Couchbase Server. In Couchbase Capella, the query engine uses the prepared statement cache to speed up the creation of prepared statements.' - and the Statement Propagation section does the same for query-node priming. No explicit 'Couchbase Server X.Y' version-gate citation is present on this page (so no recurrence of the known docs-issue is logged here), but the pattern of describing behavior in terms of 'restart the Couchbase Server' on a Capella page (where customers don't manage server restarts directly) is adjacent to that same issue family.",
+  "cross_product_finding": "This page has explicit, textual, non-inferred links from SQL++'s PREPARE statement to the Java SDK's query-optimization guidance (concept-docs/n1ql-query.md#prepared-statements-for-query-optimization) and to SDK-side parameterized queries (howtos/sqlpp-queries-with-sdk.md#parameterized-queries) - unlike the transaction-statement family in this same round, where the SQL++/SDK cross-reference was an open, unconfirmed question. Here the docs explicitly connect the SQL++ language feature to its SDK-side usage guidance, supporting a seeAlso relation with direct textual evidence."
+}

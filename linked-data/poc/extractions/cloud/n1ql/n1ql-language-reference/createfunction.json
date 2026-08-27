@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/createfunction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/createfunction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "reused_or_minted": "minted - matches the n1ql: statement-concept convention; no prior term in registry" },
+    { "candidate_id": "n1ql:inline-function", "label": "Inline (SQL++ or JavaScript expression) user-defined function", "reused_or_minted": "minted - named function type distinguished from external functions throughout the page" },
+    { "candidate_id": "n1ql:external-function", "label": "External (JavaScript library-backed) user-defined function", "reused_or_minted": "minted - named function type; can be a UDF-library reference or a 'SQL++ managed' inline JavaScript function" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials, for global or scoped functions)", "reused_or_minted": "reused - same concept as promoted in concepts/privilege/capella-basic-access-write.json" },
+    { "candidate_id": "privilege:capella-advanced-access-global-function-manage", "label": "Global Function Manage (privilege required under Advanced cluster access credentials, for global functions)", "reused_or_minted": "minted - a new Advanced-credential privilege, scoped specifically to global (namespace-level) functions" },
+    { "candidate_id": "privilege:capella-advanced-access-query-manage", "label": "Query Manage (privilege required under Advanced cluster access credentials, for scoped functions)", "reused_or_minted": "minted - a new Advanced-credential privilege, scoped specifically to scoped functions" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "minted - seeAlso target" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "reused_or_minted": "minted - seeAlso target" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-function", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:create-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-global-function-manage", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "| Advanced | Global | [Global Function Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:create-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-manage", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "| Advanced | Scoped | [Query Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:create-function", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "To execute this statement, your client must have necessary privileges depending on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the function is global or scoped." },
+    { "subject": "n1ql:create-function", "predicate": "seeAlso", "object": "n1ql:execute-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md)." },
+    { "subject": "n1ql:create-function", "predicate": "seeAlso", "object": "n1ql:drop-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To drop a user-defined function, see [DROP FUNCTION](dropfunction.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a (structural, not a missing fact)",
+    "finding": "This is the richest privilege matrix found in this batch: unlike every other statement here, the Advanced-credential privilege is keyed by BOTH credential type AND function scope (global vs. scoped) - two named Advanced privileges for one statement, not one. The Basic side stays a flat 'Write' regardless of scope, so the extra axis only exists on the Advanced side. This is a genuine structural variant on the round-2 disjunctive-pair hypothesis: it's not disjunctive here, it's a second orthogonal condition (scope) layered onto the credential-type condition."
+  },
+  "cross_component_finding": "Recurrence of the known issue docs-issues/capella-pages-cite-server-versions.json: the 'SQL++ Managed User-Defined Functions' section is headed 'Couchbase Server 7.6' and begins 'For operational clusters using Couchbase Server 7.6 and later, you can create the code for a JavaScript function and the corresponding SQL++ user-defined function in a single operation in the Query Tab or cbq.' Also notable: this same sentence refers to 'operational clusters,' a Capella-specific framing (implicitly contrasting with Capella's own serverless/other cluster types) layered on top of the server-version citation - suggesting the version gate may have originally applied only to a subset of Capella deployment types, not a straightforward server-version copy-paste."
+}

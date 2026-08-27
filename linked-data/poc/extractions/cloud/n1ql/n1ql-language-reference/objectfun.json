@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/objectfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/objectfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:object-functions", "label": "Object Functions (OBJECT_ADD, OBJECT_CONCAT, OBJECT_FIELD, OBJECT_FILTER, OBJECT_PAIRS, OBJECT_PATHS, OBJECT_PUT, OBJECT_REMOVE, etc.)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" },
+    { "candidate_id": "n1ql:misc-utility-functions", "label": "Miscellaneous Utility Functions (includes LEN())", "reused_or_minted": "reused - same concept minted for metafun.md in this batch" },
+    { "candidate_id": "n1ql:nested-operators", "label": "Nested Operators and Expressions", "reused_or_minted": "reused - same concept minted for nestedops.md in this batch" },
+    { "candidate_id": "n1ql:type-functions", "label": "Type Functions (includes TYPE())", "reused_or_minted": "minted - seeAlso target for typefun.md, not otherwise covered in this batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:object-functions", "predicate": "seeAlso", "object": "n1ql:misc-utility-functions", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "_Equivalent_: [LEN()](metafun.md#len)" },
+    { "subject": "n1ql:object-functions", "predicate": "seeAlso", "object": "n1ql:nested-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can use [nested operators](nestedops.md) to specify the path to a nested attribute or element." },
+    { "subject": "n1ql:object-functions", "predicate": "seeAlso", "object": "n1ql:type-functions", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "This function returns the data type of every field in the supplied object, as reported by the [TYPE()](typefun.md#fn-type-type) function." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "No privileges, credential-type gating, or capella-role content appears anywhere on this page - none of the object functions are access-controlled beyond ordinary query execution." },
+  "cross_product_finding": "Recurrence of docs-issues/capella-pages-cite-server-versions.json: OBJECT_CONCAT2(), OBJECT_FILTER(), OBJECT_TYPES(), and OBJECT_TYPES_NESTED() are each individually headed 'Couchbase Server 8.0' - four separate literal server-version citations on a single Capella function-reference page, more concentrated than most other pages in this batch."
+}

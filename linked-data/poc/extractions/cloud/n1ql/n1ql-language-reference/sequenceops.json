@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/sequenceops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/sequenceops.md",
+  "concepts": [
+    { "candidate_id": "n1ql:next-val-for", "label": "NEXT VALUE FOR / NEXTVAL FOR operator", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" },
+    { "candidate_id": "n1ql:prev-val-for", "label": "PREVIOUS VALUE FOR / PREV VALUE FOR / PREVVAL FOR operator", "reused_or_minted": "minted" },
+    { "candidate_id": "privilege:query-use-sequences", "label": "Query Use Sequences privilege", "reused_or_minted": "minted - a named RBAC privilege granted on the scope, structurally like server/'s privilege:query-manage-index rather than the Capella credential-type pair (privilege:capella-basic-access-write / privilege:capella-advanced-access-query-index)" },
+    { "candidate_id": "n1ql:createsequence", "label": "CREATE SEQUENCE statement", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:next-val-for",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-use-sequences",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use this operator, your client must have the _Query Use Sequences_ privilege granted on the scope. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md)."
+    },
+    {
+      "subject": "n1ql:prev-val-for",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-use-sequences",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use this operator, your client must have the _Query Use Sequences_ privilege granted on the scope. For more details about cluster access privileges, see [Authorization](../../clusters/manage-database-users.md)."
+    },
+    {
+      "subject": "n1ql:next-val-for",
+      "predicate": "seeAlso",
+      "object": "n1ql:createsequence",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To create a sequence, see [CREATE SEQUENCE](createsequence.md)."
+    },
+    {
+      "subject": "n1ql:next-val-for",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:next-val-for",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Synonym: `NEXT VALUE FOR` and `NEXTVAL FOR` are synonyms."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "The sequence operators gate access with a single named RBAC privilege ('Query Use Sequences', granted on the scope), not with the disjunctive capella-role:* management-plane gate nor the Basic/Advanced credential-type pair seen elsewhere in this round's DDL/DCL statements. This is the same shape as server/'s named-privilege RBAC model (cf. privilege:query-manage-index), suggesting Capella's data-plane privilege model is not uniformly credential-type-keyed - some operations (like sequence use) are still gated by a discrete named privilege rather than the Basic/Advanced split."
+  },
+  "cross_component_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions.json: this Capella page explicitly branches results by 'Couchbase Server 7.6-7.6.3' vs 'Couchbase Server 7.6.5' ('This query gives different results, depending on the version of Couchbase Server' / 'In versions of Couchbase Server prior to 7.6.5, the key is not regarded as part of the document...' / 'In Couchbase Server 7.6.5 and later, the entire VALUES clause...is regarded as a single document'), despite Capella having no discrete version numbers. Logged as a recurrence, not a new finding."
+}

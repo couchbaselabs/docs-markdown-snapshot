@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/infer",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/infer.md",
+  "concepts": [
+    { "candidate_id": "n1ql:infer", "label": "INFER statement", "reused_or_minted": "minted - Capella DDL/utility statement, first occurrence in this batch" },
+    { "candidate_id": "n1ql:describe", "label": "DESCRIBE statement (legacy name, renamed to INFER)", "reused_or_minted": "minted - superseded statement name, kept only for the renamedFrom relation below" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "minted - sibling of privilege:capella-basic-access-write, for statements/clauses that only read data (INFER, LET, JOIN all name this same Basic/Advanced pair in this batch)" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - sibling of privilege:capella-advanced-access-query-index, for the read-only counterpart" }
+  ],
+  "relations": [
+    { "subject": "n1ql:infer", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused predicate, minted object", "evidence": "| Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:infer", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused predicate, minted object", "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:infer", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:infer", "predicate": "renamedFrom", "object": "n1ql:describe", "reused_or_minted_predicate": "minted - no existing predicate captures a statement-rename fact; camelCase verb phrase", "evidence": "The `describe` statement introduced in the Couchbase Server 4.1 release has been renamed to INFER." }
+  ],
+  "cross_product_finding": "RECURRENCE of the known anomaly logged in docs-issues/capella-pages-cite-server-versions.json, twice on this one page: (1) 'The describe statement introduced in the Couchbase Server 4.1 release has been renamed to INFER' and (2) 'The ~meta attribute is only available in Couchbase Server 8.0 and later.' Both cite literal Server version numbers on a Capella-only page. Confirms the credential-type/privilege model extends cleanly to INFER: it names the same Basic->Read / Advanced->Query Read pair as LET and JOIN in this same batch, with no requiresCapellaRole gate (INFER is a data-plane, read-only DDL-adjacent statement, not a management-plane action)."
+}

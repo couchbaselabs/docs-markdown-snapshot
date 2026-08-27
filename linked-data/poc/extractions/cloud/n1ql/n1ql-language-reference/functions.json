@@ -1,0 +1,10 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/functions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/functions.md",
+  "concepts": [
+    { "candidate_id": "n1ql:functions-overview", "label": "Functions Overview (landing page for 18 SQL++ function categories)", "reused_or_minted": "minted" }
+  ],
+  "relations": [],
+  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole / usesEnum", "finding": "This page is a pure table-of-contents/landing page for 18 function-category reference pages (Aggregate, Array, Bitwise, Comparison, Conditional, Date, JSON, Miscellaneous, Number, Object, Pattern-Matching, Search, String, Token, Type, User-Defined, Vector, Window Functions) - it contains no prose beyond one summary sentence and a bulleted link list, and per the batch guidance for pure function/operator reference pages, no concepts or relations were forced. More generally, no privilege/credential-type table appears on this or (by strong implication) the function-category pages it links to, since built-in SQL++ function invocation is not separately access-controlled - access control attaches to keyspace access via the enclosing statement (FROM/SELECT/etc.), not to function calls themselves." }
+}

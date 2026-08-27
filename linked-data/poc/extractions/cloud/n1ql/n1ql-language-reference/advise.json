@@ -1,0 +1,60 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/advise",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/advise.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:advise",
+      "label": "ADVISE statement",
+      "reused_or_minted": "minted - SQL++ statement concept, no existing match; n1ql: namespace per convention"
+    },
+    {
+      "candidate_id": "n1ql:using-ai",
+      "label": "USING AI clause/query",
+      "reused_or_minted": "minted - referenced query type that ADVISE can analyze; distinct statement-level concept"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:advise",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:underlying-statement-privileges",
+      "reused_or_minted_predicate": "reused (requiresPrivilege), object is a placeholder since the page names no fixed privilege",
+      "evidence": "To execute this statement, your client must have necessary privileges for the SQL++ statement for which you want advice."
+    },
+    {
+      "subject": "n1ql:advise",
+      "predicate": "seeAlso",
+      "object": "cloud/clusters/cluster-rbac",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information about cluster access privileges, see [Cluster Access](../../clusters/cluster-rbac.md)."
+    },
+    {
+      "subject": "n1ql:advise",
+      "predicate": "dependsOnStatement",
+      "object": "n1ql:using-ai",
+      "reused_or_minted_predicate": "minted - camelCase verb phrase for 'can be applied to this query type'; no existing predicate captures this composability relationship",
+      "evidence": "* [USING AI](using-ai.md) queries (available in Couchbase Server 8.0 and later)"
+    },
+    {
+      "subject": "n1ql:advise",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/advisor",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* The [ADVISOR](advisor.md) function"
+    },
+    {
+      "subject": "n1ql:advise",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/cost-based-optimizer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Capella, the index advisor initially makes use of the [cost-based optimizer](cost-based-optimizer.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "ADVISE is the first statement in this batch whose Prerequisites section names no fixed capella-role or credential-type privilege at all - it explicitly defers to whatever privileges the *wrapped* query (SELECT/UPDATE/DELETE/MERGE/USING AI) requires ('your client must have necessary privileges for the SQL++ statement for which you want advice'). This is a derived/inherited privilege model, structurally different from every other statement in this batch (ALTER BUCKET/GROUP/SEQUENCE/USER), which each name a fixed, statement-specific gate."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Recurrence of the known anomaly (docs-issues/capella-pages-cite-server-versions.json): 'You can use ADVISE with USING AI only in Couchbase Server 8.0 and later.' - a literal server/-style version string cited on a Capella page, despite Capella having no discrete version number."
+}

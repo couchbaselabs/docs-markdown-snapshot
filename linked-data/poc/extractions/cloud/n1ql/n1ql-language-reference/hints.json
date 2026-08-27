@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/hints",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/hints.md",
+  "concepts": [
+    { "candidate_id": "n1ql:hints", "label": "USE Clause (use particular keys or a particular index)", "reused_or_minted": "reused - minted earlier in this batch (flex-indexes.json)" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (Basic cluster access credentials)", "reused_or_minted": "reused - minted earlier in this batch (explain.json)" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (Advanced cluster access credentials)", "reused_or_minted": "reused - minted earlier in this batch (explain.json)" },
+    { "candidate_id": "n1ql:from", "label": "FROM Clause", "reused_or_minted": "reused - minted earlier in this batch (from.json)" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints (hint comment syntax)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:keyspace-hints", "label": "Keyspace Hints", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:searchfun", "label": "Search Functions", "reused_or_minted": "reused - minted earlier in this batch (flex-indexes.json)" },
+    { "candidate_id": "n1ql:flex-index", "label": "Flex Index feature", "reused_or_minted": "reused - minted earlier in this batch (flex-indexes.json)" },
+    { "candidate_id": "n1ql:join", "label": "JOIN Clause", "reused_or_minted": "reused - minted earlier in this batch (from.json)" }
+  ],
+  "relations": [
+    { "subject": "n1ql:hints", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |" },
+    { "subject": "n1ql:hints", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:hints", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:from", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The `USE` clause is used within the [FROM](from.md) clause." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can also supply an index hint within a specially-formatted [hint comment](optimizer-hints.md)." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:keyspace-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "This clause is equivalent to the `INDEX` and `INDEX_FTS` optimizer hints. For more details, refer to [Keyspace Hints](keyspace-hints.md)." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:searchfun", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "A Full Text Search index, for use with queries containing [Search functions](searchfun.md)." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:flex-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can use this hint to specify that the query is a [Flex Index](flex-indexes.md) query using a Full Text Search index." },
+    { "subject": "n1ql:hints", "predicate": "seeAlso", "object": "n1ql:join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [ANSI JOIN Hints](join.md#ansi-join-hints)" }
+  ],
+  "notable_absence": { "predicate": "n/a (no relation candidate)", "finding": "The page documents a mutual-exclusivity error mode between two alternative optimizer-hint mechanisms targeting the same keyspace: 'you cannot specify an index hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer.' No predicate in the registry models this kind of documented conflict-and-both-ignored error mode (it is not tradesOffAgainst, which implies a deliberate choice rather than an error, nor incompatibleWithCredentialType, which is reserved for the Basic/Advanced axis) - flagged rather than forced." }
+}

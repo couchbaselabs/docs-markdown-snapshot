@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/indexing-arrays",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/indexing-arrays.md",
+  "concepts": [
+    { "candidate_id": "n1ql:array-indexing", "label": "Array Indexing (GSI index on array elements)", "reused_or_minted": "minted - distinct titled SQL++/GSI indexing feature, its own reference page" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - same concept id used for this statement elsewhere in the batch (e.g. createindex.json)" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - cross-product reuse, already promoted from server/n1ql-intro/queriesandresults and server/n1ql-language-reference/selectintro" }
+  ],
+  "relations": [
+    { "subject": "n1ql:array-indexing", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Refer to the [CREATE INDEX](createindex.md) statement for details of the syntax." },
+    { "subject": "n1ql:array-indexing", "predicate": "seeAlso", "object": "n1ql:query-context", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No Prerequisites/RBAC section anywhere on this page, even though every example is a CREATE INDEX/SELECT/UPDATE combination that, per this batch's statement pages (e.g. createindex.json), would ordinarily require Basic 'Write' or Advanced 'Query Index' privileges. Array Indexing is documented purely as a syntax extension of CREATE INDEX's index-key grammar and defers all privilege documentation to the CREATE INDEX page itself rather than restating it."
+  },
+  "cross_product_finding": "Two syntax extensions are called out as Capella-specific rather than generic SQL++: the `INCLUDE MISSING` modifier on a leading array index key/on the first FLATTEN_KEYS() argument ('In Couchbase Capella, you can add the INCLUDE MISSING modifier...'), and the ability to use an arbitrary UNNEST alias regardless of the ARRAY index variable name ('In Couchbase Capella, you can use any arbitrary alias for the right side of an UNNEST...'). Neither fits an existing relation shape (not a privilege/edition/deployment/UI-mode gate, just an added syntax capability), so left as a textual finding rather than forced into a mint."
+}

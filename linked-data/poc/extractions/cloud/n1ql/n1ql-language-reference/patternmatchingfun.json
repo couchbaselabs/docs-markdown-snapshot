@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/patternmatchingfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/patternmatchingfun.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "Pure function-reference page (REGEXP_CONTAINS/REGEXP_LIKE/REGEXP_MATCHES/REGEXP_POSITION/REGEXP_REPLACE/REGEXP_SPLIT and their REGEX_ aliases). No Prerequisites/Authorization section, no access-control content, no Capella-specific material at all - the only external dependency named is 'The Go Programming Language version 1.8' regex engine, which is an implementation detail rather than an ontology-worthy concept. Left empty per batch guidance for pure function/operator reference pages."
+  }
+}

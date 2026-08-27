@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/join",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/join.md",
+  "concepts": [
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "minted - first occurrence in this batch" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:comma-separated-join", "label": "Comma-Separated Join", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:use-hash-clause", "label": "USE HASH clause (inline ANSI JOIN hint form)", "reused_or_minted": "minted - the inline-clause form of this hint, as opposed to the hint-comment form documented on keyspace-hints.md" },
+    { "candidate_id": "n1ql:use-nl-clause", "label": "USE NL clause (inline ANSI JOIN hint form)", "reused_or_minted": "minted - the inline-clause form of this hint, as opposed to the hint-comment form documented on keyspace-hints.md" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:join", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused predicate, reused object", "evidence": "| Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:join", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused predicate, reused object", "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:join", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:from", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The `JOIN` clause is used within the [FROM](from.md) clause." },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:comma-separated-join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "In Couchbase Capella, you may also use comma-separated joins. For further details, refer to [Comma-Separated Join](comma.md)." },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:nest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "previous [join](#), [nest](nest.md), or [unnest](unnest.md)" },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:unnest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "previous [join](#), [nest](nest.md), or [unnest](unnest.md)" },
+    { "subject": "n1ql:use-hash-clause", "predicate": "isSynonymOf", "object": "n1ql:use-hash-hint", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity (mirror of the relation minted from the keyspace-hints.json side of this same pair)", "evidence": "In Couchbase Capella, this clause is equivalent to the `USE_HASH` optimizer hint. For more details, refer to [Keyspace Hints](keyspace-hints.md#use-hash)." },
+    { "subject": "n1ql:use-nl-clause", "predicate": "isSynonymOf", "object": "n1ql:use-nl-hint", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity (mirror of the relation minted from the keyspace-hints.json side of this same pair)", "evidence": "In Couchbase Capella, this clause is equivalent to the `USE_NL` optimizer hint. For more details, refer to [Keyspace Hints](keyspace-hints.md#use-hash)." }
+  ],
+  "cross_product_finding": "RECURRENCE of the known anomaly logged in docs-issues/capella-pages-cite-server-versions.json: 'In clusters using Couchbase Server 7.6 and later, you can use the LATERAL keyword as a visual reminder...' Confirms the credential-type/privilege model extends cleanly to JOIN: it names the same Basic->Read / Advanced->Query Read pair as LET and INFER in this same batch, with no requiresCapellaRole gate (JOIN, like INFER, is a data-plane read-only clause, not a management-plane action). Also: this page and keyspace-hints.json (both in this batch) each declare, from their own side, that the inline USE HASH/USE NL join-clause syntax and the USE_HASH/USE_NL hint-comment syntax are 'equivalent' - a genuine isSynonymOf pair, captured on both extraction records so it survives regardless of which page a reconciler reads first."
+}

@@ -1,0 +1,56 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/rollback-transaction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/rollback-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused - same candidate_id already minted in this round's begin-transaction.json extraction" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `ROLLBACK TRANSACTION` statement enables you to rollback an ACID transaction. You can rollback the entire transaction, or rollback to a previous savepoint. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Same absence pattern as BEGIN TRANSACTION (see begin-transaction.json): ROLLBACK TRANSACTION carries no access-control gate of any kind - no Capella role, no credential-type restriction, no named privilege. The only prerequisite content is behavioral ('This statement may only be used within a transaction') and a cbq-shell operational note about resetting the transaction ID after a failed transaction. This confirms the transaction-statement family is uniformly ungated across BEGIN/ROLLBACK, consistent with the credential-type/capella-role model applying to keyspace-affecting DDL/DML/DCL statements but not to transaction-control statements."
+  },
+  "cross_component_finding": "Same shared-source-content pattern as begin-transaction.json: this page links out to server/'s transaction overview ('For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md)') rather than any Capella-specific overview page, and closes with a Couchbase blog post link. The transaction-statement family (BEGIN/COMMIT/ROLLBACK/SAVEPOINT/SET TRANSACTION) continues to read as shared reference content presented unchanged on the Capella docs tree.",
+  "cross_product_finding": "Per the cross-round transaction check: no textual evidence on this page connects ROLLBACK TRANSACTION to the Java SDK's distributed-transaction feature (sdk:distributed-transaction). Related Links are exclusively to other SQL++ transaction statements, the server/ overview, and the same Couchbase blog post cited on begin-transaction.md. No SDK cross-reference is present, so no relation is asserted; the open question remains open (as flagged in begin-transaction.json), and this page does not resolve it either way."
+}

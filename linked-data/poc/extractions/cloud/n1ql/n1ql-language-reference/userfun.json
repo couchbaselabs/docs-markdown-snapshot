@@ -1,0 +1,72 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/userfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/userfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:user-defined-functions", "label": "User-Defined Functions", "reused_or_minted": "reused - already established elsewhere in this directory" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-advanced-access-global-function-manage", "label": "Global Function Manage (privilege required under Advanced cluster access credentials, for global UDFs)", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "privilege:capella-advanced-access-query-manage", "label": "Query Manage (privilege required under Advanced cluster access credentials, for scoped UDFs)", "reused_or_minted": "minted - distinct from privilege:query-manage-index (server/'s index-management privilege) and from privilege:capella-advanced-access-query-manage-sequences (Capella's sequence-management privilege, minted in altersequence.json this round) - a third, differently-scoped 'manage' privilege" },
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:explain-function", "label": "EXPLAIN FUNCTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-write",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-global-function-manage",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | Global | [Global Function Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-manage",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | Scoped | [Query Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To create user-defined functions, see [CREATE FUNCTION](createfunction.md)."
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "seeAlso",
+      "object": "n1ql:execute-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md)."
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "seeAlso",
+      "object": "n1ql:explain-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md)."
+    },
+    {
+      "subject": "n1ql:user-defined-functions",
+      "predicate": "seeAlso",
+      "object": "n1ql:drop-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To drop a user-defined function, see [DROP FUNCTION](dropfunction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "No Capella management-plane role gate on UDF management either, consistent with the rest of this round."
+  },
+  "cross_component_finding": "This page introduces a THIRD dimension to the credential-type privilege model, beyond credential-type and clause-type (SELECT/RETURNING): function scope (global vs. scoped). Under Advanced credentials, the required privilege differs by whether the UDF is global or scoped (Global Function Manage vs. Query Manage), while Basic credentials use a single Write privilege for both. This confirms the hypothesis that the round-2 access-control model extends to the UDF surface, but the privilege family keeps growing new named members per statement/scope combination (Write, Read, Query Update, Query Insert, Query Read, Query Manage, Global Function Manage, Query Manage Sequences so far this round) rather than staying a fixed pair - reinforcing the upsert.json/update.json finding that reconciliation should treat this as an open, still-growing family rather than the two promoted concepts alone."
+}

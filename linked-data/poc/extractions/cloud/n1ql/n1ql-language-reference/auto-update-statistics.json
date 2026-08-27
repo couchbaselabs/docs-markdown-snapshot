@@ -1,0 +1,64 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/auto-update-statistics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/auto-update-statistics.md",
+  "concepts": [
+    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics (AUS)", "reused_or_minted": "minted - Capella/server-shared feature, no prior term in registry" },
+    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json" },
+    { "candidate_id": "n1ql:system-aus", "label": "system:aus catalog (AUS global configuration)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:system-aus-settings", "label": "system:aus_settings catalog (AUS per-keyspace configuration)", "reused_or_minted": "minted" },
+    { "candidate_id": "privilege:query-system-catalog", "label": "query_system_catalog role", "reused_or_minted": "minted - distinct from privilege:query-manage-system-catalog (minted in cloud/n1ql/n1ql-manage/query-awr.json, same round); this page cites both the read-only and the manage variant of the same catalog-privilege family" },
+    { "candidate_id": "privilege:query-manage-system-catalog", "label": "query_manage_system_catalog role", "reused_or_minted": "reused - minted in cloud/n1ql/n1ql-manage/query-awr.json (same round, different batch)" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:auto-update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Optimizer statistics are crucial as they help the [Cost Based Optimizer](cost-based-optimizer.md) generate optimal query plans."
+    },
+    {
+      "subject": "n1ql:auto-update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This task evaluates statistics based on expiration policies to identify outdated ones and then refreshes them by running the [UPDATE STATISTICS](updatestatistics.md) statement."
+    },
+    {
+      "subject": "n1ql:system-aus",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-system-catalog",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "To execute SELECT on `system:aus`, you need the `query_system_catalog` role."
+    },
+    {
+      "subject": "n1ql:system-aus",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-system-catalog",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; object concept reused from query-awr.json",
+      "evidence": "To execute UPDATE on `system:aus`, you need the `query_manage_system_catalog` role."
+    },
+    {
+      "subject": "n1ql:system-aus-settings",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-system-catalog",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To execute SELECT on `system:aus_settings`, you need the `query_system_catalog` role."
+    },
+    {
+      "subject": "n1ql:system-aus-settings",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-system-catalog",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To execute UPDATE, DELETE, INSERT, and UPSERT on `system:aus_settings`, you need the `query_manage_system_catalog` role."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "This page gates access entirely with named classic-RBAC-style roles (`query_system_catalog`, `query_manage_system_catalog`) - the same privilege model used by server/'s query-awr.md counterpart - rather than the Capella management-plane `requiresCapellaRole` gate or the Basic/Advanced `incompatibleWithCredentialType` pair seen on DDL statements elsewhere in this batch's registry. This is the same pattern already surfaced in cloud/n1ql/n1ql-manage/query-awr.json (same round): system catalog/administrative pages on Capella appear to reuse server/'s classic role-privilege model unchanged, rather than adopting the credential-type/capella-role axis that gates ordinary DML/DDL statements."
+  },
+  "cross_component_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: this page states 'AUS is available only in clusters running Couchbase Server version 8.0 or later' and further discusses migration paths for 'pre-7.6.x versions' and 'mixed clusters' with '7.6.x and 8.0 query nodes' - all framed in terms of discrete server/ version numbers despite this being a Capella page for a continuously-deployed product with no discrete version numbers.",
+  "cross_product_finding": "The system:aus / system:aus_settings privilege model (query_system_catalog / query_manage_system_catalog roles) is identical in shape and wording to what was found on cloud/n1ql/n1ql-manage/query-awr.md in the same round - strong evidence that Capella's system-catalog/administrative-feature pages share a single privilege model (classic named roles) that is distinct from both the DDL-statement credential-type/capella-role model and from server/'s privilege: namespace terms already in the registry (e.g. privilege:query-manage-index). Worth reconciling whether privilege:query-system-catalog and privilege:query-manage-system-catalog should live under a shared parent distinct from the DDL-statement privilege pair."
+}

@@ -1,0 +1,64 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/set-transaction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/set-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - already minted in begin-transaction.json extraction from this same round" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - already minted in begin-transaction.json" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:isolation-level-read-committed", "label": "ISOLATION LEVEL READ COMMITTED transaction setting", "reused_or_minted": "minted - the sole transaction setting this statement exposes" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `SET TRANSACTION` statement enables you to specify settings for an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "requiresSetting",
+      "object": "n1ql:isolation-level-read-committed",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Currently, the only available transaction setting is `ISOLATION LEVEL READ COMMITTED`. This setting is enabled by default. The `SET TRANSACTION` statement is therefore optional and may be omitted."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Like BEGIN TRANSACTION (already extracted this round), SET TRANSACTION carries no access-control gate at all - no Capella role requirement, no credential-type restriction, no named privilege. Its only prerequisite is behavioral/scoping ('You may only use this statement within a transaction'). This confirms across two pages in the transaction-statement family that the access-control model applying to DDL/DCL statements in this round simply does not extend to TCL statements - they inherit whatever gate applied to the enclosing transaction's first statement, and carry none of their own."
+  },
+  "cross_component_finding": "The page links out to server/'s transaction overview ('For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md)') exactly as begin-transaction.md does, reinforcing that this whole TCL statement family is shared server/-authored conceptual content presented unchanged on the Capella docs tree.",
+  "cross_product_finding": "Per the cross-round transaction check: no textual evidence on this page connects SQL++'s SET TRANSACTION (or the transaction it configures) to the Java SDK's distributed-transaction feature (sdk:distributed-transaction). The Related Links list only other SQL++ TCL statements, the server/ transaction overview, and a Couchbase blog post ('Couchbase Transactions: Elastic, Scalable, and Distributed'). No SDK cross-reference appears, so no relation is asserted - flagging as the same open question already raised against begin-transaction.json: whether SQL++ transactions and the Java SDK's distributed ACID transactions share an underlying mechanism remains unconfirmed by page text."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/query-tab",
+  "label": "Capella Query tab (Web Console UI)",
+  "type": "an access surface for running SQL++ statements - object of incompatibleWithAccessSurface, a gating axis distinct from role/credential-type/UI-mode",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Part of a small family (capella:data-api, capella:cbsh) discovered from two independent pages (transactions.md, using-ai.md) both stating a feature is unsupported via specific access surfaces - promoted as a family per the same allowance used for round 2's GRANT/REVOKE family, since the underlying predicate (incompatibleWithAccessSurface) clears the normal 2-file threshold even though most individual surface concepts are single-occurrence. Not the same axis as ui-mode:advanced (a UI affordance gate) - this is about which client/interface can run a statement at all, not a settings panel."
+}

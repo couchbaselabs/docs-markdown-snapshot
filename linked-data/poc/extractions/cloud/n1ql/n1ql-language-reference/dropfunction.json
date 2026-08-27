@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/dropfunction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropfunction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "reused_or_minted": "minted - not present in the registry slice provided; n1ql: namespace per convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-advanced-access-global-function-manage", "label": "Global Function Manage (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege, sibling of privilege:capella-advanced-access-query-index, gated additionally on function scope (global vs scoped)" },
+    { "candidate_id": "privilege:capella-advanced-access-query-manage", "label": "Query Manage (Advanced cluster access credentials)", "reused_or_minted": "minted - distinct from server/'s privilege:query-manage-index; applies to scoped functions specifically" },
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:drop-function", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                    |" },
+    { "subject": "n1ql:drop-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-global-function-manage", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | Global           | [Global Function Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:drop-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-manage", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | Scoped           | [Query Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials)           |" },
+    { "subject": "n1ql:drop-function", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "To execute this statement, your client must have necessary privileges depending on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the function is global or scoped." },
+    { "subject": "n1ql:drop-function", "predicate": "seeAlso", "object": "n1ql:create-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [Global Functions and Scoped Functions](createfunction.md#context)." }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole", "finding": "No management-plane role gate appears anywhere on this data-plane statement page - consistent with round 2's finding that requiresCapellaRole is reserved for a different (management-plane) surface, not statement-level DDL." },
+  "cross_product_finding": "The Advanced-credential privilege here is two-dimensional: it depends on both credential type AND function scope (global vs scoped) - 'Global Function Manage' for global functions, 'Query Manage' for scoped functions, both under Advanced. Basic collapses both cases to a single coarse 'Write'. This extends the round 2 credential-type/privilege-pair model cleanly to a third axis (object scope) without breaking its shape."
+}

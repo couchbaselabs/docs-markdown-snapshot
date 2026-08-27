@@ -1,0 +1,69 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/alteruser",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/alteruser.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:alter-user",
+      "label": "ALTER USER statement",
+      "reused_or_minted": "minted - no existing match; n1ql: namespace per convention"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)"
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Project Owner](../../projects/project-roles.md#project-owner-role)"
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)"
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md)."
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "assignsToGroup",
+      "object": "n1ql:group",
+      "reused_or_minted_predicate": "reused (assignsToGroup) / minted (n1ql:group as the referenced object type)",
+      "evidence": "Use the ALTER USER statement to update a local user's attributes, such as their password, full name, and group. You can add the user to new groups or remove them from all existing groups."
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/createuser",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To create a new user, see [CREATE USER](createuser.md)."
+    },
+    {
+      "subject": "n1ql:alter-user",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/dropuser",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To delete a user, see [DROP USER](dropuser.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Third statement in this batch (with ALTER BUCKET, ALTER GROUP) that is purely management-plane capella-role gated with cluster access credentials explicitly excluded - no Basic/Advanced privilege pair."
+  },
+  "cross_component_finding": "ALTER BUCKET, ALTER GROUP, and ALTER USER all share an identical Prerequisites paragraph verbatim (same three roles, same 'You cannot execute this statement using cluster access credentials' caution) - these three statements form a clean, uniform sub-family within the management-plane track. This is the strongest signal yet that the two-track model (management-plane capella-role vs. data-plane credential-type) is a stable, deliberate design rather than incidental page-by-page documentation.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/condfununknown",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/condfununknown.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "Pure function reference page (COALESCE, DECODE, IFMISSING, IFMISSINGORNULL, IFNULL, MISSINGIF, NULLIF, NVL, NVL2) with no access-control or version content. No candidate concepts or relations found; expected near-empty extraction per batch guidance."
+  },
+  "cross_component_finding": "COALESCE is documented as an 'Alias for [IFMISSINGORNULL()]', and IFMISSINGORNULL is in turn documented as having 'an alias [COALESCE()]' - the same declared-alias pattern seen in bitwisefun.json (BITTEST/ISBITSET) and condfunnum.json (IFINF/IF_INF etc.), but here the two names are semantically unrelated spellings (not an underscore variant of the same name) rather than a mechanical spelling convention, which is a slightly different flavor of the same 'single function under two names' pattern. Same reconciliation question as noted on those two pages: whether/how this belongs under isSynonymOf."
+}

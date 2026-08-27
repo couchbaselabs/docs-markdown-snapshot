@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/metafun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/metafun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:misc-utility-functions", "label": "Miscellaneous Utility Functions (ABORT, BASE64, EVALUATE, EXTRACTDDL, FINDERR, META, UUID, VERSION, etc.)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" },
+    { "candidate_id": "n1ql:extractddl", "label": "EXTRACTDDL() function - extracts DDL statements for buckets, scopes, collections, indexes, sequences, functions, and prepared statements", "reused_or_minted": "minted - the only function on this page with its own credential-type-keyed privilege requirement" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read access (Basic cluster access credentials)", "reused_or_minted": "reused - same concept minted for DELETE/MERGE in this directory" },
+    { "candidate_id": "privilege:capella-advanced-access-query-catalog", "label": "Query Catalog privilege (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege specific to EXTRACTDDL(), not shared with statement-level DDL/DML privileges elsewhere in this batch" },
+    { "candidate_id": "n1ql:sql-error-codes", "label": "SQL++ Error Codes reference", "reused_or_minted": "minted - seeAlso target; same concept id used consistently for n1ql-error-codes.md in this batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:extractddl", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "To execute this function, your client must have Read access if using basic access credentials, or Query Catalog privilege if using advanced access credentials." },
+    { "subject": "n1ql:extractddl", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused", "evidence": "your client must have Read access if using basic access credentials" },
+    { "subject": "n1ql:extractddl", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-catalog", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "Query Catalog privilege if using advanced access credentials" },
+    { "subject": "n1ql:misc-utility-functions", "predicate": "seeAlso", "object": "n1ql:sql-error-codes", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [SQL++ Error Codes](n1ql-error-codes.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition", "finding": "DS_VERSION() is documented to return 'a string containing the Couchbase Server version' and its worked example returns the literal string '7.6.0-1886-enterprise' - i.e. on Capella this function's documented purpose and example output are themselves version/edition strings from the server/ model, even though Capella has no discrete version numbers or Enterprise/Community edition split of its own. This is adjacent to, but distinct from, the already-logged docs-issues/capella-pages-cite-server-versions.json (which is about the docs' prose citing a version, not a function whose entire documented behavior is to return one) - flagged here as a related but structurally different instance for reconciliation to consider." },
+  "cross_product_finding": "Recurrence of docs-issues/capella-pages-cite-server-versions.json in multiple places on this page: EVALUATE() and EXTRACTDDL() and HASHBYTES() are each headed 'Couchbase Server 8.0'; FINDERR() is headed 'Couchbase Server 7.6.5'; the META() function description says 'If your cluster is running Couchbase Server version 7.6.2 and later, use the META() function with the SEARCH() function...'; and a note says 'Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query.' All are literal server/-style version citations on a Capella reference page."
+}

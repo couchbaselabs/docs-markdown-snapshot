@@ -1,0 +1,36 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/statistics-delete",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/statistics-delete.md",
+  "concepts": [
+    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:updatestatistics",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:updatestatistics",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For this syntax, `UPDATE STATISTICS` and `ANALYZE` are synonyms. The statement must begin with one of these alternatives."
+    },
+    {
+      "subject": "n1ql:updatestatistics",
+      "predicate": "dependsOnService",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Since the [cost-based optimizer](cost-based-optimizer.md) uses statistics for cost calculations, deleting statistics for a set of index expressions effectively turns off the cost-based optimizer for queries which utilize predicates on those expressions."
+    },
+    {
+      "subject": "n1ql:statistics-delete",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Cost-Based Optimizer](cost-based-optimizer.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "This UPDATE STATISTICS / ANALYZE ... DELETE syntax page carries no access-control content whatsoever - no privilege, role, or credential-type gate is mentioned anywhere on the page. It is pure syntax reference for the DELETE clause variant of statistics management."
+  }
+}

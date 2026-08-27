@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-n1ql-clause-pages-missing-prerequisites",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Several SQL++ clause reference pages on Capella carry no Prerequisites/privilege section at all, unlike sibling clause pages that do: where.md and with-recursive.md have none, and execute.md (prepared statements) has none either, despite every other statement page in the directory having one. The extraction agents' own working theory is that this may be deliberate - clauses might inherit access already asserted by the enclosing statement's FROM/keyspace reference, rather than restating it - but no page states that explicitly, so it can't be told apart from a genuine gap. Same category of finding as round 1's original 'not every page documents privileges' result, recurring in a new part of the corpus.",
+  "about": [
+    "cloud/n1ql/n1ql-language-reference/where",
+    "cloud/n1ql/n1ql-language-reference/with-recursive",
+    "cloud/n1ql/n1ql-language-reference/execute"
+  ],
+  "foundDuring": "round 5 (115-page cloud/n1ql/ sweep)",
+  "status": "open"
+}

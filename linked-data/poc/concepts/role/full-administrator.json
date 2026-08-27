@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/full-administrator",
+  "label": "Full Administrator",
+  "type": "a classic, cluster-wide Couchbase administrative role, gating audit-service configuration on Capella - a FOURTH structurally distinct thing called 'role' in this ontology",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual 2-file recurrence bar for the same reason hasNoRelationshipTo was in round 3: this is the concrete evidence extending an already-documented, semantically significant finding (the three-way 'role' naming collision from round 3) to a fourth member, found on n1ql-auditing.md.",
+  "note": "Do not conflate with capella-role:* (Capella's fixed management-plane role catalog - Organization Owner/Project Owner/Project Data Writer), rbac-role:role (the coarse data-plane RBAC placeholder GRANT/REVOKE manipulate), or sgw:role (Sync Gateway's ad hoc channel-grant bundles, an unrelated product). role:full-administrator and role:local-user-security-administrator are classic, cluster-wide admin roles that gate Capella's audit-service configuration specifically - a narrower, more traditional admin-role model than any of the other three. No page states a relationship between any of these four, so none are merged - see reconciliation.md round 5 for the updated collision writeup."
+}

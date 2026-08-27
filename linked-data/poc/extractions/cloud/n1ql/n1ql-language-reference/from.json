@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/from",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/from.md",
+  "concepts": [
+    { "candidate_id": "n1ql:from", "label": "FROM Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (Basic cluster access credentials)", "reused_or_minted": "reused - minted earlier in this batch (explain.json)" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (Advanced cluster access credentials)", "reused_or_minted": "reused - minted earlier in this batch (explain.json)" },
+    { "candidate_id": "n1ql:select", "label": "SELECT Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:subqueries", "label": "Subqueries", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:join", "label": "JOIN Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:nest", "label": "NEST Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:comma-separated-join", "label": "Comma-Separated Join", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:from", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |" },
+    { "subject": "n1ql:from", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:from", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:select", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The `FROM` clause is used within a [SELECT](selectclause.md) query or [subquery](subqueries.md)." },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:subqueries", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The `FROM` clause is used within a [SELECT](selectclause.md) query or [subquery](subqueries.md)." },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [JOIN Clause](join.md)" },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:nest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [NEST Clause](nest.md)" },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:unnest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [UNNEST Clause](unnest.md)" },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:comma-separated-join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Comma-Separated Join](comma.md)" },
+    { "subject": "n1ql:from", "predicate": "seeAlso", "object": "n1ql:hints", "reused_or_minted_predicate": "reused - structural markdown link; concept minted earlier in this batch (flex-indexes.json/hints.json)", "evidence": "* [USE Clause](hints.md)" }
+  ],
+  "notable_absence": { "predicate": "n/a (no relation candidate)", "finding": "The Limitations subsection documents several JOIN/NEST/UNNEST/comma-join composition restrictions (e.g. 'the right-hand side of a comma-separated join can only be a keyspace identifier, a subquery, or a generic expression') that are syntactic composition rules rather than access-control or cross-product facts - no ontology relation forced for these." },
+  "cross_product_finding": "Read/Query Read is the third Basic/Advanced pair minted in this batch (alongside Write/{various} and the EXPLAIN composite case) - FROM confirms that keyspace-read access (SELECT's source clause) is gated by the same two-axis credential-type model as DDL writes, just on the Read side of the pair."
+}

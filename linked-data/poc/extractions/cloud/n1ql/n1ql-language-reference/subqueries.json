@@ -1,0 +1,36 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/subqueries",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/subqueries.md",
+  "concepts": [
+    { "candidate_id": "n1ql:subqueries", "label": "Subqueries (subquery-expr, a parenthesized SELECT usable as a SQL++ expression)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:correlated-subqueries", "label": "Correlated Subqueries", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:subqueries",
+      "predicate": "seeAlso",
+      "object": "n1ql:selectintro",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "A subquery in SQL++ is limited to a [SELECT](select-syntax.md) query, whereas the outermost parent query can be any DML statement such as SELECT, INSERT, UPDATE, DELETE or MERGE."
+    },
+    {
+      "subject": "n1ql:subqueries",
+      "predicate": "seeAlso",
+      "object": "n1ql:correlated-subqueries",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See [Correlated Subqueries](correlated-subqueries.md) for more details and [Examples](subquery-examples.md)."
+    },
+    {
+      "subject": "n1ql:subqueries",
+      "predicate": "seeAlso",
+      "object": "n1ql:subquery-examples",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See [Correlated Subqueries](correlated-subqueries.md) for more details and [Examples](subquery-examples.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType / availableSince",
+    "finding": "This is a pure SQL++ language-semantics reference page (subquery syntax, scoping rules for variables, FROM-clause keyspace-identifier-vs-expression resolution, implicit aliasing, nested path expressions). No privileges, roles, credential types, or version gates appear anywhere on the page. Concepts/relations kept minimal per batch guidance for language-mechanics pages with no product-specific primitives."
+  }
+}

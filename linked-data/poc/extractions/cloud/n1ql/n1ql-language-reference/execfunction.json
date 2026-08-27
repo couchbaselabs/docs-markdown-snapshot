@@ -1,0 +1,28 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/execfunction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/execfunction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "minted - not present in the registry slice provided; n1ql: namespace per convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-advanced-access-global-function-execute", "label": "Global Function Execute (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" },
+    { "candidate_id": "privilege:capella-advanced-access-query-execute", "label": "Query Execute (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" },
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "reused_or_minted": "reused - minted earlier in this batch (dropfunction.json)" },
+    { "candidate_id": "n1ql:explain-function", "label": "EXPLAIN FUNCTION statement", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "reused_or_minted": "reused - minted earlier in this batch (dropfunction.json)" },
+    { "candidate_id": "n1ql:user-defined-functions", "label": "User-Defined Functions (expression usage)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:execute-function", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                     |" },
+    { "subject": "n1ql:execute-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-global-function-execute", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | Global           | [Global Function Execute](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:execute-function", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-execute", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | Scoped           | [Query Execute](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials)           |" },
+    { "subject": "n1ql:execute-function", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "To execute this statement, your client must have necessary privileges depending on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the function is global or scoped." },
+    { "subject": "n1ql:execute-function", "predicate": "seeAlso", "object": "n1ql:create-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To create user-defined functions, see [CREATE FUNCTION](createfunction.md)." },
+    { "subject": "n1ql:execute-function", "predicate": "seeAlso", "object": "n1ql:explain-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md)." },
+    { "subject": "n1ql:execute-function", "predicate": "seeAlso", "object": "n1ql:drop-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To drop a user-defined function, see [DROP FUNCTION](dropfunction.md)." },
+    { "subject": "n1ql:execute-function", "predicate": "seeAlso", "object": "n1ql:user-defined-functions", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To include a user-defined function in an expression, see [User-Defined Functions](userfun.md)." }
+  ],
+  "notable_absence": { "predicate": "n/a (no relation candidate)", "finding": "The Purpose section documents a specific error mode - 'You cannot use the EXECUTE FUNCTION statement to execute a built-in SQL++ function. If you do this, error 10101: Function not found is generated' - but no predicate in the registry currently models 'raises error code X under condition Y' for the query engine (the closest analog, dependsOnService, was used elsewhere for SDK-side error-code-to-statement mapping, not for this kind of engine-side validation error). Flagged rather than force-fit." },
+  "cross_product_finding": "Identical credential-type/function-scope privilege shape to dropfunction.json (Global Function Execute vs Query Execute), confirming the two-dimensional model (credential type x object scope) is a stable, repeated pattern across the UDF DDL/DML family, not a one-off."
+}

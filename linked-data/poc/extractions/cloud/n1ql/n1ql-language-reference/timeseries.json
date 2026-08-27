@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/timeseries",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/timeseries.md",
+  "concepts": [
+    { "candidate_id": "n1ql:_timeseries-function", "label": "_TIMESERIES function (query time series data)", "reused_or_minted": "minted - no existing candidate for this function found in the registry slice" },
+    { "candidate_id": "n1ql:store-and-process-time-series-data", "label": "Store and Process Time Series Data (concept page, time-series.md)", "reused_or_minted": "minted - target of two structural links from this page" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - already established n1ql: candidate for the UNNEST clause elsewhere in this directory" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:_timeseries-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:store-and-process-time-series-data",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The time series data must be stored in Couchbase time series documents. For more information, see [Store and Process Time Series Data](time-series.md)."
+    },
+    {
+      "subject": "n1ql:_timeseries-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:unnest",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can use the \\_TIMESERIES function anywhere in a query, but typically you use it as the right-hand side of an [UNNEST](unnest.md) clause."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No access-control content at all on this page - the only prerequisite is a version/feature gate ('This feature is only available on clusters using Couchbase Server 7.2 or later') and a structural restriction ('You cannot use the _TIMESERIES function in an index definition')."
+  },
+  "cross_component_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions: 'This feature is only available on clusters using Couchbase Server 7.2 or later' is a literal 'Couchbase Server X.Y' version string on a Capella page, despite Capella having no discrete version numbers. Not logging a new issue - flagging as a recurrence per task instructions."
+}

@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/advisor",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/advisor.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:advisor-function",
+      "label": "ADVISOR() function",
+      "reused_or_minted": "minted - SQL++ function concept with several sub-usages (string, array, session start/list/stop/abort/get/purge); no existing match"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:advisor-function",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:advise",
+      "reused_or_minted_predicate": "reused - the batch registry's isSynonymOf covers docs-declared functional-equivalence pairs; used loosely here since ADVISE and ADVISOR are related but not identical (ADVISOR additionally supports session start/list/stop/abort/get/purge and multi-query batches), see notable_absence for the caveat",
+      "evidence": "The [ADVISE](advise.md) statement — also describes the index advisor [recommendation rules](advise.md#recommendation-rules)"
+    },
+    {
+      "subject": "n1ql:advisor-function",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-manage/monitoring-n1ql-query",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Each index advisor session is stored as a scheduled task in the [system:tasks\\_cache](../n1ql-manage/monitoring-n1ql-query.md#sys-tasks-cache) catalog."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege / incompatibleWithCredentialType / Prerequisites section",
+    "finding": "Unlike its sibling statement page ADVISE, the ADVISOR function page has no Prerequisites section at all - no privilege statement of any kind, fixed or inherited. This is consistent with the batch note that function-reference pages generally carry no access-control content, but it's a notable asymmetry against ADVISE, which at least states a (derived) privilege requirement even though it names no fixed role."
+  },
+  "cross_component_finding": "Reconsidering the isSynonymOf relation above: the ADVISOR function is a strict superset of ADVISE's capability (session-based async collection via start/list/stop/abort/get/purge actions, multi-query array input, querying system:completed_requests) - flagging this for reconciliation as a possible mis-fit for isSynonymOf, which was defined for pairs the docs declare *functionally identical* (e.g. DROP INDEX/DROP VECTOR INDEX). A more precise predicate might be needed (e.g. 'overlapsWith' or 'supersedes') if this pattern recurs elsewhere.",
+  "cross_product_finding": null
+}

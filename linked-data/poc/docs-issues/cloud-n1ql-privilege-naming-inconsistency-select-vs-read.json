@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-n1ql-privilege-naming-inconsistency-select-vs-read",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "merge.md names its Advanced-credential read privilege 'Query Select' while nest.md (and 15 other read-only pages) name the structurally equivalent privilege 'Query Read' - the same underlying access grant, possibly named two different ways across sibling pages. Not yet resolved as the same or genuinely different privileges: reconciliation promoted privilege:capella-advanced-access-query-read (16-file recurrence) and left the single-occurrence privilege:capella-advanced-access-query-select at the extraction layer only, rather than merging the two without textual evidence they're identical, or promoting a 1-file mint on the strength of a naming coincidence.",
+  "about": [
+    "cloud/n1ql/n1ql-language-reference/merge",
+    "cloud/n1ql/n1ql-language-reference/nest"
+  ],
+  "foundDuring": "round 5 (115-page cloud/n1ql/ sweep)",
+  "status": "open"
+}

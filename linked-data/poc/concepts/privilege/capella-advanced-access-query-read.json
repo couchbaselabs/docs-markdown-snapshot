@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-read",
+  "label": "Query Read (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type",
+  "promoted": true,
+  "recurrence": 16,
+  "note": "Sibling of privilege:capella-advanced-access-query-index (round 2) and part of the read-only leg of the credential-type family, alongside privilege:capella-basic-access-read. merge.md separately minted privilege:capella-advanced-access-query-select for what may be the same real privilege under a different name - left unpromoted at 1-file recurrence rather than merged without evidence; see docs-issues/cloud-n1ql-privilege-naming-inconsistency-select-vs-read.json."
+}

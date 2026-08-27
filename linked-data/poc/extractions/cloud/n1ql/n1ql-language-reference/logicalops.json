@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/logicalops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/logicalops.md",
+  "concepts": [
+    { "candidate_id": "n1ql:logical-operators", "label": "Logical Operators (AND, OR, NOT)", "reused_or_minted": "minted - page-level concept for the AND/OR/NOT operator family, n1ql: namespace per convention; not in the registry slice provided" },
+    { "candidate_id": "n1ql:boolean-logic", "label": "Boolean Logic (four-valued: TRUE/FALSE/NULL/MISSING)", "reused_or_minted": "minted - seeAlso target; the page's own truth tables and cross-reference depend on this four-valued logic concept" }
+  ],
+  "relations": [
+    { "subject": "n1ql:logical-operators", "predicate": "seeAlso", "object": "n1ql:boolean-logic", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For further details, refer to [Boolean Logic](booleanlogic.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "No privileges, credential-type gating, capella-role gating, or version/edition citations appear anywhere on this page. It is a pure operator-semantics reference (truth tables for AND/OR/NOT under four-valued logic) with no access-control or product-surface content - consistent with the batch expectation that pure operator reference pages yield thin extractions." }
+}

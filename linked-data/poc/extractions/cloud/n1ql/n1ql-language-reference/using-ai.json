@@ -1,0 +1,58 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/using-ai",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/using-ai.md",
+  "concepts": [
+    { "candidate_id": "n1ql:using-ai", "label": "USING AI statement (natural-language-to-SQL++ generation)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Web Console Query tab", "reused_or_minted": "reused - minted in transactions.json, same batch" },
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - minted in transactions.json, same batch" },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "minted - a third Capella/Couchbase access surface, sibling of capella:query-tab/capella:data-api" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:capella-iq", "label": "Capella iQ (AI assistant in Capella Web Console)", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "n1ql:explain", "label": "EXPLAIN statement (prefix usage with USING AI)", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "capella:account", "label": "Couchbase Capella account", "reused_or_minted": "minted - the credential concept this statement is gated on, distinct from cluster-access-credential-type (Basic/Advanced) and from capella-role:* (management-plane roles)" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:using-ai",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "capella:query-tab",
+      "reused_or_minted_predicate": "reused - minted in transactions.json, same batch; second independent occurrence of the same access-surface-gating shape",
+      "evidence": "The statement does not function when run directly through the Capella UI (Query tab) or Couchbase Shell (cbsh)."
+    },
+    {
+      "subject": "n1ql:using-ai",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "capella:cbsh",
+      "reused_or_minted_predicate": "reused - see above",
+      "evidence": "The statement does not function when run directly through the Capella UI (Query tab) or Couchbase Shell (cbsh)."
+    },
+    {
+      "subject": "n1ql:using-ai",
+      "predicate": "mustUseInsteadWhen",
+      "object": "capella:capella-iq",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For similar functionality within the Capella UI, use [Capella iQ](../../get-started/capella-iq/work-with-capellaiq.md) instead."
+    },
+    {
+      "subject": "n1ql:using-ai",
+      "predicate": "requiresSetting",
+      "object": "capella:account",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Before using the USING AI statement, make sure you have: * A Couchbase Capella account. * Your Capella account credentials and organization ID readily available."
+    },
+    {
+      "subject": "n1ql:using-ai",
+      "predicate": "seeAlso",
+      "object": "n1ql:explain",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can prefix a USING AI statement with EXPLAIN or ADVISE to get the query plan or index recommendations for your generated query."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "USING AI has no RBAC content of the credential-type-keyed kind seen on update.md/upsert.md/userfun.md in this same batch - its only gate is possession of a Capella account plus organization ID and credentials (a Capella *identity*, not a cluster access credential-type or a named RBAC privilege). This is a fourth, distinct access-control shape for this round beyond requiresCapellaRole/incompatibleWithCredentialType/requiresUiMode."
+  },
+  "cross_component_finding": "Confirms the incompatibleWithAccessSurface shape minted in transactions.json (same batch) is a real recurring pattern, not a one-off: 'If you're using the USING AI statement on Couchbase Capella, we recommend that you use the cbq shell, an SDK, or the Data API... The statement does not function when run directly through the Capella UI (Query tab) or Couchbase Shell (cbsh).' Two independent statements (transactions and USING AI) share the identical excluded-surface (Query tab) plus each has one additional excluded surface of its own (Data API for transactions; cbsh for USING AI) - strongly suggesting this is a real, general Capella access-surface axis worth promoting alongside requiresCapellaRole/incompatibleWithCredentialType/requiresUiMode.",
+  "cross_product_finding": "Genuinely new finding, distinct from the known capella-pages-cite-server-versions docs-issue: 'Although the USING AI statement requires a Capella account, you can use it with any Couchbase Server 8.0 instances.' This is not a stray version-citation artifact of shared source content - it's a substantive statement that a Capella-account-gated feature (capella:account) can be invoked against self-managed Couchbase Server 8.0 clusters, decoupling the account/licensing gate from the deployment target. This cuts against the deployment:capella concept's usual meaning (Capella as the deployment target) - here Capella is required as an *identity/billing* concept even when the actual cluster being queried is not Capella at all. Flagging for reconciliation as a possible new relation shape (something like 'requiresAccountRegardlessOfDeployment') rather than forcing it into requiresEdition/behavesDifferentlyUnder/deployment:capella. Separately, per the task's cross-round transaction check: this page has no textual connection to sdk:distributed-transaction (USING AI is unrelated to transactions) - not applicable here. Also recurs the known server-version-citation issue repeatedly in its own examples (e.g. 'To try this example, use cbq shell with Couchbase Server version 8.0 or later' - appears 7 times across the examples) and once in the prerequisites note quoted above; flagging as further recurrence, not new issues."
+}

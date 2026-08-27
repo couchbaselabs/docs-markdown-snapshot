@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/windowfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/windowfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:window-function", "label": "Window Function (CUME_DIST, DENSE_RANK, FIRST_VALUE, LAG, LAST_VALUE, LEAD, NTH_VALUE, NTILE, PERCENT_RANK, RANK, RATIO_TO_REPORT, ROW_NUMBER)", "reused_or_minted": "minted - umbrella concept for this pure function-reference page; individual functions not separately minted since the page has no per-function privilege/version/edition content beyond the shared page intro" }
+  ],
+  "relations": [
+    { "subject": "n1ql:window-function", "predicate": "requiresEdition", "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise", "reused_or_minted_predicate": "reused", "evidence": "In Couchbase Server Enterprise Edition, [aggregate functions](aggregatefun.md) can also be used as window functions when they are used with an OVER clause." },
+    { "subject": "n1ql:window-function", "predicate": "availableSince", "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0", "reused_or_minted_predicate": "reused", "evidence": "In Couchbase Server 7.0 and later, window functions (and aggregate functions used as window functions) may specify their own inline window definitions, or they may refer to a named window defined by the WINDOW clause elsewhere in the query." },
+    { "subject": "n1ql:window-function", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/window", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "refer to [Window Definition](window.md#window-definition)." },
+    { "subject": "n1ql:window-function", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/selectclause", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Window functions can only appear in the [SELECT](selectclause.md) projection clause or query [ORDER BY](orderby.md) clause." },
+    { "subject": "n1ql:window-function", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/with", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "use a [LET clause](let.md), a [WITH clause](with.md), or an intervening [subquery](subqueries.md) to avoid repeated evaluation." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "Confirms the batch's function/operator-reference expectation: this is a pure function catalog (12 window functions, each with its own Description/Syntax/Arguments/Window Specification/Return Value(s)/Example subsections) with no Prerequisites section of its own at all - the only substantive gating content on the page is the shared intro paragraph duplicated verbatim from window.md (edition + version citations), which this record captures rather than force-mint per-function concepts that the page doesn't actually differentiate."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: identical to window.md, this page states 'In Couchbase Server Enterprise Edition, aggregate functions can also be used as window functions' and 'In Couchbase Server 7.0 and later, window functions ... may specify their own inline window definitions' - the exact same paragraph is duplicated across both pages, so this is the same underlying anomaly, not two independent findings."
+}

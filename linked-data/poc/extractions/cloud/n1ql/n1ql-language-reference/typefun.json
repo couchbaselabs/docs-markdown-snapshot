@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/typefun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/typefun.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege / seeAlso",
+    "finding": "Pure function/operator reference page (ISARRAY, ISATOM, ISBOOLEAN, ISNUMBER, ISOBJECT, ISSTRING, ISVECTOR, TYPE, TOARRAY, TOATOM, TOBOOLEAN, TONUMBER, TOOBJECT, TOSTRING) with no RBAC content, no statement-level cross-references, and no aliases/synonyms declared - as expected for this batch's function pages, matches the task brief's expectation of empty concepts/relations for pure reference pages. ISVECTOR() is documented identically here and in vectorfun.json (same description/arguments/examples); not treated as a duplicate finding since both are the same underlying function being cross-listed under two function-family pages by the source docs themselves."
+  }
+}

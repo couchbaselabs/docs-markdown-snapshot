@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/offset",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/offset.md",
+  "concepts": [
+    { "candidate_id": "n1ql:offset", "label": "OFFSET clause", "reused_or_minted": "reused - same concept id minted for the OFFSET clause seeAlso target in delete.json in this directory" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context (query context setting used in worked examples)", "reused_or_minted": "reused - same concept id used elsewhere in this directory (e.g. indexing-arrays.json, indexing-meta-info.json, where.json)" }
+  ],
+  "relations": [
+    { "subject": "n1ql:offset", "predicate": "seeAlso", "object": "n1ql:query-context", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context)." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "Pure SELECT-clause syntax page (OFFSET expr) with no privileges, credential-type gating, capella-role gating, or version/edition citations - OFFSET itself is never separately access-controlled; any privilege requirement belongs to the enclosing SELECT/DELETE/etc. statement, not to this clause." }
+}

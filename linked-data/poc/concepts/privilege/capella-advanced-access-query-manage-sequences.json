@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-manage-sequences",
+  "label": "Query Manage Sequences (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates CREATE/ALTER/DROP SEQUENCE",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Part of the per-statement-family Advanced-credential privilege catalog found in round 5 - see reconciliation.md round 5."
+}

@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/reservedwords",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/reservedwords.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "seeAlso (bulk) / requiresPrivilege / requiresCapellaRole",
+    "finding": "This page is an A-Z index of SQL++ reserved keywords, most of which are individually hyperlinked to the statement/clause/operator page that defines them (e.g. [GRANT](grant.md), [ROLLBACK](rollback-transaction.md), [SAVEPOINT](savepoint.md)). Treating every one of these ~90 index links as a distinct seeAlso relation would just re-derive the site's table of contents rather than assert anything new about the linked concepts, and the page has no Purpose/Prerequisites/access-control content of its own - so this extraction is left empty rather than mechanically emitting a large batch of low-information seeAlso edges. One point of interest not modeled as a relation: the page calls out that 'AI' is deliberately NOT a reserved word despite being used in the USING AI statement ('The word AI is not a reserved word, even though you can use it in combination with the USING keyword as part of the USING AI statement.') - a minor grammar carve-out for an AI-related feature, noted here in case USING AI is covered by another batch."
+  }
+}

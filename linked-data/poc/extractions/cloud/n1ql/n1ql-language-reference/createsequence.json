@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/createsequence",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/createsequence.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-sequence", "label": "CREATE SEQUENCE statement", "reused_or_minted": "minted - matches the n1ql: statement-concept convention; no prior term in registry" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same concept as promoted in concepts/privilege/capella-basic-access-write.json" },
+    { "candidate_id": "privilege:capella-advanced-access-query-manage-sequences", "label": "Query Manage Sequences (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - a new, distinct named Advanced-credential privilege, not shared with the index-statement or collection/scope-DDL families" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-sequence", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:create-sequence", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-manage-sequences", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "| Advanced | [Query Manage Sequences](../../clusters/cluster-rbac.md#advanced-access-credentials) |" },
+    { "subject": "n1ql:create-sequence", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:create-sequence", "predicate": "seeAlso", "object": "n1ql:alter-sequence", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To alter a sequence, see [ALTER SEQUENCE](altersequence.md)." },
+    { "subject": "n1ql:create-sequence", "predicate": "seeAlso", "object": "n1ql:drop-sequence", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To drop a sequence, see [DROP SEQUENCE](dropsequence.md)." },
+    { "subject": "n1ql:create-sequence", "predicate": "seeAlso", "object": "n1ql:sequence-operators", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To use a sequence in an expression, see [Sequence Operators](sequenceops.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince (server-version citation)",
+    "finding": "Despite being structurally very similar in shape to createcollection.md/createfunction.md (a Prerequisites credential-type table plus optional WITH-clause options), this page cites no server version anywhere - no recurrence of the known docs-issue here, unlike its DDL siblings. Also links this page's storage detail ('Sequences are stored in the bucket's hidden _system scope') is a Capella-native explanation with no server/ cross-reference, unlike some other pages in this batch that link out to server/ pages for shared concepts."
+  },
+  "cross_component_finding": "Confirms the credential-type/privilege pair model extends to sequences, but again with yet another distinct Advanced-side privilege name ('Query Manage Sequences') rather than reusing 'Query Index', 'Scope Admin', 'Global Function Manage', or 'Query Manage' from sibling DDL statements. Across this single batch the Advanced side alone has produced 5 distinct named privileges (Query Index [round 2], Scope Admin, Global Function Manage, Query Manage, Query Manage Sequences, plus Query Delete/Query Read for DML) while the Basic side stays a flat 'Write'/'Read' pair throughout. The 'disjunctive pair' framing from round 2 undersells this: it's really a per-statement-family Advanced privilege catalog keyed to a constant two-value Basic axis."
+}

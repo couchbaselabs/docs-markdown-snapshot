@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/explain",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/explain.md",
+  "concepts": [
+    { "candidate_id": "n1ql:explain", "label": "EXPLAIN statement", "reused_or_minted": "minted - not present in the registry slice provided; n1ql: namespace per convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (Basic cluster access credentials)", "reused_or_minted": "minted - the missing sibling of privilege:capella-basic-access-write; no existing 'Read' Basic-credential privilege concept was found in the registry slice provided" },
+    { "candidate_id": "privilege:capella-advanced-access-query-insert", "label": "Query Insert (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" },
+    { "candidate_id": "privilege:capella-advanced-access-query-update", "label": "Query Update (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" }
+  ],
+  "relations": [
+    { "subject": "n1ql:explain", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:explain", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `landmark` and the `Read` / `Query Read` privilege on `beer-sample`." },
+    { "subject": "n1ql:explain", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-insert", "reused_or_minted_predicate": "reused", "evidence": "To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `landmark` and the `Read` / `Query Read` privilege on `beer-sample`." },
+    { "subject": "n1ql:explain", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused", "evidence": "To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `landmark` and the `Read` / `Query Read` privilege on `beer-sample`." },
+    { "subject": "n1ql:explain", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused", "evidence": "To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `landmark` and the `Read` / `Query Read` privilege on `beer-sample`." },
+    { "subject": "n1ql:explain", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-update", "reused_or_minted_predicate": "reused", "evidence": "To execute the following statement, your client must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `landmark`." }
+  ],
+  "cross_component_finding": "EXPLAIN's own privilege requirement is not fixed; the page states it is 'the same privileges required to run the query being explained' - i.e. EXPLAIN dynamically inherits the credential-type/privilege-pair requirements of whatever statement it wraps (INSERT needs Write/Query Insert on the target plus Read/Query Read on any source keyspace; UPDATE needs Write/Query Update plus Read/Query Read). This is a distinct shape from every other statement page in this batch, which each have one fixed privilege per credential type - but it composes cleanly with the credential-type model rather than breaking it, since the privileges it inherits are themselves drawn from the same Basic/Advanced pair vocabulary.",
+  "notable_absence": { "predicate": "n/a (no relation candidate)", "finding": "This page repeats the pattern seen on other Capella statement pages of citing per-object privileges by literal name (Write/Query Insert, Read/Query Read, Write/Query Update) rather than a single fixed row - no new anomaly here, just confirmation that the credential-type/privilege-pair model composes for meta-statements." }
+}

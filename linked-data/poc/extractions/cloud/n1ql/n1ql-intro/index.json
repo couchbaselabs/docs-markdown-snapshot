@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/n1ql/n1ql-intro/index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-intro/index.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/n1ql/n1ql-intro/index",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-intro/queriesandresults",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Query Concepts](queriesandresults.md)"
+    },
+    {
+      "subject": "cloud/n1ql/n1ql-intro/index",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-intro/cbq",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [cbq: The Command Line Shell for SQL++](cbq.md)"
+    },
+    {
+      "subject": "cloud/n1ql/n1ql-intro/index",
+      "predicate": "seeAlso",
+      "object": "cloud/clusters/query-service/query-workbench",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Query Tab](../../clusters/query-service/query-workbench.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations",
+    "finding": "Pure landing/index page - three bullet links and one external tutorial link, no substantive concept content. Empty concepts array per batch instructions for thin pages."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

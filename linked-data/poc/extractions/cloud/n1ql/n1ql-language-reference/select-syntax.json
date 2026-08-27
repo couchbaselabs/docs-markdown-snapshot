@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/select-syntax",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/select-syntax.md",
+  "concepts": [
+    { "candidate_id": "n1ql:select-syntax", "label": "SELECT Syntax (full EBNF grammar tree for the SELECT statement)", "reused_or_minted": "minted - matches n1ql:<kebab-case> convention" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:select-syntax",
+      "predicate": "seeAlso",
+      "object": "n1ql:conventions",
+      "reused_or_minted_predicate": "reused - structural markdown link; object concept minted here as it isn't otherwise referenced in this batch",
+      "evidence": "* [Conventions](conventions.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "This page is a pure grammar reference - a full EBNF breakdown of the SELECT statement's clauses (WITH/SELECT/FROM/JOIN/NEST/UNNEST/LET/WHERE/GROUP BY/WINDOW/ORDER BY/LIMIT/OFFSET), each with a syntax-diagram image and no prose. It has no Purpose, Prerequisites, or Authorization section at all - unlike selectclause.md and selectintro.md, which cover overlapping ground but add a credential-type/privilege table. Concepts/relations kept minimal per batch guidance for thin/reference pages; the individual sub-clause productions (from-clause, join-clause, nest-clause, etc.) are not separately minted here since they are internal grammar nodes rather than independently-referenced concepts, and most already have their own dedicated pages elsewhere in n1ql-language-reference/ outside this batch."
+  }
+}

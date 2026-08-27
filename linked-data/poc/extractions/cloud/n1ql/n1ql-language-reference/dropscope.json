@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/dropscope",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/dropscope.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-scope", "label": "DROP SCOPE statement", "reused_or_minted": "minted - not present in the registry slice provided; n1ql: namespace per convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-advanced-access-scope-admin", "label": "Scope Admin (Advanced cluster access credentials)", "reused_or_minted": "minted - new named Advanced-credential privilege" },
+    { "candidate_id": "guide:buckets-scopes-collections", "label": "Buckets, Scopes, and Collections overview", "reused_or_minted": "minted" },
+    { "candidate_id": "guide:manage-scopes-collections", "label": "Manage Scopes and Collections task guide", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:drop-scope", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                         |" },
+    { "subject": "n1ql:drop-scope", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-scope-admin", "reused_or_minted_predicate": "reused", "evidence": "| Advanced        | [Scope Admin](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:drop-scope", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:drop-scope", "predicate": "seeAlso", "object": "guide:buckets-scopes-collections", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For an overview of scopes and collections, see [Buckets, Scopes, and Collections](../../clusters/data-service/about-buckets-scopes-collections.md)." },
+    { "subject": "n1ql:drop-scope", "predicate": "seeAlso", "object": "guide:manage-scopes-collections", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For step-by-step management procedures, see [Manage Scopes and Collections](../../clusters/data-service/scopes-collections.md)." }
+  ],
+  "notable_absence": { "predicate": "n/a (no relation candidate)", "finding": "The Usage section states a cascading-delete fact - 'When you delete a scope, any collections within that scope are deleted also' - which is a genuine hierarchical/containment fact about the data model, but no predicate in the registry currently models cascade-delete semantics between keyspace-hierarchy levels (scope contains collection). Flagged rather than forced into seeAlso or a mismatched predicate." },
+  "cross_product_finding": "Same shape as dropfunction.json's credential-type/privilege-pair model: Basic -> single coarse privilege (Write), Advanced -> one specific named privilege (Scope Admin). No requiresCapellaRole gate on this data-plane DDL statement."
+}

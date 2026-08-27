@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/adaptive-indexing",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/adaptive-indexing.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:adaptive-index",
+      "label": "Adaptive Index",
+      "reused_or_minted": "minted - GSI array-index feature concept, no existing match in registry slice; uses n1ql: namespace per the statement/language-construct convention"
+    },
+    {
+      "candidate_id": "n1ql:pairs-function",
+      "label": "PAIRS() function",
+      "reused_or_minted": "minted - the function that materializes an adaptive index's key; core to the concept but distinct from it"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:adaptive-index",
+      "predicate": "isCreatedUsing",
+      "object": "n1ql:pairs-function",
+      "reused_or_minted_predicate": "minted - no existing predicate in registry slice captures 'is implemented/constructed via this function'; camelCase verb phrase per minting rule",
+      "evidence": "Adaptive Index is a functional array index created using the SQL++ function [PAIRS()](metafun.md#pairs)."
+    },
+    {
+      "subject": "n1ql:adaptive-index",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/createindex",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Refer to the [CREATE INDEX](createindex.md) statement for details of the syntax."
+    },
+    {
+      "subject": "n1ql:adaptive-index",
+      "predicate": "seeAlso",
+      "object": "cloud/indexes/indexing-and-query-perf",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "An adaptive index may also be a [partial index](../../indexes/indexing-and-query-perf.md#partial-index)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege / incompatibleWithCredentialType",
+    "finding": "No access-control content of any kind on this page - it is a pure GSI feature/technical-limitations reference (index key construction, performance implications, functional limitations such as being unable to serve as a covering index or use Index Joins). Consistent with the batch note that many function/feature-reference pages carry no RBAC surface, since CREATE INDEX itself (not covered in this batch) is presumably where the credential-type privilege would be documented."
+  },
+  "cross_component_finding": "The GSI adaptive-indexing feature (and its interaction with array indexes, partial indexes, covering scans) appears to be identical in shape and limitation set between Capella and server/ - the page reads as a direct port of server/ index-engine documentation with no Capella-specific access-control or deployment gating layered on top, unlike the DDL statement pages (ALTER BUCKET, ALTER GROUP, etc.) in this same batch which do carry a Capella-specific role/credential gate.",
+  "cross_product_finding": null
+}

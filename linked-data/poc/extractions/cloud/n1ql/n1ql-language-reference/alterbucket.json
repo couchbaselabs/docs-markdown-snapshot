@@ -1,0 +1,48 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/alterbucket",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/alterbucket.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:alter-bucket",
+      "label": "ALTER BUCKET statement",
+      "reused_or_minted": "minted - SQL++/Capella-management statement concept, no existing match; n1ql: namespace per convention"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To execute this statement in the Capella UI, you must have one of the following roles: * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)"
+    },
+    {
+      "subject": "n1ql:alter-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Project Owner](../../projects/project-roles.md#project-owner-role)"
+    },
+    {
+      "subject": "n1ql:alter-bucket",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)"
+    },
+    {
+      "subject": "n1ql:alter-bucket",
+      "predicate": "incompatibleWithCredentialType",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused - applied against the whole enum (both Basic and Advanced) rather than one specific value, since the statement text names cluster access credentials generically, not one credential type",
+      "evidence": "You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No credential-type-keyed privilege pair (Basic/Advanced) at all for this statement - it sits entirely in the management-plane capella-role track and is explicitly excluded from the data-plane credential-type track. Confirms the hypothesis that a DDL statement belongs to one access-control track or the other, not both."
+  },
+  "cross_component_finding": "Strong confirmation that the two-track Capella access-control model (management-plane capella-role gate vs. data-plane credential-type privilege pair) generalizes cleanly to bucket-level DDL: ALTER BUCKET is purely management-plane-gated and explicitly forbidden from data-plane credentials, contrasting directly with ALTER SEQUENCE in this same batch, which is purely data-plane-gated via the Basic/Advanced privilege pair and names no capella-role at all.",
+  "cross_product_finding": null
+}

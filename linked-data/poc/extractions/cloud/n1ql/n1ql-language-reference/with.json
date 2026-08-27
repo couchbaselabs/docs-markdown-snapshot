@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/with",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/with.md",
+  "concepts": [
+    { "candidate_id": "n1ql:with-clause", "label": "WITH clause (common table expression)", "reused_or_minted": "minted - no existing match; n1ql: namespace, '-clause' suffix per n1ql:orderby-clause convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same candidate_id previously minted in comma.json for the SELECT-context read privilege" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same candidate_id previously minted in comma.json" }
+  ],
+  "relations": [
+    { "subject": "n1ql:with-clause", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; object reused from comma.json", "evidence": "To select data from a document or keyspace, your client must have necessary privileges on the document or keyspace. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types). | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:with-clause", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; object reused from comma.json", "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:with-clause", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:with-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/let", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The WITH clause has comparable functionality to the [LET](let.md) clause." },
+    { "subject": "n1ql:with-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/from", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "the LET clause must come after the [FROM](from.md) clause." },
+    { "subject": "n1ql:with-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/selectclause", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[SELECT](selectclause.md) statement that returns a temporary result set assigned to `alias`." },
+    { "subject": "n1ql:with-clause", "predicate": "differsInEvaluationTimingFrom", "object": "n1ql:let", "reused_or_minted_predicate": "minted - camelCase verb phrase; captures a distinct evaluation-frequency fact (once per query block vs. once per produced object) that neither seeAlso nor any existing predicate expresses", "evidence": "The WITH clause is evaluated once per query block, and LET is evaluated for every object produced by the FROM or JOIN clause." }
+  ],
+  "notable_absence": null,
+  "cross_component_finding": "Confirms the credential-type/privilege pair generalizes cleanly to a SELECT-context clause (WITH/CTEs) with the exact same object concepts already minted for comma.json's plain FROM/SELECT read path (privilege:capella-basic-access-read, privilege:capella-advanced-access-query-read) - no new privilege names needed here, reinforcing that 'Read'/'Query Read' is the stable read-side pair alongside the write-side 'Write'/'Query Index' pair seen on DDL pages.",
+  "cross_product_finding": null
+}

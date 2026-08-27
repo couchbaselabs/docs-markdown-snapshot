@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-execute",
+  "label": "Query Execute (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates EXECUTE FUNCTION at scoped scope, and EXECUTE (prepared statements) where a privilege table exists",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Scoped-function sibling of privilege:capella-advanced-access-global-function-execute - see reconciliation.md round 5."
+}

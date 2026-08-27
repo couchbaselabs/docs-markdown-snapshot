@@ -1,0 +1,65 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/altersequence",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/altersequence.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:alter-sequence",
+      "label": "ALTER SEQUENCE statement",
+      "reused_or_minted": "minted - no existing match; n1ql: namespace per convention"
+    },
+    {
+      "candidate_id": "n1ql:sequence",
+      "label": "Sequence (integer-generating construct)",
+      "reused_or_minted": "minted - the underlying object type this statement alters"
+    },
+    {
+      "candidate_id": "privilege:capella-advanced-access-query-manage-sequences",
+      "label": "Query Manage Sequences (Advanced credential-type privilege)",
+      "reused_or_minted": "minted - analogous to the existing privilege:capella-advanced-access-query-index, but for sequence management specifically; distinct privilege, same credential-type-keyed naming pattern"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-sequence",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-write",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                    |"
+    },
+    {
+      "subject": "n1ql:alter-sequence",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-manage-sequences",
+      "reused_or_minted_predicate": "reused (requiresPrivilege) / minted (object concept)",
+      "evidence": "| Advanced        | [Query Manage Sequences](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:alter-sequence",
+      "predicate": "seeAlso",
+      "object": "cloud/clusters/cluster-rbac",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)."
+    },
+    {
+      "subject": "n1ql:sequence",
+      "predicate": "storedIn",
+      "object": "system-scope:_system",
+      "reused_or_minted_predicate": "minted - no existing predicate captures this storage-location fact; camelCase verb phrase",
+      "evidence": "Sequences are stored in the bucket's hidden `_system` scope."
+    },
+    {
+      "subject": "n1ql:alter-sequence",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/createsequence",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To create a sequence, see [CREATE SEQUENCE](createsequence.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "No capella-role gate and no exclusion of cluster access credentials - the exact inverse of ALTER BUCKET/ALTER GROUP/ALTER USER in this batch. ALTER SEQUENCE lives entirely in the data-plane credential-type-keyed privilege track."
+  },
+  "cross_component_finding": "This is the clearest confirmation in the batch that the credential-type-keyed privilege pair (Basic/Advanced) generalizes beyond the collections/index examples already in the registry to a new object family entirely (sequences), each with its own Advanced-credential privilege name ('Query Manage Sequences') following the same 'Query Manage <Noun>' naming convention as the already-catalogued 'Query Manage Index' server-RBAC privilege and 'privilege:capella-advanced-access-query-index' - reinforcing that this is a systematic per-object-type privilege scheme, not a one-off.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/negative-keyspace-hints",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/negative-keyspace-hints.md",
+  "concepts": [
+    { "candidate_id": "n1ql:negative-keyspace-hints", "label": "Negative Keyspace Hints (NO_INDEX, NO_INDEX_FTS, NO_USE_NL, NO_USE_HASH)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" },
+    { "candidate_id": "n1ql:no-use-hash", "label": "NO_USE_HASH / AVOID_HASH hint", "reused_or_minted": "minted - the only hint on this page with an edition gate" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "reused - same concept as promoted concepts/edition/enterprise.json" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - same concept minted for merge.md in this batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:no-use-hash", "predicate": "requiresEdition", "object": "edition:enterprise", "reused_or_minted_predicate": "reused", "evidence": "[ENTERPRISE EDITION](https://www.couchbase.com/products/editions)" },
+    { "subject": "n1ql:no-use-hash", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements." },
+    { "subject": "n1ql:negative-keyspace-hints", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link; reuses concept id from optimizer-hints.json in this directory", "evidence": "* [Optimizer Hints](optimizer-hints.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole", "finding": "No management-plane role gate, credential-type privilege table, or capella-role content appears anywhere on this page - it is pure query-optimizer syntax, consistent with round 2's finding that requiresCapellaRole/credential-type privileges are reserved for statement execution and data access, not optimizer hint syntax." },
+  "cross_product_finding": "NO_USE_HASH is badged '[ENTERPRISE EDITION]' with a link directly to https://www.couchbase.com/products/editions - a genuine, deliberate cross-reference to server/'s Enterprise/Community edition split appearing on a Capella hint page, despite Capella itself having no discrete editions. Unlike the recurring 'cites-server-versions' anomaly (which is an apparent copy-paste artifact), this edition badge looks like an intentional authoring choice (the same badge style server/ uses for EE-only features), reused as-is on the Capella page even though the concept doesn't map cleanly onto Capella's access model."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/renamed-from",
+  "label": "renamed from",
+  "kind": "relation (schema-level)",
+  "type": "the subject was previously known/documented under a different name than the object - a naming-history fact, independent of the level it applies at",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Consolidates two independent single-occurrence mints of the same relation shape at two different levels: infer.json minted renamedFrom for INFER's rename from the legacy DESCRIBE statement, and query.json independently minted formerlyKnownAs for SQL++'s own rename from N1QL - same fact shape (X was previously called Y), same lesson as round 2's availableSince/requiresMinVersionFor consolidation. renamedFrom kept as the canonical name (matches the project's camelCase-verb-phrase convention more directly); the formerlyKnownAs occurrence is the same real fact, just under the pre-consolidation name, left unedited in its original extraction record as the historical record of what was first proposed."
+}

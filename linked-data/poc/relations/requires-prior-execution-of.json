@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-prior-execution-of",
+  "label": "requires prior execution of",
+  "kind": "relation (schema-level)",
+  "type": "a statement's documented behavior depends on another statement having already been run first (e.g. the Cost-Based Optimizer needing UPDATE STATISTICS to have been run for its cost model to be usable) - not a data dependency, an ordering/sequencing precondition",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "First minted, unpromoted, in the server/ cost-based-optimizer.json extraction from an earlier round; independently re-used verbatim (same predicate name) by round 5's cloud/n1ql/cost-based-optimizer.json extraction for the identical real-world fact on Capella's equivalent page - a case of the written registry actually working as intended across rounds, unlike the requiresMinVersionFor/availableSince near-duplicate-minting case in round 2. Promoted now that it clears the 2-file threshold across both products."
+}

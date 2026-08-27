@@ -1,0 +1,53 @@
+{
+  "page_id": "cloud/n1ql/n1ql-intro/cbq",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-intro/cbq.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbq-shell",
+      "label": "cbq command line shell for SQL++",
+      "reused_or_minted": "minted - cbq is a CLI client tool, not a SQL++ statement (n1ql: namespace) or a Capella access-control concept (capella-role:/capella:); no fitting namespace exists in the registry slice provided"
+    },
+    {
+      "candidate_id": "cluster-access-credential-type",
+      "label": "Cluster access credential type (Basic/Advanced)",
+      "reused_or_minted": "reused - cbq's -u/-p/-c options authenticate using the same cluster access credentials concept documented for the Query service"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "availableSince",
+      "object": "command-line-tools-package:7.6.2",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The cbq shell executable, `cbq`, is available in the Couchbase [command line tools](../../reference/command-line-tools.md) package beginning with version 7.6.2."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "seeAlso",
+      "object": "cloud/clusters/manage-database-users",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You have [configured cluster access](../../clusters/manage-database-users.md) by creating cluster access credentials."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/prepare",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Prepare a statement using the SQL++ [PREPARE](../n1ql-language-reference/prepare.md) statement."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/execute",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Execute the prepared statement using the SQL++ [EXECUTE](../n1ql-language-reference/execute.md) statement."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "Unlike DDL statement pages in this same batch (ALTER BUCKET, ALTER GROUP, ALTER USER), the cbq page names no capella-role gate at all. Its own access model is a third, narrower shape: single administrative username/password credentials that cannot be switched mid-session ('This option requires administration credentials and you cannot switch the credentials during a session.'). This is neither the management-plane capella-role gate nor the Basic/Advanced data-plane privilege pair - it's a client-tool-level credential constraint that sits alongside both."
+  },
+  "cross_component_finding": "cbq's own client version ('SHELL VERSION : 7.6.2-3721', 'GO VERSION : go1.22.2') is a genuine, discrete version number for a downloadable command-line tool package - this is legitimately different from the known anomaly where Capella *service* pages cite server/-style version strings despite Capella itself having no discrete version. The page is careful to distinguish the two: 'Use N1QL queries select version(); or select min_version(); to display server version' (i.e., the query engine's version, separate from the shell's own version) - so cbq.md correctly keeps 'shell version' and 'server version' conceptually distinct, even while both are literal version strings.",
+  "cross_product_finding": null
+}

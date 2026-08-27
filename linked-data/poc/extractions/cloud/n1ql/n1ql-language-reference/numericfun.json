@@ -1,0 +1,10 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/numericfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/numericfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:number-functions", "label": "Number Functions (ABS, ACOS, ATAN2, CEIL, FLOOR, LN, LOG, MOD, POWER, ROUND, TRUNC, etc.)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" }
+  ],
+  "relations": [],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "Pure mathematical function reference (28 functions covering trigonometry, logarithms, rounding, and special values like NaN/Infinity) with no privileges, credential-type gating, capella-role gating, or 'Couchbase Server X.Y' version citations anywhere - none of the functions on this page are edition- or version-gated, unlike several functions on metafun.md and objectfun.md in this batch." }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-n1ql-selectintro-privilege-doc-duplication",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "cloud/n1ql/n1ql-language-reference/selectintro.md links to two different pages (cluster-rbac.md and manage-database-users.md) that both independently describe the same Read privilege, with no cross-reference between the two. Same shape as round 1's privilege-doc-link-inconsistency finding (dropprimaryindex.md linking a shared privilege sentence to a different page than its siblings) - either genuine duplication or an unlinked pair describing the same underlying concept from two documentation angles.",
+  "about": ["cloud/n1ql/n1ql-language-reference/selectintro"],
+  "foundDuring": "round 5 (115-page cloud/n1ql/ sweep)",
+  "status": "open"
+}

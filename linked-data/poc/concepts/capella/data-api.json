@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/data-api",
+  "label": "Capella Data API (Query Service passthrough)",
+  "type": "an access surface for running SQL++ statements - object of incompatibleWithAccessSurface",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Promoted as part of the access-surface family (see capella:query-tab) despite single-file recurrence - the family's governing predicate clears the normal promotion threshold on its own."
+}

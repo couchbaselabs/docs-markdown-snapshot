@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-basic-access-read",
+  "label": "Read access (Basic cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type rather than a named RBAC privilege",
+  "promoted": true,
+  "recurrence": 19,
+  "note": "The missing read-side sibling of privilege:capella-basic-access-write (round 2 only promoted the write side). Found across 19 files in round 5's cloud/n1ql/ sweep - by far the most-recurring new privilege concept this round. Part of the same credential-type-keyed family as privilege:capella-advanced-access-query-read; do not conflate with privilege:query-manage-index (server/'s structurally different named-RBAC-privilege model)."
+}

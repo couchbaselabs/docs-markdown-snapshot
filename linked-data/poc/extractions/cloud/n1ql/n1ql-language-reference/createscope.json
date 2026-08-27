@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/createscope",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/createscope.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-scope", "label": "CREATE SCOPE statement", "reused_or_minted": "minted - matches the n1ql: statement-concept convention; no prior term in registry" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same concept as promoted in concepts/privilege/capella-basic-access-write.json" },
+    { "candidate_id": "privilege:capella-advanced-access-scope-admin", "label": "Scope Admin (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same minted concept as createcollection.json (identical Prerequisites table wording, verbatim)" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-scope", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:create-scope", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-scope-admin", "reused_or_minted_predicate": "reused predicate; reused object", "evidence": "| Advanced | [Scope Admin](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:create-scope", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:create-scope", "predicate": "seeAlso", "object": "capella:about-buckets-scopes-collections", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For an overview of scopes and collections, see [Buckets, Scopes, and Collections](../../clusters/data-service/about-buckets-scopes-collections.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince (server-version citation)",
+    "finding": "Unlike createcollection.md (WITH clause gated to 'Couchbase Server 7.6 and later'), this page contains no server-version citation at all - CREATE SCOPE has no WITH clause and no version-gated behavior described. A clean instance of the anomaly simply not appearing, on a structurally near-identical statement."
+  },
+  "cross_component_finding": "The Prerequisites table (credential type -> privilege) is worded identically to createcollection.json's and dropcollection.json's, confirming Scope Admin (Advanced) / Write (Basic) is the shared privilege pair for the whole scope-and-collection DDL family, distinct from the index-statement family's Query Index (Advanced) / Write (Basic) pair."
+}

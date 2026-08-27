@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/constructionops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/constructionops.md",
+  "concepts": [
+    { "candidate_id": "n1ql:construction-operators", "label": "Construction Operators (Array Constructors and Object Constructors)", "reused_or_minted": "minted - no prior term in registry for this page; covers both array-construction and object-construction syntax described together on one page" },
+    { "candidate_id": "n1ql:collection-ops", "label": "Range Transformations (Collection Operators)", "reused_or_minted": "minted - seeAlso target only, not otherwise described on this page" }
+  ],
+  "relations": [
+    { "subject": "n1ql:construction-operators", "predicate": "seeAlso", "object": "n1ql:collection-ops", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Refer to [Range Transformations](collectionops.md#range-xform) for a more sophisticated way to generate arrays and objects from a data source." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "No access-control or version content at all. This is a pure expression-syntax reference page (array/object construction operators used inside SELECT expressions, not a standalone statement), so there's no Prerequisites section, no credential-type table, and no server-version citation - consistent with the batch's expectation that operator/function reference pages carry near-empty concepts/relations."
+  }
+}

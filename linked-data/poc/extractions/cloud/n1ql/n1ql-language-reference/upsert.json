@@ -1,0 +1,57 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/upsert",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/upsert.md",
+  "concepts": [
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials, for SELECT/RETURNING clauses)", "reused_or_minted": "reused - minted in comma.json, same round" },
+    { "candidate_id": "privilege:capella-advanced-access-query-update", "label": "Query Update (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - minted in update.json, same batch" },
+    { "candidate_id": "privilege:capella-advanced-access-query-insert", "label": "Query Insert (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - minted in comma.json, same round" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement (Insert Values / Insert Select / Result Expression reference)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:upsert",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-write",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:upsert",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:upsert",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-update",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) and [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:upsert",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-insert",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) and [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |"
+    },
+    {
+      "subject": "n1ql:upsert",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| Advanced | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) and [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "No Capella management-plane role gate on UPSERT either - consistent with every other DML/DDL statement in this round, confirming the model extends cleanly."
+  },
+  "cross_component_finding": "This page makes the Advanced-credential requirement's internal logic explicit and conjunctive, not disjunctive: 'To execute the following statement, your client must have either the `Write` or both the `Query Update` and `Query Insert` privileges on `hotel`.' UPSERT (being INSERT+UPDATE combined) requires BOTH Query Update AND Query Insert together under Advanced credentials - a conjunctive privilege requirement - which is structurally different from the disjunctive combination logic of requiresCapellaRole (any ONE of organization-owner/project-owner/project-data-writer suffices). The credential-type-keyed privilege family therefore supports both AND and OR combination semantics depending on the statement, which the registry's current relation shapes (requiresPrivilege, incompatibleWithCredentialType) don't yet distinguish - worth flagging for reconciliation to decide whether combination logic (any-of vs. all-of) needs to be captured as relation metadata."
+}

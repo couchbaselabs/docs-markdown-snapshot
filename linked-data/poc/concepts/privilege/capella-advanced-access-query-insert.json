@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-insert",
+  "label": "Query Insert (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates INSERT/UPSERT and similar write statements",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Part of the per-statement-family Advanced-credential privilege catalog found in round 5 - see reconciliation.md round 5. UPSERT requires this conjunctively with privilege:capella-advanced-access-query-update (both, not either) - the first AND-combination seen in this family, versus requiresCapellaRole's disjunctive (any-one-suffices) combination logic. No existing predicate distinguishes AND from OR combination yet - flagged as an open modeling question."
+}

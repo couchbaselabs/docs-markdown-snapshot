@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/bitwisefun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/bitwisefun.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType / availableSince",
+    "finding": "Pure function reference page (BITAND, BITCLEAR, BITNOT, BITOR, BITSET, BITSHIFT, BITTEST/ISBITSET, BITXOR) with no access-control, edition, or version content of any kind - purely descriptions, arguments, return values, and worked examples. No candidate concepts or relations found; per batch guidance this is an expected near-empty extraction."
+  },
+  "cross_component_finding": "The page declares BITTEST and ISBITSET as synonyms ('This function has a synonym [ISBITSET()]' / 'ISBITSET → see BITTEST' / 'Synonym of [BITTEST()]'). This is the same 'declared synonym pair' shape as the promoted isSynonymOf relation, but isSynonymOf's existing examples (DROP INDEX/DROP VECTOR INDEX) are pairs of distinct SQL statements that happen to behave identically, whereas BITTEST/ISBITSET is a single function exposed under two spellings - closer to an alternate-name/alias than to two independently-invokable statements. Flagging as an open modeling question for reconciliation rather than minting concepts and forcing isSynonymOf onto a spelling alias."
+}

@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/let",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/let.md",
+  "concepts": [
+    { "candidate_id": "n1ql:let", "label": "LET clause", "reused_or_minted": "minted - first occurrence in this batch" },
+    { "candidate_id": "n1ql:identifiers", "label": "Identifiers", "reused_or_minted": "reused - minted on identifiers.json in this same batch" },
+    { "candidate_id": "n1ql:sql-plus-plus", "label": "SQL++ language", "reused_or_minted": "reused - minted on index.json in this same batch; target of the [Expression](index.md#N1QL_Expressions) link" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - minted in infer.json in this same batch" }
+  ],
+  "relations": [
+    { "subject": "n1ql:let", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused predicate, minted object", "evidence": "| Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:let", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused predicate, minted object", "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:let", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types)." },
+    { "subject": "n1ql:let", "predicate": "seeAlso", "object": "n1ql:identifiers", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[Identifier](identifiers.md) that represents the name of the variable." },
+    { "subject": "n1ql:let", "predicate": "seeAlso", "object": "n1ql:sql-plus-plus", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[Expression](index.md#N1QL%5FExpressions) that represents the value assigned to its `alias`." }
+  ],
+  "cross_product_finding": "First occurrence in this batch of the Basic->Read / Advanced->Query Read privilege pair (also seen on infer.json and join.json) - a read-only sibling of the Basic->Write / Advanced->Query Insert/Index pairs seen on createindex.json and insert.json. The credential-type/privilege model holds up cleanly for LET: no requiresCapellaRole gate, since LET is a data-plane query clause, not a management-plane action."
+}

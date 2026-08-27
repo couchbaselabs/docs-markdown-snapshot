@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/delete",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/delete.md",
+  "concepts": [
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "minted - matches the n1ql: statement-concept convention; no prior term in registry" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials, for the DELETE itself)", "reused_or_minted": "reused - same concept as promoted in concepts/privilege/capella-basic-access-write.json" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials, for a RETURNING clause and any referenced keyspaces)", "reused_or_minted": "minted - the Basic-side sibling of privilege:capella-basic-access-write; first observed 'Read' privilege for Basic credentials in this batch, distinct from Write" },
+    { "candidate_id": "privilege:capella-advanced-access-query-delete", "label": "Query Delete (privilege required under Advanced cluster access credentials, for the DELETE itself)", "reused_or_minted": "minted - a new, distinct Advanced-credential privilege for DML, not shared with the DDL statements in this batch" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials, for a RETURNING clause and any referenced keyspaces)", "reused_or_minted": "minted - the Advanced-side sibling of privilege:capella-advanced-access-query-delete" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic | Advanced)", "reused_or_minted": "reused - same concept as promoted concepts/cluster-access-credential-type.json" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "reused - same concept id as cost-based-optimizer.json in this batch" },
+    { "candidate_id": "n1ql:offset", "label": "OFFSET clause", "reused_or_minted": "minted - seeAlso target" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "minted - seeAlso target (RETURNING clause reference)" }
+  ],
+  "relations": [
+    { "subject": "n1ql:delete", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-write", "reused_or_minted_predicate": "reused", "evidence": "| Basic | [Write](../../clusters/cluster-rbac.md#basic-access-credentials) |" },
+    { "subject": "n1ql:delete", "predicate": "requiresPrivilege", "object": "privilege:capella-basic-access-read", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "[Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause" },
+    { "subject": "n1ql:delete", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-delete", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "| Advanced | [Query Delete](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |" },
+    { "subject": "n1ql:delete", "predicate": "requiresPrivilege", "object": "privilege:capella-advanced-access-query-read", "reused_or_minted_predicate": "reused predicate; minted object", "evidence": "[Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause" },
+    { "subject": "n1ql:delete", "predicate": "usesEnum", "object": "cluster-access-credential-type", "reused_or_minted_predicate": "reused", "evidence": "The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `RETURNING` clause." },
+    { "subject": "n1ql:delete", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [Optimizer Hints](optimizer-hints.md)." },
+    { "subject": "n1ql:delete", "predicate": "seeAlso", "object": "n1ql:offset", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Like the [OFFSET clause](offset.md) for a SELECT query, you can include an OFFSET clause in a DELETE statement to specify a number of objects to skip before beginning the deletion." },
+    { "subject": "n1ql:delete", "predicate": "seeAlso", "object": "n1ql:insert", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Specifies the information to be returned by the operation as a query result. For more details, refer to [RETURNING Clause](insert.md#returning-clause)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Unlike the DDL statements in this batch, DELETE's Prerequisites table branches on a second axis in addition to credential type: whether the statement includes a RETURNING clause. This produces two separate privilege facts per credential type (DELETE itself vs. RETURNING/referenced keyspaces) rather than one - the clearest example in this batch of the credential-type model needing more than a flat two-value lookup to represent a single statement's access requirements."
+  },
+  "cross_component_finding": "Recurrence of the known issue docs-issues/capella-pages-cite-server-versions.json: the Optimizer Hints subsection is headed 'Couchbase Server 8.0' and begins 'You can supply hints to the optimizer within a specially formatted hint comment,' citing a literal server version on a Capella DML statement page - the same anomaly seen in createcollection.json, createfunction.json, cost-based-optimizer.json, and datefun.json in this batch."
+}

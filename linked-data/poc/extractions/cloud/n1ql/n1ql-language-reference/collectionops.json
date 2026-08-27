@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/collectionops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/collectionops.md",
+  "concepts": [
+    { "candidate_id": "n1ql:collection-ops", "label": "Collection Operators (Range Predicates, Range Transformations, Membership and Existence Tests)", "reused_or_minted": "reused - id already minted as a seeAlso target in cloud/n1ql/n1ql-language-reference/constructionops.json (different batch, same round); broadening the label here since this page covers all three sub-families, not just Range Transformations" },
+    { "candidate_id": "n1ql:construction-operators", "label": "Construction Operators (Array Constructors and Object Constructors)", "reused_or_minted": "reused - minted in constructionops.json, same round" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:collection-ops",
+      "predicate": "seeAlso",
+      "object": "n1ql:construction-operators",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Refer to [Construction Operators](constructionops.md) for a simpler way to generate arrays and objects from a data source."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / availableSince",
+    "finding": "Pure expression-syntax reference page (ANY/EVERY/ANY AND EVERY, ARRAY/FIRST/OBJECT, IN/WITHIN, EXISTS) with no Prerequisites section, no credential-type table, and no privilege/role/version content."
+  },
+  "cross_component_finding": "The page explicitly disclaims a term collision: 'Although collection operators can be used with any array, they are particularly useful when used to evaluate expressions over an array of objects. The term collection is used here in a generic sense to refer to any array of objects, rather than in the specific sense of a [Couchbase collection](../../clusters/data-service/about-buckets-scopes-collections.md).' This is the docs authors proactively flagging exactly the kind of vocabulary overload the ontology needs to keep straight - 'collection' as a SQL++ language term (array of JSON objects) versus 'collection' as the Couchbase data-model primitive (a sub-division of a scope/bucket) are unrelated concepts that must not be merged under one candidate_id despite sharing a name."
+}

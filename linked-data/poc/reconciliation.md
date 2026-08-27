@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Three rounds so far, in order run. Each section covers one round; a single
+Five rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -460,27 +460,203 @@ See `../ingest-cost-and-time-estimate.md` for the full tooling/cost writeup.
 
 ---
 
-## Cumulative verdict (all four rounds)
+## Round 5 — completing `cloud/n1ql/` (115 pages)
 
-The vocabulary has now been tested against four genuinely different kinds of
+Scope: the remaining 115 of 138 pages in `cloud/n1ql/` (round 2 had sampled
+only 23) - the full Capella SQL++/N1QL language reference, intro, and manage
+pages. Run as 10 parallel batches of ~12 pages each, on the same Bedrock
+infrastructure validated in round 4, at real production scale for the first
+time (round 4 was a 3-page trial). Total usage across all 10 batches: ~1.5M
+tokens for 115 pages (~13,000 tokens/page) - close to round 2's original
+~11,700 tokens/page benchmark, which in hindsight makes round 4's ~20,700
+tokens/page look like a content-density outlier for that specific 3-page
+batch, not a Bedrock effect. Using the project's established blended-rate
+method, that's roughly $4-5 for the whole round.
+
+Hypothesis: does Capella's credential-type/capella-role access-control model
+(established in round 2 from CREATE/DROP BUCKET/USER/GROUP, GRANT/REVOKE, and
+the vector-index family) extend cleanly across the rest of the DDL surface
+(collections, scopes, sequences, UDFs) and the SQL++ transaction-statement
+family, or does something new turn up?
+
+### Headline finding: the model held up, but "the credential-type pair" turned out to be a whole privilege catalog, not two values
+
+Round 2 saw Basic/Advanced as a flat two-value pair (Write vs. Query Index).
+Round 5 found the Advanced side is actually a **per-statement-family named
+privilege catalog** - a new Advanced privilege for nearly every DDL/DML
+statement kind, while Basic stays a flat Write/Read binary throughout. Eleven
+new Advanced-credential privileges were promoted this round alone (Scope
+Admin, Query Insert, Query Update, Query Manage Sequences, Global/scoped
+Function Manage, Global/scoped Function Execute, Query Delete, Query Execute,
+plus the missing Basic-side Read and Advanced-side Query Read that round 2
+never needed). Two genuinely new shapes inside that catalog:
+
+- **A two-axis privilege** (`createfunction.md`): the Advanced privilege is
+  keyed by credential type *and* function scope (global vs. scoped)
+  simultaneously - `privilege:capella-advanced-access-global-function-manage`
+  vs. `-query-manage`, and the execute-side equivalents.
+- **A conjunctive (AND) requirement** (`upsert.md`): UPSERT needs Query Insert
+  **and** Query Update together, not either - the first AND-combination seen
+  in this family, versus `requiresCapellaRole`'s disjunctive (any-one-suffices)
+  logic. No existing predicate distinguishes AND from OR combination yet -
+  flagged as an open modeling question, not resolved this round.
+
+### The model has real, evidenced boundaries - three places it doesn't apply
+
+- **Sequence operators** (`sequenceops.md`, `n1ql-auditing.md`-adjacent pages)
+  use a named, server-style RBAC privilege (minted `privilege:query-use-sequences`
+  in the extraction, left unpromoted at 1-file recurrence) instead of the
+  Basic/Advanced pair.
+- **`window.md`/`windowfun.md`** cite the bare server-style privilege name
+  `query_select` directly, with no credential-type table at all - reinforcing
+  `createuser.json`'s earlier (round 2) observation that the underlying RBAC
+  engine is shared with server/ and only some pages have been migrated to the
+  credential-type framing.
+- **Search functions** (`searchfun.md`) use named RBAC roles (Data Admin/Data
+  Reader) and explicitly state "You do not need credentials for the Search
+  Service" - neither capella-role nor credential-type applies at all.
+- **Transaction-control statements** (BEGIN/COMMIT/ROLLBACK/SAVEPOINT/SET
+  TRANSACTION) carry **no access-control gating whatsoever** - confirmed
+  across every TCL page in the batch. The credential-type/capella-role model
+  is scoped to management-plane and ordinary data-plane statements, not
+  transaction control.
+
+### A fourth thing called "role"
+
+`n1ql-auditing.md` gates audit-service configuration with classic, cluster-wide
+admin roles - **Full Administrator** and **Local User Security Administrator**
+- that fit neither `capella-role:*` (Capella's fixed management-plane catalog),
+`rbac-role:role` (the coarse data-plane RBAC placeholder), nor `sgw:role`
+(Sync Gateway's unrelated ad hoc channel-grant bundles). Promoted as
+`role:full-administrator`/`role:local-user-security-administrator` below the
+usual recurrence bar, the same judgment call used for `hasNoRelationshipTo` in
+round 3 and for `sdk:transaction-attempt-context` in round 4 - this is the
+concrete evidence extending an already-documented, semantically significant
+finding (round 3's three-way "role" collision) to a fourth member. No page
+states a relationship between any of the four, so none are merged.
+
+### A fourth gating axis: access surface, not role/credential/UI-mode
+
+Two unrelated pages - `transactions.md` and `using-ai.md` - independently
+state that a feature is unsupported via specific client/interfaces (the
+Capella Query tab, the Data API, Couchbase Shell), regardless of the caller's
+role or credentials. Minted `incompatibleWithAccessSurface` and a small
+`capella:query-tab`/`data-api`/`cbsh` concept family, promoted together since
+the predicate clears the normal 2-file threshold on its own even though most
+individual surface concepts are single-occurrence - the same family-promotion
+allowance used for round 2's GRANT/REVOKE set.
+
+### Other promotions
+
+- `requiresPriorExecutionOf` - minted, unpromoted, in an earlier round's
+  `server/n1ql/n1ql-language-reference/cost-based-optimizer.json` (Cost-Based
+  Optimizer needing `UPDATE STATISTICS` run first); this round's
+  `cloud/n1ql/.../cost-based-optimizer.json` extraction **independently
+  matched and reused the exact same predicate name** for the identical fact on
+  Capella's equivalent page - the written registry catching a real cross-round,
+  cross-product reuse, the mirror image of round 2's
+  `requiresMinVersionFor`/`availableSince` near-duplicate-minting problem.
+- `renamedFrom` - consolidates two independent single-occurrence mints of the
+  same relation shape at two different levels: `infer.json` (INFER renamed
+  from the legacy DESCRIBE statement) and `query.json` (SQL++ renamed from
+  N1QL, minted there as `formerlyKnownAs`). Same lesson as the
+  `availableSince`/`requiresMinVersionFor` consolidation - kept `renamedFrom`
+  as the canonical name.
+- `index-type:gsi` - a minor promotion; Capella secondary indexes must be GSI,
+  restated on two statistics pages.
+
+### Left on the watchlist (extraction-layer only, not promoted)
+
+`privilege:query-use-sequences`, `privilege:capella-advanced-access-query-select`
+(the likely-duplicate of the promoted `query-read`, see docs-issue below),
+`role:full-administrator`'s and other pages' minor single-occurrence
+predicates (`hasLimitation`, `differsInEvaluationTimingFrom`, `isCreatedUsing`,
+`dependsOnStatement`, `storedIn`) - none cleared the 2-file bar and none carry
+the kind of headline significance that earned an exception this round.
+
+### A likely mis-map, left uncorrected in the original extraction record
+
+`prepare.json` reused `privilege:capella-advanced-access-query-index` for
+PREPARE's own "Query Update" requirement, rather than the newly-promoted
+`privilege:capella-advanced-access-query-update`. Flagged here rather than
+hand-edited in the original extraction record, per the project's standing rule
+against silently rewriting pass-1 output - worth correcting whenever this
+registry is next consumed downstream (JSON-LD drafting, page-layer assembly).
+
+### New `docs-issues/` (5 new, 1 existing updated)
+
+1. **`capella-pages-cite-server-versions` updated, not new** - round 2 found
+   this in 6 pages; round 5's sweep found it in **45 of 115 pages (39%)**,
+   across nearly every statement/function/clause category. Density this high
+   across a directory this broad reads less like isolated copy-paste and more
+   like a systemic pattern in how this whole reference tree was authored.
+2. `capella-pages-cite-edition-badges` - a sibling anomaly: Enterprise/
+   Community edition badges on Capella pages, which have no edition split at
+   all. Distinct from the version-string issue but likely the same root cause.
+3. `cloud-n1ql-selectintro-privilege-doc-duplication` - the same Read privilege
+   described on two unlinked pages, same shape as round 1's original
+   privilege-doc-link-inconsistency finding.
+4. `cloud-n1ql-clause-pages-missing-prerequisites` - `where.md`,
+   `with-recursive.md`, and `execute.md` have no Prerequisites/privilege
+   section at all, unlike sibling clause pages. May be deliberate (clauses
+   inheriting access from the enclosing statement) rather than a gap - flagged
+   for SME judgment, not asserted either way.
+5. `cloud-n1ql-error-codes-orphaned-see-also` - a small, concrete, fixable
+   content gap (an empty `## See Also` heading).
+6. `cloud-n1ql-privilege-naming-inconsistency-select-vs-read` - `merge.md`
+   names a privilege "Query Select" where 15 sibling pages name the
+   structurally equivalent one "Query Read." Left the two concepts unmerged
+   pending confirmation they're the same real privilege.
+
+### What this round confirmed about the method itself
+
+- **A written registry can work exactly as designed across rounds, not just
+  within one.** `requiresPriorExecutionOf`'s cross-round, cross-product reuse
+  (above) is the positive case the `requiresMinVersionFor` incident in round 2
+  was the negative case of - the difference being whether an agent actually
+  checked sibling extraction files, not just the registry summary it was
+  handed.
+- **"Family" promotion below the recurrence bar is now a repeated pattern,
+  not a one-off.** Round 3 used it once (`hasNoRelationshipTo`); round 4 used
+  it twice; round 5 used it three times (the two `role:*` roles, the
+  access-surface family, and implicitly the whole eleven-member Advanced
+  privilege catalog, most of whose individual members sit at 2-4 file
+  recurrence). Worth treating as a standing part of the method now, not an
+  exception invoked occasionally.
+- **A single directory can still surprise after a prior round already sampled
+  a fifth of it.** Round 2 read 23 of these 138 pages and called the
+  credential-type model "a pair." Round 5 read the other 115 and found it was
+  a catalog. Partial sampling of a large, structurally uniform-looking
+  directory doesn't guarantee the sample generalizes - worth remembering
+  before treating any single round's read of a big reference tree as final.
+
+---
+
+## Cumulative verdict (all five rounds)
+
+The vocabulary has now been tested against five genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
 different deployment model of the same underlying product (round 2), three
-entirely different products built by different teams (round 3), and a single
+entirely different products built by different teams (round 3), a single
 product's own feature that cuts across its existing per-operation model
-(round 4's transactions, within the Java SDK already covered in round 3). At
-every step it kept doing the same useful thing: not just "the terms still
-fit," but surfacing something true and specific about each surface it
-touched - Capella's credential/role-based access model, Sync Gateway's
-two-disjoint-systems architecture and inverted channel-based access model,
-Couchbase Lite's own disjoint edition split, and now the Java SDK's
-transaction layer inverting CAS-based concurrency into transaction-membership
-checks. That's a stronger and more useful result than a vocabulary that merely
-never breaks.
+(round 4's transactions, within the Java SDK already covered in round 3), and
+- round 5's own contribution - full coverage of a directory a prior round had
+only sampled a fifth of. At every step it kept doing the same useful thing:
+not just "the terms still fit," but surfacing something true and specific
+about each surface it touched - Capella's credential/role-based access model
+(round 2), Sync Gateway's two-disjoint-systems architecture and inverted
+channel-based access model (round 3), Couchbase Lite's own disjoint edition
+split (round 3), the Java SDK's transaction layer inverting CAS-based
+concurrency into transaction-membership checks (round 4), and now that round
+2's "simple credential-type pair" was actually a whole per-statement privilege
+catalog with real AND/OR and two-axis structure hiding under an early,
+under-sampled read (round 5). That's a stronger and more useful result than a
+vocabulary that merely never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Three limits of the method are now visible across multiple rounds, not just
+Four limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **Structural silence isn't a naming problem.** The method is good at
@@ -505,3 +681,12 @@ once, so worth treating as durable rather than one-off:
   promotion discipline only catches what a reconciliation pass actually runs
   over; skipping a product at reconciliation time is a silent debt, not a
   visible one, until a later round trips over it.
+- **Partial coverage of a large, uniform-looking directory doesn't generalize
+  the way it feels like it should.** Round 2 read 23 of `cloud/n1ql/`'s 138
+  pages and reasonably concluded the credential-type model was a flat pair.
+  Round 5 read the other 115 and found a whole per-statement privilege
+  catalog with two-axis and AND-combination structure the smaller sample never
+  surfaced. Not a failure of round 2's method - a fifth of a directory is a
+  defensible sample size for a first pass - but a concrete reminder that "this
+  directory's vocabulary is settled" should mean "fully read," not "sampled
+  and nothing broke yet."

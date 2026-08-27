@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/selectintro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/selectintro.md",
+  "concepts": [
+    { "candidate_id": "n1ql:select-statement", "label": "SELECT statement (overview: query and manipulate JSON data)", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention; distinct from n1ql:selectclause (the SELECT projection sub-clause) since this page covers the whole statement" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in comma.json" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in comma.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types). | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Consistent with every other SELECT-family page in this round: no management-plane capella-role:* gate, only the data-plane credential-type privilege pair. This page also states the degenerate case explicitly - 'To execute the following statement, the user does not need any special privileges' for `SELECT 1` (a keyspace-free query) - reinforcing that the privilege requirement attaches to the keyspaces referenced, not to the SELECT statement as such."
+  },
+  "cross_component_finding": "Two findings: (1) Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json - 'In clusters running Couchbase Server 7.6 or later, the projection is returned in the order specified by the query. In prior versions, the projection was sorted alphabetically.' is a literal 'Couchbase Server' version-gate citation on a Capella page. (2) The page's RBAC Examples subsection describes per-keyspace access requirements using a different doc path than the credential-type table above it - it links '[read](../../clusters/manage-database-users.md#about-database-user-permissions) access to `airline`' rather than the cluster-rbac.md#cluster-access-credential-types path used by the Prerequisites table just above. Both describe what appears to be the same 'Read' privilege concept, but are sourced from two different pages (cluster-rbac.md vs. manage-database-users.md) without cross-linking each other on this page - a minor internal inconsistency in how the docs point readers to the authoritative privilege reference, though not modeled as a separate relation since the underlying concept (privilege:capella-basic-access-read) is the same."
+}

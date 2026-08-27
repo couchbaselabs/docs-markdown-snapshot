@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/tokenfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/tokenfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:contains-token", "label": "CONTAINS_TOKEN() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:has-token", "label": "HAS_TOKEN() function", "reused_or_minted": "minted - documented alias of CONTAINS_TOKEN()" },
+    { "candidate_id": "n1ql:tokens", "label": "TOKENS() function", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:has-token",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:contains-token",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Alias for [CONTAINS\\_TOKEN()](#section%5Fkqy%5Fhj4%5Fqz)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Pure function reference page - no RBAC/access-control content, as expected for this batch's function pages. CONTAINS_TOKEN_LIKE() and CONTAINS_TOKEN_REGEXP() are documented with identical description/arguments/return-value text to CONTAINS_TOKEN() (only the example differs), which reads like the same reference boilerplate repeated per function rather than a documented alias relationship - not asserted as isSynonymOf since the page never actually calls them synonyms the way it does for HAS_TOKEN()."
+  }
+}

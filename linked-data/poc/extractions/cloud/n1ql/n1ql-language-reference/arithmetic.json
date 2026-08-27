@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/arithmetic",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/arithmetic.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/n1ql/n1ql-language-reference/arithmetic",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/comparisonops",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Refer to [Comparison Operators](comparisonops.md) for numeric comparisons."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations",
+    "finding": "Pure operator reference page (+, -, *, /, %, unary negation) with no access-control, versioning, or Capella-specific content - as expected per batch instructions for arithmetic/comparisonops/aggregatefun-style pages."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

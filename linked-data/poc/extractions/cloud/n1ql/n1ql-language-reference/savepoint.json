@@ -1,0 +1,56 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/savepoint",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/savepoint.md",
+  "concepts": [
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - same candidate_id already minted in this round's begin-transaction.json extraction" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as this batch's rollback-transaction.json" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - same candidate_id as begin-transaction.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `SAVEPOINT` statement enables you to set a savepoint within an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Same as BEGIN TRANSACTION and ROLLBACK TRANSACTION: SAVEPOINT carries no access-control gate at all. Its only stated prerequisite is behavioral ('You may only use this statement within a transaction') and its only other rule is a naming-collision behavior ('If a savepoint with the same name already exists, the existing savepoint is replaced.'). The transaction-statement family is uniformly ungated across all four members examined so far (BEGIN/ROLLBACK/SAVEPOINT), strengthening the hypothesis that this is a deliberate, consistent design choice rather than a per-page omission."
+  },
+  "cross_component_finding": "Same shared-source-content pattern as begin-transaction.json and rollback-transaction.json: links to server/'s transaction overview ('For an overview of Couchbase transactions, see [Transactions](../../../server/current/learn/data/transactions.md)') and the same Couchbase blog post, rather than any Capella-specific content.",
+  "cross_product_finding": "Per the cross-round transaction check: no textual evidence on this page connects SAVEPOINT to the Java SDK's distributed-transaction feature (sdk:distributed-transaction). Related Links are exclusively to other SQL++ transaction statements, the server/ overview, and the Couchbase blog post. No SDK cross-reference is present, so no relation is asserted; open question remains open, consistent with begin-transaction.json and rollback-transaction.json in this same round."
+}

@@ -1,0 +1,69 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/updatestatistics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/updatestatistics.md",
+  "concepts": [
+    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already established n1ql:update-statistics candidate elsewhere in this directory (note: n1ql:updatestatistics also exists as an inconsistent alternate id in the registry - flagging for reconciliation)" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused - minted in update.json, same batch" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - minted in transactions.json, same batch" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:statistics-expressions", "label": "Update Statistics for Index Expressions", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statistics-index", "label": "Update Statistics for a Single Index", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statistics-indexes", "label": "Update Statistics for Multiple Indexes", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:statistics-delete", "label": "Delete Statistics", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The [cost-based optimizer](cost-based-optimizer.md) uses statistics to generate a query plan with the lowest processing cost, for [SELECT](selectintro.md), [UPDATE](update.md), [DELETE](delete.md), [MERGE](merge.md), and [INSERT INTO with SELECT](insert.md) queries."
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:statistics-expressions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Update Statistics for Index Expressions](statistics-expressions.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:statistics-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Update Statistics for a Single Index](statistics-index.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:statistics-indexes",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Update Statistics for Multiple Indexes](statistics-indexes.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:statistics-delete",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Delete Statistics](statistics-delete.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:cbq",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To gather statistics automatically, consider running a `cron` job at regular intervals to execute the `UPDATE STATISTICS` statement via the [cbq shell](../n1ql-intro/cbq.md#executing-a-script)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No credential-type-keyed privilege table on this page at all (unlike update.md/upsert.md in this same batch) - the only access-control content is generic and system-scope-based rather than statement-scoped: 'Regular users do not have access to the _system scope or any of its collections, including _query. Users with system administration privileges can access _system scope and its collections... However, even with system administration privileges, you can't drop or create the _system scope or any of its collections.' This reads as a distinct, coarser access model (a special protected system scope with its own administration-privilege gate) rather than the per-statement Basic/Advanced credential-type pair - not modeled as a formal relation since no specific named privilege or role is given, just 'system administration privileges' generically."
+  },
+  "cross_component_finding": "The page also mentions the Capella Web Console directly: 'The _system scope and its collections are not listed in the Explore Your Data area in the Query tab' - a UI-visibility statement about the Query tab, distinct from the incompatibleWithAccessSurface (execution-capability) gate found on transactions.md/using-ai.md this same batch; this is about what's shown, not what can be executed, so not modeled with that same predicate.",
+  "cross_product_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions: 'In Couchbase Server 7.6 and later, the Query service automatically gathers statistics whenever an index is created or built' is a literal 'Couchbase Server X.Y' version string on a Capella page. Flagging as a recurrence, not a new issue."
+}

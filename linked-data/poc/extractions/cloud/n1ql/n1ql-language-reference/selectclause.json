@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/selectclause",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/selectclause.md",
+  "concepts": [
+    { "candidate_id": "n1ql:selectclause", "label": "SELECT Clause (projection, ALL/DISTINCT, RAW/ELEMENT/VALUE, EXCLUDE)", "reused_or_minted": "minted - same candidate_id already minted in this batch's query-hints.json" },
+    { "candidate_id": "n1ql:exclude-clause", "label": "EXCLUDE Clause", "reused_or_minted": "minted - matches n1ql:<kebab-case> convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in comma.json" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in comma.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:selectclause",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "To select data from a document or keyspace, your client must have necessary privileges on the document or keyspace. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types). | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:selectclause",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:exclude-clause",
+      "predicate": "seeAlso",
+      "object": "n1ql:selectclause",
+      "reused_or_minted_predicate": "minted - EXCLUDE is a sub-clause of SELECT Clause, structural containment rather than a plain markdown link, so treated as a lightweight seeAlso rather than minting a new containment predicate",
+      "evidence": "select-clause ::= 'SELECT' hint-comment? projection exclude-clause?"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Consistent with orderby.json/comma.json in this round: the SELECT clause gates only on the data-plane credential-type privilege pair, never on a management-plane capella-role:*."
+  },
+  "cross_component_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: the EXCLUDE Clause section is headed by a bare 'Couchbase Server 8.0' badge/label with no further qualification ('### EXCLUDE Clause \\n Couchbase Server 8.0 \\n ```ebnf exclude-clause ::= ...'), functioning as a literal version-gate citation despite Capella having no discrete version numbers - the same pattern flagged in optimizer-hints.json's 'In Couchbase Server 8.0 and later...' and comma.json's 'Couchbase Server 7.6' citation."
+}

@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/groupby",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/groupby.md",
+  "concepts": [
+    { "candidate_id": "n1ql:group-by", "label": "GROUP BY Clause", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:aggregate-functions", "label": "Aggregate Functions", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:selectintro", "label": "SELECT Statement introduction / Index Selection", "reused_or_minted": "minted" },
+    { "candidate_id": "indexes:groupby-aggregate-performance", "label": "Grouping and Aggregate Pushdowns", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "n1ql:group-by", "predicate": "seeAlso", "object": "n1ql:aggregate-functions", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "String or expression representing an [aggregate function](aggregatefun.md) or field to group together." },
+    { "subject": "n1ql:group-by", "predicate": "seeAlso", "object": "n1ql:selectintro", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details, refer to [Index Selection](selectintro.md#index-selection)." },
+    { "subject": "n1ql:group-by", "predicate": "seeAlso", "object": "indexes:groupby-aggregate-performance", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For further examples, refer to [Grouping and Aggregate Pushdowns](../../indexes/groupby-aggregate-performance.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "GROUP BY, like the other SELECT sub-clauses in this batch (HAVING, LETTING, GROUP AS), carries no Prerequisites/privilege table of its own - access control is asserted once at the FROM/keyspace level (see from.json), not re-stated per downstream clause. This is a structural, not anomalous, absence: it confirms the credential-type model gates keyspace access, not individual query-clause usage." },
+  "cross_component_finding": "The Limitations section ties GROUP BY directly to index selection behavior: 'A query needs a predicate on a leading index key to ensure that the optimizer can select a secondary index for the query... This is usually only necessary in queries which do not otherwise have a WHERE clause; for example, some GROUP BY and aggregate queries.' This is a genuine Query-engine <-> Index-service interaction, but it describes optimizer behavior rather than an access-control or product-boundary relation, so it is noted here rather than forced into a relation."
+}

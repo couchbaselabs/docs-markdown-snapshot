@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/keyspace-hints",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/keyspace-hints.md",
+  "concepts": [
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "minted - parent concept ('A keyspace hint is a type of optimizer hint'), reused from index.json in this same batch" },
+    { "candidate_id": "n1ql:index-hint", "label": "INDEX optimizer hint (hint-comment form)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:index-all-hint", "label": "INDEX_ALL optimizer hint (hint-comment form)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:index-fts-hint", "label": "INDEX_FTS optimizer hint (hint-comment form)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:use-nl-hint", "label": "USE_NL optimizer hint (hint-comment form)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:use-hash-hint", "label": "USE_HASH optimizer hint (hint-comment form)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:use-index-clause", "label": "USE INDEX clause (legacy)", "reused_or_minted": "minted - target of a structural link, legacy equivalent named twice on this page" },
+    { "candidate_id": "n1ql:use-hash-clause", "label": "USE HASH clause (inline ANSI JOIN hint form)", "reused_or_minted": "reused - minted in join.json in this same batch" },
+    { "candidate_id": "n1ql:use-nl-clause", "label": "USE NL clause (inline ANSI JOIN hint form)", "reused_or_minted": "reused - minted in join.json in this same batch" },
+    { "candidate_id": "n1ql:negative-keyspace-hints", "label": "Negative Keyspace Hints", "reused_or_minted": "minted - target of a structural link" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer for Queries", "reused_or_minted": "minted - target of a structural link" }
+  ],
+  "relations": [
+    { "subject": "n1ql:index-hint", "predicate": "isSynonymOf", "object": "n1ql:use-index-clause", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity", "evidence": "This hint is equivalent to the legacy `USE INDEX (USING GSI)` clause. For more details, refer to [USE INDEX Clause](hints.md#use-index-clause)." },
+    { "subject": "n1ql:index-hint", "predicate": "seeAlso", "object": "n1ql:use-index-clause", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details, refer to [USE INDEX Clause](hints.md#use-index-clause)." },
+    { "subject": "n1ql:index-fts-hint", "predicate": "isSynonymOf", "object": "n1ql:use-index-clause", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity", "evidence": "This hint is equivalent to the legacy `USE INDEX (USING FTS)` clause. For more details, refer to [USE INDEX Clause](hints.md#use-index-clause)." },
+    { "subject": "n1ql:use-nl-hint", "predicate": "isSynonymOf", "object": "n1ql:use-nl-clause", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity", "evidence": "This hint is equivalent to the legacy `USE NL` clause. For more details, refer to [USE NL Clause](join.md#use-nl-hint)." },
+    { "subject": "n1ql:use-nl-hint", "predicate": "seeAlso", "object": "n1ql:use-nl-clause", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details, refer to [USE NL Clause](join.md#use-nl-hint)." },
+    { "subject": "n1ql:use-hash-hint", "predicate": "isSynonymOf", "object": "n1ql:use-hash-clause", "reused_or_minted_predicate": "reused - docs explicitly declare functional identity", "evidence": "This hint is equivalent to the legacy `USE HASH` clause. For more details, refer to [USE HASH Clause](join.md#use-hash-hint)." },
+    { "subject": "n1ql:use-hash-hint", "predicate": "seeAlso", "object": "n1ql:use-hash-clause", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details, refer to [USE HASH Clause](join.md#use-hash-hint)." },
+    { "subject": "n1ql:optimizer-hints", "predicate": "seeAlso", "object": "n1ql:cost-based-optimizer", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Understand the Cost-Based Optimizer for Queries](cost-based-optimizer.md)" },
+    { "subject": "n1ql:optimizer-hints", "predicate": "seeAlso", "object": "n1ql:negative-keyspace-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Negative Keyspace Hints](negative-keyspace-hints.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No RBAC/privilege section on this page - keyspace hints are query-planning directives layered on top of whatever statement they're embedded in, so they inherit that statement's privilege requirements rather than having their own."
+  },
+  "cross_component_finding": "The page repeatedly asserts a mutual-exclusivity constraint that doesn't fit any existing relation shape: 'you cannot use a hint comment and the USE clause to specify optimizer hints on the same keyspace. If you do this, the hint comment and the USE clause are both marked as erroneous and ignored by the optimizer' (stated near-identically for INDEX, INDEX_FTS, USE_NL, and USE_HASH). This is a syntax-level restriction, not a privilege/edition/deployment/UI-mode gate or a cost tradeoff, so it wasn't forced into a mint - noted here as a finding instead. Also confirms, from this page's own side, the isSynonymOf pairs already captured on join.json for USE_HASH/USE HASH and USE_NL/USE NL (hint-comment form vs. inline ANSI JOIN clause form)."
+}

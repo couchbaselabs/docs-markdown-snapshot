@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/subquery-examples",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/subquery-examples.md",
+  "concepts": [
+    { "candidate_id": "n1ql:subqueries", "label": "Subqueries", "reused_or_minted": "reused - already minted in subqueries.json from this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:subquery-examples",
+      "predicate": "seeAlso",
+      "object": "n1ql:subqueries",
+      "reused_or_minted_predicate": "reused - structural markdown link (inverse of the link asserted in subqueries.json)",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure worked-examples page (13 numbered SQL++ query/result pairs demonstrating subquery patterns from subqueries.md - correlated aggregation, array flattening, nested UNNEST). No privileges, roles, credential types, or version gates. Consistent with batch guidance for thin/reference pages."
+  }
+}

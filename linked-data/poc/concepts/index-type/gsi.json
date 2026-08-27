@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/gsi",
+  "label": "Global Secondary Index (GSI)",
+  "type": "the required secondary-index type on Capella - statistics-index.md and statistics-indexes.md both state Capella secondary indexes must be GSI",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "A minor, low-stakes promotion - restates deployment context already implicit in index-state's occurrences rather than surfacing new structure. Kept separate from index-state (that concept is the index lifecycle enum; this is the index type/technology axis)."
+}

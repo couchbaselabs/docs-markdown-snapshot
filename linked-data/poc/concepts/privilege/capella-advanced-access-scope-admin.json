@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-scope-admin",
+  "label": "Scope Admin (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates collection/scope DDL",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Part of a per-statement-family privilege catalog discovered in round 5: the Advanced-credential side turned out to be a full named catalog (one privilege per statement kind), not the flat pair round 2 first saw - see reconciliation.md round 5 for the full family list."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-manage",
+  "label": "Query Manage (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege, keyed by cluster access credential type - gates CREATE/DROP FUNCTION at scoped (collection/scope-level) scope",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Scoped-function sibling of privilege:capella-advanced-access-global-function-manage - the two-axis (credential type x object scope) shape found in round 5. See reconciliation.md round 5."
+}

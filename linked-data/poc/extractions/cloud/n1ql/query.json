@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/query",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/query.md",
+  "concepts": [
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - already minted in server/learn/services-and-indexes/services/query-service.json" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - already minted in server/learn/services-and-indexes/services/index-service.json" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - already minted in server/learn/services-and-indexes/services/query-service.json" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "minted - not previously observed in the registry; sibling of service:query-service/service:search-service in the same service: namespace" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused - already minted in server/learn/services-and-indexes/services/query-service.json" },
+    { "candidate_id": "n1ql:sqlpp", "label": "SQL++ (Couchbase's query language, formerly known as N1QL)", "reused_or_minted": "minted - the language itself as a top-level concept, distinct from any individual statement/clause concept in the n1ql: namespace" }
+  ],
+  "relations": [
+    { "subject": "service:query-service", "predicate": "dependsOnService", "object": "service:index-service", "reused_or_minted_predicate": "reused - same predicate/object pairing as server/learn/services-and-indexes/services/query-service.json", "evidence": "The Query Service needs both the Index Service and the Data Service to be running on Couchbase Capella." },
+    { "subject": "service:query-service", "predicate": "dependsOnService", "object": "service:data-service", "reused_or_minted_predicate": "reused", "evidence": "The Query Service needs both the Index Service and the Data Service to be running on Couchbase Capella." },
+    { "subject": "n1ql:sqlpp", "predicate": "formerlyKnownAs", "object": "https://www.couchbase.com/products/n1ql", "reused_or_minted_predicate": "minted - camelCase verb phrase; no existing predicate captures a language-rename fact (isSynonymOf is reserved for docs declaring two statements functionally identical, a different shape from one language being renamed to another)", "evidence": "The Couchbase implementation of SQL++ was formerly known as [N1QL](https://www.couchbase.com/products/n1ql) (pronounced \"nickel\")." },
+    { "subject": "n1ql:sqlpp", "predicate": "mustUseInsteadWhen", "object": "service:analytics-service", "reused_or_minted_predicate": "reused - same predicate shape as other 'use X instead of Y when...' guidance in the registry, here applied to a service-choice recommendation rather than a statement pair", "evidence": "Use the Analytics Service for online analytical processing (OLAP) — large datasets with complex analytical or ad hoc queries." },
+    { "subject": "n1ql:sqlpp", "predicate": "mustUseInsteadWhen", "object": "service:search-service", "reused_or_minted_predicate": "reused - same predicate shape as above", "evidence": "Use the Search Service for Full-Text Search with natural language processing across multiple data types and languages — custom text analysis, Geospatial search, and more." },
+    { "subject": "cloud/n1ql/query", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-manage/index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Administer Queries and Indexes](n1ql-manage/index.md)" },
+    { "subject": "cloud/n1ql/query", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [SQL++ for Query Reference](n1ql-language-reference/index.md)" },
+    { "subject": "cloud/n1ql/query", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-intro/index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Understand Queries](n1ql-intro/index.md)" },
+    { "subject": "cloud/n1ql/query", "predicate": "seeAlso", "object": "server/current/learn/services-and-indexes/services/query-service", "reused_or_minted_predicate": "reused - structural markdown link, cross-product (Capella page links directly into server/ docs)", "evidence": "* [Query Service architecture](../../server/current/learn/services-and-indexes/services/query-service.md)" },
+    { "subject": "cloud/n1ql/query", "predicate": "seeAlso", "object": "server/current/learn/data/data", "reused_or_minted_predicate": "reused - structural markdown link, cross-product", "evidence": "* [Data](../../server/current/learn/data/data.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "As a top-level landing/overview page for the whole cloud/n1ql/ directory, this page names no privilege, role, or credential-type content at all - access control is entirely deferred to the individual statement/clause reference pages this page links out to."
+  },
+  "cross_component_finding": "This page's 'Related Links' section links directly out of cloud/ into two server/ pages (Query Service architecture, Data) with no Capella-specific equivalent content of its own for those topics - the Query Service's underlying architecture and data-model concepts are treated as shared/inherited from server/ rather than re-documented for Capella. This is a landing-page-level instance of the same cross-product pattern createuser.json found at the statement level (the underlying engine/vocabulary is server/'s; only the front door differs).",
+  "cross_product_finding": "This page explicitly states the Query Service 'needs both the Index Service and the Data Service to be running on Couchbase Capella' and differentiates it from the Analytics Service (OLAP) and Search Service (full-text search) - the same three-way service-dependency/service-differentiation shape already captured for server/'s Query Service page (server/learn/services-and-indexes/services/query-service.json), confirming the service dependency graph is identical between server/ and Capella despite the different deployment model."
+}

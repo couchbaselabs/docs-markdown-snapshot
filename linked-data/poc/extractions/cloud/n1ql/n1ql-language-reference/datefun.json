@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/datefun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/datefun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:date-functions", "label": "Date Functions", "reused_or_minted": "reused - same concept id as datatypes.json's seeAlso target for this page" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts/relations for individual functions",
+    "finding": "2137-line pure function reference (timezones, date format codes, and dozens of individual date function definitions e.g. DATE_UTC, DATE_ADD_STR, MILLIS_TO_STR). Per batch guidance, this kind of page is expected to have empty/near-empty concepts and relations - no privileges, no statement-level structure, just function signatures and examples. Left as a single page-level concept with no relations rather than minting dozens of individual function concepts, which would be disproportionate for a POC extraction pass."
+  },
+  "cross_component_finding": "Recurrence of the known issue docs-issues/capella-pages-cite-server-versions.json, and the most repetitive instance of it found in this batch: this single page cites 'Couchbase Server 8.0 and later' five separate times as a feature gate for date-format capabilities (the TZN Time Zone Name format code, an optional format argument on two individual date functions, and output-format flexibility for DATE_UTC and the timezone-conversion function), e.g. 'In addition to the date formats listed here, Couchbase Server 8.0 and later also supports the TZN (Time Zone Name) format' and 'Available in clusters running Couchbase Server 8.0 and later.' Despite the volume of repetition, this is the same underlying anomaly already logged, not a new finding."
+}

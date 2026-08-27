@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/incompatible-with-access-surface",
+  "label": "incompatible with access surface",
+  "kind": "relation (schema-level)",
+  "type": "a statement/feature does not function when invoked via a specific client/interface (the Capella Query tab, the Data API, Couchbase Shell), independent of role, credential type, or edition/version gating - found independently on two unrelated pages (transactions.md, using-ai.md), suggesting a real fourth gating axis rather than a one-off",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Deliberately distinct from requiresUiMode (a settings-panel affordance gate, not an access-surface restriction) and from incompatibleWithCredentialType (a data-plane credential axis, not a client/interface axis). Object concepts: capella:query-tab, capella:data-api, capella:cbsh - promoted together as a family per round 5's reconciliation."
+}

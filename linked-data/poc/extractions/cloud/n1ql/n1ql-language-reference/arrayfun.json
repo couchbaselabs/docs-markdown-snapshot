@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/arrayfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/arrayfun.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:array-function",
+      "label": "Array function family (ARRAY_AGG, ARRAY_APPEND, ARRAY_AVG, ARRAY_CONCAT, ARRAY_CONTAINS, ARRAY_DISTINCT, ARRAY_EXCEPT, ARRAY_FLATTEN, ARRAY_SORT, ARRAY_SYMDIFF, etc., plus empty array subscript syntax)",
+      "reused_or_minted": "minted - umbrella concept for the function family covered on this page"
+    },
+    {
+      "candidate_id": "n1ql:empty-array-subscript",
+      "label": "Empty array subscript ([ ]) syntax",
+      "reused_or_minted": "minted - a distinct syntactic feature (not a function) documented on this page, with its own rule table"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:array-length",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:len",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_Equivalent_: [LEN()](metafun.md#len)"
+    },
+    {
+      "subject": "n1ql:array-symdiff",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:array-symdiff1",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has a synonym [ARRAY\\_SYMDIFF1()](#fn-array-symdiff1)."
+    },
+    {
+      "subject": "n1ql:array-remove",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:array-collection-operator",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function cannot be used to remove NULL values from an array as it uses an equality predicate when evaluating the array elements to remove. Since NULL does not equal NULL, such values are not matched and remain in the array. To remove NULL values, use the [Array Collection Operator](collectionops.md#array) instead."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege / incompatibleWithCredentialType",
+    "finding": "No access-control content - pure function/syntax reference, as expected for this batch's function pages."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Recurrence of the known version-string anomaly: the 'Empty Array Subscripts' section is headed literally 'Couchbase Server 8.0' as its availability marker, on a Capella cloud/n1ql page - despite Capella having no discrete version number. Evidence: 'Couchbase Server 8.0 You can use an empty array subscript (`[ ]`) to return an array that includes only defined elements.'"
+}

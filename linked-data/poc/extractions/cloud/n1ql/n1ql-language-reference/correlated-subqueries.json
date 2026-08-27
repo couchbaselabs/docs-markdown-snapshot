@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/correlated-subqueries",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/correlated-subqueries.md",
+  "concepts": [
+    { "candidate_id": "n1ql:correlated-subquery", "label": "Correlated Subquery", "reused_or_minted": "minted - central concept of this page" },
+    { "candidate_id": "n1ql:non-correlated-subquery", "label": "Non-Correlated Subquery", "reused_or_minted": "minted - contrasted directly against correlated subquery in the page's opening definition" },
+    { "candidate_id": "n1ql:subqueries", "label": "Subqueries (page)", "reused_or_minted": "minted - seeAlso target; the page this one continually cross-references for its worked examples (Q1-Q10A)" },
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "minted - seeAlso/tradesOffAgainst target" }
+  ],
+  "relations": [
+    { "subject": "n1ql:correlated-subquery", "predicate": "seeAlso", "object": "n1ql:subqueries", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For instance, in examples [Q1](subqueries.md#Q1), [Q2](subqueries.md#Q2), and [Q3](subqueries.md#Q3) on the Subqueries page, the subquery has no correlation with its outer query." },
+    { "subject": "n1ql:correlated-subquery", "predicate": "tradesOffAgainst", "object": "n1ql:join", "reused_or_minted_predicate": "reused - same comparative-strategy shape used elsewhere in the registry for pairs with opposite strengths/weaknesses depending on use case", "evidence": "In general, SQL++ recommends the usage of JOIN queries when possible, instead of semantically equivalent correlated subqueries. However, in some cases it may be easier or intuitive to formulate some queries using subqueries (instead of JOINs)." },
+    { "subject": "n1ql:correlated-subquery", "predicate": "seeAlso", "object": "n1ql:join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "This is exactly same as the Primary Key-Foreign Key relationship required to [join](join.md) two documents that are referenced in the outer and inner queries." }
+  ],
+  "cross_component_finding": "This page explicitly attributes a language capability to the product rather than the query engine: 'Couchbase Capella enables you to use correlated nested paths in a subquery FROM clause.' That's consistent with round 2's general finding that Capella pages frame SQL++ features as product capabilities rather than as engine/version-gated features - here there is no version gate at all, just a plain capability statement, which is the cleanest form of Capella's version-less framing seen so far in this batch."
+}

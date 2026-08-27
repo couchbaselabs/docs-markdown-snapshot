@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/local-user-security-administrator",
+  "label": "Local User Security Administrator",
+  "type": "a classic Couchbase administrative role, gating audit-service configuration on Capella - see role:full-administrator for the fourth-member 'role' collision writeup",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted alongside role:full-administrator as the same well-evidenced pair from n1ql-auditing.md - see that concept's promotion_reason.",
+  "note": "Do not conflate with capella-role:*, rbac-role:role, or sgw:role - see role:full-administrator's note for the full disambiguation."
+}

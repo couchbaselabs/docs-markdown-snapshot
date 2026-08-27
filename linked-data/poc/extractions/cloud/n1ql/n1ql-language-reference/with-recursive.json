@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/with-recursive",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/with-recursive.md",
+  "concepts": [
+    { "candidate_id": "n1ql:with-recursive-clause", "label": "WITH RECURSIVE clause", "reused_or_minted": "minted - no existing match; n1ql: namespace, '-clause' suffix per n1ql:orderby-clause convention" },
+    { "candidate_id": "n1ql:cycle-clause", "label": "CYCLE clause (recursion-cycle guard)", "reused_or_minted": "minted - one of two named methods this page gives for avoiding infinite recursion" },
+    { "candidate_id": "n1ql:options-clause-recursive", "label": "OPTIONS clause (recursion level/document limit guard)", "reused_or_minted": "minted - the second named method for avoiding infinite recursion; distinguished from a general 'OPTIONS' concept since its semantics here (levels/documents limits) are specific to WITH RECURSIVE" }
+  ],
+  "relations": [
+    { "subject": "n1ql:with-recursive-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/union", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The CTE for a recursive query includes a UNION or UNION ALL [set operator](union.md)." },
+    { "subject": "n1ql:with-recursive-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/select-syntax", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "A [SELECT query](select-syntax.md) that represents the anchor clause of the CTE." },
+    { "subject": "n1ql:with-recursive-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/identifiers", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "An [identifier](identifiers.md) or a [path](select-syntax.md#path) representing a field/nested-field." },
+    { "subject": "n1ql:with-recursive-clause", "predicate": "hasLimitation", "object": "n1ql:aggregate-function", "reused_or_minted_predicate": "minted - camelCase verb phrase capturing the docs' explicit syntax-restriction list, a different shape from mustUseInsteadWhen/tradesOffAgainst (these are hard restrictions, not alternatives)", "evidence": "GROUP BY, WINDOW, and AGGREGATE functions are not allowed in recursive clauses." },
+    { "subject": "n1ql:with-recursive-clause", "predicate": "hasLimitation", "object": "n1ql:join", "reused_or_minted_predicate": "minted - same predicate as above", "evidence": "OUTER JOINS are not allowed in recursive clauses because they can lead to potential infinite recursion." },
+    { "subject": "n1ql:cycle-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/with-recursive", "reused_or_minted_predicate": "reused - structural markdown link (self-referential anchor link within the same page)", "evidence": "The optional CYCLE clause provides one method for avoiding infinite recursions." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType / cluster-access-credential-type",
+    "finding": "No Prerequisites section on this page at all, same absence pattern as WHERE and unlike WITH (its non-recursive sibling) - WITH RECURSIVE's own docs page states no privilege requirement, presumably because it inherits the same read privilege as WITH/SELECT without restating it. Also no requiresEdition/availableSince at the page-intro level (unlike window.md/windowfun.md); the only version citation on this page is scoped to a single error-message detail (see cross_product_finding), not a feature-availability gate."
+  },
+  "cross_component_finding": "This page documents two concrete implicit resource limits with hard numeric defaults - 'Exceeding the implicit document limit (10000) when a memory quota is not in use...' and 'Exceeding the implicit level limit (1000) when the level option is not in use...' - which is a level of quantitative specificity not seen elsewhere in this batch's clause-reference pages. Flagged for visibility even though no relation predicate was minted for it, since these constants (10000 documents / 1000 levels) look like durable, checkable facts a future ontology round may want a dedicated 'hasImplicitLimit' predicate for.",
+  "cross_product_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: 'Couchbase Server 7.6.2' is cited as a version heading directly above an example error message ('In Couchbase Server 7.6.2, the CYCLE clause returns the following error if you enter an invalid expression'), despite Capella having no discrete version numbers. Narrower than window.md/windowfun.md's edition+feature-availability citations - this one gates a specific error-message wording/error-code detail rather than a language capability."
+}

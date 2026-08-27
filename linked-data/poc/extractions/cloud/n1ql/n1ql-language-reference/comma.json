@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/comma",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/comma.md",
+  "concepts": [
+    { "candidate_id": "n1ql:comma-separated-join", "label": "Comma-Separated Join", "reused_or_minted": "minted" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "minted - a distinct privilege from privilege:capella-basic-access-write (the promoted pair covers write/index-management statements; this page's SELECT-context prerequisite is a read privilege instead)" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "minted - sibling of privilege:capella-basic-access-read, distinct from privilege:capella-advanced-access-query-index" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:comma-separated-join",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; object minted, a new read-keyed member of the credential-type privilege family",
+      "evidence": "To select data from a keyspace or expression,, your client must have specific privileges on the keyspace or expression that you want to select from. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types). | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:comma-separated-join",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Unlike DDL statements (CREATE/DROP/GRANT/REVOKE) which gate on management-plane capella-role:* roles, this SELECT/FROM-clause read operator gates purely on the data-plane credential-type privilege pair - no Capella management-plane role is mentioned anywhere on the page. This is consistent with the hypothesis that requiresCapellaRole is specific to statements that alter cluster/security state, while ordinary read operators only carry the credential-type gate."
+  },
+  "cross_component_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: 'In clusters using Couchbase Server 7.6 and later, you can use the LATERAL keyword as a visual reminder that a join contains correlated expressions' - a literal 'Couchbase Server 7.6' version-gate citation on a Capella page describing a SQL++ language feature, despite Capella having no discrete version numbers."
+}

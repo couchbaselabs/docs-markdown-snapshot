@@ -1,0 +1,105 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/vectorfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/vectorfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:approx-vector-distance", "label": "APPROX_VECTOR_DISTANCE() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:ann-distance", "label": "ANN_DISTANCE() function (alias of APPROX_VECTOR_DISTANCE())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:vector-distance", "label": "VECTOR_DISTANCE() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:knn-distance", "label": "KNN_DISTANCE() function (alias of VECTOR_DISTANCE())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:decode-vector", "label": "DECODE_VECTOR() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:vector-decode", "label": "VECTOR_DECODE() function (alias of DECODE_VECTOR())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:encode-vector", "label": "ENCODE_VECTOR() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:vector-encode", "label": "VECTOR_ENCODE() function (alias of ENCODE_VECTOR())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:normalize-vector", "label": "NORMALIZE_VECTOR() function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:normalise-vector", "label": "NORMALISE_VECTOR() function (alias of NORMALIZE_VECTOR())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:vector-normalise", "label": "VECTOR_NORMALISE() function (alias of NORMALIZE_VECTOR())", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:vector-normalize", "label": "VECTOR_NORMALIZE() function (alias of NORMALIZE_VECTOR())", "reused_or_minted": "minted" },
+    { "candidate_id": "vector-index:vectors-and-indexes-overview", "label": "Use Vector Indexes for AI Applications (overview)", "reused_or_minted": "reused" },
+    { "candidate_id": "vector-index:hyperscale-reranking", "label": "Hyperscale Vector Index Reranking and Full Vector Persistence", "reused_or_minted": "reused" },
+    { "candidate_id": "vector-index:vector-index-best-practices", "label": "Vector Index Best Practices (recall accuracy)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:ann-distance",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:approx-vector-distance",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has an alias [ANN\\_DISTANCE()](#aliases)."
+    },
+    {
+      "subject": "n1ql:knn-distance",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:vector-distance",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has an alias [KNN\\_DISTANCE()](#vector%5Fdistance)."
+    },
+    {
+      "subject": "n1ql:vector-decode",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:decode-vector",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has an alias [VECTOR\\_DECODE()](#decode%5Fvector)."
+    },
+    {
+      "subject": "n1ql:vector-encode",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:encode-vector",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has an alias [VECTOR\\_ENCODE()](#encode%5Fvector)."
+    },
+    {
+      "subject": "n1ql:normalise-vector",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:normalize-vector",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has aliases [NORMALISE\\_VECTOR()](#aliases), [VECTOR\\_NORMALISE()](#aliases), and [VECTOR\\_NORMALIZE()](#aliases)."
+    },
+    {
+      "subject": "n1ql:vector-normalise",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:normalize-vector",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has aliases [NORMALISE\\_VECTOR()](#aliases), [VECTOR\\_NORMALISE()](#aliases), and [VECTOR\\_NORMALIZE()](#aliases)."
+    },
+    {
+      "subject": "n1ql:vector-normalize",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:normalize-vector",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has aliases [NORMALISE\\_VECTOR()](#aliases), [VECTOR\\_NORMALISE()](#aliases), and [VECTOR\\_NORMALIZE()](#aliases)."
+    },
+    {
+      "subject": "n1ql:approx-vector-distance",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:vector-distance",
+      "reused_or_minted_predicate": "reused - already promoted for comparative vector-index-strategy relations; this is the same speed-vs-precision trade-off shape applied to the two distance functions rather than two index types",
+      "evidence": "This function is faster, but less precise than [VECTOR\\_DISTANCE()](#vector%5Fdistance). You should use this function in your production queries. ... This function is slower, but more precise than [APPROX\\_VECTOR\\_DISTANCE()](#approx%5Fvector%5Fdistance). You should use this function to check the accuracy of your production queries, and adjust the index and query settings to improve the recall accuracy."
+    },
+    {
+      "subject": "n1ql:approx-vector-distance",
+      "predicate": "seeAlso",
+      "object": "vector-index:hyperscale-reranking",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Hyperscale Vector Index Reranking and Full Vector Persistence](../../vector-index/hyperscale-reranking.md)."
+    },
+    {
+      "subject": "n1ql:vector-distance",
+      "predicate": "seeAlso",
+      "object": "vector-index:vector-index-best-practices",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Determine Recall Rate](../../vector-index/vector-index-best-practices.md#recall-accuracy)."
+    },
+    {
+      "subject": "n1ql:approx-vector-distance",
+      "predicate": "seeAlso",
+      "object": "vector-index:vectors-and-indexes-overview",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about vectors and vector indexes, see [Use Vector Indexes for AI Applications](../../vector-index/vectors-and-indexes-overview.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No RBAC/access-control content - pure function reference, as expected for this batch's function pages. The only conditional-behavior content is index-selection logic (APPROX_VECTOR_DISTANCE is only accelerated by a Hyperscale/Composite Vector index if the index's vector key, similarity metric, and dimension all match the function call), which is a query-optimizer behavior, not an access-control gate, so not modeled with requiresPrivilege/behavesDifferentlyUnder."
+  }
+}

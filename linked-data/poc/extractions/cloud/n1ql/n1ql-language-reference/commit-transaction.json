@@ -1,0 +1,43 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/commit-transaction",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/commit-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - minted in begin-transaction.json, same batch" },
+    { "candidate_id": "n1ql:durability-level", "label": "durability_level query-parameter (transaction-scoped durability setting for SQL++)", "reused_or_minted": "minted - SQL++/N1QL request-level parameter, distinct from sdk:transaction-durability (Java SDK's TransactionsConfig-level setting) though conceptually parallel" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "requiresSetting",
+      "object": "n1ql:durability-level",
+      "reused_or_minted_predicate": "reused - requiresSetting predicate already in registry",
+      "evidence": "The transaction can only be committed if the transactional [durability](../../../server/current/learn/data/durability.md) requirements can be met. The transaction durability level is set by the request-level [durability_level](../n1ql-manage/query-settings.md#durability%5Flevel) parameter."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "Like BEGIN TRANSACTION, COMMIT TRANSACTION has no Capella-specific access-control gate at all. Its only prerequisite is durability-capability, not identity/role/credential-type - reinforcing that the transaction-statement family sits entirely outside the access-control model that governs DDL statements in this round."
+  },
+  "cross_component_finding": "This page links directly to server/'s durability concept page ('../../../server/current/learn/data/durability.md') for an explanation of transactional durability, and cites a numeric server error code ('a 161 error code is generated') without any Capella-specific framing - both consistent with this statement family being shared server/ source content, though not a literal 'Couchbase Server X.Y' version string so not logged against the existing docs-issue.",
+  "cross_product_finding": "Open question (per task brief): no textual evidence on this page connects COMMIT TRANSACTION to the Java SDK's distributed-transaction feature (sdk:distributed-transaction) or to sdk:transaction-durability. The durability_level parameter here and the SDK's TransactionsConfig.durabilityLevel() setting (see java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json) share the same underlying durability-level enum concept, but this page gives no explicit cross-reference to the SDK feature - flagging the likely-shared-mechanism-but-unconfirmed-by-text situation rather than asserting a relation."
+}

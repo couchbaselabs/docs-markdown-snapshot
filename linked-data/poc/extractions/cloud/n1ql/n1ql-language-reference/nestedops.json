@@ -1,0 +1,10 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/nestedops",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/nestedops.md",
+  "concepts": [
+    { "candidate_id": "n1ql:nested-operators", "label": "Nested Operators and Expressions (field selection, element selection, array slicing)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention; referenced as a seeAlso target from objectfun.md in this batch" }
+  ],
+  "relations": [],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "Pure operator-syntax reference page (dot notation for field selection, bracket notation for element selection and array slicing) with no privileges, credential-type gating, capella-role gating, or version/edition citations of any kind - one of the cleanest examples in this batch of a page with genuinely nothing beyond syntax and worked examples to extract." }
+}

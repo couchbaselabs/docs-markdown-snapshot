@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/n1ql/n1ql-manage/index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-manage/index.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "cloud/n1ql/n1ql-manage/index", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-intro/sysinfo", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Get System Information](../n1ql-intro/sysinfo.md)" },
+    { "subject": "cloud/n1ql/n1ql-manage/index", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-manage/monitoring-n1ql-query", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Manage and Monitor Queries](monitoring-n1ql-query.md)" },
+    { "subject": "cloud/n1ql/n1ql-manage/index", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-manage/query-awr", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Automatic Workload Repository](query-awr.md)" },
+    { "subject": "cloud/n1ql/n1ql-manage/index", "predicate": "seeAlso", "object": "cloud/clusters/index-service/manage-indexes", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Manage Indexes](../../clusters/index-service/manage-indexes.md)" },
+    { "subject": "cloud/n1ql/n1ql-manage/index", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-manage/query-settings", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Configure Queries](query-settings.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "concepts",
+    "finding": "This is a management/administration landing page organized into four bulleted sub-sections (Get System Information, Manage Queries, Manage Primary and Secondary Indexes, Settings and Parameters), each a one-sentence lead-in plus links to detail pages. No statement/privilege/role content of its own to extract - it points at 'the Couchbase Capella UI' for index management rather than at SQL++ DDL, and describes queries as monitored/managed 'using SQL++' without naming any specific privilege or role. Empty concepts array per batch instructions for thin/landing pages, consistent with n1ql-intro/index.json's treatment of the sibling landing page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

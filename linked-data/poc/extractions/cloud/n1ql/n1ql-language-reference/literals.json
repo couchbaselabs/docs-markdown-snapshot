@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/literals",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/literals.md",
+  "concepts": [
+    { "candidate_id": "n1ql:literals", "label": "Literals (SQL++ expression grammar)", "reused_or_minted": "minted - expression-grammar concept, this page's own topic; not a statement" },
+    { "candidate_id": "n1ql:boolean-logic", "label": "Boolean Logic", "reused_or_minted": "minted - target of a structural link" }
+  ],
+  "relations": [
+    { "subject": "n1ql:literals", "predicate": "seeAlso", "object": "n1ql:boolean-logic", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Every value also has a \"truth\" value; these truth value conversions are explained in [Boolean Logic](booleanlogic.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No Prerequisites/RBAC section, consistent with identifiers.json in this same batch - as a pure expression-grammar reference (strings, numbers, booleans, NULL, MISSING), Literals sits below the level at which Capella's credential-type-keyed privilege model attaches."
+  }
+}

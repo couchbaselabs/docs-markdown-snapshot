@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/conventions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/conventions.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts/relations (entire record)",
+    "finding": "Thin notational-convention page (an EBNF-dialect legend table for reading the other syntax diagrams). No internal cross-references to other doc pages, no statement/privilege/version content. Fully empty extraction as anticipated for reference-legend pages."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/limit",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/limit.md",
+  "concepts": [
+    { "candidate_id": "n1ql:limit", "label": "LIMIT clause", "reused_or_minted": "minted - first occurrence in this batch" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - cross-product reuse, already promoted from server/n1ql-intro/queriesandresults" }
+  ],
+  "relations": [
+    { "subject": "n1ql:limit", "predicate": "seeAlso", "object": "n1ql:query-context", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No Prerequisites/RBAC section at all, unlike LET, INFER, JOIN, and INSERT in this same batch. LIMIT is a modifier clause used inside SELECT/INSERT/UPDATE/DELETE rather than a standalone statement, so it inherits whatever privilege the enclosing statement requires instead of declaring its own - the credential-type/privilege model attaches at the statement level, not to every clause nested within one."
+  },
+  "cross_product_finding": "RECURRENCE of the known anomaly logged in docs-issues/capella-pages-cite-server-versions.json: 'Starting from version 4.5, the LIMIT clause in INSERT, UPDATE, and DELETE statements is no longer a hint. It indicates that the actual number of mutations will be less than or equal to the specified LIMIT.' Capella has no discrete version numbers, yet this page cites a literal (implicitly Couchbase Server) version number."
+}

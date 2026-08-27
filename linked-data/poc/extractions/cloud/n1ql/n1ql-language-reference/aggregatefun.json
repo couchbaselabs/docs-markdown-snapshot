@@ -1,0 +1,55 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/aggregatefun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/aggregatefun.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:aggregate-function",
+      "label": "Aggregate function family (ARRAY_AGG, AVG, COUNT, COUNTN, MAX, MEAN, MEDIAN, MIN, STDDEV*, SUM, VARIANCE*)",
+      "reused_or_minted": "minted - the umbrella concept for the whole function family covered on this page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:aggregate-function",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/windowfun",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Capella, you can use aggregate functions as [window functions](windowfun.md) by specifying a window definition using the [OVER Clause](#over-clause)."
+    },
+    {
+      "subject": "n1ql:mean",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:avg",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function has a synonym [MEAN()](#mean)."
+    },
+    {
+      "subject": "n1ql:var-pop",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:variance-pop",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Synonym of [VARIANCE\\_POP()](#variance%5Fpop)."
+    },
+    {
+      "subject": "n1ql:var-samp",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:variance-samp",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Synonym of [VARIANCE\\_SAMP()](#variance%5Fsamp)."
+    },
+    {
+      "subject": "n1ql:count",
+      "predicate": "seeAlso",
+      "object": "server:transactions",
+      "reused_or_minted_predicate": "reused (seeAlso); object 'server:transactions' minted as a page-level cross-product reference target since the registry slice provided has no concept for the server/ transactions feature this footnote links to",
+      "evidence": "When counting all the documents within a collection, this function usually relies on the collection statistics, which include any [transaction records](../../../server/current/learn/data/transactions.md#additional-storage-use) that may be stored in that collection."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege / incompatibleWithCredentialType",
+    "finding": "No RBAC/access-control content - pure function reference, as expected for this batch's function pages."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Two findings worth flagging: (1) Recurrence of the known version-string anomaly - 'In Couchbase Server 7.0 and later, window functions (and aggregate functions used as window functions) may specify their own inline window definitions...' cites a literal server/ version on a Capella page. (2) A genuine cross-product link: COUNT(*)'s footnote links directly from this Capella cloud/n1ql page into server/current/learn/data/transactions.md#additional-storage-use, discussing how transaction records affect collection statistics. This is a general ACID-transactions/storage-use reference, not the Java SDK's distributed-transactions feature (sdk:distributed-transaction) specifically - the page gives no textual evidence connecting it to SDK-level distributed transactions, so per this round's instructions this is flagged as an open question rather than asserted as a relation to sdk:distributed-transaction. Given this round's hypothesis is specifically watching for that connection on BEGIN/COMMIT/ROLLBACK/SAVEPOINT/SET TRANSACTION pages (not in this batch), this footnote is the closest adjacent signal found so far - worth the reconciler cross-checking against whichever batch covers those transaction-statement pages."
+}

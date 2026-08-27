@@ -1,0 +1,47 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/optimizer-hints",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/optimizer-hints.md",
+  "concepts": [
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints (hint-comment syntax)", "reused_or_minted": "minted - matches n1ql:<kebab-case> convention for language-feature concepts" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - already minted in server/n1ql/n1ql-language-reference/cost-based-optimizer.json, shared n1ql: namespace" },
+    { "candidate_id": "n1ql:query-hints", "label": "Query Block Hints (e.g. ORDERED)", "reused_or_minted": "minted - same candidate_id used in this batch's query-hints.json extraction" },
+    { "candidate_id": "n1ql:keyspace-hints", "label": "Keyspace Hints", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:negative-keyspace-hints", "label": "Negative Keyspace Hints", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:optimizer-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can use optimizer hints to request that the [optimizer](cost-based-optimizer.md) should consider specific indexes, join methods, join ordering, and so on, when creating the plan for a query."
+    },
+    {
+      "subject": "n1ql:optimizer-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Query Block Hints](query-hints.md) apply to an entire query block."
+    },
+    {
+      "subject": "n1ql:optimizer-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:keyspace-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Keyspace Hints](keyspace-hints.md) apply to a specific keyspace."
+    },
+    {
+      "subject": "n1ql:optimizer-hints",
+      "predicate": "seeAlso",
+      "object": "n1ql:negative-keyspace-hints",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[Negative Keyspace Hints](negative-keyspace-hints.md) apply to a specific keyspace, but instruct the optimizer not to use certain options."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "The hint-comment syntax itself carries no access-control gate - it is a query-text feature layered onto whichever statement it decorates (SELECT/DELETE/UPDATE/MERGE), so any privilege requirement belongs to the underlying statement, not to the hint syntax. This is consistent with query-hints.json and other pure-syntax pages in this batch."
+  },
+  "cross_component_finding": "Recurrence of the known issue in docs-issues/capella-pages-cite-server-versions.json: 'In Couchbase Server 8.0 and later, a hint comment is supported in SELECT, DELETE, UPDATE, and MERGE statements only.' - a literal 'Couchbase Server 8.0' version-gate citation on a Capella page, despite Capella having no discrete version numbers."
+}

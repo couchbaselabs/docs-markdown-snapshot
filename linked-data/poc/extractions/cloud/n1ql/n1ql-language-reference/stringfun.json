@@ -1,0 +1,47 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/stringfun",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/stringfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:fn-str-compress", "label": "COMPRESS(input_string) function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:fn-str-uncompress", "label": "UNCOMPRESS(input_string) function", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:fn-mb-string-functions", "label": "Multi-byte string function family (MB_LENGTH, MB_LPAD, MB_RPAD, MB_SUBSTR, MB_SUBSTR1, MB_POS/MB_POS1/MB_POSITION/MB_POSITION1)", "reused_or_minted": "minted - grouping the 7+ MB_ functions that share one identical version gate, rather than minting one concept per function, since the batch guidance says not to force content on pure reference pages" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - no existing version:server-* entry matches; following the precedent set by version:server-6-6-1 (minted in java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json) for adding new entries to the closed version family when a page cites a real version the pre-minted set doesn't cover" },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "minted - same rationale as version:server-8-0 above" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:fn-str-compress",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 8.0"
+    },
+    {
+      "subject": "n1ql:fn-str-uncompress",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 8.0"
+    },
+    {
+      "subject": "n1ql:fn-mb-string-functions",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function is available in clusters using Couchbase Server 7.6 or later."
+    },
+    {
+      "subject": "n1ql:stringops",
+      "predicate": "seeAlso",
+      "object": "n1ql:fn-str-compress",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "> To convert a compressed string back to its original format, use the [UNCOMPRESS()](#fn-str-uncompress) function."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType",
+    "finding": "This is a pure function reference page (COMPRESS, CONCAT, CONTAINS, INITCAP, LENGTH, LOWER, LPAD, LTRIM, MASK, the MB_ multi-byte family, POS/POSITION family, REPEAT, REPLACE, REVERSE, RPAD, RTRIM, SPLIT, SUBSTR/SUBSTR1, SUFFIXES, TITLE, TOKENS, TRIM, UPPER, URLDECODE, URLENCODE, UNCOMPRESS) with no privilege, role, or credential-type gating anywhere - the only gating content is the version-availability notes captured above."
+  },
+  "cross_component_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions.json: COMPRESS()/UNCOMPRESS() are each tagged simply 'Couchbase Server 8.0' and seven of the MB_ (multi-byte) string functions are each tagged 'This function is available in clusters using Couchbase Server 7.6 or later' - literal server/-style version strings on a Capella page, despite Capella having no discrete version numbers. Logged as a recurrence, not a new finding. Notably, this recurrence spans TWO different version strings (8.0 and 7.6) on the same page, both absent from the pre-existing version:server-* closed vocabulary (server-6-5, server-6-6-1, server-7-0) - new version concepts minted per the version:server-6-6-1 precedent."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-n1ql-error-codes-orphaned-see-also",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cloud/n1ql/n1ql-language-reference/n1ql-error-codes.md ends with a '## See Also' heading that has no content beneath it - a small, concrete, fixable gap, same category as round 2's revoke-page-missing-group-parameter-row finding.",
+  "about": ["cloud/n1ql/n1ql-language-reference/n1ql-error-codes"],
+  "foundDuring": "round 5 (115-page cloud/n1ql/ sweep)",
+  "status": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/booleanlogic",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/booleanlogic.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / incompatibleWithCredentialType / availableSince",
+    "finding": "Pure language-semantics reference page (Boolean coercion rules, four-valued logic truth tables, NULL/MISSING comparison table for IS-family operators). No statements, no privileges, no product-specific primitives, no version gating. No candidate concepts or relations found; expected near-empty extraction per batch guidance."
+  }
+}

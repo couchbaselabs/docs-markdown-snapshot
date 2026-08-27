@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/unnest",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/unnest.md",
+  "concepts": [
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - already established elsewhere in this directory (referenced from timeseries.json, same batch)" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:metafun", "label": "Meta Functions (META, UNNEST_POS, etc.)", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "n1ql:indexing-arrays", "label": "Indexing Arrays (ARRAY index)", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:unnest",
+      "predicate": "seeAlso",
+      "object": "n1ql:from",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `UNNEST` clause is used within the [FROM](from.md) clause."
+    },
+    {
+      "subject": "n1ql:unnest",
+      "predicate": "seeAlso",
+      "object": "n1ql:metafun",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To return the position of the elements in an unnested array after you use `UNNEST`, use the [UNNEST\\_POS function](metafun.md#unnest-pos)."
+    },
+    {
+      "subject": "n1ql:unnest",
+      "predicate": "seeAlso",
+      "object": "n1ql:indexing-arrays",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "If you want to use an [ARRAY index](indexing-arrays.md) for the UNNEST query, you can use any arbitrary alias for the right side of the UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No access-control content - UNNEST is a FROM-clause term, not a statement in its own right, so it carries no independent RBAC gate; the underlying SELECT statement's privilege requirements (documented on comma.json/selectintro-type pages) govern access instead."
+  }
+}

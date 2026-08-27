@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/orderby",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/orderby.md",
+  "concepts": [
+    { "candidate_id": "n1ql:orderby-clause", "label": "ORDER BY clause", "reused_or_minted": "minted - matches n1ql:<kebab-case-clause-name> convention" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in this same round's comma.json extraction for the identical Read/Query Read table" },
+    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials)", "reused_or_minted": "reused - same candidate_id minted in comma.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:orderby-clause",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "To select data from a document or keyspace, your client must have necessary privileges on the document or keyspace. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types). | Basic | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) |"
+    },
+    {
+      "subject": "n1ql:orderby-clause",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-advanced-access-query-read",
+      "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
+      "evidence": "| Advanced | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Like other SELECT-clause components in this batch (comma.md, selectclause.md, selectintro.md), the ORDER BY clause carries only the data-plane credential-type privilege gate, never a management-plane capella-role:* requirement - reinforcing the round-2 hypothesis that requiresCapellaRole is reserved for statements that alter cluster/security state, not read-only query clauses."
+  },
+  "cross_component_finding": "The prerequisites text ('your client must have necessary privileges on the document or keyspace') attributes the requirement to whatever keyspace the ORDER BY clause's containing SELECT references - the clause itself doesn't introduce a distinct privilege, it merely inherits the SELECT statement's Read/Query Read gate. This is the credential-type/privilege model holding up cleanly on a purely syntactic sub-clause, not just top-level statements."
+}

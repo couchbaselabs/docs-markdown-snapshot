@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/time-series",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/time-series.md",
+  "concepts": [
+    { "candidate_id": "n1ql:time-series", "label": "Time Series Data feature (store/process time series data using a specific document format with ts_start/ts_end/ts_interval/ts_data fields)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:fn-timeseries", "label": "_TIMESERIES Function", "reused_or_minted": "minted" },
+    { "candidate_id": "version:server-7-2", "label": "Couchbase Server 7.2", "reused_or_minted": "minted - no existing version:server-* entry matches; following the precedent set by version:server-6-6-1 (java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json) for adding new entries to the closed version family" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "availableSince",
+      "object": "version:server-7-2",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This feature is only available on clusters using Couchbase Server 7.2 or later."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "seeAlso",
+      "object": "n1ql:fn-timeseries",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To query time series data, Couchbase Capella provides the \\_TIMESERIES function. For full details and examples, see [\\_TIMESERIES Function](timeseries.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "No access-control content on this page at all - time series is a data-modeling/document-structure convention plus an associated query function, not a gated statement or operator. The only gating fact on the page is the version-availability note."
+  },
+  "cross_component_finding": "Recurrence of the known docs-issue capella-pages-cite-server-versions.json: 'This feature is only available on clusters using Couchbase Server 7.2 or later.' - a literal server/-style version string on a Capella page, despite Capella having no discrete version numbers. Logged as a recurrence, not a new finding. Also links out to server/'s expiration concept ('you can set the [expiration](../../../server/current/learn/data/expiration.md) for your time series documents') and an SDK-authoring how-to guide ('Import Data with an SDK'), both shared cross-component content rather than anything Capella-specific."
+}

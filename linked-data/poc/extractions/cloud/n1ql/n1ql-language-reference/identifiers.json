@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/identifiers",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/identifiers.md",
+  "concepts": [
+    { "candidate_id": "n1ql:identifiers", "label": "Identifiers (SQL++ expression grammar)", "reused_or_minted": "minted - expression-grammar concept, this page's own topic; not a statement" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Unlike the statement/clause pages in this same batch (LET, INFER, INSERT, JOIN), Identifiers carries no Prerequisites/RBAC section at all. As a pure expression-grammar reference describing identifier syntax (unescaped, escaped, aliasing rules), it sits below the level at which Capella's credential-type-keyed privilege model attaches - that model gates statements/clauses that touch keyspace data, not grammar-level building blocks used inside them."
+  }
+}

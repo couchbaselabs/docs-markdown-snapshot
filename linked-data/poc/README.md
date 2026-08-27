@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Four rounds so far, each a deliberate escalation:
+automating it. Five rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -22,6 +22,11 @@ automating it. Four rounds so far, each a deliberate escalation:
    access to Amazon Bedrock) that also happened to test whether a single
    product's own feature can cut across its existing per-operation vocabulary.
    It did — see the headline finding in `reconciliation.md`.
+5. **115 pages completing `cloud/n1ql/`** — the first real-scale (not trial)
+   round run on Bedrock, closing out a directory round 2 had only sampled a
+   fifth of. Found that round 2's "simple credential-type pair" was actually
+   a whole per-statement privilege catalog with real AND/OR and two-axis
+   structure the smaller sample hadn't surfaced.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -29,7 +34,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-148 pages total:
+263 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -52,6 +57,10 @@ time/cost projections and how they held up against the round-2 run's real number
   round tested" in `reconciliation.md`'s round 4 section) that also confirmed
   distributed transactions need their own structural layer, not a reuse of the
   SDK's existing per-operation vocabulary.
+- **115 more, `cloud/n1ql/`** — the remaining pages in Capella's SQL++/N1QL
+  language reference, intro, and manage sections (round 2 had sampled 23 of
+  the directory's 138 pages; this closes it out). The first real-scale
+  extraction round run on the post-Bedrock-migration pipeline.
 
 ## Identifiers
 
@@ -84,11 +93,16 @@ from "still in `extractions/`."
   primitives and Couchbase Lite's own edition split; round 4 added four Java SDK
   transaction primitives (`sdk:transaction-attempt-context`,
   `sdk:transaction-durability`, `sdk:transaction-query-mode`,
-  `sdk:transaction-error-handling`) and a new `version:sdk-*` family. See
+  `sdk:transaction-error-handling`) and a new `version:sdk-*` family; round 5
+  added eleven more Capella Advanced-credential privileges (completing what
+  turned out to be a full per-statement privilege catalog, not the simple
+  pair round 2 first saw), an access-surface concept family
+  (`capella:query-tab`/`data-api`/`cbsh`), and a fourth thing called "role"
+  (`role:full-administrator`/`local-user-security-administrator`). See
   `reconciliation.md` for the full list and why each was promoted — including a
   same-word-different-thing collision the vocabulary had been quietly
-  accumulating: `capella-role:*`, `rbac-role:role`, and `sgw:role` are three
-  structurally distinct things all called "role." Note: round 3's Java SDK
+  accumulating: `capella-role:*`, `rbac-role:role`, `sgw:role`, and now
+  `role:*` are four structurally distinct things all called "role." Note: round 3's Java SDK
   batch (12 pages) was reconciled only at the narrative level and never
   promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
   `sdk:error-handling`, and others are reused across round 3/4 extraction
@@ -105,7 +119,10 @@ from "still in `extractions/`."
   the whole project), `hasNoRelationshipTo`, and a handful more covering Sync
   Gateway's role/channel mechanics; round 4 added `sharesOptionSetWith`, for
   two concepts that reuse identical enum values at incompatible structural
-  scopes. Kept separate from `concepts/` on purpose —
+  scopes; round 5 added `incompatibleWithAccessSurface` (a fourth Capella
+  gating axis alongside role/credential-type/UI-mode), `requiresPriorExecutionOf`
+  (a real cross-round, cross-product reuse the written registry caught
+  correctly), and `renamedFrom`. Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -115,8 +132,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 20 entries
-  as of round 4, which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 25 entries
+  as of round 5, which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -267,6 +284,42 @@ also surfaced a real finding:**
     degradation. See `../ingest-cost-and-time-estimate.md` for the
     tooling/cost specifics.
 
+**Round 5 (115 pages, completing `cloud/n1ql/`) — the first real-scale round on Bedrock:**
+
+12. **Round 2's "simple credential-type pair" was actually a whole
+    per-statement privilege catalog.** Reading the other 115 of 138 pages in
+    the directory (round 2 had sampled 23) surfaced eleven new Advanced-side
+    privileges, a privilege keyed by credential type *and* function scope
+    simultaneously (`createfunction.md`), and the first AND-combination
+    requirement seen in the family (`upsert.md` needs Query Insert *and*
+    Query Update, not either) — none of it visible from the smaller sample.
+13. **The model has real, evidenced boundaries.** Sequence operators and
+    `window`/`windowfun` use bare server-style RBAC privilege names instead of
+    the credential-type pair; search functions need no credential at all;
+    transaction-control statements (BEGIN/COMMIT/ROLLBACK/SAVEPOINT/SET
+    TRANSACTION) carry no access-control gating whatsoever, confirmed across
+    every TCL page in the batch.
+14. **A fourth thing called "role."** `n1ql-auditing.md` gates audit-service
+    configuration with classic admin roles (Full Administrator, Local User
+    Security Administrator) that fit none of the three "role" concepts the
+    vocabulary was already tracking — left unmerged, like the other three,
+    since no page states a relationship between any of them.
+15. **A fourth gating axis: access surface.** Two unrelated pages
+    (`transactions.md`, `using-ai.md`) independently state a feature is
+    unsupported via specific client interfaces (Query tab, Data API,
+    Couchbase Shell) regardless of role or credentials — a genuinely new axis
+    alongside role/credential-type/UI-mode.
+16. **The known server-version-citation anomaly recurred far more densely
+    than round 2 found it** — 45 of 115 pages (39%), not the original 6 —
+    plus a sibling anomaly (Enterprise/Community edition badges on a product
+    with no editions) found for the first time. Density this high reads like
+    a systemic authoring pattern, not isolated copy-paste.
+17. **The written registry caught a real cross-round reuse correctly.** An
+    unpromoted predicate minted in an earlier `server/` extraction
+    (`requiresPriorExecutionOf`) was independently found and reused verbatim
+    by this round's Capella equivalent, for the identical fact — the positive
+    case the round 2 `requiresMinVersionFor` incident was the negative case of.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -279,25 +332,30 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (20 entries) —
-  most valuably the three-way "role" collision and the Sync Gateway/Capella
-  access-control questions, since those are product-shape decisions, not just
-  docs cleanup.
+- Get a subject-matter expert to work through `docs-issues/` (25 entries) —
+  most valuably the four-way "role" collision, the Sync Gateway/Capella
+  access-control questions, and round 5's `merge`/`nest` privilege-naming
+  inconsistency (does "Query Select" = "Query Read"?), since those are
+  product-shape decisions, not just docs cleanup.
 - Run a Java SDK concept-promotion pass for round 3's backlog
   (`sdk:kv-operations`, `sdk:durability`, `sdk:cas-optimistic-locking`,
   `sdk:error-handling`, `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
   `sdk:bucket-management`, at minimum) before running any further Java SDK
   rounds — see round 4's note in `reconciliation.md`.
+- Correct the likely `prepare.json` privilege mis-map flagged in round 5
+  (reused `query-index` where `query-update` looks like the right fit)
+  whenever this registry is next consumed downstream.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  four rounds.
+  five rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- If this looks worth pursuing past a POC: four axes of stress test have now
-  been run (cross-component, cross-deployment-model, cross-product-family, and
-  round 4's within-one-product-across-features). The next natural one is scale
-  itself — a real batch against the ~3,900-page "latest version only" corpus
-  from `../ingest-cost-and-time-estimate.md`, now that the
-  extraction/reconcile/promote pipeline has been exercised on Bedrock and on
-  every axis it's likely to meet at that size.
+- If this looks worth pursuing past a POC: five axes of stress test have now
+  been run (cross-component, cross-deployment-model, cross-product-family,
+  round 4's within-one-product-across-features, and round 5's
+  full-vs-partial-directory-coverage). The next natural one is scale itself —
+  a real batch against the ~3,900-page "latest version only" corpus from
+  `../ingest-cost-and-time-estimate.md`, now that the extraction/reconcile/
+  promote pipeline has been exercised on Bedrock, at real (not just trial)
+  scale, and on every axis it's likely to meet at that size.

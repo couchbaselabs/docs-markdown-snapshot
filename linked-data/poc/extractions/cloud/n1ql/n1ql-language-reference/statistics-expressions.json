@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/statistics-expressions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/statistics-expressions.md",
+  "concepts": [
+    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already minted in statistics-delete.json from this batch" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:updatestatistics",
+      "predicate": "dependsOnService",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use the cost-based optimizer with that query, you must collect statistics on the same fields that you used to create the index."
+    },
+    {
+      "subject": "n1ql:statistics-expressions",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Cost-Based Optimizer](cost-based-optimizer.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType / requiresPrivilege",
+    "finding": "Like statistics-delete.md, this page (the UPDATE STATISTICS ... FOR keyspace(index-key...) syntax for gathering statistics on index expressions) carries no access-control content - no privilege, role, or credential-type gate. The bulk of the page is EXPLAIN-plan JSON output illustrating cardinality/cost estimates, which is pure optimizer mechanics, not ontology-relevant."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/n1ql/n1ql-language-reference/indexing-meta-info",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/n1ql/n1ql-language-reference/indexing-meta-info.md",
+  "concepts": [
+    { "candidate_id": "n1ql:indexing-metadata-fields", "label": "Indexing on document metadata fields (via META())", "reused_or_minted": "reused - same concept id and shape as the server/7.2 extraction of this identically-titled page (server/n1ql-language-reference/indexing-meta-info.json), a cross-product reuse" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - same concept id used for this statement elsewhere in the batch" },
+    { "candidate_id": "sdk:concurrent-document-mutations", "label": "Concurrent Document Mutations (Java SDK how-to)", "reused_or_minted": "minted - no existing concept for this java-sdk page; sdk: namespace already used for distributed-transaction concepts from a different round" },
+    { "candidate_id": "sdk:document-expiration", "label": "Document expiration (Java SDK KV Operations)", "reused_or_minted": "minted - no existing concept for this java-sdk anchor; this exact link recurs on insert.json in this same batch" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - cross-product reuse" }
+  ],
+  "relations": [
+    { "subject": "n1ql:indexing-metadata-fields", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Starting with Couchbase Server 8.0, you can index any number of XATTR fields using the [CREATE INDEX](createindex.md) statement." },
+    { "subject": "n1ql:indexing-metadata-fields", "predicate": "seeAlso", "object": "sdk:concurrent-document-mutations", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Value representing the current state of an item which changes every time the item is modified. For details, refer to [Concurrent Document Mutations](../../../java-sdk/current/howtos/concurrent-document-mutations.md)." },
+    { "subject": "n1ql:indexing-metadata-fields", "predicate": "seeAlso", "object": "sdk:document-expiration", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Value representing a document's expiration date. A value of 0 (zero) means no expiration date. For details, refer to [KV Operations](../../../java-sdk/current/howtos/kv-operations.md#document-expiration)." },
+    { "subject": "n1ql:indexing-metadata-fields", "predicate": "seeAlso", "object": "n1ql:query-context", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Same absence as server/'s version of this page: no Prerequisites/RBAC section, despite describing an enforced, consequential constraint ('If you attempt to build an index on a metadata field that's not indexable, an error is returned') and depending entirely on CREATE INDEX for privilege gating."
+  },
+  "cross_component_finding": "Links out to two java-sdk howto pages (Concurrent Document Mutations for `cas`, KV Operations#document-expiration for `expiration`) to explain the underlying semantics of the metadata fields it lets you index - the n1ql: statement-reference layer treats SDK-level concurrency/expiration semantics as out-of-scope background. Minted sdk:concurrent-document-mutations and sdk:document-expiration since neither existed; the document-expiration link recurs verbatim on insert.json in this same batch.",
+  "cross_product_finding": "RECURRENCE of the known anomaly logged in docs-issues/capella-pages-cite-server-versions.json: 'Starting with Couchbase Server 8.0, you can index any number of XATTR fields using the CREATE INDEX statement.' Capella has no discrete version numbers, yet this page cites a literal Server version string - not a new finding, just another instance."
+}
