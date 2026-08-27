@@ -3,9 +3,10 @@ title: What&#8217;s New in Version 7.6
 description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-04-18T05:14:52.159Z
-link: xref:7.6@server:introduction:whats-new.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
+  xref: xref:7.6@server:introduction:whats-new.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

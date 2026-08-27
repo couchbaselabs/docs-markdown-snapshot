@@ -2,9 +2,10 @@
 title: Access and Organize Data in Enterprise Analytics
 description: This topic introduces the database objects that you use to view and
   organize data in Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/database-objects.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:sources:database-objects.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sources/pages/database-objects.adoc
+  xref: xref:enterprise-analytics:sources:database-objects.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

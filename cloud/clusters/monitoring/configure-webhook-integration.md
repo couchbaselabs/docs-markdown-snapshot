@@ -2,9 +2,10 @@
 title: Configure a Webhooks Alert Integration
 description: Send Capella metrics-based alerts to third-party tools with a
   generic Webhooks alert integration.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-webhook-integration.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud:clusters:monitoring/configure-webhook-integration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-webhook-integration.adoc
+  xref: xref:cloud:clusters:monitoring/configure-webhook-integration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

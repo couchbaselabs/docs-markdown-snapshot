@@ -2,9 +2,10 @@
 title: cbbackupmgr
 description: <code>cbbackupmgr</code> is a tool for managing the backup and
   restore of Couchbase-Server data.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/backup-restore/pages/enterprise-backup-restore.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:server:backup-restore:enterprise-backup-restore.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/backup-restore/pages/enterprise-backup-restore.adoc
+  xref: xref:server:backup-restore:enterprise-backup-restore.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

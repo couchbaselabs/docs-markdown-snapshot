@@ -1,9 +1,10 @@
 ---
 title: role()
 description: Assigning Sync Gateway <em>roles</em>
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-role-cmd.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-role-cmd.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-role-cmd.adoc
+  xref: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-role-cmd.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

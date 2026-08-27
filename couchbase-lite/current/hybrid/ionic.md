@@ -3,9 +3,10 @@ title: Ionic
 description: The Ionic Capacitor plugin for Couchbase Lite allows developers to
   leverage Couchbase Lite within cross-platform applications in JavaScript for
   iOS and Android.
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/ionic.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite:hybrid:ionic.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/ionic.adoc
+  xref: xref:couchbase-lite:hybrid:ionic.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Adding Nodes to Groups
 description: A node can be added to the cluster and simultaneously added to an
   existing server group with the <code>POST
   /pools/default/serverGroups/<:uuid>/addNode</code> HTTP method and URI.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-servergroup-post-add.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:2.1@enterprise-analytics:reference:rest-servergroup-post-add.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-servergroup-post-add.adoc
+  xref: xref:2.1@enterprise-analytics:reference:rest-servergroup-post-add.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

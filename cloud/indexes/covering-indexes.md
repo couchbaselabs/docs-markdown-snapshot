@@ -3,9 +3,10 @@ title: Covering Indexes
 description: When an index includes the actual values of all the fields
   specified in the query, the index covers the query and does not require an
   additional step to fetch the actual values from the data service.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/covering-indexes.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:cloud:indexes:covering-indexes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/covering-indexes.adoc
+  xref: xref:cloud:indexes:covering-indexes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

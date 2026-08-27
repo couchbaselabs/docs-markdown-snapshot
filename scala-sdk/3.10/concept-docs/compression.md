@@ -1,9 +1,10 @@
 ---
 title: Compression
 description: Data compression to reduce traffic costs from app to Server.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.10@scala-sdk:concept-docs:compression.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/compression.adoc
+  xref: xref:3.10@scala-sdk:concept-docs:compression.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

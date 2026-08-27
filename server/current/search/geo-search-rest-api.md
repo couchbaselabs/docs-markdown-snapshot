@@ -2,9 +2,10 @@
 title: Run a Geospatial Search Query with the REST API and curl/HTTP
 description: Search for geospatial data in your Couchbase Server cluster with a
   compatible Search index, the REST API and curl/HTTP.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/geo-search-rest-api.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:search:geo-search-rest-api.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/geo-search-rest-api.adoc
+  xref: xref:server:search:geo-search-rest-api.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

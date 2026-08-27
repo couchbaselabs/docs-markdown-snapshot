@@ -2,9 +2,10 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:go-sdk:howtos:analytics-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/analytics-using-sdk.adoc
+  xref: xref:go-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

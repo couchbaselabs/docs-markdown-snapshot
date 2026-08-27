@@ -2,9 +2,10 @@
 title: Aggregate Functions
 description: Aggregate functions take multiple values from documents, perform
   calculations, and return a single value as the result.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/aggregatefun.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:n1ql:n1ql-language-reference/aggregatefun.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/aggregatefun.adoc
+  xref: xref:7.6@server:n1ql:n1ql-language-reference/aggregatefun.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cxx-sdk:howtos:sdk-authentication.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/sdk-authentication.adoc
+  xref: xref:cxx-sdk:howtos:sdk-authentication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

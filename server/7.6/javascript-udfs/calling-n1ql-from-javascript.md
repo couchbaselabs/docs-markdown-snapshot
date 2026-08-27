@@ -2,9 +2,10 @@
 title: Calling SQL++ from JavaScript
 description: You can run SQL++ statements from inside the JavaScript code you
   use for a user-defined function.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
+  xref: xref:7.6@server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

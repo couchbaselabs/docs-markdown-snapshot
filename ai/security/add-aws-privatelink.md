@@ -3,9 +3,10 @@ title: Add an AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that peers your Amazon Web
   Service (AWS) network with the Couchbase AI Data Plane using AWS as its cloud
   provider.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:security:add-aws-privatelink.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
+  xref: xref:ai:security:add-aws-privatelink.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

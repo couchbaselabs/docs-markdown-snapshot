@@ -2,9 +2,10 @@
 title: Configure the Connection
 description: Set up a connection between Tableau and Enterprise Analytics using
   the Couchbase Tableau Connector.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/configure-connection.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:tableau-connector::configure-connection.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/configure-connection.adoc
+  xref: xref:tableau-connector::configure-connection.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

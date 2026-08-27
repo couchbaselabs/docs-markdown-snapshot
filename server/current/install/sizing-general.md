@@ -3,9 +3,10 @@ title: Sizing Guidelines
 description: Evaluate the overall performance and capacity goals that you have
   for Couchbase and use that information to determine the necessary resources
   that you'll need in your deployment.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
-pubDate: 2026-08-03T05:42:31.565Z
-link: xref:server:install:sizing-general.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
+  xref: xref:server:install:sizing-general.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

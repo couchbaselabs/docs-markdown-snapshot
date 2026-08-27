@@ -2,9 +2,10 @@
 title: mcstat
 description: The mcstat tool provides detailed information for a node, specified
   bucket, or for all buckets on a cluster.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/mcstat.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:cli:mcstat.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/mcstat.adoc
+  xref: xref:server:cli:mcstat.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

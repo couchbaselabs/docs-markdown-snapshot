@@ -2,9 +2,10 @@
 title: Advanced Deployment Options
 description: The location of Cloud Native Gateway relative to your Couchbase
   cluster can hugely affect the Cloud Native Gateway-to-Cluster latency.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/advanced-deployment-options.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:advanced-use-cases:advanced-deployment-options.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/advanced-deployment-options.adoc
+  xref: xref:cloud-native-gateway:advanced-use-cases:advanced-deployment-options.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

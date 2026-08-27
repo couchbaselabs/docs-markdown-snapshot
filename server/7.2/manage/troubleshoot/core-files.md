@@ -3,9 +3,10 @@ title: Core Files
 description: When a process panics, a core dump occurs and the system creates a
   core file. These files are intended for troubleshooting and to help diagnose
   faults.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/troubleshoot/core-files.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:manage:troubleshoot/core-files.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/troubleshoot/core-files.adoc
+  xref: xref:7.2@server:manage:troubleshoot/core-files.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

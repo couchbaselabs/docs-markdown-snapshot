@@ -2,9 +2,10 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase Rust Client.
-editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-08-13T05:04:50.295Z
-link: xref:rust-sdk:project-docs:sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
+  xref: xref:rust-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

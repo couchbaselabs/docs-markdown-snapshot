@@ -1,8 +1,9 @@
 ---
 title: About These Docs
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:nodejs-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+  xref: xref:nodejs-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

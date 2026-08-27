@@ -1,9 +1,10 @@
 ---
 title: Logging
 description: ""
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:cxx-sdk:howtos:collecting-information-and-logging.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/collecting-information-and-logging.adoc
+  xref: xref:cxx-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

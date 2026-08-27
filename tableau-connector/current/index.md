@@ -3,9 +3,10 @@ title: Introduction
 description: The Couchbase Tableau Connector provides integration between your
   high performance Couchbase Tabular Views (TAVs) and the Tableau interactive
   data visualization platform.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:tableau-connector::index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/index.adoc
+  xref: xref:tableau-connector::index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

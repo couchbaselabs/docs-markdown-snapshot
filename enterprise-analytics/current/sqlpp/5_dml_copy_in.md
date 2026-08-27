@@ -3,9 +3,10 @@ title: COPY INTO Statements
 description: This topic describes how you use the  <code>COPY INTO</code> DML
   statement to upsert&mdash;both insert and update&mdash;objects from an
   external collection to a standalone collection.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_dml_copy_in.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:sqlpp:5_dml_copy_in.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_dml_copy_in.adoc
+  xref: xref:enterprise-analytics:sqlpp:5_dml_copy_in.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

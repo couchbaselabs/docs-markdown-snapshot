@@ -2,9 +2,10 @@
 title: XATTR and Virtual XATTR
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/concept-docs/pages/xattr.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:3.7@java-sdk:concept-docs:xattr.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/concept-docs/pages/xattr.adoc
+  xref: xref:3.7@java-sdk:concept-docs:xattr.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

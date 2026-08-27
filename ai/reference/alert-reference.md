@@ -2,9 +2,10 @@
 title: Alert Reference
 description: Use this reference for the kinds of alerts that the Couchbase AI
   Data Plane can send you, including their alert conditions and descriptions.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/alert-reference.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:reference:alert-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/alert-reference.adoc
+  xref: xref:ai:reference:alert-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Supported Operating System Versions
 description: Couchbase Lite on Swift -- the OS and SDK versions on which this
   framework is supported
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@couchbase-lite:swift:supported-os.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/swift/pages/supported-os.adoc
+  xref: xref:2.8@couchbase-lite:swift:supported-os.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Request Timeout
 description: The request timed out because it could not be completed in the time
   given in the request (or the query engine timeout, if one was specified when
   starting the query engine).
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/n1ql/pages/n1ql-rest-api/extimeout.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:n1ql:n1ql-rest-api/extimeout.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/n1ql/pages/n1ql-rest-api/extimeout.adoc
+  xref: xref:server:n1ql:n1ql-rest-api/extimeout.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

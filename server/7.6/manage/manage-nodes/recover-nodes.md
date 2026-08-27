@@ -3,9 +3,10 @@ title: Recover a Node and Rebalance
 description: "After a node has been failed over, it can be <em>recovered</em>:
   that is, added back into the cluster from which it was failed over, by means
   of the <em>rebalance</em> operation."
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/recover-nodes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:manage:manage-nodes/recover-nodes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/recover-nodes.adoc
+  xref: xref:7.6@server:manage:manage-nodes/recover-nodes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

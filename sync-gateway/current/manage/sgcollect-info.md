@@ -2,9 +2,10 @@
 title: SG Collect Info
 description: Using <em>sgcollect_info</em> to gather system information,
   diagnostics and metrics
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/sgcollect-info.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:manage:sgcollect-info.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/sgcollect-info.adoc
+  xref: xref:sync-gateway:manage:sgcollect-info.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

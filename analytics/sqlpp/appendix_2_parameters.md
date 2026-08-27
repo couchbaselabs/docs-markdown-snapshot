@@ -1,9 +1,10 @@
 ---
 title: Performance Tuning
 description: This topic describes options for Capella Analytics query performance tuning.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_2_parameters.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:sqlpp:appendix_2_parameters.adoc[]
+pubDate: 2026-08-25T04:30:40.250Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_2_parameters.adoc
+  xref: xref:analytics:sqlpp:appendix_2_parameters.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -74,6 +75,7 @@ Three settings are available for this parameter: `zigzag`, `leftdeep`, and `righ
   * `rightdeep` — After the first join, base collections are always chosen as the build side of the hash join, and previous join results are always chosen as the probe side. This can be potentially faster, but uses more memory.
 * **compiler.forcejoinorder**: A Boolean specifying whether joins should be performed in the order in which they are specified in the from clause of the query. The default value is `false`, meaning the cost-based optimizer chooses the optimal join order.
 * **compiler.cbo**: A Boolean specifying whether the cost-based optimizer should be activated or not. Setting this to `false` turns off the cost-based optimizer entirely. The default value is `true`.
+* **compiler.index.covering**: A Boolean specifying whether the query optimizer should prefer query plans that scan only a covering index, without accessing the underlying data records. The default value is `true`. For more information, see [Covering Indexes](7%5Fusing%5Findex.md#covering%5Findexes).
 
 ##### Example
 

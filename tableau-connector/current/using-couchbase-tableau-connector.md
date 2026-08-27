@@ -1,9 +1,10 @@
 ---
 title: View and Analyze Data in Tableau
 description: View and analyze data from Couchbase data sources using Tableau.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:tableau-connector::using-couchbase-tableau-connector.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
+  xref: xref:tableau-connector::using-couchbase-tableau-connector.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

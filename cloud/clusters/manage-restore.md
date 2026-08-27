@@ -2,9 +2,10 @@
 title: Restore a Bucket Backup
 description: You can restore a bucket backup to the same cluster where it was
   created or another cluster in the same organization.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-restore.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:clusters:manage-restore.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-restore.adoc
+  xref: xref:cloud:clusters:manage-restore.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

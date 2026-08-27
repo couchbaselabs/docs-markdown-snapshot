@@ -2,9 +2,10 @@
 title: Deploy Couchbase Server Using Azure Marketplace
 description: Couchbase partners with Microsoft to provide a packaged solution on
   Azure Marketplace.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cloud/pages/couchbase-azure-marketplace.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:cloud:couchbase-azure-marketplace.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cloud/pages/couchbase-azure-marketplace.adoc
+  xref: xref:7.6@server:cloud:couchbase-azure-marketplace.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

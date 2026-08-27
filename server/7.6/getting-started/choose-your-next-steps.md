@@ -2,9 +2,10 @@
 title: Choose Your Next Steps
 description: To complete the Getting Started sequence, consider your options as
   to what to do next to continue improving your knowledge.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/choose-your-next-steps.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:getting-started:choose-your-next-steps.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/choose-your-next-steps.adoc
+  xref: xref:7.6@server:getting-started:choose-your-next-steps.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

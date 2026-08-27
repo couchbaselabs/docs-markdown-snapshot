@@ -2,9 +2,10 @@
 title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase .NET SDK 3.0+ using <code>Visual Studio Code</code>.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.7@dotnet-sdk:hello-world:platform-help.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/hello-world/pages/platform-help.adoc
+  xref: xref:3.7@dotnet-sdk:hello-world:platform-help.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

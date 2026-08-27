@@ -1,9 +1,10 @@
 ---
 title: Data Definition Language (DDL)
 description: A description of the DDLs in Couchbase Analytics.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/5_ddl.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:analytics:5_ddl.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/5_ddl.adoc
+  xref: xref:7.2@server:analytics:5_ddl.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

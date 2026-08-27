@@ -2,9 +2,10 @@
 title: Develop with the Agent Memory SDK
 description: Use the Couchbase Agent Memory Python SDK to add persistent memory
   to your AI agent application.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/develop-agent-mem.adoc
-pubDate: 2026-08-01T05:32:35.777Z
-link: xref:ai:build:agent-memory/develop-agent-mem.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/develop-agent-mem.adoc
+  xref: xref:ai:build:agent-memory/develop-agent-mem.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Couchbase Distributed ACID Transactions for C SDK Release Notes
 description: Couchbase C++ Distributed ACID Transactions is distributed as a
   separate library for the C SDK.
-editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/distributed-transactions-cxx-release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:c-sdk:project-docs:distributed-transactions-cxx-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/distributed-transactions-cxx-release-notes.adoc
+  xref: xref:c-sdk:project-docs:distributed-transactions-cxx-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

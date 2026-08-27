@@ -2,9 +2,10 @@
 title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Go Client.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-06-17T06:07:18.814Z
-link: xref:2.10@go-sdk:project-docs:sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/project-docs/pages/sdk-release-notes.adoc
+  xref: xref:2.10@go-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

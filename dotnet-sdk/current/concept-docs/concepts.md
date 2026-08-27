@@ -1,9 +1,10 @@
 ---
 title: Overview
 description: Concepts
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/concepts.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:dotnet-sdk:concept-docs:concepts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/concepts.adoc
+  xref: xref:dotnet-sdk:concept-docs:concepts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

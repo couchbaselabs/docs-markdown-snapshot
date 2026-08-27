@@ -1,9 +1,10 @@
 ---
 title: master-password
 description: Sends the Couchbase master password
-editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-master-password.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:cli:cbcli/couchbase-cli-master-password.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-master-password.adoc
+  xref: xref:7.6@server:cli:cbcli/couchbase-cli-master-password.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

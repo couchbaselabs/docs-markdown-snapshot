@@ -1,9 +1,10 @@
 ---
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/query-resultsets.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@couchbase-lite:csharp:query-resultsets.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/query-resultsets.adoc
+  xref: xref:4.0@couchbase-lite:csharp:query-resultsets.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

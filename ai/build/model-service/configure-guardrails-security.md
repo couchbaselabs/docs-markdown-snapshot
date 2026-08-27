@@ -2,9 +2,10 @@
 title: Configure Guardrails and Security
 description: The AI Data Plane Model Service provides guardrails and security
   features to help you manage and secure your Large Language Models (LLMs).
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-guardrails-security.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:model-service/configure-guardrails-security.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-guardrails-security.adoc
+  xref: xref:ai:build:model-service/configure-guardrails-security.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

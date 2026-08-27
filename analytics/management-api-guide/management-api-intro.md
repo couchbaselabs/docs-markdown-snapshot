@@ -2,9 +2,10 @@
 title: Manage Deployments with the Capella Analytics Management API
 description: The Capella Analytics Management API is a secure REST API that
   enables you to configure and manage your Capella Analytics services clusters.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-guide/pages/management-api-intro.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:analytics:management-api-guide:management-api-intro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-guide/pages/management-api-intro.adoc
+  xref: xref:analytics:management-api-guide:management-api-intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

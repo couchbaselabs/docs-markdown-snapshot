@@ -2,9 +2,10 @@
 title: config
 description: The <code>config</code> command, used by <code>cbstats</code>,
   returns configuration statistics on a specified bucket, on a specified node.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-config.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:cli:cbstats/cbstats-config.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-config.adoc
+  xref: xref:server:cli:cbstats/cbstats-config.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

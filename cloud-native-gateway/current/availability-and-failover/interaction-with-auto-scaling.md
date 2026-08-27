@@ -3,9 +3,10 @@ title: Interaction with Auto-Scaling
 description: How Cloud Native Gateway interacts with Kubernetes auto-scaling,
   including Horizontal Pod Autoscaler, Cluster Autoscaler, and Couchbase cluster
   scaling.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/interaction-with-auto-scaling.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:availability-and-failover:interaction-with-auto-scaling.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/interaction-with-auto-scaling.adoc
+  xref: xref:cloud-native-gateway:availability-and-failover:interaction-with-auto-scaling.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

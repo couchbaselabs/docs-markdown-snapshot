@@ -2,9 +2,10 @@
 title: Create a VPC Peering Connection with GCP
 description: Use this procedure to create a VPC Peering connection between
   Capella hosted with GCP and your application's VPC on GCP.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-gcp.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clouds:vpc-peering/peer-gcp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-gcp.adoc
+  xref: xref:cloud:clouds:vpc-peering/peer-gcp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

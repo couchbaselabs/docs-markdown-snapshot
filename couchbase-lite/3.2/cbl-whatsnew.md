@@ -1,8 +1,9 @@
 ---
 title: New in 3.2
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
+  xref: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

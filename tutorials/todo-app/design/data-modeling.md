@@ -1,8 +1,9 @@
 ---
 title: Data Modeling
-editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/data-modeling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:tutorials:todo-app:design/data-modeling.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/data-modeling.adoc
+  xref: xref:tutorials:todo-app:design/data-modeling.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

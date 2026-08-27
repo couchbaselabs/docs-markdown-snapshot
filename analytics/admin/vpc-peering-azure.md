@@ -3,9 +3,10 @@ title: VNet Peering with Azure
 description: Use this procedure to create a VNet Peering connection between
   Capella Analytics hosted on Azure and your application's virtual network on
   Azure.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-azure.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:analytics:admin:vpc-peering-azure.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-azure.adoc
+  xref: xref:analytics:admin:vpc-peering-azure.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

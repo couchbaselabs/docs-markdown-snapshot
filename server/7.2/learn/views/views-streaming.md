@@ -2,9 +2,10 @@
 title: Stream-based Views
 description: "With DCP, data does not need to be persisted to disk before
   retrieving it with a view query. DCP offers the following benefits for views:"
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-streaming.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:learn:views/views-streaming.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-streaming.adoc
+  xref: xref:7.2@server:learn:views/views-streaming.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

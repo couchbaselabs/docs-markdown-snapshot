@@ -2,9 +2,10 @@
 title: Setting Up Couchbase Go SDK
 description: Discover how to get up and running developing applications with the
   Couchbase Go SDK.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-06-17T06:07:18.814Z
-link: xref:go-sdk:hello-world:platform-help.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/platform-help.adoc
+  xref: xref:go-sdk:hello-world:platform-help.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

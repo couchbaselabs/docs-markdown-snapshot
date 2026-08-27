@@ -1,9 +1,10 @@
 ---
 title: Edge Server Configuration
 description: Configure Couchbase Edge Server using a JSON configuration file.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/edge-server-configuration.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:1.0@couchbase-edge-server:configuration:edge-server-configuration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/edge-server-configuration.adoc
+  xref: xref:1.0@couchbase-edge-server:configuration:edge-server-configuration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Clock Sync with NTP
 description: Network Time Protocol (NTP) is used to synchronize time across
   multiple servers. The purpose of NTP is to keep an individual node's clock
   'accurate'.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/synchronize-clocks-using-ntp.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:install:synchronize-clocks-using-ntp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/synchronize-clocks-using-ntp.adoc
+  xref: xref:server:install:synchronize-clocks-using-ntp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

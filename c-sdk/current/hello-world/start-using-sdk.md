@@ -2,9 +2,10 @@
 title: Install and Start Using the C SDK with Couchbase Server
 description: The Couchbase C SDK (libcouchbase - LCB) enables you to interact
   with a Couchbase Server cluster from the C language.
-editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:c-sdk:hello-world:start-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/start-using-sdk.adoc
+  xref: xref:c-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

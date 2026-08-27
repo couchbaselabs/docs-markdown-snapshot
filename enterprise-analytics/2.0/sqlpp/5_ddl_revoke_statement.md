@@ -3,9 +3,10 @@ title: REVOKE Statement
 description: The <code>REVOKE</code> statement supports the revocation of
   privileges on resources from users or roles as well as the removal of roles
   from users.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_revoke_statement.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.0@enterprise-analytics:sqlpp:5_ddl_revoke_statement.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_revoke_statement.adoc
+  xref: xref:2.0@enterprise-analytics:sqlpp:5_ddl_revoke_statement.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

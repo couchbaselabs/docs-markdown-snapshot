@@ -1,9 +1,10 @@
 ---
 title: Object Functions
 description: This topic describes the builtin SQL++ for Capella Analytics object functions.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_obj.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:analytics:sqlpp:8_builtin_obj.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_obj.adoc
+  xref: xref:analytics:sqlpp:8_builtin_obj.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

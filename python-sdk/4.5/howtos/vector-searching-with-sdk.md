@@ -2,9 +2,10 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.5@python-sdk:howtos:vector-searching-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/vector-searching-with-sdk.adoc
+  xref: xref:4.5@python-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

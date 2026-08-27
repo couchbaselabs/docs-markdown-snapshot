@@ -2,9 +2,10 @@
 title: Create a User-Defined Function
 description: How to create a user-defined function (UDF) to call an inline
   function or a JavaScript function.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:server:guides:create-user-defined-function.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/create-user-defined-function.adoc
+  xref: xref:server:guides:create-user-defined-function.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

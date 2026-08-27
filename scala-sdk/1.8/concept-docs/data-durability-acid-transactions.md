@@ -2,9 +2,10 @@
 title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/concept-docs/pages/data-durability-acid-transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:1.8@scala-sdk:concept-docs:data-durability-acid-transactions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/concept-docs/pages/data-durability-acid-transactions.adoc
+  xref: xref:1.8@scala-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Core Files
 description: When a process panics, a core dump occurs and the system creates a
   core file. These files are intended for troubleshooting and to help diagnose
   faults.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/troubleshoot/core-files.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:manage:troubleshoot/core-files.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/troubleshoot/core-files.adoc
+  xref: xref:enterprise-analytics:manage:troubleshoot/core-files.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Query Across Relationships
 description: How to join data sources for a SQL++ selection query.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/join.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:server:guides:join.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/join.adoc
+  xref: xref:server:guides:join.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Microsoft Teams Alert Payload
 description: Learn more about the JSON payload structure used in Capella
   Microsoft Teams alert integrations.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/microsoft-reference.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:monitoring/microsoft-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/microsoft-reference.adoc
+  xref: xref:cloud:clusters:monitoring/microsoft-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

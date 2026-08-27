@@ -2,9 +2,10 @@
 title: Create a JavaScript Library
 description: How to create a JavaScript library to store and organize your
   JavaScript functions.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:cloud:guides:create-javascript-library.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-javascript-library.adoc
+  xref: xref:cloud:guides:create-javascript-library.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

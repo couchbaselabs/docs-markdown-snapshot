@@ -1,9 +1,10 @@
 ---
 title: Public REST API
 description: Description of the Sync Gateway REST API
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest-api.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:rest-api:rest-api.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest-api.adoc
+  xref: xref:sync-gateway:rest-api:rest-api.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

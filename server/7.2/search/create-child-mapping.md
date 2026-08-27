@@ -2,9 +2,10 @@
 title: Create a Child Mapping
 description: Create a child mapping with the Couchbase Server Web Console to add
   or remove a field that contains a JSON object from a Search index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-child-mapping.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:search:create-child-mapping.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-child-mapping.adoc
+  xref: xref:7.2@server:search:create-child-mapping.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

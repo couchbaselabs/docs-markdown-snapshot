@@ -2,9 +2,10 @@
 title: Overview
 description: A high-level summary of Couchbase Server technology, and an
   overview of information provided by other pages in this section.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/architecture-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:learn:architecture-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/architecture-overview.adoc
+  xref: xref:server:learn:architecture-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

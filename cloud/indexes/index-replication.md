@@ -3,9 +3,10 @@ title: Index Availability and Performance
 description: The Index Service ensures availability and performance through
   replication and partitioning. You can control the scan consistency for
   individual queries.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index-replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:indexes:index-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index-replication.adoc
+  xref: xref:cloud:indexes:index-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

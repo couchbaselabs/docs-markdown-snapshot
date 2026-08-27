@@ -2,9 +2,10 @@
 title: Receive Alerts
 description: Alerts notify you when events with the Critical or Warning severity
   level occur in your organization, project, or cluster.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alerts.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:clusters:monitoring/alerts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alerts.adoc
+  xref: xref:cloud:clusters:monitoring/alerts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

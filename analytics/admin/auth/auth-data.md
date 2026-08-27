@@ -2,9 +2,10 @@
 title: Manage Access to Cluster Data
 description: Access control accounts provide granular, programmatic and
   application-level access to data on a cluster.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-data.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:admin:auth/auth-data.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-data.adoc
+  xref: xref:analytics:admin:auth/auth-data.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

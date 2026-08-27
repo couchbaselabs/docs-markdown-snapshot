@@ -2,9 +2,10 @@
 title: Cluster Scaling
 description: Clusters can be multi-dimensionally scaled by adding or removing
   Service instances and whole Services, and by adjusting Service instance sizes.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:scale-database.adoc[]
+pubDate: 2026-08-21T04:43:23.418Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
+  xref: xref:cloud:clusters:scale-database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -173,6 +174,26 @@ When scaling your cluster, you'll see these events:
 
 * A **Cluster Configuration Updated** event when you first request any changes.
 * A **Cluster Scaling Complete** event when Capella has finished applying the new configuration.
+
+## [](#troubleshooting)Troubleshooting
+
+Couchbase Capella performs metric and guardrail checks before a scaling operation to verify whether the operation can complete. If a check fails, Capella blocks the operation and displays an error message.
+
+If your cluster fails these validation checks but you still need to proceed with the scaling operation, [contact Couchbase Capella Support](../support/manage-support.md#create-support-ticket).
+
+> [!TIP]
+> If you deleted a large dataset, dropped indexes, or made other major data changes, the guardrail check might fail due to stale metrics. Wait a few minutes for Capella to refresh its metric data, then attempt the scaling operation again.
+
+For a list of Capella scaling guardrail errors and recommended solutions, see the following table:
+
+| Error                          | Description                                                                                                                                                                            | Recommendation                                                                                       |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Insufficient Free Disk         | 1 or more Service Groups undergoing a capacity-reducing change would leave a node with less than the required free disk space after the rebalance.                                     | Increase the disk size on the affected Service Groups and try again.                                 |
+| Too Little Node Memory         | The proposed per-node memory for a Service Group is below what a single node requires to maintain adequate resident ratios.                                                            | [Contact Couchbase Capella Support](../support/manage-support.md#create-support-ticket).             |
+| Too Little Memory              | The proposed memory for a Service Group is lower than what's required to maintain adequate resident ratios.                                                                            | [Contact Couchbase Capella Support](../support/manage-support.md#create-support-ticket).             |
+| Exceeds Ephemeral Memory Limit | The memory-only bucket with the no-eviction data eviction policy has data in memory that, after the proposed scale-down, would push the bucket over its per-node write-stop threshold. | Increase the memory quota for the bucket, or don't decrease the number of Data nodes, and try again. |
+
+For more detailed information and metrics about your scaling error, view its description and recommendation in the Capella UI.
 
 ## [](#see-also)See Also
 

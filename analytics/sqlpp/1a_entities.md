@@ -2,9 +2,10 @@
 title: Entities in Capella Analytics Services
 description: This topic describes how Capella Analytics organizes entities into
   a hierarchy and resolves the entity names in a statement or query.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/1a_entities.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:sqlpp:1a_entities.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/1a_entities.adoc
+  xref: xref:analytics:sqlpp:1a_entities.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Java Client.
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:3.8@java-sdk:project-docs:sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/project-docs/pages/sdk-release-notes.adoc
+  xref: xref:3.8@java-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

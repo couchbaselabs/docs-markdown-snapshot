@@ -2,9 +2,10 @@
 title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-06-20T05:58:01.881Z
-link: xref:server:release-notes:relnotes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
+  xref: xref:server:release-notes:relnotes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

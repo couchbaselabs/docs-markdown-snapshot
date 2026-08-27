@@ -3,9 +3,10 @@ title: cbrestorewrapper
 description: A wrapper around cbrestore that was made to improve performance for
   enterprise users. Superseded by cbbackupmgr, which should be used instead of
   this tool.
-editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbrestorewrapper.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:cli:cbtools/cbrestorewrapper.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbrestorewrapper.adoc
+  xref: xref:7.2@server:cli:cbtools/cbrestorewrapper.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

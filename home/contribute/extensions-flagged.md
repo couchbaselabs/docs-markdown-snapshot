@@ -1,8 +1,9 @@
 ---
 title: Demo about the Feature Flag
-editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/extensions-flagged.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:home:contribute:extensions-flagged.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/extensions-flagged.adoc
+  xref: xref:home:contribute:extensions-flagged.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

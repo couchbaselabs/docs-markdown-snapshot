@@ -2,9 +2,10 @@
 title: Manage Replications
 description: Use the procedures on this page to create and manage XDCR (Cross
   Data Center Replication) with Capella operational clusters.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
-pubDate: 2026-08-12T05:01:45.181Z
-link: xref:cloud:clusters:xdcr/manage-xdcr-replications.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
+  xref: xref:cloud:clusters:xdcr/manage-xdcr-replications.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

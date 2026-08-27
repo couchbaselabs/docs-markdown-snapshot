@@ -1,8 +1,9 @@
 ---
 title: Couchbase Rust SDK 1.0
-editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:rust-sdk:hello-world:overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
+  xref: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

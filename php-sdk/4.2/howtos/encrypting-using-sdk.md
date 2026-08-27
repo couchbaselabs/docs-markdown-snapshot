@@ -2,9 +2,10 @@
 title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:4.2@php-sdk:howtos:encrypting-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/encrypting-using-sdk.adoc
+  xref: xref:4.2@php-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

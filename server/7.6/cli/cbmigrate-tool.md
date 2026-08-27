@@ -2,9 +2,10 @@
 title: cbmigrate
 description: Use the <code>cbmigrate</code> command-line tool to migrate your
   data from other platforms.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbmigrate-tool.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:cli:cbmigrate-tool.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbmigrate-tool.adoc
+  xref: xref:7.6@server:cli:cbmigrate-tool.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

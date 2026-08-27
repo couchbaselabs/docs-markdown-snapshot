@@ -1,9 +1,10 @@
 ---
 title: New In 3.2
 description: Couchbase Sync Gateway -- What's new in the latest release
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:3.2@sync-gateway::whatsnew.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/whatsnew.adoc
+  xref: xref:3.2@sync-gateway::whatsnew.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

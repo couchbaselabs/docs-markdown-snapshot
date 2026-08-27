@@ -1,8 +1,9 @@
 ---
 title: Query Functions REST API
-editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-functions/pages/index.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:server:n1ql-rest-functions:index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-functions/pages/index.adoc
+  xref: xref:server:n1ql-rest-functions:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

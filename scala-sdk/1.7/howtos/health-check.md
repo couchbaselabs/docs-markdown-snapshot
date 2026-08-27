@@ -3,9 +3,10 @@ title: Health Check
 description: Health Check provides <code>ping()</code> and
   <code>diagnostics()</code> tests for the health of the network and the
   cluster.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:1.7@scala-sdk:howtos:health-check.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/howtos/pages/health-check.adoc
+  xref: xref:1.7@scala-sdk:howtos:health-check.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

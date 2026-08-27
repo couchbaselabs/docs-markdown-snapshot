@@ -1,9 +1,10 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on C#
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/gs-build.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:3.3@couchbase-lite:csharp:gs-build.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/gs-build.adoc
+  xref: xref:3.3@couchbase-lite:csharp:gs-build.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

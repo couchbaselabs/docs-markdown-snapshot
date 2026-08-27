@@ -1,9 +1,10 @@
 ---
 title: Amazon Web Services (AWS)
 description: Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS).
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/aws.adoc
-pubDate: 2026-04-22T05:22:16.908Z
-link: xref:cloud:reference:aws.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/aws.adoc
+  xref: xref:cloud:reference:aws.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

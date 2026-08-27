@@ -2,9 +2,10 @@
 title: Inter-Sync&#160;Gateway Replication Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage
   inter-Sync&#160;Gateway replications
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-isgr.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:configuration:configuration-schema-isgr.adoc[]
+pubDate: 2026-08-21T04:43:23.418Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-isgr.adoc
+  xref: xref:sync-gateway:configuration:configuration-schema-isgr.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -110,11 +111,7 @@ The configuration settings described here are provisioned through the [Replicati
 
 #### `adhoc`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Set to true to run the replication as an adhoc replication instead of a persistent one.
 
@@ -122,25 +119,13 @@ This means that the replication will only last the period of the replication unt
 
 #### `batch_size`
 
-Type
-
-integer
-
-Default
-
-200
-
-Description
+Type: integer (Default 200)
 
 The amount of changes to be sent in one batch of replications. Changing this is an Enterprise Edition only feature.
 
 #### `collections_enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `collections_local`.
 
@@ -148,11 +133,7 @@ If false, the replicator will only replicate the default collection.
 
 #### `collections_local`
 
-Type
-
-array
-
-Description
+Type: array
 
 Limits the set of collections replicated to those listed in this array.
 
@@ -160,11 +141,7 @@ The replication will use all collections defined on the database if this list is
 
 #### `collections_remote`
 
-Type
-
-array
-
-Description
+Type: array
 
 Remaps the local collection name to the one specified in this array when replicating with the remote.
 
@@ -174,15 +151,7 @@ The same index is used for both `collections_remote` and `collections_local`, an
 
 #### `conflict_resolution_type`
 
-Type
-
-string
-
-Default
-
-default
-
-Description
+Type: string (Default default)
 
 This defines what conflict resolution policy Sync Gateway should use to apply when resolving conflicting revisions.
 
@@ -190,11 +159,7 @@ Changing this is an Enterprise Edition only feature.
 
 #### `continuous`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, changes will be immediately synced when they happen. This is known as a continuous replication.
 
@@ -202,11 +167,7 @@ If false, all changes will be synced until they have been processed. The replica
 
 #### `custom_conflict_resolver`
 
-Type
-
-string
-
-Description
+Type: string
 
 This specifies the Javascript function to use to resolve conflicts between conflicting revisions.
 
@@ -236,21 +197,13 @@ This is an Enterprise Edition only feature.
 
 #### `direction`
 
-Type
-
-string
-
-Description
+Type: string
 
 This specifies which direction the replication will be replicating with the `remote` replicator.
 
 #### `enable_delta_sync`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This will turn on delta-sync for the replication. In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true.
 
@@ -258,25 +211,13 @@ Using delta-sync is an Enterprise Edition only feature.
 
 #### `filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 This defines whether to filter documents.
 
 #### `initial_state`
 
-Type
-
-string
-
-Default
-
-running
-
-Description
+Type: string (Default running)
 
 This is what state to start the replication in when creating a new replication.
 
@@ -286,15 +227,7 @@ Replications prior to Sync Gateway 2.8 will run in the default state `running`.
 
 #### `max_backoff_time`
 
-Type
-
-integer
-
-Default
-
-5
-
-Description
+Type: integer (Default 5)
 
 Specifies the maximum time-period (in minutes) that Sync Gateway will attempt to reconnect to a lost or unreachable remote.
 
@@ -306,11 +239,7 @@ Note: this defaults to 5 minutes for replications created prior to Sync Gateway 
 
 #### `purge_on_removal`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Specifies whether to purge a document if the remote user loses access to all of the channels on the document when attempting to pull it from the remote.
 
@@ -318,11 +247,7 @@ If false, documents will not be replicated and not be purged when the user loses
 
 #### `query_params`
 
-Type
-
-array
-
-Description
+Type: array
 
 This is a set of key/value pairs used in the query string of the replication.
 
@@ -338,41 +263,25 @@ If `filters=sync_gateway/bychannel` then this can be used to set the channels to
 
 #### `remote`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the endpoint of the database for the remote Sync Gateway that is the subject of this replication's `push`, `pull`, or `pushAndPull` action. Typically this would include the URI, port, and database name. For example, `https://localhost:4985/db`.
 
 #### `remote_password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password to use to authenticate with the remote. This password will be redacted in the replication config.
 
 #### `remote_username`
 
-Type
-
-string
-
-Description
+Type: string
 
 The username to use to authenticate with the remote.
 
 #### `replication_id`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the ID of the replication.
 
@@ -382,11 +291,7 @@ When the replication ID is specified in the URL, this must be set to the same re
 
 #### `run_as`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is used if you want to specify a user to run the replication as. This means that the replication will only be able to replicate what the user access to what the user has access to.
 

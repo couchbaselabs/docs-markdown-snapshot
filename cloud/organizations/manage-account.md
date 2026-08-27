@@ -1,8 +1,9 @@
 ---
 title: Manage Your Couchbase Capella Account
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
-pubDate: 2026-06-17T06:07:18.814Z
-link: xref:cloud:organizations:manage-account.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
+  xref: xref:cloud:organizations:manage-account.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

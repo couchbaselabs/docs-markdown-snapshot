@@ -2,9 +2,10 @@
 title: Risk Assessment
 description: This example illustrates how to leverage Eventing Service in the
   Banking and Financial domain.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples-high-risk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:eventing:eventing-examples-high-risk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples-high-risk.adoc
+  xref: xref:7.2@server:eventing:eventing-examples-high-risk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

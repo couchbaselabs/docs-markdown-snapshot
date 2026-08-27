@@ -1,8 +1,9 @@
 ---
 title: Choosing &amp; Using a JSON Library
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/json.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.10@go-sdk:howtos:json.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/json.adoc
+  xref: xref:2.10@go-sdk:howtos:json.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

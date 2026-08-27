@@ -2,9 +2,10 @@
 title: Installing Multiple Instances on Linux Platforms
 description: Multiple instances of Couchbase Server can be installed on one
   physical machine for the Linux operating system.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/rhel-multiple-instances.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:install:rhel-multiple-instances.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/rhel-multiple-instances.adoc
+  xref: xref:7.6@server:install:rhel-multiple-instances.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

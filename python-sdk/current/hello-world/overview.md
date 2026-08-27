@@ -1,8 +1,9 @@
 ---
 title: Couchbase Python SDK 4.6
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/hello-world/pages/overview.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:python-sdk:hello-world:overview.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/hello-world/pages/overview.adoc
+  xref: xref:python-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -61,7 +62,7 @@ $ python3 -m pip install couchbase
 The Couchbase Python SDK integrates into the Python ecosystem through a number of extensions and connectors, including:
 
 * [Python with Flask tutorial](https://developer.couchbase.com/tutorial-quickstart-flask-python/)
-* [Apache Spark Connector](../../../spark-connector/current/pyspark.md)
+* [Apache Spark Connector](../../../spark-connector/3.5/pyspark.md)
 * [Couchbase Jupyter Labs](https://github.com/couchbase-examples/couchbase-jupyter-labs/)
 
 ## Exploring the Python SDK

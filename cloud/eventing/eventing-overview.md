@@ -2,9 +2,10 @@
 title: Run a Function on Data Change
 description: Use the Eventing Service to handle data changes that happen when
   code is executed in response to document mutations or as scheduled by Timers.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:eventing:eventing-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-overview.adoc
+  xref: xref:cloud:eventing:eventing-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

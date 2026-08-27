@@ -2,9 +2,10 @@
 title: "How-to Guide: Couchbase User RBAC"
 description: A how-to guide on configuring Couchbase user authentication and
   authorization using the Autonomous Operator.
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.5@operator::howto-guide-couchbase-user-rbac.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
+  xref: xref:2.5@operator::howto-guide-couchbase-user-rbac.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

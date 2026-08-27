@@ -2,9 +2,10 @@
 title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ruby-sdk:howtos:observability-tracing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/observability-tracing.adoc
+  xref: xref:ruby-sdk:howtos:observability-tracing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

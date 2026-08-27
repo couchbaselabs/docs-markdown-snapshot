@@ -2,9 +2,10 @@
 title: Configure Named Query Access Control
 description: Restrict which named queries edge client users can execute in
   Couchbase Edge Server based on their collection-level access permissions.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/access-control/pages/configure-query-access.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-edge-server:access-control:configure-query-access.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/access-control/pages/configure-query-access.adoc
+  xref: xref:couchbase-edge-server:access-control:configure-query-access.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

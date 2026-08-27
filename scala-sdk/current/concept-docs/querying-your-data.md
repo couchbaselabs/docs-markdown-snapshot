@@ -1,9 +1,10 @@
 ---
 title: Querying Your Data
 description: Choosing the right service to query your data.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:scala-sdk:concept-docs:querying-your-data.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/querying-your-data.adoc
+  xref: xref:scala-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

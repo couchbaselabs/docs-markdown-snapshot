@@ -1,9 +1,10 @@
 ---
 title: Expressions
 description: A description of Couchbase SQL++ for Analytics expressions.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/2_expr.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:analytics:2_expr.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/2_expr.adoc
+  xref: xref:server:analytics:2_expr.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

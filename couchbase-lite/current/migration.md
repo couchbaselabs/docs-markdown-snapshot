@@ -1,9 +1,10 @@
 ---
 title: Migration
 description: Migration Guide for migrating from Couchbase Lite 3.2.x / 3.3.x to 4.0.0
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/ROOT/pages/migration.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite::migration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/ROOT/pages/migration.adoc
+  xref: xref:couchbase-lite::migration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

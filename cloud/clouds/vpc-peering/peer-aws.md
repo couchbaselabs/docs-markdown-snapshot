@@ -2,9 +2,10 @@
 title: Create a VPC Peering Connection with AWS
 description: Use this procedure to create a VPC Peering connection between
   Capella hosted with AWS and your application's VPC on AWS.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-aws.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:clouds:vpc-peering/peer-aws.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-aws.adoc
+  xref: xref:cloud:clouds:vpc-peering/peer-aws.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

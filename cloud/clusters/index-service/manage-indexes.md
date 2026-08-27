@@ -1,9 +1,10 @@
 ---
 title: Manage Indexes
 description: You can perform some index management tasks using the Couchbase Capella UI.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/index-service/manage-indexes.adoc
-pubDate: 2026-06-18T06:06:41.045Z
-link: xref:cloud:clusters:index-service/manage-indexes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/index-service/manage-indexes.adoc
+  xref: xref:cloud:clusters:index-service/manage-indexes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

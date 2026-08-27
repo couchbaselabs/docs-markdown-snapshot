@@ -2,9 +2,10 @@
 title: Edge Server Configuration Schema
 description: Full reference for all Couchbase Edge Server configuration
   properties and their default values.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/configuration-schema.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:1.0@couchbase-edge-server:configuration:configuration-schema.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/configuration-schema.adoc
+  xref: xref:1.0@couchbase-edge-server:configuration:configuration-schema.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

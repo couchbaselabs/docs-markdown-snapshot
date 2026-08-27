@@ -1,9 +1,10 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.0@sync-gateway::release-notes.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/release-notes.adoc
+  xref: xref:3.0@sync-gateway::release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -13,7 +14,7 @@ link: xref:3.0@sync-gateway::release-notes.adoc[]
 
 Quicklinks
 
-[Release 2.8](../2.8/release-notes.md) | [Release 2.7](#2.7@sync-gateway::release-notes.adoc) | [Release 2.6](#2.6@sync-gateway::release-notes.adoc) | [Release 2.5](#2.5@sync-gateway::release-notes.adoc) | [Release 2.1](#2.1@sync-gateway::release-notes.adoc) | [Release 2.0](#2.0@sync-gateway::release-notes.adoc)
+[Release 2.8](#2.8@sync-gateway::release-notes.adoc) | [Release 2.7](#2.7@sync-gateway::release-notes.adoc) | [Release 2.6](#2.6@sync-gateway::release-notes.adoc) | [Release 2.5](#2.5@sync-gateway::release-notes.adoc) | [Release 2.1](#2.1@sync-gateway::release-notes.adoc) | [Release 2.0](#2.0@sync-gateway::release-notes.adoc)
 
 > Couchbase Sync Gateway  
 > This content describes the key features and changes implemented by release 3.0.0 of Couchbase Sync Gateway

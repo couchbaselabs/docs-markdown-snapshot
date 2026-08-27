@@ -1,8 +1,9 @@
 ---
 title: Couchbase Kotlin SDK 3.10
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/hello-world/pages/overview.adoc
-pubDate: 2026-05-02T05:28:41.565Z
-link: xref:3.10@kotlin-sdk:hello-world:overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/hello-world/pages/overview.adoc
+  xref: xref:3.10@kotlin-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

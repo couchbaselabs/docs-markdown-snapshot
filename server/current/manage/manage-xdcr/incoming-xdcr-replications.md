@@ -2,9 +2,10 @@
 title: Incoming Replications
 description: Incoming replications details for a target cluster in XDCR are
   listed in the UI and can be retrieved using the REST API.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/incoming-xdcr-replications.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-xdcr/incoming-xdcr-replications.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/incoming-xdcr-replications.adoc
+  xref: xref:server:manage:manage-xdcr/incoming-xdcr-replications.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

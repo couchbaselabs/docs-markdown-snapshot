@@ -2,9 +2,10 @@
 title: Create a Custom Wordlist
 description: Create a custom wordlist with the Couchbase Server Web Console to
   use with a custom token filter.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-custom-wordlist.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:search:create-custom-wordlist.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-custom-wordlist.adoc
+  xref: xref:7.6@server:search:create-custom-wordlist.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -4,9 +4,10 @@ description: Couchbase Server lets you assign roles to individual users, which
   grant access to resources. You can also create groups of users and assign
   roles to each group. Each user automatically inherits the roles of the groups
   they belong to.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-users-and-roles.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-security/manage-users-and-roles.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-users-and-roles.adoc
+  xref: xref:server:manage:manage-security/manage-users-and-roles.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

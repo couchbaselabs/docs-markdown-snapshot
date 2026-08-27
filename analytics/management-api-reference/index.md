@@ -1,8 +1,9 @@
 ---
 title: Capella Analytics Management API Reference
-editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/columnar/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-04-01T05:25:30.286Z
-link: xref:analytics:management-api-reference:index.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-reference/pages/index.adoc
+  xref: xref:analytics:management-api-reference:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -536,7 +537,7 @@ _token_
 | namerequired              | string (APIKeyName) Name of the API key.                                                                                                                                                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description               | string (APIKeyDescription) Default: "" Description for the API key.                                                                                                                                                                                                       |
-| expiry                    | number <float\>  (APIKeyExpiry) Default: 180 Expiry of the API key in number of days. If set to -1, the token will not expire.                                                                                                                                            |
+| expiry                    | number <float\>  (APIKeyExpiry) Default: 180 Expiry of the API key in number of days. Must be at least 0.01 days. If set to -1, the token will not expire.                                                                                                                |
 | allowedCIDRs              | Array of strings (APIKeyAllowedCIDRs) Default: \["0.0.0.0/0"\] List of inbound CIDRs for the API key. The system making a request must come from one of the allowed CIDRs.                                                                                                |
 | organizationRolesrequired | Array of strings (APIKeyOrganizationRoles) Items Enum: "organizationOwner" "organizationMember" "projectCreator"                                                                                                                                                          |
 | resources                 | Array of objects (APIKeyResources) Default: \[\] Resources are the resource level permissions associated with the API key. To learn more about Organization Roles, see [Organization Roles](https://docs.couchbase.com/cloud/organizations/organization-user-roles.html). |
@@ -1040,6 +1041,10 @@ The requested resource was not found.
 
 Returned when there is a conflict with the current state of a resource.
 
+**422** 
+
+Request validation error.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -1072,6 +1077,7 @@ Copy
 * 403
 * 404
 * 409
+* 422
 * 429
 * 500
 

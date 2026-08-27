@@ -2,9 +2,10 @@
 title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-04-01T05:25:30.286Z
-link: xref:server:n1ql:n1ql-language-reference/metafun.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
+  xref: xref:server:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

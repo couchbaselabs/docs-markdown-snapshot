@@ -1,9 +1,10 @@
 ---
 title: Couchbase Server Processes
 description: Couchbase Server spawns a number of different processes on each node.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/server-processes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:install:server-processes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/server-processes.adoc
+  xref: xref:7.2@server:install:server-processes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

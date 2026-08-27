@@ -2,9 +2,10 @@
 title: Health Advisor Reference
 description: Use the following as a reference for the different kinds of advice
   available in a Health Advisor report.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/health-advisor-reference.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:reference:health-advisor-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/health-advisor-reference.adoc
+  xref: xref:cloud:reference:health-advisor-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

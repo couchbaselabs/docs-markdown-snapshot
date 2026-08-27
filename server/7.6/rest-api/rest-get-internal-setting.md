@@ -1,9 +1,10 @@
 ---
 title: Managing Internal Settings
 description: Couchbase-Server internal settings can be retrieved and modified..
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-get-internal-setting.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:rest-api:rest-get-internal-setting.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-get-internal-setting.adoc
+  xref: xref:7.6@server:rest-api:rest-get-internal-setting.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the C++ SDK to a Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cxx-sdk:howtos:managing-connections.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/managing-connections.adoc
+  xref: xref:cxx-sdk:howtos:managing-connections.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -122,6 +123,34 @@ Some DNS caching providers (notably, home routers) can't handle an SRV record th
 ## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
 If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
+
+## [](#cloud-native-gateway)Cloud Native Gateway
+
+Couchbase's next generation connection protocol, introduced in C++ SDK 1.4.0 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+
+The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+
+### [](#limitations)Limitations
+
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+
+The following are not currently implemented over the `couchbase2://` protocol:
+
+* Authentication by client certificate.
+* Multi-document ACID transactions.
+* Analytics service.
+* Health Check.
+
+And the output from these features should be seen as volatile and subject to change:
+
+* Metrics and tracing, including the ThresholdLoggingTracer, LoggingMeter, and spans output.
+
+There are some different behaviors seen with this protocol:
+
+* Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
+* The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
+* Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 

@@ -1,9 +1,10 @@
 ---
 title: Licenses
 description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.11@go-sdk:project-docs:sdk-licenses.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/sdk-licenses.adoc
+  xref: xref:2.11@go-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

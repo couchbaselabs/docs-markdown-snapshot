@@ -2,9 +2,10 @@
 title: Work with Your Data
 description: The Data Service offers Couchbase clients the fastest and simplest
   way to create, retrieve, or mutate data.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:guides:data.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/data.adoc
+  xref: xref:server:guides:data.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

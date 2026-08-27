@@ -2,9 +2,10 @@
 title: Request with Authentication&#8201;&#8212;&#8201;HTTP Header
 description: In this example, the credentials (user="simon", pass="fizzbuzz")
   are given in the request header using basic authentication.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exauthhttp.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:n1ql:n1ql-rest-api/exauthhttp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exauthhttp.adoc
+  xref: xref:7.2@server:n1ql:n1ql-rest-api/exauthhttp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

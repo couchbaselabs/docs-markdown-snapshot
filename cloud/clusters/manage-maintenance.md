@@ -2,9 +2,10 @@
 title: Manage Cluster Maintenance Jobs
 description: You can use the Capella UI to view self-service or Capella Support
   scheduled maintenance jobs for your cluster at any time.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-maintenance.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cloud:clusters:manage-maintenance.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-maintenance.adoc
+  xref: xref:cloud:clusters:manage-maintenance.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

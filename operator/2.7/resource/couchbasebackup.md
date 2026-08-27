@@ -1,8 +1,9 @@
 ---
 title: CouchbaseBackup Resource
-editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/resource/couchbasebackup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.7@operator::resource/couchbasebackup.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/resource/couchbasebackup.adoc
+  xref: xref:2.7@operator::resource/couchbasebackup.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

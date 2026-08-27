@@ -3,9 +3,10 @@ title: Secure a Replication
 description: Securing a replication means that either the administrator password
   that is sent to the remote cluster, or both the password and the data itself,
   is transmitted securely.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/secure-xdcr-replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-xdcr/secure-xdcr-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/secure-xdcr-replication.adoc
+  xref: xref:server:manage:manage-xdcr/secure-xdcr-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

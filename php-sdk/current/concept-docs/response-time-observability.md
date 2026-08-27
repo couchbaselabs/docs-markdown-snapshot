@@ -2,9 +2,10 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:php-sdk:concept-docs:response-time-observability.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/concept-docs/pages/response-time-observability.adoc
+  xref: xref:php-sdk:concept-docs:response-time-observability.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

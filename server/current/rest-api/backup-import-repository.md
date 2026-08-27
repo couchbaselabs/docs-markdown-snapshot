@@ -2,9 +2,10 @@
 title: Import a Repository
 description: A repository that continues to exist on disk, but has been deleted
   from the Backup Service, can be imported back into the Backup Service.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-import-repository.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:rest-api:backup-import-repository.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-import-repository.adoc
+  xref: xref:server:rest-api:backup-import-repository.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Node.js Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Enterprise Analytics Node.js Client.
-editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/analytics-sdk-release-notes.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:1.0@nodejs-analytics-sdk:project-docs:analytics-sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/analytics-sdk-release-notes.adoc
+  xref: xref:1.0@nodejs-analytics-sdk:project-docs:analytics-sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

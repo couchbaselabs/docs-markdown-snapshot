@@ -3,9 +3,10 @@ title: Manage AI Integration Settings
 description: Use the Capella UI to manage settings for your integrations between
   an operational database, the Couchbase AI Data Plane, and Amazon Bedrock,
   OpenAI, or Amazon S3.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/manage-ai-integrations.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:admin:manage-ai-integrations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/manage-ai-integrations.adoc
+  xref: xref:ai:admin:manage-ai-integrations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

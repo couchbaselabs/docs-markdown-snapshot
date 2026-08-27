@@ -4,9 +4,10 @@ description: You can apply features available for visualizing and analyzing data
   in the Tableau from Salesforce, Microsoft Power BI, or Apache Superset
   interactive data visualization platforms to the query results you obtain in
   Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/query/pages/bi.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:query:bi.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/query/pages/bi.adoc
+  xref: xref:enterprise-analytics:query:bi.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

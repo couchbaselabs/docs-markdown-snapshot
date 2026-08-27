@@ -2,9 +2,10 @@
 title: Manage Logging
 description: The Logging facility allows a record to be maintained of important
   events that occur on Couchbase Server.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-logging/manage-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
+  xref: xref:server:manage:manage-logging/manage-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

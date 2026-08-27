@@ -2,9 +2,10 @@
 title: Index Lifecycle
 description: An overview of the lifecycle of a Global Secondary Index, from
   creation and building to updates and scans.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index-lifecycle.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.6@server:learn:services-and-indexes/indexes/index-lifecycle.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index-lifecycle.adoc
+  xref: xref:7.6@server:learn:services-and-indexes/indexes/index-lifecycle.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

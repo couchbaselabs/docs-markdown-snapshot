@@ -1,9 +1,10 @@
 ---
 title: Using Full-Text Search&#8201;&#8212;&#8201;Working with Queries
 description: Couchbase Lite database data querying concepts -- full text search
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/fts.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite:android:fts.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/fts.adoc
+  xref: xref:couchbase-lite:android:fts.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

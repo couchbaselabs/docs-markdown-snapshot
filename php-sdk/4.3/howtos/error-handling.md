@@ -1,9 +1,10 @@
 ---
 title: Handling Errors
 description: Practical steps to handle errors and exceptions.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:4.3@php-sdk:howtos:error-handling.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/error-handling.adoc
+  xref: xref:4.3@php-sdk:howtos:error-handling.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -3,9 +3,10 @@ title: Channel History Management
 description: Remove historical channel entries from document and user metadata
   in Sync Gateway 4.1 to reduce metadata bloat and prevent unnecessary
   revocations.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/channel-history.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:manage:channel-history.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/channel-history.adoc
+  xref: xref:sync-gateway:manage:channel-history.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

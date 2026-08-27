@@ -1,9 +1,10 @@
 ---
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/conflict.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.0@couchbase-lite:csharp:conflict.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/csharp/pages/conflict.adoc
+  xref: xref:3.0@couchbase-lite:csharp:conflict.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

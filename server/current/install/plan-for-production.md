@@ -2,9 +2,10 @@
 title: System Requirements
 description: Couchbase Server has a basic set of installation and networking
   requirements that apply to nearly every deployment.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/plan-for-production.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:install:plan-for-production.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/plan-for-production.adoc
+  xref: xref:server:install:plan-for-production.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

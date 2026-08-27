@@ -1,9 +1,10 @@
 ---
 title: setting-enterprise-analytics
 description: Manage Enterprise Analytics service settings
-editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-enterprise-analytics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:cli:cbcli/couchbase-cli-setting-enterprise-analytics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-enterprise-analytics.adoc
+  xref: xref:server:cli:cbcli/couchbase-cli-setting-enterprise-analytics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

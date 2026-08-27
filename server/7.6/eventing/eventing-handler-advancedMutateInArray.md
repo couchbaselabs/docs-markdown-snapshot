@@ -2,9 +2,10 @@
 title: "Function: Advanced Sub-Document MUTATEIN Array Operation"
 description: Perform the Advanced Sub-Document MUTATEIN operation on an array
   where Eventing interacts with the Data Service.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-advancedMutateInArray.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:eventing:eventing-handler-advancedMutateInArray.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-advancedMutateInArray.adoc
+  xref: xref:7.6@server:eventing:eventing-handler-advancedMutateInArray.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

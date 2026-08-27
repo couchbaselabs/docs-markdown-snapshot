@@ -2,9 +2,10 @@
 title: User-Defined Functions for Queries
 description: How to extend the SQL++ query language by adding your own
   user-defined functions.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/javascript-udfs.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:cloud:guides:javascript-udfs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/javascript-udfs.adoc
+  xref: xref:cloud:guides:javascript-udfs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

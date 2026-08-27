@@ -1,9 +1,10 @@
 ---
 title: Creating a User-Defined Function
 description: How to create a user-defined function to call your JavaScript function.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:guides:create-user-defined-function.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-user-defined-function.adoc
+  xref: xref:7.2@server:guides:create-user-defined-function.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

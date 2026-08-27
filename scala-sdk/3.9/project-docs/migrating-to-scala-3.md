@@ -1,9 +1,10 @@
 ---
 title: Differences between Scala 2 and 3 SDK versions
 description: The Scala 3 version of the SDK has some differences from the Scala 2 versions.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/project-docs/pages/migrating-to-scala-3.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:3.9@scala-sdk:project-docs:migrating-to-scala-3.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/project-docs/pages/migrating-to-scala-3.adoc
+  xref: xref:3.9@scala-sdk:project-docs:migrating-to-scala-3.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

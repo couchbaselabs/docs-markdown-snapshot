@@ -2,9 +2,10 @@
 title: Cluster Level Configuration
 description: Ports, TLS certificates, and service enablement options for Cloud
   Native Gateway.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/configuration-management/pages/cluster-level-configuration.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:configuration-management:cluster-level-configuration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/configuration-management/pages/cluster-level-configuration.adoc
+  xref: xref:cloud-native-gateway:configuration-management:cluster-level-configuration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

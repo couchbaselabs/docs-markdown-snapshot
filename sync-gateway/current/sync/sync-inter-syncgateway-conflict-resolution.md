@@ -1,9 +1,10 @@
 ---
 title: Enhanced Conflict Resolution
 description: About conflict resolution in inter-Sync Gateway replication
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-inter-syncgateway-conflict-resolution.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:sync:sync-inter-syncgateway-conflict-resolution.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-inter-syncgateway-conflict-resolution.adoc
+  xref: xref:sync-gateway:sync:sync-inter-syncgateway-conflict-resolution.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

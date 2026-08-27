@@ -2,9 +2,10 @@
 title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that is running on every node.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:7.6@server:install:upgrade.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade.adoc
+  xref: xref:7.6@server:install:upgrade.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

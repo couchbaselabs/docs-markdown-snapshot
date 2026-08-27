@@ -2,9 +2,10 @@
 title: Date and Time Functions
 description: Working with Couchbase Lite's data model  -- Querying database data
   using date and time functions
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/query-date-time.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@couchbase-lite:java:query-date-time.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/java/pages/query-date-time.adoc
+  xref: xref:2.8@couchbase-lite:java:query-date-time.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

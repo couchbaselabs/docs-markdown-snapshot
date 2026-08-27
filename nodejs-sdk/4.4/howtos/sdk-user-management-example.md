@@ -3,9 +3,10 @@ title: User Management
 description: The Node.js SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/sdk-user-management-example.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:4.4@nodejs-sdk:howtos:sdk-user-management-example.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/sdk-user-management-example.adoc
+  xref: xref:4.4@nodejs-sdk:howtos:sdk-user-management-example.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

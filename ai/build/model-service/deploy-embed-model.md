@@ -2,9 +2,10 @@
 title: Deploy an Embedding Model
 description: Use the AI Data Plane Model Service to deploy embedding models for
   vectorizing text.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:model-service/deploy-embed-model.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
+  xref: xref:ai:build:model-service/deploy-embed-model.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

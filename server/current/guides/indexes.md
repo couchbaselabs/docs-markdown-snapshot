@@ -2,9 +2,10 @@
 title: Use Primary and Secondary Indexes
 description: These guides explain how to create and use primary and secondary
   indexes for SQL++ queries.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/indexes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:guides:indexes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/indexes.adoc
+  xref: xref:server:guides:indexes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

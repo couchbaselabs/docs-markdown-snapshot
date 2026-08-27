@@ -2,9 +2,10 @@
 title: Install Enterprise Analytics Using Docker
 description: Enterprise Analytics can be installed using Couchbase-provided
   images from Docker Hub.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/install/pages/getting-started-docker.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:install:getting-started-docker.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/install/pages/getting-started-docker.adoc
+  xref: xref:enterprise-analytics:install:getting-started-docker.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

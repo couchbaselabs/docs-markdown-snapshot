@@ -1,9 +1,10 @@
 ---
 title: Metrics Reference
 description: A list of the metrics used by Couchbase Capella.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/metrics-reference.adoc
-pubDate: 2026-04-14T05:27:53.923Z
-link: xref:cloud:metrics-reference:metrics-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/metrics-reference.adoc
+  xref: xref:cloud:metrics-reference:metrics-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

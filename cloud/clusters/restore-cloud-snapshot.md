@@ -2,9 +2,10 @@
 title: Restore a Cluster Backup
 description: You can restore a cluster backup in a disaster recovery situation
   to restore your cluster to a previous point in time.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/restore-cloud-snapshot.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:clusters:restore-cloud-snapshot.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/restore-cloud-snapshot.adoc
+  xref: xref:cloud:clusters:restore-cloud-snapshot.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

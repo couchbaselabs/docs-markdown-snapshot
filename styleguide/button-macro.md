@@ -1,8 +1,9 @@
 ---
 title: Button Macro
-editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/button-macro.adoc
-pubDate: 2026-06-19T06:11:25.113Z
-link: xref:styleguide::button-macro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/button-macro.adoc
+  xref: xref:styleguide::button-macro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

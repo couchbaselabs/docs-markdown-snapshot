@@ -1,9 +1,10 @@
 ---
 title: Manage Audit Logs
 description: How to configure and manage audit logging for App Services and App Endpoints.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-audit-logs.adoc
-pubDate: 2026-04-01T05:25:30.286Z
-link: xref:app-services::monitoring/manage-audit-logs.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-audit-logs.adoc
+  xref: xref:app-services::monitoring/manage-audit-logs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Spring Data Couchbase
 description: Spring-based programming model for Couchbase Server with any of our
   JVM-based SDKs (Java, Kotlin, and Scala).
-editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/spring-data-couchbase.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:sdk-extensions::spring-data-couchbase.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/spring-data-couchbase.adoc
+  xref: xref:sdk-extensions::spring-data-couchbase.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

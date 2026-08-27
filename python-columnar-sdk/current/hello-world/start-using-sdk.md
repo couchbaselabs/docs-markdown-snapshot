@@ -2,9 +2,10 @@
 title: Hello Columnar&#8201;&#8212;&#8201;Python SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Python Columnar SDK.
-editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:python-columnar-sdk:hello-world:start-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
+  xref: xref:python-columnar-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

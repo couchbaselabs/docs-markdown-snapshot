@@ -1,9 +1,10 @@
 ---
 title: Database Operations with Edge Server
 description: How to make an API call with the Couchbase Edge Server REST API.
-editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/database-operations.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:1.0@couchbase-edge-server:rest-based-access:database-operations.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/database-operations.adoc
+  xref: xref:1.0@couchbase-edge-server:rest-based-access:database-operations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

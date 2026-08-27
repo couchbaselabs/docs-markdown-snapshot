@@ -1,8 +1,9 @@
 ---
 title: Couchbase Pod Templating
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-pod-templating.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.8@operator::concept-pod-templating.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-pod-templating.adoc
+  xref: xref:2.8@operator::concept-pod-templating.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

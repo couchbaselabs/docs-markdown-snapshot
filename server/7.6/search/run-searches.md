@@ -1,9 +1,10 @@
 ---
 title: Run a Search With a Search Index
 description: Run a Search query to search and return the contents of a Search index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/run-searches.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:search:run-searches.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/run-searches.adoc
+  xref: xref:7.6@server:search:run-searches.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

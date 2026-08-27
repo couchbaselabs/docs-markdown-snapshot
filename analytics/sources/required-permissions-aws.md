@@ -2,9 +2,10 @@
 title: Cloud Read/Write Permissions for AWS
 description: This page outlines the required read and write permissions when
   copying data to or from external cloud providers.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/required-permissions-aws.adoc
-pubDate: 2026-03-27T05:16:21.194Z
-link: xref:analytics:sources:required-permissions-aws.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/required-permissions-aws.adoc
+  xref: xref:analytics:sources:required-permissions-aws.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

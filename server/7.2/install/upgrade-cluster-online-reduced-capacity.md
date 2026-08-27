@@ -1,8 +1,9 @@
 ---
 title: Upgrade a Reduced-Capacity, Online Cluster
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-cluster-online-reduced-capacity.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:install:upgrade-cluster-online-reduced-capacity.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-cluster-online-reduced-capacity.adoc
+  xref: xref:7.2@server:install:upgrade-cluster-online-reduced-capacity.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

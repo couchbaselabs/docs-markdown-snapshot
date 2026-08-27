@@ -1,8 +1,9 @@
 ---
 title: Concurrent Document Mutations
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/concurrent-document-mutations.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cxx-sdk:howtos:concurrent-document-mutations.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/concurrent-document-mutations.adoc
+  xref: xref:cxx-sdk:howtos:concurrent-document-mutations.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

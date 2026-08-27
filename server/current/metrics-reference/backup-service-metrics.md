@@ -1,9 +1,10 @@
 ---
 title: Backup Service Metrics
 description: A list of the metrics provided by the Backup Service.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/backup-service-metrics.adoc
-pubDate: 2026-08-13T05:04:50.295Z
-link: xref:server:metrics-reference:backup-service-metrics.adoc[]
+pubDate: 2026-08-18T04:50:45.818Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/backup-service-metrics.adoc
+  xref: xref:server:metrics-reference:backup-service-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -31,28 +32,28 @@ Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs
 
 `backup_data_size`
 
-7.0.0gauge / bytesRepository backed up data size
+7.0.0 gauge / bytes Repository backed up data size
 
 `backup_dispatched`
 
-7.0.0counterNumber of tasks dispatched to be run
+7.0.0 counter Number of tasks dispatched to be run
 
 `backup_location_check`
 
-7.0.0counterNumber of location checks performed
+7.0.0 counter Number of location checks performed
 
 `backup_request_duration_seconds`
 
-8.0.0histogramHistogram of the request duration
+8.0.0 histogram Histogram of the request duration
 
 `backup_task_duration_seconds`
 
-7.0.0histogramHistogram of the task duration
+7.0.0 histogram Histogram of the task duration
 
 `backup_task_orphaned`
 
-7.0.0counterNumber of tasks that were triggered to run but the status is unknown
+7.0.0 counter Number of tasks that were triggered to run but the status is unknown
 
 `backup_task_run`
 
-7.0.0counterNumber of tasks run
+7.0.0 counter Number of tasks run

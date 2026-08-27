@@ -2,9 +2,10 @@
 title: Managing TLS Identities&#8201;&#8212;&#8201;Working with Peer-to-Peer Syncs
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/p2p-managing-tls-id.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@couchbase-lite:android:p2p-managing-tls-id.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/p2p-managing-tls-id.adoc
+  xref: xref:2.8@couchbase-lite:android:p2p-managing-tls-id.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

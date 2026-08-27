@@ -2,9 +2,10 @@
 title: USE Statements
 description: This topic describes how a <code>USE</code> statement sets the
   database name, scope name, or both for the statement that follows.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_use.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:2.1@enterprise-analytics:sqlpp:5_ddl_use.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_use.adoc
+  xref: xref:2.1@enterprise-analytics:sqlpp:5_ddl_use.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

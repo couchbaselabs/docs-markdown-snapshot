@@ -3,9 +3,10 @@ title: Active-Passive Peer-to-Peer Sync
 description: Where MultiPeer Sync is not available, Couchbase Lite's
   Active-Passive Peer-to-Peer Synchronization enables edge devices to
   synchronize securely without consuming centralized cloud-server resources
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/p2psync-websocket.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:3.3@couchbase-lite:android:p2psync-websocket.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/p2psync-websocket.adoc
+  xref: xref:3.3@couchbase-lite:android:p2psync-websocket.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

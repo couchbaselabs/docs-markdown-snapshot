@@ -2,9 +2,10 @@
 title: Amazon S3
 description: To provide query access to OLAP data in an AWS S3 bucket, you
   create an external link and associate it with an external collection.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-s3.adoc
-pubDate: 2026-03-27T05:16:21.194Z
-link: xref:analytics:sources:external-s3.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-s3.adoc
+  xref: xref:analytics:sources:external-s3.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

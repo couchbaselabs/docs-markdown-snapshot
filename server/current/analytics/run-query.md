@@ -1,9 +1,10 @@
 ---
 title: Running Queries
 description: How to run queries in Couchbase Analytics.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/run-query.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:server:analytics:run-query.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/run-query.adoc
+  xref: xref:server:analytics:run-query.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Cost-Based Optimizer for Analytics
 description: The cost-based optimizer for Analytics uses samples to choose the
   optimal plan to execute a query.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/5b_cbo.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:analytics:5b_cbo.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/5b_cbo.adoc
+  xref: xref:server:analytics:5b_cbo.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

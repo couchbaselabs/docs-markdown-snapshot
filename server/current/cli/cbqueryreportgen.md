@@ -2,9 +2,10 @@
 title: cbqueryreportgen
 description: The <code>cbqueryreportgen</code> tool generates performance
   reports based on Query Service statistics.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbqueryreportgen.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:server:cli:cbqueryreportgen.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbqueryreportgen.adoc
+  xref: xref:server:cli:cbqueryreportgen.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

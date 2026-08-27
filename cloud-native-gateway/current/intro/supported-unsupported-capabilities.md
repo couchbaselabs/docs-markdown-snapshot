@@ -2,9 +2,10 @@
 title: Supported and Unsupported Capabilities
 description: An overview of which Couchbase services, SDK versions, and features
   are supported through Cloud Native Gateway, along with known limitations.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/intro/pages/supported-unsupported-capabilities.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:intro:supported-unsupported-capabilities.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/intro/pages/supported-unsupported-capabilities.adoc
+  xref: xref:cloud-native-gateway:intro:supported-unsupported-capabilities.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

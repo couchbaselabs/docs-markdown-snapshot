@@ -3,9 +3,10 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   been cancelled (for example, because a timeout was applied by the caller).
-editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:rust-sdk:howtos:observability-orphan-logger.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-orphan-logger.adoc
+  xref: xref:rust-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

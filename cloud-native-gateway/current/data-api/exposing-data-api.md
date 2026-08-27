@@ -3,9 +3,10 @@ title: Exposing the Data API
 description: Options for exposing Data API served by Cloud Native Gateway to
   different network environments, including public endpoints, VPC peering, and
   private networking.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/exposing-data-api.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:data-api:exposing-data-api.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/exposing-data-api.adoc
+  xref: xref:cloud-native-gateway:data-api:exposing-data-api.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

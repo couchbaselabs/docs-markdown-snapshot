@@ -2,9 +2,10 @@
 title: Cloud Native Gateway
 description: A direct gRPC interface to key Couchbase services, abstracting
   topology details behind a service endpoint.
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-cloud-native-gateway.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.7@operator::concept-cloud-native-gateway.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-cloud-native-gateway.adoc
+  xref: xref:2.7@operator::concept-cloud-native-gateway.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

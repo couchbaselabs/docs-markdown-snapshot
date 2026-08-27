@@ -3,9 +3,10 @@ title: Native Encryption at Rest
 description: Couchbase Server can encrypt data, configuration, logs, and audit
   information it saves to disk. This encryption can help reduce the chances of
   or severity of data breaches.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/native-encryption-at-rest-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:learn:security/native-encryption-at-rest-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/native-encryption-at-rest-overview.adoc
+  xref: xref:server:learn:security/native-encryption-at-rest-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

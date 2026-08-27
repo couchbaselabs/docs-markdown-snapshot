@@ -1,9 +1,10 @@
 ---
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/concept-docs/pages/transactions.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:1.6@scala-sdk:concept-docs:transactions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/concept-docs/pages/transactions.adoc
+  xref: xref:1.6@scala-sdk:concept-docs:transactions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

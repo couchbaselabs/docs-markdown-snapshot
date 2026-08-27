@@ -1,9 +1,10 @@
 ---
 title: Operators Overview
 description: Operators perform a specific operation on the input values or expressions.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/operators.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:n1ql:n1ql-language-reference/operators.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/operators.adoc
+  xref: xref:7.2@server:n1ql:n1ql-language-reference/operators.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

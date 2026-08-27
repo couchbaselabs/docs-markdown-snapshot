@@ -1,9 +1,10 @@
 ---
 title: Manage App Services with the App Services API
 description: App Services can be accessed through a secure REST API.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest-api-introduction.adoc
-pubDate: 2026-06-18T06:06:41.045Z
-link: xref:app-services::references/rest-api-introduction.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest-api-introduction.adoc
+  xref: xref:app-services::references/rest-api-introduction.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

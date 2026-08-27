@@ -2,9 +2,10 @@
 title: Users
 description: About Sync Gateway <em>users</em> and their role in secure
   cloud-to-edge enterprise data synchronization.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/users.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:4.0@sync-gateway:access-control:users.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/users.adoc
+  xref: xref:4.0@sync-gateway:access-control:users.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

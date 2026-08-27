@@ -3,9 +3,10 @@ title: Configure JWT Authentication
 description: Enterprise Analytics supports JSON Web Token (JWT) authentication,
   allowing clients to authenticate using bearer tokens issued by a trusted
   Identity Provider instead of a username and password.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/configure-jwt.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:manage:manage-security/configure-jwt.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/configure-jwt.adoc
+  xref: xref:enterprise-analytics:manage:manage-security/configure-jwt.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

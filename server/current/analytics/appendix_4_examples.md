@@ -1,9 +1,10 @@
 ---
 title: "Appendix 4: Example Data"
 description: A description of the example data used in the Analytics documentation.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/appendix_4_examples.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:server:analytics:appendix_4_examples.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/appendix_4_examples.adoc
+  xref: xref:server:analytics:appendix_4_examples.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

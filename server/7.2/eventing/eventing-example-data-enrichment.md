@@ -3,9 +3,10 @@ title: Data Enrichment
 description: Given a legacy document set containing attributes whose format
   makes them difficult to search on. In order to correct this search deficiency
   new searchable attributes will be added to the document.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-example-data-enrichment.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:eventing:eventing-example-data-enrichment.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-example-data-enrichment.adoc
+  xref: xref:7.2@server:eventing:eventing-example-data-enrichment.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

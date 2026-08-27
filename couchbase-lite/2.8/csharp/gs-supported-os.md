@@ -1,9 +1,10 @@
 ---
 title: Supported Versions
 description: Supported Versions Couchbase Lite for {param-platform}
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/gs-supported-os.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@couchbase-lite:csharp:gs-supported-os.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/gs-supported-os.adoc
+  xref: xref:2.8@couchbase-lite:csharp:gs-supported-os.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

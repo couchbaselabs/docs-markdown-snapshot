@@ -1,8 +1,9 @@
 ---
 title: Exposing Sync Gateway to Couchbase Lite Clients
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-sync-gateway-clients.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@operator::tutorial-sync-gateway-clients.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-sync-gateway-clients.adoc
+  xref: xref:2.8@operator::tutorial-sync-gateway-clients.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

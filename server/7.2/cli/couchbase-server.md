@@ -3,9 +3,10 @@ title: couchbase-server
 description: The <code>couchbase-server</code> command is used to start, stop,
   and retrieve status on a <em>non-root-installed</em> server, on any supported
   Linux platform.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/couchbase-server.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:7.2@server:cli:couchbase-server.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/couchbase-server.adoc
+  xref: xref:7.2@server:cli:couchbase-server.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

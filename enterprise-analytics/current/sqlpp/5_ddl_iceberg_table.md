@@ -3,9 +3,10 @@ title: CREATE EXTERNAL COLLECTION on a Catalog
 description: Use <code>CREATE EXTERNAL COLLECTION</code> to register an Iceberg
   table from an external catalog in Enterprise Analytics, enabling SQL++ queries
   against the data in object storage.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_iceberg_table.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:sqlpp:5_ddl_iceberg_table.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_iceberg_table.adoc
+  xref: xref:enterprise-analytics:sqlpp:5_ddl_iceberg_table.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

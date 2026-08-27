@@ -2,9 +2,10 @@
 title: Configure a Webhook Alert Integration for App Services
 description: Send Capella metric-based alerts to incident management third-party
   tools with an alert integration.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-webhook-integration.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:app-services::monitoring/configure-webhook-integration.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-webhook-integration.adoc
+  xref: xref:app-services::monitoring/configure-webhook-integration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

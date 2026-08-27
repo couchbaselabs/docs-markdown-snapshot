@@ -1,8 +1,9 @@
 ---
 title: Couchbase Java SDK 3.12
-editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:java-sdk:hello-world:overview.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
+  xref: xref:java-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -59,7 +60,7 @@ The Couchbase Java SDK integrates into the Java ecosystem through a number of ex
 * [Spring Data](https://spring.io/projects/spring-data-couchbase)
 * [Spring Boot](https://blog.couchbase.com/couchbase-spring-boot-spring-data/)
 * [Couchbase Quarkus Java Extension](../../../quarkus-extension/current/overview.md)
-* [Apache Spark Connector](../../../spark-connector/current/java-api.md)
+* [Apache Spark Connector](../../../spark-connector/3.5/java-api.md)
 
 ## Exploring the Java SDK
 

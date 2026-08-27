@@ -2,9 +2,10 @@
 title: Set Search Index Advanced Settings
 description: Configure advanced settings with the Couchbase Server Web Console
   for a Search index to improve an index's search results and performance.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/set-advanced-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:search:set-advanced-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/set-advanced-settings.adoc
+  xref: xref:7.2@server:search:set-advanced-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

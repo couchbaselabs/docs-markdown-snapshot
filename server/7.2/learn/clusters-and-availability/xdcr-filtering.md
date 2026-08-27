@@ -2,9 +2,10 @@
 title: XDCR Advanced Filtering
 description: XDCR Advanced Filtering allows specified subsets of documents to be
   replicated from their source collection.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/xdcr-filtering.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:learn:clusters-and-availability/xdcr-filtering.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/xdcr-filtering.adoc
+  xref: xref:7.2@server:learn:clusters-and-availability/xdcr-filtering.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

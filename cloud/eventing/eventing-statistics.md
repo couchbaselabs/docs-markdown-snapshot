@@ -2,9 +2,10 @@
 title: Statistics
 description: You can fetch Eventing Statistics for each deployed Function from
   an Eventing node using the Capella UI.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-statistics.adoc
-pubDate: 2026-05-08T05:30:25.589Z
-link: xref:cloud:eventing:eventing-statistics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-statistics.adoc
+  xref: xref:cloud:eventing:eventing-statistics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

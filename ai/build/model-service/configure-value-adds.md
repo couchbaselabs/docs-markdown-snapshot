@@ -2,9 +2,10 @@
 title: Configure LLM Value Adds
 description: Use Value Adds features to help you enhance the capabilities of
   your large language models (LLMs).
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-value-adds.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:model-service/configure-value-adds.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-value-adds.adoc
+  xref: xref:ai:build:model-service/configure-value-adds.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

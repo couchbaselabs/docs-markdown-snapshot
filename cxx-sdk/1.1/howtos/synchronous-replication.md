@@ -1,9 +1,10 @@
 ---
 title: Synchronous Replication
 description: Durability
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/synchronous-replication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:1.1@cxx-sdk:howtos:synchronous-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/synchronous-replication.adoc
+  xref: xref:1.1@cxx-sdk:howtos:synchronous-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

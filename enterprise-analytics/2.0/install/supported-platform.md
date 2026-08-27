@@ -3,9 +3,10 @@ title: Supported Platforms
 description: Enterprise Analytics supports several popular operating systems and
   virtual environments. The Enterprise Analytics Web Console supports most
   recent major browsers.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/supported-platform.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.0@enterprise-analytics:install:supported-platform.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/supported-platform.adoc
+  xref: xref:2.0@enterprise-analytics:install:supported-platform.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

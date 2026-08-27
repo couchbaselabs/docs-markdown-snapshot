@@ -1,9 +1,10 @@
 ---
 title: "Function: Advanced Binary KV"
 description: Show and Advanced Accessor Binary Write.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advancedBinaryKV.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:eventing:eventing-handler-advancedBinaryKV.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advancedBinaryKV.adoc
+  xref: xref:cloud:eventing:eventing-handler-advancedBinaryKV.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

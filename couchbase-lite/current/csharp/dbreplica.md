@@ -2,9 +2,10 @@
 title: Data Sync Locally on Device
 description: Couchbase Lite Database Sync - Synchronize changes between
   databases on the same device
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/dbreplica.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:couchbase-lite:csharp:dbreplica.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/dbreplica.adoc
+  xref: xref:couchbase-lite:csharp:dbreplica.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

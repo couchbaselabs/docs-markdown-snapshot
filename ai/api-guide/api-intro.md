@@ -3,9 +3,10 @@ title: Manage Deployments with the Couchbase AI Data Plane APIs
 description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure the
   Couchbase AI Data Plane.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:api-guide:api-intro.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
+  xref: xref:ai:api-guide:api-intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

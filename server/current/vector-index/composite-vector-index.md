@@ -2,9 +2,10 @@
 title: Filtered Search Using Composite Vector Indexes
 description: A Composite Vector index is a Global Secondary Index (GSI) with a
   single vector column that combines scalar queries with semantic search.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/composite-vector-index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:vector-index:composite-vector-index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/composite-vector-index.adoc
+  xref: xref:server:vector-index:composite-vector-index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

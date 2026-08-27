@@ -3,9 +3,10 @@ title: Compatibility of Couchbase Features, Couchbase Server Versions, and the
   Couchbase C SDK
 description: Features available in different SDK versions, and compatibility
   between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:c-sdk:project-docs:compatibility.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/compatibility.adoc
+  xref: xref:c-sdk:project-docs:compatibility.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

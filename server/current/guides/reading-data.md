@@ -1,9 +1,10 @@
 ---
 title: Read Documents
 description: How to read documents with a command line tool or an SDK.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/reading-data.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:server:guides:reading-data.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/reading-data.adoc
+  xref: xref:server:guides:reading-data.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

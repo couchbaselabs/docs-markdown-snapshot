@@ -3,9 +3,10 @@ title: Index Partitioning
 description: Index partitioning enables you to increase aggregate query
   performance by dividing and spreading a large index of documents across
   multiple nodes, horizontally scaling out an index as needed.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/index-partitioning.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:n1ql:n1ql-language-reference/index-partitioning.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/index-partitioning.adoc
+  xref: xref:server:n1ql:n1ql-language-reference/index-partitioning.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

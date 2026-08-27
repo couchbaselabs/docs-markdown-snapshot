@@ -2,9 +2,10 @@
 title: Use Couchbase AI Data Plane AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:ai-functions.adoc[]
+pubDate: 2026-08-21T04:43:23.418Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
+  xref: xref:ai:build:ai-functions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -222,9 +223,15 @@ To change the model associated with your AI Function:
 
 ## [](#delete-ai-functions)Delete AI Functions
 
-You cannot delete an AI Function. Once you have deployed an AI Function, you cannot remove it from the operational cluster.
+To delete an AI Function:
 
-You can only [change the model](#change-model-association) associated with that AI Function.
+1. On the **Operational** tab, click the name of the cluster with the AI Function you want to delete.
+2. Go to **AI Functions**.
+3. Find the AI Function you want to delete and go to **More Options (⋮)** **Delete**.
+4. Confirm that you want to delete the AI Function.
+5. Click \[Delete AI Function\].
+
+Once you delete an AI Function, it's queued for deletion and remains visible with the **Destroying** status. This process can take a few minutes.
 
 ## [](#sample-queries)View Sample Queries
 

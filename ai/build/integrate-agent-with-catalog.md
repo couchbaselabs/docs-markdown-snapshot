@@ -2,9 +2,10 @@
 title: Integrate an Agent with the Agent Catalog
 description: Use the Couchbase Agent Catalog to create your own custom AI agents
   with your preferred Large Language Model (LLM) and agent framework.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:integrate-agent-with-catalog.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
+  xref: xref:ai:build:integrate-agent-with-catalog.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,8 +1,9 @@
 ---
 title: Capella Operational Management API Reference
-editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-07-23T05:30:31.135Z
-link: xref:cloud:management-api-reference:index.adoc[]
+pubDate: 2026-08-25T04:30:40.250Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-reference/pages/index.adoc
+  xref: xref:cloud:management-api-reference:index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -207,6 +208,13 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Database Credentials
     * putUpdate Database Credentials
     * delDelete Database Credentials
+  * Database Roles
+    * getList Capella Privileges
+    * getList Database Roles
+    * postCreate Database Role
+    * getGet Database Role
+    * putUpdate Database Role
+    * delDelete Database Role
   * Eventing Functions
     * getGet Eventing Function Code
     * putUpdate Eventing Function Code
@@ -5288,6 +5296,8 @@ Copy
 * "lastError": "string",
 * "docsChanged": 100,
 * "docsProcessed": 500,
+* "docsTargeted": 1000,
+* "docsErrored": 10,
 * "collections_processing": {
   * "scope1": [
     * "collection_1",
@@ -18310,8 +18320,6 @@ In order to access this endpoint, the provided API key must have at least one of
 * Organization Owner
 * Project Owner
 
-Valid fields to sort the results are: "id", "name".
-
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
 ##### Authorizations:
@@ -18330,7 +18338,9 @@ _token_
 | namerequired   | string \[ 2 .. 128 \] characters Username for the database credential. The name should adhere to the following rules: The name must be between 2 & 128 characters. The name cannot contain spaces. The name cannot contain the following characters - ) ( > < , ; : " \\ / \] \[ ? = } { The name cannot begin with @ character.                                                                                                                                                   |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | password       | string \>= 8 characters A password associated with the database credential. If this field is left empty, a password will be auto-generated. The password should adhere to the following rules: The password should have at least 8 characters. Characters used for the password should contain at least one uppercase (A-Z), one lowercase (a-z), one numerical (0-9), and one special character. The password must not contain any of the following characters: < > ; . \* & \| £ |
-| accessrequired | Array of objects (Access) Describes the access information of the database credential.                                                                                                                                                                                                                                                                                                                                                                                             |
+| credentialType | string Default: "basic" Enum: "basic" "advanced" The type of credential to create. Credential types determine the level of access control: basic: Uses bucket-level access permissions. When omitted, this is the default. advanced: Uses capella user roles for fine-grained RBAC access. When basic is used, the access field is required and userRoles must not be provided. When advanced is used, the userRoles field is required and access must not be provided.            |
+| access         | Array of objects (CredentialAccess) Describes the access information of the database credential. Required when creating a basic credential type. Must not be provided when creating an advanced credential type with user roles.                                                                                                                                                                                                                                                   |
+| userRoles      | Array of strings A list of Capella user role names to assign to the database credential. Required when creating an advanced credential type. Must not be provided when creating a basic credential type with access. The provided user roles must already exist in the cluster.                                                                                                                                                                                                    |
 
 ### Responses
 
@@ -18372,7 +18382,7 @@ application/json
 
 Example
 
-ReadWriteOnSomeCollectionsReadAndWriteOnAllCollectionsInABucketAndScopeReadAccessOnAllBucketsSeparateAccessForDifferentScopesWriteAccessForAllBucketsMultipleLevelOfAccessReadWriteOnSomeCollections
+ReadWriteOnSomeCollectionsReadAndWriteOnAllCollectionsInABucketAndScopeReadAccessOnAllBucketsSeparateAccessForDifferentScopesWriteAccessForAllBucketsMultipleLevelOfAccessAdvancedCredentialWithUserRolesReadWriteOnSomeCollections
 
 Copy
 
@@ -18456,6 +18466,10 @@ _token_
 
 Successfully fetched the cluster's database credential information based on the userId.
 
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
 **403** 
 
 The client does not have the necessary permissions to access this resource.
@@ -18463,6 +18477,10 @@ The client does not have the necessary permissions to access this resource.
 **404** 
 
 The requested resource was not found.
+
+**422** 
+
+Request validation error.
 
 **429** 
 
@@ -18479,8 +18497,10 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 ### Response samples 
 
 * 200
+* 400
 * 403
 * 404
+* 422
 * 429
 * 500
 
@@ -18506,9 +18526,7 @@ Copy
   * {
     * "privileges": [
       * "data_reader",
-      * "data_writer",
-      * "read",
-      * "write"  
+      * "data_writer"  
       ],
     * "resources": {
       * "buckets": [
@@ -18528,6 +18546,10 @@ Copy
             ]  
       }  
   }  
+],
+* "userRoles": [
+  * "readInventory",
+  * "analyticsReader"  
 ]
 }`
 
@@ -18561,9 +18583,10 @@ _token_
 
 ##### Request Body schema: application/json
 
-| access   | Array of objects (Access) Describes the access information of the database credential. |
-| -------- | -------------------------------------------------------------------------------------- |
-| password | string The updated password of the database credential.                                |
+| access    | Array of objects (CredentialAccess) Describes the access information of the database credential. Used when updating a basic credential type. Must not be provided when updating an advanced credential type with user roles.                                                                                                                                                                                     |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| password  | string The updated password of the database credential.                                                                                                                                                                                                                                                                                                                                                          |
+| userRoles | Array of strings A list of Capella user role names to assign to the database credential. Used when updating an advanced credential type. Must not be provided when updating a basic credential type with access. The provided user roles must already exist in the cluster. If provided, the list must contain at least one user role name. Omit the field to leave the currently assigned user roles unchanged. |
 
 ### Responses
 
@@ -18582,6 +18605,10 @@ The client does not have the necessary permissions to access this resource.
 **404** 
 
 The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
 
 **422** 
 
@@ -18606,6 +18633,10 @@ https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/
 Content type
 
 application/json
+
+Example
+
+UpdateDatabaseCredentialsUpdateAdvancedDatabaseCredentialsUpdateDatabaseCredentials
 
 Copy
 
@@ -18644,6 +18675,7 @@ Copy
 * 400
 * 403
 * 404
+* 412
 * 422
 * 429
 * 500
@@ -18728,6 +18760,818 @@ Copy
 * "code": 1002,
 * "message": "Access Denied.",
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/Database-Roles)Database Roles
+
+Database user roles represents a group of Capella privileges that can be assigned to a database credential. These user roles can be assigned to one or more database credentials and helps in easily applying a group of Capella Privileges to multiple database credentials. A Capella Privilege is a permission that can be assigned to a user to perform a specific action in the context of Couchbase Capella.
+
+## [](#tag/Database-Roles/operation/listCapellaPrivileges)List Capella Privileges 
+
+Lists the Capella privileges available on the specified cluster. The list is resolved live for that cluster, so it reflects the services the cluster actually runs.
+
+Use this endpoint before creating or updating a database user role: the `name` of each privilege returned here is exactly the value to supply in the role's `access.privileges`array. Privilege names are camelCase, for example `dataRead` and `queryManage`.
+
+Each entry also carries a `group` classification and an RBAC resource template showing which levels (bucket, scope, collection) the privilege can be scoped to. A `*` in the template means the field is configurable at that level; an empty `resources` object means the privilege is global and applies to the whole cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**200** 
+
+Successfully listed all the available Capella privileges for the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privileges
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privileges
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "name": "dataRead",
+    * "group": "data",
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "*",
+          * "scopes": [
+            * {
+              * "name": "*",
+              * "collections": [
+                * "*"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  },
+  * {
+    * "name": "dataManage",
+    * "group": "data",
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "*",
+          * "scopes": [
+            * {
+              * "name": "*",
+              * "collections": [
+                * "*"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  },
+  * {
+    * "name": "queryIndex",
+    * "group": "query",
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "*",
+          * "scopes": [
+            * {
+              * "name": "*",
+              * "collections": [
+                * "*"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  }  
+]
+}`
+
+## [](#tag/Database-Roles/operation/listDatabaseRoles)List Database Roles 
+
+Lists all the database user roles under a cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                                                                                        |
+| sortBy        | Array of strings Example: sortBy=name Sets the order of how you would like to sort the results and the key you would like to order by. Valid fields to sort the results are: **name**, **id**. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                                                                               |
+
+### Responses
+
+**200** 
+
+Successfully listed all the database user roles under the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 100  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-aaaa-1414-eeee-000000000000/clusters/ffffffff-aaaa-1414-eeee-000000000000/roles?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-aaaa-1414-eeee-000000000000/clusters/ffffffff-aaaa-1414-eeee-000000000000/roles?page=10&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-aaaa-1414-eeee-000000000000/clusters/ffffffff-aaaa-1414-eeee-000000000000/roles?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/organizations/ffffffff-aaaa-1414-eeee-000000000000/projects/ffffffff-aaaa-1414-eeee-000000000000/clusters/ffffffff-aaaa-1414-eeee-000000000000/roles?page=3&perPage=10>"  
+  }  
+},
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "test-role-001",
+    * "description": "A test role with read and write access",
+    * "access": [
+      * {
+        * "privileges": [
+          * "dataRead"  
+                    ],
+        * "resources": {
+          * "buckets": [
+            * {
+              * "name": "travel-sample",
+              * "scopes": [
+                * {
+                  * "name": "inventory",
+                  * "collections": [
+                    * "airport",
+                    * "airline"  
+                                                                                          ]  
+                                                                        }  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            },
+      * {
+        * "privileges": [
+          * "queryManage"  
+                    ],
+        * "resources": {
+          * "buckets": [
+            * {
+              * "name": "travel-sample",
+              * "scopes": [
+                * {
+                  * "name": "inventory",
+                  * "collections": [
+                    * "sales"  
+                                                                                          ]  
+                                                                        }  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            }  
+      ],
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  },
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000001",
+    * "name": "test-role-002",
+    * "description": "A test role with read access on all buckets",
+    * "access": [
+      * {
+        * "privileges": [
+          * "dataRead"  
+                    ],
+        * "resources": {
+          * "buckets": [
+            * {
+              * "name": "*"  
+                                          }  
+                              ]  
+                    }  
+            }  
+      ],
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+]
+}`
+
+## [](#tag/Database-Roles/operation/postDatabaseRole)Create Database Role 
+
+Creates a new database user role under a cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| namerequired   | string \[ 2 .. 32 \] characters Name for the database user role. The name should adhere to the following rules: The name must be between 2 & 32 characters. The name cannot contain spaces. The name cannot contain the following characters - ) ( > < , ; : " \\ / \] \[ ? = } { The name cannot begin with @ character. |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description    | string Description for the database user role.                                                                                                                                                                                                                                                                            |
+| accessrequired | Array of objects (RoleAccess) Describes the access information of the database user role.                                                                                                                                                                                                                                 |
+
+### Responses
+
+**201** 
+
+Successfully created a database user role under a cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "test-role-001",
+* "access": [
+  * {
+    * "privileges": [
+      * "dataRead"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "airport",
+                * "airline"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  },
+  * {
+    * "privileges": [
+      * "queryManage"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "sales"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  }  
+]
+}`
+
+### Response samples 
+
+* 201
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/Database-Roles/operation/getDatabaseRole)Get Database Role 
+
+Fetches the details of a given cluster's database user role.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.            |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.            |
+| roleIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database user role. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the cluster's database user role information based on the roleId.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "test-role-001",
+* "description": "A test role with read and write access",
+* "access": [
+  * {
+    * "privileges": [
+      * "dataRead"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "airport",
+                * "airline"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  },
+  * {
+    * "privileges": [
+      * "queryManage"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "sales"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  }  
+],
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/Database-Roles/operation/putDatabaseRole)Update Database Role 
+
+Updates an existing database user role under a cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.            |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.            |
+| roleIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database user role. |
+
+##### Request Body schema: application/json
+
+| description | string Updated description for the database user role.                                    |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| access      | Array of objects (RoleAccess) Describes the access information of the database user role. |
+
+### Responses
+
+**204** 
+
+Successfully updated the database user role under a cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "access": [
+  * {
+    * "privileges": [
+      * "dataRead",
+      * "dataManage"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "airport",
+                * "airline"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  },
+  * {
+    * "privileges": [
+      * "queryManage"  
+      ],
+    * "resources": {
+      * "buckets": [
+        * {
+          * "name": "travel-sample",
+          * "scopes": [
+            * {
+              * "name": "inventory",
+              * "collections": [
+                * "sales"  
+                                                        ]  
+                                          }  
+                              ]  
+                    }  
+            ]  
+      }  
+  }  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Database-Roles/operation/deleteDatabaseRole)Delete Database Role 
+
+Deletes an existing database user role under a cluster.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.       |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.            |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.            |
+| roleIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the database user role. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the database user role under the cluster.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/roles/{roleId}
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
 }`
 
 ## [](#tag/Eventing-Functions)Eventing Functions
@@ -19145,13 +19989,13 @@ _token_
 
 required
 
-| description          | string The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code                 | string The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| eventSource          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| eventMetadataStorage | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| settings             | object Runtime settings that control how the eventing function is executed. Every field is optional, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| bindings             | object A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the eventing function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. When a binding category (buckets, urls, or constants) is supplied, the corresponding list on the function is replaced in full with the value provided. Categories that are omitted are left unchanged. To remove every binding in a category, supply an empty array. Aliases must be unique across all three binding types. |
+| description          | string The eventing function description.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code                 | string The JavaScript code of the eventing function that gets executed in response to document mutations. The eventing service compresses the code before storing it. The compressed code must not exceed 128 KiB (131072 bytes); a function whose code is larger than this limit after compression is rejected.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| eventSource          | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| eventMetadataStorage | object A reference to a Couchbase keyspace, identified by its bucket, scope, and collection. Every field is optional in an update request, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| settings             | object Runtime settings that control how the eventing function is executed. Every field is optional, and any field that is omitted is left unchanged on the function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| bindings             | object A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLs and credentials, and global constants, from the source code of the eventing function. A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a function definition from a development to a production environment without changing the eventing code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types. When a binding category (buckets, urls, or constants) is supplied, the corresponding list on the function is replaced in full with the value provided. Because of this, each binding is validated and defaulted exactly as it is on create. Categories that are omitted are left unchanged. To remove every binding in a category, supply an empty array. Aliases must be unique across all three binding types. |
 
 ### Responses
 

@@ -2,9 +2,10 @@
 title: "Examples: Using the Eventing Service"
 description: This page contains examples of how to use the Eventing Service with
   the Couchbase Web Console.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:eventing:eventing-examples.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples.adoc
+  xref: xref:cloud:eventing:eventing-examples.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

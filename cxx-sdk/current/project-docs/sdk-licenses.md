@@ -2,9 +2,10 @@
 title: Licenses
 description: Couchbase SDKs' source code and binaries are licensed under the
   Apache Licence 2.0.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-04-07T05:16:09.470Z
-link: xref:cxx-sdk:project-docs:sdk-licenses.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/sdk-licenses.adoc
+  xref: xref:cxx-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -29,4 +30,4 @@ Any dependencies may have their [own, separate licenses](https://www.couchbase.c
 
 ## [](#documentation-license)Documentation License
 
-This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-cxx/blob/release/1.3/LICENSE>.
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-cxx/blob/release/1.4/LICENSE>.

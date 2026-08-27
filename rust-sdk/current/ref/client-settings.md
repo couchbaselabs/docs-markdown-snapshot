@@ -2,9 +2,10 @@
 title: Client Settings
 description: The <code>ClusterOptions</code> struct enables you to configure
   Rust SDK options for bootstrapping, reliability, and performance.
-editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:rust-sdk:ref:client-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/client-settings.adoc
+  xref: xref:rust-sdk:ref:client-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

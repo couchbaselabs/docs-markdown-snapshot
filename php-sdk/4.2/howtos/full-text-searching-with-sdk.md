@@ -2,9 +2,10 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:4.2@php-sdk:howtos:full-text-searching-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/full-text-searching-with-sdk.adoc
+  xref: xref:4.2@php-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

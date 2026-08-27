@@ -1,9 +1,10 @@
 ---
 title: Make an API Call with the Capella App Services Management API
 description: How to make an API call with the Capella App Services Management API.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/management-api-guide/management-api-use.adoc
-pubDate: 2026-06-18T06:06:41.045Z
-link: xref:app-services::management-api-guide/management-api-use.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/management-api-guide/management-api-use.adoc
+  xref: xref:app-services::management-api-guide/management-api-use.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

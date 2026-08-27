@@ -1,9 +1,10 @@
 ---
 title: Data Sync
 description: Introducing Couchbase Lite's Peer-to-Peer Synchronization feature
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/landing-replications.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:3.2@couchbase-lite:objc:landing-replications.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/landing-replications.adoc
+  xref: xref:3.2@couchbase-lite:objc:landing-replications.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

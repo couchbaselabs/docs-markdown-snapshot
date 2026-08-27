@@ -1,9 +1,10 @@
 ---
 title: Google Cloud Platform (GCP)
 description: Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP).
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/gcp.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:reference:gcp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/gcp.adoc
+  xref: xref:cloud:reference:gcp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Process Your Data For the Couchbase AI Data Plane
 description: Use the Couchbase AI Data Plane Workflows to prepare, process, and
   vectorize text for use with other AI Data Plane features.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:vectorization-service/data-processing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
+  xref: xref:ai:build:vectorization-service/data-processing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

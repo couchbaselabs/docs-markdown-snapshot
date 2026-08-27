@@ -2,9 +2,10 @@
 title: Get a Search Index Definition from the Web Console
 description: Use the Couchbase Server Web Console to copy and paste a JSON
   Search index definition for use in the REST API or another cluster.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/export-search-index.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:search:export-search-index.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/export-search-index.adoc
+  xref: xref:server:search:export-search-index.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Install Sync Gateway
 description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
   data from cloud to edge.
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-install.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:3.3@sync-gateway:start-here:get-started-install.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-install.adoc
+  xref: xref:3.3@sync-gateway:start-here:get-started-install.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

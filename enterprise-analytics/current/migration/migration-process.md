@@ -2,9 +2,10 @@
 title: Migration
 description: This section provides a step-by-step guide for migrating your data
   and applications to Couchbase Capella Analytics or Enterprise Analytics.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/migration/pages/migration-process.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:migration:migration-process.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/migration/pages/migration-process.adoc
+  xref: xref:enterprise-analytics:migration:migration-process.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

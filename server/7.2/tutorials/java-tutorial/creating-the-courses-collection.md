@@ -3,9 +3,10 @@ title: Creating the Courses Collection
 description: Your first application created a single student record for the
   student collection. In this part, you're going to populate the course
   collection.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-courses-collection.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:tutorials:java-tutorial/creating-the-courses-collection.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-courses-collection.adoc
+  xref: xref:7.2@server:tutorials:java-tutorial/creating-the-courses-collection.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

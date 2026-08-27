@@ -4,9 +4,10 @@ description: Configure Single Sign-On (SSO) between Google Workspace and
   Couchbase Capella to allow your organization's users to authenticate securely
   without managing separate credentials. This integration enables streamlined
   access management while maintaining enterprise-grade security.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-google.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:organizations:ui-auth/sso-google.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-google.adoc
+  xref: xref:cloud:organizations:ui-auth/sso-google.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

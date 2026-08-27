@@ -2,9 +2,10 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.11@scala-sdk:howtos:sdk-authentication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/sdk-authentication.adoc
+  xref: xref:3.11@scala-sdk:howtos:sdk-authentication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

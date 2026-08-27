@@ -2,9 +2,10 @@
 title: Couchbase Analytics Tabular Views
 description: Create Tabular Analytics Views (TAVs) from Couchbase datasets for
   use with Tableau.
-editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.2/modules/ROOT/pages/tabular-views.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:1.2@tableau-connector::tabular-views.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.2/modules/ROOT/pages/tabular-views.adoc
+  xref: xref:1.2@tableau-connector::tabular-views.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -4,9 +4,10 @@ description: Capella Analytics is a real-time analytical database (RT-OLAP) for
   real time apps and operational intelligence. Capella Analytics is a
   standalone, managed offering from Couchbase under the Capella family of
   products — a self-managed Enterprise Analytics product is also available.
-editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/columnar-sdk.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:home::columnar-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/columnar-sdk.adoc
+  xref: xref:home::columnar-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

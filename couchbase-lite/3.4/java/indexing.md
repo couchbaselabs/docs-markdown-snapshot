@@ -1,9 +1,10 @@
 ---
 title: Indexing your Data
 description: Working with Couchbase Lite's data model  --  Using indexes
-editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/java/pages/indexing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:3.4@couchbase-lite:java:indexing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/java/pages/indexing.adoc
+  xref: xref:3.4@couchbase-lite:java:indexing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

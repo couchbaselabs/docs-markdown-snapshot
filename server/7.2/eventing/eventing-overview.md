@@ -2,9 +2,10 @@
 title: "Eventing Service: Fundamentals"
 description: The Couchbase Eventing Service is a framework to operate on changes
   to data in real time. Events are changes to data in the Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:eventing:eventing-overview.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-overview.adoc
+  xref: xref:7.2@server:eventing:eventing-overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

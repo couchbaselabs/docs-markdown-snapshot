@@ -1,8 +1,9 @@
 ---
 title: Canceling Rebalance Retries
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cancel-rebalance-retry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:2.0@enterprise-analytics:reference:rest-cancel-rebalance-retry.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cancel-rebalance-retry.adoc
+  xref: xref:2.0@enterprise-analytics:reference:rest-cancel-rebalance-retry.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

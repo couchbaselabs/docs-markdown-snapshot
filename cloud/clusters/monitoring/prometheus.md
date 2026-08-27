@@ -2,9 +2,10 @@
 title: Add a Capella Cluster to a Prometheus Server
 description: Connect a Prometheus server to your Couchbase Capella cluster and
   collect metrics.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/prometheus.adoc
-pubDate: 2026-05-12T05:41:22.753Z
-link: xref:cloud:clusters:monitoring/prometheus.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/prometheus.adoc
+  xref: xref:cloud:clusters:monitoring/prometheus.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

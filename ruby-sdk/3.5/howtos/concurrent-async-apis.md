@@ -1,9 +1,10 @@
 ---
 title: Async and Batching APIs
 description: An async implementation is not yet available in the 3.x API Ruby SDK.
-editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:3.5@ruby-sdk:howtos:concurrent-async-apis.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/concurrent-async-apis.adoc
+  xref: xref:3.5@ruby-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

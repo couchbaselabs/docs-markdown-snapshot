@@ -1,8 +1,9 @@
 ---
 title: Capella Columnar Support
-editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/columnar.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:spark-connector::columnar.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-spark/edit/release/4.0/modules/ROOT/pages/columnar.adoc
+  xref: xref:spark-connector::columnar.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

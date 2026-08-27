@@ -1,9 +1,10 @@
 ---
 title: CREATE SCOPE
 description: The CREATE SCOPE statement enables you to create a scope.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createscope.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:cloud:n1ql:n1ql-language-reference/createscope.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createscope.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/createscope.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

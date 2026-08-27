@@ -2,9 +2,10 @@
 title: Search Capella
 description: You can search for clusters, App Services, users, and projects in
   your organization using the Capella UI.
-editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/using-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:cloud:get-started:using-search.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/using-search.adoc
+  xref: xref:cloud:get-started:using-search.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

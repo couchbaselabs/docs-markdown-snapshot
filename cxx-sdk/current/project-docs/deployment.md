@@ -1,9 +1,10 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cxx-sdk:project-docs:deployment.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/deployment.adoc
+  xref: xref:cxx-sdk:project-docs:deployment.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -39,22 +40,23 @@ The best way to accommodate developing an application that is to be deployed to 
 All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the C++ SDK and Couchbase Server with which some features were introduced.
 
 __Table 1\. Couchbase Server and SDK Supported Version Matrix__
-|                                                                                              | Server 7.2  | Server 7.6.x     | Server 8.0 |
-| -------------------------------------------------------------------------------------------- | ----------- | ---------------- | ---------- |
-| KV Range Scan                                                                                | N/A         | From 1.0.0       |            |
-| Zone aware replica reads                                                                     | N/A         | From 1.0.0       |            |
-| Vector Search with Search Vector Index                                                       | N/A         | From 1.0.0       |            |
-| Vector Query using Hyperscale Vector Index                                                   | N/A         | From SDK 1.2.0 ① |            |
-| Vector Query using Composite (GSI & vector) index                                            | N/A         | From SDK 1.2.0 ① |            |
-| Distributed ACID Transactions                                                                | From 1.0.0  |                  |            |
-| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0  |                  |            |
-| Circuit Breakers                                                                             | From 1.3.2  |                  |            |
-| OTel                                                                                         | From 1.3.0  |                  |            |
-| Field Level Encryption                                                                       | From 1.0.0  |                  |            |
-| Cloud Native Gateway                                                                         | Unsupported |                  |            |
+|                                                                                              | Server 7.2   | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ------------ | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A          | From 1.0.0       |            |
+| Zone aware replica reads                                                                     | N/A          | From 1.0.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A          | From 1.0.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A          | From SDK 1.2.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A          | From SDK 1.2.0 ① |            |
+| Distributed ACID Transactions                                                                | From 1.0.0   |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                  |            |
+| Circuit Breakers                                                                             | From 1.3.2   |                  |            |
+| OTel                                                                                         | From 1.3.0   |                  |            |
+| Field Level Encryption                                                                       | From 1.0.0   |                  |            |
+| Cloud Native Gateway                                                                         | From 1.4.0 ② |                  |            |
 
 | **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Interface Stability = Uncommitted (See [API Stability Guide](compatibility.md#interface-stability)).                              |
 
 ## [](#further-reading)Further Reading
 

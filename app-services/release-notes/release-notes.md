@@ -2,9 +2,10 @@
 title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:app-services::release-notes/release-notes.adoc[]
+pubDate: 2026-08-21T04:43:23.418Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
+  xref: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -15,6 +16,12 @@ link: xref:app-services::release-notes/release-notes.adoc[]
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#august-2026)August 2026
+
+* App Services 4.1 introduces UI Enhancements for Resync Progress and Estimation  
+The Access Control and Data Validation page now shows real-time resync progress for your linked collections. An information panel above the collections list displays the number of documents processed and changed against an estimated total, and the collections table header shows the resync status, including a **Last Synced** timestamp once the operation completes.  
+For more information, see [Monitor Resync Progress](../app-endpoints/resync.md#monitor-resync-progress).
 
 ## [](#july-2026)July 2026
 

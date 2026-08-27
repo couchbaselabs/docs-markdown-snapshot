@@ -1,8 +1,9 @@
 ---
 title: Release Notes
-editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:kafka-connector::release-notes.adoc[]
+pubDate: 2026-08-20T04:42:15.589Z
+antora:
+  editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/release-notes.adoc
+  xref: xref:kafka-connector::release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -32,13 +33,26 @@ You can optionally extend the connector's functionality by writing custom compon
 </dependency>
 ```
 
+## [](#v4.3.7)Version 4.3.7 (19 Aug 2026)
+
+[Download](https://packages.couchbase.com/clients/kafka/4.3.7/couchbase-kafka-connect-couchbase-4.3.7.zip)
+
+This maintenance release includes a new SchemalessJsonConverter and some dependency updates.
+
+### [](#enhancements)Enhancements
+
+* [KAFKAC-427](https://jira.issues.couchbase.com/browse/KAFKAC-427): The new SchemalessJsonConverter is designed to work interchangeably with the JsonConverter without all the schema code under the hood. It is now used internally instead of the JsonConverter for certain parts of the Sink Connector.
+* [KAFKAC-428](https://jira.issues.couchbase.com/browse/KAFKAC-428): Upgraded Jackson from `2.20.1` to `2.21.5`
+* [KAFKAC-429](https://jira.issues.couchbase.com/browse/KAFKAC-429): Upgraded Micrometer from `1.10.4` to `1.15.12`
+* [KAFKAC-430](https://jira.issues.couchbase.com/browse/KAFKAC-430): Upgraded Jsoup from `1.21.2` to `1.23.1`
+
 ## [](#v4.3.6)Version 4.3.6 (26 May 2026)
 
 [Download](https://packages.couchbase.com/clients/kafka/4.3.6/couchbase-kafka-connect-couchbase-4.3.6.zip)
 
 This maintenance release includes a dependency upgrade for bugfixes.
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [KAFKAC-425](https://jira.issues.couchbase.com/browse/KAFKAC-425): Upgraded Couchbase Java SDK from `3.11.1` to `3.11.3`
 
@@ -48,7 +62,7 @@ This maintenance release includes a dependency upgrade for bugfixes.
 
 This maintenance release includes a few minor improvements.
 
-### [](#enhancements-2)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [KAFKAC-423](https://jira.issues.couchbase.com/browse/KAFKAC-423): **Source**The DeserializeJson transform now gives the record a boolean header 'couchbase.value.is.json.object' if the root of the document is a JSON Object
 
@@ -58,7 +72,7 @@ This maintenance release includes a few minor improvements.
 
 This maintenance release includes a few minor improvements.
 
-### [](#enhancements-3)Enhancements
+### [](#enhancements-4)Enhancements
 
 * [KAFKAC-418](https://jira.issues.couchbase.com/browse/KAFKAC-418): **Sink**Make documentation clearer for subdocument handler create path config option
 * [KAFKAC-420](https://jira.issues.couchbase.com/browse/KAFKAC-420): Upgraded Couchbase Java SDK from `3.10.1` to `3.11.1`
@@ -74,7 +88,7 @@ This maintenance release includes a few minor improvements.
 
 This release adds experimental support for Schema Registry enforcement, and upgrades dependency versions.
 
-### [](#enhancements-4)Enhancements
+### [](#enhancements-5)Enhancements
 
 * [KAFKAC-415](https://jira.issues.couchbase.com/browse/KAFKAC-415): **Source**Makes InvalidPathExceptions from JSONPath filtering fail the filter rather than be propagated.
 * [KAFKAC-416](https://jira.issues.couchbase.com/browse/KAFKAC-416): **Source**Add more user control over the behaviour when there is a missing schema or schema mismatch.
@@ -90,7 +104,7 @@ This release adds experimental support for Schema Registry enforcement, and upgr
 
 This release adds experimental support for Schema Registry enforcement, and upgrades dependency versions.
 
-### [](#enhancements-5)Enhancements
+### [](#enhancements-6)Enhancements
 
 * [KAFKAC-408](https://jira.issues.couchbase.com/browse/KAFKAC-408): **Source**Add experimental support for schema enforcement for the source connector using Avro and the Confluent Schema Registry.
 * [KAFKAC-413](https://jira.issues.couchbase.com/browse/KAFKAC-413): Upgraded Couchbase Java SDK from `3.9.2` to `3.10.0`
@@ -105,7 +119,7 @@ This release adds experimental support for Schema Registry enforcement, and upgr
 
 This release adds experimental support for config-driven schemas, and upgrades dependency versions.
 
-### [](#enhancements-6)Enhancements
+### [](#enhancements-7)Enhancements
 
 * [KAFKAC-399](https://jira.issues.couchbase.com/browse/KAFKAC-399): **Source**Added experimental support for config-driven schemas via [the new couchbase.value.schema connector config property](source-configuration-options.md#couchbase.value.schema).
 * [KAFKAC-404](https://jira.issues.couchbase.com/browse/KAFKAC-404): Upgraded Couchbase Java SDK from `3.9.0` to `3.9.2`
@@ -136,7 +150,7 @@ If you wish to continue receiving transaction metadata and system documents, con
 couchbase.event.filter=com.couchbase.connect.kafka.filter.AllPassIncludingSystemFilter
 ```
 
-### [](#enhancements-7)Enhancements
+### [](#enhancements-8)Enhancements
 
 * [KAFKAC-383](https://jira.issues.couchbase.com/browse/KAFKAC-383): **Source**The new `couchbase.jsonpath.filter` connector config property lets you filter out documents that do not match some [JSONPath expression](https://github.com/json-path/JsonPath).
 * [KAFKAC-382](https://jira.issues.couchbase.com/browse/KAFKAC-382): Certain connector config properties now support contextual overrides. This lets you have a default value for a property, and override the default in different contexts.  
@@ -154,7 +168,7 @@ See the source/sink configuration options documentation for examples and informa
 
 This maintenance release includes a few minor improvements.
 
-### [](#enhancements-8)Enhancements
+### [](#enhancements-9)Enhancements
 
 * [KAFKAC-377](https://jira.issues.couchbase.com/browse/KAFKAC-377): **Source** Document lifecycle log messages now include a `taskUuid` field that uniquely identifies the source task instance handling the message.
 * [KAFKAC-379](https://jira.issues.couchbase.com/browse/KAFKAC-379): **Source** `RawJsonWithMetadataSourceHandler` now has a protected method `customizeMetadata` that subclasses can override to add or remove metadata elements (like scope and collection, for example). Thank you to [Yeikel](https://github.com/yeikel).
@@ -167,7 +181,7 @@ This maintenance release includes a few minor improvements.
 
 This maintenance release includes an important fix for a potential resource leak, and a handful of minor improvements.
 
-### [](#enhancements-9)Enhancements
+### [](#enhancements-10)Enhancements
 
 * [KAFKAC-366](https://jira.issues.couchbase.com/browse/KAFKAC-366): **Source** Added an optional `onRecordCommitted` method to the `SourceHandler` interface. This method is called whenever the Kafka Connect framework calls `SourceTask.commitRecord`. Subclasses may override this method to do something special with committed record metadata beyond the usual document lifecycle logging. The default implementation does nothing, which is always okay.  
 Thank you to new contributor Eyal Nussbaum!
@@ -185,7 +199,7 @@ Thank you to new contributor Eyal Nussbaum!
 
 In addition to the usual dependency version bumps, this release adds the ability to include Couchbase document metadata in Kafka record headers, regardless of which `SourceHandler` is used.
 
-### [](#enhancements-10)Enhancements
+### [](#enhancements-11)Enhancements
 
 * [KAFKAC-362](https://jira.issues.couchbase.com/browse/KAFKAC-362): **Source** The connector can now set Couchbase document metadata headers on Kafka records.  
 Specify the desired headers using [the new couchbase.headers connector config property](source-configuration-options.md#couchbase.headers).  
@@ -199,7 +213,7 @@ Specify the desired headers using [the new couchbase.headers connector config pr
 
 In addition to the usual dependency version bumps, this release improves some behaviors and adds new connector configuration properties.
 
-### [](#enhancements-11)Enhancements
+### [](#enhancements-12)Enhancements
 
 * [KAFKAC-353](https://jira.issues.couchbase.com/browse/KAFKAC-353): **Source** When streaming from `SAVED_OFFSET_OR_NOW`, you can configure the connector to immediately save the "now" source offsets for all Couchbase partitions immediately on startup, instead of waiting for events to arrive for a partition before storing that partition's source offset.  
 To enable this new behavior, specify a topic name for [the new couchbase.initial.offset.topic connector config property](source-configuration-options.md#couchbase.initial.offset.topic).  
@@ -225,7 +239,7 @@ Thank you to community member Hafiz Hussain Haroon Rasheed ([HafizHussain31](htt
 
 This maintenance release updates the Couchbase Java SDK to the most recent version, and writes metrics to the connector log.
 
-### [](#enhancements-12)Enhancements
+### [](#enhancements-13)Enhancements
 
 * [KAFKAC-347](https://issues.couchbase.com/browse/KAFKAC-347): The connector now writes its metrics to the log (in addition to exposing them via JMX like before). Configure the logging interval by setting the new `couchbase.metrics.interval` connector property. The default interval is 10 minutes.
 * [KAFKAC-348](https://issues.couchbase.com/browse/KAFKAC-348): **Source** The connector now captures additional metrics related to `Filter` and `SourceHandler` performance.
@@ -244,7 +258,7 @@ This maintenance release updates the Couchbase Java SDK to the most recent versi
 
 This maintenance release updates the Couchbase Java SDK to the most recent version.
 
-### [](#enhancements-13)Enhancements
+### [](#enhancements-14)Enhancements
 
 * [KAFKAC-340](https://issues.couchbase.com/browse/KAFKAC-340): Upgrade Couchbase Java SDK from `3.5.2` to `3.6.1`.  
 Notably:
@@ -257,7 +271,7 @@ Notably:
 
 This maintenance release fixes an issue that sometimes prevented the connector from starting successfully.
 
-### [](#enhancements-14)Enhancements
+### [](#enhancements-15)Enhancements
 
 * [KAFKAC-337](https://issues.couchbase.com/browse/KAFKAC-337): **Sink** The connector no longer logs `TooManyInstancesDetectedEvent` warnings on startup. These warnings were harmless, but annoying.
 * [KAFKAC-334](https://issues.couchbase.com/browse/KAFKAC-334): Upgrade Couchbase DCP client from `0.48.0` to `0.49.0`.
@@ -276,7 +290,7 @@ This release also improves the robustness of the source connector in certain con
 
 Apache Kafka 2.8 and Confluent Platform 6.2 are now the minimum supported versions.
 
-### [](#enhancements-15)Enhancements
+### [](#enhancements-16)Enhancements
 
 * [KAFKAC-327](https://issues.couchbase.com/browse/KAFKAC-327): **Sink** The `couchbase.default.collection` and `couchbase.topic.to.collection` config properties now support qualifying the collection with a bucket name, like `my-bucket.my-scope.my-collection`. This lets a single instance of the sink connector write to different buckets.
 * [KAFKAC-332](https://issues.couchbase.com/browse/KAFKAC-332): The following connector config options, which were added in previous versions as "uncommitted" API, are now part of the "committed" (stable) API:
@@ -300,7 +314,7 @@ Apache Kafka 2.8 and Confluent Platform 6.2 are now the minimum supported versio
 
 This maintenance release improves how the source connector resolves DNS SRV addresses.
 
-### [](#enhancements-16)Enhancements
+### [](#enhancements-17)Enhancements
 
 * [KAFKAC-307](https://issues.couchbase.com/browse/KAFKAC-307): **Source** Instead of resolving a DNS SRV address just once when the connector starts up, the connector now passes the DNS SRV address along to the DCP client, so the DCP client can re-resolve it if necessary.
 
@@ -310,7 +324,7 @@ This maintenance release improves how the source connector resolves DNS SRV addr
 
 This maintenance release fixes a memory leak that could occur if the source connector failed to establish the initial DCP connection to Couchbase Server.
 
-### [](#enhancements-17)Enhancements
+### [](#enhancements-18)Enhancements
 
 * [KAFKAC-323](https://issues.couchbase.com/browse/KAFKAC-323): **Source** If the initial DCP connection fails, the connector no longer throws `RejectedExecutionException` and no longer leaks memory.
 * [KAFKAC-325](https://issues.couchbase.com/browse/KAFKAC-325): Upgraded Couchbase DCP client from 0.46.0 to 0.47.0.
@@ -322,7 +336,7 @@ This maintenance release fixes a memory leak that could occur if the source conn
 
 If the connector is stopped for an extended period of time, it can now resume from where it left off, without having to roll back to zero. This behavior requires Couchbase Server 7.2 or later.
 
-### [](#enhancements-18)Enhancements
+### [](#enhancements-19)Enhancements
 
 * [KAFKAC-319](https://issues.couchbase.com/browse/KAFKAC-319): When resuming from an old checkpoint (where the connector's sequence number is lower than Couchbase Server's purge sequence number), the connector no longer rolls back to zero. This behavior requires Couchbase Server 7.2 or later.
 * [KAFKAC-322](https://issues.couchbase.com/browse/KAFKAC-322): Upgraded Couchbase DCP client from 0.44.0 to 0.46.0.
@@ -334,7 +348,7 @@ If the connector is stopped for an extended period of time, it can now resume fr
 
 The source connector now takes advantage of the new history preservation feature in Couchbase Server 7.2.
 
-### [](#enhancements-19)Enhancements
+### [](#enhancements-20)Enhancements
 
 * [KAFKAC-311](https://issues.couchbase.com/browse/KAFKAC-311): **Source** If the source bucket is configured to preserve history, the connector publishes every version of a document it sees within the history window, not just the latest version. See [Delivery Guarantees](delivery-guarantees.md) for details. Requires Couchbase Server 7.2 or later.
 * [KAFKAC-316](https://issues.couchbase.com/browse/KAFKAC-316): Upgraded Couchbase DCP client from `0.43.0` to `0.44.0`.
@@ -346,7 +360,7 @@ The source connector now takes advantage of the new history preservation feature
 
 Dependency updates and source connector improvements.
 
-### [](#enhancements-20)Enhancements
+### [](#enhancements-21)Enhancements
 
 * [KAFKAC-303](https://issues.couchbase.com/browse/KAFKAC-303): **Source** The connector now includes DCP snapshot boundaries in its source offsets. This improves the reliability of resuming from saved offsets.
 * [KAFKAC-302](https://issues.couchbase.com/browse/KAFKAC-302): **Source** The connector now logs more diagnostic information about lifecycle milestones.
@@ -375,7 +389,7 @@ import com.couchbase.client.core.deps.
 ```  
 to use the version in the Couchbase `core-io` library instead.
 
-### [](#enhancements-21)Enhancements
+### [](#enhancements-22)Enhancements
 
 * [JDCP-224](https://issues.couchbase.com/browse/JDCP-224): Use SASL mechanism `PLAIN` when authenticating with Couchbase on a secure connection. `PLAIN` is the fastest mechanism, and the only one that works with LDAP users.
 * [JDCP-217](https://issues.couchbase.com/browse/JDCP-217): Support Couchbase clusters that advertise only TLS ports.
@@ -387,7 +401,7 @@ to use the version in the Couchbase `core-io` library instead.
 
 This version improves support for scopes & collections, adds an experimental `AnalyticsSinkHandler`, and adds a new feature that may reduce rollbacks by telling the Kafka Connect framework about the source offsets of ignored Couchbase events.
 
-### [](#enhancements-22)Enhancements
+### [](#enhancements-23)Enhancements
 
 * [KAFKAC-295](https://issues.couchbase.com/browse/KAFKAC-295) **Source** The new `couchbase.collection.to.topic` config property lets you specify an arbitrary mapping from Couchbase scope & collection to Kafka topic. This is useful when the `couchbase.topic` property is not sufficient because the desired topic name differs from the collection name. Thanks to Shahrzad Haji Amin Shirazi.
 * [KAFKAC-293](https://issues.couchbase.com/browse/KAFKAC-293) **Sink** `N1qlSinkHandler` now honors the configured destination scope & collection. Thanks to Shahrzad Haji Amin Shirazi.
@@ -402,7 +416,7 @@ This version improves support for scopes & collections, adds an experimental `An
 
 This version makes it easier to connect to Capella.
 
-### [](#enhancements-23)Enhancements
+### [](#enhancements-24)Enhancements
 
 * [KAFKAC-290](https://issues.couchbase.com/browse/KAFKAC-290)When connecting to Capella, it is no longer necessary to configure the Certificate Authority certificate. All you need to do is enable TLS.
 * [KAFKAC-288](https://issues.couchbase.com/browse/KAFKAC-288): Upgraded Couchbase Java SDK from 3.2.5 to 3.3.0.
@@ -417,7 +431,7 @@ Recommended for all users, this version fixes a memory leak when the connector s
 
 * [KAFKAC-283](https://issues.couchbase.com/browse/KAFKAC-283): The connector no longer leaks JMX MBeans on shutdown. The leak was a regression in version 4.0.2.
 
-### [](#enhancements-24)Enhancements
+### [](#enhancements-25)Enhancements
 
 * [KAFKAC-284](https://issues.couchbase.com/browse/KAFKAC-284) **Source** Added a new `couchbase.enable.dcp.trace` config option for enabling a DCP protocol trace to assist with diagnosing connector issues. Also added `couchbase.dcp.trace.document.id.regex` to narrow the scope of the trace.
 * [KAFKAC-286](https://issues.couchbase.com/browse/KAFKAC-286): Upgraded Couchbase Java SDK from 3.2.4 to 3.2.5.
@@ -429,7 +443,7 @@ Recommended for all users, this version fixes a memory leak when the connector s
 
 This version upgrades the Couchbase clients and other dependencies.
 
-### [](#enhancements-25)Enhancements
+### [](#enhancements-26)Enhancements
 
 * [KAFKAC-279](https://issues.couchbase.com/browse/KAFKAC-279): Upgraded Couchbase DCP Client from 0.37.0 to 0.39.0:
 
@@ -444,7 +458,7 @@ This version upgrades the Couchbase clients and other dependencies.
 
 This version adds a new configuration options for making the connector resilient to more kinds of transient failures.
 
-### [](#enhancements-26)Enhancements
+### [](#enhancements-27)Enhancements
 
 * [KAFKAC-275](https://issues.couchbase.com/browse/KAFKAC-275): **Sink** Added the `couchbase.retry.timeout` config property. If non-zero, the connector retries write failures until the timeout expires. This is better than simply extending the KV timeout; see [the documentation](sink-configuration-options.md#couchbase.retry.timeout) for details.
 * [KAFKAC-276](https://issues.couchbase.com/browse/KAFKAC-276): Upgraded Couchbase Java SDK from 3.2.0 to 3.2.3.
@@ -455,7 +469,7 @@ This version adds a new configuration options for making the connector resilient
 
 This version reduces the default flow control buffer size to a more reasonable value and improves DCP diagnostics.
 
-### [](#enhancements-27)Enhancements
+### [](#enhancements-28)Enhancements
 
 * [KAFKAC-271](https://issues.couchbase.com/browse/KAFKAC-271): **Source** The default flow control buffer size is now 16 MB instead of 128 MB. This makes it less likely the source connector will run out of memory under heavy load with the default heap size. The documentation now describes how the [couchbase.flow.control.buffer](https://docs.couchbase.com/kafka-connector/current/source-configuration-options.html#couchbase.flow.control.buffer) config property affects the Kafka Connect worker's memory requirements.
 * [KAFKAC-272](https://issues.couchbase.com/browse/KAFKAC-272): **Source** Upgraded DCP client from 0.36.0 to 0.37.0\. This upgrade adds a workaround for [MB-48655](https://issues.couchbase.com/browse/MB-48655) so all versions of Couchbase now correctly log DCP diagnostic messages from the source connector.
@@ -466,7 +480,7 @@ This version reduces the default flow control buffer size to a more reasonable v
 
 This release upgrades the jsoup library to address [CVE-2021-37714](https://github.com/jhy/jsoup/security/advisories/GHSA-m72m-mhq2-9p6c). That vulnerability does not affect the Kafka connector, since we don't parse untrusted XML or HTML. You can skip this version unless your goal is to pacify a vulnerability scanner.
 
-### [](#enhancements-28)Enhancements
+### [](#enhancements-29)Enhancements
 
 * [KAFKAC-269](https://issues.couchbase.com/browse/KAFKAC-269): Upgraded the jsoup library from 1.13.1 to 1.14.2
 
@@ -478,7 +492,7 @@ This release makes the Source connector compatible with Couchbase Server 7.0.2.
 
 If you are currently using an earlier 4.x version of the connector, please upgrade to 4.1.1 or later before upgrading Couchbase Server beyond 7.0.1.
 
-### [](#enhancements-29)Enhancements
+### [](#enhancements-30)Enhancements
 
 * [KAFKAC-266](https://issues.couchbase.com/browse/KAFKAC-266): **Source** Upgraded DCP client from 0.35.0 to 0.36.0 for compatibility with Couchbase Server 7.0.2.
 
@@ -494,7 +508,7 @@ There's also a new `SinkHandler` extension point, and bug fixes for the Subdocum
 
 * Apache Kafka 2.4.0 is now the minimum required version. For Confluent Platform users, this corresponds to Confluent version 5.4.0.
 
-### [](#enhancements-30)Enhancements
+### [](#enhancements-31)Enhancements
 
 * The config options for working with Couchbase 7 Scopes and Collections are now part of the "committed" API.
 * All other "uncommitted" config options are promoted to "committed" status as well.
@@ -517,7 +531,7 @@ There's also a new `SinkHandler` extension point, and bug fixes for the Subdocum
 
 This release adds new Sink configuration options, and addresses a long-standing issue that caused the Source connector to fail when a rollback occurred in Couchbase.
 
-### [](#enhancements-31)Enhancements
+### [](#enhancements-32)Enhancements
 
 * [KAFKAC-250](https://issues.couchbase.com/browse/KAFKAC-250): **Sink** You can now [configure Couchbase Java SDK Settings](sink-configuration-options.md#couchbase.env) in the connector config file. This includes KV timeout durations, Response Time Observability settings, and lots more.
 * [KAFKAC-251](https://issues.couchbase.com/browse/KAFKAC-251): **Source** Upgraded DCP client from 0.33.0 to 0.34.0.
@@ -532,7 +546,7 @@ This release adds new Sink configuration options, and addresses a long-standing 
 
 This release improves diagnostic logging and simplifies Couchbase Capella configuration.
 
-### [](#enhancements-32)Enhancements
+### [](#enhancements-33)Enhancements
 
 * [KAFKAC-234](https://issues.couchbase.com/browse/KAFKAC-234): The Couchbase root CA certificate can now be read directly from a PEM file; it's no longer necessary to add it to a Java keystore first. The new `couchbase.trust.certificate.path` config property points to the PEM file.
 * [KAFKAC-242](https://issues.couchbase.com/browse/KAFKAC-242): **Source** When the new `couchbase.log.document.lifecycle` config property is set to true, the connector writes detailed log entries as each document flows through the connector.
@@ -545,7 +559,7 @@ This release improves diagnostic logging and simplifies Couchbase Capella config
 
 This release adds uncommitted support for client certificate authentication (mTLS), adds hostname verification for secure DCP connections, and improves the stability of the connector.
 
-### [](#enhancements-33)Enhancements
+### [](#enhancements-34)Enhancements
 
 * [KAFKAC-241](https://issues.couchbase.com/browse/KAFKAC-241): When secure connections are enabled, it is now possible to authenticate with Couchbase using an X.509 certificate instead of a username & password. See [couchbase.client.certificate.path](https://docs.couchbase.com/kafka-connector/4.0/source-configuration-options.html#couchbase.client.certificate.path)and [couchbase.client.certificate.password](https://docs.couchbase.com/kafka-connector/4.0/source-configuration-options.html#couchbase.client.certificate.password)for details. (This feature is added as "uncommitted", meaning it may change without notice.)
 * [KAFKAC-238](https://issues.couchbase.com/browse/KAFKAC-238): **Sink** Upgraded Couchbase client from 3.0.9 to 3.1.2.
@@ -566,7 +580,7 @@ Not released.
 
 In this release, the connector publishes metrics via JMX to facilitate monitoring.
 
-### [](#enhancements-34)Enhancements
+### [](#enhancements-35)Enhancements
 
 * [KAFKAC-152](https://issues.couchbase.com/browse/KAFKAC-152): **Documentation** \- Added a "Monitoring" page which refers users to the Kafka Connect framework documentation for monitoring connectors via JMX.
 * [KAFKAC-232](https://issues.couchbase.com/browse/KAFKAC-232): **Source** \- Metrics specific to the Couchbase source connector are now exposed via JMX under the `kafka.connect.couchbase` domain.
@@ -579,7 +593,7 @@ In this release, the connector publishes metrics via JMX to facilitate monitorin
 
 This release improves compatibility with Couchbase Capella, and exposes extended attributes (XATTRS) to custom components.
 
-### [](#enhancements-35)Enhancements
+### [](#enhancements-36)Enhancements
 
 * [KAFKAC-227](https://issues.couchbase.com/browse/KAFKAC-227): **Source** \- Added config property `couchbase.xattrs` (boolean, defaults to false). If set to true, a custom `Filter` or `SourceHandler` may inspect a document's extended attributes by calling `DocumentEvent.xattrs()`.
 * [KAFKAC-226](https://issues.couchbase.com/browse/KAFKAC-226): Renamed the ZIP archive from `couchbaseinc-kafka-connect-couchbase` to `couchbase-kafka-connect-couchbase` (removed the "inc" from "couchbaseinc"). This made it easier to publish the connector on [Confluent Hub](https://www.confluent.io/hub/couchbase/kafka-connect-couchbase).
@@ -609,7 +623,7 @@ The notes below describe these features, and more.
 > [!WARNING]
 > The new configuration properties related to Couchbase scopes and collections are "uncommitted" and may change without notice in a patch release.
 
-### [](#enhancements-36)Enhancements
+### [](#enhancements-37)Enhancements
 
 > Complete list of changes since version 3.4.8 
 
@@ -653,7 +667,7 @@ In this developer preview, both the Sink and Source connector now support Couchb
 > [!NOTE]
 > The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
 
-### [](#enhancements-37)Enhancements
+### [](#enhancements-38)Enhancements
 
 * [KAFKAC-197](https://issues.couchbase.com/browse/KAFKAC-197): **Sink** \- Added config property `couchbase.topic.to.collection` which maps Kafka topics to Couchbase collections. Added config property `couchbase.default.collection` which is used when a message's topic is not present in the map.
 * [KAFKAC-207](https://issues.couchbase.com/browse/KAFKAC-207): **Sink** \- You can now specify an "enhanced durability" requirement with the new `couchbase.durability` config property. Enhanced durability requires Couchbase Server 6.5 or later.
@@ -681,7 +695,7 @@ Version 4.0 is a major update that changes how you configure and extend the conn
 > [!NOTE]
 > The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
 
-### [](#enhancements-38)Enhancements
+### [](#enhancements-39)Enhancements
 
 * [KAFKAC-182](https://issues.couchbase.com/browse/KAFKAC-182): Upgraded Kafka Connect API from 1.0.2 to 2.5.0.
 * [KAFKAC-188](https://issues.couchbase.com/browse/KAFKAC-188): Upgraded Couchbase client from 2.7.13 to 3.0.5.

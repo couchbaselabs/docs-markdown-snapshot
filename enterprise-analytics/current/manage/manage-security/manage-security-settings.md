@@ -2,9 +2,10 @@
 title: Manage Security Settings
 description: Enterprise Analytics security-settings can be managed from
   Couchbase Web Console, and by means of the REST API.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/manage-security-settings.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:manage:manage-security/manage-security-settings.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-security/manage-security-settings.adoc
+  xref: xref:enterprise-analytics:manage:manage-security/manage-security-settings.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: High Connection Count Workloads
 description: Each SDK application instance opens multiple connections to every
   node in the cluster.
-editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/high-connection-count-workloads.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:cloud-native-gateway:advanced-use-cases:high-connection-count-workloads.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/high-connection-count-workloads.adoc
+  xref: xref:cloud-native-gateway:advanced-use-cases:high-connection-count-workloads.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

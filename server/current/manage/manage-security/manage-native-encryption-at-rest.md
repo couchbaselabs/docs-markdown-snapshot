@@ -2,9 +2,10 @@
 title: Manage Native Encryption at Rest
 description: Couchbase Server's native encryption at rest protects sensitive
   data by encrypting it when writing it to disk.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-native-encryption-at-rest.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:manage:manage-security/manage-native-encryption-at-rest.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-native-encryption-at-rest.adoc
+  xref: xref:server:manage:manage-security/manage-native-encryption-at-rest.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Read Access
 description: How to handle read-access
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/read-access.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@sync-gateway::read-access.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/read-access.adoc
+  xref: xref:2.8@sync-gateway::read-access.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Use Search Indexes with a Query
 description: The Flex Index feature enables you run a SQL++ query as a full-text
   search query, using a full-text index.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/flex-indexes.adoc
-pubDate: 2026-06-25T05:47:47.215Z
-link: xref:cloud:n1ql:n1ql-language-reference/flex-indexes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/flex-indexes.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/flex-indexes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

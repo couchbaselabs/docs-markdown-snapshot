@@ -1,9 +1,10 @@
 ---
 title: Import Process
 description: Sync Gateway replication keeps distributed database changes in sync
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/import-process.adoc
-pubDate: 2026-03-25T08:25:24.097Z
-link: xref:2.8@sync-gateway::import-process.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/import-process.adoc
+  xref: xref:2.8@sync-gateway::import-process.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

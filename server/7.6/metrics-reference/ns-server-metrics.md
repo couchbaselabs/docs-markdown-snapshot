@@ -1,9 +1,10 @@
 ---
 title: Cluster Manager Metrics
 description: A list of the metrics provided by the Cluster Manager.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/ns-server-metrics.adoc
-pubDate: 2026-04-18T05:14:52.159Z
-link: xref:7.6@server:metrics-reference:ns-server-metrics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/ns-server-metrics.adoc
+  xref: xref:7.6@server:metrics-reference:ns-server-metrics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

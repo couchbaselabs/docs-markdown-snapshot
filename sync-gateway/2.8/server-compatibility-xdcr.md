@@ -2,9 +2,10 @@
 title: XDCR&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with Couchbase Server's <em>Cross Data
   Center Replication</em> (<em>XDCR</em>).
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/server-compatibility-xdcr.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@sync-gateway::server-compatibility-xdcr.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/2.8/modules/ROOT/pages/server-compatibility-xdcr.adoc
+  xref: xref:2.8@sync-gateway::server-compatibility-xdcr.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

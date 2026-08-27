@@ -1,8 +1,9 @@
 ---
 title: Create a Kafka Pipeline Link
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-kafka.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:sources:remote-kafka.adoc[]
+pubDate: 2026-08-25T04:30:40.250Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-kafka.adoc
+  xref: xref:analytics:sources:remote-kafka.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -20,7 +21,7 @@ Your Capella Analytics account must have either the [Project Owner](../admin/aut
 
 To connect to a Kafka data streaming service, you provide the broker URL or URLs and the authentication type to use with its credentials. For data that's in a format other than JSON, you also provide the schema registry to use and its details.
 
-Capella Analytics supports Confluent Cloud Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) as Kafka sources:
+Capella Analytics supports Confluent Cloud Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) as Kafka sources. When a Debezium connector populates topics, Capella Analytics also supports Oracle and SQL Server as upstream CDC sources. See [Stream CDC Data from Oracle](debezium-oracle.md) and [Stream CDC Data from SQL Server](debezium-sqlserver.md).
 
 * Confluent Cloud Kafka
 * Amazon MSK

@@ -2,9 +2,10 @@
 title: Creating a Replication
 description: To create an XDCR replication, use the <code>POST
   /controller/createReplication</code> HTTP method and URI.
-editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-create-replication.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:server:rest-api:rest-xdcr-create-replication.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-create-replication.adoc
+  xref: xref:server:rest-api:rest-xdcr-create-replication.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

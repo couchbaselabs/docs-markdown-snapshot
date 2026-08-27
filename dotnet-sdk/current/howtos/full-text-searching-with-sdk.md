@@ -2,9 +2,10 @@
 title: Search
 description: You can use the Search service to create queryable search indexes
   in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-08-12T05:01:45.181Z
-link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
+  xref: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,0 +1,121 @@
+---
+title: Migration Guide
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/migration.adoc
+  xref: xref:3.5@spark-connector::migration.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/spark-connector/3.5/migration.html)
+
+# Migration Guide
+
+> Helpful information when migrating from the Spark 2.x connector to the Spark 3.x connector. 
+
+## [](#upfront-considerations)Upfront Considerations
+
+When migrating from the version 2 of the spark connector to version 3, the general guideline is as follows: the lower the APIs, the more work to migrate. Most of the changes you will likely need to make are concerning configuration and RDD access. There are some changes in the SparkSQL area, but not as many.
+
+Please keep in mind that this is a new major version of the connector, so we took the liberty to break APIs where it made sense to future-proof the connector and prepare it for modern Couchbase features (including scopes and collections).
+
+The new connector builds on two fundamentals:
+
+* Spark 3.x
+* Couchbase Scala SDK 1.x
+
+Since Spark itself is written in Scala and Couchbase now provides a native Scala SDK, the connector builds directly on top of it. As a result, on lower level APIs (like RDDs) where SDK case classes are accepted / returned, please refer to the official SDK documentation if you are in doubt how to use these APIs.
+
+This also bumps up the minimum server version required, so please make sure to run at least Couchbase Server 6.x or later.
+
+## [](#configuration-and-connection-management)Configuration and Connection Management
+
+Note that the old `com.couchbase` prefix is no longer supported, only the `spark.couchbase` prefix can be used with the connector going forward.
+
+The configuration properties have been modified to reflect that role-based access control (RBAC) is now required.
+
+The minimum amount of configuration through spark config properties are the following:
+
+__Table 1\. Required Config Properties__
+| Property                         | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| spark.couchbase.connectionString | The connection string / hostnames of the cluster |
+| spark.couchbase.username         | The name of your RBAC user                       |
+| spark.couchbase.password         | The password of your RBAC user                   |
+
+Here is an example:
+
+```scala
+val spark = SparkSession
+  .builder()
+  .appName("Migration")
+  .config("spark.couchbase.connectionString", "127.0.0.1")
+  .config("spark.couchbase.username", "Administrator")
+  .config("spark.couchbase.password", "password")
+  .getOrCreate()
+```
+
+There are other properties which are described in the configuration section that can help you make the other APIs more comfortable to use (i.e. `spark.couchbase.implictBucket`), but they are not required during a migration step.
+
+## [](#removed-apis)Removed APIs
+
+Due to decreased demand the View APIs have been not ported to the new major version of the connector. Nearly all functionality can be (better) achieved by using Query, Analytics or Full Text search. Please convert to those APIs if necessary.
+
+## [](#rdd-operations)RDD Operations
+
+RDD operations on the `SparkContext` are still available, but have changed in their signatures.
+
+__Table 2\. RDD SparkContext Functions__
+| 2.x                   | 3.x                     |
+| --------------------- | ----------------------- |
+| couchbaseGet          | couchbaseGet            |
+| couchbaseSubdocLookup | couchbaseLookupIn       |
+| couchbaseSubdocMutate | couchbaseMutateIn       |
+| couchbaseView         | (removed)               |
+| couchbaseSpatialView  | (removed)               |
+| couchbaseQuery        | couchbaseQuery          |
+| couchbaseAnalytics    | couchbaseAnalyticsQuery |
+| (not available)       | couchbaseSearchQuery    |
+| (not available)       | couchbaseUpsert         |
+| (not available)       | couchbaseReplace        |
+| (not available)       | couchbaseInsert         |
+| (not available)       | couchbaseRemove         |
+
+In addition to the SparkContext, RDD APIs are also still available on the RDDs itself:
+
+__Table 3\. RDD Functions__
+| 2.x                                                                   | 3.x               |
+| --------------------------------------------------------------------- | ----------------- |
+| saveToCouchbase(StoreMode.UPSERT)                                     | couchbaseUpsert   |
+| saveToCouchbase(StoreMode.INSERT\_AND\_FAIL or INSERT\_AND\_IGNORE)   | couchbaseInsert   |
+| saveToCouchbase(StoreMode.REPLACE\_AND\_FAIL or REPLACE\_AND\_IGNORE) | couchbaseReplace  |
+| (not available)                                                       | couchbaseRemove   |
+| couchbaseSubdocMutate                                                 | couchbaseMutateIn |
+
+Please see the section on working with RDDs on all the different required and optional arguments that can be applied to each of those functions.
+
+## [](#spark-sql)Spark SQL
+
+The main difference when working with Spark SQL is how to configure the DataFrame. First, it lives under a different path for query. In the previous version of the connector the DataSource has been located under `com.couchbase.spark.sql.DefaultSource` or as a method if the implict import has been used.
+
+In the new version, the different sources (Query, Analytics and KeyValue) are automatically registered with specific names so they can be used directly:
+
+Accessing Query:
+
+```scala
+spark.read.format("couchbase.query")
+```
+
+Accessing Analytics:
+
+```scala
+spark.read.format("couchbase.analytics")
+```
+
+Accessing KeyValue (Write only):
+
+```scala
+df.write.format("couchbase.kv")
+```
+
+The other difference is how the DataFrame is configured. The query DataFrame is configured with properties from `QueryOptions`, analytics with `AnalyticsOptions` and key value with `KeyValueOptions`. Please see the section on Spark SQL for all the different configuration properties that are available.

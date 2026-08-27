@@ -3,9 +3,10 @@ title: Understand the Cost-Based Optimizer for Queries
 description: The cost-based optimizer takes into account the cost of memory,
   CPU, network transport, and disk usage when choosing the optimal plan to
   execute a query.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/cost-based-optimizer.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:n1ql:n1ql-language-reference/cost-based-optimizer.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/cost-based-optimizer.adoc
+  xref: xref:cloud:n1ql:n1ql-language-reference/cost-based-optimizer.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

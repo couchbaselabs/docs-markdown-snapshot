@@ -1,8 +1,9 @@
 ---
 title: Prepositions
-editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/prepositions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:ui-ux::prepositions.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/prepositions.adoc
+  xref: xref:ui-ux::prepositions.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

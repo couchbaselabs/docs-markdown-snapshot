@@ -3,9 +3,10 @@ title: Monitor Node Stability
 description: Nodes that periodically become unavailable but recover before the
   auto failover timeout expires are considered unstable. This page describes how
   to monitor for unstable nodes and investigate the causes of instability.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/monitor-node-stability.adoc
-pubDate: 2026-04-18T05:14:52.159Z
-link: xref:7.6@server:manage:monitor/monitor-node-stability.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/monitor-node-stability.adoc
+  xref: xref:7.6@server:manage:monitor/monitor-node-stability.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -2,9 +2,10 @@
 title: Resetting Auto-Failover
 description: Auto-failover is reset by means of the <code>POST
   /settings/autoFailover/resetCount</code> HTTP method and URI.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-cluster-autofailover-reset.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:reference:rest-cluster-autofailover-reset.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-cluster-autofailover-reset.adoc
+  xref: xref:enterprise-analytics:reference:rest-cluster-autofailover-reset.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

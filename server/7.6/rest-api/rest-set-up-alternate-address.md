@@ -4,9 +4,10 @@ description: Alternate addresses and port-numbers can be established for and
   removed from nodes, by means of the <code>PUT</code> and <code>DELETE</code>
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-set-up-alternate-address.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-set-up-alternate-address.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-set-up-alternate-address.adoc
+  xref: xref:7.6@server:rest-api:rest-set-up-alternate-address.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,9 +1,10 @@
 ---
 title: Couchbase .NET SDK Release Notes and Archives
 description: Release notes and download archive for the Couchbase .NET Client.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-08-12T05:01:45.181Z
-link: xref:3.6@dotnet-sdk:project-docs:sdk-release-notes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/sdk-release-notes.adoc
+  xref: xref:3.6@dotnet-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

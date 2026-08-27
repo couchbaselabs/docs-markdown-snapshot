@@ -1,9 +1,10 @@
 ---
 title: Index Storage Settings
 description: All indexes in Couchbase Capella use the Couchbase Plasma storage engine.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/storage-modes.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:cloud:indexes:storage-modes.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/storage-modes.adoc
+  xref: xref:cloud:indexes:storage-modes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

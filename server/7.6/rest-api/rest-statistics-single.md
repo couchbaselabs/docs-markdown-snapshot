@@ -1,9 +1,10 @@
 ---
 title: Getting a Single Statistic
 description: The REST API allows cluster-statistics to be retrieved from a single metric.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-statistics-single.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-statistics-single.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-statistics-single.adoc
+  xref: xref:7.6@server:rest-api:rest-statistics-single.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

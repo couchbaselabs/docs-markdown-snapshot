@@ -3,9 +3,10 @@ title: Vectorize Structured Data from Capella
 description: Use a Data from Capella Workflow to automatically generate
   embedding vectors from JSON data in your Capella operational cluster. Use
   embedding vectors for similarity searches on your data.
-editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-capella.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:ai:build:vectorization-service/vectorize-structured-data-capella.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-capella.adoc
+  xref: xref:ai:build:vectorization-service/vectorize-structured-data-capella.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

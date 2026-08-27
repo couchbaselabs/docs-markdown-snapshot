@@ -2,9 +2,10 @@
 title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:php-sdk:howtos:slow-operations-logging.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/slow-operations-logging.adoc
+  xref: xref:php-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

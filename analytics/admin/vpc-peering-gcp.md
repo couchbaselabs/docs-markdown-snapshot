@@ -2,9 +2,10 @@
 title: VPC Peering with GCP
 description: Use this procedure to create a VPC Peering connection between
   Capella Analytics hosted with GCP and your application's VPC on GCP.
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-gcp.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:analytics:admin:vpc-peering-gcp.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-gcp.adoc
+  xref: xref:analytics:admin:vpc-peering-gcp.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

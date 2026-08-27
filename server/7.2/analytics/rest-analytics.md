@@ -1,9 +1,10 @@
 ---
 title: Analytics REST API
 description: A description of the Analytics REST API.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-analytics.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.2@server:analytics:rest-analytics.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-analytics.adoc
+  xref: xref:7.2@server:analytics:rest-analytics.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

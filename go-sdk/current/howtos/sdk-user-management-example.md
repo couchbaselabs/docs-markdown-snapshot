@@ -3,9 +3,10 @@ title: User Management
 description: The Go SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/sdk-user-management-example.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:go-sdk:howtos:sdk-user-management-example.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/sdk-user-management-example.adoc
+  xref: xref:go-sdk:howtos:sdk-user-management-example.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

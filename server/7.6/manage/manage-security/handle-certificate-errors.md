@@ -2,9 +2,10 @@
 title: Certificate Error Handling
 description: "Specific errors can arise from use of X.509 certificates: these
   should be recognized and appropriately dealt with."
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/handle-certificate-errors.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:manage:manage-security/handle-certificate-errors.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/handle-certificate-errors.adoc
+  xref: xref:7.6@server:manage:manage-security/handle-certificate-errors.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

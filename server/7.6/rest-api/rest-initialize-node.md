@@ -1,9 +1,10 @@
 ---
 title: Initializing a Node
 description: A node can be initialized, by means of the REST API.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-initialize-node.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:rest-api:rest-initialize-node.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-initialize-node.adoc
+  xref: xref:7.6@server:rest-api:rest-initialize-node.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

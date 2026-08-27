@@ -1,9 +1,10 @@
 ---
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
-editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-database.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:sync-gateway:configuration:configuration-schema-database.adoc[]
+pubDate: 2026-08-21T04:43:23.418Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-database.adoc
+  xref: xref:sync-gateway:configuration:configuration-schema-database.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -449,69 +450,37 @@ The configuration settings described here are provisioned through the [Database 
 
 #### `allow_empty_password`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This controls whether users that are created can have an empty password or not.
 
 #### `bucket`
 
-Type
-
-string
-
-Default
-
-The database name
-
-Description
+Type: string (Default The database name)
 
 The Couchbase Server backing bucket for the database.
 
 #### `bucket_op_timeout_ms`
 
-Type
-
-number
-
-Description
+Type: number
 
 This is the amount of milliseconds should pass before a bucket operation times out. An error will be returned if the bucket operation times out saying: `operation timed out`.
 
 #### `cacertpath`
 
-Type
-
-string
-
-Description
+Type: string
 
 The root CA cert path for X.509 bucket authentication.
 
 #### `cache.channel_cache`
 
-Type
-
-object
-
-Description
+Type: object
 
 The channel cache config settings.
 
 #### `cache.channel_cache.compact_high_watermark_pct`
 
-Type
-
-integer
-
-Default
-
-80
-
-Description
+Type: integer (Default 80)
 
 The trigger value for starting the channel cache eviction process.
 
@@ -521,15 +490,7 @@ When the cache size, determined by `max_number`, reaches the high watermark, the
 
 #### `cache.channel_cache.compact_low_watermark_pct`
 
-Type
-
-integer
-
-Default
-
-60
-
-Description
+Type: integer (Default 60)
 
 The trigger value for stopping the channel cache eviction process.
 
@@ -539,181 +500,85 @@ When the cache size, determined by `max_number` returns to a value lower than th
 
 #### `cache.channel_cache.expiry_seconds`
 
-Type
-
-integer
-
-Default
-
-60
-
-Description
+Type: integer (Default 60)
 
 The amount of time (in seconds) to keep entries in the cache beyond the minimum retained.
 
 #### `cache.channel_cache.max_length`
 
-Type
-
-integer
-
-Default
-
-500
-
-Description
+Type: integer (Default 500)
 
 The maximum number of entries to maintain in the cache per channel.
 
 #### `cache.channel_cache.max_num_pending`
 
-Type
-
-integer
-
-Default
-
-10000
-
-Description
+Type: integer (Default 10000)
 
 The maximum number of pending sequences before skipping sequences.
 
 #### `cache.channel_cache.max_number`
 
-Type
-
-integer
-
-Default
-
-50000
-
-Description
+Type: integer (Default 50000)
 
 The maximum number of channel caches which can exist at any one point.
 
 #### `cache.channel_cache.max_wait_pending`
 
-Type
-
-number
-
-Default
-
-5000
-
-Description
+Type: number (Default 5000)
 
 The maximum time (in milliseconds) for waiting for a pending sequence before skipping it.
 
 #### `cache.channel_cache.max_wait_skipped`
 
-Type
-
-number
-
-Default
-
-3600000
-
-Description
+Type: number (Default 3600000)
 
 The maximum amount of time (in milliseconds) to wait for a skipped sequence before abandoning it.
 
 #### `cache.channel_cache.min_length`
 
-Type
-
-integer
-
-Default
-
-50
-
-Description
+Type: integer (Default 50)
 
 The minimum number of entries to maintain in the cache per channel.
 
 #### `cache.rev_cache`
 
-Type
-
-object
-
-Description
+Type: object
 
 The revision cache config settings.
 
 #### `cache.rev_cache.insert_on_write`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether to insert revisions into the revision cache when documents are written to the database. If false, only revisions read from the database will be cached.
 
 #### `cache.rev_cache.max_memory_count_mb`
 
-Type
-
-integer
-
-Default
-
-0
-
-Description
+Type: integer (Default 0)
 
 The maximum amount of memory the revision cache should take up in MB, setting to 0 will disable any eviction based on memory at rev cache. There is a minimum value of 50 (50MB) for this config option. When set this memory limit will work in in hand with revision cache size parameter. So you will potentially get eviction at revision cache both based off memory footprint and number of items in the cache. **This is an Enterprise Edition feature only**
 
 #### `cache.rev_cache.shard_count`
 
-Type
-
-integer
-
-Default
-
-16
-
-Description
+Type: integer (Default 16)
 
 The number of shards the revision cache should be split into.
 
 #### `cache.rev_cache.size`
 
-Type
-
-integer
-
-Default
-
-5000
-
-Description
+Type: integer (Default 5000)
 
 The maximum number of revisions that can be stored in the revision cache. Note when running with greater than 1 shard count we add 10% capacity overall to avoid early eviction when some shards fill up before others, so you may find that the capacity stat (revision\_cache\_num\_items) will climb to the defined rev cache size + 10%.
 
 #### `certpath`
 
-Type
-
-string
-
-Description
+Type: string
 
 The cert path (public key) for X.509 bucket auth.
 
 #### `changes_request_plus`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Sets the default value of `request_plus` for one-shot/non-continuous changes feeds, which when true, ensures all valid documents written prior to the request being issued are included in the response. Setting this option at the database level is required to ensure Couchbase Lite utilizes this changes feed mode.
 
@@ -721,15 +586,7 @@ This also sets the default value of query param `request_plus` for [GET /{keyspa
 
 #### `client_partition_window_secs`
 
-Type
-
-integer
-
-Default
-
-2592000
-
-Description
+Type: integer (Default 2592000)
 
 How long (in seconds) clients can remain offline for without losing replication metadata.
 
@@ -737,15 +594,7 @@ Defaults to 30 days (in seconds)
 
 #### `compact_interval_days`
 
-Type
-
-number
-
-Default
-
-1
-
-Description
+Type: number (Default 1)
 
 The interval between scheduled tombstone compaction runs (in days). This can be a floating point number.
 
@@ -753,11 +602,7 @@ If set to 0, compaction will not run automatically.
 
 #### `cors.headers`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed headers. These headers will be added the `Access-Control-Allow-Headers` response to a valid CORS request.
 
@@ -765,11 +610,7 @@ A recommended minimum set of values should be `["Accept-Encoding", "Authorizatio
 
 #### `cors.login_origin`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed origins to apply to public `/{db}/_session` API.
 
@@ -779,35 +620,19 @@ If configured, `Authorization` must be included in headers.
 
 #### `cors.max_age`
 
-Type
-
-integer
-
-Default
-
-0
-
-Description
+Type: integer (Default 0)
 
 Value for `Access-Control-Maximum-Age`. Uses 0 by default.
 
 #### `cors.origin`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of allowed origins for the public API. The request `Origin` header is checked against these values. If successful the `Origin` header is returned in the HTTP response header as `Access-Control-Allow-Origin`.
 
 #### `delta_sync`
 
-Type
-
-object
-
-Description
+Type: object
 
 Delta sync configuration settings.
 
@@ -815,11 +640,7 @@ Delta sync configuration settings.
 
 #### `delta_sync.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether delta sync is enabled.
 
@@ -827,15 +648,7 @@ Whether delta sync is enabled.
 
 #### `delta_sync.rev_max_age_seconds`
 
-Type
-
-number
-
-Default
-
-86400
-
-Description
+Type: number (Default 86400)
 
 The number of seconds deltas for old revisions are available for.
 
@@ -843,21 +656,13 @@ This defaults to 24 hours (in seconds).
 
 #### `disable_password_auth`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether to disable username/password authentication and only allow OIDC and guest access.
 
 #### `disable_public_all_docs`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This controls whether the [GET /{keyspace}/\_all\_docs](#operation/get%5Fkeyspace-%5Fall%5Fdocs) REST API endpoint is publicly accessible or not. Disabling this endpoint is recommended for larger datasets or production workloads. [GET /{keyspace}/\_changes](#operation/get%5Fkeyspace-%5Fchanges) or [POST /{keyspace}/\_bulk\_get](#operation/post%5Fkeyspace-%5Fbulk%5Fget) have more efficient implementations and should be used instead.
 
@@ -865,171 +670,103 @@ If set to `true`, the endpoint will not be publicly accessible, and will only be
 
 #### `event_handlers`
 
-Type
-
-object
-
-Description
+Type: object
 
 These are the settings for webhooks.
 
 #### `event_handlers.db_state_changed.filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 The Javascript function to use to filter the webhook events.
 
 #### `event_handlers.db_state_changed.handler`
 
-Type
-
-string
-
-Description
+Type: string
 
 The handler type.
 
 #### `event_handlers.db_state_changed.timeout`
 
-Type
-
-number
-
-Description
+Type: number
 
 The amount of time (in seconds) to attempt connect to the webhook before giving up.
 
 #### `event_handlers.db_state_changed.url`
 
-Type
-
-string
-
-Description
+Type: string
 
 The URL of the webhook.
 
 #### `event_handlers.document_changed.filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 The Javascript function to use to filter the webhook events.
 
 #### `event_handlers.document_changed.handler`
 
-Type
-
-string
-
-Description
+Type: string
 
 The handler type.
 
 #### `event_handlers.document_changed.options`
 
-Type
-
-object
-
-Description
+Type: object
 
 Options for the document changed event.
 
 #### `event_handlers.document_changed.options.winning_rev_only`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, only the winning revision of the document will be sent to the webhook.
 
 #### `event_handlers.document_changed.timeout`
 
-Type
-
-number
-
-Description
+Type: number
 
 The amount of time (in seconds) to attempt connect to the webhook before giving up.
 
 #### `event_handlers.document_changed.url`
 
-Type
-
-string
-
-Description
+Type: string
 
 The URL of the webhook.
 
 #### `event_handlers.max_processes`
 
-Type
-
-string
-
-Description
+Type: string
 
 The maximum amount of concurrent event handling independent functions that can be running at the same time.
 
 #### `event_handlers.wait_for_process`
 
-Type
-
-string
-
-Description
+Type: string
 
 The maximum amount of time (in milliseconds) to wait when the even queue is full.
 
 #### `guest`
 
-Type
-
-object
-
-Description
+Type: object
 
 Properties associated with a user
 
 #### `guest.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user for the default collection. See `collection_access` for channels in named collections.
 
 #### `guest.admin_roles`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of roles to explicitly grant to the user.
 
 #### `guest.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to for the default collection. See `collection_access` for channels in named collections.
 
@@ -1037,51 +774,31 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `guest.collection_access`
 
-Type
-
-object
-
-Description
+Type: object
 
 A set of access grants by scope and collection for a specific collection.
 
 #### `guest.collection_access.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope, containing a set of collections.
 
 #### `guest.collection_access.{scopename…​}.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name, defines access collections in this scope.
 
 #### `guest.collection_access.{scopename…​}.{collectionname…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user in this collection.
 
 #### `guest.collection_access.{scopename…​}.{collectionname…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to in this collection.
 
@@ -1089,91 +806,55 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `guest.collection_access.{scopename…​}.{collectionname…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for this collection.
 
 #### `guest.collection_access.{scopename…​}.{collectionname…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT channels were updated for this collection.
 
 #### `guest.disabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, the user will not be able to login to the account as it is disabled.
 
 #### `guest.email`
 
-Type
-
-string
-
-Description
+Type: string
 
 The email address of the user.
 
 #### `guest.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for the default collection.
 
 #### `guest.jwt_issuer`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The issuer of the last JSON Web Token that the user last used to sign in.
 
 #### `guest.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT roles/channels were updated.
 
 #### `guest.jwt_roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The roles that the user has been added to through roles\_claim.
 
 #### `guest.name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the user.
 
@@ -1181,11 +862,7 @@ User names can only have alphanumeric ASCII characters and underscores.
 
 #### `guest.password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password of the user.
 
@@ -1193,11 +870,7 @@ Mandatory. unless `allow_empty_password` is `true` in the database configs.
 
 #### `guest.roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the roles that the user has been granted access to.
 
@@ -1205,21 +878,13 @@ Access could have been granted through the sync function, roles\_claim, or expli
 
 #### `import_backup_old_rev`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This controls whether import should attempt to create a temporary backup of the previous revision body (if available) when the document is modified in the bucket.
 
 #### `import_docs`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, documents will be imported in to Sync Gateway from the bucket in the background. Documents will be ran through the set `import_filter` if any is set.
 
@@ -1229,11 +894,7 @@ This can also be set to the string `continuous` which maps to true.
 
 #### `import_filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the function that all imported documents in the default scope and collection are ran through in order to filter out what to import and what not to import. This allows you to control what is made available to Couchbase Mobile clients. If it is not set, then no documents are filtered when imported.
 
@@ -1243,15 +904,7 @@ If `scopes` parameter is set, this is ignored.
 
 #### `import_partitions`
 
-Type
-
-number
-
-Default
-
-16
-
-Description
+Type: number (Default 16)
 
 \*\* This is an Enterprise Edition feature only\*\*
 
@@ -1263,25 +916,13 @@ Each partition is processed by an independent function that runs simultaneously 
 
 #### `index`
 
-Type
-
-object
-
-Description
+Type: object
 
 Global Secondary Index Settings
 
 #### `index.num_partitions`
 
-Type
-
-number
-
-Default
-
-1
-
-Description
+Type: number (Default 1)
 
 The number of partitions to use for the large indexes created by Sync Gateway. It is not recommended to set this unless you require additional horizontal scalability for individual indexes and have appropriately scaled your Query nodes to handle the increased query parallelism. If set, the recommended number is 8 and does not need to be directly related to the number of your Query nodes. Ensure documentation is read to understand the performance tradeoffs and instructions for migration if you have previously run with only one partition. See [/{db}/\_index\_init](#operation/post%5Fdb-%5Findex%5Finit) for more information.
 
@@ -1289,107 +930,55 @@ If not specified or 1, all indexes will be non partitioned.
 
 #### `index.num_replicas`
 
-Type
-
-number
-
-Default
-
-1
-
-Description
+Type: number (Default 1)
 
 This is the number of Global Secondary Indexes (GSI) to use for core indexes.
 
 #### `javascript_timeout_secs`
 
-Type
-
-number
-
-Default
-
-60
-
-Description
+Type: number (Default 60)
 
 The maximum number of seconds the sync, import filter, and custom conflict resolver JavaScript functions are allowed to run for before timing out. Set to 0 to allow the JS functions to run uncapped.
 
 #### `keypath`
 
-Type
-
-string
-
-Description
+Type: string
 
 The key path (private key) for X.509 bucket auth
 
 #### `kv_tls_port`
 
-Type
-
-integer
-
-Default
-
-11207
-
-Description
+Type: integer (Default 11207)
 
 The Memcached TLS port.
 
 #### `local_doc_expiry_secs`
 
-Type
-
-integer
-
-Default
-
-7776000
-
-Description
+Type: integer (Default 7776000)
 
 The number of seconds before a `_local` document should expire.
 
 #### `local_jwt`
 
-Type
-
-object
-
-Description
+Type: object
 
 Configuration for Local JWT authentication.
 
 #### `local_jwt.{providername…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 The providers name.
 
 #### `local_jwt.{providername…​}.algorithms`
 
-Type
-
-array
-
-Description
+Type: array
 
 The JWT signing algorithms to accept for authentication.
 
 #### `local_jwt.{providername…​}.channels_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the value(s) of the given JSON Web Token claim will be added to the user's channels.
 
@@ -1397,151 +986,91 @@ The value of this claim must be either a string or an array of strings, any othe
 
 #### `local_jwt.{providername…​}.client_id`
 
-Type
-
-string
-
-Description
+Type: string
 
 The value to match against the "aud" claim of JWTs. Set to an empty string to disable audience validation.
 
 #### `local_jwt.{providername…​}.disable_session`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Disable Sync Gateway session creation on successful JWT authentication.
 
 #### `local_jwt.{providername…​}.issuer`
 
-Type
-
-string
-
-Description
+Type: string
 
 The value to match against the "iss" claim of JWTs.
 
 #### `local_jwt.{providername…​}.keys`
 
-Type
-
-array
-
-Description
+Type: array
 
 The JSON Web Keys to use to validate JWTs.
 
 #### `local_jwt.{providername…​}.keys.alg`
 
-Type
-
-string
-
-Description
+Type: string
 
 The algorithm intended for use with the key.
 
 #### `local_jwt.{providername…​}.keys.crv`
 
-Type
-
-string
-
-Description
+Type: string
 
 For Elliptic Curve keys, the name of the curve to use.
 
 #### `local_jwt.{providername…​}.keys.e`
 
-Type
-
-string
-
-Description
+Type: string
 
 For RSA keys, the exponent of the public key, as a Base64urlUInt-encoded value.
 
 #### `local_jwt.{providername…​}.keys.kid`
 
-Type
-
-string
-
-Description
+Type: string
 
 The Key ID, used to identify the key to use.
 
 #### `local_jwt.{providername…​}.keys.kty`
 
-Type
-
-string
-
-Description
+Type: string
 
 The cryptographic algorithm family used with the key, such as "RSA" or "EC"
 
 #### `local_jwt.{providername…​}.keys.n`
 
-Type
-
-string
-
-Description
+Type: string
 
 For RSA keys, the modulus value of the key, as a Base64urlUInt-encoded value.
 
 #### `local_jwt.{providername…​}.keys.use`
 
-Type
-
-string
-
-Description
+Type: string
 
 The intended use of the public key. Only 'sig' is accepted.
 
 #### `local_jwt.{providername…​}.keys.x`
 
-Type
-
-string
-
-Description
+Type: string
 
 For Elliptic Curve keys, the X coordinate of the point, as a base64url string.
 
 #### `local_jwt.{providername…​}.keys.y`
 
-Type
-
-string
-
-Description
+Type: string
 
 For Elliptic Curve keys, the Y coordinate of the point, as a base64url string.
 
 #### `local_jwt.{providername…​}.register`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If to register a new Sync Gateway user account when a user logs in with a JWT.
 
 #### `local_jwt.{providername…​}.roles_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the value(s) of the given JSON Web Token claim will be added to the user's roles.
 
@@ -1549,21 +1078,13 @@ The value of this claim must be either a string or an array of strings, any othe
 
 #### `local_jwt.{providername…​}.user_prefix`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the username prefix for all users created through this provider.
 
 #### `local_jwt.{providername…​}.username_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 Allows a different OpenID Connect field to be specified instead of the Subject (`sub`).
 
@@ -1571,255 +1092,151 @@ The field name to use can be specified here.
 
 #### `logging`
 
-Type
-
-object
-
-Description
+Type: object
 
 Per-database logging configuration.
 
 #### `logging.audit`
 
-Type
-
-object
-
-Description
+Type: object
 
 Audit logging configuration.
 
 #### `logging.audit.disabled_roles`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of roles for which audit logging is disabled. Either cbs or sgw.
 
 #### `logging.audit.disabled_roles.domain`
 
-Type
-
-string
-
-Description
+Type: string
 
 The domain of the role for which audit logging is disabled.
 
 #### `logging.audit.disabled_roles.name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the role for which audit logging is disabled.
 
 #### `logging.audit.disabled_users`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of users for which audit logging is disabled.
 
 #### `logging.audit.disabled_users.domain`
 
-Type
-
-string
-
-Description
+Type: string
 
 The domain of the user for which audit logging is disabled.
 
 #### `logging.audit.disabled_users.name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the user for which audit logging is disabled.
 
 #### `logging.audit.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether audit logging is enabled.
 
 #### `logging.audit.enabled_events`
 
-Type
-
-array
-
-Description
+Type: array
 
 List of enabled audit events for this database.
 
 #### `logging.console`
 
-Type
-
-object
-
-Description
+Type: object
 
 Console logging configuration.
 
 #### `logging.console.log_keys`
 
-Type
-
-array
-
-Description
+Type: array
 
 Log Keys for the console output
 
 #### `logging.console.log_level`
 
-Type
-
-string
-
-Description
+Type: string
 
 Log Level for the console output
 
 #### `max_concurrent_query_ops`
 
-Type
-
-integer
-
-Default
-
-1000
-
-Description
+Type: integer (Default 1000)
 
 The maximum amount of query operations that can be running at any one point.
 
 #### `name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the database.
 
 #### `offline`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Start the database in an offline state.
 
 #### `oidc`
 
-Type
-
-object
-
-Description
+Type: object
 
 Configuration for OpenID Connect authentication.
 
 #### `oidc.default_provider`
 
-Type
-
-string
-
-Description
+Type: string
 
 The default provider to use when the provider is not specified in the client.
 
 #### `oidc.providers`
 
-Type
-
-object
-
-Description
+Type: object
 
 List of OpenID Connect issuers.
 
 #### `oidc.providers.{providername…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 The providers name.
 
 #### `oidc.providers.{providername…​}.InsecureSkipVerify`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Determines whether the TLS certificate verification should be disabled for this provider.
 
 #### `oidc.providers.{providername…​}.IsDefault`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Indicates if this is the default OpenID Connect provider.
 
 #### `oidc.providers.{providername…​}.Name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the OpenID Connect Provider.
 
 #### `oidc.providers.{providername…​}.allow_unsigned_provider_tokens`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Allows users accept unsigned tokens from providers.
 
 #### `oidc.providers.{providername…​}.callback_url`
 
-Type
-
-string
-
-Description
+Type: string
 
 The URL that the OpenID Connect will redirect to after authentication.
 
@@ -1827,11 +1244,7 @@ If not provided, a callback URL will be generated.
 
 #### `oidc.providers.{providername…​}.channels_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's channels.
 
@@ -1839,21 +1252,13 @@ The value of this claim must be either a string or an array of strings, any othe
 
 #### `oidc.providers.{providername…​}.client_id`
 
-Type
-
-string
-
-Description
+Type: string
 
 The OpenID Connect provider client ID.
 
 #### `oidc.providers.{providername…​}.disable_callback_state`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Controls whether to maintain state between the auth request and callback endpoints (`/_oidc` and `/_oidc_callback`).
 
@@ -1861,71 +1266,43 @@ Controls whether to maintain state between the auth request and callback endpoin
 
 #### `oidc.providers.{providername…​}.disable_cfg_validation`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This bypasses the configuration validation based on the OpenID Connect specifications. This may be required for some OpenID providers that don't strictly adhere to the specifications.
 
 #### `oidc.providers.{providername…​}.disable_session`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Disable Sync Gateway session creation on successful OpenID Connect authentication.
 
 #### `oidc.providers.{providername…​}.discovery_url`
 
-Type
-
-string
-
-Description
+Type: string
 
 The non-standard discovery endpoint.
 
 #### `oidc.providers.{providername…​}.include_access`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This is whether the `_oidc_callback` response should include the OpenID Connect access token and associated fields (such as `token_type`, and `expires_in`).
 
 #### `oidc.providers.{providername…​}.issuer`
 
-Type
-
-string
-
-Description
+Type: string
 
 The URL for the OpenID Connect issuer.
 
 #### `oidc.providers.{providername…​}.register`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If to register a new Sync Gateway user account when a user logs in with OpenID Connect.
 
 #### `oidc.providers.{providername…​}.roles_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles.
 
@@ -1933,31 +1310,19 @@ The value of this claim must be either a string or an array of strings, any othe
 
 #### `oidc.providers.{providername…​}.scope`
 
-Type
-
-array
-
-Description
+Type: array
 
 The scope sent for the OpenID Connect request.
 
 #### `oidc.providers.{providername…​}.user_prefix`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the username prefix for all users created through this provider.
 
 #### `oidc.providers.{providername…​}.username_claim`
 
-Type
-
-string
-
-Description
+Type: string
 
 Allows a different OpenID Connect field to be specified instead of the Subject (`sub`).
 
@@ -1965,69 +1330,37 @@ The field name to use can be specified here.
 
 #### `oidc.providers.{providername…​}.validation_key`
 
-Type
-
-string
-
-Description
+Type: string
 
 The OpenID Connect provider client secret.
 
 #### `old_rev_expiry_seconds`
 
-Type
-
-number
-
-Default
-
-300
-
-Description
+Type: number (Default 300)
 
 The number of seconds before old revisions are removed from the Couchbase Server bucket.
 
 #### `password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password for authenticating to the server.
 
 #### `query_pagination_limit`
 
-Type
-
-integer
-
-Default
-
-5000
-
-Description
+Type: integer (Default 5000)
 
 The query limit to be used during pagination of large queries.
 
 #### `replications.replication_id`
 
-Type
-
-object
-
-Description
+Type: object
 
 Properties of a replication
 
 #### `replications.replication_id.adhoc`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Set to true to run the replication as an adhoc replication instead of a persistent one.
 
@@ -2035,25 +1368,13 @@ This means that the replication will only last the period of the replication unt
 
 #### `replications.replication_id.batch_size`
 
-Type
-
-integer
-
-Default
-
-200
-
-Description
+Type: integer (Default 200)
 
 The amount of changes to be sent in one batch of replications. Changing this is an Enterprise Edition only feature.
 
 #### `replications.replication_id.collections_enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, the replicator will run with collections, and will replicate all collections, unless otherwise limited by `collections_local`.
 
@@ -2061,11 +1382,7 @@ If false, the replicator will only replicate the default collection.
 
 #### `replications.replication_id.collections_local`
 
-Type
-
-array
-
-Description
+Type: array
 
 Limits the set of collections replicated to those listed in this array.
 
@@ -2073,11 +1390,7 @@ The replication will use all collections defined on the database if this list is
 
 #### `replications.replication_id.collections_remote`
 
-Type
-
-array
-
-Description
+Type: array
 
 Remaps the local collection name to the one specified in this array when replicating with the remote.
 
@@ -2087,15 +1400,7 @@ The same index is used for both `collections_remote` and `collections_local`, an
 
 #### `replications.replication_id.conflict_resolution_type`
 
-Type
-
-string
-
-Default
-
-default
-
-Description
+Type: string (Default default)
 
 This defines what conflict resolution policy Sync Gateway should use to apply when resolving conflicting revisions.
 
@@ -2103,11 +1408,7 @@ Changing this is an Enterprise Edition only feature.
 
 #### `replications.replication_id.continuous`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, changes will be immediately synced when they happen. This is known as a continuous replication.
 
@@ -2115,11 +1416,7 @@ If false, all changes will be synced until they have been processed. The replica
 
 #### `replications.replication_id.custom_conflict_resolver`
 
-Type
-
-string
-
-Description
+Type: string
 
 This specifies the Javascript function to use to resolve conflicts between conflicting revisions.
 
@@ -2149,21 +1446,13 @@ This is an Enterprise Edition only feature.
 
 #### `replications.replication_id.direction`
 
-Type
-
-string
-
-Description
+Type: string
 
 This specifies which direction the replication will be replicating with the `remote` replicator.
 
 #### `replications.replication_id.enable_delta_sync`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 This will turn on delta-sync for the replication. In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true.
 
@@ -2171,25 +1460,13 @@ Using delta-sync is an Enterprise Edition only feature.
 
 #### `replications.replication_id.filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 This defines whether to filter documents.
 
 #### `replications.replication_id.initial_state`
 
-Type
-
-string
-
-Default
-
-running
-
-Description
+Type: string (Default running)
 
 This is what state to start the replication in when creating a new replication.
 
@@ -2199,15 +1476,7 @@ Replications prior to Sync Gateway 2.8 will run in the default state `running`.
 
 #### `replications.replication_id.max_backoff_time`
 
-Type
-
-integer
-
-Default
-
-5
-
-Description
+Type: integer (Default 5)
 
 Specifies the maximum time-period (in minutes) that Sync Gateway will attempt to reconnect to a lost or unreachable remote.
 
@@ -2219,11 +1488,7 @@ Note: this defaults to 5 minutes for replications created prior to Sync Gateway 
 
 #### `replications.replication_id.purge_on_removal`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Specifies whether to purge a document if the remote user loses access to all of the channels on the document when attempting to pull it from the remote.
 
@@ -2231,11 +1496,7 @@ If false, documents will not be replicated and not be purged when the user loses
 
 #### `replications.replication_id.query_params`
 
-Type
-
-array
-
-Description
+Type: array
 
 This is a set of key/value pairs used in the query string of the replication.
 
@@ -2251,41 +1512,25 @@ If `filters=sync_gateway/bychannel` then this can be used to set the channels to
 
 #### `replications.replication_id.remote`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the endpoint of the database for the remote Sync Gateway that is the subject of this replication's `push`, `pull`, or `pushAndPull` action. Typically this would include the URI, port, and database name. For example, `https://localhost:4985/db`.
 
 #### `replications.replication_id.remote_password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password to use to authenticate with the remote. This password will be redacted in the replication config.
 
 #### `replications.replication_id.remote_username`
 
-Type
-
-string
-
-Description
+Type: string
 
 The username to use to authenticate with the remote.
 
 #### `replications.replication_id.replication_id`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the ID of the replication.
 
@@ -2295,55 +1540,31 @@ When the replication ID is specified in the URL, this must be set to the same re
 
 #### `replications.replication_id.run_as`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is used if you want to specify a user to run the replication as. This means that the replication will only be able to replicate what the user access to what the user has access to.
 
 #### `revs_limit`
 
-Type
-
-number
-
-Default
-
-50
-
-Description
+Type: number (Default 50)
 
 The maximum depth a document's revision tree can grow to.
 
 #### `roles.{rolename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 Properties associated with a role
 
 #### `roles.{rolename…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the role for the default collection. See `collection_access` for channels in named collections.
 
 #### `roles.{rolename…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the role has been granted access to for the default collection.
 
@@ -2351,51 +1572,31 @@ These channels could have been assigned by the Sync function or using the `admin
 
 #### `roles.{rolename…​}.collection_access`
 
-Type
-
-object
-
-Description
+Type: object
 
 A set of access grants by scope and collection for a specific collection.
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope, containing a set of collections.
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name, defines access collections in this scope.
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}.{collectionname…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user in this collection.
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}.{collectionname…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to in this collection.
 
@@ -2403,31 +1604,19 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}.{collectionname…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for this collection.
 
 #### `roles.{rolename…​}.collection_access.{scopename…​}.{collectionname…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT channels were updated for this collection.
 
 #### `roles.{rolename…​}.name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the role.
 
@@ -2435,51 +1624,31 @@ Role names can only have alphanumeric ASCII characters and underscores.
 
 #### `scopes`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope name containing config for the specific collection.
 
 #### `scopes.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 Scope-specific configuration.
 
 #### `scopes.{scopename…​}.collections`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name containing config for the specific collection.
 
 #### `scopes.{scopename…​}.collections.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 Collection-specific configuration.
 
 #### `scopes.{scopename…​}.collections.{collectionname…​}.import_filter`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the function that all imported documents in this collection are ran through in order to filter out what to import and what not to import. This allows you to control what is made available to Couchbase Mobile clients. If it is not set, then no documents are filtered when imported.
 
@@ -2487,35 +1656,19 @@ This is the function that all imported documents in this collection are ran thro
 
 #### `scopes.{scopename…​}.collections.{collectionname…​}.sync`
 
-Type
-
-string
-
-Description
+Type: string
 
 The Javascript function that newly created documents in this collection are ran through.
 
 #### `send_www_authenticate_header`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Controls whether to send a `WWW-Authenticate` header in `401 Unauthorized` HTTP responses.
 
 #### `serve_insecure_attachment_types`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If set, always serve attachments with the `Content-Type` header set to the type of the attachment.
 
@@ -2523,41 +1676,25 @@ When serving an attachment, usually the `Content-Type` header is set to the type
 
 #### `server`
 
-Type
-
-string
-
-Description
+Type: string
 
 This is the Couchbase Server address or addresses that the database connect to.
 
 #### `session_cookie_http_only`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Make all session cookies for the database set the `HttpOnly` flag so they are inaccessible to JavaScript.
 
 #### `session_cookie_name`
 
-Type
-
-string
-
-Description
+Type: string
 
 This can be used to define a custom per-database session cookie name.
 
 #### `session_cookie_secure`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Override the session cookie `secure` flag. If set, the cookie will have the `secure` flag.
 
@@ -2565,57 +1702,25 @@ This will default to `true` if startup config `api.https.tls_cert_path` is set o
 
 #### `sgreplicate_enabled`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Whether the node should accept assign replications (`true`) or not (`false`).
 
 #### `sgreplicate_websocket_heartbeat_secs`
 
-Type
-
-integer
-
-Default
-
-300
-
-Description
+Type: integer (Default 300)
 
 Use a custom heartbeat interval (in seconds) for websocket ping frames.
 
 #### `slow_query_warning_threshold`
 
-Type
-
-number
-
-Default
-
-500
-
-Description
+Type: number (Default 500)
 
 The amount of milliseconds a N1QL query should run before logging a warning.
 
 #### `store_legacy_revtree_data`
 
-Type
-
-boolean
-
-Default
-
-true
-
-Description
+Type: boolean (Default true)
 
 Controls whether Sync Gateway stores additional legacy revision tree pointer data to support 3.x/early 4.x clients that still use RevTree IDs (for example when used as delta sources).
 
@@ -2623,11 +1728,7 @@ Disable this when you are confident all clients use newer CV-based revisions and
 
 #### `suspendable`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Set to true to allow the database to be suspended.
 
@@ -2635,15 +1736,7 @@ Defaults to true when running in serverless mode otherwise defaults to false.
 
 #### `sync`
 
-Type
-
-string
-
-Default
-
-function(doc){channel(doc.channels);}
-
-Description
+Type: string (Default function(doc){channel(doc.channels);})
 
 The Javascript function that newly created documents are ran through for the default scope and collection.
 
@@ -2651,21 +1744,13 @@ If `scopes` parameter is set, this is ignored.
 
 #### `unsupported`
 
-Type
-
-object
-
-Description
+Type: object
 
 These are unsupported options and therefore it is not recommended to use them.
 
 #### `unsupported.api_endpoints.enable_couchbase_bucket_flush`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 **Setting for test purposes only**
 
@@ -2673,181 +1758,109 @@ Whether Couchbase buckets can be flushed via Admin REST API.
 
 #### `unsupported.dcp_read_buffer`
 
-Type
-
-number
-
-Description
+Type: number
 
 Set the dcp feed to use a different read buffer size.
 
 #### `unsupported.force_api_forbidden_errors`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Force REST API errors to return forbidden
 
 #### `unsupported.guest_read_only`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Restrict GUEST document access to read-only.
 
 #### `unsupported.kv_buffer`
 
-Type
-
-number
-
-Description
+Type: number
 
 Set the kv pool to use a different buffer size.
 
 #### `unsupported.oidc_test_provider.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether the `oidc_test_provider` endpoints should be exposed on the public API.
 
 #### `unsupported.oidc_tls_skip_verify`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Enable self-signed certificates for OIDC testing.
 
 #### `unsupported.remote_config_tls_skip_verify`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Enable self-signed certificates for external JavaScript load.
 
 #### `unsupported.resync_partitions`
 
-Type
-
-integer
-
-Description
+Type: integer
 
 Number of partitions to use for distributed DCP resync. Maximum number is the number of vBuckets for the backing bucket.
 
 #### `unsupported.same_site_cookie`
 
-Type
-
-string
-
-Description
+Type: string
 
 Override the session cookie SameSite behavior. By default, a session cookie will have SameSite:None if CORS is enabled, and will have no SameSite attribute if CORS is not enabled. Setting this property to`Default` will omit the SameSite attribute from the cookie.
 
 #### `unsupported.sgr_tls_skip_verify`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Enable self-signed certificates for SG-replicate testing.
 
 #### `unsupported.user_views.enabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Whether pass-through view query is supported through public API.
 
 #### `unsupported.warning_thresholds.access_and_role_grants_per_doc`
 
-Type
-
-number
-
-Description
+Type: number
 
 The number of access and role grants per document to be used as a threshold for grant count warnings.
 
 #### `unsupported.warning_thresholds.channel_name_size`
 
-Type
-
-number
-
-Description
+Type: number
 
 The number of channel name characters to be used as a threshold for channel name warnings.
 
 #### `unsupported.warning_thresholds.channels_per_doc`
 
-Type
-
-number
-
-Description
+Type: number
 
 The number of channels per document to be used as a threshold for the channel count warnings.
 
 #### `unsupported.warning_thresholds.channels_per_user`
 
-Type
-
-number
-
-Description
+Type: number
 
 The number of channels per user to be used as a threshold for channel count warnings.
 
 #### `unsupported.warning_thresholds.xattr_size_bytes`
 
-Type
-
-number
-
-Description
+Type: number
 
 The number of bytes to be used as a threshold for xattr size limit warnings.
 
 #### `use_views`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 Force the use of views instead of GSI.
 
 #### `user_xattr_key`
 
-Type
-
-string
-
-Description
+Type: string
 
 The key to use for the user xattr that will be accessible from the sync function. If empty, the feature will be disabled.
 
@@ -2855,51 +1868,31 @@ This is an Enterprise Edition feature only.
 
 #### `username`
 
-Type
-
-string
-
-Description
+Type: string
 
 The username for authenticating to the server.
 
 #### `users.{username…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 Properties associated with a user
 
 #### `users.{username…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user for the default collection. See `collection_access` for channels in named collections.
 
 #### `users.{username…​}.admin_roles`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of roles to explicitly grant to the user.
 
 #### `users.{username…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to for the default collection. See `collection_access` for channels in named collections.
 
@@ -2907,51 +1900,31 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `users.{username…​}.collection_access`
 
-Type
-
-object
-
-Description
+Type: object
 
 A set of access grants by scope and collection for a specific collection.
 
 #### `users.{username…​}.collection_access.{scopename…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by scope, containing a set of collections.
 
 #### `users.{username…​}.collection_access.{scopename…​}.{collectionname…​}`
 
-Type
-
-object
-
-Description
+Type: object
 
 An object keyed by collection name, defines access collections in this scope.
 
 #### `users.{username…​}.collection_access.{scopename…​}.{collectionname…​}.admin_channels`
 
-Type
-
-array
-
-Description
+Type: array
 
 A list of channels to explicitly grant to the user in this collection.
 
 #### `users.{username…​}.collection_access.{scopename…​}.{collectionname…​}.all_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the channels that the user has been granted access to in this collection.
 
@@ -2959,91 +1932,55 @@ Access could have been granted through the sync function, roles, or explicitly o
 
 #### `users.{username…​}.collection_access.{scopename…​}.{collectionname…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for this collection.
 
 #### `users.{username…​}.collection_access.{scopename…​}.{collectionname…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT channels were updated for this collection.
 
 #### `users.{username…​}.disabled`
 
-Type
-
-boolean
-
-Description
+Type: boolean
 
 If true, the user will not be able to login to the account as it is disabled.
 
 #### `users.{username…​}.email`
 
-Type
-
-string
-
-Description
+Type: string
 
 The email address of the user.
 
 #### `users.{username…​}.jwt_channels`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The channels that the user has been granted access to through channels\_claim for the default collection.
 
 #### `users.{username…​}.jwt_issuer`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The issuer of the last JSON Web Token that the user last used to sign in.
 
 #### `users.{username…​}.jwt_last_updated`
 
-Type
-
-string (readOnly)
-
-Description
+Type: string (readOnly)
 
 The last time that the user's JWT roles/channels were updated.
 
 #### `users.{username…​}.jwt_roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 The roles that the user has been added to through roles\_claim.
 
 #### `users.{username…​}.name`
 
-Type
-
-string
-
-Description
+Type: string
 
 The name of the user.
 
@@ -3051,11 +1988,7 @@ User names can only have alphanumeric ASCII characters and underscores.
 
 #### `users.{username…​}.password`
 
-Type
-
-string
-
-Description
+Type: string
 
 The password of the user.
 
@@ -3063,11 +1996,7 @@ Mandatory. unless `allow_empty_password` is `true` in the database configs.
 
 #### `users.{username…​}.roles`
 
-Type
-
-array (readOnly)
-
-Description
+Type: array (readOnly)
 
 All the roles that the user has been granted access to.
 
@@ -3075,15 +2004,7 @@ Access could have been granted through the sync function, roles\_claim, or expli
 
 #### `view_query_timeout_secs`
 
-Type
-
-integer
-
-Default
-
-75
-
-Description
+Type: integer (Default 75)
 
 The number of seconds before a view query should timeout.
 

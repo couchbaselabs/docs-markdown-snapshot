@@ -1,9 +1,10 @@
 ---
 title: Start Using the PHP SDK
 description: Installing the Couchbase PHP SDK &amp; a Hello World example program.
-editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:4.2@php-sdk:hello-world:start-using-sdk.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/hello-world/pages/start-using-sdk.adoc
+  xref: xref:4.2@php-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

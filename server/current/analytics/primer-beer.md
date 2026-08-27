@@ -2,9 +2,10 @@
 title: Analytics Tutorial
 description: This tutorial introduces the main features of Couchbase Analytics
   through examples.
-editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/primer-beer.adoc
-pubDate: 2026-05-02T05:28:41.565Z
-link: xref:server:analytics:primer-beer.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/primer-beer.adoc
+  xref: xref:server:analytics:primer-beer.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

@@ -1,14 +1,27 @@
 ---
 title: Capella Analytics Release Notes
-editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-07-20T13:54:32.914Z
-link: xref:analytics:release-notes:release-notes.adoc[]
+pubDate: 2026-08-25T04:30:40.250Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
+  xref: xref:analytics:release-notes:release-notes.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/release-notes/release-notes.html)
 
 # Capella Analytics Release Notes
+
+## [](#august-2026-changelog)August 2026 Changelog
+
+* Stream Data from Oracle and SQL Server  
+Capella Analytics now streams continuous, row-level data changes from Oracle and SQL Server databases directly into your collections. Powered by Kafka links and Debezium connectors, this integration captures operational updates in real time with full change data capture (CDC) fidelity.  
+For more information, see [Stream CDC Data from Oracle](../sources/debezium-oracle.md) and [Stream CDC Data from SQL Server](../sources/debezium-sqlserver.md).
+* SQL++ UPDATE Statement  
+Capella Analytics introduces the `UPDATE` statement, which enables you to modify documents in standalone collections. The statement supports updating scalar values, nested fields, and array elements, and accepts a `WHERE` clause to filter the documents to update.  
+For more information, see [UPDATE Statement](../sqlpp/5%5Fdml%5Fupdate.md).
+* Index-Only Query Plans  
+Capella Analytics now supports index-only query plans, allowing the query engine to serve requests entirely from index data when a covering index is available, accelerating response times by eliminating the need to fetch the underlying records.  
+For more information, see [Using Indexes](../sqlpp/7%5Fusing%5Findex.md).
 
 ## [](#june-2026-changelog)June 2026 Changelog
 

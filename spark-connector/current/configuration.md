@@ -1,8 +1,9 @@
 ---
 title: Configuration
-editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/configuration.adoc
-pubDate: 2026-03-20T03:41:54.898Z
-link: xref:spark-connector::configuration.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-spark/edit/release/4.0/modules/ROOT/pages/configuration.adoc
+  xref: xref:spark-connector::configuration.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

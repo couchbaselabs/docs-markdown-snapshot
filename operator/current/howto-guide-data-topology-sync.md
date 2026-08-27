@@ -2,9 +2,10 @@
 title: "How-to Guide: Data Topology Synchronization"
 description: A how-to guide on data topology synchronization with Couchbase
   Kubernetes Operator.
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-guide-data-topology-sync.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:operator::howto-guide-data-topology-sync.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-guide-data-topology-sync.adoc
+  xref: xref:operator::howto-guide-data-topology-sync.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

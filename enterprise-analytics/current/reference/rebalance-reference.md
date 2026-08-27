@@ -3,9 +3,10 @@ title: Rebalance Reference
 description: Enterprise Analytics creates a <em>report</em> for every rebalance
   that is performed. This section explains how to obtain the report, and how to
   read it.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rebalance-reference.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:enterprise-analytics:reference:rebalance-reference.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rebalance-reference.adoc
+  xref: xref:enterprise-analytics:reference:rebalance-reference.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

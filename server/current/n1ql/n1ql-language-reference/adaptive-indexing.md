@@ -2,9 +2,10 @@
 title: Adaptive Index
 description: Adaptive Indexes are a special type of GSI array index that can
   index all or specified fields of a document.
-editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/adaptive-indexing.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:server:n1ql:n1ql-language-reference/adaptive-indexing.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/adaptive-indexing.adoc
+  xref: xref:server:n1ql:n1ql-language-reference/adaptive-indexing.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

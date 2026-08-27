@@ -2,9 +2,10 @@
 title: Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
-editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/health-check.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:python-sdk:howtos:health-check.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/health-check.adoc
+  xref: xref:python-sdk:howtos:health-check.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

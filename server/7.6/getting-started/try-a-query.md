@@ -3,9 +3,10 @@ title: Run Your First SQL++ Query
 description: Now that you have a basic understanding of buckets, scopes and
   collections, and documents, you can try querying them using SQL++, the
   Couchbase Server query language.
-editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/try-a-query.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:7.6@server:getting-started:try-a-query.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/try-a-query.adoc
+  xref: xref:7.6@server:getting-started:try-a-query.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

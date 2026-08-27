@@ -2,9 +2,10 @@
 title: Enterprise Analytics Web Console
 description: The features of Enterprise Analytics can be managed by means of
   Enterprise Analytics Web Console.
-editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-ui/manage-ui.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:2.1@enterprise-analytics:manage:manage-ui/manage-ui.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-ui/manage-ui.adoc
+  xref: xref:2.1@enterprise-analytics:manage:manage-ui/manage-ui.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

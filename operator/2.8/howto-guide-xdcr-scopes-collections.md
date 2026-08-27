@@ -2,9 +2,10 @@
 title: "How-to Guide: XDCR with Scopes and Collections"
 description: A how-to guide on configuring cross data center replication (XDCR)
   using the Kubernetes Operator.
-editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-xdcr-scopes-collections.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:2.8@operator::howto-guide-xdcr-scopes-collections.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-xdcr-scopes-collections.adoc
+  xref: xref:2.8@operator::howto-guide-xdcr-scopes-collections.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

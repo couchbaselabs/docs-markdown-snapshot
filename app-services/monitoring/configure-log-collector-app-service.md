@@ -2,9 +2,10 @@
 title: Enable Log Streaming
 description: Enable real-time streaming of operational logs from App Services to
   a third-party or self-hosted log collector.
-editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-collector-app-service.adoc
-pubDate: 2026-03-26T05:14:31.984Z
-link: xref:app-services::monitoring/configure-log-collector-app-service.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-collector-app-service.adoc
+  xref: xref:app-services::monitoring/configure-log-collector-app-service.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)

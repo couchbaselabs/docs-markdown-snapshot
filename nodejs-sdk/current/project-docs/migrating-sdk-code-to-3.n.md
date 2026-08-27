@@ -3,9 +3,10 @@ title: Migrating to SDK API 3
 description: The SDK API 3 (used in Node.js SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Node.js SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-08-06T05:31:06.200Z
-link: xref:nodejs-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
+pubDate: 2026-08-17T09:53:44.266Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  xref: xref:nodejs-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -31,7 +32,7 @@ __Table 1\. SDK API Versions__
 | ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ----------- |
 | [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9         |
 | [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②       |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3         |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3 & 1.4   |
 | [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12        |
 | [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11 & 3.12 |
 | [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11 & 3.12 |

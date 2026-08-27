@@ -2,9 +2,10 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the C++ SDK.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-06-12T16:31:57.907Z
-link: xref:cxx-sdk:hello-world:start-using-sdk.adoc[]
+pubDate: 2026-08-22T04:32:17.641Z
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/hello-world/pages/start-using-sdk.adoc
+  xref: xref:cxx-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
@@ -101,9 +102,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.3.2
+  1.4.0
   VERSION
-  1.3.2
+  1.4.0
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS
@@ -120,6 +121,7 @@ Connect to your Couchbase Capella operational cluster (or your local Couchbase C
 
 * Couchbase Capella
 * Self-Managed Couchbase Server
+* Cloud Native Gateway (CNG)
 
 ```c++
 auto options = couchbase::cluster_options(username, password);
@@ -146,6 +148,20 @@ if (err) {
     // Application code here
 }
 ```
+
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
+
+```c++
+static constexpr auto connection_string{ "couchbase2://192.168.42.42" };  // replace with your IP address
+static constexpr auto username{ "Administrator" };
+static constexpr auto password{ "password" };
+auto options = couchbase::cluster_options(username, password);
+options.apply_profile("wan_development");
+
+auto [err, cluster] = couchbase::cluster::connect(connection_string, options).get();
+```
+
+Read more on the [Connections](../howtos/managing-connections.md#cloud-native-gateway) page.
 
 For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
 
