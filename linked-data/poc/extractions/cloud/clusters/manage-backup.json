@@ -1,0 +1,26 @@
+{
+  "page_id": "cloud/clusters/manage-backup",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/manage-backup.md",
+  "concepts": [
+    { "candidate_id": "backup:bucket-backup", "label": "Bucket backup (cbbackupmgr-based, per-bucket)", "reused_or_minted": "reused - minted in upgrade-best-practices.json, this batch" },
+    { "candidate_id": "backup:cbbackupmgr", "label": "cbbackupmgr (Couchbase Server backup/restore CLI utility)", "reused_or_minted": "reused" },
+    { "candidate_id": "backup:downloadable-backup", "label": "Downloadable bucket backup", "reused_or_minted": "reused - minted in backup-restore.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:free-tier-plan", "label": "Free Tier", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "backup:bucket-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - gates viewing/managing bucket backups in the Capella UI", "evidence": "To view and manage bucket backups in the Capella UI: You must have the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project that contains the cluster." },
+    { "subject": "capella-role:organization-owner", "predicate": "impliesRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (impliesRole) - restates the same organization-owner-implies-project-owner mechanism established in cloud/organizations/*.json for this specific feature", "evidence": "If you have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role, you already have [Project Owner](../projects/project-roles.md#project-owner-role) access." },
+    { "subject": "backup:bucket-backup", "predicate": "gatedByBillingPlan", "object": "plan:free-tier-plan", "reused_or_minted_predicate": "reused (gatedByBillingPlan) - a binary UI-feature-availability gate (not a quantitative rate limit like the iQ Insights example), directly answering this batch's hypothesis about whether backup carries its own plan-tier gate distinct from capella-role:*", "evidence": "Backup options are unavailable in the UI for your free tier operational cluster. To back-up and transfer your data from your old free tier operational cluster to a new free tier or paid operational cluster, you must use the `cbbackupmgr` tool." },
+    { "subject": "backup:bucket-backup", "predicate": "mustUseInsteadWhen", "object": "backup:cbbackupmgr", "reused_or_minted_predicate": "reused (mustUseInsteadWhen) - the Capella-UI bucket-backup path should not be relied on (it does not exist) for free tier clusters; cbbackupmgr must be used instead", "evidence": "Backup options are unavailable in the UI for your free tier operational cluster... you must use the `cbbackupmgr` tool." },
+    { "subject": "backup:downloadable-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - a separate, narrower prerequisite restated specifically for the download procedure", "evidence": "You must be a [Project Owner](../projects/project-roles.md#project-owner-role)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "No support-plan gate anywhere on this page - bucket-backup UI access is gated purely by capella-role:* (Project Owner, with Organization Owner implying it). The only plan-tier gate found is the free-tier UI-availability restriction above, which is a billing/plan-tier feature gate, not a support-plan gate - directly relevant to this batch's central hypothesis: backup/restore access control uses the SAME capella-role:* mechanism as other management-plane operations, with billing-plan (not support-plan) affecting only feature availability on free tier, not authorization for paid tiers."
+  },
+  "cross_component_finding": "This file gives the batch's cleanest confirmation of the hypothesis: bucket-backup access control is Project-Owner-gated exactly like other Capella management-plane surfaces (matching cloud/organizations/*.json and cloud/security/cmek.json's identical Organization-Owner/Project-Owner pattern), with no separate backup-specific support-plan requirement. The one genuine plan-tier wrinkle is that free tier clusters lose the UI path entirely and must fall back to the cbbackupmgr CLI - a feature-availability gate, not an authorization gate, and it applies regardless of the user's capella-role:*.",
+  "cross_product_finding": ""
+}

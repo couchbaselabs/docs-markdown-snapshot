@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-query-use-sequences",
+  "label": "Query Use Sequences (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege - gates NEXTVAL/PREVVAL sequence operators, distinct from privilege:capella-advanced-access-query-manage-sequences (which gates CREATE/ALTER/DROP SEQUENCE)",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Part of the 15-privilege cluster-rbac.md finding - see privilege:capella-advanced-access-query-catalog's note and reconciliation.md round 7."
+}

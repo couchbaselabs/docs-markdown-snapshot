@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/clusters/monitoring/configure-slack-integration",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/configure-slack-integration.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-integration", "label": "Capella alert integration", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused - named here as the excluded tier that must fall back to UI/email alerts instead" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:developer-pro-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "For full access to Capella alert integrations, you must have 1 of the following roles: * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/slack-reference", "reused_or_minted_predicate": "reused", "evidence": "For a list of all the variables that Capella supports, see [Slack Alert Payload](slack-reference.md#json-objects-keys-slack)." },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/activity-log", "reused_or_minted_predicate": "reused", "evidence": "The [activity log](activity-log.md) records all add, edit, and delete events for alert integrations." }
+  ],
+  "notable_absence": {
+    "predicate": "behavesDifferentlyUnder (not applied here - single-page evidence)",
+    "finding": "Slack's connection method is dual (Bot Token OR Webhook URL, with the note 'Connecting your integration with 1 Webhook URL allows you to send alerts to a single channel only. To send alerts to multiple channels, use a Bot Token'), unlike Microsoft Teams and Webhooks in this batch, which each support only a single Webhook-URL-based connection method. This is a real configuration-model divergence beyond payload format: Slack alone offers a second connection mechanism (Bot Token) with a materially different capability (multi-channel fan-out from one integration). Not minted as a cross-integration relation here since it would need a comparison concept (e.g. monitoring:microsoft-teams-alert-integration) this page alone doesn't establish - left for the reconciler to connect with configure-microsoft-integration.json and configure-webhook-integration.json's own extractions."
+  },
+  "cross_component_finding": "Confirms the batch hypothesis's 'shared shell, divergent detail' picture at the connection-method layer, not just the payload layer: the Prerequisites section (roles, Enterprise/Developer Pro Support Plan gate, static firewall IP allowlist of 3 addresses, up to 5 integrations per project) is verbatim-identical across this page, configure-microsoft-integration.md, and configure-webhook-integration.md, but Slack's own connection step adds a Bot Token option with distinct scopes (chat:write, channels:read, groups:read, optional chat:write.public) that neither Microsoft Teams nor Webhooks offers - a genuine per-tool capability difference, not just cosmetic payload-format variation."
+}

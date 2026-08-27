@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/clusters/manage-restore",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/manage-restore.md",
+  "concepts": [
+    { "candidate_id": "backup:bucket-backup", "label": "Bucket backup (cbbackupmgr-based, per-bucket)", "reused_or_minted": "reused - minted in upgrade-best-practices.json, this batch" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-data-writer", "label": "Project Data Writer / Data Writer", "reused_or_minted": "reused - this page calls it 'Data Writer' with anchor '#project-cluster-data-reader-writer', matching the label-variant flagged in cloud/organizations/organization-projects-overview.json" },
+    { "candidate_id": "capella:xdcr", "label": "XDCR (Cross Data Center Replication)", "reused_or_minted": "reused - promoted concept" }
+  ],
+  "relations": [
+    { "subject": "backup:bucket-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - gates viewing and restoring bucket data from a backup, across BOTH the source and destination projects", "evidence": "You need the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project with the cluster that created the bucket backup and the project containing the destination cluster for the restore." },
+    { "subject": "capella-role:organization-owner", "predicate": "impliesRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (impliesRole)", "evidence": "If you have the `Organization Owner` role, you already have the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in the organization." },
+    { "subject": "backup:bucket-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole) - a narrower, alternative gate specifically for accessing restored indexes rather than for the restore action itself", "evidence": "To access indexes in the Couchbase Capella UI: You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role for the project with the cluster." },
+    { "subject": "backup:bucket-backup", "predicate": "mustUseInsteadWhen", "object": "capella:xdcr", "reused_or_minted_predicate": "reused (mustUseInsteadWhen) - bucket-backup restore should not be the primary recovery method; XDCR replication from a redundant cluster should be used instead, with restore reserved for worst-case scenarios", "evidence": "Couchbase recommends that you only restore data from bucket backups in worst-case scenarios. You should use other recovery methods, such as [XDCR replication](xdcr/xdcr.md) from a redundant cluster as the primary recovery method." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan / behavesDifferentlyUnder (cloud-provider)",
+    "finding": "No support-plan gate on bucket-backup restore - consistent with manage-backup.json's identical finding, reinforcing that restore uses the same capella-role:* mechanism as backup creation, not a distinct or stricter commercial gate. Also no cloud-provider-specific restore behavior on THIS page (that appears instead in the cross-CSP restore restriction noted in this page's Prerequisites, captured below) - unlike cluster-backup restore (restore-cloud-snapshot.md), which has explicit AWS/Azure cross-region logic."
+  },
+  "cross_component_finding": "This page's Prerequisites state a same-CSP restore restriction distinct from anything on the cluster-backup side: 'you can only restore to a bucket in the same Cloud Service Provider (CSP) as the one used to create the backup — such as from Azure to Azure. If you need a backup that can be restored across different CSPs, you can use a locally-stored bucket backup.' This is a real cloud-provider-driven constraint on bucket backups specifically (no cross-CSP restore without going through a downloadable/local archive), distinct in shape from cluster backups' cross-REGION (not cross-CSP) replication logic on cloud-snapshots.json/restore-cloud-snapshot.json - the two backup types have different provider-sensitivity axes (bucket backups: cross-CSP restore blocked; cluster backups: cross-region replication CSP-gated).",
+  "cross_product_finding": ""
+}

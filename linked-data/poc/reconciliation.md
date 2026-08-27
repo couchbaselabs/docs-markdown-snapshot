@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Six rounds so far, in order run. Each section covers one round; a single
+Seven rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -801,18 +801,170 @@ volume - noted here rather than silently dropped.
 
 ---
 
-## Cumulative verdict (all six rounds)
+## Round 7 — `cloud/clusters/` (53 pages)
 
-The vocabulary has now been tested against six genuinely different kinds of
-"does this still fit": a different component within one product (round 1), a
-different deployment model of the same underlying product (round 2), three
-entirely different products built by different teams (round 3), a single
-product's own feature that cuts across its existing per-operation model
-(round 4's transactions, within the Java SDK already covered in round 3),
-full coverage of a directory a prior round had only sampled a fifth of
-(round 5), and - round 6's own contribution - the same partial-sampling
-lesson recurring on the same product's role catalog, right after round 5
-found it on the privilege catalog. At every step it kept doing the same
+Scope: all 53 pages of `cloud/clusters/` - cluster lifecycle (create/scale/
+upgrade/delete), backup/restore, cluster-level access control
+(`cluster-rbac.md`), the Data/Analytics/Index/Query service management pages,
+XDCR, and the full monitoring/alerting subdirectory. Zero prior coverage. Run
+as 6 parallel batches same-day as rounds 5 and 6. Total usage: ~714,000
+tokens for 53 pages (~13,500 tokens/page, a touch above the ~11,700-13,000
+this session's other two waves landed on - consistent with this being a
+denser, more finding-rich wave), roughly $2 by the project's blended-rate
+method.
+
+### Headline finding: the same undercounting lesson, on the privilege catalog this time - and the discrepancy is bigger
+
+Round 6 found `capella-role:*` was two flattened catalogs, discovered by
+reading the role catalog's own authoritative page instead of trusting
+statement-page citations. Round 7 found the identical shape on the *privilege*
+catalog: `cluster-rbac.md` is the authoritative privilege table, and it lists
+**25 distinct privileges** - the registry had 11 (round 2's original pair
+plus round 5's ten-privilege catalog expansion), all inferred from statement
+pages' scattered citations. 15 new privileges promoted this round: a
+4-member Analytics family (Read/Admin/Manage/Select), a 3-member Data family
+(Read/Manage/Monitor), a 2-member FTS family (Manage/Read), Eventing Manage
+(the first privilege-level evidence connecting `service:eventing-service` to
+any access-control model), Stats Read, Query Catalog, Query Manage Catalog,
+Query Curl Access, and Query Use Sequences (distinct from the already-promoted
+Query Manage Sequences - NEXTVAL/PREVVAL vs. CREATE/ALTER/DROP SEQUENCE). One
+loose end, not resolved: `privilege:capella-advanced-access-scope-admin`
+(round 5) doesn't appear in `cluster-rbac.md`'s table at all - either the
+original statement-page citation was wrong, or the authoritative table is
+itself incomplete - logged as `docs-issues/cloud-clusters-scope-admin-privilege-mismatch.json`.
+
+`cluster-rbac.md` also settled a question the ontology had been carrying
+implicitly rather than confirming with evidence: its own opening line states
+the data-plane credential model "are separate from organization roles and
+project roles" - explicit textual confirmation (via the already-promoted
+`hasNoRelationshipTo`) that the privilege catalog and the round-6 role
+catalog are genuinely disjoint mechanisms, not two views of one thing.
+
+### Two open questions from earlier rounds resolved cleanly
+
+- **Storage engine (Couchstore/Magma):** a bucket-creation-time choice, but
+  not permanently fixed - a real migration path exists (Management API on
+  Server 7.6+, manual recreate-and-copy on 7.2). Round 6 had only seen this
+  pair from a single Health Advisor threshold mention and didn't know whether
+  it was creation-time-fixed at all.
+- **Cloud-provider variance:** broader than round 6's single data point
+  (Azure's storage auto-expansion). Reading the cluster-creation flow
+  directly found provider choice also affects disk-type options, IOPS
+  configurability, and region/AZ availability - the same axis, more surface
+  area than one example suggested.
+
+One question surfaced but deliberately left open: does `capella-role:cluster-manager`
+(the project-scope role) or the general 8-role catalog get restated on
+`cluster-rbac.md`? No - that page turned out to be about a completely
+different axis (data-plane credentials/privileges), not the role catalog at
+all. A useful negative result: not every "obviously relevant" authoritative
+page confirms the hypothesis it was read to test.
+
+### XDCR and Analytics both resolved as "no new mechanism"
+
+Two features whose access-control model was previously unknown (each only
+seen via a passing mention in an earlier round) turned out to introduce
+nothing new once read directly: XDCR's entire "security" model is a
+network-topology choice (Public Internet / VPC Peering / Private Endpoint,
+completing that triad with the newly promoted `security:public-internet`),
+gated by cloud-provider/node-count/version, not by identity - it fully reuses
+`capella-role:project-owner` and the existing credential model. Analytics
+likewise mints no authorization concept of its own; its role gating and even
+its query-consistency setting are verbatim reuses of the existing catalog and
+`n1ql:scan-consistency-values`. Two clean confirmations that "new feature"
+doesn't automatically mean "new access-control shape" - it's a real
+possibility this project has now found several times (round 6's XDCR-adjacent
+finding was actually about metrics, this is the first direct read of XDCR's
+own security docs), but not the default outcome.
+
+### A second data-plane access axis for backup/restore
+
+Backup/restore is gated by `capella-role:project-owner`/`organization-owner`
+like most management-plane surfaces - except the CLI path (`cli-backup-restore.md`),
+which is gated by `cluster-access-credential-type` read/write scope instead,
+not `capella-role:*` at all. A genuine second axis specific to this one
+surface. Also found: a free-tier asymmetry (bucket-level backups are
+unavailable on `plan:free-tier-plan`, forcing a `cbbackupmgr` CLI fallback;
+cluster-level snapshot backups have no equivalent restriction) - a real
+product fact, not a docs gap, so not logged as a docs-issue.
+
+### A same-word collision found within a single round: two "index status" vocabularies
+
+The Capella Indexes UI has its own status enum (ready/pause/warmup) -
+`capella:index-ui-status`, promoted this round - which is a genuinely
+different vocabulary from the SQL++ DDL lifecycle enum `index-state`
+(scheduled for creation/deferred/building/pending/online/offline/abridged).
+Same underlying subject (a GSI index's condition), two unreconciled
+vocabularies from two different documentation surfaces. Left unmerged, per
+the project's standing rule against inventing a link without textual
+evidence.
+
+### Monitoring: a self-inflicted reconciliation gap, closed
+
+Round 5's `reference/` batch minted `monitoring:alert`/`event`/`health-advisor-report`
+and others, and that round's own reconciliation writeup described them as
+promoted - but no `concepts/monitoring/` files were ever actually written.
+This round's direct read of `monitoring.md`/`alerts.md`/`health-advisor.md`
+confirmed the underlying concepts cleanly (unlike the role catalog, no
+correction was needed to the *content*) but surfaced the gap in the
+*process*: promoted now, for the first time, along with a genuine
+correction found along the way - round 5 had conflated event severity
+(Info/Warning/Critical) and Health Advisor severity (Good/Needs Review/Warning)
+under one candidate name; they're split into `monitoring:event-severity-enum`
+and `monitoring:health-advisor-severity-enum` now that both are read
+authoritatively. This is the **third** instance of the same reconciliation-gap
+shape - after round 2's `gatedByBillingPlan` (closed in round 6) and round 3's
+Java SDK concepts (found in round 4) - and notably the first one this
+reconciler introduced itself while already aware of the pattern.
+
+### Other findings, left at the extraction layer (not promoted this round)
+
+A recurring role-label-drift pattern, now with a second independent
+instance (`analytics-links.md`'s "Cluster Data / Reader" pointing at
+`manage-documents.md`'s anchor for "Data Writer") folded into the existing
+`docs-issues/cloud-projects-role-naming-drift-cluster-manager.json` rather
+than filed separately. A rich alert-integration model (Slack and Microsoft
+Teams share one payload schema in different wrappers; Webhooks uses an
+entirely different field-naming scheme) and several `xdcr:`/`backup:`/
+`analytics:` namespace concepts from this round's batches - not promoted at
+this volume, noted here rather than silently dropped, consistent with the
+"left on the watchlist" sections of prior rounds.
+
+### What this round confirmed about the method itself
+
+- **The privilege/role undercounting pattern is now confirmed as durable
+  across two consecutive rounds on two different vocabularies of the same
+  product.** Worth treating as an expected outcome, not a surprise, for any
+  remaining Capella vocabulary still built primarily from statement-page
+  citations rather than a feature's own reference page.
+- **Reading an authoritative page can resolve a question by revealing it was
+  the wrong question.** `cluster-rbac.md` was read to test the role catalog;
+  it turned out to be about something else entirely (the privilege catalog),
+  which is itself informative - not every hypothesis a batch is sent to test
+  gets a yes/no answer on its own terms.
+- **The reconciliation-gap pattern (narrated as promoted, never filed) has
+  now recurred three times, including once where the reconciler already knew
+  to watch for it.** Awareness alone doesn't prevent it - some kind of
+  automated check (e.g. a script asserting every concept/predicate named in
+  a round's reconciliation.md section has a corresponding file) would catch
+  this more reliably than reconciler vigilance.
+
+---
+
+## Cumulative verdict (all seven rounds)
+
+The vocabulary has now been tested against seven genuinely different kinds
+of "does this still fit": a different component within one product
+(round 1), a different deployment model of the same underlying product
+(round 2), three entirely different products built by different teams
+(round 3), a single product's own feature that cuts across its existing
+per-operation model (round 4's transactions, within the Java SDK already
+covered in round 3), full coverage of a directory a prior round had only
+sampled a fifth of (round 5), the same partial-sampling lesson recurring on
+the same product's role catalog (round 6), and - round 7's own contribution -
+that exact lesson recurring a THIRD time, on a third vocabulary
+(privileges again, discovered by finally reading the one page that was
+always the authoritative source). At every step it kept doing the same
 useful thing: not just "the terms still fit," but surfacing something true
 and specific about each surface it touched - Capella's credential/role-based
 access model (round 2), Sync Gateway's two-disjoint-systems architecture and
@@ -820,14 +972,16 @@ inverted channel-based access model (round 3), Couchbase Lite's own disjoint
 edition split (round 3), the Java SDK's transaction layer inverting
 CAS-based concurrency into transaction-membership checks (round 4), round 2's
 "simple credential-type pair" turning out to be a whole per-statement
-privilege catalog (round 5), and now that `capella-role:*` was never one
-catalog but two, silently flattened together since round 2 (round 6). That's
-a stronger and more useful result than a vocabulary that merely never breaks.
+privilege catalog (round 5), `capella-role:*` turning out to be two catalogs
+silently flattened together since round 2 (round 6), and now `cluster-rbac.md`'s
+own 25-privilege table more than doubling what round 5 had already corrected
+(round 7). That's a stronger and more useful result than a vocabulary that
+merely never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Five limits of the method are now visible across multiple rounds, not just
+Six limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **Structural silence isn't a naming problem.** The method is good at
@@ -871,3 +1025,13 @@ once, so worth treating as durable rather than one-off:
   read directly. Worth treating as a standing prioritization signal: read a
   feature's own reference page before trusting vocabulary inferred from
   where it's merely mentioned.
+- **Knowing about a failure mode doesn't prevent it.** The "narrated as
+  promoted, never actually filed" reconciliation gap has now recurred three
+  times (round 2's `gatedByBillingPlan`, round 3's Java SDK concepts, round
+  5's `monitoring:*` family) - the third one introduced by this same
+  reconciler, in round 5, after already having written up the first two as a
+  known risk in round 4's cumulative verdict. Vigilance alone isn't a
+  reliable control for this; an automated check (script-verify every
+  concept/predicate name appearing in a round's reconciliation.md section
+  resolves to a real file) would catch it structurally instead of relying on
+  memory.

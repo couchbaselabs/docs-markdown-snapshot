@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/clusters/modify-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/modify-database.md",
+  "concepts": [
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:aws", "label": "Amazon Web Services (AWS)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "Google Cloud Platform (GCP)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Microsoft Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "clusters:disk-type", "label": "Disk Type", "reused_or_minted": "minted earlier in this batch (databases.json) - reused here" },
+    { "candidate_id": "clusters:iops-configuration", "label": "IOPS Configuration", "reused_or_minted": "minted - a per-Service-Group setting whose configurability (shown/hidden, floor-only, or fully free) varies by cloud provider and disk type; not covered by an existing namespace" },
+    { "candidate_id": "clusters:deletion-protection", "label": "Deletion Protection", "reused_or_minted": "minted earlier in this batch (delete-database.json) - reused here, this time as the page that actually defines it" },
+    { "candidate_id": "clusters:storage-auto-expansion", "label": "Storage Auto-Expansion", "reused_or_minted": "reused" },
+    { "candidate_id": "app-services:app-service", "label": "App Service", "reused_or_minted": "minted (lightweight, out-of-batch stub) - App Services is a separate product surface not covered by this round's cloud/clusters/ batch; minted only as the object of an extendsProtectionTo relation, flagging for the reconciler rather than building out the namespace" },
+    { "candidate_id": "clusters:bucket-flush", "label": "Bucket Flush", "reused_or_minted": "minted (lightweight stub) - the operation deletion protection blocks; full bucket-lifecycle vocabulary belongs to data-service/manage-buckets.md, out of this batch's scope" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/modify-database", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "You have the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project with the cluster you're modifying." },
+    { "subject": "cloud/clusters/modify-database", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused", "evidence": "You have the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project with the cluster you're modifying." },
+    { "subject": "clusters:deletion-protection", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To change deletion protection settings, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role in your organization, or one of the following [project roles](../projects/project-roles.md) for the project that contains your cluster:" },
+    { "subject": "clusters:deletion-protection", "predicate": "extendsProtectionTo", "object": "app-services:app-service", "reused_or_minted_predicate": "minted - camelCase verb phrase for a setting that, once turned on, automatically applies the same protection to a linked-but-separately-managed resource in another product area", "evidence": "If you turn on deletion protection, Capella will also automatically turn on deletion protection for any [App Services](#app-services:index.adoc) linked to your cluster." },
+    { "subject": "clusters:deletion-protection", "predicate": "blocksOperationWhen", "object": "clusters:bucket-flush", "reused_or_minted_predicate": "minted (see delete-database.json)", "evidence": "Cluster deletion protection also prevents bucket deletion or [bucket flushing](data-service/manage-buckets.md#flush)." },
+    { "subject": "clusters:iops-configuration", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused", "evidence": "This field isn't shown when a cluster uses GCP as its cloud provider. If you're using Azure's Premium SSD disk type, you can't change the value of this field." },
+    { "subject": "clusters:iops-configuration", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused", "evidence": "**Azure**: IOPS for the Premium SSD (P) disk type are based on the chosen Premium SSD disk size. The IOPS for the Ultra disk type can be set, but the possible range depends on the chosen storage size." },
+    { "subject": "clusters:disk-type", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused", "evidence": "**GCP**: Only supports PD-SSD." }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine / cloud-provider / cluster-option as modifiable attributes",
+    "finding": "This page's own enumerated scope (echoed from databases.md: 'you can only change: cluster name/description, Support Plan, recovery authorization, Services and Service Groups, compute configuration, storage configuration, deletion protection') never lists cloud service provider, region, or basic cluster option (Single Node/Multi-Node/Custom) among the modifiable attributes, and the page's own section list (View Node Configs, Add/Remove Service, Add/Remove Nodes, Change Compute, Change Disk Type, Increase Storage, Change IOPS, Rename, Deletion Protection) contains no 'change cloud provider' or 'change cluster option' procedure. No page in this batch states outright that these are immutable after creation - it's an absence, not an explicit constraint - but the omission across both the reference page (databases.md) and the modify procedure (this page) is consistent and suggests cloud provider and cluster option are fixed at creation time. Storage engine doesn't appear on this page at all, consistent with the databases.json finding that it may not be a cluster-level setting."
+  },
+  "cross_component_finding": "Deletion protection is defined here but its blocking effect and its App Services cascade were quoted independently by delete-database.json and this file for the same underlying setting - reconciler should treat clusters:deletion-protection as one concept with evidence from both pages, not two."
+}

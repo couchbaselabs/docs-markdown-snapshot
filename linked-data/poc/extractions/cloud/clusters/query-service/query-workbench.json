@@ -1,0 +1,37 @@
+{
+  "page_id": "cloud/clusters/query-service/query-workbench",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/query-service/query-workbench.md",
+  "concepts": [
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - existing registry concept (minted from transactions.md/using-ai.md); this page is the Query tab's own authoritative documentation, first read this batch" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - existing registry concept, minted in server/learn/services-and-indexes/services/query-service.json" },
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-writer", "label": "Data Writer", "reused_or_minted": "reused" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - the Plan tab's raw EXPLAIN JSON literally names the index type: 'using':'gsi'" },
+    { "candidate_id": "n1ql:infer", "label": "INFER statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:advise", "label": "ADVISE statement/command", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:explain", "label": "EXPLAIN statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:limit", "label": "LIMIT clause", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer for Queries", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:capella-iq", "label": "Capella iQ (AI query assistant)", "reused_or_minted": "reused - existing registry family under cloud/get-started/capella-iq/" },
+    { "candidate_id": "capella:iq-insights", "label": "iQ Insights (AI-generated result visualizations in the Query tab)", "reused_or_minted": "minted - a new Query-tab-specific surface for Capella iQ, distinct from Capella iQ's chat/query-generation surface documented elsewhere" }
+  ],
+  "relations": [
+    { "subject": "capella:query-tab", "predicate": "dependsOnService", "object": "service:query-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Your cluster must have the Query Service running." },
+    { "subject": "capella:query-tab", "predicate": "requiresCapellaRole", "object": "capella-role:data-reader", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To view the Query tab and run queries that _read_ documents, you need the [Data Reader](../../projects/project-roles.md#project-cluster-data-reader) project role." },
+    { "subject": "capella:query-tab", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To run queries that read and modify documents, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role." },
+    { "subject": "capella:query-tab", "predicate": "requiresCapellaRole", "object": "capella-role:data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To run queries that read and modify documents, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:infer", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "**Support for SQL++ INFER statements**: Support the SQL++ [INFER](../../n1ql/n1ql-language-reference/infer.md) statement." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:advise", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "The [ADVISE](../../n1ql/n1ql-language-reference/advise.md) command generates index advice to recommend indexes that optimize the response time for a query." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:explain", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "Each time you execute a query, an [EXPLAIN](../../n1ql/n1ql-language-reference/explain.md) command is automatically run in the background to retrieve the query plan for that query." },
+    { "subject": "capella:query-tab", "predicate": "usesEnum", "object": "index-type:gsi", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "{'#operator':'IndexScan2','index':'def_city','index_id':'d51323973a9c8458', ... 'using':'gsi'}" },
+    { "subject": "capella:query-tab", "predicate": "dependsOnService", "object": "capella:capella-iq", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "In the query editor, write a SQL++ query or use [Capella iQ](../../get-started/capella-iq/work-with-capellaiq.md) for assistance." },
+    { "subject": "capella:iq-insights", "predicate": "dependsOnService", "object": "capella:capella-iq", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "The **iQ Insights** tab lets you leverage the power of AI to generate relevant questions, descriptions, and visualizations of your query results." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / availableSince (server-version citation)",
+    "finding": "No Enterprise/Community edition badges and no server-version-string citations appear anywhere on this page - consistent with the pattern that Capella's own UI-procedural pages (as opposed to the underlying SQL++ statement reference pages they link to) generally omit both known recurring anomalies."
+  },
+  "cross_component_finding": "Confirms reuse over minting: the Query tab is documented as a thin browser client over the pre-existing Query Service and pre-existing SQL++ statement family (INFER, ADVISE, EXPLAIN, LIMIT) rather than introducing its own query language or execution model. The only genuinely new concepts on this page are UI-surface features layered on top - Query Settings (Max Parallelism, Transaction Timeout, Scan Consistency - all pass-through cbq-engine/request-level parameters, not new primitives) and iQ Insights, an AI-result-visualization surface for Capella iQ that doesn't exist in the underlying SQL++ execution model at all."
+}

@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/clusters/off-on-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/off-on-database.md",
+  "concepts": [
+    { "candidate_id": "clusters:cluster-status", "label": "Cluster Status (lifecycle status enum)", "reused_or_minted": "minted earlier in this batch (scale-database.json) - reused here, this page shows a 4-value subset (OFF, Turning Off, Turning On, Healthy)" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/off-on-database", "predicate": "cascadesDeletionTo", "object": "clusters:replication", "reused_or_minted_predicate": "minted earlier in this batch (delete-database.json) - reused here; notable because turning a cluster OFF is not itself a delete operation, yet it triggers an irreversible deletion of a dependent resource", "evidence": "Replications will be deleted. Replications are deleted for both source _and_ target clusters." },
+    { "subject": "cloud/clusters/off-on-database", "predicate": "disablesFeatureFor", "object": "app-services:app-service", "reused_or_minted_predicate": "reused", "evidence": "Linked App Services will be turned off. Log Streaming for those App Services will be turned off, if enabled." },
+    { "subject": "cloud/clusters/off-on-database", "predicate": "disablesFeatureFor", "object": "clusters:backup", "reused_or_minted_predicate": "reused", "evidence": "Scheduled or on-demand backups cannot run if a cluster is off. Restores cannot run, even if the destination cluster is on, if the cluster that contains the backup is off." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Unlike create/delete/modify-database.md, this page states no role or permission prerequisite at all for turning a cluster on or off - no Prerequisites section, and the procedure just says 'Log in to your account'. Either the permission model here is looser than for other lifecycle actions, or the prerequisite is undocumented; flagging the absence rather than assuming a role."
+  },
+  "cross_component_finding": "Turning a cluster off is documented as non-destructive for data/schema/indexes/config ('All of your data, schema (buckets, scopes, and collections), and indexes remain, as well as your cluster configuration, including users and allow lists') but IS destructive for XDCR replications, which are deleted outright rather than paused - an asymmetry worth flagging since it's easy to assume 'off' means everything is just paused."
+}

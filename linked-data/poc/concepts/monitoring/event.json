@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/event",
+  "label": "Event (Capella)",
+  "type": "a logged occurrence, subject of triggersAlert; scoped by monitoring:event-severity-enum (Info/Warning/Critical) and monitoring:event-tag-enum",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Same reconciliation-gap history as monitoring:alert - see that concept's note."
+}

@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/clusters/monitoring/microsoft-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/microsoft-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-payload", "label": "Capella alert payload (JSON notification body sent by an alert integration)", "reused_or_minted": "reused - this page's variable table is byte-for-byte identical in field names and descriptions to slack-reference.md's table, only the message-card wrapper format differs (Adaptive Cards here vs Block Kit there); both are the same underlying data model, so no separate 'Microsoft Teams payload' concept was minted" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-payload", "predicate": "usesEnum", "object": "monitoring:event-severity-enum", "reused_or_minted_predicate": "reused (usesEnum) - same restricted subset use as slack-reference.md", "evidence": "severity | Identifies the alert as either \"critical\" or \"warning\"." },
+    { "subject": "monitoring:alert-payload", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/configure-microsoft-integration", "reused_or_minted_predicate": "reused", "evidence": "* [Configure a Microsoft Teams Alert Integration](configure-microsoft-integration.md)" },
+    { "subject": "monitoring:alert-payload", "predicate": "seeAlso", "object": "cloud/reference/alert-reference", "reused_or_minted_predicate": "reused", "evidence": "For more detailed information, see the [Alert Reference](../../reference/alert-reference.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "Thin, config-field-catalog page as expected - variable table plus one full example payload, minimal prose. Kept concepts/relations minimal rather than forcing ontology out of a reference table."
+  },
+  "cross_component_finding": "This page is essentially a search-and-replace of slack-reference.md with the message-card format swapped (Adaptive Cards' ColumnSet/FactSet/TextBlock/Action.OpenUrl elements replacing Block Kit's blocks/section/actions/context elements) - the variable table, field names, descriptions, and even the worked example's underlying alert (High CPU Usage Warning, Cluster ABC, us-east-1 AWS, 42s duration) are identical to slack-reference.md's. Strong, direct confirmation that Slack and Microsoft Teams alert integrations share one payload data model end to end, differing only in wire format - the cleanest evidence in this batch for the 'shared model, per-tool rendering' half of the hypothesis."
+}

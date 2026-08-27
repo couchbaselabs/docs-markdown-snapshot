@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/clusters/off-on-schedule",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/off-on-schedule.md",
+  "concepts": [
+    { "candidate_id": "clusters:cluster-schedule", "label": "Cluster On/Off Schedule", "reused_or_minted": "minted - a distinct resource from the manual on/off toggle (off-on-database.md): it has its own create/edit/pause/resume/delete lifecycle and can be paused independently of the cluster's own current on/off state; not covered by an existing namespace" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/off-on-schedule", "predicate": "cascadesDeletionTo", "object": "clusters:replication", "reused_or_minted_predicate": "minted earlier in this batch (delete-database.json) - reused here, identical effect to the manual toggle on off-on-database.md", "evidence": "Replications will be deleted. For more information about XDCR, see [Cross Data Center Replication (XDCR)](xdcr/xdcr.md)." },
+    { "subject": "clusters:cluster-schedule", "predicate": "seeAlso", "object": "cloud/clusters/off-on-database", "reused_or_minted_predicate": "reused - structural Markdown link", "evidence": "[Verify the cluster status](off-on-database.md#verify-database-status) if the application returns an authentication error." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "Same absence as off-on-database.md: no role or permission prerequisite is stated anywhere on this page for creating, editing, pausing, or deleting a schedule."
+  },
+  "cross_component_finding": "Pausing a schedule is explicitly NOT the same as turning the cluster off/on: 'You can still manually turn your cluster on or off when your schedule is paused. The status of your cluster will remain in that state until you decide to change it or reactivate the schedule.' - confirms clusters:cluster-schedule is a genuinely separate resource from the cluster's own on/off state, not just a config flag on the cluster, supporting the minted concept above. Also: the 30-day auto-resume cap from off-on-database.md ('You can turn your cluster off for a maximum of 30 days') recurs here explicitly for paused schedules too - 'your cluster can be continuously OFF for only a maximum of 30 days. After 30 days, Capella automatically turns your cluster back on' - so the cap is a hard limit on cluster OFF time regardless of whether the OFF state was reached manually or via a paused/active schedule."
+}

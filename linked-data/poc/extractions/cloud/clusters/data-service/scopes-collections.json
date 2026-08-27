@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/clusters/data-service/scopes-collections",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/data-service/scopes-collections.md",
+  "concepts": [
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused - minted in this batch's about-buckets-scopes-collections.json" },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused - minted in this batch's about-buckets-scopes-collections.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "capella:scope", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - disjunctive with cluster-manager; identical wording to manage-buckets.json's gate, just applied to scopes/collections instead of buckets", "evidence": "To create, modify, or delete scopes and collections in a cluster, you need: The [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for your cluster's project." },
+    { "subject": "capella:collection", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused (requiresCapellaRole) - disjunctive", "evidence": "To create, modify, or delete scopes and collections in a cluster, you need: The [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role) role for your cluster's project." },
+    { "subject": "capella-role:organization-owner", "predicate": "impliesRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (impliesRole) - exact restatement, identical sentence to manage-buckets.json", "evidence": "If you have the [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) role, you have `Project Owner` access." }
+  ],
+  "notable_absence": { "predicate": "requiresEdition / gatedByBillingPlan", "finding": "No edition badges and no billing-plan gating anywhere on this page - creating/deleting scopes and collections carries no plan restriction, unlike bucket creation's Free Tier advanced-settings limitation on the sibling manage-buckets.md page. No server-version-string citations either (both known recurring anomalies absent here, in contrast to manage-buckets.json where the version-string anomaly did appear)." },
+  "cross_component_finding": "The Prerequisites paragraph on this page is a byte-for-byte match (role names, anchors, and the Organization Owner shortcut sentence) to manage-buckets.json's Prerequisites paragraph - the same disjunctive Project Owner/Cluster Manager gate plus the same inline Organization Owner implication note, just retargeted from buckets to scopes/collections. This is the cleanest confirmation in the batch that data-container management (buckets, scopes, collections) shares one uniform project-scope access-control template, reused verbatim across at least these two pages.",
+  "cross_product_finding": "None new - scope/collection naming rules (character set, 251-character limit, case-sensitivity) and TTL inheritance from the parent bucket are Capella UI-specific constraints with no server/ RBAC or privilege-model content on this page at all."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/event-severity-enum",
+  "label": "Event severity (Info/Warning/Critical)",
+  "type": "skos:ConceptScheme - the severity enum for monitoring:event",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Round 5's reference/ batch minted a single 'monitoring:severity-level-enum' from a passing mention, conflating this with the Health Advisor's own, differently-valued severity scheme. Reading monitoring.md/alerts.md/health-advisor.md directly this round found they're two distinct enums - split into this concept and monitoring:health-advisor-severity-enum rather than perpetuating the conflation, since 'severity-level-enum' was never actually filed as a promoted concept anyway (part of the same reconciliation gap as monitoring:alert)."
+}

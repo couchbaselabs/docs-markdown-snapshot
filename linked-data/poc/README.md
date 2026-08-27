@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Six rounds so far, each a deliberate escalation:
+automating it. Seven rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -35,6 +35,11 @@ automating it. Six rounds so far, each a deliberate escalation:
    level up: `capella-role:*` was never one role catalog — it's two
    (organization-scope and project-scope), silently flattened together since
    round 2.
+7. **53 pages, `cloud/clusters/`** — cluster lifecycle, backup/restore,
+   cluster-level RBAC, per-service management pages, XDCR, and monitoring.
+   Found the identical undercounting lesson a third time, this round on the
+   privilege catalog: `cluster-rbac.md`'s own table lists 25 privileges, not
+   the 11 the registry had going in.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -42,7 +47,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-352 pages total:
+405 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -76,6 +81,10 @@ time/cost projections and how they held up against the round-2 run's real number
   `reference/`. Leaves `clusters/` (53 pages), `eventing/` (67), and `guides/`
   (33) as the largest untouched `cloud/` territory, each a deliberate
   first-contact candidate rather than filler for a future round.
+- **53 more, `cloud/clusters/`** — cluster lifecycle, backup/restore,
+  `cluster-rbac.md`, per-service management pages, XDCR, and monitoring/
+  alerting. Leaves `eventing/` (67 pages) and `guides/` (33) as the last
+  untouched `cloud/` territory.
 
 ## Identifiers
 
@@ -126,7 +135,14 @@ from "still in `extractions/`."
   `sgw:role`, and `role:*` are four structurally distinct things all called
   "role" — and, within round 6 alone, a second, unrelated collision:
   `capella-role:cluster-manager` (a role) and `capella:cluster-manager` (a
-  monitored system component) share a name but nothing else. Note: round 3's Java SDK
+  monitored system component) share a name but nothing else; round 7 found
+  the same undercounting lesson a third time (15 new Advanced-credential
+  privileges from `cluster-rbac.md`'s own 25-row table, more than doubling
+  the 11 the registry had) plus another same-word collision (`capella:index-ui-status`,
+  the Indexes UI's own ready/pause/warmup enum, vs. the SQL++ DDL `index-state`
+  lifecycle enum — same subject, two unreconciled vocabularies), and finally
+  promoted round 5's `monitoring:*` family, which had been narratively
+  described as promoted at the time but never actually filed. Note: round 3's Java SDK
   batch (12 pages) was reconciled only at the narrative level and never
   promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
   `sdk:error-handling`, and others are reused across round 3/4 extraction
@@ -151,7 +167,8 @@ from "still in `extractions/`."
   credential transport an access surface actually uses), `disablesFeatureFor`,
   and `gatedByBillingPlan` — the last one closing a real gap: round 2's own
   narrative had described it as promoted, but no file was ever written for it
-  until round 6 needed to reuse it. Kept separate from `concepts/` on purpose —
+  until round 6 needed to reuse it; round 7 added `triggersAlert`, closing the
+  *same* gap a third time (this one self-inflicted in round 5). Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -161,8 +178,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 31 entries
-  as of round 6, which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 32 entries
+  as of round 7, which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -386,6 +403,39 @@ also surfaced a real finding:**
     to reuse it. Same shape as round 3's never-promoted Java SDK concepts,
     found in round 4.
 
+**Round 7 (53 pages, `cloud/clusters/`):**
+
+24. **The undercounting lesson recurred a third time, on the privilege
+    catalog — and the gap was bigger than round 5's already-corrected one.**
+    `cluster-rbac.md`, read directly for the first time, lists 25 distinct
+    Advanced-credential privileges. The registry had 11. 15 new ones
+    promoted, including the first privilege-level evidence tying the
+    Eventing Service to any access-control model at all.
+25. **`cluster-rbac.md` also settled a question with direct textual
+    evidence rather than inference:** its own opening line states the
+    data-plane credential model is separate from the organization/project
+    role catalogs — confirming what the ontology's structure had assumed but
+    never had a citation for.
+26. **Two features new to the registry both resolved as "reuses the existing
+    model, invents nothing."** XDCR's entire "security" surface turned out to
+    be a network-topology choice (Public Internet/VPC Peering/Private
+    Endpoint), not a new access-control mechanism; Analytics mints no
+    authorization concept of its own either. A useful negative result,
+    alongside all the positive ones.
+27. **Two questions carried since round 6 resolved cleanly.** Storage engine
+    (Couchstore/Magma) is a bucket-creation-time choice but not permanently
+    fixed — a real migration path exists. Cloud-provider variance is broader
+    than round 6's one example (also disk type, IOPS, region/AZ), not just
+    storage auto-expansion.
+28. **A third instance of the reconciliation-gap pattern, this time
+    self-inflicted.** Round 5's `monitoring:*` concepts were narratively
+    described as promoted and never actually filed — the same shape as round
+    2's `gatedByBillingPlan` and round 3's Java SDK concepts, but this time
+    introduced by a reconciler who had already written up the pattern as a
+    known risk one round earlier. Closed this round, along with a genuine
+    correction found while doing so (event severity and Health Advisor
+    severity were conflated under one enum; they're two).
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -398,15 +448,16 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (31 entries) —
+- Get a subject-matter expert to work through `docs-issues/` (32 entries) —
   most valuably the four-way "role" collision, the Sync Gateway/Capella
   access-control questions, round 5's `merge`/`nest` privilege-naming
   inconsistency (does "Query Select" = "Query Read"?), round 6's role-catalog
   loose ends (is `data-writer` the same role as the originally-mangled
   `project-data-writer`? is Capella iQ's cluster-scoped role a sixth role or
-  an existing one at a different scope?), and the support-plan wording
-  inconsistency (now five variants) — all product-shape or docs-authority
-  decisions, not just cleanup.
+  an existing one at a different scope?), round 7's `privilege:capella-advanced-access-scope-admin`
+  mismatch against `cluster-rbac.md`'s own table, and the support-plan
+  wording inconsistency (now five variants) — all product-shape or
+  docs-authority decisions, not just cleanup.
 - Run a Java SDK concept-promotion pass for round 3's backlog
   (`sdk:kv-operations`, `sdk:durability`, `sdk:cas-optimistic-locking`,
   `sdk:error-handling`, `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
@@ -415,23 +466,27 @@ document.
 - Correct the likely `prepare.json` privilege mis-map flagged in round 5
   (reused `query-index` where `query-update` looks like the right fit)
   whenever this registry is next consumed downstream.
+- Consider a lightweight automated check (script-verify every concept/predicate
+  name mentioned in a round's `reconciliation.md` section resolves to a real
+  file) - the "narrated as promoted, never filed" gap has now recurred three
+  times (rounds 2, 3, and 5) despite the reconciler knowing to watch for it by
+  round 5. See round 7's method-notes section.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  six rounds.
+  seven rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- Run first-contact batches on `cloud/clusters/` (53 pages), `cloud/eventing/`
-  (67), and `cloud/guides/` (33) — the largest remaining untouched territory
-  in `cloud/`, deliberately deferred rather than folded into rounds 5/6 as
-  filler.
-- If this looks worth pursuing past a POC: six axes of stress test have now
+- Run first-contact batches on `cloud/eventing/` (67 pages) and `cloud/guides/`
+  (33) — the last untouched territory in `cloud/`, deliberately deferred
+  rather than folded into earlier rounds as filler.
+- If this looks worth pursuing past a POC: seven axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
-  round 4's within-one-product-across-features, round 5's
-  full-vs-partial-directory-coverage, and round 6's confirmation that the
-  same partial-sampling lesson recurs on a second vocabulary within the same
-  product). The next natural one is scale itself — a real batch against the
-  ~3,900-page "latest version only" corpus from `../ingest-cost-and-time-estimate.md`,
-  now that the extraction/reconcile/promote pipeline has been exercised on
-  Bedrock, at real (not just trial) scale, and on every axis it's likely to
-  meet at that size.
+  round 4's within-one-product-across-features, and round 5/6/7's
+  three-in-a-row confirmation that the same partial-sampling lesson recurs on
+  successive vocabularies of the same product). The next natural one is
+  scale itself — a real batch against the ~3,900-page "latest version only"
+  corpus from `../ingest-cost-and-time-estimate.md`, now that the
+  extraction/reconcile/promote pipeline has been exercised on Bedrock, at
+  real (not just trial) scale, and on every axis it's likely to meet at that
+  size.

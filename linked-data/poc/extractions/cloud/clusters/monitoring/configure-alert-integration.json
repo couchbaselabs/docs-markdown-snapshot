@@ -1,0 +1,26 @@
+{
+  "page_id": "cloud/clusters/monitoring/configure-alert-integration",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/configure-alert-integration.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-integration", "label": "Capella alert integration", "reused_or_minted": "reused - minted this batch in alert-integration.json; this generic (non-tool-specific) configure page confirms the shared shell: name, destination URL, auth method (Basic or Bearer Token) apply the same way regardless of which third-party tool is eventually chosen" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-creator", "label": "Project Creator", "reused_or_minted": "reused - registry concept is named organization-owner/project-creator etc.; kept as-is even though this page's own file is project-creator.json under capella-role" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-member", "label": "Organization Member", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "For full access to Capella alert integrations, you must have 1 of the following roles: * [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)" },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "* [Project Owner](../../projects/project-roles.md#project-owner-role)" },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "* [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/alert-integration", "reused_or_minted_predicate": "reused", "evidence": "* [Alert Integrations](alert-integration.md)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/management-api-reference/index", "reused_or_minted_predicate": "reused", "evidence": "To use the Capella Management API to create and configure an alert integration, see [Create Alert Integration](../../management-api-reference/index.md#tag/alert-integration/operation/postAlertIntegration)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "Unlike the three tool-specific configure pages in this batch (configure-slack-integration.md, configure-microsoft-integration.md, configure-webhook-integration.md), this generic page's Prerequisites section lists only roles and required fields (name, URL, auth method) - it never states the Enterprise/Developer Pro Support Plan gate that all three tool-specific pages state identically. This generic page appears to be a role/API-reference-oriented duplicate of the tool-specific pages' shared content, omitting the plan gate rather than contradicting it."
+  },
+  "cross_component_finding": "This page's Prerequisites list (Organization Owner / Project Creator / Project Owner / Cluster Manager for full access; Organization Member with Read + Data Reader for read-only) is reused verbatim, word for word, across all three tool-specific configure pages in this batch - a single, genuinely shared configuration-model detail (access control for alert integrations doesn't vary by third-party tool, confirming the batch hypothesis's 'shared model' side for at least the access-control dimension, even though payload format varies)."
+}

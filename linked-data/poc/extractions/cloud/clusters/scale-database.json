@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/clusters/scale-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/scale-database.md",
+  "concepts": [
+    { "candidate_id": "clusters:storage-auto-expansion", "label": "Storage Auto-Expansion", "reused_or_minted": "reused - this page and databases.md are the first authoritative (non-Health-Advisor-mention) read of this concept" },
+    { "candidate_id": "cloud-provider:aws", "label": "Amazon Web Services (AWS)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "Google Cloud Platform (GCP)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Microsoft Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "clusters:iops-configuration", "label": "IOPS Configuration", "reused_or_minted": "minted earlier in this batch (modify-database.json) - reused here" },
+    { "candidate_id": "clusters:cluster-status", "label": "Cluster Status (lifecycle status enum)", "reused_or_minted": "minted - the full status enum (Deploying, Deployment Failed, Healthy, Unhealthy, Scaling, Scaling Failed, Rebalancing, Rebalance Failed, Upgrading, Restoring, Peering, Peering Failed, Turning Off, Turning Off Failed, Turning On, Turning On Failed, Turned Off, Destroying, Destroy Failed); not covered by an existing namespace" }
+  ],
+  "relations": [
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused - this page's own dedicated Storage Auto-Expansion section is the clearest single-page statement of the AWS/GCP-vs-Azure difference found so far in the registry", "evidence": "When your usage exceeds 75% on Azure clusters, Capella doubles the current storage capacity. Storage increases for Azure use the replacement and rebalancing of nodes, which can affect performance until the process completes." },
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:aws", "reused_or_minted_predicate": "reused", "evidence": "When your usage exceeds 75% on AWS and GCP clusters, Capella triggers a 50% increase in the current storage capacity. Storage increases are in place without any data movement or performance impact." },
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:aws", "reused_or_minted_predicate": "reused - a second, distinct AWS-specific behavior (a rate limit, not the data-movement difference)", "evidence": "AWS clusters can only auto-expand storage once every 6 hours." },
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused", "evidence": "When deploying a new cluster with AWS or GCP, storage auto-expansion is always on, and you cannot turn it off. Clusters deploying with Azure have auto-expansion off by default with the option to turn it on." }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine (couchstore/magma)",
+    "finding": "This page is entirely about scaling dimensions (nodes, instance size, whole Services) and storage auto-expansion, yet never mentions storage engine even though storage-engine choice would plausibly affect scaling/resident-ratio guardrails (databases.md's guardrail table keys thresholds by Couchstore vs Magma). Consistent with the databases.json/create-database.json finding that storage engine isn't part of the cluster-level configuration surface this batch's pages document."
+  },
+  "cross_component_finding": "The Cluster Scaling Statuses list here (19 values) is a strict superset of the 4-value status table on off-on-database.md (OFF, Turning Off, Turning On, Healthy) - off-on-database.md's table is a legitimate UI-scoped subset (only the statuses relevant to the on/off toggle), not an inconsistency, but the reconciler should model clusters:cluster-status as one enum with off-on-database.md's table as a partial view, not mint a second status concept."
+}

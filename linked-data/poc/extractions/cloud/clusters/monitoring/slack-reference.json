@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/clusters/monitoring/slack-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/slack-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-payload", "label": "Capella alert payload (JSON notification body sent by an alert integration)", "reused_or_minted": "reused - minted in alert-integration.json this batch; this page is the field-catalog for the Slack-specific rendering of that payload" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-payload", "predicate": "usesEnum", "object": "monitoring:event-severity-enum", "reused_or_minted_predicate": "reused (usesEnum) - a restricted subset use: the payload's severity key only ever carries 2 of the enum's 3 values", "evidence": "severity | Identifies the alert as either \"critical\" or \"warning\"." },
+    { "subject": "monitoring:alert-payload", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/configure-slack-integration", "reused_or_minted_predicate": "reused", "evidence": "* [Configure a Slack Alert Integration](configure-slack-integration.md)" },
+    { "subject": "monitoring:alert-payload", "predicate": "seeAlso", "object": "cloud/reference/alert-reference", "reused_or_minted_predicate": "reused", "evidence": "For more detailed information, see the [Alert Reference](../../reference/alert-reference.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "Thin, config-field-catalog page as expected by the batch's own framing - most of its content is the variable table and one full example JSON payload, with almost no prose beyond template-type description (Standard vs Advanced). Kept concepts/relations minimal per the batch instructions rather than forcing ontology out of a reference table."
+  },
+  "cross_component_finding": "Confirms the payload field set only ever surfaces 'critical' or 'warning' - never 'info' - consistent with monitoring:event's triggersAlert relation (Info-severity events never trigger an alert, so they never reach a payload). This page's variable table (alert.name/severity/alertDuration/alertDetectedAt/description; tenant.tenantId/tenantName; project.projectId/projectName; resource.clusterId/clusterName/appServiceId/appServiceName/regionProvider/capellaResourceUrl) is identical, field for field, to microsoft-reference.md's own table, differing only in message-card wrapper (Slack Block Kit here vs Microsoft Adaptive Cards there) - both use the same monitoring:alert-payload data model. webhook-reference.md's payload, by contrast, uses an entirely different field-naming scheme (see webhook-reference.json), so the 'one shared model' picture applies to Slack and Microsoft Teams specifically, not to all three integrations uniformly - direct evidence for this batch's hypothesis question about whether integrations share one configuration model."
+}

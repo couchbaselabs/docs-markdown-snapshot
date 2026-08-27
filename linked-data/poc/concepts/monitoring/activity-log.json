@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/activity-log",
+  "label": "Activity Log (Capella)",
+  "type": "the audit-log container for organization/project/cluster actions - previously only ever a seeAlso target from other pages, read authoritatively for the first time this round",
+  "promoted": true,
+  "recurrence": 1
+}

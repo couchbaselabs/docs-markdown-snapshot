@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/clusters/data-service/manage-documents",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/data-service/manage-documents.md",
+  "concepts": [
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella-role:data-writer", "label": "Data Writer", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella:documents-tool", "label": "Documents tool (Capella UI)", "reused_or_minted": "minted - the Data Tools > Documents UI feature for viewing/creating/editing/deleting documents" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "capella:documents-tool", "predicate": "requiresCapellaRole", "object": "capella-role:data-reader", "reused_or_minted_predicate": "reused (requiresCapellaRole) - gates view-only access specifically", "evidence": "To _view_ the documents within a cluster, you must have the [Data Reader](../../projects/project-roles.md#project-cluster-data-reader) project role for the project containing the cluster." },
+    { "subject": "capella:documents-tool", "predicate": "requiresCapellaRole", "object": "capella-role:data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole) - gates the full view/create/edit/delete set", "evidence": "To _view_, _create_, _edit_, and _delete_ documents in a cluster, you must have the [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) project role for the project containing the cluster." },
+    { "subject": "capella:documents-tool", "predicate": "dependsOnService", "object": "service:query-service", "reused_or_minted_predicate": "reused (dependsOnService) - a specific UI feature (the SQL++ WHERE filter) is gated on a service being deployed, same shape as service-to-service dependencies already in the registry", "evidence": "This field is enabled if the [Query Service](../../n1ql/query.md) is running on the cluster." },
+    { "subject": "cloud/clusters/data-service/manage-documents", "predicate": "seeAlso", "object": "cloud/clusters/data-service/import-data-documents", "reused_or_minted_predicate": "structural markdown link", "evidence": "To import a set of JSON documents or a CSV file, see [Import Data with the Capella UI](import-data-documents.md)." },
+    { "subject": "capella:documents-tool", "predicate": "seeAlso", "object": "server/current/learn/data/data", "reused_or_minted_predicate": "structural markdown link", "evidence": "For more information, see [document metadata](../../../server/current/learn/data/data.md#metadata)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / storage-engine / server-version-string",
+    "finding": "No edition badge, storage-engine mention, or server-version-string citation - both known recurring anomalies absent, as expected for a UI-procedure page."
+  },
+  "cross_component_finding": "Third and cleanest confirmation in this batch of the two-tier data-access role split: Data Reader gates read-only document viewing, Data Writer gates the full create/edit/delete set, on the exact same UI feature (a single-role-per-capability split, not disjunctive). This directly parallels import-data-documents.json's single Data Writer gate (a write-only feature, so only the write-side role applies) and contrasts with data-service.md's separate Project Owner/Cluster Manager gate for bucket/scope/collection *administration* - confirming a stable, batch-wide two-axis role model: administration roles (Project Owner, Cluster Manager) vs data-access roles (Data Reader, Data Writer), applied consistently across bucket creation, document CRUD, and data import."
+}

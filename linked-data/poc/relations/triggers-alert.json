@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/triggers-alert",
+  "label": "triggers alert",
+  "kind": "relation (schema-level)",
+  "type": "subject = monitoring:event (or a threshold condition); object = monitoring:alert",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Narratively described as promoted in round 5's reference/ batch writeup, but no file was ever written until round 7 needed it - the third instance of this exact reconciliation-gap shape (after round 2's gatedByBillingPlan and round 3's Java SDK concepts, found in rounds 6 and 4 respectively). Worth treating this as a systemic pattern in the reconciliation step itself, not per-round bad luck - see reconciliation.md round 7's method-notes section."
+}

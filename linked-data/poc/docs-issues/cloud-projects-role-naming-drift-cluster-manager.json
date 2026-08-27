@@ -2,8 +2,8 @@
   "id": "https://docs.couchbase.com/ld/docs-issues/cloud-projects-role-naming-drift-cluster-manager",
   "type": "docs-issue",
   "issueType": "possible-content-inconsistency",
-  "description": "cmek.md's Prerequisites cite the role via anchor '#project-cluster-manager-role' and the label 'Project/Cluster Manager', while project-roles.md (the authoritative page for this role) labels it plainly 'Cluster Manager'. Independent naming-drift confirmation of the same role across two pages.",
-  "about": ["cloud/security/cmek", "cloud/projects/project-roles"],
-  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "description": "Role labels drift from project-roles.md's canonical names in multiple, independent places - now a recurring pattern, not a one-off. cmek.md cites the role via anchor '#project-cluster-manager-role' and label 'Project/Cluster Manager' vs. project-roles.md's plain 'Cluster Manager'. Separately (round 7), analytics-links.md's prose says 'Cluster Data / Reader' while linking to the anchor manage-documents.md uses for 'Data Writer' - a label/anchor mismatch on a different role. Two independent instances of the same underlying problem: role labels aren't consistently copied from their one authoritative source.",
+  "about": ["cloud/security/cmek", "cloud/projects/project-roles", "cloud/clusters/analytics-service/analytics-links", "cloud/clusters/data-service/manage-documents"],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep); generalized in round 7 (53-page cloud/clusters/ sweep) after a second, unrelated instance - id kept as originally minted despite now describing a broader pattern",
   "status": "open"
 }

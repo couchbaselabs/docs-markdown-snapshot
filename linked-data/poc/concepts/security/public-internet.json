@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/public-internet",
+  "label": "Public Internet (network connectivity option)",
+  "type": "completes the network-topology triad with security:vpc-peering/private-endpoints - the three connectivity options XDCR (and other Capella features) choose between",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Found reading manage-xdcr-security.md directly - XDCR's entire 'security' model turned out to be this network-topology choice, not a distinct access-control mechanism. See reconciliation.md round 7."
+}

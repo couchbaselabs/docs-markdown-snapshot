@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/clusters/analytics-service/analytics-monitor",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/analytics-service/analytics-monitor.md",
+  "concepts": [
+    { "candidate_id": "capella:analytics-monitor-flyout", "label": "Monitor flyout (Analytics Workbench)", "reused_or_minted": "minted - stub, the UI panel for monitoring Analytics queries and Analytics Service metrics" },
+    { "candidate_id": "capella:analytics-query", "label": "Analytics query (a submitted SQL++ for Analytics statement)", "reused_or_minted": "minted - a running or completed query instance, distinct from analytics:sqlpp-for-analytics (the language itself, minted in analytics-service.json this batch)" },
+    { "candidate_id": "analytics:query-state", "label": "Analytics query state enum (running, completed)", "reused_or_minted": "minted - enum/scheme, same modeling pattern as index-state and monitoring:severity-level-enum (a scheme, not a single concept)" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "capella:analytics-query", "predicate": "usesEnum", "object": "analytics:query-state", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "**State** | The state of the request: running or completed." },
+    { "subject": "capella:analytics-monitor-flyout", "predicate": "dependsOnService", "object": "service:analytics-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "You can monitor running and completed Analytics queries, and the status of the Analytics Service, using the Monitor flyout in the Analytics Workbench." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresEdition / storage-engine / server-version-string",
+    "finding": "No role gate is restated on this page - it assumes the Project Owner/Data Writer gate already established for the Analytics Workbench as a whole (analytics-links.md, this batch) rather than repeating it. No edition badge, storage-engine mention, or server-version-string citation either; both known recurring anomalies absent."
+  },
+  "cross_component_finding": "Thin UI-reference page (a flyout's tabs and chart list) with modest but real ontology content - the query running/completed state enum is the only genuinely new structure, and it is a small, page-local enum minted at first sighting following the same precedent as monitoring:severity-level-enum and index-state (low-cardinality controlled vocabularies promoted on sight rather than held to a recurrence bar)."
+}

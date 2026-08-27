@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-analytics-read",
+  "label": "Analytics Read (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege - one of 4 Analytics-service privileges found on cluster-rbac.md (Read/Admin/Manage/Select)",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Part of the 15-privilege cluster-rbac.md finding - see privilege:capella-advanced-access-query-catalog's note and reconciliation.md round 7. First direct evidence connecting service:analytics-service to the credential-type model - round 7's own analytics-service/ batch found Analytics has no access-control model of its own and reuses capella-role:*, so this cluster-rbac.md-sourced privilege family may describe the same reuse from the data-plane-credential side rather than a distinct mechanism; not resolved here."
+}

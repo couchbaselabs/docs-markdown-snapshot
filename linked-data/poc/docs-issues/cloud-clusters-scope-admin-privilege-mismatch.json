@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-clusters-scope-admin-privilege-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "privilege:capella-advanced-access-scope-admin (promoted in round 5, from createscope.md/createcollection.md's Advanced-credential Prerequisites) does not appear in cluster-rbac.md's own 25-row privilege table - the authoritative source read for the first time in round 7. The closest match, 'scope_admin,' is cited there only as a server-side role backing the Basic 'Write' access level, a different model entirely. Either the original statement-page citation was itself an error, or cluster-rbac.md's table is incomplete - not resolved here.",
+  "about": ["cloud/clusters/cluster-rbac", "cloud/n1ql/n1ql-language-reference/createscope", "cloud/n1ql/n1ql-language-reference/createcollection"],
+  "foundDuring": "round 7 (53-page cloud/clusters/ sweep)",
+  "status": "open"
+}

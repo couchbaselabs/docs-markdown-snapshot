@@ -1,0 +1,30 @@
+{
+  "page_id": "cloud/clusters/index-service/manage-indexes",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/index-service/manage-indexes.md",
+  "concepts": [
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - existing registry concept, minted in server/learn/services-and-indexes/services/index-service.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-writer", "label": "Data Writer", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - existing registry concept, minted from transactions.md/using-ai.md; this page is where index creation/editing is delegated to the Query tab" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:index-ui-status", "label": "Index Status enum shown on the Capella Indexes page (ready, pause, warmup)", "reused_or_minted": "minted - a per-node runtime status enum for the Indexes page's Status column, with a value set (ready/pause/warmup) that does NOT match the existing index-state enum's values (scheduled for creation/deferred/building/pending/online/offline/abridged), promoted in prior server/ rounds. Kept as a distinct concept rather than merged, since no page reconciles the two vocabularies - see cross_component_finding." }
+  ],
+  "relations": [
+    { "subject": "service:index-service", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role for the project containing the cluster." },
+    { "subject": "service:index-service", "predicate": "requiresCapellaRole", "object": "capella-role:data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role for the project containing the cluster." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "The [Query tab](../query-service/query-workbench.md) can [create](../../n1ql/n1ql-language-reference/createindex.md), [modify](../../n1ql/n1ql-language-reference/alterindex.md), and [drop](../../n1ql/n1ql-language-reference/dropindex.md) indexes using SQL++ statements." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:alter-index", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "The [Query tab](../query-service/query-workbench.md) can [create](../../n1ql/n1ql-language-reference/createindex.md), [modify](../../n1ql/n1ql-language-reference/alterindex.md), and [drop](../../n1ql/n1ql-language-reference/dropindex.md) indexes using SQL++ statements." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:drop-index", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "You can also drop an index using the SQL++ [DROP INDEX](../../n1ql/n1ql-language-reference/dropindex.md) or [DROP PRIMARY INDEX](../../n1ql/n1ql-language-reference/dropprimaryindex.md) commands." },
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link", "evidence": "You can also drop an index using the SQL++ [DROP INDEX](../../n1ql/n1ql-language-reference/dropindex.md) or [DROP PRIMARY INDEX](../../n1ql/n1ql-language-reference/dropprimaryindex.md) commands." },
+    { "subject": "capella:index-ui-status", "predicate": "dependsOnService", "object": "service:index-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Status | The current state of the Index Service on the node where this index is stored. The possible statuses include **ready**, **pause**, or **warmup**." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / availableSince (server-version citation)",
+    "finding": "Neither of the two known recurring anomalies appears on this page: no Enterprise/Community edition badge, and no server-version-string citation (e.g. 'Server version 7.x+'). The page is purely UI-procedural (Capella Indexes page) and defers all version/edition-sensitive statement syntax to the linked SQL++ reference pages instead of restating it here."
+  },
+  "cross_component_finding": "This page delegates index DDL entirely to the Query tab/SQL++ layer rather than exposing its own create/alter mechanism - the Capella UI's only index-management-specific vocabulary is the read-only Indexes-page summary/performance-statistics view and its own Status enum (ready/pause/warmup), which is a genuinely different vocabulary from the DDL-lifecycle index-state enum (scheduled for creation/deferred/building/pending/online/offline/abridged) promoted in the server/ statement-reference rounds. The two enums describe overlapping but distinct things - one is a per-index DDL-creation lifecycle, the other a per-node/per-replica runtime health status - and no page in the corpus so far reconciles them."
+}

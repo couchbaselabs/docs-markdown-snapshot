@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/capella-advanced-access-data-read",
+  "label": "Data Read (Advanced cluster access credentials)",
+  "type": "Capella data-plane privilege - KV-level read access, distinct from the Query-service-scoped privilege:capella-advanced-access-query-read",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Part of the 15-privilege cluster-rbac.md finding - see privilege:capella-advanced-access-query-catalog's note and reconciliation.md round 7."
+}

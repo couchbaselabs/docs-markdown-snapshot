@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/clusters/data-service/import-data-documents",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/data-service/import-data-documents.md",
+  "concepts": [
+    { "candidate_id": "capella-role:data-writer", "label": "Data Writer", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella:import-tool", "label": "Capella Import tool (UI)", "reused_or_minted": "minted - the Data Tools > Import UI feature, generates cbimport commands or loads data directly from the browser" }
+  ],
+  "relations": [
+    { "subject": "capella:import-tool", "predicate": "requiresCapellaRole", "object": "capella-role:data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You must have the Data Writer role to be able to import data." },
+    { "subject": "cloud/clusters/data-service/import-data-documents", "predicate": "seeAlso", "object": "cloud/clusters/manage-restore", "reused_or_minted_predicate": "structural markdown link", "evidence": "The Import tool loads data into your cluster. To restore a bucket of data, see [Restore a Bucket](../manage-restore.md#restore-bucket)." },
+    { "subject": "capella:import-tool", "predicate": "seeAlso", "object": "cloud/connect/cli-import-export", "reused_or_minted_predicate": "structural markdown link", "evidence": "For more examples of how to use `cbimport`, see [Import and Export Data with Command Line Tools](../../connect/cli-import-export.md)." },
+    { "subject": "capella:import-tool", "predicate": "seeAlso", "object": "cloud/reference/command-line-tools", "reused_or_minted_predicate": "structural markdown link", "evidence": "See [Command Line Tools](../../reference/command-line-tools.md) to download and install Couchbase Command Line Tools." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / storage-engine / server-version-string",
+    "finding": "No edition badge, storage-engine mention, or server-version-string citation on this page - both known recurring anomalies absent, as expected for a UI-procedure page about a Data Tools feature that is storage-engine- and edition-agnostic."
+  },
+  "cross_component_finding": "Single-role gate (Data Writer only) for the entire import feature, whether importing from the browser, generating a `cbimport` command, or loading sample data - no distinction between these three import paths in terms of role requirement. This is a clean, minimal instance of the batch's data-access role family (Data Reader/Data Writer), contrasted with data-service.md's separate administration role family (Project Owner/Cluster Manager) for bucket/scope/collection creation - import is classified as a data-write operation on an existing bucket/scope/collection, not an administrative one."
+}

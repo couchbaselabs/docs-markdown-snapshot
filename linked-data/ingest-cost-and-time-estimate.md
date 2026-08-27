@@ -254,6 +254,22 @@ issues in either wave. Confirms two wave-sized rounds comfortably fit in one
 and this page-count (89-115) - useful data for pacing the remaining
 ~3,900-page corpus if this moves past POC.
 
+## Third wave the same day (round 7, 53 pages, 2026-08-27)
+
+Also fit comfortably in the same session (6 parallel batches, `cloud/clusters/`).
+~714,000 tokens for 53 pages (~13,500 tokens/page - a touch above rounds 5/6
+but still the same order of magnitude, consistent with a denser wave rather
+than a cost regression), roughly $2. Three real-scale waves, ~257 pages,
+~$8 total, one working session, no infrastructure issues across any of them.
+The pattern holding across all three: page-count and wave count are not the
+bottleneck at this scale - reconciliation effort (working through what each
+wave's richer findings imply for the registry) took noticeably longer,
+proportionally, for round 7 than for round 6 despite round 7 covering fewer
+pages, because of how much this wave's findings touched already-promoted
+concepts rather than only adding new ones. Worth factoring into pacing
+estimates: a wave's reconciliation cost tracks how much it *revises* the
+existing registry, not just how many new pages it reads.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

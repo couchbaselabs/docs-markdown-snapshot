@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/clusters/monitoring/alerts",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/alerts.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert", "label": "Capella Alert (notification triggered by a resource condition)", "reused_or_minted": "reused - this is the alert feature's own dedicated 'how to receive them' page, confirming the concept cleanly with concrete delivery channels (UI, email, third-party integration)" },
+    { "candidate_id": "monitoring:activity-log", "label": "Capella Activity Log (per-scope auditable timeline of events)", "reused_or_minted": "reused - minted this batch in monitoring.json" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/projects/project-roles", "reused_or_minted_predicate": "reused", "evidence": "A [project role](../../projects/project-roles.md) in any project where you want to receive alerts about events generated from its clusters." },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/alert-integration", "reused_or_minted_predicate": "reused", "evidence": "You can also [configure an integration](alert-integration.md) to send metric-based alerts to a third-party notification system." },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/monitoring", "reused_or_minted_predicate": "reused", "evidence": "For more information about events, see [Monitoring and Alerting](monitoring.md#events)." },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "monitoring:activity-log", "reused_or_minted_predicate": "reused", "evidence": "The Activity Logs keep a record of all current and past alerts." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "Unlike Health Advisor (monitoring.md, health-advisor.md) and alert integrations (configure-*-integration.md, all three in this batch), this page states no plan gate at all for receiving alerts via UI or email - consistent with configure-*-integration.md's own prerequisite tip that 'analytics clusters, the Couchbase AI Data Plane, and operational clusters and App Services on the Basic plan' should fall back to exactly this page (UI/email) precisely because they lack access to third-party integrations. Confirms alerts.md is the correct universal/plan-agnostic delivery path and alert-integration.md the plan-gated one."
+  },
+  "cross_component_finding": "Auto-resolution behavior is stated concretely here for the first time in this batch: 'if the average CPU usage drops below the critical event threshold for five minutes or more, Capella automatically resolves the related alert' - a real behavior (alerts self-clear when the underlying condition ends) not present in alert-reference.json's catalog framing, and not previously captured as a relation because there's no existing predicate for 'expires when condition clears' and a single occurrence doesn't yet justify minting one."
+}

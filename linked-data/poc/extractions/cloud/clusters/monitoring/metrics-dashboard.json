@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/clusters/monitoring/metrics-dashboard",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/metrics-dashboard.md",
+  "concepts": [
+    { "candidate_id": "monitoring:metric-graph", "label": "Monitoring dashboard metric graph (Capella UI)", "reused_or_minted": "reused - minted last round from monitoring-reference.json (a reference/ page that only linked to this page). This is the feature's own authoritative page, confirming the concept and giving it real structure: 5 named dashboards (Cluster Overview, Data Service, Index Service, Query Service, Node Metrics) plus a customizable Metrics Explorer, and per-timeframe chart resolution (60s at 30m/1h/2h, up to 3h buckets at 30d)" }
+  ],
+  "relations": [
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/health-advisor", "reused_or_minted_predicate": "reused", "evidence": "* [View Health Advisor](health-advisor.md)" },
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/activity-log", "reused_or_minted_predicate": "reused", "evidence": "* [View Activity Logs](activity-log.md)" },
+    { "subject": "monitoring:metric-graph", "predicate": "dependsOnService", "object": "service:query-service", "reused_or_minted_predicate": "reused (dependsOnService) - the Query Service dashboard's Slow Queries feature is explicitly sourced from live system keyspaces rather than the metrics pipeline itself; service:query-service is an existing extraction-layer concept (server/learn/services-and-indexes/services/query-service.json), not yet promoted to concepts/", "evidence": "Data on slow queries is sourced from [system keyspaces](../../n1ql/n1ql-intro/sysinfo.md#querying-keyspaces), which provide real-time monitoring details and statistics about individual queries and the Query Service." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "No plan-gating language anywhere on this page - Monitoring dashboards are available to all operational cluster plans, including Basic, which is exactly the fallback this batch's other pages (health-advisor.md, configure-*-integration.md) point Basic-plan users toward. This is the plan-agnostic baseline monitoring tier, confirming (by omission) the plan-gated tiers built on top of it (Health Advisor, alert integrations)."
+  },
+  "cross_component_finding": "Recurrence of the known server-version-string/`/server/...`-path anomaly: this page links twice to `/server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md` for Slow Queries thresholds ('Couchbase Capella categorizes slow queries as those running longer than 1000ms' with the definition sourced from a server/current/ page, and 'Capella only retains the most recent 4,000 completed requests... with run times longer than 1000 ms' likewise sourced from server/current/) - the same pattern flagged in reconciliation.md as `capella-pages-cite-server-versions` (server/ content reused with the product name substituted, or in this case, its numeric limits cited via a live link into server/current/ rather than restated as Capella's own documented behavior). Flagged as recurrence, not a new anomaly."
+}

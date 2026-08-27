@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/clusters/monitoring/configure-webhook-integration",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/configure-webhook-integration.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-integration", "label": "Capella alert integration", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:developer-pro-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "* [Cluster Manager](../../projects/project-roles.md#project-cluster-manager-role)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/webhook-reference", "reused_or_minted_predicate": "reused", "evidence": "* [Alert Reference](../../reference/alert-reference.md)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/activity-log", "reused_or_minted_predicate": "reused", "evidence": "The [activity log](activity-log.md) records all add, edit, and delete events for alert integrations." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "Webhooks is the most restrictive of the three: no Advanced Template (payload structure is fixed and stated as non-modifiable - 'you cannot modify the structure of your alert payload' per webhook-reference.md), and no disable/re-enable lifecycle - 'You cannot disable a Webhooks alert integration. You can delete and re-create it when needed', unlike Slack and Microsoft Teams which both explicitly support Disable/Enable. This is a genuine capability gradient across the three integrations (Slack has the most connection/customization options, Webhooks the fewest), not just a payload-format difference."
+  },
+  "cross_component_finding": "Prerequisites (roles, Enterprise/Developer Pro Support Plan gate, 3-address firewall allowlist, up to 5 integrations per project) are verbatim-identical to configure-slack-integration.md and configure-microsoft-integration.md - the shared-shell side of the hypothesis confirmed a third time. But Webhooks diverges furthest from the other two on the lifecycle/customization axis: fixed payload (webhook-reference.md), Basic or Bearer auth only (matching configure-alert-integration.md's generic description, suggesting Webhooks is closest to the 'base' integration type the generic page describes), and no disable capability - only delete-and-recreate."
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/clusters/monitoring/activity-log",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/activity-log.md",
+  "concepts": [
+    { "candidate_id": "monitoring:activity-log", "label": "Capella Activity Log (per-scope auditable timeline of events)", "reused_or_minted": "minted - first minted in this batch's monitoring.json; this page is its own dedicated how-to page and confirms the concept's shape (organization/project/cluster scoped, 5 fields: Summary, Severity, Resource, User, Timestamp, 2-year retention)" },
+    { "candidate_id": "monitoring:event", "label": "Capella Event (record of a condition/action written to the Activity Log)", "reused_or_minted": "reused" },
+    { "candidate_id": "monitoring:event-severity-enum", "label": "Capella event severity enum (Info, Warning, Critical)", "reused_or_minted": "reused - minted this batch in monitoring.json" },
+    { "candidate_id": "monitoring:event-tag-enum", "label": "Capella event tag enum (Alert, Availability, Billing, Maintenance, Performance, Security)", "reused_or_minted": "reused - minted this batch in monitoring.json" }
+  ],
+  "relations": [
+    { "subject": "monitoring:event", "predicate": "usesEnum", "object": "monitoring:event-severity-enum", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "Filter by severity\n\nChoose the [severity](monitoring.md#event-severity) of the events you want to see." },
+    { "subject": "monitoring:event", "predicate": "usesEnum", "object": "monitoring:event-tag-enum", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "Filter by event tag\n\nChoose the [tag](monitoring.md#event-tags) of the events you want to see." },
+    { "subject": "monitoring:activity-log", "predicate": "seeAlso", "object": "cloud/reference/alert-reference", "reused_or_minted_predicate": "reused", "evidence": "For a list of all the alerts that appear in the Activity Log and their tags, see [Alert Reference](../../reference/alert-reference.md)." },
+    { "subject": "monitoring:activity-log", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/metrics-dashboard", "reused_or_minted_predicate": "reused", "evidence": "* [View Monitoring Dashboards](metrics-dashboard.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSetting (retention)",
+    "finding": "The page states a concrete, unconditional retention policy - 'Events in the Activity Log are automatically deleted after 2 years' - which has no home in the current predicate registry (not requiresSetting, not availableSince). Single occurrence in this batch, so not minted as a new predicate; flagged for the reconciler in case a 'retainsDataFor'-shaped predicate becomes worth minting once/if a second data-retention statement is found elsewhere in the docs set."
+  },
+  "cross_component_finding": "Confirms the escalation model end to end: an event's Severity field here links to the exact same #event-severity table in monitoring.md that back last round's monitoring:event concept, and the page explicitly notes that a Support Ticket can be created directly from an open event ('Click Create Support Ticket to create a support ticket related to that open event') - a concrete UI action tying monitoring:event to Capella's support-plan-gated ticketing system, though the text doesn't name which plan tier includes ticket creation (same vagueness already flagged in alert-reference.json's notable_absence)."
+}

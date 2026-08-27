@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/clusters/data-service/about-buckets-scopes-collections",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/data-service/about-buckets-scopes-collections.md",
+  "concepts": [
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "minted - no existing concept in the registry covers Capella's bucket/scope/collection data-container hierarchy; this page is its overview" },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "minted" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "reused_or_minted": "reused - exact registry match" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "reused_or_minted": "reused - exact registry match" },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "minted - server-version-string anomaly (known recurring pattern), no existing version:server-7-6 concept in the registry" },
+    { "candidate_id": "capella:system-scope", "label": "_system scope", "reused_or_minted": "minted - a special, read-only, non-deletable scope automatically added to buckets, distinct from the general capella:scope concept" }
+  ],
+  "relations": [
+    { "subject": "capella:scope", "predicate": "seeAlso", "object": "capella:collection", "evidence": "A scope is a data container that exists inside a Capella bucket. Use scopes to group related [collections](#collections)." },
+    { "subject": "capella:system-scope", "predicate": "availableSince", "object": "version:server-7-6", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "The `_system` scope is part of all clusters using Couchbase Server 7.6 or later. When you upgrade a cluster to Couchbase Server 7.6, Capella adds the `_system` scope to your existing buckets." }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole / requiresEdition", "finding": "This is a pure concept/overview page (no procedures) and cites no capella-role:* gate at all - role requirements are deferred entirely to manage-buckets.md and scopes-collections.md ('For more information about how to create a new bucket, see Create a Bucket'). No Enterprise/Community edition badges and no server-version-string citations of the KNOWN recurring kind - but note the `_system` scope note DOES cite a specific server version ('Couchbase Server 7.6 or later'), which is the server-version-string anomaly recurring yet again, just in a slightly different context (a scope's existence gated by server version, not a statement's syntax)." },
+  "cross_component_finding": "This page's data-container hierarchy (bucket > scope > collection) has never been modeled in the registry before, despite the n1ql/ batch's CREATE BUCKET/SCOPE/COLLECTION statement pages implicitly assuming it. The `_system` scope (containing read-only `_mobile` and `_query` collections) and the `_default` scope/collection auto-creation behavior are Capella-specific structural facts with no privilege or role gating mentioned on this page at all - access control for buckets/scopes/collections is documented on the sibling procedure pages, not here.",
+  "cross_product_finding": "The bucket-type/storage-backend distinction (Couchstore vs. Magma) reuses the exact same storage-engine:* concepts already promoted from the reference/n1ql batches - this page adds no new storage-engine vocabulary, just a Capella-specific compaction/purge-scheduling behavioral layer on top (30%/50% fragmentation thresholds, 3-day tombstone purge, 60-day App-Service-linked tombstone retention) that server/'s own docs don't describe in these exact terms."
+}

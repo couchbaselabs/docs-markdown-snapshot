@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/clusters/data-service/export",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/data-service/export.md",
+  "concepts": [
+    { "candidate_id": "capella:xdcr", "label": "XDCR (Cross Data Center Replication)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/capella/xdcr.json)" },
+    { "candidate_id": "capella:cluster-backup", "label": "Cloud Snapshot Cluster Backup", "reused_or_minted": "minted - whole-cluster backup/restore mechanism, distinct from bucket-level backups" },
+    { "candidate_id": "capella:bucket-backup", "label": "Bucket Backup", "reused_or_minted": "minted - per-bucket backup/restore mechanism via the Capella UI" },
+    { "candidate_id": "capella:cbbackupmgr", "label": "cbbackupmgr (command-line backup/restore tool)", "reused_or_minted": "minted - command-line migration tool distinct from the UI-driven bucket/cluster backup mechanisms" },
+    { "candidate_id": "capella:cbexport", "label": "cbexport (command-line export tool)", "reused_or_minted": "minted - the recommended tool for exporting to third-party, non-Couchbase systems" },
+    { "candidate_id": "capella:cluster-access-credentials", "label": "Cluster access credentials", "reused_or_minted": "reused - already promoted (seen in cloud/n1ql/n1ql-language-reference/createbucket.json)" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "index-state", "label": "GSI index lifecycle state", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/index-state.json)" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella:management-api", "label": "Capella Management API", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "capella:bucket-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "For bucket backups and restores: [Project Owner](../../projects/project-roles.md#project-owner-role) role." },
+    { "subject": "capella:cluster-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "For cluster backups and XDCR: [Project Owner](../../projects/project-roles.md#project-owner-role) role." },
+    { "subject": "capella:xdcr", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - same source sentence gates both cluster backups and XDCR behind the identical role", "evidence": "For cluster backups and XDCR: [Project Owner](../../projects/project-roles.md#project-owner-role) role." },
+    { "subject": "capella:cluster-access-credentials", "predicate": "requiredForApiAccess", "object": "capella:cbbackupmgr", "reused_or_minted_predicate": "reused (requiredForApiAccess) - direction matches prior usage (credential -> API/tool surface), applied here to a command-line tool surface rather than a REST API", "evidence": "For command-line tools: [Cluster access credentials](../manage-database-users.md)." },
+    { "subject": "index-type:gsi", "predicate": "usesEnum", "object": "index-state", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "Bucket backups and `cbbackupmgr` restore GSIs in a deferred state (**Created**), so you must manually build them after restore to get them into the **Ready** state." },
+    { "subject": "capella:management-api", "predicate": "dependsOnService", "object": "service:data-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "The API runs a swap [rebalance](../scale-database.md#rebalance) of your cluster's Data Service nodes." },
+    { "subject": "cloud/clusters/data-service/export", "predicate": "seeAlso", "object": "cloud/clusters/xdcr/xdcr", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Cross Data Center Replication (XDCR)](../xdcr/xdcr.md)" },
+    { "subject": "cloud/clusters/data-service/export", "predicate": "seeAlso", "object": "cloud/clusters/backup-restore", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Back Up and Restore Bucket Data](../backup-restore.md)" },
+    { "subject": "capella:cbexport", "predicate": "seeAlso", "object": "server/current/tools/cbexport-json", "reused_or_minted_predicate": "structural markdown link", "evidence": "The [cbexport json](../../../server/current/tools/cbexport-json.md) command-line tool exports data from Capella to JSON format." },
+    { "subject": "cloud/clusters/data-service/export", "predicate": "seeAlso", "object": "cloud/clusters/data-service/import-data-documents", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Import Data with the Capella UI](import-data-documents.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine / requiresEdition / server-version-string",
+    "finding": "No storage-engine (Couchstore/Magma) mention anywhere despite this page being entirely about bucket and cluster data portability - migration guidance is written as storage-engine-agnostic. No Enterprise/Community edition badges appear either. The page does implicitly reference version constraints ('You can restore bucket backups only to a cluster running the same or later version of Couchbase Server') but never cites a specific version number, so the known 'server-version-string citation' anomaly does not recur here in its usual concrete form."
+  },
+  "cross_component_finding": "Surfaces a bucket-*type* axis distinct from storage-engine: 'Cluster backups do not capture buckets that use the Memory Only bucket type' - the first explicit naming of a second bucket type alongside the 'Couchbase' bucket type data-service.md (this batch) names, and orthogonal to the Couchstore/Magma storage-engine axis storage-engines.md documents. Also reuses index-state's deferred/Created -> Ready GSI lifecycle enum (originally minted from n1ql CREATE/BUILD INDEX statement pages) in a completely different context - bucket/cluster restore - confirming that enum's applicability spans both DDL-time and restore-time index-state transitions. Role-gating here is uniform and simple: every backup/restore/XDCR method that requires a Capella role requires exactly one, Project Owner - no disjunctive multi-role gate of the kind seen on n1ql CREATE BUCKET (Organization Owner / Project Owner / Data Writer)."
+}

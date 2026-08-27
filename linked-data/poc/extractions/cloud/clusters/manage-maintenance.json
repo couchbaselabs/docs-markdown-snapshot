@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/clusters/manage-maintenance",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/manage-maintenance.md",
+  "concepts": [
+    { "candidate_id": "capella:maintenance-job", "label": "Maintenance job (Capella's unit of self-service or Support-scheduled cluster upgrade)", "reused_or_minted": "reused - minted in upgrade-database.json, this batch" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "backup:cluster-backup", "label": "Cluster backup (Cloud Snapshot)", "reused_or_minted": "reused - minted in upgrade-best-practices.json" }
+  ],
+  "relations": [
+    { "subject": "capella:maintenance-job", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - disjunctive gate on scheduling, distinct from upgrade-database.json's notifiesRoleOn (an audience relation, not an authorization one)", "evidence": "To schedule maintenance jobs on a cluster, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../projects/project-roles.md#project-owner-role) role." },
+    { "subject": "capella:maintenance-job", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - disjunctive", "evidence": "To schedule maintenance jobs on a cluster, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../projects/project-roles.md#project-owner-role) role." },
+    { "subject": "capella:maintenance-job", "predicate": "requiresPriorExecutionOf", "object": "backup:cluster-backup", "reused_or_minted_predicate": "reused (requiresPriorExecutionOf) - restates upgrade-best-practices.json's recommended (not enforced) backup-before-upgrade precondition in the scheduling-procedure context", "evidence": "Prior to any maintenance job, follow maintenance best practices for a safe and effective cluster upgrade. This may include backing up your cluster and verifying SDK compatibility. For more information, see [Upgrading Best Practices](upgrade-best-practices.md)." },
+    { "subject": "capella:maintenance-job", "predicate": "seeAlso", "object": "cloud/clusters/upgrade-best-practices", "evidence": "You have followed [upgrade best practices](upgrade-best-practices.md) before upgrading your cluster." },
+    { "subject": "capella:maintenance-job", "predicate": "seeAlso", "object": "cloud/clusters/upgrade-database", "evidence": "For more information about managing your cluster, see: * [Back Up and Restore An Entire Cluster](cloud-snapshots.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan / behavesDifferentlyUnder (cloud-provider)",
+    "finding": "No support-plan or billing-plan gate on scheduling, rescheduling, or cancelling a maintenance job - the only access-control axis is capella-role:* (Organization Owner or Project Owner). Also, like upgrade-database.json, zero cloud-provider-specific behavior anywhere on this page - the maintenance-job lifecycle (schedule, reschedule, cancel, preferred time) is described as uniform across AWS/Azure/GCP, in clear contrast to the backup/snapshot surface's heavy CSP-specific behavior found elsewhere in this batch."
+  },
+  "cross_component_finding": "This page is the authoritative source for the requiresCapellaRole gate this batch's other upgrade-related file (upgrade-database.json) lacked outright - together they show a clean split: upgrade-database.md documents the upgrade POLICY and notifies roles about it (notifiesRoleOn), while manage-maintenance.md documents the actual scheduling ACTION and gates it on capella-role:* (requiresCapellaRole). Also confirms Support-initiated mandatory maintenance jobs are NOT user-cancellable regardless of role ('You cannot cancel maintenance jobs scheduled by Capella Support... To cancel a support-initiated upgrade, Create a Support Ticket') - a support-mediated override of the otherwise role-based control, similar in shape to cloud/organizations/manage-organizations.json's finding that organization deletion is support-mediated rather than role-gated.",
+  "cross_product_finding": ""
+}

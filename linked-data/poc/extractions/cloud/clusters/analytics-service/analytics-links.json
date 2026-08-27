@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/clusters/analytics-service/analytics-links",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/analytics-service/analytics-links.md",
+  "concepts": [
+    { "candidate_id": "capella:analytics-workbench", "label": "Analytics Workbench", "reused_or_minted": "reused - minted earlier in this batch (cloud/clusters/analytics-service/analytics-service.json)" },
+    { "candidate_id": "capella:analytics-external-link", "label": "Analytics external link", "reused_or_minted": "minted - a link to an external data source (Amazon S3, Google Cloud Storage, Azure Blob) that lives within an Analytics scope" },
+    { "candidate_id": "capella:analytics-scope", "label": "Analytics scope", "reused_or_minted": "minted - the container for Analytics external links and collections; distinct from capella:scope (a Data Service bucket-scope, minted in data-service.json this batch)" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella-role:data-writer", "label": "Data Writer", "reused_or_minted": "reused - already promoted; see relation note on this page's own label/anchor mismatch" }
+  ],
+  "relations": [
+    { "subject": "capella:analytics-workbench", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To use all of the functionality in the Analytics Workbench, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Data / Reader](../../projects/project-roles.md#project-cluster-data-reader-writer) project role." },
+    { "subject": "capella:analytics-workbench", "predicate": "requiresCapellaRole", "object": "capella-role:data-writer", "reused_or_minted_predicate": "reused (requiresCapellaRole) - object mapped by ANCHOR (#project-cluster-data-reader-writer, the exact anchor manage-documents.md (this batch) uses for 'Data Writer'), not by the link's own visible label text, which reads 'Cluster Data / Reader' here - a new instance of the established label/anchor naming-drift pattern (cf. capella-role:cluster-manager's registry note on cmek.md's '#project-cluster-manager-role' / 'Project/Cluster Manager' drift). Flagged for SME/reconciliation attention, not resolved here.", "evidence": "To use all of the functionality in the Analytics Workbench, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Cluster Data / Reader](../../projects/project-roles.md#project-cluster-data-reader-writer) project role." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / storage-engine / server-version-string",
+    "finding": "No edition badge, storage-engine mention, or server-version-string citation - both known recurring anomalies absent, consistent with the rest of this batch's UI-procedure pages. Also notable: the page's security guidance ('AWS root account credentials should never be used... The policy for the created IAM User roles should be as strict as possible') is a best-practice caution about the external cloud provider's own IAM model, not a Capella access-control gate - kept out of the requiresCapellaRole/credential-type relation set for that reason."
+  },
+  "cross_component_finding": "This page's own link text contains a real, verbatim-quotable naming-drift anomaly: it labels the anchor for the 'Data Writer' project role (matching manage-documents.md's identical anchor '#project-cluster-data-reader-writer') as 'Cluster Data / Reader' instead of 'Data Writer' - the same kind of role-label drift already flagged in the registry for cmek.md's 'Project/Cluster Manager' vs. 'Cluster Manager'. This is now at least two independent pages exhibiting label drift on project-role names, suggesting the drift may be systemic to how role names are hand-written into link text across the docs set rather than a one-off typo.",
+  "cross_product_finding": "Second confirmation (with analytics-workbench.json, this batch) that the Analytics Service's access-control gate reuses the exact same capella-role:* project-role catalog (Project Owner / Data Writer) already established for bucket administration and document access on Data Service pages - no Analytics-specific role, privilege, or credential-type concept exists anywhere in this file."
+}

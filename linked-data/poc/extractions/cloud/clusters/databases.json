@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/clusters/databases",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/databases.md",
+  "concepts": [
+    { "candidate_id": "cloud-provider:aws", "label": "Amazon Web Services (AWS)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Microsoft Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "Google Cloud Platform (GCP)", "reused_or_minted": "reused" },
+    { "candidate_id": "clusters:cluster-option", "label": "Cluster Option (Single Node / Multi-Node / Custom)", "reused_or_minted": "minted earlier in this batch (create-database.json) - reused here" },
+    { "candidate_id": "clusters:availability-zone", "label": "Availability Zone configuration (Single / Multiple)", "reused_or_minted": "minted earlier in this batch (create-database.json) - reused here" },
+    { "candidate_id": "clusters:disk-type", "label": "Disk Type (GP3 / IO2 / PD-SSD / Premium SSD / Ultra Disk)", "reused_or_minted": "minted - a per-Service-Group storage primitive whose available values are entirely determined by cloud provider; not covered by an existing namespace" },
+    { "candidate_id": "clusters:storage-auto-expansion", "label": "Storage Auto-Expansion", "reused_or_minted": "reused - already promoted from a single Health Advisor mention; this page and scale-database.md are the first authoritative read" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "reused_or_minted": "reused - appears ONLY as a guardrail-metric name ('Data Service Resident Ratio (Couchstore)'), not as a configurable cluster option" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "reused_or_minted": "reused - same caveat as couchstore above" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "clusters:disk-type", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:aws", "reused_or_minted_predicate": "reused", "evidence": "AWS Choose between GP3 or IO2. GP3 disks are general-purpose and provide the best balance of price and performance, for provisioning performance and storage capacity independently. IO2 disks have higher performance, more durability, and better reliability." },
+    { "subject": "clusters:disk-type", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused", "evidence": "GCP PD-SSD only - best for higher performance with lower latency and more IOPS." },
+    { "subject": "clusters:disk-type", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused", "evidence": "Azure Choose between Premium SSD or Ultra disks. Premium SSDs are best for higher performance with lower latency and more IOPS. Ultra Disks are best for intensive, transaction-heavy workloads with low latency and consistent IOPS." },
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused - additional evidence for the already-promoted relation, this time from the cluster-configuration reference page rather than a Health Advisor mention", "evidence": "For Multi-Node or Custom clusters deployed on Azure, Auto-Scaling is turned off by default, as it requires replacing and rebalancing nodes. This results in data movement and can affect performance until Auto-Scaling completes. You can choose whether to turn on Auto-Scale, or leave it turned off." },
+    { "subject": "clusters:storage-auto-expansion", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:aws", "reused_or_minted_predicate": "reused", "evidence": "For Multi-Node or Custom clusters deployed on AWS or GCP, automatic storage scaling is always on. You cannot turn off Auto-Scaling." },
+    { "subject": "clusters:availability-zone", "predicate": "gatedByBillingPlan", "object": "plan:basic-support-plan", "reused_or_minted_predicate": "reused", "evidence": "Clusters on the **Basic** [Support Plan](#plan) support only a **Single** Availability Zone." },
+    { "subject": "cloud/clusters/modify-database", "predicate": "seeAlso", "object": "cloud/clusters/create-database", "reused_or_minted_predicate": "reused - structural Markdown link", "evidence": "[Create A Paid Cluster](create-database.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine as a cluster-configuration-option",
+    "finding": "The 'Cluster Configuration Options' bulleted list (the page's own enumeration of everything configurable when creating a paid cluster: name/description, basic cluster option, CSP/region, CIDR block, public-access restriction, Server version, services/service groups, nodes, compute, storage, support plan, availability zones) does NOT include storage engine. Storage engine/backend (Couchstore vs Magma) appears exactly once on this page, buried inside the Guardrails threshold table as part of two metric names ('Data Service Resident Ratio (Couchstore)' / '(Magma)'), with no explanation of where or when a user chooses one. This confirms this batch's hypothesis in the negative direction: reading the authoritative cluster-configuration page does NOT confirm storage-engine as a cluster-creation-time choice - if anything it suggests the opposite, that storage engine is set elsewhere (most likely per-bucket, out of this batch's scope)."
+  },
+  "cross_component_finding": "Known recurring anomaly (server-version-string citation) recurs here: 'The latest supported version of Couchbase Server for Capella operational clusters is 8.0.' - a hardcoded version string of exactly the kind flagged in prior rounds as a staleness risk, not a new finding."
+}

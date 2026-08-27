@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/health-advisor-report",
+  "label": "Health Advisor report (Capella)",
+  "type": "a scheduled cluster-health check report, containing checks like data-resident-ratio scored via monitoring:health-advisor-severity-enum",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Same reconciliation-gap history as monitoring:alert - confirmed cleanly (not corrected) by this round's direct read of health-advisor.md."
+}

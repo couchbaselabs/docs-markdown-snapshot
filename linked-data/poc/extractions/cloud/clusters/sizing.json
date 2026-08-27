@@ -1,0 +1,15 @@
+{
+  "page_id": "cloud/clusters/sizing",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/sizing.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "cloud/clusters/sizing", "predicate": "seeAlso", "object": "cloud/clusters/create-database", "reused_or_minted_predicate": "reused - structural Markdown link", "evidence": "You can configure cluster sizing during the [cluster creation process](create-database.md) or [scale a cluster](scale-database.md) after it's created." },
+    { "subject": "cloud/clusters/sizing", "predicate": "seeAlso", "object": "cloud/clusters/scale-database", "reused_or_minted_predicate": "reused - structural Markdown link", "evidence": "You can configure cluster sizing during the [cluster creation process](create-database.md) or [scale a cluster](scale-database.md) after it's created." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "This is a thin stub page (27 lines) that only points elsewhere (Couchbase services overview, Couchbase Server Sizing Guidelines, databases.md, create-database.md, scale-database.md) and restates the Server-7.6-guardrails note verbatim from databases.md/scale-database.md. No new ontology content; left concepts/relations minimal per instructions rather than forcing extraction."
+  },
+  "cross_component_finding": "Known recurring anomaly (server-version-string citation) recurs a third time in this batch: 'Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails' - the exact same '7.6 or later' threshold repeated verbatim from databases.md and scale-database.md, not a new finding."
+}

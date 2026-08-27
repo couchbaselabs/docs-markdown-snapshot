@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/clusters/create-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/create-database.md",
+  "concepts": [
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused - existing capella-role:* project-scope role" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused - existing capella-role:* project-scope role" },
+    { "candidate_id": "cloud-provider:aws", "label": "Amazon Web Services (AWS)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Microsoft Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "Google Cloud Platform (GCP)", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "clusters:cluster-option", "label": "Cluster Option (Single Node / Multi-Node / Custom / Free)", "reused_or_minted": "minted - the pre-configuration choice made at cluster-creation time that gates almost every other option (service groups, AZ support, disk-type expandability, support-plan availability); not covered by any existing namespace" },
+    { "candidate_id": "clusters:availability-zone", "label": "Availability Zone configuration (Single / Multiple)", "reused_or_minted": "minted - a cluster-creation-time choice gated by both cluster option and support plan; distinct primitive not covered by an existing namespace" },
+    { "candidate_id": "deployment:capella", "label": "Capella", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/create-database", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "You have the **Project Owner** or **Cluster Manager** role for that project." },
+    { "subject": "cloud/clusters/create-database", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused", "evidence": "You have the **Project Owner** or **Cluster Manager** role for that project." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "clusters:cluster-option", "reused_or_minted_predicate": "minted - camelCase verb phrase for a creation-time procedure step that presents the object as a user-selectable option, as distinct from requiresSetting (a prerequisite) or requiresCapellaRole (a permission gate)", "evidence": "Choose your **Cluster Option** to pre-configure settings for your cluster." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "cloud-provider:aws", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose your preferred Cloud Service Provider and **Region**." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "cloud-provider:azure", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose your preferred Cloud Service Provider and **Region**." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose your preferred Cloud Service Provider and **Region**." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "plan:basic-support-plan", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose a **Support Plan** for your cluster." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "plan:developer-pro-support-plan", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose a **Support Plan** for your cluster." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose a **Support Plan** for your cluster." },
+    { "subject": "cloud/clusters/create-database", "predicate": "offersConfigurationChoice", "object": "clusters:availability-zone", "reused_or_minted_predicate": "minted (see cluster-option relation above)", "evidence": "Choose the **Availability Zone** configuration for your cluster." }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine (couchstore/magma)",
+    "finding": "Storage engine choice never appears in this page's creation procedure at all. Step 10 covers Free/Single Node/Multi-Node/Custom sizing (compute, storage amount, IOPS) but never mentions Couchstore or Magma. This directly tests this batch's hypothesis: the authoritative cluster-creation flow does NOT confirm storage-engine as a cluster-creation-time choice - it appears nowhere on this page. See databases.json for where it does appear (only as a bucket-level metric name inside a guardrail threshold table), which suggests storage-engine:couchstore/magma may actually be a bucket-level setting, not a cluster-level one, making the clusters/ namespace the wrong home for it. Flagging for reconciler; not re-minting or moving it myself since bucket-creation pages (data-service/manage-buckets.md) are out of this batch's scope."
+  },
+  "cross_component_finding": "This page explicitly excludes free-tier clusters ('This section does not apply to Capella free tier operational clusters') and directs them to a separate creation flow (get-started/create-account.md). So plan:free-tier-plan is NOT one of the Support Plan choices offered by this procedure, even though it's part of the four-tier plan family - free tier clusters are created and support-planned through an entirely different flow than paid clusters."
+}

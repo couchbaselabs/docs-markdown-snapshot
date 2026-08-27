@@ -1,0 +1,35 @@
+{
+  "page_id": "cloud/clusters/restore-cloud-snapshot",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/restore-cloud-snapshot.md",
+  "concepts": [
+    { "candidate_id": "backup:cluster-backup", "label": "Cluster backup (Cloud Snapshot)", "reused_or_minted": "reused - minted in upgrade-best-practices.json, this batch" },
+    { "candidate_id": "backup:cross-region-backup-copy", "label": "Cross-region cluster backup copy (up to 2 additional CSP regions)", "reused_or_minted": "reused - minted in cloud-snapshots.json, this batch" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:aws", "label": "AWS", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "GCP", "reused_or_minted": "reused" },
+    { "candidate_id": "security:customer-managed-encryption-keys", "label": "Customer-Managed Encryption Keys (CMEK)", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "capella:cluster-access-credentials", "label": "Cluster access credentials (Capella data-plane database credentials)", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:allowed-ip-list", "label": "Allowed IP list (cluster)", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "version:server-7-6-6", "label": "Couchbase Server 7.6.6", "reused_or_minted": "reused - minted in cloud-snapshots.json, this batch" },
+    { "candidate_id": "version:server-7-6-5", "label": "Couchbase Server 7.6.5", "reused_or_minted": "minted - a second, adjacent version-string cited in the same cross-cluster-restore compatibility example; recurrence of the known anomaly" }
+  ],
+  "relations": [
+    { "subject": "backup:cluster-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You have the **Project Owner** role for the project with the cluster you want to restore. If you have the **Organization Owner** role, you have Project Owner permissions." },
+    { "subject": "backup:cluster-backup", "predicate": "requiresSetting", "object": "security:customer-managed-encryption-keys", "reused_or_minted_predicate": "reused (requiresSetting) - restoring a CMEK-encrypted backup requires the CMEK ID and its Key ID to still be enabled and available in the KMS", "evidence": "The Capella CMEK ID must still be available in your organization. The Key ID for the backup you want to restore must be available and enabled in your Key Management System (KMS)." },
+    { "subject": "backup:cross-region-backup-copy", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder) - restated on the restore-specific page", "evidence": "If your cluster uses Couchbase Server version 7.6.6 or later and is deployed on AWS or Azure, you can choose to replicate your backups to 2 regions, other than the region where your cluster is deployed. Cluster backups for GCP clusters cannot be replicated to additional regions." },
+    { "subject": "backup:cluster-backup", "predicate": "requiresSetting", "object": "version:server-7-6-6", "reused_or_minted_predicate": "reused (requiresSetting) - restoring a backup to a DIFFERENT cluster requires both source and destination clusters to be on Server 7.6.6 or later; earlier-version clusters cannot receive a cross-cluster restore at all", "evidence": "You can only restore a backup to a different compatible cluster if both clusters are currently running Couchbase Server version 7.6.6 or later. If a cluster is running an earlier version of Couchbase Server, you cannot restore its backups to another cluster." },
+    { "subject": "backup:cluster-backup", "predicate": "behavesDifferentlyUnder", "object": "version:server-7-6-5", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder) - restoring a backup taken on an older version temporarily reverts the cluster's own Server version", "evidence": "If you do upgrade a 7.6.5 cluster to a later version of Couchbase Server, backups taken while the cluster was on version 7.6.5 can still be restored to that same cluster. Restoring a backup taken on version 7.6.5 will temporarily restore the cluster to Couchbase Server version 7.6.5." },
+    { "subject": "backup:cluster-backup", "predicate": "invalidatesOnRestore", "object": "capella:cluster-access-credentials", "reused_or_minted_predicate": "reused (invalidatesOnRestore, minted in cloud-snapshots.json)", "evidence": "Restoring a cluster backup also deletes all cluster access credentials and allowed IP addresses on your cluster." },
+    { "subject": "backup:cluster-backup", "predicate": "invalidatesOnRestore", "object": "capella:allowed-ip-list", "reused_or_minted_predicate": "reused (invalidatesOnRestore)", "evidence": "Restoring a cluster backup also deletes all cluster access credentials and allowed IP addresses on your cluster." },
+    { "subject": "backup:cluster-backup", "predicate": "seeAlso", "object": "cloud/clusters/take-cloud-snapshot", "evidence": "You have [previously taken or scheduled](take-cloud-snapshot.md) a cluster backup." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "No support-plan gate on cluster-backup restore - access is capella-role:*-only (Project Owner/Organization Owner), matching every other backup/restore surface in this batch. The only commercial-adjacent statement on this page is that restore downtime 'is not considered to be downtime based on the Capella Cloud Service Availability agreement,' which is an SLA reference, not a plan-tier gate on the restore action itself."
+  },
+  "cross_component_finding": "This page duplicates (word-for-word in places) the CMEK, cross-region, and credential-invalidation facts already stated on cloud-snapshots.json - a case of the same real-world facts being repeated verbatim across a concept page and its paired procedural page, useful confirmation that these are stable facts rather than one-off phrasing, consistent with the pattern already noted in cloud/organizations/ui-auth/add-sso-auth.json for the SSO support-plan gate.",
+  "cross_product_finding": "The AWS/Azure-support-cross-region-copy-but-not-GCP asymmetry recurs a second time on this page (after cloud-snapshots.json), now specifically in the restore-selection UI context ('Cross-Region Backups Only... in the Restore from list, select the specific region'), confirming it is a genuine, load-bearing product constraint rather than an incidental mention - the strongest cloud-provider-specific behavior found anywhere in this batch."
+}

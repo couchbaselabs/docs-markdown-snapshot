@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/clusters/monitoring/configure-microsoft-integration",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/configure-microsoft-integration.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert-integration", "label": "Capella alert integration", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:data-reader", "label": "Data Reader", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresSupportPlan", "object": "plan:developer-pro-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "You have deployed an operational cluster or App Service linked to an operational cluster on the [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans." },
+    { "subject": "monitoring:alert-integration", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "* [Project Owner](../../projects/project-roles.md#project-owner-role)" },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/microsoft-reference", "reused_or_minted_predicate": "reused", "evidence": "For a list of all the variables that Capella supports, see [Microsoft Teams Alert Payload](microsoft-reference.md#json-objects-keys-microsoft)." },
+    { "subject": "monitoring:alert-integration", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/activity-log", "reused_or_minted_predicate": "reused", "evidence": "The [activity log](activity-log.md) records all add, edit, and delete events for alert integrations." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "This page has no equivalent of Slack's Bot Token connection method or its associated scopes - Microsoft Teams supports exactly one connection method (Webhook URL from the Workflows app), and the edit restriction is stated explicitly: 'You cannot edit your Webhook URL details. To change your Webhook URL, you must delete your existing alert integration and create a new one.' No notable absence beyond that; this page is otherwise a clean structural parallel of configure-slack-integration.md and configure-webhook-integration.md."
+  },
+  "cross_component_finding": "Prerequisites (roles, Enterprise/Developer Pro Support Plan gate, 3-address firewall allowlist, up to 5 integrations per project) are verbatim-identical to configure-slack-integration.md and configure-webhook-integration.md - the shared-shell side of this batch's hypothesis confirmed a third time. The per-tool difference here is payload format only (Adaptive Cards, per microsoft-reference.md) plus the single-connection-method simplicity already noted as an absence relative to Slack."
+}

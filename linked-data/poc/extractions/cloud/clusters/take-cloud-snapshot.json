@@ -1,0 +1,28 @@
+{
+  "page_id": "cloud/clusters/take-cloud-snapshot",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/take-cloud-snapshot.md",
+  "concepts": [
+    { "candidate_id": "backup:cluster-backup", "label": "Cluster backup (Cloud Snapshot)", "reused_or_minted": "reused - minted in upgrade-best-practices.json, this batch" },
+    { "candidate_id": "backup:cross-region-backup-copy", "label": "Cross-region cluster backup copy (up to 2 additional CSP regions)", "reused_or_minted": "reused - minted in cloud-snapshots.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:aws", "label": "AWS", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "GCP", "reused_or_minted": "reused" },
+    { "candidate_id": "mgmt-api:api-key", "label": "Capella Management API Key", "reused_or_minted": "reused - existing registry concept" }
+  ],
+  "relations": [
+    { "subject": "backup:cluster-backup", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You have the **Project Owner** role for the project with the cluster you want to back up. If you have the **Organization Owner** role, you have Project Owner permissions." },
+    { "subject": "backup:cross-region-backup-copy", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)", "evidence": "If your cluster uses Couchbase Server version 7.6.6 or later and is deployed on AWS or Azure, you can choose to replicate your backups to 2 regions, other than the region where your cluster is deployed... Cluster backups for GCP clusters cannot be replicated to additional regions." },
+    { "subject": "backup:cluster-backup", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder) - restates the 500-snapshot Azure cap in the scheduling-UI context", "evidence": "Azure limits your total number of incremental backups to a maximum of 500. After 500 incremental snapshot backups, Azure starts using full cluster backups and your cluster backup costs will greatly increase." },
+    { "subject": "backup:cluster-backup", "predicate": "seeAlso", "object": "mgmt-api:api-key", "reused_or_minted_predicate": "reused (seeAlso) - cluster backups can also be created/scheduled via the Management API, not only the UI", "evidence": "To take a cluster backup from the Capella Management API, see [Create Cloud Snapshot Backup](../management-api-reference/index.md#tag/Cloud-Snapshot-Backups-and-Restore/operation/createCloudSnapshotBackup)." },
+    { "subject": "backup:cluster-backup", "predicate": "seeAlso", "object": "cloud/clusters/restore-cloud-snapshot", "evidence": "For more information about how to restore a cluster backup, see [Restore a Cluster Backup](restore-cloud-snapshot.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "No support-plan gate on taking or scheduling a cluster backup - Project Owner/Organization Owner is the only access-control axis, matching every other backup surface in this batch. The default retention values stated here (7 days on-demand, every-4-hours/7-days scheduled) are plan-agnostic defaults, not tier-dependent limits - no free-tier or paid-tier distinction is drawn for cluster backups on this page (contrast with manage-backup.json, where BUCKET backups are explicitly unavailable in the UI on free tier - this page draws no equivalent distinction for CLUSTER backups)."
+  },
+  "cross_component_finding": "This page's silence on a free-tier restriction for cluster backups (as opposed to manage-backup.json's explicit 'Backup options are unavailable in the UI for your free tier operational cluster' for BUCKET backups) is itself informative - it suggests the free-tier UI restriction found on the bucket-backup surface may not extend to cluster (Cloud Snapshot) backups, or that this page simply doesn't address the free-tier case. Not resolved here; flagged for the reconciler to check against a free-tier-specific cluster-backup page if one exists.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/clusters/monitoring/prometheus",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/prometheus.md",
+  "concepts": [
+    { "candidate_id": "monitoring:prometheus-target", "label": "Capella native Prometheus target (per-cluster HTTP service-discovery endpoint for metrics scraping)", "reused_or_minted": "minted - a distinct product-specific primitive from monitoring:metric-graph (the UI dashboard graphs); this is the raw scrape endpoint external Prometheus servers connect to, independent of the Capella UI dashboards" },
+    { "candidate_id": "cloud-provider:aws", "label": "Amazon Web Services (AWS)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "Google Cloud Platform (GCP)", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Microsoft Azure", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "monitoring:prometheus-target", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:aws", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder) - same cloud-provider axis already generalized elsewhere in the registry", "evidence": "Clusters deployed on [AWS](../../reference/aws.md) can only have a maximum of 20 nodes. If you previously contacted Capella Support to map Query nodes separately with 1:1 node mapping over private endpoints, enabling metrics over private endpoints limits your cluster to a maximum of 13 nodes." },
+    { "subject": "monitoring:prometheus-target", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:gcp", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)", "evidence": "Clusters deployed on [GCP](../../reference/gcp.md) or [Azure](../../reference/azure.md) | There are no additional requirements for GCP or Azure clusters." },
+    { "subject": "monitoring:prometheus-target", "predicate": "behavesDifferentlyUnder", "object": "cloud-provider:azure", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)", "evidence": "Clusters deployed on [GCP](../../reference/gcp.md) or [Azure](../../reference/azure.md) | There are no additional requirements for GCP or Azure clusters." },
+    { "subject": "monitoring:prometheus-target", "predicate": "seeAlso", "object": "cloud/metrics-reference/metrics-reference", "reused_or_minted_predicate": "reused", "evidence": "* [Metrics Reference](../../metrics-reference/metrics-reference.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "Collecting Prometheus metrics over a private endpoint is gated behind a support request rather than a named plan tier: 'Collecting Prometheus metrics over private endpoints is only available upon request from Capella Support' - an ad hoc support-ticket gate, not a self-service plan upgrade, so no requiresSupportPlan relation was minted for it."
+  },
+  "cross_component_finding": "Recurrence of the known server-version-string/`/server/...`-path anomaly: this page's Prerequisites section links directly to `/server/current/manage/monitor/set-up-prometheus-for-monitoring.md` twice for the actual configuration-file guidance ('For more information, see... [Configure Prometheus to Collect Couchbase Metrics](../../../server/current/manage/monitor/set-up-prometheus-for-monitoring.md)'), and its own See Also section links to a Sync Gateway `current/` page as well ('[Prometheus Metrics](../../../sync-gateway/current/manage/stats-monitoring-prometheus.md)') - Capella's own Prometheus integration page outsources its core how-to content to two other products' versioned docs trees rather than documenting Capella's specific scrape-config guidance itself, beyond the one sample YAML block. Flagged as recurrence of the batch's known anomaly, not a new one."
+}

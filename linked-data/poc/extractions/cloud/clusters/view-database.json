@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/clusters/view-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/view-database.md",
+  "concepts": [
+    { "candidate_id": "capella-role:cluster-viewer", "label": "Cluster Viewer", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:aws", "label": "AWS", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:gcp", "label": "GCP", "reused_or_minted": "reused" },
+    { "candidate_id": "cloud-provider:azure", "label": "Azure", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:free-tier-plan", "label": "Free Tier", "reused_or_minted": "reused - wording on this page is the short form 'Free Tier', yet another variant per the known wording-inconsistency issue" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic", "reused_or_minted": "reused - short form 'Basic'" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro", "reused_or_minted": "reused - short form 'Developer Pro'" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise", "reused_or_minted": "reused - short form 'Enterprise'" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/view-database", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-viewer", "reused_or_minted_predicate": "reused", "evidence": "You have at least the [Cluster Viewer](../projects/project-roles.md#project-cluster-viewer-role) role for the project containing the clusters you want to view, copy, or download." }
+  ],
+  "notable_absence": {
+    "predicate": "storage-engine / storage-auto-expansion as viewable columns",
+    "finding": "The cluster list's expandable-row fields and configurable columns (name, status, CSP+region, Server version, App Service link, CIDR, connection strings, node count, services, support plan, creation date/creator, cost) never include storage engine or storage-auto-expansion state, reinforcing that these aren't treated as cluster-identity attributes the way CSP and support plan are."
+  },
+  "cross_component_finding": "This page's filter list names the same four support-plan tiers as plan:*, but in yet another wording variant ('Free Tier', 'Basic', 'Developer Pro', 'Enterprise') distinct from both 'Enterprise Support Plan' (canonical label) and 'Enterprise Plan'/'Enterprise Service Plan' (previously flagged variants) - recurrence of the known wording-inconsistency anomaly, not a new one."
+}

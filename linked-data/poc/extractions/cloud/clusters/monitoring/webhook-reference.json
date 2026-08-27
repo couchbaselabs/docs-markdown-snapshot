@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/clusters/monitoring/webhook-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/monitoring/webhook-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:webhook-alert-payload", "label": "Capella Webhooks alert payload (fixed JSON schema, distinct field names from the Slack/Microsoft Teams payload)", "reused_or_minted": "minted - unlike Slack and Microsoft Teams (which share one field schema wrapped in two message-card formats, both captured as monitoring:alert-payload), the Webhooks payload uses genuinely different key names throughout (details.kind/name/severity/summary/description vs alert.name/severity/alertDuration/alertDetectedAt/description; tenant.id/name vs tenant.tenantId/tenantName; resource.kind/id/name vs resource.clusterId/clusterName/appServiceId/appServiceName/regionProvider/capellaResourceUrl; a top-level createdAt with no equivalent in the other two). This is a real, distinct schema, not just a different wrapper, so it earns its own concept rather than being folded into monitoring:alert-payload" }
+  ],
+  "relations": [
+    { "subject": "monitoring:webhook-alert-payload", "predicate": "usesEnum", "object": "monitoring:event-severity-enum", "reused_or_minted_predicate": "reused (usesEnum) - same restricted subset use (critical/warning only) as the Slack and Microsoft Teams payloads", "evidence": "severity | Identifies the alert as either \"critical\" or \"warning\"." },
+    { "subject": "monitoring:webhook-alert-payload", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/configure-webhook-integration", "reused_or_minted_predicate": "reused", "evidence": "* [Configure a Webhooks Alert Integration](configure-webhook-integration.md)" },
+    { "subject": "monitoring:webhook-alert-payload", "predicate": "seeAlso", "object": "cloud/reference/alert-reference", "reused_or_minted_predicate": "reused", "evidence": "* [Alert Reference](../../reference/alert-reference.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "No Advanced Template option is mentioned anywhere on this page, consistent with alert-integration.md's note that 'Webhooks alert integrations have a fixed payload structure that you cannot modify in Capella' - the page states this directly too: 'you cannot modify the structure of your alert payload.' No customization-related relation to mint; the absence itself is the confirming evidence, already captured structurally via monitoring:alert-payload's behavesDifferentlyUnder relation in alert-integration.json."
+  },
+  "cross_component_finding": "This page directly answers the batch hypothesis's question about whether alert integrations share one configuration model: they do not, at the payload-schema level. Slack and Microsoft Teams share monitoring:alert-payload's exact field set (confirmed independently across slack-reference.json and microsoft-reference.json); Webhooks uses a structurally different, fixed schema (monitoring:webhook-alert-payload, minted here) with different key names for equivalent data (e.g. resource.kind distinguishes 'cluster' vs 'appService' as a string value, where Slack/Microsoft Teams instead use two separate optional key pairs - clusterId/clusterName vs appServiceId/appServiceName - to express the same distinction). The worked example even targets a different real-world consumer (ServiceNow) rather than a generic third-party tool, reinforcing that Webhooks was designed as a generic, tool-agnostic wire format rather than a bespoke integration like Slack/Teams."
+}

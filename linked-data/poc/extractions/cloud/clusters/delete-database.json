@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/clusters/delete-database",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/clusters/delete-database.md",
+  "concepts": [
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "reused" },
+    { "candidate_id": "clusters:deletion-protection", "label": "Deletion Protection", "reused_or_minted": "minted - a cluster-level setting that blocks the delete operation and cascades to a linked, separately-managed resource (App Services); not covered by an existing namespace" }
+  ],
+  "relations": [
+    { "subject": "cloud/clusters/delete-database", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you're deleting." },
+    { "subject": "cloud/clusters/delete-database", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused", "evidence": "You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you're deleting." },
+    { "subject": "clusters:deletion-protection", "predicate": "blocksOperationWhen", "object": "cloud/clusters/delete-database", "reused_or_minted_predicate": "minted - camelCase verb phrase for a setting that, when enabled, prevents an operation (delete) from succeeding through any interface", "evidence": "A cluster cannot be deleted from the UI, the [Management API](../management-api-reference/index.md#tag/Clusters/operation/deleteCluster), or external tools like Terraform, when deletion protection is turned on." },
+    { "subject": "cloud/clusters/delete-database", "predicate": "cascadesDeletionTo", "object": "clusters:backup", "reused_or_minted_predicate": "minted - camelCase verb phrase for a lifecycle action that irreversibly removes a dependent resource as a side effect, not merely pausing or disconnecting it", "evidence": "Deleting a cluster deletes its backups." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan / requiresEdition",
+    "finding": "Deletion carries no support-plan or edition gating in this page's own text - only a project role prerequisite. No edition badges or server-version-string citations either (both known recurring anomalies absent from this page)."
+  },
+  "cross_component_finding": "Deletion protection, defined on modify-database.md, is only referenced here (via seeAlso) rather than explained - this page assumes the reader already knows what it is."
+}
