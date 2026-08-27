@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-attempt-context",
+  "label": "TransactionAttemptContext (Java SDK)",
+  "type": "the transaction-scoped CRUD/query API (ctx.insert/get/replace/remove/query) whose writes are staged and invisible to other actors until the transaction commits",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual 2-file recurrence bar for semantic significance, in line with the judgment-call exception used for hasNoRelationshipTo in round 3 - this is the concrete mechanism behind round 4's headline finding. Replace/remove require a prior ctx.get() purely so 'the SDK can check that the document is not involved in another transaction' - a transaction-membership check, structurally distinct from sdk:cas-optimistic-locking's per-operation CAS-token comparison. No CAS/CasMismatch language appears anywhere in the source page.",
+  "note": "Do not conflate with ordinary Collection-API CRUD calls (sdk:kv-operations) - the source page states plainly that regular Collection operations must never be used inside a transaction lambda; ctx's operations are the required substitute (see relations/must-use-instead-when.json)."
+}

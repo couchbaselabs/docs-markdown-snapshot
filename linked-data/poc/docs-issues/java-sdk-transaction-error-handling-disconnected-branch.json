@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-transaction-error-handling-disconnected-branch",
+  "type": "docs-issue",
+  "issueType": "disconnected-documentation-branch",
+  "description": "The Java SDK has two entirely separate error-handling documentation branches with no link between them. howtos/error-handling.md is the general SDK exception-hierarchy page and never mentions transactions. distributed-acid-transactions-from-the-sdk.md's own 'Refer to Error Handling' link points instead to concept-docs/transactions-error-handling.md - a different page the round-4 batch did not extract. A reader who lands on the general error-handling page first has no way to discover that transactions have their own, separately-documented exception pair (TransactionFailedException / TransactionCommitAmbiguousException).",
+  "about": ["java-sdk/howtos/error-handling", "java-sdk/howtos/distributed-acid-transactions-from-the-sdk"],
+  "foundDuring": "round 4 (Bedrock infra trial, java-sdk transactions batch)",
+  "status": "open"
+}

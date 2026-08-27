@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-durability",
+  "label": "Transaction-scoped Durability Level (Java SDK)",
+  "type": "a single DurabilityLevel setting (Majority / MajorityAndPersistToActive / PersistToMajority / None) that applies to every key-value write inside one transaction attempt, configured once via TransactionsConfig/ClusterEnvironment (or per-call for a single query transaction) rather than per individual mutation call",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Deliberately NOT the same concept as sdk:durability (kv-operations.md's per-operation durability option, itself still extraction-layer only) - same underlying DurabilityLevel enum values, but the two are configured through entirely different, non-interchangeable API surfaces (TransactionsConfig.durabilityLevel(...) / singleQueryTransactionOptions().durabilityLevel(...) vs. InsertOptions.durability(...)). Related via relations/shares-option-set-with.json rather than treated as the same term. The same enum recurs at a THIRD scope again on the single-query-transaction page - see reconciliation.md round 4."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-error-handling-missing-cross-references",
+  "type": "docs-issue",
+  "issueType": "missing-cross-reference",
+  "description": "java-sdk/howtos/error-handling.md never links to kv-operations.md even though its own worked examples are entirely KV-based (collection.get(), collection.upsert(), DocumentNotFoundException) - it tells readers to 'refer to each individual method (javadoc)' instead of cross-referencing the howto page that documents those same methods. The page also makes zero mention of transactions, TransactionFailedException, or TransactionCommitAmbiguousException at all, even though those are the SDK's other major exception family.",
+  "about": ["java-sdk/howtos/error-handling"],
+  "foundDuring": "round 4 (Bedrock infra trial, java-sdk transactions batch)",
+  "status": "open"
+}

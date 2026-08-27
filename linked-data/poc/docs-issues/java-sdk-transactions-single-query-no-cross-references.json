@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-transactions-single-query-no-cross-references",
+  "type": "docs-issue",
+  "issueType": "missing-cross-reference",
+  "description": "java-sdk/howtos/transactions-single-query.md has no markdown links to any other page at all, despite depending entirely on concepts introduced elsewhere - cluster.transactions(), TransactionFailedException, and the basic notion of what a transaction is and why a single-query variant exists. A reader landing directly on this page (e.g. via search) has no cross-reference to the prerequisite distributed-acid-transactions-from-the-sdk.md or concept-docs/transactions.md pages.",
+  "about": ["java-sdk/howtos/transactions-single-query"],
+  "foundDuring": "round 4 (Bedrock infra trial, java-sdk transactions batch)",
+  "status": "open"
+}

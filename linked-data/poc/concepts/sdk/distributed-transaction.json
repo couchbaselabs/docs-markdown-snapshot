@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/distributed-transaction",
+  "label": "Distributed ACID Transaction (Java SDK)",
+  "type": "a multi-document, multi-operation unit of work executed via a retryable lambda passed to Cluster.transactions().run() - automatically committed on success or rolled back and retried on failure",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Structurally distinct from sdk:kv-operations and sdk:sqlpp-queries-with-sdk (both single-call, single-outcome operations, still only at the extraction layer themselves - see round-4 note in reconciliation.md): this is a whole block of application logic that may re-execute. sdk:single-query-transaction (extraction-layer only, not yet promoted) is a lighter-weight, structurally restricted variant of this concept, not simply an instance of it."
+}

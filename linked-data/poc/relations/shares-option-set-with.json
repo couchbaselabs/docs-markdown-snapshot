@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/shares-option-set-with",
+  "label": "shares option set with",
+  "kind": "relation (schema-level)",
+  "type": "two concepts reuse the identical enum/option values but at incompatible structural scopes, configured through separate, non-interchangeable API surfaces - 2 occurrences across 2 files in round 4",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted to capture the DurabilityLevel enum recurring at three distinct scopes within round 4 alone (per-key-value-operation via sdk:durability, per-transaction-config via sdk:transaction-durability, per-single-query-transaction-call): same values, three separate and non-interchangeable configuration surfaces. Deliberately distinct from usesEnum (that predicate is for a concept consuming a closed enum, not for two concepts at different scopes sharing one) and from behavesDifferentlyUnder (that's for a single clause's behavior varying by axis, not two structurally distinct concepts sharing a value set). sdk:durability, the third scope this relation implicitly points at, is itself still extraction-layer only (not yet promoted - see reconciliation.md round 4)."
+}

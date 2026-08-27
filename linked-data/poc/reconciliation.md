@@ -316,23 +316,171 @@ from scratch.
 
 ---
 
-## Cumulative verdict (all three rounds)
+## Round 4 — Bedrock infrastructure trial (3 Java SDK pages)
 
-The vocabulary has now been tested against three genuinely different kinds of
+Scope: 3 pages, continuing round 3's Java SDK coverage into territory it
+didn't touch - `java-sdk/howtos/error-handling.md`,
+`distributed-acid-transactions-from-the-sdk.md`, and
+`transactions-single-query.md`. Deliberately small: this round's primary
+purpose was infrastructural, not ontological - the host environment had just
+migrated from direct Anthropic API access to Amazon Bedrock, and the point was
+to confirm the extract → reconcile pipeline still works unchanged before
+resuming ontology work at any real scale. See
+`../ingest-cost-and-time-estimate.md` for the Bedrock-specific tooling/cost
+findings from this same trial. The extraction itself was run for real, not as
+a dummy exercise, so it's reconciled on the same terms as rounds 1-3.
+
+### Headline finding: distributed transactions don't extend the existing SDK vocabulary - they add a new structural layer
+
+Same shape of finding as Sync Gateway's channel model in round 3: a product
+surface that looks at first like it should reuse existing per-operation
+vocabulary, and instead needs its own. Four structurally distinct primitives,
+none reducible to an existing per-operation concept:
+
+- **`sdk:transaction-attempt-context`** - the transaction-scoped CRUD/query API
+  (`ctx.insert`/`get`/`replace`/`remove`/`query`). Replace/remove require a
+  prior `ctx.get()` purely so "the SDK can check that the document is not
+  involved in another transaction" - a transaction-membership check, not a
+  CAS-token comparison. No CAS/CasMismatch language appears anywhere on the
+  source page.
+- **`sdk:transaction-durability`** - a single `DurabilityLevel` setting applied
+  once per transaction attempt (via `TransactionsConfig`/`ClusterEnvironment`),
+  not per individual mutation call the way `sdk:durability` works. Same enum
+  values, incompatible scope - related via the newly minted
+  `sharesOptionSetWith`, not treated as the same concept. The identical enum
+  recurs at a **third** distinct scope again on the single-query-transaction
+  page (per-single-query-transaction-call), the cleanest confirmation of this
+  finding in the batch.
+- **`sdk:transaction-query-mode`** - once a transaction runs any SQL++ query,
+  that query and every subsequent key-value operation in the same attempt
+  switch to the user's query permissions instead of their data permissions.
+  No per-operation analogue exists anywhere else in the SDK vocabulary.
+- **`sdk:transaction-error-handling`** - `TransactionFailedException` /
+  `TransactionCommitAmbiguousException`, expressing whole-transaction commit
+  ambiguity, confirmed (via catch-block ordering on
+  `transactions-single-query.md`) to be a Java subtype of the general
+  `sdk:error-handling` hierarchy - but documented on an entirely separate page
+  (`concept-docs/transactions-error-handling.md`) that the general
+  error-handling howto never links to or mentions. See docs-issue below.
+
+`sdk:transaction-attempt-context` and `sdk:transaction-query-mode` are promoted
+at recurrence 1, below the usual 2-file bar - a judgment call made explicitly,
+the same exception used for `hasNoRelationshipTo` in round 3, because both are
+the concrete evidence for this round's headline finding rather than incidental
+detail.
+
+### Other promotions from this round
+
+- `sharesOptionSetWith` (2, 2 files) - new relation for "two concepts reuse the
+  identical enum/option values but at incompatible structural scopes,
+  configured through separate, non-interchangeable API surfaces." Deliberately
+  distinct from `usesEnum` (a concept consuming a closed enum, not two concepts
+  sharing one across scopes) and from `behavesDifferentlyUnder` (one clause
+  varying by axis, not two structurally distinct concepts).
+- `version:sdk-3.3.0` - first entry in a new, independent Java SDK version
+  family, promoted at first sighting following the same precedent as
+  `version:cbl-3.3.0` in round 3 (version enums are promoted on sight, not
+  held to the 2-file bar).
+- `version:server-6.6.1` - **a judgment call, discussed in detail below.**
+
+### The `version:server-*` "closed vocabulary" question, resolved
+
+Round 1 described `version:server-6.5` and `version:server-7.0` as a "closed
+vocabulary term... pre-minted before extraction began." This round's
+extraction cited a real, differently-scoped minimum-version requirement
+("Couchbase Server 6.6.1 or above") that doesn't match either value and can't
+be honestly rounded to one - and flagged the tension explicitly rather than
+guessing. Reconciliation reads round 1's "closed vocabulary" framing as "these
+were the only versions seen so far, promoted without waiting for the usual 2x
+recurrence because versions are low-cardinality and high-value" - not a literal
+ceiling on the family. `version:sgw-*` already has two sibling entries and
+`version:cbl-3.3.0`'s own promotion note says outright to "expect more as more
+CBL pages are processed" - both establish that per-product version families
+are meant to grow as new versions are encountered in evidence.
+`version:server-6.6.1` is promoted on that basis. Worth restating for any
+future round: "closed vocabulary" in this project has always meant "a small,
+enumerable, pre-declared shape," not "frozen at whatever was first promoted."
+
+### A pre-existing gap this round inherited, not created
+
+This round's extraction reused `sdk:error-handling`, `sdk:durability`,
+`sdk:kv-operations`, and `sdk:sqlpp-queries-with-sdk` as if they were
+registry-promoted concepts. They aren't - round 3's Java SDK batch (12
+`howtos/` + 2 `ref/` pages) was reconciled only at the narrative level ("the
+extraction correctly reused... correctly minted...") and never promoted a
+single Java SDK concept to `concepts/`, unlike every other product round.
+Round 4 doesn't attempt to backfill that sweep - it's a bigger job than a
+disposable-scale infra trial should take on - but it's now flagged explicitly:
+a full Java SDK concept-promotion pass (`sdk:kv-operations`, `sdk:durability`,
+`sdk:cas-optimistic-locking`, `sdk:error-handling`, `sdk:query-error-mapping`,
+`sdk:sqlpp-queries-with-sdk`, `sdk:bucket-management`, at minimum - all recur
+across multiple round-3/4 extraction files) is the right next step before any
+further Java SDK rounds, not another round of new pages.
+
+### Left on the watchlist (extraction-layer only, not promoted)
+
+Recurrence-1, no overriding significance case made: `sdk:retry-strategy`,
+`sdk:retry-reason`, `sdk:cloud-native-gateway`, `sdk:bucket-replica-count`,
+`sdk:single-query-transaction`, `n1ql:tximplicit-parameter`,
+`determinesRetryabilityOf`, `reservesXattrField`, `conflictsWithConcurrent`,
+`exposesOperationApi`, `triggersPermissionModeChange`, `specializes`,
+`wrapsQueryParameter`. Several placeholder concepts the extraction minted for
+linked-but-unextracted pages (`sdk:transaction-concepts`,
+`sdk:transactions-migration-guide`, `sdk:xattr`,
+`server:distributed-acid-transactions`, `cloud:organizations-access`) remain
+honest stubs, to resolve if/when those pages are ever extracted - same pattern
+as the Couchbase Lite stubs that resolved once Sync Gateway's concepts landed
+in round 3.
+
+### New `docs-issues/` (3)
+
+1. `java-sdk-error-handling-missing-cross-references` - the general
+   error-handling page never links to `kv-operations.md` despite its examples
+   being entirely KV-based, and never mentions transactions at all.
+2. `java-sdk-transaction-error-handling-disconnected-branch` - transactions
+   have their own, separately-documented exception pair on a page the general
+   error-handling howto neither links to nor mentions.
+3. `java-sdk-transactions-single-query-no-cross-references` - this page has no
+   markdown links at all despite depending entirely on prerequisite concepts
+   introduced on the distributed-transactions page.
+
+### Infrastructure check (the actual point of this round)
+
+Extraction, validation, and reconciliation all ran identically to prior
+rounds - no tool failures, no degraded output, no observed difference
+attributable to running on Bedrock rather than direct Anthropic API access.
+Real token usage came in at roughly 20,700 tokens/page (62,167 tokens across
+the 3-page batch, one agent, sequential-with-reuse-checking), noticeably above
+round 2's ~11,700 tokens/page benchmark - plausibly because this batch's
+subject matter (a whole new structural layer, four new concepts requiring
+detailed disambiguation notes) was denser than round 2's largely-CRUD-statement
+pages, not necessarily a Bedrock effect; a same-content comparison would be
+needed to separate the two, which this small a trial can't provide on its own.
+See `../ingest-cost-and-time-estimate.md` for the full tooling/cost writeup.
+
+---
+
+## Cumulative verdict (all four rounds)
+
+The vocabulary has now been tested against four genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
-different deployment model of the same underlying product (round 2), and
-three entirely different products built by different teams (round 3). At every
-step it kept doing the same useful thing: not just "the terms still fit," but
-surfacing something true and specific about each product it touched - Capella's
-credential/role-based access model, Sync Gateway's two-disjoint-systems
-architecture and inverted channel-based access model, Couchbase Lite's own
-disjoint edition split. That's a stronger and more useful result than a
-vocabulary that merely never breaks.
+different deployment model of the same underlying product (round 2), three
+entirely different products built by different teams (round 3), and a single
+product's own feature that cuts across its existing per-operation model
+(round 4's transactions, within the Java SDK already covered in round 3). At
+every step it kept doing the same useful thing: not just "the terms still
+fit," but surfacing something true and specific about each surface it
+touched - Capella's credential/role-based access model, Sync Gateway's
+two-disjoint-systems architecture and inverted channel-based access model,
+Couchbase Lite's own disjoint edition split, and now the Java SDK's
+transaction layer inverting CAS-based concurrency into transaction-membership
+checks. That's a stronger and more useful result than a vocabulary that merely
+never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Two limits of the method are now visible across multiple rounds, not just
+Three limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **Structural silence isn't a naming problem.** The method is good at
@@ -350,3 +498,10 @@ once, so worth treating as durable rather than one-off:
   core (privilege/edition/version shapes) has stayed remarkably stable - but it
   hasn't gone away either, and a production pipeline would need either a live,
   queryable registry or a mandatory dedup pass, not a bigger written briefing.
+- **Reconciliation itself can leave gaps, not just extraction.** Round 3's
+  Java SDK batch was reconciled only at the narrative level and never promoted
+  a single concept - a gap invisible until round 4 tried to reuse those
+  concepts and found them absent from the registry. The recurrence-based
+  promotion discipline only catches what a reconciliation pass actually runs
+  over; skipping a product at reconciliation time is a silent debt, not a
+  visible one, until a later round trips over it.

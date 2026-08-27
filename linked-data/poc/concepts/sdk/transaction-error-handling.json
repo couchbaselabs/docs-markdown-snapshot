@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-error-handling",
+  "label": "Transaction-level failure classification (Java SDK)",
+  "type": "TransactionFailedException / TransactionCommitAmbiguousException - expresses whole-transaction commit ambiguity (did the transaction actually commit or not?), documented on a separate page (concept-docs/transactions-error-handling.md) from the general SDK exception hierarchy",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Confirmed a Java subtype of sdk:error-handling (itself still extraction-layer only, not yet promoted - see round-4 note in reconciliation.md) via the minted predicate specializes (extraction-layer only, recurrence 1, watchlisted), evidenced by the catch-block ordering on transactions-single-query.md: TransactionCommitAmbiguousException and TransactionFailedException are caught before the generic CouchbaseException catch-all. Documented on an entirely different doc page from the general error-handling howto, which never mentions transactions at all - see docs-issues/java-sdk-transaction-error-handling-disconnected-branch.json."
+}

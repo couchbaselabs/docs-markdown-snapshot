@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Three rounds so far, each a deliberate escalation:
+automating it. Four rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -17,6 +17,11 @@ automating it. Three rounds so far, each a deliberate escalation:
 3. **37 pages across three different products** — Couchbase Lite, Sync Gateway,
    Java SDK — testing whether the vocabulary survives crossing not just a
    deployment model, but a genuinely different product built by a different team.
+4. **3 pages, Java SDK transactions** — a deliberately small infrastructure
+   trial (the host environment had just migrated from direct Anthropic API
+   access to Amazon Bedrock) that also happened to test whether a single
+   product's own feature can cut across its existing per-operation vocabulary.
+   It did — see the headline finding in `reconciliation.md`.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -24,7 +29,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-145 pages total:
+148 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -41,6 +46,12 @@ time/cost projections and how they held up against the round-2 run's real number
   `sync-gateway/` (a sync/access-control middleware with its own channel- and
   role-based model), 12 from `java-sdk/` (a client library — testing whether SDK
   pages should reuse the existing statement-level concepts or need their own).
+- **3 more, `java-sdk/`** — `howtos/error-handling.md`,
+  `distributed-acid-transactions-from-the-sdk.md`, and
+  `transactions-single-query.md`. A small infrastructure trial (see "What this
+  round tested" in `reconciliation.md`'s round 4 section) that also confirmed
+  distributed transactions need their own structural layer, not a reuse of the
+  SDK's existing per-operation vocabulary.
 
 ## Identifiers
 
@@ -70,11 +81,20 @@ from "still in `extractions/`."
   Started with the original privilege/edition/version/enum family; round 2 added
   Capella's management-plane roles, credential-type-keyed privileges, and a
   `deployment:capella` concept; round 3 added Sync Gateway's channel/role/user
-  primitives and Couchbase Lite's own edition split. See `reconciliation.md` for
-  the full list and why each was promoted — including a same-word-different-thing
-  collision the vocabulary had been quietly accumulating: `capella-role:*`,
-  `rbac-role:role`, and `sgw:role` are three structurally distinct things all
-  called "role."
+  primitives and Couchbase Lite's own edition split; round 4 added four Java SDK
+  transaction primitives (`sdk:transaction-attempt-context`,
+  `sdk:transaction-durability`, `sdk:transaction-query-mode`,
+  `sdk:transaction-error-handling`) and a new `version:sdk-*` family. See
+  `reconciliation.md` for the full list and why each was promoted — including a
+  same-word-different-thing collision the vocabulary had been quietly
+  accumulating: `capella-role:*`, `rbac-role:role`, and `sgw:role` are three
+  structurally distinct things all called "role." Note: round 3's Java SDK
+  batch (12 pages) was reconciled only at the narrative level and never
+  promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
+  `sdk:error-handling`, and others are reused across round 3/4 extraction
+  records but still sit at the extraction layer only; a dedicated promotion
+  pass for that backlog is the next natural step before further Java SDK
+  rounds (see "Suggested next steps").
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -83,7 +103,9 @@ from "still in `extractions/`."
   `tradesOffAgainst`, and Capella's GRANT/REVOKE family; round 3 added
   `grantsChannelAccess` (now the single most-recurring minted predicate across
   the whole project), `hasNoRelationshipTo`, and a handful more covering Sync
-  Gateway's role/channel mechanics. Kept separate from `concepts/` on purpose —
+  Gateway's role/channel mechanics; round 4 added `sharesOptionSetWith`, for
+  two concepts that reuse identical enum values at incompatible structural
+  scopes. Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -93,8 +115,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 17 entries
-  as of round 3, which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 20 entries
+  as of round 4, which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -219,6 +241,32 @@ generations (`fts/` vs `search/`).
    explicitly rejected a hint from its own briefing after checking the actual
    page content.
 
+**Round 4 (3 pages, Java SDK transactions) — a small infrastructure trial that
+also surfaced a real finding:**
+
+9. **Distributed transactions don't extend the Java SDK's existing
+   per-operation vocabulary — they add a new structural layer.** Same shape as
+   Sync Gateway's channel model in round 3, one product deep this time instead
+   of across products: a transaction-scoped concurrency model that replaces
+   CAS-token comparison with transaction-membership checks; a durability
+   setting that reuses the same `DurabilityLevel` enum values as per-operation
+   durability but at an incompatible scope — recurring at a *third*, again
+   incompatible, scope on the single-query-transaction page; a mid-flow
+   permission-mode switch with no per-operation analogue; and a whole-transaction
+   commit-ambiguity exception pair documented on a completely separate page
+   from the SDK's general exception hierarchy.
+10. **Reconciliation can leave gaps too, not just extraction.** Round 3's
+    12-page Java SDK batch was reconciled only at the narrative level and never
+    promoted a single concept — invisible until round 4 tried to reuse
+    `sdk:kv-operations`/`sdk:durability`/`sdk:error-handling` and found them
+    absent from `concepts/`. Flagged as a backlog item, not backfilled in this
+    round (see "Suggested next steps").
+11. The actual point of this round — confirming the extraction/reconciliation
+    pipeline works unchanged after migrating from direct Anthropic API access
+    to Amazon Bedrock — held up: no tool failures, no observed quality
+    degradation. See `../ingest-cost-and-time-estimate.md` for the
+    tooling/cost specifics.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -231,19 +279,25 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (17 entries) —
+- Get a subject-matter expert to work through `docs-issues/` (20 entries) —
   most valuably the three-way "role" collision and the Sync Gateway/Capella
   access-control questions, since those are product-shape decisions, not just
   docs cleanup.
+- Run a Java SDK concept-promotion pass for round 3's backlog
+  (`sdk:kv-operations`, `sdk:durability`, `sdk:cas-optimistic-locking`,
+  `sdk:error-handling`, `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
+  `sdk:bucket-management`, at minimum) before running any further Java SDK
+  rounds — see round 4's note in `reconciliation.md`.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  three rounds.
+  four rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- If this looks worth pursuing past a POC: three axes of stress test have now
-  been run (cross-component, cross-deployment-model, cross-product-family). The
-  next natural one is scale itself — a real batch against the ~3,900-page
-  "latest version only" corpus from `../ingest-cost-and-time-estimate.md`, now
-  that the extraction/reconcile/promote pipeline has been exercised on all three
-  axes it's likely to meet at that size.
+- If this looks worth pursuing past a POC: four axes of stress test have now
+  been run (cross-component, cross-deployment-model, cross-product-family, and
+  round 4's within-one-product-across-features). The next natural one is scale
+  itself — a real batch against the ~3,900-page "latest version only" corpus
+  from `../ingest-cost-and-time-estimate.md`, now that the
+  extraction/reconcile/promote pipeline has been exercised on Bedrock and on
+  every axis it's likely to meet at that size.

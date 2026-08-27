@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-6.6.1",
+  "label": "Couchbase Server 6.6.1",
+  "type": "a new entry in the version:server-* family, cited as the minimum server version required for Java SDK distributed transactions",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Resolves a tension the round-4 extraction explicitly flagged: version:server-6.5 and version:server-7.0 were described at round-1 promotion time as a 'closed vocabulary... pre-minted before extraction began.' Reconciliation reads that framing as 'these were the only versions seen so far, promoted without waiting for 2x recurrence because versions are low-cardinality and high-value' - not a literal ceiling on the family. version:sgw-* already has two sibling entries (sgw-3.0, sgw-2.x) within its own product family, and version:cbl-3.3.0's own promotion note says outright to 'expect more as more CBL pages are processed' - both establish that per-product version families are meant to grow as new versions are encountered in evidence, not stay fixed at whatever was pre-minted first. version:server-* extending the same way for a real, differently-scoped minimum-version fact (6.6.1 postdates 6.5 and carries different guarantees) is consistent with that pattern, not an exception to it. See reconciliation.md round 4 for the full discussion."
+}

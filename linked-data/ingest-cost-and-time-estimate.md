@@ -127,6 +127,89 @@ agentic" (~3.4x) is comparable in size to the gap between Sonnet 5 and Fable 5 a
 a fixed architecture. Both are worth deciding deliberately; neither should be
 assumed.
 
+## Bedrock migration — tooling and cost notes (small trial, 2026-08-27)
+
+The host environment running this pipeline moved from direct Anthropic API
+access to Amazon Bedrock, for cost management. Before resuming ontology work
+at any real scale, a deliberately small (3-page) trial re-ran the same
+extract → reconcile pipeline unchanged, specifically to check two things: does
+anything in the tool surface break, and how should the cost figures above be
+read differently on Bedrock. See `poc/reconciliation.md`'s round 4 section for
+the ontology findings from the same trial — this section covers only
+tooling/cost.
+
+**Tool availability: no change observed.** Extraction, validation, and
+reconciliation ran identically to prior rounds — subagent dispatch, file
+read/write, and the reconciliation script all behaved the same as on direct
+API access, with no failures or unusual output. Checked against Bedrock's
+documented feature-availability table (a third-party reference, not Couchbase
+or Anthropic first-party): the things Bedrock genuinely doesn't support
+(Anthropic's server-hosted web-search/web-fetch/code-execution tool *types*,
+the Message Batches API, the Files API, the Models API, the MCP connector,
+Managed Agents) are all things this pipeline never used in the first place —
+it runs entirely on the host harness's own tools (subagent dispatch, file
+read/write), not on those Anthropic API surfaces. The two things this pipeline
+actually depends on — tool use and prompt caching (used implicitly, via the
+running term registry carried forward in each extraction prompt) — are both
+fully supported on Bedrock. One caveat worth carrying forward if this is ever
+re-verified independently: Bedrock's *legacy* integration path (models Opus
+4.6 and earlier) rejects automatic top-level cache_control and requires
+explicit breakpoints instead — a constraint on how a caller structures cache
+control, not a loss of caching itself, and one this harness's current model
+tier isn't affected by.
+
+**Token usage from the trial:** 62,167 tokens across the 3-page batch (one
+subagent, sequential-with-registry-reuse-checking) — about 20,700 tokens/page,
+noticeably above round 2's ~11,700 tokens/page benchmark. Plausibly a content-
+density effect (this batch introduced four new structural concepts with
+detailed disambiguation notes, versus round 2's largely single-statement CRUD
+pages) rather than a Bedrock effect — a 3-page sample can't separate the two,
+and doing so would need a same-content before/after comparison this trial
+didn't attempt. Wall-clock: about 10 minutes for the 3-page batch, one agent,
+no parallelism attempted at this scale (consistent with round 2/3's finding
+that wall-clock scales with concurrency actually used, not page count alone).
+
+**Pricing: confirmed at parity with first-party, for this model.** An initial
+automated pricing-page lookup during this trial surfaced rates for Claude 3.5
+Sonnet / 3.5 Sonnet v2 (listed under "Public Extended Access") rather than the
+current-generation model this pipeline runs — a lookup miss, not a gap in
+Bedrock's pricing page. A direct read of the actual page's Claude Sonnet 5 row
+(confirmed by a human, 2026-08-27) gives:
+
+| | Input | Output | Batch input | Batch output | Cache write (5m) | Cache write (1h) | Cache read |
+|---|---|---|---|---|---|---|---|
+| Bedrock, Claude Sonnet 5 | $2.00 /1M | $10.00 /1M | N/A | N/A | $2.50 /1M | $4.00 /1M | $0.20 /1M |
+
+Base input/output pricing is **identical to the first-party intro rate**
+already used throughout this document's tables ($2/$10 per 1M) — so every
+dollar figure above already applies to Bedrock for this model, no rework
+needed. Cache pricing follows the standard Anthropic ratios (write ≈1.25x base
+for a 5-minute cache, ≈2x for a 1-hour cache; read ≈0.1x base) rather than
+some Bedrock-specific markup — good news given this pipeline's
+registry-carry-forward design is exactly the repeated-prefix workload prompt
+caching is built for. One thing to watch, not yet resolved: the first-party
+$2/$10 rate is explicitly an *introductory* rate "through 2026-08-31" (four
+days from this trial) — whether Bedrock's matching rate rises in step after
+that date, or is a separate, standing Bedrock rate that happens to currently
+equal it, isn't known from this lookup; worth rechecking after that date
+rather than assuming it stays at $2/$10 indefinitely.
+
+**Batch inference not yet available for this model.** Both batch columns read
+N/A for Claude Sonnet 5 specifically, even though Bedrock's native
+batch-inference discount (~50% off on-demand) exists for other models on the
+platform, as a mechanism separate from Anthropic's Message Batches API (which
+isn't available on Bedrock at all, for any model). Moot for the cost figures
+in this document either way — they were always derived from live agentic
+token usage, never from a batch call — but worth knowing before treating batch
+inference as an available cost lever for a future large-scale run on this
+model.
+
+**Bottom line for this section:** the architecture holds up unchanged on
+Bedrock, and the migration introduces no cost surprise for Sonnet 5 — pricing
+matches the first-party rate this document was already built on. The one open
+question is durability of that rate past 2026-08-31, not whether Bedrock costs
+more today.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

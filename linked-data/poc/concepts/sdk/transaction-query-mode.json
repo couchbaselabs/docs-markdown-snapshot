@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-query-mode",
+  "label": "Query Mode (Java SDK transactions)",
+  "type": "once a transaction executes any SQL++ query statement, that query and every subsequent key-value operation in the same transaction attempt execute under the user's query permissions rather than their data permissions",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual 2-file recurrence bar for semantic significance - one of the two behaviors the round-4 extraction cited as having 'no per-operation analogue at all' in its cross_component_finding, and directly answers a permissions-scope competency question no existing relation covers.",
+  "note": "A mid-flow permission-scope switch triggered by operation mixing within a single transaction attempt. Query permissions and data permissions may differ, which the source page flags as a source of unexpected results. Object of the minted predicate triggersPermissionModeChange, itself still extraction-layer only (recurrence 1) - watchlisted alongside this concept, see reconciliation.md round 4."
+}
