@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/eventing/eventing-statistics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-statistics.md",
+  "concepts": [
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:deployment-statistic", "label": "Deployment Statistic (success/failure/timeout/backlog)", "reused_or_minted": "minted - a four-value closed set of per-Function runtime counters, distinct from the eventing_* Prometheus metric names catalogued in cloud/metrics-reference/eventing-service-metrics.json (this page's counters are UI-surfaced, per-Function, human-facing values, not the metrics-endpoint catalog)" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "usesEnum", "object": "eventing:deployment-statistic", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "The following key metrics or Deployment Statistics are updated every 10 seconds by default and displayed as numeric values:" },
+    { "subject": "eventing:deployment-statistic", "predicate": "seeAlso", "object": "cloud/metrics-reference/eventing-service-metrics", "reused_or_minted_predicate": "conceptual cross-reference (not a structural markdown link on this page - no such link exists here, but the same 'backlog' term is independently attested in the metrics-reference batch)", "evidence": "**backlog** \\- displays the number of mutations waiting to be processed by the function." }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole / requiresPrivilege", "finding": "This is a genuinely thin reference page - four bullet definitions and one UI-navigation sentence, no access-control content at all. Confirms the round setup's prediction that most of this batch's siblings (individual handler pages) would be thin; this one reference page fits the same profile." },
+  "cross_component_finding": "The 'backlog' statistic recurs verbatim, as a named first-class concept (not just this page's coinage), across eventing-faq.json, eventing-timers.json, and troubleshooting-best-practices.json (all this batch) - 'Function backlog' is a genuinely recurring Eventing-specific operational term, not a one-off metric label." }

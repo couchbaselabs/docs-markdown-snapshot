@@ -1,0 +1,87 @@
+{
+  "page_id": "cloud/eventing/eventing-buckets-to-collections",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-buckets-to-collections.md",
+  "concepts": [
+    {
+      "candidate_id": "capella:bucket",
+      "label": "Bucket",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:scope",
+      "label": "Scope",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:collection",
+      "label": "Collection",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:default-scope-collection",
+      "label": "_default scope / _default collection",
+      "reused_or_minted": "minted - the automatically-created scope+collection pair that lets every pre-7.0 bucket keyspace resolve seamlessly under the Cluster/Bucket/Scope/Collection/Document model without migration"
+    },
+    {
+      "candidate_id": "eventing:bucket-to-collections-migration",
+      "label": "Bucket-to-collections migration",
+      "reused_or_minted": "minted - the pattern of using an Eventing Function as the mechanism to reorganize documents from a flat bucket (differentiated by a type field) into per-type collections"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage-collection",
+      "label": "Eventing Storage collection (housekeeping)",
+      "reused_or_minted": "minted - the metadata collection holding Function definitions, timers, and checkpoint documents; its residency/placement relative to the source bucket materially affects Eventing throughput"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "capella:bucket",
+      "predicate": "hasDefaultChild",
+      "object": "capella:default-scope-collection",
+      "reused_or_minted_predicate": "minted - verb phrase for the automatic-provisioning relationship; distinct from usesEnum since this is a structural default, not an enumerated value choice",
+      "evidence": "Every created bucket is automatically given a default scope, and within it, a default collection. Each is named **\\_default**."
+    },
+    {
+      "subject": "capella:default-scope-collection",
+      "predicate": "supportsMigrationPath",
+      "object": "capella:collection",
+      "reused_or_minted_predicate": "reused - minted in eventing-function-export.json",
+      "evidence": "This allows a simple seamless migration from a Cluster/Bucket/Document model to a Cluster/Bucket/Scope/Collection/Document model without concern to any reorganization."
+    },
+    {
+      "subject": "service:eventing-service",
+      "predicate": "enablesMigrationOf",
+      "object": "eventing:bucket-to-collections-migration",
+      "reused_or_minted_predicate": "minted - verb phrase specific to this page's central claim that Eventing is a data-reorganization tool, not just a reactive-processing engine; no existing predicate captures 'service performs a one-time structural migration'",
+      "evidence": "The Eventing Service can be used to quickly and efficiently migrate a bucket into a set of collections. An example scriptlet [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) has been provided to demonstrate the migration of the `beer-sample` data set from a bucket paradigm to a collection paradigm."
+    },
+    {
+      "subject": "eventing:eventing-storage-collection",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "capella:bucket",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If we put the put 'Eventing Storage' (in collections) in the same bucket as with data with non 100% residency the Evening performance can easily drop by a factor of five (5) or more."
+    },
+    {
+      "subject": "eventing:eventing-storage-collection",
+      "predicate": "requiresSetting",
+      "object": "capella:bucket",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Typically the overhead of the Eventing housekeeping area \"Eventing Storage\" is quite small, just 1024 documents per Function and occasional check point documents. However if Timers are used the size of this collection can grow to about 1K bytes x number of active timers (_for 1M active timers this is 1.5G bytes_). As such the enclosing bucket holding the 'Eventing Storage' needs to be sized appropriately."
+    },
+    {
+      "subject": "capella:collection",
+      "predicate": "seeAlso",
+      "object": "#manage:manage-buckets/create-bucket.adoc",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For complete details on how to set up your keyspaces refer to [creating buckets](#manage:manage-buckets/create-bucket.adoc) and [creating scopes and collections](#manage:manage-scopes-and-collections/manage-scopes-and-collections.add)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The two 'For complete details...refer to' links use unresolved AsciiDoc-style xref fragments ('#manage:manage-buckets/create-bucket.adoc', '#manage:manage-scopes-and-collections/manage-scopes-and-collections.add') rather than working Markdown relative links - these did not get converted during the adoc-to-md pipeline, unlike every other cross-reference in this batch."
+  },
+  "cross_component_finding": "This page directly answers the batch hypothesis: Eventing does not introduce a new structural primitive to interact with the collection/scope model - it fully adopts the existing Bucket/Scope/Collection/Document hierarchy, including the _default/_default fallback, and its only novel contribution is functional (using an Eventing Function's mutation-handling logic as a migration engine) rather than structural. The page also reveals a performance-sensitive placement concern unique to Eventing: co-locating the 'Eventing Storage' (housekeeping) collection in a low-residency bucket can degrade Eventing throughput by 5x or more, a consideration that doesn't apply to the Data/Query/Index Services in the same way described elsewhere in the registry.",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,63 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-docexpiry",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-docexpiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "capella:document-expiration",
+      "label": "Document expiration (TTL, lazily reaped)",
+      "reused_or_minted": "reused - minted in eventing-examples-delete-v-expiry.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:timer",
+      "predicate": "archivesBeforeExpiry",
+      "object": "capella:document-expiration",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-docarchive.json",
+      "evidence": "The Eventing Function calls a Timer, which executes a callback function before a document expires and retrieves a value from that document. This function then stores a document with the same key in a specified target collection."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "capella:document-expiration",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only processes for those documents that have a non-zero TTL"
+    },
+    {
+      "subject": "capella:document-expiration",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/insert#insert-document-with-expiration",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For information about setting a document's expiration time with SQL++, see [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/reference/command-line-tools",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information about the `cbc` tool, see [Command Line Tools](../reference/command-line-tools.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The 'create a test document with expiration' prerequisite offers four equally-weighted paths (SQL++ UPSERT with an options clause, the `cbc` KV CLI client, a Python SDK script, a Java SDK script) with full platform-specific install paths for `cbc` on Linux/macOS/Windows - none of which are Capella-specific; the Linux path (`/opt/couchbase/bin/cbc`) and Windows path (`C:\\Program Files\\Couchbase\\Server\\bin\\cbc`) are self-managed Couchbase Server paths reused verbatim inside a Capella (`cloud/eventing/`) doc page, the same self-managed-content-bleed pattern the sibling batch already flagged for eventing-function-export.md."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page cites a specific historical defect by ticket ID for a macOS client library issue: 'If you get the error `dyld: Library not loaded` when running `cbc` on macOS, follow the instructions on the Jira ticket [MB-37768](https://issues.couchbase.com/browse/MB-37768).' This is a durable dependency on an external bug tracker rather than a self-contained fix in the docs themselves - a risk if the ticket is ever closed/archived without the fix being folded back into this page."
+}

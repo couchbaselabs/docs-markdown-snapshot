@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/curl-function",
+  "label": "curl() function call (Eventing)",
+  "type": "calling out to an external HTTP service from a handler",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Consolidates two independent mints ('eventing:curl-call' and 'eventing:curl-function'). Requires a pre-configured eventing:url-alias-binding pointing at the target URL - the access-control mechanism is an allow-list binding, not a role or privilege."
+}

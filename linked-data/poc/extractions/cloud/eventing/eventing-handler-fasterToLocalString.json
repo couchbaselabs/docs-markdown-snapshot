@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-fasterToLocalString",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-fasterToLocalString.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS benchmark/code-sample page: a hand-rolled faster alternative to Date.prototype.toLocaleString, benchmarked at 708x (Couchbase 6.6.0) and 177x (Couchbase 7.0.0) faster than the built-in v8 runner within an Eventing handler. The version numbers here are runtime-performance data points, not the recurring 'server-version-string citation' boilerplate anomaly (though that same 'Version 7.1+/7.0+/6.X' settings-comment block also appears on this page, unchanged). No genuinely new Eventing-specific mechanism - purely a generic JavaScript performance technique."
+  }
+}

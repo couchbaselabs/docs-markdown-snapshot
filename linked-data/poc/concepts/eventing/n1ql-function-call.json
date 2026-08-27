@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/n1ql-function-call",
+  "label": "N1QL() function call (Eventing)",
+  "type": "the N1QL(stmt, params, opts) call form for running SQL++ from inside a handler - distinct from embedding SQL++ inline as JS syntax",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The one genuine new constraint this round found calling N1QL from a handler introduces (answering the round's specific hypothesis on this point): the returned result is a streamed cursor the handler must explicitly close() - no standalone SQL++ statement-reference page states anything like this, since a single query/response round-trip has no equivalent resource to release. Also: inline SQL++ is explicitly prohibited from updating a handler's own source bucket (to prevent infinite-recursion loops) - N1QL() must be used instead in that specific case, captured via the reused mustUseInsteadWhen."
+}

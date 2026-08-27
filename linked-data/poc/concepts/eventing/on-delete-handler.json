@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/on-delete-handler",
+  "label": "OnDelete() handler",
+  "type": "the entry point fired on document delete/expiry",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Consolidates two independent mints ('eventing:ondelete-handler' and 'eventing:on-delete-handler'). A real, recurring API asymmetry with eventing:on-update-handler: OnDelete() does NOT supply the deleted document's body, forcing workarounds (a proxy-doc pattern in one example, KEY-prefix filtering instead of a doc.type field check in another) - confirmed independently in two different handler pages this round via the minted predicate omitsMutationBody."
+}

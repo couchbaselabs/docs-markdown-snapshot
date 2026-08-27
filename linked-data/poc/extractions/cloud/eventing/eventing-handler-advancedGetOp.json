@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedGetOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedGetOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:lcb-key-enoent-error",
+      "label": "LCB_KEY_ENOENT error",
+      "reused_or_minted": "reused - minted in eventing-handler-advancedDeleteOp.json (same batch round); recurs verbatim here for a plain Advanced GET on a missing key"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:lcb-key-enoent-error",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors#advanced-get-op",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced GET Operation](eventing-advanced-keyspace-accessors.md#advanced-get-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure code-sample page demonstrating the Advanced GET accessor operation (`couchbase.get`) reading an existing key and a missing key - the operation itself and its LCB_KEY_ENOENT error are already covered by advancedDeleteOp.json in this same batch. The usual 'Version 7.1+/7.0+/6.6.1' server-version-string code-comment ladder recurs - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

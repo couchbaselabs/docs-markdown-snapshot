@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-genericFlatten",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-genericFlatten.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a generic recursive document-flattening utility (nested objects/arrays -> underscore-joined flat keys) writing to a separate destination collection, with a matching OnDelete to keep the two in sync. Generic JS/data-transform technique in the standard handler boilerplate - no new Eventing mechanism to mint."
+  },
+  "cross_product_finding": "The destination collection this handler writes to is described as a hand-off point to other Couchbase/cloud infrastructure outside Eventing itself: \"The destination collection can be shared (or replicated via XCDR to a business partner - maybe to AWS, GCP, or Azure).\" This names XCDR and third-party cloud providers (AWS, GCP, Azure) as downstream consumers of Eventing output, but doesn't describe any Eventing-specific mechanism for that hand-off - it's a suggested pattern, not a documented feature."
+}

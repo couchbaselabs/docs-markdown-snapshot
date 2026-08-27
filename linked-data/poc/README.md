@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Seven rounds so far, each a deliberate escalation:
+automating it. Eight rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -40,6 +40,12 @@ automating it. Seven rounds so far, each a deliberate escalation:
    Found the identical undercounting lesson a third time, this round on the
    privilege catalog: `cluster-rbac.md`'s own table lists 25 privileges, not
    the 11 the registry had going in.
+8. **67 pages, `cloud/eventing/`** — Capella's Eventing feature (JavaScript
+   functions reacting to KV mutations), genuinely new territory. The cleanest
+   negative result so far: unlike every prior "new feature" test, Eventing
+   needed no new structural layer at all — it slots into existing vocabulary
+   everywhere, with a fifth "role" and a real management-vs-runtime
+   access-control split as its only genuine additions.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -47,7 +53,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-405 pages total:
+472 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -85,6 +91,10 @@ time/cost projections and how they held up against the round-2 run's real number
   `cluster-rbac.md`, per-service management pages, XDCR, and monitoring/
   alerting. Leaves `eventing/` (67 pages) and `guides/` (33) as the last
   untouched `cloud/` territory.
+- **67 more, `cloud/eventing/`** — Capella's Eventing feature: core concepts,
+  RBAC, function management, worked examples, and ~40 individual JS handler
+  code-sample pages. Leaves `guides/` (33 pages) as the last untouched
+  `cloud/` territory.
 
 ## Identifiers
 
@@ -142,7 +152,12 @@ from "still in `extractions/`."
   the Indexes UI's own ready/pause/warmup enum, vs. the SQL++ DDL `index-state`
   lifecycle enum — same subject, two unreconciled vocabularies), and finally
   promoted round 5's `monitoring:*` family, which had been narratively
-  described as promoted at the time but never actually filed. Note: round 3's Java SDK
+  described as promoted at the time but never actually filed; round 8 added
+  a whole `eventing:` namespace for Capella's Eventing feature (function,
+  binding, timer, lifecycle state, the OnUpdate/OnDelete handler pair) and a
+  fifth thing called "role" (`role:eventing-full-admin`) — but, notably,
+  *no* new access-control shape, unlike every genuinely-new-feature round
+  before it. Note: round 3's Java SDK
   batch (12 pages) was reconciled only at the narrative level and never
   promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
   `sdk:error-handling`, and others are reused across round 3/4 extraction
@@ -168,7 +183,10 @@ from "still in `extractions/`."
   and `gatedByBillingPlan` — the last one closing a real gap: round 2's own
   narrative had described it as promoted, but no file was ever written for it
   until round 6 needed to reuse it; round 7 added `triggersAlert`, closing the
-  *same* gap a third time (this one self-inflicted in round 5). Kept separate from `concepts/` on purpose —
+  *same* gap a third time (this one self-inflicted in round 5); round 8 added
+  `requiresExplicitClose` (calling N1QL from an Eventing handler returns a
+  cursor the handler must free) and `omitsMutationBody` (a real API asymmetry
+  between Eventing's OnUpdate/OnDelete handlers). Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -178,8 +196,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 32 entries
-  as of round 7, which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 33 entries
+  as of round 8, which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -436,6 +454,38 @@ also surfaced a real finding:**
     correction found while doing so (event severity and Health Advisor
     severity were conflated under one enum; they're two).
 
+**Round 8 (67 pages, `cloud/eventing/`) — the cleanest negative result yet:**
+
+29. **A brand-new, complex feature needed no new structural layer at all.**
+    Every prior genuinely-new-feature test found something the existing
+    vocabulary couldn't express (Sync Gateway's channels, the Java SDK's
+    transactions). Eventing is the first to resolve the other way — function
+    lifecycle matches an existing enum shape, Timers are explicitly "limited
+    asynchrony" reusing the parent Function's own vocabulary, and every
+    documented "unsupported feature" resolves back to an existing construct.
+30. **The management-plane privilege confirmed the same "nothing new" shape.**
+    `eventing-rbac.md` showed the Eventing-Manage privilege (round 7's only
+    evidence for it) is never granted alone — always bundled as "Data Read
+    and Eventing Manage," the identical compound-privilege pattern
+    `cluster-rbac.md` already showed elsewhere.
+31. **But the runtime access-control layer is genuinely new** —
+    `eventing:binding` (bucket-alias/URL-alias) gates what a deployed
+    function can actually touch, entirely separate from who can create or
+    deploy it. Two distinct gating layers for one feature: identity/management
+    vs. resource access.
+32. **Two real API constraints, found reading the handler examples closely.**
+    Calling `N1QL()` from a handler returns a cursor that must be explicitly
+    closed — no standalone SQL++ page has an equivalent. `OnDelete()` doesn't
+    supply the deleted document's body the way `OnUpdate()` does, confirmed
+    independently on two handler pages.
+33. **A fifth thing called "role."** `troubleshooting-best-practices.md`
+    names "Eventing Full Admin," a classic cluster-wide RBAC role introduced
+    at Server 7.0.0 — a third member of the `role:*` family (round 5) and a
+    fifth "role" concept overall.
+34. **A third variant of the unadapted-content pattern** — this one by
+    naming rather than version string or edition badge: `eventing-function-export.md`
+    says "Couchbase Web Console" where a Capella page should say "Capella UI."
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -448,8 +498,8 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (32 entries) —
-  most valuably the four-way "role" collision, the Sync Gateway/Capella
+- Get a subject-matter expert to work through `docs-issues/` (33 entries) —
+  most valuably the five-way "role" collision, the Sync Gateway/Capella
   access-control questions, round 5's `merge`/`nest` privilege-naming
   inconsistency (does "Query Select" = "Query Read"?), round 6's role-catalog
   loose ends (is `data-writer` the same role as the originally-mangled
@@ -472,21 +522,26 @@ document.
   times (rounds 2, 3, and 5) despite the reconciler knowing to watch for it by
   round 5. See round 7's method-notes section.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  seven rounds.
+  eight rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- Run first-contact batches on `cloud/eventing/` (67 pages) and `cloud/guides/`
-  (33) — the last untouched territory in `cloud/`, deliberately deferred
-  rather than folded into earlier rounds as filler.
-- If this looks worth pursuing past a POC: seven axes of stress test have now
+- Run a first-contact batch on `cloud/guides/` (33 pages) — the last
+  untouched territory in `cloud/`.
+- Resolve the `eventing:url-alias-binding`'s "no auth" open question (its
+  settings table implies other auth modes exist for this binding type; none
+  are documented on the pages read in round 8) and the
+  `capella:index-ui-status`/`index-state` collision from round 7, if this
+  registry is ever consumed downstream.
+- If this looks worth pursuing past a POC: eight axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
-  round 4's within-one-product-across-features, and round 5/6/7's
-  three-in-a-row confirmation that the same partial-sampling lesson recurs on
-  successive vocabularies of the same product). The next natural one is
-  scale itself — a real batch against the ~3,900-page "latest version only"
-  corpus from `../ingest-cost-and-time-estimate.md`, now that the
-  extraction/reconcile/promote pipeline has been exercised on Bedrock, at
+  round 4's within-one-product-across-features, round 5/6/7's three-in-a-row
+  confirmation that the same partial-sampling lesson recurs on successive
+  vocabularies of the same product, and round 8's confirmation that a
+  genuinely new feature doesn't automatically need new structure). The next
+  natural one is scale itself — a real batch against the ~3,900-page "latest
+  version only" corpus from `../ingest-cost-and-time-estimate.md`, now that
+  the extraction/reconcile/promote pipeline has been exercised on Bedrock, at
   real (not just trial) scale, and on every axis it's likely to meet at that
   size.

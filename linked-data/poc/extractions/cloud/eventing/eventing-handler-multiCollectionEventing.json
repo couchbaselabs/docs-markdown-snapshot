@@ -1,0 +1,68 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-multiCollectionEventing",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-multiCollectionEventing.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:bucket-binding",
+      "label": "Bucket binding (with Read Only / Read and Write permission)",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "reused_or_minted": "reused - minted in eventing-advanced-keyspace-accessors.json (sibling batch, same round); this page is a worked example of the couchbase.get/upsert/replace/delete/insert operator family with an explicit keyspace argument"
+    },
+    {
+      "candidate_id": "eventing:meta-keyspace-parameter",
+      "label": "meta.keyspace parameter",
+      "reused_or_minted": "reused - minted in eventing-advanced-keyspace-accessors.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "capella:scope",
+      "label": "Scope",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "usesEnum",
+      "object": "capella:scope",
+      "reused_or_minted_predicate": "reused - minted in eventing-advanced-keyspace-accessors.json",
+      "evidence": "Demonstrates how to access the Data Service when using `*` wildcard bindings"
+    },
+    {
+      "subject": "eventing:bucket-binding",
+      "predicate": "usesEnum",
+      "object": "capella:scope",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\"bucket alias\", \"alias_ro\",      \"source.myscope.*\",            \"read only\""
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "eventing:meta-keyspace-parameter",
+      "reused_or_minted_predicate": "reused - minted in eventing-advanced-keyspace-accessors.json",
+      "evidence": "Highlights the use of `meta.keyspace`"
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Eventing Functions that Listen to Multiple Collections](eventing-advanced-keyspace-accessors.md#multiple-collection-functions)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This worked example does not introduce anything beyond what the sibling page eventing-advanced-keyspace-accessors.json already registers: wildcard bucket-alias bindings scoped to 'bucket.scope.*', the meta.keyspace parameter, and the Advanced Keyspace Accessor operator family (couchbase.get/upsert/replace/delete/insert taking an explicit keyspace argument) are the exact same primitives used here. No new constraint or primitive specific to 'multi-collection' Eventing as such was found."
+  },
+  "cross_component_finding": "Answering the batch hypothesis directly: multi-collection Eventing does NOT introduce a new mechanism. It is the worked example of eventing:advanced-keyspace-accessor + eventing:meta-keyspace-parameter (already reconciled from eventing-advanced-keyspace-accessors.json this round) applied via a wildcard 'bucket.scope.*' bucket-alias binding. The one operational nuance this page adds is a code comment showing *why* the mechanism is required: 'Protect against reading from something outside the alias' - a wildcard-scoped alias can otherwise be used to read/write any collection in that scope, so the handler must guard on meta.keyspace.scope_name/collection_name before acting.",
+  "cross_product_finding": "n/a"
+}

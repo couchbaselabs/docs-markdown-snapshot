@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedIncrementOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedIncrementOp.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure code-sample page demonstrating the Advanced INCREMENT accessor operation (`couchbase.increment`), the mirror image of advancedDecrementOp.json in this same batch - no new mechanism, constraint, or error-handling pattern beyond what's captured there. The line 'Counts the mutations subject to DCP deduplication' repeats verbatim (mirrored) from advancedDecrementOp.json - standard DCP behavior, not Eventing-specific, so nothing was minted. The usual 'Version 7.1+/7.0+/6.6.1' server-version-string code-comment ladder recurs - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

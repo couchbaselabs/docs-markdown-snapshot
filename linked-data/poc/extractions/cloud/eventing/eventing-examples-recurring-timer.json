@@ -1,0 +1,73 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-recurring-timer",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-recurring-timer.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:recurring-timer-pattern",
+      "label": "Recurring Timer (self-rearming)",
+      "reused_or_minted": "minted - there is no dedicated 'recurring Timer' API; a Timer callback recreates a new one-shot eventing:timer for itself every time it fires, so recurrence is a hand-written self-rearm loop built on the one-shot Timer primitive, not a distinct scheduler construct"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:control-document",
+      "predicate": "requiresSetting",
+      "object": "eventing:recurring-timer-pattern",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Timer callback function relies on a control document which, if mutated, controls whether a recurring Timer is created or cancelled."
+    },
+    {
+      "subject": "eventing:timer-callback",
+      "predicate": "reschedulesSelf",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "minted - verb phrase for a Timer callback that creates a new Timer referencing itself before or while doing its own work, producing indefinite recurrence out of the one-shot Timer primitive",
+      "evidence": "Re-executes the timer ASAP to ensure the Timer keeps running in case  \n    // errors or script timeouts happen in later \"recurring work\""
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "triggersTimerCancellation",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-cancel-overwrite-timer.json",
+      "evidence": "This has no effect if the Timer created has already fired."
+    },
+    {
+      "subject": "eventing:recurring-timer-pattern",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:control-document",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If `active` is true, the Eventing Function creates a series of Timers that fire 30 seconds into the future. If `active` is false, the Eventing Function cancels any existing Timers."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The rearm call happens at the top of the callback ('Re-executes the timer ASAP') specifically so the recurrence survives errors or script timeouts in the callback's own later logic - meaning the recurring-Timer pattern is explicitly documented as best-effort/self-healing against callback failure, not as a guaranteed periodic scheduler; there is no retry-count limit, backoff, or failure-alerting concept associated with it."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-basicBinaryKV",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-basicBinaryKV.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page with no outbound markdown links. Demonstrates that the existing bucket-alias accessor mechanism (`src_col[key] = value`) transparently marshals/unmarshals binary (ArrayBuffer/Uint8Array) documents, and that a resulting OnUpdate mutation carries `meta.datatype === \"binary\"`. This is the existing bucket-accessor mechanism applied to a different document datatype, not a new mechanism in its own right. Left concepts/relations empty per batch guidance."
+  }
+}

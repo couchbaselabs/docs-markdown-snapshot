@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/function",
+  "label": "Eventing Function",
+  "type": "the core Eventing primitive - a JavaScript handler reacting to KV mutations, with its own lifecycle, bindings, and scope",
+  "promoted": true,
+  "recurrence": 22,
+  "note": "Headline finding of round 8: Eventing needs no new structural layer the existing vocabulary can't express - no Sync-Gateway-style inversion, no Java-SDK-transactions-style concurrency primitive. Every 'unsupported feature' (no global state, no asynchrony beyond Timers, no browser extensions) resolves back to an existing Eventing construct rather than needing a new one. See reconciliation.md round 8."
+}

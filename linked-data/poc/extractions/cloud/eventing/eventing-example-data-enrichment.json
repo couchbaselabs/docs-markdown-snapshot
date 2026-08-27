@@ -1,0 +1,75 @@
+{
+  "page_id": "cloud/eventing/eventing-example-data-enrichment",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-example-data-enrichment.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused - minted in add-eventing-functions.json (sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "minted - the mutation-triggered JavaScript entry point (`function OnUpdate(doc, meta) {...}`) that fires on document creation/mutation in the Listen to Location keyspace; the core worked-example primitive this whole batch is built on"
+    },
+    {
+      "candidate_id": "eventing:bucket-binding",
+      "label": "Bucket binding (with Read Only / Read and Write permission)",
+      "reused_or_minted": "minted - a specific sub-type of the sibling batch's eventing:binding concept; a Function-scoped alias bound to a bucket/scope/collection, gated to Read Only or Read and Write, which is what makes cross-collection writes from a handler possible"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage keyspace",
+      "reused_or_minted": "reused - minted in add-eventing-functions.json"
+    },
+    {
+      "candidate_id": "capella:collection",
+      "label": "Collection",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "listensTo",
+      "object": "capella:collection",
+      "reused_or_minted_predicate": "minted - verb phrase for a handler's binding to a source keyspace's mutation stream; distinct from dependsOnService (service-level) and requiresSetting (config field)",
+      "evidence": "The `OnUpdate` JavaScript handler listens to mutations or data changes within a specified source collection."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "writesToBinding",
+      "object": "eventing:bucket-binding",
+      "reused_or_minted_predicate": "minted - verb phrase for a handler mutating a keyspace through a bound alias rather than its own listened-to collection; captures the cross-collection fan-out pattern this page demonstrates",
+      "evidence": "tgt[meta.id]=doc;"
+    },
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "prohibitsMutationWhileDeployed",
+      "object": "eventing:function",
+      "reused_or_minted_predicate": "minted - verb phrase for a hard constraint on the metadata keyspace during the Function's deployed lifecycle state; distinct from behavesDifferentlyUnder because this is a prohibition, not a change in behavior",
+      "evidence": "Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state."
+    },
+    {
+      "subject": "eventing:bucket-binding",
+      "predicate": "requiresSetting",
+      "object": "eventing:eventing-storage",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The keyspace `rr100.eventing.metadata` under **Eventing Storage**."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/clusters/data-service/manage-buckets",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole",
+    "finding": "This worked example walks through creating, deploying, and testing an Eventing Function end to end (buckets, bindings, JavaScript, deploy, test) and names no privilege, capella-role, or credential type gate anywhere - consistent with the three core lifecycle pages in the sibling batch (add/deploy/manage), which found the same absence."
+  },
+  "cross_component_finding": "The two examples on this page (create-in-target vs update-in-source) are distinguished purely by which bucket binding permission is Read Only vs Read and Write and which alias the handler writes back into (`tgt[meta.id]=doc` vs `src[meta.id]=doc`) - no separate concept or setting exists for 'enrich-in-place' vs 'enrich-into-new-collection'; it's the same eventing:on-update-handler primitive composed differently with the eventing:bucket-binding permission model already established in add-eventing-functions.json.",
+  "cross_product_finding": "n/a"
+}

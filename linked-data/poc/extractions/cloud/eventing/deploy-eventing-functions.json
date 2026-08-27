@@ -1,0 +1,51 @@
+{
+  "page_id": "cloud/eventing/deploy-eventing-functions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/deploy-eventing-functions.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused - minted in add-eventing-functions.json, this batch's first file"
+    },
+    {
+      "candidate_id": "eventing:deployed-state",
+      "label": "Deployed state",
+      "reused_or_minted": "minted - one of the Function lifecycle states (undeployed / deployed / paused) that gates which edits are permitted; distinct from privilege/role gates already in the registry, this is a resource-state gate"
+    },
+    {
+      "candidate_id": "eventing:undeployed-state",
+      "label": "Undeployed state",
+      "reused_or_minted": "minted - default state of a newly created Function; source code is editable only in this state or paused state"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "hasLifecycleState",
+      "object": "eventing:undeployed-state",
+      "reused_or_minted_predicate": "minted - verb phrase for the Function's state-machine membership; no existing predicate models resource lifecycle state",
+      "evidence": "When you add an Eventing Function to your cluster, the Function is saved in an undeployed state."
+    },
+    {
+      "subject": "eventing:deployed-state",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:function",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You cannot edit the JavaScript source code of a deployed Eventing Function."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/manage-eventing-functions",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "After you deploy Eventing Functions, you can [manage them](manage-eventing-functions.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole",
+    "finding": "As with add-eventing-functions.md, the deploy/undeploy UI flow (Data Tools > Eventing > More Options > Deploy/Undeploy) names no privilege, capella-role, or credential type gate. Deployment appears to be gated purely by Function lifecycle state (must be undeployed to deploy, must be deployed to undeploy) rather than by an access-control predicate documented on this page. This directly answers the batch hypothesis for this page: no Eventing-specific privilege or capella-role surfaces here - the only gate found is state-based, not access-control-based."
+  },
+  "cross_component_finding": "Deploying a Function is described as a multi-effect operation - 'Creates necessary metadata', 'Spawns worker processes', 'Calculates initial partitions', 'Initiates checkpointing of processed stream data' - none of which reference the collection/scope model directly; the metadata creation ties to the Eventing Storage keyspace set in add-eventing-functions.md rather than being described fresh here.",
+  "cross_product_finding": "n/a"
+}

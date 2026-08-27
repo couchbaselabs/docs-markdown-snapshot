@@ -1,0 +1,39 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-simpleFlatten",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-simpleFlatten.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "reused_or_minted": "reused - minted in eventing-examples-cascade-delete.json (sibling batch, same round)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-genericFlatten",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Refer to [genericFlatten](eventing-handler-genericFlatten.md) for a generic implementation."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:on-update-handler",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note since the document is not available during an OnDelete we will filter by KEY prefix starting with `\"tosync:\".*`. This is a hard coded implementation."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "n/a"
+  },
+  "cross_component_finding": "OnDelete's lack of document-body access forces this handler to fall back to KEY-prefix filtering ('tosync:') instead of the doc.type filter used by every OnUpdate handler in this batch - the same on-delete-handler/on-update-handler asymmetry already registered via the sibling delete-vs-expiry pages, now shown from a 'keep two collections in sync' angle rather than cascade-delete.",
+  "cross_product_finding": "Recurrence of the destination-collection/XCDR hand-off note seen elsewhere in this batch (redactSharedData) and in the sibling batch (genericFlatten): \"The \\\"destination\\\" collection can be shared (or replicated via XCDR to a business partner) too the cloud (AWS, Azure or GCP).\" Same pattern, not a new finding."
+}

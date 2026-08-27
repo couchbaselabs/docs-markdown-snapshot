@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedDecrementOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedDecrementOp.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure code-sample page demonstrating the Advanced DECREMENT accessor operation (`couchbase.decrement`), an operation category already covered by this batch's sibling get/insert/delete/increment pages - no new mechanism, constraint, or error-handling pattern is introduced. The line 'Counts down the mutations subject to DCP deduplication' describes standard DCP behavior, not an Eventing-specific mechanism, so nothing was minted. The usual 'Version 7.1+/7.0+/6.6.1' server-version-string code-comment ladder recurs - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

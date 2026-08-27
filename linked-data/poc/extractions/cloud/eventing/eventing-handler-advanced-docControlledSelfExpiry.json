@@ -1,0 +1,51 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advanced-docControlledSelfExpiry",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advanced-docControlledSelfExpiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:accessor-expiry-date-field",
+      "label": "Advanced Accessor expiry_date meta field",
+      "reused_or_minted": "minted - genuinely new mechanism: passing an `expiry_date` field inside the meta object of an Advanced Accessor call (e.g. `couchbase.replace(src_col,{\"id\":meta.id,\"expiry_date\":expiryDate},doc)`) to set a document's TTL directly, in place of N1QL()"
+    },
+    {
+      "candidate_id": "capella:bucket-max-ttl",
+      "label": "Bucket Max Time-to-Live (hard expiration ceiling)",
+      "reused_or_minted": "minted - no existing candidate found in registry slice; a bucket-level constraint enforced server-side across all mutation paths (SQL++, Eventing, SDK), not specific to any one of them"
+    },
+    {
+      "candidate_id": "eventing:n1ql-call",
+      "label": "N1QL() function call from within an Eventing handler",
+      "reused_or_minted": "minted - distinct from js-udf:n1ql-function-call (a different product surface, JavaScript UDFs); needed only as the comparison object for the mustUseInsteadWhen relation below"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:accessor-expiry-date-field",
+      "predicate": "mustUseInsteadWhen",
+      "object": "eventing:n1ql-call",
+      "reused_or_minted_predicate": "reused - existing predicate must-use-instead-when",
+      "evidence": "You can improve your function's performance by avoiding N1QL() and using `couchbase.replace(bucket_binding, meta, doc)` instead."
+    },
+    {
+      "subject": "capella:bucket-max-ttl",
+      "predicate": "enforcesHardLimitOn",
+      "object": "eventing:accessor-expiry-date-field",
+      "reused_or_minted_predicate": "minted - no existing predicate captures a server-side ceiling override on a document property regardless of mutation path",
+      "evidence": "If a `Bucket Max Time-to-Live` is set and specified in seconds, it's enforced as a hard upper limit. Any subsequent document mutation, whether by SQL++, Eventing, or a Couchbase SDK, results in the document having its expiration adjusted and set to the bucket's maximum TTL if the operation has: No TTL / A TTL of zero / A TTL greater than the bucket's TTL"
+    },
+    {
+      "subject": "eventing:accessor-expiry-date-field",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-docControlledSelfExpiry",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "There are two variants of this function available: a [Couchbase Server version 6.6 that relies on SQL++](eventing-handler-docControlledSelfExpiry.md), and a Couchbase Server version 6.6.1+/7.0.0+ that directly sets the expiration."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Server-version-string citations recur here ('Couchbase Server version 6.6', 'version 6.6.1+/7.0.0+', plus the usual 'Version 7.1+/7.0+/6.6.1' code-comment ladder) - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": "The Bucket Max TTL enforcement rule is stated as applying identically 'whether by SQL++, Eventing, or a Couchbase SDK' - a cross-component constraint that lives at the bucket/KV layer, not an Eventing-specific behavior, even though this page is the one demonstrating it via Eventing.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-eventing-unadapted-server-content",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "Self-managed Couchbase Server content bleeds into the Capella cloud/eventing/ tree in multiple places, distinct from the already-known server-version-string anomaly (this is about product/UI naming, not version numbers). eventing-function-export.md names 'Couchbase Web Console' where Capella pages should say 'Capella UI'. eventing-examples-docexpiry.md and eventing-examples-delete-v-expiry.md reference self-managed-only tooling (cbc CLI paths, 'Couchbase Server' phrasing) not applicable to Capella. Same likely root cause as the version-string and edition-badge anomalies already logged: server/ content adapted into cloud/ without full review.",
+  "about": ["cloud/eventing/eventing-function-export", "cloud/eventing/eventing-examples-docexpiry", "cloud/eventing/eventing-examples-delete-v-expiry"],
+  "foundDuring": "round 8 (67-page cloud/eventing/ sweep)",
+  "status": "open"
+}

@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Seven rounds so far, in order run. Each section covers one round; a single
+Eight rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -951,9 +951,114 @@ this volume, noted here rather than silently dropped, consistent with the
 
 ---
 
-## Cumulative verdict (all seven rounds)
+## Round 8 — `cloud/eventing/` (67 pages)
 
-The vocabulary has now been tested against seven genuinely different kinds
+Scope: all 67 pages of `cloud/eventing/` - Capella's Eventing feature
+(JavaScript functions reacting to KV mutations). Zero prior coverage;
+genuinely new territory, the last major untouched `cloud/` directory besides
+`guides/`. ~26 conceptual/example pages plus ~41 individual JS handler
+code-sample pages (each demonstrating one operation pattern - `advancedGetOp`,
+`curl-post`, `simpleTimer`, and so on). Run as 7 parallel batches - one for
+core concepts/RBAC, one for function management, one for worked examples, and
+four for the handler-sample pages. Total usage: ~735,000 tokens for 67 pages
+(~11,000 tokens/page, in line with this session's other waves), roughly $2.
+
+### Headline finding: Eventing needed no new structural layer - a clean negative result
+
+Every genuine "new product/feature" test this project has run so far found
+something the existing vocabulary couldn't express (Sync Gateway's channels,
+round 3; the Java SDK's transaction layer, round 4). Eventing is the first to
+resolve the other way: it slots cleanly into existing concepts everywhere.
+Function lifecycle (Deployed/Undeployed/Paused + transitory states) is
+structurally identical to `index-state`'s stable-plus-in-progress shape.
+Timers are explicitly documented as "limited asynchrony," reusing the parent
+Function's option set and lifecycle rather than introducing a new concurrency
+model. Every documented "unsupported feature" (no global state, no general
+async/await, no browser extensions) is explained by pointing back at an
+existing Eventing construct, not by needing a new one. `eventing-rbac.md`
+confirmed the same shape at the access-control layer: `privilege:capella-advanced-access-eventing-manage`
+(round 7's only evidence for this privilege) is never granted alone - every
+target-keyspace row bundles it as "Data Read and Eventing Manage," the exact
+compound-privilege shape `cluster-rbac.md` already showed for other
+privileges. No new Eventing-specific privilege or Capella role exists; access
+is gated purely by the existing `capella-role:*`/credential-type model. This
+round joins round 7's XDCR and Analytics findings as a third confirmation
+that "genuinely new feature" doesn't automatically mean "genuinely new
+access-control shape" - a real, recurring outcome now, not a one-off.
+
+### The real gating mechanism turned out to be a different layer entirely: bindings
+
+While the management-plane privilege model confirmed "nothing new," the
+*runtime* access-control layer is a genuinely distinct mechanism this round
+promoted for the first time: `eventing:binding` (and its
+`bucket-alias`/`url-alias` subtypes) is what actually gates what a deployed
+function can touch at runtime - which buckets/scopes/collections, which
+external URLs via `curl()` - entirely separate from the
+who-can-create/deploy/manage privilege gate. Two distinct gating layers for
+one feature, cleanly split by function (identity/management vs.
+resource-access), not a contradiction of the "nothing new" finding but a
+genuine addition to it.
+
+### Real constraints found reading the handler examples closely
+
+- **N1QL from a handler has one genuine new constraint**: the `N1QL()` call
+  returns a streamed cursor the handler must explicitly `.close()` - no
+  standalone SQL++ statement-reference page has an equivalent resource to
+  release. Also: inline SQL++ is prohibited from updating a handler's own
+  source bucket specifically to prevent infinite-recursion loops; `N1QL()`
+  must be used instead in that one case.
+- **A real API asymmetry**: `OnDelete()` doesn't supply the deleted
+  document's body the way `OnUpdate()` does - forcing workarounds (a
+  proxy-doc pattern in one example, KEY-prefix filtering instead of a
+  `doc.type` check in another) independently confirmed on two separate
+  handler pages.
+- **`self_recursion`**: a targeted option (not a new API surface) letting a
+  handler reinvoke itself to checkpoint-and-continue a long-running paginated
+  query - Eventing's version of a continuation pattern, expressed as a flag.
+- **Two clean negative results, from pages specifically read to test them**:
+  "cascade delete" has no native cross-document consistency/transactional
+  primitive at all - it's just an `OnDelete` handler synchronously firing a
+  second SQL++ statement, explicitly not transactional. The "high risk
+  patterns" page turned out to be about business risk (flagging fraudulent
+  transactions), not platform-level safety constraints - contrary to what it
+  was read to test, itself a useful result.
+- **A fifth thing called "role."** `troubleshooting-best-practices.md` names
+  a classic, cluster-wide RBAC role - "Eventing Full Admin," introduced at
+  Server 7.0.0 as a deliberate carve-out of Full Admin - joining
+  `role:full-administrator`/`local-user-security-administrator` (round 5) as
+  a third member of that specific classic-RBAC family, and a fifth distinct
+  "role" concept overall alongside `capella-role:*`/`rbac-role:role`/`sgw:role`.
+
+### A third variant of the unadapted-content pattern
+
+Distinct from the known version-string and edition-badge anomalies: several
+pages bleed self-managed Server content into the Capella tree by *naming* -
+`eventing-function-export.md` says "Couchbase Web Console" where a Capella
+page should say "Capella UI"; two example pages reference self-managed-only
+CLI tooling. Logged as `docs-issues/cloud-eventing-unadapted-server-content.json`.
+Same likely root cause as the other two variants, a different symptom.
+
+### What this round confirmed about the method itself
+
+- **A clean negative result is still a result.** Four rounds now
+  (round 3/Sync Gateway, round 4/Java SDK transactions positive; round
+  7/XDCR+Analytics, round 8/Eventing negative) have tested "does this new
+  feature need new structure," and the negative answer is exactly as
+  informative as the positive one once it's this consistent - it's evidence
+  about which *kinds* of features tend to need new vocabulary (concurrency
+  and identity models) versus which don't (features that compose existing
+  primitives with a new access-control wrapper).
+- **Splitting one feature's access control into "who can manage it" vs. "what
+  it can touch at runtime" is a real, recurring shape**, not specific to
+  Eventing - worth watching for on any future feature this project reads,
+  the same way the org-scope/project-scope role split (round 6) turned out to
+  be a repeatable pattern once named.
+
+---
+
+## Cumulative verdict (all eight rounds)
+
+The vocabulary has now been tested against eight genuinely different kinds
 of "does this still fit": a different component within one product
 (round 1), a different deployment model of the same underlying product
 (round 2), three entirely different products built by different teams
@@ -961,22 +1066,26 @@ of "does this still fit": a different component within one product
 per-operation model (round 4's transactions, within the Java SDK already
 covered in round 3), full coverage of a directory a prior round had only
 sampled a fifth of (round 5), the same partial-sampling lesson recurring on
-the same product's role catalog (round 6), and - round 7's own contribution -
-that exact lesson recurring a THIRD time, on a third vocabulary
-(privileges again, discovered by finally reading the one page that was
-always the authoritative source). At every step it kept doing the same
-useful thing: not just "the terms still fit," but surfacing something true
-and specific about each surface it touched - Capella's credential/role-based
-access model (round 2), Sync Gateway's two-disjoint-systems architecture and
-inverted channel-based access model (round 3), Couchbase Lite's own disjoint
-edition split (round 3), the Java SDK's transaction layer inverting
-CAS-based concurrency into transaction-membership checks (round 4), round 2's
-"simple credential-type pair" turning out to be a whole per-statement
-privilege catalog (round 5), `capella-role:*` turning out to be two catalogs
-silently flattened together since round 2 (round 6), and now `cluster-rbac.md`'s
-own 25-privilege table more than doubling what round 5 had already corrected
-(round 7). That's a stronger and more useful result than a vocabulary that
-merely never breaks.
+the same product's role catalog (round 6), that exact lesson recurring a
+third time on the privilege catalog (round 7), and - round 8's own
+contribution - the cleanest negative result so far: a brand-new, complex
+feature (Eventing) that turned out to need no new structural layer at all,
+just a fifth genuinely new "role," a real runtime-access-control split
+(management privilege vs. resource-binding), and a couple of concrete API
+constraints. At every step it kept doing the same useful thing: not just
+"the terms still fit," but surfacing something true and specific about each
+surface it touched - Capella's credential/role-based access model
+(round 2), Sync Gateway's two-disjoint-systems architecture and inverted
+channel-based access model (round 3), Couchbase Lite's own disjoint edition
+split (round 3), the Java SDK's transaction layer inverting CAS-based
+concurrency into transaction-membership checks (round 4), round 2's "simple
+credential-type pair" turning out to be a whole per-statement privilege
+catalog (round 5), `capella-role:*` turning out to be two catalogs silently
+flattened together since round 2 (round 6), `cluster-rbac.md`'s own
+25-privilege table more than doubling what round 5 had already corrected
+(round 7), and now Eventing confirming that "genuinely new feature" doesn't
+automatically mean "genuinely new access-control shape" (round 8). That's a
+stronger and more useful result than a vocabulary that merely never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,

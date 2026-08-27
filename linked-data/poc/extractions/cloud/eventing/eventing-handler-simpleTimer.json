@@ -1,0 +1,58 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-simpleTimer",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-simpleTimer.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json (sibling batch, same round)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "createsOnAction",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused - minted in manage-eventing-functions.json (sibling batch, same round)",
+      "evidence": "The result of processing the mutation is a Timer that will be executed approximately 30 seconds in the future."
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-cancel-overwrite-timer.json",
+      "evidence": "function TimerCallback(context) {\n    log('From TimerCallback: timer fired with context', context);"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-timers",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more details on Timers refer to [Timers](eventing-timers.md)."
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples-recurring-timer",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For an example of a recurring Timer refer to: [Recurring Timer](eventing-examples-recurring-timer.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "n/a"
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

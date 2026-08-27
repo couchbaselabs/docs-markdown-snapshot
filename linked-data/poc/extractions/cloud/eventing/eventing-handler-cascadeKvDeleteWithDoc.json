@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-cascadeKvDeleteWithDoc",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-cascadeKvDeleteWithDoc.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete Handler Entry Point",
+      "reused_or_minted": "reused (plausible) - the sibling core-primitives batch is expected to define Eventing's handler entry points (OnUpdate/OnDelete); using the same name here for the entry point this page's finding is about"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate Handler Entry Point",
+      "reused_or_minted": "reused (plausible) - same rationale; used here purely as the contrast point for the OnDelete finding below"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "omitsMutationBody",
+      "object": "eventing:on-update-handler",
+      "reused_or_minted_predicate": "minted - no existing predicate captures one handler entry point's signature lacking a parameter (the deleted document body) that a sibling entry point (OnUpdate) does receive; this page states the gap explicitly and demonstrates the documented workaround",
+      "evidence": "A work around for the fact that the OnDelete() entry point does not supply the actual document being deleted."
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-cascadeKvDeleteWithDoc",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples-cascade-delete",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This Scriptlet uses just KV unlike the similar example [Cascade Delete](eventing-examples-cascade-delete.md) which uses SQL++."
+    }
+  ],
+  "cross_component_finding": "The page's own contrast statement flags a cross-approach relationship worth noting for reconciliation: the same 'cascade delete' goal is solved here purely with KV/Data-Service operations, versus a sibling example page (eventing-examples-cascade-delete.md, not in this batch) that solves it with SQL++ - two documented alternative implementations of one pattern."
+}

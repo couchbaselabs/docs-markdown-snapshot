@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/eventing/eventing-function-export",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-function-export.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:function-export-format",
+      "label": "Function export format (JSON)",
+      "reused_or_minted": "minted - the portable serialization of a Function's definition, settings, and appcode used to move Functions between environments"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "exportsAs",
+      "object": "eventing:function-export-format",
+      "reused_or_minted_predicate": "minted - verb phrase for serialization relationship; distinct from seeAlso and createsOnAction since this is a data-format relationship, not a navigation link or lifecycle artifact",
+      "evidence": "Couchbase provides an option to export Functions as a JSON document."
+    },
+    {
+      "subject": "eventing:function-export-format",
+      "predicate": "supportsMigrationPath",
+      "object": "eventing:function",
+      "reused_or_minted_predicate": "minted - verb phrase for cross-environment portability; no existing predicate captures environment-to-environment porting",
+      "evidence": "Using the export and import options, you can port defined Functions from your Test-to-Test, Test-to-Production, or Production-to-Production environments."
+    },
+    {
+      "subject": "eventing:function-export-format",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-example-data-enrichment",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A sample exported file for the **case\\_2\\_enrich\\_ips** function demonstrated in the [Data Enrichment](eventing-example-data-enrichment.md) Example is shown below."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page instructs readers to 'refrain from editing an exported file before importing the file back to the Couchbase cluster' but describes no import UI flow or validation step - the import half of the round-trip is asserted but not documented on this page."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page's procedure text names 'the Couchbase Web Console > Eventing page' rather than the Capella UI used throughout every other page in this batch ('Access the Couchbase Web Console > Eventing page', 'Click on any function name to expand the UI'). This is Couchbase Server (self-managed) terminology bleeding into a page filed under cloud/eventing/, i.e. the Capella docs tree includes at least one page whose content was authored for/copied from the self-managed Server product without adaptation. Additionally, the sample exported JSON embeds a server-version-string citation in its 'version' field: \"version\":\"evt-6.5.0-4960-ee\" - this is the recurring server-version-string-citation anomaly flagged in prior rounds, appearing again here as literal example data rather than prose."
+}

@@ -1,0 +1,99 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-cancel-overwrite-timer",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-cancel-overwrite-timer.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (this batch)"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "minted - a scheduled one-shot callback created by `createTimer(callbackFn, fireDate, reference, context)`, addressable and cancellable by its `reference` (typically `meta.id`); the core scheduling primitive across this whole batch of pages"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "reused_or_minted": "minted - the JavaScript function (e.g. `DocTimerCallback`) invoked with the stored `context` when a Timer fires"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "reused_or_minted": "minted - a document whose mutation is used purely as an out-of-band signal (boolean flags like `needed_condition`, `cancel_timer`, `overwrite_timer`) to tell an OnUpdate handler whether to create, cancel, or overwrite a Timer, rather than representing business data itself"
+    },
+    {
+      "candidate_id": "eventing:bucket-binding",
+      "label": "Bucket binding",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage keyspace",
+      "reused_or_minted": "reused - minted in add-eventing-functions.json (sibling batch)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "eventing:control-document",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Timer callback function relies on a control document which, if mutated, controls whether a Timer is created, cancelled, or overwritten."
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "triggersTimerCreation",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "minted - verb phrase for a control-document mutation causing a new Timer to be scheduled",
+      "evidence": "If `needed_condition` is true but both `cancel_timer` and `overwrite_timer` are false, the Eventing Function creates a Timer that fires 60 seconds into the future."
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "triggersTimerCancellation",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "minted - verb phrase for a control-document mutation causing an existing Timer to be cancelled by matching reference",
+      "evidence": "If both `needed_condition` and `cancel_timer` are true, the Eventing Function cancels the existing Timer."
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "supersedesTimerReference",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "minted - verb phrase for the overwrite case, which is explicitly documented as cancel-then-recreate under the identical reference rather than a distinct atomic 'overwrite' primitive",
+      "evidence": "This is similar to cancelling a Timer that already exists, and then creating a new Timer that fires 60 seconds after it has been overwritten."
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "reused_or_minted_predicate": "minted - verb phrase for the fire-time invocation relationship between a Timer and its callback function",
+      "evidence": "When a Timer created by the Eventing Function fires, the callback `DocTimerCallback` executes and writes a new document in the target collection with the same key as the document in the source collection."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:control-document",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If both `cancel_timer` and `overwrite_timer` are true, the Eventing Function throws an error and nothing happens."
+    },
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "prohibitsMutationWhileDeployed",
+      "object": "eventing:function",
+      "reused_or_minted_predicate": "reused - minted in eventing-example-data-enrichment.json; recurs verbatim on this page",
+      "evidence": "Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The mutually-exclusive cancel/overwrite conditions are enforced entirely by hand-written if/else branching in the sample JavaScript (four explicit boolean-combination branches) - there is no dedicated Eventing API or settings-page control for 'timer conflict resolution'; the control-document pattern is a documentation convention, not a platform feature with its own name."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

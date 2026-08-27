@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/eventing/eventing-overview",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-overview.md",
+  "concepts": [
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "reused_or_minted": "reused - promoted from a metrics-page mention (round 6); this is the first page from Eventing's own docs to describe it directly" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "reused_or_minted": "reused - already minted this round in the sibling extraction cloud/eventing/add-eventing-functions.json; the core Eventing primitive" },
+    { "candidate_id": "eventing:function-lifecycle-state", "label": "Eventing Function lifecycle state (Deployed/Undeployed/Paused, plus transitory Deploying/Undeploying/Pausing)", "reused_or_minted": "minted - a closed status enum documented directly on this page's Function-table description; structurally the same shape as index-state (stable states plus in-progress transitional states), but a genuinely distinct subject (Function activation, not index build) so index-state itself is not reused" },
+    { "candidate_id": "capella:bucket", "label": "Bucket", "reused_or_minted": "reused - already minted in cloud/clusters/data-service/data-service.json and cloud/eventing/add-eventing-functions.json" },
+    { "candidate_id": "capella:scope", "label": "Scope", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:collection", "label": "Collection", "reused_or_minted": "reused" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - already minted in cloud/clusters/data-service/data-service.json" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - already minted in server/learn/services-and-indexes/services/query-service.json" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "usesEnum", "object": "eventing:function-lifecycle-state", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "The status of the Function. The status can be either in a stable state of **Deployed**, **Undeployed**, or **Paused**, or in a transitory state of **Deploying**, **Undeploying**, or **Pausing**." },
+    { "subject": "eventing:function", "predicate": "dependsOnService", "object": "service:data-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Integrate with the Data Service to:\n\n  * Read, write, and delete documents\n  * Work with Atomic Counters, CAS, and TTLS" },
+    { "subject": "eventing:function", "predicate": "dependsOnService", "object": "service:query-service", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Integrate with the Query Service to use inline SQL++ queries or statements" },
+    { "subject": "eventing:function", "predicate": "requiresSetting", "object": "capella:bucket", "reused_or_minted_predicate": "reused (requiresSetting) - the Function table's Source Bucket/Scope/Collection columns directly reuse the existing keyspace triad", "evidence": "Source Bucket     | The source bucket of the events or mutations." },
+    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/eventing-advanced-keyspace-accessors", "reused_or_minted_predicate": "structural markdown link", "evidence": "[Advanced Keyspace Accessors](eventing-advanced-keyspace-accessors.md)" },
+    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/troubleshooting-best-practices", "reused_or_minted_predicate": "structural markdown link", "evidence": "[Troubleshooting and Best Practices](troubleshooting-best-practices.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole", "finding": "This overview page names no privilege, role, or credential requirement anywhere - it is purely conceptual/UI-descriptive. All access-control detail is deferred to eventing-rbac.md (this batch), confirming the pattern seen across other Capella feature-overview pages of separating 'what this is' from 'who can use it'." },
+  "cross_component_finding": "The Function table's Source Bucket/Source Scope/Source Collection columns reuse capella:bucket/scope/collection directly rather than needing any Eventing-specific keyspace-naming primitive at the overview level - first direct confirmation, from Eventing's own docs, of the sibling batch file's claim that no new keyspace concept was needed for Eventing's configuration surface." }

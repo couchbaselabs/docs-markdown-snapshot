@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/bucket-alias-binding",
+  "label": "Bucket Alias Binding",
+  "type": "sibling of eventing:binding - grants a function access to a specific bucket/scope/collection, including wildcard scope aliases",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "A wildcard-scoped alias (e.g. source.myscope.*) can touch any collection in that scope unless the handler explicitly guards on meta.keyspace - a real safety nuance found reading the multi-collection Eventing example, not stated as a warning on the binding's own reference page."
+}

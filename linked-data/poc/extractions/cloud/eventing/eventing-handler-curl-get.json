@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-curl-get",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-curl-get.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:curl-call",
+      "label": "curl() call (Eventing handler outbound HTTP)",
+      "reused_or_minted": "minted - the built-in curl() JS function that lets an Eventing handler call out to an external REST endpoint; distinct from, but dependent on, the already-promoted eventing:binding concept. A sibling batch extracting eventing-curl-spec.md directly is likely minting the canonical id for this same mechanism - this id is chosen to be a plausible match for reconciliation."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:curl-call",
+      "predicate": "requiresSetting",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)."
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-curl-get",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples-rest-via-curl-get",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For a more complete example using this public REST endpoint (or to make your own service), refer to [External REST via cURL GET](eventing-examples-rest-via-curl-get.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / access-control",
+    "finding": "This page confirms the batch hypothesis's speculation directly: calling out to an external HTTP service from a handler is gated by a 'URL Alias' Binding (a sub-type of the already-known eventing:binding concept), which acts as the access-control/allow-list mechanism - a handler can only curl() a URL that has a pre-configured URL Alias binding pointing at it, and that binding's base URL constrains what curl() can reach. The settings comment block's binding row also carries a 'misc.' column value of 'no auth', implying other auth modes exist for URL Alias bindings, but none are named or explained on this page - only inferable from the column's existence."
+  }
+}

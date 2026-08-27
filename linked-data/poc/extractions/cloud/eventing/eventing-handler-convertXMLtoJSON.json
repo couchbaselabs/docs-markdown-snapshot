@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-convertXMLtoJSON",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-convertXMLtoJSON.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-convertXMLtoJSON",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-convertAdvXMLtoJSON",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you need to also convert XML attributes refer to **[convertAdvXMLtoJSON](eventing-handler-convertAdvXMLtoJSON.md)**"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: the simple (non-attribute) variant of the recursive XML-to-JSON regex parser, structurally identical in framing to eventing-handler-convertAdvXMLtoJSON.md (same 'Requires Eventing Storage...source collection' boilerplate, same checksum-guard pattern, same dual 6.6.0/7.0.0 implementation comment block). No genuinely new Eventing mechanism beyond what's already captured by eventing:function/eventing:binding."
+  }
+}

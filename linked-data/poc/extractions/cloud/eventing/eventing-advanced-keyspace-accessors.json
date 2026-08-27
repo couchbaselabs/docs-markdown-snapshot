@@ -1,0 +1,144 @@
+{
+  "page_id": "cloud/eventing/eventing-advanced-keyspace-accessors",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-advanced-keyspace-accessors.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "reused_or_minted": "minted - the couchbase.* operator family (get/insert/upsert/replace/delete/increment/decrement/touch/mutateIn/lookupIn) exposed to Eventing Function handlers for KV access beyond basic bucket-map syntax; a genuinely new structural primitive family specific to Eventing's JavaScript runtime"
+    },
+    {
+      "candidate_id": "eventing:mutatein-operation",
+      "label": "Sub-Document MUTATEIN Operation",
+      "reused_or_minted": "minted - partial-document mutation operator (insert/replace/remove/array ops) available since Couchbase Server 7.6"
+    },
+    {
+      "candidate_id": "eventing:lookupin-operation",
+      "label": "Sub-Document LOOKUPIN Operation",
+      "reused_or_minted": "minted - partial-document read operator available since Couchbase Server 7.6.2"
+    },
+    {
+      "candidate_id": "eventing:xattrs",
+      "label": "Extended Attributes (XATTRs)",
+      "reused_or_minted": "minted - document metadata layer accessible only via explicit opt-in on MUTATEIN/LOOKUPIN operations"
+    },
+    {
+      "candidate_id": "eventing:optional-cache-parameter",
+      "label": "Optional cache parameter",
+      "reused_or_minted": "minted - the { \"cache\": true } third argument enabling a per-node, cross-Function, 1-second RYOW cache on GET operations"
+    },
+    {
+      "candidate_id": "eventing:self-recursion-parameter",
+      "label": "Optional self_recursion parameter",
+      "reused_or_minted": "minted - the { \"self_recursion\": true } argument that lifts default suppression of a Function's own source-bucket mutations, available since Couchbase Server 7.6"
+    },
+    {
+      "candidate_id": "capella:scope",
+      "label": "Scope",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:collection",
+      "label": "Collection",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:couchbase-server-7.6",
+      "label": "Couchbase Server 7.6",
+      "reused_or_minted": "reused - version badge, consistent with the recurring server-version-string-citation pattern flagged in prior rounds"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "usesEnum",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Advanced Keyspace Accessors use the same bucket bindings defined in the handler as [Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors), but they expose a larger set of options and operators."
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-language-constructs",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors)"
+    },
+    {
+      "subject": "eventing:mutatein-operation",
+      "predicate": "availableSince",
+      "object": "version:couchbase-server-7.6",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 7.6\n\n`result = couchbase.mutateIn(binding, meta, subdoc_operation_array, options)`"
+    },
+    {
+      "subject": "eventing:lookupin-operation",
+      "predicate": "availableSince",
+      "object": "version:couchbase-server-7.6.2",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 7.6.2\n\n`result = couchbase.lookupIn(binding, meta, subdoc_array, options)`"
+    },
+    {
+      "subject": "eventing:touch-operation",
+      "predicate": "availableSince",
+      "object": "version:couchbase-server-7.6",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 7.6\n\n`result = couchbase.touch(binding, meta)`"
+    },
+    {
+      "subject": "eventing:self-recursion-parameter",
+      "predicate": "availableSince",
+      "object": "version:couchbase-server-7.6",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 7.6\n\nYou can use the optional fourth parameter `{ \"self_recursion\": true }` to prevent the suppression of recursive source bucket mutations and to process the mutations that you have just created."
+    },
+    {
+      "subject": "eventing:mutatein-operation",
+      "predicate": "usesEnum",
+      "object": "eventing:xattrs",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "By default, a MUTATEIN operation does not modify Extended Attributes (XATTRs). To modify a document's XATTRs, you must: Pass `xattrs` as the third argument of your OnUpdate function."
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "requiresSetting",
+      "object": "eventing:binding-access-level",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For the Advanced GET operation, the binding can have an access level of read or read/write. For all other operations, the binding must have an access level of read/write."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "usesEnum",
+      "object": "capella:scope",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You can use the wildcard `*` in an Eventing Function's scope or collection to listen to multiple collections."
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "requiresSetting",
+      "object": "eventing:meta-keyspace-parameter",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If the binding used by the Advanced Keyspace Accessor also contains a wildcard `*` for its scope or collection, you must use the additional `meta.keyspace` parameter."
+    },
+    {
+      "subject": "eventing:meta-keyspace-parameter",
+      "predicate": "usesEnum",
+      "object": "capella:collection",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "meta.keyspace | Object | The keyspace of the document to be used for the operation. Must be in the JavaScript format \"keyspace\": { \"bucket\\_name\": string, \"scope\\_name\": string, \"collection\\_name\": string }."
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Advanced Accessor Handler scriptlets](eventing-examples.md#examples-scriptlets-advanced-accessors) for complete examples of Advanced Keyspace Accessors, including JavaScript, input mutations, output mutations, and log messages"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole",
+    "finding": "No privilege, capella-role, or credential type gates any Advanced Keyspace Accessor operation on this page; the only access-control-shaped constraint found is binding access level (read vs. read/write), which is a Function-configuration setting rather than a Capella RBAC construct."
+  },
+  "cross_component_finding": "The meta.keyspace parameter is the clearest evidence in this batch that Eventing's wildcard-listening model is built directly on the bucket/scope/collection triple established elsewhere in the registry ('Must be in the JavaScript format \"keyspace\": { \"bucket_name\": string, \"scope_name\": string, \"collection_name\": string }') - Eventing did not invent its own addressing scheme for multi-collection functions, it reused the existing keyspace shape verbatim as a JS object.",
+  "cross_product_finding": "n/a"
+}

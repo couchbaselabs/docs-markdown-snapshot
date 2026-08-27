@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedUpsertOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedUpsertOp.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-advancedUpsertOp",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced UPSERT Operation](eventing-advanced-keyspace-accessors.md#advanced-upsert-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Code-sample page demonstrating couchbase.upsert() with an optional expiry_date. The code comment notes 'CAS, if supplied, is ignored. You can use REPLACE instead' - a contrast with the CAS-enforcing couchbase.replace() shown on the sibling advancedReplaceOp page, but this is standard KV upsert-vs-replace semantics, not a new mechanism. Left concepts/relations empty per batch guidance."
+  }
+}

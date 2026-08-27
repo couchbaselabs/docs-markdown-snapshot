@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-docControlledSelfExpiry",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-docControlledSelfExpiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:n1ql-function",
+      "label": "N1QL() function (in-handler SQL++ execution)",
+      "reused_or_minted": "minted - a built-in Eventing JS function that lets a handler issue a SQL++ statement, used specifically as the sanctioned workaround for a restriction unique to Eventing handlers (inline SQL++ cannot mutate the handler's own source bucket)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:n1ql-function",
+      "predicate": "mustUseInsteadWhen",
+      "object": "inline SQL++ statement updating an Eventing handler's own source bucket",
+      "reused_or_minted_predicate": "reused - must-use-instead-when",
+      "evidence": "Uses the _N1QL(…​)_ function to update the source bucket instead of an inline SQL++ statement because inline SQL++ is prohibited from updating the source bucket of an Eventing handler to prevent infinite recursion scenarios."
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-docControlledSelfExpiry",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-advanced-docControlledSelfExpiry",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[advancedDocControlledSelfExpiry (direct TTL)](eventing-handler-advanced-docControlledSelfExpiry.md)"
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-docControlledSelfExpiry",
+      "predicate": "seeAlso",
+      "object": "#learn:data/expiration.adoc",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "As described in [Expiration](#learn:data/expiration.adoc), if a \"Bucket Max Time-To-Live\" is set (specified in seconds), it is an enforced hard upper limit."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "This page's TTL offset-vs-absolute-timestamp and Bucket Max Time-To-Live semantics are generic Couchbase data-service behavior (explicitly cross-referenced out to the core Expiration doc), not an Eventing-specific concept - deliberately not minted here to avoid duplicating that other product surface. The one genuinely Eventing-specific mechanism on this page is the source-bucket-mutation-via-N1QL() workaround captured above. Also notes the recurring 'Version 7.1+ / Version 7.0+ / Version 6.X' settings-comment boilerplate, unchanged from the rest of the batch - flagging recurrence, not treating as new."
+  },
+  "cross_component_finding": "The N1QL(...) function call inside the handler is described as itself re-triggering the OnUpdate mutation it originated from ('This will cause recursion but it will be ignored since we ignore all non-zero TTLs'), an interaction between Eventing's mutation-listening model and SQL++'s DML that isn't visible from either component's docs in isolation."
+}

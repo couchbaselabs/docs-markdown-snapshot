@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-removeNullsAndEmptys",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-removeNullsAndEmptys.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-removeObjectStubs",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "This function is a superset of the cleanup functionality found in the Scriptlet [removeObjectStubs](eventing-handler-removeObjectStubs.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Recursive null/empty-pruning is generic JS tree-walking logic (removeNullParts + removeEmptyParts) inside the standard OnUpdate/binding boilerplate; no new Eventing-specific mechanism beyond the already-registered handler/binding primitives."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

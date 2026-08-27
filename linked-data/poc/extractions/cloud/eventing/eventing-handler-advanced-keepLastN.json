@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advanced-keepLastN",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advanced-keepLastN.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:cas-retry-loop",
+      "label": "CAS-based optimistic-concurrency retry loop",
+      "reused_or_minted": "minted - genuinely new mechanism: a get -> modify-in-memory -> replace-with-CAS loop that retries on CAS mismatch instead of locking, implemented via couchbase.get/couchbase.replace inside a while(res === null) loop"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:cas-retry-loop",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 6.6.1",
+      "reused_or_minted_predicate": "reused - existing predicate available-since",
+      "evidence": "There are two variants of this function available: a [Couchbase Server version 6.6 that implements userspace CAS](eventing-handler-keepLastN.md), and a Couchbase Server version 6.6.1+/7.0.0+ that uses true CAS."
+    },
+    {
+      "subject": "eventing:cas-retry-loop",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-keepLastN",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "There are two variants of this function available: a [Couchbase Server version 6.6 that implements userspace CAS](eventing-handler-keepLastN.md), and a Couchbase Server version 6.6.1+/7.0.0+ that uses true CAS."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Server-version-string citations recur here ('Couchbase Server version 6.6', 'version 6.6.1+/7.0.0+', plus the usual 'Version 7.1+/7.0+/6.6.1' code-comment ladder) - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

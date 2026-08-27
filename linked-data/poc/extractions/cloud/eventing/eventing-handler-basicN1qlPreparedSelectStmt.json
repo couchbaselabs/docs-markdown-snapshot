@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:n1ql-function-call",
+      "label": "N1QL() Function Call",
+      "reused_or_minted": "minted - a distinct invocation surface for SQL++ from a handler: N1QL(statementString, paramsArrayOrObject, optionsObject), where paramsArrayOrObject supplies positional ($1, $2, ...) or named ($mytype, ...) parameters and optionsObject can set isPrepared and consistency. This is a handler-specific JS-function calling convention, not the SQL++ statement grammar itself (n1ql:sqlpp)."
+    },
+    {
+      "candidate_id": "eventing:n1ql-result-iterator",
+      "label": "N1QL Query Result Iterator",
+      "reused_or_minted": "minted - the object returned by N1QL()/inline SQL++ inside a handler is a streamed, iterable result set that must be explicitly closed with results.close() to free resources - a runtime resource-management obligation specific to running SQL++ from inside an Eventing handler, not something a standalone SQL++ statement-reference page would ever need to mention."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:n1ql-function-call",
+      "predicate": "requiresExplicitClose",
+      "object": "eventing:n1ql-result-iterator",
+      "reused_or_minted_predicate": "minted - no existing predicate captures a runtime obligation to release a returned handle/cursor after use; this is the constraint calling N1QL from a handler introduces that the SQL++ statement-reference rounds never saw (those describe query syntax/semantics, not a JS-side streamed-cursor lifecycle)",
+      "evidence": "results.close();              // End the query and free resources held"
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-language-constructs",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For additional details refer to [SQL++ Statements](eventing-language-constructs.md#added-lang-features) and [The N1QL() function call](eventing-language-constructs.md#n1ql%5Fcall)"
+    }
+  ],
+  "cross_component_finding": "The page distinguishes positional parameters ('one positional parameter $1 for \"doc.iata\"... Note positional parameters are passed in an array') from named parameters ('named parameters are passed and an object'), and notes the cluster will typically skip re-preparing an already-prepared statement - performance/ergonomics detail on top of n1ql:sqlpp, not a new access-control or version constraint."
+}

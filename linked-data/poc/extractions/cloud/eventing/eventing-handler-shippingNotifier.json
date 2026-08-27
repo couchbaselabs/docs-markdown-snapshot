@@ -1,0 +1,58 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-shippingNotifier",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-shippingNotifier.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json (sibling batch, same round)"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json (sibling batch, same round)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "createsOnAction",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused - minted in manage-eventing-functions.json (sibling batch, same round)",
+      "evidence": "createTimer(sendNotifySchedDelivCallback, fireAt, notifyId, context);"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-cancel-overwrite-timer.json",
+      "evidence": "function sendNotifySchedDelivCallback(context) {"
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "supersedesTimerReference",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-cancel-overwrite-timer.json; there it fires from a control-document mutation, here it fires from the handler's own repeated createTimer calls on every mutation of the same document",
+      "evidence": "// We will always 'overwrite' this timer(s) notification by the Timer's\n            // reference_id (6.6.0+ required for this) on every mutation"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 6.6.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "// reference_id (6.6.0+ required for this) on every mutation"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "There are no try/catch blocks and only limited error checking in this handler, by the page's own admission ('There are no try catch blocks and only limited error checking to highlight the functionality') - no Eventing-specific error-handling primitive is documented or exercised here."
+  },
+  "cross_component_finding": "supersedesTimerReference (minted for the control-document pause/cancel/overwrite pattern in eventing-examples-cancel-overwrite-timer.json) reappears here for a structurally different trigger - the handler itself repeatedly calling createTimer with the same notifyId on every mutation of the same shipping document - confirming this is a general Timer-identity behavior (same reference id supersedes the pending Timer), not tied to the control-document pattern specifically.",
+  "cross_product_finding": "The \"notify\" collection is explicitly framed as an integration point with systems outside Eventing: \"The \\\"notify\\\"collection can be used to integrate with SDK or Kafka to send notifications.\" This names a third-party system (Kafka) and the Couchbase SDK as downstream consumers of Eventing's output via a staging collection, rather than describing a dedicated Eventing notification feature."
+}

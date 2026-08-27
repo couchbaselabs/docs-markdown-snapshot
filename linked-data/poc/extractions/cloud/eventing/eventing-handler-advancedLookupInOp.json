@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedLookupInOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedLookupInOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:lookupin-subdocument-operation",
+      "label": "Sub-Document LOOKUPIN operation (advancedLookupInField)",
+      "reused_or_minted": "minted - genuinely new mechanism: a CAS-free sub-document read (`couchbase.lookupIn` + `couchbase.LookupInSpec.get(path, {xattrs})`) that fetches specific fields/paths within a document rather than the whole document, distinct from the whole-document GET/INSERT/DELETE/INCREMENT/DECREMENT operations covered elsewhere in this batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:lookupin-subdocument-operation",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 7.6",
+      "reused_or_minted_predicate": "reused - existing predicate available-since; notable because this page's configuration comment cites only a single 'Version 7.6+' tier with no 6.6.x/7.0.x legacy fallback, unlike every other page in this batch",
+      "evidence": "Version 7.6+"
+    },
+    {
+      "subject": "eventing:lookupin-subdocument-operation",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors#advanced-subdoc-array-op-lookupin",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Sub-Document LOOKUPIN operation, see [Sub-Document LOOKUPIN Operation](eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-lookupin)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page references an `{\"xattrs\": false}` option on `LookupInSpec.get(...)` but never defines what an xattr (extended attribute) is or why a caller would set it true/false - readers must consult eventing-advanced-keyspace-accessors.md for that context, which this page links to but does not summarize. This page is also the only one in the batch citing a single 'Version 7.6+' tier rather than the usual 3-tier 7.1+/7.0+/6.6.x ladder - a variation on the recurring server-version-string-citation pattern, not an exact repeat. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

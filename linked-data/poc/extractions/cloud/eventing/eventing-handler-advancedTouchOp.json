@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedTouchOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedTouchOp.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-advancedTouchOp",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced TOUCH operation, see [Advanced TOUCH Operation](eventing-advanced-keyspace-accessors.md#advanced-touch-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Code-sample page demonstrating couchbase.touch() to reset a document's TTL/expiry without rewriting the document body. Standard Data Service TOUCH operation, already covered as part of the general keyspace-accessor mechanism; no genuinely new concept. Left concepts/relations empty per batch guidance."
+  }
+}

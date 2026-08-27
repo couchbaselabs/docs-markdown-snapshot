@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-keepLastN",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-keepLastN.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json (sibling batch, same round)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-advanced-keepLastN",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[advancedKeepLastN (true CAS)](eventing-handler-advanced-keepLastN.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The userspace-CAS workaround (a 'random' tag reread/write retry loop keyed off document identity, not a platform CAS token) is presented explicitly as a stand-in for lack of true CAS support pre-6.6.1/7.0.0 ('this is a can be improved in version 6.6.1 as CAS operations are supported'). The true-CAS variant and its availableSince relation are already captured on the sibling page eventing-handler-advanced-keepLastN.json, so no CAS concept is (re-)minted here - this page is the 'before' half of an already-registered pair."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

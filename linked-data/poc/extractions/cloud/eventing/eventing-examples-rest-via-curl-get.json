@@ -1,0 +1,95 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-rest-via-curl-get",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-rest-via-curl-get.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:recurring-timer-pattern",
+      "label": "Recurring Timer (self-rearming)",
+      "reused_or_minted": "reused - minted in eventing-examples-recurring-timer.json"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:url-binding",
+      "label": "URL binding",
+      "reused_or_minted": "minted - a Binding sub-type (alongside Bucket bindings) that maps an alias to an external URL plus an authentication mode (here 'No Auth'), which the `curl()` built-in uses as its first-argument target instead of a raw URL string"
+    },
+    {
+      "candidate_id": "eventing:curl-function",
+      "label": "curl() built-in function",
+      "reused_or_minted": "minted - the built-in JavaScript function (`curl(method, urlBindingAlias, requestObj)`) that performs an outbound HTTP request from inside a handler or Timer callback, returning a response object with `.status` and `.body`"
+    },
+    {
+      "candidate_id": "eventing:no-auth-mode",
+      "label": "No Auth (URL binding authentication mode)",
+      "reused_or_minted": "minted - one setting value of the URL binding's Authentication field; other modes are implied but not documented on this page"
+    },
+    {
+      "candidate_id": "capella:cluster",
+      "label": "Cluster",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:curl-function",
+      "predicate": "requiresSetting",
+      "object": "eventing:url-binding",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "// Performs the cURL request using the URL alias form the settings  \n        var response = curl('GET', exchangeRateApi, request);"
+    },
+    {
+      "subject": "eventing:url-binding",
+      "predicate": "requiresSetting",
+      "object": "eventing:no-auth-mode",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Select **No Auth** under **Authentication**."
+    },
+    {
+      "subject": "eventing:curl-function",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "var status = \"OKAY\";  \n        if (response.status != 200 && response.status != 302) {  \n            status = \"FAIL\";  \n        }"
+    },
+    {
+      "subject": "eventing:recurring-timer-pattern",
+      "predicate": "reschedulesSelf",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused - minted in eventing-examples-recurring-timer.json",
+      "evidence": "The Timer callback function creates the initial Timer 30 seconds into the future. It then creates the next Timer 2-N at the start of the following day."
+    },
+    {
+      "subject": "eventing:curl-function",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "capella:cluster",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You must use a real IP address if you're not on the Couchbase Server."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The prerequisite section offers a self-hosted Python HTTP server as a fallback if the public `frankfurter.app` exchange-rate API is offline, and shows curl-testing that fallback on `localhost:8001` - but the actual Function example is only ever shown wired to the public API via the `exchangeRateApi` URL binding; the fallback path's own binding configuration is not documented, only implied."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This is the first page in the batch to document a Binding type other than Bucket (URL binding with an Authentication mode setting), and the first to show a handler making outbound calls to a resource entirely outside Couchbase (a public third-party REST API) rather than reading/writing Couchbase keyspaces - a genuinely distinct integration surface from the KV/SQL++-centric examples on every other page in this batch."
+}

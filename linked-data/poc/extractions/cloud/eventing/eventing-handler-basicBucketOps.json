@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-basicBucketOps",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-basicBucketOps.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-basicBucketOps",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-language-constructs",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more detail refer to [Bucket Accessors](eventing-language-constructs.md#bucket%5Faccessors)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page demonstrating the basic bucket-alias-binding SET/GET/DEL accessor syntax (`dst_col[key] = doc`, `dst_col[key]`, `delete dst_col[key]`) - the same bucket-binding mechanism already covered by the sibling core-primitives batch (eventing:binding). No genuinely new mechanism; left concepts/relations empty per batch guidance."
+  }
+}

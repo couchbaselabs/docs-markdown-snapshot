@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-deepCloneAndModify",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-deepCloneAndModify.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: generalizes eventing-handler-dateToEpochConversion.md's deep-walk-and-apply pattern into a reusable deepCloneAndModify(obj, control, fn, fntype) helper. Purely a generic JavaScript recursion/higher-order-function technique (explicitly described on the page itself as 'copies the behavior of the sample dateToEpochConversion' but with no markdown link to it) wrapped in the same standard Eventing configuration boilerplate. No genuinely new Eventing-specific mechanism."
+  }
+}

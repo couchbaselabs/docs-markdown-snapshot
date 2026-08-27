@@ -1,0 +1,94 @@
+{
+  "page_id": "cloud/eventing/add-eventing-functions",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/add-eventing-functions.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "minted - the core Eventing primitive (a JavaScript handler reacting to document mutations); this batch is the first to extract from Eventing's own docs rather than indirect mentions"
+    },
+    {
+      "candidate_id": "eventing:binding",
+      "label": "Binding (Bucket / URL / Constant)",
+      "reused_or_minted": "minted - a Function-scoped construct that decouples environment-specific variables (bucket names, endpoints, credentials) from handler source code; three sub-types (Bucket, URL, Constant) documented on this page"
+    },
+    {
+      "candidate_id": "service:eventing-service",
+      "label": "Eventing Service",
+      "reused_or_minted": "reused - promoted concept from prior round's indirect-mention evidence; this page is the first Eventing-authored page to describe it directly (must be deployed before Functions can be added)"
+    },
+    {
+      "candidate_id": "capella:bucket",
+      "label": "Bucket",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:scope",
+      "label": "Scope",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:collection",
+      "label": "Collection",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "dependsOnService",
+      "object": "service:eventing-service",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Before you add Eventing Functions to your Eventing Service, you must first deploy the Eventing Service."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "../clusters/modify-database.md#add-service",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "See [Add a Service](../clusters/modify-database.md#add-service) for more information."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:listen-to-location",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Listen to Location | A bucket, scope, and collection currently defined on your cluster and where you want your Eventing Function to monitor document mutations."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:eventing-storage",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Eventing Storage | A bucket, scope, and collection currently defined on your cluster and where you want to store system data for your Eventing Function. This is the Function's metadata bucket."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "minted - verb phrase for the Function-to-binding composition relationship; no existing predicate captures 'has zero-or-more of this sub-construct type'",
+      "evidence": "Your Eventing Function can have no binding, one binding, or multiple bindings."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/deploy-eventing-functions",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Deploy the Eventing Functions](deploy-eventing-functions.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/manage-eventing-functions",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Manage the Eventing Functions](manage-eventing-functions.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole",
+    "finding": "This page walks through the full Capella UI flow for creating an Eventing Function (org/project/cluster breadcrumb navigation, Data Tools > Eventing, Add Function) but names no privilege, capella-role, or credential type as a gate on who can perform this action - unlike the cluster-rbac.md family that explicitly enumerates capella-advanced-access-* privileges per action. If a gate exists, it is not surfaced on the Eventing task pages themselves."
+  },
+  "cross_component_finding": "Function settings (Listen to Location, Eventing Storage) are specified as bucket+scope+collection triples, directly reusing the capella:bucket/scope/collection concepts established in earlier SQL++/management-plane rounds - no new keyspace primitive was needed for Eventing's own configuration surface.",
+  "cross_product_finding": "The Enable App Services Compatibility setting explicitly cross-references Couchbase's App Services/Sync Gateway product line ('Select this option only when using App Services with the same collection as this Eventing Function, as it prevents duplicate processing'), a direct product-boundary interaction not previously seen from the Eventing side."
+}

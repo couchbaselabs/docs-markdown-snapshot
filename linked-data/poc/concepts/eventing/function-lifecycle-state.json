@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/function-lifecycle-state",
+  "label": "Eventing Function lifecycle state",
+  "type": "skos:ConceptScheme - Deployed/Undeployed/Paused stable states plus Deploying/Undeploying/Pausing transitory states",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Structurally identical in shape to index-state (stable states + in-progress transitory states) - confirmed this is a recurring lifecycle-modeling pattern, not a new state-machine shape Eventing needed to invent."
+}

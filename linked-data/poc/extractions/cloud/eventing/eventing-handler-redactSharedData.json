@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-redactSharedData",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-redactSharedData.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: writes a minimal 'safe' subset of a master_profile document (first_name, id, basic_profile, timezone) to a separate destination collection via a bucket alias, omitting sensitive fields (ssn, credit_card, address, phone). A generic field-allowlist redaction technique inside the standard OnUpdate/binding boilerplate - no new Eventing-specific mechanism to mint."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "Recurrence of the destination-collection/XCDR hand-off note seen elsewhere in this batch (simpleFlatten) and in the sibling batch (genericFlatten): \"The \\\"destination\\\" collection can be shared (or replicated via XCDR to a business partner) too the cloud (AWS, Azure or GCP).\" Same pattern, not a new finding."
+}

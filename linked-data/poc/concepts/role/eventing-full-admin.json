@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/eventing-full-admin",
+  "label": "Eventing Full Admin",
+  "type": "a classic, cluster-wide Couchbase RBAC role, introduced at Server 7.0.0 as a deliberately narrower carve-out of Full Admin (removes user-creation/privilege-escalation) - a FIFTH structurally distinct thing called 'role' in this ontology",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Sibling of role:full-administrator/role:local-user-security-administrator (round 5), part of the same classic-cluster-RBAC family, distinct from capella-role:*/rbac-role:role/sgw:role. Found on troubleshooting-best-practices.md, unrelated to the Capella management-plane privilege/role model this round otherwise confirmed everything slots into - another data point that the classic-RBAC 'role:' family and the Capella-native 'capella-role:' family coexist without merging."
+}

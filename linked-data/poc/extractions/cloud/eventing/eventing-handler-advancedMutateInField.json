@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedMutateInField",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedMutateInField.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-advancedMutateInField",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Sub-Document MUTATEIN operation , see [Sub-Document MUTATEIN Operation](eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page: OnUpdate handler chaining MutateInSpec.insert()/replace()/remove() against a single field via couchbase.mutateIn(). Same underlying CAS-free sub-document MUTATEIN mechanism as the sibling advancedMutateInArray page (both link to the same eventing-advanced-keyspace-accessors.md anchor) - recurrence of an already-covered mechanism, not a new one. Left concepts/relations empty per batch guidance."
+  }
+}

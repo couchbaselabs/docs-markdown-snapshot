@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-basicN1qlSelectStmt",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-basicN1qlSelectStmt.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:inline-sqlpp-statement",
+      "label": "Inline SQL++ Statement",
+      "reused_or_minted": "minted - a second, alternative invocation surface for SQL++ from a handler alongside eventing:n1ql-function-call (seen on the sibling basicN1qlPreparedSelectStmt page in this batch): the SQL++ statement is embedded directly as JS-looking source (`var results = SELECT ... WHERE airline = $airline;`) with no surrounding string or N1QL() call, and `$airline` binds directly to a local JS variable rather than to a params array/object."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:inline-sqlpp-statement",
+      "predicate": "requiresExplicitClose",
+      "object": "eventing:n1ql-result-iterator",
+      "reused_or_minted_predicate": "reused - same predicate and result-iterator object minted on the sibling basicN1qlPreparedSelectStmt page in this batch; recurrence of the same close()-obligation constraint via the alternate inline-statement invocation form",
+      "evidence": "results.close();              // End the query and free resources held"
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-basicN1qlSelectStmt",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-language-constructs",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more detail refer to [SQL++ Statements](eventing-language-constructs.md#added-lang-features)."
+    }
+  ],
+  "cross_component_finding": "This page's `results.close()` requirement is a verbatim recurrence, within this same batch, of the constraint first captured on eventing-handler-basicN1qlPreparedSelectStmt - flagging as recurrence rather than minting a second predicate. Confirms the answer to 'does calling N1QL from a handler introduce a new constraint': yes, both handler-side invocation styles (N1QL() function call and inline SQL++ statement) return a streamed cursor that the handler must explicitly close, a lifecycle concern the standalone SQL++ statement-reference pages never needed to state."
+}

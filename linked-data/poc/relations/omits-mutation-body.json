@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/omits-mutation-body",
+  "label": "omits mutation body",
+  "kind": "relation (schema-level)",
+  "type": "subject = eventing:on-delete-handler; captures that OnDelete()'s call signature doesn't supply the deleted document's body, unlike OnUpdate()",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "the formal relation triple appears on one page (cascadeKvDeleteWithDoc), but the underlying fact was independently corroborated in prose on a second page (simpleFlatten, which describes falling back to KEY-prefix filtering for the same root cause without re-minting the triple) - promoted below the usual bar since the fact itself is doubly evidenced even though the relation instance isn't."
+}

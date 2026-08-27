@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-lifecycle-state",
+  "label": "has lifecycle state",
+  "kind": "relation (schema-level)",
+  "type": "subject = eventing:function; object = eventing:function-lifecycle-state member",
+  "promoted": true,
+  "recurrence": 3
+}

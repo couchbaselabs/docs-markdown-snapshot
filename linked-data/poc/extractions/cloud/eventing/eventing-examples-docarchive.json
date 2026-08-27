@@ -1,0 +1,68 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-docarchive",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-docarchive.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "reused_or_minted": "reused - minted in eventing-examples-cancel-overwrite-timer.json"
+    },
+    {
+      "candidate_id": "capella:document-expiration",
+      "label": "Document expiration (TTL, lazily reaped)",
+      "reused_or_minted": "reused - minted in eventing-examples-delete-v-expiry.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "capella:document-expiration",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only processes documents that have a non-zero TTL"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "archivesBeforeExpiry",
+      "object": "capella:document-expiration",
+      "reused_or_minted_predicate": "minted - verb phrase for a Timer specifically scheduled to fire before a document's own TTL elapses, so its callback can copy the document to another keyspace before the source's lazy-reap mechanism can remove it",
+      "evidence": "The Eventing Function calls a Timer, which executes a callback function 2 minutes before a document expires and archives an identical document with the same key in a specified target bucket."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:timer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only processes documents that have a non-zero TTL  \nNote: JavaScript Data() is in milliseconds and meta.expiration is in seconds  \nif (new Date().getTime()/1000 > (meta.expiration - 120)) {\n        // If within the 120 second limit for expiry, creates a copy now"
+    },
+    {
+      "subject": "eventing:timer-callback",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples-docexpiry",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This example is similar to the [Create Documents After Expiration](eventing-examples-docexpiry.md) example, but has the following differences:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The archived copy is described as byte-for-byte identical to the source ('It archives a perfect copy in the target collection') and the handler relies solely on `meta.expiration`, with no Couchbase SDK call needed to set TTL - unlike the sibling docexpiry.md example, which sets TTL via an external SQL++/cbc/SDK step. This page shows the same archive-before-expiry pattern implemented two different ways (SDK-set TTL + explicit context object vs. bucket-configured TTL + direct meta.expiration read), reinforcing that there is no single canonical 'archive on expiry' primitive, just createTimer used with different inputs."
+  },
+  "cross_component_finding": "Confirms the eventing-examples-delete-v-expiry.json finding from a second angle: `meta.expiration` (read directly in OnUpdate) and the bucket-level TTL setting are the same underlying KV expiration mechanism Eventing can read but not accelerate - the handler must schedule its own Timer safely inside the expiration window (120 seconds here) because it cannot intercept or defer the KV layer's own lazy reap.",
+  "cross_product_finding": "n/a"
+}

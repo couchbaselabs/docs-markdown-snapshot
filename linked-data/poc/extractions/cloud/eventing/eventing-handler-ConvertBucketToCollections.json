@@ -1,0 +1,46 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-ConvertBucketToCollections",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-ConvertBucketToCollections.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:bucket-to-collection-migration-pattern",
+      "label": "Bucket-to-collection migration pattern (ConvertBucketToCollections)",
+      "reused_or_minted": "minted - genuinely new mechanism: an Eventing function that reorganizes an 'upgraded' bucket's single default collection into multiple typed collections, gated by two Constant-alias flags (DO_COPY/DO_DELETE), distinct from the single-operation KV demos in this batch"
+    },
+    {
+      "candidate_id": "eventing:binding",
+      "label": "Binding (Bucket / URL / Constant)",
+      "reused_or_minted": "reused - minted in add-eventing-functions.json (sibling batch, same round); this page is the first to show 'Constant alias' and 'bucket alias' bindings used together on one function"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:bucket-to-collection-migration-pattern",
+      "predicate": "hasBindingType",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "reused - minted in add-eventing-functions.json, same batch round",
+      "evidence": "Needs Bindings of type \"Constant alias\" (as documented in the Scriptlet)."
+    },
+    {
+      "subject": "eventing:bucket-to-collection-migration-pattern",
+      "predicate": "hasBindingType",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "reused - minted in add-eventing-functions.json, same batch round",
+      "evidence": "Needs Bindings of type \"bucket alias\" (as documented in the Scriptlet)."
+    },
+    {
+      "subject": "eventing:bucket-to-collection-migration-pattern",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/troubleshooting-best-practices#recursionchecks",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Refer to [Disabling infinite recursion checks](troubleshooting-best-practices.md#recursionchecks)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The configuration comment block cites a 3-tier server-version ladder ('Version 7.1+', 'Version 7.0+', 'Version 6.6.2 (not applicable)') identical in structure to the known recurring server-version-string-citation anomaly seen elsewhere in the docset - flagged as recurrence, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": "This page's migration technique explicitly reuses capella:bucket/scope/collection as its target data model (COLLECTION `bulk`.`data`.`brewery` etc.) while reading from an upgraded bucket's `_default`.`_default` collection - the same bucket-to-collection paradigm shift already established via capella:bucket/scope/collection in prior rounds, now shown from the migration-tooling side rather than the schema-definition side.",
+  "cross_product_finding": null
+}

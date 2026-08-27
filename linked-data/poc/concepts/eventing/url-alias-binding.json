@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/url-alias-binding",
+  "label": "URL Alias Binding",
+  "type": "sibling of eventing:binding - a handler can only curl() a URL with a pre-configured URL Alias binding pointing at it",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Consolidates two independent mints of the same concept: 'eventing:url-binding' and 'eventing:url-alias-binding' - kept the fuller name since it matches the literal UI/docs term found in evidence ('Needs a Binding of type URL Alias'). Its 'misc.' settings column value 'no auth' implies other auth modes exist for this binding type, none documented on the pages read this round - left as an open question, not resolved."
+}

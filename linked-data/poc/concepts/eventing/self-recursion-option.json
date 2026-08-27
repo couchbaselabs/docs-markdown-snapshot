@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/self-recursion-option",
+  "label": "self_recursion option",
+  "type": "couchbase.upsert(..., {self_recursion: true}) causes a handler to reinvoke itself, letting a long-running paginated query checkpoint-and-continue across invocations",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual 2-file recurrence bar - a genuinely new mechanism found while directly testing this round's hypothesis (does Eventing need its own concurrency/continuation primitive?), and the clearest single piece of evidence that the answer is 'a targeted option on an existing primitive, not a new structural layer' - Eventing's version of a checkpoint/continuation pattern, expressed as a flag rather than a new API surface.",
+  "note": "Object of the minted predicate triggersHandlerReinvocation (extraction-layer only, recurrence 1 - watchlisted)."
+}

@@ -1,0 +1,58 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedDeleteOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedDeleteOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:cas-conditioned-delete",
+      "label": "CAS-conditioned Advanced DELETE",
+      "reused_or_minted": "minted - genuinely new mechanism: the Advanced DELETE accessor's optional CAS field in `meta` gates success/failure (no CAS always succeeds; matching CAS succeeds; non-matching CAS or missing key fails), demonstrated via 4 explicit modes (no_cas/bad_cas/good_cas/no_key)"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-eexists-error",
+      "label": "LCB_KEY_EEXISTS error",
+      "reused_or_minted": "minted - libcouchbase error surfaced by Advanced Accessor calls when a supplied CAS doesn't match the document's current CAS"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-enoent-error",
+      "label": "LCB_KEY_ENOENT error",
+      "reused_or_minted": "minted - libcouchbase error surfaced by Advanced Accessor calls when the target document key does not exist"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "eventing:advanced-get-operation",
+      "reused_or_minted_predicate": "reused - existing predicate requires-prior-execution-of",
+      "evidence": "Pass the matching or current CAS - it succeeds ... Use the current CAS to read via couchbase.get(...)"
+    },
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-eexists-error",
+      "reused_or_minted_predicate": "minted - no existing predicate captures operation-produces-named-error-code",
+      "evidence": "\"name\": \"LCB_KEY_EEXISTS\", \"desc\": \"The document key exists with a CAS value different than specified\", \"cas_mismatch\": true"
+    },
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-enoent-error",
+      "reused_or_minted_predicate": "minted - no existing predicate captures operation-produces-named-error-code",
+      "evidence": "\"name\": \"LCB_KEY_ENOENT\", \"desc\": \"The document key does not exist on the server\", \"key_not_found\": true"
+    },
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors#advanced-delete-op",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced DELETE Operation](eventing-advanced-keyspace-accessors.md#advanced-delete-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The usual 'Version 7.1+/7.0+/6.6.1' server-version-string code-comment ladder recurs here - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

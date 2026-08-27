@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-explicit-close",
+  "label": "requires explicit close",
+  "kind": "relation (schema-level)",
+  "type": "subject = eventing:n1ql-function-call; object = the returned result iterator - the handler must call .close() to free resources, since the call returns a streamed cursor",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The clearest single piece of evidence answering this round's specific hypothesis about calling N1QL from a handler - a real constraint with no equivalent on any standalone SQL++ statement-reference page."
+}

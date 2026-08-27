@@ -1,0 +1,55 @@
+{
+  "page_id": "cloud/eventing/eventing-examples",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "reused_or_minted": "reused - minted in eventing-advanced-keyspace-accessors.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-example-data-enrichment",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Improve Document Searchability](eventing-example-data-enrichment.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-basicBucketOps",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[basicBucketOps](eventing-handler-basicBucketOps.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-ConvertBucketToCollections",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[convertBucketToCollections](eventing-handler-ConvertBucketToCollections.md)"
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-multiCollectionEventing",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[multiCollectionEventing](eventing-handler-multiCollectionEventing.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:language-compatibility",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Your Eventing Function must have a language compatibility setting of Couchbase Server version 6.6.2 or above to pass binary documents in its `OnUpdate(doc,meta)` handler."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This is a pure catalog/index page - four grouped tables of links to ~30 individual example and scriptlet pages, none of which are in this batch. Concepts/relations here are limited to what's stated in this page's own prose; the linked example pages themselves would need separate extraction to mine their content."
+  },
+  "cross_component_finding": "The 'Advanced Accessor Eventing Functions' category groups multiCollectionEventing alongside CAS/TTL/atomic-counter examples, confirming multi-collection listening is treated as an advanced-accessor-tier feature rather than a basic one - consistent with eventing-advanced-keyspace-accessors.json's meta.keyspace finding.",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-convertAdvXMLtoJSON",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-convertAdvXMLtoJSON.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-convertAdvXMLtoJSON",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-convertXMLtoJSON",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This function will handle items and constructs that **[convertXMLtoJSON](eventing-handler-convertXMLtoJSON.md)** will fail on 1) empty-element tags and 2) attributes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a generic recursive XML-to-JSON parser (regex-based, with a 6.6.0/7.0.0 dual implementation) demonstrated inside an OnUpdate handler. The only Eventing-specific framing is boilerplate ('Requires Eventing Storage (or metadata collection) and a source collection', the Function Scope/Listen to Location/Eventing Storage/Binding configuration comment block) already captured generically by eventing:function and eventing:binding on add-eventing-functions.md - nothing new here. The 'Version 7.1+ / Version 7.0+ / Version 6.X' settings-comment block recurs verbatim (with only bucket-name substitutions) across every page in this batch; noting this as the recurring server-version-string boilerplate anomaly rather than minting anything from it."
+  }
+}

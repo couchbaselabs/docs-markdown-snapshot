@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedSelfRecursion",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedSelfRecursion.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:self-recursion-option",
+      "label": "self_recursion Option",
+      "reused_or_minted": "minted - a genuinely new mechanism found on this page: a boolean option (`{ \"self_recursion\": true }`) passed to couchbase.upsert()'s options argument that causes the handler's own upsert mutation to trigger another invocation of itself, letting a long-running paginated N1QL query resume across handler invocations instead of running to completion (or timing out) in a single one. Not a plain KV or N1QL concept - specific to how Eventing lets a handler checkpoint-and-continue itself."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:self-recursion-option",
+      "predicate": "triggersHandlerReinvocation",
+      "object": "eventing:function",
+      "reused_or_minted_predicate": "minted - no existing predicate captures a KV-mutation option that causes the Eventing runtime to automatically re-invoke the same handler as a continuation mechanism",
+      "evidence": "using self recursion results in a continuation of the query"
+    },
+    {
+      "subject": "cloud/eventing/eventing-handler-advancedSelfRecursion",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion parameter, see [Optional { \"self\\_recursion\": true }\\` Parameter](eventing-advanced-keyspace-accessors.md#optional-params-recursion)."
+    }
+  ],
+  "cross_component_finding": "The example uses inline SQL++ (`SELECT name FROM \\`travel-sample\\`.\\`inventory\\`.\\`hotel\\` LIMIT 100 OFFSET $offset;`) purely as the workload being paginated - the self_recursion mechanism itself is a KV/upsert-option concern, not a N1QL-specific one; it would apply equally to any long-running loop inside a handler."
+}

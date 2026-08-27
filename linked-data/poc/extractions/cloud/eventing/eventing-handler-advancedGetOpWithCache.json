@@ -1,0 +1,34 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedGetOpWithCache",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedGetOpWithCache.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-get-cache-option",
+      "label": "Advanced GET `{cache: true}` option",
+      "reused_or_minted": "minted - genuinely new mechanism: an optional third argument to `couchbase.get()` that enables a bucket-backed cache of the read document for up to 1 second, distinct from the plain GET already covered in advancedGetOp.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-get-cache-option",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 7.0.2",
+      "reused_or_minted_predicate": "reused - existing predicate available-since; notable because it's one dot-release later than the 7.0+ floor cited for the plain Advanced Accessor elsewhere in this batch",
+      "evidence": "Version 7.0.2+"
+    },
+    {
+      "subject": "eventing:advanced-get-cache-option",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors#optional-cache-true-parameter",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Optional { \"cache\": true } Parameter](eventing-advanced-keyspace-accessors.md#optional-cache-true-parameter)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Unlike the other 10 pages in this batch, this page's configuration comment omits the 6.6.x legacy tier entirely and cites only 'Version 7.0.2+' - a variation on the recurring server-version-string-citation pattern rather than an exact repeat; flagged as such, not treated as a wholly new anomaly. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

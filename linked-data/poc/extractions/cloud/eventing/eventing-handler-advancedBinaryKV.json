@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedBinaryKV",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedBinaryKV.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:binary-document-accessor",
+      "label": "Advanced Accessor binary-document support",
+      "reused_or_minted": "minted - genuinely new mechanism: the Advanced Accessor (couchbase.upsert/get) accepts and returns raw binary payloads (e.g. an ArrayBuffer) in addition to JSON, distinguished on read via meta.datatype"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:binary-document-accessor",
+      "predicate": "usesEnum",
+      "object": "datatype: json|binary",
+      "reused_or_minted_predicate": "reused - existing predicate uses-enum",
+      "evidence": "The return value of couchbase.upsert() on success will indicate either \"datatype\":\"json\" or \"datatype\":\"binary\""
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The usual 'Version 7.1+/7.0+/6.6.2' server-version-string code-comment ladder recurs here - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/on-update-handler",
+  "label": "OnUpdate() handler",
+  "type": "the entry point fired on document insert/update - receives the full mutated document body",
+  "promoted": true,
+  "recurrence": 18,
+  "note": "Consolidates two independent mints ('eventing:onupdate-handler' and 'eventing:on-update-handler') under the higher-recurrence kebab-case id. Asymmetric with eventing:on-delete-handler, which does NOT receive a document body - see that concept's note."
+}

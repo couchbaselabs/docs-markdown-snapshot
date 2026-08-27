@@ -1,0 +1,56 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-delete-v-expiry",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-delete-v-expiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "reused_or_minted": "reused - minted in eventing-examples-cascade-delete.json (this batch)"
+    },
+    {
+      "candidate_id": "eventing:expired-flag",
+      "label": "`options.expired` field on OnDelete",
+      "reused_or_minted": "minted - an optional second-argument field passed only to OnDelete, whose boolean value is the sole documented way to distinguish a document removed by expiration from one removed by an explicit delete; the handler receives one unified callback for both event types and must branch on this field"
+    },
+    {
+      "candidate_id": "capella:document-expiration",
+      "label": "Document expiration (TTL, lazily reaped)",
+      "reused_or_minted": "minted - a KV/Data-service-level concept (not Eventing-specific) for a document's TTL, whose actual deletion is deferred until access, the expiry pager, or compaction runs; Eventing's OnDelete only observes this after the fact via `options.expired`"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "distinguishesEventTypeViaField",
+      "object": "eventing:expired-flag",
+      "reused_or_minted_predicate": "minted - verb phrase for a single handler entry point that fires for two semantically different triggers (deletion vs. expiration) and relies on an argument field to disambiguate which occurred",
+      "evidence": "The `OnDelete` handler in an Eventing Function runs whenever a document is deleted or has expired. The Function accesses the `expired` field of the handler's second optional argument, and logs whether a document was deleted or expired from a collection."
+    },
+    {
+      "subject": "eventing:expired-flag",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:on-delete-handler",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "function OnDelete(meta, options) {\n    if (options.expired) {\n        log(\"doc expired:\",meta.id);\n    } else {\n        log(\"doc deleted:\",meta.id);\n    }\n}"
+    },
+    {
+      "subject": "eventing:expired-flag",
+      "predicate": "requiresSetting",
+      "object": "capella:document-expiration",
+      "reused_or_minted_predicate": "minted concept referenced via reused predicate - see notable_absence; document expiration is server-driven, not Eventing-configured",
+      "evidence": "When the document reaches its expiration time, the document is deleted as soon as one of the following happens:\n\n* You try to access the document\n* The expiry pager runs (every 60 minutes)\n* Compaction runs"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Document expiration is repeatedly described as lazy/passive rather than immediate at TTL: deletion only actually happens on next access, on the periodic expiry pager (every 60 minutes), or on compaction. This means the `OnDelete` handler's 'doc expired' firing time is decoupled from the document's nominal expiration timestamp by an unbounded, access-pattern-dependent delay - a KV-storage-engine behavior surfaced here for the first time in the Eventing extraction set, not an Eventing-specific mechanism."
+  },
+  "cross_component_finding": "The `options.expired` disambiguation field bridges the Data/KV storage engine's lazy-expiration mechanism (expiry pager, compaction, access-triggered reap) into the Eventing runtime as a single boolean on the OnDelete callback - Eventing does not get its own expiration concept, it just observes the KV layer's existing one through one extra argument field.",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-fixEmailDomains",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-fixEmailDomains.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a regex-based email-domain normalizer (e.g. jack.smith@mailhost.company.com -> jack.smith@company.com) run inside OnUpdate. The page's stated goal ('Redact Sensitive Data prior to sharing') is broader than what the code actually does (domain normalization, not redaction) - noting this description/content mismatch, but it doesn't rise to a mintable concept or relation, just a generic JS string technique in the standard handler boilerplate."
+  }
+}

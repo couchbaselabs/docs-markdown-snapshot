@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/timer",
+  "label": "Eventing Timer",
+  "type": "Eventing's 'limited asynchrony' primitive - a scheduled callback that reuses the parent Function's option set (timeout) and lifecycle (deleted on undeploy) rather than introducing a new concurrency model",
+  "promoted": true,
+  "recurrence": 10,
+  "note": "Explicitly framed in the docs as limited asynchrony, not general async/await - another confirmation this round's headline finding (no new structural layer needed)."
+}

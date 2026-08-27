@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-genericRename",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-genericRename.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a generic recursive key-renaming utility driven by a rename_map, writing to a separate destination collection with a matching OnDelete. Structurally a sibling of eventing-handler-genericFlatten.md (same destination-collection pattern, same OnDelete-by-KEY-prefix filter). Generic JS/data-transform technique - no new Eventing mechanism to mint."
+  },
+  "cross_product_finding": "Recurrence of the same hand-off note as eventing-handler-genericFlatten.md, verbatim: \"The destination collection can be shared (or replicated via XCDR to a business partner - maybe to AWS, GCP, or Azure).\" Flagging as a repeated pattern across the two generic-transform utility pages, not a new finding."
+}

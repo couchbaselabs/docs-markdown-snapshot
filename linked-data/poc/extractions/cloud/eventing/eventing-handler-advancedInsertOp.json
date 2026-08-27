@@ -1,0 +1,39 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedInsertOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedInsertOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:accessor-expiry-date-field",
+      "label": "Advanced Accessor expiry_date meta field",
+      "reused_or_minted": "reused - minted in eventing-handler-advanced-docControlledSelfExpiry.json (same batch round); here the same `expiry_date` meta field is passed to `couchbase.insert` instead of `couchbase.replace`"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-eexists-error",
+      "label": "LCB_KEY_EEXISTS error",
+      "reused_or_minted": "reused - minted in eventing-handler-advancedDeleteOp.json (same batch round); same error code/name recurs here but disambiguated by a different sub-flag (see relation below)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:lcb-key-eexists-error",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:cas-conditioned-delete",
+      "reused_or_minted_predicate": "reused - existing predicate behaves-differently-under",
+      "evidence": "\"error\": {\"code\": 272, \"name\": \"LCB_KEY_EEXISTS\", \"desc\": \"The document key already exists in the server.\", \"key_already_exists\": true}"
+    },
+    {
+      "subject": "eventing:accessor-expiry-date-field",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors#advanced-insert-op",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced INSERT Operation](eventing-advanced-keyspace-accessors.md#advanced-insert-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "LCB_KEY_EEXISTS is reused here with the same code (272) and name as in advancedDeleteOp.json, but a different disambiguating sub-flag ('key_already_exists':true for a duplicate-key insert vs 'cas_mismatch':true for a CAS conflict on delete) and different desc text ('already exists in the server' vs 'exists with a CAS value different than specified') - the same libcouchbase error name is overloaded across two distinct failure conditions; worth the coordinator's attention as a naming/disambiguation nuance rather than a new error. The usual 'Version 7.1+/7.0+/6.6.1' server-version-string code-comment ladder recurs - flagged as recurrence of the known anomaly, not treated as new. No Enterprise/Community edition badge appears on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

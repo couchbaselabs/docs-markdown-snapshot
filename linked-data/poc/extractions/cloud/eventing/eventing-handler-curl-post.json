@@ -1,0 +1,25 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-curl-post",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-curl-post.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:curl-call",
+      "label": "curl() call (Eventing handler outbound HTTP)",
+      "reused_or_minted": "reused - same mechanism as eventing-handler-curl-get.md, this time via POST with a request body"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:curl-call",
+      "predicate": "requiresSetting",
+      "object": "eventing:binding",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / access-control",
+    "finding": "Recurrence, not new: identical URL Alias binding gate as eventing-handler-curl-get.md ('no auth' misc. column value recurs unchanged), applied here to a POST instead of a GET. Confirms the URL Alias binding is the general access-control mechanism for curl(), not GET-specific."
+  }
+}

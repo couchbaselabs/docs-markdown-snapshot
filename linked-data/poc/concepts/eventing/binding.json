@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/binding",
+  "label": "Eventing Binding",
+  "type": "the access-control/allow-list mechanism for an Eventing function - a function can only touch a bucket/scope/collection or call an external URL if a binding of the right type is configured; base type for eventing:bucket-alias-binding/url-alias-binding/constant-binding",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Bindings, not capella-role:*/privilege:*, are the actual gate on what a deployed function can touch - eventing-rbac.md confirmed the management-plane privilege (Eventing Manage) only gates who can create/deploy/manage a function, never what it can access at runtime. Two genuinely distinct gating layers for the same feature."
+}

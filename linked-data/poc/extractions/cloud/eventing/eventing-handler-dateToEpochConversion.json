@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-dateToEpochConversion",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-dateToEpochConversion.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a generic recursive string-date-to-Unix-epoch converter driven by a regex 'control' array, applied inside OnUpdate. Entirely a generic JavaScript/date-handling technique wrapped in the standard Eventing configuration boilerplate (Function Scope/Listen to Location/Eventing Storage/Binding) already captured by eventing:function and eventing:binding. No genuinely new Eventing-specific mechanism to mint."
+  }
+}

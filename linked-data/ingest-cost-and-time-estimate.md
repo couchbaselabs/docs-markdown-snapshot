@@ -270,6 +270,23 @@ concepts rather than only adding new ones. Worth factoring into pacing
 estimates: a wave's reconciliation cost tracks how much it *revises* the
 existing registry, not just how many new pages it reads.
 
+## Fourth wave the same day (round 8, 67 pages, 2026-08-27)
+
+`cloud/eventing/` - genuinely new territory (no prior round had touched it),
+run as 7 batches (3 conceptual, 4 covering ~40 thin JS-handler code samples).
+~735,000 tokens for 67 pages (~11,000 tokens/page, right in this session's
+usual range), roughly $2. Four real-scale waves today, ~324 pages, ~$10
+total, still one working session, still zero infrastructure issues. Despite
+being a "new feature, no new structure" round - the kind that might be
+expected to reconcile quickly, since less registry surgery was needed than
+rounds 6/7 - reconciliation still took real effort, because a brand-new
+namespace (`eventing:`) with ~20+ minted concepts still needs the same
+per-concept scrutiny (duplicate-mint consolidation across the 7 concurrent
+batches, deciding what clears the promotion bar) as a round that revises
+existing concepts. Refines the round-7 note: reconciliation cost tracks
+registry *surface area touched*, whether that's revision or fresh territory,
+not just page count or "was there a headline surprise."
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

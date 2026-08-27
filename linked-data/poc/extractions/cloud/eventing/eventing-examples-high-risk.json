@@ -1,0 +1,85 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-high-risk",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-high-risk.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:bucket-binding",
+      "label": "Bucket binding",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "eventing:paused-state",
+      "label": "Paused state",
+      "reused_or_minted": "reused - minted in manage-eventing-functions.json (sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:checkpoint",
+      "label": "Checkpoint",
+      "reused_or_minted": "reused - minted in manage-eventing-functions.json (sibling batch)"
+    },
+    {
+      "candidate_id": "capella:bucket-flush",
+      "label": "Bucket flush",
+      "reused_or_minted": "minted - a per-bucket Advanced Settings toggle that must be explicitly enabled before the bucket can be cleared of all documents while keeping its configuration; a bucket-level Capella management concept, not an Eventing-specific one"
+    },
+    {
+      "candidate_id": "capella:bucket",
+      "label": "Bucket",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "capella:bucket-flush",
+      "predicate": "clearsAllDocumentsIn",
+      "object": "capella:bucket",
+      "reused_or_minted_predicate": "minted - verb phrase for the flush operation's effect, distinct from a delete/DML statement because it resets the whole bucket rather than targeting matched documents",
+      "evidence": "Flushing clears a bucket of all documents and resets it to an empty state while maintaining the bucket's configuration and settings."
+    },
+    {
+      "subject": "capella:bucket",
+      "predicate": "requiresSetting",
+      "object": "capella:bucket-flush",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Turn on the **Flush** toggle."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasLifecycleState",
+      "object": "eventing:paused-state",
+      "reused_or_minted_predicate": "reused - minted in deploy-eventing-functions.json / manage-eventing-functions.json",
+      "evidence": "Click **Pause** to pause your Function."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "createsOnAction",
+      "object": "eventing:checkpoint",
+      "reused_or_minted_predicate": "reused - minted in manage-eventing-functions.json",
+      "evidence": "The Function resumes from the checkpoint created when you paused it. It then executes on all new documents and on any mutations that occur after the checkpoint."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "writesToBinding",
+      "object": "eventing:bucket-binding",
+      "reused_or_minted_predicate": "reused - minted in eventing-example-data-enrichment.json",
+      "evidence": "review[meta.id] = doc; // Saves the modified document for review"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "safety constraint / risk-mitigation relation",
+    "finding": "Despite its title and this batch's hypothesis that a 'high risk patterns' page might reveal an Eventing-specific safety constraint or anti-pattern warning, this page's 'risk' is entirely a business-domain concept (flagging credit-card transactions that exceed a spending threshold or use a foreign currency) - there is no language here about Eventing execution risk, unsafe coding patterns, resource limits, or anything analogous to a platform-level safety gate. The only genuinely reusable structural finding on this page is the pause/resume/checkpoint mechanism (already minted by the sibling batch from manage-eventing-functions.md), which this page is the first worked example to actually exercise end-to-end rather than just describe."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "The page notes an optional downstream integration point without documenting it: '(Optional) Uses custom applications written in a Couchbase SDK or a third-party integration like Kafka to read items in the `review` collection.' This is the first explicit mention of Kafka as an integration target anywhere in the Eventing worked examples in this batch, naming a third-party product boundary but providing no further detail or link."
+}

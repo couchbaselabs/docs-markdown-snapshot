@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/eventing/eventing-handler-advancedReplaceOp",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-handler-advancedReplaceOp.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "cloud/eventing/eventing-handler-advancedReplaceOp",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-advanced-keyspace-accessors",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced REPLACE Operation](eventing-advanced-keyspace-accessors.md#advanced-replace-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Code-sample page walking through couchbase.replace()'s three CAS modes (no_cas always succeeds, bad_cas always fails with LCB_KEY_EEXISTS, good_cas succeeds by reading the current CAS first via couchbase.get()). This is standard Data Service optimistic-concurrency (CAS) behavior, not an Eventing-specific mechanism - the same CAS semantics apply to any KV client. No genuinely new concept found; left concepts/relations empty per batch guidance."
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "page_id": "cloud/eventing/eventing-examples-cascade-delete",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/eventing/eventing-examples-cascade-delete.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "reused_or_minted": "minted - the deletion-triggered JavaScript entry point (`function OnDelete(meta) {...}`), the OnUpdate handler's counterpart, fired when a document is removed from the listened-to keyspace"
+    },
+    {
+      "candidate_id": "eventing:embedded-sqlpp-statement",
+      "label": "Embedded SQL++ statement in a handler",
+      "reused_or_minted": "minted - a SQL++ statement (here `DELETE FROM ... WHERE ...`) written literally inline inside an Eventing handler's JavaScript body and executed synchronously as part of handling one mutation; distinct from the bucket-binding read/write model because it operates on an unbound keyspace via query language rather than a KV alias"
+    },
+    {
+      "candidate_id": "eventing:bucket-binding",
+      "label": "Bucket binding",
+      "reused_or_minted": "reused - minted in eventing-example-data-enrichment.json"
+    },
+    {
+      "candidate_id": "capella:collection",
+      "label": "Collection",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "listensTo",
+      "object": "capella:collection",
+      "reused_or_minted_predicate": "reused - minted in eventing-example-data-enrichment.json",
+      "evidence": "The `OnDelete` handler listens to mutations or data changes within a specified user's source collection."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "embedsStatement",
+      "object": "eventing:embedded-sqlpp-statement",
+      "reused_or_minted_predicate": "minted - verb phrase for a handler containing a literal SQL++ statement in its JavaScript body, executed as part of the callback rather than through a bound bucket alias's KV API",
+      "evidence": "DELETE FROM bulk.data.transactions WHERE user_id = $numeric_id;"
+    },
+    {
+      "subject": "eventing:embedded-sqlpp-statement",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-cascadeKvDeleteWithDoc",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Unlike the similar scriptlet [cascadeKvDeleteWithDoc](eventing-handler-cascadeKvDeleteWithDoc.md), which uses KV or the Data Service, the example on this page uses SQL++."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:embedded-sqlpp-statement",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `OnDelete` handler checks if the `user_id` is greater than or equal do 100, and then triggers a SQL++ query to delete all user-related information."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "cross-document consistency / transactional guarantee",
+    "finding": "No relation could be extracted describing an atomic, platform-level cascade-delete or referential-integrity mechanism. The page's own contrast with the KV-based `cascadeKvDeleteWithDoc` scriptlet shows there are two independent, handler-authored implementations of 'delete related documents' - one via embedded SQL++, one via KV operations - and neither is described as transactional. The log evidence ('OnDelete: removed orphaned transactions for:') confirms per-user, per-mutation execution, not a batch/atomic cross-collection delete."
+  },
+  "cross_component_finding": "This page directly answers the batch's cascade-delete question: there is no distinct cross-document consistency primitive. 'Cascade delete' in Eventing is just business logic - an OnDelete handler synchronously issuing an embedded SQL++ DELETE statement against a second keyspace inside its own callback, filtered by a business condition (`user_id >= 100`) that is unrelated to any platform consistency guarantee. The embedded-SQL++-in-handler mechanism itself (as opposed to the bucket-binding KV read/write model used in every other page in this batch) is the one genuinely new structural primitive this page surfaces for the Eventing vocabulary.",
+  "cross_product_finding": "n/a"
+}
