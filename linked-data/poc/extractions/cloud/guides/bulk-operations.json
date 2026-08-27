@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/guides/bulk-operations",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/bulk-operations.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - every bulk example (`doc insert`/`doc get`/`doc upsert`/`doc replace`/`doc remove` piped over an array; `Task.WhenAll`; `Flux.fromIterable`; Python `insert_multi()`/`get_multi()`/`upsert_multi()`/`remove_multi()`) is the same single-document operation repeated N times, not a new operation. No new concept minted for 'bulk' itself - it is a concurrency/composition pattern over sdk:kv-operations, not a distinct Couchbase primitive." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - the `[...] | wrap content | insert id {...} | doc insert` pipeline is a cbsh-specific composition of already-documented filters over the same `doc insert`/`doc get`/`doc upsert`/`doc remove` commands." },
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html#collection-object", "reused_or_minted_predicate": "reused", "evidence": "For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchbase-python-client/api/couchbase.html#collection-object)." },
+    { "subject": "sdk:kv-operations", "predicate": "behavesDifferentlyUnder", "object": "python-sdk:volatile-api", "reused_or_minted_predicate": "minted", "evidence": "`CBCollection.insert_multi` is a [volatile](../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that's still in flux and may likely be changed." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No RBAC/privilege mention, same absence pattern as every other KV-operation guide page in this batch."
+  },
+  "cross_component_finding": "The strongest confirming result for this round's hypothesis in the whole batch: despite being the longest source file (708 lines), bulk-operations.md introduces zero new Couchbase-specific concepts - every example is sdk:kv-operations called in a loop, via a reactive stream, or via a `*_multi()` convenience wrapper. The only genuinely new fact on the page is a caveat about the Python SDK's `insert_multi`/`get_multi`/`upsert_multi`/`remove_multi` being explicitly labelled 'volatile' (interface-stability caveat) - minted as python-sdk:volatile-api since no existing concept captures API-stability tiering, but this is an SDK-versioning fact, not a new bulk-operation concept. Repeats, verbatim, the same warning banner and 'Bulk Operations with SDKs' related-links list pattern shared with the other guide pages in this batch (though the specific link list here differs slightly, pointing to concurrent-async-apis.md pages instead of kv-operations.md pages)."
+}

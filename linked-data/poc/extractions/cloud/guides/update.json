@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/guides/update",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/update.md",
+  "concepts": [
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused - already extracted as n1ql:update in cloud/n1ql/n1ql-language-reference/update.json; this page's SET/UNSET/USE KEYS/WHERE/subquery/FOR-IN examples are the same statement, task-framed." },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - already minted; 'Merging and Updating Documents' uses the UPDATE action of the same MERGE statement." },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted; every worked example sets query context before running its UPDATE." }
+  ],
+  "relations": [
+    { "subject": "n1ql:update", "predicate": "seeAlso", "object": "n1ql:update", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [UPDATE](../n1ql/n1ql-language-reference/update.md)." },
+    { "subject": "n1ql:update", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused", "evidence": "You can also update documents by merging: in other words, by joining one data source to another, and updating any documents that match." },
+    { "subject": "n1ql:update", "predicate": "seeAlso", "object": "n1ql:object-functions", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [Object Functions](../n1ql/n1ql-language-reference/objectfun.md) and [Array Functions](../n1ql/n1ql-language-reference/arrayfun.md)." },
+    { "subject": "n1ql:update", "predicate": "seeAlso", "object": "n1ql:array-function", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [Object Functions](../n1ql/n1ql-language-reference/objectfun.md) and [Array Functions](../n1ql/n1ql-language-reference/arrayfun.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege/credential-type mention, same absence pattern as insert.md, delete.md, select.md, and the KV-operation guide pages in this batch."
+  },
+  "cross_component_finding": "'Modifying Nested Arrays and Objects' (FOR...IN...END within SET/UNSET) and 'Using the ARRAY Operator' sections are the most syntactically dense content in this batch's SQL++ guides, but both explicitly hand off detail to the object/array function reference pages rather than restating them - no duplicated-with-different-wording content found. Confirms the hypothesis a third time on the UPDATE/MERGE side: zero new statement-level concepts needed."
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/guides/drop-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/drop-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/dropindex.json" },
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/dropprimaryindex.json" },
+    { "candidate_id": "sdk:query-index-manager", "label": "Query Index Manager (cross-language SDK interface)", "reused_or_minted": "reused - minted in cloud/guides/create-index.json in this same batch for the same cross-language SDK abstraction, now shown performing drop operations" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted cross-product concept" }
+  ],
+  "relations": [
+    { "subject": "n1ql:drop-index", "predicate": "mustUseInsteadWhen", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - already-promoted relation, recurring a third time (previously seen server/dropprimaryindex.json and server/createprimaryindex.json) with the identical fact restated at guide level for Capella", "evidence": "To drop an unnamed primary index, use the `DROP PRIMARY INDEX` statement. To drop a named primary index, use the `DROP INDEX` statement." },
+    { "subject": "sdk:query-index-manager", "predicate": "mustUseInsteadWhen", "object": "n1ql:drop-index", "reused_or_minted_predicate": "reused - same predicate shape as the statement-choice relation above, applied here to SDK-vs-SQL++ rather than statement-vs-statement", "evidence": "The SDK calls only enable you to drop indexes in the default collection and default scope within a bucket. A SQL++ statement enables you to drop indexes in _any_ collection and scope within a bucket." },
+    { "subject": "sdk:query-index-manager", "predicate": "mustUseInsteadWhen", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused", "evidence": "The Java SDK does not provide a call for dropping a named primary index. To drop a named primary index, use a SQL++ query." },
+    { "subject": "n1ql:drop-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [DROP PRIMARY INDEX](../n1ql/n1ql-language-reference/dropprimaryindex.md) and [DROP INDEX](../n1ql/n1ql-language-reference/dropindex.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege table is shown on this guide page for either DROP INDEX or DROP PRIMARY INDEX, though both statement-reference pages carry one (Write/Query Index privileges by cluster access credential type). Consistent with the same absence noted on create-index.json - the guide layer never restates access control."
+  },
+  "cross_component_finding": "This page restates the same alternate-syntax fact ('Specify the index name...or...specify the keyspace and index name using dotted notation') independently for both primary and secondary index dropping, and states a real replica-cascade behavior not present in the DROP INDEX statement-reference extraction seen so far: 'Dropping an index that has replicas will also drop all of the replica indexes too.' This ties n1ql:drop-index to the indexes:index-replication concept behaviourally, though no separate relation was minted for it since it reads as a single incidental fact rather than a recurring pattern."
+}

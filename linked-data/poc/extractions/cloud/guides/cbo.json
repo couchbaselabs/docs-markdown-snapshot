@@ -1,0 +1,36 @@
+{
+  "page_id": "cloud/guides/cbo",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/cbo.md",
+  "concepts": [
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/cost-based-optimizer.json" },
+    { "candidate_id": "n1ql:rules-based-optimizer", "label": "Rules-Based Optimizer (RBO, legacy fallback)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics (AUS)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:statistics-expressions", "label": "Update Statistics for Index Expressions", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/updatestatistics.json" },
+    { "candidate_id": "n1ql:statistics-index", "label": "Update Statistics for a Single Index", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:statistics-indexes", "label": "Update Statistics for Multiple Indexes", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:statistics-delete", "label": "Delete Statistics", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - this guide names it as one of two mechanisms (alongside CBQ Shell) for activating/deactivating the CBO via the Query Options window" },
+    { "candidate_id": "tool:cbq-shell", "label": "cbq: The Command Line Shell for SQL++", "reused_or_minted": "reused - named as the second activation mechanism (\\SET -use_cbo)" }
+  ],
+  "relations": [
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "requiresPriorExecutionOf", "object": "n1ql:update-statistics", "reused_or_minted_predicate": "reused - already-promoted relation (linked-data/poc/relations/requires-prior-execution-of.json), restated near-verbatim on this guide page for the identical fact already captured from the n1ql/ reference page", "evidence": "Before you can use the Cost-Based Optimizer with a query, you must first gather the statistics that it needs." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "requiresSetting", "object": "use_cbo", "reused_or_minted_predicate": "reused - already established in cloud/n1ql/n1ql-language-reference/cost-based-optimizer.json for the identical setting", "evidence": "To activate or deactivate the Cost-Based Optimizer for a request, use `\\SET` command with the `use_cbo` parameter." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "behavesDifferentlyUnder", "object": "n1ql:rules-based-optimizer", "reused_or_minted_predicate": "reused", "evidence": "If the Cost-Based Optimizer is unavailable or inactive, or if statistics are not available, the Query Service falls back on the legacy rules-based optimizer to generate the query execution plan." },
+    { "subject": "n1ql:update-statistics", "predicate": "seeAlso", "object": "n1ql:statistics-expressions", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Update Statistics for Index Expressions](../n1ql/n1ql-language-reference/statistics-expressions.md)." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:auto-update-statistics", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can also configure a scheduled task to automatically check and update statistics using [Auto Update Statistics (AUS)](../n1ql/n1ql-language-reference/auto-update-statistics.md)." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:select", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "The Cost-Based Optimizer can generate a query plan for [SELECT](../n1ql/n1ql-language-reference/selectintro.md), [UPDATE](../n1ql/n1ql-language-reference/update.md), [DELETE](../n1ql/n1ql-language-reference/delete.md), [MERGE](../n1ql/n1ql-language-reference/merge.md), and [INSERT INTO with SELECT](../n1ql/n1ql-language-reference/insert.md) queries." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No edition qualifier appears anywhere on this page for the CBO itself, matching the reference page's own notable_absence (the EE-only gate on the server/ CBO page disappears entirely on Capella, with no substitute gate). This guide states plainly that 'The Cost-Based Optimizer is active by default,' consistent with no Capella edition axis existing at all."
+  },
+  "cross_component_finding": "This guide is a genuinely consistent restatement of the reference page (cost-based-optimizer.json), not a drifted one: the requiresPriorExecutionOf fact (UPDATE STATISTICS must run before the CBO's cost model is usable) is restated almost word-for-word ('Before you can use the Cost-Based Optimizer with a query, you must first gather the statistics that it needs' vs. the reference page's 'Before you can use the cost-based optimizer with a query, you must first gather the statistics that it needs' - only capitalization differs), and the same SELECT/UPDATE/DELETE/MERGE/INSERT-INTO-with-SELECT statement list is repeated identically. Where this guide differs constructively (not inconsistently) from the reference page is in adding two activation mechanisms not covered there: the Query tab's Query Options window (a UI toggle) and the CBQ Shell's `\\SET -use_cbo` command - genuine guide-level 'how' content layered on top of the reference page's 'what/why'.",
+  "cross_product_finding": "Notably, this guide OMITS both server-version-string citations that the n1ql/ reference page for the same feature carries verbatim ('In Couchbase Server 7.6 and later, the Query service automatically gathers statistics...' and 'available starting with Couchbase Server 8.0'). This guide instead states the statistics-gathering behavior with no version qualifier at all ('The Query Service automatically gathers statistics whenever an index is created or built, and you can update statistics at any time'). This is the opposite of the round's usual anomaly direction: here the guide layer correctly drops a Capella-inapplicable server-version citation that the reference layer had left in, rather than picking up a new one - a case worth flagging to whoever is tracking the server-version-citation docs-issue, since it shows the anomaly is not uniformly present across all pages describing the same feature."
+}

@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/guides/manipulate",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/manipulate.md",
+  "concepts": [
+    { "candidate_id": "guides:insert", "label": "Insert Data with a Query (guide page)", "reused_or_minted": "minted - forward reference to cloud/guides/insert.md, not in this batch" },
+    { "candidate_id": "guides:update", "label": "Modify Data with a Query (guide page)", "reused_or_minted": "minted - forward reference to cloud/guides/update.md, not in this batch" },
+    { "candidate_id": "guides:delete", "label": "Delete Data with a Query (guide page)", "reused_or_minted": "minted - forward reference to cloud/guides/delete.md, not in this batch" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused - already minted in n1ql batch" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/transactions.json" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/transactions.json" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/transactions.json" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/delete.json" }
+  ],
+  "relations": [
+    { "subject": "cloud/guides/manipulate", "predicate": "seeAlso", "object": "guides:insert", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To insert documents in a keyspace, you can use the INSERT statement, the UPSERT statement, or the MERGE statement. * [Insert Data with a Query](insert.md)" },
+    { "subject": "cloud/guides/manipulate", "predicate": "seeAlso", "object": "guides:update", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To modify documents in a keyspace, you can use the UPDATE statement or the MERGE statement. * [Modify Data with a Query](update.md)" },
+    { "subject": "cloud/guides/manipulate", "predicate": "seeAlso", "object": "guides:delete", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To delete documents from a keyspace, you can use the DELETE statement or the MERGE statement. * [Delete Data with a Query](delete.md)" },
+    { "subject": "guides:insert", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused - the MERGE statement is offered as an alternative path for the same insert task", "evidence": "To insert documents in a keyspace, you can use the INSERT statement, the UPSERT statement, or the MERGE statement." },
+    { "subject": "guides:update", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused - the MERGE statement is offered as an alternative path for the same update task", "evidence": "To modify documents in a keyspace, you can use the UPDATE statement or the MERGE statement." },
+    { "subject": "guides:delete", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused - the MERGE statement is offered as an alternative path for the same delete task", "evidence": "To delete documents from a keyspace, you can use the DELETE statement or the MERGE statement." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts / relations beyond seeAlso",
+    "finding": "Like query.md, this is a three-paragraph navigational hub page with no independent technical content of its own - every statement name (INSERT/UPSERT/MERGE/UPDATE/DELETE) is already a reused n1ql: id from round 5, and MERGE recurs as the common cross-cutting alternative statement for all three of insert, update, and delete. No privileges, roles, editions, or version citations appear."
+  },
+  "cross_component_finding": "MERGE's recurrence across all three teaser paragraphs (insert, update, delete) as 'the other way to do this' is the page's only structural signal, and it is purely navigational: it reinforces that MERGE is a single statement covering three DML task categories, consistent with n1ql:merge's existing definition from the round 5 batch rather than revealing new scope for it.",
+  "cross_product_finding": "Not applicable - no SDK, edition, or cross-product content on this page."
+}

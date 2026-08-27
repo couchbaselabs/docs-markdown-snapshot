@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/bulk-import-workflow",
+  "label": "SDK-scripted bulk import (CSV/TSV/JSON/JSONL)",
+  "type": "a third bulk-load path - SDK-scripted parsing and upsert of a data file - distinct from capella:data-api (round 6) and the tool:cbimport/server:cbimport CLI path",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "load.md organizes four load paths total (UI, this SDK-scripted path, and CLI cbimport/cbexport) and notably excludes the Data API as an import mechanism. The CLI tool itself has two unreconciled ids from different rounds (tool:cbimport/cbexport vs. server:cbimport/cbexport, neither promoted) - flagged as part of the existing mechanical-normalization backlog, not fixed here."
+}

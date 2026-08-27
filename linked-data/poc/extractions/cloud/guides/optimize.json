@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/guides/optimize",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/optimize.md",
+  "concepts": [
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics (AUS)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/transactions.json" },
+    { "candidate_id": "n1ql:flex-index", "label": "Flex Index feature (run a SQL++ query as a full-text search query)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/flex-indexes.json" },
+    { "candidate_id": "n1ql:time-series", "label": "Time Series Data feature", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/time-series.json" },
+    { "candidate_id": "version:server-7-2", "label": "Couchbase Server 7.2", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/time-series.json; this page repeats the same version citation verbatim" },
+    { "candidate_id": "search:full-text-index", "label": "Full-Text Search (FTS) index", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/flex-indexes.json" }
+  ],
+  "relations": [
+    { "subject": "n1ql:time-series", "predicate": "availableSince", "object": "version:server-7-2", "reused_or_minted_predicate": "reused - already-promoted relation, recurring here for a second time on this exact fact", "evidence": "In clusters using Couchbase Server 7.2 and later, SQL++ enables you to store and query time series data." },
+    { "subject": "n1ql:cost-based-optimizer", "predicate": "seeAlso", "object": "n1ql:auto-update-statistics", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Auto Update Statistics](../n1ql/n1ql-language-reference/auto-update-statistics.md)" },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "search:full-text-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Flex Indexes enable a SQL++ query to use a Search index transparently with standard SQL++ syntax." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "This is a thin navigation/table-of-contents page (38 lines, no Introduction section, no query-context boilerplate, no cbq/Query-tab tool links) grouping four unrelated advanced-query topics (CBO, transactions, Flex Indexes, time series) under one 'Advanced Query Features' heading with one-sentence summaries and links out. It reuses zero new vocabulary."
+  },
+  "cross_component_finding": "RECURRENCE of the known anomaly (server-version-string citations on Capella pages): 'In clusters using Couchbase Server 7.2 and later, SQL++ enables you to store and query time series data' is an exact repeat of the same sentence already flagged in cloud/n1ql/n1ql-language-reference/time-series.json. Notably, this is the only server-version citation found anywhere across this entire 11-file batch - none of the ten other guide pages (create-index, drop-index, defer-index, place-index, select-index, indexes, index-advisor, cbo, group-agg, join) mention a discrete Couchbase Server version at all, and none show an Enterprise/Community edition badge. Both of the round's flagged recurring anomalies are essentially confined to this one page in this batch."
+}

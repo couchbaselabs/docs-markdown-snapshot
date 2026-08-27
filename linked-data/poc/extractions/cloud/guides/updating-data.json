@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/guides/updating-data",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/updating-data.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - `doc upsert`/`UpsertAsync()`/`upsert()` and `doc replace`/`ReplaceAsync()`/`replace()` are the same upsert/replace operations already documented in java-sdk/howtos/kv-operations.md." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "sdk:cas-optimistic-locking", "label": "CAS (Compare-And-Swap) Optimistic Locking", "reused_or_minted": "reused - the replace example explicitly fetches the current CAS and passes it to `ReplaceAsync`/`replace()` ('To ensure data has not been modified before executing the replace operation, pass the document's CAS value to the method'), the canonical optimistic-locking pattern already documented on the SDK's kv-operations/concurrent-mutations pages." },
+    { "candidate_id": "sdk:subdocument-operations", "label": "Sub-Document Operations (lookupIn/mutateIn - path-level get/upsert/replace/remove within a document)", "reused_or_minted": "reused - minted once for this batch in reading-data.json; this page's 'Updating a Sub-Document' section (`MutateInAsync`/`mutateIn`/`MutateInSpec.upsert()`) is the same concept, the upsert-shaped instance of it." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "mustUseInsteadWhen", "object": "sdk:cas-optimistic-locking", "reused_or_minted_predicate": "reused", "evidence": "Use the `ReplaceAsync()` function to update a document in Couchbase. To ensure data has not been modified before executing the replace operation, pass the document's `CAS` value to the method." },
+    { "subject": "sdk:kv-operations", "predicate": "mustUseInsteadWhen", "object": "sdk:subdocument-operations", "reused_or_minted_predicate": "reused", "evidence": "To change a specific field inside a document, you can perform a Sub-Document operation. You can use either a Sub-Document upsert or replace operation depending on what's required for your application." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No RBAC/privilege mention for upsert/replace, consistent with the rest of the KV-operation guide pages in this batch."
+  },
+  "cross_component_finding": "This page's KV `upsert`/`replace` share a name with the n1ql UPSERT statement (n1ql:upsert) documented in cloud/guides/insert.md and cloud/n1ql/n1ql-language-reference/upsert.md, but the two are a genuinely different access path (Collection API vs SQL++ statement); this page itself gives no textual evidence of an explicit disjointness statement (unlike java-sdk kv-operations.md's explicit mustUseInsteadWhen framing), so no relation was minted here - flagging as a naming-collision worth watching rather than asserting a relation without a quote. Repeats, verbatim, the same warning banner and related-links lists shared across creating-data.md, deleting-data.md, reading-data.md and bulk-operations.md."
+}

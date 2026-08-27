@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/query-index-manager",
+  "label": "Query Index Manager (SDK)",
+  "type": "a cross-language SDK interface for creating/dropping/watching GSI indexes programmatically, as an alternative to the SQL++ CREATE/DROP INDEX statements",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Found across cloud/guides/create-index.md, drop-index.md, and indexes.md - absent from the pure SQL++ statement-reference pages (round 5), since those only document the SQL++ path, not the SDK's own programmatic equivalent."
+}

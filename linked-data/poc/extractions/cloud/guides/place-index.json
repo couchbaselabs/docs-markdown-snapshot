@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/guides/place-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/place-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/alterindex.json" },
+    { "candidate_id": "n1ql:alter-index-with-action-move", "label": "ALTER INDEX WITH {\"action\": \"move\"} clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/alterindex.json; this guide gives the exact worked example the reference page's Prerequisites-style text describes only abstractly" },
+    { "candidate_id": "n1ql:alter-index-with-nodes", "label": "ALTER INDEX WITH {\"nodes\": [...]} property", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/alterindex.json" },
+    { "candidate_id": "n1ql:index-partitioning", "label": "Index Partitioning (PARTITION BY HASH feature)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/index-partitioning.json; note registry drift, see cross_component_finding" },
+    { "candidate_id": "indexes:index-replication", "label": "Index Replication (availability and load-balancing across Index Service nodes)", "reused_or_minted": "reused - already established in cloud/indexes/index-replication.json" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:index-partitioning", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Index Partitioning](../n1ql/n1ql-language-reference/index-partitioning.md)." },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "indexes:index-replication", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Index Replication](../indexes/index-replication.md#index-replication)." },
+    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:alter-index-with-action-move", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [ALTER INDEX](../n1ql/n1ql-language-reference/alterindex.md)." },
+    { "subject": "n1ql:create-index", "predicate": "behavesDifferentlyUnder", "object": "indexes:index-replication", "reused_or_minted_predicate": "reused", "evidence": "If you specify both `num_replica` and `nodes`, the number of nodes must be one greater than the number of replicas." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege table restated here either, consistent with the rest of this batch's index-management guides. Also notable: unlike create-index.md/drop-index.md/defer-index.md, this page has no SDK tabs at all - it states upfront that 'The SDKs do not currently support all of these features fully,' so the SDK abstraction (sdk:query-index-manager) minted elsewhere in this batch simply does not appear here."
+  },
+  "cross_component_finding": "REGISTRY DRIFT (not introduced by this extraction, flagging for reconciliation): the same real-world GSI partitioning feature already exists under two different concept ids in the registry - n1ql:index-partitioning (minted from cloud/n1ql/n1ql-language-reference/index-partitioning.json) and indexes:index-partitioning (minted independently from cloud/indexes/index-replication.json's concept list). This page links directly to the n1ql/ statement page, so n1ql:index-partitioning was used here, but a reconciler should check whether these two ids should be merged.",
+  "cross_product_finding": "This guide is a worked-example wrapper around WITH-clause properties (nodes, num_replica, PARTITION BY HASH, action:move) that are already fully modeled as concepts from the n1ql/ round 5 sweep (alterindex.json, index-partitioning.json) and the indexes/ sweep (index-replication.json) - no new placement/partitioning/replication semantics were found; the guide's only contribution is procedural worked examples for options the reference pages already declare."
+}

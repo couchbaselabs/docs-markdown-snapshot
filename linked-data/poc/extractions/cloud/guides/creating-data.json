@@ -1,0 +1,25 @@
+{
+  "page_id": "cloud/guides/creating-data",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/creating-data.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - this page's cbsh `doc insert` / .NET `InsertAsync()` / Java, Node.js, Python `insert()` examples are all instances of the same insert operation already documented in java-sdk/howtos/kv-operations.md; no new operation semantics are introduced." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/capella/cbsh.json); this page's `doc insert` example is another instance of the same access surface." },
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "reused - `cb-env bucket travel-sample` sets this container; already promoted in cloud/clusters/data-service/about-buckets-scopes-collections.json." },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused - `cb-env scope inventory`; same reasoning as capella:bucket." },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused - `cb-env collection hotel`; same reasoning as capella:bucket." },
+    { "candidate_id": "sdk:document-expiration", "label": "Document Expiration / TTL (expiry, preserveExpiry, getAndTouch)", "reused_or_minted": "reused - the 'Inserting with Options' section's `--expiry 60` / `options.Expiry(TimeSpan.FromSeconds(60))` example is the same expiry mechanism java-sdk/howtos/kv-operations.md documents; this page adds no new expiry semantics." },
+    { "candidate_id": "sdk:cas-optimistic-locking", "label": "CAS (Compare-And-Swap) Optimistic Locking", "reused_or_minted": "reused - the page states a CAS value is assigned on document creation and links to the SDK's concurrent-mutations page; no new mechanics are added here, just a pointer to the established concept." }
+  ],
+  "relations": [
+    { "subject": "capella:collection", "predicate": "seeAlso", "object": "capella:scope", "reused_or_minted_predicate": "reused", "evidence": "Documents are organized and grouped in buckets using [scopes and collections](../clusters/data-service/about-buckets-scopes-collections.md)." },
+    { "subject": "capella:collection", "predicate": "behavesDifferentlyUnder", "object": "capella:system-scope", "reused_or_minted_predicate": "reused", "evidence": "If a scope or collection is not provided when creating a document, Couchbase will automatically store data in the `_default` collection or `_default` scope." },
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "sdk:cas-optimistic-locking", "reused_or_minted_predicate": "reused", "evidence": "When a document is created, Couchbase assigns it a [CAS (Compare and Swap)](../../java-sdk/current/howtos/concurrent-document-mutations.md) value to keep track of the document's state within the database." },
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "sdk:document-expiration", "reused_or_minted_predicate": "reused", "evidence": "To specify further parameters for the inserted document, such as expiry, add the options to the insert operation." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Unlike the cloud/n1ql/n1ql-language-reference pages (e.g. insert.md's privilege:capella-basic-access-write / privilege:capella-advanced-access-query-insert), this KV-operation guide page never mentions RBAC, credential type, or required privileges for creating a document via cbsh or an SDK - the whole access-control axis the n1ql reference pages carry is simply absent from the task-oriented guide."
+  },
+  "cross_component_finding": "This page is a thin task-wrapper: every operation it demonstrates (insert, insert-with-expiry) is already fully documented in java-sdk/howtos/kv-operations.md and cloud/clusters/data-service/about-buckets-scopes-collections.md. No new concept was needed. It also duplicates, verbatim, the same warning banner ('Please note that the examples in this guide will alter the data in your sample database...') and the same 'Key-Value Operations with SDKs' related-links list found identically in deleting-data.md, reading-data.md, updating-data.md and bulk-operations.md - exact duplication (not inconsistent wording), consistent with a shared partial/include used across this guide family."
+}

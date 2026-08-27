@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/guides/defer-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/defer-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/build-index.json" },
+    { "candidate_id": "sdk:query-index-manager", "label": "Query Index Manager (cross-language SDK interface)", "reused_or_minted": "reused - minted in cloud/guides/create-index.json" },
+    { "candidate_id": "n1ql:defer-build-option", "label": "defer_build WITH-clause option (defers index build until a later BUILD INDEX)", "reused_or_minted": "minted - a specific WITH-clause boolean property, following the precedent set in server/n1ql cloud/n1ql-language-reference/alterindex.json of minting per-property concepts for named WITH-clause options (e.g. n1ql:alter-index-with-action-move, n1ql:alter-index-with-nodes); no existing concept names this specific option" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-index", "predicate": "usesEnum", "object": "n1ql:defer-build-option", "reused_or_minted_predicate": "reused", "evidence": "In the index options, set the `defer_build` attribute to `true`." },
+    { "subject": "n1ql:build-index", "predicate": "requiresPriorExecutionOf", "object": "n1ql:defer-build-option", "reused_or_minted_predicate": "reused - already-promoted predicate (ordering/sequencing precondition, not a data dependency), applied here to a CREATE-then-BUILD sequence rather than the CBO/UPDATE STATISTICS pair it was originally minted for", "evidence": "When you create a primary or secondary index, you can mark it as deferred. This means the index is not built at once; you can build the deferred index later." },
+    { "subject": "n1ql:build-index", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [BUILD INDEX](../n1ql/n1ql-language-reference/build-index.md)." },
+    { "subject": "sdk:query-index-manager", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To build all deferred indexes in a keyspace, use the task `BuildDeferredIndexesAsync` on the interface `IQueryIndexManager`." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "As with create-index.json and drop-index.json, no privilege table is restated on this guide page, despite CREATE INDEX, CREATE PRIMARY INDEX, and BUILD INDEX all carrying one at the statement-reference level."
+  },
+  "cross_component_finding": "The guide states a task-level motivation for deferred build not present verbatim in the statement-reference pages: 'This enables you to build multiple indexes more efficiently' - a performance-rationale sentence that the CREATE INDEX/BUILD INDEX reference pages state only as syntax, not motivation. This is the guide layer adding 'why' framing around reference-layer 'what' syntax, a consistent pattern across this batch rather than new domain structure."
+}

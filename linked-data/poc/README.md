@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Eight rounds so far, each a deliberate escalation:
+automating it. Nine rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -46,6 +46,13 @@ automating it. Eight rounds so far, each a deliberate escalation:
    needed no new structural layer at all — it slots into existing vocabulary
    everywhere, with a fifth "role" and a real management-vs-runtime
    access-control split as its only genuine additions.
+9. **33 pages, `cloud/guides/`** — task-oriented how-to pages wrapping
+   statements already documented in rounds 5/6. Closes out `cloud/`
+   entirely. The reuse hypothesis held for almost all 33 pages, but still
+   surfaced three real SDK-layer gaps, a stateful entity a reference page had
+   only seen as a function usage, and a round-5 open question (does SQL++'s
+   transaction family relate to the Java SDK's?) finally closed by a page's
+   own explicit text.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -53,7 +60,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-472 pages total:
+505 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -95,6 +102,10 @@ time/cost projections and how they held up against the round-2 run's real number
   RBAC, function management, worked examples, and ~40 individual JS handler
   code-sample pages. Leaves `guides/` (33 pages) as the last untouched
   `cloud/` territory.
+- **33 more, `cloud/guides/`** — task-oriented how-to pages for data
+  operations, indexing/optimization, and query/UDF workflows. **`cloud/` is
+  now fully covered** — 5 rounds (5 through 9), ~460 pages, since round 5
+  started the real-scale phase of this project.
 
 ## Identifiers
 
@@ -157,7 +168,12 @@ from "still in `extractions/`."
   binding, timer, lifecycle state, the OnUpdate/OnDelete handler pair) and a
   fifth thing called "role" (`role:eventing-full-admin`) — but, notably,
   *no* new access-control shape, unlike every genuinely-new-feature round
-  before it. Note: round 3's Java SDK
+  before it; round 9 closed out `cloud/` entirely with three SDK-layer gaps
+  found reading guide (not reference) content — `sdk:subdocument-operations`,
+  `sdk:query-index-manager`, `sdk:bulk-import-workflow` — plus
+  `n1ql:advisor-session`, the first entity in this project modeled as
+  stateful (start/collect/stop/purge) rather than a single function call.
+  Note: round 3's Java SDK
   batch (12 pages) was reconciled only at the narrative level and never
   promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
   `sdk:error-handling`, and others are reused across round 3/4 extraction
@@ -197,7 +213,8 @@ from "still in `extractions/`."
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
   issueType, description, about, status}` — minted with no gatekeeping. 33 entries
-  as of round 8, which is itself the point: nobody is expected to read this file
+  as of round 9 (round 9 itself found no new docs-issue — see its section in
+  `reconciliation.md`), which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -486,6 +503,31 @@ also surfaced a real finding:**
     naming rather than version string or edition badge: `eventing-function-export.md`
     says "Couchbase Web Console" where a Capella page should say "Capella UI."
 
+**Round 9 (33 pages, `cloud/guides/`) — closes out `cloud/` entirely:**
+
+35. **The reuse hypothesis held for almost all 33 pages, and that's still a
+    real result** — zero new SQL++ statement concepts minted anywhere,
+    confirming the registry built from rounds 5/6 generalizes cleanly to
+    guide-level wrapper content.
+36. **Three real SDK-layer gaps found anyway.** Guide content asks slightly
+    different questions than reference content, even about the same feature:
+    `sdk:subdocument-operations` (path-level `lookupIn`/`mutateIn`, missing
+    from the whole-document-scoped `sdk:kv-operations`), `sdk:query-index-manager`
+    (the SDK's own programmatic index API), and `sdk:bulk-import-workflow`
+    (a third bulk-load path, distinct from the Data API and the CLI tool).
+37. **A stateful entity a reference page had only seen as a function
+    usage.** `index-advisor.md` revealed the Index Advisor's "session" is a
+    genuine stateful object (start/collect/stop/get/list/purge), not just
+    another `ADVISOR` function call — the first entity in this project
+    modeled with an explicit lifecycle rather than as a single invocation.
+38. **A round-5 open question closed by a page's own text.** Round 5 could
+    find no textual evidence linking the SQL++ transaction-statement family
+    to the Java SDK's transaction layer, and left it explicitly unresolved.
+    `cloud/guides/transactions.md` states the boundary directly: "This
+    how-to guide covers SQL++ support for Couchbase transactions. Some SDKs
+    also support Couchbase transactions" — related but distinct surfaces,
+    confirmed by the docs themselves.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -522,26 +564,32 @@ document.
   times (rounds 2, 3, and 5) despite the reconciler knowing to watch for it by
   round 5. See round 7's method-notes section.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  eight rounds.
+  nine rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
-  worth doing by hand at this volume.
+  worth doing by hand at this volume. Round 9 added three more instances
+  (`tool:cbimport`/`cbexport` vs. `server:cbimport`/`cbexport`;
+  `n1ql:index-partitioning` vs. `indexes:index-partitioning`;
+  `n1ql:aggregate-function` vs. `-functions`).
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- Run a first-contact batch on `cloud/guides/` (33 pages) — the last
-  untouched territory in `cloud/`.
 - Resolve the `eventing:url-alias-binding`'s "no auth" open question (its
   settings table implies other auth modes exist for this binding type; none
   are documented on the pages read in round 8) and the
   `capella:index-ui-status`/`index-state` collision from round 7, if this
   registry is ever consumed downstream.
-- If this looks worth pursuing past a POC: eight axes of stress test have now
+- `cloud/` is now fully covered (rounds 5-9). The next natural directory-scale
+  target, if continuing at this granularity, is a first product outside
+  `cloud/`/`server/` not yet touched at all (other SDKs, Analytics/Columnar,
+  Backup, the Autonomous Operator).
+- If this looks worth pursuing past a POC: nine axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
   round 4's within-one-product-across-features, round 5/6/7's three-in-a-row
   confirmation that the same partial-sampling lesson recurs on successive
-  vocabularies of the same product, and round 8's confirmation that a
-  genuinely new feature doesn't automatically need new structure). The next
-  natural one is scale itself — a real batch against the ~3,900-page "latest
-  version only" corpus from `../ingest-cost-and-time-estimate.md`, now that
-  the extraction/reconcile/promote pipeline has been exercised on Bedrock, at
-  real (not just trial) scale, and on every axis it's likely to meet at that
+  vocabularies of the same product, round 8's confirmation that a genuinely
+  new feature doesn't automatically need new structure, and round 9's
+  confirmation that even a "should mostly confirm" round still earns its
+  keep). The next natural one is scale itself — a real batch against the
+  ~3,900-page "latest version only" corpus from `../ingest-cost-and-time-estimate.md`,
+  now that the extraction/reconcile/promote pipeline has been exercised on
+  Bedrock, at real (not just trial) scale, and on every axis it's likely to meet at that
   size.

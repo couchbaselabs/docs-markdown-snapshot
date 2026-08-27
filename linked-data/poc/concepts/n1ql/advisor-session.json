@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/advisor-session",
+  "label": "Index Advisor session",
+  "type": "a stateful, session-ID-addressed object (start -> collect -> stop/get/list/purge) for the online Index Advisor - a distinct entity, not just another usage of the ADVISE/ADVISOR functions",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual bar for significance: index-advisor.md is the first page in this whole project to reveal that ADVISOR's 'session' usage is a genuinely stateful entity (with its own lifecycle and management verbs) rather than a single-call function invocation - the reference page (advisor.json, round 5) only flagged this as a function sub-usage, not a distinct concept. A real modeling upgrade, not just a new label."
+}

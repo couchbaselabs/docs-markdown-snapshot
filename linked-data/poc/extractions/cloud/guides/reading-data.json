@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/guides/reading-data",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/reading-data.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - `doc get` / `GetAsync()` / `get()` and Sub-Document `lookupIn()`/`LookupInAsync()` are all instances of the same read operation family already documented in java-sdk/howtos/kv-operations.md." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - already promoted; `doc get` and `doc get | get content.geo` are cbsh instances of the same access surface." },
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused." },
+    { "candidate_id": "sdk:document-expiration", "label": "Document Expiration / TTL (expiry, preserveExpiry, getAndTouch)", "reused_or_minted": "reused - 'Reading with Options' demonstrates fetching expiry metadata via `options.Expiry()` / `GetOptions.getOptions().withExpiry(true)`, the same mechanism already documented in java-sdk/howtos/kv-operations.md." },
+    { "candidate_id": "sdk:subdocument-operations", "label": "Sub-Document Operations (lookupIn/mutateIn - path-level get/upsert/replace/remove within a document)", "reused_or_minted": "minted - the established sdk:kv-operations concept (java-sdk/howtos/kv-operations.json) is explicitly scoped to whole-document 'get/upsert/insert/replace/remove'; it does not mention lookupIn/mutateIn or path-level access at all, so it doesn't cover this. This page's whole 'Reading a Sub-Document' section (LookupInAsync/lookupIn/LookUpInSpec) needs its own id. Recurs identically in deleting-data.md and updating-data.md, so this mint is shared across all three rather than re-minted per file." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "cloud/clusters/data-service/data-service", "reused_or_minted_predicate": "reused", "evidence": "The [Key-Value (KV) or Data Service](../clusters/data-service/data-service.md) allows you to retrieve a full document when you need to fetch all of the data stored." },
+    { "subject": "sdk:kv-operations", "predicate": "mustUseInsteadWhen", "object": "sdk:subdocument-operations", "reused_or_minted_predicate": "reused", "evidence": "Reading full documents to access a field or two is not ideal and could cause performance issues in your application. Instead, a better practice would be to access specific paths, or Sub-Documents, to perform more efficient read operations." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No RBAC/privilege mention for the get/lookupIn operations, consistent with the other KV-operation guide pages in this batch."
+  },
+  "cross_component_finding": "The 'Reading a Sub-Document' section's guidance ('Reading full documents to access a field or two is not ideal and could cause performance issues... a better practice would be to access specific paths') is task-level best-practice framing that the pure reference pages (java-sdk kv-operations, cbsh docs) don't state in this form - the closest thing to a genuinely new, guide-specific contribution found in this batch, though it doesn't rise to needing a new concept id (it's advice about when to use an already-documented operation, mapped here via mustUseInsteadWhen). Repeats, verbatim, the same warning banner and related-links lists shared across creating-data.md, deleting-data.md, updating-data.md and bulk-operations.md."
+}

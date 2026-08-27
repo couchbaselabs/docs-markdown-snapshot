@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/guides/kv-operations",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/kv-operations.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - this 53-line page is the hub/landing page for exactly the operations java-sdk/howtos/kv-operations.md documents and this batch's creating-data/reading-data/updating-data/deleting-data/bulk-operations guides demonstrate; it introduces the CRUD framing but no new operation." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - listed as one of the 'clients available' alongside SDKs." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "cloud/clusters/data-service/data-service", "reused_or_minted_predicate": "reused", "evidence": "The [Key-Value (KV) or Data Service](../clusters/data-service/data-service.md) offers Couchbase clients the fastest and simplest way to create, retrieve or mutate data where the key is known." },
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "cloud/guides/creating-data", "reused_or_minted_predicate": "reused", "evidence": "* [Create Documents](creating-data.md)" },
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "cloud/guides/bulk-operations", "reused_or_minted_predicate": "reused", "evidence": "* [Work with Documents in Bulk](bulk-operations.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "Pure hub page: an Introduction defining CRUD (create/read/update/delete), a 'Couchbase Clients' subsection naming cbsh and SDKs as access surfaces (with an explicit note that 'the Couchbase Shell is maintained by Couchbase, but it is not covered by support' - an unusual, notable disclaimer not seen elsewhere in this batch), and a 'Next Steps' list linking to every other page in this directory's KV-operation family. No code samples, no privilege/RBAC content."
+  },
+  "cross_component_finding": "This page's 'the Couchbase Shell is maintained by Couchbase, but it is not covered by support' is the one statement in this entire 11-page batch about support/maintenance tiering for an access surface (capella:cbsh) - worth flagging since it doesn't appear on the cbsh-heavy creating-data/reading-data/updating-data/deleting-data/bulk-operations pages that otherwise use cbsh in nearly every code example without repeating this caveat. Not a contradiction, just an inconsistency in where a support-relevant caveat is stated once rather than repeated alongside every cbsh example."
+}

@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/guides/delete",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/delete.md",
+  "concepts": [
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused - already extracted as n1ql:delete in cloud/n1ql/n1ql-language-reference/delete.json; this page's USE KEYS / WHERE / subquery examples are the same statement, task-framed." },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - already minted in cloud/n1ql/n1ql-language-reference/merge.json; 'Merging and Deleting Documents' uses the DELETE action of the same MERGE statement, combined with an UPDATE action in the same statement." },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted; every worked example sets query context before running its DELETE." }
+  ],
+  "relations": [
+    { "subject": "n1ql:delete", "predicate": "seeAlso", "object": "n1ql:delete", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [DELETE](../n1ql/n1ql-language-reference/delete.md)." },
+    { "subject": "n1ql:delete", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused", "evidence": "You can also delete documents by merging: in other words, by joining one keyspace to another, and deleting any documents that match." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege/credential-type mention, same absence pattern as insert.md, update.md, select.md, and the KV-operation guide pages in this batch."
+  },
+  "cross_component_finding": "Confirms the hypothesis again: reuses n1ql:delete and n1ql:merge with zero new statement-level concepts. Worth noting the 'Deleting Documents by Subquery' and 'Deleting Documents by Filter' sections don't restate WHERE/LIMIT/RETURNING clause semantics beyond naming them - they defer to the same clause pages (where.md, limit.md) used by cloud/guides/select.md and cloud/guides/update.md, so no duplicated-with-different-wording content was found on this page."
+}

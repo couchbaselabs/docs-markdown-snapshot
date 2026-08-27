@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/guides/insert",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/insert.md",
+  "concepts": [
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused - already extracted as candidate_id n1ql:insert in cloud/n1ql/n1ql-language-reference/insert.json; this guide page's INSERT ... VALUES / INSERT ... SELECT examples are the same statement, task-framed." },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/insert.json/upsert.json; 'Replacing Existing Documents' section explicitly states UPSERT 'has the same syntax as the INSERT statement'." },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused - already minted for this product in cloud/n1ql/n1ql-language-reference/merge.json; this page's 'Merging and Inserting Documents' section uses the INSERT action of the same MERGE statement." },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted cross-product concept (n1ql-intro/queriesandresults); every worked example on this page opens with 'Set the query context to the inventory scope...' pointing at cloud/guides/select.md#query-context." }
+  ],
+  "relations": [
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "n1ql:insert", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [INSERT](../n1ql/n1ql-language-reference/insert.md)." },
+    { "subject": "n1ql:insert", "predicate": "mustUseInsteadWhen", "object": "n1ql:upsert", "reused_or_minted_predicate": "reused", "evidence": "The INSERT statement fails if a document with the same document key already exists in the keyspace.\n\nTo insert documents into a keyspace and replace any existing documents with the same key, use the UPSERT statement." },
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "n1ql:merge", "reused_or_minted_predicate": "reused", "evidence": "You can also insert documents by merging: in other words, by joining one data source to another, and inserting documents that do not match." },
+    { "subject": "n1ql:insert", "predicate": "seeAlso", "object": "n1ql:query-context", "reused_or_minted_predicate": "reused", "evidence": "Set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Setting the Query Context](select.md#query-context)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Unlike cloud/n1ql/n1ql-language-reference/insert.json (which carries privilege:capella-basic-access-write, privilege:capella-advanced-access-query-insert etc.), this guide page never states which privilege or credential type is required to run INSERT/UPSERT/MERGE - the whole access-control axis is omitted from the task-oriented rewrite, exactly as with the KV-operation guides in this batch."
+  },
+  "cross_component_finding": "This page is a clean confirmation of the round's hypothesis: it reuses n1ql:insert, n1ql:upsert, and n1ql:merge without adding any new statement-level concept, and every worked example explicitly defers detail ('For more information and examples, see...') back to the cloud/n1ql/n1ql-language-reference/ pages rather than restating their content - no inconsistent-wording duplication found. The one addition specific to guide-level content is procedural framing not present on the reference pages: numbered how-to steps like 'Use the INTO keyword to specify the keyspace...' walking through clause order, which is task guidance rather than a new concept."
+}

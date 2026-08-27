@@ -287,6 +287,27 @@ existing concepts. Refines the round-7 note: reconciliation cost tracks
 registry *surface area touched*, whether that's revision or fresh territory,
 not just page count or "was there a headline surprise."
 
+## Fifth wave the same day (round 9, 33 pages, 2026-08-27) - cloud/ complete
+
+`cloud/guides/` - the last untouched `cloud/` territory, run as 3 batches.
+~437,000 tokens for 33 pages (~13,200 tokens/page), roughly $1.30. Five
+real-scale waves today, ~357 pages, ~$11 total, one working session, zero
+infrastructure issues across all five. This was the one wave expected to
+mostly confirm rather than surprise (guide pages wrapping already-documented
+statements) - reconciliation effort was correspondingly lighter than rounds
+6-8, consistent with the round-7/8 refinement that reconciliation cost tracks
+registry surface area touched, not just page count: fewer genuinely new
+concepts (4) meant less consolidation work, even though the extraction
+batches themselves ran at the usual per-page token rate.
+
+**`cloud/` is now fully covered** - 5 rounds (5 through 9), ~460 pages,
+starting from round 2's original 50-page sample. Useful as a real data point
+for scale planning: a top-level product directory of this size took 5
+distinct waves across roughly one working day once the pipeline was running
+at real scale, not the single pass an initial estimate might assume - later
+waves kept surfacing genuine new material even in directories a `reconciliation.md`-adjacent
+"how much is left" estimate might have called low-yield.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

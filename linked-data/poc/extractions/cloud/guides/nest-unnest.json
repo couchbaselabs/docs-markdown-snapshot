@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/guides/nest-unnest",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/nest-unnest.md",
+  "concepts": [
+    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/unnest.json (round 5)" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/unnest.json (round 5)" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "reused - already minted in n1ql batch" },
+    { "candidate_id": "n1ql:metafun", "label": "Meta Functions (META, UNNEST_POS, etc.)", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/unnest.json" },
+    { "candidate_id": "n1ql:advise", "label": "ADVISE statement / Index Advisor", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/advise.json" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq command line shell", "reused_or_minted": "reused - already minted in n1ql/n1ql-language-reference/execute.json" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/capella/query-tab.json)" },
+    { "candidate_id": "guides:select", "label": "Read Data and Return Results (guide page, defines Setting the Query Context)", "reused_or_minted": "minted - forward reference to cloud/guides/select.md, not in this batch (being extracted by a concurrent agent per task brief); follows the same forward-reference pattern already used for guides:create-index / guides:load-data in the vector-index batch" }
+  ],
+  "relations": [
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "n1ql:cbq", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Read the following for further information about the tools available for editing and executing queries: * [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)" },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "capella:query-tab", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Query Tab](../clusters/query-service/query-workbench.md)" },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "guides:select", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Setting the Query Context](select.md#query-context)." },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "n1ql:nest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [ANSI NEST Clause](../n1ql/n1ql-language-reference/nest.md#section%5Ftc1%5Fnnx%5F1db)." },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "n1ql:unnest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [UNNEST Clause](../n1ql/n1ql-language-reference/unnest.md)." },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "n1ql:metafun", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To use a [document key](../../server/current/learn/data/data.md#keys) in the nest predicate, use the [META()](../n1ql/n1ql-language-reference/metafun.md#meta) function to return the `id` field from the document metadata." },
+    { "subject": "cloud/guides/nest-unnest", "predicate": "seeAlso", "object": "n1ql:advise", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Before running a query containing a nest, make sure all the required indexes exist. To check which indexes may be required, use the [Index Advisor](../n1ql/n1ql-language-reference/advise.md)." },
+    { "subject": "n1ql:unnest", "predicate": "mustUseInsteadWhen", "object": "n1ql:nest", "reused_or_minted_predicate": "reused", "evidence": "Nesting is like creating a join from a document to documents from another data source. ... Unnesting data is the opposite of nesting. Unnesting is like creating a join from a parent document to Sub-Documents in an array within that document." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition / incompatibleWithAccessSurface",
+    "finding": "Confirms this round's hypothesis directly: this guide introduces no new concepts at all. Every substantive term (NEST, UNNEST, FROM, JOIN, META/UNNEST_POS, ADVISE/Index Advisor) is a reused n1ql: id already minted from round 5's n1ql/ batch. No privilege, role, edition, or access-surface gating language appears anywhere on the page - it is pure task-level exposition (how to combine FROM/NEST/ON, inner vs. left outer nest, chaining nests and unnests) wrapping the pre-existing NEST/UNNEST statement-reference vocabulary rather than revealing anything new."
+  },
+  "cross_component_finding": "The two known recurring anomalies are both absent here: no server-version-string citation, and no Enterprise/Community edition badge anywhere on the page. The only server/-shared link is to server/current/learn/data/data.md#keys for the generic 'document key' concept, consistent with the shared-source-content pattern already logged elsewhere (not re-flagged as a new anomaly).",
+  "cross_product_finding": "The 'Querying with SDKs' related-links list at the foot of the page links out to 12 different per-SDK 'n1ql-queries-with-sdk' or 'sqlpp-queries-with-sdk' pages (C, C++, .NET, Go, Java, Kotlin, Node.js, PHP, Python, Ruby, Rust, Scala) for running any SQL++ query (including NEST/UNNEST) via an SDK - this guide itself contains zero SDK-specific code, deferring entirely to the SQL++ statement syntax and to per-SDK reference pages outside this batch's scope; no relation asserted since no SDK page content was inspected."
+}

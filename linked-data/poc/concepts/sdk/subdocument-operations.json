@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/subdocument-operations",
+  "label": "Sub-document operations (lookupIn/mutateIn)",
+  "type": "path-level get/upsert/replace/remove against a specific field inside a document, distinct from whole-document KV operations",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "A real registry gap, not a guide-specific invention: sdk:kv-operations (itself still unpromoted, part of the round-3 Java SDK backlog) is explicitly scoped to whole-document get/upsert/insert/replace/remove and never covers lookupIn/mutateIn - found reading cloud/guides/reading-data.md, deleting-data.md, and updating-data.md, which all needed this concept and none of which is the SDK's own reference page."
+}

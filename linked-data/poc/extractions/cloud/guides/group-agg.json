@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/guides/group-agg",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/group-agg.md",
+  "concepts": [
+    { "candidate_id": "n1ql:aggregate-function", "label": "Aggregate function family (ARRAY_AGG, AVG, COUNT, COUNTN, MAX, MEAN, MEDIAN, MIN, STDDEV*, SUM, VARIANCE*)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/aggregatefun.json; note registry drift, see cross_component_finding" },
+    { "candidate_id": "n1ql:group-by", "label": "GROUP BY Clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/groupby.json" },
+    { "candidate_id": "index-type:group-aggregate-pushdown", "label": "Grouping and Aggregate Pushdown (SQL++ Pushdowns)", "reused_or_minted": "reused - already established in cloud/indexes/groupby-aggregate-performance.json; note registry drift, see cross_component_finding" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "n1ql:aggregate-function", "predicate": "usesEnum", "object": "aggregate-quantifier: ALL | DISTINCT", "reused_or_minted_predicate": "reused - already-established predicate, applied to the ALL/DISTINCT aggregate quantifier documented as a sub-facet of this concept rather than minted as its own concept", "evidence": "To aggregate distinct values only, include the `DISTINCT` keyword before the function arguments." },
+    { "subject": "n1ql:group-by", "predicate": "seeAlso", "object": "n1ql:aggregate-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [GROUP BY Clause](../n1ql/n1ql-language-reference/groupby.md)." },
+    { "subject": "n1ql:group-by", "predicate": "requiresPriorExecutionOf", "object": "n1ql:aggregate-function", "reused_or_minted_predicate": "minted - a GROUP BY query's HAVING/LETTING clauses depend on an aggregate function having been named in the same query for their filter target to resolve", "evidence": "To filter the groups by an aggregate function, use the HAVING clause within the GROUP BY clause." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Consistent with groupby.json's own notable_absence (GROUP BY/HAVING/LETTING carry no privilege table of their own), this guide shows no privilege or role information anywhere - access control is asserted once at the keyspace/FROM level, not per aggregate/grouping clause."
+  },
+  "cross_component_finding": "REGISTRY DRIFT (not introduced here, flagging for reconciliation): two separate naming inconsistencies recur on this page's subject matter. (1) The reference page cloud/n1ql/n1ql-language-reference/aggregatefun.json minted the singular 'n1ql:aggregate-function' for the whole aggregate-function family, but cloud/n1ql/n1ql-language-reference/groupby.json independently minted a plural 'n1ql:aggregate-functions' as a seeAlso target for the identical page - this extraction used the singular, authoritative id. (2) The Grouping/Aggregate Pushdown concept exists under two ids: 'indexes:groupby-aggregate-performance' (minted in groupby.json as a seeAlso target) and 'index-type:group-aggregate-pushdown' (the actual concept minted directly from cloud/indexes/groupby-aggregate-performance.json) - this extraction used the latter, more authoritative id.",
+  "cross_product_finding": "This guide adds no new domain concepts over the FILTER clause, aggregate quantifier (ALL/DISTINCT), GROUP BY, HAVING, and LETTING clauses already implicitly covered by n1ql:aggregate-function and n1ql:group-by in the round 5 sweep - it is entirely a worked-examples wrapper, confirming the batch's dominant pattern of guide-level content reusing statement-level vocabulary rather than revealing new structure."
+}

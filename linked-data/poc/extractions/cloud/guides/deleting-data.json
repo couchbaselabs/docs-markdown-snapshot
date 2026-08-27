@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/guides/deleting-data",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/deleting-data.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - `doc remove` / `RemoveAsync()` / `remove()` are the same remove operation already documented in java-sdk/howtos/kv-operations.md." },
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - already promoted; `doc remove` and the sub-document `doc get | reject | doc replace` pipeline are cbsh-specific instances of the same access surface." },
+    { "candidate_id": "capella:bucket", "label": "Bucket (Capella data container)", "reused_or_minted": "reused - `cb-env bucket travel-sample`." },
+    { "candidate_id": "capella:scope", "label": "Scope (Capella data container)", "reused_or_minted": "reused - `cb-env scope inventory`." },
+    { "candidate_id": "capella:collection", "label": "Collection (Capella data container)", "reused_or_minted": "reused - `cb-env collection hotel`." },
+    { "candidate_id": "sdk:subdocument-operations", "label": "Sub-Document Operations (lookupIn/mutateIn - path-level get/upsert/replace/remove within a document)", "reused_or_minted": "reused - minted once for this batch in reading-data.json; this page's 'Deleting a Sub-Document' section (`MutateInAsync`/`mutateIn`/`MutateInSpec.remove()`) is the same concept, the delete-shaped instance of it." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "https://couchbase.sh/docs/#%5Fremoving", "reused_or_minted_predicate": "reused", "evidence": "For more information, see [Removing](https://couchbase.sh/docs/#%5Fremoving) in the Couchbase Shell documentation." },
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "https://www.nushell.sh/commands/docs/reject.html", "reused_or_minted_predicate": "reused", "evidence": "For more information, see [reject for filters](https://www.nushell.sh/commands/docs/reject.html) in the Nushell documentation." },
+    { "subject": "sdk:subdocument-operations", "predicate": "behavesDifferentlyUnder", "object": "capella:cbsh", "reused_or_minted_predicate": "reused", "evidence": "1. Use the `doc get` command to retrieve a document by ID.\n3. Pipe the document through the `reject` filter to remove the field containing the Sub-Document.\n4. Pipe the output, including the `id` and `content` fields, through the `doc replace` command to update the document." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Like creating-data.md, this page never mentions RBAC/credential-type/privileges for the delete/remove KV operation, in contrast to the n1ql DELETE reference and guide pages which both carry explicit privilege tables."
+  },
+  "cross_component_finding": "cbsh has no native Sub-Document remove command; the page works around this by piping `doc get | reject <field> | doc replace` - a whole-document read-modify-write used to simulate a field-level delete. This is a genuinely task-level technique (a composition of two already-documented primitives, `doc get` and `doc replace`) rather than a new concept - it doesn't warrant a new concept id, but is worth noting as the clearest example in this batch of guide-level content going one level above pure statement/operation reference material. Also repeats, verbatim, the same warning banner and 'Key-Value Operations with SDKs' / 'Sub-Document operations with SDKs' related-links lists found identically in creating-data.md, reading-data.md, updating-data.md and bulk-operations.md."
+}

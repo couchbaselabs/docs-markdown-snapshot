@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Eight rounds so far, in order run. Each section covers one round; a single
+Nine rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -1056,9 +1056,98 @@ Same likely root cause as the other two variants, a different symptom.
 
 ---
 
-## Cumulative verdict (all eight rounds)
+## Round 9 — `cloud/guides/` (33 pages) - closes out `cloud/` entirely
 
-The vocabulary has now been tested against eight genuinely different kinds
+Scope: all 33 pages of `cloud/guides/` - task-oriented "how to" pages for
+data operations, indexing/optimization, and query/UDF workflows. Unlike every
+round since round 5, this directory was never expected to be new territory:
+it's guide-level content wrapping SQL++ statements and operations already
+exhaustively documented (`cloud/n1ql/`, round 5; `cloud/javascript-udfs/`,
+round 6). Run as 3 parallel batches. With this round done, **every page in
+`cloud/` has now been extracted** - 5 rounds (5 through 9), ~460 pages, since
+round 5 started the real-scale phase of this project. Total usage: ~437,000
+tokens for 33 pages (~13,200 tokens/page), roughly $1.30.
+
+### Headline finding: the reuse hypothesis held, with three genuine gaps found along the way
+
+Unlike rounds 5-8, this round's expectation was confirmation, not surprise -
+and that's mostly what happened: the overwhelming majority of concepts
+across all 33 pages were reused verbatim from round 5/6's statement and
+operation vocabulary, zero new SQL++ statement concepts minted anywhere.
+But reading guide-level content (rather than pure reference content) still
+surfaced three real gaps the reference pages never needed to cover:
+
+- **`sdk:subdocument-operations`** - `sdk:kv-operations` (itself still
+  unpromoted, part of the round-3 Java SDK backlog) is scoped to
+  whole-document operations and never mentions path-level `lookupIn`/`mutateIn`
+  - needed by three separate data-operation guides.
+- **`sdk:query-index-manager`** - the SDK's own programmatic
+  create/drop/watch-index interface, an alternative to the SQL++
+  CREATE/DROP INDEX statements that no statement-reference page would have
+  reason to mention.
+- **`sdk:bulk-import-workflow`** - a third bulk-load path (SDK-scripted
+  CSV/JSON parsing + upsert), distinct from both the Data API (round 6) and
+  the CLI `cbimport` tool.
+
+### A stateful entity that a reference page had only seen as a function usage
+
+`index-advisor.md` revealed that the Index Advisor's "session" isn't just
+another call to the already-promoted `ADVISE`/`ADVISOR` functions - it's a
+genuinely stateful object (start -> collect -> stop/get/list/purge) with its
+own lifecycle. The reference page (round 5) only flagged this as a function
+sub-usage. Promoted `n1ql:advisor-session` below the usual recurrence bar for
+this reason - a real modeling upgrade, not just a new label for something
+already understood.
+
+### A round-5 open question closed with direct textual evidence
+
+Round 5 flagged, more than once, that no page gave textual evidence linking
+the SQL++ transaction-statement family to the Java SDK's `sdk:distributed-transaction`
+layer (round 4) - left as an explicit open question each time rather than
+guessed at. `cloud/guides/transactions.md` closes it: "This how-to guide
+covers SQL++ support for Couchbase transactions. Some SDKs also support
+Couchbase transactions" - the guide's own framing draws the boundary
+explicitly. The two transaction layers are related but distinct SQL++/SDK
+surfaces, confirmed by the docs themselves rather than inferred.
+
+### Minor findings, left as backlog rather than fixed here
+
+- `select.md` re-explains "query context" inline rather than only linking to
+  the reference page that already covers it - consistent facts, no
+  contradiction, so not logged as a docs-issue (a genuine inconsistency would
+  be), but the clearest single instance in this round of re-explaining
+  instead of linking.
+- The CLI tool `cbimport`/`cbexport` has two unreconciled ids from two
+  different rounds (`tool:cbimport`/`cbexport` and `server:cbimport`/`cbexport`),
+  neither promoted - folded into the existing "run a normalization pass over
+  `extractions/`" backlog item rather than fixed individually.
+- Three more small id drifts flagged by this round's batches (`n1ql:index-partitioning`
+  vs. `indexes:index-partitioning`; `n1ql:aggregate-function` vs.
+  `-functions`; `indexes:groupby-aggregate-performance` vs.
+  `index-type:group-aggregate-pushdown`) - same backlog item.
+
+### What this round confirmed about the method itself
+
+- **A "should mostly confirm" round is still worth running in full, not
+  skipped.** The reuse hypothesis held for the vast majority of this round's
+  33 pages, but the exceptions (three SDK-layer gaps, one stateful-entity
+  upgrade, one closed cross-round question) wouldn't have surfaced from
+  reading the reference pages alone - guide-level content asks slightly
+  different questions of a feature than reference content does, even when
+  it's nominally about the same thing.
+- **Completing a whole top-level directory is itself a checkpoint worth
+  marking.** `cloud/` took 5 rounds (5-9) and roughly 460 pages to cover in
+  full, after round 2's original 50-page sample. The registry survived that
+  span without needing a restructuring beyond the two-catalog role split
+  (round 6) and the privilege-catalog expansion (round 7) - both real, both
+  already documented, neither requiring the earlier promoted core
+  (privilege/edition/version shapes from round 1) to change.
+
+---
+
+## Cumulative verdict (all nine rounds)
+
+The vocabulary has now been tested against nine genuinely different kinds
 of "does this still fit": a different component within one product
 (round 1), a different deployment model of the same underlying product
 (round 2), three entirely different products built by different teams
@@ -1067,14 +1156,14 @@ per-operation model (round 4's transactions, within the Java SDK already
 covered in round 3), full coverage of a directory a prior round had only
 sampled a fifth of (round 5), the same partial-sampling lesson recurring on
 the same product's role catalog (round 6), that exact lesson recurring a
-third time on the privilege catalog (round 7), and - round 8's own
-contribution - the cleanest negative result so far: a brand-new, complex
-feature (Eventing) that turned out to need no new structural layer at all,
-just a fifth genuinely new "role," a real runtime-access-control split
-(management privilege vs. resource-binding), and a couple of concrete API
-constraints. At every step it kept doing the same useful thing: not just
-"the terms still fit," but surfacing something true and specific about each
-surface it touched - Capella's credential/role-based access model
+third time on the privilege catalog (round 7), the cleanest negative result
+so far - a brand-new, complex feature (Eventing) needing no new structural
+layer at all (round 8) - and, closing out `cloud/` entirely, a round
+expected to mostly confirm rather than surprise, which is exactly what it
+did, while still finding three real gaps and closing a question left open
+since round 5 (round 9). At every step it kept doing the same useful thing:
+not just "the terms still fit," but surfacing something true and specific
+about each surface it touched - Capella's credential/role-based access model
 (round 2), Sync Gateway's two-disjoint-systems architecture and inverted
 channel-based access model (round 3), Couchbase Lite's own disjoint edition
 split (round 3), the Java SDK's transaction layer inverting CAS-based
@@ -1083,9 +1172,11 @@ credential-type pair" turning out to be a whole per-statement privilege
 catalog (round 5), `capella-role:*` turning out to be two catalogs silently
 flattened together since round 2 (round 6), `cluster-rbac.md`'s own
 25-privilege table more than doubling what round 5 had already corrected
-(round 7), and now Eventing confirming that "genuinely new feature" doesn't
-automatically mean "genuinely new access-control shape" (round 8). That's a
-stronger and more useful result than a vocabulary that merely never breaks.
+(round 7), Eventing confirming that "genuinely new feature" doesn't
+automatically mean "genuinely new access-control shape" (round 8), and the
+SQL++-vs-SDK transaction boundary finally stated explicitly by a page's own
+text rather than left inferred (round 9). That's a stronger and more useful
+result than a vocabulary that merely never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,

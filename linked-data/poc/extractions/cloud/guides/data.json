@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/guides/data",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/data.md",
+  "concepts": [
+    { "candidate_id": "sdk:kv-operations", "label": "Key-Value Data Operations (get/upsert/insert/replace/remove) via the Collection API", "reused_or_minted": "reused - this is a pure landing/index page whose 'Key-Value Operations' section links straight to kv-operations.md; no new operation content." }
+  ],
+  "relations": [
+    { "subject": "sdk:kv-operations", "predicate": "seeAlso", "object": "cloud/guides/kv-operations", "reused_or_minted_predicate": "reused", "evidence": "Use the Couchbase Capella UI or an SDK to create, read, update, or delete data.\n\n* [Work with Documents](kv-operations.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "This is a 33-line pure navigation/landing page (Introduction is just the title tagline plus three link-out sections: Key-Value Operations, Import and Export, Related Links). It contains no operational content of its own, no code samples, and no privilege/RBAC mentions - correctly a thin page with minimal concepts/relations per the extraction rules."
+  },
+  "cross_component_finding": "Acts purely as a hub page for the rest of the cloud/guides/ directory (kv-operations.md, load.md) and cloud/clusters/data-service/data-service.md - confirms this round's hypothesis that guides/ content is a thin wrapper layer, not new territory, at the landing-page level too."
+}

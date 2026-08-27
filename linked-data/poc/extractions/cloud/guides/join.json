@@ -1,0 +1,25 @@
+{
+  "page_id": "cloud/guides/join",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/join.md",
+  "concepts": [
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/join.json" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/join.json" },
+    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/join.json" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/join.json" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:join-type", "label": "ANSI JOIN type enum (inner | left outer | right outer)", "reused_or_minted": "minted - the n1ql/ reference page (join.json) modeled the whole JOIN clause under a single concept id with no separate concept for its join-type options; this guide's dedicated worked-example sections for each type (with contrasting Venn-diagram figures) surface a named, enumerable option-set worth capturing, following the same usesEnum pattern already established for cluster-access-credential-type" }
+  ],
+  "relations": [
+    { "subject": "n1ql:join", "predicate": "usesEnum", "object": "n1ql:join-type", "reused_or_minted_predicate": "reused - already-established predicate applied to a newly observed enum", "evidence": "ANSI joins support three types of join: inner joins, left outer joins, and right outer joins." },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:from", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [ANSI JOIN Clause](../n1ql/n1ql-language-reference/join.md#section%5Fek1%5Fjnx%5F1db)." },
+    { "subject": "n1ql:join", "predicate": "seeAlso", "object": "n1ql:nest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To chain joins, nests, and unnests, use the right-hand side of one JOIN, NEST, or UNNEST clause as the left-hand side of the next." },
+    { "subject": "n1ql:join", "predicate": "behavesDifferentlyUnder", "object": "n1ql:join-type", "reused_or_minted_predicate": "reused", "evidence": "If there is no corresponding data object on the right-hand side of the join, fields from the right-hand side are missing or null." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege table is restated here, unlike the n1ql/ reference page for JOIN (which names Basic->Read / Advanced->Query Read). Consistent with the batch-wide pattern of guides omitting access-control tables that their corresponding statement-reference pages carry."
+  },
+  "cross_component_finding": "This guide's join-type walkthrough (inner/left outer/right outer, each with its own figure, worked example, and NULL-handling callout) is presented with more procedural depth than the n1ql/ reference page, which names the same three types only in passing while documenting the ANSI JOIN grammar as a whole. This is this batch's second-clearest case (after index-advisor.md's session object) of a guide surfacing enumerable structure that the reference page left implicit rather than modeled explicitly.",
+  "cross_product_finding": "No server-version-string citations or Enterprise/Community edition badges appear on this page, matching every other file in this batch except optimize.md."
+}

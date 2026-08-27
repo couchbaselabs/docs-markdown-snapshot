@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/guides/query",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/query.md",
+  "concepts": [
+    { "candidate_id": "guides:select", "label": "Read Data and Return Results (guide page)", "reused_or_minted": "reused - minted in nest-unnest.json, same batch" },
+    { "candidate_id": "guides:nest-unnest", "label": "Nest and Unnest Documents (guide page)", "reused_or_minted": "minted - this batch's own page (cloud/guides/nest-unnest.md), given a guides: id per the forward-reference convention so this hub page's link to it is expressible" },
+    { "candidate_id": "guides:prep-statements", "label": "Prepare Statements for Reuse (guide page)", "reused_or_minted": "minted - this batch's own page (cloud/guides/prep-statements.md), same reasoning" },
+    { "candidate_id": "guides:group-agg", "label": "Calculate Aggregates and Group Results (guide page)", "reused_or_minted": "minted - forward reference to cloud/guides/group-agg.md, not in this batch" },
+    { "candidate_id": "guides:join", "label": "Query Across Relationships (guide page)", "reused_or_minted": "minted - forward reference to cloud/guides/join.md, not in this batch" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused - already minted in n1ql batch" }
+  ],
+  "relations": [
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "guides:select", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To read data from a data source using SQL++, you must use a selection query; in other words, a query using the `SELECT` statement. * [Read Data and Return Results](select.md)" },
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "guides:join", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can use a join to read objects from one data source, combine them with corresponding objects from another data source, and return the joined objects. * [Query Across Relationships](join.md)" },
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "guides:nest-unnest", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "SQL++ provides syntax which enables you to nest (create) or unnest (flatten) arrays of embedded documents in a query. * [Nest and Unnest Documents](nest-unnest.md)" },
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "guides:group-agg", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "You can use aggregate functions to perform calculations over multiple values. Grouping enables you to display the results in groups. * [Calculate Aggregates and Group Results](group-agg.md)" },
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "guides:prep-statements", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "If you need to execute certain SQL++ statements repeatedly, you can use placeholder parameters and prepared statements to optimize query reuse. * [Prepare Statements for Reuse](prep-statements.md)" },
+    { "subject": "cloud/guides/query", "predicate": "seeAlso", "object": "n1ql:select", "reused_or_minted_predicate": "reused", "evidence": "To read data from a data source using SQL++, you must use a selection query; in other words, a query using the `SELECT` statement." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts / relations beyond seeAlso",
+    "finding": "This is a pure navigational hub/landing page (five one-paragraph teasers, each pointing to a single child guide) with no independent technical content, no privileges, no version citations, no edition badges. It contributes zero new ontology substance on its own - its only value is as a table-of-contents node tying together select/join/nest-unnest/group-agg/prep-statements, three of which fall outside this batch."
+  },
+  "cross_component_finding": "Directly supports this round's hypothesis: 'Give me all likes and followed users located in the US' vs. 'Give me a user with the ID e3d882a4' is the page's only framing device contrasting SQL++ querying with key-value operations - no new concept, just restating the SELECT-vs-KV distinction already implicit in the existing n1ql: and kv-operations vocabulary.",
+  "cross_product_finding": "Not applicable - no SDK, edition, or cross-product content on this page."
+}

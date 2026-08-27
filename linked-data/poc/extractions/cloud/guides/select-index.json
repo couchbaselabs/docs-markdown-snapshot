@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/guides/select-index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/select-index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:selectintro", "label": "SELECT Statement introduction / Index Selection", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/groupby.json and selectintro.json" },
+    { "candidate_id": "n1ql:keyspace-hints", "label": "Keyspace Hints (includes the INDEX hint)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/hints.json/optimizer-hints.json" },
+    { "candidate_id": "n1ql:optimizer-hints", "label": "Optimizer Hints", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/optimizer-hints.json" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:selectintro", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Index Selection](../n1ql/n1ql-language-reference/selectintro.md#index-selection)." },
+    { "subject": "n1ql:selectintro", "predicate": "seeAlso", "object": "n1ql:keyspace-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [INDEX](../n1ql/n1ql-language-reference/keyspace-hints.md#index)." },
+    { "subject": "n1ql:selectintro", "predicate": "seeAlso", "object": "n1ql:optimizer-hints", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [Hints](../n1ql/n1ql-language-reference/optimizer-hints.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresEdition",
+    "finding": "No privilege table or edition gate anywhere on this page, consistent with the rest of the batch. Index selection is presented as automatic Query Service behavior with no access-control dimension of its own."
+  },
+  "cross_component_finding": "This is the thinnest page in the batch (99 lines) and introduces no new concepts at all - it is a pure worked-example wrapper around two already-fully-modeled mechanisms: predicate-based automatic index selection (n1ql:selectintro's Index Selection section) and the INDEX hint (n1ql:keyspace-hints). Confirms the round's hypothesis in its strongest form for this file: guide content here is 100% vocabulary reuse, 0% new structure."
+}

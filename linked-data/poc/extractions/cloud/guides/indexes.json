@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/guides/indexes",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/guides/indexes.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - link target of this hub page's 'Create Indexes' section (create-index.md)" },
+    { "candidate_id": "n1ql:defer-build-option", "label": "defer_build WITH-clause option", "reused_or_minted": "reused - minted in cloud/guides/defer-index.json; link target of this hub page's 'Defer Indexes' section (defer-index.md)" },
+    { "candidate_id": "n1ql:selectintro", "label": "SELECT Statement introduction / Index Selection", "reused_or_minted": "reused - link target of this hub page's 'Select Indexes' section (select-index.md)" },
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX statement", "reused_or_minted": "reused - link target of this hub page's 'Drop Indexes' section (drop-index.md)" },
+    { "candidate_id": "n1ql:advise", "label": "ADVISE statement", "reused_or_minted": "reused - link target of this hub page's 'Get Index Advice' section (index-advisor.md)" }
+  ],
+  "relations": [
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:defer-build-option", "reused_or_minted_predicate": "reused - structural markdown link ordering; this hub page lists Create, Place, Defer, Select, Drop, and Get Index Advice as sibling sub-topics of the same 'Use Primary and Secondary Indexes' parent guide", "evidence": "* [Creating Indexes](create-index.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "This is a pure navigation/table-of-contents page (51 lines) - each of its six sub-sections is a one-sentence summary immediately followed by a single link to the corresponding full guide page (create-index.md, place-index.md, defer-index.md, select-index.md, drop-index.md, index-advisor.md). It carries no privilege, edition, or version information of its own, and effectively no relations worth forcing beyond simple navigation links already captured on the child pages themselves."
+  },
+  "cross_component_finding": "Exact-duplication content pattern, distinct from the round's flagged 'fts/vs/search'-style DRIFTED restatement: every section summary sentence on this hub page is a verbatim or near-verbatim copy of that child page's own Introduction paragraph - e.g. 'You can drop primary and secondary indexes when you do not need them any more' matches drop-index.md's intro sentence exactly, and 'When you create a primary or secondary index, you can mark it as deferred...this enables you to build multiple indexes more efficiently' matches defer-index.md's intro exactly. This is consistent (non-drifted) duplication across the batch - a hub page intentionally re-surfacing each child page's own summary rather than independently paraphrasing it, so no content-consistency risk was found here, unlike what the round's hypothesis warned to watch for."
+}
