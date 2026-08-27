@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/data-writer",
+  "label": "Data Writer",
+  "type": "Capella project-scope role - read/write data-plane access",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted as part of the well-evidenced project-scope role family found on a single authoritative page (project-roles.md) - see capella-role:cluster-manager's note.",
+  "note": "This is the role project-data-writer.json was originally minted to represent (from statement pages' Prerequisites sections, under the label 'Project Data Writer') - kept as a SEPARATE concept rather than merged, since no page confirms they're the same role rather than two distinct data-plane roles at different scopes; project-data-writer.json's own note documents the label discrepancy. Resolving whether these are one role or two is flagged as SME follow-up, not decided here."
+}

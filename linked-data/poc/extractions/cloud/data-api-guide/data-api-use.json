@@ -1,0 +1,41 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-use",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-use.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "data-api:openapi-spec", "label": "Data API OpenAPI v3 specification (downloadable, drives the Data API Reference and client generation)", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:passthrough-endpoint", "label": "Data API passthrough endpoint family (Query Service passthrough, Search Service passthrough)", "reused_or_minted": "reused - minted in data-api-intro.json, same batch" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused - already minted in n1ql batch" }
+  ],
+  "relations": [
+    {
+      "subject": "capella:data-api",
+      "predicate": "authenticatesVia",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused - minted in data-api-intro.json; third independent confirmation on the page that actually demonstrates the calls",
+      "evidence": "Pass the cluster access username as the username and the cluster access secret as the password, using HTTP Basic authentication."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "dependsOnService",
+      "object": "data-api:openapi-spec",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Data API uses an [OpenAPI](https://swagger.io/resources/open-api) v3 specification. To download the Data API specification, go to the [Data API Reference](../data-api-reference/index.md) and click **Download**."
+    },
+    {
+      "subject": "data-api:passthrough-endpoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:select",
+      "reused_or_minted_predicate": "reused - structural evidence: the worked example runs a SELECT statement verbatim through the passthrough endpoint",
+      "evidence": "curl -X POST \"$BASEURL/_p/query/query/service\" \\\n   -u $USER:$PASSWORD \\\n   -H \"Accept: application/json\" \\\n   -d '{ \"statement\": \"SELECT name\\n          FROM `travel-sample`.inventory.hotel\\n          LIMIT 1;\" }'"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface",
+    "finding": "This page runs a plain SELECT statement through the Query Service passthrough endpoint with no caveat, exclusion, or error path mentioned - in direct contrast to n1ql:transactions and n1ql:using-ai (found in an earlier batch), which explicitly state they do NOT function via the Data API. This is positive confirming evidence for the incompatibleWithAccessSurface axis: ordinary DML/DQL statements are fully compatible with the Data API passthrough (no restriction stated), while the specific statement families already flagged as incompatible remain the exception rather than the rule."
+  },
+  "cross_component_finding": "Fourth and final direct confirmation in this batch that the Data API authenticates using the same cluster access credential (Basic/Advanced) model as the SQL++ statement pages - no API-key, OAuth, or JWT mechanism is used to call the Data API itself (only to configure it, via the separate Management API Bearer token seen in the other files this batch). The worked curl examples (`-u $USER:$PASSWORD`) are the most concrete evidence in the batch: HTTP Basic auth with the cluster access username/secret pair, identical in shape to how a cbq shell or SDK connection would authenticate.",
+  "cross_product_finding": "The CAS/ETag concurrency mechanism demonstrated here (`If-Match` header, `etag-save`/`etag-compare` curl options, CasMismatch error code) is presented as a Data-API-specific wrapper around the same underlying CAS value used by Couchbase SDKs (Compare-And-Swap) - 'The ETag value for a document is equivalent to the document's CAS (Compare and Swap) value' (from data-api-intro.md, confirmed again here with the worked example). This is the same optimistic-concurrency primitive already documented for SDKs but re-exposed through HTTP ETag semantics rather than a CAS parameter - a genuine one-concept/two-vocabulary case worth flagging for reconciliation against any existing sdk:cas or sdk:optimistic-locking concept from prior SDK batches."
+}

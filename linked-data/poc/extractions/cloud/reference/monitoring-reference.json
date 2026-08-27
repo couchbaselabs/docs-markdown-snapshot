@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/reference/monitoring-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/monitoring-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:metric-graph", "label": "Monitoring dashboard metric graph (Capella UI)", "reused_or_minted": "minted - kept minimal; used only as the seeAlso subject, since the ~135 individual PromQL-backed graphs are implementation detail rather than distinct Capella concepts" }
+  ],
+  "relations": [
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/metrics-dashboard", "reused_or_minted_predicate": "reused", "evidence": "* [View Monitoring Dashboards](../clusters/monitoring/metrics-dashboard.md)" },
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/monitoring", "reused_or_minted_predicate": "reused", "evidence": "* [Monitor Clusters](../clusters/monitoring/monitoring.md)" },
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "app-services/monitoring/monitoring-in-ui", "reused_or_minted_predicate": "reused", "evidence": "* [Monitor through the UI](../../app-services/monitoring/monitoring-in-ui.md)" },
+    { "subject": "monitoring:metric-graph", "predicate": "seeAlso", "object": "cloud/metrics-reference/metrics-reference", "reused_or_minted_predicate": "reused", "evidence": "* [Metrics Reference](../metrics-reference/metrics-reference.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "This is a ~135-row table of raw PromQL expressions (one per UI dashboard graph, e.g. 'sum by (bucket) (bucket:kv_ep_db_file_size_bytes:sum{...})') with a Graph Name and free-text Description per row. Confirms the batch hypothesis strongly: there is no product-specific 'thing' to mint here beyond the generic monitoring:metric-graph placeholder used only as the seeAlso subject for the See Also section - the PromQL metric names themselves are implementation details of the underlying Prometheus/exporter stack, not Capella-domain concepts, and no row contains edition/version/provider-conditional language of any kind."
+  },
+  "cross_component_finding": "The mere existence of Columnar-service and Data-Encryption-at-rest metric rows here (e.g. 'Columnar: CPU Utilization by Node', 'Data: Data Encryption Keys In Use by Node') confirms those are current, monitored Capella features, consistent with encryption-at-rest and Columnar concepts surfaced in other batches' extractions, but this page itself adds no new relation - it is purely corroborating background, not a new source of ontology."
+}

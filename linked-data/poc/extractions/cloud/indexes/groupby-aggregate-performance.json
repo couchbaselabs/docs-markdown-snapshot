@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/indexes/groupby-aggregate-performance",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/indexes/groupby-aggregate-performance.md",
+  "concepts": [
+    { "candidate_id": "index-type:group-aggregate-pushdown", "label": "Grouping and Aggregate Pushdown (SQL++ Pushdowns)", "reused_or_minted": "minted" },
+    { "candidate_id": "index-type:covering-index", "label": "Covering Index / Covered Query", "reused_or_minted": "reused - minted in cloud/indexes/covering-indexes.json" }
+  ],
+  "relations": [
+    { "subject": "index-type:group-aggregate-pushdown", "predicate": "dependsOnService", "object": "index-type:gsi", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)." },
+    { "subject": "index-type:group-aggregate-pushdown", "predicate": "seeAlso", "object": "index-type:covering-index", "reused_or_minted_predicate": "reused (seeAlso)", "evidence": "[Covering Indexes](covering-indexes.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition", "finding": "This is the longest and most technically dense page in the batch (2100+ lines of GROUP BY/aggregate pushdown scenarios), yet it contains zero privilege, role, edition, or support-plan content - a strong confirmation of the batch hypothesis. It is a pure query-optimizer reference page." },
+  "cross_component_finding": "None applicable beyond the notable_absence above. Table 1 (Aggregate Comparison) and the Appendix (Query Plan Fields) are pure reference tables with no ontology-relevant content.",
+  "cross_product_finding": "None - all mechanics described (index_group_aggs plan field, partial pre-aggregation) are shared SQL++ engine internals, not Capella-specific."
+}

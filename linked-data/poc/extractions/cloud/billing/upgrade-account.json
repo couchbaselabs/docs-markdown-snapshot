@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/billing/upgrade-account",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/upgrade-account.md",
+  "concepts": [
+    { "candidate_id": "capella:activation-id", "label": "Activation ID", "reused_or_minted": "minted - this is the page that fully defines the Activation ID as a Couchbase-Sales-issued credential that unlocks paid Support Plans; referenced forward from cloud/billing/billing.json and cloud/billing/manage-billing.json in this same batch" },
+    { "candidate_id": "capella:credit-card-payment-method", "label": "Credit Card Payment Method", "reused_or_minted": "minted - the alternative payment path to an Activation ID, which caps the available Support Plans to Basic/Developer Pro" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:free-tier-plan", "label": "Free Tier Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "plan:enterprise-support-plan", "predicate": "requiresPaymentMethod", "object": "capella:activation-id", "reused_or_minted_predicate": "minted - a Support Plan tier requires a specific payment/billing method; see cloud/billing/billing.json for the fuller definition of this predicate", "evidence": "If you want to create a cluster with the **Enterprise** Support Plan, you must get an Activation ID and purchase Capella Credits." },
+    { "subject": "plan:basic-support-plan", "predicate": "requiresPaymentMethod", "object": "capella:credit-card-payment-method", "reused_or_minted_predicate": "reused (requiresPaymentMethod)", "evidence": "When you add a credit card to your organization, you can create clusters with the **Basic** or **Developer Pro** Support Plans in your organization." },
+    { "subject": "plan:developer-pro-support-plan", "predicate": "requiresPaymentMethod", "object": "capella:credit-card-payment-method", "reused_or_minted_predicate": "reused (requiresPaymentMethod)", "evidence": "When you add a credit card to your organization, you can create clusters with the **Basic** or **Developer Pro** Support Plans in your organization." },
+    { "subject": "cloud/billing/upgrade-account", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To upgrade your organization to a paid Support Plan, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "cloud/billing/upgrade-account", "predicate": "seeAlso", "object": "cloud/billing/billing", "evidence": "For more information about the available Support Plans for Couchbase Capella, see [About Cluster and Service Support Plans](billing.md#paid-plan)." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan (consistent wording)", "finding": "Confirms the billing.json finding directly: this page's own text uses 'Enterprise Support Plan' verbatim ('If you want to create a cluster with the Enterprise Support Plan, you must get an Activation ID') - matching one of the two previously-flagged variants and never introducing 'Enterprise Service Plan' or any third variant." },
+  "cross_component_finding": "The free-tier-to-paid transition procedure requires the on-prem `cbbackupmgr` tool (a server/ CLI tool, not a Capella-native one) to migrate data between free and paid Capella clusters ('you must use the cbbackupmgr tool'). This is a second instance, alongside cloud/security/auditing.json's deferral to server/'s Audit Event Reference, of Capella docs pointing back to server/ tooling instead of defining Capella-native equivalents.",
+  "cross_product_finding": "The credit-card path is capped at Basic/Developer Pro; only a Couchbase-Sales-issued Activation ID unlocks the Enterprise Support Plan - a purely commercial gate with no counterpart in server/'s edition model, reinforcing why requiresSupportPlan was kept distinct from requiresEdition."
+}

@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/get-started/using-search",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/using-search.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure UI-feature walkthrough for the Capella Web Console's global search box (search filters like #user:/#project:/#op:/#col:/#app:, keyboard shortcut). No role, edition, plan, or setting gating stated anywhere - the search box is described as present 'on every page in the Couchbase Capella UI' with no access restriction. Left empty per this batch's guidance not to force content on thin pages."
+  },
+  "cross_component_finding": "Confirms the batch hypothesis most cleanly of any page in this batch - this is the single thinnest page, with zero gating facts, zero cross-references to other concepts in the registry, and zero quotable claims beyond UI mechanics."
+}

@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/organizations/ui-auth/sso-ping",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/sso-ping.md",
+  "concepts": [
+    { "candidate_id": "sso:realm", "label": "Realm (Capella-side SSO/IdP connection object)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:group-mapping", "label": "Group Mapping (realm-level toggle)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:default-team", "label": "Default Team", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" }
+  ],
+  "relations": [
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:group-mapping", "reused_or_minted_predicate": "reused", "evidence": "Choose to turn on or off group mapping.  \nGroup mapping allows you to assign roles to SSO users based on which teams map to their SSO group." },
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:default-team", "reused_or_minted_predicate": "reused", "evidence": "Choose a default team.  \nCapella automatically assigns users to the chosen default team when they do not match any team based on their SSO groups." },
+    { "subject": "sso-ping", "predicate": "seeAlso", "object": "sign-in-with-sso", "evidence": "* [Sign in to Capella with SSO](sign-in-with-sso.md)" },
+    { "subject": "sso-ping", "predicate": "seeAlso", "object": "manage-role-mapping", "evidence": "* [Map User Roles](manage-role-mapping.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresIdpRoleName",
+    "finding": "Prerequisite gate is generic and unlinked: 'To be signed in to the Ping admin console as an admin.' Same shape as CyberArk/Okta/OneLogin's informal wording."
+  },
+  "cross_component_finding": "Two real anomalies on this page, both worth a coordinator's attention: (1) a raw, unrendered template artifact leaks into the published content - the SAML attribute-mapping table is immediately followed by the literal text '{footnote-1}' with no corresponding footnote anywhere on the page, indicating a broken AsciiDoc footnote macro that failed to render into markdown - a genuine docs-issue candidate, not an ontology finding. (2) Ping's SAML attribute-mapping table includes a fifth attribute, `saml_subject` -> User ID, that no other provider's equivalent attribute-mapping step requires: CyberArk, Entra ID, Google Workspace, Okta, and OneLogin all map exactly email/given_name/family_name/groups (four fields) and none map a subject/User ID attribute. This is either a real Ping-specific SAML requirement (PingOne needs an explicit subject NameID mapping other IdPs infer automatically) or a documentation inconsistency where other providers omit a step they also need - the six-provider template's 'clean parameterization' hypothesis breaks down exactly here. Also unique to Ping among the OIDC flows: an explicit 'Resources' tab step during app creation ('On the Application screen, click the Resources tab. Click Save.') with no stated purpose, and a final 'enable the application by clicking the toggle switch' step that Okta/OneLogin/Google fold into user assignment rather than a separate enablement toggle (CyberArk's SAML flow has an analogous separate enable step; Ping's OIDC flow duplicates it a second time for OIDC)."
+}

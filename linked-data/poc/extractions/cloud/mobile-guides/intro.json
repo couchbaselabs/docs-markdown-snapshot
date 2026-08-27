@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/mobile-guides/intro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/mobile-guides/intro.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "cloud/mobile-guides/intro", "predicate": "seeAlso", "object": "cloud/app-services/get-started/configuring-app-services", "evidence": "follow the steps to [set up an App Services trial](../../app-services/get-started/configuring-app-services.md), creating your endpoint, and getting your connection string" },
+    { "subject": "cloud/mobile-guides/intro", "predicate": "seeAlso", "object": "couchbase-lite/current/index", "evidence": "Then head to the getting started section of your chosen platform in the [Couchbase Lite Docs](../../couchbase-lite/current/index.md)." },
+    { "subject": "cloud/mobile-guides/intro", "predicate": "seeAlso", "object": "cloud/app-services/index", "evidence": "* [Manage App Services for Mobile and Edge](../../app-services/index.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan / requiresEdition / requiresCapellaRole", "finding": "Pure navigation/landing page, as expected for this batch's one-off pages - no privilege, plan-tier, or edition content; it only distinguishes App Services (used with Capella) from Sync Gateway (used with self-managed Couchbase Server) as the sync layer for Couchbase Lite." },
+  "cross_component_finding": "The single substantive sentence on this page draws a clean product-line boundary: 'synchronized to your Couchbase Cluster via App Services (or Sync Gateway, if you're using self-managed Couchbase Server instead of Capella)' - i.e. App Services is the Capella-native equivalent of self-managed Sync Gateway, stated explicitly rather than left implicit.",
+  "cross_product_finding": ""
+}

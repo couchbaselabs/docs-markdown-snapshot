@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/management-api-guide/management-api-errors",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-guide/management-api-errors.md",
+  "concepts": [
+    { "candidate_id": "mgmt-api:api-key", "label": "Capella Management API Key", "reused_or_minted": "reused - minted in management-api-intro.json, this batch" },
+    { "candidate_id": "capella:cluster-access-credentials", "label": "Cluster access credentials (Capella data-plane database credentials)", "reused_or_minted": "reused - existing registry concept, minted in cloud/n1ql/n1ql-language-reference/createbucket.json" },
+    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read access (Basic cluster access credentials)", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write access (Basic cluster access credentials)", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "rbac-role:role", "label": "a Capella data-plane RBAC role (coarse placeholder)", "reused_or_minted": "reused - existing registry concept" }
+  ],
+  "relations": [
+    {
+      "subject": "capella:cluster-access-credentials",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-read",
+      "reused_or_minted_predicate": "reused, adapted - requiresPrivilege's domain is normally a statement; here it is adapted to a credential-creation constraint, since this error enumerates the only two legal privilege values a Basic database credential's privilege field may hold",
+      "evidence": "Returned when a trying to set a privilege other than data\\_reader / read or data\\_writer / write while creating a database credential."
+    },
+    {
+      "subject": "capella:cluster-access-credentials",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:capella-basic-access-write",
+      "reused_or_minted_predicate": "reused, adapted - same evidence and reasoning as the data_reader/read relation above",
+      "evidence": "Returned when a trying to set a privilege other than data\\_reader / read or data\\_writer / write while creating a database credential."
+    },
+    {
+      "subject": "capella:cluster-access-credentials",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "reused - a database credential (Advanced Access Credential) can reference a named data-plane database role, the same rbac-role:role placeholder used for GRANT/REVOKE/CREATE GROUP on the SQL++ side",
+      "evidence": "Remove this database role from every database credential that references it before deleting the role."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / server-version-string citation",
+    "finding": "Recurrence, not new: two error descriptions cite discrete Couchbase Server version numbers on this Capella (continuously-deployed, no-discrete-version) page - 'The server version must be at least 7.6.0' (code 6028, bucket storage-backend migration) and 'This operation is only supported for server version 7.6.0 and above' (code 11014, collection modification). Same recurring anomaly flagged in prior rounds; not treated as new here."
+  },
+  "cross_component_finding": "Error codes 8022-8024 (ErrCreateDataplaneUserRoleDoesNotExist, ErrDeleteDataplaneUserRoleInUse, ErrDataplaneUserRoleNotFoundOnCluster) reveal that the Management API's database-credential model directly reuses the existing privilege:capella-basic-access-read/write pair (named literally as 'data_reader / read' and 'data_writer / write') for Basic credentials, and the rbac-role:role placeholder for Advanced-credential database roles - confirming these error-catalog entries describe the exact same data-plane access model already captured from the SQL++ statement pages, rather than a third parallel vocabulary. Separately, error 1001 (Unauthorized) ties mgmt-api:api-key's IP-allowlist property (first seen in management-api-start.json) directly to a concrete HTTP error: 'Please make sure the client IP that is trying to access the resource using the API key is in the API key allowlist.'"
+}

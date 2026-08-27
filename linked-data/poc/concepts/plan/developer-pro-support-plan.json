@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/plan/developer-pro-support-plan",
+  "label": "Developer Pro Support Plan",
+  "type": "mid commercial support tier - object of requiresSupportPlan",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Consolidates two independent mints of the same real tier: 'plan:developer-pro-support-plan' (most files) and the shorter 'plan:developer-pro' (one batch, get-started/capella-iq) - same real-world plan, no evidence they differ, kept as one concept under the fuller name for consistency with enterprise-support-plan/basic-support-plan."
+}

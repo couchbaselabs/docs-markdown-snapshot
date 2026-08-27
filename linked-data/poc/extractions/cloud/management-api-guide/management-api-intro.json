@@ -1,0 +1,32 @@
+{
+  "page_id": "cloud/management-api-guide/management-api-intro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-guide/management-api-intro.md",
+  "concepts": [
+    { "candidate_id": "capella:management-api", "label": "Capella Operational Management API (REST API surface)", "reused_or_minted": "minted - parallel to the already-promoted capella:data-api concept (Capella Data API / Query Service passthrough); this is the equivalent 'the API surface itself' concept for the management-plane REST API, distinct from Capella's Data API which is a data-plane surface" },
+    { "candidate_id": "mgmt-api:api-key", "label": "Capella Management API Key", "reused_or_minted": "minted - genuinely distinct primitive from capella-role:*/rbac-role:role. It is a credential object that CARRIES one or more Capella roles rather than being a role itself; warrants its own mgmt-api: namespace per this batch's hypothesis" },
+    { "candidate_id": "capella-role:role", "label": "a Capella management-plane role (coarse placeholder)", "reused_or_minted": "minted - coarse placeholder for the object of requiresCapellaRole/assignsRole where this page names 'the appropriate Capella roles' generically rather than a specific role by name. Directly parallel to the existing rbac-role:role data-plane placeholder; needs refinement into capella-role:organization-owner/project-owner/project-data-writer/etc. once a specific role is named (see management-api-start.json, this batch, which names Organization Member specifically)" },
+    { "candidate_id": "plan:free-tier-plan", "label": "Free Tier Plan", "reused_or_minted": "reused - same concept as cloud/billing/upgrade-account.json (existing registry)" }
+  ],
+  "relations": [
+    {
+      "subject": "mgmt-api:api-key",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:role",
+      "reused_or_minted_predicate": "reused - the promoted requiresCapellaRole predicate, whose domain_note says its object is normally a specific capella-role:* concept; here the object is the coarse placeholder because the page speaks only generically of 'the appropriate Capella roles'. This directly answers this batch's hypothesis: the Management API does NOT introduce a separate role vocabulary of its own - it reuses the exact same capella-role:* family that gates SQL++ statement execution on Capella (Organization Owner / Project Owner / Project Data Writer), just wrapped in the mgmt-api:api-key credential concept as the thing that carries those roles rather than being checked directly against a user session.",
+      "evidence": "Couchbase Capella associates API keys with roles and permissions. To access an endpoint, an API key must have the appropriate Capella roles."
+    },
+    {
+      "subject": "capella:management-api",
+      "predicate": "gatedByBillingPlan",
+      "object": "plan:free-tier-plan",
+      "reused_or_minted_predicate": "reused - same predicate as cloud/indexes/query-without-index.json (5 prior occurrences in the registry); here the whole Management API surface, not just a single feature, is gated by billing-plan tier",
+      "evidence": "The Couchbase Capella Management API is not available for free tier operational clusters. Upgrade your account to manage deployments with the Management API."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole (with a specific named role)",
+    "finding": "This page never names a specific Capella role (Organization Owner, Project Owner, etc.) for API key access - it only says 'the appropriate Capella roles' and defers to the Management API reference guide per-endpoint. The concrete role names only surface on management-api-start.json (Organization Member) in this batch; the granular per-endpoint role requirements live in the (out-of-scope) Management API reference guide itself, not in this intro page."
+  },
+  "cross_component_finding": "The Management API's authentication model (mgmt-api:api-key wrapping capella-role:* roles, plus PUT/ETag optimistic concurrency control and audit-by-default) has no equivalent described on any server/ page in the registry - server/'s REST Admin API and cbauth model are not role-scoped by organization/project in the same way. This is a genuinely Capella-only access-control wrapper layered on top of, not replacing, the existing capella-role:* vocabulary."
+}

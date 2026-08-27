@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth/sso",
+  "label": "Single Sign-On (Capella)",
+  "type": "authentication mechanism - proving who you are, a genuinely separate axis from authorization (capella-role:*, what you're allowed to do)",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Confirmed as a distinct axis throughout this wave's organizations/ui-auth batch: SSO/MFA never becomes a role and is never granted directly. The two axes touch only via gating - Organization Owner is required to configure realms/identity providers/teams (requiresCapellaRole), and role-mapping (sso:group-mapping) is the one place authentication output feeds into authorization. New capella-role/rbac-role/sgw-role/role 'role' family stays entirely on the authorization side - authentication got its own namespace instead of being folded in."
+}

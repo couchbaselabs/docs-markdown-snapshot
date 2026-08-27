@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/get-started/connect",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/connect.md",
+  "concepts": [
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - key promoted concept, part of the access-surface family" },
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - key promoted concept, part of the access-surface family" }
+  ],
+  "relations": [
+    { "subject": "capella:data-api", "predicate": "seeAlso", "object": "capella:cbsh", "note": "both are structural links from this page's own list of connection methods, not a substantive relation between the two surfaces", "evidence": "This page covers connecting to your cluster from: * [SDKs](../../home/sdk.md) * [Couchbase Shell (cbsh)](../reference/command-line-tools.md#couchbase-shell-cbsh) * [Command line tools](../reference/command-line-tools.md) * [IDE Plugins and Extensions](../third-party/integrations.md#ide-integrations)\n\nTo enable access to your cluster via the Data API, see [Get Started with the Data API](../data-api-guide/data-api-start.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface / requiresCapellaRole",
+    "finding": "This page is a pure connectivity how-to (SDK / cbsh / CLI tools / IDE plugins) with no stated role gating and no stated incompatibility between access surfaces - it just walks through the UI steps to obtain a connection string and credentials for each surface. The access-surface family (capella:query-tab/data-api/cbsh) exists in the registry because OTHER pages state incompatibilities against specific surfaces (e.g. transactions, AI features); this page treats all its listed surfaces as equally valid, unremarkable connection paths, reinforcing that incompatibleWithAccessSurface is a property of specific features, not an inherent property of the surfaces themselves."
+  },
+  "cross_component_finding": "Confirms this batch's hypothesis for the non-iQ Get Started pages: connect.md is thin from an ontology-extraction standpoint. Its only substantive content is procedural (click-paths) and prerequisite links (cluster access credentials, allowed IPs, security certificate) that are already covered as concepts in other batches' extractions of clusters/manage-database-users.md and clusters/allow-ip-address.md, not re-minted here to avoid duplicating those pages' work."
+}

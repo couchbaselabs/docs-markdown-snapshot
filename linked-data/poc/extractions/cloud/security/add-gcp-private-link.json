@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/security/add-gcp-private-link",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/security/add-gcp-private-link.md",
+  "concepts": [
+    { "candidate_id": "security:gcp-private-link", "label": "GCP Private Service Connection", "reused_or_minted": "minted - a specific cloud-provider species of the already-minted security:private-endpoints concept" },
+    { "candidate_id": "clusters:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "clusters:prometheus-server", "label": "Prometheus Server (metrics scraping)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro", "label": "Developer Pro (Capella cluster support/service plan)", "reused_or_minted": "reused - minted in cloud/security/add-aws-private-link.json" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused - candidate first minted in cloud/security/auditing.json" }
+  ],
+  "relations": [
+    { "subject": "security:gcp-private-link", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "The [Project Owner](../projects/project-roles.md#project-owner-role) role assigned to your user account." },
+    { "subject": "security:gcp-private-link", "predicate": "requiresSupportPlan", "object": "plan:developer-pro", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "The **Developer Pro** or **Enterprise** plan." },
+    { "subject": "security:gcp-private-link", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan) - third wording variant, see add-aws-private-link.json cross_component_finding", "evidence": "The **Developer Pro** or **Enterprise** plan." },
+    { "subject": "security:gcp-private-link", "predicate": "seeAlso", "object": "clusters:xdcr", "evidence": "GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions." },
+    { "subject": "security:gcp-private-link", "predicate": "seeAlso", "object": "clusters:prometheus-server", "evidence": "GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "No data-plane privilege/RBAC content - only a management-plane role gate, a support-plan gate, and a region-matching cloud-provider constraint ('The region set to the same region as your GCP VPC'), which has no ontology predicate in the current registry and isn't worth minting a one-off predicate for." },
+  "cross_component_finding": "Same third-wording-variant recurrence for the support-plan gate as add-aws-private-link.json ('Enterprise plan' rather than 'Enterprise Support Plan'/'Enterprise Service Plan'). Also notable: this page offers an SDK-connection-string caveat ('you must add ?network=external to the end of the private endpoint in the connection string... only required for Java, Scala, Kotlin, C++, Node.js, Python, Ruby, and PHP SDKs') that has no equivalent caveat on the AWS or Azure sibling pages - a genuine per-provider behavioral difference, not a gap.",
+  "cross_product_finding": "GCP Private Service Connect uniquely offers 2 alternative configuration paths (shell script vs Google Terraform Provider) where AWS/Azure only offer the shell-script path - a real product asymmetry across the 3 cloud providers Capella supports."
+}

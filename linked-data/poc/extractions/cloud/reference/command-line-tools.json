@@ -1,0 +1,30 @@
+{
+  "page_id": "cloud/reference/command-line-tools",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/command-line-tools.md",
+  "concepts": [
+    { "candidate_id": "capella:cbsh", "label": "Couchbase Shell (cbsh)", "reused_or_minted": "reused - already minted in linked-data/poc/concepts/capella/cbsh.json as an access-surface concept; this page documents it as a downloadable CLI tool" },
+    { "candidate_id": "tool:cbq-shell", "label": "cbq command line shell for SQL++", "reused_or_minted": "reused - already minted in cloud/n1ql/n1ql-intro/cbq.json" },
+    { "candidate_id": "tool:cbimport", "label": "cbimport (import data from files/URLs)", "reused_or_minted": "minted - new CLI tool concept, sibling of tool:cbq-shell" },
+    { "candidate_id": "tool:cbexport", "label": "cbexport (export data to files)", "reused_or_minted": "minted" },
+    { "candidate_id": "tool:cbbackupmgr", "label": "cbbackupmgr (full/incremental backup and point-in-time restore)", "reused_or_minted": "minted" },
+    { "candidate_id": "tool:cbdatarecovery", "label": "cbdatarecovery (recover data from offline/failed-over nodes)", "reused_or_minted": "minted" },
+    { "candidate_id": "tool:cbc-tools", "label": "cbc Tools (libcouchbase C SDK command line tools)", "reused_or_minted": "minted" },
+    { "candidate_id": "command-line-tools-package:8.0.2", "label": "Couchbase command line tools package, version 8.0.2", "reused_or_minted": "minted - following the version-concept-per-package pattern established by command-line-tools-package:7.6.2 in cloud/n1ql/n1ql-intro/cbq.json" },
+    { "candidate_id": "command-line-tools-package:7.6.12", "label": "Couchbase command line tools package, version 7.6.12", "reused_or_minted": "minted - same pattern" }
+  ],
+  "relations": [
+    { "subject": "command-line-tools-package:8.0.2", "predicate": "isBackwardCompatibleWith", "object": "command-line-tools-package:7.6.12", "reused_or_minted_predicate": "minted - isBackwardCompatibleWith. No existing predicate captures a directional version-compatibility claim between two package versions of the same tool family; this is distinct from availableSince (a single version floor) and from behavesDifferentlyUnder (a variant axis, not a version-pair claim).", "evidence": "While command line tools for 7.6.X are not forward compatible with 8.0.X, command line tools for 8.0.X are backward compatible with 7.6.X." },
+    { "subject": "tool:cbimport", "predicate": "seeAlso", "object": "cloud/connect/cli-import-export", "reused_or_minted_predicate": "reused", "evidence": "[cbimport and cbexport](../connect/cli-import-export.md)" },
+    { "subject": "tool:cbbackupmgr", "predicate": "seeAlso", "object": "cloud/clusters/cli-backup-restore", "reused_or_minted_predicate": "reused", "evidence": "[cbbackupmgr](../clusters/cli-backup-restore.md)" },
+    { "subject": "tool:cbdatarecovery", "predicate": "seeAlso", "object": "server/current/tools/cbdatarecovery", "reused_or_minted_predicate": "reused", "evidence": "[cbdatarecovery](../../server/current/tools/cbdatarecovery.md)" },
+    { "subject": "tool:cbq-shell", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-intro/cbq", "reused_or_minted_predicate": "reused", "evidence": "[cbq](../n1ql/n1ql-intro/cbq.md)" },
+    { "subject": "capella:cbsh", "predicate": "seeAlso", "object": "https://couchbase.sh/docs/", "reused_or_minted_predicate": "reused", "evidence": "To download, install, and get started with `cbsh`, see the [Couchbase Shell Documentation](https://couchbase.sh/docs/)." },
+    { "subject": "tool:cbc-tools", "predicate": "seeAlso", "object": "c-sdk/current/hello-world/cbc", "reused_or_minted_predicate": "reused", "evidence": "The Couchbase C SDK, `libcouchbase`, includes a small set of command line tools. For more information, see [cbc Tools](../../c-sdk/current/hello-world/cbc.md#cbc-tools)." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / requiresEdition",
+    "finding": "No relation was minted directly stating 'cbimport/cbexport/cbbackupmgr/cbdatarecovery are available starting at package version X' the way cloud/n1ql/n1ql-intro/cbq.json states cbq's availableSince. This page describes the package as a whole (two parallel download/version tracks: 8.0.X and 7.6.X) rather than per-tool version floors, so there is no single availableSince fact to extract per tool beyond the package-level isBackwardCompatibleWith relation already captured."
+  },
+  "cross_component_finding": "This page repeatedly cites raw server-version-format build strings (e.g. 'cbimport version 8.0.2-5503 (983714b2)', 'SHELL VERSION : 7.6.12-8946', 'GO VERSION : go1.25.5') for a package explicitly named 'Couchbase Server command line tools' rather than a Capella-native artifact - this is a recurrence of the known anomaly (already seen on cbq.json and flagged as expected in this batch's hypothesis) where Capella-adjacent pages cite discrete server-style version strings despite Capella itself having no discrete version number. Not treated as a new finding, only as confirmed recurrence."
+}

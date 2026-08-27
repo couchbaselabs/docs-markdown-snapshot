@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/role",
+  "label": "a Capella management-plane role (coarse placeholder)",
+  "type": "coarse - stands in for the object of requiresCapellaRole/assignsRole where a page didn't name a specific organization- or project-scope role",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Management-plane mirror of rbac-role:role (the coarse data-plane RBAC placeholder). Needs refinement into specific capella-role:organization-* / capella-role:project-* concepts once a page names the specific role, the same refinement path rbac-role:role was defined for."
+}

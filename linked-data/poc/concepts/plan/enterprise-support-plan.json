@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/plan/enterprise-support-plan",
+  "label": "Enterprise Support Plan",
+  "type": "top commercial support tier - object of requiresSupportPlan",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "This wave's firsthand read of billing.md found the wording chaos flagged since round 2 is worse than documented: 'Enterprise Support Plan' (most pages, kept as this concept's canonical label), 'Enterprise Service Plan' (round 2), and 'Enterprise Plan' (billing.md's OWN section heading and its Model Service pricing note - the same page uses both 'Enterprise Support Plan' in prose and bare 'Enterprise Plan' as a heading). See docs-issues/capella-support-plan-wording-inconsistency.json for the full writeup - not resolved here, since which wording (if any) is authoritative is a docs-team call."
+}

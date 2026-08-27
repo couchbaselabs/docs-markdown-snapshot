@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/organization-member",
+  "label": "Organization Member",
+  "type": "Capella organization-scope role - the default/baseline role, third member of the organization-scope catalog alongside organization-owner and project-creator",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Confirmed against organization-user-roles.md - organization-scope roles are exactly these three (Organization Owner, Project Creator, Organization Member). Part of round 6's headline restructuring - see reconciliation.md round 6."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sso/group-mapping",
+  "label": "Group Mapping (Capella SSO)",
+  "type": "the one place authentication output feeds into authorization - maps an identity provider's groups to Capella roles/teams",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "The concrete mechanism behind auth:sso's authentication-vs-authorization boundary. One unresolved question carried from extraction: whether the mapped-to target is an organization role, a project role, or the data-plane rbac-role:role family - no page states which, left as auth:permission-set (extraction-layer only) pending evidence."
+}

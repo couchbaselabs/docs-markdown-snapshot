@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-organizations-sso-provider-inconsistencies",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Capella's six per-provider SSO setup guides (CyberArk, Entra ID, Google, Okta, OneLogin, Ping) are mostly clean parameterization of one shared flow, but reading all six back to back surfaced several real inconsistencies rather than pure provider-name substitution: Entra ID uniquely requires the IdP group's object ID instead of name (undocumented on that page itself); Entra ID uniquely requires family_name/given_name pre-populated and names a specific linked role ('Global Administrator') where other providers stay informal ('admin'/'super admin'); Okta and Ping require a placeholder ACS URL/Entity ID workaround the other four providers don't need; OneLogin and Ping both configure a 'Token Endpoint Authentication Method' during OIDC setup with different values (POST vs. Client Secret Post) that the other four OIDC flows never mention at all; Google uniquely has a separate 'on for everyone' activation step with a stated propagation delay; Ping's SAML attribute-mapping table uniquely includes a 5th attribute (saml_subject/User ID) no other provider's table requires. Also: sso-ping.md has a broken, unrendered '{footnote-1}' template artifact in the published page - a small, concrete, fixable bug.",
+  "about": [
+    "cloud/organizations/ui-auth/sso-entra-id",
+    "cloud/organizations/ui-auth/sso-okta",
+    "cloud/organizations/ui-auth/sso-ping",
+    "cloud/organizations/ui-auth/sso-onelogin",
+    "cloud/organizations/ui-auth/sso-google",
+    "cloud/organizations/ui-auth/sso-cyberark",
+    "cloud/organizations/ui-auth/manage-role-mapping"
+  ],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

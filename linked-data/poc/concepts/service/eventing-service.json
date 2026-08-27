@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/eventing-service",
+  "label": "Eventing Service",
+  "type": "one of Couchbase's core services - not previously in the registry's dependsOnService graph",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "First encountered this wave via eventing-service-metrics.md, which calls it 'the Eventing Service' consistent with its peers (Query/Index/Data/Search/Analytics Service, already in the registry). No dependsOnService relations were extractable from the metrics pages themselves - every metrics page in this batch is a flat metric-name/version-badge/description catalog with no dependency prose, so this concept's place in the service-dependency graph is still open."
+}

@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/data-api-reference/index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-reference/index.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted in concepts/capella/data-api.json" }
+  ],
+  "relations": [
+    { "subject": "cloud/data-api-reference/index", "predicate": "seeAlso", "object": "cloud/data-api-guide/data-api-intro", "evidence": "[Data API Overview](https://docs.couchbase.com/cloud/data-api-guide/data-api-intro.html)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition / requiresSupportPlan", "finding": "This is a Redoc-generated OpenAPI reference (~2,200 lines), not a landing page in the usual sense - it has almost no discursive prose outside the Introduction section, and no plan-tier or edition gating anywhere; it is scoped entirely to per-parameter behavior." },
+  "cross_component_finding": "",
+  "cross_product_finding": "Recurrence of the previously-flagged server-version-string-citation anomaly, now on the Data API surface rather than the SQL++ statement pages where it was first observed: individual query parameters cite specific Couchbase Server version gates even though this is a Capella-hosted, continuously-deployed API with no discrete version number of its own - e.g. 'In clusters running Couchbase Server 6.5 and later, this parameter is ignored and has no effect,' 'This parameter is available in clusters running Couchbase Server 8.0 and later' (natural-language query parameters), 'Reading from replica is only possible if the cluster uses Couchbase Server 7.6.0 or later,' and 'Parameter masking is available in clusters running Couchbase Server 7.6.8 and later.'"
+}

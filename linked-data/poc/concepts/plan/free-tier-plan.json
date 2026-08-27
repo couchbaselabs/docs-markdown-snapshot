@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/plan/free-tier-plan",
+  "label": "Free Tier",
+  "type": "no-cost commercial plan - object of requiresSupportPlan/gatedByBillingPlan (e.g. Capella iQ Insights' chart-generation rate limit differs by tier)",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Consolidates two independent mints of the same real tier: 'billing:free-tier-plan' and 'plan:free-tier-plan' - kept under the plan: namespace for consistency with the other three support tiers."
+}

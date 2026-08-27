@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/management-api-guide/management-api-start",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-guide/management-api-start.md",
+  "concepts": [
+    { "candidate_id": "mgmt-api:api-key", "label": "Capella Management API Key", "reused_or_minted": "reused - minted in management-api-intro.json, this batch" },
+    { "candidate_id": "capella-role:role", "label": "a Capella management-plane role (coarse placeholder)", "reused_or_minted": "reused - minted in management-api-intro.json, this batch" },
+    { "candidate_id": "capella-role:organization-member", "label": "Organization Member (Capella organization role)", "reused_or_minted": "minted - the first concretely-named Capella management-plane role encountered in this batch; distinct from the already-registered capella-role:organization-owner/project-owner/project-data-writer, and named directly (not generically) in this page's text. Sibling entry that should be added to the capella-role:* family alongside the existing three." }
+  ],
+  "relations": [
+    {
+      "subject": "mgmt-api:api-key",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:role",
+      "reused_or_minted_predicate": "reused - recurrence of the same generic-object relation minted in management-api-intro.json, this batch, reinforcing that finding",
+      "evidence": "Each API key is associated with 1 or more organization roles, which determine the privileges that the API key has within the organization."
+    },
+    {
+      "subject": "mgmt-api:api-key",
+      "predicate": "assignsRole",
+      "object": "capella-role:organization-member",
+      "reused_or_minted_predicate": "reused - the promoted assignsRole predicate (previously: CREATE GROUP attaching a role at creation time); here a project-level API key is automatically assigned the Organization Member role at creation time, the same 'attach a role to an entity at creation' shape",
+      "evidence": "When you create an API key at the project level, the API key has the Organization Member role for the organization containing the project, and has access to the project where you created it."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole (project roles named specifically)",
+    "finding": "This page repeatedly links to 'Project Roles' and lets the user 'select 1 or more project roles for the API key' in the Capella UI procedure, but never names a specific project role (Project Owner, Data Writer, etc.) in its own prose - those names only appear on the SQL++ statement pages from prior rounds (e.g. createbucket.json). So no capella-role:project-owner/project-data-writer relation could be extracted from this page's text specifically, even though the UI clearly offers them."
+  },
+  "cross_component_finding": "This page makes explicit a two-scope structure for Capella management-plane roles that the earlier SQL++-statement-focused rounds only partially surfaced: an API key can hold organization roles (which gate organization-wide endpoints and determine which projects it can even see) AND, independently, per-project roles (which gate what it can do within each project it has access to) - 'Each API key may have access to 1 or more projects, depending on the organization role. For each project, each API key is associated with 1 or more project roles.' This confirms organization-role and project-role are two distinct axes within the same capella-role:* family, not synonyms."
+}

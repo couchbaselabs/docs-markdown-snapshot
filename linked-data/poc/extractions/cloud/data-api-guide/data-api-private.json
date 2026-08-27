@@ -1,0 +1,38 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-private",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-private.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "data-api:private-endpoint", "label": "Data API private endpoint (CSP-native private connectivity to the Data API specifically)", "reused_or_minted": "reused - minted in data-api-intro.json, same batch" },
+    { "candidate_id": "data-api:same-region-requirement", "label": "Private endpoint same-region requirement (client VPC and Data API VPC must be in the same CSP region)", "reused_or_minted": "minted - single-occurrence constraint, not expected to recur" }
+  ],
+  "relations": [
+    {
+      "subject": "data-api:private-endpoint",
+      "predicate": "dependsOnService",
+      "object": "capella:data-api",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Private endpoints for the Data API enable you to connect a client app directly to the Couchbase Data API, assuming that they both use the same cloud service provider (CSP)."
+    },
+    {
+      "subject": "data-api:private-endpoint",
+      "predicate": "requiresSetting",
+      "object": "data-api:same-region-requirement",
+      "reused_or_minted_predicate": "reused - object concept minted this file only, not expected to recur",
+      "evidence": "To use private endpoints for the Data API, the client VPC and the Data API VPC must be within the same region, for example `us-east-1`."
+    },
+    {
+      "subject": "data-api:private-endpoint",
+      "predicate": "seeAlso",
+      "object": "capella:data-api",
+      "reused_or_minted_predicate": "reused - structural markdown link (to per-CSP procedure pages)",
+      "evidence": "* [Manage AWS Private Endpoints for the Data API](data-api-private-aws.md)\n* [Manage Azure Private Endpoints for the Data API](data-api-private-azure.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No Enterprise/Community edition badge appears anywhere in this file (or anywhere in this batch's 11 files) - unlike the recurring anomaly noted in prior rounds where Capella pages carry a stray Enterprise/Community badge despite Capella itself having no editions. This is a genuine absence, not a miss: this batch simply does not exhibit that particular anomaly."
+  },
+  "cross_component_finding": "This page is a thin index/landing page (2 CSPs listed, GCP notably absent) that only fans out to data-api-private-aws.md and data-api-private-azure.md; both children are near-identical in structure and content, differing only in CLI tooling (aws vs. az) and field names (VPC ID/Subnet IDs vs. Resource Group/Virtual Network-Subnet)."
+}

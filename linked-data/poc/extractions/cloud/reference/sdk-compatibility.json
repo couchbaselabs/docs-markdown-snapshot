@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/reference/sdk-compatibility",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/sdk-compatibility.md",
+  "concepts": [
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/deployment/capella.json)" },
+    { "candidate_id": "network:ipv6-only-environment", "label": "IPv6-only client network environment", "reused_or_minted": "minted - new namespace; a real constraint on client connectivity, not an SDK version fact" }
+  ],
+  "relations": [
+    { "subject": "deployment:capella", "predicate": "incompatibleWithNetworkEnvironment", "object": "network:ipv6-only-environment", "reused_or_minted_predicate": "minted - incompatibleWithNetworkEnvironment. Distinct from incompatibleWithAccessSurface (client/interface axis) and incompatibleWithCredentialType (data-plane credential axis) - this is a transport/network-layer incompatibility specific to Capella (not SQL++, not a particular SDK).", "evidence": "If you are connecting from _IPv6-only_ environment, you cannot connect to Couchbase Capella as you are unable to use the IPv4 records published for Capella clusters." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The per-SDK minimum/recommended version table (C, C++, .NET, Go, Java, Kotlin, Node.js, PHP, Python, Ruby, Rust, Scala) is exactly the kind of compatibility matrix the batch hypothesis predicted would carry low ontology content, and it does: no per-language SDK concept was minted, since these are well-known product lines already covered by the existing sdk: namespace (albeit for transaction-specific sub-concepts) and minting 12 near-identical 'SDK X supports Capella from version Y' relations would add table-restating noise rather than new structure. The one exception extracted (IPv6-only incompatibility) was chosen specifically because it's a Capella-wide connectivity constraint, not a per-SDK compatibility fact."
+  },
+  "cross_component_finding": "Unlike the known recurring anomaly (Capella pages citing discrete server-style version strings despite Capella itself having no version number), the version numbers on this page are legitimately about external SDK client libraries (which DO have real, independent version numbers) rather than about Capella or Couchbase Server itself - the same distinction already drawn in cloud/n1ql/n1ql-intro/cbq.json between 'shell version' and 'server version'. Not a recurrence of the anomaly; correctly scoped version citations."
+}

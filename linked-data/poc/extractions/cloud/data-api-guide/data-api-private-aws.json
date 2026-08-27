@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-private-aws",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-private-aws.md",
+  "concepts": [
+    { "candidate_id": "data-api:private-endpoint", "label": "Data API private endpoint (CSP-native private connectivity to the Data API specifically)", "reused_or_minted": "reused - minted in data-api-intro.json, same batch" },
+    { "candidate_id": "data-api:aws-private-endpoint", "label": "AWS PrivateLink interface endpoint for the Data API", "reused_or_minted": "minted - CSP-specific specialization of data-api:private-endpoint" },
+    { "candidate_id": "capella:management-api", "label": "Capella Operational Management API", "reused_or_minted": "minted - no existing candidate found in registry slice; used to configure the Data API and its private endpoints, distinct from the Data API's own data-plane surface" },
+    { "candidate_id": "data-api:api-key-secret", "label": "Management API key secret (used as Bearer token to configure the Data API, distinct from the cluster access credential used to call it)", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "data-api:aws-private-endpoint",
+      "predicate": "dependsOnService",
+      "object": "capella:management-api",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To configure and manage AWS private endpoints with the Data API, you can use the Capella UI or the Capella Management API."
+    },
+    {
+      "subject": "capella:management-api",
+      "predicate": "authenticatesVia",
+      "object": "data-api:api-key-secret",
+      "reused_or_minted_predicate": "reused - minted in data-api-intro.json's cross_component_finding as the managementPlaneCredential axis; here given a concrete object concept",
+      "evidence": "`$apiKeySecret` is the Management API key secret, used as the Bearer token."
+    },
+    {
+      "subject": "data-api:aws-private-endpoint",
+      "predicate": "seeAlso",
+      "object": "data-api:private-endpoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information, see [Add an AWS PrivateLink Connection](../security/add-aws-private-link.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No Enterprise/Community edition badge on this page - consistent with the rest of this batch."
+  },
+  "cross_component_finding": "Confirms the managementPlaneCredential vs. dataPlaneCredential split flagged in data-api-intro.json: every Management API call on this page authenticates with `-H \"Authorization: Bearer $apiKeySecret\"` (a Management API key secret), while the Data API call used later in this same page to validate the connection ('Test the Data API node') authenticates with `-u $USER:$PASSWORD` (the cluster access credential, HTTP Basic). Both mechanisms appear side-by-side in the same procedure, on the same page, confirming these are two deliberately distinct, non-overlapping credential axes for the same feature (configure vs. use).",
+  "cross_product_finding": "GCP is conspicuously absent - private endpoints for the Data API are documented only for AWS and Azure ('Currently, private endpoints for the Data API are available using Amazon Web Services (AWS) and Microsoft Azure' per data-api-private.md), even though Couchbase Capella otherwise supports GCP as a deployment CSP elsewhere in the docs set. Flagging as a coverage gap rather than an ontology finding."
+}

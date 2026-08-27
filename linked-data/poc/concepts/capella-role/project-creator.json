@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/project-creator",
+  "label": "Project Creator",
+  "type": "Capella organization-scope role - gates project creation; second member of the organization-scope catalog",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Confirmed against organization-user-roles.md. Along with organization-owner, implies project-level access via impliesRole - see relations/implies-role.json. Part of round 6's headline restructuring - see reconciliation.md round 6."
+}

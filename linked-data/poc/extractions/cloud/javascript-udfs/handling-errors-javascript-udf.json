@@ -1,0 +1,40 @@
+{
+  "page_id": "cloud/javascript-udfs/handling-errors-javascript-udf",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/javascript-udfs/handling-errors-javascript-udf.md",
+  "concepts": [
+    { "candidate_id": "js-udf:runtime-error-handling", "label": "Runtime-level error handling (uncaught SQL++/DML error surfaced as a JSON error object by the query engine)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:function-error-handling", "label": "Function-level error handling (try/catch inside the JavaScript UDF, using standard JavaScript exception mechanism)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:throw-vs-return", "label": "Throw vs. return semantics for JavaScript UDF errors (throw halts subsequent statements; return is treated as success)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:abort", "label": "ABORT() function (returns an error from inside a query or user-defined function)", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:function-error-handling",
+      "predicate": "mustUseInsteadWhen",
+      "object": "js-udf:runtime-error-handling",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In most cases, it's better to use your JavaScript function to handle likely errors. You can provide a more user-friendly message or take an alternative course of action."
+    },
+    {
+      "subject": "js-udf:throw-vs-return",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:function-error-handling",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If the JavaScript function returns any value, including an error, then the SQL++ runtime will assume that the function completed successfully, and the caller will continue to run subsequent statements. ... If an error is thrown, then this is treated as an error condition. Further statements in the request will not run."
+    },
+    {
+      "subject": "js-udf:function-error-handling",
+      "predicate": "seeAlso",
+      "object": "n1ql:abort",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "SQL++ also supports using the [ABORT()](../n1ql/n1ql-language-reference/metafun.md#abort) function inside a query or a user-defined function to return an error."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface / requiresCapellaRole",
+    "finding": "This page's error examples are all triggered by ordinary DML conflicts (dml.statement.duplicatekey / DML Error) surfaced through the same generic error-object shape used elsewhere in this batch's worked examples (code 10109, 'Error executing function') - no error path on this page is attributable to an access-surface or credential-type restriction. This is consistent with the rest of the batch: JS UDF errors are ordinary runtime/DML errors, not authorization errors."
+  },
+  "cross_component_finding": "The error-object shape shown here (`code`, `msg`, `reason.details.Exception.cause.key: \"dml.statement.duplicatekey\"`) is identical in structure across this file and calling-n1ql-from-javascript.json's nested-recursion error example (`function.nested.error` / code 10112) and calling-javascript-from-n1ql.json's plain query results - all three files share one uniform error-envelope format regardless of whether the underlying cause is a DML conflict, a nested-call worker exhaustion, or (per data-api-use.json) a CasMismatch from the Data API. This is useful confirming evidence that JS UDF errors, DML errors, and Data API errors all flow through the same underlying Query Service error-reporting mechanism rather than three separate error models.",
+  "cross_product_finding": null
+}

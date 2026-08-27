@@ -1,8 +1,10 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/capella-role/project-data-writer",
   "label": "Project Data Writer",
-  "type": "Capella management-plane role",
+  "type": "Capella project-scope role - the role name as it was labeled on the statement pages this concept was originally minted from",
   "promoted": true,
   "recurrence": 10,
-  "scheme": "capella management-plane role"
+  "scheme": "capella management-plane role",
+  "note": "Round 6's firsthand read of project-roles.md - the authoritative page for this catalog - found the role's own label there is plain 'Data Writer,' not 'Project Data Writer.' Id kept stable (many extraction records across rounds 2/5/6 already reference it) rather than renamed; this note documents the label discrepancy rather than silently correcting it. Same root cause as the rest of round 6's headline finding: capella-role:organization-owner/project-owner/project-data-writer were minted from statement pages' Prerequisites sections, which flatten two separate catalogs (organization-scope and project-scope roles) into one undifferentiated list and don't always use the role's own canonical name - see reconciliation.md round 6."
 }
+

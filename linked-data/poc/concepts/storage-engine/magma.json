@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage-engine/magma",
+  "label": "Magma",
+  "type": "sibling of storage-engine:couchstore",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted with storage-engine:couchstore - see that concept's note."
+}

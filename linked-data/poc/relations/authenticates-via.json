@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/authenticates-via",
+  "label": "authenticates via",
+  "kind": "relation (schema-level)",
+  "type": "which credential mechanism an access surface actually uses - e.g. capella:data-api authenticatesVia cluster-access-credential-type (Basic auth, same as statement pages); capella:management-api authenticatesVia mgmt-api:api-key (Bearer token)",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Distinct from requiresPrivilege/requiresCapellaRole (which privilege/role is needed) - this is about the credential TRANSPORT mechanism itself, a question none of the statement-level relations addressed."
+}

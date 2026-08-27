@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/metrics-reference/xdcr-metrics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/metrics-reference/xdcr-metrics.md",
+  "concepts": [
+    { "candidate_id": "capella:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "reused - minted in metrics-reference.json, this batch. Deliberately namespaced capella: rather than service: because metrics-reference.md's own text excludes XDCR from 'all Couchbase Services' - confirms this batch's hypothesis that XDCR had not previously come up, and that it should not simply be folded into the service: family without checking source framing first" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "dependsOnService",
+    "finding": "Directly answers this batch's hypothesis question: this page is a flat list of xdcr_* Prometheus metric names (atr_txn_docs_filtered_total, binary_filtered_total, changes_left_total, client_txn_docs_filtered_total, clog_crd_docs_written_total, etc.) with version badges (7.0.0 through 8.0.0 observed) and one-line descriptions - no service-dependency prose. Some metric names (e.g. clog_crd_docs_written_total 'written to the conflict bucket') imply interaction with a bucket/Data Service, but this is a metric-naming artifact, not a documented dependsOnService statement, so no relation was extracted."
+  },
+  "cross_component_finding": "Reinforces the finding on metrics-reference.json (this batch): the source text's own top-level categorization treats XDCR as a peer of 'the Services' and 'the Cluster Manager', not a member of the service: family - a structural distinction worth preserving rather than collapsing for convenience."
+}

@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/organizations/ui-auth/mfa",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/mfa.md",
+  "concepts": [
+    { "candidate_id": "capella:mfa", "label": "Multi-Factor Authentication (MFA)", "reused_or_minted": "minted - Capella's native, password-plus-TOTP account security feature; distinct from and mutually exclusive with SSO/IdP-side MFA" },
+    { "candidate_id": "sso:federated-sso-authentication", "label": "Federated and SSO Authentication (Capella auth mode)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - matches capella-role:organization-owner in the registry" }
+  ],
+  "relations": [
+    { "subject": "capella:mfa", "predicate": "behavesDifferentlyUnder", "object": "sso:federated-sso-authentication", "reused_or_minted_predicate": "reused", "evidence": "If your organization uses federated and single sign-on authentication, your SSO users can't use Capella's MFA solution. Instead, they use your Identity Provider's MFA." },
+    { "subject": "capella:mfa", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "If you are an [Organization Owner](../organization-user-roles.md#organization-role-organization-owner), you can view the MFA status (_Activated_ or _Needs Activation_) for each account in your organization." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / requiresSupportPlan",
+    "finding": "Unlike prior-round Capella pages (e.g. audit-management.md, auditing.md) that gate features on a support plan or edition, this MFA page states no plan, edition, or licensing gate at all - MFA reads as available to every Capella account regardless of tier. This is a clean absence, not an oversight worth flagging as a docs-issue."
+  },
+  "cross_product_finding": "This page contains neither of the two recurring anomalies watched for in this round (no server-version-string citation, no Enterprise/Community edition badge) - consistent with the batch hypothesis that these are less likely on non-statement-reference management-plane pages."
+}

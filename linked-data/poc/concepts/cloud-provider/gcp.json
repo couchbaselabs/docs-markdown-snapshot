@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cloud-provider/gcp",
+  "label": "GCP (as a Capella deployment substrate)",
+  "type": "sibling of cloud-provider:aws",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted with its siblings as a family - see cloud-provider:aws."
+}

@@ -241,6 +241,19 @@ both held at the scale actually tried; the main new information is
 qualitative (see `poc/reconciliation.md` round 5) rather than a correction to
 any number in this document.
 
+## Second wave the same day (round 6, 89 pages, 2026-08-27)
+
+Run back-to-back with round 5 in the same working session, closing out the
+rest of `cloud/`'s smaller directories. ~1.05M tokens for 89 pages (~11,800
+tokens/page - matching round 2's original benchmark again, not round 4's
+outlier), roughly $3. Both real-scale waves this session landed close to
+round 2's per-page rate, which is now the more reliable number to plan
+against than round 4's single dense 3-page sample. No tool or session-limit
+issues in either wave. Confirms two wave-sized rounds comfortably fit in one
+"couple of hours" working session, at least at this concurrency (8-10 batches)
+and this page-count (89-115) - useful data for pacing the remaining
+~3,900-page corpus if this moves past POC.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

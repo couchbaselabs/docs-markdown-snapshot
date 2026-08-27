@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/get-started/run-first-queries",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/run-first-queries.md",
+  "concepts": [
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - key promoted concept, part of the access-surface family" },
+    { "candidate_id": "capellaiq:iq-insights", "label": "iQ Insights (AI-generated chart/insight suggestions for query results)", "reused_or_minted": "reused - minted in explore-iq-insights.json in this batch" }
+  ],
+  "relations": [
+    { "subject": "capella:query-tab", "predicate": "seeAlso", "object": "capellaiq:iq-insights", "note": "structural markdown link", "evidence": "To learn more about iQ Insights, see [Explore iQ Insights](capella-iq/explore-iq-insights.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresEdition",
+    "finding": "This page is a step-by-step tutorial for a free tier operational cluster's built-in travel-sample data (view/edit documents, run a query, build a suggested index, use query history) with no role, edition, or plan gating stated anywhere - consistent with the page being aimed at a brand-new free-tier user who by definition already has full access to their own cluster."
+  },
+  "cross_component_finding": "Confirms the batch hypothesis: this is a thin, procedural onboarding walkthrough. Its only substantive cross-links are to already-registered concepts (capella:query-tab, capellaiq:iq-insights) rather than introducing anything new."
+}

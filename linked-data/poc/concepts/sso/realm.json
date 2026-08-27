@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sso/realm",
+  "label": "Realm (Capella SSO)",
+  "type": "the SSO configuration boundary an identity provider is registered under",
+  "promoted": true,
+  "recurrence": 8,
+  "note": "Consolidates two independent mints of the same real concept: 'sso:realm' (most files) and 'auth:realm' (one batch) - kept under sso: since that's the higher-recurrence, more specific namespace, with auth: reserved for the higher-level authentication-vs-authorization axis concepts (auth:sso, auth:mfa)."
+}

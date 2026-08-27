@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/cluster-manager",
+  "label": "Cluster Manager",
+  "type": "Capella project-scope role - cluster administration without full project ownership",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Confirmed against project-roles.md. Do NOT conflate with capella:cluster-manager, a system component/process (metrics-reference.md explicitly excludes 'the Cluster Manager' from 'the Services' as a monitored component) - same name, two unrelated things, same pattern as the ontology's other same-word collisions (see the four-way 'role' writeup in round 5). cmek.md names this role '#project-cluster-manager-role' ('Project/Cluster Manager') - a naming-drift variant worth SME attention, not resolved here."
+}

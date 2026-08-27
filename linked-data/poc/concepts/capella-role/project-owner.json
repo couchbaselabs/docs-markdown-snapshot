@@ -4,5 +4,6 @@
   "type": "Capella management-plane role",
   "promoted": true,
   "recurrence": 10,
-  "scheme": "capella management-plane role"
+  "scheme": "capella management-plane role - specifically a PROJECT-scope role, see round 6 note below",
+  "note": "Round 6 found this is one of five project-scope roles (alongside capella-role:project-data-writer, capella-role:cluster-manager, capella-role:cluster-viewer, capella-role:data-reader, capella-role:data-writer), confirmed against project-roles.md - the authoritative page for that catalog. capella-role:organization-owner is an ORGANIZATION-scope role from a separate catalog (organization-user-roles.md). See reconciliation.md round 6 for the full restructuring writeup."
 }

@@ -1,0 +1,15 @@
+{
+  "page_id": "cloud/organizations/manage-organizations",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/manage-organizations.md",
+  "concepts": [
+    { "candidate_id": "capella:organization", "label": "Capella organization (management-plane container)", "reused_or_minted": "reused - minted in manage-account.json" },
+    { "candidate_id": "capella:capella-account", "label": "Couchbase Capella account (personal account, independent of organizations)", "reused_or_minted": "reused - minted in manage-account.json" }
+  ],
+  "relations": [
+    { "subject": "capella:organization", "predicate": "seeAlso", "object": "capella:capella-account", "evidence": "To create an organization, you must first create a Couchbase Capella account." },
+    { "subject": "capella:organization", "predicate": "seeAlso", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (seeAlso)", "evidence": "Refer to [Remove a User (or Yourself) from an Organization](manage-organization-users.md#remove-user)." }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole", "finding": "This thin procedural page never states which role is required to delete an organization - it defers entirely to Couchbase Support ('Contact Couchbase Capella Support... Couchbase Support will help you settle any remaining billing obligations and delete your organization'), so organization deletion is not a self-service, role-gated UI action the way user/role management is elsewhere in this batch. Also no edition badges or server-version-string citations (both known recurring anomalies absent, as expected)." },
+  "cross_component_finding": "Deleting an organization is explicitly a support-mediated process, not a Capella-UI action gated by capella-role:*; this contrasts with every other organization-management action in this batch (invite/remove/role-change), which are all self-service and Organization-Owner-gated."
+}

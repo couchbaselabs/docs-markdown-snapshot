@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/cluster-viewer",
+  "label": "Cluster Viewer",
+  "type": "Capella project-scope role - read-only cluster visibility",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted as part of the well-evidenced project-scope role family found on a single authoritative page (project-roles.md), the same family-promotion allowance used for round 2's GRANT/REVOKE set - not independently re-confirmed elsewhere yet.",
+  "note": "See capella-role:cluster-manager for the family context. Part of round 6's headline restructuring - see reconciliation.md round 6."
+}

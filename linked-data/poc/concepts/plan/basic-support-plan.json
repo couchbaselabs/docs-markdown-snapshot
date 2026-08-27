@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/plan/basic-support-plan",
+  "label": "Basic Support Plan",
+  "type": "entry commercial support tier - object of requiresSupportPlan",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Sibling of plan:enterprise-support-plan/plan:developer-pro-support-plan/plan:free-tier-plan - the four-tier support-plan family found firsthand in this wave's billing/ and reference/ batches."
+}

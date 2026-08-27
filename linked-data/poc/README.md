@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Five rounds so far, each a deliberate escalation:
+automating it. Six rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -27,6 +27,14 @@ automating it. Five rounds so far, each a deliberate escalation:
    fifth of. Found that round 2's "simple credential-type pair" was actually
    a whole per-statement privilege catalog with real AND/OR and two-axis
    structure the smaller sample hadn't surfaced.
+6. **89 pages closing out the rest of `cloud/`'s management plane** —
+   Organizations, Projects, Billing, Security, Get Started, the Data API and
+   Management API guides, per-service metrics, and general reference (leaving
+   `clusters/`, `eventing/`, and `guides/` as deliberate first-contact
+   candidates for a future round). Found the same lesson as round 5, one
+   level up: `capella-role:*` was never one role catalog — it's two
+   (organization-scope and project-scope), silently flattened together since
+   round 2.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -34,7 +42,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-263 pages total:
+352 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -61,6 +69,13 @@ time/cost projections and how they held up against the round-2 run's real number
   language reference, intro, and manage sections (round 2 had sampled 23 of
   the directory's 138 pages; this closes it out). The first real-scale
   extraction round run on the post-Bedrock-migration pipeline.
+- **89 more, the rest of `cloud/`'s management plane** — `security/`,
+  `indexes/`, `projects/`, `organizations/` (including all 6 SSO provider
+  guides), `billing/`, `get-started/` (including Capella iQ), `data-api-guide/`,
+  `javascript-udfs/`, `management-api-guide/`, `metrics-reference/`, and
+  `reference/`. Leaves `clusters/` (53 pages), `eventing/` (67), and `guides/`
+  (33) as the largest untouched `cloud/` territory, each a deliberate
+  first-contact candidate rather than filler for a future round.
 
 ## Identifiers
 
@@ -98,11 +113,20 @@ from "still in `extractions/`."
   turned out to be a full per-statement privilege catalog, not the simple
   pair round 2 first saw), an access-surface concept family
   (`capella:query-tab`/`data-api`/`cbsh`), and a fourth thing called "role"
-  (`role:full-administrator`/`local-user-security-administrator`). See
-  `reconciliation.md` for the full list and why each was promoted — including a
-  same-word-different-thing collision the vocabulary had been quietly
-  accumulating: `capella-role:*`, `rbac-role:role`, `sgw:role`, and now
-  `role:*` are four structurally distinct things all called "role." Note: round 3's Java SDK
+  (`role:full-administrator`/`local-user-security-administrator`); round 6
+  found `capella-role:*` was never one role catalog but two
+  (organization-scope and project-scope, silently flattened together since
+  round 2) and added the six roles missing from each, plus new `auth:`/`sso:`
+  families for authentication (SSO/MFA), a support-plan tier family
+  (`plan:enterprise-support-plan` and siblings), and two more generalizations
+  of `behavesDifferentlyUnder` (within-Capella cloud-provider and
+  storage-engine variance). See `reconciliation.md` for the full list and why
+  each was promoted — including a same-word-different-thing collision the
+  vocabulary had been quietly accumulating: `capella-role:*`, `rbac-role:role`,
+  `sgw:role`, and `role:*` are four structurally distinct things all called
+  "role" — and, within round 6 alone, a second, unrelated collision:
+  `capella-role:cluster-manager` (a role) and `capella:cluster-manager` (a
+  monitored system component) share a name but nothing else. Note: round 3's Java SDK
   batch (12 pages) was reconciled only at the narrative level and never
   promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
   `sdk:error-handling`, and others are reused across round 3/4 extraction
@@ -122,7 +146,12 @@ from "still in `extractions/`."
   scopes; round 5 added `incompatibleWithAccessSurface` (a fourth Capella
   gating axis alongside role/credential-type/UI-mode), `requiresPriorExecutionOf`
   (a real cross-round, cross-product reuse the written registry caught
-  correctly), and `renamedFrom`. Kept separate from `concepts/` on purpose —
+  correctly), and `renamedFrom`; round 6 added `impliesRole` (the mechanism
+  behind the org-role/project-role catalog split), `authenticatesVia` (which
+  credential transport an access surface actually uses), `disablesFeatureFor`,
+  and `gatedByBillingPlan` — the last one closing a real gap: round 2's own
+  narrative had described it as promoted, but no file was ever written for it
+  until round 6 needed to reuse it. Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -132,8 +161,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 25 entries
-  as of round 5, which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 31 entries
+  as of round 6, which is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
@@ -320,6 +349,43 @@ also surfaced a real finding:**
     by this round's Capella equivalent, for the identical fact — the positive
     case the round 2 `requiresMinVersionFor` incident was the negative case of.
 
+**Round 6 (89 pages, closing out the rest of `cloud/`'s management plane):**
+
+18. **`capella-role:*` was never one role catalog — it's two, silently
+    flattened together since round 2.** Statement pages' Prerequisites
+    sections list organization-scope and project-scope roles side by side
+    with no indication of which is which. Reading each catalog's own
+    authoritative page directly revealed: three organization-scope roles
+    (Organization Owner, plus new Project Creator and Organization Member)
+    and five project-scope roles (Project Owner, plus new Cluster Manager,
+    Cluster Viewer, Data Reader, and Data Writer — the last with a corrected
+    label; the original mint called it "Project Data Writer," a paraphrase,
+    not the page's own name). Four independent batches converged on
+    overlapping pieces of this same corrected picture without coordinating —
+    the same lesson as round 5's privilege catalog, now on the role catalog,
+    twice in a row on the same product.
+19. **A same-word collision surfaced within a single round, not just across
+    rounds.** `capella-role:cluster-manager` (a role) and `capella:cluster-manager`
+    (a monitored system component, explicitly excluded from "the Services" by
+    its own reference page) share a name and nothing else.
+20. **Authentication and authorization confirmed as genuinely separate axes.**
+    SSO/MFA never become a role and are never granted directly — the two
+    axes touch only at role-mapping (an IdP group maps to Capella access) and
+    at the gate on who can configure a realm in the first place.
+21. **`behavesDifferentlyUnder` generalized a third and fourth time** — within
+    Capella itself, by underlying cloud provider (Azure's storage
+    auto-expansion moves data, AWS's/GCP's doesn't) and by storage engine
+    (Couchstore vs. Magma use different Health Advisor thresholds), the
+    second found unprompted while looking for the first.
+22. **The commercial support-plan wording problem is worse than known** — up
+    to five variants now, including two on the same page (`billing.md` uses
+    both "Enterprise Support Plan" and bare "Enterprise Plan").
+23. **A four-round-old reconciliation gap surfaced.** `gatedByBillingPlan` was
+    narratively described as promoted in round 2's own writeup, but no
+    `relations/` file was ever written for it — invisible until round 6 tried
+    to reuse it. Same shape as round 3's never-promoted Java SDK concepts,
+    found in round 4.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -332,11 +398,15 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (25 entries) —
+- Get a subject-matter expert to work through `docs-issues/` (31 entries) —
   most valuably the four-way "role" collision, the Sync Gateway/Capella
-  access-control questions, and round 5's `merge`/`nest` privilege-naming
-  inconsistency (does "Query Select" = "Query Read"?), since those are
-  product-shape decisions, not just docs cleanup.
+  access-control questions, round 5's `merge`/`nest` privilege-naming
+  inconsistency (does "Query Select" = "Query Read"?), round 6's role-catalog
+  loose ends (is `data-writer` the same role as the originally-mangled
+  `project-data-writer`? is Capella iQ's cluster-scoped role a sixth role or
+  an existing one at a different scope?), and the support-plan wording
+  inconsistency (now five variants) — all product-shape or docs-authority
+  decisions, not just cleanup.
 - Run a Java SDK concept-promotion pass for round 3's backlog
   (`sdk:kv-operations`, `sdk:durability`, `sdk:cas-optimistic-locking`,
   `sdk:error-handling`, `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
@@ -346,16 +416,22 @@ document.
   (reused `query-index` where `query-update` looks like the right fit)
   whenever this registry is next consumed downstream.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  five rounds.
+  six rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
-- If this looks worth pursuing past a POC: five axes of stress test have now
+- Run first-contact batches on `cloud/clusters/` (53 pages), `cloud/eventing/`
+  (67), and `cloud/guides/` (33) — the largest remaining untouched territory
+  in `cloud/`, deliberately deferred rather than folded into rounds 5/6 as
+  filler.
+- If this looks worth pursuing past a POC: six axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
-  round 4's within-one-product-across-features, and round 5's
-  full-vs-partial-directory-coverage). The next natural one is scale itself —
-  a real batch against the ~3,900-page "latest version only" corpus from
-  `../ingest-cost-and-time-estimate.md`, now that the extraction/reconcile/
-  promote pipeline has been exercised on Bedrock, at real (not just trial)
-  scale, and on every axis it's likely to meet at that size.
+  round 4's within-one-product-across-features, round 5's
+  full-vs-partial-directory-coverage, and round 6's confirmation that the
+  same partial-sampling lesson recurs on a second vocabulary within the same
+  product). The next natural one is scale itself — a real batch against the
+  ~3,900-page "latest version only" corpus from `../ingest-cost-and-time-estimate.md`,
+  now that the extraction/reconcile/promote pipeline has been exercised on
+  Bedrock, at real (not just trial) scale, and on every axis it's likely to
+  meet at that size.

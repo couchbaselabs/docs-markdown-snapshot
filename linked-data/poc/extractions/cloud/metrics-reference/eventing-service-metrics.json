@@ -1,0 +1,14 @@
+{
+  "page_id": "cloud/metrics-reference/eventing-service-metrics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/metrics-reference/eventing-service-metrics.md",
+  "concepts": [
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "reused_or_minted": "minted - this batch's page explicitly frames it as 'the Eventing Service' (parallel to Data/Query/Index/Search/Analytics Service), yet no service:eventing-service concept existed anywhere in the registry before this batch - confirms this batch's specific hypothesis that Eventing had not previously come up" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "dependsOnService",
+    "finding": "Directly answers this batch's hypothesis question: this page is a flat list of eventing_* Prometheus metric names (dcp_backlog, bkt_ops_cas_mismatch_count, analytics_op_exception_count, etc.) with version badges and one-line descriptions - no service-dependency prose. However, several metric names themselves hint at runtime dependencies not stated in prose: eventing_bkt_ops_cas_mismatch_count and eventing_bucket_op_exception_count imply Key-Value/Data-Service interaction, and eventing_analytics_op_exception_count implies Analytics-Service interaction, but these are metric-naming artifacts, not documented 'depends on service' statements - so no dependsOnService relation could be extracted with verbatim textual evidence, even though the metric names are suggestive."
+  },
+  "cross_component_finding": "This is the first page across all extraction rounds to establish service:eventing-service as a concept. It should be added to the service: namespace family alongside service:query-service/index-service/data-service/search-service/analytics-service."
+}

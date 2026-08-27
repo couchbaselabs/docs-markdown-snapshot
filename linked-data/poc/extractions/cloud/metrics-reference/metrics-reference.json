@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/metrics-reference/metrics-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/metrics-reference/metrics-reference.md",
+  "concepts": [
+    { "candidate_id": "capella:cluster-manager", "label": "Cluster Manager (ns_server)", "reused_or_minted": "minted - this index page's own text explicitly excludes the Cluster Manager from 'all Couchbase Services', categorizing it as a separate third bucket; not yet in the registry's service: namespace and deliberately not placed there" },
+    { "candidate_id": "capella:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "minted - same reasoning as capella:cluster-manager: this page's own text explicitly excludes XDCR from 'all Couchbase Services', so it is namespaced capella: rather than service: to avoid miscategorizing it in the dependsOnService graph" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused - existing registry concept" },
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "reused_or_minted": "reused - minted in eventing-service-metrics.json, this batch" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "dependsOnService",
+    "finding": "This batch's specific question - whether the per-service metrics catalog structure reveals anything about the service-dependency graph not already captured - is answered here: no. This index page, and every per-service metrics page in this batch, is a flat list of Prometheus metric names with a version badge, a type/unit badge, and a one-line description. None of them contain prose describing service-to-service architectural dependencies (the kind of statement that produced service:index-service dependsOnService service:data-service in the server/ services-and-indexes round). The metric name prefixes (kv_, n1ql_, index_, fts_, cbas_, eventing_, xdcr_, cm_/generic names) implicitly signal originating component, but that is a naming convention, not a documented dependency."
+  },
+  "cross_component_finding": "This page's own categorization sentence - 'Metrics are provided for all Couchbase Services, and also for the Cluster Manager and XDCR' - draws a three-way taxonomic line: (1) 'Services' (Data, Query, Index, Search, Eventing, Analytics - reusing the existing service: namespace), (2) the Cluster Manager, and (3) XDCR, with the latter two explicitly NOT counted among 'the Services'. This is a genuine, source-stated structural distinction worth preserving verbatim rather than folding Cluster Manager/XDCR into service: by convenience."
+}

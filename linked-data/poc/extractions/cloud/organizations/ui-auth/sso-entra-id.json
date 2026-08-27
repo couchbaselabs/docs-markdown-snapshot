@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/organizations/ui-auth/sso-entra-id",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/sso-entra-id.md",
+  "concepts": [
+    { "candidate_id": "sso:realm", "label": "Realm (Capella-side SSO/IdP connection object)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:group-mapping", "label": "Group Mapping (realm-level toggle)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:default-team", "label": "Default Team", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" }
+  ],
+  "relations": [
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:group-mapping", "reused_or_minted_predicate": "reused", "evidence": "Choose to turn on or off group mapping.  \nGroup mapping allows you to assign roles to SSO users based on which teams map to their SSO group." },
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:default-team", "reused_or_minted_predicate": "reused", "evidence": "Choose a default team.  \nCapella automatically assigns users to the chosen default team when they do not match any team based on their SSO groups." },
+    { "subject": "sso-entra-id", "predicate": "seeAlso", "object": "sign-in-with-sso", "evidence": "* [Sign in to Capella with SSO](sign-in-with-sso.md)" },
+    { "subject": "sso-entra-id", "predicate": "seeAlso", "object": "manage-role-mapping", "evidence": "* [Map User Roles](manage-role-mapping.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "sso:idp-group value format",
+    "finding": "This page never states what format the SSO group value must take when configuring group claims (e.g. security groups, directory roles, all groups, groups assigned to the application are all offered as claim types), even though manage-role-mapping.json documents that Entra ID is the one provider requiring the group's **object ID** rather than its name in Capella's Teams UI. That functional detail is absent from this page entirely - a reader following only sso-entra-id.md would not learn it."
+  },
+  "cross_component_finding": "Two provider-specific asymmetries stand out against the otherwise clean 6-provider template: (1) this is the only page whose prerequisites name a specific, linked external role - \"[Global Administrator](https://learn.microsoft.com/...#global-administrator) privileges for your Entra ID tenant\" - versus generic unlinked phrasing like 'an admin' or 'super admin' on every other provider page; (2) this is the only provider requiring a specific user-profile precondition beyond group/role setup: \"The `family_name` or `given_name` fields populated for your users in Entra ID.\" No other provider page states an equivalent user-data prerequisite, even though all six require the same given_name/family_name attributes to be mapped later in the SAML/OIDC configuration - suggesting Entra ID is uniquely prone to omitting these fields by default, a real platform difference the docs surface only here."
+}

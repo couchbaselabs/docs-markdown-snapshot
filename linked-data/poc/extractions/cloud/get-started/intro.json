@@ -1,0 +1,12 @@
+{
+  "page_id": "cloud/get-started/intro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/intro.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "This page is a pure navigation hub - a set of headed link lists ('Explore Couchbase Capella', 'Get Data Into Capella', 'Work With Data', 'Develop With Capella', 'Optimize A Cluster', 'Manage Access And Security') pointing to dozens of other pages across the entire Capella doc set, with no original prose, no gating facts, and no quotable claims beyond marketing copy ('Capella is the easiest way to use our Couchbase NoSQL database'). Deliberately left empty per this batch's guidance not to force content on thin onboarding pages - enumerating every outbound link as a seeAlso relation would add table-of-contents noise, not ontology signal, since none of the linked pages' content is actually described or characterized here."
+  },
+  "cross_component_finding": "Strongly confirms the batch hypothesis for the non-iQ pages: intro.md is the thinnest page in the batch, functioning purely as a sitemap into every other product area (search, vector search, eventing, analytics, SDKs, management API, security) rather than introducing any concept or relation of its own."
+}

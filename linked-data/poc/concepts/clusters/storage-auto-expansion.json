@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/clusters/storage-auto-expansion",
+  "label": "Storage Auto-Expansion",
+  "type": "a cluster feature documented identically by name across aws.md/azure.md/gcp.md, but behaving differently per provider - see cloud-provider:aws",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "The concrete concept behind round 6's third generalization of behavesDifferentlyUnder's range."
+}

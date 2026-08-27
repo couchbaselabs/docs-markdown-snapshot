@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cloud-provider/aws",
+  "label": "AWS (as a Capella deployment substrate)",
+  "type": "generalizes behavesDifferentlyUnder's range a third time within Capella itself - not Capella-vs-server/ (deployment:capella) or product-family, but which underlying cloud provider a Capella cluster runs on",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Evidence: storage auto-expansion behaves differently by provider - clusters:storage-auto-expansion causes data movement on Azure specifically ('requires replacing and rebalancing nodes'), not stated for AWS/GCP; independently corroborated by event-reference.md's AWS-specific volume-modification-frequency limit. Siblings: cloud-provider:azure, cloud-provider:gcp."
+}

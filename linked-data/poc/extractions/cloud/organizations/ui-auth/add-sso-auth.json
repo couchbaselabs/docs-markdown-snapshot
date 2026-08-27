@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/organizations/ui-auth/add-sso-auth",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/add-sso-auth.md",
+  "concepts": [
+    { "candidate_id": "auth:sso", "label": "Single Sign-On (SSO) authentication", "reused_or_minted": "reused - minted in manage-account.json" },
+    { "candidate_id": "auth:realm", "label": "Realm (Capella's per-organization link to an identity provider)", "reused_or_minted": "reused - minted in manage-organization-users.json" },
+    { "candidate_id": "auth:supported-idp-enum", "label": "Supported identity providers enum (Microsoft Entra ID, Okta, PingOne, Google Workspace, CyberArk, OneLogin)", "reused_or_minted": "reused - minted in capella-ui-auth.json; note PingOne here vs. 'Ping Identity' on capella-ui-auth.md, a small label variant for the same enum value" }
+  ],
+  "relations": [
+    { "subject": "auth:realm", "predicate": "requiresSupportPlan", "object": "plan:paid-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan, object minted in capella-ui-auth.json)", "evidence": "SSO is available only to paid accounts." },
+    { "subject": "auth:realm", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "Only users with the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role can view and use the **SSO** page." },
+    { "subject": "auth:sso", "predicate": "usesEnum", "object": "auth:supported-idp-enum", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "While you can configure Capella SSO with other identity providers that support SAML or OIDC, Couchbase provides instructions and support for the following:" },
+    { "subject": "auth:sso", "predicate": "seeAlso", "object": "auth:realm", "evidence": "* [Manage Identity Providers](manage-identity-providers.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition", "finding": "No edition badges or server-version-string citations on this page (both known recurring anomalies absent) - gating here is entirely requiresSupportPlan + requiresCapellaRole, consistent with the rest of the ui-auth/ subtree." },
+  "cross_component_finding": "This is a thin, mostly link-list procedural page, but it repeats both gates seen on capella-ui-auth.md (paid-support-plan and Organization Owner) independently in its own words ('SSO is available only to paid accounts' vs. 'You need a paid Support Plan...'), reinforcing that these are stable, repeated facts rather than one-off statements. The per-IdP page list (sso-entra-id.md, sso-okta.md, sso-ping.md, sso-google.md, sso-cyberark.md, sso-onelogin.md) is outside this batch's file set but confirms auth:supported-idp-enum has exactly 6 documented values across both pages that mention it."
+}

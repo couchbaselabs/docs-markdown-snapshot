@@ -1,0 +1,25 @@
+{
+  "page_id": "cloud/get-started/create-account",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/create-account.md",
+  "concepts": [
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - key promoted concept" },
+    { "candidate_id": "capella-role:project-creator", "label": "Project Creator", "reused_or_minted": "minted - a new organization-scoped role, seen gating operational-cluster create/turn-on actions alongside Organization Owner; not yet in the registry's capella-role:* family" },
+    { "candidate_id": "billing:free-tier-plan", "label": "Capella free operational cluster / free tier plan", "reused_or_minted": "reused - concept minted in cloud/indexes/query-without-index.json" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused - concept minted in cloud/security/auditing.json" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "minted - new Support Plan tier, sibling of the already-minted plan:enterprise-support-plan, confirmed as a real named plan in cloud/billing/billing.md ('Developer Pro Support Plan')" },
+    { "candidate_id": "capella:health-advisor-dashboard", "label": "Health Advisor Dashboard (Capella monitoring feature)", "reused_or_minted": "minted - a monitoring feature explicitly gated by Support Plan tier" }
+  ],
+  "relations": [
+    { "subject": "clusters:operational-cluster", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To create or turn on an operational cluster, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) role." },
+    { "subject": "clusters:operational-cluster", "predicate": "requiresCapellaRole", "object": "capella-role:project-creator", "reused_or_minted_predicate": "reused (within this file)", "evidence": "To create or turn on an operational cluster, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) role." },
+    { "subject": "capella:health-advisor-dashboard", "predicate": "gatedByBillingPlan", "object": "billing:free-tier-plan", "reused_or_minted_predicate": "reused (gatedByBillingPlan) - predicate minted in cloud/indexes/query-without-index.json; here it's a straightforward binary unavailability on the free tier, the canonical shape for this predicate", "evidence": "The Health Advisor dashboard is not available for free tier operational clusters." },
+    { "subject": "capella:health-advisor-dashboard", "predicate": "requiresSupportPlan", "object": "plan:developer-pro-support-plan", "reused_or_minted_predicate": "reused (promoted requiresSupportPlan)", "evidence": "Upgrade to a *Developer Pro or Enterprise plan* to get expert advice on your cluster." },
+    { "subject": "capella:health-advisor-dashboard", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (promoted requiresSupportPlan)", "evidence": "Upgrade to a *Developer Pro or Enterprise plan* to get expert advice on your cluster." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No Enterprise/Community edition badges appear on this page (the batch's flagged recurring anomaly is absent here) - all gating on this page is by Support Plan tier (Basic/Developer Pro/Enterprise) or free-vs-paid billing tier, never by product edition, consistent with the background note that Capella has no discrete edition concept."
+  },
+  "cross_component_finding": "create-account.md is mostly onboarding/marketing prose as the hypothesis predicted, but it surfaces two real facts worth capturing: (1) a new organization-scoped role, Project Creator, gating cluster create/turn-on actions alongside the already-known Organization Owner - not previously seen in the SQL++ statement reference batches, which only ever cited Organization Owner/Project Owner/Project Data Writer; and (2) the first page in this batch to name a specific Support Plan tier (Developer Pro) beyond the already-registered Enterprise Support Plan, confirming the plan: namespace has at least three tiers (Basic, Developer Pro, Enterprise) per cloud/billing/billing.md, and that support-plan gating (unlike the free/paid billing-tier gating on the same page) is used for capability-tier features like the Health Advisor dashboard rather than for feature availability alone."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-projects-project-roles-page-thin",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "project-roles.md is the authoritative page for Capella's project-scope role catalog (Project Owner, Cluster Manager, Cluster Viewer, Data Reader, Data Writer) - referenced by name across many statement Prerequisites sections - but the page itself is a truncated ~28-line stub with no See Also section, and its 3 sibling pages (manage-projects.md, manage-project-users.md, projects.md) link to it while it doesn't link back. A page this structurally central deserves more than a stub.",
+  "about": ["cloud/projects/project-roles"],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

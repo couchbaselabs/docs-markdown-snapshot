@@ -1,0 +1,56 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-start",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-start.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "capella:management-api", "label": "Capella Operational Management API", "reused_or_minted": "reused - minted in data-api-private-aws.json, same batch" },
+    { "candidate_id": "data-api:api-key-secret", "label": "Management API key secret (used as Bearer token to configure the Data API, distinct from the cluster access credential used to call it)", "reused_or_minted": "reused - minted in data-api-private-aws.json, same batch" },
+    { "candidate_id": "data-api:vpc-peering", "label": "VPC Peering connection to the Data API (connects to the whole Capella cluster, not just the Data API)", "reused_or_minted": "reused - minted in data-api-intro.json, same batch" },
+    { "candidate_id": "data-api:allowed-cidr", "label": "Allowed IP address / CIDR range for public-network access to the cluster (and therefore the Data API)", "reused_or_minted": "minted - a cluster-level networking gate that the Data API inherits rather than defines itself" }
+  ],
+  "relations": [
+    {
+      "subject": "capella:data-api",
+      "predicate": "authenticatesVia",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused - minted in data-api-intro.json, same batch; second independent confirmation on this page",
+      "evidence": "A cluster access credential authenticates and authorizes you to access the Data API. You can use an existing cluster access credential, or create a new one. The access privileges that you specify for the cluster access credential determine the buckets, scopes, and collections that you can access via the Data API."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "requiresSetting",
+      "object": "data-api:allowed-cidr",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use the Data API over a public network, you must specify which IP addresses can access the Couchbase Capella cluster. For security, it's recommended that clients should only be able to access the cluster from specific IP addresses."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "dependsOnService",
+      "object": "capella:management-api",
+      "reused_or_minted_predicate": "reused - enabling/disabling the Data API is itself a Management API operation",
+      "evidence": "Use [PUT /dataAPI](../management-api-reference/index.md#tag/Data-API/operation/updateDataApiAndPeering) to enable the Data API, and optionally enable VPC peering for the Data API."
+    },
+    {
+      "subject": "capella:management-api",
+      "predicate": "authenticatesVia",
+      "object": "data-api:api-key-secret",
+      "reused_or_minted_predicate": "reused - minted in data-api-private-aws.json, third confirmation this batch",
+      "evidence": "`$apiKeySecret` is the API key secret, used as the Bearer token."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "seeAlso",
+      "object": "data-api:allowed-cidr",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You have [added your IP address](../clusters/allow-ip-address.md#accessing-allowed-ips-in-the-capella-ui) to the cluster's list of allowed IPs, if required."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "The example Management API call to create a cluster user passes `\"privileges\": [\"data_writer\"]` - a KV-style privilege string, structurally different from both the Basic/Advanced enum values and the capella-basic-access-*/capella-advanced-access-* named query privilege family found on the statement side. No page in this batch ever reconciles 'data_writer' against either of those two existing privilege vocabularies, suggesting the cluster-access-credential privilege model may have (at least) three distinct surface vocabularies in the docs: the Basic/Advanced UI-level enum, the capella-basic/advanced-access-* per-statement privilege names, and this raw KV-service privilege string used in Management API payloads."
+  },
+  "cross_component_finding": "Confirms this round's auth hypothesis directly: enabling/configuring the Data API (Management API, Bearer token) and calling the Data API (cluster access credential, HTTP Basic) are handled by two entirely separate credential mechanisms on this single page, exactly as seen in data-api-private-aws.json. The Data API itself introduces no new auth mechanism of its own beyond reusing the pre-existing cluster access credential model.",
+  "cross_product_finding": "IPv6 is explicitly excluded: 'You're not connecting from an IPv6-only environment — you need to be able to use the IPv4 records published for Capella clusters.' Combined with 'Permitted IP addresses and address ranges must be in IPv4 format' from the same prerequisite step, this is a hard protocol-version restriction on Data API network access not previously seen in the access-surface family (incompatibleWithAccessSurface gates statement families by client type; this gates all Data API access by IP protocol version) - flagging as a distinct, narrower restriction shape rather than forcing it into incompatibleWithAccessSurface."
+}

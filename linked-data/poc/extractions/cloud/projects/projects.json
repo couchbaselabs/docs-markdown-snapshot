@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/projects/projects",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/projects/projects.md",
+  "concepts": [
+    { "candidate_id": "capella:project", "label": "Project (Capella management-plane container that organizes and gates access to clusters)", "reused_or_minted": "minted - the core concept underlying all 4 cloud/projects/ pages in this batch" },
+    { "candidate_id": "capella:manage-projects", "label": "Manage Projects (task page)", "reused_or_minted": "reused - minted in cloud/projects/manage-projects.json" },
+    { "candidate_id": "capella:manage-project-users", "label": "Manage Project Users (task page)", "reused_or_minted": "reused - minted in cloud/projects/manage-project-users.json" },
+    { "candidate_id": "capella:project-roles", "label": "Project Roles (catalog page)", "reused_or_minted": "reused - minted in cloud/projects/project-roles.json" }
+  ],
+  "relations": [
+    { "subject": "capella:project", "predicate": "seeAlso", "object": "capella:project-roles", "evidence": "When you add a user to a project, you assign them 1 or more [project roles](project-roles.md)." },
+    { "subject": "capella:project", "predicate": "seeAlso", "object": "capella:manage-projects", "evidence": "For information about creating and deleting projects, see [Manage Projects](manage-projects.md)." },
+    { "subject": "capella:project", "predicate": "seeAlso", "object": "capella:manage-project-users", "evidence": "For information about managing the members of a project, see [Manage Project Users](manage-project-users.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresEdition / requiresSupportPlan", "finding": "This overview page states a hard numeric quota ('An organization can have up to 50 projects') with no corresponding limit/quota predicate anywhere in the current registry - unlike editions, support plans, or roles, quantitative resource limits have no ontology home yet. Not minted as a new concept/predicate for a single occurrence, but flagged for the coordinator in case this pattern recurs (e.g. cluster count limits, IP allowlist limits) in other batches." },
+  "cross_component_finding": "This overview page is the shortest and thinnest of the 4 projects/ pages (28 lines) yet is the one all 3 other pages point back to as their conceptual anchor - a clean hub-and-spoke link structure within cloud/projects/, in contrast to project-roles.json's finding of a one-directional gap (nothing links FROM project-roles.md back to its own siblings).",
+  "cross_product_finding": "All clusters must exist within a project ('All clusters must exist within a project') - this is a hard structural containment rule with no server/ RBAC or on-prem-cluster equivalent, reinforcing that Capella's organization/project hierarchy is a genuinely separate management-plane concept layered above server/'s data-plane model."
+}

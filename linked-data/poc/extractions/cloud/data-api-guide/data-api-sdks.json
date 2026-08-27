@@ -1,0 +1,47 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-sdks",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-sdks.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "data-api:driverless-access", "label": "Driverless-mode access pattern (using the Data API instead of an SDK where SDKs/drivers cannot be deployed)", "reused_or_minted": "minted - a Data-API-specific architectural use case, not a statement-level concept" },
+    { "candidate_id": "sdk:sdk-connector", "label": "Couchbase SDKs & Connectors", "reused_or_minted": "reused - assumed sibling of existing sdk: namespace concepts (e.g. sdk:authentication from java-sdk batch); this page treats SDKs as a single alternative surface to the Data API" },
+    { "candidate_id": "app-services:app-services", "label": "Couchbase Capella App Services (mobile/edge sync surface)", "reused_or_minted": "minted - a third access surface this page compares against, distinct from capella:query-tab/capella:data-api/capella:cbsh; scoped to mobile/edge browser use cases rather than SQL++ statement execution" }
+  ],
+  "relations": [
+    {
+      "subject": "capella:data-api",
+      "predicate": "mustUseInsteadWhen",
+      "object": "data-api:driverless-access",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In some instances, it may not be practical to deploy Couchbase SDKs and related libraries. For example, code running in hosted services such as GDrive or Sharepoint which can access data through HTTP requests. The Data API may also be better suited to data access cases in Function-as-a-Service (FaaS) platforms such as AWS Lambda, Google Cloud Functions, or Azure Functions."
+    },
+    {
+      "subject": "sdk:sdk-connector",
+      "predicate": "mustUseInsteadWhen",
+      "object": "capella:data-api",
+      "reused_or_minted_predicate": "reused - the inverse direction of the same comparison, made explicit on this page",
+      "evidence": "Requests through the Data API are likely to take longer than corresponding SDK-based operations. For high load use cases and latency sensitive applications, an SDK is recommended."
+    },
+    {
+      "subject": "app-services:app-services",
+      "predicate": "mustUseInsteadWhen",
+      "object": "capella:data-api",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Use Capella App Services for access to Couchbase Capella from browser applications where scaling and security considerations are important."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "sdk:sdk-connector",
+      "reused_or_minted_predicate": "reused - SDKs provide functionality the Data API lacks (retry logic, cluster status, tracing)",
+      "evidence": "SDKs provide comprehensive retry logic for handling inevitable errors, details about Couchbase cluster status, and tracing through Open Telemetry."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface",
+    "finding": "This page never frames the Data API/SDK/App Services choice as a compatibility restriction (X does not work via Y) - unlike the statement-page findings that motivated this batch (transactions.md, using-ai.md), which used incompatibleWithAccessSurface to describe hard exclusions. Here the relationship is purely a recommendation/trade-off ('consider using X for these use cases'), which is why mustUseInsteadWhen (already used for statement-choice trade-offs) fits better than a hard-incompatibility predicate."
+  },
+  "cross_component_finding": "Directly relevant to this round's hypothesis: this page positions the Data API, Couchbase SDKs, and Capella App Services as three parallel, mutually-substitutable access surfaces for the same underlying data - reinforcing that capella:data-api belongs in a family with other access surfaces (alongside capella:query-tab/capella:cbsh already promoted), but this page's family member (App Services, SDKs) is a 'which client should I build with' choice, not a 'this statement is blocked here' restriction - a materially different relationship shape from incompatibleWithAccessSurface despite sharing the same object concept (capella:data-api).",
+  "cross_product_finding": "Names 'AI integrations' as a first-class Data API use case distinct from Capella iQ/USING AI seen in prior rounds: 'The Data API offers a lightweight alternative to SDKs for supporting agentic workflows; for example, Google VertexAI function calling and AWS Bedrock Agents.' This is a third, independent AI-related surface (agentic tool-calling via HTTP) alongside capella:capella-iq and n1ql:using-ai found in earlier rounds - worth flagging for reconciliation as a possible AI-integration-surface family rather than folding it into either existing AI concept, since this one is about LLM agents calling the Data API as a tool, not natural-language-to-SQL++ generation."
+}

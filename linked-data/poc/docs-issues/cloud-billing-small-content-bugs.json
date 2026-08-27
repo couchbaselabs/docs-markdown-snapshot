@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-billing-small-content-bugs",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Two small, concrete, fixable bugs found while reading the billing/ pages: change-support-plan.md's page title contains a malformed HTML entity (&amp;#8217; instead of a rendered apostrophe). Separately, the anchor slug for 'Organization Member' differs between about-billing-alerts.md and usage-invoices.md, breaking one of the two cross-references.",
+  "about": ["cloud/billing/change-support-plan", "cloud/billing/about-billing-alerts", "cloud/billing/usage-invoices"],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

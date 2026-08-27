@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/metrics-reference/index-service-metrics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/metrics-reference/index-service-metrics.md",
+  "concepts": [
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - existing registry concept, minted in server/learn/services-and-indexes/services/index-service.json" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "dependsOnService / requiresEdition",
+    "finding": "Pure reference catalog - a flat list of index_* Prometheus metric names (avg_disk_bps, avg_drain_rate, avg_item_size, avg_mutation_rate, avg_resident_percent, etc.), each with a version badge and one-line description. No prose about service dependencies, editions, or roles - unlike server/'s index-service.json (prior round), which stated the Index-Service-depends-on-Data-Service relationship in prose, this metrics catalog states nothing structural. See metrics-reference.json (this batch) for the consolidated dependsOnService finding."
+  }
+}

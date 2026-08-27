@@ -1,0 +1,33 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-private-azure",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-private-azure.md",
+  "concepts": [
+    { "candidate_id": "data-api:private-endpoint", "label": "Data API private endpoint (CSP-native private connectivity to the Data API specifically)", "reused_or_minted": "reused - minted in data-api-intro.json, same batch" },
+    { "candidate_id": "data-api:azure-private-endpoint", "label": "Azure Private Link private endpoint for the Data API", "reused_or_minted": "minted - CSP-specific specialization of data-api:private-endpoint, sibling of data-api:aws-private-endpoint" },
+    { "candidate_id": "capella:management-api", "label": "Capella Operational Management API", "reused_or_minted": "reused - minted in data-api-private-aws.json, same batch" },
+    { "candidate_id": "data-api:api-key-secret", "label": "Management API key secret (used as Bearer token to configure the Data API, distinct from the cluster access credential used to call it)", "reused_or_minted": "reused - minted in data-api-private-aws.json, same batch" }
+  ],
+  "relations": [
+    {
+      "subject": "data-api:azure-private-endpoint",
+      "predicate": "dependsOnService",
+      "object": "capella:management-api",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To configure and manage AWS private endpoints with the Data API, you can use the Capella UI or the Capella Management API."
+    },
+    {
+      "subject": "capella:management-api",
+      "predicate": "authenticatesVia",
+      "object": "data-api:api-key-secret",
+      "reused_or_minted_predicate": "reused - minted in data-api-intro.json",
+      "evidence": "`$apiKeySecret` is the Management API key secret, used as the Bearer token."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No Enterprise/Community edition badge on this page - consistent with the rest of this batch."
+  },
+  "cross_component_finding": "This page is near-verbatim identical in structure to data-api-private-aws.md, down to a copy-paste artifact: the intro sentence literally says 'To configure and manage AWS private endpoints with the Data API' on the Azure page (should read Azure) - a doc quality issue, not an ontology finding, but noted since it's the kind of thing an AI agent citing this page could propagate as a wrong CSP name.",
+  "cross_product_finding": null
+}

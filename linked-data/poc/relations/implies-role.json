@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/implies-role",
+  "label": "implies role",
+  "kind": "relation (schema-level)",
+  "type": "one role automatically confers the effective access of another, different-scope role - subject = an organization-scope role (capella-role:organization-owner/project-creator), object = the project-scope access it implies",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The concrete mechanism this wave found underneath capella-role:*'s flattening: statement pages' Prerequisites sections list Organization Owner alongside project-scope roles as if they were peers in one catalog, because Organization Owner IMPLIES project-owner-level access rather than being a project-scope role itself. Deliberately kept distinct from the already-promoted inheritsAccessFromRole (Sync Gateway's user-inherits-access-via-role-membership shape) - this is a role-to-role implication across catalogs, not a user-to-access-via-membership fact. The two are similar in spirit; a future round with more evidence might generalize both under one broader relation, but that's not asserted here."
+}

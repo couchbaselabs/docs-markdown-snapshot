@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage-engine/couchstore",
+  "label": "Couchstore",
+  "type": "a fourth generalization of behavesDifferentlyUnder's range - health-advisor-reference.md's Data Resident Ratio check uses a 20% threshold for Couchstore buckets vs. 4% for Magma",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted below the usual bar - the governing pattern (behavesDifferentlyUnder generalizing to a new axis) is well-established across four rounds now; this is the concrete fourth instance, found unprompted by the batch that was actually looking for the cloud-provider axis.",
+  "note": "Sibling of storage-engine:magma."
+}

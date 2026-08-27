@@ -1,0 +1,27 @@
+{
+  "page_id": "cloud/projects/manage-project-users",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/projects/manage-project-users.md",
+  "concepts": [
+    { "candidate_id": "capella:manage-project-users", "label": "Manage Project Users (task page)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella:project-collaborator", "label": "Project Collaborator (a user added to a project and given a project role)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:project-roles", "label": "Project Roles (catalog page)", "reused_or_minted": "reused - minted in cloud/projects/project-roles.json" },
+    { "candidate_id": "capella:manage-projects", "label": "Manage Projects (task page)", "reused_or_minted": "reused - minted in cloud/projects/manage-projects.json" },
+    { "candidate_id": "org:manage-organization-users", "label": "Manage Users (organization-level user management page)", "reused_or_minted": "minted" },
+    { "candidate_id": "org:organization-roles", "label": "Organization Roles (Capella org-level role catalog)", "reused_or_minted": "reused - minted in cloud/projects/project-roles.json" }
+  ],
+  "relations": [
+    { "subject": "capella:project-collaborator", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "To add a collaborator, you must have the [Project Owner](project-roles.md#project-owner-role) project role. If you created a project, then you automatically have this role." },
+    { "subject": "capella:project-collaborator", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "To change a user's project role, you must have the [Project Owner](project-roles.md#project-owner-role) project role for the project." },
+    { "subject": "capella-role:organization-owner", "predicate": "inheritsAccessFromRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (inheritsAccessFromRole) - 2nd occurrence in this batch, see also project-roles.json", "evidence": "Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, which means they can also access collaborator information for all projects." },
+    { "subject": "capella:manage-project-users", "predicate": "seeAlso", "object": "capella:project-roles", "evidence": "## See Also\n\n* [Project Roles](project-roles.md)" },
+    { "subject": "capella:manage-project-users", "predicate": "seeAlso", "object": "capella:manage-projects", "evidence": "* [Manage Projects](manage-projects.md)" },
+    { "subject": "capella:manage-project-users", "predicate": "seeAlso", "object": "org:manage-organization-users", "evidence": "* [Manage Users](../organizations/manage-organization-users.md)" },
+    { "subject": "capella:manage-project-users", "predicate": "seeAlso", "object": "org:organization-roles", "evidence": "* [Organization Roles](../organizations/organization-user-roles.md)" }
+  ],
+  "notable_absence": { "predicate": "assignsRole", "finding": "The procedures describe assigning multiple project roles to a user via UI clicks ('Click the tile for each project role you want to assign to your selected users') but the page never enumerates which roles besides Project Owner are assignable here - a reader must go to project-roles.md for the actual catalog (5 roles: Project Owner, Cluster Manager, Cluster Viewer, Data Reader, Data Writer)." },
+  "cross_component_finding": "A hard access-control rule appears here with no dedicated predicate in the current registry: 'You cannot remove the Project Owner role from a user with the Organization Owner role' - an irrevocability constraint tied to the inheritsAccessFromRole relation above. Not minted as a new predicate (too narrow/one-off for this batch), but flagged for the coordinator as a nuance beyond plain role-assignment.",
+  "cross_product_finding": "None - purely Capella org/project role-model content, no server/ RBAC overlap."
+}

@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/management-api-reference/index",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-reference/index.md",
+  "concepts": [
+    { "candidate_id": "api:management-api", "label": "Capella Management API", "reused_or_minted": "reused - already minted (as 'api:management-api') in cloud/security/audit-management.json" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "api:management-api", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "In order to access this endpoint, the provided API key must have at least one of the following roles:\n\n* Organization Owner" },
+    { "subject": "cloud/management-api-reference/index", "predicate": "seeAlso", "object": "cloud/management-api-guide/management-api-start", "evidence": "To access the Management API, you need an API key. To create an initial bootstrap API key you must use the Capella UI. Once you have created an initial bootstrap API key, you can use the Management API itself to create further API keys. To learn more, see [Get Started with the Management API v4.0](https://docs.couchbase.com/cloud/management-api-guide/management-api-start.html)." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan", "finding": "The Billing tag's own endpoints ('The Billing endpoints allow you to retrieve billing information for your organization...') are gated only by Organization Owner role, never by a Support Plan tier - you can query billing data on any plan, including Free Tier." },
+  "cross_component_finding": "Nearly every one of the ~150 documented endpoints repeats the identical gate verbatim - 'the provided API key must have at least one of the following roles: * Organization Owner' - occurring 20+ times just among the endpoints sampled here. Unlike the SQL++/vector-index statements from earlier rounds (gated disjunctively by any one of Organization Owner/Project Owner/Project Data Writer), every endpoint checked on this page names Organization Owner alone as the sole accepted role, never Project Owner or Project Data Writer.",
+  "cross_product_finding": "Recurrence of the server-version-string-citation anomaly on the Management API surface: bucket/backup field descriptions cite specific Couchbase Server version gates on a Capella-only, continuously-deployed API - e.g. storageBackend's default is 'couchstore' 'before Couchbase Server 8.0' and 'magma with 128 vbuckets' 'for Couchbase Server 8.0 and above'; the vbuckets field 'only applies to Couchbase Server 8.0 and above'; and bucket priority/ranking is 'only available in Couchbase Server 7.6 and above.'"
+}

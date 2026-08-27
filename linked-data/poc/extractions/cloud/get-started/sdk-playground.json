@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/get-started/sdk-playground",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/sdk-playground.md",
+  "concepts": [
+    { "candidate_id": "capella:playground", "label": "Capella Playground (interactive SQL++/SDK tutorial execution environment)", "reused_or_minted": "minted - a new member of the access-surface family (alongside capella:query-tab/data-api/cbsh), but with a materially different security model: it runs code in a remote sandboxed execution environment rather than proxying the user's own client, and auto-provisions/destroys its own ephemeral credential rather than using the user's cluster access credentials" },
+    { "candidate_id": "capellaiq:temporary-playground-credential", "label": "Playground temporary credential (auto-generated, auto-destroyed)", "reused_or_minted": "minted - a distinct, short-lived credential class from the standard cluster access credentials documented elsewhere (manage-database-users.md); worth its own concept since its lifecycle (generated per-run, destroyed after execution, network access revoked after 1 hour) is unlike any other credential type in the registry" }
+  ],
+  "relations": [
+    { "subject": "capella:playground", "predicate": "grantsTemporaryCredential", "object": "capellaiq:temporary-playground-credential", "reused_or_minted_predicate": "minted - no existing predicate captures 'this surface auto-issues and auto-revokes its own scoped credential per action', distinct from requiresCapellaRole (an actor-identity gate) and requiresSetting (a configuration dependency)", "evidence": "Generates a temporary credential for you with read and write access to the bucket you used for the code example. This temporary credential is destroyed after your code example request is executed." },
+    { "subject": "capella:playground", "predicate": "requiresSetting", "object": "capella:disable-playground-setting", "reused_or_minted_predicate": "reused (promoted requiresSetting)", "evidence": "In the **Playground** section, select **Disable Playground**." }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface",
+    "finding": "Unlike capella:query-tab/data-api/cbsh (promoted as a family specifically because other pages state incompatibilities against them), this page states no incompatibility - the Playground is self-contained and doesn't claim to run against the user's real application code paths, so there's no 'feature X doesn't work via the Playground' claim to capture here. Not forced into the family's governing predicate."
+  },
+  "cross_component_finding": "The Playground is a genuinely new access surface not previously seen in this registry's capella:query-tab/data-api/cbsh family: it's a remote, network-firewalled, sandboxed execution environment (rather than a proxy for the user's own client) that mints and destroys its own scoped credential per run, and imposes runtime limits per language. This is a materially different security/access model from the rest of the family, worth flagging for the coordinator to decide whether it belongs in the same access-surface family or its own axis (an ephemeral-sandbox axis) given the credential-lifecycle difference."
+}

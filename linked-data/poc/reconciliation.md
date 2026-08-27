@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Five rounds so far, in order run. Each section covers one round; a single
+Six rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -632,31 +632,202 @@ registry is next consumed downstream (JSON-LD drafting, page-layer assembly).
 
 ---
 
-## Cumulative verdict (all five rounds)
+## Round 6 — completing `cloud/`'s management plane (89 pages)
 
-The vocabulary has now been tested against five genuinely different kinds of
+Scope: 89 pages closing out every small-to-medium `cloud/` directory left after
+round 5 finished the SQL++ statement reference - security (private
+link/CMEK), the remaining index-concept pages, Projects, Organizations
+(including all 6 SSO provider guides), Billing, Get Started (including
+Capella iQ), the Data API guide, JavaScript UDFs, the Management API guide,
+the per-service metrics catalog, and the general reference/compatibility
+pages. Deliberately left `clusters/` (53 pages), `eventing/` (67), and
+`guides/` (33) untouched - each is a large enough first-contact territory to
+deserve its own dedicated wave rather than being folded in as filler. Run as
+8 parallel batches. Total usage: ~1.05M tokens for 89 pages (~11,800
+tokens/page - matching round 2's original benchmark again), roughly $3 by the
+project's established blended-rate method.
+
+### Headline finding: `capella-role:*` was never one catalog - it's two, silently flattened together since round 2
+
+Every statement page's Prerequisites section lists whichever `capella-role:*`
+roles gate that statement, with no indication of scope. Reading the two
+catalogs' own authoritative pages directly for the first time revealed they
+are genuinely separate:
+
+- **Organization-scope** (from `organization-user-roles.md`): Organization
+  Owner (already known), **Project Creator**, **Organization Member** (both
+  new).
+- **Project-scope** (from `project-roles.md`): Project Owner (already known),
+  **Cluster Manager**, **Cluster Viewer**, **Data Reader**, **Data Writer**
+  (all new) - and the page's own label for the fifth is plain "Data Writer,"
+  not "Project Data Writer," the name round 2 minted from a statement page's
+  paraphrase.
+
+Four independent batches (security/indexes/projects, organizations-core,
+get-started/Capella iQ, and billing) converged on overlapping subsets of this
+same corrected picture without coordinating - strong triangulation that this
+is real, not one agent's misreading. The mechanism connecting the two
+catalogs: an organization-scope role (Organization Owner, Project Creator)
+**implies** project-scope access rather than being a project-scope role
+itself - captured in the newly minted `impliesRole`. Existing ids were kept
+stable (dozens of extraction records across rounds 2/5/6 already reference
+them) rather than renamed; `organization-owner.json`, `project-owner.json`,
+and `project-data-writer.json` were annotated with scope-clarifying notes
+instead. Two loose ends deliberately left unresolved: whether
+`capella-role:data-writer` (project-roles.md) and `capella-role:project-data-writer`
+(the original, differently-labeled mint) are the same role or two, and
+whether Capella iQ's cluster-scoped `capella-role:cluster-data-reader-writer`
+is a sixth role or the existing Data Reader/Data Writer pair at a different
+scope - both flagged for SME review, not guessed at.
+
+Same lesson as round 5's privilege-catalog finding, now landing on the role
+catalog: **partial, statement-side-only sampling of an access-control
+vocabulary doesn't generalize the way it feels like it should**, twice in a
+row now on the same product.
+
+### A same-word collision inside a single wave: two things called "Cluster Manager"
+
+Independent of the role catalog: `metrics-reference.md` explicitly excludes
+"the Cluster Manager" (a monitored system component, alongside XDCR) from
+"the Services." That's a different real thing from `capella-role:cluster-manager`
+(a project-scope role also named "Cluster Manager"). Promoted as
+`capella:cluster-manager` (component) vs. `capella-role:cluster-manager`
+(role), explicitly disambiguated in both records - the same discipline as the
+project's other same-word collisions, just surfacing within one round instead
+of across several.
+
+### Authentication and authorization confirmed as genuinely separate axes
+
+The SSO/identity-provider batch confirmed `auth:sso`/`auth:mfa` never become a
+role and are never granted - the two axes touch only at `sso:group-mapping`
+(mapping an IdP's groups to Capella access) and at the gate on who can
+configure a realm in the first place (Organization Owner, via the existing
+`requiresCapellaRole`). One open placeholder: whether `sso:group-mapping`'s
+target is an organization role, a project role, or the data-plane
+`rbac-role:role` family - no page says, left unresolved as `auth:permission-set`
+(extraction-layer only).
+
+### behavesDifferentlyUnder generalized a third and fourth time
+
+Prior rounds generalized this relation's range from edition, to deployment
+variant (`deployment:capella`), to product family. This round found it
+applies within Capella itself along **two more axes**: which underlying cloud
+provider a cluster runs on (`cloud-provider:aws`/`azure`/`gcp` - Azure's
+storage auto-expansion causes data movement, AWS's/GCP's don't, independently
+corroborated by a second page's AWS-specific volume-limit note) and which
+storage engine a bucket uses (`storage-engine:couchstore`/`magma` - different
+Health Advisor thresholds, found unprompted by a batch that was looking for
+the cloud-provider axis and noticed a second one along the way).
+
+### Two access surfaces' credential mechanisms resolved
+
+`capella:data-api` authenticates via the same `cluster-access-credential-type`
+Basic-auth model statement pages use (confirmed 4x independently across its
+own docs) - it just never uses the "Basic/Advanced" terminology. The separate
+`capella:management-api` authenticates via Bearer-token `mgmt-api:api-key`s,
+which are themselves associated with `capella-role:*` roles rather than
+inventing a new authorization scheme - confirmed by its error catalog naming
+`privilege:capella-basic-access-read`/`write` exactly. New relation
+`authenticatesVia` captures the credential-transport question neither
+`requiresPrivilege` nor `requiresCapellaRole` addressed.
+
+### Other promotions
+
+- `plan:enterprise-support-plan`/`developer-pro-support-plan`/`basic-support-plan`/`free-tier-plan`
+  - the four-tier support-plan family, formalized for the first time
+  (consolidating several near-duplicate mints across batches: `plan:developer-pro`
+  into `-developer-pro-support-plan`, `billing:free-tier-plan` into
+  `plan:free-tier-plan`). Directly ties into a much bigger version of an
+  already-flagged docs-issue - see below.
+- `capella:xdcr` (consolidating `clusters:xdcr`), `service:eventing-service` -
+  two components/services never previously in the registry.
+- `data-api:private-endpoint`/`api-key-secret` - Data API infrastructure
+  concepts.
+- `disablesFeatureFor`, `gatedByBillingPlan` - the latter closes a real gap:
+  round 2's own reconciliation narrative claimed this predicate was promoted
+  ("`gatedByBillingPlan`... All of the above are promoted"), but no
+  `relations/` file was ever written for it. Same shape as round 3's
+  never-promoted Java SDK concepts (found in round 4) - a reconciliation gap
+  invisible until a later round tried to reuse the term.
+
+### Left on the watchlist (extraction-layer only, not promoted)
+
+`capella-role:cluster-data-reader-writer` (Capella iQ's cluster-scoped role -
+possible duplicate of Data Reader/Data Writer, see above), `auth:permission-set`
+(the unresolved SSO-mapping-target question), `disablesDependentFeature`
+(possible near-duplicate of `disablesFeatureFor`, not merged without
+evidence), `incompatibleWithFeature` (Azure Private Link's XDCR/Prometheus
+exclusion, recurrence 1), and a long tail of single-batch `js-udf:`/`capellaiq:`/
+`data-api:` concepts that didn't clear the bar or weren't central enough to
+this round's headline findings to justify individual promotion at this
+volume - noted here rather than silently dropped.
+
+### New `docs-issues/` (6)
+
+1. `capella-support-plan-wording-inconsistency` - now five wording variants
+   (up from round 2's two), including two on the *same page*.
+2. `cloud-organizations-sso-provider-inconsistencies` - six real cross-provider
+   inconsistencies found reading all 6 SSO setup guides back to back, plus a
+   broken `{footnote-1}` template artifact on the Ping page.
+3. `cloud-projects-role-naming-drift-cluster-manager` - "Cluster Manager" vs.
+   "Project/Cluster Manager," the same small-scale naming-drift pattern seen
+   before, this time on the role catalog itself.
+4. `cloud-projects-project-roles-page-thin` - the authoritative role-catalog
+   page is a 28-line stub with no See Also and no return links from its 3
+   siblings.
+5. `cloud-billing-small-content-bugs` - a malformed HTML entity and a broken
+   anchor-slug cross-reference.
+6. `cloud-js-udf-transaction-access-surface-gap` - a genuinely unanswered
+   product-behavior question (does the Data API's transaction exclusion
+   propagate through a UDF that wraps one?), not resolved by inference.
+
+### What this round confirmed about the method itself
+
+- **The same lesson can recur on the same product, twice, on two different
+  axes.** Round 5 found the privilege catalog was richer than a partial
+  sample suggested; round 6 found the same thing for the role catalog. Worth
+  treating as a standing expectation for any vocabulary built primarily from
+  statement pages' Prerequisites sections rather than a feature's own
+  authoritative documentation - the former paraphrases and flattens, the
+  latter doesn't.
+- **Independent, uncoordinated convergence is strong evidence.** Four
+  separate batches, none aware of the others' output, each surfaced
+  overlapping pieces of the same corrected role picture. That's a materially
+  stronger signal than any single batch's finding would have been alone.
+- **A reconciliation gap can sit undetected for four rounds.** `gatedByBillingPlan`
+  was narratively described as promoted in round 2 and silently wasn't, for
+  four rounds, until this one needed to reuse it. Same root cause as round
+  4's Java SDK gap - reconciliation's own coverage isn't self-verifying.
+
+---
+
+## Cumulative verdict (all six rounds)
+
+The vocabulary has now been tested against six genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
 different deployment model of the same underlying product (round 2), three
 entirely different products built by different teams (round 3), a single
 product's own feature that cuts across its existing per-operation model
-(round 4's transactions, within the Java SDK already covered in round 3), and
-- round 5's own contribution - full coverage of a directory a prior round had
-only sampled a fifth of. At every step it kept doing the same useful thing:
-not just "the terms still fit," but surfacing something true and specific
-about each surface it touched - Capella's credential/role-based access model
-(round 2), Sync Gateway's two-disjoint-systems architecture and inverted
-channel-based access model (round 3), Couchbase Lite's own disjoint edition
-split (round 3), the Java SDK's transaction layer inverting CAS-based
-concurrency into transaction-membership checks (round 4), and now that round
-2's "simple credential-type pair" was actually a whole per-statement privilege
-catalog with real AND/OR and two-axis structure hiding under an early,
-under-sampled read (round 5). That's a stronger and more useful result than a
-vocabulary that merely never breaks.
+(round 4's transactions, within the Java SDK already covered in round 3),
+full coverage of a directory a prior round had only sampled a fifth of
+(round 5), and - round 6's own contribution - the same partial-sampling
+lesson recurring on the same product's role catalog, right after round 5
+found it on the privilege catalog. At every step it kept doing the same
+useful thing: not just "the terms still fit," but surfacing something true
+and specific about each surface it touched - Capella's credential/role-based
+access model (round 2), Sync Gateway's two-disjoint-systems architecture and
+inverted channel-based access model (round 3), Couchbase Lite's own disjoint
+edition split (round 3), the Java SDK's transaction layer inverting
+CAS-based concurrency into transaction-membership checks (round 4), round 2's
+"simple credential-type pair" turning out to be a whole per-statement
+privilege catalog (round 5), and now that `capella-role:*` was never one
+catalog but two, silently flattened together since round 2 (round 6). That's
+a stronger and more useful result than a vocabulary that merely never breaks.
 
 The cost of getting that result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Four limits of the method are now visible across multiple rounds, not just
+Five limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **Structural silence isn't a naming problem.** The method is good at
@@ -690,3 +861,13 @@ once, so worth treating as durable rather than one-off:
   defensible sample size for a first pass - but a concrete reminder that "this
   directory's vocabulary is settled" should mean "fully read," not "sampled
   and nothing broke yet."
+- **Vocabulary built from a feature's mentions elsewhere is less reliable
+  than vocabulary built from the feature's own authoritative page.** Both
+  `capella-role:*` (round 6) and the Advanced-credential privilege catalog
+  (round 5) were originally minted from statement pages' Prerequisites
+  sections - paraphrases of the real thing, not the thing's own
+  documentation. Both turned out incomplete or mislabeled once the
+  authoritative page (`project-roles.md`, `organization-user-roles.md`) was
+  read directly. Worth treating as a standing prioritization signal: read a
+  feature's own reference page before trusting vocabulary inferred from
+  where it's merely mentioned.

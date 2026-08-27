@@ -1,0 +1,52 @@
+{
+  "page_id": "cloud/data-api-guide/data-api-intro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/data-api-guide/data-api-intro.md",
+  "concepts": [
+    { "candidate_id": "capella:data-api", "label": "Capella Data API (Query Service passthrough)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/capella/data-api.json); this is the Data API's own first-party documentation, not a passing mention from a statement page" },
+    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced)", "reused_or_minted": "reused - already promoted (linked-data/poc/concepts/cluster-access-credential-type.json)" },
+    { "candidate_id": "data-api:versioning", "label": "Data API semantic versioning scheme (major.minor.patch, independent of Couchbase Server version)", "reused_or_minted": "minted - data-api: namespace, a Data-API-specific lifecycle concept with no statement-page equivalent" },
+    { "candidate_id": "data-api:beta-feature", "label": "Data API beta feature (early preview, not for production, may change)", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:private-endpoint", "label": "Data API private endpoint (CSP-native private connectivity to the Data API specifically)", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:vpc-peering", "label": "VPC Peering connection to the Data API (connects to the whole Capella cluster, not just the Data API)", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:passthrough-endpoint", "label": "Data API passthrough endpoint family (Query Service passthrough, Search Service passthrough)", "reused_or_minted": "minted - enum/scheme concept, same modeling pattern as cluster-access-credential-type" },
+    { "candidate_id": "data-api:concurrency-control", "label": "Data API optimistic concurrency control (If-Match header + HTTP ETag, equivalent to document CAS)", "reused_or_minted": "minted" },
+    { "candidate_id": "data-api:service-limit", "label": "Data API service limit family (120s key-value request timeout, 10,000 req/s/node rate limit, 100MB payload size)", "reused_or_minted": "minted - enum/scheme concept" }
+  ],
+  "relations": [
+    {
+      "subject": "capella:data-api",
+      "predicate": "authenticatesVia",
+      "object": "cluster-access-credential-type",
+      "reused_or_minted_predicate": "minted - camelCase verb phrase; no existing predicate captures 'X authenticates using credential scheme Y'. Directly confirms the hypothesis: the Data API's own docs state it reuses the same cluster-access-credential model as the statement pages, not a separate API-key mechanism.",
+      "evidence": "The Data API uses cluster access credentials for authentication and authorization. The access privileges specified for the cluster access credential determine the buckets, scopes, and collections that a client can access via the Data API. To authenticate a Data API call, you must pass the cluster access credentials as the username and password, using HTTP Basic authentication."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "dependsOnService",
+      "object": "data-api:passthrough-endpoint",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Data API provides passthrough access to the Query Service and the Search Service."
+    },
+    {
+      "subject": "data-api:passthrough-endpoint",
+      "predicate": "requiresSetting",
+      "object": "data-api:versioning",
+      "reused_or_minted_predicate": "reused - loosely applied; the real relationship is versioning coupling, kept as requiresSetting rather than minting a fifth near-duplicate predicate",
+      "evidence": "The version of the passthrough endpoints depends on the version of Couchbase Server installed on the cluster. Clusters running different versions of Couchbase Server may expose slightly different functionality via the passthrough endpoints."
+    },
+    {
+      "subject": "capella:data-api",
+      "predicate": "seeAlso",
+      "object": "data-api:private-endpoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set up a private endpoint for the Data API, see [Add Private Endpoints for the Data API](data-api-private.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithCredentialType / requiresCapellaRole (Basic vs. Advanced distinction)",
+    "finding": "The Data API's own introduction page never uses the words 'Basic' or 'Advanced' when describing its authentication model - it only says 'cluster access credentials' generically, and that access privileges on that credential determine bucket/scope/collection access. None of the 11 files in this batch mention the Basic/Advanced credential-type dichotomy by name, even though data-api-start.md's Management API example creates a cluster user with a privilege list (\"privileges\": [\"data_writer\"]) that is a third, KV-style privilege vocabulary distinct from both the Basic/Advanced enum and the capella:capella-basic-access-*/capella-advanced-access-* named query privileges seen from the statement side. This suggests the Data API is documented as sitting on top of the same underlying cluster-access-credential mechanism, but its own docs never surface the Basic/Advanced terminology that statement pages use to describe gating."
+  },
+  "cross_component_finding": "This page (the Data API's own intro) confirms rather than extends the access-surface findings from the statement side in one respect and diverges in another. Confirms: authentication is exactly the credential-type model already promoted in the registry (cluster access credentials via HTTP Basic auth) - not a separate API-key or OAuth mechanism. This is the same credential object that Management API calls (data-api-start.md, data-api-private-aws.md, data-api-private-azure.md) authenticate against using a completely different mechanism: a Bearer token API key secret ($apiKeySecret) used only to configure/enable the Data API itself, never to call it. So there are two distinct auth axes on the same feature: Bearer-token API keys to manage the Data API (Management API), and Basic-auth cluster access credentials to use the Data API (Data API proper) - worth flagging for reconciliation as a possibly-new axis, managementPlaneCredential vs. dataPlaneCredential, since the existing cluster-access-credential-type concept only covers the latter.",
+  "cross_product_finding": "Passthrough Query Service endpoints explicitly forbid one class of operation that the statement pages gate by access surface: 'Managing and administrating the Query Service is not supported' via the Data API passthrough, and Search passthrough similarly restricts to only Full-Text Search queries and Vector Search queries ('Other search requests are not supported'). This is new information not visible from the statement side: the statement pages describe incompatibleWithAccessSurface as excluding entire statement families (transactions, USING AI) from the Data API, but this page reveals the Data API also excludes entire *categories of administration* regardless of statement, which is a broader/different-shaped restriction than the per-statement one found previously."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella-role/data-reader",
+  "label": "Data Reader",
+  "type": "Capella project-scope role - read-only data-plane access",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted as part of the well-evidenced project-scope role family found on a single authoritative page (project-roles.md) - see capella-role:cluster-manager's note.",
+  "note": "A separate, get-started/capella-iq.md batch minted capella-role:cluster-data-reader-writer for a cluster-scoped role gating Capella iQ's per-cluster model-provider selection - left as a distinct, unresolved concept rather than merged with this one; no page states whether it's the same role at a different scope or a genuinely sixth role. Flagged for SME follow-up."
+}

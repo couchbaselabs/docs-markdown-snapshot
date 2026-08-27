@@ -1,0 +1,31 @@
+{
+  "page_id": "cloud/management-api-guide/management-api-log",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-guide/management-api-log.md",
+  "concepts": [
+    { "candidate_id": "mgmt-api:database-roles-api", "label": "Management API Database Roles API", "reused_or_minted": "minted - a distinct Management-API-specific REST resource group (endpoints for managing named database roles), not itself a role/privilege concept but the API surface that manages one" },
+    { "candidate_id": "capella:cluster-access-credential-type", "label": "Capella cluster access credential type", "reused_or_minted": "reused - existing registry concept (cluster-access-credential-type.json, values Basic/Advanced)" },
+    { "candidate_id": "rbac-role:role", "label": "a Capella data-plane RBAC role (coarse placeholder)", "reused_or_minted": "reused - existing registry concept" }
+  ],
+  "relations": [
+    {
+      "subject": "mgmt-api:database-roles-api",
+      "predicate": "seeAlso",
+      "object": "capella:cluster-access-credential-type",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Added the Database Roles API. Use this API to manage access roles for advanced access credentials. For more information about access roles, see Advanced Access Credentials."
+    },
+    {
+      "subject": "mgmt-api:database-roles-api",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "reused_or_minted_predicate": "reused - same shape as the assignsRole relation found on management-api-errors.json, this batch, for the same underlying Database Roles feature",
+      "evidence": "Added the Database Roles API. Use this API to manage access roles for advanced access credentials."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "dependsOnService",
+    "finding": "This changelog names several service/feature areas (Eventing Functions API, XDCR/Replications API, GSI/Query Indexes API, App Endpoints, CMEK, Billing, Free Tier, Network Peering, Private Endpoint Service) purely as 'Added the X API. Use this API to...' one-line summaries. None of these entries describe a service-to-service architectural dependency (e.g. nothing says 'the Eventing Functions API depends on the Data Service') - they describe REST capability additions, not runtime service topology. No dependsOnService evidence found on this page for eventing or XDCR."
+  },
+  "cross_component_finding": "This is overwhelmingly a pure historical changelog: each entry is a one-line 'Added/Updated the X API' summary linking out to the Management API reference guide (out of scope) and to a handful of already-covered or out-of-scope concept pages (eventing-overview.md, cluster-rbac.md, cmek.md, alert-integration.md, manage-log-streaming.md). The single entry with genuine ontology content is the August 2026 Database Roles API addition, which explicitly ties into the existing Advanced Access Credentials / cluster-access-credential-type family already promoted from prior rounds - everything else is thin by nature of being a changelog, consistent with the batch instructions' expectation for reference/catalog pages."
+}

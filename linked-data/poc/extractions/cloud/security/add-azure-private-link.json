@@ -1,0 +1,25 @@
+{
+  "page_id": "cloud/security/add-azure-private-link",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/security/add-azure-private-link.md",
+  "concepts": [
+    { "candidate_id": "security:azure-private-link", "label": "Azure Private Link Connection", "reused_or_minted": "minted - a specific cloud-provider species of the already-minted security:private-endpoints concept" },
+    { "candidate_id": "clusters:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "clusters:prometheus-server", "label": "Prometheus Server (metrics scraping)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "security:vpc-peering", "label": "VPC Peering", "reused_or_minted": "reused - minted in cloud/security/security.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro", "label": "Developer Pro (Capella cluster support/service plan)", "reused_or_minted": "reused - minted in cloud/security/add-aws-private-link.json" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused - candidate first minted in cloud/security/auditing.json" }
+  ],
+  "relations": [
+    { "subject": "security:azure-private-link", "predicate": "incompatibleWithFeature", "object": "clusters:xdcr", "reused_or_minted_predicate": "minted - incompatibleWithFeature. Distinct from incompatibleWithAccessSurface/incompatibleWithCredentialType (data-plane statement gates); this is a network-connectivity-type feature exclusion. Azure Private Link flatly cannot support XDCR/Prometheus, unlike AWS/GCP Private Link where these same features are supported-with-restrictions (see add-aws-private-link.json, add-gcp-private-link.json).", "evidence": "Azure Private Link connections do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md)." },
+    { "subject": "security:azure-private-link", "predicate": "incompatibleWithFeature", "object": "clusters:prometheus-server", "reused_or_minted_predicate": "reused (incompatibleWithFeature, minted earlier in this relation list)", "evidence": "Azure Private Link connections do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md)." },
+    { "subject": "security:azure-private-link", "predicate": "mustUseInsteadWhen", "object": "security:vpc-peering", "reused_or_minted_predicate": "reused (mustUseInsteadWhen)", "evidence": "If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md)." },
+    { "subject": "security:azure-private-link", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "The [Project Owner](../projects/project-roles.md#project-owner-role) role assigned to your user account." },
+    { "subject": "security:azure-private-link", "predicate": "requiresSupportPlan", "object": "plan:developer-pro", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "The **Developer Pro** or **Enterprise** Support Plan." },
+    { "subject": "security:azure-private-link", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "The **Developer Pro** or **Enterprise** Support Plan." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "No data-plane privilege/RBAC content - only a management-plane role gate and a support-plan gate, consistent with the rest of this batch's private-link pages." },
+  "cross_component_finding": "This page's support-plan wording ('Enterprise Support Plan') matches the already-known variant from cloud/security/auditing.json exactly - a genuine recurrence, not a new issue. But its two sibling pages in this SAME batch (add-aws-private-link.md, add-gcp-private-link.md) instead say just 'Enterprise plan', and cmek.md (also this batch) says 'Enterprise plan' too. So within a single 4-page cluster of closely related pages, 2 wordings appear split 3-to-1. This sharpens the existing docs-issue: the inconsistency isn't scattered across unrelated pages, it recurs even among near-identical sibling pages authored for the same feature family.",
+  "cross_product_finding": "Unlike AWS and GCP Private Link (which support XDCR/Prometheus 'upon request, subject to specific conditions'), Azure Private Link flatly excludes both features and directs users to VPC Peering instead - a genuine per-cloud-provider capability difference within the same Capella feature, not a documentation gap."
+}

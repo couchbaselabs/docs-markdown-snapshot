@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/cluster-manager",
+  "label": "Cluster Manager (component)",
+  "type": "a monitored Capella component (ns_server-adjacent cluster orchestration), explicitly NOT one of 'the Services' - same exclusion sentence as capella:xdcr",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Same name, unrelated thing to capella-role:cluster-manager (a project-scope ROLE named 'Cluster Manager') - a genuine same-word-different-thing collision, flagged explicitly rather than conflated. See capella-role:cluster-manager's note for the full disambiguation."
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/get-started/capella-iq/explore-iq-insights",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/capella-iq/explore-iq-insights.md",
+  "concepts": [
+    { "candidate_id": "capellaiq:iq-insights", "label": "iQ Insights (AI-generated chart/insight suggestions for query results)", "reused_or_minted": "reused - referenced from configure-capellaiq.json in this batch, first fully described here" },
+    { "candidate_id": "billing:free-tier-plan", "label": "Capella free operational cluster / free tier plan", "reused_or_minted": "reused - concept minted in cloud/indexes/query-without-index.json" },
+    { "candidate_id": "billing:paid-plan", "label": "Capella paid service plan", "reused_or_minted": "reused - concept minted in cloud/indexes/query-without-index.json" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - key promoted concept" },
+    { "candidate_id": "capellaiq:capella-iq", "label": "Capella iQ (LLM-powered query-editor assistant)", "reused_or_minted": "reused - minted in configure-capellaiq.json in this batch" }
+  ],
+  "relations": [
+    { "subject": "capellaiq:iq-insights", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "An [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) has accepted the iQ Insights Supplemental Terms." },
+    { "subject": "capellaiq:capella-iq", "predicate": "disablesDependentFeature", "object": "capellaiq:iq-insights", "reused_or_minted_predicate": "reused - predicate minted in configure-capellaiq.json, second occurrence in this batch", "evidence": "To disable iQ Insights, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must disable Capella iQ at the organizational level. Disabling Capella iQ also disables iQ Insights." },
+    { "subject": "capellaiq:iq-insights", "predicate": "gatedByBillingPlan", "object": "billing:free-tier-plan", "reused_or_minted_predicate": "reused (gatedByBillingPlan) - predicate minted in cloud/indexes/query-without-index.json for binary availability gating; applied here to a quantitative rate-limit gate instead (feature is available on all plans, but the numeric cap differs by plan) - same governing axis (Capella billing/service-plan tier), different shape of effect, flagged for the coordinator to confirm this is still the right predicate rather than a new 'limitedByBillingPlan'-style variant", "evidence": "Free tier clusters can generate a maximum of 3 charts per query." },
+    { "subject": "capellaiq:iq-insights", "predicate": "gatedByBillingPlan", "object": "billing:paid-plan", "reused_or_minted_predicate": "reused (gatedByBillingPlan) - see reasoning above", "evidence": "Paid clusters can generate a maximum of 5 charts per query." },
+    { "subject": "capellaiq:iq-insights", "predicate": "seeAlso", "object": "capellaiq:capella-iq", "evidence": "Use [Capella iQ](get-started-with-iq.md) to create SQL++ queries based on your natural language questions and use iQ Insights to get better insights from the data in your query results." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresUiMode / incompatibleWithAccessSurface",
+    "finding": "iQ Insights has a hard technical prerequisite ('Use SELECT statements only... Generate result sets that are within the 6 MB sizing limit and contain more than 1 document') that is a query-shape/data-shape constraint, not a role, edition, UI-mode, or access-surface gate - none of the promoted gating predicates fit, and none was forced. Left unrepresented rather than mis-typed as requiresSetting."
+  },
+  "cross_component_finding": "This page is the clearest evidence that Capella iQ introduces a real, if narrow, plan-based gating axis beyond the role gating found in configure-capellaiq.json: 'iQ Insights is available on all plans for Capella operational and Capella Analytics clusters' (so no binary plan gate on availability) but the usage rate limit (3 vs 5 charts per query) differs by free vs. paid tier, reusing the same billing:free-tier-plan/billing:paid-plan concepts already minted for cloud/indexes/query-without-index.json's sequential-scan gating. This confirms gatedByBillingPlan recurs as a real Capella-native gating mechanism distinct from requiresCapellaRole (an actor-identity gate) and requiresSupportPlan (a commercial support-tier gate, e.g. auditing's Enterprise Support Plan requirement) - three genuinely different axes now evidenced across separate batches."
+}

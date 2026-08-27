@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/organizations/ui-auth/sso-onelogin",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/sso-onelogin.md",
+  "concepts": [
+    { "candidate_id": "sso:realm", "label": "Realm (Capella-side SSO/IdP connection object)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:group-mapping", "label": "Group Mapping (realm-level toggle)", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" },
+    { "candidate_id": "sso:default-team", "label": "Default Team", "reused_or_minted": "reused - same concept minted in cloud/organizations/ui-auth/manage-role-mapping.json" }
+  ],
+  "relations": [
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:group-mapping", "reused_or_minted_predicate": "reused", "evidence": "Choose to turn on or off group mapping.  \nGroup mapping allows you to assign roles to SSO users based on which teams map to their SSO group." },
+    { "subject": "sso:realm", "predicate": "requiresSetting", "object": "sso:default-team", "reused_or_minted_predicate": "reused", "evidence": "Choose a default team.  \nCapella automatically assigns users to the chosen default team when they do not match any team based on their SSO groups." },
+    { "subject": "sso-onelogin", "predicate": "seeAlso", "object": "sign-in-with-sso", "evidence": "* [Sign in to Capella with SSO](sign-in-with-sso.md)" },
+    { "subject": "sso-onelogin", "predicate": "seeAlso", "object": "manage-role-mapping", "evidence": "* [Map User Roles](manage-role-mapping.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresIdpRoleName",
+    "finding": "Prerequisite gate is a linked but generic term - 'as an [Account Owner](https://onelogin.service-now.com/support?...)' - same shape as sso-google.md's linked 'super administrator'; contrast the unlinked CyberArk/Okta/Ping wording and the specific, named sso-entra-id.md 'Global Administrator'."
+  },
+  "cross_component_finding": "OneLogin's OIDC configuration is the only one of the six providers with an extra manual step not mirrored anywhere else in the batch: 'Change the Token Endpoint Authentication Method to POST.' Ping's OIDC flow has an analogous but differently-valued step ('Change the Token Endpoint Authentication Method to Client Secret Post'), while CyberArk, Google Workspace, Entra ID, and Okta's OIDC flows never mention a token endpoint authentication method setting at all. Since all four use the same underlying 'Client ID'/'Client Secret' realm fields, this suggests either a real default-value difference between IdPs that only two provider guides happen to surface, or an inconsistency in how thoroughly each guide documents the same underlying OIDC client requirement - worth a coordinator follow-up, potentially a docs-issue if Capella's OIDC realm actually requires a specific token endpoint auth method regardless of IdP."
+}

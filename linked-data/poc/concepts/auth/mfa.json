@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth/mfa",
+  "label": "Multi-Factor Authentication (Capella)",
+  "type": "authentication mechanism, sibling of auth:sso",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "See auth:sso for the authentication-vs-authorization axis writeup."
+}

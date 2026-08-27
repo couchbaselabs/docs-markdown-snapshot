@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/organizations/manage-organization-users",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/manage-organization-users.md",
+  "concepts": [
+    { "candidate_id": "capella:organization", "label": "Capella organization (management-plane container)", "reused_or_minted": "reused - minted in manage-account.json" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - part of the pre-existing capella-role:* catalog" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "auth:sso", "label": "Single Sign-On (SSO) authentication", "reused_or_minted": "reused - minted in manage-account.json" },
+    { "candidate_id": "auth:realm", "label": "Realm (Capella's per-organization link to an identity provider)", "reused_or_minted": "minted - first appearance of the realm primitive, part of the auth: family" }
+  ],
+  "relations": [
+    { "subject": "capella:organization", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To add users to your organization, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "capella:organization", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To change a user's organization role, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role." },
+    { "subject": "capella-role:organization-owner", "predicate": "impliesRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "minted - impliesRole. Captures automatic role-implication (holding one role confers another everywhere in scope) - structurally distinct from grantsRole/assignsRole (an explicit admin action) and from groupMembersInheritRole (group-membership-driven). Inverse direction confirmed by the same page on removal.", "evidence": "If you remove the Organization Owner role from a user, they also lose the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in their organization. They keep their other project roles." },
+    { "subject": "auth:sso", "predicate": "autoRegistersUser", "object": "capella:organization", "reused_or_minted_predicate": "reused (autoRegistersUser) - originally minted for Sync Gateway auth providers creating a user identity on first successful authentication without an explicit CREATE USER-equivalent step; this Capella SSO behavior is the same shape", "evidence": "Users with SSO do not need an invitation and can sign in using the organization's realm name." },
+    { "subject": "capella:organization", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole) - here a cardinality floor (organization must always retain a holder) rather than a gate on a single action", "evidence": "An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times." },
+    { "subject": "auth:realm", "predicate": "seeAlso", "object": "auth:sso", "evidence": "For more information, see [Sign in to Capella with SSO](ui-auth/sign-in-with-sso.md)." },
+    { "subject": "capella:organization", "predicate": "seeAlso", "object": "capella-role:organization-owner", "evidence": "* [Organization Roles](organization-user-roles.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan", "finding": "This page describes SSO user removal via the realm/Capella UI in detail but never repeats the paid-support-plan gate on SSO itself (that gate appears on ui-auth/capella-ui-auth.md and add-sso-auth.md) - consistent with it being a one-time enablement gate rather than a per-action one." },
+  "cross_component_finding": "Organization Owner is the single load-bearing role in this file: it gates every mutating action on organization users (invite, change role, remove) and is the only role with a hard floor-of-one cardinality constraint. The impliesRole finding (Organization Owner -> Project Owner, bidirectionally enforced on grant and removal) is the clearest evidence so far that capella-role:* is a small hierarchy, not a flat set of three independent roles."
+}

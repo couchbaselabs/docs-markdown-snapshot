@@ -1,0 +1,60 @@
+{
+  "page_id": "cloud/javascript-udfs/javascript-functions-with-couchbase",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/javascript-udfs/javascript-functions-with-couchbase.md",
+  "concepts": [
+    { "candidate_id": "js-udf:inline-function", "label": "Inline user-defined function (defined using SQL++ or JavaScript expressions, no external library)", "reused_or_minted": "minted - js-udf: namespace for the JavaScript UDF feature family" },
+    { "candidate_id": "js-udf:external-function", "label": "External user-defined function (defined in an external language, stored in a UDF library)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide to users with read/write permissions)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:sql-managed-udf", "label": "SQL++ managed user-defined function (JavaScript code stored inline with the SQL++ UDF, no separate library; Couchbase Server 7.6+)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:unsupported-feature", "label": "Unsupported JavaScript feature family (browser extensions, global state/global arrow functions, console.log logging)", "reused_or_minted": "minted - enum/scheme concept, same modeling pattern as cluster-access-credential-type" },
+    { "candidate_id": "js-udf:restricted-feature", "label": "Restricted JavaScript feature family (eval/Function removed for code-injection prevention, Date granularity reduced to 1 second; Couchbase Server 7.6.2+)", "reused_or_minted": "minted - enum/scheme concept" },
+    { "candidate_id": "n1ql:createfunction", "label": "CREATE FUNCTION statement", "reused_or_minted": "minted - no existing candidate found in registry slice" },
+    { "candidate_id": "n1ql:query-context", "label": "Query context (bucket/scope resolution scope for relative UDF library paths and scoped-function calls)", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "dependsOnService",
+      "object": "js-udf:udf-library",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You cannot call external function code directly from SQL++. If you want to manage your external function code with a library, you must: * Create a UDF library and add a JavaScript function or functions to that library. * Create a user-defined function to call a specific JavaScript function from that library."
+    },
+    {
+      "subject": "js-udf:sql-managed-udf",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused - object is an unconfirmed candidate id; only server-6-5/server-6-6-1/server-7-0 version concepts were visible in the registry slice at extraction time, so this may need minting or reconciling by the coordinator (mirrors the same open item flagged in java-sdk/howtos/full-text-searching-with-sdk.json for version:server-7-6)",
+      "evidence": "Couchbase Server 7.6 - For operational clusters using Couchbase Server 7.6 and later, you can create the code for a JavaScript function and the corresponding SQL++ user-defined function in a single operation in the Query Tab or cbq."
+    },
+    {
+      "subject": "js-udf:restricted-feature",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "reused_or_minted_predicate": "reused - object is an unconfirmed candidate id, not visible in the registry slice at extraction time; left for coordinator to mint/reconcile",
+      "evidence": "Couchbase Server 7.6.2 - The following features are restricted in JavaScript functions for Query in Couchbase Server 7.6.2 and later."
+    },
+    {
+      "subject": "js-udf:scoped-function",
+      "predicate": "requiresSetting",
+      "object": "n1ql:query-context",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When you want to use a **Scoped** user-defined function from the Query Tab, you must set your [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to the same bucket and scope as the library."
+    },
+    {
+      "subject": "js-udf:unsupported-feature",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:inline-function",
+      "reused_or_minted_predicate": "reused - JavaScript UDFs behave differently from ordinary JavaScript because these features are removed entirely, not just discouraged",
+      "evidence": "JavaScript functions in SQL++ for Query do not execute in the context of a browser. The extensions that browsers add to the core language, such as window methods, DOM events, and so on, are not available. ... All variables must be local to the function. Global state is not permitted. ... Logging using the console.log(..) function is not supported."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / incompatibleWithAccessSurface",
+    "finding": "No Enterprise/Community edition badge appears anywhere on this page despite two explicit 'Couchbase Server 7.6' / 'Couchbase Server 7.6.2' version-gated feature callouts - this recurs the known server-version-string-citation anomaly (a continuously-deployed Capella page citing discrete Couchbase Server version numbers, presumably inherited from shared source content with the self-managed Server docs) but does NOT recur the edition-badge anomaly; only one of the two known recurring anomalies shows up in this file. Separately, no statement or feature on this page is described with incompatibleWithAccessSurface - JavaScript UDFs are never said to be unsupported via the Query tab, Data API, or cbsh, in contrast to n1ql:transactions/n1ql:using-ai found in an earlier batch. This directly answers part of this round's hypothesis: JS UDFs do not carry their own access-surface exclusions and are not flagged as a special case relative to ordinary SQL++ statements on this axis."
+  },
+  "cross_component_finding": "Answers this round's central JS-UDF hypothesis on this page: JavaScript UDFs are documented purely as a SQL++ language extension mechanism (CREATE FUNCTION ... LANGUAGE JAVASCRIPT), not as a separate execution surface with its own authorization model - 'Any code that you store in a global library is available to all users with read and write permissions on your operational cluster' ties library visibility directly to the existing cluster read/write permission model rather than defining a new UDF-specific permission. No new privilege, role, or credential-type concept is introduced by this page; the feature slots into the existing RBAC/privilege model rather than requiring its own family.",
+  "cross_product_finding": "Two independent restriction lists on this single page (js-udf:unsupported-feature: removed entirely; js-udf:restricted-feature: removed post-7.6.2 for security) are both framed as security/sandboxing measures specific to running JavaScript inside the query engine (code-injection prevention via eval/Function removal, timing side-channel prevention via reduced Date granularity) - this is a materially different concept shape from anything found in the SQL++ statement-gating rounds (which gate by role/credential/edition/access-surface, not by sandboxing a general-purpose scripting language). Recommend js-udf: be treated as its own family in reconciliation rather than merged into the privilege model, precisely because its restrictions are about language-runtime sandboxing, not access control."
+}

@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/get-started/ask-ai",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/ask-ai.md",
+  "concepts": [
+    { "candidate_id": "capellaiq:ask-ai", "label": "Ask AI (Capella-wide AI chatbot)", "reused_or_minted": "minted - new capellaiq: namespace concept; distinct from capellaiq:capella-iq (the query-editor-scoped assistant covered elsewhere in this batch) since Ask AI is a global, every-page chatbot, not a query-generation tool" }
+  ],
+  "relations": [
+    { "subject": "capellaiq:ask-ai", "predicate": "requiresSetting", "object": "capellaiq:enable-capella-iq-setting", "reused_or_minted_predicate": "reused (promoted requiresSetting) - Ask AI is controlled by the same organization-level toggle documented for Capella iQ elsewhere in this batch (see configure-capellaiq.json), confirming the two features share one on/off switch even though Ask AI is presented as a separate product surface", "evidence": "You can opt out of AI features from the **Settings** tab by unchecking the **Enable Capella iQ** option." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresSupportPlan / requiresEdition",
+    "finding": "Ask AI has no role, plan, or edition gate stated anywhere on this page - it's described as 'available from every page in Capella' to any user, gated only by a single organization-wide setting (which the page doesn't say who can flip - contrast with configure-capellaiq.md, where flipping the equivalent Capella iQ toggle is explicitly restricted to the Organization Owner role). This is a real access-control asymmetry: the same-named 'Enable Capella iQ' setting is role-gated on one page and not-mentioned-as-role-gated on this one."
+  },
+  "cross_component_finding": "Ask AI is documented as a public preview feature ('This feature is available as a public preview') using third-party LLMs, and requires accepting Capella's Supplemental Terms before use - the same terms-acceptance mechanism used for Capella iQ (see get-started-with-iq.json, work-with-capellaiq.json). This confirms Ask AI and Capella iQ are governed by the same legal/consent gate even though they are documented as separate features with separate settings labels ('Enable Capella iQ' governs both, per the evidence above)."
+}

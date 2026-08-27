@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/connect/cli-import-export",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/connect/cli-import-export.md",
+  "concepts": [
+    { "candidate_id": "server:cbimport", "label": "cbimport (Couchbase Server CLI tool)", "reused_or_minted": "minted - a server/-native tool reused unchanged on Capella, following the same 'this is server/'s tool, just linked from a cloud/ page' pattern used for server:audit-event-reference-7.6 in cloud/security/auditing.json" },
+    { "candidate_id": "server:cbexport", "label": "cbexport (Couchbase Server CLI tool)", "reused_or_minted": "minted - same reasoning as server:cbimport" },
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "cloud/connect/cli-import-export", "predicate": "seeAlso", "object": "server:cbimport", "evidence": "Couchbase command line tools for Capella include [cbimport](../../server/current/tools/cbimport.md) and [cbexport](../../server/current/tools/cbexport.md)." },
+    { "subject": "cloud/connect/cli-import-export", "predicate": "seeAlso", "object": "server:cbexport", "evidence": "Couchbase command line tools for Capella include [cbimport](../../server/current/tools/cbimport.md) and [cbexport](../../server/current/tools/cbexport.md)." },
+    { "subject": "cloud/connect/cli-import-export", "predicate": "seeAlso", "object": "cloud/clusters/manage-database-users", "evidence": "You have [configured cluster access](../clusters/manage-database-users.md) by creating cluster access credentials." }
+  ],
+  "notable_absence": { "predicate": "requiresCapellaRole / requiresSupportPlan / requiresEdition", "finding": "No management-plane role, Support Plan, or edition gating appears anywhere - access is governed entirely by cluster access credentials, IP allowlisting, and a downloaded security certificate, none of which are org-role or plan-tier concepts." },
+  "cross_component_finding": "A third instance, alongside cloud/security/auditing.json (Audit Event Reference) and cloud/billing/upgrade-account.json (cbbackupmgr) in this batch, of Capella docs deferring entirely to server/'s own CLI tool documentation (cbimport/cbexport) rather than maintaining Capella-native equivalents - this is now a recurring cross-product documentation-architecture pattern, not a one-off.",
+  "cross_product_finding": "The command examples use a `couchbases://` connection string against a `*.cloud.couchbase.com` hostname with a `--cacert` flag - the same cbimport/cbexport CLI surface as self-managed Couchbase Server, just pointed at a Capella cluster address, reinforcing that this is literally the server/ tool rather than a Capella-specific rewrite."
+}

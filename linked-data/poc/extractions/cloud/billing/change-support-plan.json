@@ -1,0 +1,17 @@
+{
+  "page_id": "cloud/billing/change-support-plan",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/change-support-plan.md",
+  "concepts": [
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused" },
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "cloud/billing/change-support-plan", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "You must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "cloud/billing/change-support-plan", "predicate": "seeAlso", "object": "cloud/billing/billing", "evidence": "Change a cluster's [Support Plan](billing.md#support-plans) to change its support level and capabilities." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan (consistent wording)", "finding": "This page - the dedicated procedure for changing a cluster's plan - uses only the phrase 'Support Plan' (6 occurrences), never 'Service Plan' and never bare 'Plan' alone for the tier name. It is the single most terminologically consistent page in this batch on this exact question." },
+  "cross_component_finding": "Non-ontology doc-quality finding: the page's own frontmatter title is malformed - `title: Change a Cluster&#8217;s Plan and Support Timezone` - the right-single-quote HTML entity (&#8217;) was not decoded and renders literally as `&#8217;` in the H1 ('# Change a Cluster&#8217;s Plan and Support Timezone'), a likely doc-build/escaping bug distinct from the wording-inconsistency hypothesis this batch was tracking.",
+  "cross_product_finding": ""
+}

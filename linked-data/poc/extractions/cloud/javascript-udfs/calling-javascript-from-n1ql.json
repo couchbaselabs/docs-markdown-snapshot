@@ -1,0 +1,43 @@
+{
+  "page_id": "cloud/javascript-udfs/calling-javascript-from-n1ql",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/javascript-udfs/calling-javascript-from-n1ql.md",
+  "concepts": [
+    { "candidate_id": "n1ql:createfunction", "label": "CREATE FUNCTION statement", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
+    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
+    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
+    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused - already minted in n1ql batch (transactions.json)" },
+    { "candidate_id": "js-udf:variadic-parameter", "label": "Variadic parameter for a user-defined function (accepts a variable-length list of values, denoted by `...`)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:scoped-function",
+      "predicate": "seeAlso",
+      "object": "capella:query-tab",
+      "reused_or_minted_predicate": "reused - structural evidence: JS UDFs are created/called from the Query tab or by running a SQL++ statement",
+      "evidence": "You can use user-defined functions (UDFs) to call JavaScript code from the Query Tab."
+    },
+    {
+      "subject": "js-udf:global-function",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:scoped-function",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you do not add a prefix before the library name in your SQL++ statement, the user-defined function will be created as a **Global** function. You cannot create another global function called GetBusinessDays on your cluster, but you can create a scoped function called GetBusinessDays."
+    },
+    {
+      "subject": "js-udf:global-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:execute-function",
+      "reused_or_minted_predicate": "reused - structural evidence: this page shows SELECT, EXECUTE FUNCTION, and inline-expression calls as three equally-valid ways to invoke the same user-defined function, with no preference stated",
+      "evidence": "You can also use the EXECUTE FUNCTION statement to execute the function: EXECUTE FUNCTION GetBusinessDays(\"02/14/2025\", \"04/16/2025\");"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "incompatibleWithAccessSurface / incompatibleWithCredentialType",
+    "finding": "Nothing on this page restricts JS UDF creation or invocation to a particular access surface or credential type - UDFs are created 'from the Query tab or by running a SQL++ statement' with no stated exclusion. This page provides no evidence either confirming or denying whether JS UDFs are reachable via the Data API specifically (that evidence comes instead from data-api-use.json's worked SELECT-via-passthrough example and this page's own silence on the topic), but the complete absence of any exclusion language here is itself notable given how explicitly transactions.md and using-ai.md called out their exclusions."
+  },
+  "cross_component_finding": "This page presents SELECT, EXECUTE FUNCTION, and inline-expression calls as three equally-valid call styles for a side-effect-free UDF with no preference stated - unlike handling-errors-javascript-udf.json and calling-n1ql-from-javascript.json in this same batch, where EXECUTE FUNCTION IS mandatory once the function has side effects (data-changing statements). Recommend the coordinator read this page's silence as the 'no side effects' baseline case, not as contradicting the other two files' stricter requirement.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/get-started/capella-iq/work-with-capellaiq",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/capella-iq/work-with-capellaiq.md",
+  "concepts": [
+    { "candidate_id": "capellaiq:capella-iq", "label": "Capella iQ (LLM-powered query-editor assistant)", "reused_or_minted": "reused - minted in configure-capellaiq.json in this batch" },
+    { "candidate_id": "capellaiq:model-provider", "label": "Capella iQ Model Provider (OpenAI or AWS Bedrock)", "reused_or_minted": "reused - minted in configure-capellaiq.json in this batch" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - key promoted concept" },
+    { "candidate_id": "cloud-providers:aws", "label": "AWS (Capella cluster deployment location)", "reused_or_minted": "minted - a deployment-location concept; distinct from server/'s edition axis, gates a default value rather than availability" },
+    { "candidate_id": "cloud-providers:gcp-azure", "label": "GCP or Azure (Capella cluster deployment location)", "reused_or_minted": "minted - grouped as one concept because the source text gives both providers the identical default rule in a single clause"  }
+  ],
+  "relations": [
+    { "subject": "capellaiq:model-provider", "predicate": "hasDefaultValueForDeployment", "object": "cloud-providers:aws", "reused_or_minted_predicate": "minted - captures a deployment-location-based default-value rule; distinct from requiresCapellaRole/requiresSupportPlan/gatedByBillingPlan since nothing is gated or unavailable here, only a default selection changes", "evidence": "[AWS](#cloud-providers:aws.adoc) clusters default to AWS Bedrock." },
+    { "subject": "capellaiq:model-provider", "predicate": "hasDefaultValueForDeployment", "object": "cloud-providers:gcp-azure", "reused_or_minted_predicate": "reused (within this file) - same predicate", "evidence": "[GCP](#cloud-providers:gcp.adoc) and [Azure](#cloud-providers:azure.adoc) clusters default to OpenAI." },
+    { "subject": "capellaiq:capella-iq", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "Before you can use Capella iQ, an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) must: Accept the [supplemental terms](https://www.couchbase.com/capella-feature-specific-terms/). ... Select a [model provider](#model-provider) for Capella iQ." },
+    { "subject": "capellaiq:capella-iq", "predicate": "sharesDataWith", "object": "capellaiq:model-provider", "reused_or_minted_predicate": "minted - a data-governance fact (what is and isn't sent to a third party) distinct from any access-control predicate; worth capturing since it's the one concrete privacy commitment on the page, not marketing prose", "evidence": "Cluster data is not sent to OpenAI or AWS Bedrock. Capella iQ only shares the following information with OpenAI or AWS Bedrock: * The schema of a chosen collection * The user prompt * Couchbase-provided contextual information * A unique prompt ID" }
+  ],
+  "notable_absence": {
+    "predicate": "gatedByBillingPlan / requiresSupportPlan",
+    "finding": "This page states 'Capella iQ implements rate limits both at the user and organization level' but gives no concrete numbers or plan-tier breakdown (contrast with explore-iq-insights.json's iQ Insights, which gives exact free-tier-vs-paid chart counts). Left unrepresented as a relation since there's no verbatim quantitative fact to cite as evidence - only a vague statement of intent."
+  },
+  "cross_component_finding": "This page mostly restates facts already captured with stronger evidence elsewhere in this batch (Organization Owner gate on setup - configure-capellaiq.json; iQ Insights link - explore-iq-insights.json), consistent with the batch hypothesis that Get Started content is thin once genuinely new facts are extracted once. The one wholly new fact is the AWS-vs-GCP/Azure default model-provider rule, which is a deployment-location-based default, not an access-control gate - a fourth kind of conditional-behavior fact (alongside role, billing-plan, and release-stage gating found elsewhere in this batch) that doesn't restrict access, only changes a default setting."
+}

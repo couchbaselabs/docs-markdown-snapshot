@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-support-plan-wording-inconsistency",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The commercial support-plan gate (requiresSupportPlan) is named inconsistently across the docs, worse than first flagged in round 2. Round 2 found 'Enterprise Support Plan' vs. 'Enterprise Service Plan' on two pages. Round 6's firsthand read of the billing/ pages found billing.md itself uses BOTH 'Enterprise Support Plan' (prose) and bare 'Enterprise Plan' (its own section heading and Model Service pricing note) on the SAME page, plus a fourth variant 'Paid Support Plan' elsewhere in the organizations/ui-auth batch, and a fifth 'Enterprise plan' (lowercase 'plan', security/billing pages). support-pre-auth.md, by contrast, uses no plan-tier wording at all for what looks like the same real gate - its Prerequisites are purely role-based. Whether all these name the same commercial tier, and if so which wording is authoritative, is a docs-team call, not resolved here.",
+  "about": [
+    "cloud/billing/billing",
+    "cloud/billing/change-support-plan",
+    "cloud/billing/support-pre-auth",
+    "cloud/security/add-aws-private-link",
+    "cloud/security/add-gcp-private-link",
+    "cloud/security/cmek",
+    "cloud/organizations/ui-auth/manage-role-mapping"
+  ],
+  "foundDuring": "round 2 (original 2-variant finding); substantially expanded in round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

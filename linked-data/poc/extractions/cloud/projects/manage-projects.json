@@ -1,0 +1,29 @@
+{
+  "page_id": "cloud/projects/manage-projects",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/projects/manage-projects.md",
+  "concepts": [
+    { "candidate_id": "capella:manage-projects", "label": "Manage Projects (task page)", "reused_or_minted": "minted" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-creator", "label": "Project Creator", "reused_or_minted": "minted - new organization-level capella-role sibling, not in the existing 3-role registry; disjunctive with organization-owner as the project-creation gate" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:manage-project-users", "label": "Manage Project Users (task page)", "reused_or_minted": "reused - minted in cloud/projects/manage-project-users.json" },
+    { "candidate_id": "capella:project-roles", "label": "Project Roles (catalog page)", "reused_or_minted": "reused - minted in cloud/projects/project-roles.json" },
+    { "candidate_id": "org:manage-organization-users", "label": "Manage Users (organization-level user management page)", "reused_or_minted": "reused - minted in cloud/projects/manage-project-users.json" },
+    { "candidate_id": "org:organization-roles", "label": "Organization Roles (Capella org-level role catalog)", "reused_or_minted": "reused - minted in cloud/projects/project-roles.json" }
+  ],
+  "relations": [
+    { "subject": "capella:manage-projects", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused - disjunctive gate, same shape as the SQL++ statement pages' requiresCapellaRole pattern from prior rounds", "evidence": "To create a project, you must have either the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) organization roles." },
+    { "subject": "capella:manage-projects", "predicate": "requiresCapellaRole", "object": "capella-role:project-creator", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "To create a project, you must have either the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) organization roles." },
+    { "subject": "capella:manage-projects", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "To change the name of a project, you need the [Project Owner](project-roles.md#project-owner-role) role for the project in question." },
+    { "subject": "capella:manage-projects", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "You have the [Project Owner](project-roles.md#project-owner-role) role for the project in question. Note that users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in the organization, so they can also delete projects." },
+    { "subject": "capella-role:organization-owner", "predicate": "inheritsAccessFromRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused (inheritsAccessFromRole) - 3rd occurrence in this batch (also project-roles.json, manage-project-users.json), strengthening the case for this being a well-evidenced, promotable cross-page fact", "evidence": "Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in the organization, so they will see all the organization's projects listed in the project summary." },
+    { "subject": "capella:manage-projects", "predicate": "seeAlso", "object": "capella:manage-project-users", "evidence": "## See Also\n\n* [Manage Project Users](manage-project-users.md)" },
+    { "subject": "capella:manage-projects", "predicate": "seeAlso", "object": "capella:project-roles", "evidence": "* [Project Roles](project-roles.md)" },
+    { "subject": "capella:manage-projects", "predicate": "seeAlso", "object": "org:manage-organization-users", "evidence": "* [Manage Users](../organizations/manage-organization-users.md)" },
+    { "subject": "capella:manage-projects", "predicate": "seeAlso", "object": "org:organization-roles", "evidence": "* [Organization Roles](../organizations/organization-user-roles.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition", "finding": "No edition-badge or server-version-string citations anywhere on this page - a further data point (4th of 4 projects/ pages, plus all 4 security/ and 4 indexes/ pages) that neither of the batch's two watched-for recurring anomalies appeared anywhere in this 12-page batch." },
+  "cross_component_finding": "Confirms 'Project Creator' as a genuine 4th management-plane role concept (beyond this batch's project-role catalog of 5) that gates a specific action (project creation) at the ORGANIZATION level, disjunctively with Organization Owner - directly analogous in shape to the requiresCapellaRole disjunction pattern documented on SQL++ statement pages, but for a wholly different action and role set.",
+  "cross_product_finding": "None - purely Capella-native management-plane content."
+}

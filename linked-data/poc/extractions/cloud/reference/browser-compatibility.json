@@ -1,0 +1,11 @@
+{
+  "page_id": "cloud/reference/browser-compatibility",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/browser-compatibility.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Confirms the batch hypothesis directly: this is a one-row compatibility table (Capella UI supports only 'Google Chrome, Latest stable release', with JavaScript required) with no version axis, no edition/deployment/provider variance, and no cross-references to mine. There is no real-world 'thing' here beyond 'the Capella web UI' and 'Google Chrome', neither of which is a Capella-specific primitive worth minting a concept for. Deliberately left concepts/relations empty rather than forcing a candidate_id onto 'Google Chrome' or 'JavaScript'."
+  }
+}

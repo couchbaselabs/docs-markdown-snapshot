@@ -1,0 +1,20 @@
+{
+  "page_id": "cloud/reference/alert-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/alert-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:alert", "label": "Capella Alert (notification triggered by a resource condition)", "reused_or_minted": "minted - a real product-specific primitive (Capella's notification mechanism), distinct from the generic 'event' concept in event-reference.md; see monitoring:event in that extraction" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support/Service Plan (Capella support-tier gate)", "reused_or_minted": "reused - same concept minted in cloud/security/auditing.json" }
+  ],
+  "relations": [
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/monitoring", "reused_or_minted_predicate": "reused", "evidence": "* [Monitor Clusters](../clusters/monitoring/monitoring.md)" },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/alerts", "reused_or_minted_predicate": "reused", "evidence": "* [Receive Alerts](../clusters/monitoring/alerts.md)" },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "monitoring:event", "reused_or_minted_predicate": "reused", "evidence": "* [Events Reference](event-reference.md)" },
+    { "subject": "monitoring:alert", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/alert-integration", "reused_or_minted_predicate": "reused", "evidence": "* [Alert Integrations](../clusters/monitoring/alert-integration.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSupportPlan",
+    "finding": "Several alert descriptions gate the ability to escalate ('you can create a support ticket by clicking on the Create Support Ticket button... if Technical Support is included in your chosen cluster plan') on an unnamed support tier ('your chosen cluster plan'), unlike cloud/security/auditing.md which names a specific plan ('Enterprise Support Plan') for its own gate. I did not mint a requiresSupportPlan relation here because the evidence text never names which plan tier includes support-ticket creation - it's conditional and vague ('if... is included'), so there's no clean object concept to point to without inference beyond the text."
+  },
+  "cross_component_finding": "This page is a genuine reference catalog (13 metrics-based + 11 operational alert types) rather than a pure compatibility table, but its ontological content is thin and almost entirely structural (See Also links) rather than conceptual - consistent with the batch hypothesis that low-content reference pages shouldn't be forced into the concept/relation shape. One non-ontological data-quality observation: the rows 'Data Encryption At REST DEK Generation Failures' and 'Data Encryption At Rest Key Rotation Failures' appear verbatim, with identical wording, in BOTH the Metrics-Based Alerts table and the Operational Alerts table - likely an unintentional duplication in the source page rather than two distinct alert definitions."
+}

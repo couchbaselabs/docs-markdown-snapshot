@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/xdcr",
+  "label": "XDCR (Cross Data Center Replication)",
+  "type": "a monitored Capella component, explicitly NOT one of 'the Services' - metrics-reference.md: 'Metrics are provided for all Couchbase Services, and also for the Cluster Manager and XDCR'",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Consolidates two independent mints of the same real component: 'capella:xdcr' and 'clusters:xdcr'. Kept out of the service: namespace deliberately, per the source's own explicit exclusion from 'the Services.' Not previously in the registry - first encountered this wave."
+}

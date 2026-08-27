@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/develop/intro",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/develop/intro.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "cloud/develop/intro", "predicate": "seeAlso", "object": "cloud/n1ql/query", "evidence": "Use the Query Service and the Index Service to issue SQL++ queries to extract and manipulate data.\n\n* [Query Data with SQL++](../n1ql/query.md)" },
+    { "subject": "cloud/develop/intro", "predicate": "seeAlso", "object": "cloud/vector-index/vectors-and-indexes-overview", "evidence": "The Query Service, the Index Service, and the Search Service provide support for vector indexes. You can use vector indexes with existing Large Language Models to develop AI applications.\n\n* [Use Vector Indexes for AI Applications](../vector-index/vectors-and-indexes-overview.md)" },
+    { "subject": "cloud/develop/intro", "predicate": "seeAlso", "object": "cloud/mobile-guides/intro", "evidence": "Use App Services in combination with Couchbase Mobile to develop mobile apps.\n\n* [Build Mobile Apps](../mobile-guides/intro.md)" },
+    { "subject": "cloud/develop/intro", "predicate": "seeAlso", "object": "home/sdk", "evidence": "Couchbase offers numerous software development kits (SDKs) that provide programmatic access to Couchbase Capella.\n\n* [SDKs & Connectors](../../home/sdk.md)" },
+    { "subject": "cloud/develop/intro", "predicate": "seeAlso", "object": "cloud/eventing/eventing-overview", "evidence": "Use the Eventing Service to respond to changes to your data in near real-time. Execute custom code in response to mutations, or as scheduled by timers.\n\n* [Run a Function on Data Change](../eventing/eventing-overview.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan / requiresEdition / requiresCapellaRole", "finding": "A pure top-level navigation hub for the whole Develop section (tutorials, Data/Query/Vector/Search/Eventing/Analytics/Mobile/SDKs/Integrations) - no plan-tier, edition, or role content; every subsection is a one-line description plus a single outbound link. The remaining links (Data, Search, Analytics, Migration Tutorial, Connect, Integrations) follow the identical seeAlso shape as the five listed above and were not each recorded separately." },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

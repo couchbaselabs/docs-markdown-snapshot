@@ -1,0 +1,22 @@
+{
+  "page_id": "cloud/get-started/capella-iq/get-started-with-iq",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/get-started/capella-iq/get-started-with-iq.md",
+  "concepts": [
+    { "candidate_id": "capellaiq:capella-iq", "label": "Capella iQ (LLM-powered query-editor assistant)", "reused_or_minted": "reused - minted in configure-capellaiq.json in this batch" },
+    { "candidate_id": "capellaiq:sdk-code-generation", "label": "Capella iQ SDK Code Generation", "reused_or_minted": "minted - a distinct sub-capability (generating SDK code from a prompt) explicitly labeled '(Preview)' in its own heading, separate from the general-availability SQL++ query generation capability" },
+    { "candidate_id": "capellaiq:public-preview-stage", "label": "Public Preview (Capella AI-feature release stage)", "reused_or_minted": "minted - a release-maturity marker seen twice in this batch (Ask AI's page-level 'available as a public preview' statement, and this page's 'Generate SDK Code (Preview)' heading); worth its own concept since it's a recurring stage label, not a one-off adjective" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused - key promoted concept" },
+    { "candidate_id": "capellaiq:iq-insights", "label": "iQ Insights (AI-generated chart/insight suggestions for query results)", "reused_or_minted": "reused - minted in explore-iq-insights.json in this batch" }
+  ],
+  "relations": [
+    { "subject": "capellaiq:capella-iq", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "The [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) has: Accepted the Capella iQ Supplemental Terms. ... Selected the available model providers for clusters in the organization." },
+    { "subject": "capellaiq:sdk-code-generation", "predicate": "hasReleaseStage", "object": "capellaiq:public-preview-stage", "reused_or_minted_predicate": "minted - a feature-maturity marker distinct from requiresCapellaRole/requiresSupportPlan/gatedByBillingPlan gating predicates; captures 'this capability is not yet GA' rather than 'you need X to access it'", "evidence": "## Generate SDK Code (Preview)\n\nTo help speed up application development, Capella iQ can generate SDK code based on your prompt" },
+    { "subject": "capellaiq:capella-iq", "predicate": "seeAlso", "object": "capellaiq:iq-insights", "evidence": "To learn more about iQ Insights, see [Explore iQ Insights](explore-iq-insights.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole (fine-grained)",
+    "finding": "Beyond the Organization Owner prerequisite for org-wide setup, this page states no additional role requirement for the day-to-day usage the page walks through (generating queries, sample data, scopes/collections, SDK code) - any user with query-editor access appears able to use Capella iQ once the org has enabled it. This is consistent with configure-capellaiq.json's framing that once an Organization Owner accepts terms and enables the feature, 'Capella iQ is now available to all your organization's users.'"
+  },
+  "cross_component_finding": "This page is overwhelmingly a UI walkthrough (click sequences, example prompts, favoriting queries) with almost no formal ontology structure of its own beyond what's already captured in configure-capellaiq.json and explore-iq-insights.json - confirming the batch hypothesis that even the Capella iQ pages are mostly thin once the access-control facts are pulled out. The one new fact here is the '(Preview)' labeling on SDK code generation, which recurs with ask-ai.md's public-preview framing and is captured as capellaiq:public-preview-stage."
+}

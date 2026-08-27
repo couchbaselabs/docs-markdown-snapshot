@@ -1,0 +1,24 @@
+{
+  "page_id": "cloud/security/add-aws-private-link",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/security/add-aws-private-link.md",
+  "concepts": [
+    { "candidate_id": "security:aws-private-link", "label": "AWS PrivateLink Connection", "reused_or_minted": "minted - a specific cloud-provider species of the already-minted security:private-endpoints concept (cloud/security/security.json, cloud/security/private-endpoints.json)" },
+    { "candidate_id": "security:private-endpoints", "label": "Private Endpoints (Capella feature enabling AWS PrivateLink / Azure Private Link / GCP Private Service Connect)", "reused_or_minted": "reused - minted in cloud/security/security.json" },
+    { "candidate_id": "clusters:xdcr", "label": "Cross Data Center Replication (XDCR)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "clusters:prometheus-server", "label": "Prometheus Server (metrics scraping)", "reused_or_minted": "reused - minted in cloud/security/private-endpoints.json" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "plan:developer-pro", "label": "Developer Pro (Capella cluster support/service plan)", "reused_or_minted": "minted - first seen this batch; disjunctive with plan:enterprise-support-plan as a cluster-creation gate" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused - candidate first minted in cloud/security/auditing.json; see cross_component_finding re: wording variant" }
+  ],
+  "relations": [
+    { "subject": "security:aws-private-link", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "The [Project Owner](../projects/project-roles.md#project-owner-role) role assigned to your user account." },
+    { "subject": "security:aws-private-link", "predicate": "requiresSupportPlan", "object": "plan:developer-pro", "reused_or_minted_predicate": "reused (requiresSupportPlan)", "evidence": "The **Developer Pro** or **Enterprise** plan." },
+    { "subject": "security:aws-private-link", "predicate": "requiresSupportPlan", "object": "plan:enterprise-support-plan", "reused_or_minted_predicate": "reused (requiresSupportPlan) - see cross_component_finding: page says 'Enterprise plan', a third wording variant for what auditing.json called 'Enterprise Support Plan' and audit-management.json called 'Enterprise Service Plan'", "evidence": "The **Developer Pro** or **Enterprise** plan." },
+    { "subject": "security:aws-private-link", "predicate": "seeAlso", "object": "clusters:xdcr", "evidence": "AWS PrivateLink connections can support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions." },
+    { "subject": "security:aws-private-link", "predicate": "seeAlso", "object": "clusters:prometheus-server", "evidence": "AWS PrivateLink connections can support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions." }
+  ],
+  "notable_absence": { "predicate": "requiresPrivilege", "finding": "No data-plane privilege/RBAC content on this page at all - the only access gate is the management-plane capella-role:project-owner prerequisite plus a support-plan/cloud-provider gate. Confirms the batch hypothesis that private-link pages are infrastructure/connectivity topics, not privilege-catalog topics." },
+  "cross_component_finding": "This page introduces a THIRD wording variant for the already-flagged support-plan-gate inconsistency (docs-issues/... not yet filed under this exact name, but noted in requires-support-plan.json's registry note about 'Enterprise Support Plan' vs 'Enterprise Service Plan'). Here the gate is worded simply 'The Developer Pro or Enterprise plan' - dropping 'Support'/'Service' entirely. The sibling page add-azure-private-link.md (same batch, same feature family) instead says 'Enterprise Support Plan' verbatim. So even within one tightly-related 3-page feature family (AWS/Azure/GCP private-link), Couchbase's own docs cite the identical underlying commercial plan three different ways across the whole corpus now. Recurrence flagged, not treated as a new issue per batch instructions.",
+  "cross_product_finding": "AWS PrivateLink is explicitly gated on cloud-provider identity (must be an AWS cluster) plus a management-plane role (Project Owner) plus a support-plan tier - a 3-axis gate with no server/ RBAC analog, consistent with the rest of this batch's security/ pages."
+}

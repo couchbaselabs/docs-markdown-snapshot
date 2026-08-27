@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/organizations/ui-auth/manage-identity-providers",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/ui-auth/manage-identity-providers.md",
+  "concepts": [
+    { "candidate_id": "auth:realm", "label": "Realm (Capella's per-organization link to an identity provider)", "reused_or_minted": "reused - minted in manage-organization-users.json" },
+    { "candidate_id": "auth:team", "label": "Team (maps IdP user groups to permission sets in Capella)", "reused_or_minted": "reused - minted in capella-ui-auth.json" },
+    { "candidate_id": "auth:group-mapping", "label": "Group mapping (toggle: map IdP groups to teams, or manage SSO users like any other Capella user)", "reused_or_minted": "minted - first explicit description of the on/off mechanism" },
+    { "candidate_id": "auth:permission-set", "label": "Permission set (what a team maps IdP groups to)", "reused_or_minted": "reused - minted in capella-ui-auth.json" },
+    { "candidate_id": "auth:sso", "label": "Single Sign-On (SSO) authentication", "reused_or_minted": "reused - minted in manage-account.json" }
+  ],
+  "relations": [
+    { "subject": "auth:realm", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "You must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to manage realms." },
+    { "subject": "auth:group-mapping", "predicate": "grantsRole", "object": "auth:permission-set", "reused_or_minted_predicate": "reused (grantsRole)", "evidence": "If group mapping is on, Capella assigns roles to SSO users based on which teams map to which SSO groups." },
+    { "subject": "auth:realm", "predicate": "revokesRole", "object": "auth:permission-set", "reused_or_minted_predicate": "reused (revokesRole) - deleting the realm's identity-provider link cascades into revoking every permission it granted, a management-plane analog of the data-plane REVOKE statement family", "evidence": "When you delete a realm, Capella deletes the permissions of all SSO users connected to your organization through that realm." },
+    { "subject": "auth:group-mapping", "predicate": "revokesRole", "object": "auth:permission-set", "reused_or_minted_predicate": "reused (revokesRole)", "evidence": "If they sign in after you turn on group mapping, their roles sync based on any mapped SSO groups, and Capella deletes the old permissions." },
+    { "subject": "auth:sso", "predicate": "autoRegistersUser", "object": "auth:team", "reused_or_minted_predicate": "reused (autoRegistersUser)", "evidence": "Every SSO user is a member of a realm's default team unless otherwise specified through [role mapping](manage-role-mapping.md)." },
+    { "subject": "auth:realm", "predicate": "seeAlso", "object": "auth:sso", "evidence": "Realms manage the link with your identity provider (IdP). Each organization supports one realm. If you need to create a realm, see [Add SSO Authentication](add-sso-auth.md)." },
+    { "subject": "auth:group-mapping", "predicate": "seeAlso", "object": "capella-role:organization-member", "evidence": "For more information about managing SSO users with group mapping turned off, see [Manage Organization Users](../manage-organization-users.md) and [Manage Project Users](../../projects/manage-project-users.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresEdition / requiresSupportPlan", "finding": "This page (reached only after a realm already exists) never repeats the paid-support-plan gate seen on add-sso-auth.md/capella-ui-auth.md - it assumes SSO is already enabled and only re-states the Organization Owner role requirement. No edition badges or server-version-string citations either." },
+  "cross_component_finding": "revokesRole (originally minted for the data-plane REVOKE SQL++ statement) turns out to generalize cleanly to this management-plane realm/group-mapping context - both realm deletion and a group-mapping-on resync are described with the same verb the docs use for permission removal ('Capella deletes the permissions'/'Capella deletes the old permissions'). This is a second confirmed reuse of a data-plane-originated predicate (after autoRegistersUser, reused from Sync Gateway) in the auth: family, suggesting the base relation vocabulary (grantsRole/revokesRole/autoRegistersUser) is genuinely product-agnostic even though the concepts it connects (auth:permission-set vs rbac-role:role vs sgw:role) are not."
+}

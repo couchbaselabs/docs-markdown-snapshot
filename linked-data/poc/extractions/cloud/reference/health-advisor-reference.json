@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/reference/health-advisor-reference",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/reference/health-advisor-reference.md",
+  "concepts": [
+    { "candidate_id": "monitoring:health-advisor-report", "label": "Capella Health Advisor report (cluster health assessment)", "reused_or_minted": "minted" },
+    { "candidate_id": "monitoring:severity-level-enum", "label": "Health Advisor severity-level enum (Good, Needs Review, Warning)", "reused_or_minted": "minted - same 'usesEnum' pattern as security:real-userid-domain-enum in cloud/security/auditing.json" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore (bucket storage engine)", "reused_or_minted": "minted - new namespace; a real product-specific primitive not previously captured in the registry slice reviewed" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma (bucket storage engine)", "reused_or_minted": "minted - sibling of storage-engine:couchstore" },
+    { "candidate_id": "monitoring:data-resident-ratio-check", "label": "Data Resident Ratio health check", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "monitoring:health-advisor-report", "predicate": "usesEnum", "object": "monitoring:severity-level-enum", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "All health checks are configured with a **Good** severity level, but not all checks are configured to trigger both the **Needs Review** and **Warning** level. Health Advisor flags some checks with just **Needs Review**, while others are flagged directly with **Warning**." },
+    { "subject": "monitoring:data-resident-ratio-check", "predicate": "behavesDifferentlyUnder", "object": "storage-engine:magma", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder) - range generalized yet again, this time to a storage-engine variant: the same named health check applies a different numeric threshold depending on which storage engine the bucket uses", "evidence": "The resident ratio on 1 or more of your buckets is below the recommended threshold (20% for Couchstore, 4% for Magma)." },
+    { "subject": "monitoring:health-advisor-report", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/health-advisor", "reused_or_minted_predicate": "reused", "evidence": "For more information about Health Advisor, see [View Health Advisor](../clusters/monitoring/health-advisor.md)." },
+    { "subject": "monitoring:data-resident-ratio-check", "predicate": "seeAlso", "object": "monitoring:health-advisor-report", "reused_or_minted_predicate": "reused", "evidence": "Capella Health Advisor provides a [health assessment](../clusters/monitoring/health-advisor.md#cluster-health-assessment) of your cluster by going through a series of health checks." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "The 'Index Replicas' advice recommends fixing the issue 'using the ALTER INDEX statement' - a direct reference to a SQL++ DDL statement mined in a prior batch (n1ql-language-reference), but this page does not restate or link to that statement's own privilege/edition gating. Treated as expected: this is advice-page framing ('use this statement to fix the problem'), not a definition of the statement itself, so no requiresPrivilege relation was forced onto it."
+  },
+  "cross_component_finding": "This is a genuine reference catalog (roughly 30 distinct advice types across Cluster/Index/Data/Node/Query/App Services/Search categories) with real - if modest - ontology content, unlike the pure compatibility tables in this batch (browser-compatibility.md, sdk-compatibility.md) and the raw-metric catalog (monitoring-reference.md). The storage-engine finding (Couchstore vs Magma resident-ratio thresholds) was not anticipated by this round's hypothesis (which asked specifically about a cloud-provider axis) but is an independent, equally well-evidenced case of the same generalization pattern: behavesDifferentlyUnder's range keeps growing new variant families (edition -> deployment:capella -> now storage-engine) each round a sufficiently detailed reference page is mined."
+}

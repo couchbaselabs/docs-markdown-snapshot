@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/billing/billing",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/billing.md",
+  "concepts": [
+    { "candidate_id": "plan:free-tier-plan", "label": "Free Tier Plan", "reused_or_minted": "minted - fourth Support Plan tier, sibling to plan:enterprise-support-plan (minted in cloud/security/auditing.json for the requiresSupportPlan gate)" },
+    { "candidate_id": "plan:basic-support-plan", "label": "Basic Support Plan", "reused_or_minted": "reused - minted in cloud/billing/about-billing-alerts.json, this batch" },
+    { "candidate_id": "plan:developer-pro-support-plan", "label": "Developer Pro Support Plan", "reused_or_minted": "reused - minted in cloud/billing/about-billing-alerts.json, this batch" },
+    { "candidate_id": "plan:enterprise-support-plan", "label": "Enterprise Support Plan", "reused_or_minted": "reused - originally minted in cloud/security/auditing.json" },
+    { "candidate_id": "capella:activation-id", "label": "Activation ID", "reused_or_minted": "minted - the credential/token that unlocks paid Support Plans via a Couchbase Sales contract, as opposed to a credit card; fully defined in cloud/billing/upgrade-account.md (this batch), first referenced here" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "plan:enterprise-support-plan", "predicate": "requiresPaymentMethod", "object": "capella:activation-id", "reused_or_minted_predicate": "minted - a Support Plan tier requires a specific payment/billing method (a Couchbase Sales contract/Activation ID, as opposed to a credit card); distinct from requiresSupportPlan, which gates a product FEATURE on a plan - this instead gates the PLAN ITSELF on a payment method", "evidence": "You must have a contract to deploy clusters and services on the [Enterprise](#enterprise) Support Plan." },
+    { "subject": "cloud/billing/billing", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To configure billing settings for your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "cloud/billing/billing", "predicate": "seeAlso", "object": "cloud/billing/change-support-plan", "evidence": "You can change the Support Plan for your cluster at any time. For more information about changing your cluster's plan, see [Change a Cluster's Plan and Support Timezone](change-support-plan.md)." },
+    { "subject": "cloud/billing/billing", "predicate": "seeAlso", "object": "cloud/billing/usage-invoices", "evidence": "* [View Capella Usage and Invoices](usage-invoices.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan (consistent wording)", "finding": "This page never uses the phrase 'Service Plan' - it consistently says 'Support Plan' or 'Plan'. But it is NOT internally consistent about the top tier's full name: the section heading reads 'Enterprise Plan' (#enterprise), the credit-card-payment note reads 'Enterprise Support Plan', and the Model Service billing note reads 'Enterprise Plan pricing' / 'Enterprise [On-Demand credits]' - three different phrasings for the same tier within a single page." },
+  "cross_component_finding": "Directly resolves this round's hypothesis for the billing side: 'Enterprise Support Plan' (matching one of the two previously-flagged variants) is the phrase actually used for the commercial gate (e.g. 'You must have a contract to deploy clusters and services on the Enterprise Support Plan'). 'Enterprise Service Plan' does not appear anywhere in this batch's billing pages. So the billing docs do not add a third variant - they reinforce 'Enterprise Support Plan' as (one of) the intended wording(s) - but they also introduce a new intra-page variant, plain 'Enterprise Plan', used for both the section heading and the Model Service pricing note, showing the inconsistency is broader than just 'Support' vs 'Service'.",
+  "cross_product_finding": "Unlike server/, where feature availability is gated by product edition (Enterprise Edition vs Community Edition), Capella gates commercial capabilities (contract-only payment methods, technical-support SLAs of 30 minutes vs 8 hours vs forums-only) on a purchased Support Plan tier - confirming the requiresSupportPlan / requiresEdition distinction already established in the registry rather than blurring it."
+}

@@ -1,0 +1,23 @@
+{
+  "page_id": "cloud/management-api-guide/management-api-use",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/management-api-guide/management-api-use.md",
+  "concepts": [
+    { "candidate_id": "mgmt-api:api-key", "label": "Capella Management API Key", "reused_or_minted": "reused - minted in management-api-intro.json, this batch" },
+    { "candidate_id": "capella:management-api", "label": "Capella Operational Management API (REST API surface)", "reused_or_minted": "reused - minted in management-api-intro.json, this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "mgmt-api:api-key",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:role",
+      "reused_or_minted_predicate": "reused - recurrence of the same generic-object relation minted in management-api-intro.json, this batch",
+      "evidence": "The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the Management API reference, each endpoint description lists the roles that are needed."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole (specific role for a specific endpoint)",
+    "finding": "Reiterates management-api-intro.json's finding: per-endpoint role requirements are deferred entirely to the (out-of-scope) Management API reference guide - this page's worked examples (List Organizations, List/Get/Update Project) never state which specific role the example calls require."
+  },
+  "cross_component_finding": "The worked 412 Precondition Failed example on this page ('Unable to process update. The ETag provided does not match the current version of the document being requested to update.') matches error code 9000 (ErrEtagVersionConflict, 'Please include the correct ETag version with the request.') cataloged verbatim in management-api-errors.json, this batch - the two pages describe the same ETag/optimistic-concurrency-control error taxonomy consistently."
+}

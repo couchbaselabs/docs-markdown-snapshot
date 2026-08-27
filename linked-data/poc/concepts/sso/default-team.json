@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sso/default-team",
+  "label": "Default Team (Capella SSO)",
+  "type": "the fallback team/access assignment applied when an authenticated SSO user's IdP groups don't match any configured group-mapping rule",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Object of the minted predicate isFallbackFor (extraction-layer only, recurrence 1 - watchlisted). Sibling of sso:group-mapping."
+}

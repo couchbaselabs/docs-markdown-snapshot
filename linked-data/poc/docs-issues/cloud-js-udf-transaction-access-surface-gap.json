@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-js-udf-transaction-access-surface-gap",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Distributed transactions are documented as incompatibleWithAccessSurface for the Capella Query tab and Data API. Separately, JavaScript UDFs are documented as able to wrap and run transactions. No page states whether the access-surface restriction propagates through UDF invocation - i.e. can a transaction-wrapping JS UDF be called from the Query tab or Data API, circumventing the restriction, or is it blocked some other way? A real, unanswered product-behavior question, not resolved by inference.",
+  "about": ["cloud/javascript-udfs/calling-javascript-from-n1ql", "cloud/n1ql/n1ql-language-reference/transactions"],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/disables-feature-for",
+  "label": "disables feature for",
+  "kind": "relation (schema-level)",
+  "type": "turning off a parent toggle (e.g. Capella iQ) disables a named dependent feature (e.g. iQ Insights) for the affected scope",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Distinct from requiresFlagToEnable (a single feature's own on/off gate) - this captures a dependency between two features' toggles. Close in shape to the separately-minted disablesDependentFeature (recurrence 2, watchlisted) - the two weren't merged since no page confirms they describe the same mechanism, not different ones (parent-disables-child vs. some other propagation shape); flagged for a future round to resolve with more evidence."
+}

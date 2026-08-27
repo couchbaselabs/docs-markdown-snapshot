@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/mgmt-api/api-key",
+  "label": "Management API key",
+  "type": "the Bearer-token credential primitive for capella:management-api - associated with capella-role:* roles/permissions, does not invent its own role vocabulary",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Confirmed via management-api-intro.md/management-api-start.md: 'Couchbase Capella associates API keys with roles and permissions... the API key has the Organization Member role for the organization containing the project.' The Management API's error catalog (management-api-errors.md) also independently confirms it describes the same data-plane access model as the SQL++ pages - error codes 8022-8024 name data_reader/read and data_writer/write matching privilege:capella-basic-access-read/write exactly."
+}

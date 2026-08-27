@@ -1,0 +1,19 @@
+{
+  "page_id": "cloud/billing/manage-billing",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/manage-billing.md",
+  "concepts": [
+    { "candidate_id": "capella:billing-contact", "label": "Billing Contact", "reused_or_minted": "minted - an organization-level contact record for invoices/notifications, explicitly distinguished in the text from a user holding the Organization Owner role" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "cloud/billing/manage-billing", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To manage billing information in your organization, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "capella:billing-contact", "predicate": "hasNoRelationshipTo", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused - originally minted for Sync Gateway users vs. server RBAC users; reused here for an explicit docs-stated distinction between two superficially similar billing-related identities", "evidence": "The billing contact is different from a user with the [Organization Owner](../organizations/manage-organizations.md) role." },
+    { "subject": "cloud/billing/manage-billing", "predicate": "seeAlso", "object": "cloud/billing/usage-invoices", "evidence": "You can [view your billing and usage information](usage-invoices.md) for Couchbase Capella from your organization's **Billing** tab, or the [Management REST API](../management-api-reference/index.md#tag/Billing)." },
+    { "subject": "cloud/billing/manage-billing", "predicate": "seeAlso", "object": "cloud/management-api-reference/index", "evidence": "You can [view your billing and usage information](usage-invoices.md) for Couchbase Capella from your organization's **Billing** tab, or the [Management REST API](../management-api-reference/index.md#tag/Billing)." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan / requiresEdition", "finding": "No Support Plan, Service Plan, or edition wording appears on this page at all - it covers only credit-card management mechanics, which are payment-method-level, not plan-tier-level." },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

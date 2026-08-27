@@ -1,0 +1,18 @@
+{
+  "page_id": "cloud/organizations/organizations",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/organizations/organizations.md",
+  "concepts": [
+    { "candidate_id": "capella:organization", "label": "Capella organization (management-plane container)", "reused_or_minted": "reused - minted in manage-account.json" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella:capella-account", "label": "Couchbase Capella account (personal account, independent of organizations)", "reused_or_minted": "reused - minted in manage-account.json" }
+  ],
+  "relations": [
+    { "subject": "capella:capella-account", "predicate": "autoRegistersUser", "object": "capella:organization", "reused_or_minted_predicate": "reused (autoRegistersUser)", "evidence": "When you [create your Capella account](../get-started/create-account.md) without an invitation to an existing organization, Capella automatically creates a new organization for you." },
+    { "subject": "capella:organization", "predicate": "grantsRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (grantsRole)", "evidence": "In this organization, `My Organization`, your user account will have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role." },
+    { "subject": "capella:organization", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused (requiresCapellaRole)", "evidence": "Only users who have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role can send email invitations to users." },
+    { "subject": "capella:organization", "predicate": "seeAlso", "object": "capella:project", "reused_or_minted_predicate": "reused (seeAlso)", "evidence": "* [Manage Projects](../projects/manage-projects.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition", "finding": "This overview page never mentions editions or support plans - organizations and organization roles are presented as the universal first layer of access control for every Capella account, regardless of plan. No edition badges or server-version-string citations (both known recurring anomalies absent, consistent with the rest of this batch)." },
+  "cross_component_finding": "Confirms the three-tier access model stated explicitly: 'Use organization roles to give a user access to the Capella UI. Use projects and project roles to grant more specific privileges and access to clusters, data, and data tools. Use cluster access credentials to manage your programmatic and application-level access to a cluster's data.' This is the clearest single-sentence statement in the batch of how capella-role:* (org/project), the (not-yet-fully-extracted) project-role catalog, and cluster access credentials stack as three independent, non-overlapping layers."
+}

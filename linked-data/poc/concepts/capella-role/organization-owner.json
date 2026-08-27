@@ -5,5 +5,6 @@
   "promoted": true,
   "promotion_reason": "part of a well-evidenced family (organization-owner/project-owner/project-data-writer) gating the Capella-only bucket/user/group/vector-index DDL statements; each recurred 10x across the stress-test batch",
   "recurrence": 10,
-  "scheme": "capella management-plane role (distinct from rbac-role:role, which is a Capella data-plane RBAC role)"
+  "scheme": "capella management-plane role (distinct from rbac-role:role, which is a Capella data-plane RBAC role) - specifically an ORGANIZATION-scope role, see round 6 note below",
+  "note": "Round 6 found this is one of exactly three organization-scope roles (alongside capella-role:project-creator, capella-role:organization-member), confirmed against organization-user-roles.md - the authoritative page for that catalog. capella-role:project-owner and capella-role:project-data-writer are PROJECT-scope roles from a separate catalog (project-roles.md); statement pages' Prerequisites sections flattened both catalogs into one undifferentiated capella-role:* list, which is why the distinction wasn't visible until this catalog's own pages were read directly. See reconciliation.md round 6 for the full restructuring writeup."
 }

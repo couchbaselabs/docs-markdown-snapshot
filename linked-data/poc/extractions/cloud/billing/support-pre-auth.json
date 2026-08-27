@@ -1,0 +1,21 @@
+{
+  "page_id": "cloud/billing/support-pre-auth",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/support-pre-auth.md",
+  "concepts": [
+    { "candidate_id": "capella:cluster-recovery-authorization", "label": "Request Prompt Action for Cluster Recovery", "reused_or_minted": "minted - a per-cluster setting authorizing Capella Support to take automated remedial action, enabled by default" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:project-owner", "label": "Project Owner", "reused_or_minted": "reused" },
+    { "candidate_id": "capella-role:cluster-manager", "label": "Cluster Manager", "reused_or_minted": "minted - a sixth Capella management-plane role, not previously seen in the capella-role catalog (organization-owner/project-owner/project-data-writer/project-creator/organization-member)" },
+    { "candidate_id": "deployment:capella", "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "capella:cluster-recovery-authorization", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "You must have the `Organization Owner`, `Project Owner`, or `Cluster Manager` role to change the cluster recovery authorization for a cluster" },
+    { "subject": "capella:cluster-recovery-authorization", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "You must have the `Organization Owner`, `Project Owner`, or `Cluster Manager` role to change the cluster recovery authorization for a cluster" },
+    { "subject": "capella:cluster-recovery-authorization", "predicate": "requiresCapellaRole", "object": "capella-role:cluster-manager", "reused_or_minted_predicate": "reused (requiresCapellaRole); object capella-role:cluster-manager is newly minted in this file", "evidence": "You must have the `Organization Owner`, `Project Owner`, or `Cluster Manager` role to change the cluster recovery authorization for a cluster" },
+    { "subject": "cloud/billing/support-pre-auth", "predicate": "seeAlso", "object": "cloud/clusters/monitoring/activity-log", "evidence": "For more information about how to view the Activity Log, see [View Activity Logs](../clusters/monitoring/activity-log.md)." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan", "finding": "Despite being one of the two billing-adjacent pages this batch's hypothesis specifically called out, support-pre-auth.md never mentions Support Plan, Service Plan, or any plan tier at all. Cluster recovery authorization is gated purely by capella-role (Organization Owner/Project Owner/Cluster Manager) and is 'enabled by default when you create a new cluster' - i.e. available on every tier including Free. This page therefore contributes nothing to resolving the Support-Plan-vs-Service-Plan wording question; the relevant evidence comes from billing.md and upgrade-account.md instead." },
+  "cross_component_finding": "Cluster Manager is a role not present anywhere else in this batch or in the existing capella-role catalog - worth flagging to the reconciler as a possible sixth management-plane role alongside organization-owner/project-owner/project-data-writer/project-creator/organization-member.",
+  "cross_product_finding": ""
+}

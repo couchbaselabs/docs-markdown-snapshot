@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-projects-role-naming-drift-cluster-manager",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "cmek.md's Prerequisites cite the role via anchor '#project-cluster-manager-role' and the label 'Project/Cluster Manager', while project-roles.md (the authoritative page for this role) labels it plainly 'Cluster Manager'. Independent naming-drift confirmation of the same role across two pages.",
+  "about": ["cloud/security/cmek", "cloud/projects/project-roles"],
+  "foundDuring": "round 6 (89-page cloud/ management-plane sweep)",
+  "status": "open"
+}

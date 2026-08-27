@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cloud-provider/azure",
+  "label": "Azure (as a Capella deployment substrate)",
+  "type": "sibling of cloud-provider:aws - the specific provider whose storage auto-expansion causes node replacement/rebalancing, per aws.md/azure.md/gcp.md",
+  "promoted": true,
+  "recurrence": 1,
+  "promotion_reason": "promoted with its siblings as a family - the governing behavesDifferentlyUnder generalization is the well-evidenced part, individual provider concepts inherit that promotion."
+}

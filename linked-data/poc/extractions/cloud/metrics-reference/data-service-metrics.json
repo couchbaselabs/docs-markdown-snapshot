@@ -1,0 +1,13 @@
+{
+  "page_id": "cloud/metrics-reference/data-service-metrics",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/metrics-reference/data-service-metrics.md",
+  "concepts": [
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - existing registry concept" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "dependsOnService / requiresEdition",
+    "finding": "Pure reference catalog - by far the largest metrics page in this batch (2342 lines), a flat list of hundreds of kv_* Prometheus metric names, each with a Couchbase Server version badge (7.0.0 through 8.0.0 observed) and a one-line description. No prose about service dependencies, editions, or roles. Version badges recur the known 'server-version-string citation on a Capella page' anomaly (per-metric, not per-page) - flagged as recurrence, not new. See metrics-reference.json (this batch) for the consolidated dependsOnService finding."
+  }
+}

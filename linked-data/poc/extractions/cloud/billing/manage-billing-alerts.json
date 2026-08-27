@@ -1,0 +1,16 @@
+{
+  "page_id": "cloud/billing/manage-billing-alerts",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/billing/manage-billing-alerts.md",
+  "concepts": [
+    { "candidate_id": "capella:billing-alert", "label": "Billing Alert", "reused_or_minted": "reused - minted in cloud/billing/about-billing-alerts.json, this batch" },
+    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "capella:billing-alert", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused", "evidence": "To manage billing alerts, you must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role." },
+    { "subject": "cloud/billing/manage-billing-alerts", "predicate": "seeAlso", "object": "cloud/billing/about-billing-alerts", "evidence": "For more information about each available alert condition, see [Alert Conditions](about-billing-alerts.md#alert-conditions)." }
+  ],
+  "notable_absence": { "predicate": "requiresSupportPlan", "finding": "This purely procedural page (create/edit/delete an alert) never mentions Support Plan or Service Plan at all - the plan-tier vocabulary only surfaces on the definitional page (billing.md) and the recipient/condition tables of about-billing-alerts.md, not in the click-path instructions themselves." },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

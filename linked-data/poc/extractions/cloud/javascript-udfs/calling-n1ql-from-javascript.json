@@ -1,0 +1,67 @@
+{
+  "page_id": "cloud/javascript-udfs/calling-n1ql-from-javascript",
+  "source_version": "Capella (continuously deployed, no discrete version number)",
+  "source_path": "cloud/javascript-udfs/calling-n1ql-from-javascript.md",
+  "concepts": [
+    { "candidate_id": "js-udf:inline-statement-call", "label": "Inline SQL++ statement embedded directly in JavaScript UDF code", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:n1ql-function-call", "label": "N1QL() function call (executes a SQL++ statement from JavaScript, changes available parameter support)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused - already minted in n1ql batch (transactions.json)" },
+    { "candidate_id": "js-udf:iterator-result", "label": "Iterator result handle (JavaScript iterable returned by a SELECT-shaped SQL++ call, streamed in batches)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:positional-parameter", "label": "Positional parameter for a SQL++ call from JavaScript", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:named-parameter", "label": "Named parameter for a SQL++ call from JavaScript", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:transaction-support", "label": "SQL++ transaction execution from within a JavaScript UDF (start, run within, or roll back a transaction)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:javascript-worker", "label": "JavaScript worker process (per-nested-call execution unit; count = 4 x number of CPUs)", "reused_or_minted": "minted" },
+    { "candidate_id": "js-udf:nested-function-call", "label": "Nested/recursive JavaScript UDF call (each level consumes a JavaScript worker; deep nesting exhausts the pool and errors)", "reused_or_minted": "minted" },
+    { "candidate_id": "n1ql:project-roles", "label": "Capella Project Roles (control data access for executing SQL++ statements from JavaScript functions)", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:inline-statement-call",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:execute-function",
+      "reused_or_minted_predicate": "reused - a data-changing side effect forces a different call mechanism",
+      "evidence": "If you choose to use a SQL++ statement inside a JavaScript function, that function cannot have side effects that change data stored by Capella. ... Functions that change data must be called using the EXECUTE FUNCTION statement."
+    },
+    {
+      "subject": "js-udf:n1ql-function-call",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:inline-statement-call",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Calling SQL++ from the N1QL() function supports both **named** and **positional** parameters. Calling a SQL++ statement or expression inline supports only **named** parameters."
+    },
+    {
+      "subject": "js-udf:iterator-result",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:inline-statement-call",
+      "reused_or_minted_predicate": "reused - synchronous vs. asynchronous execution depends on whether the call returns a value",
+      "evidence": "If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. ... If the inline statement or SQL++ call returns a value, then it's executed asynchronously."
+    },
+    {
+      "subject": "js-udf:transaction-support",
+      "predicate": "requiresSetting",
+      "object": "js-udf:iterator-result",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely."
+    },
+    {
+      "subject": "js-udf:n1ql-function-call",
+      "predicate": "requiresPrivilege",
+      "object": "n1ql:project-roles",
+      "reused_or_minted_predicate": "reused - already promoted (requires-privilege.jsonld); Capella's own name for the RBAC gate on this feature",
+      "evidence": "To execute a SQL++ statement from a JavaScript function, you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement. For more information about roles that control data access in Capella, see [Project Roles](../projects/project-roles.md)."
+    },
+    {
+      "subject": "js-udf:nested-function-call",
+      "predicate": "dependsOnService",
+      "object": "js-udf:javascript-worker",
+      "reused_or_minted_predicate": "reused - recursive nesting exhausts the finite worker pool",
+      "evidence": "Each function call executed from a parent call uses a new JavaScript worker process to run. The deeper you nest your calls, the fewer JavaScript workers you will have available to execute those calls. Your calling chain will eventually fail and throw an error. ... Capella will automatically prevent recursive calls if there are fewer than 50% of the total JavaScript workers available."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / incompatibleWithCredentialType (named privilege)",
+    "finding": "The 'Role-Based Access Control and Functions' section names no specific privilege, role, or credential type at all - it only says generically 'you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement' and points to Capella's generic Project Roles page. This is the same shape of absence noted in n1ql:transactions (prior batch): JS UDFs, like the transaction statement family, sit outside the credential-type-keyed named-privilege model (capella-basic-access-*/capella-advanced-access-*) that individual DML/DDL statements use - they're gated by generic object-level permissions rather than a named privilege string."
+  },
+  "cross_component_finding": "Directly answers this round's central hypothesis: JavaScript UDFs do NOT get a separate authorization/execution model - RBAC for JS-embedded SQL++ calls is explicitly the same object-permission check as for any other SQL++ statement ('you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement'). The genuinely different execution-model elements here (synchronous vs. asynchronous iterator semantics, the JavaScript-worker pool and its 4xCPU sizing formula, recursion/nesting exhaustion) are all runtime/execution-engine concerns, not access-control concerns. So JS UDFs need their own concept family for execution semantics (js-udf:*) but explicitly reuse, rather than replace or extend, the existing privilege/RBAC model for authorization.",
+  "cross_product_finding": "Confirms bidirectional compatibility with the transaction statement family found in an earlier batch: 'Transactions are supported from SQL++ statements called from JavaScript functions... Functions can: Run statements in a transaction that was started before the function was executed. Run a statement that starts the transaction. Run a statement that rolls back a transaction.' This is notable because n1ql:transactions was found (prior batch, transactions.json) to be incompatibleWithAccessSurface for capella:query-tab and capella:data-api - yet this page shows transactions ARE fully supported when invoked from inside a JavaScript UDF, which itself has no stated access-surface restriction. This raises an open question for reconciliation: is a JS-UDF-wrapped transaction call also blocked when that UDF is itself invoked via the Query tab or Data API, or does UDF invocation route around the single-node execution constraint that motivated the original restriction? No page in either batch states this explicitly - flagging as a genuine cross-batch gap rather than asserting an unverified relation."
+}

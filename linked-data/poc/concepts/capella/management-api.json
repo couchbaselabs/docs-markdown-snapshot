@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/management-api",
+  "label": "Capella Management API",
+  "type": "the REST API surface for managing clusters/organizations/projects/etc. - parallel to capella:data-api but management-plane rather than data-plane",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Consolidates two independent mints of the same real surface: 'capella:management-api' (most files) and 'api:management-api' (one batch). Authenticates via mgmt-api:api-key (Bearer-token API keys), a genuinely different credential from the Data API's reuse of the ordinary cluster-access-credential-type Basic-auth model - confirmed by this wave's data-api-guide batch reading both surfaces' docs firsthand."
+}

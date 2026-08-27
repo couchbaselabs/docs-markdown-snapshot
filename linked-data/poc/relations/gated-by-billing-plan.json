@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/gated-by-billing-plan",
+  "label": "gated by billing plan",
+  "kind": "relation (schema-level)",
+  "type": "a feature's behavior (often a quantitative limit, not a strict on/off) varies by commercial plan tier - e.g. Capella iQ Insights' chart-generation rate limit is 3/query on Free Tier, 5/query on paid plans",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Round 2's reconciliation.md narrative described this predicate as already promoted ('A billing-plan gate (gatedByBillingPlan)... All of the above are promoted'), but no relations/ file was ever actually written for it - a real gap, invisible until this round tried to reuse it, the same shape as round 3's never-promoted Java SDK concepts (found in round 4) and round 3's own reconciliation gap. Promoted now on the strength of this round's 4-file recurrence, closing that specific gap. See reconciliation.md round 6's method-notes section."
+}
