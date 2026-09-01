@@ -1,0 +1,170 @@
+{
+  "page_id": "server/8.0/learn/security/authentication-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/authentication-overview.md",
+  "concepts": [
+    { "candidate_id": "auth:sso", "label": "Single Sign-On", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, but promoted under a label reading '(Capella)'. This page states Server administrators use the identical term 'Single Sign-On' for Server Web Console login via a SAML IdP - a genuine same-name usage that is NOT the Capella SSO mechanism (no sso:realm/team concept applies; Server's SSO button and SAML flow is documented entirely in authentication-domains.md, a different configuration surface). Reused with a caveat rather than minted separately, because the underlying idea (avoid re-prompting for credentials once authenticated with an IdP) is genuinely the same abstract mechanism, just realized on a different product's login surface; flagged as a collision for reconciliation rather than silently treated as identical - see cross_component_finding." },
+    { "candidate_id": "auth:mfa", "label": "Multi-Factor Authentication", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (labelled '(Capella)' in the registry), but this page states Server's own admin-authentication best practice requires MFA via the SSO provider - same caveat as auth:sso above." },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "X.509 certificate-based (mTLS) authentication", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "auth-mechanism:scram", "label": "SCRAM (Salted Challenge Response Authentication Mechanism)", "registry_status": "minted", "reused_or_minted": "minted - sibling of auth-mechanism:username-password/x509-certificate. Covers the SCRAM-SHA1/256/512 family this page names as one of the SASL-provided Data-Service password mechanisms." },
+    { "candidate_id": "auth-mechanism:sasl-plain", "label": "SASL PLAIN authentication", "registry_status": "minted", "reused_or_minted": "minted - the plaintext-password SASL mechanism, sibling of auth-mechanism:scram" },
+    { "candidate_id": "auth-mechanism:http-basic", "label": "HTTP Basic Authentication", "registry_status": "minted", "reused_or_minted": "minted - the mechanism this page states every Couchbase service other than the Data Service uses for username/password authentication" },
+    { "candidate_id": "auth-mechanism:argon2id", "label": "Argon2ID (password hashing algorithm)", "registry_status": "minted", "reused_or_minted": "minted - the current default local-credential hashing algorithm this page names" },
+    { "candidate_id": "auth-mechanism:pbkdf2", "label": "PBKDF2 (password hashing algorithm)", "registry_status": "minted", "reused_or_minted": "minted - sibling of auth-mechanism:argon2id, required specifically to support SCRAM-SHA capability" },
+    { "candidate_id": "rbac-model:privilege", "label": "Privilege (RBAC abstract action-type)", "registry_status": "minted", "reused_or_minted": "minted - new namespace rbac-model: for the abstract glossary-level RBAC vocabulary (as distinct from rbac-role:role, the Capella data-plane role PLACEHOLDER, and from the concrete privilege:* named privileges/roles). This page's own definition ('Privileges include _read_, _read-write_, _execute_, and _manage_') is the abstract action-type notion, at a different level of abstraction than privilege:query-select etc." },
+    { "candidate_id": "rbac-model:role", "label": "Role (RBAC abstract entity)", "registry_status": "minted", "reused_or_minted": "minted - sibling of rbac-model:privilege. Deliberately NOT the same id as rbac-role:role (Capella's coarse data-plane role placeholder) or sgw:role (Sync Gateway's ad hoc channel-grant bundle) or capella-role:role (Capella management-plane role placeholder) - this is Server's own abstract 'what is a role' glossary entry, a FIFTH-going-on-SIXTH distinct thing this ontology calls 'role', kept apart per the naming-collision rule since no page merges them." },
+    { "candidate_id": "server:user-group", "label": "Couchbase Server user-group", "registry_status": "minted", "reused_or_minted": "minted - the mechanism by which roles are assigned indirectly. This page names it in the 'By Group' bullet." }
+  ],
+  "relations": [
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth:sso",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia, extraction-layer subject (server:user minted this batch)",
+      "evidence": "Administrators log into Couchbase Server Web Console either by providing their username and password to the administrative UI, or by selecting the _Single Sign-On_ option, at `<https://hostname:18091>`."
+    },
+    {
+      "subject": "auth:sso",
+      "predicate": "requiresSetting",
+      "object": "auth:mfa",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresSetting ('a statement or behavior depends on a named cluster/session setting being configured a particular way'). Stretched: this is a recommendation ('best practice'), not a hard requirement, which the evidence string carries explicitly.",
+      "evidence": "The best practice for administrator-authentication is to use _single sign-on_, with a provider that is configured to require _Multi-Factor Authentication_ (MFA)."
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "mustUseInsteadWhen",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. Direction: the page recommends certificate auth over username/password for applications, the reverse framing of a typical mustUseInsteadWhen but the same shape (prefer X over Y under condition).",
+      "evidence": "The recommended method for application-authentication when connecting to Couchbase Server is to use x.509 _certificate-based_ authentication."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:sasl-plain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "When an application authenticates to the Data Service, one of four mechanisms provided by the Simple Authentication and Security Layer (SASL) framework are used."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:scram",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "This is either PLAIN or one of the revisions of SCRAM-SHA challenge-response mechanisms for authenticating."
+    },
+    {
+      "subject": "auth-mechanism:scram",
+      "predicate": "tradesOffAgainst",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst ('comparative relation between two ... strategies with opposite strengths/weaknesses'). Prior uses were vector-index strategies; here the trade-off is stated explicitly in prose, so the shape transfers without forcing.",
+      "evidence": "Note that other communication-data, including queries and database-values, are _not_ encrypted with the SCRAM mechanism: therefore, the SCRAM mechanism should only be used where TLS network-encryption is not an option."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:http-basic",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Application-authentication for all services other than the Data Service uses the HTTP Basic Authentication mechanism, with username and password."
+    },
+    {
+      "subject": "auth-domain:local",
+      "predicate": "configurableVia",
+      "object": "auth-mechanism:argon2id",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia ('the subject's behaviour is influenced by the object setting or surface, without the setting being a hard prerequisite'). The local domain's credential storage is influenced by which hashing algorithm is selected, cluster-wide.",
+      "evidence": "Locally managed user-account credentials are stored in Couchbase Server using both the _Argon2ID_ and _PBKDF2_ algorithms."
+    },
+    {
+      "subject": "auth-mechanism:pbkdf2",
+      "predicate": "requiredForApiAccess",
+      "object": "auth-mechanism:scram",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiredForApiAccess, stretched from an API-surface prerequisite to a capability prerequisite (PBKDF2 is required to allow SCRAM-SHA capabilities at all, not to reach an API). Flagged rather than forced into a cleaner-fitting but nonexistent predicate.",
+      "evidence": "_PBKDF2_ is another powerful password hashing function; and is required to allow SCRAM-SHA capabilities."
+    },
+    {
+      "subject": "rbac-model:role",
+      "predicate": "hasPrivilege",
+      "object": "rbac-model:privilege",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasPrivilege. No existing predicate states the class-level Role-corresponds-to-Privilege structural fact; requiresPrivilege is instance-level ('this statement needs that privilege'). This is the cleanest page yet for grounding it, since it names both terms and their relationship in one paragraph.",
+      "evidence": "Couchbase-Server features — including data, settings, and statistics — can be accessed only by users who have been assigned the appropriate _privileges_. Privileges include _read_, _read-write_, _execute_, and _manage_. Privileges are assigned by _Full_ and _Security_ Administrators, in correspondence with _roles_."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "grantsRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - grantsRole ('GRANT statement's core action - delegating a role to a user or group'), stretched: this page describes direct role assignment generically rather than a GRANT statement specifically. Server RBAC has no GRANT/REVOKE SQL++ statement of its own (that family belongs to Capella's data-plane RBAC per the registry note) - assignment here happens through the Web Console/CLI/REST, not through a query language statement. Kept because the shape (delegating a role to a user) matches; flagged because the mechanism differs, which reconciliation should weigh when deciding whether one predicate should cover both.",
+      "evidence": "Roles can be assigned to a user in either or both of two ways: * _Directly_. The user is associated directly with one or more Couchbase-Server roles."
+    },
+    {
+      "subject": "server:user-group",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole ('the actual role-hierarchy shape: users transitively acquire roles via group membership'). Minted for Sync Gateway's user/role model; fits Server's group mechanism exactly, unforced - a second positive data point (after authenticatesVia) that a predicate minted for one product's RBAC transfers cleanly to Server's.",
+      "evidence": "_By Group_. A Couchbase-Server _user-group_ is defined, and roles are assigned to the user-group. The user is made a member of the user-group, and thereby inherits all the roles of the group. A user can be a member of any number of groups."
+    },
+    {
+      "subject": "idp:ldap",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole",
+      "evidence": "Note that by means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Couchbase Server; as described in [Authentication Domains](authentication-domains.md)."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Manage Users, Groups, and Roles](../../manage/manage-security/manage-users-and-roles.md), for details on creating users and groups, and assigning roles."
+    },
+    {
+      "subject": "server:account-locking",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "[ENTERPRISE EDITION](https://www.couchbase.com/products/editions)\n\nAdministrators can lock user accounts by blocking their authentication."
+    },
+    {
+      "subject": "server:account-locking",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "This feature is only available after the entire cluster is upgraded to version 8.0 or later."
+    },
+    {
+      "subject": "server:account-locking",
+      "predicate": "restrictedToContext",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext ('the subject may appear only in the object syntactic position, clause, or context'), stretched from syntax to authentication domain, but the shape (X is only meaningful within scope Y) matches.",
+      "evidence": "Only local domain user accounts can be locked or unlocked. External domain user accounts cannot be locked or unlocked."
+    },
+    {
+      "subject": "server:account-locking",
+      "predicate": "doesNotAffect",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect",
+      "evidence": "External domain user accounts cannot be locked or unlocked."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page's own 'Authorization' section names the privilege/role split conceptually (privileges: read/read-write/execute/manage) but never names a single one of the ~54 individually catalogued roles that roles.md documents, nor does it name a single one of the three already-promoted query-family privilege:* concepts. It sits at exactly the same level of abstraction as security-overview.md's RBAC bullet - a second page in this batch that gestures at the whole RBAC system without touching its catalogue. This confirms the round's premise structurally: the conceptual/'learn' tree talks ABOUT RBAC in the abstract at least twice before roles.md ever names a concrete role, which is a real information-architecture gap for a reader trying to learn 'what roles exist' from the learn/ tree in page order."
+  },
+  "cross_component_finding": "The account-locking feature is new in 8.0 and Enterprise-only, but this fact is stated only as an inline important-box on this page - there is no dedicated concept page for it anywhere in learn/security/, and roles.md's Read-Only Admin/Security Admin tables never mention whether locking/unlocking an account requires a specific privilege distinct from the general Local User Admin role's user-management permissions. That is a real gap: the docs describe a security-sensitive administrative capability without stating which role is required to invoke it.",
+  "cross_product_finding": "auth:sso and auth:mfa are reused here with an explicit caveat (see their concept notes) rather than either silently merged with or mechanically separated from the Capella-labelled promoted concepts - this page is the strongest evidence yet that 'Single Sign-On' and 'Multi-Factor Authentication' are genuinely cross-product terms (the same abstract security pattern, realized on two unrelated login surfaces: Capella's org-level identity federation vs. Server's Web-Console-login SAML button), as against the sharper collisions elsewhere in the registry (sgw:role vs capella-role:role) where the same word names structurally unrelated things. Reconciliation should decide whether auth:sso's label should be widened from '(Capella)' now that a second, independent product confirms the same term for a materially similar mechanism."
+}

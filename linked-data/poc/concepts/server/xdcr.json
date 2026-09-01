@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/xdcr",
+  "label": "XDCR (Couchbase Server)",
+  "type": "Cross Data Center Replication - replication of data between separate Couchbase Server clusters.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "note": "PARALLEL-NAMESPACE COLLISION with capella:xdcr, kept separate under the standing no-silent-merge rule. Round 11 flagged this pair as 'a merge candidate needing a source statement, not merged'; round 12 searched the cloud/ tree for a statement that Capella's construct IS Couchbase Server's and found none, so the pair stays split - but round 12 also supplies a better reason than absence of evidence. Here the split is on firmer ground than it looks: capella:xdcr was promoted specifically as a *monitored component* that the metrics reference explicitly excludes from 'the Services', which is a management-plane framing. The server/ tree documents XDCR as a replication mechanism between clusters. Same feature, two genuinely different roles in two ontologies."
+}

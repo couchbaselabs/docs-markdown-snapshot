@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/idp/saml",
+  "label": "SAML identity provider",
+  "type": "a SAML 2.0 identity provider used for Web-Console single sign-on, resolving to Server's own local RBAC roles and user groups. See idp:ldap's note on why this is not sso:realm.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "Promoted with idp:ldap. The two are documented as mutually exclusive in one specific configuration pairing (native-ldap versus saslauthd), a hard constraint the registry has no good predicate for yet - doesNotSupport was built for a statement not supporting a construct, not for two configuration modes of one feature excluding each other. Left on the watchlist."
+}

@@ -25,9 +25,12 @@
     "usesEnum": { "@id": "https://docs.couchbase.com/ld/relations/uses-enum", "@type": "@id" },
     "mustUseInsteadWhen": { "@id": "https://docs.couchbase.com/ld/relations/must-use-instead-when", "@type": "@id" },
     "requiresCapellaRole": { "@id": "https://docs.couchbase.com/ld/relations/requires-capella-role", "@type": "@id" },
+    "requiresServerRole": { "@id": "https://docs.couchbase.com/ld/relations/requires-server-role", "@type": "@id" },
     "incompatibleWithCredentialType": { "@id": "https://docs.couchbase.com/ld/relations/incompatible-with-credential-type", "@type": "@id" },
     "grantsChannelAccess": { "@id": "https://docs.couchbase.com/ld/relations/grants-channel-access", "@type": "@id" },
     "hasNoRelationshipTo": { "@id": "https://docs.couchbase.com/ld/relations/has-no-relationship-to", "@type": "@id" },
+    "hasPrivilege": { "@id": "https://docs.couchbase.com/ld/relations/has-privilege", "@type": "@id" },
+    "verifiesIdentityOf": { "@id": "https://docs.couchbase.com/ld/relations/verifies-identity-of", "@type": "@id" },
 
     "hasOption": { "@id": "cb:hasOption" },
     "optionName": "cb:optionName",

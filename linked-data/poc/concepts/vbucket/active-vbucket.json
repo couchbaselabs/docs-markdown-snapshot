@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/active-vbucket",
+  "label": "Active vBucket",
+  "type": "the single authoritative copy of a vBucket, which serves all reads and writes for its keys.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/vbuckets.md",
+  "note": "Promoted with vbucket:replica-vbucket as a two-state pair. The pair is what makes the consistency model statable: exactly one active copy per vBucket is why Couchbase reads are strongly consistent by default without a quorum protocol."
+}

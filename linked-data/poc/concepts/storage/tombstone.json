@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage/tombstone",
+  "label": "Tombstone",
+  "type": "the metadata record left behind by a deleted item, retained so the deletion can propagate to replicas, indexes and XDCR targets before being purged.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/storage-engines.md",
+  "note": "Promoted because it is the reason deletion is not simply the absence of data, and because tombstone purge interval is one of the settings the compaction and XDCR families both depend on. Sits in a storage: namespace new this round, alongside the existing storage-engine: namespace (couchstore, magma) which it deliberately does not join - one is a mechanism, the other a choice of engine."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/vbucket",
+  "label": "vBucket",
+  "type": "one of the 1024 hash partitions into which a bucket's key space is divided; the unit of data distribution and failover across nodes.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/vbuckets.md",
+  "note": "The mechanism underneath every distribution claim in the corpus, promoted with its two states. 1024 is a fixed cardinality the docs state as a constant rather than a tunable - noted here because a reader coming from other sharded systems will look for the knob.\n\nFOLDS A CROSS-ROUND DUPLICATE, and one this project predicted and then walked into anyway. Round 11 minted `data:vbucket` at recurrence 1 from search-service.json - 'the unit DCP streams' - and its own note said the term was 'certain to' recur. It did, in the very next round, from the buckets-memory-and-storage batch, under a different namespace, because nothing connects a prediction written in a reconciliation log to the id an agent picks eleven pages later. Combined recurrence 3. This is the known near-duplicate-across-rounds failure mode, and it was caught by `verify-promotions.py` rather than by anyone noticing: round 12's own prose named `data:vbucket` while promoting `server:vbucket`, and the tool flagged the id with no file. The general lesson is the round's own: a prediction in prose is a hope, an alias in a record is a control - so the fold is recorded here rather than left as a note that the two terms are probably the same.",
+  "aliases": [
+    "data:vbucket"
+  ]
+}

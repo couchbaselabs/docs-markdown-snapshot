@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/verifies-identity-of",
+  "label": "verifies identity of",
+  "kind": "relation (schema-level)",
+  "type": "subject = a trust store or certificate authority; object = the certificate or party whose identity it validates; means the subject is the authority against which the object's identity claim is checked.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted as the certificate family's core predicate. All four occurrences have cert:trust-store as subject and a certificate as object, which is why the pre-round-12 object-only concept metric could not see the trust store at all - this predicate is the reason the promotion metric changed to 'either relation slot' this round."
+}

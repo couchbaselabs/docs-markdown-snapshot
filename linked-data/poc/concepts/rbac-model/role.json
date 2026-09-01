@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/rbac-model/role",
+  "label": "Role (Server RBAC model term)",
+  "type": "the abstract 'role' entity as defined in Server's own RBAC glossary - 'An entity associated with a fixed set of privileges'. A TBox/model-level term, NOT an instance: do not use it where a specific role belongs (role:full-administrator, role:query-select). Distinct from rbac-role:role, the coarse data-plane placeholder GRANT/REVOKE manipulate, and from capella-role:*, sgw:role and capella:cluster-manager's role sense.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/security/authorization-overview.md",
+  "evidence": "Role: An entity associated with a fixed set of privileges.",
+  "note": "The glossary term, promoted so the abstract model has somewhere to live that is not the concrete catalogue. Round 12's headline finding is precisely that these two layers disagree: authorization-overview.md defines role and privilege as separate tiers, and roles.md - the catalogue - documents 56 roles whose permission tables never name a privilege. Keeping rbac-model:role separate from role:* is what lets the registry state that mismatch instead of silently picking a side, which is what round 10 did."
+}

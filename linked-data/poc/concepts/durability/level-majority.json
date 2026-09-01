@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/level-majority",
+  "label": "Majority",
+  "type": "the durability level requiring the mutation to be replicated to memory on a majority of replica nodes before acknowledgement.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/durability.md",
+  "note": "Promoted with durability:level-persist-to-majority. Both clear the bar on their own; the remaining level (persistToMajority's memory/persistence hybrid sibling) did not recur and is left unpromoted - so unlike the ejection enum this set is knowingly incomplete, and that is recorded here so a consumer does not read the two members as the whole enum."
+}

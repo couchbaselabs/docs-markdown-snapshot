@@ -1,0 +1,133 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/storage-engines",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/storage-engines.md",
+  "concepts": [
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (from a Capella health-advisor page). This page is server's own dedicated account and matches the Capella page's usage with no stated distinction, so reused rather than re-minted." },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, same basis as storage-engine:couchstore." },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "vbucket:vbucket-count-128", "label": "128 vBucket configuration (Magma)", "registry_status": "minted", "reused_or_minted": "minted - one of two vBucket-count configurations Magma offers, a genuine sibling family alongside vbucket:vbucket-count-1024, distinct from server:vbucket/vbucket:active-vbucket/vbucket:replica-vbucket minted on vbuckets.json." },
+    { "candidate_id": "vbucket:vbucket-count-1024", "label": "1024 vBucket configuration (Magma)", "registry_status": "minted", "reused_or_minted": "minted - sibling of vbucket:vbucket-count-128." },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "index:view", "label": "View", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states the legacy Views service does not run on Magma storage." }
+  ],
+  "relations": [
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "[ENTERPRISE EDITION](https://www.couchbase.com/products/editions)"
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "hasMinimumMemoryToDataRatio",
+      "object": "1%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryToDataRatio, a datatype property. Also stated independently on memory.json - see cross_component_finding.",
+      "evidence": "As your dataset grows, Magma has a minimum memory-to-data ratio of 1%."
+    },
+    {
+      "subject": "storage-engine:couchstore",
+      "predicate": "hasMinimumMemoryToDataRatio",
+      "object": "10%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryToDataRatio",
+      "evidence": "It has a minimum memory requirement of 100 MB per node, and a minimum memory-to-data ratio of 10%."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "offersConfigurationChoice",
+      "object": "vbucket:vbucket-count-128",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Magma supports two vBucket configurations: 128 or 1024"
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "offersConfigurationChoice",
+      "object": "vbucket:vbucket-count-1024",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Magma supports two vBucket configurations: 128 or 1024"
+    },
+    {
+      "subject": "vbucket:vbucket-count-1024",
+      "predicate": "tradesOffAgainst",
+      "object": "vbucket:vbucket-count-128",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst. Deliberately unlike index-type:hyperscale-vector/index-type:composite-vector, which the registry explicitly does NOT relate this way because indexes.md never compares them directly - here the page does compare directly, recommending one over the other conditional on available memory, so the relation is grounded rather than inferred.",
+      "evidence": "If you can allocate at least 1 GiB memory per node to your bucket, you should choose the 1024 vBucket option for Magma as you'll get better performance at scale."
+    },
+    {
+      "subject": "vbucket:vbucket-count-128",
+      "predicate": "hasMinimumMemoryQuota",
+      "object": "100 MiB",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryQuota, a datatype property",
+      "evidence": "It has a minimum memory quota of 100 MiB per node."
+    },
+    {
+      "subject": "vbucket:vbucket-count-1024",
+      "predicate": "hasMinimumMemoryQuota",
+      "object": "1 GiB",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryQuota",
+      "evidence": "Magma using 1024 vBuckets has a minimum memory quota of 1 GiB per node."
+    },
+    {
+      "subject": "vbucket:vbucket-count-128",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "Magma buckets with 128 vBuckets are only available in clusters that have fully migrated to Couchbase Server 8.0 or later."
+    },
+    {
+      "subject": "vbucket:vbucket-count-128",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "The 128 vBucket configuration is the default for new buckets in Couchbase Server Enterprise Edition 8.0 and later."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "doesNotSupport",
+      "object": "index:view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "You're running the legacy [Views Reference](../views/views-intro.md) Service, which does not run on Magma storage."
+    },
+    {
+      "subject": "storage-engine:couchstore",
+      "predicate": "hasMaximumDataPerNode",
+      "object": "3 TB",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMaximumDataPerNode, a datatype property",
+      "evidence": "Your dataset will grow beyond Couchstore's 3 TB limit."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/migrate-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "To learn how to migrate a bucket's storage backend, see [Migrate a Bucket's Storage Backend](../../manage/manage-buckets/migrate-bucket.md)."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/storage-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Magma Flushing and Compaction Threads](storage-settings.md#magma-flushing-and-compaction-threads) for more information about these settings."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasVbucketCount",
+    "finding": "The 'Couchstore verses Magma at a Glance' table's 'Maximum data per node' row notes Magma 128 vBuckets has '10 TB, but with much higher possibility of data imbalance' compared to plain '10 TB' for Magma 1024 vBuckets - the data-imbalance risk is asserted but never explained on this page (what causes it, how to detect it, what to do about it); the reader is left to infer it relates to fewer, larger hash buckets across the same node count, a plausible but page-unstated mechanism."
+  },
+  "cross_component_finding": "This page and memory.json (its sibling in this batch) each independently state the same two minimum memory-to-data ratios (Couchstore 10%, Magma 1%) in different wording, and this page and storage-settings.json each send the reader to the other for Magma's flushing/compaction thread settings ('See Magma Flushing and Compaction Threads for more information about these settings' here; the actual settings text lives entirely on storage-settings.md). Neither is a contradiction, but both are content-duplication/content-splitting patterns across this batch's eight pages worth a single reconciliation note rather than four separate ones."
+}

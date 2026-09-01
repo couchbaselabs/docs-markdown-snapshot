@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/bucket/couchbase-bucket",
+  "label": "Couchbase bucket",
+  "type": "the persistent bucket type: data is stored on disk as well as cached in memory, supporting replication, durable writes and both storage engines. One of the two bucket types in 8.0.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "note": "The default and general-purpose type. In 8.0 the bucket-type set is closed at two members with bucket:ephemeral-bucket - memcached buckets have been removed, a change the buckets page presents as a plain two-type set without noting that a third type ever existed, while the CLI reference still documents the removed type. See docs-issues/server-buckets-page-states-closed-two-type-set-without-noting-removal and server-cli-bucket-compact-cites-removed-memcached-bucket."
+}

@@ -1,0 +1,212 @@
+{
+  "page_id": "server/8.0/learn/security/authentication-domains",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/authentication-domains.md",
+  "concepts": [
+    { "candidate_id": "auth-domain:local", "label": "Local authentication domain", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "auth-domain:external", "label": "External authentication domain", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "idp:ldap", "label": "LDAP (external identity provider)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "idp:saml", "label": "SAML IdP (external identity provider)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page names 'The Full Administrator for Couchbase Server' as a specific member of the local domain, the first page in this batch to name a specific role by name rather than gesturing at the RBAC system generically." },
+    { "candidate_id": "auth-domain:internal-component-account", "label": "Internal Component account (Couchbase Server)", "registry_status": "minted", "reused_or_minted": "minted - a genuinely distinct local-domain member type this page names: Couchbase Server's own internal processes (indexing, searching, replicating) run AS local-domain accounts with full administrative privileges, not as an external/service-account concept the registry has any equivalent for." },
+    { "candidate_id": "auth-domain:generated-user", "label": "Generated User (legacy pre-5.0 bucket-password migration account)", "registry_status": "minted", "reused_or_minted": "minted - a legacy migration artifact this page documents in detail (username identical to bucket name, password identical to the bucket's pre-5.0 password), distinct from any ordinary local user." },
+    { "candidate_id": "idp:native-ldap", "label": "Native LDAP Support", "registry_status": "minted", "reused_or_minted": "minted - the modern, recommended LDAP integration mode, Enterprise-only and encrypted-communication-capable, as against idp:saslauthd" },
+    { "candidate_id": "idp:saslauthd", "label": "saslauthd (legacy LDAP/PAM support)", "registry_status": "minted", "reused_or_minted": "minted - sibling of idp:native-ldap, the legacy pre-6.5 mechanism, Linux-only, no LDAP group support" },
+    { "candidate_id": "idp:pam", "label": "PAM (Pluggable Authentication Modules)", "registry_status": "minted", "reused_or_minted": "minted - a third external-auth mechanism this page documents, layered on top of saslauthd for Linux system-account authentication; distinct enough from LDAP/SAML to need its own id rather than folding into idp:saslauthd, since PAM authenticates against /etc/shadow rather than a directory server" },
+    { "candidate_id": "server:user-group", "label": "Couchbase Server user-group", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "idp:ldap-group", "label": "LDAP Group", "registry_status": "minted", "reused_or_minted": "minted - the external-directory grouping construct that maps onto server:user-group via an admin-configured mapping, distinct from the Couchbase-side group itself" },
+    { "candidate_id": "idp:saml-attribute-mapping", "label": "SAML attribute-to-group/role mapping (Server)", "registry_status": "minted", "reused_or_minted": "minted - deliberately NOT merged with the promoted sso:group-mapping (Capella SSO's IdP-groups-to-Capella-teams mechanism). Same abstract idea (map external identity attributes to internal access), different product, different destination (Server roles/groups vs Capella teams/roles), and no page states they are the same mechanism - kept apart per the naming-collision rule. See cross_product_finding." }
+  ],
+  "relations": [
+    {
+      "subject": "auth-domain:local",
+      "predicate": "hasInternalComponent",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, stretched from part-whole component composition to domain membership, but the shape (X contains Y as a member) is close enough that this is a defensible reuse rather than a mint.",
+      "evidence": "Local: Contains users defined locally. This includes: * The Full Administrator for Couchbase Server."
+    },
+    {
+      "subject": "auth-domain:local",
+      "predicate": "hasInternalComponent",
+      "object": "auth-domain:internal-component-account",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "Internal Components within Couchbase Server that support core functionality (for example, indexing, searching, and replicating), and run with full administrative privileges."
+    },
+    {
+      "subject": "auth-domain:local",
+      "predicate": "hasInternalComponent",
+      "object": "auth-domain:generated-user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "Generated Users, which are created by Couchbase Server as part of the upgrade process from pre-5.0 to 5.0 and post-5.0 versions; each in correspondence with a legacy bucket."
+    },
+    {
+      "subject": "auth-domain:generated-user",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "Note that from release 7.6, Couchbase Server no longer supports {sqlpp) operations on buckets without password specification."
+    },
+    {
+      "subject": "auth-domain:generated-user",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, applied to the restriction rather than to Generated Users themselves; evidence string carries the scoping",
+      "evidence": "Note that from release 7.6, Couchbase Server no longer supports {sqlpp) operations on buckets without password specification."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "idp:native-ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia, extraction-layer subject",
+      "evidence": "_Native LDAP Support_. For Couchbase Server Enterprise Edition 6.5 and later versions, this is the recommended way of setting up LDAP for external authentication."
+    },
+    {
+      "subject": "idp:native-ldap",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "Native LDAP Support is available only for the Enterprise Edition of Couchbase Server."
+    },
+    {
+      "subject": "idp:native-ldap",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "Note that it can only be used when _all_ nodes in the cluster have been upgraded to a version equal to or later than Couchbase Server Enterprise Edition 6.5."
+    },
+    {
+      "subject": "idp:native-ldap",
+      "predicate": "mustUseInsteadWhen",
+      "object": "idp:saslauthd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen",
+      "evidence": "Migration to _Native LDAP_ is recommended, so that _LDAP Group Support_ becomes available."
+    },
+    {
+      "subject": "idp:native-ldap",
+      "predicate": "doesNotSupport",
+      "object": "idp:saslauthd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, capturing the mutual-exclusivity statement",
+      "evidence": "Note that _either_ Native LDAP Support _or_ `saslauthd` must be selected for the cluster. The two cannot be used simultaneously."
+    },
+    {
+      "subject": "idp:saslauthd",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "idp:native-ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - retainedForLegacyCompatibility",
+      "evidence": "`saslauthd` is maintained for support of legacy LDAP authentication, as established on pre-6.5 versions of Couchbase Server."
+    },
+    {
+      "subject": "idp:saslauthd",
+      "predicate": "authenticatesVia",
+      "object": "idp:pam",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "(Note that `saslauthd` also provides support of legacy PAM-based authentication.)"
+    },
+    {
+      "subject": "idp:pam",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_."
+    },
+    {
+      "subject": "idp:ldap-group",
+      "predicate": "groupMembersInheritRole",
+      "object": "server:user-group",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole, stretched: the mapping is LDAP-group-maps-to-Couchbase-group rather than direct membership inheritance, but the net effect (a user acquires a Couchbase group's roles via an external grouping) is the same shape.",
+      "evidence": "If an LDAP group has previously been _mapped_ to a Couchbase-Server group, the user inherits the roles assigned to the Couchbase-Server group."
+    },
+    {
+      "subject": "idp:ldap-group",
+      "predicate": "doesNotSatisfy",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSatisfy, stretched: this is a positive capability statement framed with a negative-requirement predicate (LDAP groups let UNREGISTERED users be authorized) - kept because it captures the same 'this route bypasses the usual requirement' shape doesNotSatisfy was minted for.",
+      "evidence": "Note that LDAP Groups thus allow users _not_ registered on Couchbase Server — even as _external_ — to be authorized."
+    },
+    {
+      "subject": "idp:ldap",
+      "predicate": "hasExecutionConstraint",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, stretched from topology/placement to authentication-order sequencing, capturing the stated lookup order.",
+      "evidence": "When a user attempts to authenticate, Couchbase Server always looks up their credentials in the same order: which is _Local_ first, and _External_ second."
+    },
+    {
+      "subject": "idp:saml",
+      "predicate": "restrictedToContext",
+      "object": "server/8.0/learn/security/authentication-domains",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, stretched to an access-surface restriction (Web Console login only, not CLI/REST/SDK)",
+      "evidence": "Users can only use SAML authentication to log into the Couchbase Web Console. They cannot authenticate for the command line, REST API, or SDK using SAML."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth:sso",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "_Single Sign On_ (SSO) lets users avoid repeated username and password prompts for every service they sign in to."
+    },
+    {
+      "subject": "auth:sso",
+      "predicate": "requiresSetting",
+      "object": "auth:mfa",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresSetting, stretched: this page frames 2FA as a benefit most IdPs implement rather than a strict Couchbase-side requirement",
+      "evidence": "Most IdPs implement _Two-Factor Authentication_ (2FA). 2FA increases security by requiring users to prove their identity with more than just a username and password."
+    },
+    {
+      "subject": "idp:saml-attribute-mapping",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole. Mapping happens after authentication succeeds, so this is a post-authentication role-acquisition fact, not authenticatesVia.",
+      "evidence": "If you mapped a SAML attribute to Couchbase roles, then Couchbase Server grants the authenticated user the roles listed in the attribute."
+    },
+    {
+      "subject": "idp:saml-attribute-mapping",
+      "predicate": "groupMembersInheritRole",
+      "object": "server:user-group",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole",
+      "evidence": "If you mapped a SAML attribute to Couchbase groups, then Couchbase Server grants the authenticated user the roles assigned to the groups listed in the attribute."
+    },
+    {
+      "subject": "idp:saml-attribute-mapping",
+      "predicate": "revocationRevokesChannelAccess",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - revocationRevokesChannelAccess, stretched hard: minted for Sync Gateway's channel-access revocation, reused here for an admin removing a user's SAML-federated privileges cascading to session termination. The 'channel' framing doesn't fit at all (there is no channel concept here) but the propagates-on-revoke shape does. Flagged for reconciliation as a borderline reuse rather than quietly forced.",
+      "evidence": "When an administrator removes a user's privileges, services automatically end the user's active sessions."
+    },
+    {
+      "subject": "auth-domain:external",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For detailed, step-by-step accounts of how to configure these procedures, see [Configure LDAP](../../manage/manage-security/configure-ldap.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page is entirely about authentication and identity-to-role MAPPING (LDAP groups, SAML attributes) - it comes right up to the edge of RBAC's role/privilege catalogue (it names 'the roles assigned to the Couchbase-Server user-group' repeatedly) but never names one specific role or privilege by its catalogue name. It is the third page in a row in this batch to talk fluently about roles in the abstract without grounding a single one - reinforcing the finding on authentication-overview.json."
+  },
+  "cross_component_finding": "revocationRevokesChannelAccess is reused here for a Server-side session-termination fact with none of its originating vocabulary (channels) present at all - a genuine stress case for whether the predicate name should be generalized (something like revocationCascades) now that a second, unrelated product needs its shape. Separately: idp:native-ldap and idp:saslauthd's mutual-exclusivity ('The two cannot be used simultaneously') is a hard cluster-wide configuration constraint that has no precedent predicate in the registry beyond doesNotSupport, which was not built for mutual exclusivity between two configuration MODES of the same feature (as against a statement not supporting a construct) - flagged as an approximate fit.",
+  "cross_product_finding": "idp:saml-attribute-mapping is deliberately NOT merged with the promoted sso:group-mapping (Capella SSO). Both map federated-identity attributes to access grants, but the destination differs structurally: sso:group-mapping resolves to Capella teams/roles at the organization/project management-plane level, while this page's SAML attribute mapping resolves directly to Server's own local RBAC roles and user-groups - the same federation idea implemented on top of two disjoint role catalogues (capella-role:* vs rbac-model:role/roles.md's catalogue). No page states the two mechanisms are related, so the naming-collision rule keeps them apart; this is now the second SSO-adjacent concept pair (after auth:sso/auth:mfa) this batch has had to adjudicate, and unlike that pair this one is NOT reused - the destination-catalogue difference is judged too structural to share an id, whereas auth:sso/auth:mfa describe the login mechanism itself, upstream of any catalogue."
+}

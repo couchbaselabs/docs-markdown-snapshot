@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/cluster-manager",
+  "label": "Cluster Manager (Couchbase Server)",
+  "type": "the Couchbase Server component orchestrating cluster membership, configuration and rebalance (ns_server). NOT capella-role:cluster-manager, which is a Capella project-scope ROLE that happens to share the name - see that record for the full disambiguation.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "note": "PARALLEL-NAMESPACE COLLISION with capella:cluster-manager, kept separate under the standing no-silent-merge rule. Round 11 flagged this pair as 'a merge candidate needing a source statement, not merged'; round 12 searched the cloud/ tree for a statement that Capella's construct IS Couchbase Server's and found none, so the pair stays split - but round 12 also supplies a better reason than absence of evidence. Same three-way name collision capella:cluster-manager already documents (component vs role), now with a fourth spelling in the server/ tree. The collision is the reason both records carry an explicit 'must not be confused with' clause rather than relying on the namespace prefix to disambiguate."
+}

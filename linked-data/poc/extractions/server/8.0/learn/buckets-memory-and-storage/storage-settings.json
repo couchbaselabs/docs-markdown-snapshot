@@ -1,0 +1,126 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/storage-settings",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/storage-settings.md",
+  "concepts": [
+    { "candidate_id": "storage:tombstone", "label": "tombstone", "registry_status": "minted", "reused_or_minted": "minted - 'A tombstone records an item removed from the database. Couchbase Server uses tombstones to maintain consistency between nodes and clusters.'" },
+    { "candidate_id": "storage:auto-compaction", "label": "auto-compaction", "registry_status": "minted", "reused_or_minted": "minted - the periodic file-rewrite process that reclaims space from Couchbase Server's append-only data files." },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (aliased from server:dcp-protocol). This page names DCP clients explicitly as recipients of a replicated collection-drop tombstone." },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on vbuckets.json this batch" },
+    { "candidate_id": "service:data-service", "label": "Data service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "service:index-service", "label": "Index service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." }
+  ],
+  "relations": [
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "storage:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, drawn from the same-directory contrast between disk-backed and memory-only buckets. Flagged: memory.json's Ejection section separately states Ephemeral buckets DO keep a tombstone for an ejected item until the next metadata purge - a real, if narrow, contradiction across two pages in this batch, kept unresolved rather than silently merged; see notable_absence.",
+      "evidence": "Ephemeral buckets and their items exist only in memory and are never written to disk."
+    },
+    {
+      "subject": "storage:tombstone",
+      "predicate": "createsOnAction",
+      "object": "storage:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction, self-referential subject/object pair capturing the action->artifact fact where the artifact and the process both go by 'tombstone'; kept minimal rather than minting a separate 'document deletion' concept out of scope for this batch.",
+      "evidence": "Delete an individual document. Couchbase Server creates a tombstone that contains the document's key and metadata."
+    },
+    {
+      "subject": "storage:tombstone",
+      "predicate": "usesProtocol",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesProtocol",
+      "evidence": "Couchbase Server replicates the collection tombstone as a single message (ordered with respect to mutations in the vBucket) to replicas and other DCP clients."
+    },
+    {
+      "subject": "storage:tombstone",
+      "predicate": "cascadesTo",
+      "object": "server:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - cascadesTo",
+      "evidence": "Couchbase Server replicates the collection tombstone as a single message (ordered with respect to mutations in the vBucket) to replicas and other DCP clients."
+    },
+    {
+      "subject": "storage:auto-compaction",
+      "predicate": "cascadesTo",
+      "object": "storage:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - cascadesTo",
+      "evidence": "The Metadata Purge Interval setting controls how often Couchbase Server purges tombstones of both kinds."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "configurableVia",
+      "object": "num_storage_threads (REST API setting)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "You can change the number of threads in this pool using the `num_storage_threads` setting of the [thread allocation REST API](../../rest-api/rest-reader-writer-thread-config.md)."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "hasDefaultValue",
+      "object": "20 threads (compaction/flush pool), 80% compactor / 20% flusher",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue",
+      "evidence": "By default, Couchbase Server allocates 20% of the threads to flushing data and 80% to compacting data."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "hasDefaultValue",
+      "object": "75% (disk-usage alert threshold)",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue",
+      "evidence": "By default, Couchbase Server alerts you if the filesystem containing the data service's storage path becomes 75% full."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "hasDefaultValue",
+      "object": "85% (write-stop threshold)",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue",
+      "evidence": "The default (and recommended) limit is 85% full which means the Data Service stops writing data if the filesystem is 85% or more full."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "configuredPerNode",
+      "object": "storage:disk-path",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredPerNode. Object is a literal disk-path concept minted here in passing, not elaborated further this batch.",
+      "evidence": "When you initialize a node, you choose where Couchbase Server stores data for most services."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "configuredPerNode",
+      "object": "storage:disk-path",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredPerNode",
+      "evidence": "You can specify the location where Couchbase Server stores data on a node for the following services:"
+    },
+    {
+      "subject": "storage:auto-compaction",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-setting-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information about configuring auto-compaction with the command line, see [setting-compaction](../../cli/cbcli/couchbase-cli-setting-compaction.md)."
+    },
+    {
+      "subject": "storage:tombstone",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information, see [Post-Expiration Purging](../data/expiration.md#post-expiration-purging) in [Expiration](../data/expiration.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "This page states 'Ephemeral buckets and their items exist only in memory and are never written to disk', which reads as a blanket no-tombstones claim for Ephemeral buckets - but memory.json's Ejection section (memory.md) states the opposite for a narrower case: ejecting an item from an Ephemeral bucket 'keeps a tombstone (a record of the ejected item, including keys and metadata) until the next scheduled metadata purge for the current node.' Both quotes are accurate to their own pages; the apparent tension is that this page's blanket disk-persistence statement doesn't carve out the in-memory tombstone case memory.md documents. Recorded as a cross-page tension rather than resolved, since resolving it would require reading past what either page states on its own."
+  },
+  "cross_component_finding": "storage-engines.md sends the reader here for Magma's flushing/compaction thread details ('See Magma Flushing and Compaction Threads for more information') and this page's Magma Flushing and Compaction Threads section is the only place those settings (num_storage_threads, magma_flusher_thread_percentage) are actually documented - confirming the split noted from the other side in storage-engines.json's cross_component_finding."
+}

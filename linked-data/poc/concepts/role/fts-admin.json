@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/fts-admin",
+  "label": "Search Admin (Server RBAC role)",
+  "internal_name": "fts_admin",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege: Server's concrete role catalogue has no separately enumerable privilege tier. Do NOT confuse with the privilege:capella-advanced-access-fts-* family, which is Capella's genuinely separate privilege catalogue and has its own distinct ids for Search access.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "privilege:fts-admin",
+    "privilege:search-admin",
+    "role:search-admin"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Search Admin (fts_admin)",
+  "refiled_in_round": 12,
+  "note": "Re-filed from privilege: to role: in round 12, in the same sweep as the nine query_* ids. roles.md documents this as one of 56 Server RBAC roles, with its own 'Role: <label> (<internal_name>)' table and prose calling it a role outright. Two ids for one role, now folded: privilege:fts-admin (1 file, fts-introduction.md, the internal-name form) and privilege:search-admin (3 files, the three create-search-index pages, the label form). Neither was promoted, so the split was invisible to the promotion rule - each sat below the recurrence bar alone while the role they both name clears it at 4. That is the id-normalization problem costing a real promotion, not just tidiness."
+}

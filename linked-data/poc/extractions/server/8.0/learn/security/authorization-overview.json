@@ -1,0 +1,154 @@
+{
+  "page_id": "server/8.0/learn/security/authorization-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/authorization-overview.md",
+  "concepts": [
+    { "candidate_id": "rbac-model:resource", "label": "Resource (RBAC abstract entity)", "registry_status": "minted", "reused_or_minted": "minted - sibling of rbac-model:privilege/rbac-model:role (introduced this batch on authentication-overview.json). This page's own RBAC Concepts glossary names Resource as the fourth term alongside Privilege, Role, and User - 'An entity the access to which must be controlled.'" },
+    { "candidate_id": "rbac-model:privilege", "label": "Privilege (RBAC abstract action-type)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "rbac-model:role", "label": "Role (RBAC abstract entity)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "server:user", "label": "Couchbase Server user (administrator or application identity)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication.json this batch" },
+    { "candidate_id": "server:user-group", "label": "Couchbase Server user-group", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page uses 'the Data Reader role' as its own worked example - see notable_absence for why role:data-reader is deliberately NOT minted from this page alone." },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "edition:community", "label": "Community Edition", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page adds a concrete detail not present elsewhere in this batch: Community Edition's RBAC is not just 'the same roles, capped at 20 users' (usernames-and-passwords.json's finding) - it is a genuinely coarser THREE-role catalogue (bucket_full_access[*], admin, ro_admin), a structural reduction, not just a quantity cap." },
+    { "candidate_id": "role:bucket-full-access", "label": "Bucket Full Access (Community Edition coarse role)", "registry_status": "minted", "reused_or_minted": "minted - one of Community Edition's three fixed coarse roles named explicitly on this page. NOTE: roles.md's 'Application Access' role table gives its internal name as bucket_full_access and states 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access' and that it is now deprecated - so this page's Community-Edition role list may be citing a deprecated/renamed role rather than a live, distinct Community role; flagged rather than silently resolved, see cross_component_finding." },
+    { "candidate_id": "role:admin", "label": "Admin (Community Edition coarse role, internal name admin)", "registry_status": "minted", "reused_or_minted": "minted - internal name `admin` matches roles.md's Full Admin role (`admin`) exactly, so this is almost certainly the same role as role:full-administrator under a different display label on this page ('Admin' vs roles.md's 'Full Admin') - reconciliation should very likely fold this into role:full-administrator once both records are visible together; not folded here because this page alone gives only the coarse label, not the roles.md cross-reference." },
+    { "candidate_id": "role:ro-admin", "label": "Read Only Admin (Community Edition coarse role, internal name ro_admin)", "registry_status": "minted", "reused_or_minted": "minted - internal name `ro_admin` matches roles.md's Read-Only Admin role (`ro_admin`) exactly; same reconciliation note as role:admin above." }
+  ],
+  "relations": [
+    {
+      "subject": "rbac-model:role",
+      "predicate": "hasPrivilege",
+      "object": "rbac-model:privilege",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - hasPrivilege, extraction-layer (minted on authentication-overview.json this batch, not yet promoted)",
+      "evidence": "Couchbase provides _Role-Based Access Control_ (RBAC), in which access privileges are assigned to fixed roles; which are in turn assigned to users (each of which may be an administrator or an application) either _directly_; or _indirectly_, by means of _user-groups_."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder",
+      "evidence": "Couchbase Server Enterprise Edition provides RBAC with multiple roles for finer access control."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder",
+      "evidence": "Community Edition provides multiple users that can be assigned to limited set of roles."
+    },
+    {
+      "subject": "edition:community",
+      "predicate": "offersConfigurationChoice",
+      "object": "role:bucket-full-access",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice, stretched from a configuration setting to a closed role catalogue, but the shape (a bounded set of named alternatives) fits.",
+      "evidence": "There are three fixed roles in the community edition of Couchbase providing coarser access control: Bucket Full Access (`bucket_full_access[*]`), Admin (`admin`), and Read Only Admin (`ro_admin`)."
+    },
+    {
+      "subject": "edition:community",
+      "predicate": "offersConfigurationChoice",
+      "object": "role:admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "There are three fixed roles in the community edition of Couchbase providing coarser access control: Bucket Full Access (`bucket_full_access[*]`), Admin (`admin`), and Read Only Admin (`ro_admin`)."
+    },
+    {
+      "subject": "edition:community",
+      "predicate": "offersConfigurationChoice",
+      "object": "role:ro-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "There are three fixed roles in the community edition of Couchbase providing coarser access control: Bucket Full Access (`bucket_full_access[*]`), Admin (`admin`), and Read Only Admin (`ro_admin`)."
+    },
+    {
+      "subject": "rbac-model:resource",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The complete list of resources to which RBAC is applied is provided in [Roles](roles.md)."
+    },
+    {
+      "subject": "rbac-model:privilege",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The associations of privileges to resources and roles are explained in [Roles](roles.md)."
+    },
+    {
+      "subject": "rbac-model:privilege",
+      "predicate": "restrictedToContext",
+      "object": "rbac-model:resource",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, stretched: this is the class-level privilege-to-resource association, stated as a separate fact from the role-to-privilege association captured by hasPrivilege above.",
+      "evidence": "_Privilege_: The right, assigned by Couchbase Server, to apply an action to a resource."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "grantsRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - grantsRole, same stretch as authentication-overview.json's use: Server has no GRANT statement, this is direct/administrative role assignment.",
+      "evidence": "A user can be assigned one or more _roles_: the privileges associated with each assigned role determine the resource-access granted the user."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Users can be _local_ (defined on Couchbase Server) or _external_ (defined on a remote, network-accessible system)."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Users can be _local_ (defined on Couchbase Server) or _external_ (defined on a remote, network-accessible system)."
+    },
+    {
+      "subject": "role:full-administrator",
+      "predicate": "grantsRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - grantsRole",
+      "evidence": "A user can be assigned one or more roles by the Full Administrator."
+    },
+    {
+      "subject": "server:user-group",
+      "predicate": "groupMembersInheritRole",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole",
+      "evidence": "_By Group_. A Couchbase-Server _user-group_ is defined, and roles are assigned to the user-group. The user is made a member of the user-group, and thereby inherits all the roles of the group."
+    },
+    {
+      "subject": "idp:ldap-group",
+      "predicate": "groupMembersInheritRole",
+      "object": "server:user-group",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - groupMembersInheritRole",
+      "evidence": "Note that by means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Couchbase Server."
+    },
+    {
+      "subject": "server:user-group",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Manage Users, Groups, and Roles](../../manage/manage-security/manage-users-and-roles.md), for details on creating users and assigning roles."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This is the fifth page in a row in this batch to discuss RBAC only in the abstract - it is, in fact, the dedicated 'Authorization' overview page, and it STILL names only one worked example (Data Reader) rather than grounding the discussion in the catalogue. Data Reader is deliberately not minted as role:data-reader from this page alone: the sentence 'the Data Reader role features the Read privilege, which is applied to the data of a bucket' is a simplified illustrative example, not a citation of the role's actual documented permission table (which roles.md gives in full, including the Query resource restriction) - minting from the illustrative example risked creating a thinner, less accurate role:data-reader than roles.md's own record would produce. Left for roles.json, where the full table is available as evidence."
+  },
+  "cross_component_finding": "role:admin and role:ro-admin, minted here from Community Edition's three-fixed-role list, have internal names (`admin`, `ro_admin`) that are IDENTICAL to roles.md's Full Admin (`admin`) and Read-Only Admin (`ro_admin`) roles - not a naming collision but almost certainly the same two roles restated from the edition-gating angle rather than the role-catalogue angle. role:bucket-full-access's internal name (`bucket_full_access`) also matches roles.md's deprecated 'Application Access' role exactly, and roles.md explicitly states 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access' and marks it deprecated with 'Do not grant this role to users.' This page, by contrast, presents Bucket Full Access as one of Community Edition's three LIVE fixed roles with no deprecation warning - either this page is stale relative to roles.md's 8.0 content, or Community Edition specifically still relies on the deprecated role as one of its only three options and roles.md's deprecation warning doesn't fully apply to it. This is a genuine, checkable documentation inconsistency worth a docs-issue, not resolved here.",
+  "cross_product_finding": "The RBAC Concepts glossary (Resource/Privilege/Role/User) is the clearest single piece of evidence in this whole batch for the round's central question. Capella's model, as the registry already has it, is fundamentally a ROLE catalogue (capella-role:*, closed vocabulary of ~10 named roles) crossed with a separate, much larger, independently named PRIVILEGE catalogue (privilege:capella-advanced-access-*, 27 members) - a genuine two-tier system where roles are documented as bundles of independently catalogued privileges. Server's own glossary defines the same four terms (Resource/Privilege/Role/User) but roles.md (the actual catalogue) never names an individual privilege at all - every one of its ~54 role tables lists Resource/Permission/Restriction directly, with permission values drawn from a small closed set of verbs (None/View/All/specific-action-phrases), and nowhere does a named, independently identified 'privilege' entity appear outside three query-family roles that happen to double as the registry's existing privilege:query-select/query-manage-index/query-system-catalog concepts. So Server's own docs state a two-tier Role/Privilege model in the abstract (this page) but the concrete catalogue (roles.md) is actually one-tier: roles ARE the assignable, nameable, documented unit, and 'privilege' mostly stays an unnamed abstraction (Read/Write/Execute/Manage) baked into each role's permission table rather than surfaced as its own catalogued entity. This is the structural mismatch the round's brief predicted, and it is sharper than a simple 'roles vs privileges are named differently' - it's that Capella's model needs and uses two independently enumerable catalogues, while Server's model needs and documents only one, with the second tier staying implicit except in the query family."
+}

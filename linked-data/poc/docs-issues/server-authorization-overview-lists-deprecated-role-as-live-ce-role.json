@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-authorization-overview-lists-deprecated-role-as-live-ce-role",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "authorization-overview.md presents Bucket Full Access (bucket_full_access) as one of Community Edition's three live fixed roles, with no deprecation notice. roles.md marks the same internal name deprecated and says outright 'Do not grant this role to users', noting 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access'. Either authorization-overview.md is stale, or Community Edition genuinely still depends on the deprecated role as one of only three options and roles.md's blanket warning does not apply to it - which would itself need stating. A CE administrator is currently told both to use this role and never to use it. Needs an SME.",
+  "about": [
+    "server/8.0/learn/security/authorization-overview",
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

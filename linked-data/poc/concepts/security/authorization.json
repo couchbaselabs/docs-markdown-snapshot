@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/authorization",
+  "label": "Authorization (Server security facility)",
+  "type": "one of the four named security facilities in Server's own security-overview.md framing - deciding whether an authenticated user may perform an attempted action. Realised by RBAC: see rbac-model:role and rbac-model:privilege for the abstract model and role:* for the concrete 56-member catalogue.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/learn/security/security-overview.md",
+  "evidence": "Couchbase Server uses _Role-Based Access Control_ (RBAC), to associate users with specifically assigned _roles_, these themselves corresponding to system-defined _privileges_, which allow degrees of access to specific system-resources.",
+  "note": "Promoted at recurrence 1 under the family exception: security-overview.md's bullet list names exactly four facilities and is the structural table of contents for the whole learn/security/ subtree, so promoting three of four would leave the set visibly incomplete for no reason other than an accident of which pages this round sampled. Its evidence quote is also the sharpest statement of round 12's headline finding: the overview asserts that roles correspond to *system-defined privileges*, and roles.md - the actual catalogue - enumerates zero privileges across all 55 of its permission tables."
+}

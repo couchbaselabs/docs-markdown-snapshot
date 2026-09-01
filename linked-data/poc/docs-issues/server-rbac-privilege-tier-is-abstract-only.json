@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-rbac-privilege-tier-is-abstract-only",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Server's RBAC docs describe a two-tier model in the abstract but document a one-tier catalogue, using three different words for the same layer across three pages. authorization-overview.md's glossary defines them as separate tiers ('Privilege: The right, assigned by Couchbase Server, to apply an action to a resource' / 'Role: An entity associated with a fixed set of privileges'), and security-overview.md repeats it (roles 'themselves corresponding to system-defined privileges'). But roles.md, the concrete catalogue, never names an individual privilege: each of its 58 roles has a table whose column is headed 'Permissions', filled with prose ('Can list buckets. Can read data from specific collections.'), not with references to catalogued privilege entities. Meanwhile the SQL++ reference pages call the same tokens privileges. So a reader is told privileges exist as assignable things, given no way to enumerate them, and shown three names for the tier (privilege / Permissions / role). Contrast Capella, whose docs really do carry two independently enumerable catalogues (~10 roles, 27 named privileges).",
+  "about": [
+    "server/8.0/learn/security/authorization-overview",
+    "server/8.0/learn/security/roles",
+    "server/8.0/learn/security/security-overview"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

@@ -1,0 +1,223 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/memory",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/memory.md",
+  "concepts": [
+    { "candidate_id": "server:service-memory-quota", "label": "service memory quota", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page is the fullest account of it: minimums, allocation rules, and the two exempt services." },
+    { "candidate_id": "memory:bucket-memory-quota", "label": "bucket memory quota", "registry_status": "minted", "reused_or_minted": "minted - sibling of server:service-memory-quota but a distinct axis: a per-bucket allocation carved out of the Data Service's own quota, not a per-service cluster-wide allocation. 'The available memory for a bucket comes from the quota you assign to the Data Service.'" },
+    { "candidate_id": "memory:ejection-policy", "label": "ejection policy (eviction method)", "registry_status": "minted", "reused_or_minted": "minted - umbrella term for the closed per-bucket-type policy sets below. 'You assign an ejection policy (also known as an eviction method) to each bucket that determines if and how the Data Service ejects data from memory.'" },
+    { "candidate_id": "memory:value-only-ejection", "label": "Value-only ejection", "registry_status": "minted", "reused_or_minted": "minted - default Couchbase-bucket policy; referenced as an object from buckets.json this batch." },
+    { "candidate_id": "memory:full-ejection", "label": "Full ejection", "registry_status": "minted", "reused_or_minted": "minted - sibling of memory:value-only-ejection." },
+    { "candidate_id": "memory:no-ejection", "label": "No ejection (Ephemeral)", "registry_status": "minted", "reused_or_minted": "minted - Ephemeral-bucket policy, sibling family to the Couchbase-bucket policies above." },
+    { "candidate_id": "memory:eject-when-full", "label": "Eject data when RAM is full (Ephemeral, NRU-based)", "registry_status": "minted", "reused_or_minted": "minted - sibling of memory:no-ejection." },
+    { "candidate_id": "memory:memory-low-watermark", "label": "memoryLowWatermark", "registry_status": "minted", "reused_or_minted": "minted - the threshold at which ejection stops; renamed from the cbepctl-era mem_low_wat setting per this page's own note." },
+    { "candidate_id": "memory:memory-high-watermark", "label": "memoryHighWatermark", "registry_status": "minted", "reused_or_minted": "minted - sibling of memory:memory-low-watermark; the threshold at which ejection starts." },
+    { "candidate_id": "memory:warmup-process", "label": "warmup process", "registry_status": "minted", "reused_or_minted": "minted - the sequential disk-to-memory reload a node performs on restart." },
+    { "candidate_id": "memory:warmup-behavior", "label": "warmupBehavior (background/blocking/none)", "registry_status": "minted", "reused_or_minted": "minted - closed three-member enum controlling memory:warmup-process, modeled as a scheme with a flat literal list on the same pattern as the registry's index-state, since no page references one of the three values as its own individually-linked concept." },
+    { "candidate_id": "memory:access-scanner", "label": "access scanner", "registry_status": "minted", "reused_or_minted": "minted - the periodic process that identifies frequently-used keys and writes them to the access log consulted during warmup." },
+    { "candidate_id": "memory:resident-ratio", "label": "resident ratio", "registry_status": "minted", "reused_or_minted": "minted - the percentage of a bucket's active-and-replica-vBucket items currently held in memory on a node; the metric the access scanner evaluates." },
+    { "candidate_id": "memory:expiry-pager", "label": "Expiry Pager", "registry_status": "minted", "reused_or_minted": "minted - the process that scans for and erases expired items, leaving a tombstone; renamed from the cbepctl-era exp_pager_stime setting per this page's own note." },
+    { "candidate_id": "memory:active-memory-defragmenter", "label": "Active Memory Defragmenter", "registry_status": "minted", "reused_or_minted": "minted - the process that repacks sparsely-used memory pages to counter fragmentation from ejection and item resizing." },
+    { "candidate_id": "storage:tombstone", "label": "tombstone", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on storage-settings.json this batch (its dedicated Tombstones section); referenced incidentally here by the Expiry Pager." },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on vbuckets.json this batch" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on vbuckets.json this batch" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page independently restates the 10% minimum memory-to-data ratio storage-engines.json also states - see cross_component_finding." },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. Same duplication note as storage-engine:couchstore." },
+    { "candidate_id": "service:analytics-service", "label": "Analytics service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "service:data-service", "label": "Data service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "service:index-service", "label": "Index service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "service:backup-service", "label": "Backup Service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." }
+  ],
+  "relations": [
+    {
+      "subject": "service:query-service",
+      "predicate": "exemptFromMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - exemptFromMemoryQuota",
+      "evidence": "The Query Service and the Backup Service don't require an administrator-specified memory quota."
+    },
+    {
+      "subject": "service:backup-service",
+      "predicate": "exemptFromMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - exemptFromMemoryQuota",
+      "evidence": "The Query Service and the Backup Service don't require an administrator-specified memory quota."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "requiresMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMemoryQuota",
+      "evidence": "For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster's five nodes, each instance of the service has 2048 MB of memory."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "requiresMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMemoryQuota",
+      "evidence": "Data      | 256"
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "requiresMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMemoryQuota",
+      "evidence": "Index     | 256"
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "requiresMemoryQuota",
+      "object": "memory:bucket-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMemoryQuota, object is memory:bucket-memory-quota rather than server:service-memory-quota (a bucket, not a service)",
+      "evidence": "You must specify a memory quota for each bucket you create."
+    },
+    {
+      "subject": "storage-engine:couchstore",
+      "predicate": "hasMinimumMemoryToDataRatio",
+      "object": "10%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryToDataRatio, a datatype property. Also stated independently on storage-engines.json - see cross_component_finding.",
+      "evidence": "**Couchstore**: The memory quota is recommended to be at least 10% of your expected dataset size."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "hasMinimumMemoryToDataRatio",
+      "object": "1%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasMinimumMemoryToDataRatio",
+      "evidence": "**Magma**: The memory quota is recommended to be at least 1% of your expected dataset size."
+    },
+    {
+      "subject": "memory:warmup-process",
+      "predicate": "usesEnum",
+      "object": "memory:warmup-behavior",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum",
+      "evidence": "The `warmupBehavior` setting determines this process:"
+    },
+    {
+      "subject": "memory:warmup-process",
+      "predicate": "configurableVia",
+      "object": "memory:access-scanner",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "During server warmup, Couchbase Server uses this log to prioritize loading the most-accessed documents into memory."
+    },
+    {
+      "subject": "memory:access-scanner",
+      "predicate": "measuresResidencyOf",
+      "object": "vbucket:active-vbucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - measuresResidencyOf, no existing predicate ties a monitoring process to the specific vBucket-role metric it evaluates",
+      "evidence": "which is the percentage of items in active and replica vBuckets that are currently in memory on the node"
+    },
+    {
+      "subject": "memory:access-scanner",
+      "predicate": "measuresResidencyOf",
+      "object": "vbucket:replica-vbucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - measuresResidencyOf",
+      "evidence": "which is the percentage of items in active and replica vBuckets that are currently in memory on the node"
+    },
+    {
+      "subject": "memory:memory-high-watermark",
+      "predicate": "triggersEjection",
+      "object": "memory:ejection-policy",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - triggersEjection, distinct from the promoted triggersAlert (that predicate's object is an alert, not a policy-driven ejection action)",
+      "evidence": "When memory use reaches this watermark, the Data Service ejects items if the bucket's ejection policy allows item ejection."
+    },
+    {
+      "subject": "memory:memory-low-watermark",
+      "predicate": "hasDefaultValue",
+      "object": "75%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue, a datatype property for a stated default setting value",
+      "evidence": "The default setting for `memoryLowWatermark` is 75%."
+    },
+    {
+      "subject": "memory:memory-high-watermark",
+      "predicate": "hasDefaultValue",
+      "object": "85%",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue",
+      "evidence": "The default setting for `memoryHighWatermark` is 85%."
+    },
+    {
+      "subject": "memory:warmup-process",
+      "predicate": "renamedFrom",
+      "object": "warmup_min_items_threshold / warmup_min_memory_threshold (cbepctl settings)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom",
+      "evidence": "The settings `warmup_min_items_threshold`, `warmup_min_memory_threshold`, and enabling access scanner are no longer supported through `cbepctl`. These settings are replaced by a new setting `warmupBehavior` and `accessScannerEnabled`, which can be configured using REST APIs."
+    },
+    {
+      "subject": "memory:memory-low-watermark",
+      "predicate": "renamedFrom",
+      "object": "mem_low_wat (cbepctl setting)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom",
+      "evidence": "The settings `mem_high_wat`, and `mem_low_wat` are no longer supported through `cbepctl`. These settings are replaced by new settings `memoryLowWatermark` and `memoryHighWatermark`, which can be configured using REST APIs."
+    },
+    {
+      "subject": "memory:memory-high-watermark",
+      "predicate": "renamedFrom",
+      "object": "mem_high_wat (cbepctl setting)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom",
+      "evidence": "The settings `mem_high_wat`, and `mem_low_wat` are no longer supported through `cbepctl`. These settings are replaced by new settings `memoryLowWatermark` and `memoryHighWatermark`, which can be configured using REST APIs."
+    },
+    {
+      "subject": "memory:expiry-pager",
+      "predicate": "renamedFrom",
+      "object": "exp_pager_stime (cbepctl setting)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom",
+      "evidence": "The setting `exp_pager_stime` is no longer supported through `cbepctl`. This setting is replaced by a new setting `expiryPagerSleepTime`, which can be configured using REST APIs."
+    },
+    {
+      "subject": "memory:expiry-pager",
+      "predicate": "createsOnAction",
+      "object": "storage:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "Scans for items that have expired, and erases them from memory and disk; after which, a _tombstone_ remains for a default period of 3 days."
+    },
+    {
+      "subject": "memory:full-ejection",
+      "predicate": "recommendedFor",
+      "object": "storage-engine:magma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - recommendedFor, a softer advisory-best-practice relation distinct from the hard-constraint requiresX family",
+      "evidence": "Use the Full Ejection policy for buckets using the [Magma storage engine](storage-engines.md#storage-engine-magma)."
+    },
+    {
+      "subject": "memory:ejection-policy",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/change-ejection-policy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Change a Bucket's Ejection Policy](../../manage/manage-buckets/change-ejection-policy.md) for more information about changing a bucket's ejection policy."
+    },
+    {
+      "subject": "memory:bucket-memory-quota",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information on how to create a bucket and configure its memory quota, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "This page states server:service-memory-quota is 'established by the Full Administrator' but never states which role (if any) is required to change an existing bucket's ejection policy or watermark settings later via the REST API - the Ejection and Memory Watermarks sections describe the mechanics in full but are silent on authorization, unlike memory-and-storage.md's neighbor buckets.md which does cross-reference Authorization explicitly for bucket security generally."
+  },
+  "cross_component_finding": "storage-engines.md and this page independently state the identical two figures (Couchstore: 10% minimum memory-to-data ratio; Magma: 1%) in near-identical wording ('minimum memory-to-data ratio of 10%' vs 'recommended to be at least 10% of your expected dataset size') - the same numbers, restated rather than cross-linked, is a real content-duplication pattern worth reconciliation's attention if either figure is ever updated in only one place. Separately, three unrelated settings on this single page - warmup_min_items_threshold/warmup_min_memory_threshold, mem_high_wat/mem_low_wat, and exp_pager_stime - are all stated as no-longer-supported-through-cbepctl and replaced by REST-API-configurable settings, a pattern specific enough (three independent renamedFrom instances on one page) to suggest a deliberate, cluster-wide migration away from cbepctl that the docs state piecemeal per-setting rather than as one architectural note."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/rbac-model/privilege",
+  "label": "Privilege (Server RBAC model term)",
+  "type": "the abstract 'privilege' entity as defined in Server's own RBAC glossary - 'The right, assigned by Couchbase Server, to apply an action to a resource'. Model-level only. NOT the privilege:* namespace, which after round 12 contains exclusively Capella's 28-member privilege catalogue.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/security/authorization-overview.md",
+  "evidence": "Privilege: The right, assigned by Couchbase Server, to apply an action to a resource.",
+  "note": "Promoted as the model term, with the finding attached: Server's docs assert this tier exists but never enumerate a single member of it. Every one of roles.md's 55 permission tables uses a column headed 'Permissions' filled with prose ('Can list buckets.'), not references to named privileges. So this concept has three files of evidence for its definition and zero concrete instances anywhere in the corpus - see docs-issues/server-rbac-privilege-tier-is-abstract-only and the hasPrivilege predicate, which has the same property.",
+  "evidence_corroborating": "security-overview.md: \"...associate users with specifically assigned _roles_, these themselves corresponding to system-defined _privileges_...\""
+}

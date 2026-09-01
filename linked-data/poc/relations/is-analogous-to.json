@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/is-analogous-to",
+  "label": "is analogous to",
+  "kind": "relation (schema-level)",
+  "type": "subject = a Couchbase construct; object = a construct in another data model offered as a teaching comparison; means the docs draw an explanatory parallel - NOT that the two are equivalent, interchangeable, or related by any product mechanism.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted with an unusually strong warning in its own type description, because it is the one predicate in the registry whose whole purpose is to record a comparison the docs make for pedagogy. Server's data-model pages explain collections by analogy to relational tables; that is a genuine documented statement and worth capturing, but a consumer that reads it as identity would conclude Couchbase has tables. Distinct from hasNoRelationshipTo, which asserts the absence of a relationship, and from the aliases mechanism, which asserts identity. Note relational:table, the object of both occurrences, is deliberately NOT promoted: it is a foreign-domain term this ontology does not own, and it reached recurrence 2 only as a bare concepts[] mention, never in a relation slot."
+}

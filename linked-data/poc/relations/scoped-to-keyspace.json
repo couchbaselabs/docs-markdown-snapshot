@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/scoped-to-keyspace",
+  "label": "scoped to keyspace",
+  "kind": "relation (schema-level)",
+  "type": "subject = a role grant, index, or statement; object = the keyspace (bucket.scope.collection path) it is confined to; means the subject has no effect outside that keyspace.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted with server:keyspace. The predicate that makes Server's RBAC role scoping expressible: many of the 56 roles are parameterised by keyspace ('bucket_full_access[*]'), and without this the registry could name the role but not say what it applies to. The bracket notation itself is not modelled - it appears inside internal names as a literal - and is left on the watchlist."
+}

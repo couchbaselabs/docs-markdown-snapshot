@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/client-certificate",
+  "label": "Client certificate",
+  "type": "the X.509 certificate a client presents so that Couchbase Server can authenticate it without a password. The mechanism behind auth-mechanism:x509-certificate.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "note": "See cert:node-certificate. Note this is the concrete machinery of an auth-mechanism, so the same fact is reachable from the identity family and the crypto family - the registry states it once, as cert:trust-store verifiesIdentityOf cert:client-certificate."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/expiration",
+  "label": "Expiration (TTL)",
+  "type": "the time-to-live after which an item is treated as deleted. Settable per item and boundable per bucket or collection by data:max-ttl-setting.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/expiration.md",
+  "note": "Promoted with data:max-ttl-setting because the interesting fact is the interaction between them, not either alone: the bucket-level maximum silently caps a per-item TTL, and takesPrecedenceOver - promoted this round - exists to state exactly that."
+}

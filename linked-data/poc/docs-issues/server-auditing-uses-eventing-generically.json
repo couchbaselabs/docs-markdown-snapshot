@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-auditing-uses-eventing-generically",
+  "type": "docs-issue",
+  "issueType": "naming-inconsistency",
+  "description": "auditing.md uses 'Eventing' as a common noun for the emission of audit events ('Eventing for each cluster-node is disabled by default; and can be explicitly enabled'), colliding with the Eventing Service - Couchbase's JavaScript-handler compute service, which has nothing to do with auditing. A reader searching the docs for 'Eventing' hits an unrelated product feature, and 'enable Eventing' means two entirely different operations depending on the page.",
+  "about": [
+    "server/8.0/learn/security/auditing"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

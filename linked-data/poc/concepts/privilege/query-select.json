@@ -1,8 +1,0 @@
-{
-  "id": "https://docs.couchbase.com/ld/concepts/privilege/query-select",
-  "label": "Query Select (Server RBAC privilege)",
-  "type": "the Server privilege permitting SELECT against a keyspace",
-  "promoted": true,
-  "recurrence": 5,
-  "note": "One of the first Server-side RBAC privileges to recur outside the Capella credential model. Keep strictly separate from the privilege:capella-*-access-* family: different access models, as established in round 2 and restated every round since."
-}

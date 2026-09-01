@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/cloud-sqlpp-pages-cite-server-rbac-roles",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "Five Capella pages state access requirements using Couchbase Server's RBAC role names (query_select, query_manage_system_catalog, query_use_sequences, query_use_sequential_scans), which are documented only in server/current/learn/security/roles.md and have no entry in Capella's own access-control docs. Capella's documented model uses capella-role:* roles and the 27-member capella-advanced-access-* privilege catalogue, in which none of these names appear. A Capella reader following these prerequisites cannot look the named role up in any Capella page. Same shape as cloud-eventing-unadapted-server-content and capella-pages-cite-server-versions: shared SQL++ reference source carrying server-tree specifics into the Capella tree unadapted.",
+  "about": [
+    "cloud/n1ql/n1ql-language-reference/auto-update-statistics",
+    "cloud/n1ql/n1ql-manage/query-awr",
+    "cloud/n1ql/n1ql-language-reference/sequenceops",
+    "cloud/n1ql/n1ql-language-reference/window",
+    "cloud/indexes/query-without-index"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/compression/data-compression",
+  "label": "Data compression",
+  "type": "compression of item values, configurable per bucket with modes governing whether data is compressed in memory, on disk, and on the wire.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/compression.md",
+  "note": "Promoted as the head of a new namespace. Its mode set is a closed enum the docs state clearly, but only the feature itself recurs across files this round; the modes are on the watchlist rather than promoted, since unlike the ejection policy no individual mode appeared twice and the family exception is for mechanisms that need their parts, not for enums as such."
+}

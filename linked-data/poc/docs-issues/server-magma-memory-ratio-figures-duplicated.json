@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-magma-memory-ratio-figures-duplicated",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "memory.md and storage-engines.md each independently state the same two minimum memory-to-data ratios (Couchstore 10%, Magma 1%) in near-identical wording ('minimum memory-to-data ratio of 10%' versus 'recommended to be at least 10% of your expected dataset size'), restated rather than cross-referenced. These are sizing figures an operator budgets against; if either is revised in only one place the two pages will disagree about a number with hardware cost attached.",
+  "about": [
+    "server/8.0/learn/buckets-memory-and-storage/memory",
+    "server/8.0/learn/buckets-memory-and-storage/storage-engines"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

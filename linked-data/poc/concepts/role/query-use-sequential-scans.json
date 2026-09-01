@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/query-use-sequential-scans",
+  "label": "Query Use Sequential Scans (Server RBAC role)",
+  "internal_name": "query_use_sequential_scans",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege: Server's concrete role catalogue has no separately enumerable privilege tier, and this token is a role name, not a privilege name. Do NOT confuse with the privilege:capella-advanced-access-* family, which is Capella's genuinely separate 28-member privilege catalogue, nor with capella-role:* (Capella's flat management-plane roles), rbac-role:role, or sgw:role.",
+  "promoted": true,
+  "recurrence": 1,
+  "aliases": [
+    "privilege:query-use-sequential-scans"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Query Use Sequential Scans (query_use_sequential_scans)",
+  "refiled_in_round": 12,
+  "note": "Re-filed from privilege: to role: in round 12. roles.md documents this as one of 56 Server RBAC roles, with its own 'Role: <label> (<internal_name>)' table and prose that calls it a role outright. The privilege: id was minted from SQL++ GRANT/REVOKE and monitoring reference pages, which name the bare token without ever classifying it, and round 10 then ruled the reference pages' reading correct - see reconciliation.md round 12. Recurrence 1, promoted under the family exception. The only member whose roles.md entry states it does NOT grant Web Console login, and the only one whose section is a note about administrators rather than a description of the role. Promoted as part of the nine-member query_* role family rather than on its own recurrence. The family exception applies for an unusual reason worth stating: the misclassification is contagious through the extraction layer. An agent reusing privilege:query-delete and truthfully declaring it extraction-layer passes the write-time gate, so the wrong id keeps spreading with no diagnostic. A promoted role: record that aliases the privilege: form converts that silent reuse into a gate denial. Promotion here is the control point, not a claim that one page is enough evidence."
+}

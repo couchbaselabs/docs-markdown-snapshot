@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-relnotes-send-bucket-comparison-to-archived-docs",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "relnotes.md's Memcached-bucket removal note sends readers to docs-archive.couchbase.com/server/6.6/... for the Memcached-versus-ephemeral comparison table, i.e. to an archived two-major-versions-old page, for the information someone migrating off Memcached buckets most needs. The comparison content has no home in the current tree, and buckets.md - where a reader would look - does not mention Memcached buckets at all.",
+  "about": [
+    "server/8.0/release-notes/relnotes"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

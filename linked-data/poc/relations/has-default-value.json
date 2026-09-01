@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-default-value",
+  "label": "has default value",
+  "kind": "relation (schema-level)",
+  "type": "subject = a configurable setting; object = the value it takes when not explicitly configured. The object is frequently a LITERAL, not a concept - '20 threads', '1%', 'value-only' - which the extraction schema has no way to mark.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Highest-recurrence new predicate of the round and the one that exposes a real schema limitation: its object is usually a literal, and the schema has a single `object` field with no `object_type` distinction, so a default of `1%` is recorded as a concept id indistinguishable from `bucket:ephemeral-bucket`. This is why `1`, `1%` and `10%` appear in the concept-recurrence ranking at 2 apiece and were excluded from promotion by hand. An `object_type: concept|literal` field is the natural fix and is on the method watchlist - the predicate is promoted now because settings-with-defaults recur throughout the corpus and will keep doing so."
+}

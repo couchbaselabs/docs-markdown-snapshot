@@ -2222,9 +2222,509 @@ not coverage of a documentation genre.
 
 ---
 
-## Cumulative verdict (all eleven rounds)
+## Round 12 — `server/8.0/learn` wave 2 (30 pages) - the genres disagree, and the reference genre got there first
 
-The vocabulary has now been tested against ten genuinely different kinds of
+**Scope.** 30 pages across three subtrees of `server/current/learn/`, in three
+concurrent batches: `learn/data/` (9), `learn/buckets-memory-and-storage/` (8),
+and `learn/security/` (13). Two hypotheses. First, continue round 11's genre
+finding by extracting more conceptual prose - round 11 got its four structural
+absences from nine pages, and nine pages is one data point. Second, and the
+reason `learn/security/` was loaded into the batch deliberately: round 11's
+largest content gap was that nothing in `learn/services-and-indexes/` touched
+access control at all, while the registry's single largest family by then was
+the privilege/role vocabulary built up over rounds 2, 5, 6, 7 and 10 - **entirely
+from reference pages**. This batch forced that vocabulary to meet the page that
+defines it.
+
+It is also the first wave run under the required `registry_status` enum (see the
+postscript to round 11), so agent handling of that field is reported here as a
+first-class result rather than a footnote.
+
+39 records, 742 relations, mean 19.0 per page - the densest wave yet, well above
+round 10's 13.4 baseline, and no page in the batch is thin relative to its
+length. `verify-evidence.py` over the new scope: **0 problems**.
+
+### Headline finding: the reference genre had been quietly misfiling roles as privileges for ten rounds
+
+`server/current/learn/security/roles.md` is Couchbase Server's authoritative RBAC
+catalogue: **56 roles**, 55 of them carrying a machine-readable
+`| Role: <label> (<internal_name>)` permission table and one - Full Admin -
+documented in prose only.
+
+That count is stated carefully because getting it right took three attempts, and
+the near-misses are the kind a reader should be able to check. `grep -c '^### '`
+returns **58**, but two of those headings ("Roles in Relation to Buckets" and
+"User Categories") are prose sections rather than roles. `grep -c '^| Role:'`
+returns **55**, which undercounts by one because Full Admin - the most powerful
+role in the product - is the single role with no permission table. Neither
+mechanical count is the answer; 58 minus the two non-role headings is. An earlier
+draft of this section and of all eleven re-filed records asserted 58, which is
+the same class of error the round is about: a plausible number from a mechanical
+query, not checked against what the rows actually are. Reading it against the
+registry showed that **eleven ids sitting in `concepts/privilege/` are roles**,
+with their own sections in that catalogue:
+
+`query-select` (recurrence 6), `query-update` (2), `query-insert` (2),
+`query-delete` (1), `query-manage-index` (10), `query-system-catalog` (5),
+`query-manage-system-catalog` (3), `query-use-sequences` (1),
+`query-use-sequential-scans` (1), `fts-admin` (4), `fts-searcher` (1).
+
+All eleven were minted from SQL++ statement pages and monitoring reference pages
+- `Prerequisites` sections that name the bare token (`query_manage_index`)
+without ever classifying it. Ten rounds of reference extraction then reinforced
+the guess by repetition, until `privilege:query-manage-index` had ten files
+behind it and looked like one of the best-evidenced concepts in the registry.
+Recurrence measured how often the docs mention a token. It cannot measure
+whether the token was filed under the right kind of thing, and here it actively
+worked against the correction: the wrong answer was the well-evidenced one.
+
+This is round 11's genre finding, sharpened into something less comfortable.
+Round 11 said different genres of page yield different *vocabulary*. Round 12
+says **the genres disagree, the reference genre is louder, and it gets there
+first** - so a coverage plan that reads reference pages before conceptual ones
+doesn't merely miss concepts, it bakes in category errors that then look
+well-supported. `learn/security/` was picked for this round to fill a content
+gap; what it actually did was correct the family that had the most evidence
+behind it.
+
+**Round 10 ruled on exactly this question and ruled backwards.** Its section
+states that "`rbac-role:query-system-catalog` and `rbac-role:query-manage-system-catalog`
+are privileges, not roles, and fold into `privilege:`", blaming the docs for the
+confusion because "`metafun.md` calls `query_system_catalog` a 'role' while the
+AWR and monitoring pages treat it as a privilege." `metafun.md` was right.
+Round 10 moved two ids *out* of a role namespace *into* the wrong one, and filed
+`docs-issues/server-query-system-catalog-called-role-and-privilege` against the
+page that had it correct. Two bullets further down its own section, the same
+round wrote "`role:` is the Server RBAC namespace... genuine Server RBAC role
+names documented in `server/current/learn/security/roles.md`" - the right rule,
+stated and then not applied, because nobody had read `roles.md`.
+
+Three layers of error in one place, all now corrected in place with the original
+text retained: the ruling, the docs-issue that blamed the correct page (verdict
+inverted, `correctedIn` added), and a `note` on the surviving record citing a
+"round-6 precedent" for the fold that **does not exist** - round 6's section
+contains no mention of either id.
+
+### What was done about it
+
+Re-filed as roles, keeping the old ids as aliases, and the reason for the alias
+is the interesting part:
+
+> The misclassification is contagious through the extraction layer. An agent
+> reusing `privilege:query-delete` and truthfully declaring it
+> `extraction-layer` passes the write-time gate - correctly, because the claim
+> about the registry is true. A promoted `role:` record that aliases the
+> `privilege:` form converts that silent reuse into a gate denial. **Promotion
+> here is the control point**, not a claim that one page is enough evidence.
+
+That is a new use for promotion in this project. Five of the eleven are at
+recurrence 1 and would not otherwise qualify; they are promoted anyway, under the
+family exception, because the family is a misclassification that spreads and the
+registry is the only place that can stop it. "An invariant in a prompt is a hope;
+the same invariant in a script is a control" now extends to: **a correction in a
+reconciliation log is a hope; the same correction in an aliased registry record
+is a control.**
+
+The scope of the fix was escalated beyond the three ids that prompted it,
+deliberately. Every non-Capella `privilege:*` id was swept against `roles.md`,
+because a half-migrated namespace is worse than either endpoint. The result is
+that `concepts/privilege/` now contains **exactly Capella's 28-member catalogue
+and zero non-Capella entries**, which matches the evidence: Capella is the only
+place in the corpus with a genuinely separate, enumerable privilege tier.
+
+Four files were `git rm`'d, six public-facing `pages/*.jsonld` records were
+repointed from `privilege/query-manage-index` to `role/query-manage-index`, and
+`relations/requires-server-role.json` was minted at recurrence 20 - the other
+half of the fix, since `requiresPrivilege`'s declared range is a privilege and it
+was pointing at eleven roles across 20 files. `requiresRole` was **rejected** for
+reuse: its own record defines it as Sync Gateway's sync-function `requireRole()`
+check, an unrelated product. `requiresPrivilege` is kept and remains correct for
+its ~35 genuine Capella-privilege objects. There are now three structurally
+distinct "requires a role" predicates and each record says why it is not the
+other two.
+
+### The corollary finding: Server's privilege tier has no members
+
+Server's documentation defines a two-tier model unambiguously.
+`security-overview.md`: users are associated with "specifically assigned _roles_,
+these themselves corresponding to system-defined _privileges_."
+`authorization-overview.md` gives both glossary definitions. And then no page
+anywhere in the corpus names a single Server privilege. All 55 permission tables
+in `roles.md` express permissions as **prose** - "Can list buckets." - not as
+references to named privileges.
+
+The registry now states this rather than describing it. `hasPrivilege` is
+promoted at recurrence 3 with all three occurrences being the identical abstract
+`rbac-model:role hasPrivilege rbac-model:privilege` glossary claim and **zero
+concrete instances**, and `rbac-model:privilege` is promoted as a model-level
+term explicitly separate from the `privilege:` namespace. Keeping the abstract
+`rbac-model:*` layer distinct from the concrete `role:*` catalogue is what lets
+the registry record that the two layers disagree instead of silently picking a
+side - which is what round 10 did. See
+`docs-issues/server-rbac-privilege-tier-is-abstract-only`.
+
+### A "needs an SME" docs-issue resolved mechanically, and what that cost
+
+`docs-issues/search-admin-fts-admin-role-overlap` has been open since round 2.
+Its text said it "needs a subject-matter expert, not more extraction."
+`roles.md` answered it in one line: `fts_admin` is Search Admin, `fts_searcher`
+is Search Reader. Status → `resolved`, with the resolution recording that the
+original judgement "was wrong in a specific and repeatable way: it needed
+extraction from a different **genre** of page."
+
+The split had also cost a real promotion. `privilege:fts-admin` (1 file) and
+`privilege:search-admin` (3 files) each sat below the recurrence bar while the
+single role they both name clears it at 4. A naming collision doesn't just make
+the registry untidy; it suppresses recurrence and hides candidates.
+
+### `role:admin` folded into `role:full-administrator` - the extraction layer working as designed
+
+Three labels, one role. `roles.md`: "The Full Admin role (`admin`)".
+`authorization-overview.md`: "the Full Administrator" in prose, then "Admin
+(`admin`)" among Community Edition's three fixed roles. The Capella auditing page
+round 5 minted the record from: "Full Administrator". The internal name `admin` is
+identical across all of them and is the join key; the display labels are not.
+
+Worth recording as a method result: the `roles.md` agent asserted
+`role:admin isSynonymOf role:full-administrator` with the verbatim quote, while
+the concurrently-running `authorization-overview.md` agent explicitly declined to
+fold - "not folded here because this page alone gives only the coarse label, not
+the roles.md cross-reference" - and left it for reconciliation. That is exactly
+the designed division of labour between the two phases, unprompted.
+
+The `isSynonymOf` relation the agent used is a **promoted predicate already** (round 2, recurrence 4, for statement pairs the docs declare functionally identical), so the reuse was correct. The reconciliation decision is about the instance, not the predicate: this triple was *consumed* by the alias fold rather than retained, because synonymy between two ids naming one role is a registry artefact to be resolved, whereas synonymy between two distinct statements is a fact about the product. The registry expresses the former through the `aliases` array and keeps `isSynonymOf` for the latter.
+
+The fold also removed the reason `role:full-administrator` was originally
+promoted below the bar. Combined recurrence is 3; it now stands on the ordinary
+rule. And Full Admin turns out to be one of exactly three role sections in
+`roles.md` with no permission table - prose only - so the most powerful role in
+the product is the one with the least machine-readable evidence for its identity.
+
+### The promotion metric was systematically biased, and the fix found 276 items of debt
+
+Until this round, concept recurrence was counted from the **object slot only**.
+That metric cannot see a concept a page is *about*, because those appear as
+subjects. `cert:trust-store` is the subject of all four `verifiesIdentityOf`
+triples and an object once: the mechanism at the centre of the certificate family
+scored 1.
+
+Counting either relation slot instead, the corpus holds **276 unpromoted concepts
+at recurrence >= 2** that the old metric could not see, including
+`search:customize-index` at 7. That is a larger promotion backlog than round 10's
+`n1ql:query-context`-at-22 discovery, and it was invisible for the same reason:
+nobody had questioned the query, only the data. `recurrence.py` now reports all
+three columns - either-slot (the promotion metric), object-only (the pre-round-12
+metric), and any-mention including bare `concepts[]` entries (the weakest signal,
+reported but not used) - so the difference stays visible rather than being
+silently corrected.
+
+### Recurrence became a script
+
+The skill has said since round 1 that "recurrence is a query, not hand-tracked
+state," and the ad-hoc version of that query has now returned a wrong answer in
+**seven** distinct ways across rounds 10-12. `poc/recurrence.py` is that query,
+written once, with all seven encoded as a `--selftest` mode (17 checks, all
+passing). The docstring enumerates them; the ones new this round:
+
+- **Full-IRI versus shorthand spellings split a term's count and report promoted
+  terms as debt.** `edition/enterprise` (10 files) and `index-state` (10) topped
+  the unpromoted ranking while both have had registry files for rounds.
+  Normalised by `canonical()`, which folds only IRIs under this project's own
+  namespace - a foreign IRI is left exactly as written, because it denotes
+  something this registry does not own.
+- **Dot-versus-dash version spellings**, deliberately *not* normalised.
+  `version:server-6.5` and `version:server-6-5` are one release but only the
+  dashed form has a file, and the gate is right to reject the other. `--variants`
+  reports the clusters so they get fixed in the records instead of papered over
+  in the query. It found 13 clusters, including `n1ql:createfunction` against the
+  promoted `n1ql:create-function`, and 21 file-mentions of dotted version ids -
+  eight of them live in *public-facing* `pages/*.jsonld`, pointing at version
+  concepts with **no registry file at all**. Fixed.
+
+Every one of the seven was caught because the output looked implausible, never by
+anyone reading the code. That is the argument for the script: not that it is
+correct, but that its corrections accumulate instead of being re-derived.
+
+One count was hand-checked against the script and the script won:
+`privilege:query-manage-system-catalog` looked like recurrence 2 by hand and the
+script said 3. The third file was real - `cloud/n1ql/n1ql-manage/query-awr.json`
+and `server/8.0/n1ql/n1ql-manage/query-awr.json` are different files in different
+trees. Also `server:collection` was assumed to be a candidate alongside
+`server:scope` and is only recurrence 1; caught by checking rather than assuming.
+
+### The `registry_status` enum: the verdict this wave was run to get
+
+43 gated invocations, **31 allow / 12 deny**, 37 problems: **17 on
+`registry_status`, 19 on evidence not being verbatim**, and 1 `Edit` refusal.
+
+**All 17 enum denials are true positives. Zero false positives.** Round 11's
+prose-parsing predecessor produced three false positives in nine pages, on two
+shapes nobody predicted (a truthful negative, "and none is promoted"; an accurate
+statement about a *different* id, "the same pattern as the promoted
+`rbac-role:role`"). Replacing the English with an enum removed the class of
+failure rather than narrowing it.
+
+The dominant error is one nobody predicted either: **11 of 17 are agents tracking
+promotion status correctly for concepts and forgetting that predicates need it
+too** - `groupMembersInheritRole` (3), `doesNotSupport` (2), `authenticatesVia`
+(2), `renamedFrom` (2), `configuredPerNode`, `requiresSetting`,
+`mustUseInsteadWhen`, `restrictedToContext`. Worth fixing in the prompt template,
+since it is a uniform slip rather than a judgement failure.
+
+One denial is the exact historical failure the enum was built for: an agent
+declared `availableSince` **minted** - the predicate whose re-minting after
+consolidation is the origin story of the whole registry-digest control. It was
+refused at write time this round instead of being found two rounds later.
+
+One is a pleasing edge case: an agent declared `hasPrivilege` **promoted** when
+the registry had no such file. Denied, correctly - the claim was false when
+written. It is promoted now, this round. A gate that checks the registry as it
+*is* will always do this, and that is the desired behaviour, not a rough edge.
+
+Three caveats, stated because the scoreboard reads better than the guarantee:
+
+1. **Only `promoted` claims are hard-checkable.** `minted` and
+   `extraction-layer` both reduce to "not in the registry," so the edge between
+   them is on the honour system. The enum removed the ambiguity of English, not
+   the need for honesty.
+2. **`n_relations` logs as `None` on exactly the worst writes** - the ones where
+   parsing failed - so the thinning check is blindest where it most needs to see.
+   The hook should log the field even when JSON parsing fails.
+3. **The one apparent thinning signal was benign.** `security-overview` went
+   `allow(6) -> deny -> allow(5)`, which is the shape the reconcile skill tells
+   you to treat as the gate converting fabrication into omission. Reading the
+   page showed the removed relation was genuinely not stated there. The skill's
+   heuristic needs this caveat: the signal has a benign mode, and only reading
+   the page distinguishes them.
+
+### A cross-round duplicate this project predicted and then walked into
+
+`verify-promotions.py`, run after the round's prose was written, flagged
+`data:vbucket` as an id with no registry file. It is round 11's - minted at
+recurrence 1 from `search-service.md` as "the unit DCP streams," with round 11's
+own note recording that the term was **"certain to"** recur. It recurred in the
+very next round, from a different batch, under a different namespace, as
+`server:vbucket`. Folded as an alias; combined recurrence 3.
+
+Worth reporting rather than quietly fixing, for two reasons. First, this is the
+known near-duplicate failure mode - a written registry prevents re-litigating the
+past, not the present - but the usual form is two *concurrent* agents colliding.
+This is the sequential form, across rounds, and it is arguably worse: round 11
+saw the risk clearly enough to write it down, and writing it down accomplished
+nothing, because nothing connects a prediction in a reconciliation log to the id
+an agent picks eleven pages later. Second, it was caught by a script rather than
+by noticing - and by the one script whose output the skill says to *read* rather
+than diff, from a line this round's own prose had written. Same lesson as the
+role re-filing, one layer up: a prediction in prose is a hope; an alias in a
+record is a control.
+
+### Two reuses declined
+
+Recorded because the standing rule - never merge on a shared name without
+explicit textual evidence - was applied twice this round in the **refusal**
+direction, which is less often reported than the merges:
+
+- `requiresRole` for Server RBAC (it is Sync Gateway's, per its own record).
+- Merging `requiresPrivilege` into the role fix (it is correct for its Capella
+  objects; only the Server-role objects moved).
+
+And the four-way parallel-namespace collision was left standing.
+`capella:bucket`, `capella:scope`, `capella:xdcr` and `capella:cluster-manager`
+already existed; this round promoted `server:bucket`, `server:scope`,
+`server:xdcr` and `server:cluster-manager`. Round 11's note on `capella:bucket`
+called the pair "a merge candidate needing a source statement, not merged." Round
+12 searched the `cloud/` tree for a statement that Capella's construct *is*
+Couchbase Server's and found none, so the split stands - but with a better reason
+than absence of evidence: **the two records assert different things about their
+subject.** Server's bucket has a type from a closed set, an ejection policy, a
+storage-engine choice and a memory quota; `capella:bucket` asserts only that it
+is the top level of a hierarchy. That is the difference between a construct you
+configure and one you navigate, and merging them would attribute Server's
+configuration surface to Capella's managed one. `server:scope` is the weakest of
+the four and the likeliest to merge first. `server:keyspace` is promoted with the
+mismatch noted from both sides: `index-service.md` writes "keyspace
+(collection)", which is the closest the corpus comes to stating the equivalence.
+
+### Promotions
+
+**9 predicates**: `verifiesIdentityOf` (2), `hasDefaultValue` (3), `hasPrivilege`
+(3, abstract-only - see above), `takesPrecedenceOver` (2), `scopedToKeyspace` (2),
+`isAnalogousTo` (2), `requiresCapability` (2), `hasMinimumMemoryToDataRatio` (2),
+`monitoredVia` (2). Plus `requiresServerRole` (20), minted as part of the role fix.
+
+`isAnalogousTo` carries an unusually strong warning in its own type description,
+because its whole purpose is to record a comparison the docs make for pedagogy -
+Server's data-model pages explain collections by analogy to relational tables.
+A consumer reading that as identity would conclude Couchbase has tables. Its
+object, `relational:table`, is deliberately **not** promoted: a foreign-domain
+term this ontology does not own, which reached recurrence 2 only as a bare
+`concepts[]` mention and never in a relation slot.
+
+`requiresCapability` overlaps in spirit with `requiresEdition` and
+`doesNotSupport`; the boundary is flagged for watching rather than pre-emptively
+consolidated.
+
+**55 newly promoted concepts**, plus the **11 re-filed** from `privilege:` to `role:` - 66 concept records in all, across five families:
+
+- **RBAC / identity** - `rbac-model:role`, `rbac-model:privilege` (the abstract
+  layer, kept separate from the concrete catalogue on purpose);
+  `auth-domain:local`/`external` (a closed two-member axis, the same shape as
+  `edition:enterprise`/`community`); `auth-mechanism:username-password`/
+  `x509-certificate`; `idp:ldap`, `idp:saml`, `idp:ldap-group`; `server:user`,
+  `server:user-group`; `role:ro-admin`, `role:bucket-full-access`; the eleven
+  re-filed `role:query-*`/`role:fts-*` records; `port:18091`, first member of a
+  `port:` namespace that exists because the wire settings are stated per-port.
+- **The four security facilities** - `security:authentication`,
+  `security:authorization`, `security:auditing`, `security:encryption`. A closed
+  set from `security-overview.md`'s own bullet list, which is structurally the
+  table of contents for the entire subtree. `authorization` is at recurrence 1
+  and promoted under the family exception rather than leaving the set visibly
+  incomplete for no reason but which pages this round sampled.
+- **Certificates and the wire** - `cert:trust-store`, `cert:node-certificate`,
+  `cert:client-certificate`, plus `cert:root-certificate` and
+  `cert:intermediate-certificate` at recurrence 1 under the family exception (a
+  chain record that omits its own root documents a broken chain);
+  `tls:mutual-tls`, `tls:node-to-node-encryption`, `tls:console-access-setting`;
+  `encryption:native-encryption-at-rest`, with
+  `encryption:encryption-at-rest-key` and `encryption:master-password` at 1,
+  again as a family - a record for the feature that names neither of its secrets
+  cannot answer how the data is protected. `encryption:master-password` carries an
+  explicit "not a user credential" clause: it is the one password-shaped term in a
+  round that promoted a large credential vocabulary which is not a login.
+- **Data model** - `data:item`, `data:document`, `data:attribute` (the docs are
+  precise that an item's value need not be JSON, so `item` and `document` are a
+  superset/subset pair, not synonyms); `data:expiration`,
+  `data:max-ttl-setting`; `server:keyspace`, `server:scope`.
+- **Buckets, memory and storage** - `server:bucket`;
+  `bucket:couchbase-bucket`/`ephemeral-bucket` (a closed two-member set in 8.0);
+  `server:vbucket`, `vbucket:active-vbucket`/`replica-vbucket`; the five-member
+  `memory:ejection-policy` enum; `storage:tombstone`,
+  `compression:data-compression`; `durability:level`, `durability:durable-write`,
+  `durability:level-majority`, `durability:level-persist-to-majority`;
+  `server:cluster-manager`, `server:xdcr`.
+
+Two of those sets are worth a note each.
+
+`memory:ejection-policy` has a structure the registry cannot currently express:
+the *setting* is shared across bucket types but its *value set* is not - a
+Couchbase bucket chooses value-only or full ejection, an ephemeral bucket chooses
+no-ejection or eject-when-full, and the two value sets are **disjoint**. There is
+no predicate for "legal values conditional on another concept's value," so this
+is recorded as a modelling gap rather than forced into `usesEnum`. All five
+members are promoted (three at recurrence 1) because an enum published with
+values missing is worse than useless: a consumer cannot tell an absent value from
+an invalid one.
+
+The durability levels are the opposite case and are **knowingly incomplete** -
+two of the three recurred, the third did not, and that is stated in both records
+so nobody reads the pair as the whole enum. Their sharpest fact is a cross-family
+one, and the reason `requiresCapability` was promoted:
+`durability:level-persist-to-majority` requires disk persistence, which
+`bucket:ephemeral-bucket` does not have, so a bucket-type choice silently removes
+a durability level.
+
+**Not promoted, and why:** `1`, `1%` and `10%` all reach recurrence 2 and are
+**literals, not concepts**. The extraction schema has a single `object` field
+with no type distinction, so a default value of `1%` is recorded as an id
+indistinguishable from `bucket:ephemeral-bucket`. They were excluded by hand.
+This is `hasDefaultValue`'s and `hasMinimumMemoryToDataRatio`'s shared problem,
+and an `object_type: concept|literal` field is the natural fix - on the method
+watchlist. `hasMinimumMemoryToDataRatio` was kept separate from `hasDefaultValue`
+rather than folded, because a minimum *requirement* and a *default* are different
+claims, and conflating them would make the registry state that 1% is Magma's
+default memory ratio, which is not what the page says.
+
+`context.jsonld` gains `hasPrivilege` and `verifiesIdentityOf` - the two carrying
+the round's findings - and `requiresServerRole`. It remains a deliberately
+curated flagship subset (15 of 97 predicates), not a complete mapping; full
+JSON-LD coverage is still the deferred step it has been at every round.
+
+### New `docs-issues/` (18)
+
+- `server-rbac-privilege-tier-is-abstract-only` - the corollary finding: the
+  two-tier model is defined and asserted, and no privilege is ever named.
+- `cloud-sqlpp-pages-cite-server-rbac-roles` - 5 of `requiresServerRole`'s 20
+  files are `cloud/` pages naming Server role names; unadapted shared SQL++
+  reference content, not a Capella access model.
+- `server-role-label-does-not-match-internal-name` - display labels and internal
+  names diverge unpredictably across the catalogue.
+- `server-authorization-overview-lists-deprecated-role-as-live-ce-role` -
+  `roles.md` says of Application Access "Do not grant this role to users";
+  `authorization-overview.md` lists it as one of Community Edition's three fixed
+  roles with no warning. A CE administrator is told both. Needs an SME: either a
+  page is stale, or CE depends on a deprecated role and the blanket warning has
+  an unstated exception.
+- `server-account-locking-required-role-undocumented`
+- `server-authentication-definitional-paragraph-triplicated`
+- `server-certificates-names-java-sdk-without-xref`
+- `server-encryption-sdk-links-duplicated-verbatim`
+- `server-auditing-uses-eventing-generically`
+- `server-buckets-page-states-closed-two-type-set-without-noting-removal` and
+  `server-cli-bucket-compact-cites-removed-memcached-bucket` - the buckets page
+  presents two bucket types as a plain closed set; the CLI reference still
+  documents the removed third one.
+- `server-relnotes-send-bucket-comparison-to-archived-docs`
+- `server-buckets-memory-and-storage-index-has-no-outbound-links`
+- `server-cbepctl-setting-migration-stated-piecemeal`
+- `server-magma-memory-ratio-figures-duplicated`
+- `server-magma-thread-settings-split-across-two-pages`
+- `server-change-history-magma-exclusivity-implicit`
+- `server-change-history-no-ingest-path-account`
+
+### Existing `docs-issues/` corrected (3)
+
+- `server-query-system-catalog-called-role-and-privilege` - **verdict inverted**,
+  `correctedIn` + `correction` added, original description retained inline. The
+  page it blamed was right.
+- `search-admin-fts-admin-role-overlap` - **resolved** after being open since
+  round 2 as "needs a subject-matter expert."
+- `server-privilege-naming-two-spellings-adjacent-pages` - sharpened: both
+  spellings mislabel the tier.
+
+### What this round taught about the method
+
+- **The genres disagree, and reading order determines which error you inherit.**
+  Round 11 established that page genre predicts vocabulary. Round 12 shows the
+  genres are not merely complementary: where they conflict, the reference genre
+  is higher-volume and usually earlier in any sane coverage plan, so its category
+  errors arrive first and then accumulate evidence. Read the authoritative
+  conceptual page for a domain *before* extracting a hundred reference pages that
+  mention its terms - not after, and not instead.
+- **Recurrence measures how often a token appears, never whether it is filed
+  under the right kind of thing.** Ten files of evidence made
+  `privilege:query-manage-index` look like one of the registry's best-supported
+  concepts. High recurrence on a misclassification is not reassurance; it is the
+  measure of how far the error spread. This is a second coherence failure of the
+  frequency bar, alongside round 10's index-axis conflation, and both were caught
+  by a person looking at a list and thinking it looked wrong.
+- **Question the query, not just the data.** The object-only metric had been
+  wrong since round 1 and produced plausible output every time, hiding 276
+  candidates. Nine rounds of scrutiny went to the extraction records and none to
+  the aggregation. The corpus is now large enough that the tooling deserves the
+  same suspicion the records get - which is what `--selftest` is for.
+- **Promotion can be a control point, not only a conclusion.** A promoted record
+  with an alias turns a category error from something the log records into
+  something the gate refuses. This is the same move as
+  `prefers-forward-only-schema-changes`: find the point where "from now on"
+  becomes enforceable rather than aspirational.
+- **A "needs an SME" verdict can be a coverage gap in disguise.** One open for
+  ten rounds was answered by one line of the right page. Before escalating to a
+  human expert, check whether the authoritative page for that domain has actually
+  been read.
+- **Resolving a naming collision can *create* a promotion.** Two sub-threshold
+  ids naming one role summed to 4. Collisions suppress recurrence, so the
+  dedup pass is not only hygiene - it feeds the promotion signal.
+- **The gate's thinning heuristic has a benign mode.** `allow -> deny -> allow`
+  with fewer relations is the documented signal for fabrication-becoming-omission,
+  and this round's only instance was a correctly-dropped relation. The two are
+  indistinguishable without reading the page; the skill should say so.
+- **A required enum beat a prose parser outright** - 17 true positives, 0 false
+  positives, against 3 false positives in 9 pages the round before. Where a
+  check must read agent output, remove the English.
+
+## Cumulative verdict (all twelve rounds)
+
+The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
 different deployment model of the same underlying product (round 2), three
 entirely different products built by different teams (round 3), a single
@@ -2241,7 +2741,11 @@ the first wave into a **second product tree**, where the same feature
 set is documented twice, by different editorial processes, at different
 versions (round 10) - and now a different **genre** of page within a tree
 already partly covered: architectural prose rather than reference syntax
-(round 11). At every step it kept doing the same useful thing: not
+(round 11) - and finally the same genre again at three times the scale, aimed
+deliberately at the one domain where a decade of reference extraction had built
+the registry's largest family, to see whether the conceptual pages would confirm
+it or contradict it (round 12: they contradicted it). At every step it kept
+doing the same useful thing: not
 just "the terms still fit," but surfacing something true and specific about
 each surface it touched - Capella's credential/role-based access model
 (round 2), Sync Gateway's two-disjoint-systems architecture and inverted
@@ -2260,8 +2764,20 @@ correlated with how new a feature is - the newest statements in Couchbase
 Server 8.0 are the ones no page dates (round 10), and the index taxonomy having
 two axes that genuinely cross rather than nest, plus DCP - the protocol the whole
 architecture rests on - being absent from the first 540 pages because reference
-documentation cannot see it (round 11). That's a stronger and more useful result
-than a vocabulary that merely never breaks.
+documentation cannot see it (round 11), and Couchbase Server documenting a
+two-tier role-and-privilege access model whose privilege tier has no enumerable
+members anywhere in 570 pages, which had caused eleven role names to be filed as
+privileges and left there for ten rounds (round 12). That's a stronger and more
+useful result than a vocabulary that merely never breaks.
+
+Round 12 adds a harder version of the same point. Eleven rounds found things the
+vocabulary had not yet *covered*; round 12 found something it had covered
+**wrongly**, in its single largest family, with ten files of evidence behind the
+error. Every prior round's surprise was an absence, which a coverage plan can in
+principle chase. This one was a confident presence, and no amount of additional
+reference coverage would have corrected it - more reference pages were precisely
+what made it look well-supported. The check that caught it was reading the one
+page that defines the domain.
 
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
@@ -2278,8 +2794,12 @@ should be read.
 The cost of getting the useful result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Ten limits of the method are now visible across multiple rounds, not just
-once, so worth treating as durable rather than one-off:
+Round 12 found the sharp edge of that trade-off: aggregate statistics are
+themselves code, and nine rounds of scrutiny went to the extraction records while
+none went to the query aggregating them. The object-only concept metric had been
+wrong since round 1, produced plausible output every time, and was hiding 276
+promotion candidates. Twelve limits of the method are now visible across multiple
+rounds, not just once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
   control.** Every brief for nine rounds required evidence to be a direct
@@ -2308,6 +2828,61 @@ once, so worth treating as durable rather than one-off:
   user writes and conceptual documentation describes what the machine does. Nine
   pages of the second kind produced all four. A coverage plan measured in pages
   or directories will miss this; the axis that mattered was which kind of page.
+
+  Round 12 extends this from *incompleteness* to *incorrectness*, which is worse.
+  The genres do not merely cover different ground - where they overlap, they
+  disagree, and the reference genre is both higher-volume and earlier in any sane
+  coverage plan. So its category errors arrive first and then accumulate evidence
+  by repetition: eleven Server RBAC role names were filed under `privilege:`
+  because SQL++ `Prerequisites` sections name the bare token without classifying
+  it, and ten rounds of reference extraction reinforced the guess until
+  `privilege:query-manage-index` had ten files behind it. The corrective is an
+  ordering rule, not more coverage: **read the authoritative conceptual page for a
+  domain before extracting the reference pages that mention its terms.**
+
+- **Recurrence measures how often a token appears, never whether it is filed
+  under the right kind of thing.** High recurrence on a misclassification is not
+  reassurance - it is the measure of how far the error spread. Round 12's wrong
+  answer was the well-evidenced one, and the frequency bar not only failed to
+  flag it but actively argued for it. Together with round 10's index-axis
+  conflation this is now twice that the bar has been silent on a coherence
+  failure, both caught by a person looking at a list and thinking it looked
+  wrong. Also worth noting the inverse: a naming collision *suppresses*
+  recurrence. `privilege:fts-admin` (1 file) and `privilege:search-admin` (3)
+  name one role that clears the bar at 4, so deduplication is not just hygiene -
+  it feeds the promotion signal, and leaving collisions in place hides
+  candidates.
+
+- **The tooling deserves the suspicion the records get.** Every aggregate this
+  project reasons from is a script, and scripts have been wrong in seven distinct
+  ways across rounds 10-12 - a regex that stripped one file extension, a
+  newest-wins merge in the anti-staleness tool itself, IRI-versus-shorthand
+  spellings splitting counts and reporting promoted terms as debt, and a
+  promotion metric that could not see any concept a page was *about*. All seven
+  were caught because the output looked implausible; none by anyone reading the
+  code. That is not a workable control at this corpus size, which is why
+  `recurrence.py` encodes all seven as a `--selftest` mode: the point is not that
+  the query is correct, but that its corrections accumulate instead of being
+  re-derived from memory each round.
+
+- **Promotion can be a control point, not only a conclusion.** Round 12's
+  correction had a contagion problem: an agent reusing `privilege:query-delete`
+  and truthfully declaring it `extraction-layer` passes the write-time gate,
+  because the claim about the registry is true. Promoting the correct `role:`
+  record *with the wrong id as an alias* converts that silent reuse into a gate
+  denial. A correction in a reconciliation log is a hope; the same correction in
+  an aliased registry record is a control. Five ids below the recurrence bar were
+  promoted on this reasoning alone, which is a genuinely new use of promotion in
+  this project and is documented as such in each record rather than passed off as
+  ordinary.
+
+- **A "needs a subject-matter expert" verdict can be a coverage gap in
+  disguise.** `search-admin-fts-admin-role-overlap` sat open from round 2 to
+  round 12 carrying the note that it "needs a subject-matter expert, not more
+  extraction." One line of `roles.md` answered it. Before escalating to a human
+  expert, check whether the authoritative page for that domain has been read at
+  all - the judgement was not wrong about needing something more, only about
+  what.
 - **Priming a wave has a measurable cost.** Name a predicate as the wave's
   priority and agents will find instances of it, including where none exist.
   The one fabricated triple in round 10's 509 was an `availableSince`, on a
@@ -2400,10 +2975,17 @@ once, so worth treating as durable rather than one-off:
   and round 10's regex bug were invisible in the code and obvious in the output,
   which is the only reliable check either had.
 
-  Five controls now exist where nine rounds had none: the write-time gate
+  Round 12 adds a fourth instance, and the most consequential: the promotion
+  metric itself. See "the tooling deserves the suspicion the records get" above.
+  Unlike the other three this one was not a bug introduced in a round's own
+  throwaway script - it was the definition of the concept-promotion signal, wrong
+  since round 1, agreeing with itself every time it ran.
+
+  Six controls now exist where nine rounds had none: the write-time gate
   (`hooks/gate-evidence.py`), its verdict log (`hooks/gate-log.jsonl`), the
   dispatch-time registry digest (`registry-digest.py`), the corpus audit
-  (`verify-evidence.py`), and the promotion report (`verify-promotions.py`).
+  (`verify-evidence.py`), the promotion report (`verify-promotions.py`), and the
+  self-testing recurrence query (`recurrence.py --selftest`, 17 checks).
   Round 11 is the first batch written entirely under the gate, and reports a
   mixed result honestly. What worked: 11 gated invocations, 2 denials, both
   rewritten records returning at the *same* relation count, so the gate's own
@@ -2419,7 +3001,31 @@ once, so worth treating as durable rather than one-off:
   deterred fabrication" from "no fabrication was attempted"; one clean wave is not
   evidence either way.
 
-  Worth stating plainly what five scripts do and don't buy, because a shelf of
+  Round 12 settles that question, because it is the first wave run under the enum
+  and it is three times the size: 43 gated invocations, 31 allow / 12 deny, 37
+  problems - **17 on `registry_status`, all 17 true positives, zero false
+  positives**, against the prose parser's 3 false positives in 9 pages. Removing
+  the English removed the class of failure rather than narrowing it, and that is
+  the generalizable lesson: where a check must read agent output, give it an enum,
+  not a sentence. One denial refused an agent declaring `availableSince`
+  **minted** - the precise historical failure the registry-digest control exists
+  because of - at write time, rather than two rounds later. The dominant error was
+  one nobody predicted: 11 of 17 are agents tracking promotion status correctly
+  for concepts and forgetting predicates need it too, a uniform slip that belongs
+  in the prompt template rather than in an agent-quality argument.
+
+  Three limits stand, and they are the ones to quote when someone reads that
+  scoreboard as a guarantee. **Only `promoted` is hard-checkable** - `minted` and
+  `extraction-layer` both reduce to "not in the registry," so that edge remains on
+  the honour system. **`n_relations` logs as `None` on exactly the writes where
+  parsing failed**, so the thinning check is blindest where it most needs to see.
+  And **the thinning heuristic has a benign mode**: round 12's one
+  `allow -> deny -> allow`-with-fewer-relations sequence, which the reconcile
+  skill says to treat as fabrication becoming omission, turned out to be a
+  correctly-dropped relation. Only reading the page distinguishes the two, and the
+  skill should say so.
+
+  Worth stating plainly what six scripts do and don't buy, because a shelf of
   them invites more confidence than it earns: they all check *form*, none checks
   *reading*. Quotable-but-mis-objected records pass every one. The axis
   conflation that kept 93 index concepts unpromoted was found by a person looking
@@ -2427,3 +3033,17 @@ once, so worth treating as durable rather than one-off:
   crossing axes, not a hierarchy) came from reading one page's own examples
   closely enough to notice they refuted the obvious model. No script proposed
   here would have found either.
+
+  Round 12 is the strongest case for that caveat so far, and the one to reach for
+  if the shelf starts looking like a guarantee. Every control passed on the eleven
+  misfiled roles. The gate allowed each record, because each agent's
+  `registry_status` declaration was *true* - `privilege:query-manage-index` really
+  was in the registry. `verify-evidence.py` passed, because the quotes really were
+  on the pages. `verify-promotions.py` passed, because the ids really did resolve
+  to files. `recurrence.py` ranked the error at the top of the corpus, correctly
+  counting a token it has no way to classify. Six green checks over a
+  ten-file-deep category error, and the thing that caught it was reading one page
+  and noticing that the registry disagreed with it. The scripts are worth having
+  precisely because they free up the attention that reading requires; they are not
+  a substitute for it, and after twelve rounds there is no sign they are becoming
+  one.

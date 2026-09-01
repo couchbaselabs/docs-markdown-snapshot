@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/bucket",
+  "label": "Bucket (Couchbase Server)",
+  "type": "the top-level container for data in Couchbase Server, holding scopes and collections and carrying its own type, memory quota, ejection policy, storage engine and durability settings.",
+  "promoted": true,
+  "recurrence": 6,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "note": "PARALLEL-NAMESPACE COLLISION with capella:bucket, kept separate under the standing no-silent-merge rule. Round 11 flagged this pair as 'a merge candidate needing a source statement, not merged'; round 12 searched the cloud/ tree for a statement that Capella's construct IS Couchbase Server's and found none, so the pair stays split - but round 12 also supplies a better reason than absence of evidence. The two records assert different things about their subject. Server's bucket has a *type* from a closed set (bucket:couchbase-bucket / bucket:ephemeral-bucket), an ejection policy, a storage-engine choice and a per-bucket memory quota; capella:bucket asserts only that it is the top level of a three-level hierarchy. That is not two descriptions of one thing at different depth - it is the difference between a construct you configure and a construct you navigate, and merging them would silently attribute Server's configuration surface to Capella's managed one. Highest-recurrence concept in this round's batch, and minted independently by two concurrent agents - the cross-agent duplicate this round's reconciliation was expected to fold."
+}

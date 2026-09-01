@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/query-insert",
+  "label": "Query Insert (Server RBAC role)",
+  "internal_name": "query_insert",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege: Server's concrete role catalogue has no separately enumerable privilege tier, and this token is a role name, not a privilege name. Do NOT confuse with the privilege:capella-advanced-access-* family, which is Capella's genuinely separate 28-member privilege catalogue, nor with capella-role:* (Capella's flat management-plane roles), rbac-role:role, or sgw:role.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "privilege:query-insert"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Query Insert (query_insert)",
+  "refiled_in_round": 12,
+  "note": "Re-filed from privilege: to role: in round 12. roles.md documents this as one of 56 Server RBAC roles, with its own 'Role: <label> (<internal_name>)' table and prose that calls it a role outright. The privilege: id was minted from SQL++ GRANT/REVOKE and monitoring reference pages, which name the bare token without ever classifying it, and round 10 then ruled the reference pages' reading correct - see reconciliation.md round 12. Minted in round 12 from roles.md alongside query-update and query-delete, in the same plain-name convention as the three already-promoted ids - the extraction agent followed the established precedent faithfully, which is how a category error propagates."
+}

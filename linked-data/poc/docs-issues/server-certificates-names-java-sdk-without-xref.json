@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-certificates-names-java-sdk-without-xref",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "certificates.md's Examples section closes with 'They also support secure access to Couchbase Server from Java clients' - naming one SDK, with no link to the Java SDK's own certificate/TLS configuration documentation and no equivalent sentence for any of the other eight SDK languages. Either the cross-reference is missing or the singling-out of Java is accidental.",
+  "about": [
+    "server/8.0/learn/security/certificates"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

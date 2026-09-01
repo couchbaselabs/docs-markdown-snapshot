@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-privilege",
+  "label": "has privilege",
+  "kind": "relation (schema-level)",
+  "type": "subject = a role; object = a privilege the role confers. Declared range is a privilege, which in this corpus means a Capella privilege:capella-*-access-* id - Server has no separately enumerable privilege tier.",
+  "promoted": true,
+  "recurrence": 3,
+  "instances": "3 abstract (TBox-level), 0 concrete",
+  "note": "PROMOTED FOR WHAT IT DOES NOT CONTAIN. All three occurrences are the identical abstract claim rbac-model:role hasPrivilege rbac-model:privilege, restating security-overview.md's and authorization-overview.md's glossary definition of the two-tier model. There is not one concrete instance anywhere in the corpus - no triple of the form role:query-select hasPrivilege <something>. That is the sharpest available statement of round 12's headline finding: Server's docs define a privilege tier, assert that roles correspond to system-defined privileges, and then never name a member of it, because all 55 permission tables in roles.md express permissions as prose ('Can list buckets.') rather than as named privileges. Promoted so the absence is queryable rather than merely described in reconciliation.md. See docs-issues/server-rbac-privilege-tier-is-abstract-only."
+}

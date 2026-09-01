@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth-domain/local",
+  "label": "Local authentication domain",
+  "type": "the Server authentication domain holding users defined and credentialed inside Couchbase Server itself. One of exactly two domains; pairs with auth-domain:external.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "Promoted with auth-domain:external as a closed two-member axis - the same shape as edition:enterprise/community, and the axis on which Server's user model divides before any role is considered."
+}

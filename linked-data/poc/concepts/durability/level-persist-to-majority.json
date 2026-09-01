@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/level-persist-to-majority",
+  "label": "Persist to majority",
+  "type": "the durability level requiring the mutation to be persisted to disk on a majority of nodes before acknowledgement - the strongest level, and unavailable to ephemeral buckets, which persist nothing.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/durability.md",
+  "note": "See durability:level-majority for the incompleteness caveat. Its exclusion from ephemeral buckets is the sharpest interaction this batch found between two of its own families: a bucket type constrains which durability levels exist for it, which is a real product constraint and the kind of cross-family fact the whole exercise is meant to make queryable."
+}

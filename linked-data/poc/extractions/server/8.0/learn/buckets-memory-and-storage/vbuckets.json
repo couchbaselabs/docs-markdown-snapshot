@@ -1,0 +1,117 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/vbuckets",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/vbuckets.md",
+  "concepts": [
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "minted", "reused_or_minted": "minted - vBuckets are absent from the registry entirely despite protocol:dcp being promoted, per this round's brief. 'vBuckets are virtual buckets that break bucket data into smaller pieces to make distributing and replicating data across multiple nodes easier.'" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket", "registry_status": "minted", "reused_or_minted": "minted - sibling of vbucket:replica-vbucket. 'The vBuckets that Couchbase Server uses to access and store data in a bucket are called active vBuckets.'" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket", "registry_status": "minted", "reused_or_minted": "minted - sibling of vbucket:active-vbucket. 'If you enable replicas for a bucket, each replica uses another set of vBuckets, called replica vBuckets.'" },
+    { "candidate_id": "server:cluster-manager", "label": "Cluster Manager (Couchbase Server ns_server component)", "registry_status": "minted", "reused_or_minted": "minted - same NAME as two already-promoted, already-flagged-as-colliding concepts: capella:cluster-manager ('a monitored Capella component (ns_server-adjacent cluster orchestration)') and capella-role:cluster-manager (a Capella project-scope ROLE). This page's Cluster Manager is Couchbase Server's own vBucket-map-tracking orchestration process - plausibly the same underlying component capella:cluster-manager's metrics-reference.md monitors, but no page in either extraction states that equivalence, so kept as a third, separate id per the project's no-merge-without-evidence rule rather than assumed identical. Flagged for human review as a three-way 'cluster manager' collision, extending the registry's existing two-way write-up." },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states Couchstore-backed buckets use a fixed vBucket count." },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states Magma-backed buckets can choose between two vBucket counts." },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states rebalance redistributes vBuckets across nodes." },
+    { "candidate_id": "service:data-service", "label": "Data service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states vBuckets are distributed across nodes running the Data Service." }
+  ],
+  "relations": [
+    {
+      "subject": "server:bucket",
+      "predicate": "hasInternalComponent",
+      "object": "server:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, stretched: prior uses were service-to-sub-component (Data Service -> KV Engine -> ...); here the whole/part pair is a data container and its internal partitioning unit rather than two software components, but the part-whole shape matches.",
+      "evidence": "Couchbase Server breaks the data in buckets into smaller units called vBuckets (short for virtual buckets)."
+    },
+    {
+      "subject": "storage-engine:couchstore",
+      "predicate": "hasVbucketCount",
+      "object": "1024",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasVbucketCount, a datatype property (object is an integer/string literal, not a concept id) in the same family as the registry's existing hasInternalServiceIdentifier and requiresMinimumNodeCount.",
+      "evidence": "Buckets that use the Couchstore storage engine use 1024 vBuckets on Linux and Windows."
+    },
+    {
+      "subject": "storage-engine:magma",
+      "predicate": "hasVbucketCount",
+      "object": "128 or 1024",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasVbucketCount",
+      "evidence": "Buckets that use Magma storage engine can use either 128 or 1024 vBuckets on Linux and Windows."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "hasVbucketCount",
+      "object": "64",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasVbucketCount, platform-level exception overriding the storage-engine-level counts above",
+      "evidence": "On MacOS, Couchbase Server creates 64 vBuckets for each bucket, no matter what the storage engine is."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "usesHashAlgorithm",
+      "object": "CRC32",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - usesHashAlgorithm, a datatype property naming the hashing algorithm that maps keys to vBuckets",
+      "evidence": "Couchbase Server uses a CRC32 hashing algorithm to map items to vBuckets."
+    },
+    {
+      "subject": "server:cluster-manager",
+      "predicate": "maintainsMappingFor",
+      "object": "server:vbucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - maintainsMappingFor, no existing predicate captures 'tracks and updates the location map for a distributed data-partitioning unit'",
+      "evidence": "The Cluster Manager tracks which nodes contain each vBucket."
+    },
+    {
+      "subject": "vbucket:replica-vbucket",
+      "predicate": "promotesToActive",
+      "object": "vbucket:active-vbucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - promotesToActive, the failover-driven lifecycle transition this page states explicitly",
+      "evidence": "Couchbase Server promotes replicas of the lost vBuckets to active to maintain data availability."
+    },
+    {
+      "subject": "server:rebalance",
+      "predicate": "cascadesTo",
+      "object": "server:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - cascadesTo, stretched: cascadesTo is defined for a lifecycle/deletion change propagating to something the subject contains, and here the operation is redistribution rather than deletion, but the shape (an operation on the subject propagating to a dependent artifact) matches.",
+      "evidence": "During a rebalance, Couchbase Server redistributes active and replica vBuckets across the available nodes."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Buckets](buckets.md) for detailed information about buckets."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Durability](../data/durability.md) for more information about durable writes."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/replication-architecture",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For additional information about the distribution of vBuckets across the cluster, see [Availability](../clusters-and-availability/replication-architecture.md)."
+    },
+    {
+      "subject": "server:vbucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/services-and-indexes/services/data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The system distributes vBuckets evenly across the memory and storage resources of nodes that run the [Data Service](../services-and-indexes/services/data-service.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesProtocol",
+    "finding": "This page never names DCP or the Database Change Protocol, despite protocol:dcp being promoted specifically as 'the intra-cluster streaming protocol by which the Data Service feeds mutations to other nodes' - exactly the use case vBuckets exist for. Its own words describe the purpose only generically: vBuckets exist 'to make distributing and replicating data across multiple nodes easier' and 'to ease distributing work around the cluster and maintaining data availability through replication', without ever naming the protocol underneath that replication. The explicit DCP connection is stated instead on buckets.md ('automatic data replication ... using the Database Change Protocol (DCP)') and on storage-settings.md ('to replicas and other DCP clients'). Recorded as an absence rather than inferring a usesProtocol relation on this page, per this round's evidence discipline."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-account-locking-required-role-undocumented",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "Account locking is new in 8.0 and Enterprise-only, but is documented solely as an inline important-box on authentication-overview.md: there is no dedicated page for it anywhere under learn/security/, and no role table in roles.md states which role permits locking or unlocking an account. Whether it falls under the general user-management permissions of Local User Admin, or requires a distinct role, is unstated - a security-sensitive administrative capability documented without its access requirement.",
+  "about": [
+    "server/8.0/learn/security/authentication-overview",
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

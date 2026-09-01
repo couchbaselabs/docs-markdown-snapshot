@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cli-bucket-compact-cites-removed-memcached-bucket",
+  "type": "docs-issue",
+  "issueType": "stale-content",
+  "description": "In the 8.0 tree, couchbase-cli-bucket-compact.md line 25 still reads 'Only Couchbase buckets can be compacted: Ephemeral and Memcached buckets cannot be compacted.' Memcached buckets were fully removed in 8.0.0, so the sentence constrains behaviour against a bucket type the release cannot have. Harmless in effect but a concrete stale-reference marker; a sweep for other 8.0-tree pages mentioning Memcached buckets is warranted, since this one was found incidentally.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-bucket-compact"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

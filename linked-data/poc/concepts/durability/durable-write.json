@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/durable-write",
+  "label": "Durable write",
+  "type": "a write performed with a durability level, so that acknowledgement implies replication or persistence rather than only acceptance by the active node.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/durability.md",
+  "note": "The operation to durability:level's setting. Kept as its own concept because the docs consistently contrast a durable write against an ordinary one as two kinds of operation, not as one operation with a parameter."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/memory/full-ejection",
+  "label": "Full ejection",
+  "type": "the Couchbase-bucket policy under which keys and metadata are ejected along with values, trading memory for extra disk reads on access.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/memory.md",
+  "note": "The only enum member besides the head to clear the recurrence bar on its own. Member of the ejection-policy closed set, promoted as a family: memory:ejection-policy clears the recurrence bar and memory:full-ejection does too, while the remaining members sit at 1. An enum promoted with some values missing is worse than useless - a consumer cannot tell an absent value from an invalid one - so the set is completed deliberately and the exception is recorded here rather than left implicit."
+}

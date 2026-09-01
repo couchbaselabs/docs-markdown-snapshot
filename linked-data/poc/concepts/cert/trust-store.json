@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/trust-store",
+  "label": "Trust store",
+  "type": "the store of trusted CA certificates a Couchbase node consults to validate a presented certificate. Subject of every verifiesIdentityOf triple in the corpus.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "note": "The pivot of the certificate family: the four verifiesIdentityOf triples all have this as subject, which is why the object-only recurrence metric scored it 1 and the slot metric scores it 2 - a concrete instance of round 12's metric finding, not a coincidence."
+}

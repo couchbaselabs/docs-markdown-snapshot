@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-change-history-no-ingest-path-account",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "change-history.md never mentions DCP, despite change history recording the same mutation stream DCP relays, and gives no architectural account of how mutations reach the change history at all - whether via the internal path DCP uses or a separate write path inside Magma. The only consumer named for reading its contents is the Kafka Connector, not a DCP client. Readers evaluating change history against an existing DCP-based pipeline have nothing to compare.",
+  "about": [
+    "server/8.0/learn/data/change-history"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

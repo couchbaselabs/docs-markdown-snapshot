@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/memory/ejection-policy",
+  "label": "Ejection policy",
+  "type": "the per-bucket setting governing what is removed from memory when the bucket's memory quota is reached. Values differ by bucket type: Couchbase buckets choose value-only or full ejection, ephemeral buckets choose no-ejection or eject-when-full.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/memory.md",
+  "note": "Head of the enum. The genuinely surprising structure, and the reason this is one concept and not two: the *setting* is shared across bucket types but its *value set* is not - a Couchbase bucket and an ephemeral bucket have disjoint legal values for the same named setting. The registry has no predicate that states a value set conditional on another concept's value; recorded as a modelling gap on the watchlist rather than forced into usesEnum."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/auditing",
+  "label": "Auditing (Server security facility)",
+  "type": "one of the four named Server security facilities: the recording of administrative and data actions to a per-node audit log. Do NOT confuse with monitoring:activity-log or monitoring:event, which are Capella management-plane concepts with a severity enum and alerting behaviour that Server's audit_event has neither of.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/auditing.md",
+  "note": "Promoted as a facility alongside security:authentication. The non-merge with Capella's monitoring:* family is this round's most carefully argued open question: Server's audit.log is explicitly per-node ('individual per node records must be manually consolidated by the administrator') and categorises events as Admin/Data/User-Activity, sharing no vocabulary with monitoring:event-severity-enum. The possibility that Capella's Activity Log is a management-plane view over this same mechanism is plausible and unstated on any page read so far, so it is flagged for SME review rather than merged."
+}

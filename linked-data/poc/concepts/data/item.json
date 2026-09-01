@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/item",
+  "label": "Item",
+  "type": "the general unit of storage in Couchbase Server: a key and its value, with metadata. The superset term - a document is an item whose value is JSON.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/data/document-data-model.md",
+  "note": "Promoted with data:document as a deliberate pair. The distinction is load-bearing and the docs are precise about it: 'item' covers binary values that no JSON-shaped concept describes, which is why both terms exist rather than one."
+}

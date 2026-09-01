@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/keyspace",
+  "label": "Keyspace",
+  "type": "the addressable unit a SQL++ statement or an index targets - in practice a collection, identified by its bucket.scope.collection path. The term the server/ tree uses where the Capella tree says 'collection'.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "note": "Promoted as the term that connects this round's data-model vocabulary to the already-large n1ql: family, and because capella:collection's own record already noted the vocabulary mismatch from the other side ('the server/ tree calls the same thing a keyspace'). Object of the scopedToKeyspace predicate promoted this round. Note this is a *near*-synonym, not an identity: index-service.md's cardinality statement writes 'keyspace (collection)', which is the closest the corpus comes to stating the equivalence outright."
+}

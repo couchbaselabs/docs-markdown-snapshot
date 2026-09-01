@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/attribute",
+  "label": "Attribute",
+  "type": "a named field within a JSON document, addressable by path. The unit subdocument operations and index key expressions target.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/document-data-model.md",
+  "note": "Promoted as the leaf of the data model, completing item > document > attribute. Bridges to the existing sdk:subdocument-operations record, which had no concept for the thing it operates on."
+}

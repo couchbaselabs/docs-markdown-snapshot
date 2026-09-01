@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/18091",
+  "label": "Port 18091",
+  "type": "the TLS-secured Couchbase Web Console / Cluster Manager REST port. The secure counterpart of the cleartext 8091.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "note": "The first member of a port: namespace, promoted because on-the-wire-security.md's TLS and cipher settings are stated per-port and there was previously nowhere to hang them. A small namespace that will grow: Couchbase's port matrix is large and entirely absent from the registry so far."
+}

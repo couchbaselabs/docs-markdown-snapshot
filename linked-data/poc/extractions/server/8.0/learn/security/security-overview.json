@@ -1,0 +1,59 @@
+{
+  "page_id": "server/8.0/learn/security/security-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/security-overview.md",
+  "concepts": [
+    { "candidate_id": "security:authentication", "label": "Authentication (security facility)", "registry_status": "minted", "reused_or_minted": "minted - one of the four facilities this overview page names as covering Couchbase Server security. Namespace security: already exists (security:public-internet) but has no generic-facility members; nothing in auth:* fits since that namespace's two members (auth:mfa, auth:sso) are both labelled '(Capella)' and are specific mechanisms, not this coarse facility." },
+    { "candidate_id": "security:authorization", "label": "Authorization (security facility)", "registry_status": "minted", "reused_or_minted": "minted - sibling of security:authentication" },
+    { "candidate_id": "security:auditing", "label": "Auditing (security facility)", "registry_status": "minted", "reused_or_minted": "minted - sibling of security:authentication. Auditing itself is covered by a sibling page (auditing.md) that a concurrent agent is extracting; this concept is the coarse facility named on this overview page, not a duplicate of that agent's work." },
+    { "candidate_id": "security:encryption", "label": "Encryption (security facility)", "registry_status": "minted", "reused_or_minted": "minted - sibling of security:authentication. Encryption detail (on-the-wire, at-rest) is covered by sibling pages a concurrent agent is extracting." }
+  ],
+  "relations": [
+    {
+      "subject": "security:authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authentication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Authentication](authentication.md)."
+    },
+    {
+      "subject": "security:authorization",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Authorization](authorization-overview.md)."
+    },
+    {
+      "subject": "security:auditing",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/auditing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Auditing](auditing.md)."
+    },
+    {
+      "subject": "security:encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/encryption-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Encryption](encryption-overview.md)."
+    },
+    {
+      "subject": "server/8.0/learn/security/security-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/security-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For practical steps whereby Couchbase Server can be secured, see the section [Security Management Overview](../../manage/manage-security/security-management-overview.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresRole",
+    "finding": "This is the page the round's brief specifically points at for the RBAC gap in the neighbouring services-and-indexes tree, and it is also the FIRST page in the whole security/ subtree to use the words 'roles' and 'privileges' at all - the front door to the very content round 11 found completely absent. It states the RBAC mechanism in one dense sentence ('roles ... corresponding to privileges, which allow degrees of access to specific system-resources') but names no specific role, privilege, or resource, deferring all three to roles.md - see authorization-overview.json and roles.json for where the round's structural RBAC relations are actually grounded. The deferral is itself informative: this overview treats RBAC as one bullet among four (Authentication/Authorization/Auditing/Encryption) of equal visual weight, giving no hint that the Authorization bullet is about to expand into a 966-line catalogue three hops away, while Authentication expands into four separate pages linked directly from its own sibling page. The information architecture undersells how much RBAC content exists relative to how much authentication content exists."
+  },
+  "cross_component_finding": "Security Overview's bullet list (Authentication/Authorization/Auditing/Encryption) is the direct organizing structure for four of this round's seven pages plus the three the concurrent agent is covering (Certificates, On-the-Wire Security, Encryption Overview, Native Encryption at Rest, Auditing) - i.e. this one 27-line page is the table of contents for the entire learn/security/ subtree. Splitting the tree across two agents on the strength of a filename list rather than this page's own four-facility structure means Authentication (this agent: 5 pages) and Encryption+Auditing (the other agent: mostly) are unevenly sized, though this happens to roughly track the two agents' actual page counts (7 vs 6).",
+  "cross_product_finding": "Unlike the Capella and Sync Gateway material examined in prior rounds, this page's four-facility framing (Authentication / Authorization / Auditing / Encryption) has no equivalent single page anywhere in capella:* or sgw:* - Capella's security content was found scattered across cluster-access-credentials, cluster-rbac, and SSO pages with no single overview naming all four facilities together, and Sync Gateway's docs never use the word 'Auditing' as a named facility at all in the material extracted so far. Server's security/ tree is, structurally, the most explicitly organized of the three product trees on this axis."
+}

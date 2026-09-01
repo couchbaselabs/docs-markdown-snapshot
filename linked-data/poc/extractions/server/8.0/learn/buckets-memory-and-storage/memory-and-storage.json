@@ -1,0 +1,70 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/memory-and-storage",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/memory-and-storage.md",
+  "concepts": [
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "memory:working-set", "label": "working-set", "registry_status": "minted", "reused_or_minted": "minted - the tracked set of most-frequently-used data Couchbase Server keeps resident in memory. 'A working-set of most frequently used data is tracked and maintained, and the items kept in memory to ensure high performance.'" },
+    { "candidate_id": "memory:disk-queue", "label": "Disk Queue", "registry_status": "minted", "reused_or_minted": "minted - the in-memory queue holding items pending a write to disk." },
+    { "candidate_id": "memory:replication-queue", "label": "Replication Queue", "registry_status": "minted", "reused_or_minted": "minted - sibling of memory:disk-queue, the queue holding items pending replication to a replica bucket." },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (role: family, a classic cluster-wide admin role). This page states Full Administrator establishes memory quotas, new evidence for a concept previously grounded only in Capella audit-service gating." },
+    { "candidate_id": "server:service-memory-quota", "label": "service memory quota", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." }
+  ],
+  "relations": [
+    {
+      "subject": "server:service-memory-quota",
+      "predicate": "establishedByRole",
+      "object": "role:full-administrator",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - establishedByRole, no existing predicate ties a concrete configuration artifact to the specific administrative role that sets it up (requiresRole/requiresPrivilege gate operations against a role; this states who performs the initial configuration action).",
+      "evidence": "Memory quotas, established by the Full Administrator when the server is configured, are automatically managed by Couchbase Server with reference to _watermarks_"
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "hasInternalComponent",
+      "object": "memory:working-set",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, stretched from a software sub-component to a tracked data subset, but the part-whole shape (the bucket contains a working set) matches.",
+      "evidence": "A _working-set_ of most frequently used data is tracked and maintained, and the items kept in memory to ensure high performance."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "createsOnAction",
+      "object": "memory:disk-queue",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "Couchbase Server places a compressed copy of the document onto the _Disk Queue_ so that the document can be written to the disk; and a further copy onto the _Replication Queue_, so that the document can be written to the replica bucket."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "createsOnAction",
+      "object": "memory:replication-queue",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "Couchbase Server places a compressed copy of the document onto the _Disk Queue_ so that the document can be written to the disk; and a further copy onto the _Replication Queue_, so that the document can be written to the replica bucket."
+    },
+    {
+      "subject": "memory:replication-queue",
+      "predicate": "configurableVia",
+      "object": "compression:data-compression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. Object minted at extraction layer on compression.json this batch.",
+      "evidence": "(The copy placed on the Replication Queue may or may not be compressed, depending on the _compression mode_ configured for the bucket.)"
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "memory:disk-queue",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "When a new item, such as a document, is saved by an application, it is saved in memory only, if the item is contained by an _Ephemeral_ bucket; and is saved both in memory and on disk, if the item is contained by a _Couchbase_ bucket."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page has no outbound Markdown links at all, even though it names 'compression mode' in passing (step 3 of the new-document sequence) without linking to compression.md, and describes ejection without linking to memory.md's Ejection section - both of which storage-settings.md, its closest sibling, does link to. The six referenced step-sequence images (createDocSequence1-4, updateDocSequence1-6) are also unlinked static assets rather than cross-references."
+  },
+  "cross_component_finding": "This page's numbered save/update sequences duplicate, at a more granular step-by-step level, facts stated more tersely on memory.md and storage-settings.md (compression on disk, ejection after a period in memory, replica propagation) - a genuine content-overlap between a walkthrough-style page and two reference-style pages covering the same mechanisms from different altitudes, rather than a contradiction."
+}

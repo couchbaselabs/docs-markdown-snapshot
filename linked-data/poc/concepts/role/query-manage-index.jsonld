@@ -1,0 +1,9 @@
+{
+  "@context": "https://docs.couchbase.com/ld/context.jsonld",
+  "@id": "https://docs.couchbase.com/ld/concepts/role/query-manage-index",
+  "@type": "skos:Concept",
+  "prefLabel": "Query Manage Index",
+  "altLabel": "query_manage_index",
+  "seeAlso": { "@id": "https://docs.couchbase.com/server/7.2/learn/security/authorization-overview.html" },
+  "comment": "Re-filed in round 12 from concepts/privilege/query-manage-index: roles.md documents query_manage_index as one of 56 Server RBAC roles ('Role: Query Manage Index (query_manage_index)'), not as a privilege. seeAlso still resolves to the link target used by 4 of the 5 statement pages that cite this role; the fifth (DROP PRIMARY INDEX) links a differently-named target - see docs-issues/privilege-doc-link-inconsistency.json rather than reproducing the ambiguity here. Note that seeAlso points at authorization-overview.html, which states the abstract two-tier Role/Privilege model; roles.md is the concrete catalogue and the actual authority for this term's classification."
+}

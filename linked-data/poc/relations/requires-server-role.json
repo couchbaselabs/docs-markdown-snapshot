@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-server-role",
+  "label": "requires server role",
+  "kind": "relation (schema-level)",
+  "type": "subject = a SQL++ statement, REST endpoint or UI action; object = a role: concept from Couchbase Server's own 56-member RBAC catalogue (learn/security/roles.md); means the subject is refused unless the authenticated user holds that role. This is the THIRD structurally distinct 'requires a role' predicate in the registry and the three must not be interchanged: requiresRole is Sync Gateway's sync-function requireRole() check (a per-write assertion inside a JavaScript function), requiresCapellaRole takes a capella-role:* management-plane role, and this one takes a Server RBAC role. Distinct from requiresPrivilege, whose object is a real privilege - which, in this corpus, means a Capella privilege:capella-*-access-* id, because Server's catalogue has no separately enumerable privilege tier.",
+  "promoted": true,
+  "recurrence": 20,
+  "note": "Minted in round 12 as the necessary other half of the privilege-to-role re-filing. 20 extraction files across the server/7.2, server/8.0 and cloud/ trees assert requiresPrivilege with an object that roles.md documents as a role, so the predicate was carrying the same category error as the concept ids it pointed at - fixing the objects alone would have left a predicate whose declared range is a privilege pointing at eleven roles. requiresPrivilege is kept and is still correct for its ~35 genuine Capella-privilege objects; only the Server-role objects move. Five of the 20 files are cloud/ pages citing Server role names, which is unadapted shared SQL++ reference content rather than a Capella access model - see docs-issues/cloud-sqlpp-pages-cite-server-rbac-roles."
+}

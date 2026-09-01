@@ -1,0 +1,547 @@
+{
+  "page_id": "server/8.0/learn/data/transactions",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/data/transactions.md",
+  "concepts": [
+    {
+      "candidate_id": "server:distributed-acid-transactions",
+      "label": "Distributed ACID Transactions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this is the JUDGMENT CALL the round-12 brief asked for. This page is neither n1ql:transactions nor sdk:distributed-transaction alone: it explicitly treats KV operations (via SDK) and Query DML statements (via SQL++) as two interchangeable surfaces onto ONE mechanism ('Seamless integration between Key-Value (KV) and Query DML statements... within transactions'; 'Multiple Key-Value and Query DML statements can be used together inside a transaction'), and it describes the shared internal mechanics (Active Transaction Records, staged XATTR mutations, cleanup, atomic-commit-point) that underlie BOTH surfaces, never picking one over the other. That is exactly server:distributed-acid-transactions's existing definition: 'the server-side transaction feature that both SQL++ transaction statements and the SDK transaction APIs are surfaces onto.' This page is that concept's own canonical 'learn/' account - not a fourth thing."
+    },
+    {
+      "candidate_id": "txn:active-transaction-record",
+      "label": "Active Transaction Record (ATR)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new namespace 'txn:' per the round-12 brief, for transaction internals not already covered by n1ql:*/sdk:*. The metadata document (prefix `_txn:atr-`) that tracks per-attempt commit state; the single point of truth an 'atomic commit' switches."
+    },
+    {
+      "candidate_id": "txn:staged-mutation",
+      "label": "staged mutation",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism by which an in-transaction document change is written to the document's extended attributes (XATTRs) rather than its body, keeping it invisible until commit. Does not itself model XATTRs as a concept - see extended-attributes-fundamentals.md, covered by a sibling agent this round."
+    },
+    {
+      "candidate_id": "txn:cleanup-process",
+      "label": "transaction cleanup process",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the asynchronous background process, started with the `Transactions` object, that scans for and resolves expired/abandoned staged changes across all buckets."
+    },
+    {
+      "candidate_id": "txn:custom-metadata-collection",
+      "label": "custom metadata collection",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the configurable alternative to the default per-bucket ATR storage location, set via `TransactionConfigBuilder.metadataCollection(...)`."
+    },
+    {
+      "candidate_id": "txn:transaction-expiry-timer",
+      "label": "transaction expiry timer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the configurable duration (default 15 seconds) after which an in-progress transaction is rolled back."
+    },
+    {
+      "candidate_id": "txn:delta-table",
+      "label": "delta table",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the in-memory structure that grows with every mutation inside a (non-single-query) transaction, the stated reason to limit mutation count per transaction."
+    },
+    {
+      "candidate_id": "txn:isolation-level",
+      "label": "transaction isolation level (Read Committed + Monotonic Atomic View)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fixed (non-configurable) isolation guarantee: stricter than plain Read Committed because of the added Monotonic Atomic View property."
+    },
+    {
+      "candidate_id": "n1ql:kvtimeout",
+      "label": "kvtimeout (transaction setting)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of the already-promoted n1ql:txid/n1ql:tximplicit named-parameter concepts; the maximum wait time for a KV operation inside a transaction, default 2.5s."
+    },
+    {
+      "candidate_id": "n1ql:atrcollection",
+      "label": "atrcollection (transaction setting)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of n1ql:txid/n1ql:tximplicit; names the collection where ATRs and client records are stored."
+    },
+    {
+      "candidate_id": "role:administrative-rbac-category",
+      "label": "Administrative (classic RBAC role category)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a NEW, deliberately separate sibling of role:full-administrator/role:eventing-full-admin/role:local-user-security-administrator/role:query-external-access (the classic cluster-wide RBAC family). Minted a dedicated predicate (requiresRbacRoleCategory) rather than reusing Sync Gateway's requiresRole, precisely because this ontology already tracks 'role' as a five-way collision and this page names broad role CATEGORIES, not the sync-function role check or a Capella role."
+    },
+    {
+      "candidate_id": "role:data-rbac-category",
+      "label": "Data (classic RBAC role category)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of role:administrative-rbac-category, named explicitly on the page for KV-operation permissions."
+    },
+    {
+      "candidate_id": "role:query-and-index-rbac-category",
+      "label": "Query & Index (classic RBAC role category)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of role:administrative-rbac-category, named explicitly on the page for query-statement permissions."
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "Cross Data Center Replication (XDCR) - server-side replication feature",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - deliberately NOT the same concept as capella:xdcr, which the registry already documents as 'a monitored Capella component, explicitly NOT one of the Services'. This page uses 'XDCR' for the general server-side replication feature itself (its interaction with transactional consistency), a different sense of the same three-letter acronym. Flagged as a same-name collision rather than merged - see cross_component_finding."
+    },
+    {
+      "candidate_id": "server:active-active-replication",
+      "label": "active-active bi-directional replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific XDCR topology the page advises against combining with transactions."
+    },
+    {
+      "candidate_id": "server:ntp-time-sync",
+      "label": "NTP cluster time synchronization",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a hard prerequisite for transactions the page states plainly; not previously modeled anywhere in the registry."
+    },
+    {
+      "candidate_id": "sdk:single-query-transaction",
+      "label": "single query transaction (implicit transaction)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - exactly the concept the registry's own collision notes flag as 'extraction-layer only, not yet promoted... a lighter-weight, structurally restricted variant of sdk:distributed-transaction'. This page's own description ('using transactions.query(statement) from the SDK, using Run as TX from the Query Workbench, or using the tximplicit query parameter... also referred to as implicit transactions') matches that note precisely."
+    },
+    {
+      "candidate_id": "durability:durable-write",
+      "label": "durable write",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch from durability.md (learn/data/durability.json); this page cites the same DurabilityImpossibleException failure mode when replica count is insufficient."
+    },
+    {
+      "candidate_id": "durability:level",
+      "label": "Durability Level",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - also minted from durability.md. This page restates the identical 3-value enum (majority/majorityAndPersistActive/persistToMajority) as a general transaction property, and separately delegates its actual SDK configuration to the already-promoted sdk:transaction-durability - kept as two distinct facts rather than conflated, per the round-12 brief's explicit warning about sdk:transaction-durability."
+    },
+    {
+      "candidate_id": "durability:level-majority",
+      "label": "majority (Durability Level)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - from durability.md, this page adds the fact that majority is the default level."
+    },
+    {
+      "candidate_id": "durability:level-persist-to-majority",
+      "label": "persistToMajority (Durability Level)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - from durability.md, this page adds a performance/protection trade-off fact against level-majority."
+    },
+    {
+      "candidate_id": "sdk:transaction-durability",
+      "label": "Transaction-scoped Durability Level (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's settings table delegates actual durability-level configuration to this concept's Java SDK page rather than restating the API."
+    },
+    {
+      "candidate_id": "n1ql:transactions",
+      "label": "SQL++ Transactions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's inline SQL++ example (START TRANSACTION/UPDATE/COMMIT) and its link to 'SQL++ Support for Couchbase Transactions' are this concept's other surface."
+    },
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Distributed ACID Transaction (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's Java lambda example (`transactions.run((txnctx) -> {...})`) is this concept's canonical usage pattern."
+    },
+    {
+      "candidate_id": "n1ql:transaction-query-mode",
+      "label": "Query Mode (SQL++ transactions)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (alias sdk:transaction-query-mode); this page's 'Query Mode' note is a third independent statement of the exact same fact already in the registry."
+    },
+    {
+      "candidate_id": "n1ql:savepoint",
+      "label": "SAVEPOINT",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page's conceptual 'Savepoint' section describes the identical mechanism, explicitly invoked cross-surface via `ctx.query(\"SAVEPOINT\")` from the SDK lambda - confirming it is the same SQL++ statement, not a separate SDK-native savepoint concept."
+    },
+    {
+      "candidate_id": "n1ql:begin-transaction",
+      "label": "BEGIN TRANSACTION",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; named as one of three ways a transaction can begin."
+    },
+    {
+      "candidate_id": "n1ql:rollback-transaction",
+      "label": "ROLLBACK TRANSACTION",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; named as one of the ways a transaction can end."
+    },
+    {
+      "candidate_id": "n1ql:tximplicit",
+      "label": "tximplicit (query parameter)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; appears both in the 'Create Transaction' list and the settings table."
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "scan_consistency",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's transactional scan-consistency discussion (request_plus default, not_bounded override) is a transaction-specific application of the same enum."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "hasInternalComponent",
+      "object": "txn:active-transaction-record",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, exact part-whole shape fit.",
+      "evidence": "These metadata documents are called _Active Transaction Records_, or ATRs."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "hasInternalComponent",
+      "object": "txn:staged-mutation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The second mechanic is that mutating a document inside a transaction, does not directly change the body of the document."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "hasInternalComponent",
+      "object": "txn:cleanup-process",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "These include an asynchronous cleanup process that is started with the creation of the `Transactions` object, and scans for expired transactions created by any application, on all buckets."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "hasInternalComponent",
+      "object": "txn:delta-table",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "the delta table grows with every mutation resulting in increased memory usage"
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "offersConfigurationChoice",
+      "object": "txn:custom-metadata-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, closed default-vs-custom choice shape.",
+      "evidence": "However, you can choose to use a named collection to store metadata documents."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "txn:transaction-expiry-timer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The transaction expiry timer (which is configurable) will begin ticking once the transaction starts. The default value is 15 seconds."
+    },
+    {
+      "subject": "sdk:single-query-transaction",
+      "predicate": "doesNotRequire",
+      "object": "txn:delta-table",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - positive-absence relation; distinct from doesNotSupport (incompatibility) and doesNotAffect (leaves something untouched) - this is 'lacks the need for'.",
+      "evidence": "Single query transactions, also referred to as _implicit transactions_, do not require a delta table to be maintained."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "providesIsolationLevel",
+      "object": "txn:isolation-level",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate names a fixed (non-configurable) guarantee level; distinct from usesEnum, which is for a settable controlled vocabulary.",
+      "evidence": "This is the 'Read Committed' level of isolation."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "requiresCapability",
+      "object": "durability:durable-write",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate as in this batch's durability.json (n1ql:transactions requiresCapability durability:durable-write), applied here to the umbrella feature directly.",
+      "evidence": "then all durable Key-Value writes, which are used by transactions, will fail with a DurabilityImpossibleException"
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "usesEnum",
+      "object": "durability:level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate.",
+      "evidence": "Couchbase transactions provide tunable durability to tolerate different failure scenarios with 3 different levels:"
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "sdk:transaction-durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate; deliberately kept separate from the usesEnum relation above so the general enum (extraction-layer, from durability.md) and its Java-SDK-specific configuration surface (already promoted) are not conflated.",
+      "evidence": "See [Setting Durability Level](../../../../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md#configuration)"
+    },
+    {
+      "subject": "durability:level-persist-to-majority",
+      "predicate": "tradesOffAgainst",
+      "object": "durability:level-majority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, textbook comparative shape (strongest protection vs. best performance).",
+      "evidence": "`persistToMajority` provides the strongest protection from failures but is the least performant amongst the Durability levels."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "requiresSetting",
+      "object": "server:ntp-time-sync",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate.",
+      "evidence": "Use of transactions requires Network Time Protocol (NTP) to be used to synchronize time across all cluster-nodes."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "triggersPermissionModeChange",
+      "object": "n1ql:transaction-query-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, exact fit ('switches the permission scope under which subsequent operations in the same flow are evaluated').",
+      "evidence": "When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user's query permissions."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "requiresRbacRoleCategory",
+      "object": "role:data-rbac-category",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - deliberately distinct from Sync Gateway's requiresRole (a sync-function requireRole() check) and from requiresCapellaRole/requiresPrivilege, to avoid adding a sixth strand to the ontology's already-tracked 'role' collision without a page stating equivalence.",
+      "evidence": "To execute a key-value operation within a transaction, users must have the relevant _Administrative_ or _Data_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "requiresRbacRoleCategory",
+      "object": "role:administrative-rbac-category",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate as above.",
+      "evidence": "To execute a key-value operation within a transaction, users must have the relevant _Administrative_ or _Data_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "requiresRbacRoleCategory",
+      "object": "role:query-and-index-rbac-category",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate.",
+      "evidence": "Similarly, to run a query statement within a transaction, users must have the relevant _Administrative_ or _Query & Index_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "excludesFromReplication",
+      "object": "txn:staged-mutation",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate for a replication mechanism deliberately omitting uncommitted/staged data; excludesFromCapture is scoped to monitoring/auditing, not replication.",
+      "evidence": "No uncommitted changes will be ever sent to target clusters."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "discouragedWith",
+      "object": "server:active-active-replication",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - softer than doesNotSupport (a stated hard boundary) or mustUseInsteadWhen (an alternate-statement swap); the page says 'not advised', not 'cannot'.",
+      "evidence": "To avoid issues, using _active-active_ bi-directional replication with transactions is not advised."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:kvtimeout",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the maximum time to wait for a KV operation before timing out. The default value is 2.5s."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:atrcollection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the collection where the active transaction records (ATRs) and client records are stored."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:tximplicit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies that a DML statement is a singleton transaction. By default, it is set to false."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Query Service provides the transactional scan consistency parameter, `request_plus`, which allows queries to wait for indexes to be appropriately updated, following a transaction."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, exact fit ('supplies the object parameter on the user's behalf, so the user does not pass it explicitly').",
+      "evidence": "When a query is used inside a transaction, the transactional scan consistency is set to `request_plus` by default, and hence ensures that the query will see all the committed changes."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "cxx-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the C++ SDK](../../../../cxx-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the .NET SDK](../../../../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "go-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Go SDK](../../../../go-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Java SDK](../../../../java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "kotlin-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Kotlin SDK](../../../../kotlin-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "nodejs-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Node.js SDK](../../../../nodejs-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the PHP SDK](../../../../php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Python SDK](../../../../python-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "scala-sdk/current/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Distributed ACID Transactions from the Scala SDK](../../../../scala-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information on using Query statements in transactions, see [SQL++ Support for Couchbase Transactions](../../n1ql/n1ql-language-reference/transactions.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-manage/query-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[request\\_plus](../../n1ql/n1ql-manage/query-settings.md#transactional-scan-consistency)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/begin-transaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "The [BEGIN TRANSACTION](../../n1ql/n1ql-language-reference/begin-transaction.md) statement is executed"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/rollback-transaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "A rollback is executed — `ctx.rollback()`, or by executing the [ROLLBACK TRANSACTION](../../n1ql/n1ql-language-reference/rollback-transaction.md) statement."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Refer to [Roles](../security/roles.md) for details."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/xdcr-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Cross Data Center Replication (XDCR)](../clusters-and-availability/xdcr-overview.md) supports eventual consistency of transactional changes."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/xdcr-conflict-resolution",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Use [Timestamp-Based Conflict Resolution](../clusters-and-availability/xdcr-conflict-resolution.md#timestamp-based-conflict-resolution)."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "This setting can be changed via [GUI](../../manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "or [command line](../../cli/cbcli/couchbase-cli-bucket-create.md#options)"
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/install/synchronize-clocks-using-ntp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md) for details."
+    },
+    {
+      "subject": "server/8.0/learn/data/transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/extended-attributes-fundamentals",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "technically in its [extended attributes](extended-attributes-fundamentals.md) (XATTRs)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "No version is cited anywhere on this page for any part of the transaction feature - not for distributed transactions generally, not for statement-level atomicity, not for single query transactions/tximplicit, not for custom metadata collections. This is a major, clearly evolved feature (the settings table alone lists 6 independently-configurable parameters) with zero dating, consistent with round 12's genre finding that conceptual pages trade version/privilege facts for taxonomy - but the gap is unusually large here given the feature's evident maturity and complexity."
+  },
+  "cross_component_finding": "Two deliberate non-merges recorded here, following the ontology's established discipline: (1) server:xdcr (this page's sense - the general server-side replication feature) is kept separate from the already-promoted capella:xdcr ('a monitored Capella component, explicitly NOT one of the Services') - same acronym, different scope, no page states equivalence. (2) role:administrative-rbac-category/data-rbac-category/query-and-index-rbac-category are new siblings in the role: namespace's classic-cluster-RBAC family, but are related to server:distributed-acid-transactions via a freshly minted requiresRbacRoleCategory rather than the existing requiresRole (Sync Gateway's requireRole() check) or requiresCapellaRole (Capella management-plane roles) - a sixth data point for the ontology's now well-documented multi-way 'role' collision, deliberately not merged into any of the other five. Separately, this page is the strongest evidence yet that durability:durable-write (minted in durability.json, this same batch) and sdk:transaction-durability (already promoted) are genuinely different things at different scopes: this page cites the general 3-level enum as a transaction property in its own right (Durability ACID paragraph) AND separately delegates actual configuration to the Java-SDK-specific promoted concept (settings table) - two facts, two relations, not collapsed into one.",
+  "cross_product_finding": "This single Server-tree conceptual page is a genuine cross-product hub: it links out to all nine language-specific SDK 'Distributed ACID Transactions' how-to pages (C++, .NET, Go, Java, Kotlin, Node.js, PHP, Python, Scala) plus the SQL++ statement reference plus XDCR/replication docs plus RBAC/roles plus install/NTP docs - more distinct product-area fan-out from one page than almost anything else extracted so far in the corpus. It is also the page that most directly justifies server:distributed-acid-transactions's own registry description ('the server-side transaction feature that both SQL++ transaction statements and the SDK transaction APIs are surfaces onto') - this extraction is the first to actually read that unifying page rather than one of its surfaces."
+}

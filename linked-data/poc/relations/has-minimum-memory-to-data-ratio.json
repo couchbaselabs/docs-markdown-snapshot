@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-minimum-memory-to-data-ratio",
+  "label": "has minimum memory-to-data ratio",
+  "kind": "relation (schema-level)",
+  "type": "subject = a storage engine or bucket configuration; object = the minimum ratio of memory quota to stored data it requires, as a literal percentage.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The round's most specific predicate, promoted with reservations stated. It recurs across two files and its object is always a literal percentage (1% for Magma, 10% for Couchstore), so it shares hasDefaultValue's literal-versus-concept problem and is the reason `1%` and `10%` sit in the concept ranking. Kept as its own predicate rather than folded into hasDefaultValue because a *minimum requirement* and a *default value* are different claims - one constrains valid configurations, the other describes an unset one - and conflating them would make the registry state that 1% is Magma's default memory ratio, which is not what the page says. The figures are duplicated across two pages in the source docs; see docs-issues/server-magma-memory-ratio-figures-duplicated."
+}

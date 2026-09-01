@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/level",
+  "label": "Durability level",
+  "type": "the per-write setting specifying how far a mutation must propagate before the write is acknowledged. Distinct from sdk:transaction-durability, which is the transaction-scoped setting, and from the SDK-side sdk:durability extraction-layer id.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/durability.md",
+  "note": "Promoted with two of its values. Note the deliberate non-merge with sdk:transaction-durability, an existing record: that one is a transaction's durability setting and this is a single mutation's, and while they take related values they are set in different places and documented as different options."
+}

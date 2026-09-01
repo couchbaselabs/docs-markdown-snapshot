@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/bucket-full-access",
+  "label": "Application Access (Server RBAC role)",
+  "type": "a Server RBAC role granting full data access to a bucket. DEPRECATED: roles.md states 'Do not grant this role to users.' Renamed - 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access' - but the internal name bucket_full_access is unchanged.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "role:application-access"
+  ],
+  "internal_name": "bucket_full_access",
+  "deprecated": true,
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Application Access (bucket_full_access)",
+  "note": "Promoted with the contradiction attached rather than resolved: roles.md marks it deprecated and says not to grant it, while authorization-overview.md presents it as one of Community Edition's three live fixed roles with no warning. A CE administrator is told both things. See docs-issues/server-authorization-overview-lists-deprecated-role-as-live-ce-role - needs an SME, because the honest readings diverge: either one page is stale, or CE really does depend on a deprecated role and roles.md's blanket warning has an unstated exception."
+}

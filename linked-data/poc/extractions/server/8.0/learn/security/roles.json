@@ -1,0 +1,265 @@
+{
+  "page_id": "server/8.0/learn/security/roles",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/roles.md",
+  "concepts": [
+    { "candidate_id": "rbac-model:role", "label": "Role (RBAC abstract entity)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "rbac-model:privilege", "label": "Privilege (RBAC abstract action-type)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on authentication-overview.json this batch" },
+    { "candidate_id": "server:user-category", "label": "Couchbase Server user category (Administrators / Developers / Applications)", "registry_status": "minted", "reused_or_minted": "minted - a closed 3-value scheme this page names explicitly ('Couchbase Server users fall into three categories: administrators, developers, and applications'), following the index-state/cluster-access-credential-type flat-scheme pattern already in the registry." },
+    { "candidate_id": "server:keyspace", "label": "Keyspace (collection)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted round 11 on the Index Service page" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. Internal name confirmed as `admin` on this page - 'The Full Admin role (`admin`) grants full privileges to all Couchbase Server features and resources, including security.'" },
+    { "candidate_id": "role:admin", "label": "Admin (Community Edition coarse role, internal name admin)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted this batch on authorization-overview.json. This page's Full Admin role (internal name `admin`) resolves the open question left there - see the isSynonymOf relation below." },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted this batch on authorization-overview.json as the Community Edition coarse role (internal name `ro_admin`). This page's full Read-Only Admin role table confirms the same internal name, so the SAME id is reused directly here for the full role rather than minting a second one - see notable_absence/cross_component_finding for the 8.0 permission split this page adds that the coarse mention never could." },
+    { "candidate_id": "role:security-admin", "label": "Security Admin", "registry_status": "minted", "reused_or_minted": "minted - new in Couchbase Server 8.0, absorbing security-settings management split off from the Local/External User (Security) Admin roles" },
+    { "candidate_id": "role:ro-security-admin", "label": "Read-Only Security Admin", "registry_status": "minted", "reused_or_minted": "minted - new in Couchbase Server 8.0, absorbing the security-settings read permissions split off Read-Only Admin" },
+    { "candidate_id": "role:local-user-admin", "label": "Local User Admin", "registry_status": "minted", "reused_or_minted": "minted - the 8.0 successor to the already-promoted role:local-user-security-administrator, with security-settings-management privileges split into role:security-admin. NOT the same id as the promoted concept, since roles.md itself treats them as two different roles connected by an explicit replacement/split relation - see the splitInto relations below." },
+    { "candidate_id": "role:external-user-admin", "label": "External User Admin", "registry_status": "minted", "reused_or_minted": "minted - sibling of role:local-user-admin, same 8.0 split pattern, successor to the (never separately promoted) External User Security Admin role" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin", "registry_status": "minted", "reused_or_minted": "minted - manages all cluster features except security" },
+    { "candidate_id": "role:eventing-full-admin", "label": "Eventing Full Admin", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. Internal name confirmed as `eventing_admin` on this page." },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:data-reader", "label": "Data Reader (Server RBAC role)", "registry_status": "minted", "reused_or_minted": "minted - DELIBERATE NAME COLLISION with the already-promoted capella-role:data-reader, NOT merged. Capella's Data Reader is a project-scope management-plane role in a ~10-member closed catalogue; Server's Data Reader (internal name data_reader) is one of ~54 roles in a per-collection-scopable catalogue with a completely different resource model underneath (buckets/scopes/collections with wildcard parameterisation, per authorization-overview.md). No page states these are the same role - see cross_component_finding." },
+    { "candidate_id": "role:data-writer", "label": "Data Writer (Server RBAC role)", "registry_status": "minted", "reused_or_minted": "minted - same deliberate collision as role:data-reader, against capella-role:data-writer. Kept apart per the naming-collision rule." },
+    { "candidate_id": "role:bucket-admin", "label": "Bucket Admin", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:manage-scopes", "label": "Manage Scopes", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:application-access", "label": "Application Access (deprecated)", "registry_status": "minted", "reused_or_minted": "minted - deprecated role, internal name bucket_full_access. Resolves the open flag left on authorization-overview.json: role:bucket-full-access (Community Edition's coarse role list) IS this role under its pre-5.5 name - see the renamedFrom relation." },
+    { "candidate_id": "role:query-list-index", "label": "Query List Index", "registry_status": "minted", "reused_or_minted": "minted - minted specifically to ground the page's own composability example (see composesWithRole relation), not because the role is independently significant" },
+    { "candidate_id": "privilege:query-select", "label": "Query Select (Server RBAC privilege)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page documents the identical internal name (query_select) as a ROLE, not a privilege - 'Role: Query Select (query\\_select)'. Reused deliberately rather than minting a second role:query-select id: the token is identical and the concept file's own note already anticipates exactly this ('Keep strictly separate from the privilege:capella-*-access-* family'), so the reuse is safe; the terminological looseness (docs call the same token a 'privilege' on N1QL reference pages and 'a role' here) is the headline structural finding of this record - see cross_product_finding." },
+    { "candidate_id": "privilege:query-manage-index", "label": "Query Manage Index", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, same role/privilege terminology-collapse pattern as privilege:query-select. Internal name confirmed: 'Role: Query Manage Index (query\\_manage\\_index)'." },
+    { "candidate_id": "privilege:query-system-catalog", "label": "Query System Catalog (Server RBAC privilege)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (with alias rbac-role:query-system-catalog, itself a role-vs-privilege filing correction from an earlier round). Internal name confirmed: 'Role: Query System Catalog (query\\_system\\_catalog)'." },
+    { "candidate_id": "privilege:query-update", "label": "Query Update (Server RBAC role/privilege)", "registry_status": "minted", "reused_or_minted": "minted - plain-name pattern matching the three already-promoted query-family privileges (not privilege:server-query-update), since Capella's own advanced-access family is prefixed capella-advanced-access-query-update and cannot collide. See cross_component_finding on this batch's naming decision." },
+    { "candidate_id": "privilege:query-insert", "label": "Query Insert (Server RBAC role/privilege)", "registry_status": "minted", "reused_or_minted": "minted - sibling of privilege:query-update, same naming rationale" },
+    { "candidate_id": "privilege:query-delete", "label": "Query Delete (Server RBAC role/privilege)", "registry_status": "minted", "reused_or_minted": "minted - sibling of privilege:query-update, same naming rationale" },
+    { "candidate_id": "role:query-external-access", "label": "QUERY_EXTERNAL_ACCESS (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, under the label 'Query Curl Access' on this page. Internal name confirmed: 'Role: Query Curl Access (query\\_external\\_access)', an exact match to the promoted concept's own label." },
+    { "candidate_id": "role:search-admin", "label": "Search Admin", "registry_status": "minted", "reused_or_minted": "minted - renamedFrom FTS Admin (internal name fts_admin, unchanged across the rename)" },
+    { "candidate_id": "role:search-reader", "label": "Search Reader", "registry_status": "minted", "reused_or_minted": "minted - renamedFrom FTS Searcher (internal name fts_searcher)" },
+    { "candidate_id": "role:analytics-admin", "label": "Analytics Admin", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:analytics-reader", "label": "Analytics Reader", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:sync-gateway", "label": "Sync Gateway (Server RBAC role)", "registry_status": "minted", "reused_or_minted": "minted - MAJOR DELIBERATE NAME COLLISION, the sharpest in this batch. This is a Couchbase SERVER role (internal name mobile_sync_gateway), granted to the connection user a Sync Gateway INSTANCE authenticates as when talking to Couchbase Server - a completely different thing from the already-promoted sgw:role (Sync Gateway's own ad hoc channel-grant bundle, used inside Sync Gateway's sync function, on Sync Gateway's own users). No page states any relationship between them, and none is asserted here - see cross_product_finding. This is a SIXTH structurally distinct thing this ontology calls 'role', after capella-role:role, rbac-role:role, sgw:role, role:full-administrator's classic-RBAC family, and rbac-model:role's abstract glossary entry." },
+    { "candidate_id": "role:xdcr-admin", "label": "XDCR Admin", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "role:data-backup-and-restore", "label": "Data Backup & Restore", "registry_status": "minted", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "rbac-model:role",
+      "predicate": "hasPrivilege",
+      "object": "rbac-model:privilege",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - hasPrivilege, extraction-layer (minted this batch, not yet promoted)",
+      "evidence": "Roles provide a set of privileges for interacting with a resource."
+    },
+    {
+      "subject": "role:data-writer",
+      "predicate": "scopedToKeyspace",
+      "object": "server:keyspace",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - scopedToKeyspace, extraction-layer (minted round 11 for an index's keyspace scoping; reused here for a role's privilege scoping - the same 'X is confined to a specific keyspace' shape, a second independent occurrence of a round-11 id.",
+      "evidence": "For example, when granting a user the Data Writer role, you can limit the user so they can only write to a specific collection."
+    },
+    {
+      "subject": "role:query-select",
+      "predicate": "composesWithRole",
+      "object": "role:query-list-index",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - composesWithRole. Nothing in the registry states that two roles are DESIGNED to be granted together because each is individually too narrow to be useful - requiresRole/grantsRole/impliesRole are all about a single role's own prerequisites or hierarchy, not about a documented pairing of two independently-grantable, independently-scoped roles. This is a genuinely new compositional shape: Server's finest-grained roles are explicitly built to be stacked, which has no equivalent statement anywhere in the Capella role material read so far.",
+      "evidence": "Some roles, such as [Query List Index](#query-list-index), are so limited that they're only useful when combined with other roles ([Query Select](#query-select), for example)."
+    },
+    {
+      "subject": "role:full-administrator",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder, extraction-layer object (edition:community is promoted)",
+      "evidence": "This role is also available in Couchbase Server Community Edition."
+    },
+    {
+      "subject": "role:ro-admin",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder",
+      "evidence": "This role is also available in Couchbase Server Community Edition."
+    },
+    {
+      "subject": "role:admin",
+      "predicate": "isSynonymOf",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSynonymOf. Not a single sentence stating the equivalence, but the strongest evidence short of that: this page's Full Admin role and authorization-overview.md's Community-Edition-coarse-role list independently give the identical internal system identifier (`admin`) to what each page treats as a role. Flagged as identifier-matching-based inference rather than an explicit docs statement of identity, for reconciliation to weigh.",
+      "evidence": "The Full Admin role (`admin`) grants full privileges to all Couchbase Server features and resources, including security."
+    },
+    {
+      "subject": "role:ro-security-admin",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "This role is new in Couchbase Server 8.0\\. It was created to separate security privileges from the Read-Only Admin role."
+    },
+    {
+      "subject": "role:ro-admin",
+      "predicate": "splitInto",
+      "object": "role:ro-security-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - splitInto. renamedFrom is wrong shape here (the old role still exists under its old name, with a reduced permission set) and deprecatedIn is wrong shape too (Read-Only Admin is not deprecated, just narrowed). Nothing in the registry states 'this role's permission set was decomposed into a new sibling role' - a genuinely new RBAC-evolution pattern this batch's brief predicted would look structurally different from Capella's flat role catalogue.",
+      "evidence": "In 8.0, these permissions were split off into the [Read-Only Security Admin](#ro-security-admin) role."
+    },
+    {
+      "subject": "role:ro-admin",
+      "predicate": "autoGrantsOnUpgrade",
+      "object": "role:ro-security-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - autoGrantsOnUpgrade. A distinct fact from splitInto: not just that the permission set was decomposed, but that Couchbase Server's upgrade process automatically re-grants the new sibling role to preserve existing users' effective access. No existing predicate captures an upgrade-triggered automatic role grant.",
+      "evidence": "When you upgrade Couchbase Server from a version earlier than 8.0 to 8.0 or later, the upgrade process grants any user with this role the [Read-Only Security Admin](#ro-security-admin) role as well."
+    },
+    {
+      "subject": "role:local-user-security-administrator",
+      "predicate": "splitInto",
+      "object": "role:local-user-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - splitInto, second occurrence this record. This directly grounds the already-promoted role:local-user-security-administrator concept in its successor - the promoted concept's own note flagged it as a 'classic administrative role' with no page-stated relationship to any other role; this page supplies exactly that missing relationship.",
+      "evidence": "This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role."
+    },
+    {
+      "subject": "role:local-user-security-administrator",
+      "predicate": "splitInto",
+      "object": "role:security-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - splitInto, the other half of the same split",
+      "evidence": "This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role."
+    },
+    {
+      "subject": "role:local-user-security-administrator",
+      "predicate": "autoGrantsOnUpgrade",
+      "object": "role:local-user-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - autoGrantsOnUpgrade",
+      "evidence": "When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the Local User Security Admin role are granted this role and the [Security Admin](#security-admin) role."
+    },
+    {
+      "subject": "role:local-user-security-administrator",
+      "predicate": "autoGrantsOnUpgrade",
+      "object": "role:security-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - autoGrantsOnUpgrade",
+      "evidence": "When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the Local User Security Admin role are granted this role and the [Security Admin](#security-admin) role."
+    },
+    {
+      "subject": "role:local-user-admin",
+      "predicate": "permitsPrivilegeEscalationVia",
+      "object": "rbac-model:role",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - permitsPrivilegeEscalationVia. Nothing in the registry captures a docs-acknowledged, INTENTIONAL privilege-escalation path (as against an accidental gap): the page explicitly names the risk and explains why it is accepted, which is a materially different and more interesting fact than a generic requiresRole/grantsRole statement would capture.",
+      "evidence": "While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it's intentional behavior."
+    },
+    {
+      "subject": "role:external-user-admin",
+      "predicate": "splitInto",
+      "object": "role:security-admin",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - splitInto, third independent occurrence of the same 8.0 RBAC-decomposition pattern (after Read-Only Admin and Local User Security Admin) - by the third instance this is clearly a deliberate, cluster-wide 8.0 redesign (separate security-management from user-management across the whole admin-role family), not an isolated fix.",
+      "evidence": "This role replaced the External User Security Admin role available in Couchbase Server prior to version 8.0\\. The External User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role."
+    },
+    {
+      "subject": "role:backup-full-admin",
+      "predicate": "requiresRole",
+      "object": "role:local-user-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRole, stretched hard: minted for Sync Gateway's sync-function requireRole() rejection check; here it is an administrative capability composition ('to do X fully you additionally need role Y'), not a per-write rejection. Kept because the surface shape (an action needs a named role) matches; the underlying mechanism does not, and that mismatch is itself evidence for the round's central question.",
+      "evidence": "For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role."
+    },
+    {
+      "subject": "role:backup-full-admin",
+      "predicate": "requiresRole",
+      "object": "role:external-user-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRole, same stretch as above",
+      "evidence": "For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role."
+    },
+    {
+      "subject": "role:backup-full-admin",
+      "predicate": "doesNotSupport",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "This role does not grant the ability to back up or restore users."
+    },
+    {
+      "subject": "role:application-access",
+      "predicate": "renamedFrom",
+      "object": "role:bucket-full-access",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom. Resolves the open flag left on authorization-overview.json's role:bucket-full-access concept note ('almost certainly the same role... not folded here') - this page states the rename explicitly, so the fold is now evidence-grounded rather than inferred from a matching internal name alone.",
+      "evidence": "Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access."
+    },
+    {
+      "subject": "role:application-access",
+      "predicate": "availableSince",
+      "object": "version:server-5-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, minted version object (version:server-5-0 does not previously exist in the registry's version:server-* family, whose earliest member was 6.5)",
+      "evidence": "Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets."
+    },
+    {
+      "subject": "role:application-access",
+      "predicate": "mustUseInsteadWhen",
+      "object": "privilege:query-select",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen",
+      "evidence": "Do not grant this role to users. Instead, use one of the query or data roles."
+    },
+    {
+      "subject": "role:manage-scopes",
+      "predicate": "doesNotSupport",
+      "object": "rbac-model:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "The user does not have the ability to read, write, or alter data."
+    },
+    {
+      "subject": "role:search-admin",
+      "predicate": "renamedFrom",
+      "object": "FTS Admin (pre-5.5 role name, internal name fts_admin)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom. Object is a plain descriptive string rather than a separately minted concept id, since the pre-5.5 name has no independent significance beyond being this role's own history.",
+      "evidence": "In versions of Couchbase Server earlier than 5.5, this role was named FTS Admin."
+    },
+    {
+      "subject": "role:search-reader",
+      "predicate": "renamedFrom",
+      "object": "FTS Searcher (pre-5.5 role name, internal name fts_searcher)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - renamedFrom, sibling of role:search-admin's",
+      "evidence": "In versions of Couchbase Server prior to 5.5, this role was referred to as FTS Searcher."
+    },
+    {
+      "subject": "role:xdcr-admin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/create-xdcr-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md) for more information."
+    },
+    {
+      "subject": "role:data-backup-and-restore",
+      "predicate": "doesNotSupport",
+      "object": "server:node",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, stretched: 'important cluster-level data' is broader than the node concept, but node is the closest existing registry id for cluster-level infrastructure state.",
+      "evidence": "This role does not let the user access some important cluster-level data, so it cannot fully backup the cluster."
+    },
+    {
+      "subject": "role:sync-gateway",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/current/introduction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See the [Sync Gateway Introduction](../../../../sync-gateway/current/introduction.md) for more information."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(all)",
+    "finding": "This page documents 54 individually named roles (56 section headers minus the two category headers 'Roles in Relation to Buckets' and 'User Categories'). This record deliberately extracts a selective subset - 24 roles minted or reused, plus 3 already-promoted privilege:query-* concepts reused under their role-table names - per the batch instructions not to enumerate a catalogue mechanically. Explicitly NOT individually extracted, by category: seven Query & Index roles beyond the four covered here (Manage Global Functions, Execute Global Functions, Manage Scope Functions, Query Use Sequential Scans, Execute Scope Functions, Manage/Execute Global and Scope External Functions x4, Manage/Use Sequences x2, Query Manage System Catalog); the Views category in full (Views Admin, Views Reader); Application Telemetry Writer and External Stats Reader; Eventing Manage Scope Functions; XDCR Inbound; and five of six Mobile/Sync-Gateway-adjacent roles (Sync Gateway Architect, Application, Application Read Only, Replicator, Dev Ops - only the base 'Sync Gateway' role itself is extracted, as the anchor for the naming-collision finding). None of these omissions reflects a judgment that the role is unimportant; they reflect the brief's explicit instruction to extract selectively rather than mechanically, prioritising roles that support a structural relation, roles that already exist in the registry, and roles illustrating the round's central question."
+  },
+  "cross_component_finding": "Three independent 8.0 role splits (Read-Only Admin, Local User Security Admin, External User Security Admin) all decompose the SAME distinction: separate 'can manage/view security settings' from 'can manage/view non-security cluster state', consistently routing the security-settings half into either Security Admin or Read-Only Security Admin. That consistency across three unrelated pre-8.0 roles is strong evidence this was a single deliberate 8.0 security-hardening initiative rather than three unrelated bug fixes - a fact no single role's own section states, only visible by reading all three splitInto relations together. Separately: privilege:query-update/insert/delete are minted here using the SAME plain-name convention as the three already-promoted privilege:query-select/query-manage-index/query-system-catalog, deliberately not prefixed privilege:server-*, because none of Capella's own capella-advanced-access-query-* names collide with the plain forms - the three-round-old precedent already established this is safe, and using it again keeps the whole query-privilege family internally consistent rather than half-prefixed and half-plain.",
+  "cross_product_finding": "This page is the decisive evidence for the round's central question, and the answer is: Server's RBAC model does NOT fit the vocabulary built from Capella's - it is a structurally different thing that happens to reuse some of the same words, and it diverges in a more specific way than 'roles vs privileges are organized differently' (see authorization-overview.json's finding on the two-tier-vs-one-tier catalogue question). The concrete mechanism is this: Capella's role catalogue (capella-role:*, ~10 members) is FLAT and coarse - Organization Owner, Project Owner, Data Reader, Data Writer - with a separate, independently large privilege catalogue underneath supplying the fine-grained gating. Server's role catalogue (roles.md, 54 members) spans BOTH grains in one undifferentiated list: some roles are as coarse as Capella's (Full Admin, Cluster Admin) while others are as fine as an individual SQL++ statement (Query Select, Query Insert, Query Delete, Query Manage Index - each gating exactly one DML/DDL operation) - and the page's own text acknowledges this by warning that some roles are 'so limited that they're only useful when combined with other roles.' There is no Server-side equivalent of Capella's privilege catalogue as a SEPARATE enumerable thing; the closest analogue (the three already-promoted privilege:query-* concepts, now joined by three more this record) are not a distinct tier at all, they are simply Server's finest-grained ROLES, independently also called 'privileges' in N1QL reference-page prose - a genuine terminological double-use of one underlying token (query_select, query_manage_index, etc.), not two coordinated tiers. Server RBAC is compositional (many narrow roles, explicitly designed to be stacked - see composesWithRole) where Capella RBAC is combinatorial-by-catalogue (fixed roles, each pre-bundling many named privileges). And role:sync-gateway is the sharpest individual data point for the naming-collision half of the question: it is the SIXTH thing in this ontology called 'role', proving the collision problem is not confined to the Capella/Server boundary the round's brief anticipated - it recurs even within Server's own docs tree, once against a completely different product (Sync Gateway) that Server's own role catalogue has to reference by name to support a real integration."
+}

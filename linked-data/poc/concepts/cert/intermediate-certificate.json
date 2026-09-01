@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/intermediate-certificate",
+  "label": "Intermediate certificate",
+  "type": "a CA certificate between the root and a leaf certificate in a chain, signed by the root and signing the leaf.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "note": "Promoted under the family exception to the recurrence rule: at slot-recurrence 1 it is below the bar on its own, but the X.509 chain is one mechanism and a chain record that omits its own root or intermediate documents a broken chain. Recorded here rather than silently promoted at a different standard."
+}

@@ -6,8 +6,8 @@
   "description": "Index partitioning enables you to increase aggregate query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed.",
   "datePublished": "2026-03-26T05:14:31.984Z",
   "availableSince": [
-    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-6.5" },
-    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-7.0" }
+    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-6-5" },
+    { "@id": "https://docs.couchbase.com/ld/concepts/version/server-7-0" }
   ],
   "hasOption": [
     {

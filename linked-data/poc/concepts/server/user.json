@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/user",
+  "label": "Couchbase Server user",
+  "type": "an identity that authenticates to Couchbase Server and holds RBAC roles, in either the local or the external authentication domain. Distinct from capella:organization members and from sgw:* identities.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/security/usernames-and-passwords.md",
+  "note": "Recurrence 5. Carries a Community Edition constraint with no Capella analogue at all - CE caps the number of users, an edition-gated limit that is meaningful for Server and structurally absent for Capella, which has no Community/Enterprise split."
+}

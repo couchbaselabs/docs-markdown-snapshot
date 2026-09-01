@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/buckets-memory-and-storage",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/buckets-memory-and-storage.md",
+  "concepts": [
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "isSubtypeOf",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf",
+      "evidence": "The types of bucket most frequently used are _Couchbase_ and _Ephemeral_ buckets."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "doesNotSupport",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "minted-shape stretch of doesNotSupport to express a stated persistence-boundary contrast between the two sibling types, rather than a real non-support fact between two concepts of the same kind. Flagged rather than forced into a cleaner but nonexistent predicate.",
+      "evidence": "_Couchbase_ buckets exist both in memory and on disk. _Ephemeral_ buckets exist only in memory."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "requiresSetting",
+      "object": "memory:ejection-policy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresSetting. Object minted at extraction layer on memory.json this batch.",
+      "evidence": "Couchbase Server manages memory to ensure high performance and scalability: memory quotas are established, and data not recently used can be _ejected_, to make room for data more frequently requested."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This overview page has no outbound Markdown links at all, despite introducing bucket types, compression, TTL, memory quotas and ejection - every one of which is elaborated on a sibling page in this same directory (buckets.md, compression.md, memory.md). It closes with 'The pages in this section provide detailed descriptions of buckets, memory, and storage' but never links to any of them by name; the section's navigation is presumably carried entirely by the docs site's left-nav rather than in-page links, which means an LLM or agent given only this page's Markdown text has no way to discover buckets.md, memory.md, storage-engines.md, storage-settings.md, compression.md or vbuckets.md exist."
+  }
+}

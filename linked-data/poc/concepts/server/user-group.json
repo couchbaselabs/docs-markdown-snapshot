@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/user-group",
+  "label": "Couchbase Server user group",
+  "type": "a named set of Server users to which RBAC roles are assigned collectively, so members inherit the group's roles. The destination for idp:ldap-group and SAML attribute mappings.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "Promoted as the indirection layer between identities and roles: it is what makes external federation practical, since mapping a directory group onto a user-group grants roles without per-user administration."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/idp/ldap-group",
+  "label": "LDAP group",
+  "type": "a group in the external LDAP directory, mappable onto a Server user-group and thereby onto Server RBAC roles. The join point between an external directory's membership model and Server's own.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "Promoted because it is the mechanism by which external identities acquire roles at all - without it, auth-domain:external users would need individual role grants."
+}

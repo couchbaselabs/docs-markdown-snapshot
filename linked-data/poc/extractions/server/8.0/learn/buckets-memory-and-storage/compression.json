@@ -1,0 +1,131 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/compression",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/compression.md",
+  "concepts": [
+    { "candidate_id": "compression:data-compression", "label": "data compression", "registry_status": "minted", "reused_or_minted": "minted - umbrella capability; compression is absent from the registry entirely per this round's brief. 'Couchbase Server supports _data compression_ in its communications with internal and external clients, and in its internal handling of items.'" },
+    { "candidate_id": "compression:off-mode", "label": "Off (compression mode)", "registry_status": "minted", "reused_or_minted": "minted - one of a genuine three-member closed family ('Each bucket is configured to support one of three _modes_'), individually named and individually referenced in the switching-behavior section, so minted as siblings rather than modeled as a flat unreferenced enum." },
+    { "candidate_id": "compression:passive-mode", "label": "Passive (compression mode)", "registry_status": "minted", "reused_or_minted": "minted - sibling of compression:off-mode; the default mode for new buckets since Server 5.5." },
+    { "candidate_id": "compression:active-mode", "label": "Active (compression mode)", "registry_status": "minted", "reused_or_minted": "minted - sibling of compression:off-mode." },
+    { "candidate_id": "compression:compression-ratio", "label": "compression ratio", "registry_status": "minted", "reused_or_minted": "minted - the cluster-wide before/after size-ratio parameter gating whether a document is retained compressed." },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (aliased from server:dcp-protocol). This page names 'external DCP clients' as one of the parties that negotiate compression support." },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted on buckets.json this batch" },
+    { "candidate_id": "sdk:kv-operations", "label": "key-value operations", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states the SDK can elect to send/receive compressed items." },
+    { "candidate_id": "tool:cbbackup", "label": "cbbackup", "registry_status": "minted", "reused_or_minted": "minted - NOT merged with the already-promoted tool:cbbackupmgr ('the command-line backup and restore utility'). This page names 'cbbackup' and 'cbrestore' specifically, a different pair of tool names than cbbackupmgr; no page in either extraction states these are the same tool or that one supersedes the other, so kept separate per the no-merge-without-evidence rule and flagged as a naming question for reconciliation - see cross_component_finding." },
+    { "candidate_id": "tool:cbrestore", "label": "cbrestore", "registry_status": "minted", "reused_or_minted": "minted - sibling of tool:cbbackup, same collision note." },
+    { "candidate_id": "version:server-5-5", "label": "Couchbase Server 5.5", "registry_status": "minted", "reused_or_minted": "minted - new, earlier entry in the version:server-* family (all currently-promoted server versions start at 6.5); this page dates Passive mode's introduction to 5.5 explicitly." }
+  ],
+  "relations": [
+    {
+      "subject": "compression:data-compression",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "Compression is available only in Couchbase Enterprise Edition, and can be applied only to Couchbase and Ephemeral buckets."
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "offersConfigurationChoice",
+      "object": "compression:off-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Each bucket is configured to support one of three _modes_."
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "offersConfigurationChoice",
+      "object": "compression:passive-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Each bucket is configured to support one of three _modes_."
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "offersConfigurationChoice",
+      "object": "compression:active-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Each bucket is configured to support one of three _modes_."
+    },
+    {
+      "subject": "compression:passive-mode",
+      "predicate": "availableSince",
+      "object": "version:server-5-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "This mode is assigned by default to _new_ buckets, in Couchbase Server 5.5 and beyond."
+    },
+    {
+      "subject": "compression:off-mode",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "compression:passive-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - retainedForLegacyCompatibility",
+      "evidence": "This mode is assigned by default to buckets _upgraded_ from a previous version of Couchbase Server."
+    },
+    {
+      "subject": "compression:compression-ratio",
+      "predicate": "hasDefaultValue",
+      "object": "1.2",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasDefaultValue",
+      "evidence": "The cluster-wide value for the parameter is _1.2_."
+    },
+    {
+      "subject": "tool:cbbackup",
+      "predicate": "configurableVia",
+      "object": "compression:data-compression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "The `cbbackup`, `cbrestore`, and associated tools, which allow compressed items to be requested in the backup stream."
+    },
+    {
+      "subject": "tool:cbrestore",
+      "predicate": "configurableVia",
+      "object": "compression:data-compression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "The `cbbackup`, `cbrestore`, and associated tools, which allow compressed items to be requested in the backup stream."
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "configurableVia",
+      "object": "compression:data-compression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "The Couchbase SDK, which can elect to send and receive compressed items."
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "configurableVia",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia, stretched: DCP is named as one of the parties that negotiates compression support over the HELO command, rather than a setting in the usual sense, but the shape (subject's behavior influenced by the object surface) fits.",
+      "evidence": "external DCP clients (**6**), and remote clusters that participate in Cross Data-Center Replication (**7**) communicate their ability to send and receive compressed items by using the `HELO` command"
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on using the Couchbase Web Console to create buckets, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md)"
+    },
+    {
+      "subject": "compression:data-compression",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on roles that allow modification of bucket-settings, see [Authorization](../security/authorization-overview.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "Passive mode's introduction is dated explicitly ('in Couchbase Server 5.5 and beyond'), but Active and Off modes carry no version at all - Off is described only as 'the behavior of Couchbase Server pre-5.5', which dates a BEHAVIOR, not the mode's own introduction as a selectable option, and Active mode's introduction is never dated on this page at all. Also absent: the round brief's assumption that compression restrictions might interact with bucket type is close to vacuous here, since 'can be applied only to Couchbase and Ephemeral buckets' names the only two bucket types this batch's pages recognize at all (see buckets.json's Memcached-bucket-absence finding) - the restriction reads as leftover phrasing from an era when a third bucket type existed, not as an active constraint today."
+  },
+  "cross_component_finding": "This page names 'cbbackup' and 'cbrestore' as the tools that request compressed items in the backup stream - different names from the already-promoted tool:cbbackupmgr ('the command-line backup and restore utility'). cbbackupmgr is documented elsewhere as the current backup CLI; cbbackup/cbrestore read like legacy/superseded tool names, but no page in either extraction states that relationship explicitly, so tool:cbbackup and tool:cbrestore are minted separately here rather than merged into or marked as superseded-by tool:cbbackupmgr. Flagged for reconciliation/SME review rather than resolved, per this round's explicit instruction not to invent a superseding relationship without a page stating it."
+}

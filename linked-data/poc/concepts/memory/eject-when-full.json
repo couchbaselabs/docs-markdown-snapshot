@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/memory/eject-when-full",
+  "label": "Eject when full",
+  "type": "the ephemeral-bucket policy under which the oldest data is discarded to admit new writes once the memory quota is reached.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/memory.md",
+  "note": "Member of the ejection-policy closed set, promoted as a family: memory:ejection-policy clears the recurrence bar and memory:full-ejection does too, while the remaining members sit at 1. An enum promoted with some values missing is worse than useless - a consumer cannot tell an absent value from an invalid one - so the set is completed deliberately and the exception is recorded here rather than left implicit."
+}

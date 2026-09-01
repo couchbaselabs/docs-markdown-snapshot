@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/ro-admin",
+  "label": "Read-Only Admin (Server RBAC role)",
+  "type": "a Server RBAC role granting read-only access to cluster state. One of the three roles authorization-overview.md lists as available in Community Edition. Split in 8.0: the security-settings half moved to Read-Only Security Admin.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "role:read-only-admin"
+  ],
+  "internal_name": "ro_admin",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Read-Only Admin (ro_admin)",
+  "note": "Promoted with role:bucket-full-access from authorization-overview.md's Community Edition list. Its 8.0 split is one of three independent role splits (with Local User Security Admin and External User Security Admin) that all decompose the same distinction - separating 'can manage or view security settings' from 'can manage or view other cluster state'. That consistency across three unrelated pre-8.0 roles is evidence of one deliberate 8.0 security-hardening initiative, a fact no single role's own section states."
+}

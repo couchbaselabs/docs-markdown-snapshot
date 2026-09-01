@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-buckets-page-states-closed-two-type-set-without-noting-removal",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "buckets.md presents a closed two-member bucket-type set (Couchbase and Ephemeral) with no indication that a third type existed until this release. Memcached buckets were deprecated in 6.5.1 and fully removed in 8.0.0 - relnotes.md states it and warns that 'Cluster upgrades from earlier versions will fail if Memcached buckets are present'. A reader arriving at the bucket-types page while planning an upgrade, which is exactly who needs that warning, is not told. The removal is documented only in the release notes, which is the wrong place for a reader doing capacity or migration planning.",
+  "about": [
+    "server/8.0/learn/buckets-memory-and-storage/buckets"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

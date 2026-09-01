@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/encryption/native-encryption-at-rest",
+  "label": "Native encryption at rest",
+  "type": "Couchbase Server's built-in encryption of data on disk, as opposed to encryption provided by the filesystem or storage layer beneath it. An Enterprise Edition feature.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/data-at-rest-encryption.md",
+  "note": "Head of the encryption-at-rest family. The docs are careful to call it *native* to distinguish it from filesystem-level encryption, and the registry keeps that adjective in the id for the same reason: 'encryption at rest' unqualified is true of a great many deployments that have this feature switched off."
+}

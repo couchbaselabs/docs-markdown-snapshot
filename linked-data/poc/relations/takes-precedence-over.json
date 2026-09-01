@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/takes-precedence-over",
+  "label": "takes precedence over",
+  "kind": "relation (schema-level)",
+  "type": "subject = a setting or scope-level value; object = another setting it overrides when the two conflict; means the subject's value wins.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted at cross-round recurrence 2 - one occurrence in this round's data batch (a bucket or collection maximum TTL capping a longer per-item expiration) and one earlier. Fills a real gap: the registry could previously state that two settings existed and that one was a default, but not that one silently overrides the other, which is precisely the class of fact that surprises an administrator in production."
+}

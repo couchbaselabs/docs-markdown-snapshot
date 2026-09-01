@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/idp/ldap",
+  "label": "LDAP identity provider",
+  "type": "an LDAP directory used as an external identity provider for Server's external authentication domain. NOT to be merged with Capella's sso:realm/sso:group-mapping family: Capella registers an IdP at the management plane and maps groups to Capella teams/roles, whereas Server's LDAP integration resolves to its own local role and group catalogue.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "Highest-recurrence member of the new idp: namespace. Kept separate from the sso:* family on the standing no-silent-merge rule - the two federate to an external directory for two structurally different downstream authorization models, and no page states they are the same mechanism."
+}

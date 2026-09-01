@@ -2,12 +2,15 @@
   "id": "https://docs.couchbase.com/ld/docs-issues/server-query-system-catalog-called-role-and-privilege",
   "type": "docs-issue",
   "issueType": "naming-inconsistency",
-  "description": "metafun.md calls query_system_catalog a *role* ('you must have the `query_system_catalog` role'), whereas the same string is documented as a privilege elsewhere and was extracted into the privilege: namespace from the AWR and monitoring pages. Server RBAC distinguishes roles from privileges, and this string is used for both on different pages, which is exactly the kind of drift that produced the rbac-role:/privilege: namespace collision in the POC's own registry.",
+  "description": "CORRECTED IN ROUND 12 - the original verdict was backwards. query_system_catalog is a ROLE. server/current/learn/security/roles.md documents it with its own table, headed 'Role: Query System Catalog (query_system_catalog)', and prose reading 'The Query System Catalog role lets the user query the system catalog using SQL++'. metafun.md, which this issue originally filed as the drift for calling it a role, agrees with the authoritative catalogue. The real inconsistency is the other way round: the AWR and monitoring reference pages call it a privilege, and Server has no privilege catalogue for it to be in. Original description, retained: metafun.md calls query_system_catalog a *role* ('you must have the `query_system_catalog` role'), whereas the same string is documented as a privilege elsewhere and was extracted into the privilege: namespace from the AWR and monitoring pages.",
   "about": [
     "server/8.0/n1ql/n1ql-language-reference/metafun",
     "server/8.0/n1ql/n1ql-manage/query-awr",
-    "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query"
+    "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query",
+    "server/8.0/learn/security/roles"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
-  "status": "open"
+  "status": "open",
+  "correctedIn": "round-12-server-8.0-learn-data-buckets-security",
+  "correction": "Round 10 read this as 'privileges filed as roles' and folded rbac-role:query-system-catalog and rbac-role:query-manage-system-catalog into privilege:, citing a round-6 precedent that does not exist in reconciliation.md. Round 12 read roles.md - the first round to do so - and reversed it: eleven ids re-filed from privilege: to role:. The docs inconsistency this issue records is still open; only the POC's reading of which page was wrong has changed."
 }

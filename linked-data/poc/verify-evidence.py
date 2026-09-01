@@ -117,9 +117,16 @@ def check_record(rec, cache=None, root="."):
 
 
 def main():
-    root = sys.argv[1] if len(sys.argv) > 1 else EXTRACTIONS
-    if not os.path.isdir(root):
-        sys.exit(f"not a directory: {root}")
+    # Every path given, not just the first. This used to read argv[1] alone and
+    # silently ignore the rest, so validating a multi-directory wave reported a
+    # clean result for one directory and looked identical to a clean result for
+    # all of them. A checker that under-reports its own coverage is worse than
+    # one that fails, so the roots are explicit and the record count is the only
+    # thing that reveals the difference.
+    roots = sys.argv[1:] or [EXTRACTIONS]
+    for root in roots:
+        if not os.path.isdir(root):
+            sys.exit(f"not a directory: {root}")
 
     pages = {}          # source path -> normalised text, cached
     records = 0
@@ -127,7 +134,11 @@ def main():
     cross_page = 0
     problems = []
 
-    for fp in sorted(glob.glob(os.path.join(root, "**", "*.json"), recursive=True)):
+    targets = []
+    for root in roots:
+        targets += glob.glob(os.path.join(root, "**", "*.json"), recursive=True)
+
+    for fp in sorted(set(targets)):
         try:
             rec = json.load(open(fp))
         except json.JSONDecodeError as e:

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbepctl-setting-migration-stated-piecemeal",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "memory.md states, separately and per-setting, that three unrelated setting groups (warmup_min_items_threshold/warmup_min_memory_threshold, mem_high_wat/mem_low_wat, and exp_pager_stime) are no longer supported through cbepctl and are now configured via the REST API. Three independent instances on one page is a cluster-wide migration away from cbepctl stated three times as a local footnote and nowhere as an architectural change. An operator with cbepctl in their scripts has no single page telling them the tool's configuration surface has been retired.",
+  "about": [
+    "server/8.0/learn/buckets-memory-and-storage/memory"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

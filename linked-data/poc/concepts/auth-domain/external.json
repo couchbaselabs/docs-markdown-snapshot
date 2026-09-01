@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth-domain/external",
+  "label": "External authentication domain",
+  "type": "the Server authentication domain holding users whose credentials are verified by an external identity provider (LDAP, SAML, PAM) rather than by Couchbase Server. Pairs with auth-domain:local.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "note": "See auth-domain:local. Note this is Server's own two-domain split and is unrelated to Capella's organization/project scoping, which divides on a different axis entirely."
+}

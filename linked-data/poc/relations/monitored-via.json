@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/monitored-via",
+  "label": "monitored via",
+  "kind": "relation (schema-level)",
+  "type": "subject = a component, service or resource; object = the metric, endpoint, log or UI surface through which its state is observed.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted at cross-round recurrence 2, spanning the server/ and cloud/ trees - the Capella metrics reference and Server's own memory and storage pages independently needed a way to say 'this is where you watch this'. Worth flagging that the object type varies widely (a named metric, a REST endpoint, a log file, a Web Console panel); if the variance becomes a problem the predicate should split by observation surface rather than be stretched further."
+}

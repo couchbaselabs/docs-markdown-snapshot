@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/node-certificate",
+  "label": "Node certificate",
+  "type": "the X.509 certificate a Couchbase Server node presents to identify itself to clients and to other nodes. Distinct from cert:client-certificate, which travels the other direction.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "note": "Promoted with cert:client-certificate as the two leaf certificates. The pair is what makes tls:mutual-tls meaningful - mTLS is exactly the configuration in which both are validated."
+}

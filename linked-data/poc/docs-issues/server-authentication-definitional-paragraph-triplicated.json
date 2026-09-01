@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-authentication-definitional-paragraph-triplicated",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "The same definitional paragraph appears on three sibling pages rather than being stated once and linked. authentication.md's second paragraph and authentication-overview.md's abstract are verbatim identical ('To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system.'), and usernames-and-passwords.md restates it reworded. Copy-paste, not paraphrase, so the three will drift independently.",
+  "about": [
+    "server/8.0/learn/security/authentication",
+    "server/8.0/learn/security/authentication-overview",
+    "server/8.0/learn/security/usernames-and-passwords"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

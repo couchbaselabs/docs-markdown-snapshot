@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/authentication",
+  "label": "Authentication (Server security facility)",
+  "type": "one of the four named security facilities in Server's own security-overview.md framing (Authentication / Authorization / Auditing / Encryption) - the process of identifying who is attempting to access the system.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/security/security-overview.md",
+  "note": "Promoted as one of the four facilities because security-overview.md's bullet list is structurally the table of contents for the entire learn/security/ subtree - the four terms are the docs' own top-level organisation of the area, not an extraction artefact. Server is the only one of the three product trees examined so far with a single page naming all four."
+}

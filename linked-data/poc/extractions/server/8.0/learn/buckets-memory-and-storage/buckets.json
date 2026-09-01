@@ -1,0 +1,149 @@
+{
+  "page_id": "server/8.0/learn/buckets-memory-and-storage/buckets",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "concepts": [
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "minted", "reused_or_minted": "minted - the registry has capella:bucket ('the top level of Capella's data hierarchy: bucket > scope > collection') but no server-side bucket concept, despite this page being explicitly named as server's own canonical statement of what a bucket is. This page states a closed two-member bucket-type set (Couchbase/Ephemeral) and bucket-storage-backend constraints that capella:bucket's source pages never state. Not merged with capella:bucket - no page in this batch asserts the two are the same object, so this is flagged as a same-name candidate for human review rather than resolved here." },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "minted", "reused_or_minted": "minted - one of the two members of the closed bucket-type set this page states ('Couchbase Server supports two types of buckets')." },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "minted", "reused_or_minted": "minted - sibling of bucket:couchbase-bucket, the second and last member of the closed set this page states." },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (from a Capella health-advisor page). This page's account ('the traditional storage engine better suited to lower volumes of data') matches the Capella page's usage with no stated distinction, so reused rather than re-minted." },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, same basis as storage-engine:couchstore above." },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (aliased from server:dcp-protocol). This page names it explicitly as what Couchbase buckets use for replication." },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." }
+  ],
+  "relations": [
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "isSubtypeOf",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, minted concept on both sides this batch",
+      "evidence": "Couchbase Server supports two types of buckets:"
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "isSubtypeOf",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf",
+      "evidence": "Couchbase Server supports two types of buckets:"
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "usesProtocol",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesProtocol",
+      "evidence": "They support automatic data replication for high availability using the Database Change Protocol (DCP)."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "ejectsDocumentsUnder",
+      "object": "memory:value-only-ejection",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - ejectsDocumentsUnder, the exact worked example given in this round's brief. Object minted at the extraction layer on memory.json (same batch), not yet promoted.",
+      "evidence": "Value-only: The system removes only key-values. This option generally improves performance but uses more memory."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "ejectsDocumentsUnder",
+      "object": "memory:full-ejection",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - ejectsDocumentsUnder",
+      "evidence": "Full: The system removes all data, including keys, key-values, and metadata. This option generally saves memory but may reduce performance."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "ejectsDocumentsUnder",
+      "object": "memory:no-ejection",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - ejectsDocumentsUnder",
+      "evidence": "If you choose not to have data ejected, Couchbase Server does not remove data from the bucket when it fills."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "ejectsDocumentsUnder",
+      "object": "memory:eject-when-full",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - ejectsDocumentsUnder",
+      "evidence": "If you enable data ejection, Couchbase Server removes older data from the bucket to make room for new data."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "offersConfigurationChoice",
+      "object": "storage-engine:couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Couchstore: the traditional storage engine better suited to lower volumes of data."
+    },
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "offersConfigurationChoice",
+      "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "Magma: the latest high performance storage engine for much higher data volumes."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "storage-engine:couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "The bucket storage backends apply only to Couchbase buckets. Ephemeral buckets do not use these backends."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "The bucket storage backends apply only to Couchbase buckets. Ephemeral buckets do not use these backends."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, stretched from 'a new capability' to 'a new hard requirement on an existing capability' (password-protected access), which is the same 'since version V this holds' shape the predicate's own note describes.",
+      "evidence": "Starting with version 7.6, Couchbase Server does not support SQL++ operations on buckets without a password."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Scopes and Collections](../data/scopes-and-collections.md)"
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/storage-engines",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Storage Engines](storage-engines.md)"
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Authorization](../security/authorization-overview.md)"
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/bucket-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Manage Buckets](../../manage/manage-buckets/bucket-management-overview.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasBucketType",
+    "finding": "The round brief expects Couchbase Server bucket types to include Memcached alongside Couchbase and Ephemeral, but this page states a closed set of exactly two: 'Couchbase Server supports two types of buckets:' followed by only Couchbase and Ephemeral. Grepping all eight pages in this batch for 'memcached' finds a single unrelated hit (the memcached OS process name in storage-settings.md, not a bucket type). Either Memcached buckets have been removed from the product by Server 8.0, or this page's documentation has silently dropped a third bucket type that other doc trees may still reference - worth SME follow-up before the registry treats bucket type as a settled two-member enum anywhere."
+  },
+  "cross_component_finding": "server:bucket (minted here) and capella:bucket (already promoted, recurrence 13) share a name and a broad role - both are 'the fundamental space for storing data' - but this page states facts capella:bucket's source pages never state: a closed two-member bucket-TYPE axis (Couchbase/Ephemeral) and per-type storage-engine and capability constraints (e.g. 'The bucket storage backends apply only to Couchbase buckets'). No page in either extraction states a relationship between the two ids, so per this round's rule they are kept separate rather than merged - flagged here for reconciliation to decide, joining the registry's existing list of same-name-different-thing collisions (cluster-manager, role, index-ui-status)."
+}

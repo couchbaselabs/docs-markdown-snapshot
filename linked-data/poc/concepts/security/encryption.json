@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/encryption",
+  "label": "Encryption (Server security facility)",
+  "type": "one of the four named security facilities in security-overview.md's framing - covering both on-the-wire (tls:*) and at-rest (encryption:*) protection.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/security-overview.md",
+  "note": "The fourth facility, completing the closed set security:authentication / security:authorization / security:auditing / security:encryption that security-overview.md's own bullet list defines. Promoted because it is the node under which the two otherwise-unrelated halves of this batch - wire (tls:*) and disk (encryption:*) - are one topic in the docs' own organisation."
+}

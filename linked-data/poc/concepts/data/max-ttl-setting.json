@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/max-ttl-setting",
+  "label": "Maximum TTL setting",
+  "type": "a bucket- or collection-level ceiling on item expiration, overriding a longer per-item TTL.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/expiration.md",
+  "note": "See data:expiration. Subject of a takesPrecedenceOver triple - one of the two occurrences that earned that predicate its promotion."
+}

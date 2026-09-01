@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/document",
+  "label": "Document",
+  "type": "an item whose value is JSON, and therefore the unit that SQL++, indexes and subdocument operations can address by field. A subset of data:item, not a synonym.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/data/document-data-model.md",
+  "note": "See data:item for why the pair is kept distinct. This is the term almost every other family in the registry ultimately operates on, and it has been implicit in the corpus for eleven rounds without a record - promotion debt that only a data-model batch would surface."
+}

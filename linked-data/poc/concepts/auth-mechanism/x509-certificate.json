@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth-mechanism/x509-certificate",
+  "label": "X.509 certificate authentication",
+  "type": "authenticating a client or node by presenting an X.509 certificate validated against a trust store, rather than by username and password.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "note": "The bridge between the identity half and the crypto half of this round's security batch: it is an auth-mechanism whose machinery is the cert:* family, and cert:trust-store verifiesIdentityOf cert:client-certificate is the same fact stated from the crypto side."
+}

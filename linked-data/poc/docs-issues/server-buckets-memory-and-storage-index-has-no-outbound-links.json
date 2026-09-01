@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-buckets-memory-and-storage-index-has-no-outbound-links",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The buckets-memory-and-storage/ section index page is 24 lines and contains no outbound links at all - it names the subtopics in prose without linking to any of the eight pages beneath it. Every comparable section index in the learn/ tree links its children (security-overview.md's 27 lines carry 5 links and act as the table of contents for the whole security/ subtree). Detected structurally: this page's extraction record holds 3 relations against a batch mean of 12.5, and the deficit is entirely the missing seeAlso set.",
+  "about": [
+    "server/8.0/learn/buckets-memory-and-storage/buckets-memory-and-storage"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

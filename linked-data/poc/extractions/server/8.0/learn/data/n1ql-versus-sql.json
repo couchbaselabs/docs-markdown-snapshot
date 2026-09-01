@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/learn/data/n1ql-versus-sql",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/data/n1ql-versus-sql.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (alias n1ql:sql-plus-plus); this page is the comparison-against-SQL angle of the same language."
+    },
+    {
+      "candidate_id": "sql:sql",
+      "label": "SQL (relational query language)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for standard relational SQL anywhere in the registry; this page treats it as SQL++'s comparison partner throughout."
+    },
+    {
+      "candidate_id": "n1ql:keyspace",
+      "label": "keyspace",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'keyspace' is used constantly elsewhere in the registry's n1ql:* definitions (e.g. n1ql:query-context, n1ql:select) but was never itself promoted as a concept; this page defines it directly against the relational table."
+    },
+    {
+      "candidate_id": "sql:table",
+      "label": "table (relational)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the relational counterpart to n1ql:keyspace, named explicitly on this page as having 'uniform structure'."
+    },
+    {
+      "candidate_id": "n1ql:construction-operator",
+      "label": "collection/construction operator (SQL++ projection)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own term for projection-time object/array reshaping expressions (e.g. `{'FullTime': true} AS 'Status'`); no existing n1ql:* statement or clause concept covers this."
+    },
+    {
+      "candidate_id": "n1ql:is-missing-operator",
+      "label": "IS MISSING operator",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct from n1ql:scan-consistency's enum and from any existing statement; this is the operator distinguishing an absent field from an explicit null."
+    },
+    {
+      "candidate_id": "n1ql:any-some-every-operators",
+      "label": "ANY / SOME / EVERY operators",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - array-predicate operator family named explicitly on the page, not covered by n1ql:aggregate-functions or n1ql:misc-utility-functions."
+    },
+    {
+      "candidate_id": "n1ql:nested-element-accessor",
+      "label": "dot / square-bracket nested-element accessor",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the dot and square-bracket syntax for descending into a document's nested elements/arrays, distinct from FROM/keyspace-level access."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "structurallyDiffersFrom",
+      "object": "sql:sql",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate expresses a top-level language-vs-language structural comparison; tradesOffAgainst is for two strategies with opposing strengths, not this kind of foundational data-model contrast.",
+      "evidence": "The most important difference between SQL++ and SQL is the _data model_."
+    },
+    {
+      "subject": "n1ql:keyspace",
+      "predicate": "structurallyDiffersFrom",
+      "object": "sql:table",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate as above, applied one level down to the concrete data-container pair.",
+      "evidence": "By contrast, SQL++ handles data as free-form documents, gathered into large collections called _keyspaces_. There is no uniformity; nor is there any logical proximity shared by objects of the same _data shape_ within the keyspace."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:construction-operator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, exact shape fit ('the subject supports the named language construct or dialect feature').",
+      "evidence": "an arbitrary expression in the projection may contain collection operators or construction operators, which enable you to reshape the data in ways that go beyond merely adding an extra field"
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:is-missing-operator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "SQL++ provides a complementary set of operators like `IS MISSING`, in addition to standard operators like `IS NULL`."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:any-some-every-operators",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "SQL++ provides new operators to work with arrays in documents: `ANY`, `SOME`, and `EVERY`."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:nested-element-accessor",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Such nested elements are addressed using the dot (.) operator to descend a level, and the square-bracket ( \\[ \\] ) operator to index into an array element."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / requiresPrivilege",
+    "finding": "The page carries zero version facts and zero privilege facts - not one statement is dated or RBAC-gated. Consistent with round 12's genre observation: this is pure conceptual/comparison prose, and it yields taxonomy (keyspace, construction operators, IS MISSING, ANY/SOME/EVERY) that reference pages never state, at the total cost of the version/privilege facts reference pages are full of."
+  },
+  "cross_component_finding": "This page never names hasNoRelationshipTo/shouldNotBeConfusedWith/doesNotSupport explicitly, despite the round brief flagging it as a likely source for those - the text contains no 'does not' or 'cannot' sentence anywhere. Every contrast here is phrased positively ('SQL++ provides X, in addition to Y'), so I did not force a negative-relation predicate onto it; the comparison is real but the page's own phrasing is additive, not exclusionary. This is itself worth recording: not every comparison page yields negative relations, only ones that state a boundary in the negative.",
+  "cross_product_finding": "This page is the clearest evidentiary root for cbl:server-sql-plusplus-dialect's existing definition ('the full server/ SQL++ language taken as a whole') - it is the one place in the corpus that explains what 'the dialect' actually is at the language-design level, rather than any individual n1ql:* statement page. No Capella, SDK, or Sync Gateway angle appears on this page at all."
+}

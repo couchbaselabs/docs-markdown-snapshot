@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-magma-thread-settings-split-across-two-pages",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "storage-engines.md tells the reader 'See Magma Flushing and Compaction Threads for more information about these settings' for settings it names but does not document; the settings themselves (num_storage_threads, magma_flusher_thread_percentage) are documented only in storage-settings.md's section of that name. Confirmed from both sides by the two pages' extraction records. Not a contradiction - a topic split across two files where the naming page and the documenting page are different, so neither is self-contained.",
+  "about": [
+    "server/8.0/learn/buckets-memory-and-storage/storage-engines",
+    "server/8.0/learn/buckets-memory-and-storage/storage-settings"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/mutual-tls",
+  "label": "Mutual TLS (mTLS)",
+  "type": "a TLS configuration in which both peers present and validate certificates, so the server authenticates the client as well as the reverse. Requires cert:client-certificate and cert:node-certificate together.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "note": "Promoted as the configuration that ties the certificate family to the wire. Distinct from tls:node-to-node-encryption, which is about which hops are encrypted rather than who proves identity to whom - two settings that are easy to conflate and are configured separately."
+}

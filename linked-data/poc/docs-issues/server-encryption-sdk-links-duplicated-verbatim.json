@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-encryption-sdk-links-duplicated-verbatim",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "The same three per-SDK 'Encrypting Your Data' links (Go, Java, Python) appear word-for-word as a NOTE block on both sibling pages rather than being stated once and cross-referenced. Also worth noting on its own: field-level encryption is documented only as three per-SDK-language pages, each independently versioned, with no server-side page - consistent with it being an SDK-side capability, but it means there is no single place to learn whether it exists.",
+  "about": [
+    "server/8.0/learn/security/encryption-overview",
+    "server/8.0/learn/security/native-encryption-at-rest-overview"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

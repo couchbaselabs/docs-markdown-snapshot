@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/scope",
+  "label": "Scope (Couchbase Server)",
+  "type": "the middle level of Server's data hierarchy: bucket > scope > collection. A named grouping of collections, and the unit at which much RBAC role scoping applies.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "note": "PARALLEL-NAMESPACE COLLISION with capella:scope, kept separate under the standing no-silent-merge rule. Round 11 flagged this pair as 'a merge candidate needing a source statement, not merged'; round 12 searched the cloud/ tree for a statement that Capella's construct IS Couchbase Server's and found none, so the pair stays split - but round 12 also supplies a better reason than absence of evidence. Weaker case for separation than server:bucket - the two records say close to the same thing. Kept separate only for consistency with the bucket split directly above it, since a hierarchy half-merged at one level and split at another is worse than either endpoint. This is the pair most likely to merge first when a source statement turns up."
+}

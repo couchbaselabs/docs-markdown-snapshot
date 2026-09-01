@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/node-to-node-encryption",
+  "label": "Node-to-node encryption",
+  "type": "encryption of intra-cluster traffic between Couchbase Server nodes, as distinct from client-to-node traffic. Configurable in strict and control modes.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "note": "Promoted as a wire setting orthogonal to tls:mutual-tls - see that record. Its strict mode is the setting that makes the cleartext ports unavailable, which is what gives port:18091 a reason to exist as a registry term."
+}

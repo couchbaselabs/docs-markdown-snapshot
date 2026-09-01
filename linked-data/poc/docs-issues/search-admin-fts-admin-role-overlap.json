@@ -9,5 +9,7 @@
     "server/fts/fts-introduction"
   ],
   "foundDuring": "poc-100-page-stress-test",
-  "status": "open"
+  "status": "resolved",
+  "resolvedIn": "round-12-server-8.0-learn-data-buckets-security",
+  "resolution": "Resolved from the docs, without an SME. roles.md states the mapping directly: 'Role: Search Admin (fts_admin)' and 'Role: Search Reader (fts_searcher)'. So the search/ tree's 'Search Admin' and the fts/ tree's 'FTS Admin' are one role, internal name fts_admin, and 'FTS Searcher' is the role labelled Search Reader. The POC's two ids were folded into concepts/role/fts-admin.json (aliasing privilege:search-admin) and concepts/role/fts-searcher.json. The original note said this 'needs a subject-matter expert, not more extraction' - that was wrong in a specific and repeatable way: it needed extraction from a different GENRE of page. Ten rounds of reference-page extraction could not answer it; the role catalogue answered it in one line. The residual documentation issue - that the same role is called Search Admin in search/ and FTS Admin in fts/ - stands on its own and is now covered by server-role-label-does-not-match-internal-name."
 }

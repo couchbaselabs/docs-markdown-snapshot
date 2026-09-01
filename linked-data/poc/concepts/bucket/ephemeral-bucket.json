@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/bucket/ephemeral-bucket",
+  "label": "Ephemeral bucket",
+  "type": "the memory-only bucket type: no data is written to disk, so it supports neither disk persistence nor the persistence-based durability levels. The other of the two 8.0 bucket types.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
+  "note": "Promoted with bucket:couchbase-bucket as a closed two-member set - see that record for the memcached-removal story. Its constraint is the more interesting half: because nothing is persisted, durability:level-persist-to-majority is not available to it, which is a real product-level exclusion rather than a documentation gap."
+}

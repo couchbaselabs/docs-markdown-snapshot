@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/encryption/encryption-at-rest-key",
+  "label": "Encryption-at-rest key",
+  "type": "the data encryption key used by native encryption at rest, itself protected by encryption:master-password.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/learn/security/data-at-rest-encryption.md",
+  "note": "Promoted under the family exception with encryption:master-password: the two-level key hierarchy is one mechanism, and a record for the feature that names neither of its secrets cannot answer how the data is actually protected. Below the recurrence bar individually; said so rather than promoted quietly."
+}

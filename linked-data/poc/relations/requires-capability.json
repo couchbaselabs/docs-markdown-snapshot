@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-capability",
+  "label": "requires capability",
+  "kind": "relation (schema-level)",
+  "type": "subject = a feature or setting; object = a capability of the underlying bucket type, storage engine or edition that must be present for the subject to be usable; means the subject is unavailable without it.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted as the general form of a constraint the corpus keeps restating in specific ways. Its motivating instance is the sharpest cross-family fact this round found: durability:level-persist-to-majority requires disk persistence, which bucket:ephemeral-bucket does not have, so a bucket-type choice silently removes a durability level. Overlaps in spirit with requiresEdition and doesNotSupport, and the boundary is worth watching - if a later round finds it absorbing their occurrences, consolidate then, with the citation, rather than pre-emptively now."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/replica-vbucket",
+  "label": "Replica vBucket",
+  "type": "a copy of a vBucket maintained on another node, promoted to active on failover. Not read from by default.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/vbuckets.md",
+  "note": "See vbucket:active-vbucket. 'Not read from by default' is the clause worth having in the registry: replica reads are possible but opt-in, and assuming otherwise is a common misreading of a replication diagram."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/console-access-setting",
+  "label": "Web Console access setting",
+  "type": "the setting controlling whether the Couchbase Web Console is reachable over HTTP, HTTPS only, or not at all. Governs port:18091 versus its cleartext counterpart.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "note": "Promoted as the smallest of the three wire settings and the only one that is a UI-reachability control rather than a cryptographic one. Kept in tls: because that is where its documentation lives and where an administrator will look for it."
+}

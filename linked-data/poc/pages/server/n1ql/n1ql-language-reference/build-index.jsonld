@@ -5,7 +5,7 @@
   "headline": "BUILD INDEX",
   "description": "The BUILD INDEX statement enables you to build one or more GSI indexes that are marked for deferred building all at once.",
   "datePublished": "2026-03-20T03:41:54.898Z",
-  "requiresPrivilege": { "@id": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index" },
-  "availableSince": { "@id": "https://docs.couchbase.com/ld/concepts/version/server-6.5" },
+  "requiresServerRole": { "@id": "https://docs.couchbase.com/ld/concepts/role/query-manage-index" },
+  "availableSince": { "@id": "https://docs.couchbase.com/ld/concepts/version/server-6-5" },
   "usesEnum": { "@id": "https://docs.couchbase.com/ld/concepts/index-state" }
 }

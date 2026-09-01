@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-change-history-magma-exclusivity-implicit",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "change-history.md states change history is available 'when Magma storage is used for a bucket' and never states the converse - that Couchstore buckets cannot have it. No enablement path is offered for Couchstore, and Couchstore is the only other storage engine, so the exclusivity is real but only implied. A reader on a Couchstore bucket is left to infer that the feature is unavailable rather than being told.",
+  "about": [
+    "server/8.0/learn/data/change-history"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

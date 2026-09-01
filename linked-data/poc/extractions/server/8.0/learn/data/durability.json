@@ -1,0 +1,317 @@
+{
+  "page_id": "server/8.0/learn/data/durability",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/data/durability.md",
+  "concepts": [
+    {
+      "candidate_id": "durability:durable-write",
+      "label": "durable write",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the general server-side write-durability mechanism the round-12 brief flagged as absent. Deliberately NOT the same concept as sdk:transaction-durability (a single DurabilityLevel setting scoped to one SDK transaction attempt); this page describes the underlying general mechanism that ordinary per-key-value writes, not just transactions, use. See cross_component_finding."
+    },
+    {
+      "candidate_id": "durability:regular-write",
+      "label": "regular write",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the asynchronous, no-guarantee counterpart to durability:durable-write, named explicitly on the page."
+    },
+    {
+      "candidate_id": "durability:level",
+      "label": "Durability Level",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - modeled as a ConceptScheme with a flat literal list, same pattern as index-state and eventing:function-lifecycle-state, since the page itself frames it as one settable parameter with 'valid settings'."
+    },
+    {
+      "candidate_id": "durability:level-majority",
+      "label": "majority (Durability Level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - member of durability:level; promoted to its own id rather than left as a bare literal because the page states a bucket-type compatibility fact specific to this one value."
+    },
+    {
+      "candidate_id": "durability:level-majority-and-persist-active",
+      "label": "majorityAndPersistActive (Durability Level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - member of durability:level, restricted to Couchbase buckets per the page."
+    },
+    {
+      "candidate_id": "durability:level-persist-to-majority",
+      "label": "persistToMajority (Durability Level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - member of durability:level, restricted to Couchbase buckets per the page."
+    },
+    {
+      "candidate_id": "durability:majority-requirement",
+      "label": "majority requirement",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the node-count-for-majority mechanism (a table keyed by replica count), distinct from the Level *value* called 'majority' - every durability level, not just the one literally named 'majority', must satisfy this requirement."
+    },
+    {
+      "candidate_id": "durability:timeout",
+      "label": "durability timeout",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the second of the two durability parameters (Level, Timeout) the page names explicitly."
+    },
+    {
+      "candidate_id": "durability:sync-write-in-progress",
+      "label": "SYNC_WRITE_IN_PROGRESS",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the status Couchbase Server returns when a client attempts to write a key that already has a durable write pending."
+    },
+    {
+      "candidate_id": "durability:ambiguous-result",
+      "label": "ambiguous result",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the outcome reported when Couchbase Server cannot confirm whether a durable write succeeded (timeout, node/network failure, rebalance interaction)."
+    },
+    {
+      "candidate_id": "durability:durability-impossible-fallback",
+      "label": "durabilityImpossibleFallback setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the bucket-level escape-hatch setting that reports durable-write success even when the majority is unreachable, at the explicit cost of the durability guarantee."
+    },
+    {
+      "candidate_id": "durability:max-count-setting",
+      "label": "maxCount (sequential auto-failover limit)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the auto-failover setting used to protect durable writes from being lost to cascading automatic failovers."
+    },
+    {
+      "candidate_id": "durability:preserve-durable-writes-setting",
+      "label": "auto-failover preserve durable writes setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a global Enterprise-only setting limiting automatic failover of Data Service nodes to protect durability; sibling/alternative to durability:max-count-setting."
+    },
+    {
+      "candidate_id": "bucket-type:couchbase",
+      "label": "Couchbase bucket (type)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new topical namespace for the on-prem bucket-type axis (Couchbase vs Ephemeral), distinct from capella:bucket (Capella's data-hierarchy concept) and from cloud-provider:* (deployment substrate, not bucket type)."
+    },
+    {
+      "candidate_id": "bucket-type:ephemeral",
+      "label": "Ephemeral bucket (type)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of bucket-type:couchbase; memory-only bucket type that cannot use durability levels requiring persistence to disk."
+    },
+    {
+      "candidate_id": "server:vbucket",
+      "label": "vBucket",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the active/replica data-partition unit this page constantly refers to (active vBucket, replica vBucket) when explaining durable-write mechanics; not previously in the server: family alongside server:node/server:rebalance."
+    },
+    {
+      "candidate_id": "server:failover",
+      "label": "failover",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - general concept for manual/automatic node failover; kept deliberately coarse here (this page treats failover only as a threat to durability guarantees) and links out via seeAlso to the dedicated failover.md / automatic-failover.md pages rather than modeling graceful/hard/automatic as separate concepts, since those pages are outside this batch."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "durability:durable-write",
+      "predicate": "tradesOffAgainst",
+      "object": "durability:regular-write",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate, textbook comparative-tradeoff shape.",
+      "evidence": "When deciding whether to use durability, consider the trade-off between higher throughput with regular writes and stronger data protection with durable writes."
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "usesEnum",
+      "object": "durability:level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate for a construct whose output/metadata draws from a controlled vocabulary.",
+      "evidence": "This setting controls what Couchbase Server considers a successful durable write. The valid settings are:"
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "requiresMaximumReplicaCount",
+      "object": "2",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - datatype property, same family as requiresMinimumNodeCount (integer literal object, not a concept id).",
+      "evidence": "Couchbase Server supports durability for up to two replicas. It does not support durability for buckets with three or more replicas."
+    },
+    {
+      "subject": "durability:level-majority",
+      "predicate": "compatibleWithBucketType",
+      "object": "bucket-type:couchbase",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate models a bucket-type compatibility axis.",
+      "evidence": "You can use this level with both Couchbase and Ephemeral buckets."
+    },
+    {
+      "subject": "durability:level-majority",
+      "predicate": "compatibleWithBucketType",
+      "object": "bucket-type:ephemeral",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate as above.",
+      "evidence": "You can use this level with both Couchbase and Ephemeral buckets."
+    },
+    {
+      "subject": "durability:level-majority-and-persist-active",
+      "predicate": "compatibleWithBucketType",
+      "object": "bucket-type:couchbase",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate; this level is restricted to Couchbase buckets only, unlike level-majority.",
+      "evidence": "You can choose this level only for Couchbase buckets."
+    },
+    {
+      "subject": "durability:level-persist-to-majority",
+      "predicate": "compatibleWithBucketType",
+      "object": "bucket-type:couchbase",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate.",
+      "evidence": "You can choose this level only for Couchbase buckets."
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate; applied here to a write mechanism depending on Data Service nodes rather than a service-to-service dependency, the closest existing fit.",
+      "evidence": "A majority of Data Service nodes must store the mutation to memory for the write to be durable."
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "mustSatisfy",
+      "object": "durability:majority-requirement",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - positive counterpart to the registry's existing doesNotSatisfy; nothing already promoted expresses a plain 'must meet this requirement to succeed' shape.",
+      "evidence": "For a write to be durable, it must meet a majority requirement."
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "signalsStatus",
+      "object": "durability:sync-write-in-progress",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate for a write mechanism reporting a specific named status/error code back to the caller.",
+      "evidence": "Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message telling Client 3 that its write attempt cannot occur."
+    },
+    {
+      "subject": "durability:durable-write",
+      "predicate": "signalsStatus",
+      "object": "durability:ambiguous-result",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - same minted predicate as above.",
+      "evidence": "In some cases, instead of confirming that the durable write succeeded, Couchbase Server reports an ambiguous outcome."
+    },
+    {
+      "subject": "durability:durability-impossible-fallback",
+      "predicate": "tradesOffAgainst",
+      "object": "durability:durable-write",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate; the setting explicitly trades away the durability guarantee for availability.",
+      "evidence": "Enabling `durabilityImpossibleFallback` degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "requiresCapability",
+      "object": "durability:durable-write",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate expresses 'this feature is essential/foundational for the object mechanism to function', as against requiresSetting (a config dependency) or dependsOnService (a service dependency).",
+      "evidence": "Durability is essential for features like [Transactions](transactions.md) that require atomicity across multiple document mutations."
+    },
+    {
+      "subject": "server:failover",
+      "predicate": "canCompromise",
+      "object": "durability:durable-write",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate for 'operation X can, under some circumstances, undermine guarantee Y' as a risk relation rather than a hard incompatibility (doesNotSupport) or a resource trade-off (tradesOffAgainst).",
+      "evidence": "Both manual and automatic failovers can cause the loss of durably written data."
+    },
+    {
+      "subject": "durability:preserve-durable-writes-setting",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate; this setting does not exist at all outside Enterprise Edition, matching requiresEdition's shape exactly (as against behavesDifferentlyUnder).",
+      "evidence": "the setting to preserve durable writes is not available"
+    },
+    {
+      "subject": "durability:max-count-setting",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - existing predicate; maxCount exists in every edition but is fixed and unconfigurable in Community, matching behavesDifferentlyUnder's shape exactly (as against requiresEdition).",
+      "evidence": "The `maxCount` setting is always `1`, and the setting to preserve durable writes is not available."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Durability is essential for features like [Transactions](transactions.md) that require atomicity across multiple document mutations."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/storage-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Threading](../buckets-memory-and-storage/storage-settings.md#threading) for concepts and [Data Settings](../../manage/manage-settings/general-settings.md#data-settings) for configuration steps."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Threading](../buckets-memory-and-storage/storage-settings.md#threading) for concepts and [Data Settings](../../manage/manage-settings/general-settings.md#data-settings) for configuration steps."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link (second, distinct citation of the same target page, different anchor/section)",
+      "evidence": "You enable this setting in the Couchbase Server Web Console's [Node Availability](../../manage/manage-settings/general-settings.md#node-availability) settings."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/failover",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Failover](../clusters-and-availability/failover.md) for more information about these types of failovers."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/automatic-failover",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You can also configure Couchbase Server to perform [automatic failovers](../clusters-and-availability/automatic-failover.md) to remove a node that has been unresponsive longer than a configurable timeout period."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/rest-cluster-autofailover-enable",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [maxCount](../../rest-api/rest-cluster-autofailover-enable.md#maxcount) in [Enabling and Disabling Auto-Failover](../../rest-api/rest-cluster-autofailover-enable.md) for more information about this setting."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/rest-bucket-create",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You can only change the `durabilityImpossibleFallback` setting using a REST API call. See [durabilityImpossibleFallback](../../rest-api/rest-bucket-create.md#durabilityImpossibleFallback) for details."
+    },
+    {
+      "subject": "server/8.0/learn/data/durability",
+      "predicate": "seeAlso",
+      "object": "server/8.0/install/upgrade-procedure-selection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For example, suppose you want to perform an upgrade using the [graceful failover followed by a delta recovery method](../../install/upgrade-procedure-selection.md#using-graceful-failover) in a three-node cluster."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No RBAC privilege is named anywhere on this page for setting or overriding durability requirements, even though the page describes both client-side and bucket-side configuration paths ('Either or both the client and the bucket can set durability requirements'). Every other configuration surface in the registry that lets a client override a server default is usually paired with a privilege or role check; this one is not, at least not on this page."
+  },
+  "cross_component_finding": "This page fills exactly the gap the round-12 brief named: durability:durable-write is the general, non-transaction-scoped write-durability mechanism, and it is genuinely NOT the same concept as sdk:transaction-durability. The registry's existing note on sdk:transaction-durability says it applies 'a single DurabilityLevel setting... to every key-value write inside one transaction attempt' via TransactionsConfig - a transaction-scoped configuration surface. This page's mechanism is the one TransactionsConfig's setting is layered on top of: the same three-level enum (majority / majorityAndPersistActive / persistToMajority) recurs here as the base case, making this now a FOURTH scope for that enum family, alongside the three already flagged in sharesOptionSetWith's note (per-KV-operation via sdk:durability, per-transaction-config via sdk:transaction-durability, per-single-query-transaction-call). I did not add a sharesOptionSetWith relation myself since this page never mentions transactions' durability configuration by name (only the one 'Durability is essential for features like Transactions' sentence) - that link is asserted here only via the new requiresCapability relation, not via sharesOptionSetWith, to avoid inventing a same-enum claim this page doesn't itself state.",
+  "cross_product_finding": "No Capella, SDK, or Sync Gateway angle on this page - it is pure Couchbase Server KV-engine mechanics (vBuckets, Data Service nodes, REST API/CLI configuration). The only forward reference is to n1ql:transactions, which is itself Server-scoped."
+}

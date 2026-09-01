@@ -1,0 +1,103 @@
+{
+  "page_id": "server/8.0/learn/security/authentication",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/security/authentication.md",
+  "concepts": [
+    { "candidate_id": "security:authentication", "label": "Authentication (security facility)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted this batch on security-overview.json, not yet promoted to the registry" },
+    { "candidate_id": "server:user", "label": "Couchbase Server user (administrator or application identity)", "registry_status": "minted", "reused_or_minted": "minted - the generic Server-side identity that authenticates and is later authorized. No existing concept fits: sgw:user is a different product's Public-API identity, capella has no standalone 'user' concept (roles attach to org/project membership instead), and rbac-role:role/capella-role:role are role placeholders, not the user identity itself. Server's own generic user has never been minted." },
+    { "candidate_id": "auth-domain:local", "label": "Local authentication domain", "registry_status": "minted", "reused_or_minted": "minted - per the batch's naming guidance for authentication domains. The local domain consists of users whose credentials Couchbase Server maintains itself." },
+    { "candidate_id": "auth-domain:external", "label": "External authentication domain", "registry_status": "minted", "reused_or_minted": "minted - sibling of auth-domain:local. Consists of users whose credentials are maintained remotely." },
+    { "candidate_id": "auth-mechanism:username-password", "label": "Username/password authentication", "registry_status": "minted", "reused_or_minted": "minted - new namespace auth-mechanism:, for the concrete credential mechanisms this page names (as against auth-domain:, which is about where credentials are maintained, and idp:, which is about which external system does the maintaining)." },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "X.509 certificate-based (mTLS) authentication", "registry_status": "minted", "reused_or_minted": "minted - sibling of auth-mechanism:username-password. Distinct from privilege/role concepts entirely: this is how identity is established, before any RBAC check happens." },
+    { "candidate_id": "idp:ldap", "label": "LDAP (external identity provider)", "registry_status": "minted", "reused_or_minted": "minted - per the batch's naming guidance: auth: already exists but both its members (auth:mfa, auth:sso) are Capella-labelled mechanisms, not this. New namespace idp: for external identity providers server/ actually integrates with." },
+    { "candidate_id": "idp:saml", "label": "SAML IdP (external identity provider)", "registry_status": "minted", "reused_or_minted": "minted - sibling of idp:ldap. NOT merged with the promoted sso:realm/sso:group-mapping/sso:default-team family - those are explicitly Capella SSO concepts (Capella's own IdP-registration and team/group-mapping model) and this page states no relationship between the two; see cross_component_finding." }
+  ],
+  "relations": [
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia ('which credential mechanism an access surface actually uses'). Stretched from access-surface-to-credential-type (its prior uses are all Capella data/management-plane surfaces) to user-to-domain; the shape - X is authenticated through mechanism/system Y - transfers cleanly even though the prior occurrences were all Capella. First positive data point that a Capella-minted predicate generalizes to Server without forcing.",
+      "evidence": "Couchbase Server assigns each user to one of two _authentication domains_: the _local_ domain consisting of users whose credentials are maintained by Couchbase Server itself; the _external_ domain consisting of users whose credentials are maintained remotely — for example, on an _LDAP_ server or a _SAML IdP_."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Couchbase Server assigns each user to one of two _authentication domains_: the _local_ domain consisting of users whose credentials are maintained by Couchbase Server itself; the _external_ domain consisting of users whose credentials are maintained remotely — for example, on an _LDAP_ server or a _SAML IdP_."
+    },
+    {
+      "subject": "auth-domain:external",
+      "predicate": "authenticatesVia",
+      "object": "idp:ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "the _external_ domain consisting of users whose credentials are maintained remotely — for example, on an _LDAP_ server or a _SAML IdP_."
+    },
+    {
+      "subject": "auth-domain:external",
+      "predicate": "authenticatesVia",
+      "object": "idp:saml",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "the _external_ domain consisting of users whose credentials are maintained remotely — for example, on an _LDAP_ server or a _SAML IdP_."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Authentication can be performed by means of a _username_ and _password_, assigned to each administrator or application."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia",
+      "evidence": "Authentication can also be performed by means of _X.509 Certificates_: these support _Transport Layer Security_, by establishing the identity of a client or server through _digital signatures_."
+    },
+    {
+      "subject": "security:authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authentication-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Understanding Authentication](authentication-overview.md), which provides an overview of all the key aspects of Couchbase authentication."
+    },
+    {
+      "subject": "server:user",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/usernames-and-passwords",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Usernames and Passwords](usernames-and-passwords.md), which lists the conventions whereby usernames and passwords can be designed and passed by administrators and applications."
+    },
+    {
+      "subject": "auth-domain:local",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authentication-domains",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Authentication Domains](authentication-domains.md), which contains full explanations of the _local_ and _external_ authentication domains supported by Couchbase Server."
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link. Target page (certificates.md) is being extracted by the concurrent sibling agent, not this one.",
+      "evidence": "[Certificates](certificates.md), which provides a detailed overview of how certificates are supported by Couchbase Server, for the authentication of clusters, nodes, and client applications."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresRole",
+    "finding": "Zero mentions of 'role', 'privilege', or 'RBAC' on this page. It is exclusively about establishing identity (authentication); the page's own second sentence explicitly defers authorization ('Subsequent to successful authentication, _authorization_ can be performed') to elsewhere. This is the cleanest possible confirmation that Server's docs treat authentication and authorization as two genuinely separate axes, matching the pre-existing registry note on auth:sso ('a genuinely separate axis from authorization') - except here that separation is stated of Server's own model, not just inferred by analogy from Capella's."
+  },
+  "cross_component_finding": "This page is the hub linking to four detail pages (authentication-overview, usernames-and-passwords, authentication-domains, certificates) that between them do most of the security/ subtree's authentication work - a much flatter, more explicit fan-out than security-overview.md's single-bullet treatment of the same topic. Content duplication watch: this page and authentication-overview.md open with the near-identical sentence ('To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system.') verbatim - the same three sentences appear as this page's second paragraph and as authentication-overview.md's page abstract. That is not paraphrase, it is copy-paste, and it recurs a third time as usernames-and-passwords.md's framing sentence in slightly reworded form ('Couchbase Server requires that administrators and applications _authenticate_...'). Three pages restate the same definitional paragraph rather than one page defining it and the others linking to it.",
+  "cross_product_finding": "idp:ldap and idp:saml are minted fresh here rather than reusing the promoted sso:realm / sso:group-mapping / sso:default-team family, even though both are 'an external identity provider a user authenticates against' at the label level. Naming-collision discipline applied deliberately: Capella's SSO model registers an IdP under a 'realm' and maps IdP groups to Capella teams/roles via sso:group-mapping, a management-plane construct with no bucket/collection-scoped RBAC underneath it; Server's LDAP/SAML integration (detailed in authentication-domains.md) maps external identities into Server's own local/external domain and role/group system directly, with per-collection-scoped roles as the eventual destination. No page in either product states these are the same mechanism - they solve the same problem (federate to an external IdP) for two structurally different downstream authorization models, so they are kept as separate concepts per the batch's naming-collision rule rather than merged or cross-linked."
+}

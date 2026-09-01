@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/fts-searcher",
+  "label": "Search Reader (Server RBAC role)",
+  "internal_name": "fts_searcher",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege: Server's concrete role catalogue has no separately enumerable privilege tier. Do NOT confuse with the privilege:capella-advanced-access-fts-* family, which is Capella's genuinely separate privilege catalogue and has its own distinct ids for Search access.",
+  "promoted": true,
+  "recurrence": 1,
+  "aliases": [
+    "privilege:fts-searcher",
+    "role:search-reader"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Search Reader (fts_searcher)",
+  "refiled_in_round": 12,
+  "note": "Re-filed from privilege: to role: in round 12, in the same sweep as the nine query_* ids. roles.md documents this as one of 56 Server RBAC roles, with its own 'Role: <label> (<internal_name>)' table and prose calling it a role outright. Recurrence 1 (fts-introduction.md), promoted under the same family exception as query-delete: the point is the alias, which turns future silent reuse of the privilege: form into a gate denial. Note the label/token mismatch - the role is called Search Reader but its internal name is fts_searcher, the same class of mismatch as Manage Sequences / query_use_sequences."
+}

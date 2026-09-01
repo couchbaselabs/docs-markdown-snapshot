@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-role-label-does-not-match-internal-name",
+  "type": "docs-issue",
+  "issueType": "naming-inconsistency",
+  "description": "Two of the 58 role tables in roles.md have a display label that does not correspond to the internal name granted in the same table header: 'Role: Manage Sequences (query_use_sequences)' and 'Role: Search Reader (fts_searcher)'. Every other query_* role follows label-mirrors-token ('Role: Query Select (query_select)'). Anyone scripting role grants from the prose labels, or searching the page for 'Query Use Sequences' or 'FTS Searcher', will not find the entry. Related: search-admin-fts-admin-role-overlap, where the Search Admin / FTS Admin label split across product-era naming caused the POC's own registry to hold two ids for one role.",
+  "about": [
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
+  "status": "open"
+}

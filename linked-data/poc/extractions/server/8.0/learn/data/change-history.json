@@ -1,0 +1,161 @@
+{
+  "page_id": "server/8.0/learn/data/change-history",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/data/change-history.md",
+  "concepts": [
+    {
+      "candidate_id": "history:change-history",
+      "label": "Change History",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new topical namespace 'history:' per the round-12 brief; nothing in the registry covers document change-history/CDC. protocol:dcp exists but this page never mentions DCP (see notable_absence)."
+    },
+    {
+      "candidate_id": "tool:kafka-connector",
+      "label": "Kafka Connector",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page states this is the only interface for reading change-history contents; no kafka-related concept exists in the registry at all."
+    },
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - cbstats is cited repeatedly across the corpus as a CLI stats tool (per tool:cbq-shell's sibling pattern) but has never itself been promoted as a concept."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "history:change-history",
+      "predicate": "requiresStorageEngine",
+      "object": "storage-engine:magma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate expresses 'this capability only exists under storage engine X'; storage-engine:magma itself is promoted and reused as-is.",
+      "evidence": "When Magma storage is used for a bucket, the changes made to documents within the bucket's collections can be recorded, in a _change history_."
+    },
+    {
+      "subject": "history:change-history",
+      "predicate": "onlyAccessibleVia",
+      "object": "tool:kafka-connector",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - stronger than seeAlso or configurableVia: the page states this is the exclusive read path, not merely one option among others.",
+      "evidence": "Note that this provides the _only_ way in which the change history can be accessed."
+    },
+    {
+      "subject": "history:change-history",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - the existing family (configurableVia, createdVia) covers setup/creation, not ongoing status/statistics inspection.",
+      "evidence": "The change-history status of each collection can be returned by means of the `cbstats` tool, with the arguments `collections` and `collection-details`."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/storage-engines",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "When [Magma](../buckets-memory-and-storage/storage-engines.md#storage-engine-magma) storage is used for a bucket"
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/rest-bucket-create",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md) and [bucket-edit](../../cli/cbcli/couchbase-cli-bucket-edit.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-bucket-edit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md) and [bucket-edit](../../cli/cbcli/couchbase-cli-bucket-edit.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/creating-a-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Creating and Editing a Collection](../../rest-api/creating-a-collection.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-collection-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [collection-manage](../../cli/cbcli/couchbase-cli-collection-manage.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbstats/cbstats-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See the [collections](../../cli/cbstats/cbstats-collections.md) and [collections-details](../../cli/cbstats/cbstats-collections-details.md) reference pages for [cbstats](../../cli/cbstats-intro.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbstats/cbstats-collections-details",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See the [collections](../../cli/cbstats/cbstats-collections.md) and [collections-details](../../cli/cbstats/cbstats-collections-details.md) reference pages for [cbstats](../../cli/cbstats-intro.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See the [collections](../../cli/cbstats/cbstats-collections.md) and [collections-details](../../cli/cbstats/cbstats-collections-details.md) reference pages for [cbstats](../../cli/cbstats-intro.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "kafka-connector/current/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "use the [Kafka Connector](../../../../kafka-connector/current/index.md)"
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbstats/cbstats-all",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see the reference page for `cbstats` [all](../../cli/cbstats/cbstats-all.md)."
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/rest-statistics",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Statistics](../../rest-api/rest-statistics.md) for information on statistics-retrieval"
+    },
+    {
+      "subject": "server/8.0/learn/data/change-history",
+      "predicate": "seeAlso",
+      "object": "server/8.0/metrics-reference/metrics-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "the [Metrics Reference](../../metrics-reference/metrics-reference.md) for a complete list of available statistics"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesProtocol / streamsMutationsVia",
+    "finding": "The page never mentions DCP (protocol:dcp) at all, despite change history being conceptually adjacent to mutation streaming (it records the same mutation stream to disk that DCP would relay live). The only mechanism named for reading change-history contents is the Kafka Connector, not a DCP client. This looks like a real documentation gap rather than a deliberate distinction: the page gives no architectural account of how mutations get into the change history in the first place (whether via the same internal path DCP uses, or a separate write path inside Magma)."
+  },
+  "cross_component_finding": "Change history is stated as available only 'when Magma storage is used for a bucket' - the page never states the converse (that Couchstore buckets cannot have change history), but no enablement path is offered for Couchstore either, and storage-engine:couchstore is the only other storage-engine concept in the registry. This is an implicit, not stated, exclusivity - flagged rather than asserted as a doesNotSupport relation, since the page phrases it only positively.",
+  "cross_product_finding": "No cross-product angle on this page: change history/CDC is a pure Couchbase Server + Magma capability, surfaced only through the REST API, couchbase-cli, cbstats and the Kafka Connector - no Capella, SDK, or mobile angle appears anywhere on the page."
+}
