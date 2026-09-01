@@ -65,10 +65,15 @@ From that output, build two short tables for the agent prompts:
   "source_version": "<version string, or the product's own name if version-less>",
   "source_path": "<the real source path you read, exactly as it is on disk>",
   "concepts": [
-    { "candidate_id": "<namespace>:<kebab-case>", "label": "...", "reused_or_minted": "reused | minted - reason" }
+    { "candidate_id": "<namespace>:<kebab-case>", "label": "...",
+      "registry_status": "promoted | extraction-layer | minted",
+      "reused_or_minted": "reused | minted - reason" }
   ],
   "relations": [
-    { "subject": "...", "predicate": "...", "object": "...", "reused_or_minted_predicate": "...", "evidence": "<direct quote from the page - required, every time>" }
+    { "subject": "...", "predicate": "...", "object": "...",
+      "registry_status": "promoted | extraction-layer | minted",
+      "reused_or_minted_predicate": "...",
+      "evidence": "<direct quote from the page - required, every time>" }
   ],
   "notable_absence": { "predicate": "...", "finding": "..." },
   "cross_component_finding": "...",
@@ -91,8 +96,38 @@ Use them rather than dropping the relation, and rather than attributing an
 off-page quote to the page. Cross-page evidence is legitimate; silent
 misattribution is not.
 
+`registry_status` is an **enum, mechanically checked**, and it is separate from
+the `reused_or_minted` prose on purpose. Exactly one of three exact strings, for
+every concept and every relation:
+
+- `promoted` - a file for this id exists in `linked-data/poc/concepts/` or
+  `relations/`. Being promoted under a *different* name counts: aliases are
+  resolved, so `server:dcp-protocol` is `promoted` because
+  `concepts/protocol/dcp.json` lists it.
+- `extraction-layer` - reused from an earlier extraction record, never promoted
+  to the registry. **This is a normal, expected answer, not a confession.** The
+  two-layer design means most reused ids are here; `sdk:durability` has been
+  legitimately reused across rounds without ever being promoted.
+- `minted` - new in this record. Also expected. But do not declare `minted` for
+  something the registry already has: that is the failure that re-created
+  `requiresMinVersionFor` after it had been folded into `availableSince`, and the
+  gate now refuses it.
+
+If unsure which applies, run `python3 linked-data/poc/registry-digest.py` - it
+prints what is promoted *right now*, so it cannot be stale. Keep the prose note
+as well: it says things an enum cannot ("reused - same statement as the Capella
+page, different privilege model"), and reconciliation reads it. The gate reads
+only the enum.
+
+Records written before round 11 have no `registry_status`. Nothing rewrites
+them, and anything aggregating the corpus must treat a missing field as
+*unknown* - never as `extraction-layer`. A gap that reads as data is the same
+failure shape as an omitted relation.
+
 Rules to state explicitly in every prompt:
 
+- Every concept and relation needs a `registry_status`. It is checked at write
+  time, including against aliases, and a wrong declaration blocks the write.
 - Every relation needs a direct-quote `evidence` field. No inference without
   textual evidence. **This is now mechanically enforced at write time** - see
   "The evidence gate" below. An agent that cannot find a real quote must either
@@ -162,11 +197,20 @@ Rules to state explicitly in every prompt:
 `linked-data/poc/hooks/gate-evidence.py`, on `Write|Edit|MultiEdit`. For any file
 under `linked-data/poc/extractions/` it parses the record and **refuses the
 write** unless every relation's `evidence` is verbatim on the page it cites (or
-on its `evidence_source`). It also refuses a record that claims a concept is
-"promoted" when no registry file exists for it. Nothing needs enabling; it fires
-for subagents as well as the main session, which is the entire point - round
-10's fabricated record came from one of ten parallel subagents whose reasoning
-nobody ever read.
+on its `evidence_source`). It also checks every `registry_status` declaration
+against the registry, aliases resolved: claiming `promoted` for something with no
+file, claiming `minted` for something already promoted, or claiming
+`extraction-layer` for something that is promoted are all refused, as is a
+missing or misspelled value. Nothing needs enabling; it fires for subagents as
+well as the main session, which is the entire point - round 10's fabricated
+record came from one of ten parallel subagents whose reasoning nobody ever read.
+
+Every verdict, allows included, is appended to
+`linked-data/poc/hooks/gate-log.jsonl` (gitignored). Read it during
+reconciliation rather than relying on what agents report: hook stderr goes to the
+*calling subagent*, so a coordinator that doesn't read the log only learns about
+denials through the same self-report channel that let round 10's fabrication
+through as a confident summary.
 
 Why this exists: in round 10 an extraction agent asserted `availableSince
 version:server-8-0` for a feature whose page states no version at all, quoting a
@@ -188,6 +232,15 @@ file catches it.
   fabrication into omission**, which is harder to notice than what it replaced.
 - Warn that `Edit` is refused on extraction records; write the whole record with
   `Write`.
+- Give agents the three `registry_status` values and tell them to run
+  `registry-digest.py` rather than guess. Say explicitly that `extraction-layer`
+  and `minted` are normal answers - an agent that reads `promoted` as the
+  approved-looking value will guess it, and guessing is exactly what the enum
+  replaced. Round 11's version of this check parsed the prose note instead and
+  produced three false positives in nine pages, on two shapes nobody predicted:
+  a truthful negative ("and none is promoted") and an accurate statement about a
+  *different* id ("the same pattern as the promoted `rbac-role:role`"). The enum
+  exists so there is no English left to misread.
 
 **What the gate does not do**, and must not be described to agents as doing: it
 proves the sentence is on the page, never that the triple built from it is a fair

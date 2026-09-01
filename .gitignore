@@ -6,3 +6,8 @@ linked-data/poc/hooks/gate-log.jsonl
 
 # Editor swap files, which git mv leaves stranded when a tree is renamed.
 .*.sw[a-p]
+
+# Python bytecode. The gate sets `dont_write_bytecode` so it never litters the
+# tree it guards, but running the helpers by hand (py_compile, imports) does.
+__pycache__/
+*.pyc

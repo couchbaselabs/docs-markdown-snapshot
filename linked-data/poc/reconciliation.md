@@ -2119,9 +2119,57 @@ Negation-handling alone would have cleared only the first. The fix reads just th
 **leading clause** of `reused_or_minted` - a record's own provenance is always
 first, and commentary is where both false positives lived - plus a `minted` guard;
 six regression cases pass, including round 10's real offence, which sits in the
-leading clause, unnegated, about itself. The residual weakness is honest: this is
-still a machine gate parsing English, and a `registry_status` enum in the schema
-would remove the guesswork entirely.
+leading clause, unnegated, about itself.
+
+**Postscript, written immediately after this round closed: the prose parsing is
+gone.** The narrowed check was a mitigation, and each fix to it was one
+unpredicted sentence shape away from the next false positive - so
+`registry_status` is now a **required enum** (`promoted` / `extraction-layer` /
+`minted`) on every concept and every relation, checked against the registry with
+aliases resolved, and the ~40 lines of clause-splitting and negation-detection are
+deleted. The false-positive shapes are now structurally impossible rather than
+handled. The prose note stays in the schema, because it tells a reviewer things an
+enum cannot; the gate simply doesn't read it.
+
+Three things worth recording about how that landed, because the shape generalizes
+past this field:
+
+- **It could be forward-only *because* the gate is a write-time control.** A
+  corpus validator would have made 524 existing records non-conforming and forced
+  a migration. A write-time gate only ever sees new records, so requiring the
+  field is enforceable from the next write onward while the 552 on disk are never
+  touched. The corpus stays mixed; the *entry point* is strict. The corollary is a
+  discipline, not a nicety: **absent is not a value.** Anything aggregating the
+  corpus must read a missing `registry_status` as *unknown*, never as
+  `extraction-layer`, or an old record silently asserts something it never
+  claimed - the same failure shape as a dropped relation reading as a page with
+  nothing to say.
+- **The enum bought two controls for free.** Because the declaration is now
+  checkable in both directions, declaring `minted` for something the registry
+  already promotes is refused - which is *exactly* the failure that re-created
+  `requiresMinVersionFor` after it had been folded into `availableSince`, the
+  oldest recurring failure in this project and until now catchable only by a
+  human noticing. So is declaring `extraction-layer` for a promoted term, which
+  means the registry was never checked. Neither was in the design brief; both fell
+  out of replacing a substring test with a typed assertion.
+- **Alias resolution is now load-bearing, and that is a new coupling worth
+  flagging.** 24 ids across 14 registry files are promoted under a different name
+  than extraction records use (`server:dcp-protocol` -> `protocol:dcp`, `n1ql:cbq`
+  -> `tool:cbq-shell`, `streamsMutationsVia` -> `usesProtocol`). Without
+  alias-awareness the enum check would deny every one of them - manufacturing the
+  precise false positives it was introduced to remove. So an unrecorded fold is no
+  longer just untidy documentation; it breaks the gate for correct records. The
+  `linked-data-reconcile` skill now says so explicitly. 16 regression cases cover
+  it, including the reverse direction (`availableSince` declared `minted` is
+  denied; `requiresMinVersionFor` declared `minted` is allowed, because it is
+  genuinely unpromoted debt).
+
+The predicate half is the part to watch: it is required per-relation, matching the
+existing `reused_or_minted_predicate` convention, and reported once per *distinct*
+predicate so one wrong declaration doesn't produce twenty identical denial lines.
+Whether per-relation repetition is the right shape, or whether predicates want a
+per-record manifest instead, is a question the next wave will answer rather than
+one worth pre-deciding.
 
 **The log caught a denial before the agent reported it, which was the point.** My
 own claim earlier in this round - that agents hitting the gate would surface it
@@ -2363,9 +2411,11 @@ once, so worth treating as durable rather than one-off:
   did not occur, and corpus evidence problems stayed at 452, all of them
   pre-gate. What didn't: **all three flagged ids were false positives**, none on
   the evidence check, all on the registry-status check parsing English prose, and
-  two agents hit them independently in nine pages. The check is narrower now, but
-  the real fix is a `registry_status` enum in the schema so there is no English to
-  parse. And a scoreboard of 0 true positives cannot distinguish "the gate
+  two agents hit them independently in nine pages. That has since been fixed at
+  the root rather than narrowed: `registry_status` is now a required enum, checked
+  against the registry with aliases resolved, and the gate no longer parses
+  English at all - see the postscript to round 11. And a scoreboard of 0 true
+  positives cannot distinguish "the gate
   deterred fabrication" from "no fabrication was attempted"; one clean wave is not
   evidence either way.
 

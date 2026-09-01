@@ -60,12 +60,47 @@ round 10's first run reported every already-promoted predicate as unpromoted
 because of a one-character regex bug (`\.jsonld?` where `\.json(ld)?` was meant),
 caught only because the output was implausible.
 
+Three specific ways the count has lied, every one found because the output looked
+wrong rather than by reading the code:
+
+- **`seeAlso` objects are pages, not concepts.** At recurrence 425 it put
+  documentation pages above every real concept in round 11's first ranking.
+  Exclude it from object recurrence; the candidate list went 465 -> 356 and the
+  round's promotions changed.
+- **Folded ids read as unpromoted.** An id listed in a surviving record's
+  `aliases` array *is* promoted. Resolve aliases before counting debt, or
+  `n1ql:cbq` (13 files, long since folded into `tool:cbq-shell`) appears as a top
+  offender.
+- **A missing `registry_status` is not a value.** Records predating round 11
+  don't carry the field at all. Treat absent as *unknown*, never as
+  `extraction-layer`, or an old record silently asserts something it never
+  claimed.
+
 **b. Check for thinning, because the write-time gate creates a new failure
 mode.** `hooks/gate-evidence.py` blocks a record whose evidence isn't quotable.
 An agent that can't find a real quote may drop the relation rather than hunt for
 one, so the gate converts *fabrication* into *omission* - which no exit status
-will ever show you, because an omitted relation leaves no trace. The only place
-to catch it is here:
+will ever show you, because an omitted relation leaves no trace.
+
+**Read `hooks/gate-log.jsonl` first - it is the sharper instrument.** Every
+verdict is there, allows included, with `n_relations`, so a deny followed by an
+allow on the same path with a *lower* count is the fingerprint of exactly this
+failure, where `deny(38) -> allow(38)` means the agent went and found the quote.
+It also tells you the hook actually fired, which an absence of denials does not:
+
+```python
+import json, collections
+log = [json.loads(l) for l in open("linked-data/poc/hooks/gate-log.jsonl")]
+by_path = collections.defaultdict(list)
+for r in log: by_path[r["path"]].append((r["outcome"], r["n_relations"]))
+for path, seq in by_path.items():
+    if any(o == "deny" for o, _ in seq): print(seq, path)
+```
+
+Report the scoreboard honestly in `reconciliation.md`, including false positives
+and including this: a run with no denials cannot distinguish "the gate deterred
+fabrication" from "no fabrication was attempted." Then use the relations-per-page
+comparison as the backstop, for thinning that happened without a denial at all:
 
 ```python
 # Relations per page, for the new batch against comparable already-extracted pages.
@@ -122,6 +157,16 @@ mirroring the file's own path), `label`, a `type`/description explaining what
 it is and - critically - what it must **not** be confused with if a
 same-named-but-different thing exists elsewhere in the registry, `promoted:
 true`, `recurrence`, and a short `note` with the promotion reasoning.
+
+**When you fold one id into another, record it in an `aliases` array on the
+surviving record.** This used to be documentation; it is now load-bearing. The
+write-time gate resolves aliases when it checks an extraction record's
+`registry_status`, so an unrecorded fold makes the gate deny a *correct*
+declaration: an agent reusing `server:dcp-protocol` and truthfully marking it
+`promoted` gets blocked unless `concepts/protocol/dcp.json` says it owns that
+alias. 24 ids across 14 files are currently promoted under a different name than
+extraction records use, and every one of them depends on this. Same for
+predicates - `relations/uses-protocol.json` aliases `streamsMutationsVia`.
 
 **Do not merge or cross-link two concepts just because they share a name or
 surface similarity, unless a source page states the relationship explicitly.**

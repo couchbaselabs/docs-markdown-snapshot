@@ -23,15 +23,43 @@ What it checks
 1. **Every relation's `evidence` is verbatim on its source page** (or on its
    `evidence_source`, for legitimate cross-page facts). Whitespace and smart
    quotes are normalised; wording is not.
-2. **No record claims a concept is "promoted" unless it is.** Deliberately
-   narrow: an extraction record reusing an id that only exists at the extraction
-   layer is *correct and expected* - that's the two-layer design, and
-   `sdk:durability` has been legitimately reused across rounds without ever
-   being promoted. What is not allowed is asserting registry state that isn't
-   there. Round 10 found a record reading `"reused - already promoted
-   (candidate_id first seen in ...)"` for a concept with no registry file at all:
-   every clause accurate except the two words that mattered. So the trigger is
-   the word "promoted", not the word "reused".
+2. **Every concept and predicate declares its registry state as an enum, and the
+   declaration is true.** `registry_status` must be one of `promoted`,
+   `extraction-layer` or `minted`, and it is checked against the registry
+   (aliases included). Three things are refused: claiming `promoted` when no
+   registry file exists (round 10's offence - a record read `"reused - already
+   promoted (candidate_id first seen in ...)"` for a concept with no file at all,
+   every clause accurate except the two words that mattered); claiming `minted`
+   for something the registry already promotes, which is the re-minting failure
+   that produced `requiresMinVersionFor` after it had been folded into
+   `availableSince`; and claiming `extraction-layer` for a promoted term, which
+   means the registry was not checked.
+
+   Note what is *not* refused: reusing an id that only exists at the extraction
+   layer. That is correct and expected - it's the two-layer design, and
+   `sdk:durability` has been legitimately reused across rounds without ever being
+   promoted. `extraction-layer` is a first-class answer, not a confession.
+
+   Why an enum and not the prose: until round 11 this check parsed the English of
+   `reused_or_minted`, and produced three false positives in nine pages - a
+   truthful negative ("and none is promoted") and a true statement about a
+   *different* id ("the same pattern as the promoted rbac-role:role"). Each fix
+   was one unpredicted sentence shape away from the next false positive. An enum
+   removes the guesswork entirely, so the ~40 lines of clause-splitting and
+   negation-detection that used to live here are gone. The prose note stays in the
+   schema, because it tells a reviewer things an enum cannot - the gate simply
+   doesn't read it any more.
+
+   Applies to predicates as well as concepts, and arguably matters more there:
+   the canonical re-minting failure in this project's history was a predicate,
+   not a concept. Reported once per distinct predicate rather than once per
+   relation, so one wrong declaration doesn't produce twenty identical lines.
+
+   Records written before round 11 have no `registry_status` at all. That is
+   fine and deliberate: this is a write-time gate, so it only ever sees new
+   records, and nothing rewrites the 552 already on disk. Anything reading the
+   corpus must treat a missing field as *unknown*, never as `extraction-layer` -
+   a gap that reads as data is the same failure shape as an omitted relation.
 
 What it does NOT check
 ----------------------
@@ -50,10 +78,10 @@ relations-per-page comparison described in the `linked-data-reconcile` skill.
 """
 
 import datetime
+import glob
 import importlib.util
 import json
 import os
-import re
 import sys
 
 POC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # linked-data/poc
@@ -119,42 +147,95 @@ def load_verifier():
     return mod
 
 
-NEGATED = re.compile(r"\b(not|no|none|never|isn't|aren't|nor|without|lacks)\b")
+VALID_STATUS = ("promoted", "extraction-layer", "minted")
 
 
-def claim_clause(note):
-    """The part of a `reused_or_minted` note that states *this* id's provenance.
+def kebab_to_camel(name):
+    """`serves-service` -> `servesService`, matching how predicates are written in
+    records versus filed in `relations/`."""
+    parts = name.split("-")
+    return parts[0] + "".join(p.title() for p in parts[1:])
 
-    Everything up to the first clause break. A record's own provenance is always
-    the leading clause ("reused - already promoted", "minted - coarse
-    placeholder"); what follows is commentary, and commentary is where both of
-    round 11's false positives lived:
 
-      - "reused - extraction-layer id already on disk (...), no registry file.
-         ... and none is promoted"      <- true statement, negated
-      - "minted - coarse placeholder, following the same pattern the registry
-         already uses for the promoted rbac-role:role"   <- about ANOTHER id
+def registry_index():
+    """Every id the registry promotes, mapped to the file that promotes it -
+    **including aliases**.
 
-    Two agents hit these independently in one 9-page wave, so the naive substring
-    test was wrong about roughly as often as it was right. Note that negation
-    handling alone would have cleared only the first: the second is an accurate,
-    unnegated statement about a different concept entirely, which is why the
-    clause boundary - not the polarity - is the load-bearing part.
+    Alias-awareness is not a nicety here, it is what stops this check
+    manufacturing the false positives the enum was introduced to remove. 24 ids
+    across 14 registry files are promoted under a *different* name than the one
+    extraction records use: `server:dcp-protocol` is promoted as
+    `protocol:dcp`, `n1ql:cbq` as `tool:cbq-shell`, `streamsMutationsVia` as
+    `usesProtocol`, `version:server-8.0` as `version:server-8-0`. Every one of
+    those is legitimately `promoted`, and a naive file-exists test would deny all
+    of them.
 
-    This still catches what it was built for. Round 10's real offence read
-    "reused - already promoted (candidate_id first seen in ...)", where the claim
-    is in the leading clause, unnegated, and about itself.
-
-    Deliberately does NOT split on " - ": the house style is
-    "reused - already promoted", so the dash separates the verdict from its
-    reason and the claim itself sits after it. Splitting there would discard the
-    very words being tested.
-
-    The residual weakness is honest: this is still a machine gate parsing English.
-    A `registry_status` enum in the schema would remove the guesswork entirely,
-    and is the right fix if this keeps costing agents retries.
+    Reads both `.json` and `.jsonld`, because a term promoted to full JSON-LD has
+    two files and either may be the one carrying `aliases`.
     """
-    return re.split(r"[,;(.]", (note or "").lower(), maxsplit=1)[0]
+    idx = {}
+    for kind in ("concepts", "relations"):
+        base = os.path.join(POC, kind)
+        for fp in sorted(glob.glob(os.path.join(base, "**", "*.json*"), recursive=True)):
+            if not fp.endswith((".json", ".jsonld")):
+                continue
+            stem = os.path.splitext(os.path.relpath(fp, base))[0]
+            canonical = (stem.replace(os.sep, ":") if kind == "concepts"
+                         else kebab_to_camel(os.path.basename(stem)))
+            idx.setdefault(canonical, fp)
+            try:
+                aliases = json.load(open(fp)).get("aliases") or []
+            except Exception:
+                continue
+            for a in aliases:
+                idx.setdefault(a, fp)
+    return idx
+
+
+def check_status(term_id, status, idx, what):
+    """Validate one `registry_status` declaration. Returns a problem, or None.
+
+    Fails closed on a missing or unrecognised value rather than skipping it: an
+    unchecked declaration is indistinguishable from a false one, and this gate
+    exists because "nothing checked" was the state of the world for nine rounds.
+    """
+    if not status:
+        return (term_id, (
+            f'missing "registry_status". Every {what} needs one, as an exact '
+            f'string: "promoted" (a registry file exists in concepts/ or '
+            f'relations/), "extraction-layer" (reused from an earlier extraction '
+            f'record but never promoted - a normal, expected answer), or '
+            f'"minted" (new here). Run `python3 linked-data/poc/registry-digest.py` '
+            f"if you are unsure which applies - it prints what is promoted right now."
+        ))
+    if status not in VALID_STATUS:
+        return (term_id, (
+            f'"registry_status": {status!r} is not one of '
+            f"{' | '.join(VALID_STATUS)}. Exact strings only."
+        ))
+
+    promoted_by = idx.get(term_id)
+    if status == "promoted" and not promoted_by:
+        return (term_id, (
+            f'declares "promoted" but the registry has no file for it. Either use '
+            f'"extraction-layer" (reusing an unpromoted id is fine and needs no '
+            f"file), or find the id the registry really uses - it may be promoted "
+            f"under a different name, which counts as promoted."
+        ))
+    if status == "minted" and promoted_by:
+        return (term_id, (
+            f'declares "minted" but the registry already promotes this id, in '
+            f"{os.path.relpath(promoted_by, POC)}. Reuse it and mark it "
+            f'"promoted" rather than minting a second term for it. (This is the '
+            f"failure that re-created `requiresMinVersionFor` after it had been "
+            f"folded into `availableSince`.)"
+        ))
+    if status == "extraction-layer" and promoted_by:
+        return (term_id, (
+            f'declares "extraction-layer" but this id IS promoted, in '
+            f'{os.path.relpath(promoted_by, POC)}. Change it to "promoted".'
+        ))
+    return None
 
 
 def deny(reason, payload=None, path=None, problems=(), rec=None):
@@ -208,26 +289,30 @@ def main():
 
     evidence_problems = load_verifier().check_record(rec, root=ROOT)
     registry_problems = []
+    idx = registry_index()
 
-    # Narrow registry check - see module docstring for why "promoted", not "reused",
-    # and why only the leading clause counts.
     for c in rec.get("concepts", []) or []:
-        note = claim_clause(c.get("reused_or_minted"))
-        cid = c.get("candidate_id") or ""
-        if "promoted" not in note or ":" not in cid:
+        if not isinstance(c, dict):
             continue
-        if NEGATED.search(note) or note.lstrip().startswith("minted"):
+        p = check_status(c.get("candidate_id") or "(unnamed concept)",
+                         c.get("registry_status"), idx, "concept")
+        if p:
+            registry_problems.append(p)
+
+    # Once per distinct predicate, not once per relation. A record can use one
+    # predicate twenty times; twenty identical denial lines teach agents to skim.
+    seen = set()
+    for r in rec.get("relations", []) or []:
+        if not isinstance(r, dict):
             continue
-        ns, slug = cid.split(":", 1)
-        if not any(os.path.exists(os.path.join(POC, "concepts", ns, slug + ext))
-                   for ext in (".json", ".jsonld")):
-            registry_problems.append((
-                cid,
-                f'claims "promoted" but there is no concepts/{ns}/{slug}.json. '
-                f"Either drop that claim (reusing an extraction-layer id is fine "
-                f"and needs no registry file), or find the id the registry "
-                f"really uses.\n      triggered on: {note.strip()!r}",
-            ))
+        pred = r.get("predicate") or "(unnamed predicate)"
+        status = r.get("registry_status")
+        if (pred, status) in seen:
+            continue
+        seen.add((pred, status))
+        p = check_status(pred, status, idx, "predicate")
+        if p:
+            registry_problems.append(p)
 
     problems = evidence_problems + registry_problems
     if not problems:

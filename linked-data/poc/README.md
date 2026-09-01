@@ -412,10 +412,22 @@ from "still in `extractions/`."
   but **all three flagged ids were false positives** — none on the evidence
   check, all on the registry-status check, which parses English prose, and two
   agents hit them independently in nine pages. The check now reads only the
-  leading clause of `reused_or_minted` (a record's own provenance is always
-  first; commentary is where both false positives lived), but the real fix is a
-  `registry_status` enum in the extraction schema so there is no English to
-  parse. Note also what a scoreboard of 0 true positives cannot tell you: whether
+  leading clause of `reused_or_minted`, and then, immediately after round 11
+  closed, stopped parsing prose altogether: **`registry_status` is now a required
+  enum** (`promoted` / `extraction-layer` / `minted`) on every concept *and* every
+  relation, checked against the registry with aliases resolved. The ~40 lines of
+  clause-splitting and negation-detection are deleted, and the false-positive
+  shapes are structurally impossible rather than mitigated. The prose note stays
+  in the schema — it tells a reviewer things an enum can't — the gate just doesn't
+  read it. Two controls fell out for free: declaring `minted` for something the
+  registry already promotes is now refused (the failure that re-created
+  `requiresMinVersionFor` after it was folded into `availableSince`), as is
+  declaring `extraction-layer` for a promoted term, which means the registry was
+  never checked. Enforced in the hook only, never in `verify-evidence.py`: the 552
+  records already on disk predate the field, nothing rewrites them, and a corpus
+  audit with a permanently red baseline stops being read. Anything aggregating the
+  corpus must treat a missing value as *unknown*, never as `extraction-layer`.
+  Note also what a scoreboard of 0 true positives cannot tell you: whether
   the gate *deterred* fabrication, or whether none was attempted.
 - **`hooks/gate-log.jsonl`** — the gate's own append-only verdict log
   (gitignored: it grows on every write and would conflict on every merge; when a
@@ -934,13 +946,15 @@ document.
   `index-type:secondary-index` — the docs state on two pages that these are the
   same thing, so they are linked by `isSynonymOf` rather than collapsed, and
   whether to keep both surface terms permanently is a decision, not a cleanup.
-- **Replace `reused_or_minted` prose with a `registry_status` enum.** All three
-  of round 11's gate denials were false positives caused by the gate parsing
-  English provenance notes; the narrowed check (leading clause only) is a
-  mitigation, not a fix. An enum (`promoted` / `extraction-layer` / `minted`)
-  alongside the free-text note would remove the guesswork entirely. This touches
-  both skills and makes existing records non-conforming, so it needs deciding
-  rather than doing quietly.
+- **Watch the `registry_status` enum's first real wave.** Done after round 11,
+  but untested at scale: the gate now requires the enum on every concept and
+  relation, so the *next* wave is the first where agents have to produce it. Two
+  things to check in `hooks/gate-log.jsonl` afterwards — whether agents default
+  to `promoted` because it reads as the approved-looking answer (the skill says
+  explicitly that `extraction-layer` and `minted` are normal, precisely because
+  that guess is the predictable one), and whether requiring it per-relation is
+  noise. If it is, the field wants moving to a per-record predicate manifest
+  rather than repeating on each relation.
 - **Extract deliberately by genre, not just by directory.** Round 11's clearest
   result is that nine pages of a *different kind* of documentation produced four
   structural gaps that ten rounds of reference pages could not. The remaining
@@ -956,7 +970,9 @@ document.
   (`cascadesDeletionTo`, three occurrences) that survived its own reconciliation
   pass undetected. The hook already parses every record at write time, so this
   costs nothing extra to run and would catch such a violation at the moment
-  it's introduced rather than two rounds later.
+  it's introduced rather than two rounds later. The `registry_status` enum added
+  after round 11 is the first piece of this — a required, machine-checked field
+  rather than prose — so the remaining work is the subject/object slot types.
 - Get a subject-matter expert to work through `docs-issues/` (76 entries) —
   starting with the two round 11 marked `severity: needs-sme`, which are
   undecidable from the pages rather than merely unresolved: **which service
