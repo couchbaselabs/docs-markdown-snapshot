@@ -1,0 +1,120 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/alterindex",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/alterindex.md",
+  "concepts": [
+    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/alterindex.json and the 7.2 record server/7.2/.../alterindex.json" },
+    { "candidate_id": "n1ql:alter-vector-index", "label": "ALTER VECTOR INDEX statement", "reused_or_minted": "reused - matches the Capella record; asserted here as a synonym, per the page" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:create-vector-index", "label": "CREATE VECTOR INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused" },
+    { "candidate_id": "role:administrator", "label": "Administrator (Server RBAC role)", "reused_or_minted": "minted - the registry has a promoted role: namespace (role:full-administrator, role:eventing-full-admin, role:local-user-security-administrator) but no role:administrator. IMPORTANT: the 7.2 record for this same page minted this concept as `rbac:administrator-role`, in a namespace that does not exist in the registry. I am using role:administrator to match the promoted namespace. These are the same concept under two ids - reconciliation must merge, not keep both. Note also this is a ROLE, deliberately kept distinct from privilege:query-manage-index (a privilege), per the 7.2 record's own reasoning." },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "index-type:standard-gsi-plasma", "label": "Standard GSI (Plasma) index storage", "reused_or_minted": "minted - the page's edition gate is stated in terms of three named index storage technologies (Standard GSI/Plasma, MOI, Forest DB); the registry's storage-engine namespace covers only the DATA service (couchstore, magma), so neither storage-engine:* nor index-type:gsi fits. Flagged: reconciliation may prefer an index-storage-engine: namespace parallel to storage-engine:." },
+    { "candidate_id": "index-type:moi", "label": "Memory-Optimized Index (MOI)", "reused_or_minted": "minted - named on this page as one of the two index storage technologies ALTER INDEX supports; no existing id" },
+    { "candidate_id": "index-type:forestdb", "label": "Forest DB index storage", "reused_or_minted": "minted - named on this page as the index storage technology ALTER INDEX explicitly does NOT support; must not be conflated with storage-engine:couchstore or storage-engine:magma, which are data-service storage engines" },
+    { "candidate_id": "index-state", "label": "GSI index lifecycle state enum", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "edition:enterprise", "label": "Couchbase Server Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "version:server-5-5", "label": "Couchbase Server 5.5", "reused_or_minted": "minted - not in the registry; the 7.2 record for this page minted the same concept as `version:server-5.5` (dot form). Reconciliation should settle on one spelling; I use the hyphen form the brief specifies (version:server-8-0 style), which matches the registry FILENAMES (server-6-5.json) even though the registry's id field uses dots (version/server-7.0)." },
+    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "n1ql:alter-index-replica-management", "label": "ALTER INDEX replica_count / drop_replica actions (sub-capability)", "reused_or_minted": "reused - exact id minted by the 7.2 record for this page, for exactly this sub-capability; the 8.0 page still carries the same 6.5 gate on it" },
+    { "candidate_id": "n1ql:alter-index-with-action-move", "label": "ALTER INDEX WITH {\"action\": \"move\"} value", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
+    { "candidate_id": "n1ql:alter-index-with-nodes", "label": "ALTER INDEX WITH {\"nodes\": [...]} property", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
+    { "candidate_id": "n1ql:alter-index-index-path-dotted-syntax", "label": "ALTER INDEX dotted index-path syntax (legacy-compatibility form)", "reused_or_minted": "minted - the 7.2 record minted the sibling id n1ql:alter-index-keyspace-on-syntax for the OTHER syntax form; this id names the dotted form, which the page marks as a legacy-compatibility affordance" },
+    { "candidate_id": "n1ql:alter-index-keyspace-on-syntax", "label": "ALTER INDEX index-name ON keyspace-ref syntax (sub-capability)", "reused_or_minted": "reused - exact id minted by the 7.2 record for this page. See version_finding: its 7.2 availableSince evidence no longer exists at 8.0." },
+    { "candidate_id": "indexes:file-based-index-rebalancing", "label": "File-based index rebalancing (shard affinity)", "reused_or_minted": "minted - no existing concept; needed as the subject of a NEW-AT-8.0 restriction on the nodes property. This is the same underlying mechanism the Capella records attribute to deployment:capella ('as it defaults to file-based index rebalancing'), but on Server it is an opt-in cluster setting, not a deployment property - see cross_product_finding." },
+    { "candidate_id": "indexes:index-redistribution-setting", "label": "Index redistribution setting (automatic index redistribution on rebalance)", "reused_or_minted": "minted - named on this page; no existing id" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "minted - same id as in this batch's createindex.json; the registry has service:eventing-service but no service:index-service" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "requiresRole",
+      "object": "role:administrator",
+      "reused_or_minted_predicate": "reused - promoted predicate. NOTE: the 7.2 record used requiresPrivilege for this same sentence, which is wrong - the sentence names a ROLE, and requiresRole exists in the promoted predicate list. Correcting here; see version_finding.",
+      "evidence": "Only users with the RBAC role of `Administrator` are allowed to run the `ALTER INDEX` statement."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate. NOTE: the 7.2 record MINTED a separate predicate `wholeStatementRequiresEdition` here, arguing that requiresEdition was defined only for a clause/option rather than a whole statement. I am reusing requiresEdition, because (a) wholeStatementRequiresEdition was never promoted, (b) the registry's requiresEdition has no documented arity restriction to clauses, and (c) maintaining two predicates that differ only in subject granularity is exactly the kind of split reconciliation should avoid. Flagged for an explicit decision.",
+      "evidence": "This statement is applicable only for Standard GSI (Plasma) and MOI Indexes; and hence supported only for Couchbase Server Enterprise Edition nodes. (Not applicable for Forest DB.)"
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "availableSince",
+      "object": "version:server-5-5",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Altering indexes is only supported in Couchbase Server 5.5 and later; if any nodes in the cluster are running a version of Couchbase Server earlier than 5.5, then this statement will not work."
+    },
+    {
+      "subject": "n1ql:alter-index-replica-management",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "In addition, altering the number of replicas or deleting an index replica is only supported in Couchbase Server 6.5 and later; if any nodes in the cluster are running a version of Couchbase Server earlier than 6.5, then these operations will not work."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:alter-vector-index",
+      "reused_or_minted_predicate": "reused - promoted predicate (relations/is-synonym-of.json); identical relation in the Capella record",
+      "evidence": "The [ALTER VECTOR INDEX](altervectorindex.md) statement is a synonym for the ALTER INDEX statement. Both statements have the same functionality."
+    },
+    {
+      "subject": "indexes:file-based-index-rebalancing",
+      "predicate": "disablesFeatureFor",
+      "object": "n1ql:alter-index-with-nodes",
+      "reused_or_minted_predicate": "reused - promoted predicate, with the setting as subject and the disabled clause as object. This is NEW AT 8.0: the sentence does not exist on the 7.2 page.",
+      "evidence": "You cannot use this property if you have enabled file-based index rebalancing. See [Index Rebalance Methods](../../learn/clusters-and-availability/rebalance.md#index-rebalance-methods)."
+    },
+    {
+      "subject": "n1ql:alter-index-index-path-dotted-syntax",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "n1ql:alter-index",
+      "reused_or_minted_predicate": "MINTED - the registry has no predicate for 'this form exists only to keep older clients working'. This is the closest thing to a deprecation signal anywhere in this batch, and it is the shape reconciliation should consider instead of (or alongside) deprecatedIn, because the docs never say 'deprecated'. Object is the statement the legacy form belongs to; reconciliation may prefer a version object instead, but the page names no version here - which is itself the point.",
+      "evidence": "You can use a dotted notation to specify the index and the keyspace on which the index is built. This syntax provides compatibility with legacy versions of Couchbase Server."
+    },
+    {
+      "subject": "n1ql:alter-index-with-action-move",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "n1ql:alter-index-replica-management",
+      "reused_or_minted_predicate": "reused but a poor fit - a general mutuallyExclusiveWith predicate is what is wanted; recorded rather than dropped because the mutual exclusion is stated as an IMPORTANT callout",
+      "evidence": "It's not possible to move an index or index replica and change the number of index replicas at the same time."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "reused_or_minted_predicate": "reused - promoted predicate; same relation and same evidence sentence as the 7.2 record",
+      "evidence": "If you attempt to alter an index which is still scheduled for background creation, the request fails."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "When reducing the number of replicas, the index service will first drop unhealthy replicas, where an unhealthy replica is a replica with missing partitions."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "tradesOffAgainst",
+      "object": "indexes:index-redistribution-setting",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page frames the setting as the scalable alternative to running this statement repeatedly",
+      "evidence": "Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance."
+    },
+    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
+    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [BUILD INDEX](build-index.md)" },
+    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This is the only index statement in the batch that gates on a coarse RBAC ROLE (Administrator) rather than a fine-grained privilege. CREATE INDEX and CREATE VECTOR INDEX both name privilege:query-manage-index; ALTER INDEX names no privilege at all, only the Administrator role. That asymmetry is stable across 7.2 and 8.0, so it is a real access-model fact rather than a docs omission: index placement is treated as a cluster-administration operation, not a keyspace-scoped query operation. Worth asserting in the ontology that requiresRole and requiresPrivilege are not interchangeable and that this page is the canonical example."
+  },
+  "cross_component_finding": "The page's edition gate is expressed via index STORAGE technologies (Standard GSI/Plasma, MOI, Forest DB) which have no home in the current registry - storage-engine: covers only couchstore and magma, i.e. the Data service. Reconciliation needs either an index-storage-engine: namespace or an explicit note that storage-engine: is data-service-only. Do not merge index-type:forestdb with anything in storage-engine:; ForestDB was an index storage format, and a same-name collision with the data-service engines would be a genuine modelling error.",
+  "cross_product_finding": "Sharp, well-evidenced divergence on the same clause. Server 8.0 says the nodes property is unavailable CONDITIONALLY, on an opt-in cluster setting: 'You cannot use this property if you have enabled file-based index rebalancing.' The Capella twin says both the nodes property and action:move are unavailable UNCONDITIONALLY, because of a platform default: 'You cannot use this property in Couchbase Capella, as it defaults to file-based index rebalancing' and 'You cannot use this statement to move indexes or index replicas in Couchbase Capella, as it defaults to file-based index rebalancing.' So the Capella record's `n1ql:alter-index-with-nodes behavesDifferentlyUnder deployment:capella` and the Server relation `indexes:file-based-index-rebalancing disablesFeatureFor n1ql:alter-index-with-nodes` are the SAME underlying mechanism at two levels of abstraction - Capella's restriction is a consequence of a setting Capella happens to default to, not a separate Capella-specific rule. Reconciliation can now collapse the Capella deployment:capella facts into (deployment:capella hasDefaultSetting indexes:file-based-index-rebalancing) + the Server-side disablesFeatureFor relation, which is strictly more informative than either record alone. This is the strongest argument in this batch that the registry needs a settings axis rather than treating Capella-vs-Server as primitive. Two further divergences: (1) Server gates the whole statement on edition:enterprise; the Capella page has no edition sentence at all (Capella has no editions), so requiresEdition facts are structurally Server-only. (2) Server names role:administrator; Capella names Basic->Write / Advanced->Query Index. Do not merge.",
+  "version_finding": "SAME-PAGE 7.2-vs-8.0 COMPARISON. THREE 7.2 version gates have been silently removed at 8.0, and one 7.2-derived relation no longer holds. (a) 7.2: 'In Couchbase Server 7.0 and later, you can use the index name with the ON keyword and a keyspace reference to specify the keyspace on which the index is built.' 8.0 drops the qualifier: 'You can use the index name with the ON keyword and a keyspace reference to specify the keyspace on which the index is built.' The 7.2 relation `n1ql:alter-index-keyspace-on-syntax availableSince version:server-7.0` therefore has NO evidence at 8.0. It remains historically true but is unrecoverable from the 8.0 tree. (b) 7.2: 'In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI).' 8.0 drops the qualifier. The 7.2 relation `n1ql:alter-index availableSince version:server-6.5` (the record's second, USING-clause-scoped assertion) therefore also loses its evidence at 8.0 - and note it was a dubious assertion anyway, since it attached a whole-statement availableSince to a fact about the USING clause. (c) 7.2: 'In Couchbase Server 7.0 and later, the index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance.' 8.0 drops the qualifier. The 7.2 record used that sentence as evidence for a seeAlso to learn:rebalance, so the seeAlso survives but its version content does not. (d) The two version gates that DID survive verbatim-in-substance are 5.5 (whole statement) and 6.5 (replica management), both rephrased from 'if the cluster is a mix of Couchbase Server 5.5 and previous versions' to 'if any nodes in the cluster are running a version of Couchbase Server earlier than 5.5' - the same fact, better English. NEW AT 8.0: the ALTER VECTOR INDEX synonym sentence, and the file-based-index-rebalancing restriction on the nodes property. Also new: 7.2 called this construct a 'directive' ('run the ALTER INDEX directive'), 8.0 consistently calls it a 'statement' - a terminology normalisation that will break any naive string matching between the two trees. CONCLUSION FOR THE WAVE: the dominant version-drift pattern in Couchbase's SQL++ reference is gate ATTRITION, not deprecation. Old 'in version X and later' qualifiers are deleted once X is far enough behind the current release, so an extraction run only against server/current systematically under-counts availableSince facts, and the ontology's version coverage will silently DEGRADE with each release unless older trees are extracted too or the facts are pinned once discovered."
+}

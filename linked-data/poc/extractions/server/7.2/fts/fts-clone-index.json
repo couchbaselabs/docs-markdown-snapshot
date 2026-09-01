@@ -1,0 +1,30 @@
+{
+  "page_id": "server/7.2/fts/fts-clone-index",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-clone-index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:clone-index",
+      "label": "Clone (Full-Text) Index - Web Console UI action",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; mirrors the fts:delete-index concept pattern given as Example B in the extraction spec."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:clone-index",
+      "predicate": "seeAlso",
+      "object": "fts:searching-from-the-ui",
+      "note": "structural link; target page not in this batch",
+      "evidence": "(See [Searching from the UI](fts-searching-from-the-UI.md) for a full illustration.)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for cloning a full text index - same gap as fts-delete-index (Example B in the extraction spec) and other fts/ index-management pages in this batch."
+  },
+  "competency_questions_addressed": [
+    "How do you clone a full text index from the Web Console?",
+    "What privilege is required to clone an index?"
+  ]
+}

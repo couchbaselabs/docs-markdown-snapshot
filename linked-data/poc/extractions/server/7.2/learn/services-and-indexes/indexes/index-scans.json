@@ -1,0 +1,56 @@
+{
+  "page_id": "server/7.2/learn/services-and-indexes/indexes/index-scans",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/index-scans.md",
+  "concepts": [
+    {
+      "candidate_id": "learn:index-scans",
+      "label": "Scans (how query predicates become index spans)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:span",
+      "label": "Span (low/high/inclusion range representation of a predicate in an index scan)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:in-predicate-pushdown",
+      "label": "IN predicate pushdown to index scan (element limit)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "version:server-4.5",
+      "label": "Couchbase Server 4.5",
+      "reused_or_minted": "minted",
+      "note": "not present in the provided registry table; minted following the same version: namespace convention as the promoted version:server-6.5 / version:server-7.0 entries"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:in-predicate-pushdown",
+      "predicate": "availableSince",
+      "object": "version:server-4.5",
+      "reused_or_minted_predicate": "reused",
+      "note": "predicate reused; object concept (version:server-4.5) is minted since it isn't in the registry",
+      "evidence": "In version 4.5, up to 8192 IN elements are pushed as separate ranges to the index service. If the number of elements exceed 8192, then the index service performs a full scan on that key."
+    },
+    {
+      "subject": "learn:index-scans",
+      "predicate": "seeAlso",
+      "object": "manage:install-sample-buckets",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For instructions on how to install the sample bucket, see [Sample Buckets](../../../manage/manage-settings/install-sample-buckets.md)."
+    },
+    {
+      "subject": "learn:index-scans",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-context",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../../../n1ql/n1ql-intro/queriesandresults.md#query-context)."
+    }
+  ],
+  "competency_questions_addressed": [
+    "Since which version does a given constraint hold true?",
+    "Generate related pages for navigation"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/time-series",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/time-series.md",
+  "concepts": [
+    { "candidate_id": "n1ql:time-series", "label": "Time series data feature (time series document format: ts_start, ts_end, ts_interval, ts_data)", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/time-series.json" },
+    { "candidate_id": "n1ql:fn-timeseries", "label": "_TIMESERIES function", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:regular-time-series", "label": "Regular time series (data points at fixed intervals; ts_interval present)", "reused_or_minted": "minted - the page's central classification, and the presence or absence of ts_interval is what determines how ts_data is interpreted; the Capella record modelled the feature but not the two kinds" },
+    { "candidate_id": "n1ql:irregular-time-series", "label": "Irregular time series (data points at arbitrary times; ts_interval absent, each element carries its own timestamp)", "reused_or_minted": "minted - sibling of the above; not a synonym or subtype of it, since the two require different ts_data shapes" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/insert.json and used again in server/current/.../insert.json in this batch" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused - established in the Capella insert record" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - promoted-adjacent id, used in server/current/.../createindex.json in this wave" },
+    { "candidate_id": "data:document-expiration", "label": "Document expiration (TTL, settable at bucket, collection or document level)", "reused_or_minted": "minted - the Capella records used sdk:document-expiration for the Java SDK how-to target, but this page links to the *server data-model* concept (learn/data/expiration.md) and makes a substantive claim about its granularity, so a data: namespace id is the honest one. Not merged with sdk:document-expiration - see notable_absence" },
+    { "candidate_id": "tools:cbimport", "label": "cbimport command line tool", "reused_or_minted": "minted - no tools: namespace concept exists yet; named as one of three ingestion routes and used in the worked examples" },
+    { "candidate_id": "cli:couchbase-cli-collection-manage", "label": "couchbase-cli collection-manage", "reused_or_minted": "minted - sibling of cli:finderr minted in metafun.json in this batch; present only in the Server page (the Capella twin uses CREATE SCOPE / CREATE COLLECTION SQL++ statements instead), which makes it a product-shape difference" },
+    { "candidate_id": "setting:preserve-expiry", "label": "preserve_expiry request-level query parameter", "reused_or_minted": "minted - a named request parameter offered as an alternative to explicitly re-setting meta().expiration; also the site of a broken cross-reference on this page, see cross_component_finding" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "seeAlso",
+      "object": "n1ql:fn-timeseries",
+      "reused_or_minted_predicate": "reused - structural markdown link; mirrors the relation on the Capella record",
+      "evidence": "To query time series data, Couchbase Server provides the \\_TIMESERIES function. For full details and examples, see [\\_TIMESERIES Function](timeseries.md)."
+    },
+    {
+      "subject": "n1ql:regular-time-series",
+      "predicate": "requiresSetting",
+      "object": "n1ql:time-series",
+      "reused_or_minted_predicate": "reused - the ts_interval field is a required document field for this kind of series and its absence *silently reclassifies* the document rather than erroring, which is a genuine behavioural rule rather than a schema note. requiresSetting is an imperfect fit (the 'setting' is a document field, not a cluster setting); reconciliation may prefer a requiresField predicate",
+      "evidence": "The interval between data points, in milliseconds. You can use a different name for this field, but you must then specify the path to the field when you query the data. If this field is omitted, the document is assumed to contain an irregular time series."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "hasMaximumDocumentSize",
+      "object": "20MB",
+      "reused_or_minted_predicate": "minted - the registry has no predicate for a hard quantitative limit, and the object here is a literal value rather than a concept id, which is a shape the schema does not currently cover. Recorded because it is the single hardest constraint on the page and directly contradicts the page's own storage advice to use 'the largest possible arrays in the smallest number of documents'",
+      "evidence": "The maximum size of a time series document is 20MB."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "reused - promoted predicate; the documented trade-off is document size against index-maintenance and index-scan cost, in both directions",
+      "evidence": "If your time series documents are as large as possible, the expiration of time series documents has a minimal impact on index maintenance and index scan. Conversely, if your time series documents are smaller, index maintenance and scans may be much slower."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "data:document-expiration",
+      "reused_or_minted_predicate": "reused - stretched to a non-version object, as on searchfun.json in this batch. The fact is load-bearing and data-loss-adjacent: expiration is configurable at three levels but *acts* at only one, so an expiring time series document takes all of its data points with it",
+      "evidence": "You can specify expiration at the bucket, collection, or document level, but it applies at the document level — when a document expires, all the time series data in that document is deleted."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "tools:cbimport",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the documented two-stage ingestion pipeline: raw import must precede the transform step. The page names three interchangeable routes for stage 1 (cbimport, the UI import feature, an SDK parsing library), so this relation should be read as 'one of' rather than 'exactly this tool'",
+      "evidence": "1. Import the raw dataset from a supported format: CSV or JSON. To do this, you can use the [cbimport](../../tools/cbimport.md) command line tool, the [import](../../manage/import-documents/import-documents.md) feature in the Couchbase UI, or an SDK data parsing library."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "createdVia",
+      "object": "n1ql:insert",
+      "reused_or_minted_predicate": "reused - promoted predicate; INSERT SELECT is the documented stage-2 transform that produces time series documents",
+      "evidence": "When the data is imported, transform the imported data to one or more documents with the [Couchbase time series document format](#document-structure). To do this, use an [INSERT SELECT](insert.md) query or an SDK insert operation."
+    },
+    {
+      "subject": "setting:preserve-expiry",
+      "predicate": "mustUseInsteadWhen",
+      "object": "data:document-expiration",
+      "reused_or_minted_predicate": "reused - the page presents preserve_expiry as an alternative to the explicit 'meta(w).expiration = meta(w).expiration' idiom shown in Example 8, i.e. two routes to the same outcome, one of which is offered as the cleaner one",
+      "evidence": "The query specifies that the updated time series document should keep its current time-to-live. Note that it is also possible to preserve the document time-to-live using the request-level [preserve\\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiration}) parameter."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "seeAlso",
+      "object": "n1ql:upsert",
+      "reused_or_minted_predicate": "reused - structural markdown link, naming UPSERT as one of two documented incremental-ingestion strategies",
+      "evidence": "* Use an [UPSERT SELECT](upsert.md) query or an SDK upsert operation to replace an existing time series document."
+    },
+    {
+      "subject": "n1ql:time-series",
+      "predicate": "seeAlso",
+      "object": "n1ql:update",
+      "reused_or_minted_predicate": "reused - structural markdown link, naming UPDATE as the other incremental-ingestion strategy",
+      "evidence": "* Use an [UPDATE](update.md) query or an array-append SDK call using the sub-document API to append the new data to an existing time series document."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "Direct answer to the batch guidance's question 4: the Server 8.0 page names NO minimum version for time series support. Its Capella twin opens with an IMPORTANT admonition - 'This feature is only available on clusters using Couchbase Server 7.2 or later.' - which the Server 8.0 page has removed entirely, admonition block and all. So the 7.2 gate for this feature exists in the extraction set only via cloud/n1ql/n1ql-language-reference/time-series.json, and per the hard rule on quotable evidence I have recorded no availableSince relation here. Second absence: no privilege, role or edition gate anywhere on the page, which matches the Capella record's finding - although note that the page's own worked examples require enough privilege to run couchbase-cli collection-manage, cbimport, CREATE PRIMARY INDEX, CREATE COLLECTION and CREATE INDEX, none of which the page mentions. A reader following Example 4 through Example 7 needs several administrative privileges the page never names."
+  },
+  "cross_component_finding": "Documentation defect, Server-side only: the preserve_expiry cross-reference is broken. The Server page links to `../n1ql-manage/query-settings.md#preserve%5Fexpiration}` - note both the wrong anchor name (preserve_expiration, whereas the parameter and the Capella page's anchor are both preserve_expiry) and a stray literal closing brace inside the URL. The Capella twin has the correct `#preserve%5Fexpiry`. This one link is therefore doubly wrong on the versioned page and right on the versionless one. Beyond that, the page is unusually cross-component for a SQL++ language reference: it depends on the Data Service document-expiration model, the Index Service (index design guidance for ts_start/ts_end), cbimport and couchbase-cli from the tools/CLI surface, the Web Console import feature, and the SDK sub-document API - six surfaces, and the SQL++ content proper is confined to the ingestion and update examples.",
+  "cross_product_finding": "Two divergences, both instructive. (1) The version gate: Capella states 'This feature is only available on clusters using Couchbase Server 7.2 or later' and Server 8.0 states nothing - the same inversion seen on searchfun.md, metafun.md and stringfun.md in this batch, now with a clean four-for-four record across the batch's function/feature pages. (2) The setup instructions diverge by *deployment surface*, not by capability: where Capella tells the reader to run `CREATE SCOPE `travel-sample`.time IF NOT EXISTS;` and to click through 'Data Tools > Import' in the UI, Server tells the reader to shell out to `couchbase-cli collection-manage --cluster http://localhost:8091 --username Administrator --password password` and `cbimport csv --infer-types`. This is the cleanest example in the batch of the same procedure expressed against two different control planes, and it is worth noting that the Capella version happens to be the more portable one - the SQL++ statements it uses would work on Server too, whereas the Server page's CLI invocations cannot work on Capella. If reconciliation wants a predicate for 'this procedure is expressed against control plane X', that pair is the motivating case.",
+  "version_finding": "Nothing harvestable from this page - no version string appears in it. The 7.2 floor for time series is recoverable only from the Capella twin, which is now the fourth page in this batch (with searchfun, metafun and stringfun) where the versionless product page is the better source of version facts than the versioned one. Worth flagging for reconciliation as a systematic property of the corpus rather than four coincidences: on this evidence, server/current pages appear to be edited to remove version gates at or below the current release, which makes them a poor primary source for availableSince and no source at all for deprecatedIn. Separately, the page's only quantitative constraint (the 20MB maximum document size) has no version attached and no predicate that fits it; if the registry gains vocabulary for limits, that value should be dated, since document-size maxima are exactly the sort of thing that changes between releases."
+}

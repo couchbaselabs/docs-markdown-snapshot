@@ -1,0 +1,69 @@
+{
+  "page_id": "server/7.2/search/create-search-index-ui",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-search-index-ui.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (task/how-to page)",
+      "reused_or_minted": "minted",
+      "note": "this page was already referenced as a seeAlso target (unresolved placeholder) from create-search-indexes.md in a prior batch; now resolved"
+    },
+    {
+      "candidate_id": "privilege:search-admin",
+      "label": "Search Admin role",
+      "reused_or_minted": "minted",
+      "note": "new privilege/role concept - distinct from the registry's Query Manage Index privilege; this is a Search-Service-specific RBAC role"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run a Simple Search with the Web Console",
+      "reused_or_minted": "minted",
+      "note": "referenced, not yet extracted"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "reused_or_minted": "reused",
+      "note": "fully extracted in this same batch, see customize-index.json"
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "reused_or_minted": "minted",
+      "note": "referenced, not yet extracted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:search-admin",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Your user account has the **Search Admin** role for the bucket where you want to create the index.",
+      "note": "First page in this project's sample search-component set to document a required role. Contrasts directly with server/search/create-search-indexes.md (task overview page, prior batch), which was flagged with notable_absence for having no privilege documentation at all - that overview page links to this how-to page and to create-search-index-rest-api.md (this batch), and the role requirement lives on both of those, not on the overview page itself."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "note": "structural link ('You must create a Search index before you can run a search')"
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "note": "structural link ('For more information about how to customize an index, see Customize a Search Index with the Web Console')"
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "note": "structural link ('For more information about how to run a search, see ... Run a Simple Search with the REST API and curl/HTTP')"
+    }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges are required?",
+    "Generate related pages for navigation"
+  ]
+}

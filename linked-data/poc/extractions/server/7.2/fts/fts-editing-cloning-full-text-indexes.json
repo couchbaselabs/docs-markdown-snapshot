@@ -1,0 +1,30 @@
+{
+  "page_id": "server/7.2/fts/fts-editing-cloning-full-text-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-editing-cloning-full-text-indexes.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:editing-cloning-full-text-indexes",
+      "label": "Editing / Cloning Full Text Indexes - overview page",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; overview page whose content substantially duplicates fts-edit-index.md and fts-clone-index.md (same wording, same screenshot)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:editing-cloning-full-text-indexes",
+      "predicate": "seeAlso",
+      "object": "fts:searching-from-the-ui",
+      "note": "structural link; target page not in this batch",
+      "evidence": "(See [Searching from the UI](fts-searching-from-the-UI.md) for a full illustration.)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for editing or cloning a full text index - same gap as the dedicated fts-edit-index.md and fts-clone-index.md pages in this batch, which this page duplicates content from."
+  },
+  "competency_questions_addressed": [
+    "How do you edit or clone a full text index from the Web Console?",
+    "What privileges are required for editing/cloning a full text index?"
+  ]
+}

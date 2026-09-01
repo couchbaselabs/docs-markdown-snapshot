@@ -1,0 +1,94 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/stringfun",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/stringfun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:stringops", "label": "String Functions (page-level family)", "reused_or_minted": "reused - the id the Capella record cloud/n1ql/n1ql-language-reference/stringfun.json used as the subject of its page-level relation" },
+    { "candidate_id": "n1ql:fn-str-compress", "label": "COMPRESS(input_string) function", "reused_or_minted": "reused - matches the Capella record for the same function" },
+    { "candidate_id": "n1ql:fn-str-uncompress", "label": "UNCOMPRESS(input_string) function", "reused_or_minted": "reused - matches the Capella record for the same function" },
+    { "candidate_id": "n1ql:fn-mb-string-functions", "label": "Multi-byte string function family (MB_LENGTH, MB_LPAD, MB_RPAD, MB_SUBSTR, MB_SUBSTR1, MB_POS, MB_POS1, MB_POSITION, MB_POSITION1)", "reused_or_minted": "reused - matches the Capella record, which grouped these nine functions rather than minting one concept each, because they share a single version gate and a single documented trade-off" },
+    { "candidate_id": "n1ql:fn-str-position", "label": "POSITION(in_str, search_str) function (single-byte, zero-based)", "reused_or_minted": "minted - needed as the subject of an explicit alias declaration and of an explicit single-byte/multi-byte contrast" },
+    { "candidate_id": "n1ql:fn-str-pos", "label": "POS(in_str, search_str) function", "reused_or_minted": "minted - declared alias of POSITION()" },
+    { "candidate_id": "n1ql:fn-str-position1", "label": "POSITION1(in_str, search_str) function (single-byte, one-based)", "reused_or_minted": "minted - a distinct function from POSITION(), not an alias: it differs in base index" },
+    { "candidate_id": "n1ql:fn-str-pos1", "label": "POS1(in_str, search_str) function", "reused_or_minted": "minted - declared alias of POSITION1()" },
+    { "candidate_id": "n1ql:fn-mb-position", "label": "MB_POSITION(in_str, search_str) function (multi-byte, zero-based)", "reused_or_minted": "minted - a member of n1ql:fn-mb-string-functions that needs its own id as the subject of an alias declaration and the counterpart of POSITION()" },
+    { "candidate_id": "n1ql:fn-mb-pos", "label": "MB_POS(in_str, search_str) function", "reused_or_minted": "minted - declared alias of MB_POSITION()" },
+    { "candidate_id": "n1ql:fn-str-initcap", "label": "INITCAP(in_str) function", "reused_or_minted": "minted - subject of an explicit alias declaration" },
+    { "candidate_id": "n1ql:fn-str-title", "label": "TITLE(in_str) function", "reused_or_minted": "minted - declared alias of INITCAP()" },
+    { "candidate_id": "n1ql:fn-str-mask", "label": "MASK(in_str [, options]) function", "reused_or_minted": "minted - the page's most heavily-optioned function and the string-side counterpart of metafun's REDACT(); both mask sensitive data and neither page cross-references the other (see cross_component_finding)" },
+    { "candidate_id": "monitoring:awr-document", "label": "AWR (Automatic Workload Repository) document", "reused_or_minted": "minted - no existing id; UNCOMPRESS() names the compressed execution-plan strings in the pln array of AWR documents as a supported input format, which is a concrete tie between a string function and the 8.0 workload-reporting feature" },
+    { "candidate_id": "n1ql:fn-redact", "label": "REDACT(expression [, filter-obj...]) function", "reused_or_minted": "reused - minted in server/current/n1ql/n1ql-language-reference/metafun.json in this batch; referenced here only as the subject of a notable absence, not of a relation" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:fn-str-uncompress",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-str-compress",
+      "reused_or_minted_predicate": "reused - NOT a synonymy claim: recorded as the inverse-pair relation the page states, and flagged here because isSynonymOf is the closest existing predicate and is the WRONG one. The registry has no predicate for 'X is the inverse operation of Y'. Reconciliation should either mint inverseOf or drop this relation; I have kept it visible rather than silently omitting the fact",
+      "evidence": "This function is often used together with the [COMPRESS()](#fn-str-compress) function, which compresses and encodes strings to `base64` format."
+    },
+    {
+      "subject": "n1ql:fn-str-compress",
+      "predicate": "seeAlso",
+      "object": "n1ql:fn-str-uncompress",
+      "reused_or_minted_predicate": "reused - structural markdown link; matches the relation the Capella record captured for the same sentence",
+      "evidence": "To convert a compressed string back to its original format, use the [UNCOMPRESS()](#fn-str-uncompress) function."
+    },
+    {
+      "subject": "n1ql:fn-str-uncompress",
+      "predicate": "seeAlso",
+      "object": "monitoring:awr-document",
+      "reused_or_minted_predicate": "reused - the page names AWR documents as a supported input format, which is a substantive capability statement rather than a mere link",
+      "evidence": "* Execution plan strings stored in the `pln` array of AWR documents that are compressed and `base64` encoded."
+    },
+    {
+      "subject": "n1ql:fn-str-pos",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-str-position",
+      "reused_or_minted_predicate": "reused - explicit alias declaration",
+      "evidence": "Alias for [POSITION()](#fn-str-position)."
+    },
+    {
+      "subject": "n1ql:fn-str-pos1",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-str-position1",
+      "reused_or_minted_predicate": "reused - explicit alias declaration",
+      "evidence": "Alias for [POSITION1()](#fn-str-position1)."
+    },
+    {
+      "subject": "n1ql:fn-mb-pos",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-mb-position",
+      "reused_or_minted_predicate": "reused - explicit alias declaration",
+      "evidence": "Alias for [MB\\_POSITION()](#fn-mb-position)."
+    },
+    {
+      "subject": "n1ql:fn-str-title",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-str-initcap",
+      "reused_or_minted_predicate": "reused - explicit alias declaration",
+      "evidence": "Alias for [INITCAP()](#fn-str-initcap)."
+    },
+    {
+      "subject": "n1ql:fn-mb-position",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:fn-str-position",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page draws the distinction explicitly and in both directions, and the two functions differ only by a three-character prefix, which is exactly the same-name-different-meaning trap the brief warns about",
+      "evidence": "This function works with multi-byte characters, not single bytes. For a variant of this function that works with single bytes, see [POSITION()](#fn-str-position)."
+    },
+    {
+      "subject": "n1ql:fn-mb-string-functions",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:stringops",
+      "reused_or_minted_predicate": "reused - promoted predicate; the documented trade-off is correctness over multi-byte input versus speed relative to the single-byte variants",
+      "evidence": "Because this function works with multi-byte characters, it may be slower than its single byte variant."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "This is the strongest negative result in the batch, and it is the whole point of the record. The Server 8.0 page contains NOT ONE version-availability statement - no version string appears anywhere in it. Its Capella twin contains nine: 'Couchbase Server 8.0' badges on COMPRESS() and UNCOMPRESS(), and the sentence 'This function is available in clusters using Couchbase Server 7.6 or later.' repeated under seven of the MB_ multi-byte functions (MB_LENGTH, MB_LPAD, MB_RPAD, MB_SUBSTR, MB_SUBSTR1, MB_POSITION, MB_POSITION1). Because the brief's hard rule requires a direct quote from the page under extraction, I have recorded NO availableSince relations here - there is nothing on the page to quote. The three availableSince facts (COMPRESS 8.0, UNCOMPRESS 8.0, MB_ family 7.6) exist in the extraction set only via cloud/n1ql/n1ql-language-reference/stringfun.json. Secondary absence: the page has no privilege, role, edition or service gate of any kind, consistent with the Capella record's finding for the same page - these are pure expression-level functions."
+  },
+  "cross_component_finding": "MASK() on this page and REDACT() on metafun.md (also in this batch) solve the same problem - obscuring sensitive values such as credit card numbers and PII - with overlapping option vocabularies (both have a mask string and a fixed-length/strict notion of how much of the value to replace), and neither page cross-references the other. MASK() operates on a string; REDACT() operates on a JSON object and can also redact field *names* and omit fields entirely. A reader arriving at either page has no way to learn the other exists. This is a documentation gap rather than an ontology one, but the pair is worth an explicit seeAlso in the registry; I have not asserted the relation because neither page states it.",
+  "cross_product_finding": "Same inversion as searchfun.md and metafun.md in this batch, but at its most extreme: the versionless Capella page carries nine version-availability statements and the versioned Server 8.0 page carries zero. Whatever editorial process strips version qualifiers from server/current pages (reasonable in itself - a 7.6 gate is always satisfied on 8.0) has here removed the 8.0 badges too, which are *not* redundant: COMPRESS() and UNCOMPRESS() are genuinely new in 8.0, and a reader of the 8.0 page upgrading from 7.6 cannot tell that from this page. Note also that the two products' pages differ in overall length in the opposite direction to the version text (Capella 2006 lines, Server 1986), and one example's result rendering differs (Capella wraps results in a `{\"results\": [...]}` envelope for the TITLE/INITCAP example where Server shows a bare array) - a cosmetic inconsistency, not a behavioural one.",
+  "version_finding": "Nothing to harvest from this page: zero version strings. The finding for the wave is therefore methodological rather than factual, and it is a significant one. If the extraction pipeline treats server/current as the authoritative source for availableSince facts, it will systematically MISS availability information for exactly those features whose gate is at or below the current release - which is most of them - because that information is edited out of server/current pages as redundant. For this page, the only route to 'COMPRESS() is new in 8.0' is the Capella twin. Reconciliation should consider whether availableSince facts ought to be sourced preferentially from the *release notes* or from the versionless Capella pages, with server/current used to confirm presence rather than to date it. A concrete cross-check for the 8.0 claim: server/current still documents COMPRESS/UNCOMPRESS with no gate, while cloud/ dates them to 8.0, and neither page mentions 8.0.1 - unlike metafun.md, which does."
+}

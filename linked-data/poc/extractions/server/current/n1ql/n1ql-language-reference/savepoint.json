@@ -1,0 +1,129 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/savepoint",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/savepoint.md",
+  "concepts": [
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:savepoint-name", "label": "savepointname (savepoint identifier)", "reused_or_minted": "minted - needed as the object of the name-collision behaviour; the Capella twin record noted the collision rule in prose but gave it no concept" },
+    { "candidate_id": "n1ql:txid", "label": "txid query parameter (transaction ID)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:multi-statement-request", "label": "Multi-statement request", "reused_or_minted": "reused - minted in this batch's transactions.json; Server-only" },
+    { "candidate_id": "n1ql:automatic-transaction-id", "label": "Automatic transaction ID handling", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "api:query-rest-api", "label": "Query REST API", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" },
+    { "candidate_id": "server:distributed-acid-transactions", "label": "Distributed ACID Transactions (server-side feature concept page)", "reused_or_minted": "reused - placeholder minted in java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json" },
+    { "candidate_id": "version:cbq-2-0", "label": "cbq shell 2.0", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - minted in this batch's transactions.json; evidenced here only by the docs branch in frontmatter" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "documentedForVersion",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "minted - see this batch's transactions.json",
+      "evidence": "editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/savepoint.adoc"
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "replacesExistingOnNameCollision",
+      "object": "n1ql:savepoint-name",
+      "reused_or_minted_predicate": "minted - a last-write-wins overwrite semantics for a named object. Nothing in the registry expresses this: doesNotSatisfy, isSynonymOf and requiresSetting all miss, and it is a genuine behavioural rule a reader could be surprised by (re-issuing SAVEPOINT s1 silently moves s1 rather than erroring or creating a second savepoint).",
+      "evidence": "If a savepoint with the same name already exists, the existing savepoint is replaced."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - registry predicate; the scope restriction implies the transaction must already be open",
+      "evidence": "You may only use this statement within a transaction."
+    },
+    {
+      "subject": "api:query-rest-api",
+      "predicate": "requiresSetting",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "reused - registry predicate. Server-only: absent from the Capella twin page.",
+      "evidence": "If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID."
+    },
+    {
+      "subject": "n1ql:multi-statement-request",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json - fourth occurrence. Server-only.",
+      "evidence": "If you are using the Query Workbench, you don't need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:cbq",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json",
+      "evidence": "Similarly, if you are using the cbq shell, you don't need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:automatic-transaction-id",
+      "predicate": "availableSince",
+      "object": "version:cbq-2-0",
+      "reused_or_minted_predicate": "reused - registry predicate",
+      "evidence": "You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality."
+    },
+    {
+      "subject": "n1ql:rollback-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link; the worked example shows the only consumer of a savepoint",
+      "evidence": "-- Roll back the transaction to the second savepoint\nROLLBACK TRANSACTION TO SAVEPOINT s2;"
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "server:distributed-acid-transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `SAVEPOINT` statement enables you to set a savepoint within an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:savepoint",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / deprecatedIn / requiresEdition / requiresPrivilege",
+    "finding": "No version, edition, deprecation or access-control statement of any kind, matching the Capella twin exactly. Additionally absent on both products: any limit on the number of savepoints, any statement of whether savepoint names are case-sensitive, and any statement of what happens if you ROLLBACK TO SAVEPOINT a name that was never set - so the name-collision rule is the only savepoint-lifecycle rule in the docs, and its counterpart (savepoints are destroyed by COMMIT and by a full ROLLBACK) is documented on those two other pages rather than here."
+  },
+  "cross_product_finding": "This page is one of the batch's four 'near-total rewrites' by line count, but essentially none of the divergence is semantic. The Server page adds exactly the same three access-surface paragraphs seen on every other statement page in this batch (Query REST API requires txid; Query Workbench infers it within a multi-statement request; cbq shell infers it, footnoted with cbq 2.0) plus the cbq footnote. All the remaining diff is the worked-example output being re-rendered from cbq> transcripts into the Query Workbench multi-statement _sequence_num/_sequence_query/_sequence_result response shape, and the Server page annotating four callouts where the Capella page splits the same content into narrated code blocks. SQL++ savepoint semantics - syntax, name-collision replacement, in-transaction-only scope - are identical on both products. Useful negative result for the wave: raw diff size on this tree is dominated by example-rendering and access-surface boilerplate, not by version or edition gating.",
+  "version_finding": "Nothing beyond the batch-wide availableSince version:cbq-2-0 footnote. Worth recording as a negative: SAVEPOINT is the one statement in this family that has no optional keywords, no synonyms and no settings, so it offers the ontology no version-gating surface at all even in principle."
+}

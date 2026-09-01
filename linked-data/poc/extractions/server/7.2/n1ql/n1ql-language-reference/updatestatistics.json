@@ -1,0 +1,77 @@
+{
+  "page_id": "server/7.2/n1ql/n1ql-language-reference/updatestatistics",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/updatestatistics.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:update-statistics",
+      "label": "UPDATE STATISTICS statement (overview)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry; parent/overview page for the four UPDATE STATISTICS sub-syntaxes"
+    },
+    {
+      "candidate_id": "n1ql:cost-based-optimizer",
+      "label": "Cost-Based Optimizer",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry; reused id, also referenced from statistics-delete.md"
+    },
+    {
+      "candidate_id": "rbac:system-administrator-access",
+      "label": "System-administrator-only access to the N1QL_CBO_STATS system collection",
+      "reused_or_minted": "minted",
+      "note": "distinct from the RBAC privileges/roles that gate running a statement: this is about who can directly access the underlying storage collection that UPDATE STATISTICS writes to, not about who can run UPDATE STATISTICS itself"
+    },
+    {
+      "candidate_id": "n1ql:cbo-stats-storage",
+      "label": "N1QL_CBO_STATS system collection (optimizer statistics storage)",
+      "reused_or_minted": "minted",
+      "note": "the auto-created system bucket/scope/collection that stores optimizer statistics"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:cbo-stats-storage",
+      "predicate": "requiresPrivilege",
+      "object": "rbac:system-administrator-access",
+      "reused_or_minted_predicate": "reused",
+      "note": "subject deliberately is the storage collection, not n1ql:update-statistics itself — running UPDATE STATISTICS does not itself require system-administrator privileges, but directly accessing/dropping the collection it writes to does",
+      "evidence": "Access to this bucket, scope, and collection is restricted to system administrators. Regular users do not have access to the bucket, scope, or collection. Users with system administration privileges can access or drop them."
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:cost-based-optimizer",
+      "note": "structural link from existing Markdown xref",
+      "evidence": "The [cost-based optimizer](cost-based-optimizer.md) uses statistics to generate a query plan with the lowest processing cost, for [SELECT](selectintro.md), [UPDATE](update.md), [DELETE](delete.md), [MERGE](merge.md), and [INSERT INTO with SELECT](insert.md) queries."
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics-single-index",
+      "note": "structural link from existing Markdown list of syntaxes",
+      "evidence": "[Update Statistics for a Single Index](statistics-index.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics-multiple-indexes",
+      "note": "structural link from existing Markdown list of syntaxes",
+      "evidence": "[Update Statistics for Multiple Indexes](statistics-indexes.md)"
+    },
+    {
+      "subject": "n1ql:update-statistics",
+      "predicate": "seeAlso",
+      "object": "n1ql:update-statistics-delete",
+      "note": "structural link from existing Markdown list of syntaxes",
+      "evidence": "[Delete Statistics](statistics-delete.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "None of the four UPDATE STATISTICS pages (this overview, statistics-index.md, statistics-indexes.md, statistics-delete.md) state which Couchbase Server version introduced the statement or the cost-based optimizer it feeds, apart from the incidental 'Couchbase Server 6.5 and later ... GSI' sentence about the unrelated USING-clause index-type rule. Compare ALTER INDEX, which explicitly states its own minimum supported version (5.5) as a top-level Prerequisites fact."
+  },
+  "competency_questions_addressed": [
+    "Generate related pages for navigation",
+    "Which privileges are required?"
+  ]
+}

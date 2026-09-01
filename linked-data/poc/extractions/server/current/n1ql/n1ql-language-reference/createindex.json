@@ -1,0 +1,159 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/createindex",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/createindex.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/createindex.json and the 7.2 record server/7.2/.../createindex.json for the same statement" },
+    { "candidate_id": "n1ql:create-vector-index", "label": "CREATE VECTOR INDEX statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused - established in the 7.2 and Capella index-statement records" },
+    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused - established in the Capella createindex record" },
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX statement", "reused_or_minted": "reused - established in the Capella dropindex record" },
+    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused - matches the Capella and 7.2 records" },
+    { "candidate_id": "n1ql:alter-vector-index", "label": "ALTER VECTOR INDEX statement", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:drop-vector-index", "label": "DROP VECTOR INDEX statement", "reused_or_minted": "reused - named in the Related Links list; established in Capella records" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - promoted registry concept index-type:gsi" },
+    { "candidate_id": "index-type:secondary", "label": "Secondary index (the plain, non-vector index CREATE INDEX produces by default)", "reused_or_minted": "minted - the page contrasts three named index kinds ('secondary indexes, Composite Vector indexes, or Hyperscale Vector indexes'); index-type:gsi is the *technology/using* axis (all three are GSI), so a distinct id is needed for the plain-secondary member of the kind axis. See version_finding for the axis-collision warning." },
+    { "candidate_id": "index-type:composite-vector", "label": "Composite Vector index", "reused_or_minted": "minted - the registry has only index-type:gsi; this page establishes Composite Vector indexes as a distinct, separately-gated index kind created by CREATE INDEX (as opposed to Hyperscale Vector indexes, created by CREATE VECTOR INDEX)" },
+    { "candidate_id": "index-type:hyperscale-vector", "label": "Hyperscale Vector index", "reused_or_minted": "minted - a distinct index kind that this page explicitly says CREATE INDEX cannot create; not a synonym of index-type:composite-vector (the page names both in the same sentence with different creating statements)" },
+    { "candidate_id": "index-state", "label": "GSI index lifecycle state enum", "reused_or_minted": "reused - promoted registry concept, same enum member list as 7.2 and Capella" },
+    { "candidate_id": "privilege:query-manage-index", "label": "Query Manage Index (Server RBAC privilege)", "reused_or_minted": "reused - promoted registry concept; same privilege named in the 7.2 record for this page" },
+    { "candidate_id": "edition:enterprise", "label": "Couchbase Server Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "edition:community", "label": "Couchbase Server Community Edition", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - no version:server-8-0 in the registry (highest is version:server-7-0); minted in the existing version:server-7-0 / version:server-6-5 style as instructed" },
+    { "candidate_id": "version:server-7-6-2", "label": "Couchbase Server 7.6.2", "reused_or_minted": "minted - no 7.6.x version concept in the registry; a patch-level version is needed because the page gates a behaviour on 7.6.2 specifically, not on 7.6" },
+    { "candidate_id": "n1ql:create-index-with-num-replica", "label": "CREATE INDEX WITH {\"num_replica\": n} option", "reused_or_minted": "minted - the 7.2 record for this page used the id n1ql:with-num_replica; I am renaming to a statement-qualified, kebab-case id because the option is edition-gated per-statement and the bare id collides with the identically-named option on CREATE PRIMARY INDEX / CREATE VECTOR INDEX. Flagged for reconciliation - see version_finding." },
+    { "candidate_id": "n1ql:create-index-with-nodes", "label": "CREATE INDEX WITH {\"nodes\": [...]} option", "reused_or_minted": "minted - the 7.2 record used n1ql:with-nodes; renamed for the same reason as num_replica above" },
+    { "candidate_id": "n1ql:create-index-with-defer-build", "label": "CREATE INDEX WITH {\"defer_build\": true} option", "reused_or_minted": "minted - no prior id; needed because the *default value* of this option acquired a version gate at 7.6.2" },
+    { "candidate_id": "n1ql:index-partition-by-hash", "label": "PARTITION BY HASH clause (index partitioning)", "reused_or_minted": "minted - an Enterprise-gated clause of this statement; no prior id in the registry or the Capella/7.2 records" },
+    { "candidate_id": "n1ql:index-vector-keyword", "label": "VECTOR keyword (index key attribute marking a vector field)", "reused_or_minted": "minted - a new 8.0 index-key attribute with no prior id" },
+    { "candidate_id": "n1ql:index-include-missing", "label": "INCLUDE MISSING clause (index key attribute)", "reused_or_minted": "minted - no prior id; needed as the subject of an incompatibility with the VECTOR keyword" },
+    { "candidate_id": "indexes:vector-index-codebook", "label": "Vector index codebook (sampled-dataset artifact stored in index metadata)", "reused_or_minted": "minted - a new 8.0 concept with no analogue in the registry; it is not an index type, a state, or a statement, so no existing namespace fits" },
+    { "candidate_id": "setting:indexer-settings-defer-build", "label": "indexer.settings.defer_build (Index Settings REST API property)", "reused_or_minted": "minted - the registry has the requiresSetting predicate but no setting: namespace concepts yet; this is the first instance in this batch" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "minted - the registry has service:eventing-service but no service:index-service; same namespace and shape" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-index",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To execute the CREATE INDEX statement, you must have the `Query Manage Index` privilege granted on the keyspace."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - promoted predicate; object concept newly minted",
+      "evidence": "In Couchbase Server 8.0 and later, the `CREATE INDEX` statement also allows you to create Composite Vector indexes."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:create-vector-index",
+      "reused_or_minted_predicate": "reused - promoted predicate; identical relation asserted in the Capella record for this page",
+      "evidence": "To create Hyperscale Vector indexes, use the [CREATE VECTOR INDEX](createvectorindex.md) statement."
+    },
+    {
+      "subject": "n1ql:create-index-with-num-replica",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate; same fact as the 7.2 record, but the 8.0 page states it more strongly (see version_finding)",
+      "evidence": "[ENTERPRISE EDITION](https://www.couchbase.com/products/editions) This property is only available in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "n1ql:create-index-with-nodes",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused - promoted predicate; same fact as the 7.2 record",
+      "evidence": "[COMMUNITY EDITION](https://www.couchbase.com/products/editions) In Couchbase Server Community Edition, a single secondary index of type GSI can be placed on a single node that runs the Indexing Service. The nodes property enables you to specify the node that the index is placed on."
+    },
+    {
+      "subject": "n1ql:create-index-with-nodes",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "[ENTERPRISE EDITION](https://www.couchbase.com/products/editions) In Couchbase Server Enterprise Edition, you can specify multiple nodes to distribute replicas of an index across nodes running the Indexing Service"
+    },
+    {
+      "subject": "n1ql:create-index-with-num-replica",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:create-index-with-nodes",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page states an edition-conditional preference between two options of the same statement",
+      "evidence": "In Couchbase Server Enterprise Edition, the recommended way to do this is using the `num_replica` option. In Couchbase Server Community Edition, you need to create multiple identical indexes and place them using the `nodes` option."
+    },
+    {
+      "subject": "n1ql:index-partition-by-hash",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "### [](#index-partition)PARTITION BY HASH Clause\n\n[ENTERPRISE EDITION](https://www.couchbase.com/products/editions)\n\nUsed to partition the index."
+    },
+    {
+      "subject": "n1ql:create-index-with-defer-build",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-7-6-2",
+      "reused_or_minted_predicate": "reused - promoted predicate; this is a *default value* change gated on a patch version, which is exactly the version-drift shape this wave is hunting",
+      "evidence": "Usually, the default setting for the `defer_build` option is `false`. In Couchbase Server 7.6.2 and later, you can change the default setting for the `defer_build` option."
+    },
+    {
+      "subject": "n1ql:create-index-with-defer-build",
+      "predicate": "requiresSetting",
+      "object": "setting:indexer-settings-defer-build",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To change the default setting for deferred builds, use the Index Settings REST API to set the `indexer.settings.defer_build` property."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "reused_or_minted_predicate": "reused - promoted predicate; same relation in the 7.2 and Capella records",
+      "evidence": "The index state may be `scheduled for creation`, `deferred`, `building`, `pending`, `online`, `offline`, or `abridged`."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "If there is an index creation task already running, the Index Service queues the incoming index creation request."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:build-index",
+      "reused_or_minted_predicate": "reused - promoted predicate; used here for the codebook's build-time dependency",
+      "evidence": "The codebook is created as part of the [BUILD INDEX](build-index.md) process, and is not incrementally updated."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresSetting",
+      "object": "indexes:vector-index-codebook",
+      "reused_or_minted_predicate": "reused - promoted predicate, stretched: the codebook is a required artifact rather than a configuration setting. Flagged for reconciliation; a requiresArtifact-shaped predicate may be a better fit.",
+      "evidence": "Hyperscale Vector indexes and Composite Vector indexes require a codebook for the vector field."
+    },
+    {
+      "subject": "n1ql:index-include-missing",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "n1ql:index-vector-keyword",
+      "reused_or_minted_predicate": "reused, but a poor fit - the promoted incompatibleWithAccessSurface is about access surfaces, and this is a clause-vs-clause mutual exclusion within one statement. Reconciliation should consider a general incompatibleWith / mutuallyExclusiveWith predicate; recorded here rather than dropped because the fact is clearly stated.",
+      "evidence": "The `INCLUDE MISSING` clause can only be applied to the leading index key for non-vector fields."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresFlagToEnable",
+      "object": "n1ql:index-vector-keyword",
+      "reused_or_minted_predicate": "reused - promoted predicate; the VECTOR keyword is the syntactic flag that turns a plain secondary index into a Composite Vector index",
+      "evidence": "| include-vector  | (Optional) In a Composite Vector index, one index key must include the VECTOR keyword. See [VECTOR Keyword](#include-vector).                              |"
+    },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:create-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [BUILD INDEX](build-index.md)" },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:alter-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [ALTER INDEX](alterindex.md)| [ALTER VECTOR INDEX](altervectorindex.md)" },
+    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:drop-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "deprecatedIn",
+    "finding": "The word 'deprecated' does not appear anywhere on this page, nor on any of the eight Server 8.0 pages in this batch (grepped for deprecat|no longer|removed in|will be removed|obsolete across all eight). Two 7.2-era version gates were SILENTLY DROPPED at 8.0 rather than marked deprecated (see version_finding), which is the more interesting shape: Couchbase's SQL++ reference pages do not deprecate, they just stop mentioning. That means a deprecatedIn predicate minted from this corpus will have almost no instances, and the vocabulary gap reconciliation actually needs to close is not deprecatedIn but something like versionGateRemovedIn / noLongerVersionGatedAt - a predicate about the *documentation* losing a constraint, which is only derivable by diffing two version trees and is therefore invisible to any single-page extraction."
+  },
+  "cross_product_finding": "The Capella twin (cloud/n1ql/n1ql-language-reference/createindex.md) states the SAME 8.0 gate but rephrased for a managed fleet: 'In clusters running Couchbase Server 8.0 and later, the CREATE INDEX statement also allows you to create Composite Vector indexes' versus Server's 'In Couchbase Server 8.0 and later, ...'. Two divergences worth recording. (1) The Capella page carries a WITH-clause 'nodes' gate that the Server 8.0 page does NOT: 'In clusters running Couchbase Server versions 7.6.0 and 7.6.1, you cannot use this option to choose which Index Service nodes contain the index. Clusters running Couchbase Server 7.6.2 and later do not have this restriction.' This is a real, defensible asymmetry rather than a docs bug: the Capella docs must serve a fleet spanning several Server versions simultaneously, so historical gates stay relevant, whereas the 8.0 tree can drop anything satisfied by 8.0. Capella is, counter-intuitively, MORE version-explicit than the versioned Server docs. (2) The Capella page omits the ENTERPRISE EDITION / COMMUNITY EDITION badges entirely from the nodes and num_replica descriptions, and drops the 'In Couchbase Server Enterprise Edition, the recommended way ... In Couchbase Server Community Edition, you need to ...' paragraph. Capella has no edition axis, so requiresEdition facts extracted here have no Capella counterpart by construction - this supports the existing docs-issue capella-pages-cite-edition-badges rather than contradicting it. Server's privilege:query-manage-index must NOT be merged with Capella's privilege:capella-basic-access-write / privilege:capella-advanced-access-query-index; different access models.",
+  "version_finding": "SAME-PAGE 7.2-vs-8.0 COMPARISON (this batch's cleanest version-drift evidence). Both relations that the 7.2 record based on version-gated prose have lost their textual support at 8.0: (a) 7.2 asserted `n1ql:create-index availableSince version:server-7.0` on the quote 'In Couchbase Server 7.0 and later, CREATE INDEX allows you to make multiple concurrent index creation requests.' The 8.0 page has dropped the qualifier: 'CREATE INDEX allows you to make multiple concurrent index creation requests.' The 7.2-derived definition still HOLDS as a historical fact, but it is no longer *evidenced* at 8.0 - a re-extraction from the 8.0 tree alone would silently lose it. (b) 7.2 asserted `requiresMinVersionFor version:server-6.5` on 'In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI).' The 8.0 page says only 'The index type for a secondary index must be Global Secondary Index (GSI). The USING GSI keywords are optional and may be omitted.' Same fact, version gate removed. Note also that 7.2 minted a predicate `requiresMinVersionFor` that is NOT in the promoted list and is a near-duplicate of availableSince applied to a constraint rather than a feature - reconciliation should either promote it with a crisp definition or fold it into availableSince. NEW AT 8.0, absent from 7.2 entirely: the whole Composite Vector index apparatus (VECTOR keyword, dimension/similarity/description/scan_nprobes/train_list WITH options, codebook, index training), the CREATE VECTOR INDEX cross-reference, and the 'Defer Index Builds by Default' section gating a default-value change on 7.6.2. So this page accumulated two new version facts (8.0, 7.6.2) and lost two old ones (7.0, 6.5) between 7.2 and 8.0. ID-DRIFT WARNING for reconciliation: the 7.2 record used bare option ids n1ql:with-num_replica and n1ql:with-nodes (snake_case, statement-unqualified); I have used n1ql:create-index-with-num-replica / n1ql:create-index-with-nodes because the identical option names recur on CREATE PRIMARY INDEX, CREATE VECTOR INDEX and ALTER INDEX with different edition/deployment gates, so the unqualified ids would wrongly merge four distinct edition-gating facts onto one node. AXIS COLLISION WARNING: the registry's index-type:gsi is on the *implementation technology* axis (USING GSI), whereas index-type:composite-vector and index-type:hyperscale-vector are on the *index kind* axis - all vector indexes are also GSI indexes ('The index type for a secondary index must be Global Secondary Index (GSI)' appears verbatim on createvectorindex.md). These are not siblings and must not be modelled as a single enum."
+}

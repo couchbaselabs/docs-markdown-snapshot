@@ -1,0 +1,29 @@
+{
+  "page_id": "server/7.2/fts/fts-delete-index",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-delete-index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:delete-index",
+      "label": "Delete (Full-Text) Index - Web Console UI action",
+      "reused_or_minted": "minted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:delete-index",
+      "predicate": "seeAlso",
+      "object": "fts:fts-searching-from-the-UI",
+      "note": "structural link"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Same gap as search/create-search-indexes.json - no privilege documented for this destructive UI action. Also notably thin content overall (14 lines) - reads as an older-generation FTS doc, a distinct authoring convention from both the N1QL reference pages and the newer search/ pages.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/missing-privilege-doc-fts-delete-index"
+  },
+  "cross_component_finding": {
+    "observation": "fts/ and search/ appear to be two documentation generations covering overlapping functionality (older 'Full-Text Search' branding vs newer 'Search' service docs) - e.g. both trees have their own 'index aliases' and index-management pages (server/7.2/fts/fts-create-index-aliases.md vs server/7.2/search/create-search-index-alias.md; this page vs the create/customize pages under search/). This is a possible content-duplication or migration-in-progress signal, independent of the linked-data ontology work - flagging for a subject-matter expert to judge, not something this exercise should try to resolve on its own.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/fts-search-doc-overlap"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/join",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/join.md",
+  "concepts": [
+    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/join.json" },
+    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:comma-separated-join", "label": "Comma-separated join", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:use-hash-clause", "label": "USE HASH clause / USE HASH hint", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:use-nl-clause", "label": "USE NL clause / USE NL hint", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:use-hash-hint", "label": "USE_HASH optimizer hint (hint-comment form)", "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence" },
+    { "candidate_id": "n1ql:use-nl-hint", "label": "USE_NL optimizer hint (hint-comment form)", "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence" },
+    { "candidate_id": "n1ql:ansi-join", "label": "ANSI join", "reused_or_minted": "minted - the page's own named join family, and the subject of every edition and version constraint on the page, so it cannot be folded into n1ql:join without losing the constraints" },
+    { "candidate_id": "n1ql:lookup-join", "label": "Lookup join (legacy join syntax)", "reused_or_minted": "minted - named and defined on the page; carries its own mixing restriction" },
+    { "candidate_id": "n1ql:index-join", "label": "Index join (legacy join syntax)", "reused_or_minted": "minted - named and defined on the page; carries its own index prerequisite and mixing restriction" },
+    { "candidate_id": "n1ql:lateral-keyword", "label": "LATERAL keyword", "reused_or_minted": "minted - version-gated at 7.6, so it needs to exist as a subject; the Capella twin states the same gate but its extraction record did not capture it" },
+    { "candidate_id": "n1ql:hash-join-method", "label": "Hash join (join method)", "reused_or_minted": "minted - distinct from the USE HASH hint that requests it: the METHOD is edition-gated, the HINT exists in both editions but is ignored in one. Conflating them would destroy exactly the distinction this page is making" },
+    { "candidate_id": "n1ql:nested-loop-join-method", "label": "Nested-loop join (join method)", "reused_or_minted": "minted - the only method available in Community Edition; needed as the object of the CE fallback behaviour" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-based optimizer", "reused_or_minted": "minted - the page links to cost-based-optimizer.md and names a concrete way LATERAL degrades its behaviour" },
+    { "candidate_id": "n1ql:right-outer-join", "label": "RIGHT OUTER JOIN", "reused_or_minted": "minted - needed because it is the one join type that does NOT support LATERAL and the one with a positional restriction, both of which are constraints rather than catalogue entries" },
+    { "candidate_id": "index:inverse-index", "label": "Inverse index on a foreign key", "reused_or_minted": "minted - the prerequisite for index joins; no existing id. New namespace prefix index: - reconciliation may prefer to fold this under the established index-type: family, though this is a required index rather than an index type" },
+    { "candidate_id": "privilege:query-select", "label": "query_select privilege (Server RBAC)", "reused_or_minted": "reused - same id used in insert.json in this batch. Note this page spells it in code style and lowercase with an underscore (`query_select`) where insert.md spells it in italics and title case (_Query Select_) - see cross_component_finding" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "edition:community", "label": "Community Edition", "reused_or_minted": "reused - promoted registry concept" },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "reused - established in the cloud/n1ql/ records and in searchfun.json in this batch" },
+    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "minted - first appearance in this POC as far as I can see; a pre-7.x version still cited as a behaviour boundary on the 8.0 page" },
+    { "candidate_id": "version:server-4-1", "label": "Couchbase Server 4.1", "reused_or_minted": "minted - cited only to bound the legacy lookup-join syntax; the oldest version named anywhere in this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:join",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-select",
+      "reused_or_minted_predicate": "reused - promoted predicate. Object is the Server RBAC privilege, NOT the Capella record's privilege:capella-advanced-access-query-read or privilege:capella-basic-access-read; the two access models must stay separate",
+      "evidence": "For you to select data from keyspace or expression, you must have the `query_select` privilege on that keyspace."
+    },
+    {
+      "subject": "n1ql:hash-join-method",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate. The gate is on the METHOD, not on the hint that requests it",
+      "evidence": "Couchbase Server Enterprise Edition supports two join methods for performing ANSI join: nested-loop join and hash join. Two corresponding join hints are introduced: `USE HASH` and `USE NL`."
+    },
+    {
+      "subject": "n1ql:ansi-join",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - promoted predicate; the default join method itself differs by edition, which is a behaviour difference on top of the availability difference",
+      "evidence": "In Enterprise Edition, for an ANSI join with a subquery or a generic expression as the right-hand side, the default method is hash."
+    },
+    {
+      "subject": "n1ql:ansi-join",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused - promoted predicate. This is the single most important relation on the page: the hint is not rejected in CE, it is accepted and ignored, so a query written against EE runs in CE with different performance and no error. That silence is the hazard",
+      "evidence": "For Community Edition (CE), only nested-loop join is considered by the planner, and any specified `USE HASH` hint will be silently ignored."
+    },
+    {
+      "subject": "n1ql:use-hash-clause",
+      "predicate": "doesNotSatisfy",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused - promoted predicate, used to record that the hint has no effect under CE. Filed in addition to the behavesDifferentlyUnder relation above because the fact needs to be discoverable from the HINT as subject, not only from the join family - a reader looking up USE HASH must find the CE caveat",
+      "evidence": "For Community Edition (CE), only nested-loop join is considered by the planner, and any specified `USE HASH` hint will be silently ignored."
+    },
+    {
+      "subject": "n1ql:lateral-keyword",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused - promoted predicate; the wave's target shape, and the clearest availableSince on the page",
+      "evidence": "In Couchbase Server 7.6 and later, you can use the LATERAL keyword as a visual reminder that a join contains correlated expressions."
+    },
+    {
+      "subject": "n1ql:ansi-join",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "reused_or_minted_predicate": "reused - promoted predicate. Scoped: it is not ANSI join itself that arrives in 6.5 but the widening of what may appear on its right-hand side. The registry cannot express a partial-feature availability gate, so this relation over-claims slightly and the evidence quote must be kept to bound it",
+      "evidence": "In Couchbase Server 6.5 and later, the right-hand side of an ANSI join may be a keyspace reference, a subquery, or a generic expression term."
+    },
+    {
+      "subject": "n1ql:ansi-join",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-6-5",
+      "reused_or_minted_predicate": "reused - promoted predicate; an internal query-rewrite that changes plans but not results, so behavesDifferentlyUnder rather than availableSince",
+      "evidence": "In Couchbase Server 6.5 and later, if you create either of the following:"
+    },
+    {
+      "subject": "n1ql:lookup-join",
+      "predicate": "documentedAsLegacy",
+      "object": "version:server-4-1",
+      "reused_or_minted_predicate": "minted - deliberately NOT deprecatedIn. The page calls lookup join 'a legacy syntax' and dates its exclusive period to 4.1 and earlier, but it never says the syntax is deprecated, never names a removal version, and never tells the reader to stop using it. Asserting deprecatedIn here would be an invention. See version_finding - the gap between 'legacy' and 'deprecated' is the main vocabulary question this page raises",
+      "evidence": "A _lookup join_ is a legacy syntax for joins. It enables you to join a foreign key field on the left-hand side of the join with the primary [document key](../../learn/data/data.md#keys) on the right-hand side of the join. Couchbase Server version 4.1 and earlier supported only lookup joins."
+    },
+    {
+      "subject": "n1ql:index-join",
+      "predicate": "documentedAsLegacy",
+      "object": "n1ql:lookup-join",
+      "reused_or_minted_predicate": "minted - same predicate; here the object is the syntax it inverts, because the page gives index join no version boundary of its own, only 'another legacy syntax'. The asymmetry is faithful to the page: one legacy syntax is dated, the other is not",
+      "evidence": "An _index join_ is another legacy syntax for joins which reverses the direction of a lookup join."
+    },
+    {
+      "subject": "n1ql:lookup-join",
+      "predicate": "cannotBeMixedWith",
+      "object": "n1ql:ansi-join",
+      "reused_or_minted_predicate": "minted - the registry has incompatibleWithCredentialType and incompatibleWithAccessSurface but nothing for two syntaxes that cannot co-occur in one statement. This is a syntax-level mutual exclusion and is the kind of constraint a query author hits at parse time",
+      "evidence": "Lookup joins can be chained with other lookup joins or nests and index joins or nests, but they cannot be mixed with ANSI joins, ANSI nests, or comma-separated joins."
+    },
+    {
+      "subject": "n1ql:index-join",
+      "predicate": "cannotBeMixedWith",
+      "object": "n1ql:ansi-join",
+      "reused_or_minted_predicate": "minted - see above; the page states the identical restriction for index joins in its own section",
+      "evidence": "Index joins can be chained with other index joins or nests and lookup joins or nests, but they cannot be mixed with ANSI joins, ANSI nests, or comma-separated joins."
+    },
+    {
+      "subject": "n1ql:index-join",
+      "predicate": "requiresIndex",
+      "object": "index:inverse-index",
+      "reused_or_minted_predicate": "minted - a hard prerequisite with no existing predicate. requiresSetting is the nearest promoted predicate but an index is not a setting; reconciliation should consider requiresIndex as a general shape, since index prerequisites recur across the SQL++ reference",
+      "evidence": "An index join requires an inverse index on the foreign key in the keyspace on the right-hand side of the join."
+    },
+    {
+      "subject": "n1ql:right-outer-join",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:lateral-keyword",
+      "reused_or_minted_predicate": "minted - same predicate minted on searchfun.json and insert.json in this batch, which now has three independent uses and is a strong candidate for promotion",
+      "evidence": "RIGHT OUTER JOINS do not support the optional LATERAL keyword."
+    },
+    {
+      "subject": "n1ql:lateral-keyword",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:cost-based-optimizer",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page names an explicit cost to using an optional keyword, which is a genuine trade-off rather than a restriction",
+      "evidence": "Using the LATERAL keyword in an ANSI join implies that the right-hand side of the join must appear after the left-hand side of the join. This may prevent the cost-based optimizer from reordering joins in the query to give the optimal join order."
+    },
+    {
+      "subject": "n1ql:use-hash-clause",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:use-hash-hint",
+      "reused_or_minted_predicate": "reused - promoted predicate; matches the Capella record's relation for the same sentence",
+      "evidence": "This clause is equivalent to the `USE_HASH` optimizer hint. For more details, refer to [Keyspace Hints](keyspace-hints.md#use-hash)."
+    },
+    {
+      "subject": "n1ql:use-nl-clause",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:use-nl-hint",
+      "reused_or_minted_predicate": "reused - promoted predicate; matches the Capella record. Note the link target in this sentence is wrong - see cross_component_finding",
+      "evidence": "This clause is equivalent to the `USE_NL` optimizer hint. For more details, refer to [Keyspace Hints](keyspace-hints.md#use-hash)."
+    },
+    {
+      "subject": "n1ql:use-hash-clause",
+      "predicate": "cannotBeMixedWith",
+      "object": "n1ql:use-hash-hint",
+      "reused_or_minted_predicate": "minted - the same predicate as the join-syntax exclusions above, applied to two ways of expressing one hint. Worth capturing because the documented consequence is that BOTH forms are discarded, so the query silently loses the hint it was given twice",
+      "evidence": "Note that you cannot specify a join hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer."
+    },
+    {
+      "subject": "n1ql:join",
+      "predicate": "seeAlso",
+      "object": "n1ql:from",
+      "reused_or_minted_predicate": "reused - structural cross-reference; matches the Capella record",
+      "evidence": "You can chain the `JOIN` clause with any of the other permitted FROM terms, including another `JOIN` clause. For more information, see the page on the [FROM](from.md) clause."
+    },
+    {
+      "subject": "n1ql:right-outer-join",
+      "predicate": "restrictedToContext",
+      "object": "n1ql:from",
+      "reused_or_minted_predicate": "minted - same predicate minted on searchfun.json in this batch. A positional restriction within a clause, which is neither a version nor an edition gate but is the kind of hard syntactic constraint that makes a query fail",
+      "evidence": "RIGHT OUTER JOIN can only be the first join specified in a FROM clause."
+    },
+    {
+      "subject": "n1ql:ansi-join",
+      "predicate": "cannotBeMixedWith",
+      "object": "n1ql:lookup-join",
+      "reused_or_minted_predicate": "minted - the converse direction of the two mixing relations above, stated a third time in the page's own Restrictions list. Recorded because the restriction is symmetric and the page happens to state it from both sides; a reader arriving at the ANSI join section finds it here",
+      "evidence": "* No mixing of ANSI join syntax with lookup or index join syntax in the same FROM clause."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "deprecatedIn",
+    "finding": "This is the strongest deprecation-adjacent page in the batch and it still yields no deprecatedIn relation. Two whole join syntaxes are labelled '_a legacy syntax_' and '_another legacy syntax_', one of them is dated to 'Couchbase Server version 4.1 and earlier', both are documented at full length with syntax diagrams and multiple worked examples, and neither is anywhere called deprecated, marked for removal, or paired with a 'use X instead' instruction. The page therefore states an editorial judgement about age without stating a support commitment. I have recorded this as a minted documentedAsLegacy rather than stretching deprecatedIn to cover it. Reconciliation must decide whether the two are the same predicate; my view is that they are not, because deprecatedIn implies a version at which the deprecation took effect and a removal path, and 'legacy' as used here supplies neither. If the two are merged, this page will read as asserting that lookup joins were deprecated in 4.1, which is not what it says. Separately, and unlike insert.md, this page has no Security Requirements or RBAC section beyond one sentence, so it names no roles at all."
+  },
+  "cross_component_finding": "Three defects. (1) The USE NL Hint section's cross-reference points at the wrong anchor: 'refer to [Keyspace Hints](keyspace-hints.md#use-hash)' appears in BOTH the USE HASH section (line 627, correct) and the USE NL section (line 645, wrong - it should be #use-nl). The identical error is present in the Capella twin, so this is upstream in the shared source and will not be caught by any Server-versus-Capella comparison. (2) The privilege named here as `query_select` in code style is named _Query Select_ in italic title case on insert.md, and Authorization is where the reader is sent for both; one product, one privilege, two spellings across two adjacent reference pages. Any extraction keyed on surface form will produce two concepts. (3) The page depends on the Index Service for index joins ('requires an inverse index on the foreign key') and on the cost-based optimizer for join ordering, but declares neither as a service dependency in the way searchfun.md declares the Search Service; the dependency is only inferable from prose and links to cost-based-optimizer.md and the document-key page.",
+  "cross_product_finding": "The largest and cleanest product divergence in this batch, and it runs in the direction the brief expected rather than the inverted direction the rest of my pages showed. The Server page carries an entire edition-gating apparatus that the Capella page does not have at all: the ENTERPRISE EDITION badge and its 'In Enterprise Edition ... the default method is hash' block, the COMMUNITY EDITION badge and its 'only nested-loop join is considered by the planner, and any specified `USE HASH` hint will be silently ignored' sentence, and the framing sentence 'Couchbase Server Enterprise Edition supports two join methods'. A grep of the Capella page for 'Enterprise' and 'Community' returns nothing. This is correct product behaviour - Capella has no Community Edition - and it means the Capella extraction record could not have found these facts, which explains why cloud/.../join.json contains no requiresEdition relation. It also means the CE join-method limitation exists in the corpus ONLY on the Server page, so an ontology built from Capella alone would silently lose it. The version gates diverge too: Server says 'In Couchbase Server 7.6 and later' where Capella says 'In clusters using Couchbase Server 7.6 and later' (the same fact, differently framed), and Server's two 6.5 statements and its '4.1 and earlier' sentence are absent from Capella entirely - Capella keeps the words 'a legacy syntax' but drops the version that dates it, leaving the reader with a pejorative and no timeframe. Finally, the Capella record captured only privileges and seeAlso links and missed the LATERAL 7.6 availableSince that IS present on its page; that is an extraction gap in the existing record, not a product difference, and reconciliation should backfill it.",
+  "version_finding": "Four version boundaries harvestable here, spanning a wider range than any other page in this batch: 4.1 (lookup joins were once the only join syntax), 6.5 (ANSI join right-hand side widened to subqueries and generic expressions; outer joins internally rewritten to inner joins when the outer rows are filtered away), 7.6 (LATERAL keyword). Two vocabulary decisions follow. First, 'legacy' versus 'deprecated', discussed under notable_absence - do not conflate them. Second, this page needs a way to say 'version X and EARLIER', which every predicate in the registry currently lacks: 'Couchbase Server version 4.1 and earlier supported only lookup joins' is an upper-bounded fact, the mirror image of availableSince, and there is no availableUntil or supportedThrough to hold it. I have parked it in the object slot of documentedAsLegacy, which is the wrong shape and should be revisited. Third and most consequential for the ontology as a whole: this page proves that edition gating and version gating interact. Hash join is gated on Enterprise Edition, LATERAL is gated on 7.6 or later, and nothing in the model can express 'Enterprise Edition, 7.6 or later' as a single condition - two separate relations imply a conjunction the pages never actually state, and there is no way to record a feature that is EE-only in one version and universal in a later one. Worth deciding before the vocabulary is frozen."
+}

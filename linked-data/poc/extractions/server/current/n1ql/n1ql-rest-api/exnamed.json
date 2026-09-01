@@ -1,0 +1,41 @@
+{
+  "page_id": "server/current/n1ql/n1ql-rest-api/exnamed",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/exnamed.md",
+  "concepts": [
+    { "candidate_id": "n1ql:named-and-positional-parameters", "label": "Named Parameters and Positional Parameters", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-manage/query-settings.json for the same feature" },
+    { "candidate_id": "n1ql:dollar-prefixed-named-placeholder", "label": "$name named parameter placeholder", "reused_or_minted": "minted - needed as a distinct object because the named-parameter feature has two placeholder prefixes ($ and @) documented elsewhere in Server 8.0, and this page shows only one; see version_finding" },
+    { "candidate_id": "n1ql:uri-percent-escaping", "label": "Percent-escaping of query text in Query REST API requests (% as %25)", "reused_or_minted": "minted - a real, actionable constraint on this API surface with no existing id. Not a SQL++ language concept: it is an artefact of carrying statements in URI-encoded form" },
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:named-and-positional-parameters",
+      "predicate": "usesEnum",
+      "object": "n1ql:dollar-prefixed-named-placeholder",
+      "reused_or_minted_predicate": "reused - the placeholder syntax is the vocabulary the feature is expressed in; only the $ form is exhibited here",
+      "evidence": "| statement      | SELECT airline FROM \\`travel-sample\\`.inventory.route WHERE sourceairport = $aval AND distance > $dval; |"
+    },
+    {
+      "subject": "n1ql:uri-percent-escaping",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:dollar-prefixed-named-placeholder",
+      "reused_or_minted_predicate": "reused - the page states an obligation (\"we need to escape that by replacing it with\") conditional on a situation (using % as a wildcard in a query), which is mustUseInsteadWhen's shape",
+      "evidence": "The **%** symbol is the escape character in URIs, so when using **%** as a wildcard in a query, we need to escape that by replacing it with its corresponding ASCII code **%25**."
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\"status\": \"success\","
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page has no cross-references at all - no See Also section and no inline links. In particular it does not link to the named/positional parameter documentation in server/current/n1ql/n1ql-manage/query-settings.md, which is where the feature is actually specified and where the @-prefixed alternative syntax lives. The Capella corpus links this concept the other way round (cloud/guides/prep-statements.json records seeAlso -> n1ql:named-and-positional-parameters), so the link exists in one direction only."
+  },
+  "version_finding": "1. INCOMPLETE SYNTAX COVERAGE RELATIVE TO THE SAME PRODUCT VERSION. Server 8.0 documents two placeholder prefixes for named parameters. server/current/n1ql/n1ql-manage/query-settings.md uses both in the same statement - \"WHERE country = $country AND geo.alt > @altitude;\" - but this example page shows only the $ form ($aval, $dval, $pattern) and never mentions @. The Capella page cloud/n1ql/n1ql-manage/query-settings.md carries the identical @altitude example, so this is not a Server/Capella divergence: it is an example page that has not been refreshed since the @ prefix was introduced. Since neither page states when @ became available, this is exactly the availableSince fact the registry has no way to record and the docs have no way to convey. Flagging for reconciliation: the @ prefix is a candidate for an availableSince relation once a version can be sourced, and this page is a candidate doc fix.\n\n2. No version or edition gating on the page itself.",
+  "cross_component_finding": "DOCUMENTATION DEFECT: the parameter table misnames a parameter. The table lists the parameters as `statement`, `$aval` and `$davl`, but the statement in the same table row and the curl command below both use `$dval`:\n\n  | $davl          | 13000                                                                                                   |\n\nagainst\n\n  & $aval=\"LAX\" & $dval=13000' \\\n\n`$davl` is a transposition typo for `$dval`. A reader copying from the table would get error 1050 (\"No statement or prepared value\" family - unresolved named parameter), which is precisely the failure mode documented on this batch's exrequesterror.md. Worth fixing; the equivalent table on expositional.md ($1, $2) is correct, so this is isolated to exnamed.md."
+}

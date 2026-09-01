@@ -1,0 +1,50 @@
+{
+  "page_id": "server/7.2/search/quick-index-field-options",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/quick-index-field-options.md",
+  "concepts": [
+    {
+      "candidate_id": "search:quick-index-field-options",
+      "label": "Quick Index Field Options (reference page - options table for Quick Editor fields)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    },
+    {
+      "candidate_id": "search:quick-index-language",
+      "label": "Quick Index Language option (enum: Unknown/Various, English, Arabic, Chinese/Japanese/Korean, Croatian, Danish, Dutch, Finnish, French, German, Hebrew, Hindi, Hungarian, Italian, Norwegian, Persian, Portuguese, Romanian, Russian, Sorani Kurdish, Spanish, Swedish, Turkish, Web)",
+      "reused_or_minted": "minted",
+      "note": "enum concept; fully enumerated on the companion page quick-index-supported-languages.md, referenced from the Language row of this table"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:quick-index-field-options",
+      "predicate": "usesEnum",
+      "object": "search:quick-index-language",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Select the language for the content inside a text field. The Search Service automatically applies an analyzer to the field's contents based on the selected language. For more information about the available language options, see [Quick Index Supported Languages](quick-index-supported-languages.md)."
+    },
+    {
+      "subject": "search:quick-index-field-options",
+      "predicate": "seeAlso",
+      "object": "search:create-quick-index",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:quick-index-field-options",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "note": "structural link (analyzers anchor)"
+    },
+    {
+      "subject": "search:quick-index-field-options",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "note": "structural link (facets anchor)"
+    }
+  ],
+  "competency_questions_addressed": [
+    "What field-level options are available when adding a field to a Quick Index?",
+    "Which enum values exist for the Quick Index Language option?"
+  ]
+}

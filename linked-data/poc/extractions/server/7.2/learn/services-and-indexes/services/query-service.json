@@ -1,0 +1,68 @@
+{
+  "page_id": "server/7.2/learn/services-and-indexes/services/query-service",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/services/query-service.md",
+  "concepts": [
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "reused_or_minted": "reused",
+      "note": "same concept minted on index-service.md, this batch"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "reused_or_minted": "reused",
+      "note": "co-processed in this batch, see index-service.json"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search Service",
+      "reused_or_minted": "minted",
+      "note": "referenced, not yet extracted as its own page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused, still watchlist - minted on index-service.json in this same batch, single prior occurrence",
+      "evidence": "The Query Service depends on both the _Index Service_ and the _Data Service_."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "reused, still watchlist",
+      "evidence": "The Query Service depends on both the _Index Service_ and the _Data Service_."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "seeAlso",
+      "object": "manage:install-ports",
+      "note": "structural link ('for more information on port-allocation, see Network and Firewall Requirements')"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "seeAlso",
+      "object": "n1ql:selectintro",
+      "note": "structural link ('For more information about each of these operations, see Query Phases')"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "seeAlso",
+      "object": "n1ql:language-reference-index",
+      "note": "structural link ('For detailed information, see SQL++ Language Reference')"
+    }
+  ],
+  "competency_questions_addressed": [
+    "Which services does this service depend on?",
+    "Generate related pages for navigation"
+  ]
+}

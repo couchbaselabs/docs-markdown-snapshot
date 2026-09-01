@@ -1,0 +1,165 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/n1ql-auditing",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/n1ql-auditing.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:sql-auditing",
+      "label": "SQL++ Auditing (auditing of SQL++-related activities on Couchbase Server)",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/n1ql-auditing.json for the same mechanism"
+    },
+    {
+      "candidate_id": "server:auditing",
+      "label": "Auditing (general Couchbase Server auditing)",
+      "reused_or_minted": "minted - the Capella record's seeAlso target was capella:audit-events pointing at cloud/security/auditing.md; this page points at server/current/learn/security/auditing.md, which is a different page with different content (notably it carries an ENTERPRISE EDITION badge). Deliberately not merged"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator (role permitted to configure the audit service)",
+      "reused_or_minted": "reused - role:full-administrator is already in the promoted registry, and the gating sentence on this page is word-for-word identical to the Capella page"
+    },
+    {
+      "candidate_id": "role:local-user-security-administrator",
+      "label": "Local User Security Administrator (role permitted to configure the audit service)",
+      "reused_or_minted": "reused - already in the promoted registry"
+    },
+    {
+      "candidate_id": "n1ql:audit-record",
+      "label": "Audit record (JSON, with required and optional field sets for statements and for API requests)",
+      "reused_or_minted": "minted - the Capella record minted no concept for the record itself; three separate field tables on this page make it a first-class concept"
+    },
+    {
+      "candidate_id": "n1ql:audit-api-code",
+      "label": "API auditing code (per-URL audit record codes 28689-28702 for the query engine's secondary APIs)",
+      "reused_or_minted": "minted - SERVER-ONLY concept; there is no corresponding section, table or example on the Capella page"
+    },
+    {
+      "candidate_id": "n1ql:audit-rotation-type-enum",
+      "label": "Audit log rotation type enum (time-based days | size-based MB)",
+      "reused_or_minted": "minted - a distinct enum; not the registry's monitoring:event-severity-enum or health-advisor-severity-enum"
+    },
+    {
+      "candidate_id": "n1ql:audit-failure-response-enum",
+      "label": "Audit failure response enum (Ignore | Block | Log Reuse)",
+      "reused_or_minted": "minted - a distinct enum governing what happens when the audit target fails"
+    },
+    {
+      "candidate_id": "n1ql:client-context-id",
+      "label": "client_context_id parameter, captured as clientContextId in audit records",
+      "reused_or_minted": "minted - carries an explicit security caveat that makes it a constraint-bearing concept, not just a field name"
+    },
+    {
+      "candidate_id": "n1ql:query-throughput",
+      "label": "SQL++ query throughput (queries per second)",
+      "reused_or_minted": "minted - needed as the object of the auditing performance trade-off, which this page quantifies at 9-17%"
+    },
+    {
+      "candidate_id": "ui:couchbase-web-console",
+      "label": "Couchbase Web Console",
+      "reused_or_minted": "minted - shared id with the server query-settings record in this batch; the configuration surface for auditing on Server"
+    },
+    {
+      "candidate_id": "tool:cbcollect-info",
+      "label": "cbcollect_info diagnostic collection utility",
+      "reused_or_minted": "minted - named here specifically to state what it does NOT collect, so it is required as the object of that relation"
+    },
+    {
+      "candidate_id": "n1ql:audit-trail-immutability",
+      "label": "Audit trail protection / immutability of written audit records",
+      "reused_or_minted": "minted - a stated guarantee of the subsystem, distinct from the access restriction on configuring it"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "requiresRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused - requiresRole is in the promoted list and is a better fit than the requiresPrivilege the Capella record used, since the objects are roles not named privileges. Flagged: the Capella record and this record now disagree on the predicate for identical prose",
+      "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "requiresRole",
+      "object": "role:local-user-security-administrator",
+      "reused_or_minted_predicate": "reused - requiresRole, same sentence as above",
+      "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "configuredVia",
+      "object": "ui:couchbase-web-console",
+      "reused_or_minted_predicate": "minted - createdVia is about creation, requiresUiMode is about a UI mode being switched on; neither says 'the configuration surface for this feature is X'. The Server/Capella split on this page (Web Console vs Management REST API) makes the configuration surface a load-bearing distinction, so it deserves its own predicate",
+      "evidence": "Auditing can be configured by means of Couchbase Web Console: see the information provided in [Manage Auditing](../../manage/manage-security/manage-auditing.md). To capture SQL++-related events, use the **Query and Index Service** panel."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "usesEnum",
+      "object": "n1ql:audit-rotation-type-enum",
+      "reused_or_minted_predicate": "reused - usesEnum; object minted [evidence corrected during wave-1 reconciliation: the original appended a flattened markdown table to the lead-in sentence, which is not a verbatim page substring. The enum members remain recorded in the concept entry; only the quote is trimmed to the sentence the page actually contains.]",
+      "evidence": "The auditing Rotation parameters can be only one of the following:"
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "usesEnum",
+      "object": "n1ql:audit-failure-response-enum",
+      "reused_or_minted_predicate": "reused - usesEnum; object minted [evidence corrected during wave-1 reconciliation: the original appended a flattened markdown table to the lead-in sentence, which is not a verbatim page substring. The enum members remain recorded in the concept entry; only the quote is trimmed to the sentence the page actually contains.]",
+      "evidence": "When the audit target fails, the auditing system can be set to one of the following:"
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:query-throughput",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst from the promoted list; this is an unusually well-quantified instance",
+      "evidence": "Auditing causes a reduction in SQL++ query-performance. This is in the range of 9% to 17% of queries performed per second: the exact reduction depends on query-size, and on the amount of auditing that has been enabled. Large queries and minimal auditing cause less performance-reduction."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "hasNoRelationshipTo",
+      "object": "tool:cbcollect-info",
+      "reused_or_minted_predicate": "reused - hasNoRelationshipTo is exactly the shape of this negative claim, and this sentence is SERVER-ONLY (absent from the Capella page)",
+      "evidence": "The [cbcollect\\_info](../../cli/cbcollect-info-tool.md) utility does not collect audit logs."
+    },
+    {
+      "subject": "n1ql:client-context-id",
+      "predicate": "doesNotSatisfy",
+      "object": "n1ql:sql-auditing",
+      "reused_or_minted_predicate": "reused - doesNotSatisfy; the field is present in audit records but explicitly disclaimed as a security control",
+      "evidence": "The client context ID has no security guarantees. The parameter can be set by any user in any request and is not verified in the server, so it should not be relied upon for security purposes."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "excludesFromCapture",
+      "object": "n1ql:audit-api-code",
+      "reused_or_minted_predicate": "minted - excludesFromCapture, shared with the server query-awr record in this batch. Records that three named categories of API traffic are deliberately never audited, which is a completeness constraint on the audit trail",
+      "evidence": "Items that will not be captured in the audit logs:\n\n* API calls that are not statements\n* API requests sent to URLs the query engine does not service\n* API requests which are handled by the autonomic functionality of the HTTP server"
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:audit-record",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder; auditing is granular at request level, not operation level, so a SELECT produces one record and its downstream Data and Index Service work produces none",
+      "evidence": "Auditing occurs at the level of _requests_, rather than of _operations_. Thus, when a request arrives with a SELECT query, only the SELECT query itself is logged: the associated subsidiary operations performed by the Data and Index Services are _not_ logged."
+    },
+    {
+      "subject": "n1ql:audit-trail-immutability",
+      "predicate": "requiresRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused - requiresRole; the immutability guarantee is stated in the same section as, and is the purpose of, the configuration access restriction",
+      "evidence": "Audit records are immutable since the auditing system prevents changes of audit event records once written."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "seeAlso",
+      "object": "server:auditing",
+      "reused_or_minted_predicate": "reused - structural markdown link; the Capella record has the same relation but a different object page",
+      "evidence": "This section provides specific information on Couchbase Server auditing as it relates to SQL++. For a general description of auditing with Couchbase Server, see [Auditing](../../learn/security/auditing.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "This is the clearest documentation defect found in the batch. server/current/learn/security/auditing.md - the very page this page links to for 'a general description of auditing with Couchbase Server' - carries an ENTERPRISE EDITION badge. This page carries no edition marker at all, in 241 lines describing how to configure and read audit records. So the edition gate is one hop away and invisible to a reader who lands here from a search engine or an LLM index. Since the SQL++ audit configuration is reached through the Web Console's 'Query and Index Service' panel, which only exists if auditing is available, the gate is inherited but unstated. requiresEdition edition:enterprise is very likely true for n1ql:sql-auditing but was NOT asserted because there is no quotable evidence on the page - which is precisely the failure mode this wave exists to surface."
+  },
+  "cross_component_finding": "Same role-taxonomy problem the Capella extraction flagged, unchanged: audit configuration is gated by 'Full and Local User Security Administrators'. On the Server side these ARE legitimate RBAC role names (server/current/learn/security/roles.md), so the registry's role:full-administrator and role:local-user-security-administrator are correctly rooted here and it is the Capella page that inherited them unadapted - the opposite of the direction the Capella record assumed. Reconciliation should treat role: as the Server RBAC role namespace and treat their appearance on Capella pages as a porting defect. Separately: the audit event list defers to '[Query and Index Service Events](../../audit-event-reference/audit-event-reference.md#query-service-event-list-table)' for the bulk of its content, so the event catalogue lives on a page not in this wave; and note that these audit events are NOT the registry's monitoring:event (a Capella alerting-model event with a severity enum) - two different things called 'event', do not merge.",
+  "cross_product_finding": "The two pages are the same source with a product substitution, but four substantive Server-only additions all cluster on one theme - the Server page audits the query engine's ADMIN API surface and the Capella page does not. Server-only: (1) the bullet 'Non-query API requests' in the list of auditable activities; (2) 'Table 3. Required auditing fields for API requests' (httpMethod, httpResultCode, errorMessage); (3) 'Example 3' showing an audited GET /admin/ping; (4) the entire 'API Auditing Codes' section mapping 14 /admin/* and /debug/* URLs to codes 28689-28702. That is consistent with the divergence in monitoring-n1ql-query.md and query-settings.md in this same batch: the /admin surface exists on Server and is not tenant-visible on Capella, so everything about it is stripped from the Capella variant. The configuration surface also differs and the two statements are mutually exclusive, not merely differently worded - Server: 'Auditing can be configured by means of Couchbase Web Console ... use the **Query and Index Service** panel'; Capella: 'You can configure auditing by means of the Management REST API: see Manage Audits.' Likewise the client list - Server 'ones issued through the SDK, the Query workbench, and the Query Shell' vs Capella 'issued through the Query tab, the cbq shell, and the SDK' - which is the same capella:query-tab / tool:query-workbench near-collision seen in the cbq and monitoring records. Finally, where the Capella page says 'Once archived, audit data is deleted from Capella', Server says 'deleted from Couchbase', and the Capella page reaches into server/ docs for its event list ('../../../server/current/audit-event-reference/...') whereas Server resolves it locally.",
+  "version_finding": "Negative result, and worth recording as such: this page contains ZERO version references of any kind - no 'available since', no 'deprecated', no version numbers except in timestamps. Its examples are dated 2018-02-09 and its example User-Agent strings advertise 'Couchbase Query Workbench (5.1.0-1434-enterprise)', 'curl/7.43.0', 'couchbase-java-client/2.5.2' and 'Java HotSpot 1.8.0_101-b13'. So on an 8.0 page the illustrative material is roughly seven major versions stale, and one of those strings ('5.1.0-1434-enterprise') is the only place edition appears anywhere on the page - as an incidental artefact of a copied sample rather than as a statement about availability. Combined with the notable_absence above, the pattern across this batch is consistent: where a Couchbase page states no version or edition, that silence is usually staleness rather than a genuine absence of a gate, so reconciliation should treat 'no availableSince found' as an unknown rather than as 'available in all versions'."
+}

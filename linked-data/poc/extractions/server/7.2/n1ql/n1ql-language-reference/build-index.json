@@ -1,0 +1,46 @@
+{
+  "page_id": "server/7.2/n1ql/n1ql-language-reference/build-index",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/build-index.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX statement",
+      "reused_or_minted": "minted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:build-index",
+      "predicate": "requiresPrivilege",
+      "object": "privilege:query-manage-index",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "User executing the BUILD INDEX statement must have the Query Manage Index privilege granted on the keyspace."
+    },
+    {
+      "subject": "n1ql:build-index",
+      "predicate": "requiresMinVersionFor",
+      "object": "version:server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 6.5 and later, each index term may be an index name, an index expression, or a subquery expression."
+    },
+    {
+      "subject": "n1ql:build-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "reused_or_minted_predicate": "reused - identical enum list to createindex.md",
+      "evidence": "The index state may be scheduled for creation, deferred, building, pending, online, offline, or abridged."
+    },
+    {
+      "subject": "n1ql:build-index",
+      "predicate": "completes",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "minted - new relation type, no existing term fit",
+      "evidence": "CREATE INDEX can mark indexes for deferred building using defer_build:true ... BUILD INDEX is capable of building multiple indexes at once."
+    }
+  ],
+  "competency_questions_addressed": [
+    "Which privileges are required?",
+    "What versions support this feature?"
+  ]
+}

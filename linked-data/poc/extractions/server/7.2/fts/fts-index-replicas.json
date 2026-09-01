@@ -1,0 +1,23 @@
+{
+  "page_id": "server/7.2/fts/fts-index-replicas",
+  "source_version": "7.2",
+  "source_path": "server/7.2/fts/fts-index-replicas.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:index-replicas",
+      "label": "Index Replicas (FTS availability feature)",
+      "reused_or_minted": "minted",
+      "note": "No prior registry term; supports availability by promoting a replica partition to active if the Index Service-node hosting the active partition is lost."
+    }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for configuring the number of index replicas - same gap as other fts/ index-configuration and index-management pages in this batch."
+  },
+  "competency_questions_addressed": [
+    "How do index replicas support availability in the Search service?",
+    "How many index replicas can be configured, and what limits that number?",
+    "What privileges are required to configure index replicas?"
+  ]
+}

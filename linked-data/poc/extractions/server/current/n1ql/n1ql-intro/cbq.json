@@ -1,0 +1,138 @@
+{
+  "page_id": "server/current/n1ql/n1ql-intro/cbq",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-intro/cbq.md",
+  "concepts": [
+    { "candidate_id": "tool:cbq-shell", "label": "cbq command line shell for SQL++", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-intro/cbq.json for the same tool" },
+    { "candidate_id": "command-line-tools-package:7.6.2", "label": "Couchbase command line tools package, version 7.6.2", "reused_or_minted": "reused - the Capella record already coined this id as the object of availableSince. Note the Server page calls the package by a different name ('Couchbase Server tools') - see version_finding" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench (Couchbase Web Console query UI)", "reused_or_minted": "minted - shared id with the server monitoring-n1ql-query record in this batch. Deliberately NOT merged with the registry's capella:query-tab: this page positions cbq against the 'Query Workbench', the Capella page against the 'Query tab'" },
+    { "candidate_id": "cbq:protocol-scheme-enum", "label": "cbq connection protocol scheme enum (http:// | https:// | couchbase:// | couchbases://)", "reused_or_minted": "minted - a distinct enum; the closest registry concept is security:public-internet, which is an access surface not a scheme vocabulary" },
+    { "candidate_id": "cbq:encrypted-connection", "label": "Encrypted cbq connection (https:// or couchbases://, ports 18091/18093)", "reused_or_minted": "minted - no existing id; the registry's security:public-internet is about exposure, not transport encryption" },
+    { "candidate_id": "cbq:multiple-credentials", "label": "Multiple credentials for authorization (-c/--credentials with a comma-separated list, \\SET -creds)", "reused_or_minted": "minted - this is the capability that behaves differently between Server and Capella, so it needs its own id to carry that finding" },
+    { "candidate_id": "cbq:opt-cacert", "label": "cbq --cacert option (root CA certificate path)", "reused_or_minted": "minted - the flag that enables certificate verification for an encrypted connection" },
+    { "candidate_id": "cbq:opt-no-ssl-verify", "label": "cbq --no-ssl-verify option (skip certificate verification)", "reused_or_minted": "minted - the escape hatch from certificate verification; also the option whose spelling is inconsistent between prose and examples (see the defect note in cross_product_finding)" },
+    { "candidate_id": "cbq:opt-no-engine", "label": "cbq -ne / --no-engine option (start unconnected)", "reused_or_minted": "minted - the option that makes a connection optional at startup" },
+    { "candidate_id": "cbq:shell-version", "label": "cbq SHELL VERSION (the client tool's own version string)", "reused_or_minted": "minted - the Capella record flagged the shell-version vs server-version distinction as a cross_component_finding but minted no concept; this page states the distinction explicitly so it is worth two ids" },
+    { "candidate_id": "n1ql:query-engine-version", "label": "Query engine version (VERSION() / MIN_VERSION() result)", "reused_or_minted": "minted - explicitly distinguished on this page from both the shell version and the Couchbase Server version" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "minted - the registry has service:eventing-service but no query service id, despite the whole n1ql: namespace depending on it" },
+    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "reused - the Capella cbq record already used cloud/n1ql/n1ql-language-reference/prepare as a seeAlso target; normalised here to the n1ql: statement-namespace convention stated in the brief" },
+    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "reused - as above, normalised from the Capella record's path-shaped seeAlso target" },
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "reused - matches the Capella query-settings record and the server query-settings record in this batch" },
+    { "candidate_id": "deployment:self-managed", "label": "Self-managed Couchbase Server deployment", "reused_or_minted": "minted - the registry has deployment:capella but no counterpart for self-managed Server, which leaves platform-gated statements with nothing to point at" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - shared id with the other records in this batch; declared here as the object of an availableSince relation" }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "availableSince",
+      "object": "command-line-tools-package:7.6.2",
+      "reused_or_minted_predicate": "reused - availableSince and the object id both come from the Capella cbq record. IMPORTANT: on Server the gate is narrower than the Capella page implies - cbq also ships inside the Server installation directory with no version gate, so 7.6.2 gates only the standalone package",
+      "evidence": "The cbq shell executable, `cbq`, is available in the Couchbase Server installation directory. It is also available in the [Couchbase Server tools](../../cli/cli-intro.md#server-tools-packages) package beginning with version 7.6.2."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "usesEnum",
+      "object": "cbq:protocol-scheme-enum",
+      "reused_or_minted_predicate": "reused - usesEnum; object minted",
+      "evidence": "The cbq shell supports the `http://`, `https://`, `couchbase://` and `couchbases://` protocol schemes. The `https://` and `couchbases://` protocol schemes are encrypted."
+    },
+    {
+      "subject": "cbq:encrypted-connection",
+      "predicate": "requiresFlagToEnable",
+      "object": "cbq:opt-cacert",
+      "reused_or_minted_predicate": "reused - requiresFlagToEnable; object minted",
+      "evidence": "You can connect to the cluster or node with an encrypted protocol scheme — that is, either `https://` or `couchbases://`. To do this, you can provide the root CA certificate, the chain certificate, and the client key file using the [\\--cacert](#opt-cacert), [\\--cert](#opt-cert), and [\\--key](#opt-key) options."
+    },
+    {
+      "subject": "cbq:opt-no-ssl-verify",
+      "predicate": "mustUseInsteadWhen",
+      "object": "cbq:opt-cacert",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen; --no-ssl-verify is the alternative to supplying certificates",
+      "evidence": "You can use the [\\--no-ssl-verify](#opt-skip-verify) option to skip the verification of certificates."
+    },
+    {
+      "subject": "cbq:encrypted-connection",
+      "predicate": "doesNotSatisfy",
+      "object": "cbq:protocol-scheme-enum",
+      "reused_or_minted_predicate": "reused - doesNotSatisfy; records that the port cannot be specified for the two couchbase* schemes even though it can for http/https, i.e. one member of the enum does not accept an option the others do",
+      "evidence": "You may optionally specify the port when using the `http://` or `https://` protocol schemes. When connecting to the query service, use the query port 8093, or 18093 for an encrypted connection. When connecting to the cluster, you don't need to specify the port as the connection uses round robin to find a query service to connect to. If you want to specify a port, use the admin port 8091, or 18091 for an encrypted connection.\n\nYou cannot specify the port when using the `couchbase://` or `couchbases://` protocol schemes."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused - dependsOnService; object minted",
+      "evidence": "The host may be the IP address or hostname of any node in the cluster, as cbq will automatically discover the query nodes."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "requiresExplicitClose",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused - requiresExplicitClose from the promoted list; the shell holds a connection to a query endpoint which \\DISCONNECT closes without exiting the shell, and which errors if there is none",
+      "evidence": "You can close the connection with a node or cluster during the session without exiting the shell using the `\\DISCONNECT` command. If the shell is not connected to any endpoint, an error with a message that the shell is not connected to any instance is thrown."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "requiresFlagToEnable",
+      "object": "cbq:opt-no-engine",
+      "reused_or_minted_predicate": "reused - requiresFlagToEnable; the shell otherwise defaults to connecting to http://localhost:8091",
+      "evidence": "You can bring up the shell without connecting to any query service or cluster node by using the `-ne` or `--no-engine` option. After starting cbq without any connection, you can connect to a node using the `\\CONNECT` command."
+    },
+    {
+      "subject": "cbq:shell-version",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:query-engine-version",
+      "reused_or_minted_predicate": "reused - shouldNotBeConfusedWith is exactly right here; the page states the non-identity in parentheses",
+      "evidence": "When specified, provides the version of the cbq shell. To display the version of the query engine (this is not the same as the version of Couchbase Server itself), use one of the following SQL++ queries: select version(); select min\\_version();"
+    },
+    {
+      "subject": "n1ql:query-engine-version",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - shouldNotBeConfusedWith; the page asserts the query engine version is not the Couchbase Server version, which matters because version:server-* concepts are the objects of every availableSince relation in this wave",
+      "evidence": "To display the version of the query engine (this is not the same as the version of Couchbase Server itself), use one of the following SQL++ queries: select version(); select min\\_version();"
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:prepare",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf from the promoted list; the page states it as an explicit pre-requisite",
+      "evidence": "You can use the shell command to execute prepared statements. As a pre-requisite, you must first prepare a statement."
+    },
+    {
+      "subject": "tool:cbq-shell",
+      "predicate": "seeAlso",
+      "object": "n1ql:execute",
+      "reused_or_minted_predicate": "reused - structural cross-reference; matches the Capella record's relation",
+      "evidence": "Execute the prepared statement using the SQL++ [EXECUTE](../n1ql-language-reference/execute.md) statement."
+    },
+    {
+      "subject": "n1ql:request-level-query-parameters",
+      "predicate": "createdVia",
+      "object": "tool:cbq-shell",
+      "reused_or_minted_predicate": "reused - createdVia, used here for 'is set via'; cbq's \\SET / \\PUSH commands are one of the four documented surfaces for request-level parameters (per query-settings.md), and this page documents the stack semantics that surface adds",
+      "evidence": "To set the value of a parameter, use the `\\SET` or `\\PUSH` shell command, followed by a parameter name and parameter value."
+    },
+    {
+      "subject": "cbq:multiple-credentials",
+      "predicate": "seeAlso",
+      "object": "n1ql:request-level-query-parameters",
+      "reused_or_minted_predicate": "reused - structural cross-reference; the -creds mechanism is documented canonically in the Query Service REST API",
+      "evidence": "For more information about using multiple credentials, see [Query Service REST API](../../n1ql-rest-query/index.md#creds) and [Request with Authentication — Request Parameter](../n1ql-rest-api/exauthrequest.md)."
+    },
+    {
+      "subject": "cbq:multiple-credentials",
+      "predicate": "grantsKeyspaceAccess",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - the registry's grantsChannelAccess is Sync Gateway channel vocabulary and inheritsAccessFromRole is about role inheritance; neither covers 'a credential in the creds array grants the session access to a keyspace'. Object is the Query Service because the page names no specific keyspace, only 'a second keyspace'",
+      "evidence": "The list of credentials can contain one or multiple credentials. Each credential consists of an identity and a password separated by a colon `:`. To specify multiple credentials, append all the user names and passwords to the same credentials array."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresRole / requiresEdition",
+    "finding": "The Server cbq page names no RBAC privilege, no role and no edition anywhere in 1,177 lines. Its entire access model is 'a user name and a password' - and unlike the Capella twin it does not even have a Prerequisites section stating that credentials must be created first. This is doubly notable because the page documents a capability with clear authorization semantics (multiple credentials, each granting access to a different keyspace: 'alternative credentials with access to a second keyspace') without ever naming what grants that access. Compare monitoring-n1ql-query.md in this same batch, which does name the required role. Secondly, there is no registry predicate for 'credential grants access to a keyspace' - grantsChannelAccess is Sync Gateway channel vocabulary and inheritsAccessFromRole is about role inheritance; reconciliation may want grantsKeyspaceAccess."
+  },
+  "cross_component_finding": "The page carefully distinguishes THREE version strings that all look alike: the shell's own version ('SHELL VERSION : 7.6.2-3721'), the Go runtime version ('GO VERSION : go1.22.2'), and the query engine version returned by VERSION()/MIN_VERSION() - and it explicitly states the third is not the same as the Couchbase Server version ('this is not the same as the version of Couchbase Server itself'). That is four distinct version-bearing entities in one tool page. Any version: namespace in the registry must therefore be able to say WHAT is versioned, not just the number: version:server-8-0, version:cbq-shell-7-6-2 and version:query-engine-* are not interchangeable, and the existing flat pattern (version:server-7-0, version:sdk-3-3-0, version:cbl-3-3-0) already encodes the subject in the id, which is the right instinct and should be kept.",
+  "cross_product_finding": "162 changed lines, and almost all of them are the same three substitutions repeated - but two are genuine capability differences that should be recorded as identity-distinguishing, not merged. (1) MULTIPLE CREDENTIALS ACTUALLY WORK ON SERVER AND NOT ON CAPELLA. Server: 'To specify multiple credentials, append all the user names and passwords to the same credentials array' and the option table gives './cbq -c=$USER:$PASSWORD,$USER2:$PASSWORD2'. Capella: 'if you specify multiple credentials, Couchbase Capella only recognizes the first credential' and 'If you specify more than one credential with this option, Couchbase Capella only uses the first one'. The section is even retitled - Server 'Providing Multiple Credentials for Authorization' vs Capella 'Switching Between Credentials'. This is a real behavioural divergence on the same flag of the same tool and is the best disablesFeatureFor / behavesDifferentlyUnder candidate in the batch; no relation was asserted because the Server page contains no quote about Capella. (2) PROTOCOL SCHEME. Server supports four schemes with optional ports; Capella permits exactly one ('To connect to Couchbase Capella, you must use the `couchbases://` protocol scheme') and adds mandatory --cacert plus -skip-verify to every single example. Capella also states that the default 'http://localhost:8091' 'does not enable you to connect to Couchbase Capella'. (3) Capella has a Prerequisites section (tools download, connection string, cluster access credentials, allowed IP address, security certificate) with no Server counterpart - the Server page simply assumes a local install. (4) Section retitling tracks the platform model throughout: 'Connecting to the Cluster or Query Node' vs 'Connecting to the Cluster'; 'Server and Shell Information' vs 'Cluster and Shell Information'. DOCUMENTATION DEFECTS, Server-side only, both in the -e/--engine flag: line 293 renders './cbq --e $BASE_URL -u $USER -p $PASSWORD' (double hyphen with the single-letter form) and line 357 renders './cbq e $BASE_URL -c=$USER:$PASSWORD,$USER2:$PASSWORD2' (hyphen missing entirely). The Capella page has '-e' correctly in both places, so these are regressions introduced in the Server variant.",
+  "version_finding": "Three findings. (1) The availableSince claim is real but narrower on Server than the shared id suggests. The Capella record asserted tool:cbq-shell availableSince command-line-tools-package:7.6.2 from 'available in the Couchbase command line tools package beginning with version 7.6.2'. The Server page says cbq 'is available in the Couchbase Server installation directory' AND 'is also available in the Couchbase Server tools package beginning with version 7.6.2'. So on Server the tool itself has no version gate at all - only the standalone redistributable does - whereas on Capella the package IS the only way to get it, making the same sentence a hard prerequisite there and a convenience note here. Reconciliation should attach availableSince to the package, not to the tool, and note that the two products even call the package different things ('Couchbase Server tools' vs 'command line tools'). (2) Internal version inconsistency on an 8.0 page: the prose Version section shows 'GO VERSION : go1.22.2 / SHELL VERSION : 7.6.2-3721' while the two reference tables at the bottom of the same page show 'GO VERSION : go1.21.6 / SHELL VERSION : 7.6.0-2176'. Neither is an 8.0 build. A reader cannot tell which shell version the 8.0 docs describe. The Capella page carries the identical inconsistency, so it is inherited from shared source rather than introduced here. (3) No deprecation vocabulary at all: 1,177 lines documenting roughly 40 command line options and 30 shell commands, and not one is marked deprecated, superseded or renamed - even though the option table lists both '-skip-verify' (used throughout the Capella examples) and '--no-ssl-verify' (the name used in the Server prose) without saying whether one supersedes the other. That unexplained pair is the closest thing to a renamedFrom candidate on the page, and it is unresolvable from the text."
+}

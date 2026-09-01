@@ -1,0 +1,36 @@
+{
+  "page_id": "server/7.2/n1ql/n1ql-language-reference/covering-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/covering-indexes.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:covering-indexes",
+      "label": "Covering Indexes and covered queries",
+      "reused_or_minted": "minted",
+      "note": "a query-optimization concept page, not itself a SQL++ statement"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:covering-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:prepare",
+      "note": "structural link from existing Markdown xref to prepare.md",
+      "evidence": "[Prepared statements](prepare.md) also benefit from using covering indexes."
+    },
+    {
+      "subject": "n1ql:covering-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:grouping-and-aggregate-pushdown",
+      "note": "structural link from existing Markdown Related Links list",
+      "evidence": "[Grouping and Aggregate Pushdown](groupby-aggregate-performance.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / requiresEdition / requiresPrivilege",
+    "finding": "This page has no version, edition, or privilege information at all, even though it documents behavior (GSI covering-index eligibility, MISSING-item exclusion rules) that is clearly tied to specific GSI mechanics. Compare to ALTER INDEX in the same reference tree, which documents an RBAC role, an edition restriction, and multiple version gates for closely related GSI behavior."
+  },
+  "competency_questions_addressed": [
+    "Generate related pages for navigation"
+  ]
+}

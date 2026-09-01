@@ -1,0 +1,79 @@
+{
+  "page_id": "server/7.2/learn/services-and-indexes/indexes/indexing-and-query-perf",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/indexing-and-query-perf.md",
+  "concepts": [
+    {
+      "candidate_id": "index:primary-index",
+      "label": "Primary Index",
+      "reused_or_minted": "minted",
+      "note": "an index on the document key on the entire keyspace"
+    },
+    {
+      "candidate_id": "index:named-primary-index",
+      "label": "Named Primary Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:secondary-index",
+      "label": "Secondary Index (Global Secondary Index / GSI)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:composite-secondary-index",
+      "label": "Composite Secondary Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:functional-index",
+      "label": "Functional Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:array-index",
+      "label": "Array Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:partial-index",
+      "label": "Partial Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:duplicate-index",
+      "label": "Duplicate Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index",
+      "reused_or_minted": "minted",
+      "note": "this page's short definition; full treatment lives on n1ql:covering-indexes"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server/learn/services-and-indexes/indexes/indexing-and-query-perf",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`)."
+    },
+    {
+      "subject": "index:array-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:indexing-arrays",
+      "note": "structural link from existing Markdown xref ('For further details and examples, refer to Array Indexing')"
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:covering-indexes",
+      "note": "structural link from existing Markdown xref ('For further details and examples, refer to Covering Indexes')"
+    }
+  ],
+  "competency_questions_addressed": [
+    "What types of GSI index does Couchbase Server support, and how do they differ?",
+    "Generate related pages for navigation"
+  ]
+}

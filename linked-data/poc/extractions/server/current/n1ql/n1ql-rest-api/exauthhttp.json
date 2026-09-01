@@ -1,0 +1,33 @@
+{
+  "page_id": "server/current/n1ql/n1ql-rest-api/exauthhttp",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/exauthhttp.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API (POST/GET /query/service)", "reused_or_minted": "reused - minted in this batch's intro.json for the same API surface" },
+    { "candidate_id": "auth:query-http-basic-auth-header", "label": "HTTP Basic Authentication header credentials for the Query Service REST API (curl -u user:pass)", "reused_or_minted": "minted - the registry's auth: namespace holds only mfa and sso, both from Capella identity pages and neither applicable. sgw:basic-authentication exists in the extraction corpus but is Sync Gateway's authenticator for a different API with different semantics, so reusing it would be a same-name merge of two distinct mechanisms; recorded separately and flagged. This is one of exactly two credential mechanisms the Query REST API accepts - see exauthrequest.json for the other" },
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope (requestID, signature, results, status, metrics, errors)", "reused_or_minted": "minted - the shared response shape across all eleven example pages in this directory; no existing id" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "minted - distinct from the registry's index-state and from n1ql:scan-consistency-values; this enum reports the outcome of a REST request. Values collected across this batch: success, fatal, errors, timeout" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "authenticatesVia",
+      "object": "auth:query-http-basic-auth-header",
+      "reused_or_minted_predicate": "reused - authenticatesVia is a promoted predicate and this is exactly its shape",
+      "evidence": "In this example, the credentials (user=\"simon\", pass=\"fizzbuzz\") are given in the request header using basic authentication."
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\"status\": \"success\","
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "The page authenticates as an ordinary named user (\"simon\") rather than as Administrator - the only page in this batch that does - yet says nothing about what privileges that user needs in order for the SELECT to succeed. Every other example on this API uses -u Administrator:password, which sidesteps the question entirely. So the batch demonstrates authentication without ever demonstrating authorization: no page states a required RBAC role or privilege. The requirement exists on the downstream reference page (server/current/n1ql-rest-query/index.md: \"Users must have the relevant Administrative or Query & Index RBAC roles, depending on the types of query they intend to run\") but is unreachable from here. privilege:query-select would be the object if this page stated it."
+  },
+  "cross_component_finding": "Note for reconciliation on the auth: namespace. This mechanism is HTTP Basic Authentication over the Query Service port, carried in the Authorization header. The corpus already contains sgw:basic-authentication (Sync Gateway) and sdk:authentication / sdk:certificate-authentication / sdk:ldap-authentication (SDK-side), plus security:authentication and capella:capella-ui-authentication. \"Basic authentication\" therefore now appears in at least three components with three different scopes. These should not be collapsed into one auth:basic-authentication: the Sync Gateway one authenticates to the Sync Gateway REST APIs, this one authenticates to the Query Service, and the underlying credential stores differ (Server RBAC users here, Sync Gateway users there). If reconciliation wants a shared parent, the right shape is a generic auth:http-basic-authentication with per-component subtypes, not a merge.",
+  "version_finding": "None. No version or edition marker on this page."
+}

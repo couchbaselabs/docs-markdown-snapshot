@@ -1,0 +1,184 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/dropfunction",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/dropfunction.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:drop-function",
+      "label": "DROP FUNCTION statement",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/dropfunction.json and the seeAlso target in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "n1ql:create-function",
+      "label": "CREATE FUNCTION statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:execute-function",
+      "label": "EXECUTE FUNCTION statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:explain-function",
+      "label": "EXPLAIN FUNCTION statement",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "n1ql:inline-function",
+      "label": "Inline user-defined function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:external-function",
+      "label": "External user-defined function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:sql-managed-user-defined-function",
+      "label": "SQL++ managed user-defined function",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json; this page is the strongest justification for giving it a separate id, because its deletion semantics differ from a library-backed external function's"
+    },
+    {
+      "candidate_id": "n1ql:external-library",
+      "label": "External JavaScript library (UDF library)",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "n1ql:global-function",
+      "label": "Global user-defined function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:scoped-function",
+      "label": "Scoped user-defined function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json; here it determines which function the name resolves to"
+    },
+    {
+      "candidate_id": "n1ql:drop-function-if-exists",
+      "label": "DROP FUNCTION ... IF EXISTS clause",
+      "reused_or_minted": "minted - no prior id; the page states its error-suppression semantics explicitly"
+    },
+    {
+      "candidate_id": "role:manage-global-functions",
+      "label": "Manage Global Functions (Server RBAC role)",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "role:manage-scope-functions",
+      "label": "Manage Scope Functions (Server RBAC role)",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "role:manage-global-external-functions",
+      "label": "Manage Global External Functions (Server RBAC role)",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "role:manage-scope-external-functions",
+      "label": "Manage Scope External Functions (Server RBAC role)",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "n1ql:built-in-function",
+      "label": "Built-in function",
+      "reused_or_minted": "minted - no prior id; needed as the contrast term for the case-sensitivity rule, which is one of the few genuinely surprising facts on the page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-global-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate; applies to dropping a global inline function",
+      "evidence": "| Global inline functions   | **Manage Global Functions** role.                                                             |"
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-scope-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Scoped inline functions   | **Manage Scope Functions** role, with permissions on the specified bucket and scope.          |"
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-global-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Global external functions | **Manage Global External Functions** role.                                                    |"
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-scope-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Scoped external functions | **Manage Scope External Functions** role, with permissions on the specified bucket and scope. |"
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "requiresSetting",
+      "object": "n1ql:query-context",
+      "reused_or_minted_predicate": "reused - promoted predicate, used as on createfunction.md for the session-level context that determines the statement's target [evidence corrected during wave-1 reconciliation: original was a close paraphrase, not a verbatim quote]",
+      "evidence": "In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context)."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "doesNotAffect",
+      "object": "n1ql:external-library",
+      "reused_or_minted_predicate": "minted - the registry has no predicate for 'operation X deliberately leaves artifact Y intact'. This is a cascade/no-cascade fact, and it is the single most operationally important statement on the page: dropping a UDF silently orphans its JavaScript library and code. requiresPriorExecutionOf and its neighbours cannot express it, and expressing it as a notable_absence would lose the direct quote. Reconciliation may prefer a name like leavesIntact or doesNotCascadeTo.",
+      "evidence": "When you drop a user-defined function whose definition is stored in a JavaScript library, the JavaScript library and function on which the user-defined function depended are not deleted."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "cascadesTo",
+      "object": "n1ql:sql-managed-user-defined-function",
+      "reused_or_minted_predicate": "minted - the exact counterpart of doesNotAffect above, and the reason both are needed: the SAME statement cascades for one function kind and does not cascade for the other. If reconciliation adopts only one of the pair it should be a single predicate with a boolean-ish qualifier, but two predicates keep each fact independently quotable.",
+      "evidence": "When you drop a SQL++ managed JavaScript function, the associated JavaScript function code is also deleted."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:drop-function-if-exists",
+      "reused_or_minted_predicate": "reused but stretched - behavesDifferentlyUnder was promoted for deployment/edition contexts, not for clause presence. Recorded here because the fact (presence of the clause changes the error behaviour, not the effect) is real and quotable; reconciliation should decide whether this predicate is general over any context or strictly deployment-scoped. See also the mutuallyExclusiveWith request in this batch's createindex.json - both are symptoms of the registry lacking clause-level predicates. [evidence corrected during wave-1 reconciliation: original was a close paraphrase, not a verbatim quote]",
+      "evidence": "The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function does not exist."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:built-in-function",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page draws the contrast explicitly and the consequence (case sensitivity) is a real trap",
+      "evidence": "The name of a user-defined function is case-sensitive, unlike that of a built-in function."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-function",
+      "reused_or_minted_predicate": "reused - structural markdown link [evidence corrected during wave-1 reconciliation: original was a close paraphrase, not a verbatim quote]",
+      "evidence": "* To create user-defined functions, see [CREATE FUNCTION](createfunction.md)."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:execute-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md)."
+    },
+    {
+      "subject": "n1ql:drop-function",
+      "predicate": "seeAlso",
+      "object": "n1ql:explain-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "DROP FUNCTION carries no version statement of any kind - not for the statement, not for IF EXISTS, not for the roles, and notably not for the SQL++-managed cascade behaviour even though its companion createfunction.md dates SQL++ managed functions to 7.6. So the cascade rule described here is undated at 8.0 while the feature it describes is dated on the previous page. That is a concrete, small-scale instance of the batch-wide gate-attrition pattern: version information is attached to the page where a capability was introduced and never propagated to the pages describing its consequences. requiresEdition is likewise absent, consistent with createfunction.md and unlike every index page in this batch."
+  },
+  "cross_product_finding": "The Capella twin exists and is prose-identical in its mechanics, but its Prerequisites section differs in kind, exactly as on createfunction.md: Capella keys access on credential type (Basic -> Write; Advanced -> Global Function Manage for global, Query Manage for scoped) and therefore has no inline-vs-external axis, while Server names four distinct Manage roles across that axis. Two extra observations specific to this page. (1) Server's DROP matrix has exactly four rows (the Manage roles only) whereas createfunction.md has eight (Manage plus Execute) - so the Execute roles are correctly absent here and that absence should not be read as an omission. (2) The cascade facts (JavaScript library not deleted; SQL++ managed function code deleted) appear on both the Server and Capella pages in materially the same words, which makes them platform-independent product behaviour rather than a deployment difference - a useful negative result, since most of this batch's cross-product findings are divergences. Nothing on this page justifies a behavesDifferentlyUnder deployment:capella assertion.",
+  "version_finding": "Zero version instances on the page - no availableSince, no deprecatedIn, no removal notice, and no 'in versions prior to' backward-compatibility note of the sort prepare.md carries for encoded_plan. Combined with createfunction.md's single 7.6 gate, the function-statement pair contributes exactly one dated fact to the wave. The interesting reconciliation point is asymmetric documentation of a symmetric feature: the 7.6 SQL++-managed function form has a documented introduction version on the CREATE page and an undocumented one on the DROP page, so any query of the form 'what changed at 7.6' will find the creation semantics and miss the deletion semantics. If reconciliation wants version facts to be complete rather than merely sourced, it will need a propagation rule (a fact about concept C dated to version V on any page holds for C on all pages) rather than treating each page's assertions as independent - and that rule needs a policy decision, because it is inference, not extraction."
+}

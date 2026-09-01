@@ -1,0 +1,83 @@
+{
+  "page_id": "server/7.2/search/search-index-params",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/search-index-params.md",
+  "concepts": [
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties (reference page)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "search:max-partitions-per-pindex-param",
+      "label": "maxPartitionsPerPIndex property (planParams)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "search:index-partitions-param",
+      "label": "indexPartitions property (planParams)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP",
+      "reused_or_minted": "reused",
+      "note": "fully extracted in this same batch"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "reused_or_minted": "reused",
+      "note": "fully extracted in this same batch"
+    },
+    {
+      "candidate_id": "search:index-aliases",
+      "label": "Create Search Index Aliases",
+      "reused_or_minted": "minted",
+      "note": "referenced, not yet extracted"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "reused_or_minted": "minted",
+      "note": "referenced, not yet extracted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:max-partitions-per-pindex-param",
+      "predicate": "mustUseInsteadWhen",
+      "object": "search:index-partitions-param",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "maxPartitionsPerPIndex | n/a | No | This setting is deprecated. Use indexPartitions, instead."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-rest-api",
+      "note": "structural link ('When you create a Search index with the REST API, you must give a JSON payload with the settings for the new Search index')"
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "note": "structural link ('The params object sets a Search index's type identifier, type mappings, and analyzers')"
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:index-aliases",
+      "note": "structural link ('For more information about Search index aliases, see Create Search Index Aliases')"
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "note": "structural link ('to support facets and sorting search results' / 'For more information, see includeLocations')"
+    }
+  ],
+  "competency_questions_addressed": [
+    "Generate related pages for navigation",
+    "Which options are deprecated, and what should be used instead?"
+  ]
+}

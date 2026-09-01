@@ -1,0 +1,171 @@
+{
+  "page_id": "server/current/n1ql/n1ql-language-reference/commit-transaction",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/commit-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:durability-level", "label": "durability_level request-level parameter (transaction-scoped durability for SQL++)", "reused_or_minted": "reused - minted in the Capella twin record cloud/n1ql/n1ql-language-reference/commit-transaction.json, which correctly kept it distinct from sdk:transaction-durability" },
+    { "candidate_id": "n1ql:transactional-durability", "label": "Transactional durability requirements", "reused_or_minted": "minted - the condition that gates commit; distinct from the durability_level parameter that sets the target level, and distinct from sdk:transaction-durability (a Java SDK configuration surface). The Capella twin folded this into the parameter concept." },
+    { "candidate_id": "n1ql:error-161-durability-impossible", "label": "Error code 161 (transaction durability requirements impossible to achieve)", "reused_or_minted": "minted - a named, numbered failure mode. The registry has no error-code concepts at all in the n1ql namespace, and this one is the SQL++ counterpart of the Java SDK's DurabilityImpossibleException (see cross_product_finding) - the two must not be merged, since one is a numeric Query Service error code and the other a Java exception class." },
+    { "candidate_id": "n1ql:keyword-work", "label": "WORK keyword", "reused_or_minted": "reused - minted in this batch's begin-transaction.json" },
+    { "candidate_id": "n1ql:keyword-tran", "label": "TRAN keyword", "reused_or_minted": "reused - minted in this batch's begin-transaction.json" },
+    { "candidate_id": "n1ql:keyword-transaction", "label": "TRANSACTION keyword", "reused_or_minted": "reused - minted in this batch's begin-transaction.json" },
+    { "candidate_id": "n1ql:txid", "label": "txid query parameter (transaction ID)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:multi-statement-request", "label": "Multi-statement request", "reused_or_minted": "reused - minted in this batch's transactions.json; Server-only" },
+    { "candidate_id": "n1ql:automatic-transaction-id", "label": "Automatic transaction ID handling", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "n1ql:bucket-replication", "label": "Bucket replication (replica count)", "reused_or_minted": "minted - the topology setting the page tells you to turn off as a workaround; deliberately a separate id from round 4's sdk:bucket-replica-count, which is the same underlying setting reached through a different doc surface - see cross_product_finding" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "api:query-rest-api", "label": "Query REST API", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" },
+    { "candidate_id": "server:distributed-acid-transactions", "label": "Distributed ACID Transactions (server-side feature concept page)", "reused_or_minted": "reused - placeholder minted in java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json" },
+    { "candidate_id": "version:cbq-2-0", "label": "cbq shell 2.0", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - minted in this batch's transactions.json; evidenced here only by the docs branch in frontmatter" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "documentedForVersion",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "minted - see this batch's transactions.json",
+      "evidence": "editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/commit-transaction.adoc"
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "requiresSetting",
+      "object": "n1ql:durability-level",
+      "reused_or_minted_predicate": "reused - identical relation to the Capella twin record with the same evidence sentence (only the link target differs), giving this edge recurrence 2 across products",
+      "evidence": "The transaction can only be committed if the transactional [durability](../../learn/data/durability.md) requirements can be met. The transaction durability level is set by the request-level [durability\\_level](../n1ql-manage/query-settings.md#durability%5Flevel) parameter."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "doesNotSatisfy",
+      "object": "n1ql:transactional-durability",
+      "reused_or_minted_predicate": "reused - registry predicate for 'X fails to meet requirement Y'; used here for the failure branch that produces error 161",
+      "evidence": "If transaction durability requirements cannot be met, then a 161 error code is generated when you attempt to commit the transaction, stating that the durability requirements are impossible to achieve. For example: bucket replication is specified, but there are not enough Data nodes available on which to store the specified number of replicas at the requested durability level."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "raisesErrorWhen",
+      "object": "n1ql:error-161-durability-impossible",
+      "reused_or_minted_predicate": "minted - the registry has no predicate linking an operation to a named error/exception. Round 4 modelled the equivalent SDK situation only indirectly (via requiresSetting on sdk:bucket-replica-count), so the failure mode itself is currently unrepresentable; this is the vocabulary needed to connect a documented error code to the statement that raises it.",
+      "evidence": "If transaction durability requirements cannot be met, then a 161 error code is generated when you attempt to commit the transaction, stating that the durability requirements are impossible to achieve."
+    },
+    {
+      "subject": "n1ql:error-161-durability-impossible",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:durability-level",
+      "reused_or_minted_predicate": "reused - registry predicate, used for the documented workaround: set durability_level to \"none\" (or disable bucket replication) when the topology cannot satisfy the requested level",
+      "evidence": "As a temporary measure, you can set the request-level [durability\\_level](../n1ql-manage/query-settings.md#durability%5Flevel) parameter to `\"none\"` to turn off durability for this request, or [turn off bucket replication](../../manage/manage-buckets/edit-bucket.md)."
+    },
+    {
+      "subject": "n1ql:transactional-durability",
+      "predicate": "requiresSetting",
+      "object": "n1ql:bucket-replication",
+      "reused_or_minted_predicate": "reused - registry predicate; durability success depends on the bucket's replica count and on there being enough Data nodes to host those replicas",
+      "evidence": "For example: bucket replication is specified, but there are not enough Data nodes available on which to store the specified number of replicas at the requested durability level."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "removesAllSavepoints",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "minted - a lifecycle/teardown effect of one statement on objects created by another. The registry's revocation predicates (revokesRole, revocationRevokesChannelAccess) are access-control-specific; nothing covers 'completing this operation destroys these objects'. Recurs on rollback-transaction.md in this batch, so recurrence 2 within the batch.",
+      "evidence": "This statement removes all savepoints within the transaction."
+    },
+    {
+      "subject": "n1ql:keyword-work",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:keyword-transaction",
+      "reused_or_minted_predicate": "reused - second occurrence of the keyword-synonym declaration (also on begin-transaction.md and rollback-transaction.md); note that here all three keywords are additionally optional, whereas on BEGIN TRANSACTION one of them is mandatory",
+      "evidence": "The `WORK`, `TRAN`, and `TRANSACTION` keywords are synonyms. These keywords are optional; you may include one of these keywords, or omit them entirely."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "requiresExplicitCleanupOnFailure",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "minted - on the cbq shell a failed transaction leaves session state (transaction context and transaction ID) that only ROLLBACK TRANSACTION clears. The registry's requiresExplicitClose is the nearest fit but its promoted definition binds it to eventing:n1ql-function-call's result iterator, so reusing it would misstate its domain; reconciliation may prefer to generalise requiresExplicitClose instead of promoting a second predicate.",
+      "evidence": "If you're using the cbq shell, and a transaction fails for any reason, you must use the `ROLLBACK TRANSACTION` statement to remove the transaction context and reset the transaction ID."
+    },
+    {
+      "subject": "api:query-rest-api",
+      "predicate": "requiresSetting",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "reused - registry predicate. Server-only: absent from the Capella twin page.",
+      "evidence": "If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID."
+    },
+    {
+      "subject": "n1ql:multi-statement-request",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json - fifth occurrence. Server-only.",
+      "evidence": "If you are using the Query Workbench, you don't need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:cbq",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json",
+      "evidence": "Similarly, if you are using the cbq shell, you don't need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:automatic-transaction-id",
+      "predicate": "availableSince",
+      "object": "version:cbq-2-0",
+      "reused_or_minted_predicate": "reused - registry predicate",
+      "evidence": "You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "server:distributed-acid-transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `COMMIT TRANSACTION` statement enables you to commit an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:commit-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / deprecatedIn / requiresEdition",
+    "finding": "No version, edition or deprecation statement, even though this page documents the one behaviour in the family with a hard topology dependency (durability), where Community Edition vs Enterprise Edition differences and replica-count defaults would be exactly the kind of thing a reader needs gated. The page describes the remedy in operator terms ('add the correct number of Data nodes for the required durability level, and rebalance') without stating any edition or version constraint on durability levels themselves."
+  },
+  "cross_component_finding": "Error 161 is the first numbered Query Service error code to appear anywhere in these extraction records. It has no concept namespace yet - I minted n1ql:error-161-durability-impossible. Note that the Java SDK tree has a whole error-codes reference page already extracted (java-sdk/ref/error-codes.json) using sdk:-namespaced exception concepts, so reconciliation should decide up front whether error codes and exception classes share a namespace (they should not be merged as concepts, but they may want a common predicate such as the minted raisesErrorWhen).",
+  "cross_product_finding": "Two findings. (1) Server-vs-Capella: semantically identical page; the only prose differences are the batch-wide access-surface paragraph block (REST API / Query Workbench / cbq, all Server-only) and two link targets that point at the correct product's bucket-management page ('[turn off bucket replication](../../manage/manage-buckets/edit-bucket.md)' on Server vs '(../../clusters/data-service/manage-buckets.md)' on Capella). The Capella page links to server/current for the durability *concept* while linking to Capella docs for the bucket *task* - a pattern worth noting: shared conceptual content, product-specific procedural content. (2) Server-vs-SDK, the more important one: this page and round 4's Java SDK transactions howto document the SAME failure with two disjoint vocabularies. Server: 'a 161 error code is generated ... stating that the durability requirements are impossible to achieve', remedy = add Data nodes and rebalance, or set durability_level to \"none\". Java SDK: 'all key-value writes performed with durability will fail with a `DurabilityImpossibleException`', remedy = raise the bucket replica count (sdk:bucket-replica-count). Same underlying condition, one numeric error code and one exception class, and neither page mentions the other's name - so a reader who hits 161 in cbq cannot find the SDK guidance and vice versa. Recorded as two separate concepts (n1ql:error-161-durability-impossible, and round 4's DurabilityImpossibleException handling) with a documentation-gap note rather than an identity claim.",
+  "version_finding": "Refines a round-4 concept. sdk:transaction-durability is typed as 'a single DurabilityLevel setting ... configured once via TransactionsConfig/ClusterEnvironment (or per-call for a single query transaction) rather than per individual mutation call'. This Server page shows a THIRD, non-Java configuration surface for the same transaction-scoped durability: the SQL++ request-level durability_level parameter, settable per request (and in the worked example via cbq's \\SET). So 'configured once via TransactionsConfig/ClusterEnvironment' is a property of the Java API, not of transaction-scoped durability as such, and the promoted concept's type string overstates its scope. The Capella twin already, correctly, refused to merge n1ql:durability-level with sdk:transaction-durability; this Server page supports that decision and adds the reason: the two surfaces also differ in failure vocabulary (error 161 vs DurabilityImpossibleException), not just in configuration API. No version or edition gate is stated for any durability level on this page."
+}

@@ -1,0 +1,87 @@
+{
+  "page_id": "server/current/n1ql/n1ql-rest-api/examplesrest",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/examplesrest.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API (POST/GET /query/service)", "reused_or_minted": "reused - minted in this batch's intro.json; this page is the index of worked examples for that API" },
+    { "candidate_id": "n1ql:request-error", "label": "Request error", "reused_or_minted": "reused - minted in this batch's exrequesterror.json" },
+    { "candidate_id": "n1ql:service-error", "label": "Service error", "reused_or_minted": "reused - minted in this batch's exserviceerror.json" },
+    { "candidate_id": "n1ql:sqlpp-error", "label": "SQL++ error", "reused_or_minted": "reused - minted in this batch's exn1qlerror.json" },
+    { "candidate_id": "n1ql:request-timeout", "label": "Request timeout", "reused_or_minted": "reused - minted in this batch's extimeout.json" },
+    { "candidate_id": "n1ql:unsupported-http-method-response", "label": "Unsupported HTTP method response (bare HTTP 405)", "reused_or_minted": "reused - minted in this batch's exunsupportedhttp.json" },
+    { "candidate_id": "n1ql:named-and-positional-parameters", "label": "Named Parameters and Positional Parameters", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-manage/query-settings.json" },
+    { "candidate_id": "auth:query-http-basic-auth-header", "label": "HTTP Basic Authentication header credentials for the Query Service REST API", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "auth:query-creds-request-parameter", "label": "creds request parameter", "reused_or_minted": "reused - minted in this batch's exauthrequest.json" },
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-response-object",
+      "reused_or_minted_predicate": "reused - structural markdown link to the canonical success-envelope example",
+      "evidence": "* [Successful Request](exsuccessful.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:named-and-positional-parameters",
+      "reused_or_minted_predicate": "reused - structural markdown links; both parameter-style examples resolve to the same feature concept",
+      "evidence": "* [Request with Positional Parameters](expositional.md)\n* [Request with Named Parameters](exnamed.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:request-timeout",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Request Timeout](extimeout.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:request-error",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Request Error](exrequesterror.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:service-error",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Service Error](exserviceerror.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:sqlpp-error",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [SQL++ Error](exn1qlerror.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:unsupported-http-method-response",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Unsupported HTTP Method](exunsupportedhttp.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "auth:query-http-basic-auth-header",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Request with Authentication — HTTP Header](exauthhttp.md)"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "auth:query-creds-request-parameter",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Request with Authentication — Request Parameter](exauthrequest.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This is a pure navigation page - a title, one sentence, and ten links - and it is the only inbound route to the ten example pages. It links downward but nowhere sideways or upward: no link back to intro.md (the API index in the same directory), and no link to server/current/n1ql-rest-query/index.md, which is the actual reference the examples illustrate and the only place the authentication precedence rule and the request-parameter table are documented. So a reader arriving at the examples has no route to the specification and vice versa. Nothing on the page carries version, edition, privilege or platform information."
+  },
+  "cross_component_finding": "The link list is the closest thing the directory has to a statement of its own error taxonomy, and its ordering is informative: successful request, then the two parameter-passing variants, then timeout, then the three error classes (request / service / SQL++), then unsupported method, then the two authentication variants. That grouping confirms the three-way error classification recorded on intro.json is the authors' own model rather than one imposed by extraction - request, service and SQL++ errors are listed as siblings, and timeout and unsupported-method are listed outside that group, which matches the response evidence (timeout has its own status value; unsupported method has no envelope at all). The authentication pair being listed last, after the error cases, is also the reason the precedence rule between them has no natural home in this directory."
+}

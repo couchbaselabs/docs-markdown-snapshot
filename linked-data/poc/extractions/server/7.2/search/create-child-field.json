@@ -1,0 +1,112 @@
+{
+  "page_id": "server/7.2/search/create-child-field",
+  "source_version": "7.2",
+  "source_path": "server/7.2/search/create-child-field.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-child-field",
+      "label": "Create a Child Field (task/how-to page)",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:field-data-types-reference",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:default-analyzers-reference",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "note": "structural link (all-field anchor)"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "note": "structural link (facets anchor)"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "note": "structural link"
+    },
+    {
+      "subject": "search:create-child-field",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "note": "structural link"
+    }
+  ],
+  "cross_component_finding": {
+    "observation": "This page's field-option table (Searchable As, Analyzer, Index, Store, Include in _all field, Include Term Vectors, Doc Values) covers similar ground to quick-index-field-options.md's table (Language, Include in search results, Support highlighting, Support phrase matching, Support field agnostic search, Support sorting and faceting, Searchable As) - e.g. 'Include Term Vectors' + 'Store' here roughly correspond to 'Support highlighting'/'Support phrase matching' there, and 'Doc Values' here corresponds to 'Support sorting and faceting' there. Neither page cross-references the other's option vocabulary, so I have not asserted a sharesOptionSetWith relation (no direct textual evidence linking the two option sets) - flagging as a watchlist candidate for the coordinator to evaluate once both pages are visible together.",
+    "docsIssue": null
+  },
+  "competency_questions_addressed": [
+    "How do I add or remove a specific document field from a Search index?"
+  ]
+}

@@ -308,6 +308,90 @@ at real scale, not the single pass an initial estimate might assume - later
 waves kept surfacing genuine new material even in directories a `reconciliation.md`-adjacent
 "how much is left" estimate might have called low-yield.
 
+## Scoping `server/` — the next product tree (counted 2026-09-01)
+
+With `cloud/` complete, `server/` is the next and largest product tree. Counting
+it properly turned up a correction and a planning technique worth recording.
+
+**Correction: existing `server/` coverage is on a superseded tree.** All 58
+`server/` extraction records from rounds 1-2 have `source_version: 7.2` and
+`source_path: server/7.2/...`. Those early rounds sampled the 7.2 tree, not
+`current`. So `server/current` (1,033 pages, `release/8.0`) began at **zero
+coverage**, not 58 pages. 42 of the 58 covered paths do also exist under
+`current`, but with different content. Beyond the arithmetic, this matters for
+the vocabulary: the project's only server-side terms so far were derived from a
+tree two releases behind, which is precisely the setup the "vocabulary from
+where a feature is *mentioned* is less reliable than from the feature's own
+authoritative page" limit warns about (see `poc/reconciliation.md`). Expect
+round 1-2 server concepts to need revision, not just extension, as `current`
+gets read.
+
+**`server/current`: 1,033 pages, ~13 waves, ~$32.** At the 71-pages-per-wave
+average actually sustained across rounds 5-9 (range 33-115), and the observed
+~$0.031/page. Directory-aligned, that's roughly: `n1ql/` 151 (2 waves),
+`rest-api/` plus 19 singleton `*-rest-*` dirs 183 (2), `cli/`+`tools/` 138 (2),
+`search/`+`fts/`+`vector-search/`+`vector-index/` 115 (1), `learn/` 95 (1),
+`manage/` 83 (1), `analytics/`+`backup-restore/`+`metrics-reference/`+
+`xdcr-reference/`+misc 87 (1), `eventing/` 66 (1), `install/`+
+`getting-started/`+`introduction/`+`tutorials/` 64 (1), `guides/`+`indexes/`+
+`javascript-udfs/`+misc 51 (1). Wall-clock at rounds 5-9's demonstrated pace
+(5 waves in one working session) is ~3 sessions of extraction, but 4-5 is the
+number to plan against: `cloud/` was largely one product's surface, whereas
+`server/current` spans `rest-api`, `cli`, server-side `eventing`, `analytics`
+and `xdcr` — far more genuinely-new registry surface per wave, and
+reconciliation cost tracks registry surface area touched, not page count.
+
+**Diff-gating: a cheap way to order waves by expected yield.** 317 of
+`server/current`'s 1,033 pages share a path with an already-extracted `cloud/`
+page. Comparing those pairs line-by-line (`difflib`, counting changed lines)
+splits them sharply: 109 differ by ≤5 lines — product-name and version-string
+churn, near-zero extraction yield — while 117 differ by 6-25 lines (typically
+the privilege/prerequisite section, where Capella's Basic/Advanced credential
+model diverges from server RBAC) and 91 differ by more than 25. The remaining
+716 pages have no `cloud/` counterpart at all. Diff-gated effective workload is
+therefore ~924 substantive pages plus a cheap confirm sweep of the 109 trivial
+ones — only ~11% off the raw count, so **the ~13-wave estimate stands**. The
+real value isn't the saving: it's that waves can be *ordered* highest-yield
+first, and that the diffs themselves are the version- and edition-gating
+evidence the ontology most lacks. Cost of running the gate is negligible (a
+local file comparison, no model calls).
+
+**The older version trees are much cheaper than a naive 3x.** Same technique
+applied across trees: of 7.6's 953 paths shared with `current`, **581 differ by
+≤5 lines**, leaving 372 substantive plus 20 pages existing only in 7.6 — about
+392 pages, ~6 waves. For 7.2: 492 substantive plus 153 pages existing only in
+7.2, about 645 pages, ~9 waves. All three server trees therefore come to ~28
+waves and ~$60 diff-gated, versus ~42 waves naively.
+
+**Version-gate attrition is real but mostly deliberate — so recommend one
+previous version, not the full history.** Measured across the corpus:
+`server/current` contains 165 "version X and later" gate statements, spread over
+only 129 of its 1,033 pages. Ingesting 7.2 would recover 23 gate statements that
+`current` has lost (skewed old: 6.5 ×6, 7.0 ×4, 5.5); 7.6 would recover 20
+(7.6.2 ×8). Conversely `current` carries 82 gates that 7.2 never had. The
+clearest single case is `n1ql/n1ql-language-reference/createindex.md`, whose
+gates by tree are 7.2 → {6.5, 7.0}, 7.6 → {7.6}, 8.0 → {7.6, 8.0}: no single
+tree holds the full history.
+
+The tempting conclusion — ingest everything, since only the union is complete —
+is wrong, and the reason is editorial rather than technical. Per the docs team:
+as support for a version is dropped, the team stops documenting it, and
+retroactively updating superseded trees has often not been resourced, so changes
+land only on the latest version. The attrition is therefore **intentional
+pruning of facts about out-of-support versions**, not accidental data loss. That
+reframes the value of each tree: it tracks whether the version is *still
+supported*, not how old the tree is. The 23 gates recoverable from 7.2 describe
+versions largely out of support (5.5, 6.5, 7.0) and are close to worthless for
+answering a live support question; 7.6's 20 recovered gates describe a version
+still in support and are worth having.
+
+**Recommendation: ingest `server/current` plus one previous version (7.6), and
+skip 7.2** unless a specific question demands it. That is ~19 waves and ~$40,
+against ~28 waves for all three. Revisit only if a concrete use case needs
+deep history — the 153 pages that exist only in 7.2 remain the richest seam for
+"what was removed", but removal of an out-of-support feature is rarely the
+question anyone actually asks.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation

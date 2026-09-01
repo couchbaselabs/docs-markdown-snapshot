@@ -1,0 +1,80 @@
+{
+  "page_id": "server/7.2/n1ql/n1ql-intro/queriesandresults",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-intro/queriesandresults.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query Context",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:keyspace-reference",
+      "label": "Keyspace reference (full/partial)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement",
+      "label": "Prepared statement (query-plan caching)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:covering-index",
+      "label": "Covering index / covered query",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "minted",
+      "note": "matches existing example n1ql:create-index naming from the schema instructions"
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX statement",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "Scan consistency levels (not_bounded, request_plus)",
+      "reused_or_minted": "minted",
+      "note": "this page only documents two of the levels; index-replication.md documents four (not_bounded, at_plus, request_plus, statement_plus) for what appears to be the same underlying concept"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:build-index",
+      "predicate": "completes",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "reused, still watchlist",
+      "note": "matches the watchlist shape: one statement (BUILD INDEX) completes another's (CREATE INDEX) deferred work, when the build phase is deferred at creation time",
+      "evidence": "Creating and building indexes can take a long time on keyspaces with lots of existing documents. When you create an index, you can choose to _defer_ the build phase, and then build the deferred index later."
+    },
+    {
+      "subject": "n1ql:query-context",
+      "predicate": "seeAlso",
+      "object": "tools:query-workbench",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "To set the query context in the Query Workbench, use the the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor."
+    },
+    {
+      "subject": "n1ql:covering-index",
+      "predicate": "seeAlso",
+      "object": "learn:global-secondary-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For more information, refer to [Using Indexes](../../learn/services-and-indexes/indexes/global-secondary-indexes.md)."
+    },
+    {
+      "subject": "n1ql:prepared-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:prepare",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "For more information on how to optimize queries using prepared statements, refer to the [PREPARE](../n1ql-language-reference/prepare.md) statement."
+    }
+  ],
+  "cross_component_finding": "This page's 'Index Consistency' section documents scan_consistency behavior (not_bounded, request_plus) largely in prose, while learn/services-and-indexes/indexes/index-replication.md documents the same concept as a 4-way enumerated list (not_bounded, at_plus, request_plus, statement_plus) with more precision. The two doc trees (n1ql intro vs. learn/services-and-indexes) appear to describe the same underlying scan-consistency mechanism at different levels of completeness rather than one page simply linking to the other's canonical definition.",
+  "competency_questions_addressed": [
+    "Which statement completes another statement's deferred work?",
+    "Generate related pages for navigation"
+  ]
+}

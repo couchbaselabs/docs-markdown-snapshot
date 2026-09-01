@@ -1,0 +1,105 @@
+{
+  "page_id": "server/7.2/n1ql/n1ql-language-reference/alterindex",
+  "source_version": "7.2",
+  "source_path": "server/7.2/n1ql/n1ql-language-reference/alterindex.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:alter-index",
+      "label": "ALTER INDEX statement",
+      "reused_or_minted": "minted",
+      "note": "no prior term in registry"
+    },
+    {
+      "candidate_id": "rbac:administrator-role",
+      "label": "Administrator RBAC role",
+      "reused_or_minted": "minted",
+      "note": "this is an RBAC role, a coarser-grained concept than the registered 'Query Manage Index' privilege; not the same concept, kept distinct"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-replica-management",
+      "label": "ALTER INDEX replica_count / drop_replica actions (sub-capability)",
+      "reused_or_minted": "minted",
+      "note": "the version constraint below applies only to the replica-count-changing and replica-dropping actions of ALTER INDEX, not to the move action or the statement as a whole"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-keyspace-on-syntax",
+      "label": "ALTER INDEX index-name ON keyspace-ref syntax (sub-capability)",
+      "reused_or_minted": "minted",
+      "note": "a specific alternative syntax form within the statement, not the whole statement"
+    },
+    {
+      "candidate_id": "version:server-5.5",
+      "label": "Couchbase Server 5.5",
+      "reused_or_minted": "minted",
+      "note": "not in the promoted registry (only 6.5 and 7.0 are); minted using the same local-shorthand convention"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "requiresPrivilege",
+      "object": "rbac:administrator-role",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only users with the RBAC role of `Administrator` are allowed to run the `ALTER INDEX` directive."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "wholeStatementRequiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "minted",
+      "note": "the registered requiresEdition predicate is defined for a clause/option within a statement, not the whole statement; this fact is about the entire ALTER INDEX statement's availability, so a new predicate was minted rather than misusing requiresEdition",
+      "evidence": "This directive is applicable only for Standard GSI (Plasma) and MOI Indexes; and hence supported only for Enterprise Edition nodes. (Not applicable for Forest DB.)"
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "availableSince",
+      "object": "version:server-5.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This statement is only supported only in Couchbase Server 5.5 and later; if the cluster is a mix of Couchbase Server 5.5 and previous versions, then this statement will not work."
+    },
+    {
+      "subject": "n1ql:alter-index-replica-management",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In addition, altering the number of replicas or deleting an index replica is only supported in Couchbase Server 6.5 and later; if the cluster is a mix of Couchbase Server 6.5 and previous versions, then these operations will not work."
+    },
+    {
+      "subject": "n1ql:alter-index-keyspace-on-syntax",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 7.0 and later, you can use the index name with the `ON` keyword and a keyspace reference to specify the keyspace on which the index is built."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "reused_or_minted_predicate": "reused",
+      "note": "distinct sub-fact from the replica-management version gate above: this one governs the USING clause / GSI-only index type requirement",
+      "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "usesEnum",
+      "object": "https://docs.couchbase.com/ld/concepts/index-state",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you attempt to alter an index which is still scheduled for background creation, the request fails."
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "seeAlso",
+      "object": "learn:rebalance",
+      "note": "structural link from an existing Markdown xref in the Related Links section",
+      "evidence": "In Couchbase Server 7.0 and later, the _index redistribution_ setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance. Refer to [Rebalance](../../learn/clusters-and-availability/rebalance.md#rebalancing-the-index-service) for more information."
+    }
+  ],
+  "cross_product_finding": {
+    "finding": "This page leans heavily on self-managed-server-only concepts: an Enterprise-vs-Community edition split (Standard GSI/MOI/Plasma indexes are Enterprise-only) and a coarse RBAC 'role' (Administrator) rather than a fine-grained privilege. Capella has no 'editions' concept at all (it's a single fully-managed SaaS tier) and a different access model, so neither the requiresEdition-shaped fact nor the Administrator-role requirement would map cleanly onto an equivalent Capella page for index placement/rebalancing, if one exists."
+  },
+  "competency_questions_addressed": [
+    "Which privileges/roles are required?",
+    "Which edition is required?",
+    "Which version introduced or constrains this capability?"
+  ]
+}

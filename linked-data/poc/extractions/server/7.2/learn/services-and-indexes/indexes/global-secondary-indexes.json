@@ -1,0 +1,154 @@
+{
+  "page_id": "server/7.2/learn/services-and-indexes/indexes/global-secondary-indexes",
+  "source_version": "7.2",
+  "source_path": "server/7.2/learn/services-and-indexes/indexes/global-secondary-indexes.md",
+  "concepts": [
+    {
+      "candidate_id": "learn:global-secondary-indexes",
+      "label": "Using Indexes (GSI/Primary index landing page)",
+      "reused_or_minted": "minted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:index-lifecycle",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Index Lifecycle](index-lifecycle.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:indexing-and-query-perf",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Indexing and Query Performance](indexing-and-query-perf.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:covering-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Covering Indexes](../../../n1ql/n1ql-language-reference/covering-indexes.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:index-scans",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Understanding Index Scans](index-scans.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:index-pushdowns",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Index Pushdown Optimizations](index_pushdowns.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:groupby-aggregate-performance",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Grouping and Aggregate Pushdown](../../../n1ql/n1ql-language-reference/groupby-aggregate-performance.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:early-filters-and-pagination",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Early Filters, Order and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[CREATE INDEX](../../../n1ql/n1ql-language-reference/createindex.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:createprimaryindex",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[CREATE PRIMARY INDEX](../../../n1ql/n1ql-language-reference/createprimaryindex.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:build-index",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[BUILD INDEX](../../../n1ql/n1ql-language-reference/build-index.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:alterindex",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[ALTER INDEX](../../../n1ql/n1ql-language-reference/alterindex.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:dropindex",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[DROP INDEX](../../../n1ql/n1ql-language-reference/dropindex.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "n1ql:dropprimaryindex",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[DROP PRIMARY INDEX](../../../n1ql/n1ql-language-reference/dropprimaryindex.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:index-replication",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Index Availability](index-replication.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:storage-modes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Storage Settings](storage-modes.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:indexes-overview",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[All Couchbase Server Indexes](indexes.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "learn:index-service",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Index Service Architecture](../services/index-service.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "manage:manage-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Manage Indexes](../../../manage/manage-indexes/manage-indexes.md)"
+    },
+    {
+      "subject": "learn:global-secondary-indexes",
+      "predicate": "seeAlso",
+      "object": "manage:monitoring-indexes",
+      "note": "structural link from an existing Markdown xref",
+      "evidence": "[Monitor Indexes](../../../manage/monitor/monitoring-indexes.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page describes GSI benefits (scaling, performance, partitioning) but is purely a navigation hub with no RBAC/Prerequisites content of its own — unlike n1ql/n1ql-language-reference/selectintro.md in this same batch, which carries an explicit 'Prerequisites' section naming a required privilege. That's expected here since this page links out to the actual CREATE/DROP INDEX statement pages where privilege requirements would live, rather than omitting something it should have."
+  },
+  "competency_questions_addressed": [
+    "Generate related pages for navigation"
+  ]
+}
