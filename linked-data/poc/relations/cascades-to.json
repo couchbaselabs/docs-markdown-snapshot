@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/cascades-to",
+  "label": "cascades to",
+  "kind": "relation (schema-level)",
+  "type": "an operation on the subject also affects the object dependent artifact - deletion, teardown, or lifecycle change propagating to something the subject owns or contains.",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "A cross-round consolidation, and the clearest case so far of separate rounds independently sighting one family: round 8 minted cascadesDeletionTo (3 files, cluster deletion reaching backups and replications) and cascadesLifecycleChangeTo (3 files, collection and storage-keyspace lifecycle reaching Eventing functions); round 10 minted cascadesTo (DROP FUNCTION reaching the managed UDF) and removesAllSavepoints (COMMIT and ROLLBACK tearing down savepoints). Nine occurrences, seven files, three product surfaces, one shape. Folded into this id; the specific verb (deleted / torn down / lifecycle-changed) stays in the evidence rather than in the predicate name. removesAllSavepoints is the instructive rejection: a predicate whose name contains its own object cannot recur outside the one page that motivated it. Trade-off accepted knowingly - folding loses the deletion-versus-lifecycle distinction at the predicate level, and if a consumer ever needs to query for deletions specifically it will have to read the evidence."
+}

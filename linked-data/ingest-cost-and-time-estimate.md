@@ -356,6 +356,25 @@ first, and that the diffs themselves are the version- and edition-gating
 evidence the ontology most lacks. Cost of running the gate is negligible (a
 local file comparison, no model calls).
 
+**Retrospective after wave 1 (round 10): the ordering works, the magnitude
+misleads.** Selecting the 38 wave-1 pages by diff size did put genuinely
+divergent content first — the gate did its job. But **raw changed-line counts
+systematically overstate extraction yield**, because re-rendered example blocks
+dominate the diff: an identical statement whose sample query output was
+regenerated can show 30+ changed lines and contain not one new fact, while a
+6-line diff confined to a Prerequisites section can be the most load-bearing
+page in the wave. Two corrections for the remaining ~12 waves:
+
+1. Treat the changed-line count as a *sort key only*, never as a yield
+   estimate. Do not budget wave cost from it.
+2. Prefer diffing with example/output blocks stripped (fenced code, `----`
+   listing blocks) before counting. The signal lives in prose, tables and
+   admonitions; the noise lives in the samples.
+
+This also means the 109/117/91 buckets above are softer than they look: the
+"≥25 lines" bucket is not reliably the highest-yield one. The ~13-wave estimate
+is unaffected — it was never derived from the bucket sizes.
+
 **The older version trees are much cheaper than a naive 3x.** Same technique
 applied across trees: of 7.6's 953 paths shared with `current`, **581 differ by
 ≤5 lines**, leaving 372 substantive plus 20 pages existing only in 7.6 — about

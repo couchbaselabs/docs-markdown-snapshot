@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Nine rounds so far, each a deliberate escalation:
+automating it. Ten rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -53,6 +53,19 @@ automating it. Nine rounds so far, each a deliberate escalation:
    only seen as a function usage, and a round-5 open question (does SQL++'s
    transaction family relate to the Java SDK's?) finally closed by a page's
    own explicit text.
+10. **38 pages, `server/current` wave 1** — the first wave into a *second
+    product tree* (Couchbase Server 8.0), selected by diff-gating against the
+    already-extracted Capella twins. Two results changed the project rather
+    than just extending it. First, an extraction agent **fabricated its
+    evidence** — eleven of one record's thirteen relations quote sentences that
+    do not exist on the page, including a version claim for a feature the page
+    never dates — and no human-legible control caught it. That produced
+    `verify-evidence.py`, and running it over the whole corpus found that the
+    "evidence must be a direct quote" rule had never actually been enforced:
+    322 of 2,780 relations are unquotable. Second, version-evidence density
+    turned out to be **inversely** correlated with novelty — the statements new
+    in 8.0 are precisely the ones no page dates — which is the opposite of what
+    the wave was briefed to expect, and a better finding.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -60,7 +73,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-505 pages total:
+543 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -106,6 +119,19 @@ time/cost projections and how they held up against the round-2 run's real number
   operations, indexing/optimization, and query/UDF workflows. **`cloud/` is
   now fully covered** — 5 rounds (5 through 9), ~460 pages, since round 5
   started the real-scale phase of this project.
+- **38 more, `server/current/n1ql/`** — Couchbase Server 8.0: the SQL++
+  transaction family, the statement pages that diverge most from their Capella
+  twins, the whole `n1ql-rest-api/` directory, and the Server-only pages
+  (`cbq.md`, AWR, auditing, monitoring) that have no Capella counterpart. The
+  first of roughly 13 waves needed to cover `server/current`'s 1,033 pages —
+  see `../ingest-cost-and-time-estimate.md` for the wave plan and why the
+  recommendation is `current` plus one previous version (7.6), not the full
+  version history.
+  Note that this round also **re-scoped the existing `server/` records under
+  `extractions/server/7.2/`**: all 58 of them are 7.2, and they carried
+  version-neutral `page_id`s alongside version-bearing source paths, so
+  ingesting a second version would have silently overwritten
+  `createindex.json` and `alterindex.json` with no diagnostic.
 
 ## Identifiers
 
@@ -123,7 +149,13 @@ from "still in `extractions/`."
 ## How to read this directory
 
 - **`extractions/`** — one JSON record per source page, mirroring its path under
-  `server/`, `cloud/`, `couchbase-lite/`, `sync-gateway/`, or `java-sdk/`. Each
+  `server/<version>/`, `cloud/`, `couchbase-lite/`, `sync-gateway/`, or
+  `java-sdk/`. The `server/` records are version-scoped (`server/7.2/`,
+  `server/current/`) because they have to be: the same page exists in every
+  version tree, so a version-neutral layout silently overwrites one round's
+  record with another's. `cloud/` needs no such scoping — Capella has no
+  discrete versions, which is itself one of the vocabulary's load-bearing
+  differences. Each
   record is the pass-1 output: candidate concepts, candidate relations, an
   `evidence` quote for every relation, and whether each term was reused from the
   registry or freshly minted (with a reason). Records also carry `notable_absence`,
@@ -173,13 +205,30 @@ from "still in `extractions/`."
   `sdk:query-index-manager`, `sdk:bulk-import-workflow` — plus
   `n1ql:advisor-session`, the first entity in this project modeled as
   stateful (start/collect/stop/purge) rather than a single function call.
-  Note: round 3's Java SDK
-  batch (12 pages) was reconciled only at the narrative level and never
-  promoted any concepts — `sdk:kv-operations`, `sdk:durability`,
-  `sdk:error-handling`, and others are reused across round 3/4 extraction
-  records but still sit at the extraction layer only; a dedicated promotion
-  pass for that backlog is the next natural step before further Java SDK
-  rounds (see "Suggested next steps").
+  Round 10 promoted 70 — by far the largest concept round — because a
+  corpus-wide recurrence recount (see below) found that eight rounds had
+  accumulated silent promotion debt: `n1ql:query-context` had recurred **22**
+  times across the corpus without ever being filed, `create-index` 20,
+  `cost-based-optimizer` 15, `tool:cbq-shell` 18. Round 10 paid most of that
+  down: the SQL++ transaction family (9 concepts), ~23 statement/clause terms,
+  the Query REST API plus its three distinct settings tiers, five `service:*`,
+  four `version:*`, and the five round-3/4 SDK backlog items listed below.
+  It also **refused** three promotions on purpose: all 93 index concepts (they
+  are individually correct and collectively incoherent — several unreconciled
+  taxonomic axes flattened into one namespace, deferred pending a read of
+  `server/current/learn/services-and-indexes/`), `role:administrator` (the docs
+  themselves are loose about it — filed as a docs-issue instead), and the
+  individual `port:` concepts (an unresolved literal-vs-concept modelling
+  question).
+  Round 3's Java SDK backlog — flagged here since round 4 — is now **partly
+  closed**: `sdk:kv-operations` was promoted in round 10, and
+  `sdk:transaction-query-mode` was re-namespaced to `n1ql:transaction-query-mode`
+  (with the round-4 file kept as an alias stub recording the original record
+  verbatim) once a Server page's own text showed the concept is the query
+  language's, not the SDK's. The rest of that backlog — `sdk:durability`,
+  `sdk:cas-optimistic-locking`, `sdk:error-handling`,
+  `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
+  `sdk:bucket-management` — still sits at the extraction layer only.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -202,7 +251,23 @@ from "still in `extractions/`."
   *same* gap a third time (this one self-inflicted in round 5); round 8 added
   `requiresExplicitClose` (calling N1QL from an Eventing handler returns a
   cursor the handler must free) and `omitsMutationBody` (a real API asymmetry
-  between Eventing's OnUpdate/OnDelete handlers). Kept separate from `concepts/` on purpose —
+  between Eventing's OnUpdate/OnDelete handlers); round 10 added 19, the
+  largest predicate round, led by `documentedForVersion` — minted specifically
+  as the antidote to the round's fabricated `availableSince` claim, because
+  *which doc tree a page ships in* is not a claim about *when a feature
+  appeared*, and conflating the two is exactly how the fabrication became
+  plausible. The other 18 include `implicitlySetsParameter` (the inverse of
+  `requiresSetting`), `permitsWithinTransaction` (which records three-valued
+  legality, not a boolean), `requiresRequestParameter` (establishing a request
+  tier distinct from node and cluster settings), `deprecatedIn`,
+  `retainedForLegacyCompatibility`, and `cascadesTo` — the last a cross-round
+  *fold* rather than a new mint, consolidating round 8's
+  `cascadesDeletionTo`/`cascadesLifecycleChangeTo`/`removesAllSavepoints` into
+  one predicate at recurrence 7. Several candidates were rejected with the
+  reasoning recorded rather than promoted (`removedIn` as
+  unfiled-because-undated, `noOpSince` as a property of the evidence rather
+  than of the relation, `documentedAsLegacy` as a duplicate).
+  Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
   `@context` harder to design cleanly.
@@ -212,14 +277,40 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 33 entries
-  as of round 9 (round 9 itself found no new docs-issue — see its section in
-  `reconciliation.md`), which is itself the point: nobody is expected to read this file
+  issueType, description, about, status}` — minted with no gatekeeping. 55 entries
+  as of round 10, which added 22 — the largest batch of any round, and not
+  because Server's docs are worse: reading a page that has an
+  already-extracted twin in another tree turns every divergence between them
+  into a checkable claim, so diff-gated waves find content problems at a much
+  higher rate than first-contact waves do. (Round 9, a same-tree round, found
+  none at all.) That size is itself the point: nobody is expected to read this file
   start-to-finish once it's this size — it stays a queryable "which products/pages
   have logged issues, and what are they?" store, which matters once this scales
   past a handful of pages to the ~3,900 in the full corpus.
 - **`reconciliation.md`** — the pass-2 log, one section per round, with a
   cumulative verdict at the end.
+- **`verify-evidence.py`** — the project's one real **gate**, written in round
+  10 after an extraction agent fabricated its evidence. Checks every relation's
+  `evidence` string against the page it claims (or against `evidence_source`,
+  for the legitimately cross-page cases), normalising whitespace and smart
+  quotes but deliberately *not* wording. Run it over a wave before committing:
+  `python3 linked-data/poc/verify-evidence.py extractions/server/current`.
+  It exits non-zero on any problem. Note what it does *not* prove: that the
+  sentence is on the page, not that the triple built from it is a fair reading —
+  round 10 found "quotable but mis-objected" records that pass this check and
+  are still wrong. A green check is not a green record.
+- **`verify-promotions.py`** — a **report**, not a gate (it always exits 0).
+  Scans `reconciliation.md` for `ns:kebab-id` and `camelCaseTerm` shapes and
+  lists those with no registry file, closing the "narrated as promoted, never
+  actually filed" gap that had recurred in rounds 2, 3, 5, and 8. It can't
+  distinguish "claimed as promoted" from "named while being rejected, folded or
+  deferred" — the prose says which, the string doesn't — so its output is a
+  short list to read each round, not a diff to clear. Its first run surfaced 5
+  genuine gaps; re-running it after round 10's writeup was finished surfaced 3
+  more (including `n1ql:scan-consistency` at recurrence 6, whose own extraction
+  record claimed it was "already promoted"). All 8 were promoted the same day.
+  A control that pays out twice on the round that introduced it is doing real
+  work, not cleanup.
 - **`candidate-faqs/`** — a small, separate experiment: `generate_candidates.py`
   mechanically turns promoted relations + extraction evidence into draft
   FAQ-shaped question/answer pairs (14 so far, across `requiresPrivilege`,
@@ -528,6 +619,68 @@ also surfaced a real finding:**
     also support Couchbase transactions" — related but distinct surfaces,
     confirmed by the docs themselves.
 
+**Round 10 (38 pages, `server/current` wave 1) — the round that changed the
+method rather than extending it:**
+
+39. **An extraction agent fabricated its evidence, and nothing human-legible
+    caught it.** One record asserted `availableSince version:server-8-0` for a
+    feature its page never dates, quoting a sentence that does not exist;
+    eleven of its thirteen relations were unquotable, and one had inverted
+    polarity ("To disable this feature" where the page reads "To enable the
+    feature"). The fabricated quote was *more* plausible than the real
+    sentence and the surrounding rationale better argued than most correct
+    records — reviewer judgement is structurally unable to catch this, because
+    the failure mode optimises for exactly what a reviewer checks.
+40. **So the schema's "evidence must be a direct quote" rule had never
+    actually been enforced.** Writing `verify-evidence.py` and running it over
+    the whole corpus found **322 of 2,780 relations unquotable** — nine rounds
+    of accumulated damage, not one bad agent. Worst affected: round 3's
+    `sync-gateway` (45% verbatim, 12 of 13 records) and `couchbase-lite` (50%,
+    10 of 12), both now recommended for re-extraction. Their *vocabulary*
+    conclusions still stand; their individual records do not. The general
+    lesson: **an invariant in a prompt is a hope; the same invariant in a
+    script is a control.**
+41. **Version-evidence density is inversely correlated with novelty** — the
+    opposite of what this wave was briefed to expect. Pages documenting
+    long-standing statements are dense with version badges, because a version
+    badge is a *contrast* marker; the statements genuinely new in 8.0 carry no
+    version evidence at all, because they have nothing to contrast with. The
+    briefing's assumption ("earlier-version content will make
+    introduced-in/deprecated vocabulary clearer") was right about the
+    vocabulary and backwards about where to find it.
+42. **A third species of error: axis conflation.** The 93 index concepts are
+    individually correct and collectively incoherent — access method, storage
+    engine, lifecycle state, and syntactic form all flattened into one
+    namespace. This is distinct from the naming collisions (rounds 3/6/7) and
+    the partial-sampling undercounts (rounds 5/6/7), and it exposes the limit
+    of the promotion rule: recurrence-at-≥2-files answers "is this term real?"
+    and nothing else. All 93 were deliberately left unpromoted.
+43. **"Quotable but mis-objected" — the failure class that survives the new
+    gate.** Records whose evidence is verbatim on the page but whose object
+    slot is wrong. `verify-evidence.py` passes them. So: a green check is not a
+    green record, and the gate is a floor, not a ceiling.
+44. **The corpus-wide recurrence recount exposed eight rounds of silent
+    promotion debt** — `n1ql:query-context` unpromoted at recurrence 22,
+    `create-index` at 20, `tool:cbq-shell` at 18. Round 10's 70 concept
+    promotions are mostly *backlog*, not new territory. Round 10 also
+    established that recurrence must be recomputed over the whole corpus each
+    round, not over the round's own records — and that the recount script
+    itself needs testing: a one-character regex bug (`\.jsonld?` where
+    `\.json(ld)?` was meant) made *every* promoted predicate appear
+    unpromoted, caught only because the output was implausible. A second
+    instance of "vigilance is not a control."
+45. **A rename proposal was refused on new evidence.** A `monitoring:` rename
+    argued from a Capella-only sample was rejected once the first Server page
+    to touch monitoring produced `monitoring:awr-document` — the sample had
+    been unrepresentative, and the rename would have been wrong. Similarly
+    `capella:cbsh` was *not* merged with `tool:cbq-shell` after checking: two
+    genuinely different tools (and `capella:` is itself a misnomer for cbsh,
+    now noted in the file).
+46. **Diff-gating works for wave *selection* but raw changed-line counts
+    overstate yield** — example re-rendering dominates the diff, so a page can
+    look heavily changed and carry no new facts. Recorded in
+    `../ingest-cost-and-time-estimate.md` for the remaining ~12 waves.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -540,7 +693,26 @@ document.
 
 ## Suggested next steps
 
-- Get a subject-matter expert to work through `docs-issues/` (33 entries) —
+- **Re-extract round 3's `sync-gateway` (13 pages) and `couchbase-lite`
+  (12 pages) batches.** `verify-evidence.py` puts them at 45% and 50%
+  quotable-evidence respectively, affecting 12 of 13 and 10 of 12 records —
+  materially unreliable at the record level. Their vocabulary conclusions
+  (the channel model, the CBL edition split) are corroborated elsewhere and
+  stand; the individual triples should not be consumed downstream until
+  re-run under the gate.
+- **Decide the index taxonomy before promoting any index concept.** 93
+  candidates are sitting unpromoted because the namespace conflates at least
+  four axes (access method, storage engine, lifecycle state, syntactic form).
+  Read `server/current/learn/services-and-indexes/` first — that directory is
+  the docs' own attempt at the taxonomy, and inventing a different one here
+  would be a fact, not an extraction.
+- **Write the second control: an extraction-schema validator.** Round 10 named
+  two missing controls; `verify-promotions.py` closed one. The other is
+  structural validation of `extractions/*.json` — starting with "the subject
+  slot must hold a concept id, not a page id," a violation round 8 introduced
+  (`cascadesDeletionTo`, three occurrences) that survived its own
+  reconciliation pass undetected.
+- Get a subject-matter expert to work through `docs-issues/` (55 entries) —
   most valuably the five-way "role" collision, the Sync Gateway/Capella
   access-control questions, round 5's `merge`/`nest` privilege-naming
   inconsistency (does "Query Select" = "Query Read"?), round 6's role-catalog
@@ -550,46 +722,59 @@ document.
   mismatch against `cluster-rbac.md`'s own table, and the support-plan
   wording inconsistency (now five variants) — all product-shape or
   docs-authority decisions, not just cleanup.
-- Run a Java SDK concept-promotion pass for round 3's backlog
-  (`sdk:kv-operations`, `sdk:durability`, `sdk:cas-optimistic-locking`,
-  `sdk:error-handling`, `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
-  `sdk:bucket-management`, at minimum) before running any further Java SDK
-  rounds — see round 4's note in `reconciliation.md`.
-- Correct the likely `prepare.json` privilege mis-map flagged in round 5
-  (reused `query-index` where `query-update` looks like the right fit)
-  whenever this registry is next consumed downstream.
-- Consider a lightweight automated check (script-verify every concept/predicate
-  name mentioned in a round's `reconciliation.md` section resolves to a real
-  file) - the "narrated as promoted, never filed" gap has now recurred three
-  times (rounds 2, 3, and 5) despite the reconciler knowing to watch for it by
-  round 5. See round 7's method-notes section.
+- Finish round 3's Java SDK promotion backlog before running any further Java
+  SDK rounds — round 10 promoted `sdk:kv-operations` and re-namespaced
+  `sdk:transaction-query-mode`, leaving `sdk:durability`,
+  `sdk:cas-optimistic-locking`, `sdk:error-handling`, `sdk:query-error-mapping`,
+  `sdk:sqlpp-queries-with-sdk`, and `sdk:bucket-management` still
+  extraction-layer-only. See round 4's note in `reconciliation.md`.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  nine rounds.
+  ten rounds.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
-  worth doing by hand at this volume. Round 9 added three more instances
+  worth doing by hand at this volume. Round 9 added three instances
   (`tool:cbimport`/`cbexport` vs. `server:cbimport`/`cbexport`;
   `n1ql:index-partitioning` vs. `indexes:index-partitioning`;
-  `n1ql:aggregate-function` vs. `-functions`).
+  `n1ql:aggregate-function` vs. `-functions`); round 10's
+  `verify-promotions.py` added four more, all of which resolve to
+  already-promoted concepts under a different name —
+  `clusters:xdcr` → `capella:xdcr`, `n1ql:selectintro` → `n1ql:select`,
+  `n1ql:updatestatistics` → `n1ql:update-statistics`,
+  `plan:developer-pro` → `plan:developer-pro-support-plan` — plus the ~31
+  `version:*` ids that denote only ~20 actual versions
+  (`version:server-6.5` vs. `version:server-6-5`, and a bare `version:server`).
+  Two of these are more than cosmetic and should be *decided*, not scripted:
+  `capella:` vs. `clusters:` for XDCR is a genuine namespacing question, and
+  the id drift itself turned out to be a **promotion smell** — neither spelling
+  of `aggregate-function(s)` had a registry file at all.
 - Decide the actual publishing mechanics for `pages/*.jsonld`.
 - Resolve the `eventing:url-alias-binding`'s "no auth" open question (its
   settings table implies other auth modes exist for this binding type; none
   are documented on the pages read in round 8) and the
   `capella:index-ui-status`/`index-state` collision from round 7, if this
   registry is ever consumed downstream.
-- `cloud/` is now fully covered (rounds 5-9). The next natural directory-scale
-  target, if continuing at this granularity, is a first product outside
-  `cloud/`/`server/` not yet touched at all (other SDKs, Analytics/Columnar,
-  Backup, the Autonomous Operator).
-- If this looks worth pursuing past a POC: nine axes of stress test have now
+- **Run `server/current` wave 2.** `cloud/` is fully covered (rounds 5-9) and
+  wave 1 of `server/current` is done; roughly 12 waves remain for that tree,
+  ordered by the diff gate (see `../ingest-cost-and-time-estimate.md`, and read
+  its wave-1 retrospective first — raw changed-line counts are a sort key, not
+  a yield estimate). The genuinely-new registry surface is in `rest-api/`,
+  `cli/`, server-side `eventing/`, `analytics/` and `xdcr/`, so plan
+  reconciliation cost by registry surface touched, not page count.
+- The next product-scale target after that, if continuing at this granularity,
+  is a product outside `cloud/`/`server/` not yet touched at all (other SDKs,
+  Analytics/Columnar, Backup, the Autonomous Operator).
+- If this looks worth pursuing past a POC: ten axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
   round 4's within-one-product-across-features, round 5/6/7's three-in-a-row
   confirmation that the same partial-sampling lesson recurs on successive
   vocabularies of the same product, round 8's confirmation that a genuinely
-  new feature doesn't automatically need new structure, and round 9's
+  new feature doesn't automatically need new structure, round 9's
   confirmation that even a "should mostly confirm" round still earns its
-  keep). The next natural one is scale itself — a real batch against the
-  ~3,900-page "latest version only" corpus from `../ingest-cost-and-time-estimate.md`,
-  now that the extraction/reconcile/promote pipeline has been exercised on
-  Bedrock, at real (not just trial) scale, and on every axis it's likely to meet at that
-  size.
+  keep, and round 10's cross-version axis — the same product's docs at a
+  second version, which is where the fabrication and the evidence-audit
+  results came from). The next natural one is scale itself — a real batch
+  against the ~3,900-page "latest version only" corpus from
+  `../ingest-cost-and-time-estimate.md`, now that the pipeline has been
+  exercised on Bedrock, at real (not just trial) scale, on every axis it's
+  likely to meet at that size, and — as of round 10 — behind a mechanical
+  evidence gate rather than on trust.

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/select",
+  "label": "SELECT",
+  "type": "the SQL++ statement that queries and projects data",
+  "promoted": true,
+  "recurrence": 9
+}

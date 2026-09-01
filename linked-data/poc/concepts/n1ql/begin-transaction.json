@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/begin-transaction",
+  "label": "BEGIN TRANSACTION",
+  "type": "the SQL++ statement that opens a multi-statement transaction and returns a transaction ID",
+  "promoted": true,
+  "recurrence": 13
+}

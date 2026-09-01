@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/encoded-plan",
+  "label": "encoded_plan",
+  "type": "the pre-6.5 mechanism for supplying a prepared statement's plan in the request body",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Carries both of this round's deprecation predicates at once, which is why it is worth filing: deprecatedIn version:server-6-5 ('this parameter is ignored and has no effect') and retainedForLegacyCompatibility ('This is included for backward compatibility'). The clearest single illustration that dating a deprecation and explaining a survival are two different facts."
+}

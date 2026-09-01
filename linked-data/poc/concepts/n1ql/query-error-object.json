@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-error-object",
+  "label": "query error object",
+  "type": "the structured error entry returned in a query response, carrying code, message and optional reason detail",
+  "promoted": true,
+  "recurrence": 4
+}

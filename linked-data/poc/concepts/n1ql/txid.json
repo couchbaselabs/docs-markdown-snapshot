@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/txid",
+  "label": "txid (transaction ID query parameter)",
+  "type": "the request parameter identifying which open transaction a statement belongs to",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "The parameter around which the surface differences turn: cbq and the Query Workbench set it implicitly, a multi-statement REST request does not. See relations/implicitly-sets-parameter."
+}

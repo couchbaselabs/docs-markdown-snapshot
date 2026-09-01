@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/documented-for-version",
+  "label": "documented for version",
+  "kind": "relation (schema-level)",
+  "type": "the product version whose documentation tree the subject's page ships in. NOT a claim that the subject is new in, or gated by, that version.",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "The most useful single distinction this round produced, and the direct antidote to the round's one fabrication: prepare.json asserted 'availableSince version:server-8-0' for a feature its page never dates, on no stronger basis than the page living in the 8.0 tree. Batch B independently reached the opposite discipline - it minted this predicate precisely so that 'I know which tree I read this in' could be recorded without being upgraded into 'I know when this appeared'. Keep the two strictly separate: availableSince requires the page to state a version; this requires only that the page exist. Six of the six wave-1 occurrences are transaction-statement pages that state no version at all."
+}

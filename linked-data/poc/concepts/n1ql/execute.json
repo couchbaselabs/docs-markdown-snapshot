@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/execute",
+  "label": "EXECUTE",
+  "type": "the SQL++ statement that runs a previously prepared statement",
+  "promoted": true,
+  "recurrence": 7
+}

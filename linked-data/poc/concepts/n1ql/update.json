@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/update",
+  "label": "UPDATE",
+  "type": "the SQL++ statement that modifies fields of existing documents",
+  "promoted": true,
+  "recurrence": 9
+}

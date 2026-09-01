@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-awr-page-states-no-version-for-8-0-feature",
+  "type": "docs-issue",
+  "issueType": "missing-version-annotation",
+  "description": "The Server and Capella AWR pages differ by six hunks, all link targets and API names - yet AWR is new in Couchbase Server 8.0 (stated on server/current/introduction/whats-new.md and the release notes) and the Capella page states no version at all. A Capella reader whose cluster was built from a pre-8.0 Server base has no way to tell from this page whether AWR is available to them.",
+  "about": [
+    "cloud/n1ql/n1ql-manage/query-awr"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

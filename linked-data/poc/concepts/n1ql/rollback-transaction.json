@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/rollback-transaction",
+  "label": "ROLLBACK TRANSACTION",
+  "type": "the SQL++ statement that discards a transaction's changes, either wholly or back to a named savepoint",
+  "promoted": true,
+  "recurrence": 13
+}

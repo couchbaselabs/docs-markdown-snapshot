@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-exnamed-parameter-table-typo-davl",
+  "type": "docs-issue",
+  "issueType": "factually-incorrect-content",
+  "description": "The parameter table lists the named parameters as `statement`, `$aval` and `$davl`, but the statement in the same table row and the curl command below it both use `$dval`. `$davl` is a transposition typo. A reader copying from the table gets an unresolved-named-parameter error - the failure mode documented on exrequesterror.md in the same directory.",
+  "about": [
+    "server/current/n1ql/n1ql-rest-api/exnamed"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

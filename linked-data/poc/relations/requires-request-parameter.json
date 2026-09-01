@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-request-parameter",
+  "label": "requires request parameter",
+  "kind": "relation (schema-level)",
+  "type": "the subject construct only works when the object request-level parameter is supplied on the query request.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Establishes the request tier of the Query service's three-tier settings model (request / node / cluster), which the registry previously flattened: requiresSetting covered cluster and node settings and was being stretched to cover per-request parameters too. Promoted together with the three n1ql:*-level-query-settings concepts so the tiers are nameable, not just implied."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/insert",
+  "label": "INSERT",
+  "type": "the SQL++ statement that adds documents, failing if the key already exists",
+  "promoted": true,
+  "recurrence": 12
+}

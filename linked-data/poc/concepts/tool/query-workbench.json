@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/query-workbench",
+  "label": "Query Workbench",
+  "type": "the web-console SQL++ editor, which supplies txid and tximplicit implicitly",
+  "promoted": true,
+  "recurrence": 8
+}

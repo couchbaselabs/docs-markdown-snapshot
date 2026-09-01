@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/advise",
+  "label": "ADVISE",
+  "type": "the SQL++ statement that recommends indexes for a given statement",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Distinct from the already-promoted n1ql:advisor-session and from the ADVISOR() function - three related but separate things the docs are careful about and extraction was not always."
+}

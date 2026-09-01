@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/does-not-affect",
+  "label": "does not affect",
+  "kind": "relation (schema-level)",
+  "type": "an operation on the subject deliberately leaves the object intact - the explicit negation of cascadesTo.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted as its own relation rather than as a negated cascadesTo because the docs state it deliberately and readers need it: DROP FUNCTION leaves the external library in place, and Capella UI authentication and programmatic access are disjoint systems. Absence of cascade is a fact, not a gap in the data."
+}

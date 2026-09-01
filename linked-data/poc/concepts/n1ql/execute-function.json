@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/execute-function",
+  "label": "EXECUTE FUNCTION",
+  "type": "the SQL++ statement that calls a user-defined function",
+  "promoted": true,
+  "recurrence": 10
+}

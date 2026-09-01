@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/misc-utility-functions",
+  "label": "Miscellaneous Utility Functions",
+  "type": "the page-level SQL++ function family covering ABORT, BASE64, CURRENT_USERS, DS_VERSION, EVALUATE, EXTRACTDDL, FINDERR, FLATTEN_KEYS, FORMALIZE, HASHBYTES, LEN, META, NODE_NAME, NODE_UUID, PAIRS, REDACT, UNNEST_POS, UUID and VERSION",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Promoted in round 10 by verify-promotions.py. A family concept whose membership the corpus itself disagrees about: the Capella metafun.json record lists 8 members, its objectfun.json sibling names only LEN(), and the server/current record lists 19. The 19-member list is used here because it is the one taken from the page's own function index rather than from whichever functions a given extraction happened to need. Worth noting that a family whose member list varies by record is the mildest form of the axis-conflation problem round 10 refused to promote the index namespace over - here the axis is agreed and only the sampling differs, which is why this one is safe to promote and those were not."
+}

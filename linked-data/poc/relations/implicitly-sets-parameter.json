@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/implicitly-sets-parameter",
+  "label": "implicitly sets parameter",
+  "kind": "relation (schema-level)",
+  "type": "the subject surface (a shell, a UI, a request mode) supplies the object parameter on the user's behalf, so the user does not pass it explicitly. The inverse of requiresSetting.",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "14 occurrences over 6 files, all in the SQL++ transaction family. Load-bearing because it is exactly what differs between surfaces: cbq and the Query Workbench set txid for you; a multi-statement REST request does not, so the same documented statement sequence behaves differently depending on where it is typed. Answers a competency question the registry previously could not: 'which of these parameters do I actually have to pass?'"
+}

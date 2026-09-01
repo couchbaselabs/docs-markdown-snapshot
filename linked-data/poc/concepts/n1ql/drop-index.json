@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/drop-index",
+  "label": "DROP INDEX",
+  "type": "the SQL++ statement that drops a named index",
+  "promoted": true,
+  "recurrence": 7
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/does-not-support",
+  "label": "does not support",
+  "kind": "relation (schema-level)",
+  "type": "a stated, bounded non-support boundary: the subject feature does not work with, or cannot be applied to, the object.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Distinct from the promoted doesNotSatisfy (a condition being unmet at runtime) - this is a documented capability boundary. Note two of the five occurrences are reflexive (n1ql:fn-flatten-keys doesNotSupport n1ql:fn-flatten-keys, likewise fn-redact), encoding 'cannot be nested within itself'. Legitimate but worth watching: a reflexive triple is easy to mis-read as a modelling error, and a consumer that treats the graph as a DAG will trip over it."
+}

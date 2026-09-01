@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/retained-for-legacy-compatibility",
+  "label": "retained for legacy compatibility",
+  "kind": "relation (schema-level)",
+  "type": "the subject syntax, option or parameter still exists only so that older clients, scripts or versions keep working; the object is the modern construct that supersedes it. Range: the superseding concept, or the version era for whose sake the subject is retained.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Distinct from deprecatedIn along a clean axis: deprecatedIn dates the moment a thing stopped being recommended, this one states why it nevertheless still exists. Both can hold of the same subject (n1ql:encoded-plan has both). Folds documentedAsLegacy (join.json's two lookup-join/index-join relations) - same shape, minted independently in the same wave by a different batch. Range is currently inconsistent in the extraction layer (two occurrences point at the superseding statement, one at version:server-6-5); the superseding-concept reading is canonical, and the version-era reading should be re-expressed as deprecatedIn plus this relation."
+}

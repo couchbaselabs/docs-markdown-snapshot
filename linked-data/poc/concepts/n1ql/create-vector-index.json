@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/create-vector-index",
+  "label": "CREATE VECTOR INDEX",
+  "type": "the SQL++ statement that creates a Hyperscale Vector index",
+  "promoted": true,
+  "recurrence": 7
+}

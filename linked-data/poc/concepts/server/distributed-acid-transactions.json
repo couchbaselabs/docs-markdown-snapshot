@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/distributed-acid-transactions",
+  "label": "Distributed ACID Transactions",
+  "type": "the server-side transaction feature that both SQL++ transaction statements and the SDK transaction APIs are surfaces onto",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Minted in round 4 from the Java SDK side and re-minted in wave 1 from the SQL++ side with the same id, unprompted - one of the few cases in ten rounds where two rounds independently agreed on an id for a cross-surface concept."
+}

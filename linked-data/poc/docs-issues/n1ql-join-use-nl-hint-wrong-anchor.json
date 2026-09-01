@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/n1ql-join-use-nl-hint-wrong-anchor",
+  "type": "docs-issue",
+  "issueType": "wrong-cross-reference",
+  "description": "The USE NL Hint section's cross-reference points at the USE HASH anchor: 'refer to [Keyspace Hints](keyspace-hints.md#use-hash)' appears in both the USE HASH section (correct) and the USE NL section (wrong - should be #use-nl). The identical error is present in the Capella twin, so it is upstream in the shared source and cannot be caught by any Server-versus-Capella comparison.",
+  "about": [
+    "server/current/n1ql/n1ql-language-reference/join",
+    "cloud/n1ql/n1ql-language-reference/join"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/completes",
+  "label": "completes",
+  "kind": "relation (schema-level)",
+  "type": "the subject statement finishes an operation that the object statement began but deliberately left unfinished.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "BUILD INDEX completes a CREATE INDEX issued with the DEFER BUILD option. Two files, both in server/7.2, one of which had already flagged it as 'reused, still watchlist' - so it recurred across pages without any prompting. Name is generic; definition is narrow (a two-phase operation split across two statements) and should stay that way."
+}

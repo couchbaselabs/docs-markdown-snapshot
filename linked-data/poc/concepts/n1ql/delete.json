@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/delete",
+  "label": "DELETE",
+  "type": "the SQL++ statement that removes documents from a keyspace",
+  "promoted": true,
+  "recurrence": 8
+}

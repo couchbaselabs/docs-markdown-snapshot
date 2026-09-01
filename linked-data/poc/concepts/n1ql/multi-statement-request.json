@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/multi-statement-request",
+  "label": "multi-statement request",
+  "type": "a Query service request carrying several statements, which does not manage transaction IDs on the user's behalf",
+  "promoted": true,
+  "recurrence": 6
+}

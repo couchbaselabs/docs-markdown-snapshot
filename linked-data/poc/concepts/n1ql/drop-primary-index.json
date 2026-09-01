@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/drop-primary-index",
+  "label": "DROP PRIMARY INDEX",
+  "type": "the SQL++ statement that drops an unnamed primary index",
+  "promoted": true,
+  "recurrence": 8
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/inherits-privileges-from",
+  "label": "inherits privileges from",
+  "kind": "relation (schema-level)",
+  "type": "the subject construct carries no privilege requirement of its own; it executes under the privileges of the object - the statement it wraps, or its caller.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Folds inheritsPrivilegesFromCaller (same shape, different batch, same wave). Security-relevant and therefore worth stating even though both occurrences need their object repaired: PREPARE's object is given as n1ql:prepared-statement and EVALUATE's as n1ql:misc-utility-functions, neither of which is the privilege source the sentence actually describes. See reconciliation.md round 10 on quotable-but-mis-objected triples - the evidence check passes on both, because the sentences are real."
+}

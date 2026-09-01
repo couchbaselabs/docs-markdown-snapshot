@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-explicit-cleanup-on-failure",
+  "label": "requires explicit cleanup on failure",
+  "kind": "relation (schema-level)",
+  "type": "when the subject fails, session or server state persists and the object must be issued explicitly to clear it.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Narrow but real, and surface-specific: in the cbq shell a failed COMMIT leaves the transaction context and transaction ID in place, so ROLLBACK is required before the session is usable again. The kind of fact that is obvious once stated and expensive to rediscover."
+}

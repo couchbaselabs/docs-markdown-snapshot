@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-extractddl-flag-values-gated-on-later-patch",
+  "type": "docs-issue",
+  "issueType": "version-gate-later-than-page-version",
+  "description": "metafun.md, published as server/current at 8.0, gates two EXTRACTDDL flag values (function, prepared) on Couchbase Server 8.0.1 - a release later than the page's own version. A reader on 8.0.0 is shown two flag values they cannot use, with no indication that the page is ahead of their build. Any model that assumes a page's own version is the floor for everything it documents breaks on this page.",
+  "about": [
+    "server/current/n1ql/n1ql-language-reference/metafun"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

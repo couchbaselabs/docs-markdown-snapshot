@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/join",
+  "label": "JOIN",
+  "type": "the SQL++ clause combining documents from two data sources",
+  "promoted": true,
+  "recurrence": 8,
+  "note": "Its own page documents three syntaxes of different vintages - ANSI joins plus lookup joins and index joins, both explicitly legacy - which is why both retainedForLegacyCompatibility occurrences on it are load-bearing."
+}

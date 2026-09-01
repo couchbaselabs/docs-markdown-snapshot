@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/node-level-query-settings",
+  "label": "node-level Query settings",
+  "type": "settings applied to one Query node, overriding cluster-level values on that node",
+  "promoted": true,
+  "recurrence": 4
+}

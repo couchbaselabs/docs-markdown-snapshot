@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/merge",
+  "label": "MERGE",
+  "type": "the SQL++ statement that inserts, updates or deletes in one pass by matching a source against a target",
+  "promoted": true,
+  "recurrence": 11
+}

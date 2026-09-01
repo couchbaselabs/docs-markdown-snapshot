@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/savepoint",
+  "label": "SAVEPOINT",
+  "type": "the SQL++ statement that marks a named point within a transaction that a later ROLLBACK can return to",
+  "promoted": true,
+  "recurrence": 13
+}

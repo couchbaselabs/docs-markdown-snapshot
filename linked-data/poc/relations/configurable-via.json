@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/configurable-via",
+  "label": "configurable via",
+  "kind": "relation (schema-level)",
+  "type": "the subject's behaviour is influenced by the object setting or surface, without the setting being a hard prerequisite.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Fills the soft-dependency gap next to requiresSetting (a hard dependency). Folds configuredVia, an identical mint from a different batch in the same wave. One occurrence records a real oddity worth keeping: INSERT's timeout advice is discharged by pointing at an *indexer* scan timeout, which is either a docs defect or an undocumented coupling - filed as a docs issue this round."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/automatic-workload-repository",
+  "label": "Automatic Workload Repository (AWR)",
+  "type": "the Query service's built-in workload recording mechanism, which snapshots query activity into system:awr for later reporting",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "New in Couchbase Server 8.0 - a fact stated on introduction/whats-new.md and the release notes but nowhere on the AWR page itself, which is why the three cross-page citations in query-awr.json carry evidence_source and evidence_provenance fields. Gated by the query_manage_system_catalog privilege, which is NOT the same as the query_system_catalog privilege that gates the monitoring keyspaces; server/current/learn/security/roles.md documents them separately and auto-update-statistics.md confirms the split behaviourally."
+}

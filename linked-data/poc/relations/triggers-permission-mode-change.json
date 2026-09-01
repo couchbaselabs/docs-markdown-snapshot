@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/triggers-permission-mode-change",
+  "label": "triggers permission mode change",
+  "kind": "relation (schema-level)",
+  "type": "the subject operation switches the permission scope under which subsequent operations in the same flow are evaluated.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Watchlisted at recurrence 1 in round 4 (Java SDK transactions) and promoted here on its second, independent sighting in a different product tree: server/current's SQL++ transactions page states the same query-permissions-take-over behaviour from the SQL++ side. Worth noting as evidence the watchlist mechanism earns its keep - a recurrence-1 mint that reads as over-specific is sometimes just early."
+}

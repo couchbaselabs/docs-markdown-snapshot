@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/aggregate-functions",
+  "label": "Aggregate Functions",
+  "type": "the SQL++ function family that computes a single value over a group of rows (ARRAY_AGG, AVG, COUNT, COUNTN, MAX, MEAN, MEDIAN, MIN, STDDEV*, SUM, VARIANCE*)",
+  "promoted": true,
+  "recurrence": 3,
+  "aliases": ["n1ql:aggregate-function"],
+  "note": "Promoted in round 10 by verify-promotions.py. The singular/plural drift between records (n1ql:aggregate-function vs. -functions) was already logged in the README's id-normalization backlog; what the check added is that NEITHER spelling had a file, so the drift was hiding a real gap rather than merely being untidy. Canonicalised plural to match the family's own page title, with the singular kept as an alias so the existing extraction records stay resolvable without being rewritten."
+}

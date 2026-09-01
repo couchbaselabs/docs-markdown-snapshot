@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/cost-based-optimizer",
+  "label": "cost-based optimizer (CBO)",
+  "type": "the optimizer that chooses a plan using gathered statistics rather than fixed rules",
+  "promoted": true,
+  "recurrence": 15
+}

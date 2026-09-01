@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-service-rest-api",
+  "label": "Query Service REST API",
+  "type": "the POST/GET /query/service endpoint through which statements and request parameters are submitted to the Query service",
+  "promoted": true,
+  "recurrence": 12,
+  "aliases": [
+    "api:query-rest-api"
+  ],
+  "note": "Folds api:query-rest-api, which batch B minted for the same thing while batch C was minting this id, in the same wave. Six files each, disjoint - a live instance of the standing limit that a written registry stops agents re-litigating the past but not each other in the present."
+}

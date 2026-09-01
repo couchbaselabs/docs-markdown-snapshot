@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-8-0",
+  "label": "Couchbase Server 8.0",
+  "type": "the current Server release, whose documentation tree is server/current",
+  "promoted": true,
+  "recurrence": 19,
+  "aliases": [
+    "version:server-8.0"
+  ],
+  "note": "Folds version:server-8.0. The dash-versus-dot inconsistency is corpus-wide: 31 distinct version ids reduce to about 20 real versions, and the canonical form set in round 1 (version:server-7-0, version:server-6-5) is dash-separated. Filed to the id-normalization backlog with a count this round rather than left as an impression."
+}

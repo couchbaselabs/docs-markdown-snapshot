@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-exsuccessful-claims-post-get-interchangeable",
+  "type": "docs-issue",
+  "issueType": "contradictory-content",
+  "description": "The page states 'The same request can be run as a GET request' and shows no GET response, implying equivalence. intro.md in the same directory names GET /query/service the 'Read-Only Query Service' - so the two are not interchangeable, and a mutating statement that succeeds over POST would be refused over GET. The page asserts an equivalence its own directory index contradicts, and states no restriction.",
+  "about": [
+    "server/current/n1ql/n1ql-rest-api/exsuccessful",
+    "server/current/n1ql/n1ql-rest-api/intro"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

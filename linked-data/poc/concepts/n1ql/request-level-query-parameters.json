@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/request-level-query-parameters",
+  "label": "request-level query parameters",
+  "type": "settings supplied per request, overriding node- and cluster-level values for that request only",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "One of three tiers promoted together so the model is nameable rather than implied; see relations/requires-request-parameter."
+}

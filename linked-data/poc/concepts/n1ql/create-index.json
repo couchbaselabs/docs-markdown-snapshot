@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/create-index",
+  "label": "CREATE INDEX",
+  "type": "the SQL++ statement that creates a secondary or Composite Vector index",
+  "promoted": true,
+  "recurrence": 20
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/prepared-statement",
+  "label": "prepared statement",
+  "type": "a statement compiled and cached by PREPARE, identified by name, and run by EXECUTE",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Promoted this round because three records lean on it and one of them - prepare.json - had to be rewritten around it after its relations were found to be unquotable. Distinct from n1ql:prepare (the statement that creates one) and from the plan cache itself."
+}

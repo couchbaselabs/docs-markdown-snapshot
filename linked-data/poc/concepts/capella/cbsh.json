@@ -4,5 +4,5 @@
   "type": "an access surface for running SQL++ statements - object of incompatibleWithAccessSurface",
   "promoted": true,
   "recurrence": 1,
-  "note": "Promoted as part of the access-surface family (see capella:query-tab) despite single-file recurrence - the family's governing predicate clears the normal promotion threshold on its own."
+  "note": "Promoted as part of the access-surface family (see capella:query-tab) despite single-file recurrence - the family's governing predicate clears the normal promotion threshold on its own. [round 10] Must not be merged with tool:cbq-shell (promoted this round, recurrence 18). Couchbase Shell (cbsh) and the cbq SQL++ shell are different tools with different documentation - cloud/reference/command-line-tools.md lists them as separate entries and sends cbsh readers to its own site, couchbase.sh - and one page, using-ai.md, mints both ids side by side, correctly. Two ids a name-similarity normalization pass would have collapsed. Also note the id itself is a misnomer: the page says cbsh is 'for working with Couchbase Server and Capella operational clusters', so it is not Capella-specific; filed to the id-normalization backlog rather than renamed mid-round."
 }

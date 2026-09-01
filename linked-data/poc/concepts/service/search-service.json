@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/search-service",
+  "label": "Search service",
+  "type": "the service that maintains full-text and vector search indexes",
+  "promoted": true,
+  "recurrence": 6
+}

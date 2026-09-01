@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/data-service",
+  "label": "Data service",
+  "type": "the service that stores documents and serves key-value operations",
+  "promoted": true,
+  "recurrence": 11
+}

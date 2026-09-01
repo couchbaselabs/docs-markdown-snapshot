@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/kv-operations",
+  "label": "key-value operations",
+  "type": "the SDK's direct document get/insert/upsert/replace/remove API, as opposed to queries",
+  "promoted": true,
+  "recurrence": 8,
+  "note": "Round 3/9 promotion debt, found by verify-promotions.py rather than by reading: eight records reference it, including round 4's transaction records where it is the thing you must not do inside a transaction lambda."
+}

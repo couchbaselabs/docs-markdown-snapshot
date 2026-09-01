@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/query-external-access",
+  "label": "QUERY_EXTERNAL_ACCESS (Server RBAC role)",
+  "type": "the Server RBAC role that gates the SQL++ CURL() function's ability to reach endpoints outside the cluster",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Promoted below the bar on significance: it is the single role that turns a query language into an outbound HTTP client, and the Capella twin page has no equivalent because CURL() is unavailable there. Verified directly - curl.md names this role and contains no 'enterprise' edition gate at all, contrary to what a reader would expect of a feature this sensitive."
+}

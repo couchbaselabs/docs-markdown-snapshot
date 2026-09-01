@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-context",
+  "label": "query_context",
+  "type": "the setting that establishes the default namespace, bucket and scope against which unqualified keyspace references in a statement resolve",
+  "promoted": true,
+  "recurrence": 22,
+  "note": "The highest-recurrence concept in the entire corpus, and unpromoted until round 10 - a measure of how much promotion debt the cloud/ rounds accumulated. Every SQL++ reference page's Prerequisites section reaches for it."
+}

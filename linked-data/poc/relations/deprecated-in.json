@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/deprecated-in",
+  "label": "deprecated in",
+  "kind": "relation (schema-level)",
+  "type": "the version in which the subject was declared deprecated - documented as no longer recommended, while remaining present. Range: a version: concept.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Closes the gap round 10's extraction brief named explicitly: before this round the registry had no deprecation predicate at all, despite nine rounds of extraction. Folds deprecatedSince (server/7.2 learn/.../indexes.json, 'Views are deprecated in Couchbase Server 7.0') into this id - an exact synonym minted three rounds apart by different agents. Deliberately NOT promoted alongside a removedIn: nothing in the corpus states 'removed in version X' with a version attached; the two candidate sightings say only 'will be removed in a future release'. Reserve removedIn as a term but do not file it until a page actually dates a removal. Batch B additionally proposed noOpSince for the encoded_plan case ('this parameter is ignored and has no effect' since 6.5); rejected as a separate predicate because the distinction between 'deprecated' and 'inert' is a property of the evidence, not of the relation - the evidence string carries it."
+}

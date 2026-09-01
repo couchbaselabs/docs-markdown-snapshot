@@ -3,15 +3,51 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/prepare.md",
   "concepts": [
-    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention" },
-    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "minted" },
-    { "candidate_id": "cluster-access-credential-type", "label": "Capella cluster access credential type (Basic/Advanced enum)", "reused_or_minted": "reused" },
-    { "candidate_id": "privilege:capella-basic-access-read", "label": "Read (privilege required under Basic cluster access credentials, for a prepared SELECT)", "reused_or_minted": "reused - same candidate_id minted in this round's comma.json" },
-    { "candidate_id": "privilege:capella-advanced-access-query-read", "label": "Query Read (privilege required under Advanced cluster access credentials, for a prepared SELECT)", "reused_or_minted": "reused - same candidate_id as comma.json" },
-    { "candidate_id": "privilege:capella-basic-access-write", "label": "Write (privilege required under Basic cluster access credentials, for a prepared UPDATE)", "reused_or_minted": "reused - promoted concept, per registry" },
-    { "candidate_id": "privilege:capella-advanced-access-query-index", "label": "Query Update (privilege required under Advanced cluster access credentials, for a prepared UPDATE)", "reused_or_minted": "minted - the page names the Advanced-credential privilege for UPDATE as 'Query Update', a sibling of the promoted privilege:capella-advanced-access-query-index (which the registry describes as covering index-management statements); this is a distinct write-keyed member of the same credential-type privilege family, not the promoted concept itself - flagged for reconciliation to decide whether a dedicated privilege:capella-advanced-access-query-update should be minted instead of reusing this id" },
-    { "candidate_id": "sdk:sqlpp-queries-with-sdk", "label": "Running SQL++ Queries from the Java SDK (Parameterized Queries)", "reused_or_minted": "reused - already minted in java-sdk/howtos/sqlpp-queries-with-sdk.json" },
-    { "candidate_id": "sdk:prepared-statements-for-query-optimization", "label": "Prepared Statements for Query Optimization (Java SDK concept doc)", "reused_or_minted": "minted - no existing sdk: concept covers this specific concept-docs page" }
+    {
+      "candidate_id": "n1ql:prepare",
+      "label": "PREPARE statement",
+      "reused_or_minted": "minted - matches n1ql:<kebab-case-statement-name> convention"
+    },
+    {
+      "candidate_id": "n1ql:execute",
+      "label": "EXECUTE statement",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "cluster-access-credential-type",
+      "label": "Capella cluster access credential type (Basic/Advanced enum)",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "privilege:capella-basic-access-read",
+      "label": "Read (privilege required under Basic cluster access credentials, for a prepared SELECT)",
+      "reused_or_minted": "reused - same candidate_id minted in this round's comma.json"
+    },
+    {
+      "candidate_id": "privilege:capella-advanced-access-query-read",
+      "label": "Query Read (privilege required under Advanced cluster access credentials, for a prepared SELECT)",
+      "reused_or_minted": "reused - same candidate_id as comma.json"
+    },
+    {
+      "candidate_id": "privilege:capella-basic-access-write",
+      "label": "Write (privilege required under Basic cluster access credentials, for a prepared UPDATE)",
+      "reused_or_minted": "reused - promoted concept, per registry"
+    },
+    {
+      "candidate_id": "privilege:capella-advanced-access-query-update",
+      "label": "Query Update (privilege required under Advanced cluster access credentials, for a prepared UPDATE)",
+      "reused_or_minted": "reused - the Advanced-credential privilege the page names for a prepared UPDATE is 'Query Update', and privilege:capella-advanced-access-query-update already existed as a promoted registry concept. [id corrected during round-10 reconciliation: this record originally filed the concept under privilege:capella-advanced-access-query-index, a mis-link to an existing sibling rather than a missing concept. Flagged by the record's own author for reconciliation to settle, and settled by the server/current wave-1 extraction of the same page.]"
+    },
+    {
+      "candidate_id": "sdk:sqlpp-queries-with-sdk",
+      "label": "Running SQL++ Queries from the Java SDK (Parameterized Queries)",
+      "reused_or_minted": "reused - already minted in java-sdk/howtos/sqlpp-queries-with-sdk.json"
+    },
+    {
+      "candidate_id": "sdk:prepared-statements-for-query-optimization",
+      "label": "Prepared Statements for Query Optimization (Java SDK concept doc)",
+      "reused_or_minted": "minted - no existing sdk: concept covers this specific concept-docs page"
+    }
   ],
   "relations": [
     {
@@ -31,7 +67,7 @@
     {
       "subject": "n1ql:prepare",
       "predicate": "requiresPrivilege",
-      "object": "privilege:capella-advanced-access-query-index",
+      "object": "privilege:capella-advanced-access-query-update",
       "reused_or_minted_predicate": "minted - see concepts note; asserting on the same id as the promoted concept pending reconciliation",
       "evidence": "To execute the following statement, user must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `hotel`."
     },

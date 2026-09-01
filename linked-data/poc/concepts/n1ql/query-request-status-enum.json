@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-request-status-enum",
+  "label": "query request status (enumeration)",
+  "type": "the closed set of status values a query response can report - success, running, errors, stopped, timeout, fatal, and so on",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "Highest-recurrence enumeration in the corpus after the credential types; usesEnum already existed to point at it."
+}

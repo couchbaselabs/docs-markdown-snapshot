@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-6",
+  "label": "Couchbase Server 7.6",
+  "type": "the previous Server release",
+  "promoted": true,
+  "recurrence": 11,
+  "aliases": [
+    "version:server-7.6",
+    "version:couchbase-server-7.6"
+  ],
+  "note": "Folds version:server-7.6 and version:couchbase-server-7.6."
+}

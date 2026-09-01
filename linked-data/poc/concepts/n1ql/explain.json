@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/explain",
+  "label": "EXPLAIN",
+  "type": "the SQL++ statement that returns a statement's query plan without executing it",
+  "promoted": true,
+  "recurrence": 5
+}

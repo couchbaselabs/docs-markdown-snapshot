@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbq-shell",
+  "label": "cbq (command-line shell for SQL++)",
+  "type": "the interactive command-line shell for submitting SQL++ statements, which maintains transaction session state on the user's behalf",
+  "promoted": true,
+  "recurrence": 18,
+  "aliases": [
+    "n1ql:cbq"
+  ],
+  "note": "Canonical id, folding n1ql:cbq (13 files). n1ql: is for SQL++ language constructs; a CLI tool is not one. Must NOT be merged with capella:cbsh - Couchbase Shell (cbsh) is a different tool with its own documentation site, and cloud/reference/command-line-tools.md lists both separately. Two ids that a name-similarity normalization pass would have collapsed; see relations/should-not-be-confused-with."
+}

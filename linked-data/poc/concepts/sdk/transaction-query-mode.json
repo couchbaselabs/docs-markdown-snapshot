@@ -1,9 +1,27 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-query-mode",
-  "label": "Query Mode (Java SDK transactions)",
-  "type": "once a transaction executes any SQL++ query statement, that query and every subsequent key-value operation in the same transaction attempt execute under the user's query permissions rather than their data permissions",
-  "promoted": true,
-  "recurrence": 1,
-  "promotion_reason": "promoted below the usual 2-file recurrence bar for semantic significance - one of the two behaviors the round-4 extraction cited as having 'no per-operation analogue at all' in its cross_component_finding, and directly answers a permissions-scope competency question no existing relation covers.",
-  "note": "A mid-flow permission-scope switch triggered by operation mixing within a single transaction attempt. Query permissions and data permissions may differ, which the source page flags as a source of unexpected results. Object of the minted predicate triggersPermissionModeChange, itself still extraction-layer only (recurrence 1) - watchlisted alongside this concept, see reconciliation.md round 4."
+  "label": "Query Mode (Java SDK transactions) - alias",
+  "type": "alias: superseded by n1ql:transaction-query-mode",
+  "promoted": false,
+  "aliasOf": "https://docs.couchbase.com/ld/concepts/n1ql/transaction-query-mode",
+  "note": "Round 4 promoted this concept below the recurrence bar on significance, from the Java SDK transactions page, and filed it under sdk: on the strength of where it was read. Round 10 found its defining paragraph on server/current/n1ql/n1ql-language-reference/transactions.md:94-96: it is a Query-service behaviour that the SDK page describes, not an SDK behaviour, and it is now attested in two product trees (recurrence 2), so it no longer needs the significance exception either. Kept as a stub rather than deleted because round 4's extraction records cite this id and were not wrong to - the id was accurate about where the concept was found, only about where it belongs.",
+  "round4Record": {
+    "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-query-mode",
+    "label": "Query Mode (Java SDK transactions) - alias",
+    "type": "alias: superseded by n1ql:transaction-query-mode",
+    "promoted": false,
+    "aliasOf": "https://docs.couchbase.com/ld/concepts/n1ql/transaction-query-mode",
+    "note": "Round 4 promoted this concept below the recurrence bar on significance, from the Java SDK transactions page, and filed it under sdk: on the strength of where it was read. Round 10 found its defining paragraph on server/current/n1ql/n1ql-language-reference/transactions.md:94-96: it is a Query-service behaviour the SDK page describes, not an SDK behaviour, and it is now attested in two product trees (recurrence 2), so it no longer needs the significance exception either. Kept as a stub rather than deleted because round 4's extraction records cite this id and are not wrong to - the id was accurate about where the concept was found, only about where it belongs.",
+    "supersededBy_history": {
+      "round-4-record": {
+        "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-query-mode",
+        "label": "Query Mode (Java SDK transactions)",
+        "type": "once a transaction executes any SQL++ query statement, that query and every subsequent key-value operation in the same transaction attempt execute under the user's query permissions rather than their data permissions",
+        "promoted": true,
+        "recurrence": 1,
+        "promotion_reason": "promoted below the usual 2-file recurrence bar for semantic significance - one of the two behaviors the round-4 extraction cited as having 'no per-operation analogue at all' in its cross_component_finding, and directly answers a permissions-scope competency question no existing relation covers.",
+        "note": "A mid-flow permission-scope switch triggered by operation mixing within a single transaction attempt. Query permissions and data permissions may differ, which the source page flags as a source of unexpected results. Object of the minted predicate triggersPermissionModeChange, itself still extraction-layer only (recurrence 1) - watchlisted alongside this concept, see reconciliation.md round 4."
+      }
+    }
+  }
 }

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/automatic-transaction-id",
+  "label": "automatic transaction ID handling",
+  "type": "the behaviour of a surface that tracks the current transaction ID for the user rather than requiring txid on each statement",
+  "promoted": true,
+  "recurrence": 6
+}

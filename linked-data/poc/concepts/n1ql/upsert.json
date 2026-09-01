@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/upsert",
+  "label": "UPSERT",
+  "type": "the SQL++ statement that adds documents, replacing any existing document with the same key",
+  "promoted": true,
+  "recurrence": 8
+}

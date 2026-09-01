@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-response-object",
+  "label": "query response object",
+  "type": "the JSON envelope a Query service request returns, carrying results, status, metrics and any errors",
+  "promoted": true,
+  "recurrence": 8
+}

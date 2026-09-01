@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/cbq-2-0",
+  "label": "cbq 2.0",
+  "type": "the version of the cbq shell that introduced its transaction session handling",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "The only tool-versioned concept in the corpus: version gating here is on the shell, not on the server, which is exactly the distinction the wave was run to test."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/transactions",
+  "label": "SQL++ Transactions",
+  "type": "multi-statement ACID transactions expressed in SQL++ and executed by the Query service, as opposed to transactions driven through an SDK's transaction API",
+  "promoted": true,
+  "recurrence": 14,
+  "note": "The authoritative page for the whole family, and the page that finally states the SQL++-versus-SDK transaction boundary in its own words rather than leaving it inferred (the question round 9 closed). States statement legality as a closed allow-list, which is why permitsWithinTransaction reads directly off it."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/unnest",
+  "label": "UNNEST",
+  "type": "the SQL++ clause that flattens an array field into one result row per element",
+  "promoted": true,
+  "recurrence": 8
+}

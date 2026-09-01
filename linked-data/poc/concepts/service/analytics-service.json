@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/analytics-service",
+  "label": "Analytics service",
+  "type": "the service that runs analytical queries over a shadowed copy of the data",
+  "promoted": true,
+  "recurrence": 7
+}

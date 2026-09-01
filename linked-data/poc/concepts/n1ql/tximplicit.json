@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/tximplicit",
+  "label": "tximplicit (query parameter)",
+  "type": "the request parameter that runs a single DML statement as a self-contained ACID transaction, without BEGIN/COMMIT",
+  "promoted": true,
+  "recurrence": 5
+}

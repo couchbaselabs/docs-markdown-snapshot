@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-query-system-catalog-called-role-and-privilege",
+  "type": "docs-issue",
+  "issueType": "naming-inconsistency",
+  "description": "metafun.md calls query_system_catalog a *role* ('you must have the `query_system_catalog` role'), whereas the same string is documented as a privilege elsewhere and was extracted into the privilege: namespace from the AWR and monitoring pages. Server RBAC distinguishes roles from privileges, and this string is used for both on different pages, which is exactly the kind of drift that produced the rbac-role:/privilege: namespace collision in the POC's own registry.",
+  "about": [
+    "server/current/n1ql/n1ql-language-reference/metafun",
+    "server/current/n1ql/n1ql-manage/query-awr",
+    "server/current/n1ql/n1ql-manage/monitoring-n1ql-query"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

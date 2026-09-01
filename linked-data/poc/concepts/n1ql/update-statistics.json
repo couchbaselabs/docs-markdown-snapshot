@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/update-statistics",
+  "label": "UPDATE STATISTICS",
+  "type": "the SQL++ statement that gathers the optimizer statistics the cost-based optimizer relies on",
+  "promoted": true,
+  "recurrence": 6
+}

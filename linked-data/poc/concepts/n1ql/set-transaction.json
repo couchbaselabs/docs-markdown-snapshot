@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/set-transaction",
+  "label": "SET TRANSACTION",
+  "type": "the SQL++ statement that sets the isolation level of the current transaction",
+  "promoted": true,
+  "recurrence": 13
+}

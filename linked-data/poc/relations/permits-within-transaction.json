@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/permits-within-transaction",
+  "label": "permits within transaction",
+  "kind": "relation (schema-level)",
+  "type": "the object statement or construct is legal inside the subject transaction scope, per a closed allow-list stated by the page.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The SQL++ transaction pages state statement legality as a closed list, not as prose - so this reads directly off the source. Batch B also minted conditionallyPermittedWithinTransaction (EXECUTE FUNCTION and PREPARE, whose legality depends on the UDF body rather than on the statement itself). Kept on the watchlist at recurrence 1 rather than promoted, but the finding behind it is real and worth recording: transaction-statement legality here is three-valued (permitted / conditional / prohibited), not binary, and the registry has no mechanism for qualifying a triple, so the conditional case currently has nowhere to live except a second predicate."
+}

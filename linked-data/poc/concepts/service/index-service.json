@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/index-service",
+  "label": "Index service",
+  "type": "the service that maintains and scans global secondary indexes",
+  "promoted": true,
+  "recurrence": 11
+}

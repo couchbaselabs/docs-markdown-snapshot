@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/build-index",
+  "label": "BUILD INDEX",
+  "type": "the SQL++ statement that builds indexes previously created with the DEFER BUILD option",
+  "promoted": true,
+  "recurrence": 10
+}

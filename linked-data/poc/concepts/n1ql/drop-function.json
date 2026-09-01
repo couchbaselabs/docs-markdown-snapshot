@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/drop-function",
+  "label": "DROP FUNCTION",
+  "type": "the SQL++ statement that removes a user-defined function, leaving any external library it referenced in place",
+  "promoted": true,
+  "recurrence": 7
+}

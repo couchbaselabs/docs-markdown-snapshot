@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-2",
+  "label": "Couchbase Server 7.2",
+  "type": "the Server release whose documentation tree supplied rounds 1's server records",
+  "promoted": true,
+  "recurrence": 3
+}

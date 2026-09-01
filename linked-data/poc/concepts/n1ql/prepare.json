@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/prepare",
+  "label": "PREPARE",
+  "type": "the SQL++ statement that compiles a statement and caches its plan for later EXECUTE",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "The page whose wave-1 extraction record carried the round's one fabricated availableSince claim; the record was rewritten and carries a record_corrected field. See reconciliation.md round 10."
+}

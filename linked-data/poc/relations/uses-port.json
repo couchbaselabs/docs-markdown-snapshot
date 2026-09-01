@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/uses-port",
+  "label": "uses port",
+  "kind": "relation (schema-level)",
+  "type": "the TCP port on which the subject API or service listens. Range: a port: concept.",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Promoted below the 2-file bar on significance, like sdk:transaction-query-mode in round 4. The registry had no vocabulary for network exposure at all after nine rounds - a striking gap for a database product, and one that only surfaced when extraction finally reached a REST API intro page. Six occurrences on one page, and one of them is the reason to keep it: the cluster-level Query settings API is served on 8091/18091, the Cluster Manager's ports, not on a Query service port - so 'which port do I call for Query?' has no single answer. Mints the port: namespace."
+}

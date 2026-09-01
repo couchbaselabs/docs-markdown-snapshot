@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/excludes-from-capture",
+  "label": "excludes from capture",
+  "kind": "relation (schema-level)",
+  "type": "the subject monitoring, auditing or recording mechanism deliberately omits the object from what it records.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Distinct from the promoted disablesFeatureFor (a feature unavailable to an audience). This is a scope boundary on an observability mechanism, and it is the kind of fact that is invisible until it matters: AWR does not capture CREATE USER or ALTER USER statements, and SQL++ auditing omits three named API codes. Both are exactly the sort of gap a compliance question turns on."
+}

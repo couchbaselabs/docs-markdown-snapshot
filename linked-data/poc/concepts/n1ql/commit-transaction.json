@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/commit-transaction",
+  "label": "COMMIT TRANSACTION",
+  "type": "the SQL++ statement that makes a transaction's changes durable and ends it, tearing down its savepoints",
+  "promoted": true,
+  "recurrence": 13
+}

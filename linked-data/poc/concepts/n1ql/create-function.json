@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/create-function",
+  "label": "CREATE FUNCTION",
+  "type": "the SQL++ statement that creates an inline or external user-defined function",
+  "promoted": true,
+  "recurrence": 8
+}

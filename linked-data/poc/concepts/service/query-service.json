@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/query-service",
+  "label": "Query service",
+  "type": "the service that parses, plans and executes SQL++ statements",
+  "promoted": true,
+  "recurrence": 15
+}

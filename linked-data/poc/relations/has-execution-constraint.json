@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-execution-constraint",
+  "label": "has execution constraint",
+  "kind": "relation (schema-level)",
+  "type": "a topology or placement constraint on where the subject may execute - e.g. every statement in a SQL++ transaction must be routed to the same Query node.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted with a deliberately narrow range (execution topology/placement only) because the name is broad enough to attract anything: a future agent will read 'execution constraint' as a home for timeouts, memory quotas and privilege checks, all of which have their own predicates. If it starts collecting those, rename it rather than widening it. Load-bearing as written: the node-affinity constraint is the reason transaction state cannot be assumed to survive a reconnect."
+}

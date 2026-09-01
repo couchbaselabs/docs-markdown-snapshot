@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/alter-index",
+  "label": "ALTER INDEX",
+  "type": "the SQL++ statement that moves index replicas between nodes or changes replica count",
+  "promoted": true,
+  "recurrence": 8
+}

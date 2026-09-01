@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/optimizer-hints",
+  "label": "optimizer hints",
+  "type": "directives embedded in a statement that constrain or steer the optimizer's plan choice",
+  "promoted": true,
+  "recurrence": 10
+}

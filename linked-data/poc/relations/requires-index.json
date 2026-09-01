@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-index",
+  "label": "requires index",
+  "kind": "relation (schema-level)",
+  "type": "the subject construct cannot run at all unless the object index exists.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Two files, two products (Couchbase Lite full-text search needs an FTS index; SQL++ index joins need an index on the joining key). Cross-product recurrence on a shape neither product's page phrases the same way is stronger evidence than two occurrences within one directory would be."
+}

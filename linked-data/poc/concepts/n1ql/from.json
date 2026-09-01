@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/from",
+  "label": "FROM clause",
+  "type": "the SQL++ clause naming the keyspace, subquery or expression a statement reads from",
+  "promoted": true,
+  "recurrence": 9
+}

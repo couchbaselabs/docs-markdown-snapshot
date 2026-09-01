@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/awr-document",
+  "label": "AWR snapshot document",
+  "type": "a document written to system:awr by an AWR snapshot",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "Promoted below the bar on significance, for a namespace reason rather than a semantic one: it is the first and so far only Server-side member of monitoring:, and it is the evidence that refused the proposed rename of monitoring: to capella-alerting:. A namespace with one Server member and thirteen Capella ones is still an observability namespace, not a Capella one."
+}

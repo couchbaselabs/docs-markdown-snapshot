@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/sqlpp",
+  "label": "SQL++",
+  "type": "Couchbase's query language, formerly known as N1QL",
+  "promoted": true,
+  "recurrence": 6,
+  "aliases": [
+    "n1ql:sql-plus-plus"
+  ],
+  "note": "Folds n1ql:sql-plus-plus, an independent mint of the same concept from cloud/n1ql/n1ql-language-reference/."
+}

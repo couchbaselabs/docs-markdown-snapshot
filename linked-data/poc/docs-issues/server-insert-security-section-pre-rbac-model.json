@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-insert-security-section-pre-rbac-model",
+  "type": "docs-issue",
+  "issueType": "stale-content",
+  "description": "insert.md's Security Requirements section is written against the pre-RBAC access model: it speaks of 'keyspace credentials', 'a SASL bucket' and 'a read-only role for the SASL bucket'. SASL bucket passwords were the per-bucket authentication mechanism before RBAC arrived in Couchbase Server 5.0, and 'read-only' is not a current bucket-scoped role name. The section sits immediately above an RBAC Privileges section that describes the modern model correctly, so the page documents two access models at once without saying that one is obsolete.",
+  "about": [
+    "server/current/n1ql/n1ql-language-reference/insert"
+  ],
+  "foundDuring": "poc-server-8.0-wave-1",
+  "status": "open"
+}

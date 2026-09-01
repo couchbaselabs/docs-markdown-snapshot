@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/nest",
+  "label": "NEST",
+  "type": "the SQL++ clause that embeds matching documents from another source as an array",
+  "promoted": true,
+  "recurrence": 7
+}

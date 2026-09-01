@@ -1,6 +1,6 @@
 # Pass-2 reconciliation log
 
-Nine rounds so far, in order run. Each section covers one round; a single
+Ten rounds so far, in order run. Each section covers one round; a single
 cumulative verdict sits at the end.
 
 ---
@@ -1145,93 +1145,645 @@ surfaces, confirmed by the docs themselves rather than inferred.
 
 ---
 
-## Cumulative verdict (all nine rounds)
+## Round 10 — `server/current` wave 1 (38 pages) - first wave into a second product tree
 
-The vocabulary has now been tested against nine genuinely different kinds
-of "does this still fit": a different component within one product
-(round 1), a different deployment model of the same underlying product
-(round 2), three entirely different products built by different teams
-(round 3), a single product's own feature that cuts across its existing
-per-operation model (round 4's transactions, within the Java SDK already
-covered in round 3), full coverage of a directory a prior round had only
-sampled a fifth of (round 5), the same partial-sampling lesson recurring on
-the same product's role catalog (round 6), that exact lesson recurring a
-third time on the privilege catalog (round 7), the cleanest negative result
-so far - a brand-new, complex feature (Eventing) needing no new structural
-layer at all (round 8) - and, closing out `cloud/` entirely, a round
-expected to mostly confirm rather than surprise, which is exactly what it
-did, while still finding three real gaps and closing a question left open
-since round 5 (round 9). At every step it kept doing the same useful thing:
-not just "the terms still fit," but surfacing something true and specific
-about each surface it touched - Capella's credential/role-based access model
+Scope: the first wave of Couchbase Server 8.0, all of it under `n1ql/` -
+25 pages selected by **diff-gating** (the `server/current` pages whose Capella
+twins had already been extracted and which diverged most from them, by
+`difflib` changed-line count) plus 13 pages that exist only on Server and have
+no Capella counterpart at all. Run as 5 parallel batches. Two structural
+priorities were given in the brief: version/edition gating vocabulary, which
+the registry was weakest at after nine rounds, and reuse of the ids already
+established by the `cloud/` rounds.
+
+Before dispatching any agent, the existing 58 `server/` records were moved to
+`extractions/server/7.2/` and their `page_id`s rewritten to include the
+version. This was not tidying: those records carried version-neutral page ids
+(`server/n1ql-language-reference/createindex`) alongside version-bearing source
+paths (`server/7.2/…`), so a multi-version ingest collided by construction -
+wave 1 would have silently overwritten `createindex.json` and `alterindex.json`
+with 8.0 content and no diagnostic. Pure `git mv` plus one field rewrite, and
+the reason it's worth recording is that the collision was structural and
+invisible: nothing in nine rounds of a single-version-per-product corpus would
+have surfaced it.
+
+### Headline finding: an extraction agent fabricated its evidence, and reviewer judgement did not catch it
+
+`prepare.json` came back confident, internally consistent, and better argued
+than most correct records. Eleven of its thirteen relations quoted sentences
+that **do not appear on the page**. Two were substantive, not stylistic:
+
+- It asserted `n1ql:automatic-reprepare-on-index-changes availableSince
+  version:server-8-0`, quoting "In Couchbase Server 8.0 and later, the Query
+  service automatically reprepares...". No such sentence exists. The page
+  states no version for that behaviour, or for anything else. The only real
+  basis for the claim was that the page lives in the 8.0 tree.
+- Its `n1ql-feat-ctrl` evidence read "To disable this feature, set bit 23..."
+  where the page reads "**To enable** the feature, set bit 23...". Inverted
+  polarity, in a quotation.
+
+A third relation claimed prepared statements are "propagated to all query
+nodes"; the page describes cache priming, not propagation. The remaining eight
+were close paraphrase - the extraction schema has required a direct quote since
+round 1, and paraphrase had been drifting past unremarked for nine rounds.
+
+What matters is not that one agent hallucinated - that was always going to
+happen at some rate - but **which controls failed**. Every human-legible
+control passed: the record parsed, reused promoted ids correctly, gave
+plausible mint rationales, and its fabricated sentence was *more* idiomatic
+than the real one it displaced. The only control that caught it was mechanical
+string comparison against the source file, performed by a sibling batch that
+happened to re-read the page.
+
+So the round produced `poc/verify-evidence.py`, now a standing corpus check:
+every relation's `evidence` must appear verbatim (whitespace- and
+quote-normalised only) in the page named by its `evidence_source`, or, absent
+that field, in the record's own `source_path`. Deliberately **not** normalised:
+wording. A paraphrase is a failure, by design.
+
+Running it over the whole corpus, after this round's repairs:
+
+| tree | verbatim | unquotable | no evidence field | total relations | records with ≥1 failure |
+|---|---|---|---|---|---|
+| `server/current` | 509 | 0 | 0 | 509 | 0 of 38 |
+| `cloud` | 1,555 | 169 | 0 | 1,724 | 92 of 407 |
+| `server/7.2` | 129 | 32 | 130 | 291 | 16 of 58 |
+| `sync-gateway` | 56 | 68 | 0 | 124 | 12 of 13 |
+| `java-sdk` | 49 | 23 | 0 | 72 | 11 of 15 |
+| `couchbase-lite` | 30 | 30 | 0 | 60 | 10 of 12 |
+| **all** | **2,328** | **322** | **130** | **2,780** | **141 of 543** |
+
+Read that carefully, because it says two different things. `server/current` at
+509/509 is what a wave looks like when the check is run *during*
+reconciliation and the failures are repaired - this round's 100% is an
+artefact of the check existing, not of the agents being better. `server/7.2`'s
+130 relations with no `evidence` field at all are round 1, which predates the
+requirement. But `sync-gateway` at 45% verbatim and `couchbase-lite` at 50%,
+with 12 of 13 and 10 of 12 records affected, are **materially unreliable** and
+should be re-extracted rather than patched; round 3's cross-product test
+reached a correct conclusion about vocabulary reuse, but its records are not
+sound sources of fact. Filed as backlog, not fixed here.
+
+One honest correction to an earlier count in this document's own history: the
+first pass at this audit reported far smaller failure numbers (e.g. 49 for
+`cloud`). Those were *records* containing a failure under an earlier script,
+not relations, and an intermediate version of that script also let
+empty-evidence relations pass silently, because `"" in text` is `True` in
+Python. The table above counts relations, and the record counts are given
+alongside so the two readings can't be confused again.
+
+### The version-gating result is the opposite of what the brief expected, and it is a better result
+
+The brief called the vector-index pages "prime `availableSince` territory."
+They contain none. Neither `createvectorindex.md`, `altervectorindex.md` nor
+`dropvectorindex.md` states its own availability version. The single explicit
+8.0 gate in the whole wave is on `createindex.md`, and it gates a *capability
+added to a pre-existing statement*: "In Couchbase Server 8.0 and later, the
+CREATE INDEX statement also allows you to create Composite Vector indexes."
+
+The mechanism is straightforward once seen. An existing statement needs an
+"and later" qualifier to mark what changed. A statement introduced wholesale
+has nothing to contrast itself with, so it carries no marker at all.
+**Version-evidence density is inversely correlated with how new a feature is** -
+exactly backwards from what a version-mining pass would assume, and worth
+stating as a design constraint on any release-notes-style query built over
+this vocabulary.
+
+Two vocabulary consequences, both promoted:
+
+- **`documentedForVersion` (6 files), kept strictly separate from
+  `availableSince`.** Batch B minted it to record "I know which documentation
+  tree I read this in" without that being upgradeable into "I know when this
+  appeared." That is precisely the inference `prepare.json` made illegitimately.
+  Two batches in the same wave, given the same brief, went opposite ways on the
+  same temptation - and the disciplined one invented vocabulary to stay
+  disciplined. `availableSince` now requires the page to state a version;
+  `documentedForVersion` requires only that the page exist.
+- **`deprecatedIn` (2 files), the gap the brief named.** Nine rounds produced no
+  deprecation predicate at all. It folds `deprecatedSince` (round 1's
+  `server/7.2` mint for Views, three rounds earlier, identical shape). Two
+  proposals were rejected with reasons: `removedIn`, because nothing in the
+  corpus dates a removal - both sightings say only "will be removed in a future
+  release", so the term is reserved but unfiled; and `noOpSince`, batch B's
+  suggestion for `encoded_plan` ("ignored and has no effect" since 6.5),
+  because deprecated-versus-inert is a property of the evidence, not of the
+  relation.
+- **`retainedForLegacyCompatibility` (3 files)** sits beside `deprecatedIn` on a
+  clean axis: one dates when a thing stopped being recommended, the other says
+  why it nevertheless still exists. Both can hold of the same subject -
+  `n1ql:encoded-plan` has both. It folds `documentedAsLegacy`, minted in the
+  same wave by a different batch for the same shape.
+
+Also found and **not** solvable with current vocabulary: `join.md` needs to say
+"version X **and earlier**" - "Couchbase Server version 4.1 and earlier
+supported only lookup joins" is an upper-bounded fact, the mirror image of
+`availableSince`, and every predicate in the registry is lower-bounded. Left
+open deliberately: one occurrence, and inventing `availableUntil` on a single
+sighting is how the registry accumulates near-duplicates.
+
+### A new failure mode: quotable evidence, wrong object
+
+Three relations in this wave quote real sentences and attach them to objects
+the sentence does not support:
+
+- `n1ql:lookup-join documentedAsLegacy version:server-4-1`, quoting "A _lookup
+  join_ is a legacy syntax for joins." The version is not in that sentence -
+  though it *is* on the page, 
+  three lines later ("Couchbase Server version 4.1 and earlier supported only
+  lookup joins"), so this one is under-quoting rather than invention.
+- `n1ql:prepare inheritsPrivilegesFrom n1ql:prepared-statement` - the object
+  should be the privilege source, not the artefact.
+- `n1ql:fn-evaluate inheritsPrivilegesFromCaller n1ql:misc-utility-functions` -
+  the object is the page section, not the caller.
+
+All three pass `verify-evidence.py`, and should. The script's own docstring
+predicted this ("checks quotability, not correctness... a floor, not a
+ceiling"); this round supplies the first concrete instances. It is a distinct
+defect class from fabrication and needs a different control - the write-time
+gate under discussion catches fabrication only. Worth being explicit that a
+green evidence check is *not* a green record.
+
+### Structural finding: the index namespaces conflate four different axes
+
+Promotion of every index concept in the corpus is **deliberately deferred** this
+round, which is the only time in ten rounds a whole high-recurrence family has
+been held back. The reason: 93 candidate ids are spread over four namespaces
+(`index-type:` 17, `indexes:` 25, `index:` 21, `vector-index:` 30) with real
+cross-namespace duplicates - `covering-index` exists in three of them,
+`primary-index`, `secondary-index`, `composite-secondary-index`,
+`partial-index`, `functional-index`, `array-index` and `duplicate-index` in two
+each - and, more seriously, the members answer four different questions:
+
+1. **index kind** - primary, secondary, composite, partial, functional, array, covering
+2. **index technology / owning service** - GSI, Search/full-text, Analytics, View, vector
+3. **storage engine** - plasma/standard, memory-optimized (MOI), ForestDB
+4. **query-execution optimisations that are not index types at all** - group-aggregate
+   pushdown, predicate/order/pagination pushdown, bloom filters, early filtering,
+   sequential scan
+
+`index-type:gsi` was promoted in round 5 as a minor, low-stakes concept. Filing
+`index-type:moi`, `index-type:composite-vector` and `index-type:covering-index`
+as its siblings would assert that a storage engine, a vector index kind and a
+plan property are the same sort of thing. This is a third distinct species of
+error from the two the earlier rounds catalogued: not a naming collision
+(round 1, round 6) and not partial-sampling (rounds 5-7), but **axis
+conflation** - a namespace whose members are individually correct and
+collectively incoherent. Promoting them would encode it permanently, so the
+right move is to read `server/current/learn/services-and-indexes/` in a later
+wave, which is where the axes are actually documented, and decide the taxonomy
+from the authoritative pages rather than from statement pages' passing mentions.
+That is the round-5/6/7 lesson - prefer a feature's own reference page - applied
+prospectively for once instead of retrospectively.
+
+### A cross-round predicate family, consolidated
+
+Round 8 minted `cascadesDeletionTo` (3 files: deleting a cluster reaches its
+backups; switching one off reaches its replications) and
+`cascadesLifecycleChangeTo` (3 files: collection and storage-keyspace lifecycle
+reaching Eventing functions). Round 10 minted `cascadesTo` (DROP FUNCTION
+reaching the managed UDF) and `removesAllSavepoints` (COMMIT and ROLLBACK
+tearing down savepoints). Nine occurrences, seven files, three product surfaces,
+one shape - folded into **`cascadesTo`**, with the specific verb left in the
+evidence rather than the predicate name.
+
+`removesAllSavepoints` is the instructive rejection: a predicate whose name
+contains its own object cannot recur outside the page that motivated it, and it
+met the 2-file bar only because two sibling pages in one batch state the same
+sentence. Its negation was promoted separately as **`doesNotAffect`** (2 files,
+2 products) - DROP FUNCTION deliberately leaves the external library in place,
+and Capella UI auth and programmatic access are disjoint systems. Absence of
+cascade is a stated fact, not a hole in the data.
+
+The trade-off is real and accepted: folding loses the
+deletion/lifecycle/teardown distinction at the predicate level, and a consumer
+that needs deletions specifically will have to read evidence strings.
+
+### The promotion backlog, quantified and largely paid down
+
+Fixing a bug in this round's own recurrence script (a regex that stripped
+`.jsonld` but not `.json`, so every promoted predicate looked unpromoted)
+exposed the real state of the registry: **`n1ql:query-context` had recurrence
+22 and had never been promoted.** Nor had `n1ql:create-index` (20),
+`n1ql:cost-based-optimizer` (15), or the entire SQL++ statement vocabulary the
+`cloud/` rounds had been reusing consistently since round 2.
+
+This is the "reconciliation itself can leave gaps" limit at a scale the earlier
+rounds only hinted at. Rounds 5-9 reconciled narratively, promoted the
+structurally novel material, and left the bread-and-butter statement concepts
+in the extraction layer because nothing about them was *interesting*. Recurrence
+22 is not interesting; it is load-bearing.
+
+62 concepts promoted this round, most of them that backlog: the SQL++
+transaction family (9), the statement and clause vocabulary (23), the Query
+service REST API and the request/node/cluster settings tiers (6), five
+services, four versions, two tools, and the access-control terms Server states
+that Capella does not. 19 predicates promoted.
+
+### Namespace rulings
+
+- **`tool:cbq-shell` is canonical (18 files), folding `n1ql:cbq` (13).** A CLI
+  tool is not a SQL++ language construct, so `n1ql:` was wrong. But the
+  important half of the ruling is the *refusal* to merge: **`capella:cbsh` is a
+  different tool.** Couchbase Shell (`cbsh`) has its own documentation site and
+  is listed separately from `cbq` in `cloud/reference/command-line-tools.md`,
+  and one page mints both ids side by side, correctly. A name-similarity
+  normalization pass would have collapsed them. (`capella:cbsh`'s id is
+  nonetheless a misnomer - the page says it works with both Server and Capella -
+  filed to the normalization backlog rather than renamed mid-round.)
+- **`monitoring:` is not renamed to `capella-alerting:`.** The rename was
+  proposed on the basis that all 13 then-known members were Capella pages. The
+  first Server page in the corpus to touch monitoring produced
+  `monitoring:awr-document`, and a Capella-specific namespace would have forced
+  it elsewhere for no reason. A proposal made from a single-product sample,
+  refuted by the first page of the second product - the same shape as rounds
+  5-7's undercounting lesson, caught before it was acted on rather than after.
+- **`api:query-rest-api` folded into `n1ql:query-service-rest-api`.** Six files
+  each, disjoint, minted by two batches *in the same wave* for the same
+  endpoint. This is the standing "a written registry stops agents re-litigating
+  the past, not each other in the present" limit, observed live.
+- **`rbac-role:query-system-catalog` and `rbac-role:query-manage-system-catalog`
+  are privileges, not roles**, and fold into `privilege:`. The docs themselves
+  are the source of the confusion: `metafun.md` calls `query_system_catalog` a
+  "role" while the AWR and monitoring pages treat it as a privilege. Filed as a
+  docs issue as well as fixed in the registry.
+- **`role:` is the Server RBAC namespace.** `n1ql-auditing.md` settles a
+  question the round-2 record got backwards: `role:full-administrator` and
+  `role:local-user-security-administrator` are genuine Server RBAC role names
+  documented in `server/current/learn/security/roles.md`, so their appearance on
+  Capella pages is unadapted-content porting, not the Capella model. The
+  direction of inheritance is the opposite of what the Capella extraction
+  assumed.
+- **`role:administrator` (3 files) not promoted.** All three occurrences are the
+  docs using "administrator" loosely where the RBAC catalog has specific role
+  names. Filed as a docs issue instead - promoting it would launder a docs
+  defect into the ontology.
+- **Version ids: 31 distinct ids for roughly 20 real versions.** Dash-versus-dot
+  is the bulk of it (`version:server-8-0` 16 files vs `version:server-8.0` 3;
+  `server-7-6` 6 vs `server-7.6` 4 vs `couchbase-server-7.6` 1). Canonical form
+  is the dash-separated one set in round 1. Folded for the four versions
+  promoted this round; the rest goes to the normalization backlog now with a
+  measured count rather than an impression.
+- **`port:` minted as a namespace, but port concepts not promoted.** `usesPort`
+  is promoted (below the bar, on significance - the registry had no vocabulary
+  for network exposure at all after nine rounds, which is remarkable for a
+  database). Whether a port number is a `skos:Concept` or a literal is a real
+  modelling question and 8093 is not a concept in the sense `n1ql:select` is.
+  Deferred to JSON-LD drafting.
+
+### `sdk:transaction-query-mode` re-namespaced, and a watchlist payoff
+
+Round 4 promoted this concept below the recurrence bar on significance, from a
+Java SDK page, and filed it under `sdk:` on the strength of where it was read.
+Wave 1 located its defining paragraph at
+`server/current/n1ql/n1ql-language-reference/transactions.md:94-96`: it is a
+Query-service behaviour that the SDK page *describes*. Now
+**`n1ql:transaction-query-mode`**, with the `sdk:` id kept as an alias stub
+carrying round 4's record - those extraction records cite it and were not wrong
+to; the id was accurate about where the concept was found, only about where it
+belongs.
+
+At recurrence 2 across two product trees it no longer needs the significance
+exception. Nor does its predicate: `triggersPermissionModeChange` was
+watchlisted at recurrence 1 in round 4 and is promoted here on an independent
+second sighting from the SQL++ side. Two of the round's promotions are
+watchlisted recurrence-1 mints that turned out to be early rather than
+over-specific, which is some evidence the watchlist earns its keep.
+
+### Diff-gating: useful for ordering, misleading as a yield estimate
+
+Wave 1 was selected by changed-line count against already-extracted Capella
+twins, on the reasoning that divergence predicts new vocabulary. It did order
+the wave usefully. But batch A found that the 280-500 changed lines on the
+transaction pages are dominated by example re-rendering, with no SQL++ semantics
+differing at all, and `cbq.md`'s 162 changed lines reduce to three substitutions
+repeated - of which only two are genuine capability differences (multiple
+credentials work on Server and are silently ignored on Capella; and `cbq`
+itself has no version gate on Server, where it ships in the installation
+directory, while the same 7.6.2 sentence is a hard prerequisite on Capella
+where the tools package is the only way to get it).
+
+So raw changed-line counts overstate yield. Future gating should weight prose
+sections over code blocks and example output. Recorded in
+`ingest-cost-and-time-estimate.md` as well, since it affects wave planning, not
+just this round.
+
+### Negative results worth recording as results
+
+Three batches reported "nothing to harvest" findings that are more useful than
+they look, and the brief did not ask for them:
+
+- **`n1ql-error-codes.md`: zero version annotations on 565 error codes.** Error
+  tables are not a version source in this corpus; future waves should not spend
+  budget mining them. But diffing the two products' tables shows Capella has 566
+  codes and Server 565, differing by exactly one - which is a versioning fact
+  neither page can state about itself.
+- **The entire `n1ql-rest-api/` directory (12 pages) contains none of "and
+  later", "since", "deprecated", "removed in", "Enterprise Edition" or
+  "Community Edition".** Version-unannotated end to end, in sharp contrast to
+  the SQL++ language reference.
+- **`n1ql-auditing.md` contains zero version references of any kind**, and its
+  single occurrence of "enterprise" is inside a sample User-Agent string,
+  `Couchbase Query Workbench (5.1.0-1434-enterprise)` - an artefact of a
+  seven-year-old copied example, not a statement about availability.
+
+Each was verified independently rather than relayed. The wave's framing - which
+named version gating as "THE PRIORITY" - is the most likely cause of the one
+fabrication, and negative results are the antidote: a brief that treats "this
+page says nothing about versions" as a finding of equal standing removes the
+incentive to produce something.
+
+### New `docs-issues/` (22)
+
+The largest batch in any round, unsurprisingly for a first pass over a
+long-lived tree. Grouped:
+
+- **Wrong content**: `altervectorindex.md` inherits all three of
+  `alterindex.md`'s version gates verbatim, so it asserts that ALTER VECTOR
+  INDEX has been available since Couchbase Server 5.5 - for a statement that
+  cannot predate 8.0. `exnamed.md`'s parameter table says `$davl` where the
+  statement and curl command both say `$dval`.
+- **Missing version/edition annotation**: the three new vector statements state
+  no availability version; `metafun.md` has lost three of the four availability
+  badges its Capella twin carries; `stringfun.md` has lost all nine, including
+  genuinely-new-in-8.0 `COMPRESS()`/`UNCOMPRESS()`; `n1ql-auditing.md` has no
+  Enterprise badge although the auditing page it links to does; the Capella AWR
+  page states no version for a feature new in 8.0.
+- **Broken or wrong links**: `join.md`'s USE NL hint points at the USE HASH
+  anchor (also wrong on the Capella twin, so upstream in shared source);
+  `time-series.md`'s `preserve_expiry` link is wrong twice over - wrong anchor
+  name *and* a stray `}` inside the URL - and correct on the Capella page;
+  Capella's AWR page has unresolved Antora xrefs for the report generator.
+- **Stale content**: `insert.md`'s Security Requirements section is written
+  against the pre-RBAC SASL-bucket model, directly above a correct RBAC section;
+  `extimeout.md` describes timeouts as set "when starting the query engine";
+  `monitoring-n1ql-query.md`'s example outputs are all from a 7.0.0 build;
+  `n1ql-auditing.md`'s examples are dated 2018.
+- **Contradictions and oddities**: `exsuccessful.md` says POST and GET are
+  interchangeable while `intro.md` calls GET the "Read-Only Query Service";
+  `exserviceerror.md` is malformed three ways at once (a mangled `&lt;` as
+  `$lt;`, an unfilled `"code": <int>` placeholder, a stray shell prompt);
+  error code 2505 ("not supported in Community Edition") exists only on Capella,
+  which has no Community Edition; `metafun.md` gates two EXTRACTDDL flag values
+  on 8.0.1, a release later than the page itself; `insert.md` prescribes an
+  *Index* Service scan timeout to fix a Data-path INSERT timeout with no
+  explanation, where the Capella page names no setting at all.
+- **Naming inconsistencies**: one privilege spelled `query_select` on `join.md`
+  and _Query Select_ on `insert.md`; `query_system_catalog` called a role on one
+  page and a privilege on others.
+
+### Left on the watchlist (extraction-layer only, not promoted)
+
+- `conditionallyPermittedWithinTransaction` (1 file, 2 occurrences). The finding
+  behind it is real: transaction statement legality here is three-valued -
+  permitted, conditional (EXECUTE FUNCTION and PREPARE, depending on the UDF
+  body), prohibited - and the registry has no way to qualify a triple, so the
+  conditional case has nowhere to live but a second predicate. A reification
+  question for JSON-LD drafting, not a vocabulary question.
+- `configuredPerNode` (1 file): configuration *scope* is a real axis (the CURL
+  access list is per-node, not cluster-wide) and orthogonal to
+  `configurableVia`, which was promoted.
+- `hasExecutionConstraint` was promoted but is on the watchlist for a different
+  reason: the name is broad enough to attract timeouts, quotas and privilege
+  checks, all of which have their own predicates. If it starts collecting them,
+  rename rather than widen.
+- The `version:server-5-0` on `curl.md` is the version of the *remote* cluster
+  CURL() is talking to, not of anything on the page. Currently parked under
+  `requiresPrivilege` with an explicit flag rather than dropped. Whether version
+  concepts may qualify a remote endpoint is unresolved; if not, the fact should
+  be dropped rather than mistyped.
+- Batch-reported id drifts, all to the normalization backlog:
+  `n1ql:sqlpp`/`n1ql:sql-plus-plus` (folded), `n1ql:selectintro`/`n1ql:select`,
+  `n1ql:createfunction`/`n1ql:create-function`,
+  `n1ql:updatestatistics`/`n1ql:update-statistics`,
+  `n1ql:dropfunction`/`n1ql:drop-function` - the same page-slug-versus-statement-name
+  drift found in rounds 8 and 9, now with a pattern: agents mint the page slug
+  when they read a page and the statement name when they read a mention of it.
+- `cascadesDeletionTo`'s three occurrences use **page ids as subjects**
+  (`cloud/clusters/delete-database` in the subject position), a schema violation
+  from round 8 that survived that round's reconciliation. Fixing it is part of
+  the folding into `cascadesTo`, and it is a reminder that the extraction schema
+  has no validator for "subject must be a concept id".
+
+### What this round confirmed about the method itself
+
+- **The evidence requirement was decorative until something checked it.** Nine
+  rounds of "evidence is a direct quote from the page - no paraphrase" produced
+  2,780 relations of which 322 are unquotable and 130 have no evidence at all.
+  The requirement was in every brief, agents cited it approvingly, and it was
+  not enforced. Any invariant in a prompt is a hope; the same invariant in a
+  script is a control. This is the single most transferable finding of the
+  project so far, and it is not specific to hallucination - most of the 322 are
+  ordinary paraphrase drift.
+- **Priming an extraction wave has a measurable cost.** The brief named version
+  gating "THE PRIORITY FOR THIS WAVE" and listed `availableSince` first among
+  the predicates to look for. The one fabricated triple in 509 was an
+  `availableSince`. Batch C's prompt additionally called the vector pages "prime
+  `availableSince` territory" - and those pages turned out to contain none at
+  all, which is exactly the condition under which an agent asked to find
+  something will produce it. The mitigation is not a milder instruction but an
+  explicit statement that negative results carry equal weight, plus a mechanical
+  check on the way out.
+- **A green check is not a green record.** Three relations this round quote real
+  sentences and hang them on wrong objects. Evidence verification is a floor.
+  The next control needed is not more verification of the same kind but
+  something that tests whether the *triple* is a fair reading of the quote,
+  which is a judgement task and therefore the expensive kind.
+- **Deferring a promotion is sometimes the finding.** Holding back all 93 index
+  concepts is the first time in ten rounds that recurrence has been overruled
+  by incoherence. The recurrence bar answers "is this term real?" and says
+  nothing about "is this namespace's axis single?" - a gap in the promotion rule
+  itself, not in this round's data.
+- **Promotion debt compounds silently and is cheap to measure.** `query-context`
+  at recurrence 22, unpromoted for eight rounds, was found by a one-line script,
+  not by reading. The recurrence query should be run against the *whole* corpus
+  every round, not just the round's own records - which is the same lesson as
+  round 5's "sampled is not read", applied to reconciliation output instead of
+  input. `poc/verify-promotions.py`, written at the end of this round, closes
+  the other half: it lists every concept id and camelCase predicate named in
+  this file that has no registry file. Its first run found five more real gaps
+  (`sdk:kv-operations` at recurrence 8, `n1ql:prepared-statement`,
+  `n1ql:encoded-plan`, and both AWR concepts), all promoted before this section
+  was finished.
+- **Re-running that check after the section was written found three more, which
+  is the more interesting result.** A control that only pays out once is a
+  cleanup; one that pays out again on the *same* round's freshly-written prose
+  is a control. The second run promoted `n1ql:scan-consistency` (recurrence 6,
+  spanning `cloud/n1ql`, `cloud/indexes`, `cloud/clusters/analytics-service`,
+  `java-sdk` and `server/current/n1ql`), `n1ql:misc-utility-functions` (3), and
+  `n1ql:aggregate-functions` (3). Three things worth recording about them:
+  1. **A record asserted its own promotion and was wrong.** The
+     `analytics-workbench.json` entry for scan consistency reads `"reused -
+     already promoted (candidate_id first seen in cloud/indexes/…, recurring a
+     third time in java-sdk/…, now a fourth time here)"`. Every clause of that
+     provenance is accurate except the first two words: nothing had been
+     promoted. This is the same failure shape as the fabricated evidence, one
+     layer up - a confident, detailed, checkable-sounding claim about the
+     *registry* rather than about the docs - and it argues that
+     `reused_or_minted` should be machine-checked against the registry at write
+     time, exactly as `evidence` should be machine-checked against the page.
+  2. **Singular/plural id drift was hiding a gap, not just being untidy.** The
+     `n1ql:aggregate-function`/`-functions` inconsistency was already logged as
+     a normalization backlog item. What the check added is that *neither*
+     spelling had a file. Cosmetic-looking id drift is worth treating as a
+     promotion smell.
+  3. **Four more ids resolved to already-promoted concepts under different
+     names** - `clusters:xdcr` → `capella:xdcr` (a *namespace* mismatch, the
+     first found at recurrence 5), `n1ql:selectintro` → `n1ql:select`,
+     `n1ql:updatestatistics` → `n1ql:update-statistics`, and
+     `plan:developer-pro` → `plan:developer-pro-support-plan`. Added to the
+     normalization backlog rather than fixed here; `capella:` vs `clusters:` for
+     XDCR is a real namespacing question, not a typo.
+  Two candidates the check surfaced were **deliberately not promoted**:
+  `auth:permission-set` (recurrence 2) is the placeholder round 6 minted rather
+  than force-link an IdP-group mapping target to one of the five things called
+  "role" - promoting it would give a name to an unresolved question; and
+  `n1ql:sql-plus-plus` (2) is the language itself, and the only two SQL++
+  *dialect* concepts in the registry both sit in the `cbl:` namespace
+  (`cbl:server-sql-plusplus-dialect`, `cbl:sql-plus-plus-mobile`) because round
+  3 minted them while reading Couchbase Lite. That is backwards - the mobile
+  dialect is the variant and the server language is the baseline, yet only the
+  variant's namespace has a home for either. Promoting `n1ql:sql-plus-plus`
+  without settling that would create a third node in a family whose axis is
+  already inverted, so it waits.
+
+---
+
+## Cumulative verdict (all ten rounds)
+
+The vocabulary has now been tested against ten genuinely different kinds of
+"does this still fit": a different component within one product (round 1), a
+different deployment model of the same underlying product (round 2), three
+entirely different products built by different teams (round 3), a single
+product's own feature that cuts across its existing per-operation model
+(round 4's transactions, within the Java SDK already covered in round 3), full
+coverage of a directory a prior round had only sampled a fifth of (round 5),
+the same partial-sampling lesson recurring on the same product's role catalog
+(round 6), that exact lesson recurring a third time on the privilege catalog
+(round 7), the cleanest negative result so far - a brand-new, complex feature
+(Eventing) needing no new structural layer at all (round 8) - a round expected
+to mostly confirm rather than surprise, which is exactly what it did while
+still closing a question open since round 5 (round 9, finishing `cloud/`) -
+and now the first wave into a **second product tree**, where the same feature
+set is documented twice, by different editorial processes, at different
+versions (round 10). At every step it kept doing the same useful thing: not
+just "the terms still fit," but surfacing something true and specific about
+each surface it touched - Capella's credential/role-based access model
 (round 2), Sync Gateway's two-disjoint-systems architecture and inverted
 channel-based access model (round 3), Couchbase Lite's own disjoint edition
 split (round 3), the Java SDK's transaction layer inverting CAS-based
 concurrency into transaction-membership checks (round 4), round 2's "simple
-credential-type pair" turning out to be a whole per-statement privilege
-catalog (round 5), `capella-role:*` turning out to be two catalogs silently
-flattened together since round 2 (round 6), `cluster-rbac.md`'s own
-25-privilege table more than doubling what round 5 had already corrected
-(round 7), Eventing confirming that "genuinely new feature" doesn't
-automatically mean "genuinely new access-control shape" (round 8), and the
-SQL++-vs-SDK transaction boundary finally stated explicitly by a page's own
-text rather than left inferred (round 9). That's a stronger and more useful
-result than a vocabulary that merely never breaks.
+credential-type pair" turning out to be a whole per-statement privilege catalog
+(round 5), `capella-role:*` turning out to be two catalogs silently flattened
+together since round 2 (round 6), `cluster-rbac.md`'s own 25-privilege table
+more than doubling what round 5 had already corrected (round 7), Eventing
+confirming that "genuinely new feature" doesn't automatically mean "genuinely
+new access-control shape" (round 8), the SQL++-vs-SDK transaction boundary
+finally stated explicitly by a page's own text rather than left inferred
+(round 9), and version-evidence density turning out to be *inversely*
+correlated with how new a feature is - the newest statements in Couchbase
+Server 8.0 are the ones no page dates (round 10). That's a stronger and more
+useful result than a vocabulary that merely never breaks.
 
-The cost of getting that result cleanly has been a steady retreat from
+Round 10 also changed what this project believes about its own reliability. Up
+to round 9, the evidence quality of the corpus was assumed on the strength of
+the extraction schema requiring direct quotes. It isn't: 322 of 2,780
+relations quote text that does not appear on the page they cite, 130 more
+carry no evidence at all, and two whole product trees from round 3
+(`sync-gateway` at 45% verbatim, `couchbase-lite` at 50%) are unreliable
+enough to need re-extraction rather than repair. The conclusions those rounds
+drew about *vocabulary* still stand - they were reached by reading, and the
+reading was sound. The records they left behind are not sound sources of fact.
+Distinguishing those two things is now a permanent part of how this corpus
+should be read.
+
+The cost of getting the useful result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Six limits of the method are now visible across multiple rounds, not just
+Nine limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
-- **Structural silence isn't a naming problem.** The method is good at
-  catching "these two labels are probably the same thing" (round 1's
-  link-target mismatch, round 2's `search-admin`/`fts-admin` overlap). It has
-  nothing to say about "this page is silent on something comparable pages all
-  state" beyond flagging the silence - that distinction needs a human, every
-  time.
-- **A written registry prevents re-litigating the past, not the present.**
-  Every round has produced at least one case of two agents (or one agent
-  revisiting old ground) independently minting near-duplicate vocabulary for
-  something new, because a static list of already-promoted terms says nothing
-  about what a concurrently-running sibling batch is minting right now. This
-  hasn't gotten worse as the vocabulary has grown - if anything the promoted
-  core (privilege/edition/version shapes) has stayed remarkably stable - but it
-  hasn't gone away either, and a production pipeline would need either a live,
-  queryable registry or a mandatory dedup pass, not a bigger written briefing.
-- **Reconciliation itself can leave gaps, not just extraction.** Round 3's
-  Java SDK batch was reconciled only at the narrative level and never promoted
-  a single concept - a gap invisible until round 4 tried to reuse those
-  concepts and found them absent from the registry. The recurrence-based
-  promotion discipline only catches what a reconciliation pass actually runs
-  over; skipping a product at reconciliation time is a silent debt, not a
-  visible one, until a later round trips over it.
+- **An invariant in a prompt is a hope; the same invariant in a script is a
+  control.** Every brief for nine rounds required evidence to be a direct
+  quote. Agents cited the rule approvingly and broke it 452 times. Nothing
+  checked. The failure was not agent quality - most of the breakage is ordinary
+  paraphrase drift, not hallucination - but the absence of any mechanical gate
+  between "the record was written" and "the record was accepted." This
+  generalizes past evidence: every schema rule this project relies on
+  (subject must be a concept id, predicates go in `relations` not `concepts`,
+  ids are kebab-case) is currently enforced by hope.
+- **Priming a wave has a measurable cost.** Name a predicate as the wave's
+  priority and agents will find instances of it, including where none exist.
+  The one fabricated triple in round 10's 509 was an `availableSince`, on a
+  page batch C had been told was "prime `availableSince` territory" and which
+  contains no version statement at all. Mitigation is not a milder instruction
+  but explicitly equal standing for negative results - "this page says nothing
+  about versions" has to be a reportable finding, or the incentive runs one way.
+- **Verification of quotability is a floor, not a ceiling.** Round 10 produced
+  three relations that quote real sentences and attach them to objects the
+  sentence does not support. A green evidence check means the sentence exists;
+  it says nothing about whether the triple is a fair reading of it. That
+  remains a judgement task.
+- **The recurrence bar answers "is this term real?" and nothing else.** It
+  cannot see that a namespace's members answer four different questions, which
+  is why 93 index concepts - several of them well past the bar - were held back
+  in round 10 rather than promoted into a permanent axis conflation. A promotion
+  rule based on frequency needs a coherence check beside it.
+- **Structural silence isn't a naming problem.** The method is good at catching
+  "these two labels are probably the same thing" (round 1's link-target
+  mismatch, round 2's `search-admin`/`fts-admin` overlap). It has nothing to say
+  about "this page is silent on something comparable pages all state" beyond
+  flagging the silence - that distinction needs a human, every time.
+- **A written registry prevents re-litigating the past, not the present.** Every
+  round has produced at least one case of two agents (or one agent revisiting
+  old ground) independently minting near-duplicate vocabulary for something new,
+  because a static list of already-promoted terms says nothing about what a
+  concurrently-running sibling batch is minting right now. Round 10's clearest
+  instance: `api:query-rest-api` and `n1ql:query-service-rest-api`, six files
+  each, disjoint, same endpoint, same wave. This hasn't gotten worse as the
+  vocabulary has grown - if anything the promoted core has stayed remarkably
+  stable - but it hasn't gone away either, and a production pipeline would need
+  either a live, queryable registry or a mandatory dedup pass, not a bigger
+  written briefing.
+- **Reconciliation itself can leave gaps, not just extraction - and they
+  compound.** Round 3's Java SDK batch was reconciled only narratively and
+  promoted nothing, invisible until round 4 tried to reuse those concepts.
+  Round 10 found the same debt at scale: `n1ql:query-context` at recurrence 22,
+  `n1ql:create-index` at 20, the whole SQL++ statement vocabulary the `cloud/`
+  rounds had been reusing since round 2 - none of it promoted, because none of
+  it was *interesting* enough to write a paragraph about. Recurrence 22 is not
+  interesting; it is load-bearing. The recurrence query is cheap and should be
+  run over the whole corpus every round, not just the round's own records.
 - **Partial coverage of a large, uniform-looking directory doesn't generalize
   the way it feels like it should.** Round 2 read 23 of `cloud/n1ql/`'s 138
   pages and reasonably concluded the credential-type model was a flat pair.
-  Round 5 read the other 115 and found a whole per-statement privilege
-  catalog with two-axis and AND-combination structure the smaller sample never
-  surfaced. Not a failure of round 2's method - a fifth of a directory is a
-  defensible sample size for a first pass - but a concrete reminder that "this
-  directory's vocabulary is settled" should mean "fully read," not "sampled
-  and nothing broke yet."
-- **Vocabulary built from a feature's mentions elsewhere is less reliable
-  than vocabulary built from the feature's own authoritative page.** Both
+  Round 5 read the other 115 and found a whole per-statement privilege catalog
+  with two-axis and AND-combination structure the smaller sample never
+  surfaced. Round 10 caught the same shape prospectively for once: the proposal
+  to rename `monitoring:` to `capella-alerting:` was made when all 13 known
+  members were Capella pages, and the first Server page to touch monitoring
+  refuted it.
+- **Vocabulary built from a feature's mentions elsewhere is less reliable than
+  vocabulary built from the feature's own authoritative page.** Both
   `capella-role:*` (round 6) and the Advanced-credential privilege catalog
-  (round 5) were originally minted from statement pages' Prerequisites
-  sections - paraphrases of the real thing, not the thing's own
-  documentation. Both turned out incomplete or mislabeled once the
-  authoritative page (`project-roles.md`, `organization-user-roles.md`) was
-  read directly. Worth treating as a standing prioritization signal: read a
-  feature's own reference page before trusting vocabulary inferred from
-  where it's merely mentioned.
+  (round 5) were minted from statement pages' Prerequisites sections -
+  paraphrases of the real thing - and both turned out incomplete or mislabeled
+  once the authoritative page was read directly. Round 10 applied this
+  prospectively too, deferring the index taxonomy until
+  `learn/services-and-indexes/` is read.
 - **Knowing about a failure mode doesn't prevent it.** The "narrated as
-  promoted, never actually filed" reconciliation gap has now recurred three
-  times (round 2's `gatedByBillingPlan`, round 3's Java SDK concepts, round
-  5's `monitoring:*` family) - the third one introduced by this same
-  reconciler, in round 5, after already having written up the first two as a
-  known risk in round 4's cumulative verdict. Vigilance alone isn't a
-  reliable control for this; an automated check (script-verify every
-  concept/predicate name appearing in a round's reconciliation.md section
-  resolves to a real file) would catch it structurally instead of relying on
-  memory.
+  promoted, never actually filed" gap recurred three times (round 2's
+  `gatedByBillingPlan`, round 3's Java SDK concepts, round 5's `monitoring:*`
+  family) - the third introduced by this same reconciler after writing up the
+  first two as a known risk. Round 10 adds a second instance of the same
+  species: a bug in this round's own recurrence script (a regex stripping
+  `.jsonld` but not `.json`) made every promoted predicate look unpromoted, and
+  was caught only because the output was implausible. Vigilance is not a
+  control. The two candidate controls both exist and neither is written yet:
+  script-verify that every concept and predicate named in a round's
+  `reconciliation.md` section resolves to a real file, and script-verify the
+  extraction schema itself. The first of those is now `poc/verify-promotions.py`,
+  written at the end of round 10 - and it immediately found five terms this
+  round's own prose leaned on and had not filed, which is the whole argument for
+  it in one data point. The second is still unwritten: nothing checks that a
+  subject slot holds a concept id rather than a page id, which is how round 8's
+  `cascadesDeletionTo` violation survived its own reconciliation.

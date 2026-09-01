@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/restricted-to-context",
+  "label": "restricted to context",
+  "kind": "relation (schema-level)",
+  "type": "the subject may appear only in the object syntactic position, clause, or context.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Folds restrictedToClause, minted in the same wave by the same batch for the same shape (one about a clause, one about a position within a clause - not a distinction worth two predicates). Covers RIGHT OUTER JOIN being legal only in the FROM clause, and FLATTEN_KEYS only inside an array index definition."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/create-primary-index",
+  "label": "CREATE PRIMARY INDEX",
+  "type": "the SQL++ statement that creates a primary index, named or unnamed",
+  "promoted": true,
+  "recurrence": 10
+}

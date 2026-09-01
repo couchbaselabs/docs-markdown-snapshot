@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/privilege/query-system-catalog",
+  "label": "Query System Catalog (Server RBAC privilege)",
+  "type": "the Server privilege permitting queries against the system: keyspaces",
+  "promoted": true,
+  "recurrence": 3,
+  "aliases": [
+    "rbac-role:query-system-catalog"
+  ],
+  "note": "Also appeared in the corpus as rbac-role:query-system-catalog and rbac-role:query-manage-system-catalog - privileges filed as roles, a category error the project ruled on in round 6. Folded here; the role-namespace variants are normalization debt, not evidence of a second concept."
+}

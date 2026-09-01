@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/transaction-query-mode",
+  "label": "Query Mode (SQL++ transactions)",
+  "type": "once a transaction executes any SQL++ query statement, that query and every subsequent key-value operation in the same transaction attempt execute under the user's query permissions rather than their data permissions",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "sdk:transaction-query-mode"
+  ],
+  "note": "Re-namespaced this round from sdk:transaction-query-mode. Round 4 promoted it below the recurrence bar on significance, from a Java SDK page, and filed it under sdk: on that basis. Wave 1 found its defining paragraph in server/current/n1ql/n1ql-language-reference/transactions.md:94-96 - it is a Query-service behaviour that the SDK page describes, not an SDK behaviour. Now at recurrence 2 in two product trees, so no longer a below-bar promotion either. sdk:transaction-query-mode is retained as an alias; existing extraction records that cite it are correct and need no rewriting."
+}
