@@ -4,7 +4,7 @@
   "issueType": "inconsistent-parameter-documentation",
   "description": "Five parameters (natural, natural_cred, natural_orgid, natural_context, natural_output) are gated at 8.0 with the same two-part convention - a bare 'Couchbase Server 8.0' badge after the parameter name plus the prose sentence 'This parameter is available in clusters running Couchbase Server 8.0 and later.' natural_output carries the badge and the prose but omits the 'To use this parameter you must also specify...' clause that its four siblings all carry, although it is equally part of the same all-five set.",
   "about": [
-    "server/current/n1ql/n1ql-manage/query-settings"
+    "server/8.0/n1ql/n1ql-manage/query-settings"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

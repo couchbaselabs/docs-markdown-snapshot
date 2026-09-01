@@ -4,7 +4,7 @@
   "issueType": "unexplained-cross-service-instruction",
   "description": "The Restrictions section discharges its advice about INSERT timeouts by telling the reader to set `indexer.settings.scan_timeout` through the Index Settings REST API - a Query-statement page prescribing an Index Service setting to fix a Data-path timeout, with no explanation of the connection. The equivalent sentence on the Capella page stops at 'Ensure that the timeout is set to a reasonable value' and names no setting. Either the indexer scan timeout genuinely governs bulk-INSERT completion, in which case the page should say why and the Capella page is missing information, or the instruction was pasted in from a SELECT/index context and is wrong here.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/insert",
+    "server/8.0/n1ql/n1ql-language-reference/insert",
     "cloud/n1ql/n1ql-language-reference/insert"
   ],
   "foundDuring": "poc-server-8.0-wave-1",

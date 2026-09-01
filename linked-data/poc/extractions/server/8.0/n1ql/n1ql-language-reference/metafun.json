@@ -1,0 +1,202 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-language-reference/metafun",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/metafun.md",
+  "concepts": [
+    { "candidate_id": "n1ql:misc-utility-functions", "label": "Miscellaneous Utility Functions (page-level family: ABORT, BASE64, CURRENT_USERS, DS_VERSION, EVALUATE, EXTRACTDDL, FINDERR, FLATTEN_KEYS, FORMALIZE, HASHBYTES, LEN, META, NODE_NAME, NODE_UUID, PAIRS, REDACT, UNNEST_POS, UUID, VERSION)", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/metafun.json" },
+    { "candidate_id": "n1ql:extractddl", "label": "EXTRACTDDL(filter [, options]) function", "reused_or_minted": "reused - matches the Capella record for the same function" },
+    { "candidate_id": "n1ql:extractddl-flag-function", "label": "EXTRACTDDL 'function' flag (extracts CREATE OR REPLACE FUNCTION statements)", "reused_or_minted": "minted - needed as a distinct subject because this one flag value carries a version gate (8.0.1) later than the function that hosts it (8.0); the Capella record had no such gate to model" },
+    { "candidate_id": "n1ql:extractddl-flag-prepared", "label": "EXTRACTDDL 'prepared' flag (extracts PREPARE statements)", "reused_or_minted": "minted - sibling of the flag above, gated on the same later version" },
+    { "candidate_id": "n1ql:fn-abort", "label": "ABORT(expression) function", "reused_or_minted": "minted - carries its own constraint: it raises two different error codes depending on execution context" },
+    { "candidate_id": "n1ql:fn-evaluate", "label": "EVALUATE(statement [, params]) function", "reused_or_minted": "minted - carries its own constraints (read-only requirement, privilege inheritance, memory materialisation)" },
+    { "candidate_id": "n1ql:fn-finderr", "label": "FINDERR(expression) function", "reused_or_minted": "minted - subject of a version gate on the Capella twin and of a cross-reference to a CLI tool that exists only in Server" },
+    { "candidate_id": "n1ql:fn-hashbytes", "label": "HASHBYTES(input [, options]) function", "reused_or_minted": "minted - subject of a version gate on the Capella twin" },
+    { "candidate_id": "n1ql:fn-flatten-keys", "label": "FLATTEN_KEYS(expr1 [modifiers], ...) function", "reused_or_minted": "minted - carries a hard placement constraint (usable only in an array index key definition)" },
+    { "candidate_id": "n1ql:fn-formalize", "label": "FORMALIZE(statement [, query_context]) function", "reused_or_minted": "minted - subject of an explicit synonym declaration" },
+    { "candidate_id": "n1ql:fn-formalise", "label": "FORMALISE(statement [, query_context]) function (spelling variant)", "reused_or_minted": "minted - object of the synonym declaration; not merged with FORMALIZE because the ontology should record the synonymy rather than assume it" },
+    { "candidate_id": "n1ql:fn-base64", "label": "BASE64(expression) function", "reused_or_minted": "minted - subject of an explicit alias declaration" },
+    { "candidate_id": "n1ql:fn-base64-encode", "label": "BASE64_ENCODE(expression) function", "reused_or_minted": "minted - declared alias of BASE64()" },
+    { "candidate_id": "n1ql:fn-base64-decode", "label": "BASE64_DECODE(expression) function", "reused_or_minted": "minted - the inverse operation, not an alias" },
+    { "candidate_id": "n1ql:fn-meta", "label": "META([keyspace_expr])[.property] function", "reused_or_minted": "reused - same id used in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch" },
+    { "candidate_id": "n1ql:fn-unnest-pos", "label": "UNNEST_POS(expr) function", "reused_or_minted": "minted - subject of an explicit synonym declaration" },
+    { "candidate_id": "n1ql:fn-unnest-position", "label": "UNNEST_POSITION(expr) function", "reused_or_minted": "minted - declared synonym of UNNEST_POS()" },
+    { "candidate_id": "n1ql:fn-redact", "label": "REDACT(expression [, filter-obj...]) function", "reused_or_minted": "minted - carries a documented type restriction (masking applies to string values only)" },
+    { "candidate_id": "n1ql:fn-ds-version", "label": "DS_VERSION() function", "reused_or_minted": "minted - a function whose entire purpose is to return a version/edition string, which makes it directly relevant to this wave's target vocabulary" },
+    { "candidate_id": "n1ql:xattrs-in-query", "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query", "reused_or_minted": "reused - same id minted in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch; the same feature is gated again here" },
+    { "candidate_id": "data:virtual-xattr", "label": "Virtual extended attribute (e.g. META().xattrs.`$document`)", "reused_or_minted": "minted - no existing id; a distinct kind of XATTR (server-synthesised, read-only) from the user XATTRs modelled by n1ql:xattrs-in-query, and the page treats them separately with its own performance caveat" },
+    { "candidate_id": "n1ql:error-5010", "label": "Error 5010 'not a readonly request'", "reused_or_minted": "minted - the page cites this code as *behaviour* of EVALUATE(), which is exactly the case the brief flags as making an error code worth modelling" },
+    { "candidate_id": "n1ql:error-5011", "label": "Error 5011 'Abort: «reason»'", "reused_or_minted": "minted - cited as the documented behaviour of ABORT() in a query" },
+    { "candidate_id": "n1ql:error-10109", "label": "Error 10109 (ABORT() raised inside a user-defined function)", "reused_or_minted": "minted - cited as the documented behaviour of ABORT() inside a UDF; distinct from 5011, and the pair is the evidence for a context-dependent behaviour" },
+    { "candidate_id": "n1ql:sql-error-codes", "label": "SQL++ Error Codes reference", "reused_or_minted": "reused - same id as the Capella record and as n1ql-error-codes.json in this batch" },
+    { "candidate_id": "cli:finderr", "label": "finderr command line tool", "reused_or_minted": "minted - no cli: namespace concept exists yet; needed because this cross-reference exists only in the Server page (Capella has no CLI surface), making it a genuine product-shape difference rather than a link difference" },
+    { "candidate_id": "privilege:query-system-catalog", "label": "query_system_catalog role/privilege", "reused_or_minted": "reused - established in prior extraction records (cloud/n1ql/n1ql-manage/query-awr.json and the system-catalog pages); note this page calls it a 'role' while other pages treat it as a privilege - see cross_component_finding" },
+    { "candidate_id": "n1ql:array-index", "label": "Array index (index whose key includes flattened array expressions)", "reused_or_minted": "minted - needed as the object of FLATTEN_KEYS's placement constraint; not the same concept as index-type:gsi (the technology axis)" },
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement (inline user-defined functions)", "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records for createfunction.md" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/stringfun.json and server/current/.../createindex.json" },
+    { "candidate_id": "version:server-8-0-1", "label": "Couchbase Server 8.0.1", "reused_or_minted": "minted - no 8.0.x concept exists; a patch-level id is required because this page gates two EXTRACTDDL flag values on 8.0.1 specifically, one minor release later than the function itself. This is the first *forward-looking* version reference found in this wave: an 8.0 page citing a release later than itself" },
+    { "candidate_id": "version:server-7-6-2", "label": "Couchbase Server 7.6.2", "reused_or_minted": "reused - established in server/current/.../createindex.json and searchfun.json in this wave" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:extractddl",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - promoted predicate. The evidence is a bare version string standing alone under the function heading, which is this docs set's convention for an availability badge; it is the only such badge left on the Server 8.0 page (see version_finding)",
+      "evidence": "Couchbase Server 8.0"
+    },
+    {
+      "subject": "n1ql:extractddl",
+      "predicate": "requiresRole",
+      "object": "privilege:query-system-catalog",
+      "reused_or_minted_predicate": "reused - requiresRole, because the page says 'role' explicitly; the object id lives in the privilege: namespace from earlier records, which is itself the inconsistency noted in cross_component_finding. Not merged with, and not to be confused with, the Capella twin's credential-keyed privilege:capella-advanced-access-query-catalog",
+      "evidence": "To execute this function, you must have the `query_system_catalog` role. Also, to extract DDLs from a specific bucket, you need necessary permissions on that bucket."
+    },
+    {
+      "subject": "n1ql:extractddl-flag-function",
+      "predicate": "availableSince",
+      "object": "version:server-8-0-1",
+      "reused_or_minted_predicate": "reused - promoted predicate; the evidence is an inline version badge appended to a list item",
+      "evidence": "* CREATE OR REPLACE FUNCTION Couchbase Server 8.0.1"
+    },
+    {
+      "subject": "n1ql:extractddl-flag-prepared",
+      "predicate": "availableSince",
+      "object": "version:server-8-0-1",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "* PREPARE Couchbase Server 8.0.1"
+    },
+    {
+      "subject": "n1ql:xattrs-in-query",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - a quantitative limit was raised at 8.0 rather than a feature being introduced, so behavesDifferentlyUnder fits better than availableSince. Note the same sentence appears verbatim on insert.md, where I have recorded the same relation - it is one fact stated on two pages, not two facts",
+      "evidence": "* Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query."
+    },
+    {
+      "subject": "n1ql:fn-meta",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:fn-search",
+      "reused_or_minted_predicate": "reused - the mirror of the relation recorded from searchfun.md, stated here from the META() side; recorded on both records so it survives whichever page reconciliation reads first",
+      "evidence": "If your database is running Couchbase Server version 7.6.2 and later, use the `META()` function with the [SEARCH() function](#searchfun.adoc) when you want to return XATTRs data through the Search Service and do not have a suitable Search index for your query."
+    },
+    {
+      "subject": "n1ql:fn-meta",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "reused_or_minted_predicate": "reused - scoped strictly to the META()+SEARCH() XATTRs combination described in the quote, not to META() as a whole (META() long predates 7.6.2). Reconciliation must keep that scope or this becomes a false claim",
+      "evidence": "If your database is running Couchbase Server version 7.6.2 and later, use the `META()` function with the [SEARCH() function](#searchfun.adoc) when you want to return XATTRs data through the Search Service and do not have a suitable Search index for your query."
+    },
+    {
+      "subject": "n1ql:fn-meta",
+      "predicate": "seeAlso",
+      "object": "data:virtual-xattr",
+      "reused_or_minted_predicate": "reused - structural markdown link plus a worked example (Example 5) on this page",
+      "evidence": "* You can also use the `META().xattrs` property to access [virtual XATTRs](../../learn/data/extended-attributes-fundamentals.md#virtual-extended-attributes)(see [Example 5](#meta-ex5)). However, this is an expensive operation and may increase query latency."
+    },
+    {
+      "subject": "data:virtual-xattr",
+      "predicate": "hasPerformanceCost",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - the registry has tradesOffAgainst, but that predicate is for two competing options; this is a one-sided documented cost warning ('expensive operation', 'may increase query latency') attached to a single feature. Several pages in this wave carry warnings of exactly this shape",
+      "evidence": "However, this is an expensive operation and may increase query latency."
+    },
+    {
+      "subject": "n1ql:fn-abort",
+      "predicate": "raisesError",
+      "object": "n1ql:error-5011",
+      "reused_or_minted_predicate": "minted - no predicate links a statement or function to the error code it produces, yet the docs state such links constantly and they are the main reason the error-code reference matters to a reader. See cross_component_finding",
+      "evidence": "If this function is executed in a query, it causes the query to halt with an error code 5011\\."
+    },
+    {
+      "subject": "n1ql:fn-abort",
+      "predicate": "raisesError",
+      "object": "n1ql:error-10109",
+      "reused_or_minted_predicate": "minted - see above; the pair of relations is the evidence for context-dependent behaviour",
+      "evidence": "When this function is executed by a user-defined function, it causes the query to halt with an error code 10109\\. The error message shows the name of the user-defined function and contains the text specified by the given `expression`."
+    },
+    {
+      "subject": "n1ql:fn-evaluate",
+      "predicate": "raisesError",
+      "object": "n1ql:error-5010",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "The statement must be read-only. If it tries to modify data (like with UPDATE or INSERT), the function fails with `error 5010, \"not a readonly request”`."
+    },
+    {
+      "subject": "n1ql:fn-evaluate",
+      "predicate": "inheritsPrivilegesFromCaller",
+      "object": "n1ql:misc-utility-functions",
+      "reused_or_minted_predicate": "minted - the registry has inheritsAccessFromRole (role-to-role inheritance) but nothing for 'this construct executes with the caller's privileges rather than its own'. That is a security-relevant fact and the same shape recurs for user-defined functions and prepared statements elsewhere. The object here is a placeholder for 'the invoking statement', which has no concept id - reconciliation may prefer to model this as a unary flag rather than a relation",
+      "evidence": "The function evaluates the statement dynamically using the same permissions as the invoking statement."
+    },
+    {
+      "subject": "n1ql:fn-flatten-keys",
+      "predicate": "restrictedToContext",
+      "object": "n1ql:array-index",
+      "reused_or_minted_predicate": "minted - sibling of the restrictedToClause predicate minted on searchfun.json in this batch; this one is about a statement context (an index key definition) rather than a clause. Reconciliation may want a single predicate covering both",
+      "evidence": "This function can only be used when defining an index key for an [array index](indexing-arrays.md)."
+    },
+    {
+      "subject": "n1ql:fn-flatten-keys",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:fn-flatten-keys",
+      "reused_or_minted_predicate": "minted - same predicate minted on searchfun.json; here the subject and object are the same concept because the constraint is self-referential (no recursive nesting)",
+      "evidence": "Note that `FLATTEN_KEYS()` cannot be used recursively."
+    },
+    {
+      "subject": "n1ql:fn-base64-encode",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-base64",
+      "reused_or_minted_predicate": "reused - the page declares the alias explicitly in both directions",
+      "evidence": "Alias of [BASE64()](#base64)."
+    },
+    {
+      "subject": "n1ql:fn-formalise",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-formalize",
+      "reused_or_minted_predicate": "reused - explicit synonym declaration",
+      "evidence": "This function has a synonym FORMALISE()."
+    },
+    {
+      "subject": "n1ql:fn-unnest-position",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:fn-unnest-pos",
+      "reused_or_minted_predicate": "reused - explicit synonym declaration",
+      "evidence": "Synonym of [UNNEST\\_POS()](#unnest-pos)."
+    },
+    {
+      "subject": "n1ql:fn-redact",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:fn-redact",
+      "reused_or_minted_predicate": "minted - self-referential type restriction, same shape as the FLATTEN_KEYS recursion constraint above; the excluded types are named in the quote rather than modelled as objects, since no type concepts exist",
+      "evidence": "Masking applies to only string values. The function cannot mask non-string data types such as numbers, booleans, or dates. To redact non-string values, you must omit the fields entirely from the output instead."
+    },
+    {
+      "subject": "n1ql:fn-abort",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-function",
+      "reused_or_minted_predicate": "reused - structural markdown link stating the function's intended use case",
+      "evidence": "This function is useful for flow control when [creating inline user-defined functions](createfunction.md)."
+    },
+    {
+      "subject": "n1ql:fn-finderr",
+      "predicate": "seeAlso",
+      "object": "cli:finderr",
+      "reused_or_minted_predicate": "reused - structural markdown link; present only in the Server page, see cross_product_finding",
+      "evidence": "* The [finderr](../../cli/finderr.md) command line tool"
+    },
+    {
+      "subject": "n1ql:fn-finderr",
+      "predicate": "seeAlso",
+      "object": "n1ql:sql-error-codes",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [SQL++ Error Codes](n1ql-error-codes.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The Server 8.0 page has *lost* three of the four availability badges its Capella twin carries. Capella heads EVALUATE() with 'Couchbase Server 8.0', HASHBYTES() with 'Couchbase Server 8.0', and FINDERR() with 'Couchbase Server 7.6.5'; the Server 8.0 page carries none of those three, retaining the badge only on EXTRACTDDL(). Since all four functions are on both pages, three availableSince facts are recoverable *only* from the Capella record. The retention of EXTRACTDDL's badge alongside the removal of EVALUATE's and HASHBYTES's - all three of which are 8.0 features - looks like an editing oversight rather than a policy, because the treatment is inconsistent within a single page."
+  },
+  "cross_component_finding": "Two things worth reconciliation's attention. (1) The finderr CLI cross-reference and the FINDERR() SQL++ function are the same diagnostic capability exposed through two surfaces, and the Server page links them explicitly while the Capella page cannot (no CLI surface exists there); this is one of the cleaner examples in the batch of a link that is absent for genuine product-shape reasons rather than editorial ones. (2) A naming inconsistency this page exposes: it calls query_system_catalog a *role* ('you must have the `query_system_catalog` role'), whereas earlier extraction records filed the same string under the privilege: namespace (privilege:query-system-catalog, minted from the AWR and system-catalog pages). Couchbase's own RBAC reference treats query_system_catalog as a role that grants a privilege of the same name, so both readings are defensible - but the ontology cannot hold it in both namespaces. I have reused the existing privilege: id as the object while using requiresRole as the predicate, which is internally inconsistent and deliberately so, to make the collision visible rather than silently pick a side.",
+  "cross_product_finding": "The Capella twin is again the richer source of version facts (same pattern as searchfun.md and stringfun.md in this batch): Capella badges EVALUATE, EXTRACTDDL and HASHBYTES as 'Couchbase Server 8.0' and FINDERR as 'Couchbase Server 7.6.5'; Server 8.0 keeps only the EXTRACTDDL badge. Two further divergences: (a) the privilege statement is expressed in entirely different access models - Server says 'you must have the `query_system_catalog` role', Capella says 'your client must have Read access if using basic access credentials, or Query Catalog privilege if using advanced access credentials'; these are NOT merged, and the correspondence (Server role query_system_catalog <-> Capella privilege:capella-advanced-access-query-catalog) is recorded here as a finding only. (b) The CURRENT_USERS() example output differs by product in a way that reveals the identity model: Server returns 'builtin:Administrator', Capella returns 'local:<redacted-UUID>'. That is a real, documented behavioural difference in a function's return value across products, and there is currently no predicate for 'returns different values on different deployments' - deployment:capella exists as a concept, so behavesDifferentlyUnder deployment:capella would be expressible, but I have not asserted it because neither page says the other product behaves differently; the difference is only visible by comparing the two.",
+  "version_finding": "Harvest from this page: EXTRACTDDL availableSince version:server-8-0; two of its flag values (function, prepared) availableSince version:server-8-0-1; the 15-XATTR-per-query limit at version:server-8-0; and the META()+SEARCH() XATTRs combination at version:server-7-6-2. The 8.0.1 case is the most interesting for vocabulary design and is new in this wave: a page published as 'server/current' at version 8.0 gates two option values on 8.0.1, a release *later* than the page's own version. Any model that assumes 'the page's version is the floor for everything it documents' breaks here, and a reader on 8.0.0 is being shown two flag values they cannot use. Also note the version-badge convention itself is fragile as evidence: the badge is a bare line of text ('Couchbase Server 8.0') under a heading, with no marker distinguishing it from body prose, and inline badges are concatenated into list items and table cells ('CREATE OR REPLACE FUNCTION Couchbase Server 8.0.1 \"function\" 32'), which is why the same fact appears twice on this page in two different renderings. Finally, a documentation defect for the record: DS_VERSION()'s worked example on the Couchbase Server 8.0 page returns '7.6.0-1886-enterprise' - a stale example output two minor versions behind the page it appears on, on the one function whose entire job is to report the version."
+}

@@ -1,0 +1,48 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/expositional",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/expositional.md",
+  "concepts": [
+    { "candidate_id": "n1ql:named-and-positional-parameters", "label": "Named Parameters and Positional Parameters", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-manage/query-settings.json" },
+    { "candidate_id": "n1ql:numbered-positional-placeholder", "label": "$1, $2 numbered positional parameter placeholder", "reused_or_minted": "minted - needed as a distinct object because the page asserts an equivalence between two placeholder syntaxes, which requires both to have ids" },
+    { "candidate_id": "n1ql:question-mark-positional-placeholder", "label": "? unnumbered positional parameter placeholder", "reused_or_minted": "minted - see above; the page's substantive content is the equivalence of this form to the numbered form" },
+    { "candidate_id": "n1ql:args-request-parameter", "label": "args request parameter - JSON array supplying positional parameter values", "reused_or_minted": "minted - the transport-level counterpart to the placeholder syntax; distinct from the SQL++-level placeholder concepts and from the creds/timeout parameters modelled elsewhere in this batch" },
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:question-mark-positional-placeholder",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:numbered-positional-placeholder",
+      "reused_or_minted_predicate": "reused - isSynonymOf is a promoted predicate and the page states equivalence in as many words (\"an alternative way to specify the same query\"). Note both examples return byte-identical results, which corroborates the claim",
+      "evidence": "Positional parameters can also be specified in a statement using the question mark (?), so the following statement is an alternative way to specify the same query."
+    },
+    {
+      "subject": "n1ql:numbered-positional-placeholder",
+      "predicate": "requiresRequestParameter",
+      "object": "n1ql:args-request-parameter",
+      "reused_or_minted_predicate": "minted - the registry has requiresSetting (for cluster/node settings) and requiresFlagToEnable (for feature flags) but nothing for \"this feature requires that request parameter to be supplied\". REST request parameters are a distinct tier from settings - the intro page's own three-tier hierarchy (cluster / node / request) makes that explicit - so requiresSetting would conflate two tiers",
+      "evidence": "| $1             | \"LAX\"                                                                                             |"
+    },
+    {
+      "subject": "n1ql:question-mark-positional-placeholder",
+      "predicate": "requiresRequestParameter",
+      "object": "n1ql:args-request-parameter",
+      "reused_or_minted_predicate": "minted - see above; both placeholder forms draw their values from the same args array, which is the mechanical basis of their equivalence",
+      "evidence": "     -d 'statement=SELECT airline FROM `travel-sample`.inventory.route\n                   WHERE sourceairport = ? AND distance > ?\n       & args=[\"LAX\", 13000]' \\"
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\"status\": \"success\","
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "No cross-references of any kind - no See Also, no inline links, in particular none to server/current/n1ql/n1ql-manage/query-settings.md where positional parameters are actually specified. Identical absence to exnamed.md; the whole example directory is a cross-reference dead end, linked into only from examplesrest.md."
+  },
+  "version_finding": "As with exnamed.md, the page's syntax coverage lags the same product version's own reference page. server/current/n1ql/n1ql-manage/query-settings.md documents a mixed numbered form using both prefixes - \"WHERE country = $1 AND geo.alt > @2;\" with the explanation \"the first positional parameter value is used for the placeholder numbered `$1`, the second positional parameter value is used for the placeholder numbered `@2`, and so on\" - while this page shows only $1/$2 and ?. So Server 8.0 supports three positional placeholder spellings ($n, @n, ?) and this page exhibits two. No version is attached to the @n form anywhere, so no availableSince relation can be sourced; recording it as the gap. Nothing on this page carries any version or edition marker."
+}

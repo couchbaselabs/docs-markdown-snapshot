@@ -4,7 +4,7 @@
   "issueType": "missing-version-annotation",
   "description": "The versionless Capella stringfun.md carries nine version-availability statements; the versioned Server 8.0 page carries zero. Stripping satisfied gates from server/current is reasonable in itself - a 7.6 gate always holds on 8.0 - but the 8.0 badges are not redundant and have gone too: COMPRESS() and UNCOMPRESS() are new in 8.0, and a reader upgrading from 7.6 cannot tell that from this page.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/stringfun",
+    "server/8.0/n1ql/n1ql-language-reference/stringfun",
     "cloud/n1ql/n1ql-language-reference/stringfun"
   ],
   "foundDuring": "poc-server-8.0-wave-1",

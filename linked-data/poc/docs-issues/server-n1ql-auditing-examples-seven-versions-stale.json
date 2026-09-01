@@ -4,7 +4,7 @@
   "issueType": "stale-example-content",
   "description": "On an 8.0 page, the illustrative material dates from roughly seven major versions earlier: example audit records are timestamped 2018-02-09, and the sample User-Agent strings advertise 'Couchbase Query Workbench (5.1.0-1434-enterprise)', 'curl/7.43.0', 'couchbase-java-client/2.5.2' and 'Java HotSpot 1.8.0_101-b13'.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/n1ql-auditing"
+    "server/8.0/n1ql/n1ql-language-reference/n1ql-auditing"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

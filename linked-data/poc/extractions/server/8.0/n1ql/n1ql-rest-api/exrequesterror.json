@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/exrequesterror",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/exrequesterror.md",
+  "concepts": [
+    { "candidate_id": "n1ql:request-error", "label": "Request error - a fault in the REST request itself, e.g. a missing required parameter", "reused_or_minted": "minted - one of the three error classes this directory distinguishes; the class is defined in prose on this page and has no existing id" },
+    { "candidate_id": "n1ql:query-error-object", "label": "Query response error object (code, msg, optional retry)", "reused_or_minted": "minted - the shared shape of entries in the errors[] array across all error examples in this batch; no existing id. Distinct from n1ql:sql-error-codes, which is the reference catalogue of code values rather than the response structure carrying them" },
+    { "candidate_id": "n1ql:statement-request-parameter", "label": "statement request parameter (or prepared, as its alternative)", "reused_or_minted": "minted - the only mandatory parameter of the Query Service REST API, established negatively by this example. No existing id; n1ql:prepared-statement is the resource, not the request parameter that names it" },
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API (POST/GET /query/service)", "reused_or_minted": "reused - minted in this batch's intro.json" },
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "n1ql:sql-error-codes", "label": "SQL++ Error Codes reference", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-language-reference/n1ql-error-codes.json; code 1050 shown here is catalogued there" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "requiresRequestParameter",
+      "object": "n1ql:statement-request-parameter",
+      "reused_or_minted_predicate": "minted in this batch (see expositional.json) - the registry has requiresSetting for cluster/node settings and requiresFlagToEnable for feature flags, neither of which expresses a mandatory REST request parameter. This is the clearest instance of the need: the entire content of the page is the consequence of omitting it",
+      "evidence": "A request error happens when there is a problem with the REST request itself, e.g. missing a required parameter."
+    },
+    {
+      "subject": "n1ql:request-error",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused - a request error surfaces as status \"fatal\", not as a distinct status value",
+      "evidence": "\"status\": \"fatal\","
+    },
+    {
+      "subject": "n1ql:request-error",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-error-object",
+      "reused_or_minted_predicate": "reused - structural: the class is reported through this object shape",
+      "evidence": "  \"errors\": [\n    {\n      \"code\": 1050,\n      \"msg\": \"No statement or prepared value\"\n    }\n  ],"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The response quotes error code 1050 and the page does not link to the error-code reference that documents it (server/current/n1ql/n1ql-language-reference/n1ql-error-codes.md, where 1050 is \"No «parameter» value\" with a stated user action). This absence is uniform across all four numeric-code example pages in the batch (1050 here, 3000 and 12003 on exn1qlerror.md, 1080 on extimeout.md) - not one of them links to the catalogue. See intro.json's cross_component_finding for the collective error-model record. Also absent: any statement of the HTTP status code returned. The example is run with curl -v, which would have shown it, but the response block starts at the JSON body, so the reader cannot tell that a request error returns HTTP 200 rather than 4xx - which is the surprising and important part."
+  },
+  "version_finding": "None. No version or edition marker. One detail worth recording for the error model rather than for versioning: this is the only error example whose metrics report \"serviceLoad\": 0 rather than 12, consistent with the request having been rejected before reaching the query engine."
+}

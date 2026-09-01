@@ -1,0 +1,236 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-manage/query-awr",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-manage/query-awr.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:automatic-workload-repository",
+      "label": "Automatic Workload Repository (AWR)",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-manage/query-awr.json for the same feature"
+    },
+    {
+      "candidate_id": "n1ql:awr-workload-repository",
+      "label": "AWR workload repository (bucket or collection where snapshots are stored)",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:awr-snapshot",
+      "label": "AWR snapshot document",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:system-awr",
+      "label": "system:awr catalog (AWR configuration keyspace)",
+      "reused_or_minted": "minted - the Capella record referenced system:awr in evidence but never minted a concept for the catalog itself; it is the sole configuration surface for the feature and the subject of the role gate"
+    },
+    {
+      "candidate_id": "n1ql:awr-state-enum",
+      "label": "AWR state enum (active | quiescent)",
+      "reused_or_minted": "minted - a distinct lifecycle enum; not the registry's index-state enum and not eventing:function-lifecycle-state"
+    },
+    {
+      "candidate_id": "rbac-role:query-manage-system-catalog",
+      "label": "Query Manage System Catalog role (query_manage_system_catalog)",
+      "reused_or_minted": "minted - deliberately a NEW id rather than reusing privilege:query-manage-system-catalog, which the Capella query-awr record minted for this same thing. server/current/learn/security/roles.md documents it as a ROLE ('Query Manage System Catalog (query_manage_system_catalog)'), not a privilege, and Couchbase Server RBAC treats roles and privileges as different kinds. Reconciliation must pick one namespace - see cross_product_finding"
+    },
+    {
+      "candidate_id": "tool:cbqueryreportgen",
+      "label": "cbqueryreportgen (AWR report generation CLI tool)",
+      "reused_or_minted": "minted - no tool concept exists in the registry; the Capella record did not mint one because its link to the tool is broken (see cross_product_finding)"
+    },
+    {
+      "candidate_id": "setting:awr-enabled",
+      "label": "system:awr enabled attribute (default FALSE)",
+      "reused_or_minted": "minted - the opt-in flag that gates the whole feature, so it is referenced as a constraint by the tool and by the relnotes"
+    },
+    {
+      "candidate_id": "setting:awr-location",
+      "label": "system:awr location attribute (target keyspace for snapshots)",
+      "reused_or_minted": "minted - the second mandatory precondition; AWR stays quiescent until it resolves"
+    },
+    {
+      "candidate_id": "setting:collection-max-ttl",
+      "label": "Collection maxTTL / expiration setting",
+      "reused_or_minted": "minted - the constraint AWR relies on for snapshot retention; no expiration/TTL concept exists in the registry despite both products' AWR pages linking to the same Expiration page"
+    },
+    {
+      "candidate_id": "n1ql:create-collection",
+      "label": "CREATE COLLECTION statement",
+      "reused_or_minted": "minted - SQL++ statement in the n1ql: namespace per convention; not found in the cloud/n1ql extraction records checked"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "minted - SQL++ statement in the n1ql: namespace per convention (the registry has privilege:query-manage-index but not the statement itself)"
+    },
+    {
+      "candidate_id": "n1ql:sequential-scan",
+      "label": "Sequential scan (used when no index on META().id is present)",
+      "reused_or_minted": "minted - named on this page as the fallback behaviour and the performance trade-off; no existing id"
+    },
+    {
+      "candidate_id": "n1ql:sql-id",
+      "label": "SQL ID (sqlID - unique hash identifier of a statement)",
+      "reused_or_minted": "minted - the join key between AWR snapshots and system:completed_requests, so it is the concept that makes the seeAlso link meaningful"
+    },
+    {
+      "candidate_id": "n1ql:system-completed-requests",
+      "label": "system:completed_requests catalog",
+      "reused_or_minted": "reused - matches the Capella records and the server monitoring-n1ql-query record in this batch"
+    },
+    {
+      "candidate_id": "n1ql:system-vitals",
+      "label": "system:vitals catalog",
+      "reused_or_minted": "reused - matches the Capella records and the server monitoring-n1ql-query record in this batch"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "reused_or_minted": "minted - shared id with the server query-settings record in this batch"
+    },
+    {
+      "candidate_id": "n1ql:create-user",
+      "label": "CREATE USER statement",
+      "reused_or_minted": "minted - named on this page only as an example of a statement excluded from AWR capture; a fuller concept for it should come from the DDL pages"
+    },
+    {
+      "candidate_id": "n1ql:alter-user",
+      "label": "ALTER USER statement",
+      "reused_or_minted": "minted - as above"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - availableSince. IMPORTANT: the evidence quote is NOT from query-awr.md, which states no version anywhere. It is from the sibling 8.0 page server/current/introduction/whats-new.md. Flagged for reconciliation as cross-page evidence; the underlying claim is corroborated by the fact that query-awr.md exists in server/current but not in server/7.6 or server/7.2",
+      "evidence": "Automatic Workload Repository (AWR) is a new feature that automatically captures and maintains performance statistics for queries executed on a Couchbase cluster.",
+      "evidence_source": "server/current/introduction/whats-new.md",
+      "evidence_provenance": "cross-page: this fact is true and load-bearing but is not stated on the page under extraction. Verified against evidence_source. Added during wave-1 reconciliation to close the provenance gap rather than drop the fact or misattribute the quote."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - availableSince. Evidence is again cross-page, from server/current/release-notes/relnotes.md; corroborated by server/current/cli/cbqueryreportgen.md existing with no counterpart under server/7.6/cli/",
+      "evidence": "The new Query AWR (Automatic Workload Repository) Report Generator tool allows customers to generate reports on query performance statistics. This tool requires AWR to be enabled on the cluster.",
+      "evidence_source": "server/current/release-notes/relnotes.md",
+      "evidence_provenance": "cross-page: this fact is true and load-bearing but is not stated on the page under extraction. Verified against evidence_source. Added during wave-1 reconciliation to close the provenance gap rather than drop the fact or misattribute the quote."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "requiresSetting",
+      "object": "setting:awr-enabled",
+      "reused_or_minted_predicate": "reused - requiresSetting. Evidence from server/current/release-notes/relnotes.md; query-awr.md itself implies but never states this dependency",
+      "evidence": "This tool requires AWR to be enabled on the cluster.",
+      "evidence_source": "server/current/release-notes/relnotes.md",
+      "evidence_provenance": "cross-page: this fact is true and load-bearing but is not stated on the page under extraction. Verified against evidence_source. Added during wave-1 reconciliation to close the provenance gap rather than drop the fact or misattribute the quote."
+    },
+    {
+      "subject": "n1ql:system-awr",
+      "predicate": "requiresRole",
+      "object": "rbac-role:query-manage-system-catalog",
+      "reused_or_minted_predicate": "reused - requiresRole from the promoted list. Note the Capella record recorded this as requiresPrivilege against privilege:query-manage-system-catalog; requiresRole is used here because the page and server/current/learn/security/roles.md both call it a role",
+      "evidence": "Only admins or users with the `query_manage_system_catalog` role can modify settings in `system:awr`. For more information, see [Authentication and Client Privileges](../n1ql-intro/sysinfo.md#authentication-and-client-privileges)."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "requiresFlagToEnable",
+      "object": "setting:awr-enabled",
+      "reused_or_minted_predicate": "reused - requiresFlagToEnable is the exact shape for an opt-in feature with a false default",
+      "evidence": "AWR is an opt-in feature that you must explicitly enable and configure. Once enabled, AWR starts collecting data as soon as the repository location is set and is available."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "requiresSetting",
+      "object": "setting:awr-location",
+      "reused_or_minted_predicate": "reused - requiresSetting",
+      "evidence": "Before AWR can start collecting data, you must configure this location in the [system:awr](#system-awr) catalog. The repository can be a bucket or a collection, but not a scope."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "usesEnum",
+      "object": "n1ql:awr-state-enum",
+      "reused_or_minted_predicate": "reused - usesEnum; object minted",
+      "evidence": "AWR checks the availability of repository location at the start of each reporting interval. Until this specified location is available, AWR remains in a quiescent (inactive) state. Once the location becomes accessible, AWR transitions to an active state and begins collecting data."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:create-collection",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf from the promoted list; the target keyspace must be created before AWR can activate",
+      "evidence": "If you specify only the bucket name, AWR uses the default scope (`_default`) and default collection (`_default`) within that bucket to store the data. If the bucket or collection does not exist, you must create it."
+    },
+    {
+      "subject": "n1ql:awr-snapshot",
+      "predicate": "requiresSetting",
+      "object": "setting:collection-max-ttl",
+      "reused_or_minted_predicate": "reused - requiresSetting; retention is not enforced by AWR itself and must be delegated to collection expiration",
+      "evidence": "AWR retains snapshot documents for long-term analysis, but does not enforce retention policies by default. To manage storage effectively, you need to configure a Time-To-Live (TTL) or expiration for the AWR location."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "recommendsPriorExecutionOf",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "minted - the registry has requiresPriorExecutionOf but nothing for a SOFT prerequisite. Here the index is explicitly only recommended, with a named performance consequence if omitted; collapsing that into requiresPriorExecutionOf would overstate it",
+      "evidence": "For optimal query performance with this tool, it is recommended to create an index on the document key (`META().id`) in your configured AWR location. If this index is not present, the tool will use sequential scans, which can impact performance."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "tradesOffAgainst",
+      "object": "n1ql:sequential-scan",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst; omitting the recommended index buys nothing and costs sequential scans",
+      "evidence": "If this index is not present, the tool will use sequential scans, which can impact performance."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "excludesFromCapture",
+      "object": "n1ql:create-user",
+      "reused_or_minted_predicate": "minted - the registry's disablesFeatureFor is about a feature being unavailable to an audience, not about a monitoring subsystem deliberately omitting certain statements from its records. This is a data-completeness exclusion and deserves its own predicate; it is also the same shape as the exclusion lists in n1ql-auditing.md",
+      "evidence": "AWR does not capture SQL++ statements that contain sensitive information, such as CREATE USER and ALTER USER."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "excludesFromCapture",
+      "object": "n1ql:alter-user",
+      "reused_or_minted_predicate": "minted - excludesFromCapture, same statement as above",
+      "evidence": "AWR does not capture SQL++ statements that contain sensitive information, such as CREATE USER and ALTER USER."
+    },
+    {
+      "subject": "n1ql:awr-snapshot",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-completed-requests",
+      "reused_or_minted_predicate": "reused - structural cross-reference; matches the Capella record's relation but here it is stated three times as a functional dependency, not just a link",
+      "evidence": "In some cases, SQL++ statements may appear truncated in AWR reports or snapshot documents. To find the complete statement, use its `sqlID` to look for entries in [completed\\_requests](monitoring-n1ql-query.md#sys-completed-req) that have the same `sqlID`. Then use one of those entries to get the full statement text."
+    },
+    {
+      "subject": "n1ql:awr-snapshot",
+      "predicate": "sharesIdentifierWith",
+      "object": "n1ql:system-completed-requests",
+      "reused_or_minted_predicate": "minted - the registry has isSynonymOf (two names for one thing) and sharesOptionSetWith (two features accepting the same options), but nothing for 'two independently populated record sets keyed by the same identifier'. That is the relationship here (n1ql:sql-id is the shared key) and it is what makes the documented AWR-to-completed_requests troubleshooting workflow possible",
+      "evidence": "The unique hash identifier of the statement. This can be used to aggregate information across different reporting periods for the same statement. It's also included in the [completed\\_requests](monitoring-n1ql-query.md#sys-completed-req) entries (collected independently of AWR)."
+    },
+    {
+      "subject": "n1ql:automatic-workload-repository",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-vitals",
+      "reused_or_minted_predicate": "reused - structural cross-reference; AWR's own runtime state is surfaced through system:vitals",
+      "evidence": "The current status of AWR is recorded in the `query.log` and you can view this information in the [system:vitals](monitoring-n1ql-query.md#vitals) output."
+    },
+    {
+      "subject": "n1ql:awr-snapshot",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:sequential-scan",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder; the document-key design deliberately exploits sequential scan's range-key support so that time-range filtering works without an index",
+      "evidence": "The document keys (IDs) of the snapshot documents include the timestamp of the reporting interval's start time. This allows you to filter documents based on time ranges without requiring additional indexes (as sequential scans support range-based key patterns)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "AWR is a performance-diagnostics feature of exactly the kind that is normally Enterprise Edition only in Couchbase Server, and the page carries no ENTERPRISE EDITION badge and no edition statement of any kind. Compare query-settings.md in this same batch, which does badge use_fts, and server/current/learn/security/auditing.md, which badges auditing - so the convention exists and is simply absent here. A Community Edition reader cannot tell from this page whether AWR is available to them. This is the single most useful thing reconciliation could get a doc fix for. Separately, the page states no version gate either, despite being a feature new in 8.0 (see version_finding)."
+  },
+  "cross_component_finding": "The role gate on this page and the role gate on monitoring-n1ql-query.md in this same batch are DIFFERENT roles and must not be merged: query-awr.md requires `query_manage_system_catalog` (write access to system:awr), monitoring-n1ql-query.md requires the 'Query System Catalog' role (`query_system_catalog`, read access to the monitoring keyspaces). server/current/learn/security/roles.md documents both separately ('Query System Catalog (query_system_catalog)' at one heading, 'Query Manage System Catalog (query_manage_system_catalog)' at another), and server/current/n1ql/n1ql-language-reference/auto-update-statistics.md confirms the split behaviourally: 'To execute SELECT on system:aus, you need the query_system_catalog role. To execute UPDATE on system:aus, you need the query_manage_system_catalog role.' Documentation defect: this page's cross-reference for the role points at ../n1ql-intro/sysinfo.md#authentication-and-client-privileges, but that section documents only the **Query System Catalog** role and never mentions query_manage_system_catalog - so the link does not substantiate the claim it is attached to. Also note the naming inconsistency within the doc set itself: this page uses the internal snake_case id (`query_manage_system_catalog`) while monitoring-n1ql-query.md and sysinfo.md use the Title Case display name ('Query System Catalog'), which is exactly the kind of inconsistency that makes automatic role extraction unreliable.",
+  "cross_product_finding": "The Server and Capella AWR pages are near-identical - the diff is 6 hunks, all of them link targets and API names - which is itself the finding, because AWR is new in Server 8.0 while the Capella page states no version at all. A Capella reader on a cluster built from a pre-8.0 Server base has no way to know whether AWR is present. Concrete divergences: (1) the Capella page's link to the report generator is BROKEN - '[cbqueryreportgen](#cli:cbqueryreportgen.adoc)' and '[Report Generation CLI Tool](#cli:cbqueryreportgen.adoc)' are unresolved Antora xrefs rendered as fragment links, whereas the Server page resolves them to ../../cli/cbqueryreportgen.md. This is why the Capella extraction record minted no tool concept. (2) The Statistics table's 'analogous to' references point at the Data API ('[Data API (Query Service)](../../data-api-reference/index.md#tag/Query)') on Capella and at the Query REST API ('[Query REST API](../../n1ql-rest-query/index.md#Metrics)') on Server - the same 17 statistics, two different access surfaces, which supports keeping api:query-admin-rest-api / capella:data-api distinct. (3) The Capella page links out of the Capella docs into server/ for TTL ('../../../server/current/learn/data/expiration.md'), already flagged by the Capella extraction. (4) Access model: identical prose on both sides names the Server RBAC role `query_manage_system_catalog`, i.e. the Capella page inherits a Server RBAC role name unadapted - the same defect the Capella n1ql-auditing extraction flagged for 'Full Administrator' / 'Local User Security Administrator'.",
+  "version_finding": "This is the wave's cleanest availableSince case and also its clearest illustration of the gap. AWR is new in Couchbase Server 8.0 on four independent lines of evidence, NONE of which is on the page itself: (1) server/current/n1ql/n1ql-manage/query-awr.md exists but server/7.6/n1ql/n1ql-manage/ contains only index.md, monitoring-n1ql-query.md and query-settings.md - no query-awr.md; server/7.2/n1ql/n1ql-manage/ is empty. (2) server/current/introduction/whats-new.md has a dedicated '#automatic-workload-repository' section calling it 'a new feature'. (3) server/current/release-notes/relnotes.md describes 'The new Query AWR (Automatic Workload Repository) Report Generator tool' under MB-63389. (4) The supporting CLI tool page server/current/cli/cbqueryreportgen.md has no counterpart under server/7.6/cli/. Yet the reference page a user actually lands on carries no version marker at all - no 'Couchbase Server 8.0' badge of the kind query-settings.md puts on the natural* parameters, and no 'available in Couchbase Server 8.0 and later' sentence. The only version-shaped statement on the whole page is a record-format version, not a product version: the snapshot document field **ver** is documented as 'The version of the data record. For this release, the value is always 1.' - 'this release' is unresolvable from the page. Recommendation for reconciliation: availableSince evidence frequently lives in whats-new/relnotes rather than on the feature page, so the extraction schema should allow an evidence provenance field (page vs sibling page) rather than forcing either a fabricated on-page quote or the loss of the relation."
+}

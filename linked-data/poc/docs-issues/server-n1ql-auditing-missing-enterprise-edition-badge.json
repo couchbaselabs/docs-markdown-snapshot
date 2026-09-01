@@ -4,8 +4,8 @@
   "issueType": "missing-edition-annotation",
   "description": "n1ql-auditing.md describes how to configure and read SQL++ audit records across 241 lines with no edition marker, while server/current/learn/security/auditing.md - the page it links to for the general description of auditing - carries an ENTERPRISE EDITION badge. The gate is one hop away and invisible to a reader arriving from a search engine or an LLM index. The only occurrence of the string 'enterprise' anywhere on the page is inside a sample User-Agent string, 'Couchbase Query Workbench (5.1.0-1434-enterprise)', which is an artefact of a copied example rather than a statement about availability.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/n1ql-auditing",
-    "server/current/learn/security/auditing"
+    "server/8.0/n1ql/n1ql-language-reference/n1ql-auditing",
+    "server/8.0/learn/security/auditing"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

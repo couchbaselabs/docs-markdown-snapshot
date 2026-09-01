@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/extimeout",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/extimeout.md",
+  "concepts": [
+    { "candidate_id": "n1ql:request-timeout", "label": "Request timeout - the request could not be completed in the time allowed (code 1080, status timeout)", "reused_or_minted": "minted - a fourth outcome class alongside request, service and SQL++ errors, with its own status value. No existing id; distinct from n1ql:txtimeout (transaction timeout) and n1ql:kvtimeout (KV fetch timeout), which are different timers on different scopes - see cross_component_finding" },
+    { "candidate_id": "n1ql:timeout-request-parameter", "label": "timeout request parameter (duration string, e.g. 1ms)", "reused_or_minted": "minted - the request-level timeout parameter. Deliberately NOT merged with n1ql:txtimeout or n1ql:kvtimeout, which are separately-coined ids for separate parameters in the same request-parameter table" },
+    { "candidate_id": "n1ql:error-retry-flag", "label": "retry flag on a query error object - indicates the failed request may be retried", "reused_or_minted": "minted - appears on exactly one error object in the whole batch and is the only machine-readable retryability signal the API emits. Worth an id precisely because its absence elsewhere is meaningful" },
+    { "candidate_id": "n1ql:query-error-object", "label": "Query response error object (code, msg, optional retry)", "reused_or_minted": "reused - minted in this batch's exrequesterror.json" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json; this page contributes the \"timeout\" value" },
+    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level Query settings", "reused_or_minted": "reused - minted in this batch's intro.json; the page refers to an engine-wide timeout that overrides/backs the request-level one" },
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-manage/query-settings.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:request-timeout",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused - timeout is its own status value, unlike request and SQL++ errors which both report \"fatal\"",
+      "evidence": "\"status\": \"timeout\","
+    },
+    {
+      "subject": "n1ql:request-timeout",
+      "predicate": "usesEnum",
+      "object": "n1ql:error-retry-flag",
+      "reused_or_minted_predicate": "reused - structural; the retry flag is emitted as part of the error object for this class and for no other class in the batch",
+      "evidence": "      \"code\": 1080,\n      \"msg\": \"Timeout 1ms exceeded\",\n      \"retry\": true"
+    },
+    {
+      "subject": "n1ql:timeout-request-parameter",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:node-level-query-settings",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder is a promoted predicate and the page states that the effective timeout depends on which tier supplied it. Note the page frames the node-level timer as a process start-up option rather than a setting; see version_finding",
+      "evidence": "The request timed out because it could not be completed in the time given in the request (or the query engine timeout, if one was specified when starting the query engine)."
+    },
+    {
+      "subject": "n1ql:timeout-request-parameter",
+      "predicate": "requiresRequestParameter",
+      "object": "n1ql:request-level-query-parameters",
+      "reused_or_minted_predicate": "minted in this batch (see expositional.json) - places the timeout parameter in the request tier of the three-tier settings hierarchy that intro.md's See Also describes",
+      "evidence": "     -d 'statement=SELECT name FROM `travel-sample`.inventory.hotel LIMIT 1\n       & timeout=1ms' \\"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresSetting",
+    "finding": "The page names \"the query engine timeout\" without naming the setting, giving its default, or linking to where it is configured - so a reader cannot find out what the timeout is when they do not set one, nor which of the three settings tiers wins. It also does not state the precedence between the request-level timeout and the node-level one, only that either may apply. The corresponding node-level and cluster-level timeout settings are reachable via the Query Admin and Query Settings REST APIs listed on intro.md, but no link is offered from here."
+  },
+  "cross_component_finding": "TIMEOUT IS A COLLIDING NAME ACROSS AT LEAST FOUR CONCEPTS IN THE QUERY CORPUS, and this page introduces a fifth framing. The extraction corpus already holds n1ql:txtimeout (transaction timeout) and n1ql:kvtimeout (KV get timeout) as separate ids from the request-parameter reference. This page's `timeout` is the whole-request timeout. server/current/n1ql-rest-query/index.md documents all three side by side in one table, and additionally notes that kvtimeout doubles as the durability timeout for non-transactional DML (\"Durability is also supported for non-transactional DML statements. In this case, the kvtimeout parameter is used as the durability timeout\"), so one parameter carries two roles. Plus the node-level engine timeout this page alludes to. Five timers, one word. These must not be merged, and reconciliation may want shouldNotBeConfusedWith edges among them - the registry has the predicate and this is a textbook case for it. I have not asserted those edges here because this page names only one of the five.\n\nAlso worth noting for the error model: this is the only response in the batch that returns both a results key and an errors key. \"results\": [] appears alongside the timeout error, and the signature block is present too. So a timeout is modelled as a query that started producing a result set rather than one that failed outright, which is why it gets its own status value and the retry flag. A client that branches on the presence of errors[] alone would mishandle it. The full error-model synthesis is on intro.json.",
+  "version_finding": "1. STALE CONFIGURATION FRAMING. The page describes the node-level timer as one \"specified when starting the query engine\" - a command-line/start-up framing that predates the node-level settings API. In Server 8.0 the Query Service's node-level settings, including timeouts, are configured at runtime via POST /admin/settings (documented in the Query Admin REST API table on intro.md in this same directory), and cluster-wide via POST /settings/querySettings. The prose therefore describes a configuration mechanism the current documentation set no longer presents as primary. This is a behaviour/framing change between versions that the page has not absorbed; recording it as a version finding rather than a behavesDifferentlyUnder relation because the page states only the old framing, so there is no quotable evidence for the new one on this page.\n\n2. No explicit version or edition marker anywhere on the page. Error code 1080 carries no availableSince note, and the retry flag - which is the sort of field that is added in a specific release - carries none either."
+}

@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/exsuccessful",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/exsuccessful.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-response-object", "label": "Query REST API response envelope (requestID, signature, results, status, metrics)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json; this page is the canonical instance of the success case" },
+    { "candidate_id": "n1ql:query-metrics-object", "label": "Query response metrics object (elapsedTime, executionTime, resultCount, resultSize, serviceLoad, errorCount, mutationCount, warningCount)", "reused_or_minted": "minted - present in every response in this directory; no existing id. Distinct from n1ql:query-monitoring, which is the system-keyspace monitoring surface rather than a per-response payload" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "Query response status enum (success | fatal | errors | timeout)", "reused_or_minted": "reused - minted in this batch's exauthhttp.json" },
+    { "candidate_id": "n1ql:query-service-post-endpoint", "label": "POST /query/service", "reused_or_minted": "reused - minted in this batch's intro.json" },
+    { "candidate_id": "n1ql:query-service-get-endpoint", "label": "GET /query/service (\"Read-Only Query Service\" per intro.md)", "reused_or_minted": "reused - minted in this batch's intro.json" },
+    { "candidate_id": "n1ql:uri-percent-escaping", "label": "Percent-escaping of query text in Query REST API requests", "reused_or_minted": "reused - minted in this batch's exnamed.json; the GET form here is the reason it matters" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\"status\": \"success\","
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-metrics-object",
+      "reused_or_minted_predicate": "reused - usesEnum used here in its structural sense (the envelope embeds this named sub-object); if reconciliation prefers a containment predicate, hasResponseSection would be the shape",
+      "evidence": "  \"metrics\": {\n    \"elapsedTime\": \"5.232754ms\",\n    \"executionTime\": \"5.160022ms\",\n    \"resultCount\": 1,\n    \"resultSize\": 30,\n    \"serviceLoad\": 12\n  }"
+    },
+    {
+      "subject": "n1ql:query-service-get-endpoint",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:uri-percent-escaping",
+      "reused_or_minted_predicate": "reused - the GET form necessarily carries the whole statement in the URI, so the escaping requirement modelled in exnamed.json becomes unavoidable rather than situational. The example demonstrates it without stating it",
+      "evidence": "curl -v http://localhost:8093/query/service?statement=SELECT%20name%20FROM%20%60travel-sample%60.inventory.hotel%20LIMIT%201%3B \\"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "The page claims POST and GET are interchangeable - \"The same request can be run as a GET request\" - and shows no response for the GET form, implying the response is identical. But intro.md in the same directory names GET /query/service the \"Read-Only Query Service\", i.e. it is NOT equivalent: a mutating statement that succeeds over POST would presumably be refused over GET. The page states an equivalence its own directory index contradicts, and states no restriction. This is the single clearest documentation defect in the batch and the reason intro.json records shouldNotBeConfusedWith between the two endpoints rather than isSynonymOf. The page also gives no reason to prefer one method over the other, and does not note that the GET form exposes the statement in URLs, logs and proxies."
+  },
+  "cross_component_finding": "This page establishes the baseline success envelope against which the five error pages in this batch are read: requestID + signature + results + status:\"success\" + metrics, with HTTP 200 and no errors key. The metrics fields present here (elapsedTime, executionTime, resultCount, resultSize, serviceLoad) are the success-case set; the error pages add errorCount, and exserviceerror.md alone adds mutationCount and warningCount while omitting serviceLoad. The metrics field set is therefore not stable across the eleven examples, which is itself evidence about when each example was last regenerated - see exserviceerror.json. The full error-model synthesis for the directory is recorded once on intro.json, per the batch instruction.",
+  "version_finding": "None. No version or edition marker on this page. Note the GET example's URL-encoded statement ends with %3B (a semicolon) whereas the POST example's statement has no trailing semicolon - a cosmetic inconsistency, not a version signal."
+}

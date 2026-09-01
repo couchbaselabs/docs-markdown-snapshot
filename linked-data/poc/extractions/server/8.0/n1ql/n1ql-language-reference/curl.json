@@ -1,0 +1,175 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-language-reference/curl",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/curl.md",
+  "concepts": [
+    { "candidate_id": "n1ql:curl-function", "label": "CURL() function", "reused_or_minted": "minted - no prior id anywhere. This page has NO Capella counterpart (Capella has no n1ql-language-reference/curl.md at all), so every concept here is minted by necessity rather than by preference." },
+    { "candidate_id": "role:query-external-access", "label": "QUERY_EXTERNAL_ACCESS (Server RBAC role)", "reused_or_minted": "minted as a ROLE, not a privilege. This is the answer to open item 2: Server gates CURL() on an RBAC role, so it must NOT be merged with the promoted concept privilege:capella-advanced-access-query-curl-access. See cross_product_finding for the full argument." },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator (Server RBAC role)", "reused_or_minted": "reused - the registry already has a full-administrator role concept. On this page it is doubly load-bearing: it is both the only role for which CURL() should be enabled and the only role that can grant QUERY_EXTERNAL_ACCESS or edit the access list." },
+    { "candidate_id": "security:curl-access-list", "label": "CURL() access list (allowlist/denylist of URLs and REST endpoints)", "reused_or_minted": "minted - no prior id. Minting into a security: namespace rather than setting: because the docs describe it as an access list FILE defined per query node, configured through a settings endpoint - it is a security policy object, not a scalar setting. Reconciliation may prefer setting:curl-whitelist to match the REST path; flagging the choice explicitly." },
+    { "candidate_id": "setting:curl-all-access", "label": "all_access (CURL() access list property)", "reused_or_minted": "minted - a required property of the access list with a documented gating effect on the other two properties" },
+    { "candidate_id": "setting:curl-allowed-urls", "label": "allowed_urls (CURL() access list property)", "reused_or_minted": "minted - prefix-match allowlist" },
+    { "candidate_id": "setting:curl-disallowed-urls", "label": "disallowed_urls (CURL() access list property)", "reused_or_minted": "minted - prefix-match denylist, documented as taking precedence over allowed_urls" },
+    { "candidate_id": "setting:curl-result-cap", "label": "result-cap (CURL() result memory cap option, default 20MB)", "reused_or_minted": "minted - no prior id" },
+    { "candidate_id": "setting:couchbase-ssl-cipher-list", "label": "COUCHBASE_SSL_CIPHER_LIST", "reused_or_minted": "minted - no prior id; an environment-level control that determines which SSL ciphers CURL() can negotiate" },
+    { "candidate_id": "security:x-n1ql-user-agent-header", "label": "X-N1QL-User-Agent request header", "reused_or_minted": "minted - no prior id. Worth a concept of its own because it is an outward-facing contract: external API owners are told to detect and block on it, so it is the one part of Couchbase's security surface that third parties are expected to implement against." },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - minted in this batch's createfunction.json" },
+    { "candidate_id": "server:query-node", "label": "Query node", "reused_or_minted": "minted - no prior id; needed as a distinct concept from the Query Service because the access list is defined per NODE ('Each query node in the cluster must define its access list file'), which is a deployment-topology fact, not a service fact" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "minted - no prior id in the registry (which has only service:eventing-service); referenced as the alternative to CURL() for full-text search from 6.5 onward" },
+    { "candidate_id": "n1ql:search-functions", "label": "SQL++ Search functions", "reused_or_minted": "minted - no prior id; the 6.5 in-query alternative to CURL() for full-text search" },
+    { "candidate_id": "surface:query-workbench", "label": "Query Workbench (Advanced Query Settings)", "reused_or_minted": "minted - no prior id. Deliberately NOT merged with the promoted concept capella:query-tab: that is the Capella UI, this is the Server Query Workbench, and this page names it as one of the two places the access list can be created." },
+    { "candidate_id": "api:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings/curlWhitelist)", "reused_or_minted": "minted - no prior id; the second configuration surface for the access list" },
+    { "candidate_id": "surface:cbq", "label": "cbq (Couchbase Query shell)", "reused_or_minted": "minted - no prior id; named as the second route to creating the access list" },
+    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - registry concept; same hyphen-vs-dot id spelling caveat noted throughout this batch" },
+    { "candidate_id": "version:server-5-0", "label": "Couchbase Server 5.0", "reused_or_minted": "minted - no 5.0 concept in the registry; the oldest version boundary encountered anywhere in this batch" },
+    { "candidate_id": "product:sync-gateway", "label": "Couchbase Mobile Sync Gateway (Admin endpoint)", "reused_or_minted": "minted - no prior id; appears as the worked threat-model example for why the access list exists, i.e. the concrete privilege-escalation path CURL() opens" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresRole",
+      "object": "role:query-external-access",
+      "reused_or_minted_predicate": "reused - promoted predicate. THE key fact for open item 2, and note it is requiresRole and not requiresPrivilege: the page says 'RBAC role' in those words.",
+      "evidence": "For all other users, the RBAC role `QUERY_EXTERNAL_ACCESS` is required to run the `CURL()` function. Only the Full Administrator can assign the `QUERY_EXTERNAL_ACCESS` role to other users."
+    },
+    {
+      "subject": "role:full-administrator",
+      "predicate": "grantsRole",
+      "object": "role:query-external-access",
+      "reused_or_minted_predicate": "reused - promoted predicate, and this is a textbook instance of it (role A is the only role that can grant role B), unlike the stretched use I had to make of it in this batch's createfunction.json",
+      "evidence": "Only the Full Administrator can assign the `QUERY_EXTERNAL_ACCESS` role to other users."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused - promoted predicate, but recorded with a caveat: the source sentence is a security RECOMMENDATION ('Enable the CURL() function only for the Full Administrator role'), not a hard requirement, and the very next bullet contemplates other users holding QUERY_EXTERNAL_ACCESS. The registry has no predicate for a recommended-but-not-enforced hardening step. Reconciliation should consider recommendedRestriction or similar; asserting requiresRole here overstates the docs slightly and the quote is preserved so that can be corrected.",
+      "evidence": "Enable the `CURL()` function only for the Full Administrator role."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresSetting",
+      "object": "security:curl-access-list",
+      "reused_or_minted_predicate": "reused - promoted predicate. Unusually strong evidence: the docs say the access list MUST be configured before the function can be used at all, so this is a genuine precondition rather than a modifier.",
+      "evidence": "An access list of URLs and REST points must be configured on the query nodes before being able to use the `CURL()` function."
+    },
+    {
+      "subject": "security:curl-access-list",
+      "predicate": "configuredPerNode",
+      "object": "server:query-node",
+      "reused_or_minted_predicate": "minted - the registry has nothing expressing 'this configuration is per-node rather than cluster-wide'. This is a high-consequence operational fact (a cluster can be inconsistently hardened, and CURL() behaviour then depends on which query node serves the request) and it has no paraphrase-free home in the existing vocabulary. Reconciliation should weigh this against the alternative of a generic configurationScope predicate with node/cluster values.",
+      "evidence": "Each query node in the cluster must define its access list file."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `CURL()` function runs on the query node within a cluster."
+    },
+    {
+      "subject": "setting:curl-disallowed-urls",
+      "predicate": "takesPrecedenceOver",
+      "object": "setting:curl-allowed-urls",
+      "reused_or_minted_predicate": "minted - the registry has no conflict-resolution predicate. This is a directional override rule between two settings and cannot be expressed by incompatibleWithAccessSurface (they are not incompatible; both can be populated) nor by behavesDifferentlyUnder. It is likely to recur wherever allow/deny pairs appear, so it is worth promoting.",
+      "evidence": "If both allowed\\_urls and disallowed\\_urls fields are populated, the disallowed\\_urls field takes precedence over allowed\\_urls."
+    },
+    {
+      "subject": "setting:curl-all-access",
+      "predicate": "disablesFeatureFor",
+      "object": "setting:curl-allowed-urls",
+      "reused_or_minted_predicate": "reused - promoted predicate, same shape as the file-based-index-rebalancing / alter-index-with-nodes fact in this batch's alterindex.json: one setting neutralises another. Here all_access must be false for allowed_urls and disallowed_urls to have any effect, so all_access=true disables them.",
+      "evidence": "This field set must be set to false to enable the allowed\\_urls and disallowed\\_urls fields. Setting this field to true enables access to all endpoints."
+    },
+    {
+      "subject": "setting:curl-all-access",
+      "predicate": "disablesFeatureFor",
+      "object": "setting:curl-disallowed-urls",
+      "reused_or_minted_predicate": "reused - the second half of the same fact, recorded separately so each property carries its own relation",
+      "evidence": "This field set must be set to false to enable the allowed\\_urls and disallowed\\_urls fields. Setting this field to true enables access to all endpoints."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresSetting",
+      "object": "setting:couchbase-ssl-cipher-list",
+      "reused_or_minted_predicate": "reused - promoted predicate; the cipher set available to CURL() is determined by this variable",
+      "evidence": "The `CURL()` function internally supports a specific set of SSL ciphers (MEDIUM or HIGH). This is dependent on the `COUCHBASE_SSL_CIPHER_LIST`."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "identifiedBy",
+      "object": "security:x-n1ql-user-agent-header",
+      "reused_or_minted_predicate": "minted - no registry predicate covers 'requests from X are always tagged with Y so third parties can detect them'. seeAlso would lose the whole point. Low expected reuse, so reconciliation may reasonably reject it and fold the fact into a note - but the quote is the operative one for anyone building a defence against Couchbase-originated CURL traffic.",
+      "evidence": "In order to identify a request from SQL++'s `CURL()` function, a custom header is always set for all requests. The custom header format is: `\"X-N1QL-User-Agent: couchbase/n1ql/<n1ql-version>\"`."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresSetting",
+      "object": "setting:curl-result-cap",
+      "reused_or_minted_predicate": "reused - promoted predicate, used here for a resource-limit option with a documented default",
+      "evidence": "The amount of memory used for the CURL result is controlled using the `result-cap` option. The default is 20MB."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "requiresPrivilege",
+      "object": "version:server-5-0",
+      "reused_or_minted_predicate": "reused predicate but with a deliberately odd object, and flagged as needing reconciliation. The fact is 'RBAC credentials are required when CURL() targets Couchbase Server 5.0 or later' - a privilege requirement whose trigger is the VERSION OF THE TARGET, not of the local cluster. Neither requiresPrivilege nor availableSince captures that; the registry has no notion of a remote target's version. Recorded here so the fact is not lost, with the explicit recommendation that reconciliation either drop it or introduce a targetVersionAtLeast qualifier.",
+      "evidence": "RBAC credentials are required when `CURL()` accesses Couchbase Server version 5.0 or later."
+    },
+    {
+      "subject": "n1ql:search-functions",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "reused_or_minted_predicate": "reused - promoted predicate. A surviving 6.5 gate, notable because it dates the ALTERNATIVE to CURL() rather than CURL() itself.",
+      "evidence": "In Couchbase Server 6.5 and later, you can use [Search functions](searchfun.md) to use a full-text search in a query, as long as the Search Service is available on the cluster."
+    },
+    {
+      "subject": "n1ql:search-functions",
+      "predicate": "dependsOnService",
+      "object": "service:search-service",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "In Couchbase Server 6.5 and later, you can use [Search functions](searchfun.md) to use a full-text search in a query, as long as the Search Service is available on the cluster."
+    },
+    {
+      "subject": "n1ql:search-functions",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:curl-function",
+      "reused_or_minted_predicate": "reused - promoted predicate, and this is the batch's ONLY quotable instance of it. Direction: the docs prefer Search functions in general, but state that CURL() must be used for the cross-cluster case, so the fact is 'Search functions must yield to CURL() when the Search Service is on another cluster'. Recording it in this direction because that is what the sentence licenses; reconciliation should note that mustUseInsteadWhen needs a condition slot the current schema lacks - the condition here ('to access the Search Service on another cluster') is only recoverable from the evidence string.",
+      "evidence": "However, to access the Search Service on another cluster, you must use the `CURL()` function."
+    },
+    {
+      "subject": "security:curl-access-list",
+      "predicate": "createdVia",
+      "object": "surface:query-workbench",
+      "reused_or_minted_predicate": "reused - promoted predicate. Note the object is the Server Query Workbench, deliberately NOT the promoted capella:query-tab.",
+      "evidence": "1. From the Query Workbench UI in the **Settings** **Advanced Query Settings** section."
+    },
+    {
+      "subject": "security:curl-access-list",
+      "predicate": "createdVia",
+      "object": "surface:cbq",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "2. From CBQ via a cURL command."
+    },
+    {
+      "subject": "security:curl-access-list",
+      "predicate": "createdVia",
+      "object": "api:query-settings-rest-api",
+      "reused_or_minted_predicate": "reused - promoted predicate; the REST route is documented with the concrete curlWhitelist endpoint",
+      "evidence": "You can send a call to the Query Settings REST API to allow or disallow specific URLs, for example:"
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "seeAlso",
+      "object": "product:sync-gateway",
+      "reused_or_minted_predicate": "reused - deliberately weak. The relation is really 'CURL() creates a privilege-escalation path to the Sync Gateway Admin endpoint unless denylisted', which the registry cannot express; seeAlso plus the full quote preserves the threat model without inventing a security predicate on one example.",
+      "evidence": "If the Full Administrator grants the user the `QUERY_EXTERNAL_ACCESS` role, the user can write queries using the `CURL()` function and potentially access the Sync Gateway Admin endpoint. To avoid this, the Full Administrator can create an access list for `CURL()` and add the Sync Gateway Admin endpoint to the `disallowed_urls` list."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "SETTLED, and it is a negative answer to a question the batch brief raised explicitly. The word 'Enterprise' does not appear anywhere on curl.md - I grepped the full 608-line page for it. There is no edition badge, no Enterprise-only note, and no Community-Edition limitation. So as documented, CURL() is NOT gated on Enterprise Edition; it is gated on an RBAC role plus a mandatory per-node access list. This matters for the open item because the natural hypothesis - that CURL() is absent from Capella because it is an Enterprise feature - is not supported by the page. The gating story the page actually tells is a network-egress one. Also absent: any availableSince for CURL() itself. The function is undated; the only versions on the page qualify a remote target (5.0) and an alternative feature (6.5). And absent again, as everywhere in this batch: any deprecation vocabulary."
+  },
+  "cross_product_finding": "OPEN ITEM 2, SETTLED on both halves. (a) DO NOT MERGE. Server names an RBAC ROLE, QUERY_EXTERNAL_ACCESS, in exactly those words ('the RBAC role `QUERY_EXTERNAL_ACCESS` is required to run the `CURL()` function'). The registry's Capella-side concept privilege:capella-advanced-access-query-curl-access is a PRIVILEGE under the Advanced cluster access credential model. These are not the same kind of thing and the brief's standing rule against merging Server RBAC with Capella credential privileges applies directly: keep role:query-external-access and privilege:capella-advanced-access-query-curl-access separate, and if reconciliation wants to connect them it should do so with an explicit correspondence relation, never by identity. There is also an asymmetry beyond the role/privilege distinction: Server's grant is a single role that turns the whole function on or off cluster-wide-ish (per node, via the access list), whereas Capella's is a per-credential privilege - so even the granularity differs. (b) THE ABSENCE IS SUBSTANTIVE, NOT A DOCS GAP - but the reason is not the one hypothesised. Capella has no n1ql-language-reference/curl.md at all, yet the Capella side DOES have a curl-access privilege in its access model, which is decisive: the capability exists on the Capella platform (otherwise there would be nothing for that privilege to grant) but is not documented as a SQL++ language reference topic there. That combination is best explained by the configuration surface, not the feature, being unavailable: everything this page tells you to do requires Full Administrator, a per-query-node access list file, the /settings/querySettings/curlWhitelist endpoint and possibly COUCHBASE_SSL_CIPHER_LIST - all of which are control-plane operations a Capella tenant cannot perform on a managed cluster. So the finding to record is: CURL() is Server-documented-only because its security model is administrator-configured per node, and Capella's tenancy model does not expose that surface; the feature itself is reachable in Capella through a privilege grant instead. Two supporting details: the page's threat model is explicitly about reaching services 'inside or outside the firewall' and co-located products such as the Sync Gateway Admin endpoint - a co-tenancy risk that a managed platform would want to own centrally rather than delegate; and the access list is a per-node FILE, which is precisely the class of artifact Capella does not let customers edit. Finally, one concept-hygiene point: surface:query-workbench (Server) must not be merged with the promoted capella:query-tab, even though both are 'the SQL++ UI', because this page's access-list workflow lives under Server's Advanced Query Settings, which has no Capella equivalent.",
+  "version_finding": "curl.md is version-poor in an instructive way: the function itself carries no availableSince, and both version facts on the page point AWAY from the subject. (1) version:server-5-0 appears as the version of the REMOTE cluster CURL() is talking to ('RBAC credentials are required when CURL() accesses Couchbase Server version 5.0 or later'), which is a target-version fact the current vocabulary cannot type - availableSince would be flatly wrong, and I have recorded it under requiresPrivilege with an explicit flag rather than silently dropping it. Reconciliation needs to decide whether version concepts may qualify a remote endpoint; if the answer is no, this fact should be dropped rather than mistyped, because a naive consumer would otherwise conclude CURL() is 5.0+. (2) version:server-6-5 dates the Search functions ALTERNATIVE, not CURL(), and it comes bundled with the batch's only mustUseInsteadWhen instance. Both illustrate a general point for the wave: version facts on Server pages frequently attach to something other than the page's own subject, so an extraction rule of the form 'the page's headline concept availableSince the version mentioned on the page' would produce wrong triples here. Consistent with the rest of the batch, there is zero deprecation vocabulary: no deprecated, removed or superseded anywhere on the page, which again leaves the proposed deprecatedIn predicate with no quotable instance. And unlike prepare.md, curl.md offers no retainedForLegacyCompatibility instance either - the 5.0 RBAC sentence is the closest thing to a legacy note and it is a compatibility requirement, not a retention."
+}

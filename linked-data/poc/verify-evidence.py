@@ -4,7 +4,13 @@
 Run from the repo root, after each extraction wave and before committing:
 
     python3 linked-data/poc/verify-evidence.py                    # whole corpus
-    python3 linked-data/poc/verify-evidence.py extractions/server/current
+    python3 linked-data/poc/verify-evidence.py linked-data/poc/extractions/server/8.0
+
+Note that records are checked against `source_path` (a real path on disk, which
+keeps the docs' `server/current/` alias) and never against `page_id` (an
+ontology identifier, which names the release: `server/8.0/`). Those two fields
+disagreeing is correct - see the "`current` is not a version" ruling in
+`reconciliation.md`.
 
 Why this exists
 ---------------
@@ -37,6 +43,14 @@ extraction - e.g. AWR is new in 8.0, which `query-awr.md` never says but
 and are checked against `evidence_source` instead. Anything without that field
 is checked against the record's own `source_path`. Cross-page evidence is
 legitimate; silently attributing an off-page quote to the page is not.
+
+Shared with the write-time gate
+-------------------------------
+`hooks/gate-evidence.py` imports `norm()` and `check_record()` from here rather
+than reimplementing them. That is deliberate: if the PreToolUse gate and this
+corpus audit ever normalised quotes differently, records would pass at write
+time and fail the audit, which is worse than having no gate - it teaches you to
+distrust the audit. One implementation, two entry points.
 """
 
 import json
@@ -54,6 +68,52 @@ def norm(s):
     s = s.replace("’", "'").replace("‘", "'")
     s = s.replace("“", '"').replace("”", '"')
     return re.sub(r"\s+", " ", s).strip()
+
+
+def page_text(src, cache, root="."):
+    """Normalised text of a source page, or None if it isn't on disk.
+
+    `src` is repo-root-relative (that's what records store), so `root` lets a
+    caller running from somewhere else - the hook - resolve it correctly.
+    """
+    if src not in cache:
+        path = src if os.path.isabs(src) else os.path.join(root, src)
+        cache[src] = norm(open(path, errors="ignore").read()) if os.path.exists(path) else None
+    return cache[src]
+
+
+def check_record(rec, cache=None, root="."):
+    """Return [(predicate, message)] for every relation whose evidence can't be
+    found on the page it claims. Empty list means the record passes.
+
+    Note what this does NOT check: that the triple built from the quote is a
+    fair reading. Round 10 found "quotable but mis-objected" records that pass
+    here and are still wrong. A green check is not a green record.
+    """
+    if cache is None:
+        cache = {}
+    problems = []
+    own_src = rec.get("source_path")
+
+    for r in rec.get("relations", []):
+        src = r.get("evidence_source", own_src)
+        pred = r.get("predicate", "?")
+
+        if not src:
+            problems.append((pred, "record has no source_path"))
+            continue
+        text = page_text(src, cache, root)
+        if text is None:
+            problems.append((pred, f"source file not found: {src}"))
+            continue
+
+        ev = norm(r.get("evidence", ""))
+        if not ev:
+            problems.append((pred, "empty evidence"))
+        elif ev not in text:
+            problems.append((pred, f"not on {src}: {ev[:90]}"))
+
+    return problems
 
 
 def main():
@@ -74,32 +134,10 @@ def main():
             problems.append((fp, None, f"invalid JSON: {e}"))
             continue
         records += 1
-        own_src = rec.get("source_path")
+        relations += len(rec.get("relations", []))
+        cross_page += sum(1 for r in rec.get("relations", []) if r.get("evidence_source"))
 
-        for r in rec.get("relations", []):
-            relations += 1
-            src = r.get("evidence_source", own_src)
-            if r.get("evidence_source"):
-                cross_page += 1
-            pred = r.get("predicate", "?")
-
-            if not src:
-                problems.append((fp, pred, "record has no source_path"))
-                continue
-            if src not in pages:
-                if not os.path.exists(src):
-                    pages[src] = None
-                else:
-                    pages[src] = norm(open(src, errors="ignore").read())
-            if pages[src] is None:
-                problems.append((fp, pred, f"source file not found: {src}"))
-                continue
-
-            ev = norm(r.get("evidence", ""))
-            if not ev:
-                problems.append((fp, pred, "empty evidence"))
-            elif ev not in pages[src]:
-                problems.append((fp, pred, f"not on {src}: {ev[:90]}"))
+        problems += [(fp, pred, msg) for pred, msg in check_record(rec, pages)]
 
     for fp, pred, msg in problems:
         rel = fp.split("extractions/", 1)[-1]

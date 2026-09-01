@@ -1167,6 +1167,61 @@ the reason it's worth recording is that the collision was structural and
 invisible: nothing in nine rounds of a single-version-per-product corpus would
 have surfaced it.
 
+### Ruling: `current` is not a version, and the extraction tree says so
+
+Wave 1 was first written to `extractions/server/current/`, mirroring the docs
+tree. That is now `extractions/server/8.0/`, with every `page_id` rewritten from
+`server/current/…` to `server/8.0/…`. The ruling behind the rename:
+
+**`current` is a pointer, not a version.** It has no referent of its own - it
+denotes whichever release is newest at the moment of reading. An ontology whose
+entire value proposition is stable identifiers cannot mint a node whose meaning
+silently changes on every major release. Left as it was, `page_id`
+`server/current/n1ql/…/createindex` would come to denote 9.0's page while
+continuing to sit in a record whose evidence was quoted from 8.0's - the same
+class of latent, structural, no-diagnostic collision as the version-neutral
+`server/` ids described above, and found the same way: by asking what the second
+version would do to the first.
+
+The distinction that makes this non-obvious is between the three fields, which
+now deliberately disagree:
+
+| field | value | why |
+|---|---|---|
+| `page_id` | `server/8.0/n1ql/…/transactions` | an ontology identifier - must be stable, so it names the release |
+| `source_version` | `8.0` | already correct; the rename makes `page_id` agree with it |
+| `source_path` | `server/current/n1ql/…/transactions.md` | a **filesystem** path - must keep resolving on disk, so it keeps the alias |
+
+A record whose `page_id` and `source_path` differ in exactly this way is
+correct, not inconsistent, and `verify-evidence.py` reads `source_path` (never
+`page_id`) precisely because the gate's job is to open a real file. All 38
+records still pass it after the rewrite.
+
+Two consequences worth recording, because they cut in opposite directions:
+
+- **`docs-issues/` `about:` entries were rewritten too** (31 ids across 21
+  files). Those hold page ids, so they inherit the ruling.
+- **`seeAlso` objects pointing at `server/current/…` were deliberately *not*
+  rewritten** - 11 of them, all in `cloud/` records. Their evidence is a literal
+  Markdown link in the Capella page's own text
+  (`../../../server/current/analytics/6_n1ql.md`), and what that page links to
+  *is* the floating alias: it will resolve to 9.0 with no edit. Pinning the
+  object to `server/8.0` would assert something the source does not say, which
+  is the "never invent links" rule applied to a version axis. So the corpus now
+  distinguishes a `seeAlso` pinned to a release from one aimed at whatever is
+  current - a real difference in what the docs commit to, and one that would
+  have been erased by a blanket find-and-replace.
+
+Where does the alias itself live, then? In exactly one place, as the user's own
+framing suggested - a single assertion rather than a namespace.
+`concepts/version/server-8-0.json` carries `"isCurrentRelease": true` and
+`"docsTreeAlias": "server/current"`, flagged in its note as the only
+deliberately mutable fields in `concepts/`. On the next major release those two
+fields move to the successor's file; nothing else in the registry moves at all.
+That is the whole point of refusing to mint `version:server-current`: the cost
+of a release becomes one edit instead of a re-pointing pass over every id that
+mentioned it.
+
 ### Headline finding: an extraction agent fabricated its evidence, and reviewer judgement did not catch it
 
 `prepare.json` came back confident, internally consistent, and better argued
@@ -1574,6 +1629,51 @@ long-lived tree. Grouped:
   script is a control. This is the single most transferable finding of the
   project so far, and it is not specific to hallucination - most of the 322 are
   ordinary paraphrase drift.
+- **And a control that runs after the fact is still the wrong end of the
+  pipeline.** `verify-evidence.py` finds a fabricated quote once it is committed
+  to disk, in a file whose surrounding record may be entirely sound. The
+  invariant now also runs *before* the write, as
+  `hooks/gate-evidence.py` - a `PreToolUse` hook on `Write` registered in
+  `.claude/settings.json`, which parses any record destined for `extractions/`
+  and refuses it unless every quote is findable. Three design points are the
+  reason it's worth recording rather than just doing:
+  1. **It fires inside subagents.** This is the whole argument for a hook over a
+     stricter brief. The fabrication came from one of ten parallel extraction
+     agents; what reached a reviewer was its own ~300-word self-report. A
+     `PreToolUse` hook is the only control in this pipeline that sits inside that
+     agent's loop instead of downstream of its summary - and the agent's *own*
+     summary is the least reliable available account of what it did, since a
+     confidently fabricated quote yields a confidently accurate-sounding report.
+  2. **It fails closed.** Exit status 2 blocks; the richer JSON
+     `permissionDecision: "deny"` output was deliberately not used, because if a
+     field name is wrong the hook silently *allows*. A gate that fails open on
+     its own bugs is worse than no gate, since it also removes the suspicion that
+     would have made someone check. Any internal exception exits 2 as well.
+  3. **It imports the audit's own checking function** rather than
+     reimplementing it. Two implementations of "is this quote on the page" would
+     eventually disagree about whitespace or smart quotes, and then records would
+     pass at write time and fail the audit - which teaches you to distrust the
+     audit, the one artefact whose credibility the whole exercise now rests on.
+  The gate also carries a second, deliberately narrow check, added because of the
+  `n1ql:scan-consistency` finding below: a record may not claim a concept is
+  **"promoted"** unless a registry file exists. Note what it does *not* check -
+  every `reused` claim - because reusing an id that lives only at the extraction
+  layer is correct and expected (`sdk:durability` has done so for seven rounds).
+  The offence isn't reuse, it's asserting registry state that isn't there, and a
+  gate that confused the two would block correct work daily and get switched off.
+- **The gate's own cost, stated rather than discovered later: it converts
+  fabrication into omission.** An agent blocked from inventing a quote can
+  satisfy the gate by deleting the relation, and an omitted relation leaves no
+  trace anywhere - no exit status, no diff, nothing for a later audit to find.
+  That is a strictly better failure than a false triple, but it is not nothing,
+  and it moves the burden onto reconciliation: the `linked-data-reconcile` skill
+  now asks for a relations-per-page comparison against already-extracted twins,
+  looking specifically for a *long* page with a thin record. Round 10's own
+  distribution is the baseline (38 records, 509 relations, mean 13.4; the three
+  sparsest are 30-line single-example REST pages, sparse for real reasons).
+  Worth being honest that this countermeasure is weaker than the gate it
+  supports - it's a heuristic read by a human, not a check - which is why it's
+  recorded here as a known limit rather than as a solution.
 - **Priming an extraction wave has a measurable cost.** The brief named version
   gating "THE PRIORITY FOR THIS WAVE" and listed `availableSince` first among
   the predicates to look for. The one fabricated triple in 509 was an
@@ -1778,12 +1878,26 @@ once, so worth treating as durable rather than one-off:
   species: a bug in this round's own recurrence script (a regex stripping
   `.jsonld` but not `.json`) made every promoted predicate look unpromoted, and
   was caught only because the output was implausible. Vigilance is not a
-  control. The two candidate controls both exist and neither is written yet:
-  script-verify that every concept and predicate named in a round's
-  `reconciliation.md` section resolves to a real file, and script-verify the
-  extraction schema itself. The first of those is now `poc/verify-promotions.py`,
-  written at the end of round 10 - and it immediately found five terms this
-  round's own prose leaned on and had not filed, which is the whole argument for
-  it in one data point. The second is still unwritten: nothing checks that a
-  subject slot holds a concept id rather than a page id, which is how round 8's
-  `cascadesDeletionTo` violation survived its own reconciliation.
+  control. Round 10 named two candidate controls and wrote one:
+  `poc/verify-promotions.py` checks that every concept and predicate named in a
+  round's `reconciliation.md` section resolves to a real file. It found five
+  terms this round's own prose leaned on and had not filed - and then found three
+  more when re-run after the prose was finished, which is a stronger argument for
+  it than the first five were.
+
+  The second is still unwritten: **nothing validates the extraction schema
+  structurally.** Nothing checks that a subject slot holds a concept id rather
+  than a page id, which is how round 8's `cascadesDeletionTo` violation survived
+  its own reconciliation, and it is the obvious next thing to add to
+  `hooks/gate-evidence.py` - the hook already parses every record at write time,
+  so the structural check costs nothing extra to run and would have caught round
+  8's violation at the moment it was introduced rather than two rounds later.
+
+  Three controls now exist where nine rounds had none: the write-time gate
+  (`hooks/gate-evidence.py`), the corpus audit (`verify-evidence.py`), and the
+  promotion report (`verify-promotions.py`). Worth stating plainly what that does
+  and doesn't buy, because a shelf of scripts invites more confidence than it
+  earns: all three check *form*, none checks *reading*. Quotable-but-mis-objected
+  records pass all three. The axis conflation that kept 93 index concepts
+  unpromoted was found by a person looking at a list and thinking it looked
+  wrong, and no script proposed here would have found it.

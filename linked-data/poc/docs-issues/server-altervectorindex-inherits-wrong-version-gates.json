@@ -4,8 +4,8 @@
   "issueType": "factually-incorrect-content",
   "description": "altervectorindex.md is a near-verbatim clone of alterindex.md and has inherited all three of that page's version gates unchanged, including 'Altering indexes is only supported in Couchbase Server 5.5 and later' and a 6.5 gate on replica management. ALTER VECTOR INDEX cannot predate Couchbase Server 8.0 - createindex.md's own text introduces vector indexes at 8.0 - so this page states availability versions that must be wrong. Any pipeline harvesting availableSince from page text alone would record ALTER VECTOR INDEX as available since 5.5. Diffing the two 8.0 pages shows only the statement name, the EBNF production, the syntax diagram and the examples differ; every prose paragraph is identical.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/altervectorindex",
-    "server/current/n1ql/n1ql-language-reference/alterindex"
+    "server/8.0/n1ql/n1ql-language-reference/altervectorindex",
+    "server/8.0/n1ql/n1ql-language-reference/alterindex"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

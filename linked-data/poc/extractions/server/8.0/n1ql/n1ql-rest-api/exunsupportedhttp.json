@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/exunsupportedhttp",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/exunsupportedhttp.md",
+  "concepts": [
+    { "candidate_id": "n1ql:unsupported-http-method-response", "label": "Unsupported HTTP method response - bare HTTP 405 Method Not Allowed, with no query response envelope", "reused_or_minted": "minted - the only outcome in the directory that is not reported through the query response envelope, which is the whole point of the page. No existing id" },
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API (POST/GET /query/service)", "reused_or_minted": "reused - minted in this batch's intro.json" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "doesNotSatisfy",
+      "object": "n1ql:unsupported-http-method-response",
+      "reused_or_minted_predicate": "reused - doesNotSatisfy is the registry's existing predicate for \"this surface will not fulfil that\"; the page demonstrates PUT being refused. Direction: the API does not satisfy a PUT request, and answers with the 405 response modelled here",
+      "evidence": "curl -v http://localhost:8093/query/service -X PUT \\"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "This is the only page in the directory whose response is not the query response envelope. Every other example returns requestID + status + metrics (+ errors); this one returns a single line, \"HTTP/1.1 405 Method Not Allowed\", with no body at all - no requestID, no error code, no metrics. That means a method-level rejection is not correlatable in system:completed_requests and produces nothing for the error-code reference to describe, because it is refused before a request is admitted. The page states none of this; it is a two-line page with no prose beyond \"For a REST method type that is not supported\". It also does not enumerate which methods ARE supported on /query/service - intro.md does (GET and POST only) - nor mention whether an Allow header is returned, which is what a client would use. Recorded here rather than padded out: the observation belongs to the directory-wide error model on intro.json."
+  },
+  "version_finding": "None. No version or edition marker, and no statement of when method restrictions changed. Note that intro.md documents DELETE on several /admin/* endpoints and POST on /admin/settings, so the 405 here is specific to /query/service rather than a property of the Query Service's ports."
+}

@@ -46,6 +46,46 @@ for fp in files:
 # predicates/objects with len(files) >= 2 are promotion candidates
 ```
 
+### Two things the recurrence count won't tell you
+
+Run these alongside the aggregation, before applying the promotion rule.
+
+**a. Run the whole corpus, not just this round's scope.** Round 10 recomputed
+recurrence over all of `extractions/` for the first time and found
+`n1ql:query-context` sitting unpromoted at **recurrence 22**, plus `create-index`
+at 20 and `tool:cbq-shell` at 18 - eight rounds of promotion debt invisible to
+any round that only counted its own files. `<scope>` in the template above should
+be empty by default. And when you write the counting script, *test the helpers*:
+round 10's first run reported every already-promoted predicate as unpromoted
+because of a one-character regex bug (`\.jsonld?` where `\.json(ld)?` was meant),
+caught only because the output was implausible.
+
+**b. Check for thinning, because the write-time gate creates a new failure
+mode.** `hooks/gate-evidence.py` blocks a record whose evidence isn't quotable.
+An agent that can't find a real quote may drop the relation rather than hunt for
+one, so the gate converts *fabrication* into *omission* - which no exit status
+will ever show you, because an omitted relation leaves no trace. The only place
+to catch it is here:
+
+```python
+# Relations per page, for the new batch against comparable already-extracted pages.
+# A wave-1 statement page averaged ~13; a page returning 2 or 3 wants a look.
+for fp in files:
+    d = json.load(open(fp))
+    print(len(d.get("relations", [])), fp)
+```
+
+Compare like with like - a reference page against a reference page, not against a
+navigation stub, which legitimately has almost nothing. What you're looking for
+is a page whose twin in another tree is dense and whose own record is thin. Treat
+that as a finding to check by reading the page, not as a number to accept.
+
+Round 10's own distribution is the baseline to compare against: 38 records, 509
+relations, mean 13.4. Its three sparsest records hold 1, 2 and 2 relations
+(`exunsupportedhttp`, `exauthhttp`, `exserviceerror`) - all single-example REST
+API pages of 30-odd lines, so sparse for real reasons. That's the shape to expect:
+a *long* page with a thin record is the signal, not a thin record as such.
+
 ## 2. Apply the promotion rule
 
 **A predicate or concept is a promotion candidate once it recurs across two or
@@ -158,6 +198,32 @@ this directory" (these go stale fast - they should always describe the
 section (append the new round's findings, keep prior rounds'), and "Suggested
 next steps" (remove what's now done, add what the round surfaced as the next
 natural thing to try).
+
+## 8. Run the checks before committing
+
+```bash
+python3 linked-data/poc/verify-evidence.py     # gate: exits non-zero on any problem
+python3 linked-data/poc/verify-promotions.py   # report: always exits 0, always read it
+```
+
+`verify-promotions.py` lists every `ns:kebab-id` and `camelCaseTerm` named in
+`reconciliation.md` that has no registry file. It cannot tell "claimed as
+promoted" from "named while being rejected, folded, deferred or watchlisted" -
+the prose says which, the string doesn't - so **read the list, don't diff it**.
+
+Run it *after* writing the round's section, not before, and then run it again if
+you edit that section. Round 10's first run found 5 real gaps; re-running it once
+the writeup was finished found 3 more, including a concept at recurrence 6 whose
+own extraction record claimed it was "already promoted". This is the fourth-plus
+recurrence of "narrated as promoted, never actually filed" (rounds 2, 3, 5, 8),
+which is why the check exists at all rather than being left to care.
+
+Expect known-bad numbers from `verify-evidence.py` over the whole corpus: 322
+unquotable relations and 130 with no evidence, nearly all in rounds 1-9, written
+before the write-time gate existed. Scope it to the new batch to get a clean
+signal, and don't "fix" a historical count by editing old records - round 3's
+`sync-gateway` and `couchbase-lite` batches need *re-extraction*, which is a
+tracked next step, not a reconciliation task.
 
 ## Principles that govern the judgment calls throughout
 

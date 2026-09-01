@@ -1,0 +1,129 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-language-reference/set-transaction",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/set-transaction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:isolation-level-read-committed", "label": "ISOLATION LEVEL READ COMMITTED transaction setting", "reused_or_minted": "reused - minted in the Capella twin record cloud/n1ql/n1ql-language-reference/set-transaction.json" },
+    { "candidate_id": "n1ql:txid", "label": "txid query parameter (transaction ID)", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:multi-statement-request", "label": "Multi-statement request", "reused_or_minted": "reused - minted in this batch's transactions.json; Server-only" },
+    { "candidate_id": "n1ql:automatic-transaction-id", "label": "Automatic transaction ID handling", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "api:query-rest-api", "label": "Query REST API", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused" },
+    { "candidate_id": "server:distributed-acid-transactions", "label": "Distributed ACID Transactions (server-side feature concept page)", "reused_or_minted": "reused - placeholder minted in java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json" },
+    { "candidate_id": "version:cbq-2-0", "label": "cbq shell 2.0", "reused_or_minted": "reused - minted in this batch's transactions.json" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - minted in this batch's transactions.json; evidenced here only by the docs branch in frontmatter" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "documentedForVersion",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "minted - see this batch's transactions.json for why this is kept separate from availableSince",
+      "evidence": "editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/set-transaction.adoc"
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "requiresSetting",
+      "object": "n1ql:isolation-level-read-committed",
+      "reused_or_minted_predicate": "reused - identical relation and near-identical evidence to the Capella twin record, giving this edge recurrence 2 across products",
+      "evidence": "Currently, the only available transaction setting is `ISOLATION LEVEL READ COMMITTED`. This setting is enabled by default. The `SET TRANSACTION` statement is therefore optional and may be omitted."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - registry predicate; the statement is scope-restricted to inside a transaction, which in the explicit form means BEGIN TRANSACTION must have run first",
+      "evidence": "You may only use this statement within a transaction."
+    },
+    {
+      "subject": "n1ql:begin-transaction",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - restricted sense: the page states the settings may be specified on either statement, i.e. the two are interchangeable *for the purpose of specifying settings* only. Flagged rather than asserted broadly: they are NOT interchangeable in general (one starts a transaction, one does not), so reconciliation may prefer a narrower predicate such as sharesOptionSetWith.",
+      "evidence": "You may also optionally specify settings when you start the transaction using the `BEGIN TRANSACTION` command."
+    },
+    {
+      "subject": "api:query-rest-api",
+      "predicate": "requiresSetting",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "reused - registry predicate. Server-only: this paragraph is absent from the Capella twin page.",
+      "evidence": "If you are using the Query REST API, you must set the [txid](../n1ql-manage/query-settings.md#txid) query parameter to specify the transaction ID."
+    },
+    {
+      "subject": "n1ql:multi-statement-request",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json - third occurrence. Server-only.",
+      "evidence": "If you are using the Query Workbench, you don't need to specify the transaction ID, as long as the statement is part of a multi-statement request. When you start a transaction within a multi-statement request, all statements within the request are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:cbq",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted in this batch's transactions.json",
+      "evidence": "Similarly, if you are using the cbq shell, you don't need to specify the transaction ID. Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction."
+    },
+    {
+      "subject": "n1ql:automatic-transaction-id",
+      "predicate": "availableSince",
+      "object": "version:cbq-2-0",
+      "reused_or_minted_predicate": "reused - registry predicate",
+      "evidence": "You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "server:distributed-acid-transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The `SET TRANSACTION` statement enables you to specify settings for an ACID transaction. For more information, see [SQL++ Support for Couchbase Transactions](transactions.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:set-transaction",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / deprecatedIn / requiresEdition",
+    "finding": "Nothing. No server version, no edition, no deprecation. The statement is documented as optional and its single setting as default-on, which makes it the most likely candidate in this family for a future deprecation notice - and there is no vocabulary in the registry that would let a future 'SET TRANSACTION is deprecated' claim be recorded against a specific version, which is precisely the gap this wave was chosen to expose. Note also that 'Currently, the only available transaction setting is ISOLATION LEVEL READ COMMITTED' is a temporal claim with no version anchor, identical in wording on the Capella page and on the Server 8.0 page - so the reader cannot tell whether the set of isolation levels has changed between the two."
+  },
+  "cross_product_finding": "The Server page adds three paragraphs the Capella twin does not have (Query REST API txid requirement, Query Workbench multi-statement-request inference, cbq shell inference plus the cbq 2.0 footnote). The Capella twin has only the bare scope restriction 'You may only use this statement within a transaction.' plus the settings note. Also: the Server page states 'You may also optionally specify settings when you start the transaction using the `BEGIN TRANSACTION` command' - this sentence is present on both, but only the Server page's BEGIN TRANSACTION page carries the matching ISOLATION LEVEL clause in its EBNF, so on Server the two pages corroborate each other. Uniform pattern across the whole batch: Server pages are the Capella pages plus a per-access-surface txid paragraph block; no SQL++ semantics differ between the products anywhere in these six pages.",
+  "version_finding": "Same as the rest of the batch: the only version claim is availableSince version:cbq-2-0 for automatic transaction ID handling, identical on both products. This page adds a second instance of the unanchored-temporal-claim pattern ('Currently, the only available transaction setting is...'), which appears verbatim on the Capella page too. Reconciliation should consider whether such 'Currently...' statements deserve an explicit marker (they are the docs' de-facto substitute for version gating in this tree) - three of the six pages in this batch make a behaviour claim whose truth is version-dependent without naming any version."
+}

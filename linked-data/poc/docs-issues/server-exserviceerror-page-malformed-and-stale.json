@@ -4,7 +4,7 @@
   "issueType": "malformed-content",
   "description": "Three independent defects visible in the single response block: (1) broken escaping from the AsciiDoc-to-Markdown conversion - the block opens with '$lt; HTTP/1.1 503 Service Unavailable', a mangled &lt;, and ends with a stray shell prompt '$'; (2) the error code was never filled in, showing the literal placeholder '\"code\": <int>' where every other error example in the directory gives a real code; (3) the block is hand-indented inside a `console` fence, unlike the clean `json` fences used by every sibling example page.",
   "about": [
-    "server/current/n1ql/n1ql-rest-api/exserviceerror"
+    "server/8.0/n1ql/n1ql-rest-api/exserviceerror"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

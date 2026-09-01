@@ -5,7 +5,7 @@
   "description": "Programmatic comparison of both error-code tables gives 566 codes on Capella and 565 on Server, with exactly one code present only on Capella: 2505, 'Workload reporting is not supported in Community Edition. It is an enterprise level feature.' This is backwards. Capella has no Community Edition, so the row is meaningless there; Server is the product that actually has the CE/EE split and is the page where a reader could hit the error.",
   "about": [
     "cloud/n1ql/n1ql-language-reference/n1ql-error-codes",
-    "server/current/n1ql/n1ql-language-reference/n1ql-error-codes"
+    "server/8.0/n1ql/n1ql-language-reference/n1ql-error-codes"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

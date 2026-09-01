@@ -4,7 +4,7 @@
   "issueType": "missing-version-annotation",
   "description": "The Server 8.0 metafun.md has lost three of the four availability badges its Capella twin carries: Capella heads EVALUATE() with 'Couchbase Server 8.0', HASHBYTES() with 'Couchbase Server 8.0' and FINDERR() with 'Couchbase Server 7.6.5'; the Server page retains a badge only on EXTRACTDDL(). All four functions appear on both pages, so three availability facts are recoverable only from the Capella page. Keeping EXTRACTDDL's badge while dropping EVALUATE's and HASHBYTES's - all three being 8.0 features - reads as an editing oversight rather than policy, because the treatment within one page is inconsistent.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/metafun",
+    "server/8.0/n1ql/n1ql-language-reference/metafun",
     "cloud/n1ql/n1ql-language-reference/metafun"
   ],
   "foundDuring": "poc-server-8.0-wave-1",

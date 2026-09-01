@@ -4,8 +4,8 @@
   "issueType": "stale-content",
   "description": "The page describes the node-level query timeout as 'specified when starting the query engine', a start-up/command-line framing that predates the node-level settings API. In 8.0, node-level Query settings including timeouts are set at runtime via POST /admin/settings (documented in the Query Admin REST API table on intro.md in the same directory) and cluster-wide via POST /settings/querySettings. The page describes a configuration mechanism the current documentation set no longer presents as primary.",
   "about": [
-    "server/current/n1ql/n1ql-rest-api/extimeout",
-    "server/current/n1ql/n1ql-rest-api/intro"
+    "server/8.0/n1ql/n1ql-rest-api/extimeout",
+    "server/8.0/n1ql/n1ql-rest-api/intro"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

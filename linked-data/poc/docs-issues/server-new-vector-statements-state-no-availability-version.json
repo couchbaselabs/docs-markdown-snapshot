@@ -4,10 +4,10 @@
   "issueType": "missing-version-annotation",
   "description": "The three statements introduced wholesale at 8.0 - CREATE VECTOR INDEX, ALTER VECTOR INDEX, DROP VECTOR INDEX - carry no version marker at all, while the *capability added to an existing statement* (Composite Vector indexes via CREATE INDEX) does carry one: 'In Couchbase Server 8.0 and later'. The asymmetry is systematic rather than accidental: an existing statement needs an 'and later' qualifier to mark what changed, whereas a brand-new statement's page has nothing to contrast with, so it is left unmarked. The consequence for readers is that the newest features are the hardest to date.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/createvectorindex",
-    "server/current/n1ql/n1ql-language-reference/altervectorindex",
-    "server/current/n1ql/n1ql-language-reference/dropvectorindex",
-    "server/current/n1ql/n1ql-language-reference/createindex"
+    "server/8.0/n1ql/n1ql-language-reference/createvectorindex",
+    "server/8.0/n1ql/n1ql-language-reference/altervectorindex",
+    "server/8.0/n1ql/n1ql-language-reference/dropvectorindex",
+    "server/8.0/n1ql/n1ql-language-reference/createindex"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

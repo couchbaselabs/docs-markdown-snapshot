@@ -1,11 +1,13 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/version/server-8-0",
   "label": "Couchbase Server 8.0",
-  "type": "the current Server release, whose documentation tree is server/current",
+  "type": "a Couchbase Server release",
   "promoted": true,
   "recurrence": 19,
   "aliases": [
     "version:server-8.0"
   ],
-  "note": "Folds version:server-8.0. The dash-versus-dot inconsistency is corpus-wide: 31 distinct version ids reduce to about 20 real versions, and the canonical form set in round 1 (version:server-7-0, version:server-6-5) is dash-separated. Filed to the id-normalization backlog with a count this round rather than left as an impression."
+  "isCurrentRelease": true,
+  "docsTreeAlias": "server/current",
+  "note": "Folds version:server-8.0. The dash-versus-dot inconsistency is corpus-wide: 31 distinct version ids reduce to about 20 real versions, and the canonical form set in round 1 (version:server-7-0, version:server-6-5) is dash-separated. Filed to the id-normalization backlog with a count this round rather than left as an impression. The two extra fields here are the ONLY place in the registry where the docs' 'current' alias is asserted, by ruling: 'current' is not a version and gets no concept of its own, because a term whose referent changes on every major release cannot be a stable node in a registry whose whole value is stable ids. What a consumer actually needs is the resolution, so it lives here as a property of the release that currently holds the alias - one assertion to move on the next release, instead of a namespace to re-point. isCurrentRelease and docsTreeAlias are the only deliberately mutable fields in concepts/; both must move to the successor release's file when Server 9.0 ships, and neither should be read as saying anything about when a feature appeared - that is availableSince, and which tree documents it is documentedForVersion."
 }

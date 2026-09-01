@@ -4,7 +4,7 @@
   "issueType": "stale-example-content",
   "description": "Every example output on this 8.0 page is captured from a 7.0.0 build, including \"version\": \"7.0.0-N1QL\" in the response metadata.",
   "about": [
-    "server/current/n1ql/n1ql-manage/monitoring-n1ql-query"
+    "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

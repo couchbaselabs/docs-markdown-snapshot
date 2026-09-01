@@ -4,7 +4,7 @@
   "issueType": "broken-link",
   "description": "The preserve_expiry cross-reference on the Server page is wrong twice over: it links to `../n1ql-manage/query-settings.md#preserve%5Fexpiration}` - the anchor name is preserve_expiration where both the parameter and the Capella page's anchor are preserve_expiry, and there is a stray literal closing brace inside the URL. The Capella twin has the correct anchor. The versioned page is broken and the versionless one is right.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/time-series"
+    "server/8.0/n1ql/n1ql-language-reference/time-series"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

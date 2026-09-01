@@ -4,8 +4,8 @@
   "issueType": "naming-inconsistency",
   "description": "One privilege, two spellings on adjacent reference pages that both send the reader to Authorization for the same thing: join.md writes it as `query_select` in code style, insert.md as _Query Select_ in italic title case. Extraction keyed on the rendered string sees two terms.",
   "about": [
-    "server/current/n1ql/n1ql-language-reference/join",
-    "server/current/n1ql/n1ql-language-reference/insert"
+    "server/8.0/n1ql/n1ql-language-reference/join",
+    "server/8.0/n1ql/n1ql-language-reference/insert"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

@@ -131,7 +131,12 @@ time/cost projections and how they held up against the round-2 run's real number
   `extractions/server/7.2/`**: all 58 of them are 7.2, and they carried
   version-neutral `page_id`s alongside version-bearing source paths, so
   ingesting a second version would have silently overwritten
-  `createindex.json` and `alterindex.json` with no diagnostic.
+  `createindex.json` and `alterindex.json` with no diagnostic. Wave 1's own
+  records live under `extractions/server/8.0/`, **not** `server/current/`:
+  `current` is a pointer, not a version, so it gets no `page_id` and no concept
+  — see the ruling in `reconciliation.md`. The one place the alias is asserted
+  is `concepts/version/server-8-0.json`, which carries `isCurrentRelease` and
+  `docsTreeAlias` as its only deliberately mutable fields.
 
 ## Identifiers
 
@@ -151,11 +156,17 @@ from "still in `extractions/`."
 - **`extractions/`** — one JSON record per source page, mirroring its path under
   `server/<version>/`, `cloud/`, `couchbase-lite/`, `sync-gateway/`, or
   `java-sdk/`. The `server/` records are version-scoped (`server/7.2/`,
-  `server/current/`) because they have to be: the same page exists in every
+  `server/8.0/`) because they have to be: the same page exists in every
   version tree, so a version-neutral layout silently overwrites one round's
-  record with another's. `cloud/` needs no such scoping — Capella has no
-  discrete versions, which is itself one of the vocabulary's load-bearing
-  differences. Each
+  record with another's. They are scoped by **release number, never by the
+  docs' `current` alias** — `current`'s referent changes on every major
+  release, and an id that silently starts denoting something else is worse than
+  no id. `cloud/` needs no such scoping — Capella has no discrete versions,
+  which is itself one of the vocabulary's load-bearing differences.
+  One consequence to expect when reading a `server/8.0/` record: its `page_id`
+  says `server/8.0/…` while its `source_path` says `server/current/…`. That is
+  correct. `page_id` is an ontology identifier and must be stable;
+  `source_path` is a filesystem path and must keep resolving. Each
   record is the pass-1 output: candidate concepts, candidate relations, an
   `evidence` quote for every relation, and whether each term was reused from the
   registry or freshly minted (with a reason). Records also carry `notable_absence`,
@@ -294,11 +305,27 @@ from "still in `extractions/`."
   `evidence` string against the page it claims (or against `evidence_source`,
   for the legitimately cross-page cases), normalising whitespace and smart
   quotes but deliberately *not* wording. Run it over a wave before committing:
-  `python3 linked-data/poc/verify-evidence.py extractions/server/current`.
+  `python3 linked-data/poc/verify-evidence.py linked-data/poc/extractions/server/8.0`.
   It exits non-zero on any problem. Note what it does *not* prove: that the
   sentence is on the page, not that the triple built from it is a fair reading —
   round 10 found "quotable but mis-objected" records that pass this check and
   are still wrong. A green check is not a green record.
+- **`hooks/gate-evidence.py`** — the same check moved *earlier*: a `PreToolUse`
+  hook (registered in `../../.claude/settings.json` on `Write|Edit|MultiEdit`)
+  that refuses to write any file under `extractions/` whose evidence isn't
+  quotable. It imports `verify-evidence.py` rather than reimplementing it, so
+  the gate and the audit can't drift apart. Two things make it worth having on
+  top of the audit: it fires **inside subagents** — round 10's fabricated record
+  came from one of ten parallel extraction agents whose reasoning nobody read —
+  and it fails **closed**, exiting 2 on its own internal errors rather than
+  waving the write through. It also refuses a record claiming a concept is
+  "promoted" when no registry file exists, which is deliberately narrower than
+  checking every `reused` claim: reusing an extraction-layer id is correct and
+  expected, asserting registry state that isn't there is not.
+  Known cost, recorded rather than glossed: the gate converts fabrication into
+  *omission*. A blocked agent may drop the relation instead of hunting for a
+  real quote, and no exit status shows that — hence the relations-per-page
+  thinning check now in the `linked-data-reconcile` skill.
 - **`verify-promotions.py`** — a **report**, not a gate (it always exits 0).
   Scans `reconciliation.md` for `ns:kebab-id` and `camelCaseTerm` shapes and
   lists those with no registry file, closing the "narrated as promoted, never
@@ -706,12 +733,14 @@ document.
   Read `server/current/learn/services-and-indexes/` first — that directory is
   the docs' own attempt at the taxonomy, and inventing a different one here
   would be a fact, not an extraction.
-- **Write the second control: an extraction-schema validator.** Round 10 named
-  two missing controls; `verify-promotions.py` closed one. The other is
-  structural validation of `extractions/*.json` — starting with "the subject
+- **Add structural schema validation to `hooks/gate-evidence.py`.** Round 10
+  named two missing controls and wrote one (`verify-promotions.py`). The other
+  is structural validation of extraction records — starting with "the subject
   slot must hold a concept id, not a page id," a violation round 8 introduced
-  (`cascadesDeletionTo`, three occurrences) that survived its own
-  reconciliation pass undetected.
+  (`cascadesDeletionTo`, three occurrences) that survived its own reconciliation
+  pass undetected. The hook already parses every record at write time, so this
+  costs nothing extra to run and would catch such a violation at the moment
+  it's introduced rather than two rounds later.
 - Get a subject-matter expert to work through `docs-issues/` (55 entries) —
   most valuably the five-way "role" collision, the Sync Gateway/Capella
   access-control questions, round 5's `merge`/`nest` privilege-naming

@@ -1,0 +1,337 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-language-reference/transactions",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/transactions.md",
+  "concepts": [
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Support for Couchbase Transactions (concept page)", "reused_or_minted": "reused - exact id used by the Capella twin record cloud/n1ql/n1ql-language-reference/transactions.json; this Server page is the authoritative version of the same concept page" },
+    { "candidate_id": "n1ql:begin-transaction", "label": "BEGIN TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:set-transaction", "label": "SET TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:savepoint", "label": "SAVEPOINT statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:rollback-transaction", "label": "ROLLBACK TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:commit-transaction", "label": "COMMIT TRANSACTION statement", "reused_or_minted": "reused - matches the Capella record for the same statement" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:merge", "label": "MERGE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:txid", "label": "txid request-level parameter", "reused_or_minted": "reused - minted in the Capella twin record" },
+    { "candidate_id": "n1ql:tximplicit", "label": "tximplicit request-level parameter (implicit single-statement transaction)", "reused_or_minted": "reused - minted in cloud/n1ql/n1ql-language-reference/begin-transaction.json" },
+    { "candidate_id": "n1ql:txstmtnum", "label": "txstmtnum request-level parameter", "reused_or_minted": "reused - minted in the Capella twin record" },
+    { "candidate_id": "n1ql:kvtimeout", "label": "kvtimeout request-level parameter", "reused_or_minted": "reused - minted in the Capella twin record" },
+    { "candidate_id": "n1ql:durability-level", "label": "durability_level request-level parameter", "reused_or_minted": "reused - minted in cloud/n1ql/n1ql-language-reference/commit-transaction.json" },
+    { "candidate_id": "n1ql:txtimeout", "label": "txtimeout parameter/setting (transaction timeout)", "reused_or_minted": "reused - minted in the Capella twin record, where it exists only as a request-level parameter; on Server the same name also exists as a node-level setting" },
+    { "candidate_id": "n1ql:atrcollection", "label": "atrcollection parameter/setting (active transaction record location)", "reused_or_minted": "reused - minted in the Capella twin record as request-level only; Server adds a node-level setting of the same name" },
+    { "candidate_id": "n1ql:scan-consistency", "label": "scan_consistency request-level parameter", "reused_or_minted": "reused - minted in the Capella twin record" },
+    { "candidate_id": "n1ql:transactional-scan-consistency", "label": "Transactional Scan Consistency (scan consistency semantics specific to transactions)", "reused_or_minted": "minted - the page links it as a distinct subsection of query-settings, separate from the generic scan_consistency parameter concept" },
+    { "candidate_id": "n1ql:query-tx-timeout", "label": "queryTxTimeout cluster-level setting (transaction timeout)", "reused_or_minted": "minted - Server-only cluster-level setting absent from the Capella twin page; deliberately a separate id from n1ql:txtimeout because the docs give it a different literal name at a different configuration scope" },
+    { "candidate_id": "n1ql:cleanupclientattempts", "label": "cleanupclientattempts node-level setting", "reused_or_minted": "minted - Server-only setting, no counterpart on the Capella twin page" },
+    { "candidate_id": "n1ql:query-cleanup-client-attempts", "label": "queryCleanupClientAttempts cluster-level setting", "reused_or_minted": "minted - Server-only cluster-level scope variant of cleanupclientattempts" },
+    { "candidate_id": "n1ql:cleanuplostattempts", "label": "cleanuplostattempts node-level setting", "reused_or_minted": "minted - Server-only setting, no counterpart on the Capella twin page" },
+    { "candidate_id": "n1ql:query-cleanup-lost-attempts", "label": "queryCleanupLostAttempts cluster-level setting", "reused_or_minted": "minted - Server-only cluster-level scope variant of cleanuplostattempts" },
+    { "candidate_id": "n1ql:cleanupwindow", "label": "cleanupwindow node-level setting", "reused_or_minted": "minted - Server-only setting, no counterpart on the Capella twin page" },
+    { "candidate_id": "n1ql:query-cleanup-window", "label": "queryCleanupWindow cluster-level setting", "reused_or_minted": "minted - Server-only cluster-level scope variant of cleanupwindow" },
+    { "candidate_id": "n1ql:numatrs", "label": "numatrs node-level setting (total number of active transaction records)", "reused_or_minted": "minted - Server-only setting, no counterpart on the Capella twin page" },
+    { "candidate_id": "n1ql:query-num-atrs", "label": "queryNumAtrs cluster-level setting", "reused_or_minted": "minted - Server-only cluster-level scope variant of numatrs" },
+    { "candidate_id": "n1ql:active-transaction-record", "label": "Active transaction record (ATR)", "reused_or_minted": "minted - the object that atrcollection, numatrs and cleanupwindow all configure; named repeatedly in the settings table but never given its own concept in any prior record" },
+    { "candidate_id": "setting-scope:request-level", "label": "Request-level parameter scope", "reused_or_minted": "minted - the settings table explicitly labels each entry request-level / node-level / cluster-level; no existing concept expresses configuration scope" },
+    { "candidate_id": "setting-scope:node-level", "label": "Node-level setting scope", "reused_or_minted": "minted - see setting-scope:request-level" },
+    { "candidate_id": "setting-scope:cluster-level", "label": "Cluster-level setting scope", "reused_or_minted": "minted - see setting-scope:request-level" },
+    { "candidate_id": "n1ql:cbq", "label": "cbq shell", "reused_or_minted": "reused - id used 7 times across existing extraction records including the Capella transaction twins (note: a colliding id tool:cbq-shell also exists in 4 records - see cross_component_finding)" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench (Couchbase Server web console query editor)", "reused_or_minted": "minted - no existing id; namespaced tool: to match tool:cbq-shell/tool:cbimport. Deliberately NOT merged with capella:query-tab, which is a different surface with the opposite transaction support (see cross_product_finding)" },
+    { "candidate_id": "tool:query-workbench-run-as-tx", "label": "Query Workbench 'Run as TX' control (execute a single statement as a transaction)", "reused_or_minted": "minted - a Server-only UI affordance that is the Workbench surface for tximplicit; nothing equivalent exists on any Capella page" },
+    { "candidate_id": "api:query-rest-api", "label": "Query REST API", "reused_or_minted": "minted - namespaced api: to match api:management-api; the Capella twin page does not offer this surface for transactions at all" },
+    { "candidate_id": "n1ql:multi-statement-request", "label": "Multi-statement request (several semicolon-terminated statements submitted as one request)", "reused_or_minted": "minted - Server-only concept, the unit within which the Query Workbench infers transaction membership; absent from every Capella transaction page" },
+    { "candidate_id": "n1ql:automatic-transaction-id", "label": "Automatic transaction ID handling (txid inferred rather than supplied by the client)", "reused_or_minted": "minted - needed as the subject of the only genuine version gate on the page (cbq shell 2.0+); the Capella records mentioned this footnote in prose but never gave it a concept" },
+    { "candidate_id": "n1ql:query-node-affinity", "label": "Single-Query-node execution constraint for a transaction", "reused_or_minted": "minted - the constraint that all statements of one transaction run on one Query node; this is the stated cause of the Capella access-surface exclusion, so it needs its own node in the graph" },
+    { "candidate_id": "n1ql:system-transactions", "label": "system:transactions catalog (monitoring of active transactions)", "reused_or_minted": "minted - no existing id for this system keyspace" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - id already used in 8 extraction records" },
+    { "candidate_id": "rbac-role-category:administrative", "label": "Administrative RBAC role category (Couchbase Server)", "reused_or_minted": "minted - the page names role *categories*, not individual roles; rbac-role:role is a generic placeholder and role:full-administrator etc. are individual roles, neither of which expresses a category" },
+    { "candidate_id": "rbac-role-category:data", "label": "Data RBAC role category (Couchbase Server)", "reused_or_minted": "minted - see rbac-role-category:administrative" },
+    { "candidate_id": "rbac-role-category:query-and-index", "label": "Query & Index RBAC role category (Couchbase Server)", "reused_or_minted": "minted - see rbac-role-category:administrative" },
+    { "candidate_id": "sdk:transaction-query-mode", "label": "Query Mode (permission-scope switch once a transaction runs a query statement)", "reused_or_minted": "reused - promoted concept from round 4, but its label/namespace is now demonstrably wrong: see version_finding and cross_product_finding. The identical paragraph appears on this Server SQL++ reference page, so the behaviour is not Java-SDK-specific" },
+    { "candidate_id": "server:distributed-acid-transactions", "label": "Distributed ACID Transactions (server-side feature concept page, learn/data/transactions.md)", "reused_or_minted": "reused - placeholder minted in java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json for exactly this page; every one of the six Server SQL++ transaction pages links to it, which finally gives it real recurrence" },
+    { "candidate_id": "version:cbq-2-0", "label": "cbq shell 2.0", "reused_or_minted": "minted - matches the version:cbl-3-3-0 / version:sdk-3-3-0 style; the only genuine version gate stated anywhere in this six-page batch" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - per brief, matching version:server-7-0 style. NOTE: on this page it is evidenced only by the docs branch in frontmatter, not by any body-text version claim" },
+    { "candidate_id": "n1ql:travel-sample-bucket", "label": "travel-sample sample bucket", "reused_or_minted": "minted - prerequisite for the worked example; no existing id found" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "documentedForVersion",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "minted - deliberately distinct from availableSince. This page ships from the 8.0 docs branch but makes no claim that the feature appeared in 8.0; the registry currently has no way to say 'this assertion is sourced from the 8.0 documentation' as opposed to 'this feature arrived in 8.0'. Conflating the two would manufacture false availableSince claims across the whole server/current tree.",
+      "evidence": "editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/transactions.adoc"
+    },
+    {
+      "subject": "n1ql:automatic-transaction-id",
+      "predicate": "availableSince",
+      "object": "version:cbq-2-0",
+      "reused_or_minted_predicate": "reused - registry predicate, exact fit",
+      "evidence": "You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:query-node-affinity",
+      "reused_or_minted_predicate": "minted - no existing predicate expresses a topology/placement constraint on execution. Load-bearing because the Capella twin cites this exact constraint as the reason for its promoted incompatibleWithAccessSurface gate; here on Server it is stated as bare fact with no consequence attached.",
+      "evidence": "All statements within a transaction are sent to the same Query node."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "supportedOnAccessSurface",
+      "object": "tool:query-workbench",
+      "reused_or_minted_predicate": "minted - the positive counterpart of the promoted incompatibleWithAccessSurface. Needed because the Server and Capella pages disagree about surfaces: the registry can currently only record exclusions, so a Server/Capella contrast on the same axis is unrepresentable.",
+      "evidence": "To create a Couchbase transaction using SQL++, you can use any of the tools that you use to run a SQL++ query: the [Query Workbench](../../tools/query-workbench.md), the [cbq shell](../n1ql-intro/cbq.md), or the [Query REST API](../../n1ql-rest-query/index.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "supportedOnAccessSurface",
+      "object": "n1ql:cbq",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "To create a Couchbase transaction using SQL++, you can use any of the tools that you use to run a SQL++ query: the [Query Workbench](../../tools/query-workbench.md), the [cbq shell](../n1ql-intro/cbq.md), or the [Query REST API](../../n1ql-rest-query/index.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "supportedOnAccessSurface",
+      "object": "api:query-rest-api",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "To create a Couchbase transaction using SQL++, you can use any of the tools that you use to run a SQL++ query: the [Query Workbench](../../tools/query-workbench.md), the [cbq shell](../n1ql-intro/cbq.md), or the [Query REST API](../../n1ql-rest-query/index.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "tool:query-workbench",
+      "reused_or_minted_predicate": "reused - registry predicate for 'behaviour varies along this axis'; here the axis is the access surface, and the page devotes a subsection to each surface's differing behaviour",
+      "evidence": "These tools operate in slightly different ways when creating Couchbase transactions. The differences are explained in the sections below."
+    },
+    {
+      "subject": "api:query-rest-api",
+      "predicate": "requiresSetting",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "reused - registry predicate, exact fit",
+      "evidence": "Once you have started the transaction, you must set the `txid` parameter to specify the transaction to which each subsequent statement belongs."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted - the inverse of requiresSetting: a surface that supplies a parameter on the user's behalf so it need not be stated. This shape recurs on all five statement pages in this batch and is the single largest Server-vs-Capella divergence in the batch, so it needs a predicate rather than prose.",
+      "evidence": "In either case, you do not need to specify the `txid` parameter or the `tximplicit` parameter."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:tximplicit",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "In either case, you do not need to specify the `txid` parameter or the `tximplicit` parameter."
+    },
+    {
+      "subject": "n1ql:cbq",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted - see above; note this is the ONE surface behaviour the Capella twin page also documents",
+      "evidence": "Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction. In this case, you do not need to set the `txid` parameter."
+    },
+    {
+      "subject": "tool:query-workbench-run-as-tx",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:tximplicit",
+      "reused_or_minted_predicate": "reused - registry predicate for 'the docs declare these functionally identical'; the Run as TX button and the tximplicit parameter are two surfaces for the same single-statement-transaction behaviour. Widens the predicate's domain from statement pairs to (UI control, parameter), which reconciliation should rule on.",
+      "evidence": "To execute a single statement as a transaction, enter the statement in the query editor and click **Run as TX**."
+    },
+    {
+      "subject": "n1ql:multi-statement-request",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "To execute a transaction containing multiple statements, compose the sequence of statements in the query editor. Terminate each statement with a semicolon. After each statement, press Shift+Enter to start a new line without executing the query. You can then click **Execute** to execute the transaction."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "permitsWithinTransaction",
+      "object": "n1ql:insert",
+      "reused_or_minted_predicate": "minted - the page states a closed allow-list of statements legal inside a transaction. No existing predicate expresses containment/legality of one statement inside another statement's scope (usesEnum, requiresSetting, mustUseInsteadWhen all miss). Applies identically to n1ql:upsert, n1ql:delete, n1ql:update, n1ql:merge, n1ql:select, n1ql:execute-function, n1ql:prepare and n1ql:execute from the same sentence.",
+      "evidence": "Only DML statements are permitted within a transaction: [INSERT](insert.md), [UPSERT](upsert.md), [DELETE](delete.md), [UPDATE](update.md), [MERGE](merge.md), [SELECT](selectintro.md), [EXECUTE FUNCTION](execfunction.md), [PREPARE](prepare.md), or [EXECUTE](execute.md)."
+    },
+    {
+      "subject": "n1ql:execute-function",
+      "predicate": "conditionallyPermittedWithinTransaction",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "minted - a conditional variant of permitsWithinTransaction; the condition is a property of the UDF body, not of the statement, and the registry has no way to attach a proviso to a permission",
+      "evidence": "The `EXECUTE FUNCTION` statement is only permitted in a transaction if the user-defined function does not contain any subqueries other than `SELECT` subqueries."
+    },
+    {
+      "subject": "n1ql:prepare",
+      "predicate": "conditionallyPermittedWithinTransaction",
+      "object": "n1ql:transactions",
+      "reused_or_minted_predicate": "minted - see above; applies equally to n1ql:execute",
+      "evidence": "The `PREPARE` and `EXECUTE` statements are only permitted in a transaction for the DML statements listed above."
+    },
+    {
+      "subject": "n1ql:txid",
+      "predicate": "hasSettingScope",
+      "object": "setting-scope:request-level",
+      "reused_or_minted_predicate": "minted - the settings table labels every entry with a configuration scope (request-level parameter / node-level setting / cluster-level setting). This is the axis on which Server and Capella differ most in this batch, and the registry has no vocabulary for it. Applies identically to n1ql:tximplicit, n1ql:txstmtnum, n1ql:kvtimeout, n1ql:durability-level and n1ql:scan-consistency.",
+      "evidence": "[txid](../n1ql-manage/query-settings.md#txid) request-level parameter"
+    },
+    {
+      "subject": "n1ql:txtimeout",
+      "predicate": "hasSettingScope",
+      "object": "setting-scope:node-level",
+      "reused_or_minted_predicate": "minted - see above. Server exposes txtimeout at THREE scopes in one table row; the Capella twin exposes only the request-level one.",
+      "evidence": "[txtimeout](../n1ql-manage/query-settings.md#txtimeout%5Freq) request-level parameter [txtimeout](../n1ql-manage/query-settings.md#txtimeout-srv) node-level setting [queryTxTimeout](../n1ql-manage/query-settings.md#queryTxTimeout) cluster-level setting"
+    },
+    {
+      "subject": "n1ql:query-tx-timeout",
+      "predicate": "hasSettingScope",
+      "object": "setting-scope:cluster-level",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "[txtimeout](../n1ql-manage/query-settings.md#txtimeout%5Freq) request-level parameter [txtimeout](../n1ql-manage/query-settings.md#txtimeout-srv) node-level setting [queryTxTimeout](../n1ql-manage/query-settings.md#queryTxTimeout) cluster-level setting"
+    },
+    {
+      "subject": "n1ql:query-tx-timeout",
+      "predicate": "hasScopeVariant",
+      "object": "n1ql:txtimeout",
+      "reused_or_minted_predicate": "minted - deliberately NOT isSynonymOf (they are not interchangeable: one is per-request, one cluster-wide) and NOT sharesOptionSetWith (that predicate is about shared enum values, per its promoted definition). Same setting, renamed, at a different configuration scope - the Server settings table asserts the equivalence by giving all three names one shared description cell.",
+      "evidence": "Specify the maximum time to spend on a transaction before timing out."
+    },
+    {
+      "subject": "n1ql:query-cleanup-client-attempts",
+      "predicate": "hasScopeVariant",
+      "object": "n1ql:cleanupclientattempts",
+      "reused_or_minted_predicate": "minted - see above; the same node-level/cluster-level pairing recurs for cleanuplostattempts/queryCleanupLostAttempts, cleanupwindow/queryCleanupWindow and numatrs/queryNumAtrs in the same table",
+      "evidence": "[cleanupclientattempts](../n1ql-manage/query-settings.md#cleanupclientattempts) node-level setting [queryCleanupClientAttempts](../n1ql-manage/query-settings.md#queryCleanupClientAttempts) cluster-level setting [cleanuplostattempts](../n1ql-manage/query-settings.md#cleanuplostattempts) node-level setting [queryCleanupLostAttempts](../n1ql-manage/query-settings.md#queryCleanupLostAttempts) cluster-level setting"
+    },
+    {
+      "subject": "n1ql:query-num-atrs",
+      "predicate": "hasScopeVariant",
+      "object": "n1ql:numatrs",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "[numatrs](../n1ql-manage/query-settings.md#numatrs-srv) node-level setting [queryNumAtrs](../n1ql-manage/query-settings.md#queryNumAtrs) cluster-level setting"
+    },
+    {
+      "subject": "n1ql:atrcollection",
+      "predicate": "configuresLocationOf",
+      "object": "n1ql:active-transaction-record",
+      "reused_or_minted_predicate": "minted - no existing predicate links a setting to the entity it governs; the ATR is configured by three separate settings on this page (atrcollection, numatrs, cleanupwindow) which is worth being able to express",
+      "evidence": "Specify where the active transaction record is stored."
+    },
+    {
+      "subject": "n1ql:query-cleanup-window",
+      "predicate": "configuresLocationOf",
+      "object": "n1ql:active-transaction-record",
+      "reused_or_minted_predicate": "minted - see above (frequency rather than location; reconciliation may want a more general 'configures' predicate)",
+      "evidence": "Specify how frequently active transaction records are checked for cleanup."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:transactional-scan-consistency",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "In addition, use the [scan-consistency](../n1ql-manage/query-settings.md#scan%5Fconsistency) request-level parameter to specify the transactional scan consistency. For more information, see [Transactional Scan Consistency](../n1ql-manage/query-settings.md#transactional-scan-consistency)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "monitoredVia",
+      "object": "n1ql:system-transactions",
+      "reused_or_minted_predicate": "minted - the registry's monitoring vocabulary (monitoring:activity-log, triggersAlert) is Capella-console-shaped and has no predicate for 'observable through this system keyspace'",
+      "evidence": "You can monitor active Couchbase transactions using the `system:transactions` catalog."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "requiresRole",
+      "object": "rbac-role-category:data",
+      "reused_or_minted_predicate": "reused - registry predicate. Note the object is a role CATEGORY, not a named role: the page refuses to name any specific role, which is itself the finding (see notable_absence).",
+      "evidence": "To execute a key-value operation within a transaction, users must have the relevant _Administrative_ or _Data_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "requiresRole",
+      "object": "rbac-role-category:query-and-index",
+      "reused_or_minted_predicate": "reused - see above",
+      "evidence": "Similarly, to run a query statement within a transaction, users must have the relevant _Administrative_ or _Query & Index_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "requiresRole",
+      "object": "rbac-role-category:administrative",
+      "reused_or_minted_predicate": "reused - see above; the Administrative category satisfies either requirement",
+      "evidence": "To execute a key-value operation within a transaction, users must have the relevant _Administrative_ or _Data_ RBAC roles, and permissions on the relevant buckets, scopes and collections."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "triggersPermissionModeChange",
+      "object": "sdk:transaction-query-mode",
+      "reused_or_minted_predicate": "reused - minted in round 4 (java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json) with recurrence 1 and watchlisted. This is its SECOND independent occurrence, in a different product tree, which should clear it for promotion. The evidence paragraph is word-for-word the same on both pages.",
+      "evidence": "When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user's query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user's query permissions. These may or may not be different to the user's data permissions; if they are different, you may get unexpected results."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "server:distributed-acid-transactions",
+      "reused_or_minted_predicate": "reused - structural markdown link; resolves the placeholder minted in round 4 for exactly this target page",
+      "evidence": "A transaction is a group of operations that are either committed to the database together, or are all undone from the database if there's a failure. For an overview of Couchbase transactions, see [Transactions](../../learn/data/transactions.md)."
+    },
+    {
+      "subject": "server:distributed-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "sdk:distributed-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link, asserted from this page's own SDK sentence rather than inferred; the same target page is what round 4's java-sdk record linked to from the SDK side, so the two client surfaces provably meet at one shared server-side concept node",
+      "evidence": "Some Couchbase SDKs provide APIs to support Couchbase transactions. For more information, see [Transactions](../../learn/data/transactions.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:begin-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To begin a transaction, see [BEGIN TRANSACTION](begin-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:set-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To specify transaction settings, see [SET TRANSACTION](set-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:savepoint",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set a savepoint, see [SAVEPOINT](savepoint.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:rollback-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To rollback a transaction, see [ROLLBACK TRANSACTION](rollback-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "seeAlso",
+      "object": "n1ql:commit-transaction",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To commit a transaction, see [COMMIT TRANSACTION](commit-transaction.md)."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:travel-sample-bucket",
+      "reused_or_minted_predicate": "reused - registry predicate, used here for the worked example's data prerequisite",
+      "evidence": "The worked example assumes that the supplied `travel-sample` bucket is installed. For more information, see [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / deprecatedIn / requiresEdition",
+    "finding": "This is the wave's priority target and the page delivers nothing on it. Across the full page there is not one Couchbase Server version number, not one 'since', 'as of', 'deprecated', 'removed in', 'Enterprise Edition' or 'Community Edition' string (verified by grep across all six pages of this batch). SQL++ transactions shipped in Server 7.0 and the whole Query Service transaction settings surface has changed across 7.x, yet the reference pages are entirely version-flat. The only version gate on the page is for a *client tool*: 'You must be using cbq shell version 2.0 or above.' Consequence for the ontology: on this tree, availableSince can only be populated from release notes or from the what's-new pages, never from the reference pages themselves - and any attempt to derive availableSince from the docs branch (release/8.0) would be a fabrication. That is why this record uses a separate minted documentedForVersion predicate for the branch fact.",
+    "secondary_finding": "The Permissions section names role CATEGORIES ('the relevant _Administrative_ or _Data_ RBAC roles') and never a single named role or privilege, even though privilege:query-manage-index and role:full-administrator style ids exist in the registry. So requiresPrivilege cannot be populated for this statement family from this page either - the transaction family remains ungated at the individual-privilege level on Server exactly as the Capella records found it ungated at the credential-type level."
+  },
+  "cross_component_finding": "Two id-hygiene problems this record had to navigate, both for reconciliation to rule on. (1) The cbq shell already exists under two colliding ids in the extraction layer: n1ql:cbq (7 records, including all the Capella transaction twins) and tool:cbq-shell (4 records). I reused n1ql:cbq for continuity with my twins, but that leaves me minting tool:query-workbench and api:query-rest-api in different namespaces from the sibling surface they are listed alongside in one sentence of this page. The three query surfaces (Workbench / cbq / REST API) are one closed set on this page and should share a namespace. (2) sdk:transaction-query-mode is a promoted concept whose label says '(Java SDK transactions)' and whose id sits in the sdk: namespace, but the paragraph that defines it appears verbatim on this Server SQL++ reference page - it is a Query Service behaviour, not an SDK behaviour. The concept should be renamed and re-namespaced (transactions:query-mode or n1ql:query-mode) with sdk:transaction-query-mode kept as an alias; otherwise the graph asserts that a server-side permission-scope switch is a Java SDK feature.",
+  "cross_product_finding": "This page is the strongest Server-vs-Capella divergence in the batch, on three separate axes. (1) ACCESS SURFACE, inverted: Server says 'To create a Couchbase transaction using SQL++, you can use any of the tools that you use to run a SQL++ query: the [Query Workbench](../../tools/query-workbench.md), the [cbq shell](../n1ql-intro/cbq.md), or the [Query REST API](../../n1ql-rest-query/index.md).' The Capella twin says only 'The [cbq shell](../n1ql-intro/cbq.md)' and adds an explicit exclusion note ('Couchbase Transactions are not supported via the Couchbase Capella Query tab or the Data API'). So Server supports three surfaces, Capella one. Crucially, the *stated cause* of the Capella exclusion ('The Query Service requires that the whole transaction must be executed by a single node') appears on the Server page too as the bare fact 'All statements within a transaction are sent to the same Query node' - the constraint is identical on both products; only the ability of the surface to honour it differs. The promoted incompatibleWithAccessSurface therefore needs a positive counterpart (supportedOnAccessSurface, minted here) or the graph reads as though transactions are surface-restricted everywhere. Note also that capella:query-tab and tool:query-workbench are both browser-based query editors in the same product family, yet one supports transactions with a dedicated 'Run as TX' button and the other cannot run them at all - a same-role, different-capability pair that must NOT be merged. (2) CONFIGURATION SCOPE: Server's settings table has 10 rows spanning request-level parameters, node-level settings and cluster-level settings (txtimeout/queryTxTimeout, atrcollection, cleanupclientattempts/queryCleanupClientAttempts, cleanuplostattempts/queryCleanupLostAttempts, cleanupwindow/queryCleanupWindow, numatrs/queryNumAtrs); Capella's has 7 rows and every single one is 'request-level parameter'. The entire node-level and cluster-level tier - i.e. everything about active-transaction-record placement, count, and lost/client cleanup - is invisible on Capella because it is operator-owned there. This is a deployment-keyed *scope* gate, not a feature gate: the feature exists on Capella, the knob does not. Predicates minted for it: hasSettingScope, hasScopeVariant. (3) PERMISSIONS MODEL, as the brief predicted: Server states RBAC role categories ('users must have the relevant _Administrative_ or _Data_ RBAC roles') where Capella states 'the relevant cluster access privileges'. Not merged. But the sharper divergence is that the Capella twin OMITS the entire Query Mode NOTE that this Server page carries - so the Capella docs never warn Capella users about the mid-transaction permission-scope switch at all, while the Server page and the Java SDK howto both do, in identical words. That looks like a Capella documentation gap rather than a behavioural difference.",
+  "version_finding": "Correction to a round-4 assertion, which is the most valuable output of this batch. sdk:transaction-query-mode was promoted from a *Capella-adjacent Java SDK* page and typed as a Java SDK behaviour ('Query Mode (Java SDK transactions)'). This Server SQL++ reference page contains the identical paragraph, word for word, in its Permissions section - meaning query mode is a Query Service / server-side transaction behaviour that both client surfaces inherit, and is neither Java-specific nor SDK-specific. Two further refinements of round-4-derived concepts: (a) sdk:transaction-durability is typed as 'configured once via TransactionsConfig/ClusterEnvironment'; the SQL++ path configures the same durability level through the request-level durability_level parameter instead, so the concept's 'configured once via TransactionsConfig' clause is Java-API-specific rather than intrinsic to transaction-scoped durability - see the commit-transaction record in this batch for the error-code refinement (161) that the SDK vocabulary lacks. (b) Round 9's finding from cloud/guides/transactions.md that SQL++ transactions and SDK transactions are 'related-but-distinct paths' is SUPPORTED but complicated by this page. Supported: the Server page draws the same boundary in near-identical words ('Some Couchbase SDKs provide APIs to support Couchbase transactions'), and nothing here merges the two. Complicated: the Server SQL++ reference page's Permissions section is written entirely from the SDK's point of view ('When developing a transaction with an SDK, the transaction may contain a mixture of key-value operations and query statements'), and every one of the six SQL++ pages links to the same learn/data/transactions.md concept page that round 4's Java SDK page linked to (server:distributed-acid-transactions). So: two distinct client paths, one shared server-side mechanism, and reference documentation that leaks freely between them. The graph should keep n1ql:transactions and sdk:distributed-transaction distinct while both pointing at server:distributed-acid-transactions - which this batch finally gives real recurrence (7 records) rather than placeholder status."
+}

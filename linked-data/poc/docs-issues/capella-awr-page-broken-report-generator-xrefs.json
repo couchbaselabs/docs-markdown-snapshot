@@ -5,7 +5,7 @@
   "description": "The Capella AWR page's links to the report generator are unresolved Antora xrefs rendered as fragment links: '[cbqueryreportgen](#cli:cbqueryreportgen.adoc)' and '[Report Generation CLI Tool](#cli:cbqueryreportgen.adoc)'. The Server page resolves the same links to ../../cli/cbqueryreportgen.md.",
   "about": [
     "cloud/n1ql/n1ql-manage/query-awr",
-    "server/current/n1ql/n1ql-manage/query-awr"
+    "server/8.0/n1ql/n1ql-manage/query-awr"
   ],
   "foundDuring": "poc-server-8.0-wave-1",
   "status": "open"

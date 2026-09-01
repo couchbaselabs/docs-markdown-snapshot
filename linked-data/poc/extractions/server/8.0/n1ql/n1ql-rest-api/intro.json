@@ -1,0 +1,138 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-rest-api/intro",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-rest-api/intro.md",
+  "concepts": [
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - already promoted; this page is the REST-surface index for that service" },
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API (POST/GET /query/service, statement execution)", "reused_or_minted": "minted - no existing id covers the query execution REST surface. The registry has capella:management-api, capella:data-api, sgw:admin-rest-api, sgw:public-rest-api and search:simple-search-rest-api for other components' REST surfaces, but nothing for the Query Service's own API. Deliberately NOT merged with capella:data-api - see cross_product_finding" },
+    { "candidate_id": "n1ql:query-admin-rest-api", "label": "Query Admin REST API (/admin/*, node-level administration)", "reused_or_minted": "minted - distinct API surface from n1ql:query-service-rest-api: different URI root, node scope rather than statement execution" },
+    { "candidate_id": "n1ql:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings, cluster-level configuration)", "reused_or_minted": "minted - distinct API surface; notably served on the Cluster Manager ports 8091/18091 rather than the Query Service ports" },
+    { "candidate_id": "n1ql:query-functions-rest-api", "label": "Query Functions REST API (/evaluator/v1/libraries, JavaScript library management)", "reused_or_minted": "minted - distinct API surface; the only one of the four with a version segment in its path" },
+    { "candidate_id": "n1ql:query-service-post-endpoint", "label": "POST /query/service (full query execution endpoint)", "reused_or_minted": "minted - needed as a distinct object because this page assigns POST and GET on the same URI different capabilities" },
+    { "candidate_id": "n1ql:query-service-get-endpoint", "label": "GET /query/service (\"Read-Only Query Service\")", "reused_or_minted": "minted - same URI as the POST endpoint but this page labels it read-only, so it is a different capability, not a synonym" },
+    { "candidate_id": "n1ql:cluster-level-query-settings", "label": "Cluster-level Query settings", "reused_or_minted": "minted - the registry has n1ql:request-level-query-parameters only; the three-tier settings hierarchy needs the other two tiers named to be expressible" },
+    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level Query settings", "reused_or_minted": "minted - see above; distinct scope from cluster-level, and served by a different API on different ports" },
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "reused - matches the id coined in cloud/n1ql/n1ql-manage/query-settings.json" },
+    { "candidate_id": "n1ql:curl-access-list", "label": "CURL Access List (settings/querySettings/curlWhitelist)", "reused_or_minted": "minted - the feature has a name (\"CURL Access List\") that no longer matches its own URI segment (curlWhitelist); see version_finding" },
+    { "candidate_id": "js-udf:library", "label": "JavaScript library for SQL++ user-defined functions", "reused_or_minted": "minted - the js-udf: namespace exists in the extraction corpus (js-udf:named-parameter, js-udf:transaction-support, etc.) but the library container object itself has no id yet" },
+    { "candidate_id": "n1ql:prepared-statement", "label": "Prepared statement", "reused_or_minted": "reused - established id; the /admin/prepareds endpoints operate on these" },
+    { "candidate_id": "port:8093", "label": "Port 8093 (Query Service, plaintext)", "reused_or_minted": "minted - no port namespace exists in the registry. Ports are the load-bearing distinction between the Server and Capella query surfaces (see cross_product_finding), so they need ids" },
+    { "candidate_id": "port:18093", "label": "Port 18093 (Query Service, TLS)", "reused_or_minted": "minted - see port:8093" },
+    { "candidate_id": "port:8091", "label": "Port 8091 (Cluster Manager, plaintext)", "reused_or_minted": "minted - see port:8093" },
+    { "candidate_id": "port:18091", "label": "Port 18091 (Cluster Manager, TLS)", "reused_or_minted": "minted - see port:8093" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Query Service provides REST APIs for executing SQL++ statements, administering Query Service nodes, configuring the Query Service, and managing the JavaScript libraries used to create SQL++ user-defined functions."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "reused_or_minted_predicate": "minted - the registry has no predicate for network port exposure at all. dependsOnService and requiresSetting are the nearest existing predicates and neither expresses \"is reachable on\". Needed because port exposure is exactly what differs between Server and Capella here",
+      "evidence": "Use the Query Service REST API to execute SQL++ statements. This REST API uses ports `8093` and `18093`."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18093",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "Use the Query Service REST API to execute SQL++ statements. This REST API uses ports `8093` and `18093`."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "Use the Query Administration REST API to administer the Query Service at the node level. This REST API uses ports `8093` and `18093`."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "reused_or_minted_predicate": "minted - see above. This is the interesting one: the cluster-level Query settings API is NOT on a Query Service port",
+      "evidence": "Use the Query Settings REST API to configure the Query Service at the cluster level. This REST API uses ports `8091` and `18091`."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18091",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "Use the Query Settings REST API to configure the Query Service at the cluster level. This REST API uses ports `8091` and `18091`."
+    },
+    {
+      "subject": "n1ql:query-functions-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "reused_or_minted_predicate": "minted - see above",
+      "evidence": "Use the Query Functions REST API to manage the JavaScript libraries and objects used to create SQL++ user-defined functions. This REST API uses ports `8093` and `18093`."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused - the page states the scope explicitly as node-level administration of the Query Service",
+      "evidence": "Use the Query Administration REST API to administer the Query Service at the node level. This REST API uses ports `8093` and `18093`."
+    },
+    {
+      "subject": "n1ql:node-level-query-settings",
+      "predicate": "createdVia",
+      "object": "n1ql:query-admin-rest-api",
+      "reused_or_minted_predicate": "reused - createdVia is the registry's predicate for \"this resource is managed through that surface\"",
+      "evidence": "| POST        | /admin/settings                        | [Update Node-Level Query Settings](../../n1ql-rest-admin/index.md#post%5Fsettings)            |"
+    },
+    {
+      "subject": "n1ql:cluster-level-query-settings",
+      "predicate": "createdVia",
+      "object": "n1ql:query-settings-rest-api",
+      "reused_or_minted_predicate": "reused - see above",
+      "evidence": "| POST        | /settings/querySettings               | [Update Cluster-Level Query Settings](../../n1ql-rest-settings/index.md#post%5Fsettings)  |"
+    },
+    {
+      "subject": "n1ql:curl-access-list",
+      "predicate": "createdVia",
+      "object": "n1ql:query-settings-rest-api",
+      "reused_or_minted_predicate": "reused - see above",
+      "evidence": "| POST        | /settings/querySettings/curlWhitelist | [Update CURL Access List](../../n1ql-rest-settings/index.md#post%5Faccess)                |"
+    },
+    {
+      "subject": "js-udf:library",
+      "predicate": "createdVia",
+      "object": "n1ql:query-functions-rest-api",
+      "reused_or_minted_predicate": "reused - the endpoint is literally named \"Create or Update a Library\"",
+      "evidence": "| POST        | /evaluator/v1/libraries/{library} | [Create or Update a Library](../../n1ql-rest-functions/index.md#post%5Flibrary) |"
+    },
+    {
+      "subject": "n1ql:query-service-get-endpoint",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:query-service-post-endpoint",
+      "reused_or_minted_predicate": "reused - these two share the URI /query/service but this page gives them different names and capabilities (\"Query Service\" vs \"Read-Only Query Service\"). Recorded as shouldNotBeConfusedWith rather than isSynonymOf precisely because a same-name/same-URI collision here does NOT mean identity",
+      "evidence": "| GET         | /query/service | [Read-Only Query Service](../../n1ql-rest-query/index.md#get%5Fservice) |"
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:request-level-query-parameters",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For an explanation of how cluster-level settings, node-level settings, and request-level parameters interact, see [Configure Queries](../n1ql-manage/query-settings.md)."
+    },
+    {
+      "subject": "n1ql:cluster-level-query-settings",
+      "predicate": "seeAlso",
+      "object": "n1ql:node-level-query-settings",
+      "reused_or_minted_predicate": "reused - the page's only prose cross-reference asserts an interaction between the three settings tiers without naming its shape",
+      "evidence": "For an explanation of how cluster-level settings, node-level settings, and request-level parameters interact, see [Configure Queries](../n1ql-manage/query-settings.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "This page tabulates 40 distinct HTTP method/URI pairs across four REST APIs and carries not a single version annotation - no \"available since\", no \"new in 8.0\", no \"deprecated\", no per-endpoint version column. For a wave whose priority is version-gating vocabulary this is the most significant thing on the page: the Query REST API index is entirely version-blind, so a reader cannot tell from it whether /admin/gc, /evaluator/v1/libraries or /settings/querySettings/curlWhitelist exist in 7.x. The four API tables would be the natural place for an availableSince column and it is absent. Note that version information for these endpoints DOES exist downstream - server/current/n1ql-rest-query/index.md contains e.g. \"In clusters running Couchbase Server 6.5 and later, this parameter is ignored and has no effect\" for encoded_plan - so the absence is an index-page gap, not an absence of the underlying facts. requiresPrivilege is likewise wholly absent from this page; see cross_component_finding."
+  },
+  "cross_component_finding": "Three things this index page states about the API family that the twelve pages in this directory do not individually state, plus the error model the eleven example pages establish collectively (recorded here once, per the batch instruction, rather than repeated in eleven records):\n\n(1) SETTINGS TIER SPLIT ACROSS SERVICES. The three-tier settings hierarchy (cluster / node / request) is split across two different services' ports: node-level Query settings are POSTed to /admin/settings on the Query Service's own ports 8093/18093, while cluster-level Query settings are POSTed to /settings/querySettings on the Cluster Manager's ports 8091/18091. So configuring the Query Service requires talking to the Cluster Manager. The registry's existing dependsOnService predicate captures the service dependency but not this \"configured through a different service's API\" shape; if reconciliation wants that shape, configuredViaService would be the predicate.\n\n(2) THE ADMIN API MIRRORS THE SYSTEM KEYSPACES. /admin/prepareds, /admin/active_requests and /admin/completed_requests expose exactly the resources already modelled as system keyspaces in earlier rounds (n1ql:system-prepareds, n1ql:system-active-requests, n1ql:system-completed-requests, n1ql:system-vitals via /admin/vitals). Two access surfaces - SQL++ SELECT against system: and HTTP GET against /admin/ - over one resource set. I have deliberately NOT asserted an identity relation, because this page never says the two are the same thing; it is offered as a reconciliation question. A predicate along the lines of alsoExposedAs / hasAlternativeAccessSurface would be needed, and note the registry already has incompatibleWithAccessSurface, i.e. it has vocabulary for surfaces being incompatible but none for surfaces being equivalent.\n\n(3) THE ERROR MODEL OF THE QUERY REST API (from exsuccessful/exrequesterror/exserviceerror/exn1qlerror/extimeout/exunsupportedhttp). All responses share one envelope: requestID, optional signature, optional results, optional errors[], status, metrics. The error taxonomy is three-way and the three kinds are distinguished by *where* the fault is, not by shape: a request error is \"a problem with the REST request itself, e.g. missing a required parameter\" (code 1050, status fatal, HTTP 200); a SQL++ error is \"an error processing the SQL++ statement in a request\" (codes 3000, 12003, status fatal, HTTP 200); a service error is \"a problem that prevents the request being fulfilled\" (\"Request queue full\", status errors, HTTP 503). Request errors and SQL++ errors are therefore indistinguishable by status - both are fatal - and both arrive with HTTP 200; only the service error changes the HTTP status. Timeout is a fourth, separate status value and is the only case carrying a per-error \"retry\": true flag and the only case that returns results (an empty array) alongside errors. The single exception to the envelope is the unsupported HTTP method, which returns a bare \"HTTP/1.1 405 Method Not Allowed\" with no JSON body at all - method rejection happens before a requestID is allocated, so there is nothing to correlate that failure to in system:completed_requests. That asymmetry is the most operationally consequential fact in the set and it is stated nowhere in prose.\n\n(4) AUTHENTICATION PRECEDENCE IS DOCUMENTED ELSEWHERE, NOT HERE. exauthhttp.md and exauthrequest.md demonstrate the two credential mechanisms but neither states which wins when both are present. server/current/n1ql-rest-query/index.md does: \"If a request contains both HTTP basic authentication header and a `creds` parameter, the `creds` parameter is ignored and only the HTTP basic authentication header is used for authenticating.\" The precedence rule is thus only reachable from the reference page, not from either example page nor from this index.",
+  "cross_product_finding": "THE HEADLINE FINDING FOR THIS BATCH: the entire server/current/n1ql/n1ql-rest-api/ directory has no Capella counterpart. There is no cloud/n1ql/n1ql-rest-api/ directory and no linked-data/poc/extractions/cloud/n1ql/n1ql-rest-api/ records; cloud/n1ql/ contains only query.md, n1ql-intro/, n1ql-language-reference/ and n1ql-manage/. All twelve pages in this batch are Server-only, and the absence is structural rather than accidental.\n\nWhat Capella offers instead, and why it is not the same concept:\n\n- cloud/n1ql/query.md enumerates Capella's query surfaces as \"the Query tab in the Couchbase Capella UI, the cbq shell, the Data API, or the Couchbase SDKs\" - four surfaces, none of them a directly-addressed Query Service REST API. The registry's capella:query-tab, capella:cbsh, capella:data-api and capella:management-api are the Capella-side ids; n1ql:query-service-rest-api minted here is a fifth, Server-only concept and must not be merged with any of them.\n\n- Capella DOES reach the same underlying endpoint, but only through the Data API proxy path. cloud/n1ql/n1ql-manage/query-settings.md and cloud/data-api-guide/data-api-use.md both use \"$BASEURL/_p/query/query/service\" - the /_p/query/ prefix is a Cluster Manager passthrough, and $BASEURL is a hostname, never a port. Server's examples in this batch all use \"http://localhost:8093/query/service\" directly. So the relationship is: same wire protocol and same request/response envelope, reached via a proxied path on Capella and via a dedicated service port on Server. This is what the minted port:* concepts and usesPort predicate are for - the Server records can state port exposure and the Capella records structurally cannot, which makes the divergence machine-visible instead of merely narrated. It also means data-api:passthrough-endpoint (already coined in the Capella rounds) is the Capella-side counterpart of n1ql:query-service-rest-api, and reconciliation should link them with a cross-product predicate rather than by identity.\n\n- The administrative half of this batch has no Capella analogue at any level. Capella documents no /admin/* endpoints, no /admin/settings node-level configuration, and no /settings/querySettings; cluster and node configuration is an operation of the Capella control plane (capella:management-api, capella:cluster-manager), not of a Query Service port. This is the clean statement of the Server/Capella split for the Query Service: the *data plane* is shared (proxied on Capella), the *management plane* is entirely disjoint. That matches the pattern the earlier Capella rounds recorded from the other direction.\n\n- Consequently the RBAC/credential divergence the brief warns about does not even arise on these pages - not because the two models agree, but because Capella has no page here to state a credential requirement on. The Server side states its requirement (Administrative or Query & Index RBAC roles) only on the downstream n1ql-rest-query reference page, not in this directory.",
+  "version_finding": "1. No version or edition gating anywhere on this page or in this directory - see notable_absence. Not one of the twelve pages in this batch contains the strings \"and later\", \"since\", \"deprecated\", \"removed in\", \"Enterprise Edition\" or \"Community Edition\". So this batch contributes no availableSince / deprecatedIn / requiresEdition instances at all, and that negative result is itself the batch's version finding: the Query REST API documentation is version-unannotated end to end, in contrast to the SQL++ language reference pages (which the earlier rounds show are densely annotated) and in contrast to the n1ql-rest-query parameter reference (which carries per-parameter version notes such as encoded_plan's 6.5 note).\n\n2. IMPLICIT VERSIONING IN A URI. /evaluator/v1/libraries is the only versioned path in the whole 40-endpoint surface: the Query Functions REST API embeds \"v1\" in its path while the Query Service, Query Admin and Query Settings APIs are unversioned. This is an in-band API version marker with no prose explaining it, and no statement of what v0 or v2 would mean. Worth flagging because it is the one place the Query REST API expresses a version at all, and it does so in a form no availableSince relation would capture.\n\n3. A RENAME VISIBLE ONLY AS AN INCONSISTENCY. The URI segment is curlWhitelist but the documented feature name is \"CURL Access List\", in both the GET and POST rows: \"| GET | /settings/querySettings/curlWhitelist | [Retrieve CURL Access List](../../n1ql-rest-settings/index.md#get%5Faccess) |\". The whitelist-to-access-list rename has clearly landed in the prose and the anchor (#get_access, #post_access) but not in the wire path, which is presumably frozen for compatibility. I have NOT recorded this as a renamedFrom relation, because the page does not state a rename - it merely exhibits one. Reconciliation may want it, and if so the shape needed is not renamedFrom (which relates two names of one thing across versions) but something like retainsLegacyWireName, distinguishing a documented name from a frozen identifier. This is a real gap: the registry currently cannot express \"renamed in the docs but not in the API\".\n\n4. Documentation defect, minor: the See Also section links to \"[Configure Queries](../n1ql-manage/query-settings.md)\" using a single ../, while every table link in the same page uses ../../ to reach sibling modules (../../n1ql-rest-query/, ../../n1ql-rest-admin/). Both are correct - n1ql-manage is inside the n1ql module and n1ql-rest-query is a separate module at server/current/n1ql-rest-query/ - but the inconsistency is worth noting since it is the kind of thing that looks like a broken xref and is not one. All ten table link targets were verified to exist."
+}

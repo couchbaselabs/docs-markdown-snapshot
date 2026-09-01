@@ -61,9 +61,9 @@ From that output, build two short tables for the agent prompts:
 
 ```json
 {
-  "page_id": "<product>/<path-without-extension>",
+  "page_id": "<product>/<release, if the product has releases>/<path-without-extension>",
   "source_version": "<version string, or the product's own name if version-less>",
-  "source_path": "<the real source path you read>",
+  "source_path": "<the real source path you read, exactly as it is on disk>",
   "concepts": [
     { "candidate_id": "<namespace>:<kebab-case>", "label": "...", "reused_or_minted": "reused | minted - reason" }
   ],
@@ -76,10 +76,29 @@ From that output, build two short tables for the agent prompts:
 }
 ```
 
+A relation may additionally carry two optional fields, for the case where a
+fact is true and load-bearing but genuinely not stated on the page being
+extracted:
+
+```json
+{ "subject": "...", "predicate": "availableSince", "object": "version:server-8-0",
+  "evidence": "<direct quote from the OTHER page>",
+  "evidence_source": "server/current/introduction/whats-new.md",
+  "evidence_provenance": "cross-page: query-awr.md states no version; whats-new.md dates the feature" }
+```
+
+Use them rather than dropping the relation, and rather than attributing an
+off-page quote to the page. Cross-page evidence is legitimate; silent
+misattribution is not.
+
 Rules to state explicitly in every prompt:
 
 - Every relation needs a direct-quote `evidence` field. No inference without
-  textual evidence.
+  textual evidence. **This is now mechanically enforced at write time** - see
+  "The evidence gate" below. An agent that cannot find a real quote must either
+  use `evidence_source`/`evidence_provenance` or omit the relation; it must not
+  paraphrase, reconstruct from memory, or write a sentence that "should" be
+  there.
 - Structural Markdown links (`[text](file.md)`) become `"predicate": "seeAlso"`
   - a reused standard term (`rdfs:seeAlso`), never minted.
 - Thin/reference pages can have empty `concepts`/`relations` arrays - don't force
@@ -102,14 +121,79 @@ Rules to state explicitly in every prompt:
 - Extraction only. Agents must not write to `concepts/`, `relations/`, or
   `docs-issues/` - only to `extractions/`.
 - Output path: mirror the source path under `linked-data/poc/extractions/`,
-  dropping any version segment the source path has (e.g. `server/7.2/...` →
-  `extractions/server/...`; `couchbase-lite/current/...` →
-  `extractions/couchbase-lite/...`).
+  **keeping the version segment and resolving any alias in it to a real release
+  number**:
+
+  | source path | output path |
+  |---|---|
+  | `server/7.2/n1ql/...` | `extractions/server/7.2/n1ql/...` |
+  | `server/current/n1ql/...` | `extractions/server/8.0/n1ql/...` |
+  | `couchbase-lite/current/...` | `extractions/couchbase-lite/<release>/...` |
+  | `cloud/n1ql/...` | `extractions/cloud/n1ql/...` (Capella has no versions) |
+
+  Two rules are doing work here and both were learned the hard way in round 10:
+
+  1. **Keep the version segment.** Rounds 1-2 dropped it, which meant
+     `server/7.2/.../createindex.md` and `server/8.0/.../createindex.md` mapped
+     to the same output file. A multi-version ingest overwrote the earlier
+     round's record with no diagnostic. Version-neutral output paths collide by
+     construction.
+  2. **Never write `current` into a path or a `page_id`.** `current` is a
+     pointer, not a version - it denotes whichever release is newest at the
+     moment of reading, so an id containing it silently starts denoting a
+     different page on the next major release. Resolve it (check the page's own
+     `source_version`, or `introduction/whats-new.md`) and use the number.
+
+  `source_path` is the exception to rule 2: it is a **filesystem** path and must
+  keep pointing at the file that actually exists on disk, alias and all. So a
+  correct wave-1 record has `"page_id": "server/8.0/n1ql/.../transactions"`
+  alongside `"source_path": "server/current/n1ql/.../transactions.md"`. Those
+  two disagreeing is right, not a mistake - one is an identifier, the other is a
+  location.
 - Tell every agent explicitly: don't try to reconcile against other batches,
   don't guess what a sibling agent running concurrently might be doing. A
   coordinator reconciles afterward. Duplicate/near-duplicate mintings across
   concurrently-running agents are expected and are the reconciliation phase's
   job to catch, not something to prevent at extraction time.
+
+## 3a. The evidence gate (already active - just tell agents about it)
+
+`.claude/settings.json` registers a `PreToolUse` hook,
+`linked-data/poc/hooks/gate-evidence.py`, on `Write|Edit|MultiEdit`. For any file
+under `linked-data/poc/extractions/` it parses the record and **refuses the
+write** unless every relation's `evidence` is verbatim on the page it cites (or
+on its `evidence_source`). It also refuses a record that claims a concept is
+"promoted" when no registry file exists for it. Nothing needs enabling; it fires
+for subagents as well as the main session, which is the entire point - round
+10's fabricated record came from one of ten parallel subagents whose reasoning
+nobody ever read.
+
+Why this exists: in round 10 an extraction agent asserted `availableSince
+version:server-8-0` for a feature whose page states no version at all, quoting a
+sentence that does not exist. Eleven of that record's thirteen relations had
+unquotable evidence and one had inverted polarity. The fabricated quote was
+*more* plausible than the real sentence and the reasoning around it better argued
+than most correct records - so reviewing harder does not fix this, and neither
+does adding more emphasis to the prompt. Only mechanical comparison against the
+file catches it.
+
+**What to put in agent prompts because of it:**
+
+- State that the gate exists and that a blocked Write means re-reading the page,
+  not rewording the record.
+- State the two legitimate escapes explicitly - `evidence_source` +
+  `evidence_provenance` for a true-but-off-page fact, or omitting the relation
+  and explaining in a finding field. Without both spelled out, a blocked agent's
+  most available move is to quietly delete the relation, and **the gate turns
+  fabrication into omission**, which is harder to notice than what it replaced.
+- Warn that `Edit` is refused on extraction records; write the whole record with
+  `Write`.
+
+**What the gate does not do**, and must not be described to agents as doing: it
+proves the sentence is on the page, never that the triple built from it is a fair
+reading. Round 10 found "quotable but mis-objected" records - verbatim evidence,
+wrong object - which pass cleanly. A green check is not a green record, so
+reconciliation still reads records rather than trusting the exit status.
 
 ## 4. Write one self-contained prompt per batch
 
@@ -154,13 +238,21 @@ A batch can fail partway (e.g. a session/usage limit - this happened once, on a
 
 ## 7. Validate before moving to reconciliation
 
-Once every batch reports back, validate the whole new set parses as JSON before
-touching anything else:
+Once every batch reports back, run the audit over the new set. The write-time
+gate should mean this comes back clean, and a surprise here means the gate was
+bypassed (a record written before the hook was active, a path outside
+`extractions/`, or a hook that didn't fire):
 
 ```bash
-for f in $(find linked-data/poc/extractions/<new-paths> -name "*.json"); do
-  python3 -c "import json; json.load(open('$f'))" || echo "INVALID: $f"
-done
+python3 linked-data/poc/verify-evidence.py linked-data/poc/extractions/<new-paths>
 ```
+
+It exits non-zero on any problem, reports invalid JSON as well as unquotable
+evidence, and so subsumes the bare `json.load` sweep this step used to do.
+
+Do not skip it on the grounds that the gate already ran. The gate checks each
+record as it is written; this checks the set as it now exists on disk, which is
+not the same claim - and confirming that the two agree is how you find out the
+gate is still working.
 
 Then hand off to the `linked-data-reconcile` skill.

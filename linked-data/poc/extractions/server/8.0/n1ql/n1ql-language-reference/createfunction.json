@@ -1,0 +1,162 @@
+{
+  "page_id": "server/8.0/n1ql/n1ql-language-reference/createfunction",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql/n1ql-language-reference/createfunction.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/createfunction.json" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "reused_or_minted": "reused - matches the Capella records" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused - matches the Capella createfunction record" },
+    { "candidate_id": "n1ql:explain-function", "label": "EXPLAIN FUNCTION statement", "reused_or_minted": "minted - a seeAlso target on this page; no prior id in the Capella records or the registry" },
+    { "candidate_id": "n1ql:inline-function", "label": "Inline user-defined function (defined with SQL++ expressions)", "reused_or_minted": "reused - matches the Capella record. NOTE a definition divergence: the Capella record glossed this as 'Inline (SQL++ or JavaScript expression)' whereas the Server 8.0 page defines it strictly as 'defined using SQL++ expressions'. See cross_product_finding - do not treat the Capella gloss as authoritative." },
+    { "candidate_id": "n1ql:external-function", "label": "External user-defined function (defined in an external language)", "reused_or_minted": "reused - matches the Capella record" },
+    { "candidate_id": "n1ql:sql-managed-user-defined-function", "label": "SQL++ managed user-defined function (external function code stored inline with the UDF)", "reused_or_minted": "minted - the Capella record folded this into n1ql:external-function; the Server page gives it its own H3 section, its own version gate, and its own delete semantics on dropfunction.md, so it needs its own id" },
+    { "candidate_id": "n1ql:external-library", "label": "External JavaScript library (UDF library)", "reused_or_minted": "minted - no prior id; the page distinguishes global vs scoped libraries and states a same-name-across-scopes rule" },
+    { "candidate_id": "n1ql:global-function", "label": "Global user-defined function (created within a namespace)", "reused_or_minted": "minted - no prior id; needed because the entire role matrix on this page is keyed on the global/scoped axis" },
+    { "candidate_id": "n1ql:scoped-function", "label": "Scoped user-defined function (created within a scope)", "reused_or_minted": "minted - no prior id; the page explicitly warns it is not the same as a global function" },
+    { "candidate_id": "n1ql:query-context", "label": "Query context", "reused_or_minted": "minted - no prior id; on this page it is not decoration but the mechanism that DETERMINES whether the created function is global or scoped, and hence which role is required" },
+    { "candidate_id": "role:manage-global-functions", "label": "Manage Global Functions (Server RBAC role)", "reused_or_minted": "minted - the registry's role: namespace has only eventing-full-admin, full-administrator, local-user-security-administrator. Must NOT be merged with Capella's privilege:capella-advanced-access-global-function-manage: that is a Capella data-plane PRIVILEGE under the Advanced credential model, this is a Server RBAC ROLE. Similar name, different access model." },
+    { "candidate_id": "role:manage-scope-functions", "label": "Manage Scope Functions (Server RBAC role)", "reused_or_minted": "minted - as above; the Capella page's nearest analogue is privilege:capella-advanced-access-query-manage, which is not the same thing" },
+    { "candidate_id": "role:manage-global-external-functions", "label": "Manage Global External Functions (Server RBAC role)", "reused_or_minted": "minted - has NO Capella counterpart at all; Capella's matrix does not split inline from external. See cross_product_finding." },
+    { "candidate_id": "role:manage-scope-external-functions", "label": "Manage Scope External Functions (Server RBAC role)", "reused_or_minted": "minted - no Capella counterpart; additionally carries an implied read grant over global JavaScript libraries" },
+    { "candidate_id": "role:execute-global-functions", "label": "Execute Global Functions (Server RBAC role)", "reused_or_minted": "minted - no prior id; the page's second matrix covers execution, not management" },
+    { "candidate_id": "role:execute-scope-functions", "label": "Execute Scope Functions (Server RBAC role)", "reused_or_minted": "minted - no prior id" },
+    { "candidate_id": "role:execute-global-external-functions", "label": "Execute Global External Functions (Server RBAC role)", "reused_or_minted": "minted - no prior id" },
+    { "candidate_id": "role:execute-scope-external-functions", "label": "Execute Scope External Functions (Server RBAC role)", "reused_or_minted": "minted - no prior id" },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "minted - no 7.6 concept in the registry; distinct from the version:server-7-6-2 minted in this batch's createindex.json, because the docs gate different things on 7.6 and on 7.6.2" },
+    { "candidate_id": "n1ql:create-function-or-replace", "label": "CREATE FUNCTION ... OR REPLACE clause", "reused_or_minted": "minted - no prior id; needed as the subject of a stated mutual exclusion" },
+    { "candidate_id": "n1ql:create-function-if-not-exists", "label": "CREATE FUNCTION ... IF NOT EXISTS clause", "reused_or_minted": "minted - no prior id; the other half of that mutual exclusion" },
+    { "candidate_id": "n1ql:variadic-function", "label": "Variadic user-defined function (declared with ... as the only parameter)", "reused_or_minted": "minted - no prior id; a distinct declaration mode with its own args-array calling convention" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "minted - the registry has service:eventing-service but no service:query-service; JavaScript UDF language support is attributed to the Query Service specifically" },
+    { "candidate_id": "capella:query-tab", "label": "Capella Query Tab", "reused_or_minted": "reused - promoted registry concept, cited here ONLY inside cross_product_finding as the Capella-side surface; not asserted as a relation from this Server page" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:sql-managed-user-defined-function",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused - promoted predicate. This is the only cleanly-evidenced availableSince in this batch that is neither missing nor self-contradictory.",
+      "evidence": "In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation."
+    },
+    {
+      "subject": "n1ql:global-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-global-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate; the subject is the function kind, not the statement, because the matrix is keyed on the function kind",
+      "evidence": "| Global inline functions   | **Manage Global Functions** role.                                                             |"
+    },
+    {
+      "subject": "n1ql:scoped-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-scope-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Scoped inline functions   | **Manage Scope Functions** role, with permissions on the specified bucket and scope.          |"
+    },
+    {
+      "subject": "n1ql:external-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-global-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate; applies to the global variant",
+      "evidence": "| Global external functions | **Manage Global External Functions** role.                                                    |"
+    },
+    {
+      "subject": "n1ql:external-function",
+      "predicate": "requiresRole",
+      "object": "role:manage-scope-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate; applies to the scoped variant",
+      "evidence": "| Scoped external functions | **Manage Scope External Functions** role, with permissions on the specified bucket and scope. |"
+    },
+    {
+      "subject": "role:manage-scope-external-functions",
+      "predicate": "grantsRole",
+      "object": "n1ql:external-library",
+      "reused_or_minted_predicate": "reused but imprecise - grantsRole's object should be a role, and this is an implied read grant over an object type. Reconciliation may want grantsReadAccessTo. Recorded rather than dropped because it is a real, quotable implied-permission fact and the registry has nothing better.",
+      "evidence": "Users with the **Manage Scope External Functions** role also have read-only access to any global JavaScript library."
+    },
+    {
+      "subject": "n1ql:execute-function",
+      "predicate": "requiresRole",
+      "object": "role:execute-global-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate; the second matrix on this page is about executing, and its natural subject is EXECUTE FUNCTION rather than CREATE FUNCTION",
+      "evidence": "| Global inline functions   | **Execute Global Functions** role.                                                             |"
+    },
+    {
+      "subject": "n1ql:execute-function",
+      "predicate": "requiresRole",
+      "object": "role:execute-scope-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Scoped inline functions   | **Execute Scope Functions** role, with permissions on the specified bucket and scope.          |"
+    },
+    {
+      "subject": "n1ql:execute-function",
+      "predicate": "requiresRole",
+      "object": "role:execute-global-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Global external functions | **Execute Global External Functions** role.                                                     |"
+    },
+    {
+      "subject": "n1ql:execute-function",
+      "predicate": "requiresRole",
+      "object": "role:execute-scope-external-functions",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "| Scoped external functions | **Execute Scope External Functions** role, with permissions on the specified bucket and scope. |"
+    },
+    {
+      "subject": "n1ql:external-function",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "JavaScript functions in the Query Service support most of the language constructs available in ECMAScript."
+    },
+    {
+      "subject": "n1ql:create-function-or-replace",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "n1ql:create-function-if-not-exists",
+      "reused_or_minted_predicate": "reused but a poor fit - the fact is a clause-vs-clause mutual exclusion; see this batch's createindex.json for the general request for a mutuallyExclusiveWith predicate",
+      "evidence": "These clauses are exclusive. If the statement contains both the `OR REPLACE` clause and the `IF NOT EXISTS` clause, an error is generated."
+    },
+    {
+      "subject": "n1ql:create-function",
+      "predicate": "requiresSetting",
+      "object": "n1ql:query-context",
+      "reused_or_minted_predicate": "reused - promoted predicate, used for a session-level setting that determines the statement's effect",
+      "evidence": "When you create a user-defined function, the current query context determines whether it's created as a global function or a scoped function."
+    },
+    {
+      "subject": "n1ql:global-function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:scoped-function",
+      "reused_or_minted_predicate": "reused - promoted predicate; the page carries an explicit NOTE warning against exactly this confusion, which is the canonical trigger for this predicate",
+      "evidence": "A global function is not the same as a scoped function stored in the default scope in a bucket."
+    },
+    {
+      "subject": "n1ql:sql-managed-user-defined-function",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "n1ql:external-library",
+      "reused_or_minted_predicate": "reused but imprecise; the fact is that inline-stored external code cannot be shared via libraries",
+      "evidence": "With a SQL++ managed user-defined function, the external function code is stored inline, along with the SQL++ user-defined function. You cannot share this external function code with other user-defined functions, or access it from any external libraries."
+    },
+    {
+      "subject": "n1ql:external-library",
+      "predicate": "createdVia",
+      "object": "capella:query-tab",
+      "reused_or_minted_predicate": "reused predicate, but the object is WRONG for this page and is deliberately NOT asserted - the Server page names the Query Workbench and the Functions REST API, not the Capella Query Tab. Recording the correct Server-side fact in the next relation instead; this entry is kept only to make the near-miss explicit so no one merges capella:query-tab with the Query Workbench.",
+      "evidence": "You must create the external library and the external function code using the [Query Workbench](../../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md)."
+    },
+    {
+      "subject": "n1ql:external-function",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:external-library",
+      "reused_or_minted_predicate": "reused - promoted predicate; the library must exist before the library-backed form of the statement can reference it, which is precisely what the 7.6 SQL++-managed form removed the need for",
+      "evidence": "This means that you do not have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function."
+    },
+    { "subject": "n1ql:create-function", "predicate": "seeAlso", "object": "n1ql:execute-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md)." },
+    { "subject": "n1ql:create-function", "predicate": "seeAlso", "object": "n1ql:explain-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md)." },
+    { "subject": "n1ql:create-function", "predicate": "seeAlso", "object": "n1ql:drop-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* To drop a user-defined function, see [DROP FUNCTION](dropfunction.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "No edition badge anywhere on this page, in contrast to every index page in this batch. JavaScript UDFs and the whole external-function apparatus are presented as edition-neutral. Given that Eventing-adjacent JavaScript features are commonly Enterprise-only elsewhere in the product, the absence is worth confirming with engineering rather than recorded as settled - but as documented, CREATE FUNCTION has no edition gate. Also absent: any deprecation vocabulary, consistent with the rest of the batch."
+  },
+  "cross_product_finding": "The richest access-model divergence in this batch, and it is not merely a naming difference. Server 8.0 uses a 2x2x2 RBAC ROLE matrix: {Manage, Execute} x {Global, Scope} x {inline, External} = eight named roles, of which this page names all eight across two tables. The Capella twin uses a 2x2 PRIVILEGE matrix keyed on credential type and function scope only: Basic -> Write (for both global and scoped); Advanced -> Global Function Manage (global) or Query Manage (scoped). Capella therefore has NO analogue of the inline-vs-external distinction in its access model at all, even though its prose keeps the inline/external distinction for the language feature. Consequences for reconciliation: (1) role:manage-global-external-functions and role:manage-scope-external-functions are Server-only concepts with no Capella counterpart by construction - their absence on the Capella page is not a docs gap. (2) role:manage-global-functions must NOT be merged with privilege:capella-advanced-access-global-function-manage despite the near-identical English; one is a role in Server RBAC, the other a privilege in Capella's Advanced credential model, and the promoted registry already keeps those namespaces apart. (3) Server has an Execute matrix; Capella's createfunction page has no execute-side table at all. VERSION DIVERGENCE ON THE SAME FACT: Server says 'In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation.' Capella says, under a section literally headed 'Couchbase Server 7.6', 'For operational clusters using Couchbase Server 7.6 and later, you can create the code for a JavaScript function and the corresponding SQL++ user-defined function in a single operation in the Query Tab or cbq.' The Capella wording adds a cluster-type qualifier ('operational clusters') and names Capella surfaces (Query Tab, cbq) that the Server page does not - so this is a genuine adaptation, not a pure copy-paste, which slightly weakens the existing docs-issue capella-pages-cite-server-versions as an explanation for this particular instance. Finally, a DEFINITION divergence worth flagging: Server defines inline functions as 'defined using SQL++ expressions' and external functions as the JavaScript ones ('The only supported language is JavaScript'), whereas the Capella extraction record glossed n1ql:inline-function as 'Inline (SQL++ or JavaScript expression)'. The Server page does not support that gloss. Since both records now share the id n1ql:inline-function, reconciliation should adopt the Server definition and correct the Capella record's label.",
+  "version_finding": "One clean availableSince: n1ql:sql-managed-user-defined-function availableSince version:server-7-6. That fact survives at 8.0 precisely because it describes a capability ADDED to a pre-existing statement, matching the pattern observed across this whole batch: version gates persist in the docs only where a new capability was bolted onto old syntax, and are absent wherever a whole statement was introduced at once. Note that 7.6 (this page) and 7.6.2 (createindex.md / createvectorindex.md defer_build) must be separate version concepts; collapsing them would lose a real distinction the docs draw. No deprecatedIn instance: nothing on this page is marked deprecated, superseded or removed, even though the 7.6 SQL++-managed form clearly supersedes the library-registration workflow for single-use functions - the docs present both as co-equal alternatives rather than marking either as the preferred or legacy path, so there is no quotable evidence for mustUseInsteadWhen or renamedFrom here either."
+}
