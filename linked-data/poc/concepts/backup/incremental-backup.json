@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/incremental-backup",
+  "label": "incremental backup",
+  "recurrence": 2,
+  "type": "a backup capturing only changes since the previous backup",
+  "relates_to_competency_question": "What kinds of backup are there?",
+  "promoted": true
+}

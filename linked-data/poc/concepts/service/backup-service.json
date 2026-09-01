@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/backup-service",
+  "label": "Backup Service",
+  "recurrence": 2,
+  "type": "the seventh Couchbase Server service - schedules and executes cluster backups via plans and repositories",
+  "note": "The service: family held six records and looked complete; nine rounds of reference extraction never needed the seventh. MUST NOT be confused with the phrase 'backup service' in the cloud/ tree: grepping all of cloud/, 'Backup Service' occurs exactly once, in cloud/clusters/cloud-snapshots.md, and refers to the CLOUD PROVIDER'S snapshot facility ('Your CSP's backup service...'), not to any Couchbase service. That is a genuine cross-product name collision, of the same class as the registry's cluster-manager and four-way role writeups but spanning products rather than living inside one. Practical consequence: 'which services does Couchbase have' answers six or seven depending silently on which tree was ingested. This concept can only ever have self-managed instances. Also note it is the only service in its family with NO dependsOnService relation - backup-service.md never states a Data Service dependency despite being unable to back anything up without one, so the seventh service sits disconnected from the service dependency graph purely because nobody wrote the sentence.",
+  "relates_to_competency_question": "Which services does Couchbase have?",
+  "promoted": true
+}

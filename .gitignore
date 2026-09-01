@@ -1,0 +1,8 @@
+# Append-only verdict log written by linked-data/poc/hooks/gate-evidence.py.
+# Deliberately untracked: it grows on every gated write and would conflict on
+# every merge. When a line in it is a *finding* (a denial that caught something),
+# quote it in linked-data/poc/reconciliation.md - the prose is the durable record.
+linked-data/poc/hooks/gate-log.jsonl
+
+# Editor swap files, which git mv leaves stranded when a tree is renamed.
+.*.sw[a-p]

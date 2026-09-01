@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/supports-language-construct",
+  "label": "supports language construct",
+  "recurrence": 3,
+  "type": "the subject supports the named language construct or dialect feature.",
+  "note": "Promotion debt: reached recurrence 3 across rounds 8-11 while remaining an extraction-layer id. Found by the whole-corpus recurrence query, not by reading this round's records.",
+  "relates_to_competency_question": "Which language features does this surface support?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

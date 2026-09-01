@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/scope",
+  "label": "scope (Capella)",
+  "recurrence": 13,
+  "type": "the middle level of Capella's data hierarchy: bucket > scope > collection",
+  "note": "PROMOTION DEBT since round 7 - see capella:bucket.",
+  "relates_to_competency_question": "How is data organised?",
+  "promoted": true
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-service-anchor-title-mismatch",
+  "type": "docs-issue",
+  "issueType": "title-content-mismatch",
+  "description": "index-service.md contains a section whose anchor and heading text disagree, so a deep link built from the anchor lands on a section named something else. Cosmetic in isolation; logged because rounds 8 and 10 each found the same class of anchor/title drift in different trees, which makes it a pattern worth a global check rather than three separate fixes.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

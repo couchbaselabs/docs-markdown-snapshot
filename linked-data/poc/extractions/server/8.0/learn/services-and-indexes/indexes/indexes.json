@@ -1,0 +1,241 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/indexes/indexes",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/indexes/indexes.md",
+  "concepts": [
+    { "candidate_id": "index:index", "label": "Index (coarse supertype)", "reused_or_minted": "reused - minted this batch on index-service.json. This page is the corpus's canonical statement that 'index' is a genus with species, so the supertype belongs here." },
+    {
+      "candidate_id": "index-class:traditional",
+      "label": "Traditional Indexes (index class)",
+      "reused_or_minted": "minted - a new namespace for the top-level split the page itself declares. NOT the same axis as index-type:*: this page says explicitly that there are 'two classes of indexes', and then lists types within each class. Class and type are two distinct levels and the docs use two distinct words for them."
+    },
+    {
+      "candidate_id": "index-class:vector",
+      "label": "Vector Indexes (index class)",
+      "reused_or_minted": "minted - sibling of index-class:traditional"
+    },
+    { "candidate_id": "index-type:primary-index", "label": "Primary index", "reused_or_minted": "reused - extraction-layer id" },
+    { "candidate_id": "index-type:secondary-index", "label": "Secondary index", "reused_or_minted": "reused - extraction-layer id" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "Search index (Search Service)",
+      "reused_or_minted": "reused - an extraction-layer id (2 prior occurrences, from the search/ tree). Reused rather than minting index-type:search-index, even though that would be more consistent with the axis this page is describing, because the underlying thing is genuinely the same and minting a near-duplicate is the one thing the registry forbids. The namespace mismatch is a real problem and I am flagging it rather than papering over it - see cross_component_finding. Note also the label drift: the id says 'full-text', this page says 'Search indexes', the 7.2 version of this page said 'Full Text index'."
+    },
+    {
+      "candidate_id": "index-type:analytics-index",
+      "label": "Analytics index",
+      "reused_or_minted": "minted - nothing in the registry or the extraction layer covers the Analytics Service's own indexes, despite service:analytics-service having recurrence 7. The 7.2 record of this page used index:analytics; that id has not recurred since and sits in the same incoherent index:/index-type: namespace split, so I have placed this one on the type axis where the page puts it."
+    },
+    {
+      "candidate_id": "index:view",
+      "label": "View index (Couchbase Views)",
+      "reused_or_minted": "reused - an extraction-layer id (1 prior occurrence, the 7.2 record of this page). Kept on the index: namespace rather than moved to index-type: to avoid creating a second id for the same thing; the namespace question goes to reconciliation."
+    },
+    { "candidate_id": "index-type:hyperscale-vector", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - extraction-layer id (3 prior occurrences)" },
+    { "candidate_id": "index-type:composite-vector", "label": "Composite Vector Index", "reused_or_minted": "reused - extraction-layer id (2 prior occurrences)" },
+    { "candidate_id": "vector-index:search-vector-index", "label": "Search Vector Index", "reused_or_minted": "reused - extraction-layer id (3 prior occurrences). A third namespace for what this page presents as one flat list of index kinds; see cross_component_finding." },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused" },
+    { "candidate_id": "version:server-7-0", "label": "Couchbase Server 7.0", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "The Query Service uses indexes from the [Index Service](../services/index-service.md)."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass. The registry has no taxonomic/subsumption predicate of any kind: no broader/narrower, no isA, nothing. Nine rounds produced 195 concepts with a completely flat structure, because a reference page describing CREATE INDEX has no occasion to say what kind of thing an index is. This page's whole purpose is to say so.",
+      "evidence": "Couchbase Server supports two classes of indexes: [Traditional Indexes](#traditional-indexes) and [Vector Indexes](#vector-indexes)."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:vector",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "Couchbase Server supports two classes of indexes: [Traditional Indexes](#traditional-indexes) and [Vector Indexes](#vector-indexes)."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "You can use the following types of indexes for traditional scalar data:"
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "You can use the following types of indexes for traditional scalar data:"
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass. Note the oddity the page creates: a Search index is classed as TRADITIONAL here, while a Search VECTOR index is classed as vector - so the class axis cuts across services rather than aligning with them.",
+      "evidence": "You can use the following types of indexes for traditional scalar data:"
+    },
+    {
+      "subject": "index-type:analytics-index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "You can use the following types of indexes for traditional scalar data:"
+    },
+    {
+      "subject": "index:view",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:traditional",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "You can use the following types of indexes for traditional scalar data:"
+    },
+    {
+      "subject": "index-type:hyperscale-vector",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:vector",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "Couchbase Server also supports indexes for vector search. These indexes let you perform semantic similarity searches that form the basis of AI applications."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:vector",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "Couchbase Server also supports indexes for vector search. These indexes let you perform semantic similarity searches that form the basis of AI applications."
+    },
+    {
+      "subject": "vector-index:search-vector-index",
+      "predicate": "belongsToIndexClass",
+      "object": "index-class:vector",
+      "reused_or_minted_predicate": "minted - belongsToIndexClass",
+      "evidence": "Couchbase Server also supports indexes for vector search. These indexes let you perform semantic similarity searches that form the basis of AI applications."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:primary-index",
+      "reused_or_minted_predicate": "minted - providesIndexType, also minted this batch on index-service.json. This is the axis the page is actually organised around: every one of its eight index types is introduced by naming the service that provides it.",
+      "evidence": "The [Index Service](../services/index-service.md) provides primary indexes based on the unique key of each item in a collection."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:secondary-index",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The [Index Service](../services/index-service.md) provides secondary indexes based on attributes in a document."
+    },
+    {
+      "subject": "service:search-service",
+      "predicate": "providesIndexType",
+      "object": "search:full-text-index",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The [Search Service](../services/search-service.md) provides Search indexes that support text matching, geospatial, date-time, and numeric range searches."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:analytics-index",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The [Analytics Service](../services/analytics-service.md) provides analytics indexes for shadow data in an Analytics collection."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:hyperscale-vector",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The Index Service provides [Hyperscale Vector Indexes](../../../vector-index/hyperscale-vector-index.md) which index a single vector column."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:composite-vector",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The Index Service provides [Composite Vector Indexes](../../../vector-index/composite-vector-index.md) which are Global Secondary Indexes (GSIs) with a single vector column."
+    },
+    {
+      "subject": "service:search-service",
+      "predicate": "providesIndexType",
+      "object": "vector-index:search-vector-index",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The Search Service provides [Search Vector Indexes](../../../vector-search/vector-search.md) that support a single vector column."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "isSynonymOf",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused - isSynonymOf. SECOND independent attestation this batch (index-service.md states it in different words), which under the registry's own two-page recurrence rule is enough to justify collapsing index-type:secondary-index into index-type:gsi. Reconciliation now has the source statement it needs; I have not performed the merge.",
+      "evidence": "A secondary index is also called a Global Secondary Index (GSI). Most queries in Couchbase Server use GSIs with SQL++."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "isSubtypeOf",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "minted - isSubtypeOf. Distinct from isSynonymOf (two names, one thing) and from belongsToIndexClass (membership of the page's top-level two-way split). This is a genuine species/genus statement between two index TYPES, and it is the single most useful sentence on the page for untangling the index vocabulary: a Composite Vector Index is not a peer of a GSI, it IS a GSI with a vector column. That also means index-class:vector and index-type:gsi OVERLAP - the class axis is not a partition of the type axis.",
+      "evidence": "The Index Service provides [Composite Vector Indexes](../../../vector-index/composite-vector-index.md) which are Global Secondary Indexes (GSIs) with a single vector column."
+    },
+    {
+      "subject": "index:view",
+      "predicate": "deprecatedIn",
+      "object": "version:server-7-0",
+      "reused_or_minted_predicate": "reused - deprecatedIn. Note for reconciliation: this is the exact relation whose 7.2-record ancestor was recorded as the synonym 'deprecatedSince' and folded into deprecatedIn in round 10. The 8.0 wording has changed tense from the 7.2 wording ('Views are deprecated' -> 'Views were deprecated') but the version is unchanged, and the removal is still undated - so the registry's decision to reserve removedIn without filing it remains correct.",
+      "evidence": "Views were deprecated in Couchbase Server 7.0 and will be removed in a future release."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "seeAlso",
+      "object": "server/current/indexes/indexing-overview",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about primary indexes, see [Primary and Secondary Index Reference](../../../indexes/indexing-overview.md)."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "seeAlso",
+      "object": "server/current/indexes/indexing-overview",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about Global Secondary Indexes, see [Primary and Secondary Index Reference](../../../indexes/indexing-overview.md)."
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "seeAlso",
+      "object": "server/current/search/create-search-indexes",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about creating Search indexes, see [Create a Search Index](../../../search/create-search-indexes.md)."
+    },
+    {
+      "subject": "index-type:analytics-index",
+      "predicate": "seeAlso",
+      "object": "server/current/analytics/7_using_index",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link. Note the link target is URL-encoded in the source ('7%5Fusing%5Findex.md') - underscores escaped as %5F, which is a snapshot-conversion artifact worth flagging.",
+      "evidence": "For more information about using analytics indexes, see [Using Indexes](../../../analytics/7%5Fusing%5Findex.md)."
+    },
+    {
+      "subject": "index:view",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/views/views-intro",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Couchbase Views](../../views/views-intro.md) extract fields and information from documents to create their own index."
+    },
+    {
+      "subject": "index-class:vector",
+      "predicate": "seeAlso",
+      "object": "server/current/vector-index/vectors-and-indexes-overview",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Use Vector Indexes for AI Applications](../../../vector-index/vectors-and-indexes-overview.md) for more information about using vector indexes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "belongsToIndexClass / isSubtypeOf / providesIndexType / (unfilled) index maintenance model",
+    "finding": "The registry has NO SUBSUMPTION VOCABULARY. 195 concepts, 64 predicates, and not one broader/narrower/isA relation - so a page whose entire content is a two-level taxonomy could not be expressed at all without minting. That is the deepest structural finding of the batch: nine rounds of reference extraction produced a flat vocabulary because reference pages enumerate siblings (clauses of a statement, values of a setting) and never state hierarchy. I minted two predicates rather than one, because the page draws two genuinely different hierarchical relations and uses different words for them: 'classes' (belongsToIndexClass, the Traditional/Vector split it declares up front) and a plain identity statement that one type IS another with a restriction ('Composite Vector Indexes ... which are Global Secondary Indexes (GSIs) with a single vector column' - isSubtypeOf). Reconciliation may want to generalize both to skos:broader; I did not, because the two are not interchangeable and collapsing them would erase the finding that the class axis and the type axis OVERLAP rather than nest. A FOURTH AXIS I COULD NOT MODEL AND AM REPORTING INSTEAD: index maintenance/freshness. 'Couchbase Server maintains every primary index asynchronously' and 'When operational data changes, Couchbase Server updates analytics indexes automatically' are two statements about how current an index is kept, on two different index types, on one page. The registry's nearest concept is n1ql:scan-consistency, but that is a per-QUERY setting about how current a scan must be, not a per-INDEX-TYPE property of how the index is maintained. I minted nothing for this and asserted no relation, because a two-member ad hoc scheme built from two adverbs ('asynchronously', 'automatically') would be inventing a vocabulary the docs do not have. Recording it as an absence instead. RELATION DELIBERATELY OMITTED: I did not assert tradesOffAgainst between index-type:hyperscale-vector and index-type:composite-vector, even though that predicate exists in the registry with recurrence 10 and was minted for exactly that pair. This page describes each one's strengths in separate entries and never compares them, so the comparison would have been my inference, not the page's statement."
+  },
+  "cross_component_finding": "(1) DIRECT CONTRADICTION with services.md, one directory away. This page: 'The [Search](../services/search-service.md) and [Analytics Services](../services/analytics-service.md) create and use their own indexes', and 'The [Analytics Service](../services/analytics-service.md) provides analytics indexes'. services.md: 'Index Service: Creates indexes, for use by the Query and Analytics services.' These cannot both be true. Both relations are recorded, on their respective pages, so reconciliation sees the conflict rather than inheriting whichever page happened to be extracted last. This needs an SME, not a reconciler. (2) FOUR NAMESPACES, ONE LIST. The eight index kinds this page presents as one flat enumeration already live in the corpus under four different prefixes: index-type:* (primary, secondary, gsi, hyperscale-vector, composite-vector), search:* (full-text-index), vector-index:* (search-vector-index), index:* (view). I reused every one of them rather than mint a clean parallel set, so this record deliberately contains the incoherence instead of hiding it behind eight new ids. The fix is a reconciliation decision; the evidence for it is this page, which proves the docs treat all eight as one kind of thing. (3) The Views entry is the only one with no providesIndexType relation, because Views are the only index kind on the page not provided by a service - they are produced by a deprecated engine the page does not name. An ontology that assumes every index has a providing service will have a hole exactly here. (4) SNAPSHOT ARTIFACT: the Analytics link target is written '7%5Fusing%5Findex.md' - underscores percent-encoded - which will not resolve as a filesystem path. Likely a Markdown-conversion bug affecting any docs path containing underscores, not just this one.",
+  "cross_product_finding": "ANSWER TO THE INDEX-TAXONOMY QUESTION THIS BATCH WAS SET. The two canonical conceptual pages distinguish exactly FIVE axes, and use distinct words for four of them. (a) CLASS - the page's own word: 'two classes of indexes', Traditional vs Vector. (b) TYPE - the page's own word: 'the following types of indexes', eight members. (c) PROVIDING SERVICE - Index / Search / Analytics, the organising principle of every entry, and the axis the registry's service:* family already covers. (d) STORAGE MODE - index-service.md's word 'storage': standard vs memory-optimized, a property of the SERVICE's configuration and edition-gated, not a property of an index. (e) The SERVICE AS DEPLOYABLE COMPONENT - services.md's Index Service with its wire identifier 'index', its memory quota, its 8.0 on-demand add/remove, its Supervisor and its Projector and Router. Critically, classes and types do NOT nest cleanly: a Composite Vector Index is stated to BE a GSI, so index-class:vector overlaps index-type:gsi, and a Search index is classed Traditional while a Search Vector index is classed Vector - the class axis cuts across the service axis. AND WHAT THE CONCEPTUAL PAGES DO NOT DISTINGUISH AT ALL: index STATE. Neither page mentions an index lifecycle, a DDL state, warmup, pause, or readiness. The registry's index-state scheme (scheduled for creation/deferred/building/pending/online/offline/abridged) and capella:index-ui-status (ready/pause/warmup) have no conceptual-documentation basis whatsoever - they are artifacts of the SQL++ statement reference and the Capella console respectively. So of the four axes the brief suspected were conflated, the docs support three (type, service-as-component, plus class and storage mode which the brief did not list) and are SILENT on the fourth (state). That silence is a documentation gap as much as an ontology one: nothing in server/'s learn tree tells a reader that an index has a lifecycle at all."
+}

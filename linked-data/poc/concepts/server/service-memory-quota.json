@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/service-memory-quota",
+  "label": "service memory quota",
+  "recurrence": 3,
+  "type": "the per-node memory allocation configured for a service. The Query and Backup services are explicitly exempt.",
+  "relates_to_competency_question": "What resources does adding this service cost?",
+  "promoted": true
+}

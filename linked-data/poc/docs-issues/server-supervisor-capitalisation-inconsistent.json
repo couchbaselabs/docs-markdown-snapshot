@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-supervisor-capitalisation-inconsistent",
+  "type": "docs-issue",
+  "issueType": "terminology-inconsistency",
+  "description": "index-service.md refers to the standard-storage supervisor process with inconsistent capitalisation (Supervisor and supervisor in the same page), leaving it ambiguous whether this is a named component or a common noun. The distinction matters for extraction: a named component earns a concept id, a descriptive noun does not. It was extracted as a component on the strength of the capitalised occurrences.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

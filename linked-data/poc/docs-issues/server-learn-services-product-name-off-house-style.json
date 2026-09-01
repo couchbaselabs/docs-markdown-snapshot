@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-learn-services-product-name-off-house-style",
+  "type": "docs-issue",
+  "issueType": "product-naming-inconsistency",
+  "description": "A page in this batch writes 'Couchbase Enterprise Server 7.6', which is not the product's name in either order - the house forms are 'Couchbase Server' with an Enterprise Edition badge, or 'Couchbase Server Enterprise Edition'. Prior rounds logged several naming-drift issues in Capella's tree (cluster-manager role naming, storage-mode vocabulary); this is the same class of problem appearing in server/. It also embeds a version number in prose on a page under an 8.0 tree.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

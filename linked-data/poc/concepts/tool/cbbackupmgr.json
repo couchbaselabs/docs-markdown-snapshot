@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbbackupmgr",
+  "label": "cbbackupmgr",
+  "recurrence": 5,
+  "aliases": [
+    "backup:cbbackupmgr",
+    "capella:cbbackupmgr"
+  ],
+  "type": "the command-line backup and restore utility",
+  "note": "Canonical id, folding backup:cbbackupmgr (3 files) and capella:cbbackupmgr (1 file) - five files, three namespaces, one utility. Follows the registry's own tool:cbq-shell precedent exactly, including its reasoning: a namespace for a subject area is not where a CLI tool belongs. This is the second time the corpus has produced a three-namespace split for a single command-line tool, which suggests the pattern is systematic rather than accidental.",
+  "relates_to_competency_question": "What tool do I use to back up a cluster?",
+  "promoted": true
+}

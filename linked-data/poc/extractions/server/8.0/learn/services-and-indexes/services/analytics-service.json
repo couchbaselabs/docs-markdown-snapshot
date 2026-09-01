@@ -1,0 +1,87 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/analytics-service",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/analytics-service.md",
+  "concepts": [
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused - concepts/service/analytics-service.json exists" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - concepts/service/data-service.json exists" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - concepts/service/index-service.json exists; appears here only via a cross-page relation, see below" },
+    { "candidate_id": "analytics:shadow-collection", "label": "shadow collection / shadow copy (Analytics)", "reused_or_minted": "minted - and minted RELUCTANTLY, because capella:analytics-dataset already exists in the corpus for what is almost certainly the same construct ('a shadow copy of operational data that the Analytics Service creates and keeps in sync in real time'). The two pages use different nouns for it - Capella says 'dataset', self-managed says 'shadow copy'/'shadow collection' - and no page states they are the same thing, so I am not merging them on my own authority. Flagged in cross_product_finding as the batch's clearest same-thing-two-names case" },
+    { "candidate_id": "analytics:massively-parallel-processing", "label": "massively parallel processing (MPP) architecture", "reused_or_minted": "minted - the Analytics Service's named execution model; object of usesExecutionModel, sibling of search:scatter-gather (search-service.json, this batch)" },
+    { "candidate_id": "analytics:operational-analytics", "label": "operational analytics", "reused_or_minted": "minted - one of the two focus areas the page names; the page defines this one and leaves the other undefined" },
+    { "candidate_id": "analytics:near-real-time-analytics", "label": "near real-time analytics", "reused_or_minted": "minted - the second named focus area, given no definition on the page at all" },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "reused_or_minted": "minted - same id as search-service.json in this batch, so it recurs on 2 of 4 pages immediately. NOTE THE NAME DRIFT: this page writes it out as 'Database Change Protocol', search-service.md writes 'the DCP protocol'; neither page expands or links the other's form" },
+    { "candidate_id": "hardware:numa", "label": "Non-Uniform Memory Access (NUMA)", "reused_or_minted": "minted - first hardware-architecture concept anywhere in the corpus. New namespace: gating by CPU/memory topology is an axis that ~540 pages of statement reference and REST reference never once produced" },
+    { "candidate_id": "server:node", "label": "cluster node", "reused_or_minted": "reused - extraction-layer id already on disk (services.json, this round)" },
+    { "candidate_id": "workload:large-analytical-query", "label": "large, complex aggregating query workload", "reused_or_minted": "minted - object of the minted bestSuitedForWorkload predicate. Conceptual pages characterise services by the workload they suit; nothing in the registry could express that" }
+  ],
+  "relations": [
+    { "subject": "service:analytics-service", "predicate": "dependsOnService", "object": "service:data-service",
+      "reused_or_minted_predicate": "reused - dependsOnService. Note the evidence is oblique: unlike search-service.md ('The Search Service depends on the Data Service') and eventing-service.md ('The Eventing Service depends on the Data Service'), THIS page never states the dependency as a dependency. It states that shadow collections are connected to the Data Service. The crisp sentence exists only on Capella's equivalent page - see cross_product_finding",
+      "evidence": "When shadow collections are created, they are connected to the [Data Service](data-service.md), and any changes in the operational data are reflected in the Analytics Service in near-real time, using the Database Change Protocol." },
+
+    { "subject": "service:analytics-service", "predicate": "dependsOnService", "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "* [Index Service](index-service.md): Creates indexes, for use by the Query and Analytics services.",
+      "evidence_source": "server/current/learn/services-and-indexes/services/services.md",
+      "evidence_provenance": "cross-page: the Analytics Service's own page never mentions the Index Service. The parent services.md overview is the only place in the tree that states Analytics consumes indexes. Recorded here rather than dropped because a consumer asking 'what does Analytics depend on' should not have to read the parent page, and because the omission is itself the finding." },
+
+    { "subject": "service:analytics-service", "predicate": "streamsMutationsVia", "object": "protocol:dcp",
+      "reused_or_minted_predicate": "minted in search-service.json this batch - streamsMutationsVia. Second occurrence, on a different service, which is what the two-or-more promotion rule wants",
+      "evidence": "When shadow collections are created, they are connected to the [Data Service](data-service.md), and any changes in the operational data are reflected in the Analytics Service in near-real time, using the Database Change Protocol." },
+
+    { "subject": "service:analytics-service", "predicate": "usesExecutionModel", "object": "analytics:massively-parallel-processing",
+      "reused_or_minted_predicate": "minted in search-service.json this batch - usesExecutionModel. Second occurrence",
+      "evidence": "The Analytics Service leverages massively parallel processing (MPP) architecture to deliver analytics and insights at the speed of transactions." },
+
+    { "subject": "service:analytics-service", "predicate": "requiresDedicatedNode", "object": "server:node",
+      "reused_or_minted_predicate": "minted - requiresDedicatedNode. The exact inverse of requiresCoDeployedService (minted on search-service.json this batch): Search needs Query and Index on the SAME cluster, Analytics needs NOTHING ELSE on the same node. Two opposed deployment-topology constraints on two of four pages, and the registry had neither. Note the modal verb is 'should', not 'must' - this is a strong recommendation, and the relation as recorded flattens that. Reconciliation may want a strength qualifier on deployment-constraint predicates",
+      "evidence": "Due to the large scale and duration of operations it is likely to perform, the Analytics Service should be run _alone_, on its node or nodes in the cluster, _with no other Couchbase Service running on the Analytics nodes_." },
+
+    { "subject": "service:analytics-service", "predicate": "isolatesWorkloadFrom", "object": "service:data-service",
+      "reused_or_minted_predicate": "minted - isolatesWorkloadFrom. The architectural payoff of the shadowing design and the reason the service exists at all. Nothing in the registry expresses workload isolation; the closest, doesNotAffect, is about an operation leaving an artifact intact, not about two workloads not contending",
+      "evidence": "This continuous data ingestion allows operational and analytic queries to run concurrently without impacting one another." },
+
+    { "subject": "service:analytics-service", "predicate": "eliminatesNeedFor", "object": "analytics:etl-to-separate-system",
+      "reused_or_minted_predicate": "minted - eliminatesNeedFor. Conceptual pages routinely justify a feature by what it makes unnecessary, and there was no predicate for that. Object is a bare candidate concept (ETL into a separate system) that I have not listed as a concept because the page names it only as the thing you no longer have to do",
+      "evidence": "The Analytics Service helps analyze JSON data in Couchbase in real time, without the need to extract, transform, and load (ETL) the underlying operational data into a separate system." },
+
+    { "subject": "service:analytics-service", "predicate": "bestSuitedForWorkload", "object": "workload:large-analytical-query",
+      "reused_or_minted_predicate": "minted - bestSuitedForWorkload. A recommendation-strength fit statement, not a hard constraint. Deliberately distinct from requiresDedicatedNode (a topology rule) and from tradesOffAgainst (a comparison between two alternatives)",
+      "evidence": "Couchbase Analytics is best suited for running large, complex queries involving data aggregations, typically on large amounts of data." },
+
+    { "subject": "service:analytics-service", "predicate": "hasFocusArea", "object": "analytics:operational-analytics",
+      "reused_or_minted_predicate": "minted - hasFocusArea. The page states a closed two-member taxonomy; usesEnum was the nearest registry term but that is for a statement's output drawing on a controlled vocabulary, not for a service's stated areas of application",
+      "evidence": "There are two focus areas: _operational analytics_ and _near real-time analytics_." },
+    { "subject": "service:analytics-service", "predicate": "hasFocusArea", "object": "analytics:near-real-time-analytics",
+      "reused_or_minted_predicate": "minted - hasFocusArea",
+      "evidence": "There are two focus areas: _operational analytics_ and _near real-time analytics_." },
+
+    { "subject": "service:analytics-service", "predicate": "doesNotSupport", "object": "hardware:numa",
+      "reused_or_minted_predicate": "reused - doesNotSupport. A stated, bounded non-support boundary, which is exactly what the registry defines this predicate for. First time it has been used against a hardware architecture rather than a software feature",
+      "evidence": "Couchbase Analytics is not configured to align with the NUMA architecture." },
+
+    { "subject": "hardware:numa", "predicate": "degradesPerformanceOf", "object": "service:analytics-service",
+      "reused_or_minted_predicate": "minted - degradesPerformanceOf. behavesDifferentlyUnder was the tempting reuse (its range has already been generalised four times, to deployment, cloud provider and storage engine) but this is not a behavioural difference, it is a performance and stability warning with no functional change. Stretching behavesDifferentlyUnder a fifth time would have hidden that",
+      "evidence": "Non-Uniform Memory Access (NUMA) can significantly impact the performance and stability of the Couchbase Analytics Service." },
+
+    { "subject": "service:analytics-service", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/create-cluster",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "* How to initialize a cluster, see [Create a Cluster](../../../manage/manage-nodes/create-cluster.md)." },
+    { "subject": "service:analytics-service", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/join-cluster-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "* How to join or add a new node to a cluster to support the Analytics Service, see [Join a Cluster and Rebalance](../../../manage/manage-nodes/join-cluster-and-rebalance.md) and see [Add a Node and Rebalance](../../../manage/manage-nodes/add-node-and-rebalance.md)." },
+    { "subject": "service:analytics-service", "predicate": "seeAlso", "object": "server/8.0/analytics/introduction",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "* How to run analytic queries, see the [Introduction](../../../analytics/introduction.md) to Couchbase Analytics." },
+    { "subject": "service:analytics-service", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/modify-services-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "* For more information about adding or removing the Analytics Service on an existing node of a cluster, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition / availableSince / dependsOnService(index) / usesPort",
+    "finding": "No access control of any kind, no edition gate, no version statement, no port, and no memory-quota figure - the same profile as search-service.md, so it is a property of the learn/services tree rather than of one page. Two absences are specific and worth SME attention. (1) The Analytics Service does not state its own Data Service dependency in dependency language. Its two sibling pages in the same directory both use the formula 'The X Service depends on the Data Service'; this page instead buries it inside a sentence about shadow collections. If the ontology is built by pattern-matching that formula, Analytics silently drops out of the dependency graph. (2) The Index Service dependency is stated ONLY on the parent services.md ('Creates indexes, for use by the Query and Analytics services') and nowhere on this page - recorded above as a cross-page relation with evidence_source rather than asserted from this page or dropped. Also absent: no statement of how many Analytics nodes are needed or supported, no mention of the 8-dataset ceiling that Capella's equivalent page states, and no definition of 'near real-time analytics' despite it being named as one of only two focus areas. I did not assert anything about dataset limits, replication, or Analytics-service scaling, because the page says nothing about any of them."
+  },
+  "cross_component_finding": "This page and search-service.md produced two OPPOSED deployment-topology constraints within one batch, and the registry had a predicate for neither: Search must be co-deployed with Query and Index for its SQL++ surface to work at all (requiresCoDeployedService), while Analytics should be deployed alone with no other service on its nodes (requiresDedicatedNode). That pair is the single clearest answer to this round's hypothesis - reference documentation produces gating axes (privilege, edition, credential type, UI mode, access surface) and conceptual documentation produces PLACEMENT axes, and the two vocabularies have no overlap. hasExecutionConstraint, the registry's one placement-flavoured predicate, was minted for 'every statement in a SQL++ transaction must be routed to the same Query node' - a request-routing rule, not a service-to-node allocation rule, so it does not cover either of these. Second cross-component point: 'shadow collections are connected to the Data Service ... using the Database Change Protocol' is the same mechanism search-service.md describes as 'the Data Service uses the DCP protocol to stream data-mutations'. Two pages in one directory, one protocol, two names, no cross-link, and no concept for it in the registry after nine rounds. Third: NUMA is the first time anything in the corpus has gated or degraded a Couchbase capability on the physical shape of the machine. The registry's behavesDifferentlyUnder axis has already been generalised to editions, deployments, cloud providers and storage engines; hardware topology would be a fifth, and I deliberately minted degradesPerformanceOf instead of adding it, because a performance warning is not a behavioural variation.",
+  "cross_product_finding": "SAME SERVICE, TWO NAMES FOR ITS CENTRAL ARTIFACT. Capella's cloud/clusters/analytics-service/analytics-service.md calls the shadowed copy a 'dataset' (extracted as capella:analytics-dataset, 'a shadow copy of operational data ... up to 8 per cluster'); the self-managed page calls the identical thing a 'shadow copy' / 'shadow collection' and states no ceiling. These are one construct under two nouns, and nothing in either page connects them, so I minted analytics:shadow-collection rather than merging - but reconciliation should treat this as the batch's strongest merge candidate, on the same evidence standard the registry already applies to its collision writeups. Three further deployment-model divergences on the same service. (a) Capella's page states the dependency crisply ('The Analytics Service depends on the Data Service. This service must also be deployed on the cluster in order to use the Analytics Service.'); the self-managed page does not, which is the reverse of the expected direction - you would expect the self-managed tree to be the more architecturally explicit one. (b) Capella's page introduces analytics:sqlpp-for-analytics and capella:cost-based-optimizer-analytics as first-class Analytics concepts; the self-managed page never mentions that Analytics has its own SQL++ dialect at all, and links only to a generic 'Introduction to Couchbase Analytics'. (c) NUMA and dedicated-node placement cannot appear on Capella's side by construction - Capella chooses the hardware and the topology - so the two most substantive facts on this page are unstateable in the Capella tree. Net: for Analytics the self-managed page is richer on infrastructure and POORER on the service's own semantics than its Capella twin, and a merged ontology will show service:analytics-service with a hardware-and-placement fan from server/ and a language-and-optimizer fan from cloud/, with no page asserting they are one service."
+}

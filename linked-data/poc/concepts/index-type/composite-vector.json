@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/composite-vector",
+  "label": "Composite Vector Index",
+  "recurrence": 3,
+  "type": "a Global Secondary Index with a single vector column",
+  "note": "SUBSUMPTION STATED IN THE SOURCE: 'Composite Vector Indexes ... which are Global Secondary Indexes (GSIs) with a single vector column' - so this isSubtypeOf index-type:gsi while belongsToIndexClass index-class:vector. It is the concrete case proving the class and type axes overlap rather than nest.",
+  "relates_to_competency_question": "What kinds of index can I create?",
+  "promoted": true
+}

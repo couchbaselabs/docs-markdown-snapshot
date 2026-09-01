@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/provides-service",
+  "label": "provides service",
+  "recurrence": 1,
+  "type": "the subject node runs an instance of the object service. The placement relation underlying Multi-Dimensional Scaling.",
+  "note": "PROMOTED BELOW THRESHOLD, as part of the documented Multi-Dimensional Scaling family (providesService, requiresMinimumNodeCount, requiresMemoryQuota, exemptFromMemoryQuota, hasInternalServiceIdentifier). No single member except requiresMinimumNodeCount crosses the two-page bar, but together they cover one well-evidenced mechanism that services.md documents in full and that the registry could not express at all: services as independently placeable, independently quota'd, independently scalable components on named nodes. The family exception in the reconcile skill is being used deliberately here, not silently.",
+  "relates_to_competency_question": "Which services run on which nodes?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

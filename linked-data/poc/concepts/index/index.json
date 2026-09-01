@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/index",
+  "label": "Index (coarse supertype)",
+  "recurrence": 2,
+  "type": "'an index' in the generic, unqualified sense - the genus of which the eight documented index types are species",
+  "note": "A COARSE PLACEHOLDER, minted reluctantly and following the registry's existing rbac-role:role / capella-role:role precedent. It exists because index-service.md and indexes.md both make statements about 'an index' with no type qualifier at all ('By default, an index is saved on the node on which it is created'; 'Each index is created on one keyspace (collection) only') and the registry offered only type-specific ids, so there was no honest subject for them. Its previous absence was itself a finding: after ~93 index-related ids accumulated across nine rounds, the corpus had no way to say anything about indexes in general.",
+  "relates_to_competency_question": "What is true of all indexes?",
+  "promoted": true
+}

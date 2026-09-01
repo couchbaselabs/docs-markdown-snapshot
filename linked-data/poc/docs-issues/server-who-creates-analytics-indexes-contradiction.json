@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-who-creates-analytics-indexes-contradiction",
+  "type": "docs-issue",
+  "issueType": "internal-contradiction",
+  "description": "Two pages in the same directory make incompatible statements about which service creates Analytics indexes. services.md, describing the Index Service, says it creates and maintains indexes for the Query, Search and Analytics services. indexes.md's index table attributes Analytics indexes to the Analytics Service itself. These cannot both be read as true, and the difference is not cosmetic: it changes which service a reader must deploy, quota and scale in order to index Analytics data, and it changes the shape of the ontology (a servesService edge from the Index Service to Analytics, or none). The extraction records both statements and carries a CONTRADICTION WARNING on the servesService relation rather than picking a winner. NEEDS AN SME DECISION - not resolvable from the two pages, and the answer may be version-dependent.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services",
+    "server/8.0/learn/services-and-indexes/indexes"
+  ],
+  "severity": "needs-sme",
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

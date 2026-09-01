@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-edition-gate-unclear",
+  "type": "docs-issue",
+  "issueType": "unclear-edition-gating",
+  "description": "backup-service.md does not state clearly whether the Backup Service is Enterprise Edition only. Given that the Index Service's memory-optimized storage mode IS explicitly edition-gated on the adjacent index-service.md page, and that prior rounds found edition badges applied inconsistently across trees, the silence here is ambiguous rather than informative. A reader on Community Edition cannot tell from this page whether the feature is available to them.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/backup-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

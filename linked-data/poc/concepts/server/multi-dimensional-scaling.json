@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/multi-dimensional-scaling",
+  "label": "Multi-Dimensional Scaling (MDS)",
+  "recurrence": 2,
+  "type": "the Couchbase Server architecture in which each service is independently placeable, independently quota'd and independently scalable across named nodes",
+  "note": "The load-bearing concept of services.md, and it has NO CAPELLA COUNTERPART in the corpus - that absence is itself the finding. Capella's ~180 management-plane pages (rounds 6-9) expose cluster configurations, node counts and service checkboxes, with placement decided for the user; nothing there needed server:node, server:rebalance or server:service-memory-quota. The ontology therefore holds two disjoint views of the same services - server/ sees deployable components with topology, Capella sees a managed feature list - joined only by the shared service:* ids.",
+  "relates_to_competency_question": "How do I scale one service without scaling the rest?",
+  "promoted": true
+}

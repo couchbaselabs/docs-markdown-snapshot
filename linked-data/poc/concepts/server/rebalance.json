@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/rebalance",
+  "label": "rebalance",
+  "recurrence": 2,
+  "type": "the operation that redistributes data and service instances across nodes after topology change",
+  "relates_to_competency_question": "What happens when I add or remove a node?",
+  "promoted": true
+}

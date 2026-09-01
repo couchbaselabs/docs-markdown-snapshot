@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/belongs-to-index-class",
+  "label": "belongs to index class",
+  "recurrence": 1,
+  "type": "assigns an index type to one of the two classes indexes.md declares up front: Traditional or Vector.",
+  "note": "PROMOTED BELOW THRESHOLD on significance, and deliberately NOT collapsed into isSubtypeOf even though both are hierarchical. Collapsing them would erase the finding: the class axis and the type axis OVERLAP rather than nest. A Composite Vector Index is stated to BE a GSI, so index-class:vector cuts across index-type:gsi; and a Search index is classed Traditional while a Search Vector index is classed Vector, so class cuts across the providing-service axis too. Two predicates preserve a real structural fact that one would flatten away.",
+  "relates_to_competency_question": "Which class of index is this?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

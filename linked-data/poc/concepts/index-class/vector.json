@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-class/vector",
+  "label": "Vector index (class)",
+  "recurrence": 1,
+  "type": "one of the two classes indexes.md declares up front; indexes supporting vector search",
+  "note": "Two-member closed family with index-class:traditional - see that record for why class and type overlap rather than nest. A Composite Vector Index is stated to BE a GSI, so index-class:vector overlaps index-type:gsi directly.",
+  "relates_to_competency_question": "Which class of index is this?",
+  "promoted": true
+}

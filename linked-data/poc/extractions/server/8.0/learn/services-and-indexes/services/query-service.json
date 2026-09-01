@@ -1,0 +1,196 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/query-service",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/query-service.md",
+  "concepts": [
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:sqlpp", "label": "SQL++", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:prepared-statement", "label": "prepared statement", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:scan-consistency", "label": "scan_consistency / consistency levels", "reused_or_minted": "reused - the page's italicised '_consistency-levels_' is this concept under a third label. The registry note on n1ql:scan-consistency already records two labels (the four-valued query setting and the Java SDK's two-member subset); this is a third, and it is the most abstract of them." },
+    { "candidate_id": "port:8093", "label": "Port 8093", "reused_or_minted": "reused" },
+    { "candidate_id": "port:18093", "label": "Port 18093", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "query-service:listeners",
+      "label": "Listeners (Query Service component)",
+      "reused_or_minted": "minted - a top-level internal component; same namespace pattern as data-service:* minted this batch."
+    },
+    {
+      "candidate_id": "query-service:query-processor",
+      "label": "Query Processor (Query Service component)",
+      "reused_or_minted": "minted - the parse/plan stage"
+    },
+    { "candidate_id": "query-service:parser", "label": "Parser", "reused_or_minted": "minted - a Query Processor sub-component" },
+    {
+      "candidate_id": "query-service:optimizer",
+      "label": "Optimizer (Query Service component)",
+      "reused_or_minted": "minted - deliberately NOT identified with the registry's n1ql:cost-based-optimizer (recurrence 15). This page describes an optimizer that 'evaluates available execution paths, so determining the path of lowest latency' and never mentions cost, statistics or the CBO; the CBO is documented elsewhere as an opt-in mechanism requiring UPDATE STATISTICS. They may be the same component or the CBO may be a mode of it - the page does not say, so I have not asserted it. See cross_component_finding; this is a real reconciliation question, not a duplicate mint by carelessness."
+    },
+    { "candidate_id": "query-service:execution-engine", "label": "Execution Engine", "reused_or_minted": "minted - a Query Processor sub-component; the thing that actually runs the operator tree" },
+    { "candidate_id": "query-service:data-stores", "label": "Data Stores (Query Service component)", "reused_or_minted": "minted - the abstraction layer over data sources" },
+    { "candidate_id": "query-service:couchbase-server-store", "label": "Couchbase Server store", "reused_or_minted": "minted - the Data Stores member that reaches Couchbase Server's own data and indexes and handles authentication" },
+    {
+      "candidate_id": "n1ql:query-execution-phase",
+      "label": "query execution phase / operator (Scan, Fetch, Join, Filter, Aggregate, Project, Sort, Offset, Limit)",
+      "reused_or_minted": "minted - modeled as a scheme with a flat literal list of values rather than one concept per operator, following exactly the precedent the registry records for index-state and cluster-access-credential-type: nothing yet references an individual phase on its own. Promote individual phases if that need arises."
+    },
+    { "candidate_id": "server:multi-dimensional-scaling", "label": "Multi-Dimensional Scaling (MDS)", "reused_or_minted": "reused - minted this batch on services.md" }
+  ],
+  "relations": [
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "The Query Service depends on both the _Index Service_ and the _Data Service_."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "The Query Service depends on both the _Index Service_ and the _Data Service_."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:search-service",
+      "reused_or_minted_predicate": "minted - mayDelegateOperationTo. This is the round's sharpest single vocabulary gap. dependsOnService cannot express an ALTERNATIVE dependency: the page says a Scan goes to 'either the Index Service or the Search Service', which is a disjunction, and asserting dependsOnService(query, search) would overstate it into a hard prerequisite - directly contradicting this same page's lede, which names only two dependencies. Minted rather than fudged. Reconciliation may prefer to model this as dependsOnService with a cardinality/disjunction qualifier.",
+      "evidence": "It performs Scan operations on the relevant index, using either the Index Service or the Search Service."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "minted - mayDelegateOperationTo, the other arm of the same disjunction. Note this service is BOTH a hard dependency (lede) and one arm of an optional choice (here) - which is precisely why the two predicates must stay distinct.",
+      "evidence": "It performs Scan operations on the relevant index, using either the Index Service or the Search Service."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:listeners",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, minted this batch on data-service.md. Third and fourth pages of this batch use it, so it recurs across pages, not just within one.",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:query-processor",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:data-stores",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "query-service:query-processor",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:parser",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "**Query Processor**: Responsible for applying the **Parser** to incoming queries, in order to determine whether each is a valid statement."
+    },
+    {
+      "subject": "query-service:query-processor",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:optimizer",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "Also employs the **Optimizer**, which evaluates available execution paths, so determining the path of lowest latency; generates a query-execution plan that uses the lowest-latency path; and assembles the plan into a series of operators."
+    },
+    {
+      "subject": "query-service:query-processor",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:execution-engine",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "The **Execution Engine** receives the operators, and executes them"
+    },
+    {
+      "subject": "query-service:data-stores",
+      "predicate": "hasInternalComponent",
+      "object": "query-service:couchbase-server-store",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "**Data Stores**: Provides access to various data-sources. The **Couchbase Server** store is used to access the data and indexes on Couchbase Server, and to handle authentication. Other data stores are also included, such as the store for the local filesystem."
+    },
+    {
+      "subject": "query-service:listeners",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "reused_or_minted_predicate": "reused - usesPort",
+      "evidence": "**Listeners**: Concurrent query requests are received on ports 8093 and 18093"
+    },
+    {
+      "subject": "query-service:listeners",
+      "predicate": "usesPort",
+      "object": "port:18093",
+      "reused_or_minted_predicate": "reused - usesPort",
+      "evidence": "**Listeners**: Concurrent query requests are received on ports 8093 and 18093"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "supportsQueryLanguage",
+      "object": "n1ql:sqlpp",
+      "reused_or_minted_predicate": "minted - supportsQueryLanguage. The registry has 15 recurrences of service:query-service and 6 of n1ql:sqlpp but no predicate connecting a service to the language it executes - because every reference page took that connection for granted and documented individual statements instead. The extraction-layer supportsLanguageConstruct is about a construct within a language, not a whole language.",
+      "evidence": "The Query Service supports queries made in SQL++."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:prepared-statement",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct, an extraction-layer id (4 prior occurrences)",
+      "evidence": "SQL++ allows statements to be _prepared_, so that the parsing and compiling of plans is completed prior to execution; and permits _consistency-levels_ to be configured."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "configurableVia",
+      "object": "n1ql:scan-consistency",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "SQL++ allows statements to be _prepared_, so that the parsing and compiling of plans is completed prior to execution; and permits _consistency-levels_ to be configured."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "hasExecutionPhase",
+      "object": "n1ql:query-execution-phase",
+      "reused_or_minted_predicate": "minted - hasExecutionPhase. Points at the flat-list scheme rather than at nine individual operator concepts, per the index-state precedent.",
+      "evidence": "The Query Service processes the data further by applying Filter, Aggregate, Project, and Sort operations. These operations can run in parallel."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "seeAlso",
+      "object": "server/current/install/install-ports",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "for more information on port-allocation, see [Network and Firewall Requirements](../../../install/install-ports.md)"
+    },
+    {
+      "subject": "n1ql:query-execution-phase",
+      "predicate": "seeAlso",
+      "object": "server/current/n1ql/n1ql-language-reference/selectintro",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about each of these operations, see [Query Phases](../../../n1ql/n1ql-language-reference/selectintro.md#query-execution-phases)."
+    },
+    {
+      "subject": "n1ql:sqlpp",
+      "predicate": "seeAlso",
+      "object": "server/current/n1ql/n1ql-language-reference/index",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For detailed information, see [SQL++ Language Reference](../../../n1ql/n1ql-language-reference/index.md)."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-nodes/modify-services-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about adding or removing the Query Service on an existing node of a cluster, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "mayDelegateOperationTo / supportsQueryLanguage / hasExecutionPhase",
+    "finding": "dependsOnService - the one composition predicate the registry has, and the one it minted on this very subtree in round 1 - turns out to be too coarse for the page it came from. It has no way to express (a) an ALTERNATIVE dependency ('either the Index Service or the Search Service'), (b) a per-OPERATION dependency (Scan goes to one service, Fetch to another) as opposed to a whole-service one, or (c) the difference between a hard prerequisite and a runtime delegation. The Search Service is the acid test: this page's lede names exactly two hard dependencies (Index, Data), and services.md's example agrees, yet the Query Execution section has the Query Service routing Scans to the Search Service. Under dependsOnService alone you must either lose that fact or promote Search to a hard dependency and contradict the lede. I minted mayDelegateOperationTo and recorded both arms of the disjunction rather than choose. Separately: this page describes a DATAFLOW SEQUENCE (receive -> parse -> plan -> scan -> fetch -> join -> filter/aggregate/project/sort -> offset/limit -> stream) and the registry has no ordering predicate whatsoever, so the sequence itself is unextractable - I collapsed it into one hasExecutionPhase relation pointing at a flat scheme, which loses the ordering. Same gap flagged on data-service.md and index-service.md; three of five pages in this batch hit it, so it is the batch's second-clearest structural finding after the missing part-whole predicate. NOTHING WAS DROPPED for lack of evidence."
+  },
+  "cross_component_finding": "(1) OPTIMIZER IDENTITY, unresolved and worth SME attention: this page's Optimizer 'evaluates available execution paths, so determining the path of lowest latency'. The registry's n1ql:cost-based-optimizer (recurrence 15, one of its best-attested concepts) is a statistics-driven optimizer requiring a prior UPDATE STATISTICS run (registry predicate requiresPriorExecutionOf). Nothing on this page mentions cost or statistics, and nothing on the CBO pages says the CBO IS the Optimizer component rather than a mode of it. So the canonical conceptual page for the Query Service does not connect to the ontology's richest Query-Service concept at all. I minted a separate query-service:optimizer and am flagging it rather than merging - exactly the situation the registry's collision notes exist for. (2) The lede's dependency claim and the Query Execution section's delegation claim are in tension within one page (see notable_absence). (3) The 'Data Stores' component reveals that the Query Service can read non-Couchbase sources ('the store for the local filesystem') - a capability with no other trace anywhere in the ontology after nine rounds and ~540 pages. (4) Architecture is again carried by a PNG (queryServiceArchitecture.png) plus prose that partially restates it; the Figure 2 execution-sequence SVG encodes degree-of-parallelism per operator ('the number of boxes within an operation block represents the degree of parallelism'), which is unextractable from a Markdown snapshot by construction.",
+  "cross_product_finding": "The Query Service is the most heavily extracted subject in the whole corpus - n1ql:query-service-rest-api (12), 30+ n1ql:* statement concepts, request/node/cluster-level settings - and essentially none of it attaches here. The reference tree documents the Query Service as an API and a language; this page documents it as a process with listeners, a planner and a thread-level parallelism model. The only two joins between the two views in this record are usesPort (to the same port:8093 that the REST API pages already cited) and n1ql:scan-consistency, which arrives here under a third label ('_consistency-levels_'), abstracted away from both the four-valued server setting and the Java SDK's two-member enum. That third label is a small but real vindication of keeping those as one concept with recorded label variance rather than splitting them. Capella's tree, by contrast, exposes none of this: it has capella:query-tab and capella:data-api as access surfaces onto the Query Service and never describes the service's internals, so nothing in the Capella-derived vocabulary can attach to any concept minted on this page."
+}

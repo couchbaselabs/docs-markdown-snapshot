@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/provides-index-type",
+  "label": "provides index type",
+  "recurrence": 2,
+  "type": "the subject service is the engine that produces and maintains the object index type.",
+  "note": "Note the hole this predicate has by construction: Views are the only index kind on indexes.md with no providing service - they are produced by a deprecated engine the page does not name. An ontology that assumes every index type has a provider will be wrong exactly there.",
+  "relates_to_competency_question": "Which service provides this kind of index?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

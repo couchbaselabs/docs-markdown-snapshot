@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/fires-callback",
+  "label": "fires callback",
+  "recurrence": 3,
+  "type": "the subject invokes the named callback when its condition is met.",
+  "note": "Promotion debt from round 8's cloud/eventing/ batch. Three files, never filed.",
+  "relates_to_competency_question": "What code runs in response to this event?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

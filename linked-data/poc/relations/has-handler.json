@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-handler",
+  "label": "has handler",
+  "recurrence": 3,
+  "type": "the subject (an Eventing function) declares the named handler entry point (OnUpdate, OnDelete).",
+  "note": "Promotion debt from round 8's cloud/eventing/ batch. Three files, never filed.",
+  "relates_to_competency_question": "What code runs in response to this event?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

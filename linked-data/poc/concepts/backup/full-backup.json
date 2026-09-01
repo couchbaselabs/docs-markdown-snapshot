@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/full-backup",
+  "label": "full backup",
+  "recurrence": 2,
+  "type": "a backup capturing all data in scope, as against an incremental one",
+  "note": "One of only two ids shared between the self-managed Backup Service vocabulary and Capella's completely separate backup ontology (the other is backup:incremental-backup). See service/backup-service for the scale of that divergence.",
+  "relates_to_competency_question": "What kinds of backup are there?",
+  "promoted": true
+}

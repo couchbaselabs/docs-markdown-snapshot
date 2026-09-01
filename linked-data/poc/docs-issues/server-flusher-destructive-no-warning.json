@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-flusher-destructive-no-warning",
+  "type": "docs-issue",
+  "issueType": "missing-warning",
+  "description": "data-service.md describes the Flusher among the KV engine's internal components without any warning that flushing is destructive and irreversible. Elsewhere in the documentation set, bucket flush is consistently accompanied by a caution. On a conceptual page the omission is lower-stakes than on a procedure, but this is the page a reader goes to in order to find out what the Flusher is.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/data-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

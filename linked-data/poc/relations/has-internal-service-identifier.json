@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-internal-service-identifier",
+  "label": "has internal service identifier",
+  "recurrence": 1,
+  "type": "DATATYPE PROPERTY: maps a service's display name to the wire/API identifier it is addressed by. Object is a string literal: kv, n1ql, index, fts, cbas, eventing, backup.",
+  "note": "THE REGISTRY'S FIRST DELIBERATE DATATYPE PROPERTY, and the clearest case for the family exception. Recurrence 1 by page, but it is a complete seven-member mapping stated in one place, and it answers a question a user genuinely has and the ontology could not previously touch: 'what string do I pass to the API for the Query Service?' (answer: n1ql, not query). Round 11 produced twelve relations whose object is a literal rather than a concept id - integers (requiresMinimumNodeCount 1), durations (hasDefaultDuration '10 minutes', '3 days') and these identifier strings. Every one of the registry's previous 64 predicates was an object property, because reference pages relate constructs to constructs; conceptual pages state plain values about components. When JSON-LD is drafted these need rdfs:range xsd:* and must NOT be given a concept id as object just to make the shape uniform.",
+  "relates_to_competency_question": "What is this service called in the API?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-grammar-errors",
+  "type": "docs-issue",
+  "issueType": "copy-editing",
+  "description": "backup-service.md contains grammatical errors in body prose (agreement and article errors in the plan/repository description). Logged as copy-editing rather than a content problem: the meaning is recoverable, but this is a top-level conceptual page for a service.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/backup-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

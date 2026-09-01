@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/secondary-index",
+  "label": "Secondary Index",
+  "recurrence": 4,
+  "type": "an index on document fields other than the key. The docs state this IS a Global Secondary Index (GSI).",
+  "note": "MERGE LICENCE ON THE RECORD: both index-service.md and indexes.md independently state that a secondary index is a GSI, which is the explicit source statement the never-merge-without-evidence rule requires - two-page recurrence, so the merge is licensed rather than inferred. Kept as a distinct id from index-type:gsi, linked by isSynonymOf rather than collapsed, because the docs use both surface terms and a reader searching either should land somewhere.",
+  "relates_to_competency_question": "What kinds of index can I create?",
+  "promoted": true
+}

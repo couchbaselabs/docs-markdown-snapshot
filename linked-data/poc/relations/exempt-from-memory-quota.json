@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/exempt-from-memory-quota",
+  "label": "exempt from memory quota",
+  "recurrence": 1,
+  "type": "the subject service does NOT require a memory quota - stated of the Query and Backup services.",
+  "note": "Member of the Multi-Dimensional Scaling family - see provides-service. Kept as its own predicate rather than a negated requiresMemoryQuota because the docs state it as an explicit exception ('The Query and Backup services are exceptions and do not require a memory quota'), and negation-as-absence would make the exemption indistinguishable from a page that simply never mentioned quotas - which, in this corpus, is most of them.",
+  "relates_to_competency_question": "What resources does adding this service cost?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

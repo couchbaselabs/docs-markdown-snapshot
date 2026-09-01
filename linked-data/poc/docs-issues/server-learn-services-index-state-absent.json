@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-learn-services-index-state-absent",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Neither indexes.md nor index-service.md mentions index state at all - no created/building/online lifecycle, and no statement that an index must be built before it serves queries. The registry already holds an index-state scheme promoted from the reference tree (system:indexes monitoring, round 8), so the ontology knows about a lifecycle the conceptual documentation never introduces. A reader coming to indexes.md first learns that indexes exist and are maintained, but not that creating one is asynchronous or that querying too early behaves differently.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/indexes",
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

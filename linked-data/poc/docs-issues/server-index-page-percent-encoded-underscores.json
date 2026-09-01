@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-page-percent-encoded-underscores",
+  "type": "docs-issue",
+  "issueType": "broken-cross-reference",
+  "description": "index-service.md links to a page whose filename in the Markdown snapshot is `7%5Fusing%5Findex.md` - percent-encoded underscores (%5F) in a filesystem path. This is a snapshot-conversion artifact rather than an authoring error, but the link does not resolve as written and the same bug will affect any other converted link containing an underscore. Worth a sweep of the whole snapshot for %5F rather than a one-page fix.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "severity": "tooling",
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

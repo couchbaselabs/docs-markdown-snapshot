@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-dedicated-node",
+  "label": "requires dedicated node",
+  "recurrence": 1,
+  "type": "the subject service should run on nodes with no other service co-deployed. The opposite constraint to requiresCoDeployedService.",
+  "note": "PROMOTED BELOW THRESHOLD on significance - see requires-co-deployed-service for the pair's reasoning. CAVEAT ON STRENGTH: the source says Analytics 'should' be deployed alone, not 'must'. The registry has no way to record the difference between a recommendation and a requirement, and this predicate's name overstates its evidence. Deployment-constraint predicates probably need a strength qualifier; recorded as a known limitation rather than fixed by renaming, because the same problem affects several existing requires* predicates that were promoted without anyone noticing it.",
+  "relates_to_competency_question": "Can this service share a node?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

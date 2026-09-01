@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/full-text-search",
+  "label": "Full Text Search (capability)",
+  "recurrence": 2,
+  "aliases": [
+    "index:full-text"
+  ],
+  "type": "the search capability provided by the Search Service - the CAPABILITY, not the index artifact",
+  "note": "Canonical id for the server-side capability, resolving part of a FIVE-WAY ID SPLIT the corpus accumulated: fts:full-text-search, search:full-text-index, index:full-text, cbl:full-text-search, sdk:full-text-searching-with-sdk. Two of those splits are legitimate and are NOT folded here - cbl:full-text-search is a different product (Couchbase Lite) and sdk:full-text-searching-with-sdk is a how-to page id. The rest was pure namespace drift across batches. Capability and index artifact are kept as two ids on purpose (see search:full-text-index), because search-service.md needs both and they are not the same thing.",
+  "relates_to_competency_question": "What can the Search Service do?",
+  "promoted": true
+}

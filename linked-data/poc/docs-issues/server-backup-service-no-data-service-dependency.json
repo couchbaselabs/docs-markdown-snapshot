@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-no-data-service-dependency",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "backup-service.md never states that the Backup Service depends on the Data Service, so it is the only one of the seven services with no stated inter-service dependency and sits disconnected from the dependency graph the other six form. This is almost certainly an omission rather than a fact: the service backs up bucket data. Flagged rather than inferred - the extraction did not invent the edge.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/backup-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

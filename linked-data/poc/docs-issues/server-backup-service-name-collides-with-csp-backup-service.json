@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-name-collides-with-csp-backup-service",
+  "type": "docs-issue",
+  "issueType": "cross-product-name-collision",
+  "description": "'Backup Service' means two different things in two trees. In server/ it is one of the seven Couchbase Server services. In cloud/ the phrase occurs exactly once - cloud/clusters/cloud-snapshots.md, 'Your CSP's backup service' - and refers to the cloud provider's snapshot facility, which is not a Couchbase service at all. A reader searching the combined documentation for 'Backup Service' gets both, undifferentiated. Recorded in the service:backup-service registry entry as a do-not-confuse warning. This is the fifth name collision the POC has documented and the first that spans products rather than sitting inside one.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/backup-service",
+    "cloud/clusters/cloud-snapshots"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

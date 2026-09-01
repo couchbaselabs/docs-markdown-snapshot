@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-co-deployed-service",
+  "label": "requires co-deployed service",
+  "recurrence": 1,
+  "type": "the subject service requires the object service to be running ON THE SAME CLUSTER for a particular capability to work at all - a placement requirement, not a runtime dependency.",
+  "note": "PROMOTED BELOW THRESHOLD on significance: with requiresDedicatedNode, this pair is the sharpest single piece of evidence for round 11's headline finding. Reference documentation produces GATING axes (privilege, edition, credential type, UI mode, access surface); conceptual documentation produces PLACEMENT axes, and the two vocabularies do not overlap. The registry's one placement-flavoured predicate, hasExecutionConstraint, was minted for 'every statement in a SQL++ transaction must be routed to the same Query node' - a request-routing rule, not a service-to-node allocation rule - and covers neither of these. Note also that this predicate can only ever have self-managed subjects: Capella never asks the user which services are running, so the fact is structurally unstateable in the cloud/ tree.",
+  "relates_to_competency_question": "What else must be deployed for this to work?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-class-vs-type-axes-undocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "indexes.md opens by declaring two classes of indexes (Traditional and Vector) and then presents a table organised by index type and providing service. It never says how the two schemes relate - and they do not nest: a Search index is Traditional while a Search Vector index is Vector, so class cuts across service; and a Composite Vector Index is stated to BE a GSI, so class cuts across type as well. A reader trying to build a mental taxonomy from this page will build a hierarchy that the page's own examples contradict. This was round 11's headline modelling problem and the reason index-class:traditional and index-class:vector were promoted as a separate axis rather than as supertypes.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/indexes"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

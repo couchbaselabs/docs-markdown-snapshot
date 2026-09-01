@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/search-service",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/search-service.md",
+  "concepts": [
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused - registry concept, concepts/service/search-service.json exists" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - concepts/service/data-service.json exists" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - concepts/service/index-service.json exists" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - concepts/service/query-service.json exists" },
+    { "candidate_id": "fts:full-text-search", "label": "Full Text Search", "reused_or_minted": "reused - extraction-layer id already on disk (cloud/search batch), no registry file. NOT minting a new one, but see cross_component_finding: the corpus already carries FIVE ids for this one thing (fts:full-text-search, search:full-text-index, index:full-text, cbl:full-text-search, sdk:full-text-searching-with-sdk) and none has a registry file" },
+    { "candidate_id": "search:full-text-index", "label": "search index (Full Text Search index)", "reused_or_minted": "reused - extraction-layer id already on disk; used here for the index artifact the Search Service creates, as distinct from fts:full-text-search the capability" },
+    { "candidate_id": "search:search-index-partition", "label": "search-index partition", "reused_or_minted": "minted - the unit a search index's vBucket data-handling is divided among; no partition concept existed anywhere in the corpus, because no reference page ever described index internals" },
+    { "candidate_id": "search:coordinator-node", "label": "coordinator (Search Service node acting as request coordinator)", "reused_or_minted": "minted - a per-request, any-node role assumed ad hoc; deliberately NOT the same concept as backup:leader-node (see backup-service.json), which is a cluster-wide singleton elected by the Cluster Manager" },
+    { "candidate_id": "search:scatter-gather", "label": "scatter-gather query execution", "reused_or_minted": "minted - the Search Service's named execution model; object of the minted usesExecutionModel predicate, sibling of analytics:massively-parallel-processing" },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "reused_or_minted": "minted - the intra-cluster mutation-streaming protocol. Remarkable absence: after ~540 pages of extraction there is no DCP concept in the corpus at all, in any namespace. It is invisible to reference documentation and appears the moment you read architectural prose - it is on two of this batch's four pages" },
+    { "candidate_id": "data:vbucket", "label": "vBucket", "reused_or_minted": "minted - no vBucket concept existed in the corpus either, same reason as protocol:dcp" },
+    { "candidate_id": "n1ql:searchfun", "label": "SQL++ Search Functions", "reused_or_minted": "reused - extraction-layer id already on disk" },
+    { "candidate_id": "n1ql:flex-index", "label": "Flex Index", "reused_or_minted": "reused - extraction-layer id already on disk; note a near-duplicate n1ql:flex-indexes also exists in the corpus, singular/plural drift for reconciliation to fold" },
+    { "candidate_id": "version:server-6-6", "label": "Couchbase Server 6.6", "reused_or_minted": "minted - new member of the version:server-* family; 6-5 and 6-6-1 have registry files but 6-6 does not" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "reused - closed-vocabulary registry term" }
+  ],
+  "relations": [
+    { "subject": "service:search-service", "predicate": "dependsOnService", "object": "service:data-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "The Search Service depends on the Data Service, as follows:" },
+
+    { "subject": "search:full-text-index", "predicate": "hasNoRelationshipTo", "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - hasNoRelationshipTo. Chosen over shouldNotBeConfusedWith because the page asserts non-relatedness ('entirely separate from and different to'), not merely risk of confusion; the two predicates overlap badly here and reconciliation may want to draw the line explicitly",
+      "evidence": "The indexes that the Search Service creates and uses are entirely separate from and different to those of the Index Service." },
+
+    { "subject": "fts:full-text-search", "predicate": "accessibleVia", "object": "n1ql:searchfun",
+      "reused_or_minted_predicate": "minted - accessibleVia. Nothing in the registry expresses 'capability X is reachable through language surface Y'. The nearest existing terms are all gating relations (incompatibleWithAccessSurface, supportedOnAccessSurface) which state where something does NOT work; there was no positive form",
+      "evidence": "The Search Service can be accessed by means of the _search functions_ provided by SQL++ — which provides the principal interface to the _Query_ and _Index_ Services." },
+
+    { "subject": "n1ql:searchfun", "predicate": "requiresCoDeployedService", "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - requiresCoDeployedService. dependsOnService is documented as a service-to-service architectural dependency; here the subject is a language feature and the constraint is that three named services must be simultaneously deployed on one cluster for it to work at all. That is a deployment-topology fact, a shape reference pages never produced",
+      "evidence": "To use the Search Service in SQL++, the Query, Index, and Search Services must all be running on the cluster." },
+    { "subject": "n1ql:searchfun", "predicate": "requiresCoDeployedService", "object": "service:index-service",
+      "reused_or_minted_predicate": "minted - requiresCoDeployedService",
+      "evidence": "To use the Search Service in SQL++, the Query, Index, and Search Services must all be running on the cluster." },
+    { "subject": "n1ql:searchfun", "predicate": "requiresCoDeployedService", "object": "service:search-service",
+      "reused_or_minted_predicate": "minted - requiresCoDeployedService",
+      "evidence": "To use the Search Service in SQL++, the Query, Index, and Search Services must all be running on the cluster." },
+
+    { "subject": "n1ql:flex-index", "predicate": "availableSince", "object": "version:server-6-6",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "In Couchbase Server 6.6 Enterprise Edition and later, the _Flex Index_ feature provides the ability for a SQL++ query to use a Full Text Search index transparently with standard SQL++ syntax." },
+    { "subject": "n1ql:flex-index", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "In Couchbase Server 6.6 Enterprise Edition and later, the _Flex Index_ feature provides the ability for a SQL++ query to use a Full Text Search index transparently with standard SQL++ syntax." },
+
+    { "subject": "service:search-service", "predicate": "usesExecutionModel", "object": "search:scatter-gather",
+      "reused_or_minted_predicate": "minted - usesExecutionModel. No registry predicate describes how a service executes a request internally. Reused on analytics-service.json in this same batch for MPP, so it recurs on 2 of 4 pages immediately",
+      "evidence": "The following illustration depicts this _scatter-gather_ execution of a search request:" },
+
+    { "subject": "search:coordinator-node", "predicate": "assumedPerRequest", "object": "service:search-service",
+      "reused_or_minted_predicate": "minted - assumedPerRequest. Captures that the coordinator role is not a standing cluster office but is taken on by whichever node receives the request. Deliberately a different predicate from electsLeaderVia (backup-service.json) so that reconciliation can see the two coordination models are structurally unlike, rather than collapsing both into one 'has leader' relation",
+      "evidence": "When one particular Search Service node is chosen for a search request, it assumes the role of _coordinator_; and is thereby responsible for applying the search request to the other Search Service nodes, and for gathering and returning results." },
+
+    { "subject": "service:data-service", "predicate": "streamsMutationsVia", "object": "protocol:dcp",
+      "reused_or_minted_predicate": "minted - streamsMutationsVia. The corpus had no way to say 'this service receives data changes from that service over this protocol' at all",
+      "evidence": "The _Data Service_ uses the DCP protocol to stream data-mutations as batches; from the producer to multiple consumers (_vBuckets_), instantiated across the search nodes." },
+
+    { "subject": "search:full-text-index", "predicate": "partitionsDataAcross", "object": "search:search-index-partition",
+      "reused_or_minted_predicate": "minted - partitionsDataAcross. No sharding/partitioning predicate existed; index-replication.json (round 1) covered replicas, not partitions",
+      "evidence": "When a _search index_ is created by means of the _Search Service_, search-index data-handling for the vBuckets is divided equally among the established search-index partitions." },
+
+    { "subject": "search:search-index-partition", "predicate": "holdsDataFor", "object": "data:vbucket",
+      "reused_or_minted_predicate": "minted - holdsDataFor. The concrete mapping the page spells out with an arithmetic example",
+      "evidence": "For example, if the number of vBuckets is 120, and the number of search-index partitions chosen is 6, each search-index partition holds data for 20 vbuckets." },
+
+    { "subject": "service:search-service", "predicate": "seeAlso", "object": "server/8.0/search/search",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For extensive information on how to use the service, see [Full Text Search: Fundamentals](../../../search/search.md)." },
+    { "subject": "n1ql:searchfun", "predicate": "seeAlso", "object": "server/8.0/n1ql/n1ql-language-reference/searchfun",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For detailed information, see [Search Functions](../../../n1ql/n1ql-language-reference/searchfun.md)." },
+    { "subject": "n1ql:flex-index", "predicate": "seeAlso", "object": "server/8.0/n1ql/n1ql-language-reference/flex-indexes",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For detailed information, see [Flex Indexes](../../../n1ql/n1ql-language-reference/flex-indexes.md)." },
+    { "subject": "service:search-service", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/modify-services-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "* For more information about adding or removing the Search Service on an existing node of a cluster, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresEdition / usesPort / dependsOnService(index)",
+    "finding": "Three absences, all of the same kind. (1) NO RBAC AT ALL. This is the authoritative conceptual page for a whole service and it names no privilege, no role, and no credential type - after nine rounds in which requiresPrivilege (216 occurrences) and requiresCapellaRole (174) were the two most common non-seeAlso predicates in the corpus. The learn/ tree describes what a service is; who may use it lives entirely elsewhere. Any competency question of the form 'what do I need in order to use the Search Service' is unanswerable from the page that purports to define it. (2) NO PORTS. query-service.json (round 1, server/7.2) carried a seeAlso to install-ports for exactly this; the 8.0 Search Service page has no such link, so usesPort has nothing to attach to. (3) NO EDITION GATE on the service itself - only on the Flex Index sub-feature. Also worth recording: the page states the Search Service depends on the Data Service, and separately that Query and Index must be running to reach Search from SQL++, but it never states a Search->Index dependency, and I did not assert one. The relation I would have wanted and could not source is service:search-service dependsOnService service:index-service; the page in fact says the opposite (the two index sets are 'entirely separate'), so its absence is correct rather than an omission."
+  },
+  "cross_component_finding": "FIVE-WAY ID SPLIT ON ONE CONCEPT. 'Full Text Search' already exists in the extraction corpus as fts:full-text-search, search:full-text-index, index:full-text, cbl:full-text-search and sdk:full-text-searching-with-sdk, none with a registry file. Some of that split is legitimate (Couchbase Lite's is a different product; the SDK one is a how-to page) but fts:* vs search:* vs index:* for server-side FTS is pure namespace drift across batches. This page needs both a capability id and an index-artifact id and there is no registry term for either. Also: n1ql:flex-index and n1ql:flex-indexes coexist as singular/plural variants of one thing. Separately, an ontology gap this page exposes sharply - the corpus has no concept for DCP or for vBuckets. Both are foundational to how Couchbase actually works and both are simply invisible to statement-syntax and REST-payload documentation; they surfaced on the very first architectural page read. Finally, on coordination: the Search Service's coordinator is per-request and can be any node, while the Backup Service's leader (backup-service.json, this batch) is a cluster-wide singleton elected by the Cluster Manager. Same English word 'coordinator/leader' territory, two genuinely different mechanisms, kept as two concepts and two predicates - a collision candidate reconciliation should record rather than merge.",
+  "cross_product_finding": "SAME SERVICE, DIFFERENT ONTOLOGY BY DEPLOYMENT MODEL - and the split is clean rather than contradictory. The Capella search batch (cloud/search/*.json: create-search-indexes, search-index-params, create-search-index-ui, run-searches, create-search-index-alias) produced roughly twenty search:* concepts, every one of them about index *configuration*: type mappings, field mappings, analyzers, doc-config modes, scoring models, planParams, synonym sources, index aliases. This self-managed page produces almost none of that and instead produces things Capella's pages never mention once: DCP streaming, vBuckets, search-index partitions, scatter-gather, the coordinator role, and the requirement that Query+Index+Search be co-deployed. The two vocabularies barely intersect - the only shared ids are service:search-service and service:data-service. That is not the docs contradicting themselves; it is the deployment model determining which half of the service is even visible. Capella hides the cluster, so its Search vocabulary is entirely about the index you define; self-managed exposes the cluster, so its Search vocabulary is entirely about how nodes divide the work. Consequence for the ontology: a single service:search-service node will end up with two disjoint fans of properties depending on which tree the triple came from, and nothing in the extracted data records why. Worth an explicit deployment-model axis on the relation rather than on the concept. Note also that the co-deployment requirement is structurally impossible to state on Capella's side, because Capella never asks the user which services are running - so requiresCoDeployedService is a predicate that can only ever have self-managed subjects."
+}

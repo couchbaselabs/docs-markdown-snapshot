@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/standard-storage",
+  "label": "standard index storage",
+  "recurrence": 3,
+  "type": "the Index Service storage mode backed by disk with a supervisor process; the Community Edition default",
+  "note": "STORAGE MODE IS A PROPERTY OF THE SERVICE'S CONFIGURATION, NOT OF AN INDEX - an axis the reference tree never named as such, and edition-gated. Distinct from every index-type:* and from the index-state scheme.",
+  "relates_to_competency_question": "How is the Index Service configured?",
+  "promoted": true
+}

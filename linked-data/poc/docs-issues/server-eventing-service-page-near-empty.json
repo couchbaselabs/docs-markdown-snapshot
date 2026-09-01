@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-service-page-near-empty",
+  "type": "docs-issue",
+  "issueType": "thin-content",
+  "description": "eventing-service.md is the root conceptual page for the Eventing Service and yielded only 6 relations, against 38 for services.md, 34 for backup-service.md and 30 for data-service.md in the same batch. It largely defers elsewhere rather than saying what the service is, what it depends on, or how it is deployed - the questions its six sibling pages all answer. Note this is NOT gate-induced thinning: the record has zero evidence problems and the page genuinely contains little. Contrast round 8, which extracted 67 pages of Capella eventing detail; the depth exists, just not at the entry point.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/eventing-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/full-text-index",
+  "label": "full-text index (artifact)",
+  "recurrence": 4,
+  "type": "the index artifact the Search Service builds and queries - partitioned across nodes, fed by DCP",
+  "note": "The ARTIFACT, as against fts:full-text-search the capability. Its index set is stated to be 'entirely separate' from the Index Service's, which is why search-service.md asserts no Search->Index dependency and none was invented.",
+  "relates_to_competency_question": "What does the Search Service build?",
+  "promoted": true
+}

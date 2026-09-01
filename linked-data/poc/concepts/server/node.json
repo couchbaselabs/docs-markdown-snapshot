@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/node",
+  "label": "node",
+  "recurrence": 3,
+  "type": "a single Couchbase Server instance in a cluster; the unit that services are placed on and that rebalance moves data between",
+  "relates_to_competency_question": "Which services run on which nodes?",
+  "promoted": true
+}

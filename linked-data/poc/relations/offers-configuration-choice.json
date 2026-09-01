@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/offers-configuration-choice",
+  "label": "offers configuration choice",
+  "recurrence": 2,
+  "type": "the subject offers a closed choice between the named alternative configurations (e.g. the Index Service's standard vs memory-optimized storage).",
+  "relates_to_competency_question": "What are my options when configuring this?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

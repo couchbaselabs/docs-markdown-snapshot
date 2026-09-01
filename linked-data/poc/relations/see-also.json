@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/see-also",
+  "label": "see also",
+  "recurrence": 425,
+  "aliases": [
+    "rdfs:seeAlso"
+  ],
+  "type": "MAPPING RECORD, NOT A MINTED PREDICATE. Every structural Markdown link between two documentation pages is extracted as seeAlso, which maps directly onto rdfs:seeAlso. Object is a PAGE ID, never a concept.",
+  "note": "Filed in round 11 because seeAlso is by an order of magnitude the most-used predicate in the corpus - 425 of 2991 relations - and had no registry record at all, being a reuse rather than a mint. Two consequences worth writing down. (1) Nobody should mint a link predicate; this record exists so that the answer is on disk rather than in the skill prose. (2) It distorts recurrence counting: because seeAlso objects are pages, a naive object-recurrence query over the corpus returns a ranked list of popular DOCUMENTATION PAGES and presents it as a list of concept-promotion candidates. Round 11's first aggregation did exactly that and put search:customize-index (a page) above every real concept. Exclude seeAlso before counting concept recurrence.",
+  "relates_to_competency_question": "What should I read next?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

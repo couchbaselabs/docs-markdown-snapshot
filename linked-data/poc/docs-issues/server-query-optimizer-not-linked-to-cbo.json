@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-query-optimizer-not-linked-to-cbo",
+  "type": "docs-issue",
+  "issueType": "possible-concept-duplication",
+  "description": "query-service.md names an Optimizer as an internal component of the Query Service, with no link to the cost-based optimizer, which the registry already holds as n1ql:cost-based-optimizer (promoted from the reference tree, where it is edition-gated and configurable). Nothing on the page states that the component and the CBO are the same thing, so the extraction minted query-service:optimizer separately and did not merge them - correct under the never-merge-without-evidence rule, and exactly the situation a one-sentence cross-reference on the page would resolve. Note the two are probably not identical: the CBO is an Enterprise feature, while every Query Service has an optimizer of some kind.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/query-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

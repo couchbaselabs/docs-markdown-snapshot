@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/configured-per-node",
+  "label": "configured per node",
+  "recurrence": 2,
+  "type": "the subject setting is configured independently on each node rather than cluster-wide.",
+  "relates_to_competency_question": "Is this setting per-node or cluster-wide?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

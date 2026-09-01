@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/primary-index",
+  "label": "Primary Index",
+  "recurrence": 4,
+  "type": "an index on the document key of a keyspace; maintained asynchronously",
+  "relates_to_competency_question": "What kinds of index can I create?",
+  "promoted": true
+}

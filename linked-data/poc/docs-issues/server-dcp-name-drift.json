@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-dcp-name-drift",
+  "type": "docs-issue",
+  "issueType": "terminology-inconsistency",
+  "description": "The intra-cluster streaming protocol is named two different ways in one directory with no link between them: search-service.md writes 'the DCP protocol' (abbreviation only, never expanded on the page) and analytics-service.md writes 'Database Change Protocol' (expansion only, no abbreviation). A reader of either page cannot connect it to the other, and a reader of neither has no way to learn the term. This is the surface cause of the corpus minting two ids for one protocol (protocol:dcp and server:dcp-protocol) in a single round - see the protocol:dcp registry record, which folds them.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/search-service",
+    "server/8.0/learn/services-and-indexes/analytics-service",
+    "server/8.0/learn/services-and-indexes/data-service",
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

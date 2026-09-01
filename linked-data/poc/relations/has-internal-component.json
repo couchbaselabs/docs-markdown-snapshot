@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-internal-component",
+  "label": "has internal component",
+  "recurrence": 3,
+  "type": "part-whole composition: the subject component contains the object as an internal sub-component (Data Service -> KV Engine -> Managed Cache -> Partition Hash Table). Object is a component concept, not a service.",
+  "note": "The largest single vocabulary gap round 11 exposed. Nine rounds and 64 predicates produced NO part-whole predicate at all, because a reference page decomposes a *statement* into clauses - modelled as cb:StatementOption/hasOption, a syntax relation - and never decomposes a *running system* into processes. data-service.md is almost entirely composition: 15 of its 30 relations use this predicate, so without it that page yields almost nothing. Deliberately flat: the real tree is three levels deep and mixes a network process, a per-bucket facility set, a memory structure and a thread class without giving any vocabulary to distinguish those kinds of part. The flattening is the reconciler's and the extraction agent's, not the document's - do not read this predicate as asserting that all parts are the same kind of part.",
+  "relates_to_competency_question": "What is this service made of, and which component handles this stage?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

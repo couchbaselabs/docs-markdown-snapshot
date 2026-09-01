@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-class/traditional",
+  "label": "Traditional index (class)",
+  "recurrence": 1,
+  "type": "one of the two classes indexes.md declares up front; the non-vector class",
+  "note": "Promoted as a two-member closed family with index-class:vector, on the page's own word 'two classes of indexes'. CRITICAL: the class axis does NOT nest inside the type axis and does not align with the providing-service axis - a Search index is classed Traditional while a Search Vector index is classed Vector, so class cuts across service. Do not model class as a supertype of type.",
+  "relates_to_competency_question": "Which class of index is this?",
+  "promoted": true
+}

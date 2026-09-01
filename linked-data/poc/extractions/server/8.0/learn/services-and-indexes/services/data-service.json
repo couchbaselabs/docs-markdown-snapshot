@@ -1,0 +1,274 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/data-service",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/data-service.md",
+  "concepts": [
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "data-service:dispatcher",
+      "label": "Dispatcher (Data Service component)",
+      "reused_or_minted": "minted - one of the three top-level internal components of the Data Service. A new namespace: these are sub-service implementation components, not services, not index types, and not settings, so none of the existing namespaces fit."
+    },
+    {
+      "candidate_id": "data-service:kv-engine",
+      "label": "KV Engine (Data Service component)",
+      "reused_or_minted": "minted - the per-bucket facility set. Deliberately NOT merged with the registry's sdk:kv-operations, which is a client-side API surface, not a server-side component."
+    },
+    {
+      "candidate_id": "data-service:scheduler",
+      "label": "Scheduler (Data Service component)",
+      "reused_or_minted": "minted - the Data Service's I/O thread pool manager."
+    },
+    { "candidate_id": "data-service:managed-cache", "label": "Managed Cache", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:partition-hash-table", "label": "Partition Hash Table", "reused_or_minted": "minted - the structure inside the Managed Cache that records where bucket items live in memory and on disk; an italicised defined term on this page" },
+    { "candidate_id": "data-service:checkpoint-manager", "label": "Checkpoint Manager", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:item-pager", "label": "Item Pager", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:flusher", "label": "Flusher", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:expiry-pager", "label": "Expiry Pager", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:batch-reader", "label": "Batch Reader", "reused_or_minted": "minted - a KV Engine sub-component" },
+    { "candidate_id": "data-service:non-io-thread-kind", "label": "Non IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
+    { "candidate_id": "data-service:aux-io-thread-kind", "label": "Aux IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
+    { "candidate_id": "data-service:reader-io-thread-kind", "label": "Reader IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
+    { "candidate_id": "data-service:writer-io-thread-kind", "label": "Writer IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
+    {
+      "candidate_id": "server:dcp-protocol",
+      "label": "DCP (Database Change Protocol)",
+      "reused_or_minted": "minted - the streaming protocol by which the Data Service feeds mutations to other nodes, other clusters, and the Index Service. Absent from the registry despite being the single most load-bearing internal mechanism in Couchbase's architecture; it recurs on index-service.md in this same batch."
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "reused_or_minted": "minted - the unit the KV Engine is instantiated per. NOT merged with the extraction-layer capella:bucket (13 occurrences): same word, and probably the same underlying thing, but no page in this batch states the relationship and the Capella id was minted from management-console pages. Flagging as a collision candidate rather than merging on my own authority."
+    },
+    {
+      "candidate_id": "server:tombstone",
+      "label": "Tombstone",
+      "reused_or_minted": "minted - the residue left after item deletion/expiry; an italicised defined term on this page."
+    },
+    {
+      "candidate_id": "standard:rfc-8259",
+      "label": "RFC 8259 (the JSON specification)",
+      "reused_or_minted": "minted - a new namespace for external normative standards. The registry has version:*, edition:* and plan:* for internal gating axes but nothing for an external specification the product conforms to."
+    },
+    { "candidate_id": "server:service-memory-quota", "label": "service memory quota", "reused_or_minted": "reused - minted this batch on services.md" }
+  ],
+  "relations": [
+    {
+      "subject": "service:data-service",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:dispatcher",
+      "reused_or_minted_predicate": "minted - hasInternalComponent. The registry has no part-whole predicate at all. dependsOnService is the nearest, but it relates two independently deployable services, whereas a Dispatcher has no existence apart from the Data Service. Reference pages never needed this because a statement's clauses were modeled with hasOption instead - and hasOption is a syntax relation, not a composition one.",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:kv-engine",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:scheduler",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "The principal components are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:managed-cache",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:checkpoint-manager",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:item-pager",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:flusher",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:expiry-pager",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:batch-reader",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster. These are:"
+    },
+    {
+      "subject": "data-service:managed-cache",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:partition-hash-table",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**Managed Cache**: The memory allocated for the bucket, according to an established quota. This contains _Partition Hash Tables_, whereby the location of bucket-items, in memory and on disk, on different nodes across the cluster, is recorded."
+    },
+    {
+      "subject": "data-service:scheduler",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:non-io-thread-kind",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**Scheduler**: A pool of threads mainly used for handling I/O. The threads are divided into four kinds, which run independently of and without effect on one another:"
+    },
+    {
+      "subject": "data-service:scheduler",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:aux-io-thread-kind",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**Scheduler**: A pool of threads mainly used for handling I/O. The threads are divided into four kinds, which run independently of and without effect on one another:"
+    },
+    {
+      "subject": "data-service:scheduler",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:reader-io-thread-kind",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**Scheduler**: A pool of threads mainly used for handling I/O. The threads are divided into four kinds, which run independently of and without effect on one another:"
+    },
+    {
+      "subject": "data-service:scheduler",
+      "predicate": "hasInternalComponent",
+      "object": "data-service:writer-io-thread-kind",
+      "reused_or_minted_predicate": "minted - hasInternalComponent",
+      "evidence": "**Scheduler**: A pool of threads mainly used for handling I/O. The threads are divided into four kinds, which run independently of and without effect on one another:"
+    },
+    {
+      "subject": "data-service:kv-engine",
+      "predicate": "instantiatedPerBucket",
+      "object": "server:bucket",
+      "reused_or_minted_predicate": "minted - instantiatedPerBucket. A scoping/multiplicity fact: one KV Engine instance exists per bucket, not per service or per node. Sibling in spirit to configuredPerNode (extraction-layer) - together they suggest the ontology needs a general 'scope of instantiation' axis, which reconciliation may prefer to a family of per-X predicates.",
+      "evidence": "**KV Engine**: A collection of facilities that is provided for each bucket on the cluster."
+    },
+    {
+      "subject": "data-service:dispatcher",
+      "predicate": "usesProtocol",
+      "object": "server:dcp-protocol",
+      "reused_or_minted_predicate": "minted - usesProtocol. The registry has usesPort (a listening port) but nothing for the wire protocol spoken over it. Recurs on index-service.md in this same batch.",
+      "evidence": "Also streams data to other nodes within the cluster, and to other clusters, by means of the **DCP** protocol; and handles **Authentication**."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "requiresEncodingStandard",
+      "object": "standard:rfc-8259",
+      "reused_or_minted_predicate": "minted - requiresEncodingStandard. A conformance-to-external-specification relation. The registry's gating predicates all point at internal axes (edition, version, plan, role); nothing points outward at a normative standard the product must obey.",
+      "evidence": "All JSON data-items must be encoded as specified in [RFC 8259](https://tools.ietf.org/html/rfc8259)."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "requiresMinimumNodeCount",
+      "object": "1",
+      "reused_or_minted_predicate": "minted - requiresMinimumNodeCount, second occurrence this batch (services.md is the first, with different wording: 'at least 1 node in the cluster' vs 'at least one node of every cluster'). Two independent statements of the same constraint on two pages is exactly the recurrence signal that justifies the mint.",
+      "evidence": "The Data Service must run on at least one node of every cluster."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "configurableVia",
+      "object": "server:service-memory-quota",
+      "reused_or_minted_predicate": "reused - configurableVia ('the subject's behaviour is influenced by the object setting or surface, without the setting being a hard prerequisite')",
+      "evidence": "The memory allocation for the Data Service is configurable."
+    },
+    {
+      "subject": "data-service:expiry-pager",
+      "predicate": "hasDefaultDuration",
+      "object": "10 minutes",
+      "reused_or_minted_predicate": "minted - hasDefaultDuration. Object is a literal. The registry has no way to state a default value of any kind; the closest extraction-layer id is hasDefaultValueForDeployment, which is about a value differing by deployment target, not about a plain documented default.",
+      "evidence": "The expiry pager runs every 10 minutes by default."
+    },
+    {
+      "subject": "server:tombstone",
+      "predicate": "hasDefaultDuration",
+      "object": "3 days",
+      "reused_or_minted_predicate": "minted - hasDefaultDuration, second occurrence on this page",
+      "evidence": "**Expiry Pager**: Scans for items that have expired, and erases them from memory and disk; after which, a _tombstone_ remains for a default period of 3 days."
+    },
+    {
+      "subject": "data-service:expiry-pager",
+      "predicate": "configurableVia",
+      "object": "setting:expiry-pager-sleep-time",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "For information about changing the interval, see [expiryPagerSleepTime](../../../rest-api/rest-bucket-create.md#expirypagersleeptime)."
+    },
+    {
+      "subject": "data-service:dispatcher",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/security/authentication",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on **Authentication**, see [Authentication](../../security/authentication.md)."
+    },
+    {
+      "subject": "data-service:dispatcher",
+      "predicate": "seeAlso",
+      "object": "server/current/install/install-ports",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on ports used by the dispatcher, see [Network Configuration](../../../install/install-ports.md)."
+    },
+    {
+      "subject": "server:dcp-protocol",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/clusters-and-availability/clusters-and-availability",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on **DCP Streaming**, see [Clusters and Availability](../../clusters-and-availability/clusters-and-availability.md)."
+    },
+    {
+      "subject": "data-service:managed-cache",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/buckets-memory-and-storage/vbuckets",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on how items from a bucket are assigned to _vBuckets_ across a cluster, see [vBuckets](../../buckets-memory-and-storage/vbuckets.md)."
+    },
+    {
+      "subject": "data-service:flusher",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-buckets/flush-bucket",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "**Flusher**: Deletes every item in the bucket. For information on how to activate, see [Flush a Bucket](../../../manage/manage-buckets/flush-bucket.md)."
+    },
+    {
+      "subject": "server:tombstone",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/data/expiration",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about item-deletion and tombstones, see [Expiration](../../data/expiration.md)."
+    },
+    {
+      "subject": "data-service:scheduler",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/buckets-memory-and-storage/storage-settings",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information on the Data Service' threading model, see [Storage Properties](../../buckets-memory-and-storage/storage-settings.md)."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-nodes/manage-data-service-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about adding or removing the Data Service on an existing node, see [Adding or Removing the Data Service on Existing Nodes](../../../manage/manage-nodes/manage-data-service-and-rebalance.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasInternalComponent / usesProtocol / instantiatedPerBucket / hasDefaultDuration / requiresEncodingStandard",
+    "finding": "The single largest vocabulary gap this batch exposed: the registry has NO part-whole predicate. Nine rounds and 64 predicates produced not one composition relation, because a reference page decomposes a STATEMENT into clauses (modeled as cb:StatementOption/hasOption, a syntax relation) and never decomposes a RUNNING SYSTEM into processes. This page is almost entirely composition - 15 of its 30 relations are hasInternalComponent - so without that predicate the page yields almost nothing. Note also what the composition tree looks like: it is three levels deep (Data Service -> KV Engine -> Managed Cache -> Partition Hash Table), it mixes kinds of part freely (a network process, a per-bucket facility set, a memory structure, a thread class), and the page gives no vocabulary distinguishing those kinds. I used one flat predicate rather than invent a typed hierarchy the source does not support, but reconciliation should know the flattening is mine, not the document's. Two smaller gaps: no predicate for a default value (hasDefaultDuration, minted, 2 occurrences on this one page), and no predicate for conformance to an external standard (requiresEncodingStandard, RFC 8259). NOTHING WAS DROPPED for lack of evidence on this page.",
+    "second_finding": "One thing on this page I could NOT extract as a relation and am reporting instead of forcing: the Managed Cache paragraph describes the write path as an ordered pipeline - 'When written, items enter the cache, and subsequently are placed onto a replication queue, so as to be replicated to one or more other nodes; and (in the case of items for Couchbase buckets) onto a disk queue, so as to be written to disk.' That is a sequence/dataflow fact (A then B then C), and the registry has no ordering predicate except requiresPriorExecutionOf, which is about a user running one statement before another, not about internal stages of a write. I omitted rather than abuse it. The Index Service page has the same problem worse (see index-service.json)."
+  },
+  "cross_component_finding": "(1) TYPO: 'For more information on the Data Service' threading model' - a stray apostrophe where a possessive 's' belongs. I quoted it verbatim in the seeAlso evidence because the gate demands verbatim, so the ontology now contains a typo faithfully; worth a docs fix. (2) The Flusher's description, 'Deletes every item in the bucket', is stated with no warning at all next to an activation link, which is a strikingly bare presentation of a destructive operation on a conceptual page - contrast the Views deprecation on indexes.md, which does get an IMPORTANT admonition. (3) This page and services.md state the Data-Service-on-at-least-one-node rule in different words ('at least 1 node in the cluster' / 'at least one node of every cluster') and both link the same manage-data-service-and-rebalance.md target; the duplication is benign here but is the third place that same fact appears. (4) The page's component names (Dispatcher, KV Engine, Supervisor-equivalents, Scheduler) appear only in an image alt-text plus a bullet list; the architecture diagram itself is a PNG, so an agent consuming this corpus gets the component NAMES but not the ARROWS between them. Every dataflow fact on this page had to come from prose that happens to restate the diagram, and where the prose does not restate it, the relation is simply unrecoverable. That is a real limit on extracting architecture from these docs, and it applies identically to query-service.md and index-service.md.",
+  "cross_product_finding": "No Capella or SDK page in the corpus decomposes the Data Service. The registry's sdk:kv-operations is the client-side mirror of everything on this page - get/insert/upsert/replace/remove - and the two never meet: the SDK tree documents the API, this page documents the machine, and nothing links a KV operation to the Dispatcher that handles it or the Managed Cache it lands in. I deliberately did not mint that link, since no page states it. Also worth noting for the ontology's naming discipline: 'KV' names three different things across the corpus - sdk:kv-operations (a client API family), privilege:capella-advanced-access-data-read (described in the registry as 'KV-level read access'), and data-service:kv-engine (a server-side component) - a fourth instance of the same-word-different-layer pattern already documented for 'role' and 'index'."
+}

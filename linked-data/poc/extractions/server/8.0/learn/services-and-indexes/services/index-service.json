@@ -1,0 +1,203 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/index-service",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/index-service.md",
+  "concepts": [
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "index-service:supervisor",
+      "label": "Supervisor (Index Service component)",
+      "reused_or_minted": "minted - 'The main program of the Index Service'. Same namespace pattern as data-service:* and query-service:* minted this batch."
+    },
+    {
+      "candidate_id": "index-service:projector-and-router",
+      "label": "Projector and Router (Index Service component, resident on Data Service nodes)",
+      "reused_or_minted": "minted - architecturally the most interesting concept on the page: a component OF the Index Service that RUNS ON Data Service nodes."
+    },
+    { "candidate_id": "server:dcp-protocol", "label": "DCP (Database Change Protocol)", "reused_or_minted": "reused - minted this batch on data-service.md; this is its second, independent page." },
+    { "candidate_id": "index:standard-storage", "label": "Standard index storage", "reused_or_minted": "reused - an extraction-layer id (2 prior occurrences, from storage-modes.md and the 7.2 record of this same page)" },
+    { "candidate_id": "index:memory-optimized-storage", "label": "Memory-optimized index storage", "reused_or_minted": "reused - an extraction-layer id (2 prior occurrences)" },
+    { "candidate_id": "index-type:primary-index", "label": "Primary index", "reused_or_minted": "reused - an extraction-layer id (2 prior occurrences)" },
+    { "candidate_id": "index-type:secondary-index", "label": "Secondary index", "reused_or_minted": "reused - an extraction-layer id (2 prior occurrences)" },
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "index:index",
+      "label": "Index (coarse supertype - 'an index' in the generic sense)",
+      "reused_or_minted": "minted - coarse placeholder following the rbac-role:role / capella-role:role precedent. Minted reluctantly and deliberately: this page makes two statements about 'an index' with no type qualifier at all ('By default, an index is saved on the node on which it is created'; 'Each index is created on one keyspace (collection) only'), and the registry offers only type-specific ids, so there was no honest subject for them. Its absence is itself a finding about the index taxonomy - see cross_component_finding."
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace (collection)",
+      "reused_or_minted": "minted - the scoping unit an index is created on. The page glosses it as '(collection)' twice, treating keyspace and collection as interchangeable at this level of abstraction. Not merged with the extraction-layer capella:collection or sgw:collection, which come from different product trees."
+    },
+    {
+      "candidate_id": "index:skiplist",
+      "label": "Skiplist (memory-optimized index structure)",
+      "reused_or_minted": "minted - the on-page-named data structure memory-optimized storage uses in place of a B-tree."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "service:index-service",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "The Index Service supports the creation of primary and secondary indexes on items stored within the Data Service."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - dependsOnService. Second independent attestation this batch, and the only one that names the mechanism (requests go to the Supervisor).",
+      "evidence": "**Query Service**: Passes to the **Supervisor** clients' create-requests and queries, and handles the responses."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "hasComponentColocatedWithService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "minted - hasComponentColocatedWithService. A genuinely new architectural shape with nothing close to it in the registry: a service's own components are deployed onto the nodes of a DIFFERENT service, so 'which nodes does the Index Service occupy' has no single answer. dependsOnService says nothing about co-residency, and hasExecutionConstraint is about where a subject may execute, not about a service intruding into another's node set.",
+      "evidence": "Components essential for the _Index Service_ reside not only on each node to which the Index Service is assigned, but also on each node to which the _Data Service_ is assigned, as shown by the following illustration:"
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "hasInternalComponent",
+      "object": "index-service:supervisor",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, minted this batch on data-service.md",
+      "evidence": "**Supervisor**: The main program of the Index Service; which passes index-definitions to the **Projector and Router**, creates and stores indexes, and handles mutations sent from the **Projector and Router**."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "hasInternalComponent",
+      "object": "index-service:projector-and-router",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "**Data Service**: Uses the DCP protocol to stream data-mutations to the **Projector and Router** process, which runs as part of the Index Service, on each Data Service node."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "usesProtocol",
+      "object": "server:dcp-protocol",
+      "reused_or_minted_predicate": "reused - usesProtocol, minted this batch on data-service.md. Second independent page, so it recurs.",
+      "evidence": "**Data Service**: Uses the DCP protocol to stream data-mutations to the **Projector and Router** process, which runs as part of the Index Service, on each Data Service node."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:primary-index",
+      "reused_or_minted_predicate": "minted - providesIndexType. See indexes.json, where the same predicate carries the page's whole taxonomy. Nothing in the registry connects a service to the kinds of index it maintains, even though index-type:gsi and service:index-service have both been in the registry for nine rounds.",
+      "evidence": "The Index Service supports the creation of primary and secondary indexes on items stored within the Data Service."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "providesIndexType",
+      "object": "index-type:secondary-index",
+      "reused_or_minted_predicate": "minted - providesIndexType",
+      "evidence": "The Index Service supports the creation of primary and secondary indexes on items stored within the Data Service."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "isSynonymOf",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused - isSynonymOf ('for statement pairs the docs explicitly declare functionally identical'). Stretched from statement pairs to index types, but this is exactly the shape: the docs explicitly declare two names for one thing. HIGH VALUE FOR RECONCILIATION - this is a source page stating the relationship, which is what the registry's merge rule requires before index-type:secondary-index and index-type:gsi can be collapsed. indexes.md states it a second time in different words.",
+      "evidence": "_Secondary_ Indexes, often referred to as _Global Secondary Indexes_ or _GSIs_, constitute the principal means of indexing documents to be accessed by the _Query Service_."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - servesService, also minted this batch on services.md. Second occurrence, different subject kind (an index type rather than a service), which reconciliation should weigh: it may want two predicates rather than one.",
+      "evidence": "_Secondary_ Indexes, often referred to as _Global Secondary Indexes_ or _GSIs_, constitute the principal means of indexing documents to be accessed by the _Query Service_."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "hasExecutionConstraint",
+      "object": "server:node",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint ('a topology or placement constraint'). A default rather than a hard rule, which the predicate cannot express; the evidence string carries the 'By default' qualifier.",
+      "evidence": "By default, an index is saved on the node on which it is created."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "scopedToKeyspace",
+      "object": "server:keyspace",
+      "reused_or_minted_predicate": "minted - scopedToKeyspace. NOTE THE LOSS: the source states a 1:many cardinality in both directions ('Each index is created on one keyspace (collection) only; but multiple indexes may be created on a single keyspace') and this predicate captures only the scoping, not the arity. The registry has no cardinality vocabulary at all - see notable_absence.",
+      "evidence": "Each index is created on one keyspace (collection) only; but multiple indexes may be created on a single keyspace (collection)."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:standard-storage",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice, an extraction-layer id (8 prior occurrences)",
+      "evidence": "The Index Service can be configured to use either _standard_ or _memory-optimized_ storage:"
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:memory-optimized-storage",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "The Index Service can be configured to use either _standard_ or _memory-optimized_ storage:"
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "Only available in Couchbase Server Enterprise Edition. Indexes are saved in-memory."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "usesDataStructure",
+      "object": "index:skiplist",
+      "reused_or_minted_predicate": "minted - usesDataStructure. The registry has usesEnum (a controlled vocabulary) and usesPort but nothing for the implementation structure that explains a performance characteristic. Adjacent to tradesOffAgainst, which the registry uses for comparing vector-index strategies, but that predicate compares two options rather than naming what one is built from.",
+      "evidence": "A _skiplist_ (rather than a conventional _B-tree_) structure is used; optimizing memory consumption."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder",
+      "evidence": "In Couchbase Server Community Edition, writes can either be _append-only_ or _write with circular reuse_, depending on the write mode selected for global secondary indexes. Each index gets a dedicated file."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder",
+      "evidence": "In Couchbase Server Enterprise Edition, compaction is handled automatically. As of Couchbase Server 7.0, multiple indexes are stored in a given file."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "reused_or_minted_predicate": "reused - availableSince. Scoped to the multiple-indexes-per-file behaviour, not to standard storage as a whole; the evidence string carries that scoping.",
+      "evidence": "As of Couchbase Server 7.0, multiple indexes are stored in a given file."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "seeAlso",
+      "object": "server/current/indexes/storage-modes",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information, see [Index Storage Settings](../../../indexes/storage-modes.md)."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "seeAlso",
+      "object": "server/current/indexes/indexing-overview",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For information on using the Indexing Service, see [Primary and Secondary Index Reference](../../../indexes/indexing-overview.md)."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-nodes/modify-services-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about adding or removing the Index Service on an existing node of a cluster, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasComponentColocatedWithService / scopedToKeyspace / usesDataStructure / providesIndexType",
+    "finding": "Two gaps, one of them the batch's most interesting. (1) NO CARDINALITY VOCABULARY. 'Each index is created on one keyspace (collection) only; but multiple indexes may be created on a single keyspace' is a complete 1:N statement in one sentence, and the registry cannot express either half of it. Nine rounds of reference extraction never needed arity because a statement either has a clause or it does not; a deployed system is full of one-of-these-per-that facts (1 service instance per node, max 7 services per node, 1 KV Engine per bucket, 1 keyspace per index, N indexes per keyspace, at least 1 Data node per cluster). Across this batch I minted requiresMinimumNodeCount, instantiatedPerBucket and scopedToKeyspace as three separate ad hoc dodges around the same missing capability; reconciliation should probably replace all three with one cardinality construct rather than promote them individually. (2) NO CO-RESIDENCY PREDICATE. The Index Service's Projector and Router runs on Data Service nodes, so the Index Service physically occupies nodes it was never assigned to. This breaks the tidy 'services are placed on nodes' model that services.md presents, and no registry predicate could state it. I omitted nothing for lack of evidence on this page. I did NOT attempt to model the Projector-and-Router mutation pipeline (Data Service streams -> Projector extracts per index-definition -> sends to Supervisor -> index populated -> then continuous mutation flow) as relations, because it is a sequence with a before/after phase change ('Prior to the creation of any indexes, the **Projector and Router** takes no action'), and the registry has no ordering or state-transition predicate. That is the third page in this batch to hit the missing-sequence gap."
+  },
+  "cross_component_finding": "(1) ANCHOR/TITLE MISMATCH, a concrete docs bug: the section renders as 'Primary and Global Secondary Indexes' but its anchor is '#using-global-secondary-indexes'. Any external deep link built from the title will not resolve, and any link built from the anchor is mislabeled. (2) CONTENT DUPLICATION, three-way. This page's 'Primary and Global Secondary Indexes' section and indexes.md's Primary/Secondary entries state the same two definitions in different words, and indexes.md links back HERE for both of them - so the reader is bounced between two pages that each partially define the same thing. Meanwhile the 'Saving Indexes' section restates the Enterprise/Community storage split that storage-modes.md documents in full (the 7.2 extraction of this page recorded the same duplication, so it has survived at least one release). (3) The Community/Enterprise storage paragraphs are not parallel: the Community bullet describes write modes, the Enterprise bullet describes compaction plus a 7.0 file-layout change. They read as two unrelated facts under one heading rather than a comparison, which made behavesDifferentlyUnder the only usable predicate even though the two objects are not really being contrasted. (4) 'Supervisor' appears capitalised as a proper component name in the architecture section but lowercase as 'The supervisor process' in the Standard storage description - minor, but the kind of inconsistency that defeats automated term extraction.",
+  "cross_product_finding": "This page and indexes.md are the two canonical conceptual sources for the index area, and between them they touch only a fraction of the ~93 index-related ids the corpus has accumulated. Specifically: NEITHER PAGE MENTIONS INDEX STATE AT ALL. The registry's index-state ConceptScheme (scheduled for creation / deferred / building / pending / online / offline / abridged) and capella:index-ui-status (ready / pause / warmup) have no anchor whatsoever in the conceptual documentation - both are artifacts of reference and UI material, and nothing in server/'s learn tree tells a reader that an index HAS a lifecycle. That is a documentation gap as much as an ontology one. Conversely this page contributes an axis the reference tree never named as such: index STORAGE MODE (standard vs memory-optimized), which is a property of the service configuration, not of an individual index, and is edition-gated. So the two trees are not merely differently detailed, they are differently sliced."
+}

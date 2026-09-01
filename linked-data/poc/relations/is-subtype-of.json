@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/is-subtype-of",
+  "label": "is subtype of",
+  "recurrence": 1,
+  "type": "the subject is a specialisation of the object, as stated by the source ('Composite Vector Indexes ... which are Global Secondary Indexes (GSIs) with a single vector column').",
+  "note": "PROMOTED BELOW THRESHOLD on significance: the registry had NO SUBSUMPTION VOCABULARY AT ALL - 195 concepts, 64 predicates, not one broader/narrower/isA relation - so a page whose entire content is a two-level taxonomy could not be expressed without minting. That is round 11's deepest structural finding: nine rounds of reference extraction produced a flat vocabulary because reference pages enumerate SIBLINGS (clauses of a statement, values of a setting) and never state hierarchy. Kept separate from belongsToIndexClass on purpose - see that record. When JSON-LD is drafted this is a candidate for rdfs:subClassOf, deliberately deferred rather than decided now: the source states a subtype relation between two index *types*, and whether those are classes or instances in the final model is exactly the question the JSON-LD pass exists to settle.",
+  "relates_to_competency_question": "Is this kind of thing a special case of that kind?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

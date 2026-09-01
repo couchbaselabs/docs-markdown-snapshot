@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/uses-protocol",
+  "label": "uses protocol",
+  "recurrence": 4,
+  "aliases": [
+    "streamsMutationsVia"
+  ],
+  "type": "the subject component communicates using the named wire protocol. Object is a protocol concept.",
+  "note": "Promoted at merged recurrence 4, folding streamsMutationsVia. Both agents in round 11 independently minted a predicate for the same fact - 'the Data Service uses the DCP protocol to stream data-mutations' - one general (usesProtocol), one specific (streamsMutationsVia). Kept the general form because the specific one bakes its object's purpose into the predicate name, which stops it ever being used for a second protocol. This is the expected cross-agent near-duplicate that the extract skill says reconciliation exists to catch, and it is the second time the registry has had to fold a specific predicate into a general one (see availableSince folding requiresMinVersionFor).",
+  "relates_to_competency_question": "How does this component talk to that one?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

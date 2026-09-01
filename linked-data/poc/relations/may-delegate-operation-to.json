@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/may-delegate-operation-to",
+  "label": "may delegate operation to",
+  "recurrence": 1,
+  "type": "the subject service routes a particular OPERATION to the object service at runtime, without the object being a hard prerequisite for the subject to run.",
+  "note": "PROMOTED BELOW THRESHOLD on significance, because it documents a limit in dependsOnService - the registry's one composition predicate, itself minted on this same subtree in round 1. dependsOnService cannot express (a) an alternative dependency ('either the Index Service or the Search Service'), (b) a per-operation rather than whole-service dependency, or (c) the difference between a hard prerequisite and a runtime delegation. query-service.md is the acid test: its lede names exactly two hard dependencies (Index, Data) while its Query Execution section routes Scans to the Search Service. Under dependsOnService alone you must either lose that fact or promote Search to a hard dependency and contradict the lede.",
+  "relates_to_competency_question": "Which service actually performs this operation?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

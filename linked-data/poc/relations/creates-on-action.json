@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/creates-on-action",
+  "label": "creates on action",
+  "recurrence": 4,
+  "type": "the subject creates the object artifact as a side effect of the named action.",
+  "note": "Promotion debt from rounds 3-8, surfaced by the whole-corpus recurrence query. Four files, never filed.",
+  "relates_to_competency_question": "What gets created when I do this?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

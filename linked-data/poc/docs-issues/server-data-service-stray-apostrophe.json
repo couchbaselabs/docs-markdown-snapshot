@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-data-service-stray-apostrophe",
+  "type": "docs-issue",
+  "issueType": "copy-editing",
+  "description": "data-service.md carries a stray apostrophe in body prose. Trivial in itself, and logged only because it is on the densest architectural page in the batch (30 relations, the KV-engine internals) - the page most likely to be read closely.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/data-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

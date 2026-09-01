@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-memory-quota",
+  "label": "requires memory quota",
+  "recurrence": 1,
+  "type": "the subject service claims a configured per-node memory quota.",
+  "note": "Member of the Multi-Dimensional Scaling family - see provides-service.",
+  "relates_to_competency_question": "What resources does adding this service cost?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

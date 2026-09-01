@@ -1,0 +1,342 @@
+{
+  "page_id": "server/8.0/learn/services-and-indexes/services/services",
+  "source_version": "8.0",
+  "source_path": "server/current/learn/services-and-indexes/services/services.md",
+  "concepts": [
+    {
+      "candidate_id": "server:couchbase-server",
+      "label": "Couchbase Server (the product, as the container of the service catalog)",
+      "reused_or_minted": "minted - the registry has no concept for the product itself. Needed as the subject of providesService: this page states the closed catalog of seven services, and that catalog belongs to the product, not to any one service or version."
+    },
+    {
+      "candidate_id": "server:multi-dimensional-scaling",
+      "label": "Multi-Dimensional Scaling (MDS)",
+      "reused_or_minted": "minted - nothing in the registry names the deployment/scaling model. This is the central architectural idea of the page and has no reference-page equivalent."
+    },
+    {
+      "candidate_id": "service:couchbase-service",
+      "label": "a Couchbase Server service (coarse placeholder)",
+      "reused_or_minted": "minted - coarse placeholder, following the same pattern the registry already uses for rbac-role:role and capella-role:role. Needed because this page makes statements about 'these services' collectively that cannot honestly be split into seven per-service relations."
+    },
+    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused" },
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "service:backup-service",
+      "label": "Backup Service",
+      "reused_or_minted": "minted - the seventh member of the service catalog and the only one with no existing registry entry in the service:* family. Nine rounds of reference extraction never needed it."
+    },
+    {
+      "candidate_id": "server:node",
+      "label": "Node (a cluster member running some set of services)",
+      "reused_or_minted": "minted - the registry has server:query-node (a Query-Service-bearing node, minted on curl.md) but no generic node concept. The service-per-node limits on this page are properties of a node, not of a service."
+    },
+    {
+      "candidate_id": "server:node-service-limit",
+      "label": "per-node service limit (1 instance per service, max 7 services)",
+      "reused_or_minted": "minted - the object of hasExecutionConstraint; a placement/topology limit with no existing home."
+    },
+    {
+      "candidate_id": "server:arbiter-node",
+      "label": "Arbiter node",
+      "reused_or_minted": "minted - a node role that runs no data-bearing service; introduced 7.6, nowhere in the registry."
+    },
+    {
+      "candidate_id": "server:serviceless-node",
+      "label": "node configured to run no services",
+      "reused_or_minted": "minted - deliberately kept separate from server:arbiter-node. The page introduces both at 7.6 in adjacent paragraphs but never states that they are the same thing, and one is edition-gated while the other is not - see cross_component_finding."
+    },
+    {
+      "candidate_id": "server:on-demand-service-modification",
+      "label": "on-demand addition/removal of a non-Data Service on an existing node",
+      "reused_or_minted": "minted - an 8.0 capability with no registry entry. The subject of the availableSince/triggersRebalance facts on this page."
+    },
+    {
+      "candidate_id": "server:rebalance",
+      "label": "Rebalance",
+      "reused_or_minted": "minted - astonishingly absent from the registry after nine rounds. Reference pages never had cause to mention it; it is unavoidable on a deployment page."
+    },
+    {
+      "candidate_id": "server:service-memory-quota",
+      "label": "service memory quota",
+      "reused_or_minted": "minted - the per-service memory allocation assigned when a service is placed on a node. Distinct from setting:query-memory-quota (an extraction-layer request/query-level setting), which is not a service placement quota."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "minted - providesService. The registry has dependsOnService (service-to-service) but nothing expressing catalog membership: which services the product consists of. This is the first page in the corpus to state the catalog as a closed list.",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:search-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:analytics-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:eventing-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "providesService",
+      "object": "service:backup-service",
+      "reused_or_minted_predicate": "minted - providesService",
+      "evidence": "Couchbase Server provides the following services:"
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "For example, the Query Service depends on the Index and Data services."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "For example, the Query Service depends on the Index and Data services."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "servesService",
+      "object": "service:analytics-service",
+      "reused_or_minted_predicate": "minted - servesService, the converse direction of dependsOnService. Recorded rather than silently inverted into dependsOnService because this claim CONTRADICTS indexes.md, which says the Analytics Service creates and uses its own indexes - see cross_component_finding. Inverting it would have hidden the contradiction.",
+      "evidence": "[Index Service](index-service.md): Creates indexes, for use by the Query and Analytics services."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "reused_or_minted_predicate": "minted - servesService",
+      "evidence": "[Index Service](index-service.md): Creates indexes, for use by the Query and Analytics services."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "requiresMinimumNodeCount",
+      "object": "1",
+      "reused_or_minted_predicate": "minted - requiresMinimumNodeCount. Object is a literal integer, not a concept: nothing in the corpus refers to 'one node' as a thing. Recurs on data-service.md with different wording, so this is not a one-off. The registry's nearest neighbours (hasExecutionConstraint, requiresIndex) are about placement and prerequisites, not minimum cardinality of deployment.",
+      "evidence": "The Data Service must run on at least 1 node in the cluster."
+    },
+    {
+      "subject": "service:couchbase-service",
+      "predicate": "requiresMinimumNodeCount",
+      "object": "1",
+      "reused_or_minted_predicate": "minted - requiresMinimumNodeCount. Applies to any service that is a declared dependency of another.",
+      "evidence": "Some services are interdependent and require at least 1 instance of each dependency to be running."
+    },
+    {
+      "subject": "server:multi-dimensional-scaling",
+      "predicate": "enablesIndependentDeploymentOf",
+      "object": "service:couchbase-service",
+      "reused_or_minted_predicate": "minted - enablesIndependentDeploymentOf. The whole point of MDS and the reason the service catalog is modeled as separable components at all. No registry predicate expresses 'X and Y can be provisioned and scaled independently of one another'.",
+      "evidence": "With Multi-Dimensional Scaling (MDS), you can deploy, maintain, and provision these services independently to optimize performance as business needs and workloads change."
+    },
+    {
+      "subject": "server:node",
+      "predicate": "hasExecutionConstraint",
+      "object": "server:node-service-limit",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint ('a topology or placement constraint on where the subject may execute'). Its registry example is statement routing within a transaction; this is the first use for a physical deployment limit, which stretches the term but does not break it.",
+      "evidence": "Services are configured per node. Each node can run 1 instance of a service and up to 7 services in total."
+    },
+    {
+      "subject": "service:couchbase-service",
+      "predicate": "configuredPerNode",
+      "object": "server:node",
+      "reused_or_minted_predicate": "reused - configuredPerNode, an extraction-layer id minted once on n1ql/n1ql-language-reference/curl.json for a per-node access-list file. This is its second, independent occurrence in a completely different area of the product, which is the recurrence signal reconciliation looks for.",
+      "evidence": "Services are configured per node."
+    },
+    {
+      "subject": "server:serviceless-node",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "In Couchbase Enterprise Server 7.6 and later, you can configure a node to run no services."
+    },
+    {
+      "subject": "server:serviceless-node",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "reused_or_minted_predicate": "reused - requiresEdition. Note the page's wording is 'Couchbase Enterprise Server 7.6', not the house style 'Couchbase Server Enterprise Edition' - see cross_component_finding.",
+      "evidence": "In Couchbase Enterprise Server 7.6 and later, you can configure a node to run no services."
+    },
+    {
+      "subject": "server:arbiter-node",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "In Couchbase Server 7.6 and later versions, you can add 1 or more arbiter nodes to your cluster."
+    },
+    {
+      "subject": "server:on-demand-service-modification",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "In Couchbase Server 8.0 and later versions, you can add or remove the following non-Data Services on-demand on existing nodes in a cluster, without adding or removing nodes."
+    },
+    {
+      "subject": "server:on-demand-service-modification",
+      "predicate": "triggersRebalance",
+      "object": "server:rebalance",
+      "reused_or_minted_predicate": "minted - triggersRebalance. The registry's triggersAlert is the only 'triggers' predicate and it is monitoring-specific. An operation automatically causing a cluster-wide data-movement operation is a distinct and consequential shape.",
+      "evidence": "Then a rebalance operation is automatically triggered to distribute the service workload across the nodes and complete the modification."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "doesNotSupport",
+      "object": "server:on-demand-service-modification",
+      "reused_or_minted_predicate": "reused - doesNotSupport ('a stated, bounded non-support boundary'). Fits exactly: the Data Service is carved out of the 8.0 on-demand capability by name.",
+      "evidence": "Adding or removing of the Data Service (kv) on an existing node is supported only through adding or removing nodes."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "index",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier. Object is a literal. This page is the only place in the corpus that maps the display names to the wire/API identifiers (index, n1ql, fts, cbas, eventing, backup, kv). REST-API extraction rounds consumed those identifiers without ever recording that they denote the same things as the prose names.",
+      "evidence": "index (Index Service)."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "n1ql",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier",
+      "evidence": "n1ql (Query Service)."
+    },
+    {
+      "subject": "service:search-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "fts",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier. Note this is live evidence for the still-open search-admin/fts-admin naming issue recorded in docs-issues: the product renamed Search but the identifier is still fts.",
+      "evidence": "fts (Search Service)."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "cbas",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier",
+      "evidence": "cbas (Analytics Service)."
+    },
+    {
+      "subject": "service:eventing-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "eventing",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier",
+      "evidence": "eventing (Eventing Service)."
+    },
+    {
+      "subject": "service:backup-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "backup",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier",
+      "evidence": "backup (Backup Service)."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "hasInternalServiceIdentifier",
+      "object": "kv",
+      "reused_or_minted_predicate": "minted - hasInternalServiceIdentifier",
+      "evidence": "Adding or removing of the Data Service (kv) on an existing node is supported only through adding or removing nodes."
+    },
+    {
+      "subject": "service:couchbase-service",
+      "predicate": "requiresMemoryQuota",
+      "object": "server:service-memory-quota",
+      "reused_or_minted_predicate": "minted - requiresMemoryQuota. The registry's requiresSetting is about a setting being configured a particular way; this is a mandatory resource allocation made at placement time, and it has an explicit exception list, which is what makes it worth modeling as a relation rather than prose.",
+      "evidence": "When you allocate a service to a node, you must assign it a memory quota."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "exemptFromMemoryQuota",
+      "object": "server:service-memory-quota",
+      "reused_or_minted_predicate": "minted - exemptFromMemoryQuota. Follows the registry's established house style of explicit negation predicates (doesNotSupport, doesNotAffect, doesNotSatisfy) rather than overloading requiresMemoryQuota with a polarity flag.",
+      "evidence": "The Query and Backup services are exceptions and do not require a memory quota."
+    },
+    {
+      "subject": "service:backup-service",
+      "predicate": "exemptFromMemoryQuota",
+      "object": "server:service-memory-quota",
+      "reused_or_minted_predicate": "minted - exemptFromMemoryQuota",
+      "evidence": "The Query and Backup services are exceptions and do not require a memory quota."
+    },
+    {
+      "subject": "server:arbiter-node",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/clusters-and-availability/nodes",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "It provides [fast failover](../../clusters-and-availability/nodes.md#fast-failover) which helps decrease the cluster's latency when reacting to a failover."
+    },
+    {
+      "subject": "server:arbiter-node",
+      "predicate": "seeAlso",
+      "object": "server/current/install/deployment-considerations-lt-3nodes",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "It provides [quorum arbitration](../../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned."
+    },
+    {
+      "subject": "server:on-demand-service-modification",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-nodes/modify-services-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about adding or removing non-Data Services on an existing node, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md)."
+    },
+    {
+      "subject": "service:data-service",
+      "predicate": "seeAlso",
+      "object": "server/current/manage/manage-nodes/manage-data-service-and-rebalance",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more information about adding or removing the Data Service on an existing node, see [Adding or Removing the Data Service on Existing Nodes](../../../manage/manage-nodes/manage-data-service-and-rebalance.md)."
+    },
+    {
+      "subject": "server:service-memory-quota",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/buckets-memory-and-storage/memory",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Service memory quotas, see [Memory](../../buckets-memory-and-storage/memory.md)."
+    },
+    {
+      "subject": "server:couchbase-server",
+      "predicate": "documentedForVersion",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused - documentedForVersion",
+      "evidence": "In Couchbase Server 8.0 and later versions, you can add or remove the following non-Data Services on-demand on existing nodes in a cluster, without adding or removing nodes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "providesService / requiresMinimumNodeCount / enablesIndependentDeploymentOf / triggersRebalance / requiresMemoryQuota / exemptFromMemoryQuota / hasInternalServiceIdentifier",
+    "finding": "Seven predicates minted on one page - by far the highest mint rate of any round to date - and the reason is systematic, not accidental. The registry's 64 existing predicates are almost entirely about GATING (requiresPrivilege, requiresEdition, requiresCapellaRole, incompatibleWith*, availableSince): 'under what conditions may this construct be used'. That is the only question a syntax-reference or REST-reference page ever answers. This page answers a different family of questions entirely - what the product CONSISTS OF (catalog membership), how many of a thing must EXIST (minimum node count), what RESOURCES a component claims (memory quota), what an operation CAUSES (rebalance), and how a display name maps to a wire identifier. The registry has essentially no composition, cardinality, resource or causation vocabulary at all. dependsOnService (recurrence 3) is the single existing predicate in the composition family, and it was itself minted on this same learn/services-and-indexes subtree in round 1 - i.e. every composition predicate the ontology has came from the only conceptual pages it had ever seen. The hypothesis the round set out to test is confirmed strongly. Additionally: no predicate exists for OPTIONAL or ALTERNATIVE dependency (see query-service.json), and none for cardinality/arity constraints (see index-service.json)."
+  },
+  "cross_component_finding": "Four separate issues on this one page. (1) DIRECT CONTRADICTION with indexes.md, one directory away: this page says the Index Service 'Creates indexes, for use by the Query and Analytics services', while indexes.md says 'The [Search](../services/search-service.md) and [Analytics Services](../services/analytics-service.md) create and use their own indexes' and 'The [Analytics Service](../services/analytics-service.md) provides analytics indexes for shadow data in an Analytics collection'. One of these is wrong. I recorded the servesService relation as this page states it rather than quietly dropping it, so reconciliation can see both sides. (2) ARBITER vs SERVICELESS NODE: paragraph 3 introduces arbiter nodes at 'Couchbase Server 7.6 and later versions'; the 'Setting Up Services' section separately introduces 'you can configure a node to run no services' at 'Couchbase Enterprise Server 7.6 and later'. Same release, adjacent capabilities, plausibly the same underlying mechanism, but the page never says so - and only the second is edition-gated. I minted two concepts rather than merge them, per the no-merging-without-a-source-statement rule, but an SME should confirm whether these are one feature or two. (3) EDITION WORDING: 'Couchbase Enterprise Server 7.6' is not the house style used everywhere else in the corpus ('Couchbase Server Enterprise Edition', as on index-service.md in the same directory). Worth a style fix; more importantly it made the requiresEdition extraction a judgement call rather than a lift. (4) The service list in 'Services and Multi-Dimensional Scaling' is a one-line paraphrase of each service page's own lede. data-service.md/query-service.md/index-service.md restate it, so a fact stated four times can drift in four places - and per (1) it already has.",
+  "cross_product_finding": "This page has no Capella counterpart in the corpus, and that is itself the finding. Multi-Dimensional Scaling is the load-bearing concept here - services as independently placeable, independently quota'd, independently scalable components on named nodes - and Capella's management-plane pages (rounds 6-9, ~180 pages) never expose it: they expose cluster configurations, node counts and service checkboxes, with placement decided for you. The registry's Capella-derived concepts (capella:cluster-manager, cluster-access-credential-type, capella-role:*) have no server:node, server:rebalance or server:service-memory-quota to attach to, and nothing in the Capella tree needed them. So the ontology currently has two disjoint views of the same services - server/ sees deployable components with topology, Capella sees a managed feature list - joined only by the shared service:* ids. Note also that capella:cluster-manager and capella:xdcr are recorded as monitored components 'explicitly NOT one of the Services'; this page's closed seven-member catalog is the server/-side evidence that confirms that exclusion is real and not a Capella quirk (neither Cluster Manager nor XDCR appears in it)."
+}

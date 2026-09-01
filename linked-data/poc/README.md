@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Ten rounds so far, each a deliberate escalation:
+automating it. Eleven rounds so far, each a deliberate escalation:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -66,6 +66,19 @@ automating it. Ten rounds so far, each a deliberate escalation:
     turned out to be **inversely** correlated with novelty — the statements new
     in 8.0 are precisely the ones no page dates — which is the opposite of what
     the wave was briefed to expect, and a better finding.
+11. **9 pages, `server/8.0/learn/services-and-indexes`** — deliberately small,
+    and the first batch of *conceptual prose* rather than reference syntax: the
+    service overview, the seven per-service pages, and the index overview. Also
+    the first batch in the project's history written **entirely under the
+    write-time evidence gate** — 211 relations, 0 evidence problems. Changing
+    the *genre* of page turned out to matter more than changing the tree: ten
+    rounds of statement syntax and REST payloads had left the registry with no
+    part-whole predicate, no subsumption vocabulary at all across 195 concepts,
+    no datatype properties, and no DCP — the streaming protocol the whole
+    architecture rests on, absent from the first ~540 pages because reference
+    documentation cannot see it. Nine pages of the other kind produced all four.
+    It also resolved round 10's deferred index-taxonomy question, and not as
+    expected: the docs' two schemes **cross rather than nest**.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -73,7 +86,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-543 pages total:
+552 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -137,6 +150,14 @@ time/cost projections and how they held up against the round-2 run's real number
   — see the ruling in `reconciliation.md`. The one place the alias is asserted
   is `concepts/version/server-8-0.json`, which carries `isCurrentRelease` and
   `docsTreeAlias` as its only deliberately mutable fields.
+- **9 more, `server/8.0/learn/services-and-indexes/`** — all nine pages of the
+  directory: `services.md`, the seven per-service pages, and `indexes.md`. Note
+  that round 2 read *some* of `server/7.2/learn/services-and-indexes/`; this is
+  the 8.0 directory read completely, and the first batch anywhere in the corpus
+  that is conceptual/architectural prose rather than reference, guide or
+  management-plane content. Chosen because round 10 explicitly deferred the index
+  taxonomy until this directory was read — the docs' own attempt at that taxonomy
+  lives here.
 
 ## Identifiers
 
@@ -240,6 +261,30 @@ from "still in `extractions/`."
   `sdk:cas-optimistic-locking`, `sdk:error-handling`,
   `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
   `sdk:bucket-management` — still sits at the extraction layer only.
+  Round 11 promoted 25, resolving round 10's deferred index taxonomy: the
+  two index **classes** (`index-class:traditional`/`vector`) as an axis
+  *crossing* the type and providing-service axes rather than sitting above them,
+  four index types, the two Index Service storage modes (storage mode turns out
+  to be a property of the *service's configuration*, not of an index), and
+  `index:index` as a deliberately coarse supertype so that the pages' many
+  unqualified statements about "an index" have an honest subject. Plus
+  `protocol:dcp` — the streaming protocol the architecture rests on, absent from
+  the first ~540 pages and then on four of nine, folding a same-round cross-agent
+  duplicate (`server:dcp-protocol`) caused by one directory naming it two ways;
+  `service:backup-service`, the seventh service, which ten rounds never needed and
+  which collides by name with the CSP snapshot facility in `cloud/`; the
+  Multi-Dimensional Scaling family (`server:node`, `server:rebalance`,
+  `server:service-memory-quota`, `server:multi-dimensional-scaling`) which has **no
+  Capella counterpart anywhere** — Capella decides placement for you, so the
+  ontology now holds two disjoint views of one service set joined only by the
+  shared `service:*` ids; and `tool:cbbackupmgr`, folding a *second*
+  three-namespace split of a single CLI tool (`tool:cbq-shell` was the first).
+  It also paid down the corpus's highest-recurrence promotion debt, found by the
+  whole-corpus query rather than by reading this round's records:
+  `capella:collection` (14), `capella:scope` (13), `capella:bucket` (13),
+  `capella:cluster-access-credentials` (13) — the data hierarchy, unpromoted
+  since round 6/7 for exactly the reason round 10 identified, that recurrence 14
+  is load-bearing but not *interesting*.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -278,6 +323,33 @@ from "still in `extractions/`."
   reasoning recorded rather than promoted (`removedIn` as
   unfiled-because-undated, `noOpSince` as a property of the evidence rather
   than of the relation, `documentedAsLegacy` as a duplicate).
+  Round 11 added 23 and closed three structural gaps at once. **Part-whole:**
+  `hasInternalComponent` — 15 of `data-service.md`'s 30 relations decompose the
+  KV engine into named components, and after ten rounds the registry had no way to
+  say "X is part of Y." **Subsumption:** `isSubtypeOf` and `belongsToIndexClass`,
+  the registry's first taxonomic predicates; nothing across 195 concepts and 64
+  predicates could previously say "X is a kind of Y," because reference
+  documentation states behaviour and parameters, not taxonomy. The two are kept
+  deliberately separate so the crossing index axes cannot be silently collapsed
+  later. **Datatype properties:** ten rounds produced only object properties;
+  `requiresMinimumNodeCount` (integer) and `hasInternalServiceIdentifier` (string —
+  a 7-member mapping from each service to its wire id: `kv`, `n1ql`, `index`,
+  `fts`, `cbas`, `eventing`, `backup`) are the first predicates whose objects are
+  literals by design, which the JSON-LD drafting step has not yet had to handle.
+  The rest: `usesProtocol` (folding the same-round duplicate
+  `streamsMutationsVia`), `usesExecutionModel`, `providesIndexType`,
+  `configuredPerNode`, `offersConfigurationChoice`, `mayDelegateOperationTo`, the
+  MDS family (`providesService`, `requiresMemoryQuota`, `exemptFromMemoryQuota`,
+  `requiresCoDeployedService`, `requiresDedicatedNode`), and four earlier-round
+  debts at recurrence ≥3 (`createsOnAction`, `hasHandler`, `firesCallback`,
+  `cascadesDeletionTo`). Two carry recorded caveats rather than being quietly
+  cleaned up: `requiresDedicatedNode` is minted from a page that says "should,"
+  not "must" — the predicate name is stronger than its evidence — and
+  `servesService` carries a CONTRADICTION WARNING, because two pages in the same
+  directory disagree about which service indexes Analytics data. And `seeAlso` is
+  filed at recurrence **425** purely to document a distortion: its objects are
+  *pages*, not concepts, which silently invalidated this round's first
+  concept-recurrence ranking (documentation pages outranked every real concept).
   Kept separate from `concepts/` on purpose —
   properties and the instances they connect are different layers of an ontology
   (roughly, RDFS/OWL's "TBox vs ABox" split), and blurring them makes the JSON-LD
@@ -288,8 +360,15 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. 55 entries
-  as of round 10, which added 22 — the largest batch of any round, and not
+  issueType, description, about, status}` — minted with no gatekeeping. 76 entries
+  as of round 11, which added 21 from just **9 pages** — by far the highest rate
+  per page of any round, because conceptual prose makes claims that can
+  contradict each other in a way syntax tables cannot. Round 11 also introduced
+  an optional `severity` field, used so far for two values: `needs-sme` for the
+  two findings genuinely undecidable from the pages (which service creates
+  Analytics indexes; whether "arbiter" and "serviceless node" are the same
+  thing), and `tooling` for a snapshot-conversion bug rather than an authoring
+  one. Round 10 added 22 — and not
   because Server's docs are worse: reading a page that has an
   already-extracted twin in another tree turns every divergence between them
   into a checkable claim, so diff-gated waves find content problems at a much
@@ -325,7 +404,47 @@ from "still in `extractions/`."
   Known cost, recorded rather than glossed: the gate converts fabrication into
   *omission*. A blocked agent may drop the relation instead of hunting for a
   real quote, and no exit status shows that — hence the relations-per-page
-  thinning check now in the `linked-data-reconcile` skill.
+  thinning check now in the `linked-data-reconcile` skill, and hence
+  `hooks/gate-log.jsonl` below.
+  Round 11 is the first batch written entirely under it, and the result is mixed
+  in a way worth reading before trusting the gate: the omission failure mode
+  **did not occur** (both denied records came back at the same relation count),
+  but **all three flagged ids were false positives** — none on the evidence
+  check, all on the registry-status check, which parses English prose, and two
+  agents hit them independently in nine pages. The check now reads only the
+  leading clause of `reused_or_minted` (a record's own provenance is always
+  first; commentary is where both false positives lived), but the real fix is a
+  `registry_status` enum in the extraction schema so there is no English to
+  parse. Note also what a scoreboard of 0 true positives cannot tell you: whether
+  the gate *deterred* fabrication, or whether none was attempted.
+- **`hooks/gate-log.jsonl`** — the gate's own append-only verdict log
+  (gitignored: it grows on every write and would conflict on every merge; when a
+  line in it is a finding, it gets quoted into `reconciliation.md`, which is the
+  durable record). It exists because the gate had enforcement and no
+  *instrument*: hook stderr on exit 2 reaches the calling **subagent**, not the
+  coordinator, so a denial was only ever visible through the same self-report
+  channel that let round 10's fabrication through as a confident summary. It logs
+  every verdict including allows — an unlogged clean wave is indistinguishable
+  from a wave where the hook never fired — and records `n_relations`, which is
+  what makes the omission failure mode visible: `deny(n=13) → allow(n=12)` on the
+  same path means the agent dropped a relation rather than sourcing it, where
+  `deny(13) → allow(13)` means it went and found the quote. In round 11 it
+  surfaced a denial roughly six minutes before the agent that hit it reported.
+  The generalization, extending round 10's: **agent self-report is a hope; a log
+  written by the gate itself is a control.**
+- **`registry-digest.py`** — prints the promoted registry as compact tables for
+  extraction-agent prompts, run by the agents themselves at dispatch time rather
+  than pasted into a briefing, so it cannot go stale — the failure that got
+  `requiresMinVersionFor` re-minted after having been consolidated. It prints each
+  term's description *in full* rather than truncating, because that line is where
+  a record says what it must not be confused with, and surfaces every recorded
+  do-not-confuse warning verbatim in its own section (19 of them as of round 11).
+  Worth recording that its first version committed the exact failure it was built
+  to prevent: merging each term's files newest-wins let terse `.jsonld` records
+  shadow rich `.json` ones, printing `availableSince | rdf:Property` with the
+  predicate's shape dropped. A `.jsonld` file and its `.json` sibling are not
+  supersets of each other, so it now keeps all of a term's files and takes the
+  most informative value across them.
 - **`verify-promotions.py`** — a **report**, not a gate (it always exits 0).
   Scans `reconciliation.md` for `ns:kebab-id` and `camelCaseTerm` shapes and
   lists those with no registry file, closing the "narrated as promoted, never
@@ -708,6 +827,83 @@ method rather than extending it:**
     look heavily changed and carry no new facts. Recorded in
     `../ingest-cost-and-time-estimate.md` for the remaining ~12 waves.
 
+**Round 11 (9 pages, `server/8.0/learn/services-and-indexes`) — the round where
+the *kind* of page mattered more than the tree:**
+
+47. **Extracting a directory is not extracting a genre.** Round 5's lesson was
+    that a fifth of a directory doesn't generalize to the directory. This is a
+    level up. Ten rounds of reference, guide and management-plane pages left the
+    registry with no part-whole predicate, no subsumption vocabulary at all
+    across 195 concepts, no datatype properties, and no DCP — and none of those
+    absences was caused by insufficient coverage. Nine hundred more reference
+    pages would not have surfaced any of them, because reference documentation
+    describes what a *user writes* and conceptual documentation describes what
+    the *machine does*. Nine pages of the second kind produced all four. Also
+    denser: 23.4 relations per page against round 10's 13.4, which is the
+    opposite of what ten rounds of reference extraction would predict.
+48. **DCP was absent from the first ~540 pages, then appeared on four of nine.**
+    The protocol by which the Data Service feeds mutations to the Index, Search
+    and Analytics services and to other clusters — arguably the most load-bearing
+    internal mechanism in the architecture — is invisible to statement syntax and
+    REST payloads, because nothing a user writes names it. Two agents in one wave
+    minted it independently in two namespaces with identical labels, which is the
+    textbook cross-agent duplicate; the immediate cause is a docs bug, one page
+    writing "the DCP protocol" without expanding it and another "Database Change
+    Protocol" without abbreviating it, neither linking the other.
+49. **The index taxonomy has two axes that cross, and the natural reading is
+    wrong.** Round 10 deferred all 93 index concepts pending this directory.
+    `indexes.md` declares "two classes of indexes" (Traditional and Vector) and
+    then organises its content by index *type* and *providing service* — and the
+    schemes do not nest. A Search index is Traditional while a Search Vector index
+    is Vector, so class cuts across service; a Composite Vector Index is stated to
+    *be* a GSI, so class cuts across type. A reader building a hierarchy from this
+    page builds one the page's own examples refute. This is a distinct outcome
+    from round 10's diagnosis: the problem was never that the docs had one clean
+    taxonomy the extraction had flattened — the docs have two real axes and never
+    say so.
+50. **A contradiction between two pages in the same directory, undecidable from
+    either.** `services.md` says the Index Service maintains indexes for Query,
+    Search *and Analytics*; `indexes.md` attributes Analytics indexes to the
+    Analytics Service. The extraction records both with a CONTRADICTION WARNING
+    rather than picking a winner, and the docs-issue is the first marked
+    `severity: needs-sme`. The three-way duplication logged alongside it is *how*
+    this happens: the same service descriptions live in `services.md`, in each
+    service's own page, and in Capella's feature descriptions, and they are not
+    identical.
+51. **Two disjoint views of one service set, joined only by ids.**
+    Multi-Dimensional Scaling — each service independently placeable, quota'd and
+    scalable — is the load-bearing concept of `services.md` and has **no Capella
+    counterpart anywhere in ~180 management-plane pages**, because Capella decides
+    placement for the user. So `server/` sees deployable components with topology
+    and Capella sees a managed feature list, sharing only the `service:*` ids. The
+    seventh service (Backup) is a smaller instance of the same asymmetry: ten
+    rounds never needed it, "which services does Couchbase have" answers six or
+    seven depending on which tree was ingested, and `cloud/`'s single occurrence
+    of the phrase "backup service" refers to the cloud provider's snapshots — the
+    fifth documented name collision and the first to span products.
+52. **The gate held; its own worst failure mode didn't fire; and every denial was
+    a false positive.** First batch written entirely under
+    `hooks/gate-evidence.py`: 11 gated invocations, 9 allowed, 2 denied, both
+    denied records returning at the *same* relation count, so the
+    fabrication-becomes-silent-omission risk demonstrably did not materialise, and
+    corpus evidence problems stayed at 452 — all pre-gate. But all three flagged
+    ids were false positives, all on the registry-status check parsing English,
+    hit by two agents independently in nine pages. Reported as a scoreboard of
+    0 true positives and 3 false positives, with the honest caveat that one clean
+    wave cannot distinguish deterrence from an absence of attempts.
+53. **A high-recurrence predicate can silently invalidate the promotion rule.**
+    The first concept-recurrence ranking of this round put documentation *pages*
+    above every real concept, because `seeAlso` occurs 425 times and its objects
+    are pages. Excluding them cut the candidate list from 465 to 356 and changed
+    what got promoted. The rule counts object recurrence and assumes objects are
+    concepts; one predicate breaks that assumption at 425 occurrences.
+54. **A tool built to prevent a failure committed it.** `registry-digest.py`
+    exists so no agent is handed a stale registry table, and its first version
+    printed `availableSince | rdf:Property` with the predicate's shape dropped —
+    a stale table, generated fresh, by the anti-staleness tool. Third instance of
+    "vigilance is not a control," and, like round 10's regex bug, invisible in the
+    code and obvious in the output.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -727,12 +923,32 @@ document.
   (the channel model, the CBL edition split) are corroborated elsewhere and
   stand; the individual triples should not be consumed downstream until
   re-run under the gate.
-- **Decide the index taxonomy before promoting any index concept.** 93
-  candidates are sitting unpromoted because the namespace conflates at least
-  four axes (access method, storage engine, lifecycle state, syntactic form).
-  Read `server/current/learn/services-and-indexes/` first — that directory is
-  the docs' own attempt at the taxonomy, and inventing a different one here
-  would be a fact, not an extraction.
+- **Finish the index taxonomy now that its axes are known.** Round 11 read
+  `server/8.0/learn/services-and-indexes/` and settled the shape round 10 was
+  waiting on: two index *classes* crossing the type and providing-service axes
+  rather than sitting above them, plus storage mode as a property of the Index
+  Service's configuration and lifecycle state as a fourth, separate axis. Twelve
+  index concepts and the two class terms are promoted; the bulk of round 10's 93
+  candidates still are not, and can now be sorted by axis rather than deferred.
+  The remaining judgement call is `index-type:gsi` vs
+  `index-type:secondary-index` — the docs state on two pages that these are the
+  same thing, so they are linked by `isSynonymOf` rather than collapsed, and
+  whether to keep both surface terms permanently is a decision, not a cleanup.
+- **Replace `reused_or_minted` prose with a `registry_status` enum.** All three
+  of round 11's gate denials were false positives caused by the gate parsing
+  English provenance notes; the narrowed check (leading clause only) is a
+  mitigation, not a fix. An enum (`promoted` / `extraction-layer` / `minted`)
+  alongside the free-text note would remove the guesswork entirely. This touches
+  both skills and makes existing records non-conforming, so it needs deciding
+  rather than doing quietly.
+- **Extract deliberately by genre, not just by directory.** Round 11's clearest
+  result is that nine pages of a *different kind* of documentation produced four
+  structural gaps that ten rounds of reference pages could not. The remaining
+  `server/` waves should include conceptual/architectural directories on purpose
+  — `learn/` beyond services-and-indexes, `learn/data/`, `learn/clusters-and-availability/`
+  — rather than treating them as leftovers to be swept up after the reference
+  tree, and the same question should be asked of `cloud/`, which was covered
+  completely but almost entirely as management-plane and guide content.
 - **Add structural schema validation to `hooks/gate-evidence.py`.** Round 10
   named two missing controls and wrote one (`verify-promotions.py`). The other
   is structural validation of extraction records — starting with "the subject
@@ -741,8 +957,14 @@ document.
   pass undetected. The hook already parses every record at write time, so this
   costs nothing extra to run and would catch such a violation at the moment
   it's introduced rather than two rounds later.
-- Get a subject-matter expert to work through `docs-issues/` (55 entries) —
-  most valuably the five-way "role" collision, the Sync Gateway/Capella
+- Get a subject-matter expert to work through `docs-issues/` (76 entries) —
+  starting with the two round 11 marked `severity: needs-sme`, which are
+  undecidable from the pages rather than merely unresolved: **which service
+  creates Analytics indexes** (`services.md` and `indexes.md` contradict each
+  other, and the answer changes which service a reader must deploy and quota),
+  and whether **"arbiter" and "serviceless node"** name the same thing (if they
+  do, one term should be retired; if not, the difference is architecturally
+  significant). Then the five-way "role" collision, the Sync Gateway/Capella
   access-control questions, round 5's `merge`/`nest` privilege-naming
   inconsistency (does "Query Select" = "Query Read"?), round 6's role-catalog
   loose ends (is `data-writer` the same role as the originally-mangled
@@ -758,7 +980,16 @@ document.
   `sdk:sqlpp-queries-with-sdk`, and `sdk:bucket-management` still
   extraction-layer-only. See round 4's note in `reconciliation.md`.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  ten rounds.
+  eleven rounds. Note round 11 added a case the layer has never had to handle:
+  `requiresMinimumNodeCount` and `hasInternalServiceIdentifier` are **datatype
+  properties**, so their objects are literals rather than `@id`s — 12 relations in
+  the corpus now have literal objects, and every existing `.jsonld` file assumes
+  otherwise.
+- **Sweep the Markdown snapshot for `%5F` in link targets.** Round 11 found a
+  link to `7%5Fusing%5Findex.md` — percent-encoded underscores in a filesystem
+  path, a conversion artifact rather than an authoring error, which means the link
+  does not resolve and the same bug will affect every converted link containing an
+  underscore. Mechanical, and cheaper to fix at the converter than page by page.
 - Run a normalization pass over `extractions/` for the small ID inconsistencies
   the aggregation surfaced but didn't hand-fix — mechanical, scriptable, not
   worth doing by hand at this volume. Round 9 added three instances
@@ -792,16 +1023,19 @@ document.
 - The next product-scale target after that, if continuing at this granularity,
   is a product outside `cloud/`/`server/` not yet touched at all (other SDKs,
   Analytics/Columnar, Backup, the Autonomous Operator).
-- If this looks worth pursuing past a POC: ten axes of stress test have now
+- If this looks worth pursuing past a POC: eleven axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
   round 4's within-one-product-across-features, round 5/6/7's three-in-a-row
   confirmation that the same partial-sampling lesson recurs on successive
   vocabularies of the same product, round 8's confirmation that a genuinely
   new feature doesn't automatically need new structure, round 9's
   confirmation that even a "should mostly confirm" round still earns its
-  keep, and round 10's cross-version axis — the same product's docs at a
+  keep, round 10's cross-version axis — the same product's docs at a
   second version, which is where the fabrication and the evidence-audit
-  results came from). The next natural one is scale itself — a real batch
+  results came from — and round 11's cross-*genre* axis, which found four
+  structural vocabulary gaps in nine pages that 543 pages of reference,
+  guide and management-plane content had not). The next natural one is scale
+  itself — a real batch
   against the ~3,900-page "latest version only" corpus from
   `../ingest-cost-and-time-estimate.md`, now that the pipeline has been
   exercised on Bedrock, at real (not just trial) scale, on every axis it's

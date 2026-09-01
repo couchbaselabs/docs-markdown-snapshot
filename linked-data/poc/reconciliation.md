@@ -1748,7 +1748,433 @@ long-lived tree. Grouped:
 
 ---
 
-## Cumulative verdict (all ten rounds)
+## Round 11 — `server/8.0/learn/services-and-indexes` (9 pages) - the first conceptual-prose batch, and the first written entirely under the write-time gate
+
+Scope: all nine pages of `server/8.0/learn/services-and-indexes/` - the service
+overview, the seven per-service pages, and the index overview - run as two
+parallel batches. Small on purpose. Round 10 deferred the index taxonomy
+explicitly until this directory was read, and it was worth waiting: after ten
+rounds of statement syntax, REST payloads and management-plane forms, this is
+the first batch of *architectural prose*. It is also the first batch in the
+project's history in which every record was checked mechanically before it
+reached disk.
+
+Yield: **9 records, 211 relations, 0 evidence problems.** Mean 23.4 relations
+per page, against round 10's 13.4 - conceptual prose is denser in extractable
+relationships than reference syntax, which is the opposite of what nine rounds
+of reference extraction would have predicted. The distribution:
+services 38, backup-service 34, data-service 30, indexes 27, index-service 22,
+query-service 21, search-service 17, analytics-service 16, eventing-service 6.
+
+### Headline finding: the index taxonomy has two axes that cross, and one of them was invisible
+
+Round 10 held back 93 index concepts rather than promote them into what it
+called a four-way axis conflation, on the grounds that the authoritative page
+had not been read. Reading it resolves the question, and not in the direction
+round 10 guessed. `indexes.md` opens by declaring **"two classes of indexes"** -
+Traditional and Vector - and then presents its content organised by index *type*
+and by *providing service*. The class scheme is not a coarser version of the
+type scheme. It cuts across it, in both directions:
+
+- **Class cuts across service.** A Search index is Traditional; a Search Vector
+  index is Vector. Same service, both classes.
+- **Class cuts across type.** A Composite Vector Index is in the Vector class,
+  and the page states outright that it *is* a Global Secondary Index - "Composite
+  Vector Indexes … which are Global Secondary Indexes (GSIs) with a single vector
+  column". So `index-class:vector` and `index-type:gsi` overlap directly.
+
+So the correct model is two orthogonal axes plus a third, `providesIndexType`,
+and the mistake available here was the natural one: reading "two classes" as the
+top of a hierarchy and hanging the eight types beneath it. That model is refuted
+by the page's own examples, which is precisely what a reader building a mental
+taxonomy from this page will not notice. Promoted accordingly:
+`index-class:traditional` and `index-class:vector` as a two-member closed family
+on the page's own word "classes", `belongsToIndexClass` kept deliberately
+separate from `isSubtypeOf` so that the two axes cannot be silently collapsed
+later, and the four index types the round evidenced
+(`index-type:primary-index`, `index-type:secondary-index`,
+`index-type:hyperscale-vector`, `index-type:composite-vector`).
+
+Two smaller results fell out of the same page. `index-type:secondary-index` and
+`index-type:gsi` are stated to be the same thing by *both* pages independently -
+that is the explicit source statement the never-merge-without-evidence rule
+requires, so they are linked by `isSynonymOf` rather than left as a suspected
+duplicate; both surface terms are kept as ids because the docs use both and a
+reader searching either should land somewhere. And `index:view` is the only one
+of the eight index kinds with **no** providing service named, because Views come
+from a deprecated engine the page declines to name - so an ontology that assumes
+every index type has an owning service has a hole in exactly one row
+(`server-views-index-no-owning-service`).
+
+### The registry had no subsumption vocabulary at all
+
+Across 195 concepts and 64 predicates, nothing in the registry could say *X is a
+kind of Y*. Eleven rounds of extraction had produced a flat vocabulary, because
+reference documentation states behaviour and parameters rather than taxonomy;
+`isSubtypeOf` is minted here on a single source statement (the Composite Vector
+Index sentence above) and promoted below the usual bar under the
+semantic-significance exception, because the absence was structural rather than
+incidental. Related: `index:index` is minted as a deliberately coarse supertype -
+a placeholder, following the registry's existing `rbac-role:role` precedent -
+because `index-service.md` and `indexes.md` both make statements about "an index"
+with no type qualifier ("By default, an index is saved on the node on which it
+is created"; "Each index is created on one keyspace (collection) only") and the
+registry offered no honest subject for them. After ~93 index-related ids across
+ten rounds, the corpus had no way to say anything about indexes in general.
+
+### DCP: absent from the corpus after roughly 540 pages
+
+`protocol:dcp` (recurrence 4, folding `server:dcp-protocol`) is arguably the most
+load-bearing internal mechanism in Couchbase's architecture - the streaming
+protocol by which the Data Service feeds mutations to the Index, Search and
+Analytics services, and to other clusters. It appears in **none** of the first
+540-odd extracted pages, and then on four of round 11's nine. The reason is
+structural, not accidental: DCP is invisible to statement syntax and REST
+payloads. You cannot see it from a `CREATE INDEX` reference page, because nothing
+a user writes names it. It only shows up when the documentation stops describing
+the interface and starts describing the machine.
+
+Two agents minted it independently in one wave, in two namespaces, with
+identical labels, each noting it recurred - the textbook cross-agent duplicate
+that reconciliation exists to fold. And the immediate cause is a documentation
+bug worth its own entry: `search-service.md` writes "the DCP protocol" without
+ever expanding it, `analytics-service.md` writes "Database Change Protocol"
+without ever abbreviating it, and neither links the other
+(`server-dcp-name-drift`). Two pages in one directory, two surface forms, no
+bridge - and the corpus dutifully produced two ids.
+
+### A contradiction between two pages in the same directory
+
+`services.md`, describing the Index Service, says it creates and maintains
+indexes for the Query, **Search and Analytics** services. `indexes.md`'s table
+attributes Analytics indexes to the **Analytics Service**. These cannot both be
+read as true, and the disagreement is not cosmetic - it changes which service a
+reader must deploy, quota and scale to index Analytics data, and it changes
+whether a `servesService` edge exists at all. The extraction records both
+statements and carries a CONTRADICTION WARNING on the relation rather than
+picking a winner, which is the right call: this is not resolvable from the two
+pages, and the answer may be version-dependent. Logged as
+`server-who-creates-analytics-indexes-contradiction` with `severity:
+needs-sme` - the first docs-issue in the log to be explicitly marked as
+undecidable without a subject-matter expert.
+
+It is also the strongest argument yet for the three-way duplication issue logged
+alongside it (`server-services-three-way-content-duplication`): the same service
+descriptions exist in `services.md`, in each service's own page, and in Capella's
+feature descriptions, and they are not identical. That is *how* a contradiction
+like this arises. At four content-duplication issues across the rounds
+(`fts-index-management`, `fts-search-doc-overlap`, `storage-engine-split`, and
+now this) it is a structural property of the doc set, not four local mistakes.
+
+### The seventh service, and a cross-product name collision
+
+The `service:` family held six records and looked complete. Ten rounds of
+reference and management-plane extraction never needed the seventh, because
+nothing a user writes and no Capella form mentions it: `service:backup-service`
+is promoted here at recurrence 2. Grepping all of `cloud/` for "Backup Service"
+returns exactly one hit - `cloud/clusters/cloud-snapshots.md`, "Your CSP's backup
+service" - which refers to the **cloud provider's** snapshot facility and is not
+a Couchbase service at all. So "which services does Couchbase have" answers six
+or seven depending silently on which tree was ingested, and a reader searching
+the combined documentation for "Backup Service" gets two unrelated things
+undifferentiated. This is the fifth name collision the POC has documented and
+the first to span products rather than sit inside one; recorded as a
+do-not-confuse warning on the concept and as
+`server-backup-service-name-collides-with-csp-backup-service`.
+
+The seventh service also arrives disconnected: `backup-service.md` never states a
+Data Service dependency, so it is the only one of the seven with no
+`dependsOnService` edge, sitting outside the graph the other six form purely
+because nobody wrote the sentence (`server-backup-service-no-data-service-dependency`).
+
+### Multi-Dimensional Scaling, and the two disjoint views of one service set
+
+`server:multi-dimensional-scaling` is the load-bearing concept of `services.md` -
+each service independently placeable, independently quota'd, independently
+scalable - and it has **no Capella counterpart anywhere in the corpus**. That
+absence is the finding. Capella's ~180 management-plane pages (rounds 6-9) expose
+cluster configurations, node counts and service checkboxes, with placement
+decided for the user; nothing there needed `server:node`, `server:rebalance` or
+`server:service-memory-quota`, all promoted here. So the ontology now holds two
+disjoint views of the same seven services - `server/` sees deployable components
+with topology, Capella sees a managed feature list - joined only by the shared
+`service:*` ids.
+
+The MDS predicate family is promoted as a family under the usual exception, most
+members at recurrence 1: `providesService`, `requiresMemoryQuota`,
+`exemptFromMemoryQuota` (the Query and Backup services are explicitly exempt),
+`requiresMinimumNodeCount`, `requiresDedicatedNode`, `requiresCoDeployedService`.
+Two of those carry recorded caveats. `requiresDedicatedNode` is minted on a page
+that says a service "should" have a dedicated node, not "must" - the caveat is on
+the record, because the predicate name is stronger than its evidence.
+`servesService` carries the Analytics contradiction above.
+
+### The registry's first datatype properties
+
+Ten rounds produced only object properties - predicates whose objects are concept
+ids. This round has 12 relations whose objects are **literals**, and two of the
+promoted predicates are datatype properties by design:
+`requiresMinimumNodeCount` (an integer) and
+`hasInternalServiceIdentifier` (a string). The latter is a 7-member mapping from
+each service to its wire identifier - `kv`, `n1ql`, `index`, `fts`, `cbas`,
+`eventing`, `backup` - which is the kind of thing an ontology is unambiguously
+good for and which had no home in the vocabulary until now. Worth flagging
+for the JSON-LD drafting step, which has so far only ever had to emit
+`@id`-valued objects.
+
+### Predicates promoted (23)
+
+Threshold-passing this round: `hasInternalComponent` (3 - the part-whole
+predicate the registry lacked; 15 of `data-service.md`'s 30 relations are
+component decomposition), `usesProtocol` (4, aliasing the duplicate
+`streamsMutationsVia`), `usesExecutionModel` (2), `servesService` (2),
+`requiresMinimumNodeCount` (2), `providesIndexType` (2),
+`supportsLanguageConstruct` (3, earlier-round debt), `configuredPerNode` (2),
+`offersConfigurationChoice` (2). Family exception (MDS): `providesService`,
+`requiresMemoryQuota`, `exemptFromMemoryQuota`, `hasInternalServiceIdentifier`.
+Significance exception: `requiresCoDeployedService`, `requiresDedicatedNode`,
+`isSubtypeOf`, `belongsToIndexClass`, `mayDelegateOperationTo`. Earlier-round
+debt at recurrence ≥3, paid down here: `createsOnAction` (4), `hasHandler` (3),
+`firesCallback` (3), `cascadesDeletionTo` (3).
+
+And one record that exists to document a distortion rather than a predicate:
+`seeAlso` is filed at recurrence **425**, aliasing `rdfs:seeAlso`, purely to
+record that its objects are *pages*, not concepts. This matters because it
+silently poisoned this round's own aggregation - see the method notes below.
+
+### Concepts promoted (25)
+
+Beyond the index axes, DCP, the seventh service and the MDS family: the two
+Index Service storage modes (`index:standard-storage`,
+`index:memory-optimized-storage` - storage mode turns out to be a property of the
+*service's configuration*, not of an index, an axis the reference tree never
+named and one of them edition-gated), the full-text-search split resolved below,
+`backup:full-backup` / `backup:incremental-backup` (the only two ids shared
+between the self-managed Backup Service vocabulary and Capella's entirely
+separate backup ontology), and `tool:cbbackupmgr`.
+
+`tool:cbbackupmgr` folds `backup:cbbackupmgr` (3 files) and
+`capella:cbbackupmgr` (1) - five files, three namespaces, one command-line
+utility - following the registry's own `tool:cbq-shell` precedent, including its
+reasoning that a subject-area namespace is not where a CLI tool belongs. This is
+the **second** time the corpus has produced a three-namespace split for a single
+command-line tool, which makes it a systematic pattern rather than an accident.
+
+### A five-way id split for full-text search, three of them spurious
+
+The corpus had accumulated `fts:full-text-search`, `search:full-text-index`,
+`index:full-text`, `cbl:full-text-search` and
+`sdk:full-text-searching-with-sdk` for what looks like one thing. Two of those
+splits are legitimate and are **not** folded: `cbl:full-text-search` is a
+different product (Couchbase Lite), and `sdk:full-text-searching-with-sdk` is a
+page id rather than a concept. The rest was namespace drift across batches, and
+it resolves into two ids that are genuinely different things:
+`fts:full-text-search` the **capability** (folding `index:full-text`) and
+`search:full-text-index` the **artifact** the Search Service builds. Keeping both
+is deliberate - `search-service.md` makes statements about each - and the
+artifact's index set is stated to be "entirely separate" from the Index Service's,
+which is why no Search→Index dependency was invented despite the Index Service
+page claiming to serve Search.
+
+### Promotion debt, and what the whole-corpus query found this time
+
+Round 10 established running the recurrence query over the entire corpus rather
+than the round's own scope. Doing it again: real promotion debt stands at **350
+concepts and 33 predicates** at recurrence ≥2 - "real" meaning after excluding
+ids already folded into a promoted term by an `aliases` field, which the first
+run of this round's script counted as unpromoted (`n1ql:cbq`, 13 files, is
+already `tool:cbq-shell`). Four of the highest-recurrence offenders are paid down
+here, and all four have been sitting there since rounds 6-7:
+`capella:collection` (14), `capella:scope` (13), `capella:bucket` (13),
+`capella:cluster-access-credentials` (13). The data hierarchy - bucket, scope,
+collection - was among the most-referenced unpromoted vocabulary in the entire
+corpus. It went unpromoted for five rounds for the reason round 10 identified:
+recurrence 14 is not *interesting*, and nobody writes a paragraph about it.
+
+Note `capella:bucket` is kept in its extracted namespace and **not** merged with
+the `server/` bucket vocabulary that arrived in this same round
+(`bucket:couchbase-bucket`, `bucket:ephemeral-bucket`), even though they are
+plainly the same construct - no page states it. Flagged as a merge candidate
+needing a citation. Also note `index-service.md` calls a collection a "keyspace",
+so the two trees have different words for the same leaf.
+
+### Left on the watchlist (extraction-layer only, not promoted)
+
+- `data:vbucket` (1) - minted this round; the unit DCP streams. Certain to
+  recur; not promoted on one page.
+- `analytics:shadow-collection` (1) vs `capella:analytics-dataset` - the
+  strongest merge candidate in the corpus, and still no source statement joining
+  them. Left separate for the fourth round running.
+- `eventing:event` (1) vs the promoted `monitoring:event` - a genuine
+  same-word-different-thing pair, documented in both records, not merged.
+- `server:cluster-manager` (1) vs `capella:cluster-manager` - the same
+  namespace-duplication shape as `cbbackupmgr`, but with only one file on the
+  `server/` side and no statement that the Capella role and the server component
+  are related. Round 10 already logged the Capella-side naming drift
+  (`cloud-projects-role-naming-drift-cluster-manager`).
+- `query-service:optimizer` (1) vs the promoted `n1ql:cost-based-optimizer` -
+  deliberately not merged, and probably genuinely different: the CBO is an
+  Enterprise feature, while every Query Service has an optimizer of some kind
+  (`server-query-optimizer-not-linked-to-cbo`).
+- `index-type:gsi` / `index-type:secondary-index` are linked by `isSynonymOf`
+  rather than collapsed - see the headline finding.
+- `n1ql:searchfun` (3) - real debt at the threshold, and deliberately left,
+  because the id is a *page filename* (`searchfun.md`), not a concept name. It
+  belongs to the id-normalization backlog alongside `n1ql:createindex` and
+  `n1ql:selectintro` rather than being promoted under a name no reader would
+  search for. Round 10 already recorded that this id shape is a promotion smell.
+
+### New `docs-issues/` (21)
+
+Two marked `severity: needs-sme` - the first use of that field:
+
+- `server-who-creates-analytics-indexes-contradiction` - `services.md` and
+  `indexes.md` disagree on which service indexes Analytics data. Undecidable
+  from the pages.
+- `server-arbiter-vs-serviceless-node-unreconciled` - "arbiter" and
+  "serviceless node" both used for a node running no data-bearing service, with
+  no statement whether they are the same thing. If they are, one term should be
+  retired; if not, the difference is architecturally significant.
+
+Content gaps:
+
+- `server-learn-services-no-access-control` - **not one mention** of RBAC,
+  roles, privileges or permissions across all nine pages. The mirror image of
+  the reference tree's gap (statement pages naming a privilege without linking
+  its definition): here the axis is simply absent. After 552 records the corpus
+  can say what every service does and nothing about who may ask it to.
+- `server-learn-services-index-state-absent` - no index lifecycle anywhere in
+  the conceptual pages, though the registry holds an `index-state` scheme
+  promoted from the reference tree in round 8. The ontology knows about a
+  lifecycle the conceptual docs never introduce.
+- `server-index-class-vs-type-axes-undocumented` - the headline finding, as a
+  docs bug: the page declares two classes and never says how they relate to the
+  type and service axes, and its own examples refute the natural reading.
+- `server-views-index-no-owning-service` - one of eight index rows has no
+  providing service, is produced by an unnamed deprecated engine, and is not
+  marked as legacy in the table.
+- `server-backup-service-no-data-service-dependency`,
+  `server-backup-service-edition-gate-unclear`,
+  `server-eventing-service-page-near-empty` (6 relations against a batch mean of
+  23 - genuinely thin, not gate-induced; contrast round 8's 67 pages of Capella
+  eventing detail, so the depth exists just not at the entry point).
+
+Duplication, collisions and naming:
+
+- `server-services-three-way-content-duplication`,
+  `server-backup-service-name-collides-with-csp-backup-service`,
+  `server-dcp-name-drift`, `server-query-optimizer-not-linked-to-cbo`,
+  `server-supervisor-capitalisation-inconsistent` (is "Supervisor" a named
+  component or a common noun? extraction has to decide, and the page doesn't
+  say), `server-learn-services-product-name-off-house-style` ("Couchbase
+  Enterprise Server 7.6" - wrong in both word order and in embedding a version
+  in prose under an 8.0 tree).
+
+Accessibility, tooling and copy:
+
+- `server-architecture-only-in-images` - several architectural relationships,
+  including the DCP data flow and the KV engine's internal structure, exist
+  **only** in PNG diagrams. Three consequences: inaccessible to screen readers,
+  invisible to search, and unextractable - anything stated only in a diagram
+  cannot produce a relation with quotable evidence, so the write-time gate
+  correctly refuses it. Every architectural relation in this round came from a
+  sentence; whatever the diagrams add beyond that is not in the ontology.
+- `server-index-page-percent-encoded-underscores` - a link target whose snapshot
+  filename is `7%5Fusing%5Findex.md`. A conversion artifact, but it means the
+  link doesn't resolve, and it will affect every converted link containing an
+  underscore - worth a sweep for `%5F` rather than a one-page fix.
+- `server-index-service-anchor-title-mismatch`,
+  `server-flusher-destructive-no-warning` (the Flusher is described with no note
+  that flushing is destructive, though bucket flush is cautioned everywhere
+  else), `server-backup-service-grammar-errors`,
+  `server-data-service-stray-apostrophe`.
+
+### What this round confirmed about the method itself
+
+**The write-time gate fired, and its worst failure mode did not occur.** This is
+the first batch written entirely under `hooks/gate-evidence.py`. Eleven gated
+invocations on real records: 9 allowed, 2 denied, 3 ids flagged. Both denied
+records were rewritten and both came back at **the same relation count** -
+`deny(n=38) → allow(n=38)` and `deny(n=17) → allow(n=17)`. That is the specific
+thing the log exists to see. The gate converts fabrication into omission: a
+blocked agent can satisfy it by deleting the offending relation, leaving a clean
+record and no trace, and the fingerprint of that would be a deny followed by an
+allow on the same path with a *lower* count. It didn't happen here. Final corpus
+evidence problems: **452, unchanged** - every one of them predates the gate.
+
+**All three denials were false positives, and the gate is now less wrong.** The
+scoreboard has to be reported honestly: 0 true positives, 3 false positives, all
+on the registry-status check rather than the evidence check, and two agents hit
+them independently in a single 9-page wave - so the naive substring test was
+wrong about as often as it was right. The two shapes:
+
+- *A truthful negative.* `"reused - extraction-layer id already on disk …, no
+  registry file. … and none is promoted"` - accurate, and blocked for containing
+  the word "promoted".
+- *A statement about a different id.* `"minted - coarse placeholder, following
+  the same pattern the registry already uses for the promoted rbac-role:role"` -
+  accurate, unnegated, and about somebody else.
+
+Negation-handling alone would have cleared only the first. The fix reads just the
+**leading clause** of `reused_or_minted` - a record's own provenance is always
+first, and commentary is where both false positives lived - plus a `minted` guard;
+six regression cases pass, including round 10's real offence, which sits in the
+leading clause, unnegated, about itself. The residual weakness is honest: this is
+still a machine gate parsing English, and a `registry_status` enum in the schema
+would remove the guesswork entirely.
+
+**The log caught a denial before the agent reported it, which was the point.** My
+own claim earlier in this round - that agents hitting the gate would surface it
+to the coordinator - was wrong. Hook stderr on exit 2 goes to the *calling*
+subagent; the coordinator sees only that agent's final summary, which is the
+exact channel that let round 10's fabrication through as a confident report. So
+the gate had a control and no instrument. `hooks/gate-log.jsonl` (gitignored,
+append-only, every verdict including allows) closed that: it showed batch A's
+denial about six minutes before that agent's report arrived. Allows are logged on
+purpose, because an unlogged clean wave is indistinguishable from a wave where
+the hook never fired at all - "9 records, 11 invocations, 2 denials" is a finding;
+silence is not. The generalization: **agent self-report is a hope; a log written
+by the gate itself is a control** - the same sentence round 10 wrote about
+prompts and scripts, applied to observability rather than enforcement.
+
+**A tool built to prevent a failure reproduced it.** `registry-digest.py` prints
+the promoted registry fresh from disk at dispatch time, so agents can never be
+handed a stale table - the failure that got `requiresMinVersionFor` re-minted
+after consolidation. Its first version merged a term's files newest-wins, which
+shadowed the rich `.json` records with terse `.jsonld` ones and printed
+`availableSince | rdf:Property` with no shape at all: the exact stale-table
+failure, inside the tool built to prevent it. A `.jsonld` file and its `.json`
+sibling are not supersets of each other, so the digest now keeps all of a term's
+files and takes the most informative value across them. The generalizable bit is
+that the bug was invisible in the code and obvious in the output - which is also
+how round 10's regex bug was caught.
+
+**A high-recurrence predicate can silently invalidate the recurrence query.**
+The first concept aggregation ranked documentation *pages* above every real
+concept - `search:customize-index` at the top - because `seeAlso` occurs 425
+times and its objects are pages, not concepts. Excluding them cut the candidate
+list from 465 to 356 and changed what the round promoted. The promotion rule
+counts object recurrence; it assumes objects are concepts; one predicate in the
+vocabulary breaks that assumption at 425 occurrences. Hence the `seeAlso`
+registry record, which exists mainly to document the distortion. A second
+correction in the same script: ids already folded by an `aliases` field were
+counted as unpromoted debt, overstating it.
+
+**Conceptual prose is a different extraction surface, not just a different
+topic.** Denser (23.4 relations per page against 13.4), and it produced the
+round's structurally novel vocabulary: the first part-whole predicate
+(`hasInternalComponent`), the first subsumption predicate, the first datatype
+properties, and DCP. Ten rounds of reference documentation could not have yielded
+any of them, because reference pages describe what a user writes and conceptual
+pages describe what the machine does. Two of the eleven rounds' most-load-bearing
+gaps - no subsumption vocabulary, no DCP - were invisible for as long as they were
+because of *which kind of page* the corpus was made of. Worth stating as a
+sampling lesson with the same standing as round 5's: coverage of a directory is
+not coverage of a documentation genre.
+
+---
+
+## Cumulative verdict (all eleven rounds)
 
 The vocabulary has now been tested against ten genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -1763,9 +2189,11 @@ the same partial-sampling lesson recurring on the same product's role catalog
 (Eventing) needing no new structural layer at all (round 8) - a round expected
 to mostly confirm rather than surprise, which is exactly what it did while
 still closing a question open since round 5 (round 9, finishing `cloud/`) -
-and now the first wave into a **second product tree**, where the same feature
+the first wave into a **second product tree**, where the same feature
 set is documented twice, by different editorial processes, at different
-versions (round 10). At every step it kept doing the same useful thing: not
+versions (round 10) - and now a different **genre** of page within a tree
+already partly covered: architectural prose rather than reference syntax
+(round 11). At every step it kept doing the same useful thing: not
 just "the terms still fit," but surfacing something true and specific about
 each surface it touched - Capella's credential/role-based access model
 (round 2), Sync Gateway's two-disjoint-systems architecture and inverted
@@ -1781,8 +2209,11 @@ new access-control shape" (round 8), the SQL++-vs-SDK transaction boundary
 finally stated explicitly by a page's own text rather than left inferred
 (round 9), and version-evidence density turning out to be *inversely*
 correlated with how new a feature is - the newest statements in Couchbase
-Server 8.0 are the ones no page dates (round 10). That's a stronger and more
-useful result than a vocabulary that merely never breaks.
+Server 8.0 are the ones no page dates (round 10), and the index taxonomy having
+two axes that genuinely cross rather than nest, plus DCP - the protocol the whole
+architecture rests on - being absent from the first 540 pages because reference
+documentation cannot see it (round 11). That's a stronger and more useful result
+than a vocabulary that merely never breaks.
 
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
@@ -1799,7 +2230,7 @@ should be read.
 The cost of getting the useful result cleanly has been a steady retreat from
 page-by-page manual reconciliation toward aggregate statistics and explicit,
 documented judgment calls - a real trade-off, and the right one at this scale.
-Nine limits of the method are now visible across multiple rounds, not just
+Ten limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -1810,7 +2241,25 @@ once, so worth treating as durable rather than one-off:
   between "the record was written" and "the record was accepted." This
   generalizes past evidence: every schema rule this project relies on
   (subject must be a concept id, predicates go in `relations` not `concepts`,
-  ids are kebab-case) is currently enforced by hope.
+  ids are kebab-case) is currently enforced by hope. Round 11 extends the same
+  sentence to *observability*: **agent self-report is a hope; a log written by
+  the gate itself is a control.** Hook stderr on exit 2 reaches the calling
+  subagent, not the coordinator, so a gate's own verdicts were only visible
+  through the identical self-report channel that let round 10's fabrication
+  through. `hooks/gate-log.jsonl` records every verdict including allows,
+  because an unlogged clean wave is indistinguishable from a wave where the
+  hook never fired.
+- **Extracting a directory is not extracting a genre.** Round 5's lesson was
+  that a fifth of a directory doesn't generalize to the directory. Round 11's is
+  a level up: ten rounds of *reference* pages - statement syntax, REST payloads,
+  management forms - left the registry with no part-whole predicate, no
+  subsumption vocabulary at all across 195 concepts, no datatype properties, and
+  no DCP, the protocol the entire architecture rests on. None of those absences
+  were caused by insufficient coverage; nine hundred more reference pages would
+  not have surfaced any of them, because reference documentation describes what a
+  user writes and conceptual documentation describes what the machine does. Nine
+  pages of the second kind produced all four. A coverage plan measured in pages
+  or directories will miss this; the axis that mattered was which kind of page.
 - **Priming a wave has a measurable cost.** Name a predicate as the wave's
   priority and agents will find instances of it, including where none exist.
   The one fabricated triple in round 10's 509 was an `availableSince`, on a
@@ -1893,11 +2342,38 @@ once, so worth treating as durable rather than one-off:
   so the structural check costs nothing extra to run and would have caught round
   8's violation at the moment it was introduced rather than two rounds later.
 
-  Three controls now exist where nine rounds had none: the write-time gate
-  (`hooks/gate-evidence.py`), the corpus audit (`verify-evidence.py`), and the
-  promotion report (`verify-promotions.py`). Worth stating plainly what that does
-  and doesn't buy, because a shelf of scripts invites more confidence than it
-  earns: all three check *form*, none checks *reading*. Quotable-but-mis-objected
-  records pass all three. The axis conflation that kept 93 index concepts
-  unpromoted was found by a person looking at a list and thinking it looked
-  wrong, and no script proposed here would have found it.
+  Round 11 adds a third instance of the species, and it is the sharpest yet
+  because the tool was purpose-built against the failure it committed:
+  `registry-digest.py` exists so that agents are never handed a stale registry
+  table - the failure that got `requiresMinVersionFor` re-minted after
+  consolidation - and its first version merged each term's files newest-wins,
+  printing `availableSince | rdf:Property` with the predicate's shape dropped
+  entirely. A stale table, generated fresh, by the anti-staleness tool. Both it
+  and round 10's regex bug were invisible in the code and obvious in the output,
+  which is the only reliable check either had.
+
+  Five controls now exist where nine rounds had none: the write-time gate
+  (`hooks/gate-evidence.py`), its verdict log (`hooks/gate-log.jsonl`), the
+  dispatch-time registry digest (`registry-digest.py`), the corpus audit
+  (`verify-evidence.py`), and the promotion report (`verify-promotions.py`).
+  Round 11 is the first batch written entirely under the gate, and reports a
+  mixed result honestly. What worked: 11 gated invocations, 2 denials, both
+  rewritten records returning at the *same* relation count, so the gate's own
+  worst failure mode - converting fabrication into silent omission - demonstrably
+  did not occur, and corpus evidence problems stayed at 452, all of them
+  pre-gate. What didn't: **all three flagged ids were false positives**, none on
+  the evidence check, all on the registry-status check parsing English prose, and
+  two agents hit them independently in nine pages. The check is narrower now, but
+  the real fix is a `registry_status` enum in the schema so there is no English to
+  parse. And a scoreboard of 0 true positives cannot distinguish "the gate
+  deterred fabrication" from "no fabrication was attempted"; one clean wave is not
+  evidence either way.
+
+  Worth stating plainly what five scripts do and don't buy, because a shelf of
+  them invites more confidence than it earns: they all check *form*, none checks
+  *reading*. Quotable-but-mis-objected records pass every one. The axis
+  conflation that kept 93 index concepts unpromoted was found by a person looking
+  at a list and thinking it looked wrong - and its resolution in round 11 (two
+  crossing axes, not a hierarchy) came from reading one page's own examples
+  closely enough to notice they refuted the obvious model. No script proposed
+  here would have found either.

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/collection",
+  "label": "collection (Capella)",
+  "recurrence": 14,
+  "type": "the leaf level of Capella's data hierarchy: bucket > scope > collection; a keyspace",
+  "note": "PROMOTION DEBT since round 7 and the single highest-recurrence unpromoted concept in the corpus at the time round 11 ran - see capella:bucket. Note index-service.md's cardinality statement uses 'keyspace (collection)' as the term, so the server/ tree calls the same thing a keyspace.",
+  "relates_to_competency_question": "How is data organised?",
+  "promoted": true
+}

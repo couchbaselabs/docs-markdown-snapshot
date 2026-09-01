@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-architecture-only-in-images",
+  "type": "docs-issue",
+  "issueType": "content-in-images-only",
+  "description": "Several architectural relationships in this batch are conveyed only by PNG diagrams - notably the data flow from the Data Service through DCP to the consuming services, and the internal structure of the KV engine. The prose does not restate them. Consequences are threefold: the relationships are inaccessible to screen readers, unavailable to search, and invisible to extraction - anything stated only in a diagram cannot produce a relation with quotable evidence, so the write-time gate correctly refuses it. Every architectural relation in this round's records came from a sentence; whatever the diagrams add beyond that is not in the ontology.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/data-service",
+    "server/8.0/learn/services-and-indexes/services",
+    "server/8.0/learn/services-and-indexes/index-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

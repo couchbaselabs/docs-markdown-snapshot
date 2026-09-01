@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-learn-services-no-access-control",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Across all nine pages of server/8.0/learn/services-and-indexes there is not one mention of RBAC, roles, privileges or permissions - not on the service overview, not on any of the seven per-service pages, and not on the index pages. A reader learning what the Backup Service is is never told that scheduling a backup needs a privilege, and the Index Service page describes creating indexes without naming who may. Prior rounds found the mirror-image gap in the reference tree (statement pages naming a privilege without linking its definition); this is the conceptual tree omitting the axis entirely. Consequence for the ontology: after ~552 records the corpus can say what every service does and nothing about who is allowed to ask it to.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services",
+    "server/8.0/learn/services-and-indexes/indexes",
+    "server/8.0/learn/services-and-indexes/data-service",
+    "server/8.0/learn/services-and-indexes/query-service",
+    "server/8.0/learn/services-and-indexes/index-service",
+    "server/8.0/learn/services-and-indexes/search-service",
+    "server/8.0/learn/services-and-indexes/eventing-service",
+    "server/8.0/learn/services-and-indexes/analytics-service",
+    "server/8.0/learn/services-and-indexes/backup-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

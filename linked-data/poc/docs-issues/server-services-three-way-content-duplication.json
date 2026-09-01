@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-services-three-way-content-duplication",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "Substantially the same service descriptions appear in three places: services.md's per-service summaries, each service's own dedicated page in the same directory, and (for several services) the Capella tree's feature descriptions. The three are not identical, which is the problem - indexes.md and services.md already contradict each other on Analytics indexing (see server-who-creates-analytics-indexes-contradiction), and three-way duplication is how that happens. This is the fourth content-duplication issue logged across rounds (fts-index-management, fts-search-doc-overlap, storage-engine-split); at four occurrences it is a structural property of the doc set rather than four local mistakes.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services",
+    "server/8.0/learn/services-and-indexes/data-service",
+    "server/8.0/learn/services-and-indexes/query-service",
+    "server/8.0/learn/services-and-indexes/index-service",
+    "server/8.0/learn/services-and-indexes/search-service",
+    "server/8.0/learn/services-and-indexes/analytics-service",
+    "server/8.0/learn/services-and-indexes/eventing-service",
+    "server/8.0/learn/services-and-indexes/backup-service"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

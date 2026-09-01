@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/capella/bucket",
+  "label": "bucket (Capella)",
+  "recurrence": 13,
+  "type": "the top level of Capella's data hierarchy: bucket > scope > collection",
+  "note": "PROMOTION DEBT, found by round 11's whole-corpus recurrence query rather than by reading round 11's records - it has sat at recurrence 13 since round 7. The bucket/scope/collection trio are among the highest-recurrence unpromoted concepts in the entire corpus. Kept in the capella: namespace as extracted, but note that server/'s own bucket vocabulary arrived separately in round 11 (bucket:couchbase-bucket, bucket:ephemeral-bucket, and data-service:kv-engine instantiated per bucket) and nothing states that the Capella bucket and the server bucket are the same construct, though they plainly are. Flagged as a merge candidate needing a source statement, not merged.",
+  "relates_to_competency_question": "How is data organised?",
+  "promoted": true
+}

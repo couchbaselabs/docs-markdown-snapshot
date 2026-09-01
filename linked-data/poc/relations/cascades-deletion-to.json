@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/cascades-deletion-to",
+  "label": "cascades deletion to",
+  "recurrence": 3,
+  "type": "deleting the subject also deletes the object.",
+  "note": "Promotion debt. Distinct from the promoted cascadesTo (recurrence 7), which is the general lifecycle-propagation predicate: this one is specifically deletion. Kept separate rather than folded because the general predicate's own record describes 'deletion, teardown, or lifecycle change', and folding would lose which of the three a given triple asserted. Flagged for a future decision.",
+  "relates_to_competency_question": "What else disappears if I delete this?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

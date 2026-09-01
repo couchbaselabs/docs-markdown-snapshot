@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-arbiter-vs-serviceless-node-unreconciled",
+  "type": "docs-issue",
+  "issueType": "terminology-inconsistency",
+  "description": "services.md discusses a node running no data-bearing service without settling on one term for it - 'arbiter' and the descriptive 'serviceless node' framing both appear in this area of the documentation, and the page does not say whether they are the same thing. Left unmodelled by the extraction rather than guessed at. Worth an SME answer: if they are the same thing one term should be retired, and if they are not, the difference is architecturally significant.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services"
+  ],
+  "severity": "needs-sme",
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

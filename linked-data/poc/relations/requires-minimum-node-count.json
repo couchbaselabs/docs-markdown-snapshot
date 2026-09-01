@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-minimum-node-count",
+  "label": "requires minimum node count",
+  "recurrence": 2,
+  "type": "DATATYPE PROPERTY: the subject service must run on at least N nodes of a cluster. Object is an integer literal, not a concept id.",
+  "note": "One of round 11's first datatype properties - see has-internal-service-identifier for why that distinction matters and was previously impossible to express.",
+  "relates_to_competency_question": "How many nodes must run this service?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

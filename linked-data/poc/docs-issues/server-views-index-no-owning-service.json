@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-views-index-no-owning-service",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "indexes.md lists View as one of the index kinds but names no service that provides it - alone among the eight. Views are produced by a deprecated engine the page does not name, does not mark as deprecated in the table, and does not point anywhere for migration guidance. A reader scanning the table has no way to tell that one row is legacy.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/indexes"
+  ],
+  "foundDuring": "round-11-server-8.0-learn-services-and-indexes",
+  "status": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/uses-execution-model",
+  "label": "uses execution model",
+  "recurrence": 2,
+  "type": "the subject service processes work according to the named concurrency/execution model (e.g. scatter-gather across partitions, per-request coordinator).",
+  "relates_to_competency_question": "How does this service divide work across nodes?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

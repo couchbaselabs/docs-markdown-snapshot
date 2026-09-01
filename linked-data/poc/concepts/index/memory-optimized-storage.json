@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/memory-optimized-storage",
+  "label": "memory-optimized index storage",
+  "recurrence": 3,
+  "type": "the Index Service storage mode holding indexes in memory; Enterprise Edition",
+  "note": "See index/standard-storage. The two are the closed choice behind offersConfigurationChoice on index-service.md.",
+  "relates_to_competency_question": "How is the Index Service configured?",
+  "promoted": true
+}

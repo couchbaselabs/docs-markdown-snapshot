@@ -42,19 +42,64 @@ which pass this gate and are still wrong. A green check is not a green record.
 Failure mode to watch for at reconciliation
 -------------------------------------------
 This gate converts fabrication into omission. An agent blocked from inventing a
-quote may just drop the relation rather than hunt for a real one, and nothing
-here would show that. The countermeasure isn't in this script - it's the
+quote may just drop the relation rather than hunt for a real one, and the record
+it finally writes is clean. Two things catch that, neither of them an exit
+status: `hooks/gate-log.jsonl` (see `log()` - a deny followed by an allow on the
+same path with a lower `n_relations` is the fingerprint) and the
 relations-per-page comparison described in the `linked-data-reconcile` skill.
 """
 
+import datetime
 import importlib.util
 import json
 import os
+import re
 import sys
 
 POC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # linked-data/poc
 ROOT = os.path.dirname(os.path.dirname(POC))                        # repo root
 GATED = os.path.join(POC, "extractions")
+LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gate-log.jsonl")
+
+
+def log(outcome, payload, path, problems=(), rec=None):
+    """Append one line per *gated* invocation - allows included, not just denials.
+
+    Allows are logged on purpose. A subagent that gets blocked sees the reason on
+    its own stderr; the coordinator does not. So without a log, the only account
+    of a denial is the agent's end-of-run report - the same self-report channel
+    that let round 10's fabrication through as a confident summary. Worse, an
+    unlogged clean wave is indistinguishable from a wave where the hook never
+    fired at all, which is the specific thing a gate test needs to rule out.
+    Logging every verdict makes "9 records written, 9 invocations, 0 denials" a
+    real finding instead of an absence of evidence.
+
+    `n_relations` is what makes the gate's own worst failure mode visible. This
+    gate converts fabrication into omission: a blocked agent can satisfy it by
+    deleting the offending relation, and the resulting record is clean. But the
+    retry is a second write to the same path, so the log shows
+    `deny(n=13) -> allow(n=12)` - the agent dropped one rather than sourcing it -
+    as against `deny(n=13) -> allow(n=13)`, where it went and found the quote.
+    Reconciliation should grep for a deny followed by an allow on the same path
+    with a lower count. That is a far sharper signal than the relations-per-page
+    thinning heuristic, which can only compare a page against its cousins.
+
+    Never allowed to block a write: a full disk or a read-only checkout is not a
+    reason to refuse legitimate extraction, so failures here are swallowed.
+    """
+    try:
+        with open(LOG, "a") as fh:
+            fh.write(json.dumps({
+                "ts": datetime.datetime.now().isoformat(timespec="seconds"),
+                "outcome": outcome,
+                "tool": payload.get("tool_name", ""),
+                "session": payload.get("session_id", ""),
+                "path": os.path.relpath(path, ROOT),
+                "n_relations": len(rec.get("relations") or []) if rec else None,
+                "problems": [list(p) for p in problems],
+            }) + "\n")
+    except Exception:
+        pass
 
 
 def load_verifier():
@@ -74,13 +119,53 @@ def load_verifier():
     return mod
 
 
-def deny(reason):
+NEGATED = re.compile(r"\b(not|no|none|never|isn't|aren't|nor|without|lacks)\b")
+
+
+def claim_clause(note):
+    """The part of a `reused_or_minted` note that states *this* id's provenance.
+
+    Everything up to the first clause break. A record's own provenance is always
+    the leading clause ("reused - already promoted", "minted - coarse
+    placeholder"); what follows is commentary, and commentary is where both of
+    round 11's false positives lived:
+
+      - "reused - extraction-layer id already on disk (...), no registry file.
+         ... and none is promoted"      <- true statement, negated
+      - "minted - coarse placeholder, following the same pattern the registry
+         already uses for the promoted rbac-role:role"   <- about ANOTHER id
+
+    Two agents hit these independently in one 9-page wave, so the naive substring
+    test was wrong about roughly as often as it was right. Note that negation
+    handling alone would have cleared only the first: the second is an accurate,
+    unnegated statement about a different concept entirely, which is why the
+    clause boundary - not the polarity - is the load-bearing part.
+
+    This still catches what it was built for. Round 10's real offence read
+    "reused - already promoted (candidate_id first seen in ...)", where the claim
+    is in the leading clause, unnegated, and about itself.
+
+    Deliberately does NOT split on " - ": the house style is
+    "reused - already promoted", so the dash separates the verdict from its
+    reason and the claim itself sits after it. Splitting there would discard the
+    very words being tested.
+
+    The residual weakness is honest: this is still a machine gate parsing English.
+    A `registry_status` enum in the schema would remove the guesswork entirely,
+    and is the right fix if this keeps costing agents retries.
+    """
+    return re.split(r"[,;(.]", (note or "").lower(), maxsplit=1)[0]
+
+
+def deny(reason, payload=None, path=None, problems=(), rec=None):
     """Block the tool call. Exit 2 puts stderr in front of the calling agent.
 
     Chosen over the richer JSON `permissionDecision: "deny"` output on purpose:
     if a JSON field name is wrong the hook silently *allows*, and a gate that
     fails open is worse than no gate. Exit 2 fails closed.
     """
+    if payload is not None and path is not None:
+        log("deny", payload, path, problems, rec)
     print(reason, file=sys.stderr)
     sys.exit(2)
 
@@ -110,23 +195,28 @@ def main():
             f"record with Write instead.\n\n"
             f"Reason: the evidence gate needs the complete document to parse it "
             f"as JSON, and an Edit only supplies a fragment. Records are small "
-            f"and written once, so this costs nothing."
+            f"and written once, so this costs nothing.",
+            payload, abspath, [("*", f"{tool} refused on an extraction record")],
         )
 
     content = tool_input.get("content", "")
     try:
         rec = json.loads(content)
     except json.JSONDecodeError as e:
-        deny(f"Not valid JSON, so it cannot be an extraction record: {e}")
+        deny(f"Not valid JSON, so it cannot be an extraction record: {e}",
+             payload, abspath, [("*", f"invalid JSON: {e}")])
 
     evidence_problems = load_verifier().check_record(rec, root=ROOT)
     registry_problems = []
 
-    # Narrow registry check - see module docstring for why "promoted", not "reused".
+    # Narrow registry check - see module docstring for why "promoted", not "reused",
+    # and why only the leading clause counts.
     for c in rec.get("concepts", []) or []:
-        note = (c.get("reused_or_minted") or "").lower()
+        note = claim_clause(c.get("reused_or_minted"))
         cid = c.get("candidate_id") or ""
         if "promoted" not in note or ":" not in cid:
+            continue
+        if NEGATED.search(note) or note.lstrip().startswith("minted"):
             continue
         ns, slug = cid.split(":", 1)
         if not any(os.path.exists(os.path.join(POC, "concepts", ns, slug + ext))
@@ -136,11 +226,12 @@ def main():
                 f'claims "promoted" but there is no concepts/{ns}/{slug}.json. '
                 f"Either drop that claim (reusing an extraction-layer id is fine "
                 f"and needs no registry file), or find the id the registry "
-                f"really uses.",
+                f"really uses.\n      triggered on: {note.strip()!r}",
             ))
 
     problems = evidence_problems + registry_problems
     if not problems:
+        log("allow", payload, abspath, rec=rec)
         return 0
 
     lines = [
@@ -167,7 +258,7 @@ def main():
             "and say so in a finding field. Do not reconstruct a plausible "
             "sentence.",
         ]
-    deny("\n".join(lines))
+    deny("\n".join(lines), payload, abspath, problems, rec)
 
 
 if __name__ == "__main__":
