@@ -4,6 +4,8 @@
   "type": "settings supplied per request, overriding node- and cluster-level values for that request only",
   "promoted": true,
   "recurrence": 6,
-  "aliases": ["setting-scope:request-level"],
-  "note": "One of three tiers promoted together so the model is nameable rather than implied; see relations/requires-request-parameter. Round 15 folded `setting-scope:request-level` onto this id. The `setting-scope:` prefix was a three-member namespace minted by the same round-10 batch whose reconciliation promoted these three records - the frame was promoted and its own extraction ids were left behind under a second prefix, which is how a namespace comes to exist holding nothing but duplicates of promoted concepts."
+  "note": "One of three tiers promoted together so the model is nameable rather than implied; see relations/requires-request-parameter. Round 15 folded `setting-scope:request-level` onto this id. The `setting-scope:` prefix was a three-member namespace minted by the same round-10 batch whose reconciliation promoted these three records - the frame was promoted and its own extraction ids were left behind under a second prefix, which is how a namespace comes to exist holding nothing but duplicates of promoted concepts.",
+  "folded_spellings": [
+    "setting-scope:request-level"
+  ]
 }

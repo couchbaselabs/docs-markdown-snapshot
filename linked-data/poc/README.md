@@ -7,8 +7,8 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Fifteen rounds so far, twelve of them deliberate escalations and the
-last three corrective passes over what they left behind:
+automating it. Sixteen rounds so far, twelve of them deliberate escalations and the
+last four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -63,7 +63,8 @@ last three corrective passes over what they left behind:
     never dates — and no human-legible control caught it. That produced
     `verify-evidence.py`, and running it over the whole corpus found that the
     "evidence must be a direct quote" rule had never actually been enforced:
-    322 of 2,780 relations are unquotable. Second, version-evidence density
+    322 of 2,780 relations were unquotable (313 of 3,522 as re-measured in round 16,
+    after round 15 fixed the de-escaping bug in the comparison itself). Second, version-evidence density
     turned out to be **inversely** correlated with novelty — the statements new
     in 8.0 are precisely the ones no page dates — which is the opposite of what
     the wave was briefed to expect, and a better finding.
@@ -161,6 +162,34 @@ last three corrective passes over what they left behind:
     `hooks/test-gate.py` (23 cases) — because a control's verdict can expire: a real
     round-12 record replayed through the gate today produces five denials, since
     `registry_status` describes the registry the record was written against.
+16. **No new pages** — the namespace coherence pass, wave 3: **`indexes:`,
+    `index-type:`, `index:`**, and it turned into a round about the *instruments*
+    rather than about the namespace. The finding that had to come first: the census
+    column of `recurrence.py`, labelled "any mention", had not meant any mention since
+    round 14, when one `keep` flag excluded `seeAlso` from a metric — correctly — and
+    from the census, silently. **376 ids, 18% of the corpus, appeared in no report
+    this project produces**, including `--variants`, whose only job is to find
+    spellings; five misspellings of promoted SQL++ statements were sitting in that
+    gap, and a concept at 14 files read as recurrence 0. With that fixed, the
+    namespace's real defect was visible: **`covering-index` was spelled five ways
+    across three prefixes**, because `covering-indexes.md` lives at a different path
+    in each of four trees and ids had been minted from paths. Hence the round's naming
+    rule — **an id names its subject, not its location** — and a third answer to wave
+    2's axis test: `indexes:` was neither an axis nor a subject area but a **plural
+    fork of `index:`**, retired entirely; `index-type:` kept the axis and shed two
+    storage *modes* that are not kinds of index. 59 renames across 36 files, 21
+    aliases retired, `indexes:`/`vector-index:`/`setting:`/`setting-scope:`/`tools:`
+    all at 0 occurrences, and the gate now refuses a retired prefix in *any* slot.
+    Two second-order findings, both about this file's own numbers: a `recurrence`
+    field in a promoted record is **a measurement with a date and records neither**
+    (171 of 324 disagree with the query; none is a bug, and this round's first draft
+    believed a stale one and wrote a false causal story from it), and **the corpus is
+    not the documentation** — `server/8.0/indexes/`, eleven pages, the canonical
+    documentation of this very subject, has never been extracted, because round 12
+    went looking for it under `learn/` after Antora had moved it out. That sets round
+    17's scope. Also the first deletion of a promoted record in the POC's history
+    (`capella:index-ui-status`, folded into `indexer-node-state` on the strength of
+    one near-identical defining sentence in each tree), and 6 new docs-issues.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -253,12 +282,22 @@ time/cost projections and how they held up against the round-2 run's real number
   corrected that family rather than extending it — see round 12 in
   `reconciliation.md`.
 
-Rounds 13, 14 and 15 added **no pages**. All three worked the existing 582 records:
-round 13 the role slice and the variant sweep, rounds 14 and 15 waves 1 and 2 of the
-namespace coherence pass. So the page count above has been stable for three rounds
-while the registry changed substantially, which is worth stating explicitly — the
-corpus and the registry are separate things to keep track of, and the interesting
-defects of the last three rounds were all in the second.
+Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
+round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
+of the namespace coherence pass. So the page count above has been stable for four
+rounds while the registry changed substantially, which is worth stating explicitly —
+the corpus and the registry are separate things to keep track of, and the interesting
+defects of the last four rounds were all in the second.
+
+Round 16 adds a third thing to keep track of, and it is the one this list gets wrong
+most easily: **the corpus is not the documentation.** The scope list above is a list
+of directories that were walked, and directories move. `server/8.0/indexes/` — 11
+pages, the canonical documentation of indexes — is absent from this list not because
+it was judged low-value but because round 12 looked for it under `learn/`, where it
+used to be. So a low recurrence count is not evidence about the docs until someone
+checks that the pages exist in the sample at all. Round 17 re-extracts
+`server/8.0/indexes/` (11 pages, never read) and `cloud/indexes/` (11, read pre-gate
+and thin at mean 3.2 relations).
 
 ## Identifiers
 
@@ -519,6 +558,30 @@ from "still in `extractions/`."
   the documented one only when single-tier (`query-curl-whitelist` is cluster-only,
   `completed-stream-size` node-only), because **tier membership is a fact for a
   relation, not for an id**.
+  Round 16 ran wave 3 over the index namespaces and promoted only **five**, which is
+  the smallest concept round since round 4 and the right shape for it: the work was
+  the *rewrite*. `indexes:` — a plural fork of `index:` — was retired entirely, and
+  59 ids across 36 files were renamed so that **an id names its subject, not its
+  location**, the rule forced by `covering-indexes.md` living at a different path in
+  each of four doc trees and producing five spellings of one concept across three
+  prefixes. `index:covering-index` is the fold of those five, promoted on the
+  semantic-weight exception at recurrence **0** on the promotion metric and 14 files
+  in the census, and filed under `index:` rather than `index-type:` on the strength of
+  the docs' own grammar (the index covers *the query*) and of a page that lists it as
+  a type and then defines it *after* index selection — **a type you cannot know at
+  `CREATE INDEX` time is not a type**. `concepts/indexer-node-state.json` is the
+  round's fold and the POC's **first deletion of a promoted record**: it absorbs
+  round 12's `capella:index-ui-status` on the strength of the same defining sentence
+  appearing in each tree differing by one word, with the Capella table's missing
+  fourth value documented rather than either list winning. Plus
+  `index:file-based-index-rebalancing` and `index:index-redistribution-setting` (the
+  second answering a question round 15 deferred), and `index-type:view` **re-filed**
+  from `concepts/index/view.json` — it was always a kind of index; only its filing
+  was wrong. Two ids were re-filed *out* of `index-type:` for the mirror reason
+  (`moi` and `standard-gsi-plasma` are storage **modes**, not kinds of index), and
+  the three storage engines under them (Plasma, Forestdb, Nitro) were deliberately
+  **not** promoted, because their only evidence is a page in the never-extracted
+  `server/8.0/indexes/` module. That is round 17's.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -663,14 +726,29 @@ from "still in `extractions/`."
   finding, because correcting the range means deciding whether to drop the
   strategy-comparison reading or split it into a second predicate, and that is a
   promotion decision rather than an edit.
+  Round 16 added **none** either, and did to one predicate what round 14 declined to
+  do: `isSynonymOf`'s range is **widened** from statement pairs to concept pairs, on
+  one explicit sentence — "A secondary index is also called a Global Secondary Index
+  (GSI)." The two concepts stay **unmerged**, which is the point of owning the
+  predicate: both spellings are in live use (`index-type:secondary-index` at 3 files
+  on the promotion metric and 6 in the census, `index-type:gsi` at 8 and 16), a reader
+  searching either should land somewhere, and **synonymy is a fact to record, not an
+  instruction to deduplicate.** Two rounds of no new predicates against 59 concept
+  renames is the converged-relations/forked-concepts asymmetry above, measured a
+  second time.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **99
-  entries** as of round 15. Round 14 added **none**, and that was a result rather than
+  issueType, description, about, status}` — minted with no gatekeeping. **105
+  entries** as of round 16. The filename convention is `<product>-<slug>`, and since
+  round 16 a reference to a `docs-issues/` slug with no file behind it is a
+  `verify-registry-ids.py` failure: two references written in earlier rounds pointed
+  at the un-prefixed name and nothing noticed for four rounds, which fails in the
+  worst direction — a promoted record says "see `docs-issues/X` for the
+  contradiction", a reader finds nothing, and concludes the caveat was never real. Round 14 added **none**, and that was a result rather than
   an omission: round 14 read no pages, and this bucket is for facts about the
   documentation. Its writeup first named four new entries; writing the files closed
   none of them. Two were findings about *this registry* wearing a docs-issue's
@@ -697,6 +775,17 @@ from "still in `extractions/`."
   candidates that round were examined and **rejected** as facts about the product
   rather than the documentation (an inverted `-1` sentinel, a setting documented
   under two spellings, a "whitelist" whose properties are named allowed/disallowed).
+  Round 16 added **6**, all of them about index documentation and all found by
+  reading the pages the namespace rewrite kept pointing at: index pages relocated
+  between versions (the finding that makes `server/8.0/indexes/` round 17's scope),
+  an index-type taxonomy that mixes kinds with storage modes, **two enumerations of
+  the index types that do not agree with each other**, "storage engine" naming two
+  different layers on two pages of one module, three unreconciled index/indexer state
+  vocabularies, and a `status` field documented with four values in Server and three
+  in Capella. The last two are the ones an SME could settle in a sentence, and one of
+  them licensed the round's fold: the Server/Capella sentences are identical to
+  within one word, which is what made `capella:index-ui-status` and
+  `indexer-node-state` the same enum.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -776,7 +865,18 @@ from "still in `extractions/`."
   spelling is still allowed — which is the point. This is the control point that
   makes "from now on" true rather than aspirational: reuse whatever the corpus has,
   mint nothing new that repeats these two mistakes.
-- **`hooks/test-gate.py`** — 23 crafted `PreToolUse` payloads fed to the hook as a
+  Round 16 added the rule that **withdraws** that permission for a namespace a round
+  has retired: no id under a prefix in `hooks/retired-prefixes.json` is accepted at
+  all, whatever its `registry_status` says. Reuse-is-allowed was right while a
+  namespace was merely misshapen and wrong once it had been rewritten out of the
+  corpus — every `indexes:` id now resolves to an `index:` id, so accepting the old
+  spelling re-creates the fork the round spent 59 renames closing. The rule reads
+  relation **subjects and objects** as well as `concepts[]`, and that is the whole
+  reason it catches anything: 376 of the corpus's 2,112 ids — 18% — appear only in a
+  relation slot and are never declared in any record's `concepts[]`. Denials are
+  deduped per record, since one retired id declared once and used as nine objects is
+  one mistake, not ten.
+- **`hooks/test-gate.py`** — 30 crafted `PreToolUse` payloads fed to the hook as a
   subprocess, added in round 15 when the gate acquired rules that are not "is this
   sentence on the page". Its own construction is the finding. The obvious fixture is
   a real extraction record, and a real record **fails**: replaying a round-12
@@ -787,6 +887,16 @@ from "still in `extractions/`."
   do not "fix" old records to match today's registry, because the declaration was
   true when it was made. The fixtures are synthetic, built from long-stable
   promoted terms.
+  Round 16 is where this file earned its second keep: the retired-prefix rule
+  *withdraws* a permission, so one assertion here **flipped from allow to deny** —
+  "reusing an `indexes:` id is allowed" was a correct test of round 15's design and is
+  a wrong test of round 16's. A flip like that belongs in this file with the reasoning
+  written beside it, because in a diff it is indistinguishable from a test loosened to
+  make a change pass. The seven new cases pin the rest: a retired id is refused under
+  all three `registry_status` values, in the subject slot and in the object slot alike,
+  and the one namespace round 16 deliberately did **not** sweep (`cloud-providers:`,
+  one live occurrence) is asserted to still be allowed — so "not yet retired" is a
+  tested state rather than an absence.
 - **`hooks/gate-log.jsonl`** — the gate's own append-only verdict log
   (gitignored: it grows on every write and would conflict on every merge; when a
   line in it is a finding, it gets quoted into `reconciliation.md`, which is the
@@ -838,9 +948,9 @@ from "still in `extractions/`."
   `extractions/` tree, resolving aliases and both id spellings, with
   `--unpromoted-only` for the backlog, `--variants` for ids that are one term
   spelled two ways, and `--findings` to dump the finding fields in full. It has
-  been wrong in **ten** distinct ways across rounds 10–14, every one caught because
-  the output looked implausible and none by anyone reading the code, so all ten
-  are pinned as regression cases in `--selftest` (21 checks) — the point being that
+  been wrong in **eleven** distinct ways across rounds 10–16, every one caught because
+  the output looked implausible and none by anyone reading the code, so all eleven
+  are pinned as regression cases in `--selftest` (25 checks) — the point being that
   its corrections accumulate rather than being re-derived from memory each round.
   The worst was structural rather than a bug: until round 12 it counted only the
   **object** slot, so any concept a page was *about* was invisible to the promotion
@@ -852,9 +962,33 @@ from "still in `extractions/`."
   titles counted as concepts again for two rounds. **Two correct fixes to the same
   query cancelled**, and what was missing was not care but a test pinning the
   earlier fix to a named instance — which the three new cases now are.
+  Bug #11, found in round 16, is bug #10's other half and the worst of the eleven by
+  reach: the same round-14 exclusion also applied to the **census** — the column
+  headed "any mention" — so **376 ids, 18% of the corpus, appeared in no report this
+  script produces**, including `--variants`, whose only job is to find one term spelled
+  two ways. Five misspellings of promoted SQL++ statements were hiding there, each
+  causing gate denials nobody could account for, and a concept with 14 files behind it
+  read as recurrence 0. The lesson is not "test the code" but a design rule now
+  enforced by `scan()`'s shape: **excluding a relation kind from a metric and excluding
+  it from a census are different decisions**, and doing the first by editing a shared
+  code path silently does the second. `scan()` returns `mentions`, `slots`, `labels`
+  and `see_also_objects` as four separate tables, so a caller has to say which
+  question it is asking.
+  Round 16 also added two reports, deliberately separate from each other and from the
+  ranking. **`--page-ids`** measures the *part of speech* problem wave 2 named: 392 of
+  2,116 ids (18%) are only ever linked to and never labelled — page ids wearing concept
+  clothing, which a corpus-wide `page:` sweep would fix and which is still on the
+  backlog. **`--stale-recurrence`** compares every promoted record's `recurrence` field
+  against the query: **153 of 324 agree (47%)**. None of the other 171 is a bug — the
+  instrument has been replaced three times — and the report is **read-only on
+  purpose**, because auto-refreshing the fields would trade the only record of what
+  each round measured for agreement with a query that has been wrong three times. It
+  exists because this round's own first draft believed a stale field over the query and
+  wrote a false causal story from it.
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
-  every record's declared `id` must mirror its own file path, and — since round 14 —
-  no alias may be a mere punctuation variant of its own target. 541 records, 0
+  every record's declared `id` must mirror its own file path, since round 14 no alias
+  may be a mere punctuation variant of its own target, and since round 16 every
+  `docs-issues/<slug>` a record points at must have a file behind it. 550 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -863,7 +997,13 @@ from "still in `extractions/`."
   registry had caused it. Two agents diagnosed it correctly in their notes and a
   reconciliation pass recorded it as *their* error. `pages/*.jsonld` is excluded:
   its `@id` is the described page's public URL, a resource the registry names and
-  does not own — the rule is about ownership, not about strings.
+  does not own — the rule is about ownership, not about strings. The round-16 addition
+  found two references four rounds old pointing at un-prefixed docs-issue names
+  (`docs-issues/dcp-name-drift` for `server-dcp-name-drift`), which is the
+  `verify-promotions.py` failure shape in the opposite direction — narrated as
+  existing, filed under another name — and it scans a record's serialised text rather
+  than named fields, because these references live in free prose across at least seven
+  keys and enumerating the keys would just be a list to keep up to date.
 - **`normalise-ids.py`** — the odd one out on this shelf, and the only one that
   **writes**. It rewrites wrongly-spelled ids and mis-ranged predicates in the
   extraction records (dry run by default, `--apply` to commit, idempotent). Its
@@ -903,6 +1043,21 @@ from "still in `extractions/`."
   substitutions, 14 files, and three of the destinations are ids the registry already
   had — so the table is also where a *merge* gets expressed, which no prefix rule can
   do.
+  Round 16 is the largest sweep so far and used both shapes at once: **59 renames, 160
+  substitutions, 36 files** — one prefix rule retiring `indexes:` wholesale, plus exact
+  entries for the ids whose destination had to be decided (`indexes:covering-index`
+  and four other spellings of one concept collapsing into `index:covering-index`,
+  `index-type:moi` leaving the type axis because a storage mode is not a kind of
+  index). `indexes:`, `vector-index:`, `setting:`, `setting-scope:` and `tools:` are
+  all at **0** occurrences afterwards; `cloud-providers:` is deliberately left at 1,
+  since round 14 renamed it without settling the relation split underneath it, and a
+  namespace half-retired is worse than one openly pending. The round also added a
+  third alias state, because two were doing three jobs: `aliases` is a spelling
+  deliberately left **live** and resolved by the gate, a rewrite leaves the old
+  spelling **dead**, and **`folded_spellings`** records a spelling that was rewritten
+  out — history, read by nothing, and the answer to "why does the log say this id was
+  renamed when the registry has never heard of it". 21 aliases were retired this round
+  by moving them there.
 - **`candidate-evidence.py`** — the namespace pass's reading tool, written in round
   14. `recurrence.py` answers "is this term real?" by counting distinct files, and
   is structurally unable to answer "do this namespace's members answer the same
@@ -1255,7 +1410,12 @@ method rather than extending it:**
 40. **So the schema's "evidence must be a direct quote" rule had never
     actually been enforced.** Writing `verify-evidence.py` and running it over
     the whole corpus found **322 of 2,780 relations unquotable** — nine rounds
-    of accumulated damage, not one bad agent. Worst affected: round 3's
+    of accumulated damage, not one bad agent. (The current figure is **313
+    unquotable plus 130 with no evidence at all, 443 of 3,522**: round 15 removed 9
+    false positives by de-escaping Markdown punctuation in the comparison itself, and
+    round 16 re-derived the total after five rounds of quoting the older number.
+    Nothing was repaired — the fix for rounds 1–9 is re-extraction, which is a
+    tracked next step and not a reconciliation task.) Worst affected: round 3's
     `sync-gateway` (45% verbatim, 12 of 13 records) and `couchbase-lite` (50%,
     10 of 12), both now recommended for re-extraction. Their *vocabulary*
     conclusions still stand; their individual records do not. The general
@@ -1673,6 +1833,80 @@ the *kind* of page mattered more than the tree:**
     namespace coherence wave is for, and it is why aliases get written rather than the
     duplicate being deleted.
 
+**Round 16 (no new pages) — the namespace coherence pass, wave 3 (`indexes:`,
+`index-type:`, `index:`):**
+
+79. **Excluding a relation kind from a metric is not excluding it from a census.**
+    Round 14 removed `seeAlso` from the concept-promotion metric for a good reason — a
+    link between pages is not a claim about a term — and, because the exclusion lived
+    in a shared code path, removed 376 ids from the corpus **census** at the same
+    time. **18% of the corpus appeared in no report this project produces**, including
+    `--variants`, whose only job is to enumerate spellings. Five misspellings of
+    promoted SQL++ statements were hiding in the gap, each causing gate denials nobody
+    could account for, and a concept with 14 files behind it read as recurrence 0. The
+    shadow-prefix count quoted in the last two rounds' writeups (43) was measured with
+    the same blind instrument and is really 55. The fix is structural, not careful: a
+    census must not share a code path with a metric, because the two differ precisely
+    in what they are allowed to ignore. And the general form is worse than the bug —
+    **every number in these writeups inherits the instrument that produced it, and
+    nothing records which instrument that was.**
+80. **An id names its subject, not its location.** `covering-index` was spelled five
+    ways across three namespaces, and the cause is mechanical rather than careless:
+    `covering-indexes.md` lives at a different path in each of four doc trees
+    (`n1ql/n1ql-language-reference/`, `indexes/`, `learn/services-and-indexes/`), and
+    an agent minting an id from the page in front of it produced a different prefix
+    each time. No pass that reads one page at a time can see this, which is why it
+    took a namespace wave, and it is the same defect `tool:cbq-shell`,
+    `protocol:dcp` and `tool:cbbackupmgr` each turned out to be. The rule is the fix,
+    and it is checkable at mint time in the one case that matters: a prefix that names
+    a directory is a smell.
+81. **A namespace can be a plural fork rather than an axis or a subject area.**
+    Wave 1 found a namespace named like an axis and populated like a subject area;
+    wave 2 found one named like a subject area with no subject; wave 3's `indexes:`
+    was neither — it was **`index:` with an `s`**, 30 ids that would have been filed
+    under the singular by an agent who happened to see a different page first. Retired
+    wholesale, which makes it the cheapest of the three remedies and the one the gate
+    can now prevent recurring. `index-type:` kept its axis and shed two members that
+    were never types (`moi` and `standard-gsi-plasma` are storage **modes**), and the
+    round's one hard call went the other way: **`covering-index` is not a type either**,
+    because the docs define it *after* index selection — **a type you cannot know at
+    `CREATE INDEX` time is not a type** — so it is filed in `index:` at recurrence 0
+    on the promotion metric and 14 files in the census, on the semantic-weight
+    exception.
+82. **A `recurrence` field in a promoted record is a measurement with a date, and it
+    carries neither.** `--stale-recurrence` puts **153 of 324 promoted records (47%)**
+    in agreement with the current query. None of the other 171 is a bug: the
+    instrument has been replaced three times, and each field records what was true
+    when a human wrote it. The danger is that **a record's prose reasons about its own
+    weight** — "a minor, low-stakes promotion", written of a term now at recurrence
+    8 — and the next round reads the prose. This round's first draft did exactly that,
+    believed a stale 2, and wrote a false causal story about what a fold had achieved.
+    The report is therefore deliberately **read-only**: a stale measurement is data, a
+    silently refreshed one is a lost audit trail.
+83. **The corpus is not the documentation.** `server/8.0/indexes/` — 11 pages, the
+    canonical documentation of the subject this wave spent its whole length
+    reorganising — has **never been extracted**, because round 12 went looking for
+    those pages under `learn/` after Antora had already moved them out of it. So every
+    recurrence figure in this wave is partly a fact about which directories nine
+    rounds happened to walk, and a term's thinness in the corpus is not evidence of
+    its thinness in the docs. This is the sharpest form of round 15's result:
+    recurrence is an editorial property of *the sample*, and the sample was chosen by
+    directory name. It sets round 17's scope, and it is why the three storage engines
+    (Plasma, Forestdb, Nitro) were left unpromoted rather than promoted on one page's
+    evidence.
+84. **An alias is a claim about a referent, and nothing checks referents.** Wave 2
+    found that the write-time enum checks ids and not things; wave 3 found the
+    inverse risk in the remedy that wave prescribed. Resolving aliases before checking
+    an id is what makes `promoted` decidable — and it makes an alias the one field in
+    the registry that can make two genuinely different things pass as one,
+    permanently and invisibly. This round wrote 21 in a single pass, and the only
+    check on any of them was a person reading both records. `verify-registry-ids.py`
+    catches the syntactic abuse; nothing reaches the semantic one. So the rule is
+    procedural: **fold under an alias only where a source sentence licenses the
+    identity, and quote the sentence in the record** — which is what
+    `concepts/indexer-node-state.json` does for the POC's first deletion of a
+    promoted record.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -1722,14 +1956,15 @@ document.
   `index-type:secondary-index` — the docs state on two pages that these are the
   same thing, so they are linked by `isSynonymOf` rather than collapsed, and
   whether to keep both surface terms permanently is a decision, not a cleanup.
-  Round 14 added the three vector types to that axis and left a measured defect in
-  it: **covering index is spelled four ways** — `index-type:covering-index` (5
-  files), `indexes:covering-index` (2), `index:covering-index` (2, `server/7.2`) and
-  `n1ql:covering-index`/`covering-indexes` (6 files, `server/7.2`) — every relation
-  in every spelling is a `seeAlso`, and `--variants` cannot cluster them because the
-  local names differ by a plural as well as by prefix. So this bullet is now a
-  namespace-coherence wave with its worklist already counted, and the axis is
-  correct about vectors while still wrong about pushdowns.
+  Round 14 added the three vector types to that axis and left a measured defect in it:
+  covering index spelled four ways. Round 16 settled that — five ways, in fact, folded
+  into `index:covering-index`, and **not** onto the type axis, because the docs define
+  it after index selection. What is still open, and is now round 17's, is the part
+  round 16 could not do without new pages: the **pushdown family**, the three storage
+  engines under the two storage modes (Plasma, Forestdb, Nitro — attested only on
+  `storage-modes.md`, in the never-extracted module), `index:sequential-scan`,
+  `index:index-span`, and the key-shape index types. The axis itself is settled; what
+  remains is content the corpus has never seen.
 - **Fix the three gaps round 12's enum wave exposed.** The enum itself is
   settled — 17 true positives, 0 false positives across 43 invocations, and agents
   did *not* default to `promoted` as feared. Three follow-ups remain, in order of
@@ -1742,41 +1977,67 @@ document.
   `allow → deny → allow` with fewer relations is the documented fabrication-becomes-
   omission signal, and round 12's only instance was a correctly-dropped relation.
   Only reading the page distinguishes them.
-- **Continue the namespace coherence pass — wave 3 is `indexes:`.** Round 12's
+- **Re-extract the two `indexes/` directories — this is round 17, and it comes before
+  wave 4.** `server/8.0/indexes/` is 11 pages that have **never been extracted**, and
+  they are the canonical documentation of the subject rounds 14–16 spent three waves
+  reorganising; round 12 missed them because it walked `learn/` after Antora had moved
+  them out. `cloud/indexes/` is 11 more, read in round 6 before the gate existed and
+  thin at a mean of 3.2 relations. Doing them together makes each a diff-gated wave
+  against the other, which is the shape that finds content problems at the highest
+  rate. Then promote what the corpus currently cannot support: the pushdown family,
+  the three storage engines, `index:sequential-scan`, `index:index-span`, the
+  key-shape types. The general lesson to carry into the wave plan: **a coverage plan
+  written as a list of directories inherits every reorganisation the docs have
+  undergone since the plan was written**, and reports the resulting hole as a low
+  recurrence count rather than as a hole. Before the next wave, diff the wave plan's
+  paths against what is actually on disk.
+- **Continue the namespace coherence pass — wave 4.** Round 12's
   corrected metric exposed 276 unpromoted concepts at recurrence ≥ 2; rounds 12 and
   13 took it to 206, round 14's wave 1 (`vector-index:` and `version:`) took it
   to 163 — 27 of those retired by the metric fix rather than promoted, because
   they were documentation pages the widened metric had let back in — and round 15's
-  wave 2 (`setting:`, dissolved) took it to **159**. Shadow prefixes, the other
-  measure of the same debt, are down from 55 to **43**, with only two singular/plural
-  forks left and both now refused for new mints. What is left is
+  wave 2 (`setting:`, dissolved) took it to 159, and round 16's wave 3 (`indexes:`,
+  retired) to **156**. Shadow prefixes, the other measure of the same debt, are at
+  **55 holding 210 ids** — which is *up* from the 43 reported in rounds 14 and 15, with
+  no change to the corpus: those two figures were measured with the census bug in
+  place, and 55 is the first honest count. Treat it as the new baseline, not as a
+  regression. What is left is
   a long tail with no double-digit debt in it, and the method is settled: work it
   **one namespace at a time, deciding the namespace's internal structure before
   promoting any member**, using `recurrence.py --unpromoted-only --min 2` for the
   worklist and `candidate-evidence.py --ns <prefix> --audit` to read one and check
   that what you are reading is real. The queue, in the
-  order the coherence question is answerable: **`indexes:`** (30 ids across 14 files,
-  against `index:`'s five promoted members — the plural/singular fork, and it
-  subsumes the covering-index four-way split above, so decide the two together; it
-  also forces `index:`'s own question, since round 15 filed the first *setting* into a
-  namespace otherwise holding storage modes and index kinds);
+  order the coherence question is answerable:
   `capella:`/`capellaiq:` (`capella-iq` is in both); `plan:`/`billing:`; `backup:`
   (`cluster-backup`/`bucket-backup` at 5 look like a *scope* axis crossing the
   promoted *type* axis — round 11's crossing shape);
   `js-udf:` (6 members, none promoted); `eventing:` (22, the largest); then
   `search:` and `n1ql:`, largest but also the two the metric fix most changed.
-  Three cautions from waves 1 and 2. Read the namespace's existing records *before*
+  Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,
   correct resolution of a five-way split, which a tidying pass would have destroyed.
   Check each member against the registry's *referents* and not just its ids: three of
   `setting:`'s 34 were already promoted under another name, and the write-time enum
-  reports such a member as legitimately `minted`. And budget for the remedy, not the
+  reports such a member as legitimately `minted`. Search the **extraction layer** as
+  well as the registry before refusing a merge — round 12 refused one correctly on the
+  evidence it had and was wrong, because the id it needed had never been promoted and
+  `registry-digest.py` therefore could not show it: **a refusal is only as good as the
+  set it searched.** Do not believe a promoted record's `recurrence` field; re-measure
+  it (`--stale-recurrence` says 47% are current). And budget for the remedy, not the
   namespace — a rename is one prefix rule for 25 ids, a dissolution is one decision
-  each.
+  each, and a plural fork is one line.
   And the 18 unpromoted **predicates** at ≥2 remain a different job: the top one,
   `requiresMinVersionFor` (5), was folded into `availableSince` in round 2 and
   re-minted since, so it needs a fold, not a promotion. Roughly 15 `sgw:`/`cbl:`
   tail items are not promotable at all until round 3's two trees are re-extracted.
+- **Sweep the corpus for page ids in concept clothing.** `recurrence.py --page-ids`
+  measures this: **392 of 2,116 ids (18%)** are only ever linked to and never labelled
+  in any record's `concepts[]` — they are page identifiers occupying concept
+  namespaces, 305 of them with no prefix at all. Wave 2 named the shape (a namespace
+  can be a *part of speech*) and round 16 gave it a `page:` prefix and a re-runnable
+  measurement; the sweep itself is not done. It is mostly mechanical, but not
+  entirely — an id both linked to *and* labelled is a genuine concept that also has a
+  page, so the report deliberately excludes those.
 - **Add a variant ratchet to the gate.** Round 13 took the variant clusters from 13
   to 1 (the survivor is the `1`/`1%` literal pair, which is the object-typing
   question below, not a spelling one) and wrote the alias-vs-rewrite rule down in

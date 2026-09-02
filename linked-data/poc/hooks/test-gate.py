@@ -16,6 +16,12 @@ it, which is the first time it grew a rule that can *deny* something new, and
 "blocks the thing it should block" and "still allows everything it allowed
 yesterday" are separate claims. The second one is the expensive one to get wrong.
 
+Round 16 then added a rule that *withdraws* a permission - retired prefixes are
+refused whatever their `registry_status` - so one assertion here flipped from allow
+to deny. When that happens the flip belongs in this file with the reasoning beside
+it, because the diff is otherwise indistinguishable from a test loosened to make a
+change pass. See the "Round 16, rule 4" block.
+
 The synthetic fixture is the point, not a shortcut
 --------------------------------------------------
 This file builds its own record instead of replaying a real one from
@@ -128,13 +134,55 @@ def main():
     case("minted id ending .md is refused",
          with_concept("n1ql:selectintro.md", "minted"), "deny", "file extension")
 
-    # Forward-only: both rules are scoped to new mints, so the corpus's existing
-    # 43 shadow prefixes and its one `.adoc` id stay reusable. Without this, the
+    # Forward-only: rule 3 is scoped to new mints, so the corpus's existing shadow
+    # prefixes and its one `.adoc` id stay reusable. Without this, the
     # re-extraction rounds that fix them would be the rounds the gate blocks.
-    case("reusing an `indexes:` id is allowed",
-         with_concept("indexes:thing", "extraction-layer"), "allow")
     case("reusing the existing .adoc id is allowed",
          with_concept("rest-api:compaction-rest-api.adoc", "extraction-layer"), "allow")
+
+    # Round 16, rule 4: retired prefixes, and THIS ONE FIRES REGARDLESS OF STATUS.
+    # The assertion directly above used to be `indexes:thing` / `extraction-layer`
+    # / allow, and round 16 flipped it - the only test in this file whose expected
+    # verdict has ever been reversed. The reversal is legitimate rather than a
+    # loosened standard: the round rewrote all 30 `indexes:` ids out of the corpus,
+    # so there is no longer an earlier record for "reused from the extraction
+    # layer" to be true of. Note that a rule can only be flipped this way *after*
+    # the sweep, never before, or it blocks the rounds that would do the sweeping.
+    for status in ("minted", "extraction-layer", "promoted"):
+        case(f"a retired `indexes:` id is refused as {status}",
+             with_concept("indexes:thing", status), "deny", "RETIRED in round 16")
+    case("a retired `setting:` id is refused as extraction-layer",
+         with_concept("setting:query-timeout", "extraction-layer"), "deny",
+         "RETIRED in round 15")
+    case("a retired `vector-index:` id is refused as extraction-layer",
+         with_concept("vector-index:centroids", "extraction-layer"), "deny",
+         "RETIRED in round 14")
+
+    # Rule 4 reads relation slots, not just declarations. This record declares
+    # nothing wrong - the retired id appears only as an object, which is where 18%
+    # of the corpus's ids live and where every check before this one was blind.
+    rec = copy.deepcopy(BASE)
+    rec["relations"].append(
+        {"subject": "n1ql:curl-function", "predicate": "seeAlso",
+         "object": "indexes:index-storage-settings",
+         "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+         "evidence": "This field set must be set to false to enable the "
+                     "allowed\\_urls and disallowed\\_urls fields."})
+    case("a retired prefix used only as a relation object is refused", rec,
+         "deny", "indexes:index-storage-settings")
+
+    rec = copy.deepcopy(BASE)
+    rec["relations"][0]["subject"] = "setting:num-replicas"
+    case("a retired prefix used only as a relation subject is refused", rec,
+         "deny", "setting:num-replicas")
+
+    # `cloud-providers:` is a plural fork but NOT retired: its sweep is deliberately
+    # incomplete, because `cloud-providers:gcp-azure` is one id standing for two
+    # providers and rewriting it to either would drop the other. So reuse stays
+    # legal there while minting does not - the two rules disagreeing on the same
+    # prefix is the intended behaviour.
+    case("reusing the un-swept `cloud-providers:` id is allowed",
+         with_concept("cloud-providers:gcp-azure", "extraction-layer"), "allow")
 
     # Depluralisation must not eat short real prefixes, and a genuinely new
     # namespace must still be free to appear - minting is the expected answer.

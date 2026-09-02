@@ -3,21 +3,85 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/guides/select.md",
   "concepts": [
-    { "candidate_id": "n1ql:selectclause", "label": "SELECT Clause (projection, ALL/DISTINCT, RAW/ELEMENT/VALUE, EXCLUDE)", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/selectclause.json; 'Selecting' section's `SELECT \"Hello world\" AS greeting` is the same clause." },
-    { "candidate_id": "n1ql:select-statement", "label": "SELECT statement (overview: query and manipulate JSON data)", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/selectintro.json as n1ql:select-statement; the Related Links section links directly to selectintro.md for 'in-depth explanation'." },
-    { "candidate_id": "n1ql:from", "label": "FROM Clause", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/from.json." },
-    { "candidate_id": "n1ql:where-clause", "label": "WHERE clause", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/where.json." },
-    { "candidate_id": "n1ql:limit", "label": "LIMIT clause", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/limit.json." },
-    { "candidate_id": "n1ql:orderby", "label": "ORDER BY clause", "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/union.json." },
-    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted cross-product concept; this page owns the canonical 'Setting the Query Context' section that every other guide page in this batch links to via `select.md#query-context`." }
+    {
+      "candidate_id": "n1ql:selectclause",
+      "label": "SELECT Clause (projection, ALL/DISTINCT, RAW/ELEMENT/VALUE, EXCLUDE)",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/selectclause.json; 'Selecting' section's `SELECT \"Hello world\" AS greeting` is the same clause."
+    },
+    {
+      "candidate_id": "n1ql:select-statement",
+      "label": "SELECT statement (overview: query and manipulate JSON data)",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/selectintro.json as n1ql:select-statement; the Related Links section links directly to selectintro.md for 'in-depth explanation'."
+    },
+    {
+      "candidate_id": "n1ql:from",
+      "label": "FROM Clause",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/from.json."
+    },
+    {
+      "candidate_id": "n1ql:where-clause",
+      "label": "WHERE clause",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/where.json."
+    },
+    {
+      "candidate_id": "n1ql:limit",
+      "label": "LIMIT clause",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/limit.json."
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "reused_or_minted": "reused - already extracted in cloud/n1ql/n1ql-language-reference/union.json."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query Context",
+      "reused_or_minted": "reused - already promoted cross-product concept; this page owns the canonical 'Setting the Query Context' section that every other guide page in this batch links to via `select.md#query-context`."
+    }
   ],
   "relations": [
-    { "subject": "n1ql:select-statement", "predicate": "seeAlso", "object": "n1ql:selectclause", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [SELECT Clause](../n1ql/n1ql-language-reference/selectclause.md)." },
-    { "subject": "n1ql:select-statement", "predicate": "seeAlso", "object": "n1ql:from", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [FROM Clause](../n1ql/n1ql-language-reference/from.md)." },
-    { "subject": "n1ql:select-statement", "predicate": "seeAlso", "object": "n1ql:where-clause", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [WHERE Clause](../n1ql/n1ql-language-reference/where.md)." },
-    { "subject": "n1ql:select-statement", "predicate": "seeAlso", "object": "n1ql:limit", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [LIMIT Clause](../n1ql/n1ql-language-reference/limit.md)." },
-    { "subject": "n1ql:select-statement", "predicate": "seeAlso", "object": "n1ql:orderby", "reused_or_minted_predicate": "reused", "evidence": "For more information and examples, see [ORDER BY Clause](../n1ql/n1ql-language-reference/orderby.md)." },
-    { "subject": "n1ql:query-context", "predicate": "requiresSetting", "object": "query_context", "reused_or_minted_predicate": "reused", "evidence": "To set the query context, use the `\\SET` command with the `query_context` parameter." }
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:selectclause",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information and examples, see [SELECT Clause](../n1ql/n1ql-language-reference/selectclause.md)."
+    },
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:from",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information and examples, see [FROM Clause](../n1ql/n1ql-language-reference/from.md)."
+    },
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:where-clause",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information and examples, see [WHERE Clause](../n1ql/n1ql-language-reference/where.md)."
+    },
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:limit",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information and examples, see [LIMIT Clause](../n1ql/n1ql-language-reference/limit.md)."
+    },
+    {
+      "subject": "n1ql:select-statement",
+      "predicate": "seeAlso",
+      "object": "n1ql:order-by",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information and examples, see [ORDER BY Clause](../n1ql/n1ql-language-reference/orderby.md)."
+    },
+    {
+      "subject": "n1ql:query-context",
+      "predicate": "requiresSetting",
+      "object": "query_context",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To set the query context, use the `\\SET` command with the `query_context` parameter."
+    }
   ],
   "notable_absence": {
     "predicate": "requiresPrivilege",

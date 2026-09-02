@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-pages-relocated-between-versions",
+  "type": "docs-issue",
+  "issueType": "cross-version-path-instability",
+  "description": "The index documentation occupies a different directory in every tree, and nine pages moved twice. In 7.2 and 7.6, `learn/services-and-indexes/indexes/` holds nine pages (indexes.md, indexing-and-query-perf.md, storage-modes.md, index-lifecycle.md, index-replication.md, index-scans.md, index_pushdowns.md, early-filters-and-pagination.md, global-secondary-indexes.md) and `covering-indexes.md` sits separately under `n1ql/n1ql-language-reference/`. In 8.0 a new top-level `indexes/` module holds eleven pages including covering-indexes.md and a new indexing-overview.md, `learn/services-and-indexes/indexes/` is left with indexes.md alone, and `global-secondary-indexes.md` has no 8.0 successor at that name. Capella mirrors the 8.0 layout exactly, at `cloud/indexes/`. NOT A BUG IN THE DOCS, and filed anyway: relocation is a legitimate editorial act and the Antora xrefs move with it. What it costs is everything that keys off a path. Every deep link into the 7.x paths is dead, and any consumer that identifies a page by path sees nine deletions and eleven creations rather than nine moves. In this project specifically it produced the round-16 defect: `covering-indexes.md` was extracted three times from three trees and named `n1ql:covering-index`, `index:covering-index` and `indexes:covering-index`, because each round named the concept after the directory it read it in. Three prefixes for one term, and the fix (round 16's rule: an id names its subject, not its location) is a rule this page's history is the argument for.",
+  "about": [
+    "server/7.2/learn/services-and-indexes/indexes",
+    "server/7.6/learn/services-and-indexes/indexes",
+    "server/8.0/indexes",
+    "server/8.0/learn/services-and-indexes/indexes/indexes",
+    "cloud/indexes"
+  ],
+  "foundDuring": "round-16-namespace-coherence-wave-3",
+  "status": "open",
+  "note": "The coverage consequence is tracked separately and is round 17's scope: because round 12 walked `learn/` looking for these pages and they had already moved out of it, `server/8.0/indexes/` - eleven pages, the canonical documentation of the subject - has never been extracted, while the thin pre-gate `cloud/indexes/` records (35 relations over 11 pages, mean 3.2 against a round-10 baseline of 13.4) were the only source for most of it."
+}

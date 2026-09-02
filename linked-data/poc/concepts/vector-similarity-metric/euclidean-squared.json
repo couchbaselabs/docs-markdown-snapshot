@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-similarity-metric/euclidean-squared",
   "label": "Euclidean Squared Distance (L2 Squared)",
   "recurrence": 1,
-  "aliases": [
-    "vector-index:euclidean-squared-distance"
-  ],
   "type": "a distance/similarity function a vector index can be built and queried with",
   "note": "Distinct from vector-similarity-metric:euclidean, and the source writes it three ways - 'Euclidean Squared', 'L2 Squared', 'L22' - which is why it is a separate id rather than an alias of euclidean. Same index-type support restriction.",
   "relates_to_competency_question": "Which similarity metrics can a given vector index type use?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:euclidean-squared-distance"
+  ]
 }

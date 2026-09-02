@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/n1ql/vector-distance",
   "label": "VECTOR_DISTANCE() function",
   "recurrence": 3,
-  "aliases": [
-    "vector-index:vector-distance-function"
-  ],
   "type": "SQL++ function returning an exact distance between two vectors by brute-force comparison, without using a vector index",
   "note": "Re-filed from vector-index:vector-distance-function on the same evidence as n1ql:approx-vector-distance - the page links it as n1ql/n1ql-language-reference/vectorfun.md#vector_distance. The old id also carried a category word in its local name ('-function') that its sibling did not, so one pair of functions was spelled two ways; the n1ql: namespace names neither n1ql:create-function-statement nor n1ql:curl-function-function. Contrast with n1ql:approx-vector-distance: 'The VECTOR_DISTANCE function performs a brute-force full vector comparison, so it returns the most accurate results' and 'this function does not use a vector index'. Exactness and index acceleration are the trade, and the docs state it on three pages.",
   "relates_to_competency_question": "How do I query a vector index?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:vector-distance-function"
+  ]
 }

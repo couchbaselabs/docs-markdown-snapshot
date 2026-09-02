@@ -3,15 +3,49 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/guides/group-agg.md",
   "concepts": [
-    { "candidate_id": "n1ql:aggregate-function", "label": "Aggregate function family (ARRAY_AGG, AVG, COUNT, COUNTN, MAX, MEAN, MEDIAN, MIN, STDDEV*, SUM, VARIANCE*)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/aggregatefun.json; note registry drift, see cross_component_finding" },
-    { "candidate_id": "n1ql:group-by", "label": "GROUP BY Clause", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/groupby.json" },
-    { "candidate_id": "index-type:group-aggregate-pushdown", "label": "Grouping and Aggregate Pushdown (SQL++ Pushdowns)", "reused_or_minted": "reused - already established in cloud/indexes/groupby-aggregate-performance.json; note registry drift, see cross_component_finding" },
-    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused" }
+    {
+      "candidate_id": "n1ql:aggregate-function",
+      "label": "Aggregate function family (ARRAY_AGG, AVG, COUNT, COUNTN, MAX, MEAN, MEDIAN, MIN, STDDEV*, SUM, VARIANCE*)",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/aggregatefun.json; note registry drift, see cross_component_finding"
+    },
+    {
+      "candidate_id": "n1ql:group-by",
+      "label": "GROUP BY Clause",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/groupby.json"
+    },
+    {
+      "candidate_id": "index:group-aggregate-pushdown",
+      "label": "Grouping and Aggregate Pushdown (SQL++ Pushdowns)",
+      "reused_or_minted": "reused - already established in cloud/indexes/groupby-aggregate-performance.json; note registry drift, see cross_component_finding"
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query Context",
+      "reused_or_minted": "reused"
+    }
   ],
   "relations": [
-    { "subject": "n1ql:aggregate-function", "predicate": "usesEnum", "object": "aggregate-quantifier: ALL | DISTINCT", "reused_or_minted_predicate": "reused - already-established predicate, applied to the ALL/DISTINCT aggregate quantifier documented as a sub-facet of this concept rather than minted as its own concept", "evidence": "To aggregate distinct values only, include the `DISTINCT` keyword before the function arguments." },
-    { "subject": "n1ql:group-by", "predicate": "seeAlso", "object": "n1ql:aggregate-function", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [GROUP BY Clause](../n1ql/n1ql-language-reference/groupby.md)." },
-    { "subject": "n1ql:group-by", "predicate": "requiresPriorExecutionOf", "object": "n1ql:aggregate-function", "reused_or_minted_predicate": "minted - a GROUP BY query's HAVING/LETTING clauses depend on an aggregate function having been named in the same query for their filter target to resolve", "evidence": "To filter the groups by an aggregate function, use the HAVING clause within the GROUP BY clause." }
+    {
+      "subject": "n1ql:aggregate-function",
+      "predicate": "usesEnum",
+      "object": "aggregate-quantifier: ALL | DISTINCT",
+      "reused_or_minted_predicate": "reused - already-established predicate, applied to the ALL/DISTINCT aggregate quantifier documented as a sub-facet of this concept rather than minted as its own concept",
+      "evidence": "To aggregate distinct values only, include the `DISTINCT` keyword before the function arguments."
+    },
+    {
+      "subject": "n1ql:group-by",
+      "predicate": "seeAlso",
+      "object": "n1ql:aggregate-function",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [GROUP BY Clause](../n1ql/n1ql-language-reference/groupby.md)."
+    },
+    {
+      "subject": "n1ql:group-by",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:aggregate-function",
+      "reused_or_minted_predicate": "minted - a GROUP BY query's HAVING/LETTING clauses depend on an aggregate function having been named in the same query for their filter target to resolve",
+      "evidence": "To filter the groups by an aggregate function, use the HAVING clause within the GROUP BY clause."
+    }
   ],
   "notable_absence": {
     "predicate": "requiresPrivilege",

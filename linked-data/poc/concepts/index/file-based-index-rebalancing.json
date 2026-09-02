@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/file-based-index-rebalancing",
+  "label": "File-based index rebalancing (shard affinity)",
+  "type": "the index rebalance method that moves index files between nodes rather than rebuilding indexes from the Data Service; an opt-in cluster setting on Couchbase Server and the default on Capella",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/8.0/n1ql/n1ql-language-reference/alterindex.md",
+  "note": "Two files, both quotable, both stating the same restriction: 'You cannot use this property if you have enabled file-based index rebalancing.' - subject of disablesFeatureFor against n1ql:alter-index-with-nodes and n1ql:alter-vector-index-with-nodes. Promoted because that is a real capability interaction and not a cross-reference: enabling a rebalance method takes a DDL property away. THE SAME MECHANISM IS MODELLED TWO WAYS IN THE CORPUS AND THIS RECORD DOES NOT MERGE THEM: the Capella records attribute the identical restriction to deployment:capella ('as it defaults to file-based index rebalancing'), i.e. as a property of the deployment, while on Server it is an opt-in setting a cluster may or may not have enabled. Both readings are faithful to their own page. Filed in index: rather than index-type: because a rebalance method is not a kind of index; sibling of index:index-redistribution-setting, which answers the adjacent question of what happens to indexes on rebalance automatically.",
+  "relates_to_competency_question": "What happens to my indexes when the cluster rebalances?",
+  "folded_spellings": [
+    "indexes:file-based-index-rebalancing"
+  ]
+}

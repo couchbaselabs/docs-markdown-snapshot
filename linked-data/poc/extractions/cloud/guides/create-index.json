@@ -3,28 +3,120 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/guides/create-index.md",
   "concepts": [
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/createindex.json" },
-    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/createprimaryindex.json" },
-    { "candidate_id": "index-type:primary-index", "label": "Primary Index", "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json" },
-    { "candidate_id": "index-type:secondary-index", "label": "Secondary Index", "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json" },
-    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - already established in concepts/index-type/gsi.json" },
-    { "candidate_id": "index-type:composite-secondary-index", "label": "Composite Secondary Index", "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json" },
-    { "candidate_id": "index-type:partial-index", "label": "Partial Index", "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json" },
-    { "candidate_id": "index-type:covering-index", "label": "Covering Index / Covered Query", "reused_or_minted": "reused - already established in cloud/indexes/covering-indexes.json" },
-    { "candidate_id": "n1ql:indexing-metadata-fields", "label": "Indexing on document metadata fields (via META())", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/indexing-meta-info.json" },
-    { "candidate_id": "n1ql:array-indexing", "label": "Array Indexing (GSI index on array elements)", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/indexing-arrays.json" },
-    { "candidate_id": "n1ql:query-context", "label": "Query Context", "reused_or_minted": "reused - already promoted cross-product concept, restated via 'Set the query context to the inventory scope' boilerplate repeated on every code example on this page" },
-    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - already established registry concept, linked in this page's intro as one of the tools for editing/executing queries" },
-    { "candidate_id": "tool:cbq-shell", "label": "cbq: The Command Line Shell for SQL++", "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-intro/cbq.json; note registry drift, see cross_component_finding" },
-    { "candidate_id": "sdk:query-index-manager", "label": "Query Index Manager (cross-language SDK interface: IQueryIndexManager / QueryIndexManager)", "reused_or_minted": "minted - a genuinely new, task-level concept not present in the SQL++-only n1ql/ statement reference pages: a cross-language SDK abstraction (.NET, Java, Node.js, Python all expose an equivalent createIndex/createPrimaryIndex call) for performing the same DDL operation as CREATE INDEX/CREATE PRIMARY INDEX without SQL++. No existing sdk: namespace concept matches; distinct from the SQL++ statement concepts themselves." }
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/createindex.json"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX statement",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/createprimaryindex.json"
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "reused_or_minted": "reused - already established in concepts/index-type/gsi.json"
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite Secondary Index",
+      "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json"
+    },
+    {
+      "candidate_id": "index-type:partial-index",
+      "label": "Partial Index",
+      "reused_or_minted": "reused - already established in cloud/indexes/indexing-and-query-perf.json"
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index / Covered Query",
+      "reused_or_minted": "reused - already established in cloud/indexes/covering-indexes.json"
+    },
+    {
+      "candidate_id": "n1ql:indexing-metadata-fields",
+      "label": "Indexing on document metadata fields (via META())",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/indexing-meta-info.json"
+    },
+    {
+      "candidate_id": "n1ql:array-indexing",
+      "label": "Array Indexing (GSI index on array elements)",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-language-reference/indexing-arrays.json"
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query Context",
+      "reused_or_minted": "reused - already promoted cross-product concept, restated via 'Set the query context to the inventory scope' boilerplate repeated on every code example on this page"
+    },
+    {
+      "candidate_id": "capella:query-tab",
+      "label": "Capella Query tab (Web Console UI)",
+      "reused_or_minted": "reused - already established registry concept, linked in this page's intro as one of the tools for editing/executing queries"
+    },
+    {
+      "candidate_id": "tool:cbq-shell",
+      "label": "cbq: The Command Line Shell for SQL++",
+      "reused_or_minted": "reused - already established in cloud/n1ql/n1ql-intro/cbq.json; note registry drift, see cross_component_finding"
+    },
+    {
+      "candidate_id": "sdk:query-index-manager",
+      "label": "Query Index Manager (cross-language SDK interface: IQueryIndexManager / QueryIndexManager)",
+      "reused_or_minted": "minted - a genuinely new, task-level concept not present in the SQL++-only n1ql/ statement reference pages: a cross-language SDK abstraction (.NET, Java, Node.js, Python all expose an equivalent createIndex/createPrimaryIndex call) for performing the same DDL operation as CREATE INDEX/CREATE PRIMARY INDEX without SQL++. No existing sdk: namespace concept matches; distinct from the SQL++ statement concepts themselves."
+    }
   ],
   "relations": [
-    { "subject": "index-type:secondary-index", "predicate": "isSynonymOf", "object": "index-type:gsi", "reused_or_minted_predicate": "reused", "evidence": "A secondary index is actually the main type of index that queries use. For this reason, they are also known as Global Secondary Indexes or GSIs." },
-    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "index-type:partial-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Partial Index](../indexes/indexing-and-query-perf.md#partial-index)." },
-    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "index-type:covering-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Covering Indexes](../indexes/covering-indexes.md)." },
-    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:array-indexing", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Array Indexing](../n1ql/n1ql-language-reference/indexing-arrays.md)." },
-    { "subject": "n1ql:create-index", "predicate": "seeAlso", "object": "n1ql:indexing-metadata-fields", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information and examples, see [Indexing Metadata Information](../n1ql/n1ql-language-reference/indexing-meta-info.md)." },
-    { "subject": "sdk:query-index-manager", "predicate": "seeAlso", "object": "n1ql:create-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information, see [IQueryIndexManager](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Management.Query.IQueryIndexManager.html)." }
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "isSynonymOf",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A secondary index is actually the main type of index that queries use. For this reason, they are also known as Global Secondary Indexes or GSIs."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "seeAlso",
+      "object": "index-type:partial-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Partial Index](../indexes/indexing-and-query-perf.md#partial-index)."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "seeAlso",
+      "object": "index:covering-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Covering Indexes](../indexes/covering-indexes.md)."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:array-indexing",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Array Indexing](../n1ql/n1ql-language-reference/indexing-arrays.md)."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:indexing-metadata-fields",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information and examples, see [Indexing Metadata Information](../n1ql/n1ql-language-reference/indexing-meta-info.md)."
+    },
+    {
+      "subject": "sdk:query-index-manager",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-primary-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information, see [IQueryIndexManager](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Management.Query.IQueryIndexManager.html)."
+    }
   ],
   "notable_absence": {
     "predicate": "requiresPrivilege / requiresCapellaRole",

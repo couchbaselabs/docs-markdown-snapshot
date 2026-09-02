@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-similarity-metric/cosine",
   "label": "Cosine Similarity",
   "recurrence": 1,
-  "aliases": [
-    "vector-index:cosine-similarity"
-  ],
   "type": "a distance/similarity function a vector index can be built and queried with",
   "note": "Member of the closed family headed by vector-similarity-metric:euclidean.",
   "relates_to_competency_question": "Which similarity metrics can a given vector index type use?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:cosine-similarity"
+  ]
 }

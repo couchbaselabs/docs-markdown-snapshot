@@ -34,12 +34,12 @@
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index-type:duplicate-index",
+      "candidate_id": "index:duplicate-index",
       "label": "Duplicate Index",
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index-type:covering-index",
+      "candidate_id": "index:covering-index",
       "label": "Covering Index / Covered Query",
       "reused_or_minted": "reused - minted in cloud/indexes/covering-indexes.json"
     },
@@ -75,14 +75,14 @@
       "evidence": "The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`)."
     },
     {
-      "subject": "index-type:duplicate-index",
+      "subject": "index:duplicate-index",
       "predicate": "tradesOffAgainst",
       "object": "index-type:primary-index",
       "reused_or_minted_predicate": "reused (tradesOffAgainst) - used loosely: duplicate indexes trade extra storage/maintenance for high availability and load distribution",
       "evidence": "During query execution, these indexes are used in a round-robin fashion to distribute the load. This provides scale-out, Multi-Dimensional Scaling, performance, and high availability."
     },
     {
-      "subject": "index-type:covering-index",
+      "subject": "index:covering-index",
       "predicate": "seeAlso",
       "object": "index-type:secondary-index",
       "evidence": "For further information and examples, see [Covering Indexes](covering-indexes.md)."

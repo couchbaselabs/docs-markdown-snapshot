@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-similarity-metric/euclidean",
   "label": "Euclidean Distance (L2)",
   "recurrence": 1,
-  "aliases": [
-    "vector-index:euclidean-distance"
-  ],
   "type": "a distance/similarity function a vector index can be built and queried with",
   "note": "The head of the family record: all four metrics are at recurrence 1 and all four are promoted together under the family exception. They are a closed enumeration the source states as one, with an explicit support matrix - 'Only Hyperscale Vector and Composite Vector indexes support this metric. Search Vector Indexes do not support it' - so the competency question 'which similarity metrics can this index type use' is answerable from the docs and was inexpressible in the registry. Filed as its own namespace rather than inside vector-search: because this is a genuine closed enum, matching index-class: and cluster-access-credential-type, not a subject area.",
   "relates_to_competency_question": "Which similarity metrics can a given vector index type use?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:euclidean-distance"
+  ]
 }

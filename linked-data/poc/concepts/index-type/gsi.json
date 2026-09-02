@@ -1,8 +1,13 @@
 {
-  "id": "https://docs.couchbase.com/ld/concepts/index-type/gsi",
-  "label": "Global Secondary Index (GSI)",
-  "type": "the required secondary-index type on Capella - statistics-index.md and statistics-indexes.md both state Capella secondary indexes must be GSI",
-  "promoted": true,
-  "recurrence": 2,
-  "note": "A minor, low-stakes promotion - restates deployment context already implicit in index-state's occurrences rather than surfacing new structure. Kept separate from index-state (that concept is the index lifecycle enum; this is the index type/technology axis)."
+ "id": "https://docs.couchbase.com/ld/concepts/index-type/gsi",
+ "label": "Global Secondary Index (GSI)",
+ "type": "the required secondary-index type on Capella - statistics-index.md and statistics-indexes.md both state Capella secondary indexes must be GSI",
+ "promoted": true,
+ "recurrence": 8,
+ "note": "Kept separate from index-type:secondary-index and linked by isSynonymOf rather than collapsed, on an explicit sentence: 'A secondary index is also called a Global Secondary Index (GSI).' (server/current/learn/services-and-indexes/indexes/indexes.md). See relations/is-synonym-of.json for why a stated synonymy is a fact to record and not an instruction to deduplicate - both surface terms are in live use and a reader searching either should land somewhere. Also kept separate from index-state, which is the index lifecycle enum; this is the index type axis.",
+ "folded_spellings": [
+  "index:global-secondary-indexes",
+  "index:secondary-gsi"
+ ],
+ "recurrence_note": "CORRECTED IN ROUND 16, AND THE CORRECTION IS THE INTERESTING PART. This record said `recurrence: 2` and called itself 'a minor, low-stakes promotion'. The promotion metric says 8 and the census 16, and it said so BEFORE this round changed anything - the field was measured in round 2 with the object-only metric that bug #7 later replaced, and nothing re-measures a promoted record. Round 16 first wrote the change up as an effect of folding `index:secondary-gsi` and `index:global-secondary-indexes` into this id, which is false: both were bare `concepts[]` mentions at one file each and contributed nothing to either metric. The fold is still right - they are the 7.2 learn/ tree's spellings of this type, the second a plural filename-derived id with no label at all - it just did not move the number. See `recurrence.py --stale-recurrence`, added because of this: 172 of 324 promoted records disagree with the current metric, none of them wrongly, because a recurrence field is a measurement with a date and the instrument has been replaced three times. The hazard is not the stale field, it is a reconciliation pass reading a record's prose about its own weight and believing it over the query."
 }

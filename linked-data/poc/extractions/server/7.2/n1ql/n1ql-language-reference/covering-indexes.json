@@ -4,7 +4,7 @@
   "source_path": "server/7.2/n1ql/n1ql-language-reference/covering-indexes.md",
   "concepts": [
     {
-      "candidate_id": "n1ql:covering-indexes",
+      "candidate_id": "index:covering-index",
       "label": "Covering Indexes and covered queries",
       "reused_or_minted": "minted",
       "note": "a query-optimization concept page, not itself a SQL++ statement"
@@ -12,14 +12,14 @@
   ],
   "relations": [
     {
-      "subject": "n1ql:covering-indexes",
+      "subject": "index:covering-index",
       "predicate": "seeAlso",
       "object": "n1ql:prepare",
       "note": "structural link from existing Markdown xref to prepare.md",
       "evidence": "[Prepared statements](prepare.md) also benefit from using covering indexes."
     },
     {
-      "subject": "n1ql:covering-indexes",
+      "subject": "index:covering-index",
       "predicate": "seeAlso",
       "object": "learn:grouping-and-aggregate-pushdown",
       "note": "structural link from existing Markdown Related Links list",

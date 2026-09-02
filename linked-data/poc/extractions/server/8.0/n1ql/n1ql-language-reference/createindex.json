@@ -54,7 +54,7 @@
       "reused_or_minted": "reused - promoted registry concept index-type:gsi"
     },
     {
-      "candidate_id": "index-type:secondary",
+      "candidate_id": "index-type:secondary-index",
       "label": "Secondary index (the plain, non-vector index CREATE INDEX produces by default)",
       "reused_or_minted": "minted - the page contrasts three named index kinds ('secondary indexes, Composite Vector indexes, or Hyperscale Vector indexes'); index-type:gsi is the *technology/using* axis (all three are GSI), so a distinct id is needed for the plain-secondary member of the kind axis. See version_finding for the axis-collision warning."
     },
@@ -129,7 +129,7 @@
       "reused_or_minted": "minted - no prior id; needed as the subject of an incompatibility with the VECTOR keyword"
     },
     {
-      "candidate_id": "indexes:vector-index-codebook",
+      "candidate_id": "vector-search:codebook",
       "label": "Vector index codebook (sampled-dataset artifact stored in index metadata)",
       "reused_or_minted": "minted - a new 8.0 concept with no analogue in the registry; it is not an index type, a state, or a statement, so no existing namespace fits"
     },
@@ -239,7 +239,7 @@
     {
       "subject": "index-type:composite-vector",
       "predicate": "requiresSetting",
-      "object": "indexes:vector-index-codebook",
+      "object": "vector-search:codebook",
       "reused_or_minted_predicate": "reused - promoted predicate, stretched: the codebook is a required artifact rather than a configuration setting. Flagged for reconciliation; a requiresArtifact-shaped predicate may be a better fit.",
       "evidence": "Hyperscale Vector indexes and Composite Vector indexes require a codebook for the vector field."
     },

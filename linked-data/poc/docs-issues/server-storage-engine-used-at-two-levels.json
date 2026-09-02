@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-storage-engine-used-at-two-levels",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The term 'storage engine' names two different layers on two pages of the same 8.0 module. `indexes/groupby-aggregate-performance.md`: 'Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI).' `indexes/storage-modes.md` calls exactly those two things storage MODES and names the engines underneath them: 'Memory-optimized index storage is supported by the Nitro storage engine', 'In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine', 'In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine'. So on one page 'storage engine' = the user-selectable mode (2 values), and on the other 'storage engine' = the implementation under it (3 values, and the mapping is not one-to-one - standard storage has two engines depending on edition). Anyone reading 'both storage engines' after storage-modes.md will read it as a claim about Plasma and Nitro, and will conclude that pushdown is unsupported on Forestdb, which the sentence does not say and the page does not address.",
+  "about": [
+    "server/8.0/indexes/groupby-aggregate-performance",
+    "server/8.0/indexes/storage-modes",
+    "cloud/indexes/groupby-aggregate-performance",
+    "cloud/indexes/storage-modes"
+  ],
+  "foundDuring": "round-16-namespace-coherence-wave-3",
+  "status": "open",
+  "note": "Modelled as two levels rather than resolved, because both usages are attested and neither page defines the term: `index:memory-optimized-storage` and `index:standard-storage` stay in index: as the two modes, and Plasma / Forestdb / Nitro belong in storage-engine: beside couchstore and magma. Round 16 refiled `index-type:moi` and `index-type:standard-gsi-plasma` out of the type axis on this basis - a storage mode is not a kind of index - but deliberately did NOT promote the three engines, because their only evidence is storage-modes.md, a page in the never-extracted server/8.0/indexes/ module; they are round 17's. Note also 'Forestdb' here against 'ForestDB' in older trees, and see server-storage-engine-split-duplicated-across-components for the same content appearing under two components."
+}

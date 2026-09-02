@@ -1,9 +1,13 @@
 {
-  "id": "https://docs.couchbase.com/ld/concepts/search/full-text-index",
-  "label": "full-text index (artifact)",
-  "recurrence": 4,
-  "type": "the index artifact the Search Service builds and queries - partitioned across nodes, fed by DCP",
-  "note": "The ARTIFACT, as against fts:full-text-search the capability. Its index set is stated to be 'entirely separate' from the Index Service's, which is why search-service.md asserts no Search->Index dependency and none was invented.",
-  "relates_to_competency_question": "What does the Search Service build?",
-  "promoted": true
+ "id": "https://docs.couchbase.com/ld/concepts/search/full-text-index",
+ "label": "full-text index (artifact)",
+ "recurrence": 3,
+ "aliases": [
+  "index:full-text"
+ ],
+ "type": "the index artifact the Search Service builds and queries - partitioned across nodes, fed by DCP",
+ "note": "The ARTIFACT, as against fts:full-text-search the capability. Its index set is stated to be 'entirely separate' from the Index Service's, which is why search-service.md asserts no Search->Index dependency and none was invented. ROUND 16 MOVED THE `index:full-text` ALIAS HERE from fts:full-text-search. Its label is 'Full Text index (Search service)', which is this record and not that one; see that record's note for why the mis-fold is worth writing down. Kept as an alias rather than rewritten because `index:full-text` is a defensible alternative name for the artifact - a Search index IS one of the eight index kinds indexes.md enumerates - and the round's other index: work rewrote ids whose prefix claimed the wrong axis, which this one does not.",
+ "relates_to_competency_question": "What does the Search Service build?",
+ "promoted": true,
+ "recurrence_note": "3 on the round-16 promotion metric (distinct files using this id, or the `index:full-text` alias moved here in round 16, in either relation slot with seeAlso excluded); 5 in the census. This record briefly said 5, which was the census figure - caught by `recurrence.py --stale-recurrence`, the report this round added after finding the same confusion in a nine-round-old record. The two numbers are different metrics, not a correction of each other; the field carries the promotion metric, because that is what the promotion rule is stated in terms of."
 }

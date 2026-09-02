@@ -4,7 +4,7 @@
   "source_path": "cloud/indexes/query-without-index.md",
   "concepts": [
     {
-      "candidate_id": "indexes:sequential-scan",
+      "candidate_id": "index:sequential-scan",
       "label": "Sequential Scan (K/V range scan fallback for keyspaces with no index)",
       "reused_or_minted": "reused (intended) - same sequential-scan concept as server/current/indexes/query-without-index.md and server/7.6/learn/services-and-indexes/indexes/query-without-index.md; minted here under the shared namespace/kebab-case so a later reconciliation pass can merge directly"
     },
@@ -26,28 +26,28 @@
   ],
   "relations": [
     {
-      "subject": "indexes:sequential-scan",
+      "subject": "index:sequential-scan",
       "predicate": "requiresServerRole",
       "object": "privilege:query-use-sequential-scans",
       "reused_or_minted_predicate": "reused - requiresPrivilege predicate from promoted list; object minted since 'Query Use Sequential Scans' is a distinct privilege from privilege:query-manage-index",
       "evidence": "Your client must have the **Query Use Sequential Scans** role on the keyspace to be able to execute a request with a sequential scan."
     },
     {
-      "subject": "indexes:sequential-scan",
+      "subject": "index:sequential-scan",
       "predicate": "gatedByBillingPlan",
       "object": "billing:free-tier-plan",
       "reused_or_minted_predicate": "minted - server/'s requiresEdition/behavesDifferentlyUnder relations model EE/CE gating, which has no equivalent on Capella; Capella instead gates some features by billing-plan tier (free vs paid), so a new predicate name was needed rather than reusing requiresEdition",
       "evidence": "For a [free operational cluster](../billing/billing.md#free-tier-plan), sequential scan is available in the Query tab, and via cluster access credentials in the SDKs or Couchbase Shell."
     },
     {
-      "subject": "indexes:sequential-scan",
+      "subject": "index:sequential-scan",
       "predicate": "gatedByBillingPlan",
       "object": "billing:paid-plan",
       "reused_or_minted_predicate": "minted - see reasoning above",
       "evidence": "For [paid service plans](../billing/billing.md#paid-plan), sequential scan is not available by default. To enable sequential scan, please [contact support](../support/manage-support.md)."
     },
     {
-      "subject": "indexes:sequential-scan",
+      "subject": "index:sequential-scan",
       "predicate": "seeAlso",
       "object": "n1ql:query-monitoring",
       "reused_or_minted_predicate": "reused, not minted - structural markdown link",

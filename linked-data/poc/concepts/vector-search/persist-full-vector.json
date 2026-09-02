@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-search/persist-full-vector",
   "label": "persist_full_vector setting",
   "recurrence": 2,
-  "aliases": [
-    "vector-index:persist-full-vector"
-  ],
   "type": "index setting that keeps a copy of the full unquantized vector alongside the quantized one, which reranking requires",
   "note": "Kept in vector-search: rather than moved to a cross-cutting setting: namespace. setting: currently has three unpromoted members drawn from three unrelated areas (indexer defer-build, curl allowed-URL access, a stream size limit) and no promoted member at all, so filing here would assert that all cluster settings form one axis - which no page states. That question is the next namespace this pass should take; filing a vector setting into an unbuilt axis first would mean filing it twice. The five other vector index settings (nList, nProbes, train_list, replicas, partitions) are on the watchlist at recurrence 1 and must go wherever this one ends up.",
   "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:persist-full-vector"
+  ]
 }

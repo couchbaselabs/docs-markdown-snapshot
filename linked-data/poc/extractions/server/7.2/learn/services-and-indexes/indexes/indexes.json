@@ -9,12 +9,12 @@
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index:primary",
+      "candidate_id": "index-type:primary-index",
       "label": "Primary index",
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index:secondary-gsi",
+      "candidate_id": "index-type:gsi",
       "label": "Secondary index / Global Secondary Index (GSI)",
       "reused_or_minted": "minted"
     },
@@ -24,19 +24,19 @@
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index:analytics",
+      "candidate_id": "index-type:analytics-index",
       "label": "Analytics index",
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "index:view",
+      "candidate_id": "index-type:view",
       "label": "View index (deprecated)",
       "reused_or_minted": "minted"
     }
   ],
   "relations": [
     {
-      "subject": "index:view",
+      "subject": "index-type:view",
       "predicate": "deprecatedSince",
       "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "minted",
@@ -44,14 +44,14 @@
       "evidence": "Views are deprecated in Couchbase Server 7.0, and will be removed in a future release."
     },
     {
-      "subject": "index:primary",
+      "subject": "index-type:primary-index",
       "predicate": "seeAlso",
       "object": "learn:global-secondary-indexes",
       "note": "structural link from an existing Markdown xref",
       "evidence": "For information on primary indexes, see [Using Indexes](global-secondary-indexes.md)."
     },
     {
-      "subject": "index:secondary-gsi",
+      "subject": "index-type:gsi",
       "predicate": "seeAlso",
       "object": "learn:global-secondary-indexes",
       "note": "structural link from an existing Markdown xref",
@@ -65,14 +65,14 @@
       "evidence": "For information on how to create Full Text Indexes, see [Creating Indexes](../../../fts/fts-creating-indexes.md)."
     },
     {
-      "subject": "index:analytics",
+      "subject": "index-type:analytics-index",
       "predicate": "seeAlso",
       "object": "analytics:using-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "See the section on [Using Indexes](../../../analytics/7_using_index.md) in Couchbase Analytics."
     },
     {
-      "subject": "index:view",
+      "subject": "index-type:view",
       "predicate": "seeAlso",
       "object": "views:views-intro",
       "note": "structural link from an existing Markdown xref",

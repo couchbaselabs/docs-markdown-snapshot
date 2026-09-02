@@ -3,13 +3,32 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/indexes/covering-indexes.md",
   "concepts": [
-    { "candidate_id": "index-type:covering-index", "label": "Covering Index / Covered Query", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index / Covered Query",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
-    { "subject": "index-type:covering-index", "predicate": "seeAlso", "object": "index-type:gsi", "reused_or_minted_predicate": "reused (seeAlso)", "evidence": "Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI)." },
-    { "subject": "index-type:covering-index", "predicate": "seeAlso", "object": "capella:query-tab", "reused_or_minted_predicate": "reused (seeAlso)", "evidence": "Try these statements using `cbq` or the Query tab to see the query execution plan." }
+    {
+      "subject": "index:covering-index",
+      "predicate": "seeAlso",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused (seeAlso)",
+      "evidence": "Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI)."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "seeAlso",
+      "object": "capella:query-tab",
+      "reused_or_minted_predicate": "reused (seeAlso)",
+      "evidence": "Try these statements using `cbq` or the Query tab to see the query execution plan."
+    }
   ],
-  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition", "finding": "This page is purely a SQL++ performance/optimization topic (index design and EXPLAIN plan mechanics) with zero access-control, privilege, role, or edition content - confirms the batch hypothesis that the indexes/ performance pages are low-RBAC-content infrastructure topics. No forced concepts/relations were minted beyond what the text actually supports." },
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition",
+    "finding": "This page is purely a SQL++ performance/optimization topic (index design and EXPLAIN plan mechanics) with zero access-control, privilege, role, or edition content - confirms the batch hypothesis that the indexes/ performance pages are low-RBAC-content infrastructure topics. No forced concepts/relations were minted beyond what the text actually supports."
+  },
   "cross_component_finding": "None applicable beyond the notable_absence above.",
   "cross_product_finding": "None applicable - this page's content (EXPLAIN plan shape, covers/covers arrays) is generic SQL++ engine behavior shared identically with server/, with no Capella-specific gating."
 }

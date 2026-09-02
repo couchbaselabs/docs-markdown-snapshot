@@ -44,17 +44,17 @@
       "reused_or_minted": "minted - same id as in this batch's createvectorindex.json; every example on this page operates on a Hyperscale Vector index"
     },
     {
-      "candidate_id": "index-type:standard-gsi-plasma",
+      "candidate_id": "index:standard-storage",
       "label": "Standard GSI (Plasma) index storage",
       "reused_or_minted": "minted - same id as in this batch's alterindex.json"
     },
     {
-      "candidate_id": "index-type:moi",
+      "candidate_id": "index:memory-optimized-storage",
       "label": "Memory-Optimized Index (MOI)",
       "reused_or_minted": "minted - same id as in this batch's alterindex.json"
     },
     {
-      "candidate_id": "index-type:forestdb",
+      "candidate_id": "storage-engine:forestdb",
       "label": "Forest DB index storage",
       "reused_or_minted": "minted - same id as in this batch's alterindex.json"
     },
@@ -109,12 +109,12 @@
       "reused_or_minted": "minted - mirrors this batch's alterindex.json id. See version_finding: on this page the legacy-compatibility claim is incoherent, since the statement is new at 8.0."
     },
     {
-      "candidate_id": "indexes:file-based-index-rebalancing",
+      "candidate_id": "index:file-based-index-rebalancing",
       "label": "File-based index rebalancing (shard affinity)",
       "reused_or_minted": "minted - same id as in this batch's alterindex.json"
     },
     {
-      "candidate_id": "indexes:index-redistribution-setting",
+      "candidate_id": "index:index-redistribution-setting",
       "label": "Index redistribution setting",
       "reused_or_minted": "minted - same id as in this batch's alterindex.json"
     },
@@ -161,7 +161,7 @@
       "evidence": "In addition, altering the number of replicas or deleting an index replica is only supported in Couchbase Server 6.5 and later; if any nodes in the cluster are running a version of Couchbase Server earlier than 6.5, then these operations will not work."
     },
     {
-      "subject": "indexes:file-based-index-rebalancing",
+      "subject": "index:file-based-index-rebalancing",
       "predicate": "disablesFeatureFor",
       "object": "n1ql:alter-vector-index-with-nodes",
       "reused_or_minted_predicate": "reused - promoted predicate; setting as subject, disabled clause as object",
@@ -205,7 +205,7 @@
     {
       "subject": "n1ql:alter-vector-index",
       "predicate": "tradesOffAgainst",
-      "object": "indexes:index-redistribution-setting",
+      "object": "index:index-redistribution-setting",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance."
     },

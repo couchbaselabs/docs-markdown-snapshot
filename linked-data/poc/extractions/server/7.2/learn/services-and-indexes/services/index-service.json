@@ -72,13 +72,13 @@
     {
       "subject": "service:index-service",
       "predicate": "seeAlso",
-      "object": "index:storage-modes",
+      "object": "page:storage-modes",
       "note": "structural link ('For more information, see Index Storage Settings'); reuses concept minted on storage-modes.md, this batch"
     },
     {
       "subject": "service:index-service",
       "predicate": "seeAlso",
-      "object": "index:global-secondary-indexes",
+      "object": "index-type:gsi",
       "note": "structural link ('For information on using the Indexing Service, see Using Indexes')"
     }
   ],

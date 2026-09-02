@@ -1,9 +1,14 @@
 {
-  "id": "https://docs.couchbase.com/ld/relations/is-synonym-of",
-  "label": "is synonym of",
-  "kind": "relation (schema-level)",
-  "type": "for statement pairs the docs explicitly declare functionally identical - 4 occurrences across 4 files",
-  "promoted": true,
-  "recurrence": 4,
-  "examples": ["DROP INDEX / DROP VECTOR INDEX (Capella)", "ALTER INDEX / ALTER VECTOR INDEX (Capella)"]
+ "id": "https://docs.couchbase.com/ld/relations/is-synonym-of",
+ "label": "is synonym of",
+ "kind": "relation (schema-level)",
+ "type": "for pairs the docs explicitly declare to be the same thing under two names - 5 occurrences across 5 files",
+ "promoted": true,
+ "recurrence": 5,
+ "examples": [
+  "DROP INDEX / DROP VECTOR INDEX (Capella)",
+  "ALTER INDEX / ALTER VECTOR INDEX (Capella)",
+  "Secondary Index / Global Secondary Index (GSI)"
+ ],
+ "note": "RANGE WIDENED IN ROUND 16, FROM STATEMENT PAIRS TO CONCEPT PAIRS. The predicate was minted for SQL++ statements the docs declare functionally identical, and the original type line said so. index-type:secondary-index isSynonymOf index-type:gsi is the first use on a pair of things rather than a pair of statements, licensed by an explicit sentence: 'A secondary index is also called a Global Secondary Index (GSI).' (server/current/learn/services-and-indexes/indexes/indexes.md). The widening is deliberate and narrow - what the predicate has always required is a source that *states* the identity, and 'is also called' states it as plainly as 'is functionally identical to' does. WHY THE TWO CONCEPTS ARE STILL NOT MERGED, even with the identity in hand: both surface terms are in live use across the corpus - index-type:secondary-index at 3 files on the promotion metric and 6 in the census, index-type:gsi at 8 and 16 - and a reader searching either should land somewhere. Merging would make one of the two spellings unfindable in exchange for removing a record that costs nothing. Synonymy is a fact to record, not an instruction to deduplicate - which is the distinction between this predicate and an alias. An `aliases` entry says a spelling was never legitimate; isSynonymOf says both names are correct and the docs use both."
 }

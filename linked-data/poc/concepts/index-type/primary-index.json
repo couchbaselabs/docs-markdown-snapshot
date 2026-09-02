@@ -1,8 +1,13 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/index-type/primary-index",
   "label": "Primary Index",
-  "recurrence": 4,
+  "recurrence": 3,
   "type": "an index on the document key of a keyspace; maintained asynchronously",
   "relates_to_competency_question": "What kinds of index can I create?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "index:primary",
+    "index:primary-index"
+  ],
+  "note": "Round 16 folded in two 7.2 learn/-tree spellings, `index:primary` and `index:primary-index` - the second identical but for the prefix, which is the shadow-copy defect wave 3 exists to fix. Distinguish from index-type:named-primary-index: the axis page gives Named Primary Index an H2 of its own, so the corpus keeps them apart, and CREATE PRIMARY INDEX documents both forms."
 }

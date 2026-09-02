@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/index-type/composite-vector",
   "label": "Composite Vector Index",
   "recurrence": 7,
-  "aliases": [
-    "vector-index:composite-vector-index"
-  ],
   "type": "a Global Secondary Index with a single vector column",
   "note": "SUBSUMPTION STATED IN THE SOURCE: 'Composite Vector Indexes ... which are Global Secondary Indexes (GSIs) with a single vector column' - so this isSubtypeOf index-type:gsi while belongsToIndexClass index-class:vector. It is the concrete case proving the class and type axes overlap rather than nest. ROUND 14 FOLD: the cloud/ tree minted this same index type as vector-index:composite-vector-index and used it in 5 files, against this record's 2, so the promoted spelling was the minority one for three rounds. The merge is licensed by identical labels plus an explicit source statement on a third page - 'Composite Vector indexes are a type of Composite Secondary Index which contain a single vector field and one or more scalar fields' (cloud/indexes/indexing-and-query-perf.md) - which restates this record's own type line. Recurrence 3 -> 7 is the union of the two file sets, not a new count.",
   "relates_to_competency_question": "What kinds of index can I create?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:composite-vector-index"
+  ]
 }

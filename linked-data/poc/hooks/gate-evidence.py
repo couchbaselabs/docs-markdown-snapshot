@@ -70,6 +70,24 @@ What it checks
    legal. See `check_id_hygiene` for why that scope is the point rather than a
    compromise.
 
+4. **No id in a RETIRED namespace, whatever its `registry_status` says** (added in
+   round 16, and the first rule here that fires on `extraction-layer`). The list
+   lives in `hooks/retired-prefixes.json`, one entry per prefix this project has
+   swept to zero occurrences, with the round that did it and where to file
+   instead. A prefix is only listed once the sweep is verified complete, which is
+   precisely what licenses ignoring the enum: `extraction-layer` means "reused
+   from an earlier extraction record", and there is no earlier record left to
+   reuse, so the declaration cannot be true. Rule 3's `minted`-only scope is right
+   for the opposite reason - those ids are still in the corpus and re-extraction
+   has to be able to reuse them. See `check_retired_prefix`.
+
+   Unlike rules 2 and 3 this one reads relation **subjects and objects** too, not
+   just the `concepts` array and predicate names. Round 16 measured why: 376 of
+   the corpus's 2,112 ids appear only in a relation slot and are never declared as
+   a concept anywhere, so a check that reads declarations is blind to 18% of the
+   vocabulary. That is the same defect the round found in `recurrence.py` (bug
+   #11), in a second place.
+
 What it does NOT check
 ----------------------
 That the triple built from a quotable sentence is a *fair reading* of it. Round
@@ -233,6 +251,63 @@ def depluralise(prefix):
 
 FILE_EXTENSIONS = (".adoc", ".md", ".html", ".htm", ".xml")
 
+RETIRED_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "retired-prefixes.json")
+
+
+def retired_prefixes():
+    """`{prefix: {retired_in, ids_swept, use_instead}}` from retired-prefixes.json.
+
+    A missing or malformed file yields `{}` - this rule is additive, and losing it
+    must not take the evidence check down with it.
+    """
+    try:
+        return json.load(open(RETIRED_FILE)).get("retired") or {}
+    except Exception:
+        return {}
+
+
+def check_retired_prefix(term_id, status, retired):
+    """Refuse an id in a namespace this project has swept to zero. A problem or None.
+
+    UNLIKE THE TWO RULES IN `check_id_hygiene`, THIS ONE IGNORES `registry_status`,
+    and the asymmetry is the point rather than an inconsistency.
+
+    Those rules fire on `minted` only because the corpus still *contains* the ids
+    they describe: 43 prefixes have no namespace behind them, and refusing to reuse
+    one would block the re-extraction rounds that are how they get fixed. Reuse is
+    legitimate there because there is something to reuse.
+
+    A retired prefix is the opposite case by construction. A prefix is only entered
+    in retired-prefixes.json once its sweep is complete and the count in
+    `extractions/` is nought - so `extraction-layer`, which means "reused from an
+    earlier extraction record", has no earlier record to refer to and is necessarily
+    false. `check_status` cannot notice, because it validates a declaration against
+    the *registry* and nothing validates one against the corpus. The reuse rule is
+    what propagated this defect in the first place: `indexes:` was minted in the very
+    first POC commit from Capella's directory name and then carried forward, honestly
+    declared, by five later rounds - none of which did anything wrong. That is why the
+    fix has to sit outside the status enum rather than inside it.
+    """
+    # `status` is accepted and deliberately not read, so that call sites can pass
+    # it uniformly beside check_id_hygiene and a future rule can change its mind
+    # without every caller changing shape.
+    if ":" not in term_id:
+        return None
+    prefix = term_id.split(":", 1)[0] + ":"
+    info = retired.get(prefix)
+    if not info:
+        return None
+    return (term_id, (
+        f"uses the namespace `{prefix}`, which was RETIRED in "
+        f"{info.get('retired_in', 'an earlier round')} - "
+        f"{info.get('ids_swept', 'all')} ids were rewritten out of the corpus and "
+        f"none remains. Use instead: {info.get('use_instead', 'see reconciliation.md')}\n"
+        f"    Note this applies whatever your `registry_status` says, including "
+        f'"extraction-layer": there is no earlier record left to have reused, so '
+        f"that declaration cannot be true here."
+    ))
+
 
 def check_id_hygiene(term_id, status, known):
     """Two id-shape rules, applied only to `minted` terms. Returns a problem or None.
@@ -393,6 +468,7 @@ def main():
     registry_problems = []
     idx = registry_index()
     known = namespaces()
+    retired = retired_prefixes()
 
     for c in rec.get("concepts", []) or []:
         if not isinstance(c, dict):
@@ -420,6 +496,25 @@ def main():
         if p:
             registry_problems.append(p)
         p = check_id_hygiene(pred, status, known)
+        if p:
+            registry_problems.append(p)
+
+    # The retired-prefix rule reads relation SUBJECTS AND OBJECTS as well as the
+    # `concepts` array, and that is the whole reason it catches anything. Round
+    # 16's census bug (recurrence.py bug #11) measured this: 376 of 2,112 ids in
+    # the corpus - 18% - appear only as a relation subject or object and never in
+    # any record's `concepts[]`. A check that reads the declared concepts is
+    # therefore blind to about a fifth of the vocabulary, including five of the
+    # misspellings that round had to sweep. Deduped over the whole record, since
+    # one retired id declared once and used as the object of nine relations is
+    # one mistake, not ten.
+    mentioned = {c.get("candidate_id") for c in rec.get("concepts", []) or []
+                 if isinstance(c, dict)}
+    for r in rec.get("relations", []) or []:
+        if isinstance(r, dict):
+            mentioned |= {r.get("subject"), r.get("object")}
+    for term in sorted(t for t in mentioned if isinstance(t, str)):
+        p = check_retired_prefix(term, None, retired)
         if p:
             registry_problems.append(p)
 

@@ -19,7 +19,7 @@
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "n1ql:covering-index",
+      "candidate_id": "index:covering-index",
       "label": "Covering index / covered query",
       "reused_or_minted": "minted"
     },
@@ -58,7 +58,7 @@
       "evidence": "To set the query context in the Query Workbench, use the the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor."
     },
     {
-      "subject": "n1ql:covering-index",
+      "subject": "index:covering-index",
       "predicate": "seeAlso",
       "object": "learn:global-secondary-indexes",
       "note": "structural link from an existing Markdown xref",

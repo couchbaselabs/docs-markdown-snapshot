@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/index-type/hyperscale-vector",
   "label": "Hyperscale Vector Index",
   "recurrence": 7,
-  "aliases": [
-    "vector-index:hyperscale-vector-index"
-  ],
   "type": "a vector index type optimised for very large vector datasets",
   "note": "ROUND 11 DECLINED A COMPARISON FOR WANT OF A SOURCE, AND ROUND 14'S FOLD SUPPLIED IT. The original note read: 'Deliberately NOT related to index-type:composite-vector by tradesOffAgainst, even though that predicate exists in the registry at recurrence 10 and was minted for exactly this pair. indexes.md describes each one's strengths in separate entries and never compares them, so the comparison would be the extractor's inference rather than the page's statement.' That refusal was correct about indexes.md and wrong about the corpus: cloud/vector-index/use-vector-indexes.md compares them head-on - 'A key difference between Hyperscale and Composite Vector indexes is how they handle scalar values in queries' - and the relation was already in the corpus under vector-index: ids, where nothing joined it to this record. The comparison is now expressed as behavesDifferentlyUnder with that quote, which is a better fit than the tradesOffAgainst round 11 considered. The lesson is not that the refusal was too cautious but that a refusal recorded on a record is invisible to the round that acquires the missing evidence.",
   "relates_to_competency_question": "What kinds of index can I create?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:hyperscale-vector-index"
+  ]
 }

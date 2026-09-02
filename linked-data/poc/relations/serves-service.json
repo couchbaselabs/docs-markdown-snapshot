@@ -3,7 +3,7 @@
   "label": "serves service",
   "recurrence": 2,
   "type": "the subject produces or maintains an artifact for the object service's use - the inverse direction from dependsOnService, and asserted by the *provider* rather than the consumer.",
-  "note": "CONTRADICTION WARNING, unresolved: services.md states 'Index Service: Creates indexes, for use by the Query and Analytics services', while indexes.md one directory away states 'The Search and Analytics Services create and use their own indexes'. Both are recorded on their own pages, so this predicate currently holds a triple that another page denies. See docs-issues/who-creates-analytics-indexes-contradiction. Do not resolve by picking the more recently extracted page.",
+  "note": "CONTRADICTION WARNING, unresolved: services.md states 'Index Service: Creates indexes, for use by the Query and Analytics services', while indexes.md one directory away states 'The Search and Analytics Services create and use their own indexes'. Both are recorded on their own pages, so this predicate currently holds a triple that another page denies. See docs-issues/server-who-creates-analytics-indexes-contradiction. Do not resolve by picking the more recently extracted page.",
   "relates_to_competency_question": "Which service produces the artifact this one consumes?",
   "kind": "relation (schema-level)",
   "promoted": true

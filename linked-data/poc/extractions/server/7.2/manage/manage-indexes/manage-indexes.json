@@ -38,19 +38,19 @@
     {
       "subject": "manage:manage-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:dropindex",
+      "object": "n1ql:drop-index",
       "note": "structural link ('you can also drop an index by means of the SQL++ DROP INDEX and DROP PRIMARY INDEX commands'); convention-matched id, may already be registered from a prior batch"
     },
     {
       "subject": "manage:manage-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:dropprimaryindex",
+      "object": "n1ql:drop-primary-index",
       "note": "structural link, same sentence as above; convention-matched id, may already be registered from a prior batch"
     },
     {
       "subject": "manage:manage-indexes",
       "predicate": "seeAlso",
-      "object": "index:storage-modes",
+      "object": "page:storage-modes",
       "note": "structural link ('Storage Mode. The storage mode used by the Index Service...'); reuses concept minted on storage-modes.md, this batch"
     },
     {

@@ -1,0 +1,51 @@
+{
+  "_readme": [
+    "Namespaces this project has retired: swept to zero occurrences in extractions/ by",
+    "normalise-ids.py, and refused by gate-evidence.py from then on, whatever a record's",
+    "registry_status says.",
+    "",
+    "A prefix belongs here only once the sweep is COMPLETE - verified by counting the",
+    "prefix in extractions/ and getting nought. That is what licenses ignoring",
+    "registry_status: `extraction-layer` means 'reused from an earlier extraction record',",
+    "and for a retired prefix there is no earlier record left to have reused, so the",
+    "declaration cannot be true. It is also the difference between this rule and",
+    "check_id_hygiene's two, which fire on `minted` only because the corpus still contains",
+    "the ids they describe and re-extraction has to be able to reuse them.",
+    "",
+    "`cloud-providers:` is deliberately NOT here. Its sweep is incomplete on purpose:",
+    "cloud-providers:gcp-azure is one id standing for two promoted providers, minted",
+    "because one sentence gave both the same rule, and rewriting it to either would",
+    "silently drop the other. A prefix with one live id is not retired.",
+    "",
+    "`use_instead` is prose because a retired prefix has no single destination - that is",
+    "usually why it was retired. Round 15's rule: a dissolution's destination is not a",
+    "function of the id."
+  ],
+  "retired": {
+    "indexes:": {
+      "retired_in": "round 16",
+      "ids_swept": 30,
+      "use_instead": "`index-type:` for a KIND of index (primary, secondary, composite-secondary, functional, array, partial, named-primary, gsi, hyperscale-vector, composite-vector, search-vector, analytics-index, view); `index:` for anything else true of indexes - settings, storage modes, rebalance methods, pushdowns, scan mechanics, on-disk artifacts; `storage-engine:` for an engine (plasma, forestdb, nitro, couchstore, magma); `vector-search:` for a vector-index artifact or tuning parameter; `page:` if what you are naming is a document rather than a thing. This prefix existed only because Capella files these pages in a directory called `indexes/`, and an id names its subject, not the directory the page was in."
+    },
+    "vector-index:": {
+      "retired_in": "round 14",
+      "ids_swept": 30,
+      "use_instead": "`vector-search:` for the subject area (settings, metrics, artifacts), `index-type:` for the three vector index types, `vector-similarity-metric:` for the four-member metric enum, `n1ql:` for the two SQL++ distance functions. The prefix was named like an axis and populated like a subject area."
+    },
+    "setting:": {
+      "retired_in": "round 15",
+      "ids_swept": 34,
+      "use_instead": "whatever owns the setting - `n1ql:` for a Query service setting or request parameter, `index:` for an Index service setting, `data:` for a Data service one, `tls:` for encryption configuration. A setting is always a setting OF something, so this prefix could only ever hold other namespaces' business."
+    },
+    "setting-scope:": {
+      "retired_in": "round 15",
+      "ids_swept": 3,
+      "use_instead": "`n1ql:request-level-query-parameters`, `n1ql:node-level-query-settings`, `n1ql:cluster-level-query-settings`. This one WAS a real closed axis - three members, no fourth - and was still folded, because it was a third spelling of three concepts round 10 had already promoted from the same page. If a later round finds cluster-versus-node scoping evidenced outside the Query service, mint it again then, with the citation."
+    },
+    "tools:": {
+      "retired_in": "round 15",
+      "ids_swept": 2,
+      "use_instead": "`tool:` - a plain singular/plural fork, and the cheapest kind of defect to prevent. check_id_hygiene's rule 1 now blocks minting a new one."
+    }
+  }
+}

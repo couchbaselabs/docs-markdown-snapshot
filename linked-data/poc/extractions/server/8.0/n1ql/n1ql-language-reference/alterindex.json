@@ -49,17 +49,17 @@
       "reused_or_minted": "reused - promoted registry concept"
     },
     {
-      "candidate_id": "index-type:standard-gsi-plasma",
+      "candidate_id": "index:standard-storage",
       "label": "Standard GSI (Plasma) index storage",
       "reused_or_minted": "minted - the page's edition gate is stated in terms of three named index storage technologies (Standard GSI/Plasma, MOI, Forest DB); the registry's storage-engine namespace covers only the DATA service (couchstore, magma), so neither storage-engine:* nor index-type:gsi fits. Flagged: reconciliation may prefer an index-storage-engine: namespace parallel to storage-engine:."
     },
     {
-      "candidate_id": "index-type:moi",
+      "candidate_id": "index:memory-optimized-storage",
       "label": "Memory-Optimized Index (MOI)",
       "reused_or_minted": "minted - named on this page as one of the two index storage technologies ALTER INDEX supports; no existing id"
     },
     {
-      "candidate_id": "index-type:forestdb",
+      "candidate_id": "storage-engine:forestdb",
       "label": "Forest DB index storage",
       "reused_or_minted": "minted - named on this page as the index storage technology ALTER INDEX explicitly does NOT support; must not be conflated with storage-engine:couchstore or storage-engine:magma, which are data-service storage engines"
     },
@@ -109,12 +109,12 @@
       "reused_or_minted": "reused - exact id minted by the 7.2 record for this page. See version_finding: its 7.2 availableSince evidence no longer exists at 8.0."
     },
     {
-      "candidate_id": "indexes:file-based-index-rebalancing",
+      "candidate_id": "index:file-based-index-rebalancing",
       "label": "File-based index rebalancing (shard affinity)",
       "reused_or_minted": "minted - no existing concept; needed as the subject of a NEW-AT-8.0 restriction on the nodes property. This is the same underlying mechanism the Capella records attribute to deployment:capella ('as it defaults to file-based index rebalancing'), but on Server it is an opt-in cluster setting, not a deployment property - see cross_product_finding."
     },
     {
-      "candidate_id": "indexes:index-redistribution-setting",
+      "candidate_id": "index:index-redistribution-setting",
       "label": "Index redistribution setting (automatic index redistribution on rebalance)",
       "reused_or_minted": "minted - named on this page; no existing id"
     },
@@ -161,7 +161,7 @@
       "evidence": "The [ALTER VECTOR INDEX](altervectorindex.md) statement is a synonym for the ALTER INDEX statement. Both statements have the same functionality."
     },
     {
-      "subject": "indexes:file-based-index-rebalancing",
+      "subject": "index:file-based-index-rebalancing",
       "predicate": "disablesFeatureFor",
       "object": "n1ql:alter-index-with-nodes",
       "reused_or_minted_predicate": "reused - promoted predicate, with the setting as subject and the disabled clause as object. This is NEW AT 8.0: the sentence does not exist on the 7.2 page.",
@@ -198,7 +198,7 @@
     {
       "subject": "n1ql:alter-index",
       "predicate": "tradesOffAgainst",
-      "object": "indexes:index-redistribution-setting",
+      "object": "index:index-redistribution-setting",
       "reused_or_minted_predicate": "reused - promoted predicate; the page frames the setting as the scalable alternative to running this statement repeatedly",
       "evidence": "Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance."
     },

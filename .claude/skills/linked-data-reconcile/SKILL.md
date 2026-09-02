@@ -46,7 +46,7 @@ for fp in files:
 # predicates/objects with len(files) >= 2 are promotion candidates
 ```
 
-### Four things the recurrence count won't tell you
+### Five things the recurrence count won't tell you
 
 Run these alongside the aggregation, before applying the promotion rule.
 
@@ -213,7 +213,27 @@ less promotable its contents**, and `query-settings.md` has eight settings
 `keep-alive-length`, `max-index-api`, `tmpspace-dir`/`-size`) that no extraction has
 ever minted at all and no queue will ever surface.
 
-Taken with (a) and the variant problem, the four failures are one failure:
+**e. The corpus is not the documentation, and a low count can mean the pages were
+never read.** Round 16 spent a whole wave reorganising the index namespaces and then
+found that `server/8.0/indexes/` - 11 pages, the canonical documentation of indexes -
+**has never been extracted**, because round 12 went looking for those pages under
+`learn/` after Antora had already moved them out of it. Every recurrence figure in
+that wave was partly a fact about which directories nine rounds happened to walk. So
+before reading a namespace's counts as evidence about the docs, check that the docs'
+own directory for that subject is *in the sample*:
+
+```bash
+# does the subject have a directory nobody has extracted?
+ls server/8.0/indexes/ | wc -l; ls linked-data/poc/extractions/server/8.0/indexes/ 2>&1
+```
+
+A missing directory reports as a low count, not as a gap, and there is no number
+anywhere that distinguishes the two. When you find one, the wave's honest output is a
+*re-extraction round*, not a set of promotions made on the evidence that happens to
+exist - which is why round 16 refused to promote Plasma, Forestdb and Nitro despite
+having read the sentences that define them.
+
+Taken with (a) and the variant problem, the five failures are one failure:
 **recurrence measures repetition, and repetition is an editorial property of the
 documentation, not of the concept.** Keep the bar - it is still the best cheap signal
 there is - and treat a measured duplication as a `docs-issues/` entry plus a
@@ -223,6 +243,18 @@ round recomputes it and will find your adjustment unreproducible. Likewise never
 trust a `recurrence` field you did not just recompute: `n1ql:encoded-plan` carried a
 2 that counted *relations*, and nothing re-checks a recorded count after the round
 that wrote it.
+
+Round 16 measured how far that has gone - `recurrence.py --stale-recurrence` reports
+**153 of 324 promoted records (47%) agreeing with the current query** - and the
+finding is not that the fields are wrong. They record what was true when a human
+wrote them, on an instrument that has since been replaced three times. The hazard is
+that **a record's prose reasons about its own weight** ("a minor, low-stakes
+promotion", written of a term the query now puts at 8), and a reconciliation pass
+reads prose. So: re-measure before you quote, and **do not rewrite the fields to
+agree** - the report is read-only on purpose, because a stale measurement is data and
+a silently refreshed one is a lost audit trail. If a round's reasoning depended on a
+field's value, put the re-measured number in a `recurrence_note` and say which
+instrument produced each.
 
 ## 2. Apply the promotion rule
 
@@ -283,6 +315,19 @@ cause in their notes and asked reconciliation to settle it. `pages/*.jsonld` is
 exempt and excluded by the checker: those records describe a real documentation
 page, so their `@id` is that page's public URL, which the registry does not own.
 
+**An id names its subject, not its location.** Round 16 found `covering-index`
+spelled five ways across three namespaces - `index-type:`, `indexes:`, `index:`,
+`n1ql:covering-index` and `n1ql:covering-indexes` - and the cause is not
+carelessness: `covering-indexes.md` sits at a different path in each of four doc
+trees, so an agent minting an id from the page in front of it produced a different
+prefix each time, correctly, every time. No pass that reads one page at a time can
+see this; only a namespace wave can. Three earlier instances have the same shape
+(`tool:cbq-shell`, `protocol:dcp`, `tool:cbbackupmgr` were each split across three
+namespaces by one directory naming them two ways). So when you file a record, ask
+what the term *is*, never where it was read: a prefix that names a directory is a
+smell, and `--variants` cannot catch these because the local names differ by a plural
+as well as by prefix.
+
 **Filing convention for Server RBAC roles: use the internal name, not the
 display label.** `roles.md` gives every role both - "Role: Manage Global
 Functions (query_manage_global_functions)" - and the registry files under
@@ -334,6 +379,28 @@ collision plainly in each record and in `reconciliation.md`, and leave them
 separate. Inventing the relationship would be adding a fact, not extracting
 one - if a later round's evidence resolves it, merge then, with the citation.
 
+**But search the extraction layer, not just the registry, before refusing a merge -
+a refusal is only as good as the set it searched.** Round 12 minted an enum, compared
+it against the registry, correctly refused to merge it with `index-state` in writing,
+and was blind to `index:indexer-node-state`, which was already in the corpus with the
+same three values - because it had never been promoted, so `registry-digest.py` could
+not show it. Four rounds later the same thing existed twice under two prefixes. A
+registry digest answers "what may I declare as `promoted`?"; it is the wrong
+instrument for "has anyone named this already?", which is
+`candidate-evidence.py --ns <prefix>` or a grep over `extractions/`. This is the
+second well-argued refusal overturned by evidence that was already on disk.
+
+**And when a fold *is* licensed, quote the sentence that licenses it.** An alias is a
+claim about a **referent**, and the gate resolves aliases before checking an id -
+which makes it the one field in the registry that can make two different things pass
+as one, permanently and invisibly. `verify-registry-ids.py` catches an alias that
+merely re-punctuates its target; nothing reaches the semantic case and nothing can.
+Round 16 wrote 21 aliases in one pass and deleted a promoted record for the first
+time in the POC's history (`capella:index-ui-status` into `indexer-node-state`); what
+makes that reviewable by someone who was not in the room is that the record quotes
+the two near-identical defining sentences, one per product tree, side by side. Do
+that every time you fold.
+
 Only draft full `.jsonld` (with `@context`, `@id`, `@type` against a real
 class) for a **flagship subset** - the highest-recurrence or most
 semantically-significant new terms from the round. Leave the rest at the
@@ -347,7 +414,13 @@ Ask: is this a fact about **the product** (a real mechanism, however unusual)
 or a fact about **the documentation** (a gap, a duplication, unadapted copy, an
 internal contradiction, an empty stub page)? The former gets modeled as
 concepts/relations. The latter goes to
-`linked-data/poc/docs-issues/<kebab-case-slug>.json`:
+`linked-data/poc/docs-issues/<product>-<kebab-case-slug>.json`. **The `<product>-`
+prefix is the convention, not an option** - since round 16, a `docs-issues/<slug>`
+reference from any registry record with no file behind it is a
+`verify-registry-ids.py` failure, because two references written in earlier rounds
+used the descriptive name without the prefix and went unnoticed for four rounds. That
+fails in the worst direction: a promoted record says "see `docs-issues/X` for the
+contradiction", a reader finds nothing, and concludes the caveat was never real.
 
 There is a third category, and rounds where the input is the *registry* rather
 than a page produce mostly this one: a fact about **this registry** - a
@@ -424,6 +497,8 @@ python3 linked-data/poc/verify-registry-ids.py  # gate: every record's id mirror
 python3 linked-data/poc/recurrence.py --selftest
 python3 linked-data/poc/verify-promotions.py    # report: always exits 0, always read it
 python3 linked-data/poc/recurrence.py --variants  # report: read it, decide alias vs rewrite
+python3 linked-data/poc/recurrence.py --stale-recurrence  # report: which `recurrence` fields still hold
+python3 linked-data/poc/recurrence.py --page-ids   # report: ids that are only ever linked to
 python3 linked-data/poc/candidate-evidence.py --ns <ns>  # while deciding, not at the end
 python3 linked-data/poc/candidate-evidence.py --audit <ids...>   # before promoting them
 python3 linked-data/poc/hooks/test-gate.py       # gate: only if you changed the gate
@@ -511,8 +586,25 @@ because `registry_status` describes the registry the record was written *against
 and 200 promotions later `minted` is false about ids the registry has since acquired.
 **A control's verdict can expire.** And don't "correct" those records to match
 today's registry - the declaration was true when it was made. `hooks/test-gate.py`
-(23 cases) is the regression suite for the gate's non-evidence rules, and its
-fixtures are synthetic for exactly this reason.
+(30 cases) is the regression suite for the gate's non-evidence rules, and its
+fixtures are synthetic for exactly this reason. When a round adds a rule that
+*withdraws* a permission - round 16 retired the `indexes:` prefix, so "reusing an
+`indexes:` id is allowed" flipped from a correct assertion to a wrong one - change the
+assertion **and write the reasoning beside it**, because in a diff an intentional flip
+is indistinguishable from a test loosened to make a change pass.
+
+**If you touch `recurrence.py`, decide separately what the metric ignores and what the
+census ignores.** Round 14 excluded `seeAlso` from the concept-promotion metric, for a
+good reason, by editing a shared code path - and thereby excluded 376 ids, 18% of the
+corpus, from the *census* as well: they appeared in no report this project produces,
+including `--variants`, whose only job is to enumerate spellings. Five misspellings of
+promoted statements hid there for two rounds, and the shadow-prefix figure quoted in
+two writeups (43) was really 55. `scan()` now returns `mentions`, `slots`, `labels`
+and `see_also_objects` as separate tables so a caller has to state which question it
+is asking; keep it that way. The general form is worth carrying into every number you
+write down: **a figure inherits the instrument that produced it, and nothing in this
+pipeline records which instrument that was** - so when a writeup quotes a count, say
+which report produced it.
 
 ## Principles that govern the judgment calls throughout
 

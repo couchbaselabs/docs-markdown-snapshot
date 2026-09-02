@@ -3,24 +3,44 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/union.md",
   "concepts": [
-    { "candidate_id": "n1ql:union", "label": "UNION set operator", "reused_or_minted": "minted" },
-    { "candidate_id": "n1ql:intersect", "label": "INTERSECT set operator", "reused_or_minted": "minted" },
-    { "candidate_id": "n1ql:except", "label": "EXCEPT set operator", "reused_or_minted": "minted" },
-    { "candidate_id": "indexes:covering-index", "label": "Covering Index", "reused_or_minted": "reused - same concept id used in cloud/indexes/early-filters-and-pagination.json" },
-    { "candidate_id": "n1ql:orderby", "label": "ORDER BY clause", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+    {
+      "candidate_id": "n1ql:union",
+      "label": "UNION set operator",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:intersect",
+      "label": "INTERSECT set operator",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:except",
+      "label": "EXCEPT set operator",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index",
+      "reused_or_minted": "reused - same concept id used in cloud/indexes/early-filters-and-pagination.json"
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "reused_or_minted": "minted - no existing candidate found in registry slice"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:union",
       "predicate": "seeAlso",
-      "object": "indexes:covering-index",
+      "object": "index:covering-index",
       "reused_or_minted_predicate": "reused - structural markdown link",
       "evidence": "You can improve the performance of a query by using covering indexes, where the index includes all the information needed to satisfy the query. For more information, see [Covering Indexes](../../indexes/covering-indexes.md)."
     },
     {
       "subject": "n1ql:union",
       "predicate": "seeAlso",
-      "object": "n1ql:orderby",
+      "object": "n1ql:order-by",
       "reused_or_minted_predicate": "reused - structural markdown link",
       "evidence": "To order all the results of a set operator together, refer to the examples for the [ORDER BY](orderby.md#Ex2) clause."
     }

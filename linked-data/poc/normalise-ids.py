@@ -225,15 +225,242 @@ ID_RENAMES = {
     "setting-scope:cluster-level": "n1ql:cluster-level-query-settings",
     # --- Singular/plural forks of namespaces that already exist. ---
     # Three of 55 unpromoted prefixes are these. Deliberately not a rule: applied
-    # as one it would sweep `indexes:` (30 ids, 14 files) into `index:` (4
-    # promoted), and where those 30 belong is wave 3's question, not a spelling
-    # correction. cloud-providers:gcp-azure is left alone for a different reason -
-    # it is one id standing for two promoted providers, minted because one sentence
-    # gave both the same rule, and rewriting it to either would silently drop the
-    # other. It needs the relation split in two, which this script must not do.
+    # as one it would sweep `indexes:` into `index:`, and where those 30 ids belong
+    # is wave 3's question, answered below - not a spelling correction.
+    # cloud-providers:gcp-azure is left alone for a different reason - it is one id
+    # standing for two promoted providers, minted because one sentence gave both the
+    # same rule, and rewriting it to either would silently drop the other. It needs
+    # the relation split in two, which this script must not do.
     "tools:cbimport": "tool:cbimport",
     "tools:query-workbench": "tool:query-workbench",
     "cloud-providers:aws": "cloud-provider:aws",
+    # ----------------------------------------------------------------------
+    # --- Round 16, wave 3. Three prefixes for one subject, one per directory.
+    # ----------------------------------------------------------------------
+    # `indexes:` (30 ids), `index:` (28) and `index-type:` (19) are not three
+    # families. They are the same eleven pages filed in three different places -
+    # Capella's `indexes/` module, 7.2's `learn/services-and-indexes/indexes/`, and
+    # the `n1ql/` statement reference - each of which taught the round that first
+    # read it a different prefix, after which the reuse rule carried the choice
+    # forward. `indexes:` was minted in the very first POC commit from Capella's
+    # path and propagated across four later rounds. The gate cannot catch this: such
+    # a record correctly declares `extraction-layer`, because reusing an id that
+    # exists IS what the rule asks for. NAMING AN ID AFTER THE DIRECTORY THE PAGE
+    # HAPPENED TO BE IN IS THE DEFECT; the id should name the subject.
+    #
+    # The wave's structural decision, applied by every entry below:
+    #   index-type:  is an AXIS - it holds kinds of index and nothing else.
+    #   index:       is a SUBJECT AREA - everything true of indexes that is not a
+    #                kind: settings, storage modes, rebalance methods, pushdowns,
+    #                scan mechanics, on-disk artifacts.
+    #   index-class: untouched (two members, closed, already correct).
+    #   storage-engine: gains the three index engines; it already held the two
+    #                data engines, so "engine" now means one thing in the registry.
+    #   page:        NEW, and not a subject area - a part-of-speech prefix, the
+    #                third answer round 15's axis test allows. It says only "this id
+    #                denotes a document, not a thing." See the block below it.
+    #   indexes:     retired. Nothing may be filed there again -
+    #                hooks/gate-evidence.py enforces it.
+    #
+    # Three ids whose destination is a record promoted in this same round.
+    "indexes:covering-index": "index:covering-index",
+    "indexes:file-based-index-rebalancing": "index:file-based-index-rebalancing",
+    "indexes:index-redistribution-setting": "index:index-redistribution-setting",
+    # The index-pushdown family, moved intact and NOT promoted. It is the round's
+    # main deliberate refusal: index_pushdowns.md heads six named members under one
+    # definition ("Index Pushdowns are performance optimizations where the Query
+    # engine pushes more of the work down to the Indexer"), which is the family
+    # shape the promotion rule's first exception exists for - but the page carrying
+    # it is in server/8.0/indexes/, a directory that HAS NEVER BEEN EXTRACTED, so
+    # every count here comes from Capella's thin pre-gate records and 7.2's copy.
+    # Promoting a family on a corpus that does not contain its own head page would
+    # be reading the recurrence metric as if it measured the documentation. It
+    # measures extraction history. Round 17 extracts the directory; then promote.
+    "indexes:index-pushdown": "index:index-pushdown",
+    "indexes:predicate-pushdown": "index:predicate-pushdown",
+    "indexes:order-pushdown": "index:order-pushdown",
+    "indexes:pagination-pushdown": "index:pagination-pushdown",
+    "indexes:operator-pushdown": "index:operator-pushdown",
+    "indexes:index-projection": "index:index-projection",
+    # A fourth pushdown spelling, from the filename of the page that documents it
+    # (groupby-aggregate-performance.md) rather than from the thing. Its label says
+    # what it is - 'Grouping and Aggregate Pushdowns' - so it folds onto the
+    # concept, not onto a page id. Same destination as index-type:group-aggregate-
+    # pushdown below, which is the same thing filed as if it were a kind of index.
+    "indexes:groupby-aggregate-performance": "index:group-aggregate-pushdown",
+    # Scan and query-execution mechanics: things the Query service does with an
+    # index, not kinds of index.
+    "indexes:early-filtering": "index:early-filtering",
+    "indexes:early-order-and-pagination": "index:early-order-and-pagination",
+    "indexes:sequential-scan": "index:sequential-scan",
+    "indexes:index-consistency": "index:index-consistency",
+    # Index lifecycle, availability and on-disk artifacts.
+    "indexes:index-replication": "index:index-replication",
+    "indexes:index-lifecycle": "index:index-lifecycle",
+    "indexes:index-partitioning": "index:index-partitioning",
+    "indexes:index-rollback": "index:index-rollback",
+    "indexes:index-snapshot": "index:index-snapshot",
+    # Two Plasma memory enhancements. They are features OF an engine, and the
+    # engine is not promoted, so they stay in the subject area rather than being
+    # filed under an id that does not exist yet.
+    "indexes:bloom-filter": "index:bloom-filter",
+    "indexes:in-memory-compression": "index:in-memory-compression",
+    # Two vector-index artifacts, evacuated to the subject area round 14 built for
+    # exactly them. `vector-search:reranking` is already there and already promoted;
+    # this is the second spelling of it, and the third spelling of the same fold
+    # (round 14 moved `vector-index:reranking`).
+    "indexes:vector-index-reranking": "vector-search:reranking",
+    "indexes:vector-index-codebook": "vector-search:codebook",
+    # Plasma is a storage ENGINE, and the registry already has a namespace for
+    # those holding Couchstore and Magma. Filing it there is the point of the move:
+    # after it, "engine" denotes one kind of thing across the whole registry.
+    "indexes:index-storage-plasma": "storage-engine:plasma",
+    # ------------------------------------------------------------------
+    # `page:` - a part of speech, not a subject area. Six ids, all minted from a
+    # filename, all seeAlso-only, none carrying a label that names a thing (four
+    # carry no label at all; `indexes:indexing-overview` labels itself 'Primary and
+    # Secondary Index Reference (navigation hub page)', which settles it).
+    #
+    # These are not concepts and never were. They recur perfectly well - a hub page
+    # linked from seven others reaches recurrence 7 - which is why recurrence alone
+    # cannot find them and why candidate-evidence.py tells a reader to check the
+    # label. The prefix makes the part of speech part of the id, so no future report
+    # has to re-derive it.
+    #
+    # THE SCALE THIS IS A PILOT OF, MEASURED: 443 of the corpus's 2,135 distinct ids
+    # (21%) are seeAlso-only with no label anywhere and no registry file. The tell
+    # over-counts - eight of them are bare URLs used as objects, others are
+    # path-shaped - so the real figure needs the label check a person does. Sweeping
+    # it is a round of its own, and doing it here for six ids while leaving the rest
+    # is deliberate: this wave owns `indexes:`, and a prefix has to be tried
+    # somewhere before it is imposed on a fifth of the corpus.
+    "indexes:indexing-overview": "page:indexing-overview",
+    "indexes:early-filters-and-pagination": "page:early-filters-and-pagination",
+    "indexes:index-pushdowns": "page:index-pushdowns",
+    "indexes:index-scans": "page:index-scans",
+    "indexes:storage-modes": "page:storage-modes",
+    "indexes:query-without-index": "page:query-without-index",
+    # Two more of the same shape, from `index:` rather than `indexes:`. Note
+    # `index:index-pushdowns` (plural, the page) and `index:index-pushdown`
+    # (singular, the concept) were two ids one letter apart for two different kinds
+    # of thing.
+    "index:index-scans": "page:index-scans",
+    "index:storage-modes": "page:storage-modes",
+    # ------------------------------------------------------------------
+    # Out of `index-type:`, because they are not kinds of index. Two of the seven
+    # are disqualified by the axis page's own prose, which is the strongest evidence
+    # a rename in this project gets: 'A duplicate index is not a special type of
+    # index, but a feature of Couchbase indexing.' and, for covering index, a
+    # definition given entirely after index selection has happened - 'After the
+    # index selection is made, the query engine analyzes the query to see if it can
+    # be answered using only the data in the index.' A property you cannot know at
+    # CREATE INDEX time is not a type. Both are nonetheless listed among the eleven
+    # entries of a page titled 'Types of Primary and Secondary Index' - see
+    # docs-issues/index-type-taxonomy-mixes-kinds.
+    "index-type:covering-index": "index:covering-index",
+    "index-type:duplicate-index": "index:duplicate-index",
+    # A span is a range in a query plan. Nothing creates one.
+    "index-type:index-span": "index:index-span",
+    # A pushdown is something the Query engine does. See the family above.
+    "index-type:group-aggregate-pushdown": "index:group-aggregate-pushdown",
+    # THE STORAGE-MODE / STORAGE-ENGINE CONFLATION, and its cause. The docs use
+    # "storage engine" at two levels: groupby-aggregate-performance.md writes
+    # 'Grouping and aggregate pushdown is supported on both storage engines:
+    # Standard GSI and Memory Optimized GSI (MOI)' - naming the two service
+    # storage MODES as engines - while storage-modes.md names the actual engines
+    # underneath ('standard index storage is supported by the Plasma storage
+    # engine', 'in Couchbase Server Community Edition ... by the Forestdb storage
+    # engine', and Nitro for memory-optimized). An extractor reading the first
+    # sentence has no way to know a second level exists, so MOI and Standard GSI
+    # arrived as index *types*. They are neither types nor engines: they are the
+    # two-member closed choice of the Index Service's storage mode, which the
+    # registry promoted in round 11 under index: - so these two fold onto records
+    # that already exist and already say so.
+    "index-type:moi": "index:memory-optimized-storage",
+    "index-type:standard-gsi-plasma": "index:standard-storage",
+    # ForestDB is a real engine at the lower level, and joins Plasma above.
+    "index-type:forestdb": "storage-engine:forestdb",
+    # A truncation, not a mis-filing: this one is on the right axis under the wrong
+    # name. Its own label spells the destination out - 'Secondary index (the plain,
+    # non-vector index CREATE INDEX produces by default)'.
+    "index-type:secondary": "index-type:secondary-index",
+    # ------------------------------------------------------------------
+    # Into `index-type:`, because they ARE kinds of index and `index:` held a
+    # shadow copy of the axis. Every one of these has a twin already under
+    # index-type: or an H2 of its own in the axis page's eleven-entry list, so this
+    # is a merge of two spellings, not a reclassification: the two prefixes were
+    # populated by two rounds reading the same enumeration in two directories.
+    "index:array-index": "index-type:array-index",
+    "index:functional-index": "index-type:functional-index",
+    "index:partial-index": "index-type:partial-index",
+    "index:composite-secondary-index": "index-type:composite-secondary-index",
+    "index:named-primary-index": "index-type:named-primary-index",
+    "index:primary": "index-type:primary-index",
+    "index:primary-index": "index-type:primary-index",
+    "index:secondary-index": "index-type:secondary-index",
+    "index:analytics": "index-type:analytics-index",
+    # Two spellings of GSI, one of them a plural page-ish id with no label. The
+    # merge is licensed by an explicit sentence and is recorded as a *synonymy*
+    # rather than collapsed: 'A secondary index is also called a Global Secondary
+    # Index (GSI).' index-type:secondary-index and index-type:gsi therefore both
+    # survive, linked by isSynonymOf - see relations/is-synonym-of.json for why a
+    # stated synonymy is not an instruction to deduplicate.
+    "index:secondary-gsi": "index-type:gsi",
+    "index:global-secondary-indexes": "index-type:gsi",
+    # A duplicate index is not a type (see above), so this one moves the other way
+    # and index-type:duplicate-index folds onto it.
+    # "index:duplicate-index" stays put - listed here only to say so.
+    #
+    # Views are a kind of index: indexes.md enumerates them among the eight, and
+    # the promoted record's own type line calls it 'the legacy/deprecated index
+    # kind'. The record file moves with the id, from concepts/index/view.json to
+    # concepts/index-type/view.json.
+    "index:view": "index-type:view",
+    # `index:full-text` is aliased on fts:full-text-search, which is the record
+    # that says of itself 'the CAPABILITY, not the index artifact' - while this
+    # id's label is 'Full Text index (Search service)', i.e. the artifact. Round
+    # 16 moves the alias to search:full-text-index, the artifact record, and the id
+    # needs no rewrite. Noted here because the two records explicitly distinguish
+    # themselves and the alias still went to the wrong one: an alias is a claim
+    # about a referent, and nothing checks referents.
+    #
+    # NOT MOVED, and each is a decision rather than an omission:
+    #   index:index                    the genus, not a species. Stays.
+    #   index:skiplist                 'Skiplist (memory-optimized index
+    #                                  structure)' - a DATA STRUCTURE, and the
+    #                                  refusal that gives the engine family its
+    #                                  edges. storage-modes.md says memory-optimized
+    #                                  storage 'uses a lock-free skiplist'; a
+    #                                  structure an engine uses is not an engine.
+    #   index:inverse-index            a data-modelling pattern from a document-
+    #                                  design page, on neither enumeration.
+    #   index:gsi-per-collection-scope a fact about GSIs stated as an id. Wants
+    #                                  re-expressing as a relation, not a rename.
+    #   index:indexer-scan-timeout     a setting; index: is where settings go.
+    #   index:rollback-snapshot-revert a mechanism; likewise.
+    #   n1ql:groupby-aggregate-performance  a page id, and left alone because
+    #                                  `n1ql:` is a later wave's scope. NOTE: it is
+    #                                  load-bearing - recurrence.py's self-test uses
+    #                                  it as its known object-only id (bug #11), so
+    #                                  a round that renames it must update the test.
+    # ------------------------------------------------------------------
+    # Filename spellings of promoted SQL++ statements, invisible until round 16.
+    # These five sat in the corpus unreported by `recurrence.py --variants`, the
+    # check built to report exactly them, because they appear only in the object
+    # slot of a seeAlso and that slot reached no table at all (bug #11). Same defect
+    # as n1ql:createfunction above, found four rounds later for a mechanical reason.
+    "n1ql:createprimaryindex": "n1ql:create-primary-index",
+    "n1ql:dropprimaryindex": "n1ql:drop-primary-index",
+    "n1ql:alterindex": "n1ql:alter-index",
+    "n1ql:dropindex": "n1ql:drop-index",
+    "n1ql:orderby": "n1ql:order-by",
+    # The other four covering-index spellings, folded onto the record promoted this
+    # round. Five spellings across three namespaces for one term at 14 distinct
+    # files - and recurrence 0 on the promotion metric, because every mention is a
+    # seeAlso or a bare concepts[] entry. The more the docs cross-link a concept,
+    # the less the promotion metric can see it.
+    "n1ql:covering-indexes": "index:covering-index",
+    "n1ql:covering-index": "index:covering-index",
 }
 
 # --------------------------------------------------------------------------
@@ -313,6 +540,97 @@ PREDICATE_RENAME_EXCLUDE = {
 ID_FIELDS = ("subject", "object")
 
 IRI_CONCEPT_PREFIX = "https://docs.couchbase.com/ld/concepts/"
+
+# --------------------------------------------------------------------------
+# Aliases this script has killed. Round 16, and the reason it belongs here.
+# --------------------------------------------------------------------------
+# There is a third state the alias-or-rewrite rule at the top does not name: a
+# spelling that WAS in the corpus, was legitimate enough for a record to use, and
+# has now been rewritten out. Recording it in `aliases` is wrong, and the symptom
+# is measurable rather than theoretical - `recurrence.py --variants` seeds the
+# registry as a speller, so a dead alias shows up forever as a cluster whose only
+# used form is the surviving one. That report's own help text has to explain the
+# artifact it prints ("`0 files` means the form exists only in the registry - so
+# any cluster whose only used form is the NO FILE one is pure false debt"), which
+# it should not have to. Round 14 aliased seven `vector-index:` spellings and then
+# rewrote all of them out; the false debt has been in the report since.
+#
+# So a dead alias moves to `folded_spellings`, a field nothing reads: it is
+# history, not vocabulary. And the sweep lives HERE, in the only thing that writes
+# to the corpus, rather than in a check that reports the problem after the fact -
+# the writer that kills a spelling is the thing that should record its death
+# correctly, which makes the rule hold from now on without anyone remembering it.
+#
+# Nothing is deleted and nothing is invented: only the field name changes.
+RETIRED_ALIAS_FIELD = "folded_spellings"
+
+
+def sweep_dead_aliases(apply):
+    """Move aliases THIS SCRIPT HAS KILLED to `folded_spellings`.
+
+    Returns [(record path, alias)] for reporting.
+
+    Two conditions, both required, and the first is what keeps the sweep honest:
+
+      1. The alias appears in this script's own rename tables - i.e. this script
+         has declared it not a legitimate name and rewritten it out.
+      2. It has no remaining occurrence in the corpus.
+
+    Testing (2) alone was the first version and it was wrong on two of the 24 it
+    found. `relations/see-also.json` aliases `rdfs:seeAlso`, which is not a
+    misspelling at all but a mapping onto a standard vocabulary - the record says
+    so in capitals - and `concepts/role/ro-admin.json` aliases
+    `role:read-only-admin`, the display name for a role the registry files under
+    its internal one. Both are exactly the aliasing the rule at the top of this
+    file endorses; both happen to have no corpus occurrence. AN UNUSED ALIAS AND A
+    KILLED ALIAS ARE NOT THE SAME THING, and only the second is history.
+
+    Condition (2) is still needed: an alias this script renames might legitimately
+    remain in the corpus if some record spells it in a form the rewrite missed, and
+    in that case the alias is still load-bearing. So it stays.
+    """
+    live = set()
+    for fp in glob.glob(os.path.join(EXTRACTIONS, "**", "*.json"), recursive=True):
+        try:
+            rec = json.load(open(fp))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        for c in rec.get("concepts", []):
+            if isinstance(c.get("candidate_id"), str):
+                live.add(R.canonical(c["candidate_id"]))
+        for r in rec.get("relations", []):
+            for field in ID_FIELDS + ("predicate",):
+                if isinstance(r.get(field), str):
+                    live.add(R.canonical(r[field]))
+
+    moved = []
+    for pattern in ("concepts/**/*.json", "relations/**/*.json"):
+        for fp in sorted(glob.glob(os.path.join(POC, pattern), recursive=True)):
+            try:
+                rec = json.load(open(fp))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                continue
+            aliases = rec.get("aliases")
+            if not isinstance(aliases, list):
+                continue
+            dead = [a for a in aliases
+                    if isinstance(a, str)
+                    and _destination(R.canonical(a))
+                    and R.canonical(a) not in live]
+            if not dead:
+                continue
+            short = os.path.relpath(fp, POC)
+            moved += [(short, a) for a in dead]
+            if not apply:
+                continue
+            rec["aliases"] = [a for a in aliases if a not in dead]
+            if not rec["aliases"]:
+                del rec["aliases"]
+            rec[RETIRED_ALIAS_FIELD] = sorted(set(rec.get(RETIRED_ALIAS_FIELD, [])) | set(dead))
+            with open(fp, "w") as fh:
+                json.dump(rec, fh, indent=2, ensure_ascii=False)
+                fh.write("\n")
+    return moved
 
 
 def _destination(cid):
@@ -446,6 +764,13 @@ def main():
         print(f"  {n:4d}  {k}")
     print(f"\n{len(touched)} files {'rewritten' if args.apply else 'would change'}, "
           f"{sum(tally.values())} substitutions, {len(files)} scanned")
+
+    dead = sweep_dead_aliases(args.apply)
+    if dead:
+        print(f"\n{len(dead)} registry alias(es) with no corpus occurrence left, "
+              f"{'moved to' if args.apply else 'would move to'} {RETIRED_ALIAS_FIELD}:")
+        for short, alias in dead:
+            print(f"    {short}: {alias}")
     if skipped:
         print(f"\n!! {len(skipped)} unreadable, left untouched:")
         for short, e in skipped:

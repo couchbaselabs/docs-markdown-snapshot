@@ -3,29 +3,49 @@
   "source_version": "Capella",
   "source_path": "cloud/indexes/index-replication.md",
   "concepts": [
-    { "candidate_id": "indexes:index-replication", "label": "Index Replication (availability and load-balancing across Index Service nodes)", "reused_or_minted": "reused (intended) - same concept as server/current/indexes/index-replication.md and server/7.2/7.6 equivalents" },
-    { "candidate_id": "indexes:index-partitioning", "label": "Index Partitioning", "reused_or_minted": "reused (intended) - same concept as server/'s index-replication.md equivalents" },
-    { "candidate_id": "indexes:index-consistency", "label": "Index Consistency (scan consistency vs. GSI eventual consistency)", "reused_or_minted": "minted" },
-    { "candidate_id": "indexes:index-snapshot", "label": "Index Snapshot (on-disk recovery snapshot)", "reused_or_minted": "minted" },
-    { "candidate_id": "indexes:index-rollback", "label": "Index Rollback (DCP failover log based rollback)", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "index:index-replication",
+      "label": "Index Replication (availability and load-balancing across Index Service nodes)",
+      "reused_or_minted": "reused (intended) - same concept as server/current/indexes/index-replication.md and server/7.2/7.6 equivalents"
+    },
+    {
+      "candidate_id": "index:index-partitioning",
+      "label": "Index Partitioning",
+      "reused_or_minted": "reused (intended) - same concept as server/'s index-replication.md equivalents"
+    },
+    {
+      "candidate_id": "index:index-consistency",
+      "label": "Index Consistency (scan consistency vs. GSI eventual consistency)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:index-snapshot",
+      "label": "Index Snapshot (on-disk recovery snapshot)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index:index-rollback",
+      "label": "Index Rollback (DCP failover log based rollback)",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
     {
-      "subject": "indexes:index-consistency",
+      "subject": "index:index-consistency",
       "predicate": "usesEnum",
       "object": "n1ql:scan-consistency-values",
       "reused_or_minted_predicate": "reused within this batch - same scan-consistency enum minted in cloud/n1ql/n1ql-manage/query-settings.json (not_bounded/at_plus/request_plus/statement_plus)",
       "evidence": "not_bounded: Executes the query immediately, without requiring any consistency for the query. ... at_plus: ... request_plus: ... statement_plus: Executes the query with strong consistency per statement."
     },
     {
-      "subject": "indexes:index-replication",
+      "subject": "index:index-replication",
       "predicate": "seeAlso",
-      "object": "indexes:indexing-overview",
+      "object": "page:indexing-overview",
       "reused_or_minted_predicate": "reused, not minted - structural markdown link",
       "evidence": "You can replicate primary and secondary indexes across cluster nodes running the [Index Service](indexing-overview.md)."
     },
     {
-      "subject": "indexes:index-consistency",
+      "subject": "index:index-consistency",
       "predicate": "seeAlso",
       "object": "n1ql:request-level-query-parameters",
       "reused_or_minted_predicate": "reused, not minted - structural markdown link",

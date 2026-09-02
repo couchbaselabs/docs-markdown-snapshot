@@ -4,8 +4,10 @@
   "type": "a bucket- or collection-level ceiling on item expiration, overriding a longer per-item TTL.",
   "promoted": true,
   "recurrence": 3,
-  "aliases": ["setting:collection-max-ttl"],
   "recurrence_note": "Round 15: 2 -> 3 files, by folding `setting:collection-max-ttl` onto this id. Same shape as the n1ql:scan-consistency fold - a truthful `minted` declaration for a referent that was already promoted - with one addition: the duplicate was minted under a name carrying the *collection* tier, and this record's type already covers both tiers ('a bucket- or collection-level ceiling'). A tier in the id is what made the duplicate look like a different thing.",
   "documented_at": "server/current/learn/data/expiration.md",
-  "note": "See data:expiration. Subject of a takesPrecedenceOver triple - one of the two occurrences that earned that predicate its promotion."
+  "note": "See data:expiration. Subject of a takesPrecedenceOver triple - one of the two occurrences that earned that predicate its promotion.",
+  "folded_spellings": [
+    "setting:collection-max-ttl"
+  ]
 }

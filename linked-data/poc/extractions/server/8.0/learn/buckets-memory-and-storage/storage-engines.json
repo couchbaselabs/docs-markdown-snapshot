@@ -3,13 +3,48 @@
   "source_version": "8.0",
   "source_path": "server/current/learn/buckets-memory-and-storage/storage-engines.md",
   "concepts": [
-    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (from a Capella health-advisor page). This page is server's own dedicated account and matches the Capella page's usage with no stated distinction, so reused rather than re-minted." },
-    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - already promoted, same basis as storage-engine:couchstore." },
-    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
-    { "candidate_id": "vbucket:vbucket-count-128", "label": "128 vBucket configuration (Magma)", "registry_status": "minted", "reused_or_minted": "minted - one of two vBucket-count configurations Magma offers, a genuine sibling family alongside vbucket:vbucket-count-1024, distinct from server:vbucket/vbucket:active-vbucket/vbucket:replica-vbucket minted on vbuckets.json." },
-    { "candidate_id": "vbucket:vbucket-count-1024", "label": "1024 vBucket configuration (Magma)", "registry_status": "minted", "reused_or_minted": "minted - sibling of vbucket:vbucket-count-128." },
-    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "registry_status": "promoted", "reused_or_minted": "reused - already promoted." },
-    { "candidate_id": "index:view", "label": "View", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. This page states the legacy Views service does not run on Magma storage." }
+    {
+      "candidate_id": "storage-engine:couchstore",
+      "label": "Couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (from a Capella health-advisor page). This page is server's own dedicated account and matches the Capella page's usage with no stated distinction, so reused rather than re-minted."
+    },
+    {
+      "candidate_id": "storage-engine:magma",
+      "label": "Magma",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, same basis as storage-engine:couchstore."
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "vbucket:vbucket-count-128",
+      "label": "128 vBucket configuration (Magma)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of two vBucket-count configurations Magma offers, a genuine sibling family alongside vbucket:vbucket-count-1024, distinct from server:vbucket/vbucket:active-vbucket/vbucket:replica-vbucket minted on vbuckets.json."
+    },
+    {
+      "candidate_id": "vbucket:vbucket-count-1024",
+      "label": "1024 vBucket configuration (Magma)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of vbucket:vbucket-count-128."
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index-type:view",
+      "label": "View",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page states the legacy Views service does not run on Magma storage."
+    }
   ],
   "relations": [
     {
@@ -95,7 +130,7 @@
     {
       "subject": "storage-engine:magma",
       "predicate": "doesNotSupport",
-      "object": "index:view",
+      "object": "index-type:view",
       "registry_status": "promoted",
       "reused_or_minted_predicate": "reused - doesNotSupport",
       "evidence": "You're running the legacy [Views Reference](../views/views-intro.md) Service, which does not run on Magma storage."

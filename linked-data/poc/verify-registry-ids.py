@@ -55,6 +55,11 @@ this namespace's local-name convention, but the check does not force that);
 same reason. A punctuation variant belongs in `normalise-ids.py`, where the fix is
 applied to the records and the next mint of the bad form is denied.
 
+And since round 16: **every `docs-issues/<slug>` a registry record points at must
+have a file.** Two references written in earlier rounds pointed at slugs that were
+never filed under that name, and nothing noticed for four rounds - see
+`dangling_docs_issues` for why a broken caveat pointer is worse than a missing one.
+
 Deliberately not checked here: whether an id is *well-formed* beyond matching its
 path (that would be a naming-convention checker, a different and much more
 opinionated job), and whether two records denote the same thing (that is
@@ -113,6 +118,39 @@ def punctuation_aliases(data, own_id):
             if isinstance(a, str) and a.strip() and squash(a) == squash(short)]
 
 
+DOCS_ISSUE_REF = re.compile(r"docs-issues/([a-z0-9][a-z0-9-]*)")
+
+
+def dangling_docs_issues(data):
+    """Slugs a record points at under `docs-issues/` that have no file. See below.
+
+    Added in round 16, when writing six new issues turned up two references from
+    earlier rounds pointing at files that do not exist - `docs-issues/dcp-name-drift`
+    and `docs-issues/who-creates-analytics-indexes-contradiction`, both of which are
+    filed with a `server-` prefix. Neither was ever a typo in the ordinary sense: the
+    author wrote the issue's descriptive name and the directory's convention is
+    `<product>-<name>`, so the reference was plausible, adjacent to a real file, and
+    wrong. Nothing read it, so nothing complained, for four rounds.
+
+    Worth checking because the reconcile skill asks for exactly this kind of
+    cross-link ("Cross-link from the originating record's finding field to the new
+    docs-issue id") and a broken one fails silently in the direction that matters
+    most: a promoted record says "see docs-issues/X for the contradiction", a reader
+    goes looking, finds nothing, and concludes the caveat was never real rather than
+    that the pointer was wrong. This is the same failure shape as `verify-promotions.py`
+    - narrated as existing, never actually filed - in the other direction.
+
+    Scans the record's serialised text rather than named fields on purpose: these
+    references live in free prose inside `note`, `recurrence_note`, `description` and
+    at least four other keys, and enumerating the keys would just be a list to keep
+    up to date. `extractions/` is not scanned - it is history, and rewriting a past
+    record to fix a pointer is the thing this project refuses to do.
+    """
+    text = json.dumps(data)
+    return sorted({m for m in DOCS_ISSUE_REF.findall(text)
+                   if not os.path.exists(os.path.join(POC, "docs-issues", m + ".json"))})
+
+
 def main():
     problems, checked = [], 0
     for fp in sorted(glob.glob(os.path.join(POC, "**", "*.json*"), recursive=True)):
@@ -139,11 +177,16 @@ def main():
             problems.append((short, f"alias {a!r} is a punctuation variant of "
                                     f"this record's own id",
                              "rewrite the records with normalise-ids.py instead"))
+        for slug in dangling_docs_issues(data):
+            problems.append((short, f"points at docs-issues/{slug}, which has no file",
+                             "file the issue, or fix the reference "
+                             "(the convention is <product>-<slug>)"))
 
     for short, got, want in problems:
         print(f"FAIL  {short}\n        declares: {got}\n        path says: {want}")
     print(f"\n{checked} registry records checked, {len(problems)} problems "
-          f"(path/id mismatch, or an alias that only re-punctuates the id)")
+          f"(path/id mismatch, an alias that only re-punctuates the id, or a "
+          f"dangling docs-issues/ reference)")
     return 1 if problems else 0
 
 

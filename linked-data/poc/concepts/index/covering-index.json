@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/covering-index",
+  "label": "Covering Index / Covered Query",
+  "type": "the relational property that holds between an index and a query when the index carries every field the query projects, so the query needs no fetch from the Data Service. NOT an index type: nothing about how the index was created makes it covering, and the same index covers one query and not another",
+  "promoted": true,
+  "recurrence": 0,
+  "documented_at": "server/current/indexes/covering-indexes.md",
+  "recurrence_note": "RECURRENCE 0 ON THE PROMOTION METRIC, 14 DISTINCT FILES IN THE CORPUS, AND BOTH NUMBERS ARE CORRECT. Every one of the 14 mentions is either a bare `concepts[]` entry or a `seeAlso`, and the promotion metric excludes both by design - rightly, since a Markdown link is not an assertion. So this term was structurally unpromotable for nine rounds: the more the docs cross-link a concept, the more invisible it is to a metric that discounts links. Worse, until round 16 it was invisible to the *census* too (recurrence.py bug #11), so no report named it at all. Five spellings across three namespaces, folded above: `n1ql:covering-indexes` (7 files) and `n1ql:covering-index` are the 7.2/7.6 SQL++ reference page's ids, `indexes:covering-index` and `index-type:covering-index` are Capella's, `index:covering-index` is 7.2's learn/ tree. Three prefixes for one term because the page lives at a different path in each tree - see docs-issues/server-index-pages-relocated-between-versions.",
+  "note": "PROMOTED ON THE SEMANTIC-WEIGHT EXCEPTION, not on the count. The fold is licensed by the labels rather than by any relation: all five spellings label themselves as the thing ('Covering Index / Covered Query', 'Covering Indexes and covered queries', 'Covering index / covered query'), none as a page title, which is the test candidate-evidence.py states for telling a concept from a page id that has learned to recur. The definition: 'When an index includes the actual values of all the fields specified in the query, the index covers the query and does not require an additional step to fetch the actual values from the data service. An index, in this case, is called a covering index and the query is called a covered query.' Note the grammar of that sentence - the index covers *the query*. That is why this record is in index: and not index-type:, and it is the sharpest case in the round for the axis test: server/current/indexes/indexing-and-query-perf.md lists Covering Index among its 'Types of Primary and Secondary Index' and then defines it post-selection - 'After the index selection is made, the query engine analyzes the query to see if it can be answered using only the data in the index' - i.e. a property discovered after the optimizer has already chosen an index by its actual type. A type you cannot know at CREATE INDEX time is not a type. See docs-issues/server-index-type-taxonomy-mixes-kinds, which records the same page disqualifying a second of its own entries ('A duplicate index is not a special type of index, but a feature of Couchbase indexing.'). Do not confuse with index-type:gsi: 'Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI)' states where the property can hold, not what the index is.",
+  "relates_to_competency_question": "Why is this query fast?",
+  "folded_spellings": [
+    "index-type:covering-index",
+    "indexes:covering-index",
+    "n1ql:covering-index",
+    "n1ql:covering-indexes"
+  ]
+}

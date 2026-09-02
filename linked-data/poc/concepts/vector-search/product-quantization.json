@@ -2,12 +2,12 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-search/product-quantization",
   "label": "Product Quantization (PQ)",
   "recurrence": 1,
-  "aliases": [
-    "vector-index:product-quantization"
-  ],
   "type": "a vector compression method that splits each vector into subvectors and quantizes each independently",
   "note": "Promoted with vector-search:scalar-quantization as a two-member closed family - see that record for the family-exception reasoning. Support is index-type-dependent and stated as such: 'Hyperscale Vector and Composite Vector indexes support PQ quantization. Search Vector Indexes do not support it.'",
   "recurrence_note": "Round 15 corrected this from 2 to 1, and corrected this record's own quotation. Both errors were copied in good faith from an extraction record written in the first POC commit, before any evidence gate existed, and neither was re-checked when round 14 promoted it - because round 14's input was the registry, so there was no new extraction batch for verify-evidence.py to be scoped to. What the count rested on: cloud/vector-index/vector-index-best-practices.json's only mention of PQ quotes 'Use PQ when you're willing to trade some accuracy for higher compression and less memory use', which is verbatim - on cloud/vector-index/vectors-and-indexes-overview.md, the other page. Misattribution, not fabrication, and the exact case evidence_source exists for; with the quote credited to the page that carries it, the two files collapse to one and this is a recurrence-1 term. Nothing changes about the promotion, which was always the family exception rather than the count. The note's quote had 'Hyperscale Vector indexes and Composite Vector indexes', a one-word insertion into 'Hyperscale Vector and Composite Vector indexes' - a paraphrase presented as a quotation, which is the failure mode a promoted record can commit that no gate watches, since gate-evidence.py reads extractions/ only.",
   "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:product-quantization"
+  ]
 }

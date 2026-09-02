@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-type-taxonomy-mixes-kinds",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "`Types of Primary and Secondary Index` (indexing-and-query-perf.md) presents eleven H2 sections as types of index, and its own prose disqualifies two of them. Of `Duplicate Index` it says: 'A duplicate index is not a special type of index, but a feature of Couchbase indexing. You can create duplicate indexes with distinct names.' Of `Covering Index` it says that index selection depends only on the WHERE clause, and 'After the index selection is made, the query engine analyzes the query to see if it can be answered using only the data in the index' - a property discovered after the optimizer has already chosen an index by its actual type, and one the same index has for one query and not another. The other nine entries (Primary, Named Primary, Secondary, Composite Secondary, Functional, Array, Partial, Hyperscale Vector, Composite Vector) are things you choose at CREATE INDEX time. So the page's list is really 'nine kinds of index, one naming freedom, and one query-index relationship', flattened into one heading level with no signal of which is which except a sentence inside each section. A reader building a taxonomy from the headings gets two members that cannot be instantiated.",
+  "about": [
+    "server/8.0/indexes/indexing-and-query-perf",
+    "cloud/indexes/indexing-and-query-perf",
+    "server/7.2/learn/services-and-indexes/indexes/indexing-and-query-perf",
+    "server/7.6/learn/services-and-indexes/indexes/indexing-and-query-perf"
+  ],
+  "foundDuring": "round-16-namespace-coherence-wave-3",
+  "status": "open",
+  "note": "This is what the round's axis test was run against, and the page's own prose settled it both times: index-type: holds kinds of index only, so `covering-index` is filed under index: as a relational property (concepts/index/covering-index.json) and `duplicate-index` was refiled to index: as a permitted naming freedom. Related but distinct: server-index-class-vs-type-axes-undocumented (round 11) is about class cutting across type WITHIN one page's table; server-two-index-type-enumerations-do-not-agree is about this page's list disagreeing with the one in learn/."
+}

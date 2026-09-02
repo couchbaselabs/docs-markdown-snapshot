@@ -2,11 +2,11 @@
   "id": "https://docs.couchbase.com/ld/concepts/vector-search/memory-footprint",
   "label": "Vector index memory footprint",
   "recurrence": 2,
-  "aliases": [
-    "vector-index:memory-footprint"
-  ],
   "type": "the memory and disk a vector index consumes - the resource quantity settings are traded against",
   "note": "Paired with vector-search:recall-rate as the two costs in the registry's vector tuning model. Object of tradesOffAgainst from vector-search:persist-full-vector: 'Storing the full vector significantly increases the size of the index.' Distinguish from memory:* , which is the Data Service's bucket and quota vocabulary, and from index:memory-optimized-storage, which is an Index Service storage mode and edition-gated.",
   "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "vector-index:memory-footprint"
+  ]
 }

@@ -27,7 +27,7 @@
     {
       "subject": "learn:global-secondary-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:covering-indexes",
+      "object": "index:covering-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[Covering Indexes](../../../n1ql/n1ql-language-reference/covering-indexes.md)"
     },
@@ -69,7 +69,7 @@
     {
       "subject": "learn:global-secondary-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:createprimaryindex",
+      "object": "n1ql:create-primary-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[CREATE PRIMARY INDEX](../../../n1ql/n1ql-language-reference/createprimaryindex.md)"
     },
@@ -83,21 +83,21 @@
     {
       "subject": "learn:global-secondary-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:alterindex",
+      "object": "n1ql:alter-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[ALTER INDEX](../../../n1ql/n1ql-language-reference/alterindex.md)"
     },
     {
       "subject": "learn:global-secondary-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:dropindex",
+      "object": "n1ql:drop-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[DROP INDEX](../../../n1ql/n1ql-language-reference/dropindex.md)"
     },
     {
       "subject": "learn:global-secondary-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:dropprimaryindex",
+      "object": "n1ql:drop-primary-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[DROP PRIMARY INDEX](../../../n1ql/n1ql-language-reference/dropprimaryindex.md)"
     },

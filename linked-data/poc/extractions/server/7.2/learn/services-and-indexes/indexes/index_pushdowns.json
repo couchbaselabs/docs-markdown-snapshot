@@ -80,7 +80,7 @@
     {
       "subject": "learn:index-pushdowns",
       "predicate": "seeAlso",
-      "object": "n1ql:covering-indexes",
+      "object": "index:covering-index",
       "note": "structural link from an existing Markdown xref",
       "evidence": "[Covering Indexes](../../../n1ql/n1ql-language-reference/covering-indexes.md)"
     },

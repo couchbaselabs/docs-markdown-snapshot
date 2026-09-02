@@ -1,9 +1,0 @@
-{
-  "id": "https://docs.couchbase.com/ld/concepts/index/view",
-  "label": "View",
-  "recurrence": 2,
-  "type": "the legacy/deprecated index kind produced by the Views engine",
-  "note": "The only one of the eight index kinds on indexes.md with NO providesIndexType relation - Views are produced by a deprecated engine the page does not name. An ontology assuming every index type has a providing service has a hole exactly here.",
-  "relates_to_competency_question": "What kinds of index can I create?",
-  "promoted": true
-}

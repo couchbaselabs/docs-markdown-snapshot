@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/view",
+  "label": "View",
+  "recurrence": 3,
+  "type": "the legacy/deprecated index kind produced by the Views engine",
+  "folded_spellings": [
+    "index:view"
+  ],
+  "note": "The only one of the eight index kinds on indexes.md with NO providesIndexType relation - Views are produced by a deprecated engine the page does not name. An ontology assuming every index type has a providing service has a hole exactly here. ROUND 16 RE-FILED THIS RECORD from concepts/index/view.json. It was always a kind of index - indexes.md enumerates it among the eight and this record's own type line calls it 'the legacy/deprecated index kind' - so it belonged on the axis, and its filing under index: was the shadow-copy defect wave 3 exists to fix: `index:` had accumulated a second, partial copy of the index-type: axis (array-index, functional-index, partial-index, composite-secondary-index, primary/primary-index, named-primary-index, secondary-index, secondary-gsi, global-secondary-indexes, analytics), because two rounds read the same enumeration in two different directories and each minted from the directory it was in.",
+  "relates_to_competency_question": "What kinds of index can I create?",
+  "promoted": true
+}

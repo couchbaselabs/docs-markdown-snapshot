@@ -3,7 +3,10 @@
   "label": "standard index storage",
   "recurrence": 3,
   "type": "the Index Service storage mode backed by disk with a supervisor process; the Community Edition default",
-  "note": "STORAGE MODE IS A PROPERTY OF THE SERVICE'S CONFIGURATION, NOT OF AN INDEX - an axis the reference tree never named as such, and edition-gated. Distinct from every index-type:* and from the index-state scheme.",
+  "note": "STORAGE MODE IS A PROPERTY OF THE SERVICE'S CONFIGURATION, NOT OF AN INDEX - an axis the reference tree never named as such, and edition-gated. Distinct from every index-type:* and from the index-state scheme. ROUND 16: THE DOCS USE \"STORAGE ENGINE\" AT TWO LEVELS AND THIS RECORD IS THE UPPER ONE. groupby-aggregate-performance.md writes 'Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)', naming the two storage MODES as engines, while storage-modes.md names the actual engines a level down: 'In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine', 'In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine', and the Nitro engine for memory-optimized. An extractor reading only the first sentence has no way to know a second level exists, which is how MOI and Standard GSI (Plasma) arrived in the corpus as index TYPES. They are neither types nor engines - they are the two-member closed choice of the Index Service's storage mode - so those two ids fold here, onto the records that already said so. The engines themselves go to storage-engine:, where Couchstore and Magma already live, so that \"engine\" now denotes one kind of thing across the registry. See docs-issues/server-storage-engine-used-at-two-levels. The folded id `index-type:standard-gsi-plasma` had the conflation baked into its name: it packed the mode (standard GSI) and the engine (Plasma) into one id, so the same id would have had to denote a different thing in Community Edition, where the engine is ForestDB. An id that changes referent with the edition is not an id.",
   "relates_to_competency_question": "How is the Index Service configured?",
-  "promoted": true
+  "promoted": true,
+  "folded_spellings": [
+    "index-type:standard-gsi-plasma"
+  ]
 }

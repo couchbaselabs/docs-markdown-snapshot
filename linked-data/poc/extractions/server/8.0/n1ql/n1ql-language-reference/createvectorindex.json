@@ -114,12 +114,12 @@
       "reused_or_minted": "minted - same id as in this batch's createindex.json; REQUIRED here, optional there"
     },
     {
-      "candidate_id": "indexes:vector-index-codebook",
+      "candidate_id": "vector-search:codebook",
       "label": "Vector index codebook",
       "reused_or_minted": "minted - same id as in this batch's createindex.json"
     },
     {
-      "candidate_id": "indexes:vector-index-reranking",
+      "candidate_id": "vector-search:reranking",
       "label": "Hyperscale Vector index reranking",
       "reused_or_minted": "minted - a feature whose availability depends on persist_full_vector; no existing concept covers it"
     },
@@ -199,7 +199,7 @@
       "evidence": "To change the default setting for deferred builds, use the Index Settings REST API to set the `indexer.settings.defer_build` property."
     },
     {
-      "subject": "indexes:vector-index-reranking",
+      "subject": "vector-search:reranking",
       "predicate": "requiresSetting",
       "object": "n1ql:create-vector-index-with-persist-full-vector",
       "reused_or_minted_predicate": "reused - promoted predicate; a genuine option-enables-feature dependency, and a tradeoff the page states explicitly",
@@ -208,7 +208,7 @@
     {
       "subject": "n1ql:create-vector-index-with-persist-full-vector",
       "predicate": "tradesOffAgainst",
-      "object": "indexes:vector-index-reranking",
+      "object": "vector-search:reranking",
       "reused_or_minted_predicate": "reused - promoted predicate; index size versus reranking capability",
       "evidence": "If true (the default), the index stores the full vector value in addition to the quantized value. This significantly increases the size of the index. Set to false if you do not plan to use reranking."
     },

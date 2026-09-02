@@ -3,12 +3,25 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/indexes/index-scans.md",
   "concepts": [
-    { "candidate_id": "index-type:index-span", "label": "Index Span (query-plan range representation)", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "index:index-span",
+      "label": "Index Span (query-plan range representation)",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
-    { "subject": "index-type:index-span", "predicate": "dependsOnService", "object": "index-type:gsi", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "Once the index path is chosen, the query engine requests the Index Service to perform a scan. This scan is defined by a specific range of values that the query engine needs to retrieve. These ranges are represented as spans in the query plan." }
+    {
+      "subject": "index:index-span",
+      "predicate": "dependsOnService",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused (dependsOnService)",
+      "evidence": "Once the index path is chosen, the query engine requests the Index Service to perform a scan. This scan is defined by a specific range of values that the query engine needs to retrieve. These ranges are represented as spans in the query plan."
+    }
   ],
-  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition", "finding": "Purely a query-plan mechanics reference (span/inclusion semantics across ~30 predicate-translation examples) with no access-control content whatsoever - the third of four indexes/ pages in this batch confirming the low-RBAC-content hypothesis. Also notable: this page has no 'Related Links'/'See Also' section at all, unlike covering-indexes.md and groupby-aggregate-performance.md, even though both of those pages link back to this one via '#query-execution-details' - a one-directional cross-reference gap." },
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition",
+    "finding": "Purely a query-plan mechanics reference (span/inclusion semantics across ~30 predicate-translation examples) with no access-control content whatsoever - the third of four indexes/ pages in this batch confirming the low-RBAC-content hypothesis. Also notable: this page has no 'Related Links'/'See Also' section at all, unlike covering-indexes.md and groupby-aggregate-performance.md, even though both of those pages link back to this one via '#query-execution-details' - a one-directional cross-reference gap."
+  },
   "cross_component_finding": "covering-indexes.md and groupby-aggregate-performance.md both link into this page's '#query-execution-details' anchor, but this page itself has no reciprocal link back to either - a minor missing-backlink pattern, not escalated to a docs-issue file per extraction-only scope.",
   "cross_product_finding": "None - span/inclusion semantics (NEITHER/LOW/HIGH/BOTH) are generic SQL++ engine behavior identical to server/."
 }

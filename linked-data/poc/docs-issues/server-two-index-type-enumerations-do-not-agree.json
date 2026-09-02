@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-two-index-type-enumerations-do-not-agree",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Two pages in the 8.0 docs both enumerate the types of index a user can create, on two different keys, and the sets overlap without nesting. `learn/services-and-indexes/indexes/indexes.md` gives eight, keyed by PROVIDING SERVICE and split into two classes: Primary, Secondary, Search, Analytics, Views (Traditional) and Hyperscale Vector, Composite Vector, Search Vector (Vector). `indexes/indexing-and-query-perf.md` gives eleven, keyed by KEY SHAPE: Primary, Named Primary, Secondary, Composite Secondary, Functional, Array, Partial, Duplicate, Covering, Hyperscale Vector, Composite Vector. The intersection is four members. Search, Analytics and Views exist only in the first; Named Primary, Composite Secondary, Functional, Array, Partial, Duplicate and Covering only in the second. Neither page mentions the other's scheme or says that it is enumerating on a particular key, and neither is wrong - a Functional Index is a Secondary Index with an expression as its key, so the two lists are a cross-section and a subdivision of the same space. But a reader who reads both, in either order, has no way to tell that from the pages: the honest question 'how many kinds of index are there?' has the answers 8 and 11 depending on which page they landed on, and 'is a Functional Index a Secondary Index?' is answerable only by inference.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/indexes/indexes",
+    "server/8.0/indexes/indexing-and-query-perf",
+    "cloud/indexes/indexing-and-query-perf"
+  ],
+  "foundDuring": "round-16-namespace-coherence-wave-3",
+  "status": "open",
+  "note": "The ontology consequence, and the reason this is filed rather than modelled: promoting both enumerations as members of one `index-type:` axis would assert a flat sibling relationship the docs do not state - it would put Functional Index and Secondary Index side by side as coordinate kinds. So round 16 promoted the axis and refiled its members without adding subtype relations between them, and the key-shape types from the second list are left for round 17 (which re-extracts server/8.0/indexes/) rather than promoted from a page nobody has extracted. A source that says 'a Functional Index is a Secondary Index whose key is an expression' would license an `isSubtypeOf` edge; none says it. Compare server-index-class-vs-type-axes-undocumented, which is the same failure inside a single page."
+}

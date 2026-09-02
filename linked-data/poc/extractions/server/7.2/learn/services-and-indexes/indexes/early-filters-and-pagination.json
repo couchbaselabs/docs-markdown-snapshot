@@ -29,13 +29,13 @@
     {
       "subject": "n1ql:early-filtering",
       "predicate": "seeAlso",
-      "object": "index:index-scans",
+      "object": "page:index-scans",
       "note": "structural link, Related Links section ('Query Execution: Details')"
     },
     {
       "subject": "n1ql:index-pushdown",
       "predicate": "seeAlso",
-      "object": "n1ql:covering-indexes",
+      "object": "index:covering-index",
       "note": "structural link, Related Links section"
     },
     {
@@ -59,7 +59,7 @@
     {
       "subject": "n1ql:early-order-and-pagination",
       "predicate": "seeAlso",
-      "object": "n1ql:orderby",
+      "object": "n1ql:order-by",
       "note": "structural link, Related Links section ('ORDER BY Clause - to apply a sort')"
     },
     {

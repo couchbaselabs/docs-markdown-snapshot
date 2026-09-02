@@ -34,7 +34,7 @@
     {
       "subject": "n1ql:flex-indexes",
       "predicate": "seeAlso",
-      "object": "n1ql:covering-indexes",
+      "object": "index:covering-index",
       "note": "structural link from an existing Markdown xref to covering-indexes.md",
       "evidence": "A Flex Index query cannot use a full-text index as a [covering index](covering-indexes.md)."
     },

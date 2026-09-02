@@ -4,6 +4,8 @@
     python3 linked-data/poc/recurrence.py                    # whole corpus
     python3 linked-data/poc/recurrence.py --scope server/8.0/learn
     python3 linked-data/poc/recurrence.py --min 4 --unpromoted-only
+    python3 linked-data/poc/recurrence.py --variants      # one term, several spellings
+    python3 linked-data/poc/recurrence.py --page-ids      # ids that are really pages
     python3 linked-data/poc/recurrence.py --selftest
 
 This is the promotion signal for phase 2 of the pipeline (the
@@ -70,6 +72,26 @@ reconstructing it from memory a ninth time:
    are not interchangeable anywhere else in the pipeline - the gate will reject
    the dotted form as unpromoted, correctly. `--variants` reports the clusters
    so they can be fixed in the records rather than papered over here.
+11. **A `seeAlso`-only object was invisible to the census, not just to the
+   ranking.** Bug #10's fix made the two promotion tables symmetric about
+   `seeAlso` and, in the same edit, left the *mention* table lopsided: a `seeAlso`
+   subject still landed in it, a `seeAlso` object landed in nothing. So the column
+   headed "any mention" was not any mention, and an id the corpus only ever links
+   to appeared in no report at all - including `--variants`, whose entire job is
+   to enumerate spellings. Round 16 found five misspellings of *promoted* SQL++
+   statements hiding there (`n1ql:createprimaryindex`, `dropprimaryindex`,
+   `alterindex`, `dropindex`, `orderby`), which took `--variants` from 1 cluster
+   to 6 the moment the asymmetry was fixed. The lesson generalises past this
+   script: **excluding a relation kind from a metric and excluding it from a
+   census are different decisions, and doing the first by editing a shared code
+   path silently does the second.**
+
+The three reports, and why they are separate
+-------------------------------------------
+The default output ranks; `--variants` finds one term spelled several ways;
+`--page-ids` finds ids that are not terms at all - 392 of 2,116, ids the corpus
+only ever *links to*, 305 of them not even carrying a namespace. All three read
+the same census, which is why bug #11 blinded all three at once.
 
 What it deliberately does not do
 --------------------------------
@@ -197,6 +219,8 @@ def scan(scope="", keep_see_also=False):
     obj_files = collections.defaultdict(set)
     slot_files = collections.defaultdict(set)      # subject OR object of a relation
     mention_files = collections.defaultdict(set)   # concepts[] + subject + object
+    label_files = collections.defaultdict(set)     # declared in concepts[], so NAMED
+    sa_object_files = collections.defaultdict(set)  # object of a seeAlso, i.e. linked to
     status = collections.defaultdict(collections.Counter)
     findings = collections.defaultdict(list)
     bad = []
@@ -213,6 +237,7 @@ def scan(scope="", keep_see_also=False):
             cid = c.get("candidate_id")
             if cid:
                 mention_files[cid].add(short)
+                label_files[cid].add(short)
                 # Absent is *unknown*, never a default. Bug #4.
                 status[cid][c.get("registry_status") or "(absent)"] += 1
 
@@ -229,10 +254,31 @@ def scan(scope="", keep_see_also=False):
                 # direction.
                 if keep:
                     slot_files[subj].add(short)
-            if obj and keep:
-                obj_files[obj].add(short)
-                slot_files[obj].add(short)
+            if obj:
+                # Bug #11: `mention_files` is unconditional, the two promotion
+                # tables are not. Until round 16 this whole block sat behind
+                # `keep`, so a `seeAlso` *object* reached none of the three tables
+                # while a `seeAlso` *subject* still reached `mention_files` at line
+                # above - an asymmetry introduced by bug #10's fix, which made the
+                # two slot tables symmetric and left the mention table lopsided.
+                #
+                # The cost was not a wrong count, it was invisibility. An id that
+                # the corpus only ever links to appeared in *no* table, including
+                # the one labelled "any mention", and therefore in no report -
+                # `--variants` included. Five misspellings of promoted SQL++
+                # statements were sitting in the corpus unreported by the check
+                # built to report them (`n1ql:createprimaryindex`,
+                # `dropprimaryindex`, `alterindex`, `dropindex`, `orderby`), and
+                # `index-type:covering-index` - 14 files, five spellings, its own
+                # page in four trees - reads as recurrence 0 on the promotion
+                # metric for the same reason. The promotion metric is right to
+                # exclude `seeAlso`; a *census* must not.
                 mention_files[obj].add(short)
+                if pred == "seeAlso":
+                    sa_object_files[obj].add(short)
+                if keep:
+                    obj_files[obj].add(short)
+                    slot_files[obj].add(short)
 
         for k in ("notable_absence", "cross_component_finding", "cross_product_finding"):
             if rec.get(k):
@@ -241,7 +287,7 @@ def scan(scope="", keep_see_also=False):
     return {
         "files": files, "bad": bad, "predicates": pred_files, "objects": obj_files,
         "slots": slot_files, "mentions": mention_files, "status": status,
-        "findings": findings,
+        "findings": findings, "labels": label_files, "see_also_objects": sa_object_files,
     }
 
 
@@ -329,6 +375,29 @@ def selftest():
     check("keep-see-also restores the seeAlso subject",
           len(b["slots"].get("search:customize-index", ())) >= 2, True)
 
+    # Bug #11: the mirror of #10. Excluding seeAlso from the promotion *metric*
+    # must not exclude it from the *census*: `mentions` is the table labelled
+    # "any mention" and every report that looks for misspellings reads it. Bug
+    # #10's fix made the two slot tables symmetric and left this one lopsided,
+    # so an id the corpus only ever links *to* appeared in no table at all.
+    # Asserted on n1ql:groupby-aggregate-performance, which is a seeAlso object
+    # on four pages and is never a subject and never in a concepts[] array - so
+    # it must be 0 in both promotion tables and 4 in the census.
+    gap = "n1ql:groupby-aggregate-performance"
+    check("object-only id absent from the promotion metric",
+          len(a["slots"].get(gap, ())) + len(a["objects"].get(gap, ())), 0)
+    check("object-only id still counted as a mention",
+          len(a["mentions"].get(gap, ())) >= 2, True)
+
+    # Round 16, --page-ids: the same id is the fixture for the two tables that
+    # report it. It must be a seeAlso object, and must be in neither `labels` (no
+    # record ever declared it in concepts[]) nor `slots` - which together are what
+    # "the corpus only links to this, it never says anything about it" means.
+    check("linked-to-only id recorded as a seeAlso object",
+          len(a["see_also_objects"].get(gap, ())) >= 2, True)
+    check("linked-to-only id never labelled in concepts[]",
+          gap in a["labels"], False)
+
     print("\nself-test:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -344,6 +413,11 @@ def main():
     ap.add_argument("--findings", action="store_true", help="dump finding fields in full")
     ap.add_argument("--variants", action="store_true",
                     help="report ids that differ only in punctuation or IRI form")
+    ap.add_argument("--page-ids", action="store_true",
+                    help="ids the corpus only ever links to - `page:` candidates")
+    ap.add_argument("--stale-recurrence", action="store_true",
+                    help="promoted records whose `recurrence` field no longer "
+                         "matches the metric - a report, never a rewrite")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
 
@@ -443,6 +517,125 @@ def main():
                 has = "file" if (form in con or form in pred) else "NO FILE"
                 print(f"      {len(files):4d} files  {form}  [{has}]")
         print(f"\n{found} clusters with more than one spelling.")
+
+    if args.page_ids:
+        # Round 16. An id that the corpus only ever *links to* - the object of a
+        # seeAlso, never a subject, never an object of anything else, never
+        # declared in any record's `concepts[]`, and with no registry file or
+        # alias. Nothing has ever asserted anything about it and nobody has even
+        # given it a label: it is a document reference that happens to be spelled
+        # like a concept id, and its namespace is a lie about what it denotes.
+        #
+        # Why this needs to be a report and not a paragraph in reconciliation.md:
+        # round 16 swept eight of these into `page:` by hand as a pilot and queued
+        # "the corpus-wide sweep" as a next step, which is exactly the shape of
+        # promise that has gone unkept in this project before (see round 13 on
+        # `version:sgw-3.0`, invisible to the check meant to enumerate it). A
+        # measurement you can re-run is a next step; a number in prose is a memory.
+        #
+        # NOT automatically safe to rewrite. The set is a candidate list: a term
+        # can be genuinely a concept and merely under-extracted - the round-16
+        # covering-index case was in exactly this set at 14 files, and it earned a
+        # promoted record rather than a `page:` prefix. The discriminator that
+        # round used is the label, which is why "never declared in concepts[]" is
+        # part of the definition here: something no record has ever bothered to
+        # label is something no extraction thought it was naming.
+        cand = []
+        for name, files in d["mentions"].items():
+            if name in d["labels"] or name in d["slots"]:
+                continue
+            if not d["see_also_objects"].get(name):
+                continue
+            if resolve(name, aliases) in con or name in con:
+                continue
+            # `page:` is excluded because it is the answer, not the problem: an id
+            # under that prefix is *declaring* that it names a document, so being
+            # linked-to-only is what it says on the tin. Every other prefix here is
+            # a claim that the thing is a concept of some subject area.
+            if name.startswith("page:"):
+                continue
+            cand.append((len(files), name))
+        cand.sort(key=lambda t: (-t[0], t[1]))
+        total = len(d["mentions"])
+        print("\n\n=== LINKED-TO-ONLY IDS (`page:` candidates) ===")
+        print(f"{len(cand)} of {total} distinct ids ({100 * len(cand) // total}%) "
+              f"appear only as the object of a seeAlso, are never declared in any "
+              f"`concepts[]`, and have no registry file. See the code comment for "
+              f"why this is a candidate list and not a rewrite table.\n")
+        by_ns = collections.Counter(n.split(":", 1)[0] if ":" in n else "(no prefix)"
+                                   for _, n in cand)
+        for ns, n in by_ns.most_common(15):
+            print(f"      {n:4d}  {ns}:")
+        print(f"\n  the {min(args.top, len(cand))} most-linked:")
+        for n, name in cand[:args.top]:
+            print(f"      {n:4d} files  {name}")
+
+    if args.stale_recurrence:
+        # Alias-resolved, spellings unioned - the same normalisation the ranking
+        # tables above do, and for the same reason.
+        metric = collections.defaultdict(set)
+        mention = collections.defaultdict(set)
+        for table, into in ((d["slots"], metric), (d["mentions"], mention)):
+            for name, files in table.items():
+                into[resolve(name, aliases)] |= files
+        metric = {k: len(v) for k, v in metric.items()}
+        mention = {k: len(v) for k, v in mention.items()}
+
+        # Round 16. Compare each promoted record's own `recurrence` field against
+        # what the promotion metric says today. 172 of 324 disagree, in both
+        # directions, by as much as 40.
+        #
+        # NONE OF THEM IS A BUG, and this report must never be turned into a
+        # rewrite. A `recurrence` field records the evidence base at the moment of
+        # promotion, which is information about the decision - the same argument
+        # that keeps `hooks/test-gate.py` from "fixing" old records to match
+        # today's registry. Two things move the number afterwards and neither is
+        # an error: the corpus grows (later rounds extract more pages), and **the
+        # instrument has been replaced three times** - bug #7 broadened the metric
+        # from the object slot to either slot, bug #10 took `seeAlso` back out of
+        # both, bug #11 fixed the census. A record saying 22 where the metric now
+        # says 7 was measured with a ruler this script no longer has.
+        #
+        # What it is for: a promoted record's prose reasons about its own weight
+        # ("a minor, low-stakes promotion"), and a reconciliation pass reads that
+        # prose. `index-type:gsi` said recurrence 2 and "minor, low-stakes" while
+        # the metric said 8 and the census 16, and round 16 believed the record
+        # over the query - then wrote a false causal story about which fold caused
+        # the change, in a *new* record, and only caught it by re-measuring. So the
+        # failure this surfaces is not a wrong field, it is a stale field being
+        # read as current by the one process authorised to promote things.
+        rows = []
+        for name in sorted(con):
+            fp = None
+            for cand in (os.path.join(POC, "concepts", *name.split(":")) + ext
+                         for ext in (".json", ".jsonld")):
+                if os.path.exists(cand):
+                    fp = cand
+                    break
+            if fp is None:
+                continue
+            try:
+                data = json.load(open(fp))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                continue
+            claimed = data.get("recurrence")
+            if not isinstance(claimed, int):
+                continue
+            now, cen = metric.get(name, 0), mention.get(name, 0)
+            rows.append((abs(claimed - now), claimed, now, cen, name))
+        rows.sort(reverse=True)
+        agree = sum(1 for r in rows if r[0] == 0)
+        print("\n\n=== RECURRENCE FIELDS AGAINST THE CURRENT METRIC ===")
+        print(f"{agree} of {len(rows)} promoted records agree with the metric "
+              f"({100 * agree // max(len(rows), 1)}%). A disagreement is not an "
+              f"error - see the code comment - but a record whose prose reasons "
+              f"about its own weight is reasoning from the number in the field.\n")
+        print(f"      {'claims':>6}  {'metric':>6}  {'census':>6}   id")
+        for _, claimed, now, cen, name in rows[:args.top]:
+            print(f"      {claimed:6d}  {now:6d}  {cen:6d}   {name}")
+        if len(rows) > args.top:
+            print(f"      ... {len(rows) - args.top} more, "
+                  f"{len(rows) - agree} disagreeing in total")
 
     if args.findings:
         for k, items in d["findings"].items():

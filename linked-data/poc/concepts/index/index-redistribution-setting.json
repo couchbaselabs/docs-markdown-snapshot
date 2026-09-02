@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/index-redistribution-setting",
+  "label": "Index redistribution setting",
+  "type": "the Index Service setting that specifies how Couchbase Server redistributes indexes automatically on rebalance - the bulk alternative to moving indexes one at a time with ALTER INDEX ... WITH nodes",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/8.0/n1ql/n1ql-language-reference/alterindex.md",
+  "note": "Two files, both quotable and identical: 'Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance.' Object of tradesOffAgainst from both ALTER INDEX and ALTER VECTOR INDEX, and the trade-off is the reason to promote it: the DDL statement and the setting are two routes to the same outcome, and the page recommends the setting for scale. Second member of index: that is a setting rather than a kind of index, after index:indexer-settings-defer-build - which was filed here in round 15 with its coherence question explicitly deferred to this wave. The wave's answer: index: is the subject area, so settings belong here; index-type: is the axis, and holds only kinds. Sibling of index:file-based-index-rebalancing.",
+  "relates_to_competency_question": "What happens to my indexes when the cluster rebalances?",
+  "folded_spellings": [
+    "indexes:index-redistribution-setting"
+  ]
+}

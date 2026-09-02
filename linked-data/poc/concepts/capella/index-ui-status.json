@@ -1,8 +1,0 @@
-{
-  "id": "https://docs.couchbase.com/ld/concepts/capella/index-ui-status",
-  "label": "Index status (Capella Indexes UI)",
-  "type": "the Capella Indexes page's own status enum (ready/pause/warmup) - a genuinely different value set from the promoted index-state DDL-lifecycle enum",
-  "promoted": true,
-  "recurrence": 1,
-  "note": "Do not conflate with index-state (the SQL++ DDL lifecycle enum: scheduled for creation/deferred/building/pending/online/offline/abridged) - same subject (a GSI index's condition), two different, unreconciled vocabularies: one from the statement reference, one from the management UI. No page states a mapping between the two; left separate rather than guessed at, same discipline as the ontology's other same-word/same-subject collisions."
-}

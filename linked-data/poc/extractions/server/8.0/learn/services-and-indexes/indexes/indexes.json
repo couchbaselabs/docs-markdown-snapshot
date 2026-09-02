@@ -44,7 +44,7 @@
       "reused_or_minted": "minted - nothing in the registry or the extraction layer covers the Analytics Service's own indexes, despite service:analytics-service having recurrence 7. The 7.2 record of this page used index:analytics; that id has not recurred since and sits in the same incoherent index:/index-type: namespace split, so I have placed this one on the type axis where the page puts it."
     },
     {
-      "candidate_id": "index:view",
+      "candidate_id": "index-type:view",
       "label": "View index (Couchbase Views)",
       "reused_or_minted": "reused - an extraction-layer id (1 prior occurrence, the 7.2 record of this page). Kept on the index: namespace rather than moved to index-type: to avoid creating a second id for the same thing; the namespace question goes to reconciliation."
     },
@@ -140,7 +140,7 @@
       "evidence": "You can use the following types of indexes for traditional scalar data:"
     },
     {
-      "subject": "index:view",
+      "subject": "index-type:view",
       "predicate": "belongsToIndexClass",
       "object": "index-class:traditional",
       "reused_or_minted_predicate": "minted - belongsToIndexClass",
@@ -231,7 +231,7 @@
       "evidence": "The Index Service provides [Composite Vector Indexes](../../../vector-index/composite-vector-index.md) which are Global Secondary Indexes (GSIs) with a single vector column."
     },
     {
-      "subject": "index:view",
+      "subject": "index-type:view",
       "predicate": "deprecatedIn",
       "object": "version:server-7-0",
       "reused_or_minted_predicate": "reused - deprecatedIn. Note for reconciliation: this is the exact relation whose 7.2-record ancestor was recorded as the synonym 'deprecatedSince' and folded into deprecatedIn in round 10. The 8.0 wording has changed tense from the 7.2 wording ('Views are deprecated' -> 'Views were deprecated') but the version is unchanged, and the removal is still undated - so the registry's decision to reserve removedIn without filing it remains correct.",
@@ -266,7 +266,7 @@
       "evidence": "For more information about using analytics indexes, see [Using Indexes](../../../analytics/7%5Fusing%5Findex.md)."
     },
     {
-      "subject": "index:view",
+      "subject": "index-type:view",
       "predicate": "seeAlso",
       "object": "server/current/learn/views/views-intro",
       "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",

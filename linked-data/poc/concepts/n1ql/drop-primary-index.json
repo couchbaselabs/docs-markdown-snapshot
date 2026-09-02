@@ -3,5 +3,9 @@
   "label": "DROP PRIMARY INDEX",
   "type": "the SQL++ statement that drops an unnamed primary index",
   "promoted": true,
-  "recurrence": 8
+  "recurrence": 8,
+  "folded_spellings": [
+    "n1ql:dropprimaryindex"
+  ],
+  "note": "Round 16 folded the filename spelling `n1ql:dropprimaryindex` in - the same defect as n1ql:createfunction, found four rounds later for a mechanical reason worth recording: this spelling was in the corpus the whole time and `recurrence.py --variants`, the check built to report exactly it, could not see it. It appears only in the object slot of a seeAlso, and until bug #11 was fixed that slot reached no counting table at all - not even the one labelled \"any mention\". Excluding a relation kind from a metric and excluding it from a census are different decisions."
 }

@@ -53,7 +53,7 @@
     {
       "subject": "n1ql:array-indexing",
       "predicate": "seeAlso",
-      "object": "n1ql:covering-indexes",
+      "object": "index:covering-index",
       "note": "structural link from existing Markdown xref",
       "evidence": "Covering indexes are an efficient method of using an Index for a particular query... For more details, see [Covering Indexes](covering-indexes.md)."
     }

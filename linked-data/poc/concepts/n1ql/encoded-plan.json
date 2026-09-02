@@ -4,7 +4,9 @@
   "type": "the pre-6.5 mechanism for supplying a prepared statement's plan in the request body",
   "promoted": true,
   "recurrence": 2,
-  "aliases": ["setting:encoded-plan"],
   "recurrence_note": "Round 15: 1 -> 2 files, by folding `setting:encoded-plan` (minted from query-settings.md in the same round-10 batch that promoted this record) onto this id. Worth recording because the arithmetic does not work out the innocent way: round 10 filed this at recurrence 2 under a metric that counted relation *objects*, and this id is an object of nothing - it is the subject of both its relations. The 2 was a count of relations, not of files, so the number was wrong when written and is right now for a different reason. Two lessons, both about the tooling rather than the term: a recorded recurrence is a claim nothing re-checks after the round that wrote it, and a concept that only ever appears as a subject was invisible to the pre-round-12 metric entirely.",
-  "note": "Carries both of this round's deprecation predicates at once, which is why it is worth filing: deprecatedIn version:server-6-5 ('this parameter is ignored and has no effect') and retainedForLegacyCompatibility ('This is included for backward compatibility'). The clearest single illustration that dating a deprecation and explaining a survival are two different facts."
+  "note": "Carries both of this round's deprecation predicates at once, which is why it is worth filing: deprecatedIn version:server-6-5 ('this parameter is ignored and has no effect') and retainedForLegacyCompatibility ('This is included for backward compatibility'). The clearest single illustration that dating a deprecation and explaining a survival are two different facts.",
+  "folded_spellings": [
+    "setting:encoded-plan"
+  ]
 }

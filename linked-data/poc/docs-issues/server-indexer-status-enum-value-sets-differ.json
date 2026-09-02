@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-indexer-status-enum-value-sets-differ",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The same field is documented with four possible values in Server and three in Capella, with no note that the sets differ. Server's manage-indexes.md: '* **status**. The current state of the Index Service on the node on which this index is stored. The state can be expressed as **ready**, **pause**, **warmup**, or **n mutations remaining** (where **n** is an integer).' Capella's manage-indexes.md, in a table row: 'Status | The current state of the Index Service on the node where this index is stored. The possible statuses include **ready**, **pause**, or **warmup**.' The two sentences are otherwise the same to within one word ('on which' / 'where'), so this reads as one source text edited in one place. Whether Capella's Index Service genuinely never reports a mutation backlog, or the value was dropped when the page was adapted, is not answerable from the docs. Note also that Capella hedges with 'include' where Server closes the set with 'can be expressed as', which makes the shorter list unfalsifiable rather than simply shorter.",
+  "about": [
+    "server/7.2/manage/manage-indexes/manage-indexes",
+    "cloud/clusters/index-service/manage-indexes"
+  ],
+  "foundDuring": "round-16-namespace-coherence-wave-3",
+  "status": "open",
+  "note": "The near-identical defining sentence is what licensed round 16 to merge `capella:index-ui-status` (promoted in round 12) into `indexer-node-state` and delete the Capella record - the first deletion of a promoted record in this POC. The merged enum carries all four values with the Capella omission documented rather than either list winning. 'n mutations remaining' is a value TEMPLATE carrying an integer, not a state name, which is a second reason a consumer cannot treat this field as a closed enum. Compare server-privilege-naming-two-spellings-adjacent-pages and capella-storage-modes-vocabulary-mismatch: adapted-copy drift between the two trees is now a recurring shape, not an isolated finding."
+}
