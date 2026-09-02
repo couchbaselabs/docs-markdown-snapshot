@@ -61,6 +61,15 @@ What it checks
    corpus must treat a missing field as *unknown*, never as `extraction-layer` -
    a gap that reads as data is the same failure shape as an omitted relation.
 
+3. **Two id-shape rules, on `minted` terms only** (added in round 15, after the
+   namespace coherence pass): no singular/plural fork of a namespace the registry
+   already has (`indexes:` beside `index:`), and no file extension inside an id
+   (`rest-api:compaction-rest-api.adoc`). Both are cheap to prevent and expensive
+   to repair - the `setting:` dissolution needed a 34-line rename table - and both
+   are scoped to new mints so that reusing an id the corpus already contains stays
+   legal. See `check_id_hygiene` for why that scope is the point rather than a
+   compromise.
+
 What it does NOT check
 ----------------------
 That the triple built from a quotable sentence is a *fair reading* of it. Round
@@ -192,6 +201,99 @@ def registry_index():
     return idx
 
 
+def namespaces():
+    """Every namespace the registry already has: a directory under `concepts/`,
+    or a top-level record's stem (`index-state.json` promotes `index-state`)."""
+    base = os.path.join(POC, "concepts")
+    out = set()
+    try:
+        entries = os.listdir(base)
+    except OSError:
+        return out
+    for e in entries:
+        if os.path.isdir(os.path.join(base, e)):
+            out.add(e)
+        elif e.endswith(".json"):
+            out.add(os.path.splitext(e)[0])
+    return out
+
+
+def depluralise(prefix):
+    """`indexes` -> `index`, `tools` -> `tool`, `tls` -> `tls`.
+
+    The length floor is what keeps this from mangling short real prefixes: `tls`
+    and `sgw` must survive, and stripping to fewer than three characters is never
+    a singular/plural relationship in this registry's vocabulary.
+    """
+    for suffix in ("es", "s"):
+        if prefix.endswith(suffix) and len(prefix) - len(suffix) >= 3:
+            return prefix[: -len(suffix)]
+    return prefix
+
+
+FILE_EXTENSIONS = (".adoc", ".md", ".html", ".htm", ".xml")
+
+
+def check_id_hygiene(term_id, status, known):
+    """Two id-shape rules, applied only to `minted` terms. Returns a problem or None.
+
+    Forward-only on purpose, and the `minted`-only scope is the whole design. The
+    corpus already holds 43 prefixes with no namespace behind them and one id with
+    a file extension in it; refusing to *reuse* those would block the
+    re-extraction rounds that are the way they get fixed, and would punish a
+    record for a decision an earlier round made. What can be stopped cleanly is
+    the next one. So this is the control point that makes "from now on" true
+    rather than aspirational: reuse whatever the corpus has, mint nothing new that
+    repeats these two mistakes.
+
+    Rule 1 - no singular/plural fork of an existing namespace. Round 15's prefix
+    census found 107 distinct prefixes in `extractions/` against 53 namespaces in
+    `concepts/`, and the coherence waves are mostly spent merging things that were
+    never two things. Three of those forks were purely grammatical (`tools:` beside
+    `tool:`, `cloud-providers:` beside `cloud-provider:`, `indexes:` beside
+    `index:`) - the cheapest possible defect to prevent and, at 30-odd ids in
+    `indexes:` alone, not a cheap one to repair. Verified against the current
+    registry: no two existing namespaces depluralise to the same string, so this
+    rule cannot fire on anything already promoted.
+
+    Rule 2 - no file extension in an id. An id names a thing; `.adoc` names a
+    document, and specifically a *source* document, which the published pages this
+    corpus is extracted from are not. The corpus has exactly one instance
+    (`rest-api:compaction-rest-api.adoc`), which is what makes this worth gating
+    now: one is a slip, and the rule costs nothing while it is still one.
+    """
+    if status != "minted":
+        return None
+
+    lowered = term_id.lower()
+    for ext in FILE_EXTENSIONS:
+        if lowered.endswith(ext) or (ext + "#") in lowered:
+            return (term_id, (
+                f"mints an id containing the file extension {ext!r}. An id names a "
+                f"concept, not a document - drop the extension, and if what you are "
+                f"naming really is a page rather than a thing, it belongs in a "
+                f"`seeAlso` object, not in `concepts[]`."
+            ))
+
+    if ":" not in term_id:
+        return None
+    prefix = term_id.split(":", 1)[0]
+    if prefix in known:
+        return None
+    stem = depluralise(prefix)
+    for existing in known:
+        if existing != prefix and depluralise(existing) == stem:
+            return (term_id, (
+                f'mints under the namespace `{prefix}:`, which is a singular/plural '
+                f"variant of `{existing}:` - a namespace the registry already has. "
+                f"Use `{existing}:{term_id.split(':', 1)[1]}` instead. Two prefixes "
+                f"for one namespace do not collide, do not fail any check, and split "
+                f"the recurrence count that decides what gets promoted, so the "
+                f"duplicate is invisible until someone reads the whole namespace."
+            ))
+    return None
+
+
 def check_status(term_id, status, idx, what):
     """Validate one `registry_status` declaration. Returns a problem, or None.
 
@@ -290,12 +392,16 @@ def main():
     evidence_problems = load_verifier().check_record(rec, root=ROOT)
     registry_problems = []
     idx = registry_index()
+    known = namespaces()
 
     for c in rec.get("concepts", []) or []:
         if not isinstance(c, dict):
             continue
-        p = check_status(c.get("candidate_id") or "(unnamed concept)",
-                         c.get("registry_status"), idx, "concept")
+        cid = c.get("candidate_id") or "(unnamed concept)"
+        p = check_status(cid, c.get("registry_status"), idx, "concept")
+        if p:
+            registry_problems.append(p)
+        p = check_id_hygiene(cid, c.get("registry_status"), known)
         if p:
             registry_problems.append(p)
 
@@ -311,6 +417,9 @@ def main():
             continue
         seen.add((pred, status))
         p = check_status(pred, status, idx, "predicate")
+        if p:
+            registry_problems.append(p)
+        p = check_id_hygiene(pred, status, known)
         if p:
             registry_problems.append(p)
 

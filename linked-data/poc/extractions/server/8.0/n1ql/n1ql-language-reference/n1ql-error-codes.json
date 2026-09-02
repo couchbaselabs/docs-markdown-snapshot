@@ -64,7 +64,7 @@
       "reused_or_minted": "minted with reservations - error 11011 says 'add the administrator role', which is not a canonical Couchbase role name (the canonical names are Full Administrator, Cluster Administrator, and so on). Minted so the relation can be recorded, but flagged for reconciliation against learn/security/roles.md rather than trusted"
     },
     {
-      "candidate_id": "setting:query-memory-quota",
+      "candidate_id": "n1ql:query-memory-quota",
       "label": "queryMemoryQuota cluster-level setting",
       "reused_or_minted": "minted - named in the Server-only note attached to error 5500"
     },
@@ -144,7 +144,7 @@
     {
       "subject": "n1ql:error-5500",
       "predicate": "configurableVia",
-      "object": "setting:query-memory-quota",
+      "object": "n1ql:query-memory-quota",
       "reused_or_minted_predicate": "minted - same predicate minted on insert.json in this batch; here it records that the condition the error reports is governed by a named cluster-level setting",
       "evidence": "* To set a memory quota with the REST API, see the cluster-level [queryMemoryQuota](../n1ql-manage/query-settings.md#queryMemoryQuota) setting."
     },

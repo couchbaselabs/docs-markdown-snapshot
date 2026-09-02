@@ -7,8 +7,8 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Fourteen rounds so far, twelve of them deliberate escalations and the last two
-corrective passes over what they left behind:
+automating it. Fifteen rounds so far, twelve of them deliberate escalations and the
+last three corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -137,6 +137,30 @@ corrective passes over what they left behind:
     NAMESPACES, ONE LIST … the fix is a reconciliation decision" — and left
     unactioned for three rounds because its remedy was to refactor already-promoted
     records, and reconciliation had no output shaped like that.
+15. **No new pages** — the namespace coherence pass, wave 2: **`setting:`**, 34 ids
+    across 14 files. Wave 1 asked whether a namespace's members answer the same
+    question; this one asks a prior question — *is there a question at all?* The test
+    that settled it: **a namespace is an axis only if its membership is closed and
+    enumerable.** `edition:`, `index-state`, `auth-mechanism:` pass. `setting:`
+    fails **by construction**, because a product acquires settings for as long as it
+    is developed, so `setting:` was never an axis and had no subject to be about
+    either: it was a *part of speech*. Dissolved, member by member, into the subject
+    areas that own the mechanisms — 29 to `n1ql:`, 2 each to `index:` and `data:`,
+    1 to `tls:` — because a dissolution's destination is not a function of the id
+    and cannot be done with a prefix rule the way wave 1's rename could. Three of
+    the 34 were **duplicates of already-promoted concepts** (`setting:scan-consistency`
+    and the promoted `n1ql:scan-consistency` are the same thing), which is how the
+    round found that the write-time enum **checks the id and never the referent**:
+    `registry_status: minted` was a *true* declaration for a term the same round's
+    reconciliation promoted under another name. 10 concepts promoted, and a
+    correction to wave 1: `vector-search:product-quantization`'s two files collapse
+    to one, because a round-1 relation quotes a sentence verbatim from a *different*
+    page than the one it names — misattribution, not fabrication, but it costs a
+    recurrence, and it is the failure mode a *promoted* record can commit that no
+    gate watches. Two forward-only id-shape rules added to the gate, plus
+    `hooks/test-gate.py` (23 cases) — because a control's verdict can expire: a real
+    round-12 record replayed through the gate today produces five denials, since
+    `registry_status` describes the registry the record was written against.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -229,12 +253,12 @@ time/cost projections and how they held up against the round-2 run's real number
   corrected that family rather than extending it — see round 12 in
   `reconciliation.md`.
 
-Rounds 13 and 14 added **no pages**. Both worked the existing 582 records: round 13
-the role slice and the variant sweep, round 14 the namespace coherence pass. So the
-page count above has been stable for two rounds while the registry changed
-substantially, which is worth stating explicitly — the corpus and the registry are
-separate things to keep track of, and the interesting defects of the last two rounds
-were all in the second.
+Rounds 13, 14 and 15 added **no pages**. All three worked the existing 582 records:
+round 13 the role slice and the variant sweep, rounds 14 and 15 waves 1 and 2 of the
+namespace coherence pass. So the page count above has been stable for three rounds
+while the registry changed substantially, which is worth stating explicitly — the
+corpus and the registry are separate things to keep track of, and the interesting
+defects of the last three rounds were all in the second.
 
 ## Identifiers
 
@@ -465,6 +489,36 @@ from "still in `extractions/`."
   `concepts/fts/full-text-search.json` turned out to record a deliberate resolution
   of a five-way split, with two documented legitimate non-folds — a coherence pass
   that cleaned it up would have destroyed a correct decision.
+  Round 15 ran wave 2 over `setting:` and **dissolved it**, which is the answer round
+  14's refusal had already half-given. Wave 1's rename worked because
+  `vector-index:` was named like an axis and populated like a subject area; wave 2's
+  namespace was named like a subject area with *no subject to be about*. The test
+  that settles this is **whether membership is closed and enumerable**: `edition:`,
+  `auth-mechanism:`, `index-state` and `vector-similarity-metric:` are, `setting:` is
+  not and cannot become so, because a product acquires settings for as long as it is
+  developed. So the 34 members went to the subject areas that own the mechanisms —
+  29 `n1ql:`, 2 `index:`, 2 `data:`, 1 `tls:` — one at a time, since a dissolution's
+  destination is not a function of the id and no prefix rule can compute it. Three
+  members were **already promoted under another name** (`setting:scan-consistency` /
+  `n1ql:scan-consistency`, `setting:collection-max-ttl` / `data:max-ttl-setting`,
+  `setting:encoded-plan` / `n1ql:encoded-plan`), and two more (`setting:max-parallelism`
+  and `setting:query-max-parallelism`) were the same setting spelled at two tiers;
+  all five now carry `aliases`. New: the **CURL access-list family**
+  (`n1ql:curl-all-access` plus `curl-allowed-urls`, `curl-disallowed-urls` and the
+  `query-curl-whitelist` container that holds them) and the **completed-requests
+  family** (`n1ql:system-completed-requests`, `completed-limit`,
+  `completed-threshold`, `completed-stream-size`), promoted on a sharpened version
+  of the family exception: *if a promoted record cannot state what it **is** without
+  naming a sub-threshold sibling, that sibling is part of the family* — mechanical
+  enough to refuse with, which is how `n1ql:curl-result-cap` stayed out despite
+  sitting on the same page at the same recurrence. Plus `n1ql:max-parallelism` and
+  `index:indexer-settings-defer-build`, the latter the first *setting* in a namespace
+  otherwise holding storage modes and index kinds, which is wave 3's question.
+  Tier-neutral naming became a rule here: a setting documented at more than one tier
+  gets the tier-neutral kebab name (`max-parallelism`, `completed-limit`) and keeps
+  the documented one only when single-tier (`query-curl-whitelist` is cluster-only,
+  `completed-stream-size` node-only), because **tier membership is a fact for a
+  relation, not for an id**.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -615,8 +669,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **98
-  entries** as of round 14, which added **none**, and that is a result rather than
+  issueType, description, about, status}` — minted with no gatekeeping. **99
+  entries** as of round 15. Round 14 added **none**, and that was a result rather than
   an omission: round 14 read no pages, and this bucket is for facts about the
   documentation. Its writeup first named four new entries; writing the files closed
   none of them. Two were findings about *this registry* wearing a docs-issue's
@@ -633,7 +687,17 @@ from "still in `extractions/`."
   instances where there are **20 of 55**, had inherited round 12's "58 role tables"
   (the heading count, not the table count — 55 tables, 56 roles, one in prose only),
   and diagnosed the Manage/Use Sequences case backwards. An unmeasured docs-issue is
-  a hunch with a filename. Round 11 had 76 entries, having added 21 from just
+  a hunch with a filename. Round 15 added **1**, and the measurement is the entry:
+  the CURL access-list table appears on `curl.md` and `query-settings.md` with
+  byte-identical descriptive cells (244, 429 and 389 characters, counted), neither
+  page cross-referencing the other's copy, and the duplicated prose carries a
+  fail-open security condition. It also had a measurable effect on the registry —
+  two agents reading the two pages minted the same three properties independently,
+  which is the whole of `n1ql:curl-all-access`'s recurrence 2. Three further
+  candidates that round were examined and **rejected** as facts about the product
+  rather than the documentation (an inverted `-1` sentinel, a setting documented
+  under two spellings, a "whitelist" whose properties are named allowed/disallowed).
+  Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
   contradict each other in a way syntax tables cannot. Round 11 also introduced
@@ -702,6 +766,27 @@ from "still in `extractions/`."
   corpus must treat a missing value as *unknown*, never as `extraction-layer`.
   Note also what a scoreboard of 0 true positives cannot tell you: whether
   the gate *deterred* fabrication, or whether none was attempted.
+  Round 15 added two **id-shape** rules, and they are deliberately forward-only:
+  they apply to `minted` ids only, so nothing already on disk is retroactively
+  illegal and no migration is implied. A new id may not use a plural namespace when
+  the singular already exists in the registry (`indexes:` when there is `index:`,
+  `tools:` when there is `tool:`), and may not carry a file extension
+  (`rest-api:compaction-rest-api.adoc` is a page, not a concept). Both mistakes are
+  in the corpus, both cost a later round a rename sweep, and reuse of the existing
+  spelling is still allowed — which is the point. This is the control point that
+  makes "from now on" true rather than aspirational: reuse whatever the corpus has,
+  mint nothing new that repeats these two mistakes.
+- **`hooks/test-gate.py`** — 23 crafted `PreToolUse` payloads fed to the hook as a
+  subprocess, added in round 15 when the gate acquired rules that are not "is this
+  sentence on the page". Its own construction is the finding. The obvious fixture is
+  a real extraction record, and a real record **fails**: replaying a round-12
+  security page produces five denials, because `registry_status` describes the
+  registry the record was written against, and 200 promotions later `minted` is a
+  false claim about ids the registry now has. So **a control's verdict can expire**,
+  and two things follow — do not re-run the gate over the corpus as an audit, and
+  do not "fix" old records to match today's registry, because the declaration was
+  true when it was made. The fixtures are synthetic, built from long-stable
+  promoted terms.
 - **`hooks/gate-log.jsonl`** — the gate's own append-only verdict log
   (gitignored: it grows on every write and would conflict on every merge; when a
   line in it is a finding, it gets quoted into `reconciliation.md`, which is the
@@ -769,7 +854,7 @@ from "still in `extractions/`."
   earlier fix to a named instance — which the three new cases now are.
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, and — since round 14 —
-  no alias may be a mere punctuation variant of its own target. 530 records, 0
+  no alias may be a mere punctuation variant of its own target. 541 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -795,9 +880,10 @@ from "still in `extractions/`."
   and `candidate_id` — never `evidence`, `evidence_source`, `page_id`,
   `source_path` or `registry_status` — so a rename cannot make a quote stop
   matching a page. The compensating control is a before/after `verify-evidence.py`
-  over the whole corpus: 582 records, 3,522 relations, 452 problems, identical
-  across 151 substitutions in 67 files (round 13) and a further 224 in 24 files
-  (round 14). Round 14 added two things to it. A **rule** (`version:` ids get dots
+  over the whole corpus: 582 records, 3,522 relations, and a problem count identical
+  on both sides of every run — 452 across 151 substitutions in 67 files (round 13), a
+  further 224 in 24 files (round 14), and a further 101 in 14 files (round 15, now
+  against a baseline of 443). Round 14 added two things to it. A **rule** (`version:` ids get dots
   replaced with dashes, forever) rather than another table entry, because a table
   needs a new line per release and is wrong by construction on a namespace whose
   members arrive with every product release — round 13's eight entries missed four,
@@ -809,6 +895,14 @@ from "still in `extractions/`."
   the prefix rule. Rewriting rather than aliasing is the right call at that size —
   25 aliases would be 25 dead twins — which makes the **size** of a change part of
   the alias-or-rewrite judgment, not just its kind.
+  Round 15 needed the opposite shape and got the table instead of a rule: dissolving
+  `setting:` is 34 exact-match entries, because **a dissolution's destination is not a
+  function of the id**. Wave 1's rename compressed 25 ids into one prefix line; wave
+  2's `setting:query-max-parallelism → n1ql:max-parallelism` cannot be computed from
+  the string, only decided by reading what the setting configures. 40 renames, 101
+  substitutions, 14 files, and three of the destinations are ids the registry already
+  had — so the table is also where a *merge* gets expressed, which no prefix rule can
+  do.
 - **`candidate-evidence.py`** — the namespace pass's reading tool, written in round
   14. `recurrence.py` answers "is this term real?" by counting distinct files, and
   is structurally unable to answer "do this namespace's members answer the same
@@ -821,6 +915,23 @@ from "still in `extractions/`."
   `seeAlso` included — and are deliberately **not** the promotion metric, which
   excludes both; the output says so on every run, because a term is routinely 4 here
   and 1 there.
+  Round 15 put the quotability check on this path too: every printed quote is checked
+  against the page it cites, an unquotable one is marked `!! UNQUOTABLE` inline, and
+  `--audit` reduces a run to just the ids that have one. `verify-evidence.py` could
+  always find these; the difference is *when* it runs. The reconcile skill says to
+  scope the audit to the round's new batch, which assumes a round has one — and a
+  registry-input round doesn't, so rounds 14 and 15 promoted concepts out of records
+  written in the first POC commit with nothing re-checking them. One such promotion
+  quotes a sentence that is verbatim on a *different* page in the same directory than
+  the one the relation names, which is the entire reason `evidence_source` exists, and
+  it cost a recurrence: credited to the page that carries it,
+  `vector-search:product-quantization` drops from 2 files to 1. The gate protects
+  records as they are written; **promotion reads records written long before it
+  existed**, so the check now sits on the action a coherence pass actually performs.
+  Fixing a false positive in the shared `norm()` was the precondition: this Markdown
+  snapshot escapes punctuation, so a record quoting `completed_requests` failed
+  against a page that says `completed\_requests` — 9 of 322 corpus failures, and an
+  alarm that includes non-defects is an alarm people learn to skim.
 - **`candidate-faqs/`** — a small, separate experiment: `generate_candidates.py`
   mechanically turns promoted relations + extraction evidence into draft
   FAQ-shaped question/answer pairs (14 so far, across `requiresPrivilege`,
@@ -1393,7 +1504,21 @@ the *kind* of page mattered more than the tree:**
     to distinguish them. More broadly the field is true when written and never
     recomputed, so across 100-odd records it mixes current counts with historical
     ones. Flagged rather than mass-updated, because a bulk rewrite would be guessing
-    at the intent of records from eleven rounds.
+    at the intent of records from eleven rounds. Round 15 found the second instance
+    and it is worse than a synonym problem: `n1ql:encoded-plan` was promoted with
+    `recurrence: 2` when it was the subject of one relation in one file and the object
+    of none — the 2 counted *relations*. So **a recorded recurrence is a claim nothing
+    re-checks after the round that wrote it**, and the only reason this one surfaced is
+    that a fold happened to recompute it. The same round found the deeper version:
+    recurrence counts *pages*, and pages duplicate each other, so byte-identical prose
+    on two pages is two files and one statement — `n1ql:curl-all-access` is recurrence
+    2 by the metric and 1 editorially. Unified, the four ways the metric misreports
+    (a per-item rule that never brings a namespace up for decision; a canonical
+    reference table that mints its rows at recurrence 1 by construction, so *the better
+    the documentation, the less promotable its contents*; tier and spelling splits that
+    make one concept several rare ones; and duplicated pages that make one statement
+    several files) are all one thing: **recurrence measures repetition, and repetition
+    is an editorial property of the documentation, not of the concept.**
 67. **The loud half of a variant problem hides the quiet half.** A promoted term
     read as unpromoted is loud — it shows up as a big number in the backlog. A
     genuine candidate held *below* the promotion bar because its count is split
@@ -1430,6 +1555,8 @@ the *kind* of page mattered more than the tree:**
     were written in the same round, which makes it a gap in the procedure rather
     than three oversights: nothing checked that a note claiming a fold was backed by
     an entry. `--variants` is now that check, run every round.
+**Round 14 (no new pages) — the namespace coherence pass, wave 1:**
+
 70. **The unit of reconciliation decides which defects are visible.** Thirteen
     rounds reconciled by *rank*: take the highest-recurrence candidates, decide each
     on its merits. Round 14 reconciled by *namespace* and immediately found two
@@ -1452,6 +1579,16 @@ the *kind* of page mattered more than the tree:**
     vector-index:search-vector-index`, where the predicate names the axis and the
     object's namespace contradicts it. A range check on predicate slots — still
     unwritten — turns that from a reading task into a write-time denial.
+    Wave 2 found the third case, which is neither kind: `setting:` was named like a
+    subject area with **no subject to be about** — a part of speech, not a topic. The
+    test that separates the two legitimate kinds from that one is **whether membership
+    is closed and enumerable**: `edition:`, `auth-mechanism:` and
+    `vector-similarity-metric:` are, and `setting:` cannot be, because a product
+    acquires settings for as long as it is developed. That distinction also decides the
+    *remedy*, which is the part that costs: a namespace named wrongly gets a rename and
+    a one-line prefix rule; a namespace with no subject gets a **dissolution**, and
+    since a dissolution's destination is not a function of the id, it is one decision
+    per member — 34 of them, read one at a time.
 72. **Two correct fixes to the same query can cancel.** Round 11 excluded
     documentation pages from the concept ranking; round 12 broadened that ranking
     from the object slot to *either* slot; the second silently undid the first,
@@ -1506,6 +1643,35 @@ the *kind* of page mattered more than the tree:**
     page, about the right subject, and equally supportive of three different claims.
     A gate that compares strings cannot reach it, and nothing in the schema lets
     tabular evidence carry its header along with the cell.
+**Round 15 (no new pages) — the namespace coherence pass, wave 2:**
+
+77. **A control's verdict can expire, and a verification instruction can assume a
+    fact about the round.** Building `hooks/test-gate.py` started from the obvious
+    fixture — a real extraction record that passed the gate when it was written — and
+    it now produces five denials, because `registry_status` describes the registry the
+    record was written *against*, and 200 promotions later `minted` is false about ids
+    the registry has since acquired. The record was true when written and is false now,
+    with no edit to either side. Two consequences: the gate cannot be re-run over the
+    corpus as an audit, and old records must not be "fixed" to match today's registry.
+    The same shape on the instruction side — the reconcile skill says to scope
+    `verify-evidence.py` to the round's new batch, which silently assumes a round has
+    one. Rounds 14 and 15 had no new batch and rewrote ids across the whole corpus, so
+    the verification step verified nothing while the round's real risk was elsewhere;
+    the promotions it made were licensed by records from the first POC commit, and one
+    of those quotes a sentence from a page it does not name. **A check is scoped to a
+    kind of round, and a round can change kind.**
+78. **The enum checks the id and never the referent.** `registry_status: minted` was a
+    *true* declaration for `setting:scan-consistency`: no file had that id. The thing
+    it denotes had been promoted for five rounds as `n1ql:scan-consistency`, and the
+    same round's reconciliation promoted it again. Three of `setting:`'s 34 members
+    were duplicates of this kind, and the gate could not have caught one of them,
+    because "is this id in the registry" and "is this *thing* in the registry" are
+    different questions and only the first is mechanical. A tier or a part of speech in
+    the id is what makes a duplicate look like a different thing —
+    `setting:collection-max-ttl` against the promoted `data:max-ttl-setting`. The
+    remedy is not a stronger gate but the reading pass: this is exactly what a
+    namespace coherence wave is for, and it is why aliases get written rather than the
+    duplicate being deleted.
 
 ## What this is not
 
@@ -1525,7 +1691,26 @@ document.
   materially unreliable at the record level. Their vocabulary conclusions
   (the channel model, the CBL edition split) are corroborated elsewhere and
   stand; the individual triples should not be consumed downstream until
-  re-run under the gate.
+  re-run under the gate. Round 15 added a second, smaller, more urgent instance:
+  **`cloud/vector-index/` needs re-extraction too** — 7 records from the first POC
+  commit, written pre-gate, 3 of them with unquotable evidence, and wave 1 promoted
+  **22 concepts out of them**. Both defects found there were in a single record;
+  nobody has checked the other six against their pages.
+- **Build an admission test for reference-table instances.** `query-settings.md`
+  documents `node-quota`, `prepared-limit`, `loglevel`, `controls`,
+  `functions-limit`, `keep-alive-length`, `max-index-api` and
+  `tmpspace-dir`/`-size`, and **no extraction has ever minted any of them**, so they
+  are invisible to every queue this project produces — a coherence pass can only
+  reorganise what was extracted. This is the second instance of round 14's
+  mint-blindness and the first with an obvious mechanical source: a settings table's
+  own rows. It also has to be reconciled with the fact that a canonical reference
+  table mints its rows at recurrence 1 by construction, so the admission test cannot
+  be a recurrence threshold.
+- **Two small registry repairs round 15 found and left.** `cloud-providers:gcp-azure`
+  is one id naming two providers, and needs its relation split in two — it survived
+  the plural-fork fix because the defect is in the *local name*, not the prefix. And
+  `rest-api:compaction-rest-api.adoc` is a page id in concept clothing: now refused
+  for new mints, but the existing one still needs retiring or re-typing.
 - **Finish the index taxonomy now that its axes are known.** Round 11 read
   `server/8.0/learn/services-and-indexes/` and settled the shape round 10 was
   waiting on: two index *classes* crossing the type and providing-service axes
@@ -1557,27 +1742,37 @@ document.
   `allow → deny → allow` with fewer relations is the documented fabrication-becomes-
   omission signal, and round 12's only instance was a correctly-dropped relation.
   Only reading the page distinguishes them.
-- **Continue the namespace coherence pass — wave 2 is `setting:`.** Round 12's
+- **Continue the namespace coherence pass — wave 3 is `indexes:`.** Round 12's
   corrected metric exposed 276 unpromoted concepts at recurrence ≥ 2; rounds 12 and
-  13 took it to 206, and round 14's wave 1 (`vector-index:` and `version:`) took it
-  to **163** — 27 of those retired by the metric fix rather than promoted, because
-  they were documentation pages the widened metric had let back in. What is left is
+  13 took it to 206, round 14's wave 1 (`vector-index:` and `version:`) took it
+  to 163 — 27 of those retired by the metric fix rather than promoted, because
+  they were documentation pages the widened metric had let back in — and round 15's
+  wave 2 (`setting:`, dissolved) took it to **159**. Shadow prefixes, the other
+  measure of the same debt, are down from 55 to **43**, with only two singular/plural
+  forks left and both now refused for new mints. What is left is
   a long tail with no double-digit debt in it, and the method is settled: work it
   **one namespace at a time, deciding the namespace's internal structure before
   promoting any member**, using `recurrence.py --unpromoted-only --min 2` for the
-  worklist and `candidate-evidence.py --ns <prefix>` to read one. The queue, in the
-  order the coherence question is answerable: `setting:` (does a cross-cutting
-  settings axis exist, or do settings belong to their subject areas? — three
-  unpromoted members from three unrelated areas and no promoted member, which is why
-  round 14 refused to file a vector setting into it); `capella:`/`capellaiq:`
-  (`capella-iq` is in both); `plan:`/`billing:`; `backup:` (`cluster-backup`/
-  `bucket-backup` at 5 look like a *scope* axis crossing the promoted *type* axis —
-  round 11's crossing shape); `index-type:` (the covering-index split above);
+  worklist and `candidate-evidence.py --ns <prefix> --audit` to read one and check
+  that what you are reading is real. The queue, in the
+  order the coherence question is answerable: **`indexes:`** (30 ids across 14 files,
+  against `index:`'s five promoted members — the plural/singular fork, and it
+  subsumes the covering-index four-way split above, so decide the two together; it
+  also forces `index:`'s own question, since round 15 filed the first *setting* into a
+  namespace otherwise holding storage modes and index kinds);
+  `capella:`/`capellaiq:` (`capella-iq` is in both); `plan:`/`billing:`; `backup:`
+  (`cluster-backup`/`bucket-backup` at 5 look like a *scope* axis crossing the
+  promoted *type* axis — round 11's crossing shape);
   `js-udf:` (6 members, none promoted); `eventing:` (22, the largest); then
   `search:` and `n1ql:`, largest but also the two the metric fix most changed.
-  Two cautions from wave 1. Read the namespace's existing records *before* deciding
-  it — `fts:`/`search:` looks like a one-member collision and is a documented,
+  Three cautions from waves 1 and 2. Read the namespace's existing records *before*
+  deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,
   correct resolution of a five-way split, which a tidying pass would have destroyed.
+  Check each member against the registry's *referents* and not just its ids: three of
+  `setting:`'s 34 were already promoted under another name, and the write-time enum
+  reports such a member as legitimately `minted`. And budget for the remedy, not the
+  namespace — a rename is one prefix rule for 25 ids, a dissolution is one decision
+  each.
   And the 18 unpromoted **predicates** at ≥2 remain a different job: the top one,
   `requiresMinVersionFor` (5), was folded into `availableSince` in round 2 and
   re-minted since, so it needs a fold, not a promotion. Roughly 15 `sgw:`/`cbl:`
@@ -1703,7 +1898,7 @@ document.
   `sdk:sqlpp-queries-with-sdk`, and `sdk:bucket-management` still
   extraction-layer-only. See round 4's note in `reconciliation.md`.
 - Draft the remaining JSON-LD for everything still intermediate-only across all
-  fourteen rounds. `context.jsonld` is a deliberately curated flagship subset (15 of
+  fifteen rounds. `context.jsonld` is a deliberately curated flagship subset (15 of
   97 predicates), not a complete mapping. Note round 11 added a case the layer has never had to handle:
   `requiresMinimumNodeCount` and `hasInternalServiceIdentifier` are **datatype
   properties**, so their objects are literals rather than `@id`s — 12 relations in

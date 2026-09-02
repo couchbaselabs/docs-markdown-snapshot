@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/indexer-settings-defer-build",
+  "label": "indexer.settings.defer_build",
+  "type": "the Index service setting that changes the cluster-wide default for whether a newly created index is built immediately or deferred",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/n1ql/n1ql-language-reference/createindex.md",
+  "note": "Two files, both stating it identically: 'To change the default setting for deferred builds, use the Index Settings REST API to set the `indexer.settings.defer_build` property.' Object of requiresSetting from both CREATE INDEX and CREATE VECTOR INDEX, which is the point - it is the setting that decides what those statements do when WITH {'defer_build': ...} is omitted, so the DDL's documented default is a function of a value this id names. Only member of `setting:` that did not belong in n1ql: at all; it is an Index service property, and the dissolution filed it here. First member of the index: namespace that is a setting rather than a storage mode or an index kind - the namespace holds index:index, index:view, index:standard-storage and index:memory-optimized-storage - which is a coherence question deferred to the `indexes:` wave rather than answered here."
+}

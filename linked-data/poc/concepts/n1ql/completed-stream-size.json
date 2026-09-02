@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/completed-stream-size",
+  "label": "completed-stream-size",
+  "type": "the node-level file size in MiB that both sizes and enables completed request streaming to gzipped archives in the server log directory (0, the default, disables it)",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/n1ql/n1ql-manage/query-settings.md",
+  "note": "Promoted on its own weight (two files: query-settings.md gives the table row, monitoring-n1ql-query.md the prose and the REST endpoint). Worth filing beyond the count because it is a setting whose value is simultaneously a quantity and a feature flag - it carries requiresFlagToEnable in one direction and requiresSetting in the other, on the same page - which is a shape the registry had no instance of: 'This property is a file size in MiB. When set to `0` (the default), completed request streaming is disabled.' Newest member of the family: 'Completed request streaming is available in Couchbase Server 7.6.4 and later.' Node-level only - query-settings.md files it under 'Node-Level Only Settings' in Table 2 and has no queryCompletedStreamSize anywhere - so unlike n1ql:completed-limit and n1ql:completed-threshold there is nothing here for the tier-neutral naming rule to neutralise."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/curl-all-access",
+  "label": "all_access",
+  "type": "the required boolean in the CURL() access list that decides whether the other two list properties are consulted at all",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/n1ql/n1ql-language-reference/curl.md",
+  "recurrence_note": "Recurrence 2 by the metric and 1 editorially, and the record should say so: its two files are curl.md's 'Table 3. Structure of Access List for CURL()' and query-settings.md's 'Access' schema section, whose descriptive cells are byte-identical - 244, 389 and 429 characters, measured. Two agents read the same table on two pages and minted the same three properties independently. See docs-issues/curl-access-list-table-duplicated-verbatim. Promoted anyway, on the family and semantic-weight grounds in the note below rather than on the count; it is listed here as recurrence 2 because that is what the metric returns, with the correction stated rather than the number quietly adjusted.",
+  "note": "Head of the CURL access-list family. 'Defines whether the user has access to all URLs, or only URLs specified by the access list. This field set must be set to false to enable the allowed_urls and disallowed_urls fields. Setting this field to true enables access to all endpoints.' That one sentence is why the family exists: a boolean that gates whether two sibling settings have any effect is not describable without naming them, and neither sibling recurs on its own. Semantically the sharpest security fact in the round - the fail-open value is the one a reader is most likely to set while thinking they are configuring an allowlist."
+}

@@ -24,27 +24,27 @@
       "reused_or_minted": "minted - no prior id. Minting into a security: namespace rather than setting: because the docs describe it as an access list FILE defined per query node, configured through a settings endpoint - it is a security policy object, not a scalar setting. Reconciliation may prefer setting:curl-whitelist to match the REST path; flagging the choice explicitly."
     },
     {
-      "candidate_id": "setting:curl-all-access",
+      "candidate_id": "n1ql:curl-all-access",
       "label": "all_access (CURL() access list property)",
       "reused_or_minted": "minted - a required property of the access list with a documented gating effect on the other two properties"
     },
     {
-      "candidate_id": "setting:curl-allowed-urls",
+      "candidate_id": "n1ql:curl-allowed-urls",
       "label": "allowed_urls (CURL() access list property)",
       "reused_or_minted": "minted - prefix-match allowlist"
     },
     {
-      "candidate_id": "setting:curl-disallowed-urls",
+      "candidate_id": "n1ql:curl-disallowed-urls",
       "label": "disallowed_urls (CURL() access list property)",
       "reused_or_minted": "minted - prefix-match denylist, documented as taking precedence over allowed_urls"
     },
     {
-      "candidate_id": "setting:curl-result-cap",
+      "candidate_id": "n1ql:curl-result-cap",
       "label": "result-cap (CURL() result memory cap option, default 20MB)",
       "reused_or_minted": "minted - no prior id"
     },
     {
-      "candidate_id": "setting:couchbase-ssl-cipher-list",
+      "candidate_id": "tls:couchbase-ssl-cipher-list",
       "label": "COUCHBASE_SSL_CIPHER_LIST",
       "reused_or_minted": "minted - no prior id; an environment-level control that determines which SSL ciphers CURL() can negotiate"
     },
@@ -148,30 +148,30 @@
       "evidence": "The `CURL()` function runs on the query node within a cluster."
     },
     {
-      "subject": "setting:curl-disallowed-urls",
+      "subject": "n1ql:curl-disallowed-urls",
       "predicate": "takesPrecedenceOver",
-      "object": "setting:curl-allowed-urls",
+      "object": "n1ql:curl-allowed-urls",
       "reused_or_minted_predicate": "minted - the registry has no conflict-resolution predicate. This is a directional override rule between two settings and cannot be expressed by incompatibleWithAccessSurface (they are not incompatible; both can be populated) nor by behavesDifferentlyUnder. It is likely to recur wherever allow/deny pairs appear, so it is worth promoting.",
       "evidence": "If both allowed\\_urls and disallowed\\_urls fields are populated, the disallowed\\_urls field takes precedence over allowed\\_urls."
     },
     {
-      "subject": "setting:curl-all-access",
+      "subject": "n1ql:curl-all-access",
       "predicate": "disablesFeatureFor",
-      "object": "setting:curl-allowed-urls",
+      "object": "n1ql:curl-allowed-urls",
       "reused_or_minted_predicate": "reused - promoted predicate, same shape as the file-based-index-rebalancing / alter-index-with-nodes fact in this batch's alterindex.json: one setting neutralises another. Here all_access must be false for allowed_urls and disallowed_urls to have any effect, so all_access=true disables them.",
       "evidence": "This field set must be set to false to enable the allowed\\_urls and disallowed\\_urls fields. Setting this field to true enables access to all endpoints."
     },
     {
-      "subject": "setting:curl-all-access",
+      "subject": "n1ql:curl-all-access",
       "predicate": "disablesFeatureFor",
-      "object": "setting:curl-disallowed-urls",
+      "object": "n1ql:curl-disallowed-urls",
       "reused_or_minted_predicate": "reused - the second half of the same fact, recorded separately so each property carries its own relation",
       "evidence": "This field set must be set to false to enable the allowed\\_urls and disallowed\\_urls fields. Setting this field to true enables access to all endpoints."
     },
     {
       "subject": "n1ql:curl-function",
       "predicate": "requiresSetting",
-      "object": "setting:couchbase-ssl-cipher-list",
+      "object": "tls:couchbase-ssl-cipher-list",
       "reused_or_minted_predicate": "reused - promoted predicate; the cipher set available to CURL() is determined by this variable",
       "evidence": "The `CURL()` function internally supports a specific set of SSL ciphers (MEDIUM or HIGH). This is dependent on the `COUCHBASE_SSL_CIPHER_LIST`."
     },
@@ -185,7 +185,7 @@
     {
       "subject": "n1ql:curl-function",
       "predicate": "requiresSetting",
-      "object": "setting:curl-result-cap",
+      "object": "n1ql:curl-result-cap",
       "reused_or_minted_predicate": "reused - promoted predicate, used here for a resource-limit option with a documented default",
       "evidence": "The amount of memory used for the CURL result is controlled using the `result-cap` option. The default is 20MB."
     },

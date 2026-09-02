@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/system-completed-requests",
+  "label": "system:completed_requests",
+  "type": "the system keyspace holding a bounded, filtered log of requests that have finished executing on a Query node",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md",
+  "note": "The head of the completed-requests family, and the reason the family is promotable at all: this keyspace cannot be described without saying what bounds it, and the two things that bound it (n1ql:completed-limit, n1ql:completed-threshold) each occur on exactly one page. 'The `completed-limit` field sets the number of most recent requests to be tracked in the `system:completed_requests` catalog.' Not to be confused with system:active_requests, which holds in-flight requests and has no retention policy, or with n1ql:automatic-workload-repository, which samples aggregate statement statistics on a schedule and links to this keyspace by sqlID rather than containing it. Reached the registry in round 15's dissolution of `setting:`: the three settings around it were minted in round 10 as `setting:*` ids, each at recurrence 1, and so never came up for a promotion decision at all."
+}

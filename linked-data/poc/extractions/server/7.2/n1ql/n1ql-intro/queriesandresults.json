@@ -53,7 +53,7 @@
     {
       "subject": "n1ql:query-context",
       "predicate": "seeAlso",
-      "object": "tools:query-workbench",
+      "object": "tool:query-workbench",
       "note": "structural link from an existing Markdown xref",
       "evidence": "To set the query context in the Query Workbench, use the the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor."
     },

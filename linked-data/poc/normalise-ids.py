@@ -124,6 +124,116 @@ ID_RENAMES = {
     "vector-index:euclidean-squared-distance": "vector-similarity-metric:euclidean-squared",
     "vector-index:cosine-similarity": "vector-similarity-metric:cosine",
     "vector-index:dot-product": "vector-similarity-metric:dot-product",
+    # --- Round 15, wave 2. `setting:` was a namespace with no axis to be. ---
+    # 34 members, 31 of them at recurrence 1. Wave 1's defect was a prefix named
+    # like an axis and populated like a subject area, and the fix was a rename
+    # because the population was coherent. This is the other case: `setting:` is
+    # named like a subject area, and there is no subject there to be about. A
+    # setting is always a setting *of* something, so the namespace can only ever
+    # hold other namespaces' business - which is why it needs a 34-line table and
+    # not a prefix rule. A dissolution's destination is not a function of the id.
+    #
+    # The test that settles it, and the reason this is not a matter of taste: a
+    # namespace is an axis only if its membership is closed and enumerable.
+    # vector-similarity-metric: has four members and there is no fifth;
+    # index-state:, auth-mechanism: and edition: are the same shape. Settings are
+    # unbounded by construction - query-settings.md alone documents scores of them
+    # and every release adds more - so no closed axis is available, and an
+    # open-ended population of instances belongs to whatever owns them.
+    #
+    # The registry had in fact already ruled this way and nobody noticed. Round 10
+    # promoted eight settings into n1ql:, data: and tls:, plus the three-tier
+    # request/node/cluster model, *from the same batch* whose extraction records
+    # minted these 34 - so the reconciliation promoted the frame and abandoned the
+    # instances, in one round, from one set of files.
+    #
+    # Query service settings and request parameters.
+    "setting:auto-execute": "n1ql:auto-execute",
+    "setting:auto-prepare": "n1ql:auto-prepare",
+    "setting:awr-enabled": "n1ql:awr-enabled",
+    "setting:awr-location": "n1ql:awr-location",
+    "setting:completed-limit": "n1ql:completed-limit",
+    "setting:completed-stream-size": "n1ql:completed-stream-size",
+    "setting:completed-threshold": "n1ql:completed-threshold",
+    "setting:curl-all-access": "n1ql:curl-all-access",
+    "setting:curl-allowed-urls": "n1ql:curl-allowed-urls",
+    "setting:curl-disallowed-urls": "n1ql:curl-disallowed-urls",
+    "setting:curl-result-cap": "n1ql:curl-result-cap",
+    # The stutter is deliberate: `n1ql-feat-ctrl` is the setting's actual name in
+    # the docs, and an id is the thing's name, not a pretty version of it.
+    "setting:n1ql-feat-ctrl": "n1ql:n1ql-feat-ctrl",
+    "setting:natural": "n1ql:natural",
+    "setting:natural-context": "n1ql:natural-context",
+    "setting:natural-cred": "n1ql:natural-cred",
+    "setting:natural-orgid": "n1ql:natural-orgid",
+    "setting:natural-output": "n1ql:natural-output",
+    "setting:pipeline-batch": "n1ql:pipeline-batch",
+    "setting:preserve-expiry": "n1ql:preserve-expiry",
+    "setting:profile": "n1ql:profile",
+    "setting:query-curl-whitelist": "n1ql:query-curl-whitelist",
+    "setting:query-memory-quota": "n1ql:query-memory-quota",
+    "setting:use-fts": "n1ql:use-fts",
+    "setting:use-replica": "n1ql:use-replica",
+    # One setting, two ids, split by which tier's spelling the minting agent had
+    # in front of it: "max_parallelism request-level parameter / max-parallelism
+    # service-level setting" and "queryMaxParallelism cluster-level /
+    # max-parallelism node-level / max_parallelism request-level" are two agents
+    # describing the same setting from two ends. Verified on the page: 15
+    # occurrences of `max-parallelism`, 11 of `queryMaxParallelism`, 2 of
+    # `max_parallelism`. Same for queryNumCpus/num-cpus, which query-settings.md's
+    # Table 3 ("Equivalent Settings for Cluster-Level and Node-Level") pairs
+    # explicitly.
+    #
+    # Hence the naming rule for this family, which is what stops the split
+    # recurring: use the tier-neutral kebab name when the docs document an
+    # equivalent pair, and the only documented name when the setting exists at one
+    # tier only (queryCurlWhitelist is cluster-level-only per Table 2, so it keeps
+    # its query- prefix). Which tiers a setting has is a fact for a relation to
+    # carry, not for the id to encode.
+    "setting:max-parallelism": "n1ql:max-parallelism",
+    "setting:query-max-parallelism": "n1ql:max-parallelism",
+    "setting:query-num-cpus": "n1ql:num-cpus",
+    # Three folds into records promoted in round 10, from these same pages. Each
+    # is the same referent under a second prefix, which is the defect the
+    # registry_status enum cannot see: `minted` was a *true* declaration for
+    # `setting:scan-consistency`, because nothing called `setting:scan-consistency`
+    # was promoted. The enum checks the id. Nothing checks the referent.
+    "setting:scan-consistency": "n1ql:scan-consistency",
+    "setting:encoded-plan": "n1ql:encoded-plan",
+    "setting:collection-max-ttl": "data:max-ttl-setting",
+    # Index Service settings, addressed through the Index Settings REST API.
+    "setting:indexer-settings-defer-build": "index:indexer-settings-defer-build",
+    "setting:indexer-scan-timeout": "index:indexer-scan-timeout",
+    # Data Service: the expiry pager's interval. This record's concept entry has
+    # no label at all, which is how it stayed invisible.
+    "setting:expiry-pager-sleep-time": "data:expiry-pager-sleep-time",
+    # An environment variable, but a cipher control: tls: is where this registry
+    # keeps encryption configuration.
+    "setting:couchbase-ssl-cipher-list": "tls:couchbase-ssl-cipher-list",
+    # --- The axis that *was* hiding in there, folded rather than promoted. ---
+    # setting-scope: has exactly three members - request-level, node-level,
+    # cluster-level - and so passes the closed-and-enumerable test that setting:
+    # fails. It is a real axis. It is also a third spelling of three concepts
+    # round 10 had already promoted under n1ql: from the same page, so promoting it
+    # would recreate wave 1's defect rather than fix one. Rewritten, not aliased:
+    # the corpus's only evidence for cluster-versus-node scoping is the Query
+    # settings page, so a product-general axis is not yet earned. If a later round
+    # finds the distinction evidenced outside the Query service, mint it then, with
+    # the citation - the stub-resolution discipline, not a permanent refusal.
+    "setting-scope:request-level": "n1ql:request-level-query-parameters",
+    "setting-scope:node-level": "n1ql:node-level-query-settings",
+    "setting-scope:cluster-level": "n1ql:cluster-level-query-settings",
+    # --- Singular/plural forks of namespaces that already exist. ---
+    # Three of 55 unpromoted prefixes are these. Deliberately not a rule: applied
+    # as one it would sweep `indexes:` (30 ids, 14 files) into `index:` (4
+    # promoted), and where those 30 belong is wave 3's question, not a spelling
+    # correction. cloud-providers:gcp-azure is left alone for a different reason -
+    # it is one id standing for two promoted providers, minted because one sentence
+    # gave both the same rule, and rewriting it to either would silently drop the
+    # other. It needs the relation split in two, which this script must not do.
+    "tools:cbimport": "tool:cbimport",
+    "tools:query-workbench": "tool:query-workbench",
+    "cloud-providers:aws": "cloud-provider:aws",
 }
 
 # --------------------------------------------------------------------------

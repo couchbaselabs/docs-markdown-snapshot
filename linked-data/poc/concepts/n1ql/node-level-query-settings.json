@@ -3,5 +3,7 @@
   "label": "node-level Query settings",
   "type": "settings applied to one Query node, overriding cluster-level values on that node",
   "promoted": true,
-  "recurrence": 4
+  "recurrence": 4,
+  "aliases": ["setting-scope:node-level"],
+  "note": "Round 15 folded `setting-scope:node-level` onto this id; see n1ql:request-level-query-parameters for why that prefix existed at all."
 }

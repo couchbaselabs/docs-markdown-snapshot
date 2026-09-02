@@ -3,7 +3,11 @@
   "source_version": "8.0",
   "source_path": "server/current/learn/services-and-indexes/services/data-service.md",
   "concepts": [
-    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "reused_or_minted": "reused"
+    },
     {
       "candidate_id": "data-service:dispatcher",
       "label": "Dispatcher (Data Service component)",
@@ -19,17 +23,61 @@
       "label": "Scheduler (Data Service component)",
       "reused_or_minted": "minted - the Data Service's I/O thread pool manager."
     },
-    { "candidate_id": "data-service:managed-cache", "label": "Managed Cache", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:partition-hash-table", "label": "Partition Hash Table", "reused_or_minted": "minted - the structure inside the Managed Cache that records where bucket items live in memory and on disk; an italicised defined term on this page" },
-    { "candidate_id": "data-service:checkpoint-manager", "label": "Checkpoint Manager", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:item-pager", "label": "Item Pager", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:flusher", "label": "Flusher", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:expiry-pager", "label": "Expiry Pager", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:batch-reader", "label": "Batch Reader", "reused_or_minted": "minted - a KV Engine sub-component" },
-    { "candidate_id": "data-service:non-io-thread-kind", "label": "Non IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
-    { "candidate_id": "data-service:aux-io-thread-kind", "label": "Aux IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
-    { "candidate_id": "data-service:reader-io-thread-kind", "label": "Reader IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
-    { "candidate_id": "data-service:writer-io-thread-kind", "label": "Writer IO threads", "reused_or_minted": "minted - one of the Scheduler's four thread kinds" },
+    {
+      "candidate_id": "data-service:managed-cache",
+      "label": "Managed Cache",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:partition-hash-table",
+      "label": "Partition Hash Table",
+      "reused_or_minted": "minted - the structure inside the Managed Cache that records where bucket items live in memory and on disk; an italicised defined term on this page"
+    },
+    {
+      "candidate_id": "data-service:checkpoint-manager",
+      "label": "Checkpoint Manager",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:item-pager",
+      "label": "Item Pager",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:flusher",
+      "label": "Flusher",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:expiry-pager",
+      "label": "Expiry Pager",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:batch-reader",
+      "label": "Batch Reader",
+      "reused_or_minted": "minted - a KV Engine sub-component"
+    },
+    {
+      "candidate_id": "data-service:non-io-thread-kind",
+      "label": "Non IO threads",
+      "reused_or_minted": "minted - one of the Scheduler's four thread kinds"
+    },
+    {
+      "candidate_id": "data-service:aux-io-thread-kind",
+      "label": "Aux IO threads",
+      "reused_or_minted": "minted - one of the Scheduler's four thread kinds"
+    },
+    {
+      "candidate_id": "data-service:reader-io-thread-kind",
+      "label": "Reader IO threads",
+      "reused_or_minted": "minted - one of the Scheduler's four thread kinds"
+    },
+    {
+      "candidate_id": "data-service:writer-io-thread-kind",
+      "label": "Writer IO threads",
+      "reused_or_minted": "minted - one of the Scheduler's four thread kinds"
+    },
     {
       "candidate_id": "server:dcp-protocol",
       "label": "DCP (Database Change Protocol)",
@@ -50,7 +98,11 @@
       "label": "RFC 8259 (the JSON specification)",
       "reused_or_minted": "minted - a new namespace for external normative standards. The registry has version:*, edition:* and plan:* for internal gating axes but nothing for an external specification the product conforms to."
     },
-    { "candidate_id": "server:service-memory-quota", "label": "service memory quota", "reused_or_minted": "reused - minted this batch on services.md" }
+    {
+      "candidate_id": "server:service-memory-quota",
+      "label": "service memory quota",
+      "reused_or_minted": "reused - minted this batch on services.md"
+    }
   ],
   "relations": [
     {
@@ -203,7 +255,7 @@
     {
       "subject": "data-service:expiry-pager",
       "predicate": "configurableVia",
-      "object": "setting:expiry-pager-sleep-time",
+      "object": "data:expiry-pager-sleep-time",
       "reused_or_minted_predicate": "reused - configurableVia",
       "evidence": "For information about changing the interval, see [expiryPagerSleepTime](../../../rest-api/rest-bucket-create.md#expirypagersleeptime)."
     },

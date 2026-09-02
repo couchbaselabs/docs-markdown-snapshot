@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/completed-threshold",
+  "label": "completed-threshold",
+  "type": "the node-level duration in milliseconds above which a finished request is logged to system:completed_requests (default 1000; 0 logs all, a negative value logs none)",
+  "promoted": true,
+  "recurrence": 1,
+  "promoted_under_exception": "family",
+  "note": "Recurrence 1, promoted under the family exception on the definitional test: n1ql:system-completed-requests is defined by what qualifies for entry, and this is that qualifier. Page: 'This field sets the minimum request duration after which requests are added to the `system:completed_requests` catalog. The default value is 1000 ms. Specify `0` to log all requests and `-1` to not log any.' Note the inverted polarity against completed-limit, where -1 means *all*: two settings on one mechanism with opposite senses for the same sentinel, which is exactly the kind of fact that is lost when a reference table's rows are never promoted. Also carries an isSynonymOf to the `threshold` qualifier inside the `completed` setting - query-settings.md calls that 'another way of specifying the completed-threshold setting' - so this id has two documented spellings at the same tier and one at the tier above (queryCompletedThreshold). Tier-neutral name; see n1ql:completed-limit."
+}

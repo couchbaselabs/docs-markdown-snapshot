@@ -3,82 +3,230 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-manage/query-settings.md",
   "concepts": [
-    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-manage/query-settings.json" },
-    { "candidate_id": "n1ql:transactional-scan-consistency", "label": "Transactional Scan Consistency", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:named-and-positional-parameters", "label": "Named Parameters and Positional Parameters", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:scan-consistency-values", "label": "Scan consistency enum (not_bounded | at_plus | request_plus | statement_plus)", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:cluster-level-query-settings", "label": "Cluster-Level Query Settings (queryXxx names, /settings/querySettings)", "reused_or_minted": "minted - Server-only setting level; the Capella page documents request-level parameters only, so no Capella id exists" },
-    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-Level Query Settings (hyphenated names, /admin/settings)", "reused_or_minted": "minted - Server-only setting level; shared id with the server monitoring-n1ql-query record in this batch" },
-    { "candidate_id": "n1ql:service-level-query-settings", "label": "Service-level query settings (collective term for cluster-level plus node-level)", "reused_or_minted": "minted - the page defines this as an explicit umbrella term, so it is a real concept and not just prose" },
-    { "candidate_id": "n1ql:natural-language-request", "label": "Natural language request (natural/natural_cred/natural_orgid/natural_context/natural_output)", "reused_or_minted": "minted - new 8.0 capability; nothing in the registry covers it" },
-    { "candidate_id": "n1ql:parameter-masking", "label": "Named parameter masking via leading/trailing underscore in the parameter name", "reused_or_minted": "minted - the Capella record flagged this behaviour but did not mint a concept for it" },
-    { "candidate_id": "n1ql:curl-function", "label": "SQL++ CURL() function (URL access governed by an allow list)", "reused_or_minted": "minted - deliberately NOT merged with the registry's eventing:curl-function, which is the Eventing JavaScript cURL binding, a different mechanism with a different allow-list model" },
-    { "candidate_id": "setting:natural", "label": "natural request-level parameter (natural language prompt)", "reused_or_minted": "minted - settings namespace does not exist in the registry yet; minted because it is referenced as a mutual constraint by four sibling parameters" },
-    { "candidate_id": "setting:natural-cred", "label": "natural_cred request-level parameter (Capella user account credentials)", "reused_or_minted": "minted - referenced as a constraint by the natural parameter and carries its own credential-type exclusions" },
-    { "candidate_id": "setting:natural-orgid", "label": "natural_orgid request-level parameter (Capella organization ID)", "reused_or_minted": "minted - referenced as a constraint by the natural parameter" },
-    { "candidate_id": "setting:natural-context", "label": "natural_context request-level parameter (keyspace paths for schema inference)", "reused_or_minted": "minted - referenced as a constraint by the natural parameter" },
-    { "candidate_id": "setting:natural-output", "label": "natural_output request-level parameter (sql | jsudf | ftssql)", "reused_or_minted": "minted - carries its own value enum" },
-    { "candidate_id": "n1ql:natural-output-values", "label": "Natural language output format enum (sql | jsudf | ftssql)", "reused_or_minted": "minted - a distinct enum, not the scan-consistency or profiling-level enum" },
-    { "candidate_id": "setting:use-fts", "label": "use_fts request-level parameter (use a Search index / Flex Index)", "reused_or_minted": "minted - this is the one parameter on the page carrying an ENTERPRISE EDITION badge, so it is the primary requiresEdition evidence in this batch" },
-    { "candidate_id": "setting:use-replica", "label": "use_replica request-level parameter / use-replica node-level / queryUseReplica cluster-level (read from replica)", "reused_or_minted": "minted - version-gated at 7.6.0 and exists at all three setting levels, so it is the primary example of the three-level equivalence pattern" },
-    { "candidate_id": "setting:encoded-plan", "label": "encoded_plan request-level parameter (deprecated; ignored since 6.5)", "reused_or_minted": "minted - the only deprecated setting on the page and therefore the primary deprecatedIn evidence in this batch" },
-    { "candidate_id": "setting:completed-stream-size", "label": "completed-stream-size node-level setting", "reused_or_minted": "minted - shared id with the server monitoring-n1ql-query record in this batch, where the same setting is documented in prose" },
-    { "candidate_id": "setting:query-num-cpus", "label": "queryNumCpus cluster-level setting / num-cpus node-level setting", "reused_or_minted": "minted - carries an edition-dependent ceiling, so it is requiresEdition/behavesDifferentlyUnder evidence" },
-    { "candidate_id": "setting:query-max-parallelism", "label": "queryMaxParallelism cluster-level / max-parallelism node-level / max_parallelism request-level", "reused_or_minted": "minted - carries an edition-dependent ceiling on allowed cores" },
-    { "candidate_id": "setting:query-curl-whitelist", "label": "queryCurlWhitelist cluster-level setting (Access object with all_access / allowed_urls / disallowed_urls)", "reused_or_minted": "minted - the constraint that gates the CURL() function; cluster-level only" },
-    { "candidate_id": "setting:scan-consistency", "label": "scan_consistency request-level parameter", "reused_or_minted": "minted - referenced as the constraint that determines transactional scan consistency" },
-    { "candidate_id": "setting:curl-all-access", "label": "all_access sub-field of the queryCurlWhitelist Access object", "reused_or_minted": "minted - must be false for the allowed_urls/disallowed_urls lists to take effect, so it is a constraint on a constraint" },
-    { "candidate_id": "ui:couchbase-web-console", "label": "Couchbase Web Console", "reused_or_minted": "minted - the Server administrative UI; the registry has capella:query-tab and capella:cluster-manager for the Capella control plane but nothing for the Server console. Shared id with the server n1ql-auditing record in this batch" },
-    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli (setting-query subcommand)", "reused_or_minted": "minted - no CLI tool concept exists in the registry" },
-    { "candidate_id": "capella:iq", "label": "Couchbase Capella iQ service", "reused_or_minted": "minted - the capella: namespace exists but has no iQ id; iQ is named here as the backend a Server 8.0 feature depends on" },
-    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - matches the existing version:server-7-0 style; the primary version concept this wave needs" },
-    { "candidate_id": "version:server-7-6-0", "label": "Couchbase Server 7.6.0", "reused_or_minted": "minted - no 7.6.x version concept exists yet" },
-    { "candidate_id": "version:server-7-6-4", "label": "Couchbase Server 7.6.4", "reused_or_minted": "minted - shared id with the server monitoring-n1ql-query record in this batch" },
-    { "candidate_id": "version:server-7-6-8", "label": "Couchbase Server 7.6.8", "reused_or_minted": "minted - a patch-level version gate; note the registry style must tolerate three-part versions" },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "minted - matches version:server-6-6-1 style; needed as the object of the deprecation of encoded_plan" },
-    { "candidate_id": "edition:enterprise", "label": "Couchbase Server Enterprise Edition", "reused_or_minted": "reused - edition:enterprise is already in the promoted registry; declared here as the object of requiresEdition and behavesDifferentlyUnder relations" },
-    { "candidate_id": "edition:community", "label": "Couchbase Server Community Edition", "reused_or_minted": "reused - edition:community is already in the promoted registry; declared here as the object of two behavesDifferentlyUnder relations" },
-    { "candidate_id": "auth:sso", "label": "Single sign-on (SSO) credentials", "reused_or_minted": "minted - needed as the object of the natural_cred incompatibility; the registry's incompatibleWithCredentialType has no SSO instance yet" },
-    { "candidate_id": "auth:mfa", "label": "Multi-factor authentication (MFA) credentials", "reused_or_minted": "minted - as above; the page names SSO, MFA and social login as three separate unsupported credential kinds" }
+    {
+      "candidate_id": "n1ql:request-level-query-parameters",
+      "label": "Request-Level Query Parameters",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-manage/query-settings.json"
+    },
+    {
+      "candidate_id": "n1ql:transactional-scan-consistency",
+      "label": "Transactional Scan Consistency",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:named-and-positional-parameters",
+      "label": "Named Parameters and Positional Parameters",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency-values",
+      "label": "Scan consistency enum (not_bounded | at_plus | request_plus | statement_plus)",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:cluster-level-query-settings",
+      "label": "Cluster-Level Query Settings (queryXxx names, /settings/querySettings)",
+      "reused_or_minted": "minted - Server-only setting level; the Capella page documents request-level parameters only, so no Capella id exists"
+    },
+    {
+      "candidate_id": "n1ql:node-level-query-settings",
+      "label": "Node-Level Query Settings (hyphenated names, /admin/settings)",
+      "reused_or_minted": "minted - Server-only setting level; shared id with the server monitoring-n1ql-query record in this batch"
+    },
+    {
+      "candidate_id": "n1ql:service-level-query-settings",
+      "label": "Service-level query settings (collective term for cluster-level plus node-level)",
+      "reused_or_minted": "minted - the page defines this as an explicit umbrella term, so it is a real concept and not just prose"
+    },
+    {
+      "candidate_id": "n1ql:natural-language-request",
+      "label": "Natural language request (natural/natural_cred/natural_orgid/natural_context/natural_output)",
+      "reused_or_minted": "minted - new 8.0 capability; nothing in the registry covers it"
+    },
+    {
+      "candidate_id": "n1ql:parameter-masking",
+      "label": "Named parameter masking via leading/trailing underscore in the parameter name",
+      "reused_or_minted": "minted - the Capella record flagged this behaviour but did not mint a concept for it"
+    },
+    {
+      "candidate_id": "n1ql:curl-function",
+      "label": "SQL++ CURL() function (URL access governed by an allow list)",
+      "reused_or_minted": "minted - deliberately NOT merged with the registry's eventing:curl-function, which is the Eventing JavaScript cURL binding, a different mechanism with a different allow-list model"
+    },
+    {
+      "candidate_id": "n1ql:natural",
+      "label": "natural request-level parameter (natural language prompt)",
+      "reused_or_minted": "minted - settings namespace does not exist in the registry yet; minted because it is referenced as a mutual constraint by four sibling parameters"
+    },
+    {
+      "candidate_id": "n1ql:natural-cred",
+      "label": "natural_cred request-level parameter (Capella user account credentials)",
+      "reused_or_minted": "minted - referenced as a constraint by the natural parameter and carries its own credential-type exclusions"
+    },
+    {
+      "candidate_id": "n1ql:natural-orgid",
+      "label": "natural_orgid request-level parameter (Capella organization ID)",
+      "reused_or_minted": "minted - referenced as a constraint by the natural parameter"
+    },
+    {
+      "candidate_id": "n1ql:natural-context",
+      "label": "natural_context request-level parameter (keyspace paths for schema inference)",
+      "reused_or_minted": "minted - referenced as a constraint by the natural parameter"
+    },
+    {
+      "candidate_id": "n1ql:natural-output",
+      "label": "natural_output request-level parameter (sql | jsudf | ftssql)",
+      "reused_or_minted": "minted - carries its own value enum"
+    },
+    {
+      "candidate_id": "n1ql:natural-output-values",
+      "label": "Natural language output format enum (sql | jsudf | ftssql)",
+      "reused_or_minted": "minted - a distinct enum, not the scan-consistency or profiling-level enum"
+    },
+    {
+      "candidate_id": "n1ql:use-fts",
+      "label": "use_fts request-level parameter (use a Search index / Flex Index)",
+      "reused_or_minted": "minted - this is the one parameter on the page carrying an ENTERPRISE EDITION badge, so it is the primary requiresEdition evidence in this batch"
+    },
+    {
+      "candidate_id": "n1ql:use-replica",
+      "label": "use_replica request-level parameter / use-replica node-level / queryUseReplica cluster-level (read from replica)",
+      "reused_or_minted": "minted - version-gated at 7.6.0 and exists at all three setting levels, so it is the primary example of the three-level equivalence pattern"
+    },
+    {
+      "candidate_id": "n1ql:encoded-plan",
+      "label": "encoded_plan request-level parameter (deprecated; ignored since 6.5)",
+      "reused_or_minted": "minted - the only deprecated setting on the page and therefore the primary deprecatedIn evidence in this batch"
+    },
+    {
+      "candidate_id": "n1ql:completed-stream-size",
+      "label": "completed-stream-size node-level setting",
+      "reused_or_minted": "minted - shared id with the server monitoring-n1ql-query record in this batch, where the same setting is documented in prose"
+    },
+    {
+      "candidate_id": "n1ql:num-cpus",
+      "label": "queryNumCpus cluster-level setting / num-cpus node-level setting",
+      "reused_or_minted": "minted - carries an edition-dependent ceiling, so it is requiresEdition/behavesDifferentlyUnder evidence"
+    },
+    {
+      "candidate_id": "n1ql:max-parallelism",
+      "label": "queryMaxParallelism cluster-level / max-parallelism node-level / max_parallelism request-level",
+      "reused_or_minted": "minted - carries an edition-dependent ceiling on allowed cores"
+    },
+    {
+      "candidate_id": "n1ql:query-curl-whitelist",
+      "label": "queryCurlWhitelist cluster-level setting (Access object with all_access / allowed_urls / disallowed_urls)",
+      "reused_or_minted": "minted - the constraint that gates the CURL() function; cluster-level only"
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "scan_consistency request-level parameter",
+      "reused_or_minted": "minted - referenced as the constraint that determines transactional scan consistency"
+    },
+    {
+      "candidate_id": "n1ql:curl-all-access",
+      "label": "all_access sub-field of the queryCurlWhitelist Access object",
+      "reused_or_minted": "minted - must be false for the allowed_urls/disallowed_urls lists to take effect, so it is a constraint on a constraint"
+    },
+    {
+      "candidate_id": "ui:couchbase-web-console",
+      "label": "Couchbase Web Console",
+      "reused_or_minted": "minted - the Server administrative UI; the registry has capella:query-tab and capella:cluster-manager for the Capella control plane but nothing for the Server console. Shared id with the server n1ql-auditing record in this batch"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli (setting-query subcommand)",
+      "reused_or_minted": "minted - no CLI tool concept exists in the registry"
+    },
+    {
+      "candidate_id": "capella:iq",
+      "label": "Couchbase Capella iQ service",
+      "reused_or_minted": "minted - the capella: namespace exists but has no iQ id; iQ is named here as the backend a Server 8.0 feature depends on"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "reused_or_minted": "minted - matches the existing version:server-7-0 style; the primary version concept this wave needs"
+    },
+    {
+      "candidate_id": "version:server-7-6-0",
+      "label": "Couchbase Server 7.6.0",
+      "reused_or_minted": "minted - no 7.6.x version concept exists yet"
+    },
+    {
+      "candidate_id": "version:server-7-6-4",
+      "label": "Couchbase Server 7.6.4",
+      "reused_or_minted": "minted - shared id with the server monitoring-n1ql-query record in this batch"
+    },
+    {
+      "candidate_id": "version:server-7-6-8",
+      "label": "Couchbase Server 7.6.8",
+      "reused_or_minted": "minted - a patch-level version gate; note the registry style must tolerate three-part versions"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "minted - matches version:server-6-6-1 style; needed as the object of the deprecation of encoded_plan"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Couchbase Server Enterprise Edition",
+      "reused_or_minted": "reused - edition:enterprise is already in the promoted registry; declared here as the object of requiresEdition and behavesDifferentlyUnder relations"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Couchbase Server Community Edition",
+      "reused_or_minted": "reused - edition:community is already in the promoted registry; declared here as the object of two behavesDifferentlyUnder relations"
+    },
+    {
+      "candidate_id": "auth:sso",
+      "label": "Single sign-on (SSO) credentials",
+      "reused_or_minted": "minted - needed as the object of the natural_cred incompatibility; the registry's incompatibleWithCredentialType has no SSO instance yet"
+    },
+    {
+      "candidate_id": "auth:mfa",
+      "label": "Multi-factor authentication (MFA) credentials",
+      "reused_or_minted": "minted - as above; the page names SSO, MFA and social login as three separate unsupported credential kinds"
+    }
   ],
   "relations": [
     {
-      "subject": "setting:natural",
+      "subject": "n1ql:natural",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused - availableSince; object version concept minted",
       "evidence": "This parameter is available in clusters running Couchbase Server 8.0 and later. To use this parameter, you must also specify the natural\\_cred, natural\\_orgid, and natural\\_context parameters."
     },
     {
-      "subject": "setting:natural-cred",
+      "subject": "n1ql:natural-cred",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused - availableSince",
       "evidence": "**natural\\_cred**optional           | Couchbase Server 8.0 The Couchbase Capella user account credentials for a natural language request, in the form username:password."
     },
     {
-      "subject": "setting:natural-orgid",
+      "subject": "n1ql:natural-orgid",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused - availableSince",
       "evidence": "**natural\\_orgid**optional          | Couchbase Server 8.0 The Couchbase Capella organization ID for a natural language request."
     },
     {
-      "subject": "setting:natural-context",
+      "subject": "n1ql:natural-context",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused - availableSince",
       "evidence": "**natural\\_context**optional        | Couchbase Server 8.0 A list of paths specifying keyspaces for a natural language request."
     },
     {
-      "subject": "setting:natural-output",
+      "subject": "n1ql:natural-output",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused - availableSince",
       "evidence": "Natural language requests use the Couchbase Capella iQ service as a backend. To make a natural language request, you must have a Couchbase Capella user account. This parameter is available in clusters running Couchbase Server 8.0 and later. **Values:** \"sql\", \"jsudf\", \"ftssql\" **Default:** \"sql\""
     },
     {
-      "subject": "setting:use-replica",
+      "subject": "n1ql:use-replica",
       "predicate": "availableSince",
       "object": "version:server-7-6-0",
       "reused_or_minted_predicate": "reused - availableSince; note the page phrases the gate as a cluster capability rather than a parameter capability",
@@ -92,35 +240,35 @@
       "evidence": "Parameter masking is available in clusters running Couchbase Server 7.6.8 and later."
     },
     {
-      "subject": "setting:completed-stream-size",
+      "subject": "n1ql:completed-stream-size",
       "predicate": "availableSince",
       "object": "version:server-7-6-4",
       "reused_or_minted_predicate": "reused - availableSince",
       "evidence": "Completed request streaming is available in Couchbase Server 7.6.4 and later."
     },
     {
-      "subject": "setting:use-fts",
+      "subject": "n1ql:use-fts",
       "predicate": "requiresEdition",
       "object": "edition:enterprise",
       "reused_or_minted_predicate": "reused - requiresEdition and edition:enterprise both already in the registry",
       "evidence": "**use\\_fts**optional                | [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) Specifies that the query should use a Search index."
     },
     {
-      "subject": "setting:encoded-plan",
+      "subject": "n1ql:encoded-plan",
       "predicate": "deprecatedIn",
       "object": "version:server-6-5",
       "reused_or_minted_predicate": "minted - the registry has no deprecation predicate at all. Note the page's own phrasing is weaker than 'deprecated in': the settings summary table labels the parameter '(deprecated)' with no version, and the row text gives 6.5 as the version from which it became a no-op. Reconciliation may want two predicates: deprecatedIn (announced) and ignoredSince / noOpSince (behaviourally inert)",
       "evidence": "**encoded\\_plan**optional           | In clusters running Couchbase Server 6.5 and later, this parameter is ignored and has no effect. It's included for compatibility with previous versions of Couchbase Server."
     },
     {
-      "subject": "setting:query-max-parallelism",
+      "subject": "n1ql:max-parallelism",
       "predicate": "behavesDifferentlyUnder",
       "object": "edition:community",
       "reused_or_minted_predicate": "reused - behavesDifferentlyUnder; this is an edition-dependent ceiling rather than an outright edition gate, so requiresEdition would overstate it",
       "evidence": "The number of allowed cores is the same as the number of logical CPUs. In Couchbase Server Community Edition, the number of allowed cores cannot be greater than 4\\. In Couchbase Server Enterprise Edition, there is no limit to the number of allowed cores."
     },
     {
-      "subject": "setting:query-num-cpus",
+      "subject": "n1ql:num-cpus",
       "predicate": "behavesDifferentlyUnder",
       "object": "edition:community",
       "reused_or_minted_predicate": "reused - behavesDifferentlyUnder, same shape as queryMaxParallelism",
@@ -136,40 +284,40 @@
     {
       "subject": "n1ql:natural-language-request",
       "predicate": "requiresSetting",
-      "object": "setting:natural-cred",
+      "object": "n1ql:natural-cred",
       "reused_or_minted_predicate": "reused - requiresSetting; this is an all-four-or-error constraint, which requiresSetting captures only loosely (see notable_absence)",
       "evidence": "To use this parameter, you must also specify the natural\\_cred, natural\\_orgid, and natural\\_context parameters. If you don't specify all four parameters, the Query Service returns an error."
     },
     {
       "subject": "n1ql:natural-language-request",
       "predicate": "requiresSetting",
-      "object": "setting:natural-orgid",
+      "object": "n1ql:natural-orgid",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "To use this parameter, you must also specify the natural\\_cred, natural\\_orgid, and natural\\_context parameters. If you don't specify all four parameters, the Query Service returns an error."
     },
     {
       "subject": "n1ql:natural-language-request",
       "predicate": "requiresSetting",
-      "object": "setting:natural-context",
+      "object": "n1ql:natural-context",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "To use this parameter, you must also specify the natural\\_cred, natural\\_orgid, and natural\\_context parameters. If you don't specify all four parameters, the Query Service returns an error."
     },
     {
-      "subject": "setting:natural-output",
+      "subject": "n1ql:natural-output",
       "predicate": "usesEnum",
       "object": "n1ql:natural-output-values",
       "reused_or_minted_predicate": "reused - usesEnum; object minted",
       "evidence": "sql — The output is a SQL++ statement. jsudf — The output is a CREATE FUNCTION statement which you can use to generate a SQL++ managed JavaScript user-defined function. ftssql — The output is a SQL++ statement which can use a Flex index, if available."
     },
     {
-      "subject": "setting:natural-cred",
+      "subject": "n1ql:natural-cred",
       "predicate": "incompatibleWithCredentialType",
       "object": "auth:sso",
       "reused_or_minted_predicate": "reused - incompatibleWithCredentialType and auth:sso both already in the registry",
       "evidence": "This parameter does not support single sign-on (SSO), multi-factor authentication (MFA), or social login credentials such as Google or GitHub."
     },
     {
-      "subject": "setting:natural-cred",
+      "subject": "n1ql:natural-cred",
       "predicate": "incompatibleWithCredentialType",
       "object": "auth:mfa",
       "reused_or_minted_predicate": "reused - incompatibleWithCredentialType and auth:mfa both already in the registry",
@@ -227,21 +375,21 @@
     {
       "subject": "n1ql:curl-function",
       "predicate": "requiresSetting",
-      "object": "setting:query-curl-whitelist",
+      "object": "n1ql:query-curl-whitelist",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "**queryCurlWhitelist**optional         | An object which determines which URLs may be accessed by the CURL() function."
     },
     {
-      "subject": "setting:query-curl-whitelist",
+      "subject": "n1ql:query-curl-whitelist",
       "predicate": "requiresFlagToEnable",
-      "object": "setting:curl-all-access",
+      "object": "n1ql:curl-all-access",
       "reused_or_minted_predicate": "reused - requiresFlagToEnable; object minted. Note the inverted polarity: the allow/deny lists take effect only when all_access is set to FALSE, so the 'flag to enable' must be set to false. The registry's requiresFlagToEnable carries no polarity, which reconciliation should be aware of",
       "evidence": "**all\\_access**required      | Defines whether the user has access to all URLs, or only URLs specified by the access list. This field set must be set to false to enable the allowed\\_urls and disallowed\\_urls fields."
     },
     {
       "subject": "n1ql:transactional-scan-consistency",
       "predicate": "requiresSetting",
-      "object": "setting:scan-consistency",
+      "object": "n1ql:scan-consistency",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "If the request contains a `BEGIN TRANSACTION` statement, or a DML statement with the [tximplicit](#tximplicit) parameter set to `true`, then the [scan\\_consistency](#scan%5Fconsistency) parameter sets the transactional scan consistency."
     },
@@ -255,7 +403,7 @@
     {
       "subject": "n1ql:transactional-scan-consistency",
       "predicate": "behavesDifferentlyUnder",
-      "object": "setting:use-fts",
+      "object": "n1ql:use-fts",
       "reused_or_minted_predicate": "reused - behavesDifferentlyUnder; using a full-text index silently downgrades the requested consistency, which is a genuine conditional behaviour change",
       "evidence": "However, `request_plus` consistency is not supported for statements using a full-text index. If any statement within the transaction uses a full-text index, by means of the SEARCH function or the Flex Index feature, the scan consistency is set to `not_bounded` for the duration of the Full-Text Search."
     }

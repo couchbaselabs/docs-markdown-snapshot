@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/max-parallelism",
+  "label": "max-parallelism",
+  "type": "the ceiling on how many logical CPUs one query may be parallelised across, spelled queryMaxParallelism at cluster level, max-parallelism at node level and max_parallelism at request level",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": ["n1ql:query-max-parallelism"],
+  "documented_at": "server/current/n1ql/n1ql-manage/query-settings.md",
+  "note": "Reached recurrence 2 only by a merge: round 10's extraction minted this once as `setting:max-parallelism` (from insert.md) and once as `setting:query-max-parallelism` (from query-settings.md, under the cluster-level spelling), and each half sat at recurrence 1 where nothing could promote it. Round 15's dissolution of `setting:` collapsed both onto this id, which is the general case worth remembering: a setting documented at more than one tier is minted once per tier name, and recurrence then counts a single concept as several rare ones. The tier-neutral kebab spelling is the id because all three tiers are documented and equivalent; which tier a value was set at is a fact for a relation. Carries an edition-dependent ceiling, which is why it earns a record beyond the merge: 'In Couchbase Server Community Edition, the number of allowed cores cannot be greater than 4.' Not to be confused with n1ql:num-cpus (queryNumCpus / num-cpus), which caps the CPUs the whole Query service may use rather than one query's parallelism, carries the identical CE-versus-EE sentence, and stays unpromoted at recurrence 1."
+}

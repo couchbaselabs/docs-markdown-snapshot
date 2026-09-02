@@ -63,10 +63,26 @@ EXTRACTIONS = "linked-data/poc/extractions"
 
 
 def norm(s):
-    """Whitespace- and quote-normalise, so formatting differences don't cause
-    false alarms. Deliberately does NOT normalise wording."""
+    """Whitespace-, quote- and backslash-normalise, so formatting differences
+    don't cause false alarms. Deliberately does NOT normalise wording.
+
+    The backslash rule, added in round 15: this Markdown snapshot escapes
+    punctuation inside prose - the AWR page writes `completed\\_requests` where the
+    rendered page says `completed_requests` - and a record that quotes what a human
+    reads was being failed for it. 9 of 322 corpus-wide failures were this. That
+    is a small number with an outsized cost, because it lands on the *marker*: a
+    quotability check whose alarms include ones that are not defects is a check
+    people learn to skim, and this one now runs on the promotion path
+    (`candidate-evidence.py --audit`), where skimming is exactly the failure it
+    exists to prevent.
+
+    Escaping is a rendering artefact of the snapshot, not wording, so removing it
+    does not widen what counts as a quote in any way an agent could exploit: it
+    cannot change a word, only un-escape a character the source already had.
+    """
     s = s.replace("’", "'").replace("‘", "'")
     s = s.replace("“", '"').replace("”", '"')
+    s = re.sub(r"\\([^A-Za-z0-9])", r"\1", s)
     return re.sub(r"\s+", " ", s).strip()
 
 

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/curl-allowed-urls",
+  "label": "allowed_urls",
+  "type": "the prefix-matched allowlist of URLs the CURL() function may call, consulted only when all_access is false",
+  "promoted": true,
+  "recurrence": 1,
+  "promoted_under_exception": "family",
+  "note": "Recurrence 1, promoted under the family exception on the definitional test: n1ql:curl-all-access cannot be stated without naming this field, so it belongs to that concept's family. 'An array of strings, each of which is a URL to which you wish to grant access. Each URL is a prefix match'. Prefix matching is the load-bearing detail and is easy to lose: an entry is not an exact URL. Loses to its sibling on conflict - 'If both allowed_urls and disallowed_urls fields are populated, the disallowed_urls field takes precedence over allowed_urls.' Sibling: n1ql:curl-disallowed-urls; container: n1ql:query-curl-whitelist."
+}

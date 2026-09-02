@@ -74,22 +74,22 @@
       "reused_or_minted": "minted - the registry only has the generic placeholder rbac-role:role; this is a specific named Server RBAC role. Deliberately NOT merged with privilege:query-manage-system-catalog from the Capella query-awr record: server/current/learn/security/roles.md documents 'Query System Catalog (query_system_catalog)' and 'Query Manage System Catalog (query_manage_system_catalog)' as two distinct roles"
     },
     {
-      "candidate_id": "setting:profile",
+      "candidate_id": "n1ql:profile",
       "label": "profile query setting (node-level and request-level)",
       "reused_or_minted": "minted - settings namespace does not yet exist in the registry; profile is referenced as the constraint that turns query profiling on"
     },
     {
-      "candidate_id": "setting:completed-threshold",
+      "candidate_id": "n1ql:completed-threshold",
       "label": "completed-threshold node-level setting (default 1000 ms)",
       "reused_or_minted": "minted - referenced elsewhere on this page as the constraint that gates entry into system:completed_requests"
     },
     {
-      "candidate_id": "setting:completed-limit",
+      "candidate_id": "n1ql:completed-limit",
       "label": "completed-limit node-level setting (default 4000)",
       "reused_or_minted": "minted - referenced as the constraint bounding system:completed_requests retention"
     },
     {
-      "candidate_id": "setting:completed-stream-size",
+      "candidate_id": "n1ql:completed-stream-size",
       "label": "completed-stream-size node-level setting (file size in MiB; 0 disables streaming)",
       "reused_or_minted": "minted - shared id with the server query-settings record in this batch; the setting that gates completed request streaming"
     },
@@ -139,12 +139,12 @@
     {
       "subject": "n1ql:completed-request-streaming",
       "predicate": "requiresSetting",
-      "object": "setting:completed-stream-size",
+      "object": "n1ql:completed-stream-size",
       "reused_or_minted_predicate": "reused - requiresSetting from the promoted list",
       "evidence": "To enable completed request streaming, use the [Admin REST API](../../n1ql-rest-admin/index.md) `/admin/settings` endpoint to specify the `completed-stream-size` property."
     },
     {
-      "subject": "setting:completed-stream-size",
+      "subject": "n1ql:completed-stream-size",
       "predicate": "requiresFlagToEnable",
       "object": "n1ql:completed-request-streaming",
       "reused_or_minted_predicate": "reused - requiresFlagToEnable; the setting defaults to the disabled value so the feature is off unless explicitly turned on",
@@ -167,26 +167,26 @@
     {
       "subject": "n1ql:query-profiling",
       "predicate": "requiresSetting",
-      "object": "setting:profile",
+      "object": "n1ql:profile",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "To activate query profiling at the node level, specify the `profile` setting using the [Admin REST API](../../n1ql-rest-admin/index.md) (`/admin/settings` endpoint)."
     },
     {
       "subject": "n1ql:system-completed-requests",
       "predicate": "requiresSetting",
-      "object": "setting:completed-threshold",
+      "object": "n1ql:completed-threshold",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "This field sets the minimum request duration after which requests are added to the `system:completed_requests` catalog. The default value is 1000 ms. Specify `0` to log all requests and `-1` to not log any requests to the keyspace."
     },
     {
       "subject": "n1ql:system-completed-requests",
       "predicate": "requiresSetting",
-      "object": "setting:completed-limit",
+      "object": "n1ql:completed-limit",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "The `completed-limit` field sets the number of most recent requests to be tracked in the `system:completed_requests` catalog. The default value is 4000\\. Specify `0` to not track any requests and `-1` to set no limit."
     },
     {
-      "subject": "setting:completed-threshold",
+      "subject": "n1ql:completed-threshold",
       "predicate": "isSynonymOf",
       "object": "n1ql:completed-request-logging-qualifiers",
       "reused_or_minted_predicate": "reused - isSynonymOf; the page states the two spellings are alternative ways of expressing the same qualifier",
@@ -223,7 +223,7 @@
     {
       "subject": "n1ql:node-level-query-settings",
       "predicate": "requiresSetting",
-      "object": "setting:profile",
+      "object": "n1ql:profile",
       "reused_or_minted_predicate": "reused - requiresSetting; the /admin/settings response enumerates profile among the node-level settings with default \"off\"",
       "evidence": "\"profile\": \"off\","
     },

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/curl-disallowed-urls",
+  "label": "disallowed_urls",
+  "type": "the prefix-matched denylist of URLs the CURL() function may not call, taking precedence over allowed_urls",
+  "promoted": true,
+  "recurrence": 1,
+  "promoted_under_exception": "family",
+  "note": "Recurrence 1, promoted under the family exception on the definitional test - see n1ql:curl-all-access, whose definition names this field. Carries the family's precedence rule, which is the fact a reader needs and the one a bare id list would drop: 'If both allowed_urls and disallowed_urls fields are populated, the disallowed_urls field takes precedence over allowed_urls.' Deny-wins, prefix-matched. Sibling: n1ql:curl-allowed-urls; container: n1ql:query-curl-whitelist."
+}

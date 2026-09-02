@@ -39,17 +39,17 @@
       "reused_or_minted": "minted - no tool concept exists in the registry; the Capella record did not mint one because its link to the tool is broken (see cross_product_finding)"
     },
     {
-      "candidate_id": "setting:awr-enabled",
+      "candidate_id": "n1ql:awr-enabled",
       "label": "system:awr enabled attribute (default FALSE)",
       "reused_or_minted": "minted - the opt-in flag that gates the whole feature, so it is referenced as a constraint by the tool and by the relnotes"
     },
     {
-      "candidate_id": "setting:awr-location",
+      "candidate_id": "n1ql:awr-location",
       "label": "system:awr location attribute (target keyspace for snapshots)",
       "reused_or_minted": "minted - the second mandatory precondition; AWR stays quiescent until it resolves"
     },
     {
-      "candidate_id": "setting:collection-max-ttl",
+      "candidate_id": "data:max-ttl-setting",
       "label": "Collection maxTTL / expiration setting",
       "reused_or_minted": "minted - the constraint AWR relies on for snapshot retention; no expiration/TTL concept exists in the registry despite both products' AWR pages linking to the same Expiration page"
     },
@@ -121,7 +121,7 @@
     {
       "subject": "tool:cbqueryreportgen",
       "predicate": "requiresSetting",
-      "object": "setting:awr-enabled",
+      "object": "n1ql:awr-enabled",
       "reused_or_minted_predicate": "reused - requiresSetting. Evidence from server/current/release-notes/relnotes.md; query-awr.md itself implies but never states this dependency",
       "evidence": "This tool requires AWR to be enabled on the cluster.",
       "evidence_source": "server/current/release-notes/relnotes.md",
@@ -137,14 +137,14 @@
     {
       "subject": "n1ql:automatic-workload-repository",
       "predicate": "requiresFlagToEnable",
-      "object": "setting:awr-enabled",
+      "object": "n1ql:awr-enabled",
       "reused_or_minted_predicate": "reused - requiresFlagToEnable is the exact shape for an opt-in feature with a false default",
       "evidence": "AWR is an opt-in feature that you must explicitly enable and configure. Once enabled, AWR starts collecting data as soon as the repository location is set and is available."
     },
     {
       "subject": "n1ql:automatic-workload-repository",
       "predicate": "requiresSetting",
-      "object": "setting:awr-location",
+      "object": "n1ql:awr-location",
       "reused_or_minted_predicate": "reused - requiresSetting",
       "evidence": "Before AWR can start collecting data, you must configure this location in the [system:awr](#system-awr) catalog. The repository can be a bucket or a collection, but not a scope."
     },
@@ -165,7 +165,7 @@
     {
       "subject": "n1ql:awr-snapshot",
       "predicate": "requiresSetting",
-      "object": "setting:collection-max-ttl",
+      "object": "data:max-ttl-setting",
       "reused_or_minted_predicate": "reused - requiresSetting; retention is not enforced by AWR itself and must be delegated to collection expiration",
       "evidence": "AWR retains snapshot documents for long-term analysis, but does not enforce retention policies by default. To manage storage effectively, you need to configure a Time-To-Live (TTL) or expiration for the AWR location."
     },

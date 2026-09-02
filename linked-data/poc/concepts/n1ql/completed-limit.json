@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/completed-limit",
+  "label": "completed-limit",
+  "type": "the node-level setting bounding how many recent requests system:completed_requests retains (default 4000; 0 tracks none, -1 tracks all)",
+  "promoted": true,
+  "recurrence": 1,
+  "promoted_under_exception": "family",
+  "note": "Recurrence 1, promoted under the family exception, and licensed by the definitional test rather than by the count: n1ql:system-completed-requests cannot state what it is without naming the two settings that bound it, so those settings are part of that concept's family. Page: 'The `completed-limit` field sets the number of most recent requests to be tracked in the `system:completed_requests` catalog. The default value is 4000.' Tier-neutral name deliberately: query-settings.md documents the identical setting at cluster level as queryCompletedLimit, and 'When you change the cluster-level setting, the node-level setting is over-written for all nodes in the cluster.' Tier membership is a fact for a relation, not for the id. Sibling: n1ql:completed-threshold."
+}

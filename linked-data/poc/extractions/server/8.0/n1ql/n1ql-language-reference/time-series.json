@@ -3,18 +3,66 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/time-series.md",
   "concepts": [
-    { "candidate_id": "n1ql:time-series", "label": "Time series data feature (time series document format: ts_start, ts_end, ts_interval, ts_data)", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/time-series.json" },
-    { "candidate_id": "n1ql:fn-timeseries", "label": "_TIMESERIES function", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:regular-time-series", "label": "Regular time series (data points at fixed intervals; ts_interval present)", "reused_or_minted": "minted - the page's central classification, and the presence or absence of ts_interval is what determines how ts_data is interpreted; the Capella record modelled the feature but not the two kinds" },
-    { "candidate_id": "n1ql:irregular-time-series", "label": "Irregular time series (data points at arbitrary times; ts_interval absent, each element carries its own timestamp)", "reused_or_minted": "minted - sibling of the above; not a synonym or subtype of it, since the two require different ts_data shapes" },
-    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/insert.json and used again in server/current/.../insert.json in this batch" },
-    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused - established in the Capella insert record" },
-    { "candidate_id": "n1ql:update", "label": "UPDATE statement", "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - promoted-adjacent id, used in server/current/.../createindex.json in this wave" },
-    { "candidate_id": "data:document-expiration", "label": "Document expiration (TTL, settable at bucket, collection or document level)", "reused_or_minted": "minted - the Capella records used sdk:document-expiration for the Java SDK how-to target, but this page links to the *server data-model* concept (learn/data/expiration.md) and makes a substantive claim about its granularity, so a data: namespace id is the honest one. Not merged with sdk:document-expiration - see notable_absence" },
-    { "candidate_id": "tools:cbimport", "label": "cbimport command line tool", "reused_or_minted": "minted - no tools: namespace concept exists yet; named as one of three ingestion routes and used in the worked examples" },
-    { "candidate_id": "cli:couchbase-cli-collection-manage", "label": "couchbase-cli collection-manage", "reused_or_minted": "minted - sibling of cli:finderr minted in metafun.json in this batch; present only in the Server page (the Capella twin uses CREATE SCOPE / CREATE COLLECTION SQL++ statements instead), which makes it a product-shape difference" },
-    { "candidate_id": "setting:preserve-expiry", "label": "preserve_expiry request-level query parameter", "reused_or_minted": "minted - a named request parameter offered as an alternative to explicitly re-setting meta().expiration; also the site of a broken cross-reference on this page, see cross_component_finding" }
+    {
+      "candidate_id": "n1ql:time-series",
+      "label": "Time series data feature (time series document format: ts_start, ts_end, ts_interval, ts_data)",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/time-series.json"
+    },
+    {
+      "candidate_id": "n1ql:fn-timeseries",
+      "label": "_TIMESERIES function",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:regular-time-series",
+      "label": "Regular time series (data points at fixed intervals; ts_interval present)",
+      "reused_or_minted": "minted - the page's central classification, and the presence or absence of ts_interval is what determines how ts_data is interpreted; the Capella record modelled the feature but not the two kinds"
+    },
+    {
+      "candidate_id": "n1ql:irregular-time-series",
+      "label": "Irregular time series (data points at arbitrary times; ts_interval absent, each element carries its own timestamp)",
+      "reused_or_minted": "minted - sibling of the above; not a synonym or subtype of it, since the two require different ts_data shapes"
+    },
+    {
+      "candidate_id": "n1ql:insert",
+      "label": "INSERT statement",
+      "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/insert.json and used again in server/current/.../insert.json in this batch"
+    },
+    {
+      "candidate_id": "n1ql:upsert",
+      "label": "UPSERT statement",
+      "reused_or_minted": "reused - established in the Capella insert record"
+    },
+    {
+      "candidate_id": "n1ql:update",
+      "label": "UPDATE statement",
+      "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused - promoted-adjacent id, used in server/current/.../createindex.json in this wave"
+    },
+    {
+      "candidate_id": "data:document-expiration",
+      "label": "Document expiration (TTL, settable at bucket, collection or document level)",
+      "reused_or_minted": "minted - the Capella records used sdk:document-expiration for the Java SDK how-to target, but this page links to the *server data-model* concept (learn/data/expiration.md) and makes a substantive claim about its granularity, so a data: namespace id is the honest one. Not merged with sdk:document-expiration - see notable_absence"
+    },
+    {
+      "candidate_id": "tool:cbimport",
+      "label": "cbimport command line tool",
+      "reused_or_minted": "minted - no tools: namespace concept exists yet; named as one of three ingestion routes and used in the worked examples"
+    },
+    {
+      "candidate_id": "cli:couchbase-cli-collection-manage",
+      "label": "couchbase-cli collection-manage",
+      "reused_or_minted": "minted - sibling of cli:finderr minted in metafun.json in this batch; present only in the Server page (the Capella twin uses CREATE SCOPE / CREATE COLLECTION SQL++ statements instead), which makes it a product-shape difference"
+    },
+    {
+      "candidate_id": "n1ql:preserve-expiry",
+      "label": "preserve_expiry request-level query parameter",
+      "reused_or_minted": "minted - a named request parameter offered as an alternative to explicitly re-setting meta().expiration; also the site of a broken cross-reference on this page, see cross_component_finding"
+    }
   ],
   "relations": [
     {
@@ -55,7 +103,7 @@
     {
       "subject": "n1ql:time-series",
       "predicate": "requiresPriorExecutionOf",
-      "object": "tools:cbimport",
+      "object": "tool:cbimport",
       "reused_or_minted_predicate": "reused - promoted predicate, applied to the documented two-stage ingestion pipeline: raw import must precede the transform step. The page names three interchangeable routes for stage 1 (cbimport, the UI import feature, an SDK parsing library), so this relation should be read as 'one of' rather than 'exactly this tool'",
       "evidence": "1. Import the raw dataset from a supported format: CSV or JSON. To do this, you can use the [cbimport](../../tools/cbimport.md) command line tool, the [import](../../manage/import-documents/import-documents.md) feature in the Couchbase UI, or an SDK data parsing library."
     },
@@ -67,7 +115,7 @@
       "evidence": "When the data is imported, transform the imported data to one or more documents with the [Couchbase time series document format](#document-structure). To do this, use an [INSERT SELECT](insert.md) query or an SDK insert operation."
     },
     {
-      "subject": "setting:preserve-expiry",
+      "subject": "n1ql:preserve-expiry",
       "predicate": "mustUseInsteadWhen",
       "object": "data:document-expiration",
       "reused_or_minted_predicate": "reused - the page presents preserve_expiry as an alternative to the explicit 'meta(w).expiration = meta(w).expiration' idiom shown in Example 8, i.e. two routes to the same outcome, one of which is offered as the cleaner one",

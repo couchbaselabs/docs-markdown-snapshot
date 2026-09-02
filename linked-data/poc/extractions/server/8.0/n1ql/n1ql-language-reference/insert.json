@@ -74,17 +74,17 @@
       "reused_or_minted": "reused - same id minted in time-series.json in this batch. The Capella record used sdk:document-expiration for the same link target; both records link to the Java SDK KV-operations how-to, so reconciliation should pick one - I have used the data: id because the page's substantive claims (the 30-day seconds-vs-timestamp rule, bucket/collection inheritance) are about the data model, not the SDK"
     },
     {
-      "candidate_id": "setting:pipeline-batch",
+      "candidate_id": "n1ql:pipeline-batch",
       "label": "pipeline_batch request-level parameter / pipeline-batch service-level setting",
       "reused_or_minted": "minted - one named setting with two names depending on scope (underscore for request level, hyphen for service level); the Server page documents both, the Capella page only the request-level one"
     },
     {
-      "candidate_id": "setting:max-parallelism",
+      "candidate_id": "n1ql:max-parallelism",
       "label": "max_parallelism request-level parameter / max-parallelism service-level setting",
       "reused_or_minted": "minted - same request/service dual-naming pattern as pipeline-batch"
     },
     {
-      "candidate_id": "setting:indexer-scan-timeout",
+      "candidate_id": "index:indexer-scan-timeout",
       "label": "indexer.settings.scan_timeout (Index Settings REST API property)",
       "reused_or_minted": "minted - sibling of setting:indexer-settings-defer-build minted in server/current/.../createindex.json in this wave; present only in the Server page"
     },
@@ -171,21 +171,21 @@
     {
       "subject": "n1ql:insert",
       "predicate": "configurableVia",
-      "object": "setting:pipeline-batch",
+      "object": "n1ql:pipeline-batch",
       "reused_or_minted_predicate": "minted - the registry has requiresSetting (a hard dependency) but nothing for 'the behaviour of this statement can be tuned by this setting', which is a distinct and very common shape. Both the request-level and service-level forms are named in the evidence",
       "evidence": "The INSERT statement sends documents to the data node in batches, with a default batch size of 16\\. You can configure this value using the [pipeline\\_batch](../n1ql-manage/query-settings.md#pipeline%5Fbatch%5Freq) request-level parameter, or the [pipeline-batch](../n1ql-manage/query-settings.md#pipeline-batch-srv) service-level setting."
     },
     {
       "subject": "n1ql:insert",
       "predicate": "configurableVia",
-      "object": "setting:max-parallelism",
+      "object": "n1ql:max-parallelism",
       "reused_or_minted_predicate": "minted - see above",
       "evidence": "* Use the [max\\_parallelism](../n1ql-manage/query-settings.md#max%5Fparallelism%5Freq) request-level parameter, or the [max-parallelism](../n1ql-manage/query-settings.md#max-parallelism-srv) service-level setting when inserting multiple documents."
     },
     {
       "subject": "n1ql:insert",
       "predicate": "configurableVia",
-      "object": "setting:indexer-scan-timeout",
+      "object": "index:indexer-scan-timeout",
       "reused_or_minted_predicate": "minted - see above. Note the oddity that a *DML* statement's timeout advice is discharged by pointing at an *indexer* setting, which is either a genuine cross-service dependency or a misplaced instruction - see cross_component_finding",
       "evidence": "To set the indexer timeout, use the Index Settings REST API to set the `indexer.settings.scan_timeout` property. For an example, see [Set the Indexer Scan Timeout](../../index-rest-settings/index.md#ex-scan-timeout)."
     },

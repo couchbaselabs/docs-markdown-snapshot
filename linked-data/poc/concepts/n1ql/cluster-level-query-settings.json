@@ -4,5 +4,6 @@
   "type": "queryXxx-named settings applied cluster-wide through the Cluster Manager's /settings endpoint",
   "promoted": true,
   "recurrence": 2,
-  "note": "Promoted at recurrence 2 to complete the request/node/cluster family rather than on its own weight. Carries the round's most surprising small fact: these are served on the Cluster Manager's ports (8091/18091), not on a Query service port."
+  "aliases": ["setting-scope:cluster-level"],
+  "note": "Round 15 folded `setting-scope:cluster-level` onto this id; see n1ql:request-level-query-parameters. Promoted at recurrence 2 to complete the request/node/cluster family rather than on its own weight. Carries the round's most surprising small fact: these are served on the Cluster Manager's ports (8091/18091), not on a Query service port."
 }

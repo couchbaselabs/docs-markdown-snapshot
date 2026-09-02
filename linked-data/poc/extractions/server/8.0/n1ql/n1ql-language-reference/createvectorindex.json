@@ -124,7 +124,7 @@
       "reused_or_minted": "minted - a feature whose availability depends on persist_full_vector; no existing concept covers it"
     },
     {
-      "candidate_id": "setting:indexer-settings-defer-build",
+      "candidate_id": "index:indexer-settings-defer-build",
       "label": "indexer.settings.defer_build (Index Settings REST API property)",
       "reused_or_minted": "minted - same id as in this batch's createindex.json"
     },
@@ -194,7 +194,7 @@
     {
       "subject": "n1ql:create-vector-index-with-defer-build",
       "predicate": "requiresSetting",
-      "object": "setting:indexer-settings-defer-build",
+      "object": "index:indexer-settings-defer-build",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "To change the default setting for deferred builds, use the Index Settings REST API to set the `indexer.settings.defer_build` property."
     },

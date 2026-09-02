@@ -46,7 +46,7 @@ for fp in files:
 # predicates/objects with len(files) >= 2 are promotion candidates
 ```
 
-### Two things the recurrence count won't tell you
+### Four things the recurrence count won't tell you
 
 Run these alongside the aggregation, before applying the promotion rule.
 
@@ -151,11 +151,44 @@ whole, and in this order:
    "axis-named, subject-populated", the fix is usually a **rename** - the remainder
    is a coherent subject area and only the name claimed otherwise - plus exact-match
    evacuations for the members that belong to axes that already exist.
+
+   The test for the second kind: **a namespace is an axis only if its membership is
+   closed and enumerable.** `edition:`, `index-state`, `auth-mechanism:` and
+   `vector-similarity-metric:` pass - you can write the list down and a new member is
+   news. `setting:` fails *by construction*, because a product acquires settings for
+   as long as it is developed, so no wave will ever close it. Apply the test before
+   asking which kind of namespace something is, because a third answer exists and it
+   is the expensive one: a prefix that is **neither** an axis nor a subject area,
+   because it names a *part of speech* rather than a topic. `setting:` had no subject
+   to be about; "settings" is what its members *are*, not what they are *about*.
+
+   The remedy differs, and it is the remedy that costs. A misnamed namespace gets a
+   **rename**: one prefix rule in `normalise-ids.py`, 25 ids in round 14, cheap. A
+   namespace with no subject gets a **dissolution**, member by member, into the
+   subject areas that own the mechanisms - and that cannot be a prefix rule, because
+   **a dissolution's destination is not a function of the id.** Nothing about the
+   string `setting:query-max-parallelism` says it belongs with `n1ql:`; only reading
+   what the setting configures does. Budget one decision per member (34 of them in
+   round 15) and expect the rename table to carry them as exact matches, which is
+   also where any *merges* get expressed.
 3. **Check whether a member is already promoted under another prefix**, and do not
    assume the majority spelling is the promoted one. `index-type:hyperscale-vector`
    was promoted at recurrence 2 while `vector-index:hyperscale-vector-index` had 5
    files in another product tree. Same defect shape as round 12's misfiled roles:
    the wrong answer looked better-evidenced.
+
+   Check the **referent**, not just the id, and expect no help from the gate here:
+   `registry_status: minted` was a *true* declaration for `setting:scan-consistency`
+   (no file had that id) while the thing it denotes had been promoted for five rounds
+   as `n1ql:scan-consistency`. **The enum checks the id and never the referent** -
+   "is this id in the registry" is mechanical, "is this *thing* in the registry" is
+   the reading you are doing right now. Three of `setting:`'s 34 members were
+   duplicates of this kind, and the two id features that hide them are a **tier**
+   (`setting:collection-max-ttl` against the promoted `data:max-ttl-setting`) and a
+   part of speech (`setting:encoded-plan` against `n1ql:encoded-plan`). Resolve by
+   writing an `aliases` entry on the surviving record and folding the recurrence, not
+   by deleting the duplicate: the extraction records that used the other spelling are
+   evidence and stay as they are.
 4. **Read the predicates the namespace's relations use.** They are the reliable
    signal, because there are ~100 predicates and every agent prompt lists them all,
    against ~300 concepts where the table an agent gets is partial - so the relation
@@ -167,6 +200,29 @@ Expect a namespace pass to *retire* ids as well as promote them, and expect
 families that straddle the bar (five page ids above it, five real concepts below
 it, in one namespace). A family straddling the bar is an argument for reading the
 family, not for lowering the bar.
+
+**d. The unit of recurrence is the page, and pages duplicate each other.** Round 15
+promoted `n1ql:curl-all-access` at recurrence 2 whose two files carry *one* table:
+`curl.md` and `query-settings.md` describe the CURL access list in byte-identical
+cells (244, 429 and 389 characters, measured), so two agents minted the same three
+properties independently. Two files, one statement. The inverse also happens: a
+canonical reference table mints its rows at recurrence 1 by construction, because
+there is exactly one place to document them - so **the better the documentation, the
+less promotable its contents**, and `query-settings.md` has eight settings
+(`node-quota`, `prepared-limit`, `loglevel`, `controls`, `functions-limit`,
+`keep-alive-length`, `max-index-api`, `tmpspace-dir`/`-size`) that no extraction has
+ever minted at all and no queue will ever surface.
+
+Taken with (a) and the variant problem, the four failures are one failure:
+**recurrence measures repetition, and repetition is an editorial property of the
+documentation, not of the concept.** Keep the bar - it is still the best cheap signal
+there is - and treat a measured duplication as a `docs-issues/` entry plus a
+`recurrence_note` on the record saying what the count really counts. State the metric's
+number and correct it in prose; do not quietly adjust the figure, because the next
+round recomputes it and will find your adjustment unreproducible. Likewise never
+trust a `recurrence` field you did not just recompute: `n1ql:encoded-plan` carried a
+2 that counted *relations*, and nothing re-checks a recorded count after the round
+that wrote it.
 
 ## 2. Apply the promotion rule
 
@@ -183,6 +239,15 @@ Two exceptions call for judgment rather than the mechanical rule:
   GROUP statement family, where most individual predicates are single-occurrence)
   can be promoted as a group, documented as a family, even though no single
   member crosses the threshold alone.
+
+  The test that makes this decidable rather than a feeling: **if a promoted record
+  cannot state what it *is* without naming a sub-threshold sibling, that sibling is
+  part of the family.** `n1ql:curl-all-access` is a boolean whose whole definition is
+  that it gates whether `allowed_urls` and `disallowed_urls` are consulted at all, so
+  the two of them come in with it at recurrence 1. The test earns its keep by
+  **refusing**: `n1ql:curl-result-cap` sits on the same page at the same recurrence
+  and stays out, because nothing in the access list's definition names it. If a test
+  cannot exclude anything on the page that suggested it, it is not a test.
 - **A predicate whose semantic significance outweighs its recurrence** (e.g. a
   relation minted specifically because it was the sharpest evidence for a
   headline finding) can be promoted below the usual bar - but say so explicitly
@@ -231,7 +296,20 @@ so two ids minted from the two names share no substring and
 synonymy. Second, `roles.md` itself mislabels at least one table, so the label is
 sometimes simply wrong where the internal name is right.
 
-Do **not** push this upstream into the extract skill. An agent extracting a SQL++
+**Filing convention for settings documented at more than one tier: use the
+tier-neutral kebab name.** SQL++ settings exist at request, node and cluster level
+with different spellings of the same thing - `max_parallelism` as a request
+parameter, `queryMaxParallelism` as a cluster setting - so file
+`n1ql:max-parallelism` and alias the rest. Use the documented name unchanged only
+when a setting exists at *one* tier and nowhere else (`n1ql:query-curl-whitelist` is
+cluster-only, `n1ql:completed-stream-size` node-only). The reason is the same one
+that governs folds: **tier membership is a fact for a relation, not for a fact about
+an id.** Putting the tier in the id also produces the duplicate that no gate can
+see - `setting:collection-max-ttl` against the promoted `data:max-ttl-setting` - and
+it splits one setting's recurrence across two rare ids, so two members of a namespace
+can each sit below the bar while the setting is well above it.
+
+Do **not** push either convention upstream into the extract skill. An agent extracting a SQL++
 reference page sees only the display label; requiring the internal name would
 mean every such agent reads `roles.md` first. Minting the label form at
 extraction time is correct, and re-filing to the internal name with an alias is
@@ -347,6 +425,8 @@ python3 linked-data/poc/recurrence.py --selftest
 python3 linked-data/poc/verify-promotions.py    # report: always exits 0, always read it
 python3 linked-data/poc/recurrence.py --variants  # report: read it, decide alias vs rewrite
 python3 linked-data/poc/candidate-evidence.py --ns <ns>  # while deciding, not at the end
+python3 linked-data/poc/candidate-evidence.py --audit <ids...>   # before promoting them
+python3 linked-data/poc/hooks/test-gate.py       # gate: only if you changed the gate
 ```
 
 `verify-promotions.py` lists every `ns:kebab-id`, `camelCaseTerm` and backticked
@@ -398,12 +478,41 @@ clustering cannot see: it keys on typography, so it catches `create-function` vs
 variants need a separate local-name match, which is how round 13's other five
 turned up.
 
-Expect known-bad numbers from `verify-evidence.py` over the whole corpus: 322
-unquotable relations and 130 with no evidence, nearly all in rounds 1-9, written
-before the write-time gate existed. Scope it to the new batch to get a clean
-signal, and don't "fix" a historical count by editing old records - round 3's
-`sync-gateway` and `couchbase-lite` batches need *re-extraction*, which is a
-tracked next step, not a reconciliation task.
+Expect known-bad numbers from `verify-evidence.py` over the whole corpus: 313
+unquotable relations and 130 with no evidence (443 problems), nearly all in
+rounds 1-9, written before the write-time gate existed. Scope it to the new batch to
+get a clean signal, and don't "fix" a historical count by editing old records -
+round 3's `sync-gateway` and `couchbase-lite` batches need *re-extraction*, which is
+a tracked next step, not a reconciliation task.
+
+**"Scope it to the new batch" assumes the round has one, and a coherence wave does
+not.** Rounds 14 and 15 took the registry as input: they added no extraction
+records, so that instruction verified nothing, while the round's actual risk was
+that its promotions were licensed by records written in the very first POC commit,
+years of controls ago. One of them quotes a sentence that is verbatim on a
+*different* page than the one the relation names - which is the entire reason
+`evidence_source` exists - and it cost a recurrence, because credited to the page
+that carries it the term's two files collapse to one. So on a registry-input round
+the check that matters is on the reading path:
+
+```bash
+python3 linked-data/poc/candidate-evidence.py --ns <ns> --audit   # before promoting
+```
+
+`--audit` reduces the run to the ids with at least one quote that is not on the page
+it cites. Run it over every id you are about to promote or fold. Reading a namespace
+and checking that what you are reading is real are then one action, with no separate
+step to forget - which matters because the write-time gate protects records *as they
+are written*, and promotion reads records written long before it existed.
+
+Two related things not to do. Don't re-run `hooks/gate-evidence.py` over old records
+as an audit: a real round-12 record replayed through it today produces five denials,
+because `registry_status` describes the registry the record was written *against*,
+and 200 promotions later `minted` is false about ids the registry has since acquired.
+**A control's verdict can expire.** And don't "correct" those records to match
+today's registry - the declaration was true when it was made. `hooks/test-gate.py`
+(23 cases) is the regression suite for the gate's non-evidence rules, and its
+fixtures are synthetic for exactly this reason.
 
 ## Principles that govern the judgment calls throughout
 

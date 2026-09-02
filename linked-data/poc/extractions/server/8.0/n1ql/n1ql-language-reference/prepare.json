@@ -45,17 +45,17 @@
       "reused_or_minted": "minted - no prior id; this is the batch's only quotable instance of an explicitly-legacy, backward-compatibility-only artifact and so is directly relevant to the wave's deprecation-vocabulary question"
     },
     {
-      "candidate_id": "setting:auto-prepare",
+      "candidate_id": "n1ql:auto-prepare",
       "label": "auto-prepare (Query service-level setting)",
       "reused_or_minted": "minted - no prior id; a named service-level setting that changes statement behaviour"
     },
     {
-      "candidate_id": "setting:auto-execute",
+      "candidate_id": "n1ql:auto-execute",
       "label": "auto_execute (request-level query setting)",
       "reused_or_minted": "minted - no prior id; distinct from auto-prepare in both spelling (hyphen vs underscore) and scope (request vs service), and the docs are explicit about both differences, so they must be two concepts"
     },
     {
-      "candidate_id": "setting:n1ql-feat-ctrl",
+      "candidate_id": "n1ql:n1ql-feat-ctrl",
       "label": "n1ql-feat-ctrl (Query feature-control bitmask setting)",
       "reused_or_minted": "minted - no prior id; the opt-in gate for the extended automatic-reprepare behaviour. A notable modelling case because the gate is a specific BIT of the setting rather than the setting as a whole. NOTE: the original version of this record described this as gating a 'new 8.0' behaviour; the page makes no version claim, so that framing has been removed."
     },
@@ -115,7 +115,7 @@
     {
       "subject": "n1ql:automatic-reprepare-on-index-changes",
       "predicate": "requiresSetting",
-      "object": "setting:n1ql-feat-ctrl",
+      "object": "n1ql:n1ql-feat-ctrl",
       "reused_or_minted_predicate": "reused - promoted predicate, but note the gate is a single BIT of the setting rather than the setting having a value. The registry has no way to express bit-level feature flags; recording the setting plus the quote preserves the bit number for reconciliation. CORRECTED: the original evidence said 'To disable this feature', inverting the page's polarity - the bit ENABLES the opt-in extension.",
       "evidence": "To enable the feature, set bit 23 (0×800000 or 8388608) of the `n1ql-feat-ctrl` setting."
     },
@@ -164,21 +164,21 @@
     {
       "subject": "n1ql:prepare",
       "predicate": "behavesDifferentlyUnder",
-      "object": "setting:auto-prepare",
+      "object": "n1ql:auto-prepare",
       "reused_or_minted_predicate": "reused but stretched - same friction noted in this batch's dropfunction.json: behavesDifferentlyUnder was promoted for deployment/edition contexts, and here the context is a service setting. The fact is that with auto-prepare on, the Query service prepares statements without an explicit PREPARE.",
       "evidence": "The auto-prepare feature is inactive by default. You can turn the auto-prepare feature on or off using the `auto-prepare` service-level query setting."
     },
     {
       "subject": "n1ql:execute",
       "predicate": "behavesDifferentlyUnder",
-      "object": "setting:auto-execute",
+      "object": "n1ql:auto-execute",
       "reused_or_minted_predicate": "reused with the same caveat; recorded to keep the auto-prepare / auto_execute pair symmetric, since the page's own framing is that one is service-level and the other request-level",
       "evidence": "The auto-execute feature is inactive by default. You can turn the auto-execute feature on or off using the `auto_execute` request-level query setting."
     },
     {
-      "subject": "setting:auto-prepare",
+      "subject": "n1ql:auto-prepare",
       "predicate": "shouldNotBeConfusedWith",
-      "object": "setting:auto-execute",
+      "object": "n1ql:auto-execute",
       "reused_or_minted_predicate": "reused - promoted predicate. Justified by the near-identical names differing in scope and in punctuation style (hyphen vs underscore), which is a genuine trap and the reason they are two concepts here. The corrected evidence below is stronger than the original: the page states an actual non-interaction between the two features, not merely that they differ.",
       "evidence": "Prepared statements created by the [auto-prepare](#auto-prepare) feature are not executed by the auto-execute feature."
     },

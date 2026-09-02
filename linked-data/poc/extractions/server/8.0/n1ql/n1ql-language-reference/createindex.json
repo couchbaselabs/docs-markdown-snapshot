@@ -134,7 +134,7 @@
       "reused_or_minted": "minted - a new 8.0 concept with no analogue in the registry; it is not an index type, a state, or a statement, so no existing namespace fits"
     },
     {
-      "candidate_id": "setting:indexer-settings-defer-build",
+      "candidate_id": "index:indexer-settings-defer-build",
       "label": "indexer.settings.defer_build (Index Settings REST API property)",
       "reused_or_minted": "minted - the registry has the requiresSetting predicate but no setting: namespace concepts yet; this is the first instance in this batch"
     },
@@ -211,7 +211,7 @@
     {
       "subject": "n1ql:create-index-with-defer-build",
       "predicate": "requiresSetting",
-      "object": "setting:indexer-settings-defer-build",
+      "object": "index:indexer-settings-defer-build",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "To change the default setting for deferred builds, use the Index Settings REST API to set the `indexer.settings.defer_build` property."
     },

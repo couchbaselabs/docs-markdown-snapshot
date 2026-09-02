@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/curl-access-list-table-duplicated-verbatim",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "The three-row table describing the CURL() access list (all_access / allowed_urls / disallowed_urls) appears twice, and the descriptive cells are byte-identical in both places: n1ql-language-reference/curl.md's 'Table 3. Structure of Access List for CURL()' and n1ql-manage/query-settings.md's 'Access' schema section, which the queryCurlWhitelist row links to. Measured, not eyeballed: 244, 429 and 389 characters respectively, identical in both files. Neither page cross-references the other's copy - query-settings.md links to its own #Access anchor, and curl.md does not mention queryCurlWhitelist at all, though that is the setting the access list is written to. This matters beyond tidiness because the content is a security control: whichever copy is edited, a reader following the other one gets the older rule, and the duplicated sentence carries the fail-open condition ('Setting this field to true enables access to all endpoints'). It also had a measurable effect on this extraction: two agents reading the two pages minted the same three properties independently, which is how n1ql:curl-all-access reached recurrence 2 from what is editorially one table.",
+  "about": [
+    "server/8.0/n1ql/n1ql-language-reference/curl",
+    "server/8.0/n1ql/n1ql-manage/query-settings"
+  ],
+  "foundDuring": "round-15-namespace-coherence-wave-2",
+  "status": "open"
+}
