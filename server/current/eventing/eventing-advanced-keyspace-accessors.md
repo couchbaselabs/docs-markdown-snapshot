@@ -1,7 +1,7 @@
 ---
 title: Advanced Keyspace Accessors
 description: Use Advanced Keyspace Accessors to access advanced Key Value functionality.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-02T04:32:36.823Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
   xref: xref:server:eventing:eventing-advanced-keyspace-accessors.adoc[]
@@ -329,6 +329,9 @@ Results
 
 The INCREMENT operation lets you increment the `count` field in a specific document.
 
+> [!NOTE]
+> This operation is atomic.
+
 For example, the document can have the structure `{ count: 23 }`, where 23 is the example counter value.
 
 If the specified counter document does not exist, the operation creates a new document with a `count` value of 0\. If the `count` value is 0, the first returned value is 1.
@@ -360,6 +363,9 @@ function OnUpdate(doc, meta) {
 `result = couchbase.decrement(binding, meta)`
 
 The DECREMENT operation lets you decrement the `count` field in a specific document.
+
+> [!NOTE]
+> This operation is atomic.
 
 For example, the document can have the structure `{ count: 23 }`, where 23 is the example counter value.
 

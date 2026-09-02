@@ -1,6 +1,6 @@
 ---
 title: Annotation Documentation
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-02T04:32:36.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-annotations.adoc
   xref: xref:operator::reference-annotations.adoc[]
@@ -65,6 +65,21 @@ Used to allow Couchbase Operator to shuffle the order that pods are scheduled to
 
 Used to force a pod to be rescheduled. When this annotation is applied to a Couchbase pod, the operator will detect it and reschedule the pod. The pods will either be Swap Rebalanced or go through a InPlaceUpgrade depending on [couchbaseclusters.spec.upgradeProcess](resource/couchbasecluster.md#couchbaseclusters-spec-upgradeprocess). Accepts either `true` or `false`.
 
+## [](#cluster-upgrade)Cluster Upgrade
+
+### [](#rollback-method)Rollback Method
+
+#### [](#cao-couchbase-comupgrade-rollbackmethod)`cao.couchbase.com/upgrade.rollbackMethod`
+
+Used to select how the operator replaces nodes during a [rollback](concept-upgrade.md). A rollback cannot be performed in place, so by default the operator swap rebalances: the replacement pod is created before the old one is removed, so the cluster peaks at its configured size plus `maxUpgradable` pods. Where there is no room to schedule those extra pods, the rollback stalls. `ConstrainedRebalanceOut` removes the node first instead, so the pod count never exceeds the configured cluster size.
+
+Accepts one of the following values:
+
+* `SwapRebalance` (default): creates the replacement before ejecting the old node. Keeps the cluster at full strength, but needs spare capacity to schedule the extra pods.
+* `ConstrainedRebalanceOut`: rebalances the node's data off before creating its replacement. Replica coverage is never reduced, but the remaining nodes must have room for the relocated data and it costs two rebalances instead of one.
+
+An unrecognised value logs a warning and falls back to `SwapRebalance`.
+
 ## [](#host-network)Host Network
 
 ### [](#improved-host-network-support)Improved Host Network Support
@@ -84,6 +99,18 @@ Used to set the hostname of the pod to the name of the node it is running on. Th
 #### [](#cao-couchbase-comnetworking-cloudnativegateway-otlp-endpoint)`cao.couchbase.com/networking.cloudNativeGateway.otlp.endpoint`
 
 Use this annotation to set a custom OTLP endpoint for the Cloud Native Gateway. Apply the annotation to the cluster with a string value such as `<https://otel:1234>`. The value is passed directly to the Cloud Native Gateway container.
+
+## [](#tls)TLS
+
+### [](#node-internal-client-certificate)Node Internal Client Certificate
+
+#### [](#cao-couchbase-comnetworking-tls-secretsource-nodeclientsecretname)`cao.couchbase.com/networking.tls.secretSource.nodeClientSecretName`
+
+Used to supply the internal client certificate that each Couchbase node presents when it acts as a client for node-to-node communication. Set the value to the name of a secret in the same namespace as the cluster, using the `kubernetes.io/tls` layout (`tls.crt` and `tls.key`). The certificate must be valid for client authentication (`clientAuth` extended key usage), chain to a CA the cluster trusts, and contain a SAN email address of the form `<name>@internal.couchbase.com`.
+
+When set, the operator uploads the certificate to each node and reloads it, so the node's internal client identity is signed by your CA rather than the auto-generated CA of Couchbase Server. This allows the auto-generated CA to be removed from the trust pool when mandatory client certificate authentication is used with strict node-to-node encryption.
+
+Requires Couchbase Server 7.6.0 or later; on earlier versions the annotation has no effect.
 
 ## [](#backup)Backup
 

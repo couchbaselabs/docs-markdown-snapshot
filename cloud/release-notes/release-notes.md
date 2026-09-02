@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-02T04:32:36.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
   xref: xref:cloud:release-notes:release-notes.adoc[]
@@ -10,6 +10,11 @@ antora:
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes
+
+## [](#september-2026-changelog)September 2026 Changelog
+
+* Couchbase Server 8.0.3  
+Creating a new operational cluster with Couchbase Server 8.0 now deploys the Couchbase Server 8.0.3 maintenance release. This version includes bug fixes.
 
 ## [](#august-2026-changelog)August 2026 Changelog
 
