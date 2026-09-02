@@ -1,0 +1,807 @@
+{
+  "page_id": "server/8.0/indexes/groupby-aggregate-performance",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/groupby-aggregate-performance.md",
+  "concepts": [
+    {
+      "candidate_id": "index:group-aggregate-pushdown",
+      "label": "Grouping and aggregate pushdown (the Indexer performs GROUP BY and aggregation during the index scan)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - the most heavily attested unpromoted id I met in this batch (37 occurrences across extraction records, including the Capella copy of this page, cloud/guides/group-agg.json and cloud/n1ql/.../groupby.json). This page is its home page and it is still not promoted."
+    },
+    {
+      "candidate_id": "index:index-pushdown",
+      "label": "Index pushdown (family term)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:pagination-pushdown",
+      "label": "Pagination pushdown (OFFSET and LIMIT pushed to the index scan)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page names it as the sibling optimization attempted alongside grouping and aggregate pushdown."
+    },
+    {
+      "candidate_id": "index:partial-aggregation",
+      "label": "Partial (pre-aggregated) results returned by the Indexer, merged by the Query service",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already in the extraction layer from the Capella copy of this page, never promoted."
+    },
+    {
+      "candidate_id": "index:partial-plan-field",
+      "label": "\"partial\": true plan field",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the one machine-readable signal that a result was pre-aggregated. It is the sibling of index:index-group-aggs-plan-field, index:covers-plan-field, index:filter-covers-plan-field and index:index-conditions-plan-field, which this round has been minting one per page; nothing in the registry covers it."
+    },
+    {
+      "candidate_id": "index:index-group-aggs-plan-field",
+      "label": "index_group_aggs plan field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted. THIS is the page that documents it in full (three tables of field descriptions), which is the strongest evidence in the batch that the operator pushdowns on index_pushdowns.md and the grouping/aggregate pushdowns here are implemented through one plan structure."
+    },
+    {
+      "candidate_id": "index:keypos-plan-field",
+      "label": "keypos (whether a group or aggregate expression matches an index key, or falls back to the query expression)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the single most repeated technical statement on the page: its definition is given verbatim twelve times across three tables. It is also the mechanism behind the whole leading-key / expression-match story, so it earns an id rather than staying inside index_group_aggs."
+    },
+    {
+      "candidate_id": "index:index-projection",
+      "label": "index_projection plan field (entry_keys)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Here it is the consumer of the internally generated aggregate ids."
+    },
+    {
+      "candidate_id": "index:covers-plan-field",
+      "label": "covers plan field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted."
+    },
+    {
+      "candidate_id": "index:leading-index-key",
+      "label": "Leading index key(s)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - every qualification rule on this page, and much of index-scans.md, index_pushdowns.md and early-filters-and-pagination.md, turns on whether a predicate or GROUP BY key is on the leading keys of the index. Four rounds of extraction have described that condition in prose without ever naming it; the corpus has index:index-key-expression but no term for key position. Expect high recurrence."
+    },
+    {
+      "candidate_id": "index:distinct-aggregate-pushdown",
+      "label": "DISTINCT aggregate pushdown (the four permitted cases)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - given its own section, its own four-case enumeration and its own failure mode (an error rather than a fallback), so it behaves differently from plain aggregate pushdown and needs a separate id."
+    },
+    {
+      "candidate_id": "index:query-engine-side-grouping",
+      "label": "Query-engine-side grouping and aggregation (the un-pushed-down alternative)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the named alternative the whole page is measured against ('the query engine would fetch all relevant data from the indexer and group the data itself'), and the documented fallback when requirements are unmet. It is the counterpart of index:default-post-fetch-filtering, which I minted for the same role on early-filters-and-pagination.json."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page makes covering a hard precondition, not an optimization."
+    },
+    {
+      "candidate_id": "index:standard-storage",
+      "label": "Standard GSI (standard index storage mode)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted as an index storage mode. Note that this page calls it a storage engine (see cross_product_finding)."
+    },
+    {
+      "candidate_id": "index:memory-optimized-storage",
+      "label": "Memory Optimized GSI (MOI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted as an index storage mode."
+    },
+    {
+      "candidate_id": "index:index-scan3",
+      "label": "IndexScan3 plan operator",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted. Every plan on this page is an IndexScan3 carrying index_group_aggs."
+    },
+    {
+      "candidate_id": "index:index-scan",
+      "label": "Index scan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/index-scans.json in this round, not promoted."
+    },
+    {
+      "candidate_id": "index:early-filtering",
+      "label": "Early filtering (and early order and pagination)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Present here only as a Related Links target."
+    },
+    {
+      "candidate_id": "index-type:array-index",
+      "label": "Array index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Every example index on this page is composite."
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service / Indexer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service / query engine",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service (KV service)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:aggregate-functions",
+      "label": "Aggregate functions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (plural form). Note the extraction layer also carries a singular n1ql:aggregate-function, an alias phase 2 should collapse."
+    },
+    {
+      "candidate_id": "n1ql:group-by",
+      "label": "GROUP BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:having",
+      "label": "HAVING clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:letting",
+      "label": "LETTING clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:let",
+      "label": "LET clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Distinct from LETTING: this page's third negative example fails precisely because the aggregate depends on a LET variable."
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:limit",
+      "label": "LIMIT clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:offset",
+      "label": "OFFSET clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:array-agg",
+      "label": "ARRAY_AGG() function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page both lists it as a positive case and forbids it (see cross_component_finding)."
+    },
+    {
+      "candidate_id": "n1ql:filter-clause",
+      "label": "FILTER clause on an aggregate function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:distinct-modifier",
+      "label": "DISTINCT modifier on an aggregate function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:distinct-array-modifier",
+      "label": "DISTINCT array index modifier",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:all-array-modifier",
+      "label": "ALL array index modifier",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the corpus has n1ql:distinct-array-modifier but no id for its counterpart, even though this page's two array examples hinge on the difference: DISTINCT is required for the ANY ... SATISFIES case, ALL is required for the UNNEST case."
+    },
+    {
+      "candidate_id": "n1ql:any-some-every-operators",
+      "label": "ANY ... SATISFIES collection predicate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:unnest",
+      "label": "UNNEST clause",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:join",
+      "label": "JOIN",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:correlated-subquery",
+      "label": "Subquery",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. The page says 'subquery' without qualification, so this is the closest existing id rather than an exact match; phase 2 may want a plain n1ql:subquery."
+    },
+    {
+      "candidate_id": "n1ql:index-selection",
+      "label": "Index selection by the optimizer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page states the ordering: index selection first, then the two pushdown attempts."
+    },
+    {
+      "candidate_id": "n1ql:use-index-clause",
+      "label": "USE INDEX hint",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:fn-meta",
+      "label": "META().id (document ID)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "data:document-key",
+      "label": "Document key",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:missing-value",
+      "label": "MISSING (as distinct from NULL)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the corpus has n1ql:is-missing-operator and n1ql:index-include-missing, both of which presuppose a value that has no id. This page needs it to state that NULL and MISSING form two separate groups."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. The page's own description sentence classes grouping and aggregate pushdown as a SQL++ pushdown; index_pushdowns.md lists this page under Related Links but does NOT include grouping and aggregate pushdown among its six member sections, so this relation is stated here and nowhere else.",
+      "evidence": "SQL++ Pushdowns optimize the performance of SQL++ queries by supporting grouping and aggregate expressions."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:index-selection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf. The only statement in the batch that orders the optimizer's phases: index selection happens first, and pushdown is attempted afterwards on the already-chosen index.",
+      "evidence": "After the optimizer selects an index for a query block, it attempts the two optimizations below:"
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:index-selection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf. The same sentence covers both members of the pair, and the bullet names pagination optimization explicitly.",
+      "evidence": "Pagination optimization, by pushing the OFFSET and LIMIT parameters to the index scan."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService.",
+      "evidence": "With grouping and aggregate pushdown, the query intelligently requests the indexer to perform grouping and aggregation in addition to range scan."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:aggregate-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct. Records the unusual fact that a storage service evaluates SQL++ aggregate functions. Note the release-note phrasing 'has been enhanced', which is undated (see notable_absence).",
+      "evidence": "The Indexer has been enhanced to perform grouping, COUNT(), SUM(), MIN(), MAX(), AVG(), and related operations."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:aggregate-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct. This is the closed list of pushable aggregates, and it is contradicted by Table 1 (see cross_component_finding).",
+      "evidence": "Currently, the only aggregate functions that are supported are SUM(), COUNT(), MIN(), MAX(), and AVG() with or without the DISTINCT modifier."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "isMoreEfficientThan",
+      "object": "index:query-engine-side-grouping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted. This is the only quantified performance claim in the batch.",
+      "evidence": "With grouping and aggregate pushdown, this simple generic query typically executes in less than a third of the time."
+    },
+    {
+      "subject": "index:query-engine-side-grouping",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. The documented fallback: when the qualification rules are unmet the work moves back to the Query service silently. Note this promise is contradicted for DISTINCT aggregates, which error instead.",
+      "evidence": "When the requirements are unmet, the query will fetch the relevant data and then do the grouping and acceleration as usual. No application changes are necessary."
+    },
+    {
+      "subject": "index:query-engine-side-grouping",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService.",
+      "evidence": "Without grouping and aggregate pushdown, if a query contained aggregation and/or grouping, the query engine would fetch all relevant data from the indexer and group the data itself, even if the query was covered by an index."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "eliminatesFetchFrom",
+      "object": "service:data-service",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. Consistent with the covering precondition: if the index covers the query and the Indexer aggregates, the KV service is not touched at all.",
+      "evidence": "Here's how a query executes when the indexer handles the grouping and aggregation. Note that the query engine does not fetch any data from the data service (KV service)."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "requiresIndex",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresIndex. Covering is a precondition here, not an optimization - which makes this page dependent on covering-indexes.md for its own preconditions.",
+      "evidence": "The whole query must be covered by an index."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. All predicates must be expressible as index spans, which makes index-scans.md's span arithmetic a precondition of this page too.",
+      "evidence": "All the query predicates are able to convert into ranges and able to push to indexer."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:leading-index-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Stated as a rule, then demonstrated as the first negative example.",
+      "evidence": "The query requires a predicate on leading keys to consider an index. The simplest predicate is `IS NOT MISSING`."
+    },
+    {
+      "subject": "index:leading-index-key",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:index-selection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Without a predicate on the leading key the index is not even considered, so the primary index is used instead - a consequence documented here and not on index-scans.md.",
+      "evidence": "In this query, we need to give the predicate `country IS NOT MISSING` (or any WHERE clause) to ensure this index is selected for the query. Without a matching predicate, the query will use the primary index."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:join",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. One sentence rules out three whole query shapes.",
+      "evidence": "Query should not have operations such as joins, subquery, or derived table queries."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:correlated-subquery",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Stated twice: once in the qualification rules and again in the Limitations list.",
+      "evidence": "A subquery in a `GROUP BY` or Aggregate pushdown."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "data:document-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The permitted vocabulary for GROUP BY keys and aggregate arguments is index keys, the document key, or expressions over them.",
+      "evidence": "GROUP BY keys and Aggregate expressions must be one of the following:"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:let",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. The third negative example: an aggregate over a LET variable is not pushable, because the variable is not an index key expression.",
+      "evidence": "The aggregate depends on `LET` variable."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "usesExecutionModel",
+      "object": "index:partial-aggregation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesExecutionModel. Pushdown is not all-or-nothing: on non-leading GROUP BY keys the Indexer aggregates partially and the Query service finishes the job.",
+      "evidence": "In this case, the indexer sends partial group aggregation, which the query merges to create the final group and aggregation."
+    },
+    {
+      "subject": "index:partial-aggregation",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:leading-index-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. An exact match between the GROUP BY keys and the leading index keys is what distinguishes full from partial aggregation.",
+      "evidence": "When grouping on an expression or operation, the indexer will return pre-aggregated results whenever the GROUP BY and leading index keys are not an exact match."
+    },
+    {
+      "subject": "index:leading-index-key",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Recorded in this direction because the page states the leading-key match as the condition under which the index is 'naturally ordered and grouped', i.e. the property of the index that makes full pushdown possible.",
+      "evidence": "In the following query, the GROUP BY keys `(geo.alt, geo.lat)` are the leading keys of the index, so the index is naturally ordered and grouped by the order of the index key definition."
+    },
+    {
+      "subject": "index:partial-aggregation",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService. Recorded from the bullet describing the second level of aggregation, despite the bullet naming the wrong component ('SQL++ indexer' - see cross_component_finding).",
+      "evidence": "Results can have duplicate or out-of-order groups. The SQL++ indexer will do 2nd level of aggregation and compute the final result."
+    },
+    {
+      "subject": "index:partial-aggregation",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:leading-index-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Second, sharper statement of the same condition: even partial pushdown needs a predicate on the leading key.",
+      "evidence": "The SQL++ indexer can pushdown only if the leading key has a predicate."
+    },
+    {
+      "subject": "index:partial-plan-field",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:partial-aggregation",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted.",
+      "evidence": "The \"partial\": true line means it was pre-aggregated."
+    },
+    {
+      "subject": "index:partial-aggregation",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:distinct-modifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. The one hard incompatibility between the two halves of the feature: partial aggregation cannot deduplicate, so DISTINCT aggregates drop out entirely when grouping is on non-leading keys.",
+      "evidence": "In this scenario (when the grouping is on non-leading keys), any query with aggregation and DISTINCT modifier cannot be accelerated by the indexer, such as `COUNT(DISTINCT id)`."
+    },
+    {
+      "subject": "index:distinct-aggregate-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Given its own section and its own four permitted cases.",
+      "evidence": "There are four cases when DISTINCT aggregates can use this feature:"
+    },
+    {
+      "subject": "index:distinct-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:leading-index-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Three of the four permitted cases are defined by key position (leading keys, leading keys + 1, first key only); the fourth is a constant expression. Quoted from the Case 2 heading, because the numbered list at the top of the section words the same rule differently (see cross_component_finding).",
+      "evidence": "If the DISTINCT aggregate is on the leading GROUP BY key(s) + 1 (the next key)."
+    },
+    {
+      "subject": "index:distinct-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:distinct-modifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The failure mode is an error, not a fallback - the only place in the batch where a missed optimization is user-visible as an error.",
+      "evidence": "All other cases of DISTINCT pushdown will return an error."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:array-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted.",
+      "evidence": "In this case, the predicates are on the leading keys up to and including the array key. Therefore, indexer can efficiently do the grouping as seen by the optimal plan below."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:distinct-array-modifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. For the ANY ... SATISFIES shape the array key must be declared DISTINCT, not ALL.",
+      "evidence": "It's important to note the array index key is created with a `DISTINCT` modifier (not the `ALL` modifier) to get this optimization"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:any-some-every-operators",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The collection predicate must be an equality; a LIKE-shaped comparison inside SATISFIES would not qualify.",
+      "evidence": "and that the `SATISFIES` clause in the `ANY` predicate must be that of equality"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:unnest",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct.",
+      "evidence": "In this case, the `UNNEST` operation can use the index because the leading `ALL` array key is the array being unwound."
+    },
+    {
+      "subject": "n1ql:unnest",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:all-array-modifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Same sentence, recorded from the other side: the UNNEST case needs ALL, which is exactly the modifier the ANY ... SATISFIES case forbids.",
+      "evidence": "In this case, the `UNNEST` operation can use the index because the leading `ALL` array key is the array being unwound."
+    },
+    {
+      "subject": "n1ql:unnest",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:aggregate-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. A correctness warning, not a performance note: unnesting duplicates the parent document, so aggregates over parent fields count duplicates.",
+      "evidence": "Note, the unwound operation repeats the parent document (`hotel`) and the `t.geo.lat` reference would have duplicates compared to the original `hotel` documents."
+    },
+    {
+      "subject": "n1ql:group-by",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:missing-value",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Grouping semantics for heterogeneous data: NULL and MISSING do not collapse.",
+      "evidence": "`NULLS` and `MISSING` are two separate groups."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:primary-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted. Pushdown over a primary index, conditional on there being no filter.",
+      "evidence": "If there is no filter, then pushdown is supported for an expression on the Document ID `META().id` in the `GROUP BY` clause."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:fn-meta",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. A filter on META().id turns the primary index into a secondary scan, which is why the no-filter condition above exists.",
+      "evidence": "If there is a filter on the Document ID, then the primary index can be used as a secondary scan."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:leading-index-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The interaction between the two post-selection optimizations: LIMIT reaches the Indexer only when the GROUP BY key is the leading index key.",
+      "evidence": "The limit is pushed to the indexer because the GROUP BY key matched with the leading index key."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:offset",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Same rule for OFFSET, stated in a separate section and a separate callout.",
+      "evidence": "The offset is pushed to the indexer because the GROUP BY key matched with the leading index key."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "index:partial-aggregation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. The negative form of the two rules above, from the Limitations list: with GROUP BY on non-leading keys (the partial-aggregation case) neither LIMIT nor OFFSET is pushed.",
+      "evidence": "`LIMIT` pushdown with `GROUP BY` on non-leading keys."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:order-by",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Notable because many of the page's own examples carry an ORDER BY and still show index_group_aggs in the plan.",
+      "evidence": "`ORDER BY` clauses."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:array-agg",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Recorded from the Limitations list, and flatly contradicted by the page's own positive-case list (see cross_component_finding).",
+      "evidence": "`ARRAY_AGG()` or any facility to add new Aggregate function, such as Median."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:filter-clause",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Given both as a Limitations bullet and its own subsection with a workaround.",
+      "evidence": "If the query block contains an aggregate function which uses the FILTER clause, the aggregation is not pushed down to the indexer."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:having",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct. Conditional support: a HAVING clause is compatible with pushdown provided it contains an aggregate function.",
+      "evidence": "To use Aggregate Pushdown when a HAVING clause has an aggregate function inside, use the following syntax of index and query statement:"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:letting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct. Same conditional support for LETTING.",
+      "evidence": "To use Aggregate Pushdown when a LETTING clause has an aggregate function inside, use the following syntax of the index and query statement."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:letting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. The complementary negative from the Limitations list; recorded alongside the positive relation above because the support is genuinely conditional and the page states both halves.",
+      "evidence": "`HAVING` or `LETTING` clauses, unless there is an aggregate function inside."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:index-key-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, over the index-key-expression concept minted earlier this round on early-filters-and-pagination.json. Aggregates over scalar expressions can still be pushed even when the index key is not the same expression - the exception that keypos = -1 encodes.",
+      "evidence": "Aggregations with scalar expressions can be speeded up even if the index key does not have the matching expression on the key."
+    },
+    {
+      "subject": "index:index-group-aggs-plan-field",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. Note the fourth name for the feature in this one sentence: 'Index Aggregations'.",
+      "evidence": "When the index_group_aggs section is present, it means that the query is using Index Aggregations."
+    },
+    {
+      "subject": "index:index-group-aggs-plan-field",
+      "predicate": "hasInternalComponent",
+      "object": "index:keypos-plan-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. The plan field's four sub-fields, one of which is key position.",
+      "evidence": "`index_group_aggs` object has details on the aggregate, index key position, expression dependency, and group expressions handled by the indexer. This object is present in the plan only when the indexer handles the grouping and aggregation."
+    },
+    {
+      "subject": "index:keypos-plan-field",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:leading-index-key",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. keypos is where the leading-key rules become observable: 0 or more is the index key position, -1 means the plan fell back to the query expression.",
+      "evidence": "Key Position to use the Index expr or the query expr. A value > -1 means the group key exactly matches the corresponding index keys, where 0 is the 1st index key. A value of -1 means the group key does not match the index key and uses the query expression instead."
+    },
+    {
+      "subject": "index:index-group-aggs-plan-field",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-projection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, recording the link between the two plan fields: the internal ids minted inside index_group_aggs are what index_projection selects on.",
+      "evidence": "Unique ID given internally and will be used in index_projection"
+    },
+    {
+      "subject": "index:index-scan3",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-group-aggs-plan-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. The field hangs off the IndexScan3 operator, alongside covers and spans.",
+      "evidence": "shows the aggregation and groupings done by the indexer."
+    },
+    {
+      "subject": "index:covers-plan-field",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:covering-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. Restated here in the appendix, which is how a reader checks the covering precondition.",
+      "evidence": "shows that the index covers the query."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "monitoredVia",
+      "object": "n1ql:explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia. Since there is no setting to turn the feature on or off, EXPLAIN is the only way to know whether it happened.",
+      "evidence": "The query plan shows the accelerated aggregation details."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "hasNoRelationshipTo",
+      "object": "n1ql:select",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasNoRelationshipTo, in the specific sense the page states: the feature requires no change to the query text, only to index design. Recorded because it is the page's own headline claim about how the optimization is enabled.",
+      "evidence": "You do not need to make any changes to the query to use this feature, but a good index design is required to cover the query and order the keys."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "isSupportedOnStorageMode",
+      "object": "index:standard-storage",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isSupportedOnStorageMode. Nothing promoted expresses 'this index feature works under this index storage mode'; providesIndexType and offersConfigurationChoice are about what a service offers a user, not about feature availability per mode. Note the page's wording calls the two modes 'storage engines'.",
+      "evidence": "Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)."
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "isSupportedOnStorageMode",
+      "object": "index:memory-optimized-storage",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isSupportedOnStorageMode, second half of the same sentence.",
+      "evidence": "Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)."
+    },
+    {
+      "subject": "n1ql:use-index-clause",
+      "predicate": "takesPrecedenceOver",
+      "object": "n1ql:index-selection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver. Used in Example 15 to force the aggregate-friendly index over a similar one, which incidentally admits that the optimizer would otherwise pick the index that does NOT get the pushdown.",
+      "evidence": "Specifies that the query must use idx10 rather than the similar idx1"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Query Execution: Details](index-scans.md#query-execution-details)"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Covering Indexes](covering-indexes.md)"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Index Pushdowns](index%5Fpushdowns.md)"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:early-filtering",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Early Filters, Order, and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "index:group-aggregate-pushdown",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link. The same boilerplate opens all five pages in this module.",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / hasDefaultValue / requiresSetting",
+    "finding": "Six absences, the first two of them serious. (1) No version information anywhere on the page, in a document whose prose is written as release notes: 'The Indexer has been enhanced to perform grouping, COUNT(), SUM(), MIN(), MAX(), AVG(), and related operations' and 'Currently, the only aggregate functions that are supported are ...' both invite the question 'since when?' and neither answers it. The only trace of a version is in image filenames - GBAP_Ex0_QP_before55.png, GBAP_Ex0_QP_after55.png, GBAP_55execution-*.svg and GBAP_pre55execution-*.svg - which date the feature to Couchbase Server 5.5. A reader of the rendered page cannot see those names; the version fact exists only in the asset paths. This is the mirror image of index-scans.md, whose only version fact is a stale 'In version 4.5' note. (2) No cost, and no way to turn the feature off. The page lists five benefits (improved query response time, improved resource utilization, low latency, high scalability, low TCO) and says 'Not every query will benefit from this optimization', but never says what the Indexer pays for doing the aggregation - no statement about indexer CPU or memory, no cardinality limit on the number of groups, no equivalent of index-scans.md's concrete 8192-element threshold, and no setting or hint that disables the pushdown if it turns out to be the wrong choice. There is no requiresSetting or hasDefaultValue relation to be had on this page at all: the feature is presented as unconditionally on and unconditionally good. (3) Nothing about partitioned indexes or index replicas. Aggregating inside the Indexer across a partitioned index requires the same partial-then-merge treatment the page describes for non-leading keys, and the word 'partition' does not appear. (4) No vector or full-text indexes, on an 8.0 page that otherwise enumerates index shapes (composite, array with DISTINCT, array with ALL, primary). (5) The interaction with ORDER BY is left unresolved: the Limitations list says 'ORDER BY clauses' are not pushed to the indexer, yet Examples 1, 2, 4, 15 and 16 all carry an ORDER BY and all still show index_group_aggs in the plan, and index_pushdowns.md documents a separate order pushdown. What happens when both are candidates is never said. (6) Broken and stale anchors, which matter because the page's own tables are cross-referenced by number: '[Table 3](#docs-internal-guid-facfdbc0-bb3d-b00f-2ec0-6bee4921dabc)' is a leftover Google Docs internal GUID, '[Example 15](#ex10)' still uses the anchor from when that example was numbered 10 (its image is GBAP_Ex10_VP.png), and '[Appendix: Query Plan Fields](#section%5Fbpf%5Fwjf%5Fycb)' and '[Table 2](#table%5Fbw2%5Fnrf%5Fycb)' are generated DITA ids. The page's authoring history is visible in its link targets."
+  },
+  "cross_component_finding": "This is the least internally consistent page in the batch: nine defects, several of them contradictions between the page's own sections. (a) ARRAY_AGG() is documented three times with three different answers. The positive-case list at the top includes `SELECT ARRAY_AGG(geo.alt) FROM airport WHERE geo.alt > 10;` under the heading 'Positive Case examples of queries that use indexing grouping and aggregation'; the Limitations list says '`ARRAY_AGG()` or any facility to add new Aggregate function, such as Median.' is not supported and not pushed to the indexer; and Table 1 marks 'Supports ARRAY_AGG()' as unsupported in all four columns. Two of the three must be wrong. (b) Table 1 (Aggregate Comparison) disagrees with the prose on its own subject. Its 'Supports SUM() and COUNT()' row is marked unsupported for 'Aggregate on Non-Array Index Field' - that is, the single most common case in the whole document, demonstrated by Examples 1, 2, 5, 11, 12, 13, 14 and 16, and contradicted by the sentence 'Currently, the only aggregate functions that are supported are SUM(), COUNT(), MIN(), MAX(), and AVG() with or without the DISTINCT modifier.' The same row marks MIN()/MAX() unsupported for both DISTINCT columns. As printed, Table 1 cannot be used. (c) Two mutually exclusive failure modes. The Scenarios section promises silent degradation - 'When the requirements are unmet, the query will fetch the relevant data and then do the grouping and acceleration as usual. No application changes are necessary.' - while the DISTINCT section says 'All other cases of DISTINCT pushdown will return an error.' A query that fails to qualify either quietly runs slower or fails outright, depending on which paragraph you read. (d) The wrong component is named twice in one bullet list: 'The SQL++ indexer will do 2nd level of aggregation and compute the final result' and 'The SQL++ indexer can pushdown only if the leading key has a predicate.' Both jobs belong to the Query service (the second-level merge) and the optimizer (the pushdown decision); Example C's own prose says so - 'the indexer sends partial group aggregation, which the query merges to create the final group and aggregation.' 'SQL++ indexer' looks like a mechanical substitution into what was once 'N1QL engine'. (e) Example 4 does not demonstrate what its section claims. It sits under 'GROUP BY keys in different CREATE INDEX order', is introduced as 'Like Example 1 with the GROUP BY fields swapped', and uses index idx3 on (activity, city, geo.lon) - but its WHERE clause is `country IS NOT MISSING`, a predicate on a field that is not in idx3 at all. By the page's own rule ('1st index field must be in a WHERE clause'; 'Without a matching predicate, the query will use the primary index') the example cannot select idx3, let alone push the grouping down. No plan is shown, so the claim is unverifiable. (f) Example 6 is filed under the positive 'Syntax B: Operation on a field - GROUP BY and Index keys match', but its index idx4_oper is on (sourceairport, ROUND(distance*stops), distance) while the query groups by UPPER(sourceairport) - precisely the shape the page labels 'Pre-aggregated Syntax - the GROUP BY and Index keys don't match' three paragraphs earlier. Again no plan is shown. (g) Example 3 gives no index at all and groups by ROUND(geo.lat) against idx1 (country, state, geo.lat), so it too is a pre-aggregated case presented among the positive ones, and its narrative reason for using MIN() ('At a particular latitude, the state will be the same; but an aggregate function on it is needed') is a data assumption that the sample data does not guarantee. (h) The FILTER-clause workaround does not match its own description: the prose says 'you can use a comparison operator as the argument for the aggregate function', and the example then uses CASE WHEN expressions, not comparison operators. (i) The four DISTINCT cases are stated twice, and the two statements do not agree word for word: the numbered list at the head of the section reads 'If the DISTINCT aggregate is on the leading GROUP By key(s) + 1 (the immediate next key).' - with 'GROUP By' mis-capitalised - while the Case 2 heading reads 'If the DISTINCT aggregate is on the leading GROUP BY key(s) + 1 (the next key).' The write-time evidence gate caught this: my first attempt at the record quoted a conflation of the two, which is exactly the fabrication the gate exists to stop, and the fix was to re-read and quote the Case 2 heading. Two further structural observations. The feature is named four ways in one document - 'Grouping and Aggregate Pushdowns' (title), 'grouping and aggregate pushdown' (Overview), 'Aggregate Pushdown' (every syntax heading, including the GROUP BY-only sections) and 'Index Aggregations' (appendix callout) - and the components are named 'indexer', 'Indexer', 'query engine', 'query', 'SQL++ indexer' and 'data service (KV service)'. And the same eleven-row field-description table is printed three times (appendix, Table 2, Table 3) with identical Description text and only the example column differing; Table 3 repeats its '... depends / ... expr / ... id / ... keypos' rows twice to cover two group keys, giving fifteen rows. Roughly 200 of the page's 2168 lines are that one table. Finally, the module's link topology, since this page completes the set: this page, index_pushdowns.md and covering-indexes.md each end with a Related Links list naming the other four siblings; early-filters-and-pagination.md names the four siblings plus WHERE, ORDER BY, OFFSET and LIMIT in the language reference (seven links); and index-scans.md has no Related Links section at all, although all four of the others link into its #query-execution-details anchor. This corrects the wording of this round's index-scans.json record, which described the sibling lists as 'four items' each - early-filters-and-pagination.md has seven.",
+  "cross_product_finding": "Two findings, one about naming and one about the storage question this batch was asked to watch. (1) This single page's subject now carries five ids in the extraction layer, one per copy or per audience: `index:group-aggregate-pushdown` (37 occurrences - the most heavily attested unpromoted concept I met anywhere in this batch, and the one I reused), `n1ql:groupby-aggregate-performance`, `learn:grouping-and-aggregate-pushdown`, `page:groupby-aggregate-performance` and `guides:group-agg`. The last of those is worth phase 2's attention because cloud/guides/group-agg.json is not a copy of this page at all - it is a separate Capella guide about the same feature, so the concept is documented in three products and at least four page shapes (server reference, Capella reference, Capella guide, SQL++ language reference GROUP BY page). `index:partial-aggregation` already existed from the Capella copy, which is why I reused rather than minted it. As with index-scans.md, the fact that one concept is documented four times will make recurrence counting read the best-attested term in the module as several weak ones unless aliases are resolved before counting. Also visible while I was checking ids: concurrently running agents have just minted `index:span-inclusion-enum`, `index:exact-index-span`, `index:full-scan` and `index:skip-key-range-scan` alongside my `index:span-inclusion`, `index:exact-span`, `index:full-index-scan` and `n1ql:skip-key-range-scan` - four more alias pairs created in the same round, exactly as expected. (2) On storage engines versus storage modes, this page is the clearest single piece of evidence that the ambiguity is in the source, not in the registry. It says 'Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)' - calling the two user-selectable index storage MODES 'engines', where the registry has them promoted as index:standard-storage and index:memory-optimized-storage. It names no actual engine: Plasma, Forestdb and Nitro do not appear on this page, nor on any of the other four pages in my batch. Meanwhile the extraction layer has acquired `storage-engine:plasma` and `storage-engine:forestdb` from other agents working on the storage-modes and buckets pages, while concepts/storage-engine/ holds only couchstore and magma - so the KV engines are promoted, the index engines are attested but not promoted, and the one sentence in the performance documentation that mentions 'storage engines' actually means modes. Phase 2 should treat 'storage engine' in indexing prose as unreliable and prefer the mode ids unless an engine is named."
+}

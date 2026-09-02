@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/partial-index",
+  "label": "Partial index",
+  "type": "an index built over only the documents matching a WHERE clause given at CREATE INDEX time. Distinguish from index:index-conditions and from early filtering: a partial index's condition restricts WHAT IS INDEXED, not what a scan returns.",
+  "recurrence": 2,
+  "recurrence_note": "Four files discounted to 2 independent sources - indexing-and-query-perf (three copies) and cloud/guides/create-index (one). At the bar, `shared`, discount upheld.",
+  "note": "PROMOTED. Its second source is a Capella GUIDE rather than a reference page, which is the useful thing about this count: the two attestations are different genres about the same feature, not two publications of one text. A guide teaching someone to create a partial index is stronger corroboration of the concept than a second copy of the reference page would have been, and the promotion rule - two distinct files - cannot see that distinction. Recorded because it is the inverse of the shared-source problem: the rule's proxy sometimes UNDERSTATES the independence it is trying to measure.",
+  "promoted": true,
+  "relates_to_competency_question": "What kinds of index can I create, and which of my queries can each one serve?"
+}

@@ -1,0 +1,695 @@
+{
+  "page_id": "server/8.0/indexes/index_pushdowns",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/index_pushdowns.md",
+  "concepts": [
+    {
+      "candidate_id": "index:index-pushdown",
+      "label": "Index pushdown (performance optimization in which the Query engine pushes work down to the Indexer)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. THIS is the page that defines the family: it is titled 'Index Pushdowns', its lede gives the family a definition, and its H2 sections are the members. Sixteen rounds had the members at recurrence 1-3 apiece with no defining page because this page had never been read."
+    },
+    {
+      "candidate_id": "index:index-projection",
+      "label": "Index projection (Indexer returns only the index keys the query needs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records (the Capella copy of this page), never promoted."
+    },
+    {
+      "candidate_id": "index:predicate-pushdown",
+      "label": "Predicate pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:composite-predicate-pushdown",
+      "label": "Composite predicate pushdown (predicate on multiple fields, pushed as one span with several ranges or as several spans)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named H2 section of this page and a distinct member of the family, with its own two subsections (index key order, skip-key range scan). The corpus has index:predicate-pushdown but nothing for the composite case."
+    },
+    {
+      "candidate_id": "n1ql:skip-key-range-scan",
+      "label": "Skip-key range scan (composite predicate pushdown on non-continuous leading index keys)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already in the extraction layer under n1ql: from the server/7.2 round, never promoted. Reused rather than re-minted as index:skip-key-range-scan even though round 16's rule would put scan mechanics in index:, because forking it would split the recurrence count on the very term phase 2 needs to count. Flagged in cross_component_finding as a namespace that phase 2 should move, not as a second id."
+    },
+    {
+      "candidate_id": "index:pagination-pushdown",
+      "label": "Pagination pushdown (LIMIT and OFFSET evaluated by the Indexer)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:order-pushdown",
+      "label": "Order pushdown / using index order (Query engine avoids ORDER BY processing by relying on index order)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Note the page's H2 is 'Using Index Order'; the phrase 'order pushdown' appears only in the Limitation subsection and one plan callout."
+    },
+    {
+      "candidate_id": "index:operator-pushdown",
+      "label": "Operator pushdowns (MIN, MAX, COUNT, COUNT DISTINCT evaluated by the Indexer)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:max-pushdown",
+      "label": "MAX() pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - in the extraction layer from the server/7.2 round, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:min-pushdown",
+      "label": "MIN() pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - in the extraction layer from the server/7.2 round, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:count-pushdown",
+      "label": "COUNT() pushdown",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the third member of the operator-pushdown set, which the corpus was missing. Minted in n1ql: deliberately, to sit beside the existing n1ql:max-pushdown and n1ql:min-pushdown rather than start a second namespace for two of four siblings; the whole set arguably belongs in index:, which is a move for phase 2 to make on all four at once."
+    },
+    {
+      "candidate_id": "n1ql:count-distinct-pushdown",
+      "label": "COUNT(DISTINCT) pushdown",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - fourth member of the operator-pushdown set, with its own H3 section. Distinct from n1ql:count-pushdown in the plan output too ('\"distinct\": true')."
+    },
+    {
+      "candidate_id": "index:index-key-collation-order",
+      "label": "Index key sort order (the ASC/DESC collation order in which an index stores its keys)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the property three separate statements on this page turn on: order pushdown requires ORDER BY to be aligned with it, reverse scan of it is unsupported, and MIN()/MAX() pushdown is explicitly independent of it. Nothing in the registry names it; index:index-span is the range, not the ordering."
+    },
+    {
+      "candidate_id": "index:reverse-index-scan",
+      "label": "Reverse index scan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted. Both pages state the same limitation; only the other one explains it."
+    },
+    {
+      "candidate_id": "index:index-span",
+      "label": "Index span (range-scan representation of a predicate, with low, high and inclusion)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:exact-span",
+      "label": "Exact span",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted. Every span in this page's plan output carries \"exact\": true."
+    },
+    {
+      "candidate_id": "index:index-group-aggs-plan-field",
+      "label": "index_group_aggs (query plan field carrying aggregates evaluated by the Indexer)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the plan field by which MIN/MAX/COUNT/COUNT DISTINCT pushdown is visible, and the same field that groupby-aggregate-performance.md documents as the mechanism of grouping and aggregate pushdown. Minted here because this page shows the field without ever naming it in prose, and the link between the two features exists nowhere else in the docs."
+    },
+    {
+      "candidate_id": "index:index-scan3",
+      "label": "IndexScan3 (secondary index scan plan operator)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the operator that carries limit, offset, spans, covers, index_order and index_group_aggs in every plan in this batch. The corpus names no query plan operators at all."
+    },
+    {
+      "candidate_id": "index:primary-scan3",
+      "label": "PrimaryScan3 (primary index scan plan operator)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of index:index-scan3, used when the query scans a primary index."
+    },
+    {
+      "candidate_id": "index:index-count-scan3",
+      "label": "IndexCountScan3 (plan operator that returns a count from the index)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named by this page as the operator behind COUNT() and COUNT(DISTINCT) pushdown. Minted despite the page's own plan output contradicting the callouts that name it (see cross_component_finding)."
+    },
+    {
+      "candidate_id": "index:distinct-scan",
+      "label": "DistinctScan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted."
+    },
+    {
+      "candidate_id": "index:intersect-scan",
+      "label": "IntersectScan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted."
+    },
+    {
+      "candidate_id": "index:default-post-fetch-filtering",
+      "label": "Default filters, order, and pagination performed by the Query engine",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted. This page's Example 7 is the same fallback, seen from the pushdown side (Offset and Limit operators handled by the Query engine)."
+    },
+    {
+      "candidate_id": "index:query-preparation-cost",
+      "label": "Query preparation (planning) time",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the resource this page says skip-key range scan spends more of in exchange for faster execution. It is the only stated cost of any pushdown on the page, so the family has exactly one documented trade-off and it needs an object."
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global secondary index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. Index projection behaves differently for a covered query."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service (the Indexer)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page says 'Indexer' and 'Indexer nodes' rather than 'Index service'; same component."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service (the Query engine)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page mostly says 'Query engine', once says 'Query Service', and once says 'query layer'."
+    },
+    {
+      "candidate_id": "version:server-5-0",
+      "label": "Couchbase Server 5.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:limit",
+      "label": "LIMIT clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:offset",
+      "label": "OFFSET clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:join",
+      "label": "JOIN clause",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:profile",
+      "label": "profile request parameter (profile = \"timings\")",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:comparison-operators",
+      "label": "Comparison operators / default collation rules",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Cited as the definition of highest/lowest for MIN() and MAX()."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. This is the family definition: the whole category is defined by which component does the work.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Membership comes from the page's structure: Index Projection, Predicate Pushdown, Composite Predicate Pushdown, Pagination Pushdown, Using Index Order and Operator Pushdowns are the H2 sections of a page whose lede is the quoted definition. This is the evidence sixteen previous rounds lacked when the pushdown members sat at recurrence 1-3 with no page defining the family.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis: an H2 section of this page.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis: an H2 section of this page.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis: the H2 section 'Using Index Order'.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index:operator-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis: an H2 section of this page.",
+      "evidence": "Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer."
+    },
+    {
+      "subject": "index-type:gsi",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService, recording the coupling the page asserts between GSI indexes and the Query engine.",
+      "evidence": "The GSI Indexes are a vital part of query performance and are tightly coupled with the Query engine."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "tradesOffAgainst",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst, used for the page's stated rationale: pushdown moves both data volume and processing off the Query nodes.",
+      "evidence": "Minimize the amount of data transferred from Indexer nodes to Query nodes."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "availableSince",
+      "object": "version:server-5-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince.",
+      "evidence": "In earlier releases, the Indexer used to return all index-keys available in the index for the matching documents. From Couchbase Server 5.0, the Query engine requests the exact list of fields needed for the query."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. The set of fields requested depends on whether the query is covered.",
+      "evidence": "For a covered query, it is the fields referred in projection, predicate, GROUP BY clauses, ORDER BY clauses, HAVING clauses, ON key, and subqueries of the query. For non-covered queries, it is just `META().id`."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index:distinct-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. Under a DistinctScan or IntersectScan the primary key is fetched even when unasked for.",
+      "evidence": "Note that in some cases (such as when `distinctScan` or `intersectScan` are used, as in this example), the primary key `meta().id` may be retrieved even though the query doesn't explicitly specify it in the query."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index:intersect-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder, same sentence, second object.",
+      "evidence": "Note that in some cases (such as when `distinctScan` or `intersectScan` are used, as in this example), the primary key `meta().id` may be retrieved even though the query doesn't explicitly specify it in the query."
+    },
+    {
+      "subject": "index:index-projection",
+      "predicate": "hasDefaultValue",
+      "object": "index:index-scan3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue, recording the fallback behaviour when the optimization is absent: no index_projection field in the plan means the Indexer returns everything.",
+      "evidence": "If the `index_projection` field is missing in the EXPLAIN output, then Indexer would return all index-keys."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. A pushed-down predicate is expressed to the Indexer as spans and ranges.",
+      "evidence": "Each span defines details about one index-key summarizing corresponding predicate conditions into a range-scan lookup for the index."
+    },
+    {
+      "subject": "index:composite-predicate-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:predicate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. A composite predicate is the multi-field case of the same optimization, with its own H2 section.",
+      "evidence": "Compound or composite predicates are those with multiple conditions on different fields of the document."
+    },
+    {
+      "subject": "index:composite-predicate-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. A conjunctive composite predicate becomes one span with several ranges; a disjunctive one becomes several spans - the span/range structure is how the shape of the predicate is conveyed.",
+      "evidence": "When the predicate is conjunctive with multiple `AND` conditions, then a single span with multiple ranges is specified in the index-scan request. When the predicate is disjunctive, then multiple spans are specified."
+    },
+    {
+      "subject": "index:composite-predicate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:index-key-collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The order of keys in a composite index determines what a lookup or scan can do, because the index stores entries in the linearized collation order of all its keys.",
+      "evidence": "Composite indexes have more than one index key, and the order of the index keys is important for any lookup or scan of the index, because the indexes structure all the indexed entries in linearized default collation sorted order of all the index-keys."
+    },
+    {
+      "subject": "n1ql:skip-key-range-scan",
+      "predicate": "isSubtypeOf",
+      "object": "index:composite-predicate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Skip-key range scan is the non-continuous-key case of composite predicate pushdown, documented as its subsection.",
+      "evidence": "In Couchbase Server 6.5 and later, it is possible to push down a composite predicate on non-continuous leading index-keys. There must be a predicate on the first key in the index definition, and then on any of the subsequent index-keys."
+    },
+    {
+      "subject": "n1ql:skip-key-range-scan",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, same sentence.",
+      "evidence": "In Couchbase Server 6.5 and later, it is possible to push down a composite predicate on non-continuous leading index-keys."
+    },
+    {
+      "subject": "n1ql:skip-key-range-scan",
+      "predicate": "tradesOffAgainst",
+      "object": "index:query-preparation-cost",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst. The only stated cost of any pushdown on this page.",
+      "evidence": "This increases query preparation time a little, but vastly speeds up the execution of the query."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "monitoredVia",
+      "object": "n1ql:profile",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia. The page uses profile = \"timings\" to show that the Indexer returned exactly the matching documents and no more.",
+      "evidence": "For example, when you [enable monitoring](../n1ql/n1ql-manage/monitoring-n1ql-query.md) with the configuration parameter `profile = \"timings\"` for this query, you can see that the indexer returns 165 documents, which is the same as the final result set of the query."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:limit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. Pagination is LIMIT plus OFFSET, and each is pushed separately in the plan.",
+      "evidence": "Pagination in SQL++ queries is achieved by using the LIMIT and OFFSET clauses, and both of the operators can be pushed to indexer whenever possible."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:offset",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, same sentence, second component.",
+      "evidence": "Pagination in SQL++ queries is achieved by using the LIMIT and OFFSET clauses, and both of the operators can be pushed to indexer whenever possible."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "index:intersect-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. With multiple indexes in play the merge has to happen in the Query engine, so LIMIT/OFFSET cannot be pushed.",
+      "evidence": "When using IntersectScan, the Query engine uses multiple indexes to process the query. As such, LIMIT/OFFSET will need to be processed in the Query engine at a later stage of query processing, and hence cannot be pushed to the Indexer."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:join",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Index scans only serve the left-hand keyspace of a join, so pagination has to be applied after the join.",
+      "evidence": "For JOIN queries, index scans can be used only for the left side keyspace. Subsequent JOIN phrases may filter some documents, after which only LIMIT/OFFSET can be applied. Hence, the pagination operators cannot be pushed when a query has JOIN clauses."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:order-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Pagination pushdown is conditional on the sort not needing to be redone in the Query engine, i.e. on order pushdown also being available.",
+      "evidence": "When ORDER BY key in the query is different from that of the index order, then the query layer will need to process the sort; and hence, in those cases, the pagination cannot be pushed to the indexer as shown in [Example 7](#example-page-3) below."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:secondary-index",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - the page states support for two index types, which is neither a restriction (restrictedToContext would be false, since both work) nor a provision (providesIndexType is the wrong direction). Needed to say 'this optimization is available on this kind of index'.",
+      "evidence": "When using a secondary index, both LIMIT and OFFSET operators are pushed to the index."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:primary-index",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate, the primary-index case, where the operator carrying the pushdown is PrimaryScan3 rather than IndexScan3.",
+      "evidence": "When using a primary index, both LIMIT and OFFSET operators are pushed to the Indexer."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "index:index-scan3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo, from the plan callouts naming the operator that does the work.",
+      "evidence": "The IndexScan3 operator handles limit."
+    },
+    {
+      "subject": "index:pagination-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "index:primary-scan3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo, the primary-index equivalent.",
+      "evidence": "The PrimaryScan3 operator handles limit."
+    },
+    {
+      "subject": "index:default-post-fetch-filtering",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:pagination-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. When pagination cannot be pushed down, separate Offset and Limit operators appear in the Query engine's plan instead. Links this page's Example 7 to the vocabulary of early-filters-and-pagination.md.",
+      "evidence": "LIMIT and OFFSET operators are not pushed to the Indexer when the index order is different from that specified in the ORDER BY."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. Ordering is not so much pushed as inherited: the Query engine skips the sort because the index already stores entries in that order.",
+      "evidence": "The Query engine may avoid ORDER BY processing in cases where the ordering of entries in the index can be leveraged for the query."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:index-key-collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. ORDER BY keys must be aligned with the index's own order, in both position and direction.",
+      "evidence": "Currently the Query engine supports order pushdown only when the ORDER BY keys are aligned with the Index order. But reverse-scan of the index is not supported."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "index:reverse-index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Same limitation early-filters-and-pagination.md gives the reason for; this page states it flatly and dates it not at all ('Currently').",
+      "evidence": "Currently the Query engine supports order pushdown only when the ORDER BY keys are aligned with the Index order. But reverse-scan of the index is not supported."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index:index-key-collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder, recording the concrete consequence: an ASC query cannot use a DESC index and a DESC query cannot use an ASC index, so the two example indexes are not interchangeable.",
+      "evidence": "However, the ASC order in [Example 8](#example-idx-1) will not be able to leverage the index order in the index `idx_landmark_city_desc`, nor will the DESC order in [Example 10](#example-idx-3) be able to leverage the index order in the index `def_inventory_landmark_city`."
+    },
+    {
+      "subject": "index:operator-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. The family definition for operator pushdowns, naming MIN(), MAX() and COUNT() but not COUNT(DISTINCT), which nonetheless gets its own subsection.",
+      "evidence": "The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently."
+    },
+    {
+      "subject": "n1ql:max-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:operator-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. MAX() is named in the operator-pushdown lede and has its own H3 subsection.",
+      "evidence": "The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently."
+    },
+    {
+      "subject": "n1ql:min-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:operator-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis.",
+      "evidence": "The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently."
+    },
+    {
+      "subject": "n1ql:count-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "index:operator-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, same basis.",
+      "evidence": "The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently."
+    },
+    {
+      "subject": "n1ql:count-distinct-pushdown",
+      "predicate": "isSubtypeOf",
+      "object": "n1ql:count-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. COUNT(DISTINCT) is documented as its own subsection, defined as the unique-values variant of COUNT(), and appears in the plan as COUNT with \"distinct\": true.",
+      "evidence": "This function returns the total number of unique non-Null values of an input field from the matching documents of an index scan."
+    },
+    {
+      "subject": "index:index-key-collation-order",
+      "predicate": "doesNotAffect",
+      "object": "n1ql:max-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect. In 8.0 the page states the independence flatly; in 7.2 the same paragraph stated it as a limitation removed in 5.5 (see cross_product_finding).",
+      "evidence": "You do not need to create the index with the matching index keys sorted in descending order to push MAX() to the Indexer."
+    },
+    {
+      "subject": "index:index-key-collation-order",
+      "predicate": "doesNotAffect",
+      "object": "n1ql:min-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect, the ascending-order equivalent.",
+      "evidence": "You do not need to create the index with the matching index keys sorted in ascending order to push MIN() to the Indexer."
+    },
+    {
+      "subject": "n1ql:max-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:comparison-operators",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. What counts as 'highest' is defined by the default collation rules, not by the pushdown.",
+      "evidence": "This function returns the highest value of the input field based on the default collation rules."
+    },
+    {
+      "subject": "n1ql:min-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:comparison-operators",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, the MIN() equivalent.",
+      "evidence": "This function returns the lowest value of the input field based on the default collation rules."
+    },
+    {
+      "subject": "n1ql:count-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "index:index-count-scan3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. Recorded as the page states it, although the plan output printed directly above this callout shows IndexScan3, not IndexCountScan3 - see cross_component_finding.",
+      "evidence": "The index operator IndexCountScan3 counts values so the Query Service does not need to do additional processing."
+    },
+    {
+      "subject": "n1ql:count-distinct-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "index:index-count-scan3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo, the DISTINCT variant, with the same discrepancy between callout and plan output.",
+      "evidence": "The index operator IndexCountScan3 counts distinct values so the Query Service does not need to do additional processing."
+    },
+    {
+      "subject": "index:index-group-aggs-plan-field",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:operator-pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. Evidence is the plan output itself: MIN(), MAX(), COUNT() and COUNT(DISTINCT) pushdown all appear in the plan as an index_group_aggs object, which is the plan field groupby-aggregate-performance.md documents as the mechanism of a different feature. No prose on this page mentions the field.",
+      "evidence": "\"index_group_aggs\": { \"aggregates\": [ { \"aggregate\": \"MAX\","
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from the body of the Predicate Pushdown section.",
+      "evidence": "* Refer to section [Index Scans](index-scans.md) for more information."
+    },
+    {
+      "subject": "index:composite-predicate-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link; index-scans.md is where the AND/OR span forms are actually worked through.",
+      "evidence": "See [Index Scans](index-scans.md) for more details and examples on how predicate pushdown works for various types of index-scans, as well as the conjunctive predicate `AND` and the disjunctive predicate `OR`."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from Related Links.",
+      "evidence": "* [Covering Indexes](covering-indexes.md)"
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from Related Links. Note this is the ONLY connection the page makes to grouping and aggregate pushdown, which is not an H2 section here and therefore not visibly a member of the family.",
+      "evidence": "* [Grouping and Aggregate Pushdowns](groupby-aggregate-performance.md)"
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "index:early-filtering",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from Related Links.",
+      "evidence": "* [Early Filters, Order, and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "n1ql:max-pushdown",
+      "predicate": "seeAlso",
+      "object": "n1ql:comparison-operators",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "(For details, see [Data Types](../n1ql/n1ql-language-reference/datatypes.md) and [Comparison Operators](../n1ql/n1ql-language-reference/comparisonops.md).)"
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql/n1ql-intro/queriesandresults.md#query-context)."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "seeAlso",
+      "object": "manage:install-sample-buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "For instructions on how to install the sample bucket, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "This page dates exactly two of its seven optimizations - index projection to 5.0 and skip-key range scan to 6.5 - and dates none of predicate pushdown, composite predicate pushdown, pagination pushdown, order pushdown, or any of the four operator pushdowns. The order-pushdown limitation is dated only by the word 'Currently' ('Currently the Query engine supports order pushdown only when the ORDER BY keys are aligned with the Index order'), which is undatable and does not survive being extracted. More pointedly, version information has been REMOVED between releases: the 7.2 copy of this page said 'Prior to Couchbase Server 5.5, MAX() could be pushed to the Indexer only when the index was created with matching index keys in descending order. This limitation has been removed in Couchbase Server 5.5 and later' (and the mirror sentence for MIN()), which the 8.0 page has rewritten to the undated 'You do not need to create the index with the matching index keys sorted in descending order to push MAX() to the Indexer.' So version:server-5-5 is no longer attested anywhere on this page, and an 8.0-only reader cannot tell that MIN()/MAX() pushdown was ever conditional. Second absence, of a different kind: the page never says that grouping and aggregate pushdown is a member of the pushdown family. It appears only as a Related Links entry, even though the plan output in Examples 11, 12, 14 and 16 shows that MIN/MAX/COUNT pushdown is implemented through the same index_group_aggs plan field that groupby-aggregate-performance.md documents. Third: no vector indexes. An 8.0 page enumerating what the Indexer can be asked to do never mentions the three vector index types or vector search, so nothing here says whether any pushdown applies to them."
+  },
+  "cross_component_finding": "Three findings, all about which component is credited with the work. (1) An internal contradiction in the page's own output. Example 14's callout (1) reads 'The index operator IndexCountScan3 counts values so the Query Service does not need to do additional processing' and Example 16's reads the same for distinct values - but callout (1) in both examples points at a line of plan output that says \"#operator\": \"IndexScan3\", and IndexCountScan3 appears nowhere in any plan on the page. Either the plans were regenerated from a version that no longer uses IndexCountScan3 and the callouts were not updated, or the callouts describe an operator the examples do not actually produce. This is the same shape of defect as a title/content mismatch and it is duplicated, so it is unlikely to be a typo. (2) The page names its two components four different ways in one document: 'Query engine' (throughout), 'Query Service' (the two IndexCountScan3 callouts), 'query layer' (the pagination-pushdown factors), and 'Query nodes' / 'Indexer nodes' (the two-point rationale at the top), while the Indexer is 'the Indexer', 'the indexer' and 'Query Indexer'. The sibling page early-filters-and-pagination.md consistently says 'Index service' and 'Query service'. Anything downstream that keys on component names sees five spellings of two services across two pages of one module. (3) A namespace fork the corpus already had and this page makes visible: the four operator pushdowns are attested as n1ql:max-pushdown and n1ql:min-pushdown (server/7.2 round) while their family term is index:operator-pushdown and skip-key range scan is n1ql:skip-key-range-scan while its family term is index:composite-predicate-pushdown. I reused the existing n1ql: ids rather than fork them and minted the two new siblings (n1ql:count-pushdown, n1ql:count-distinct-pushdown) into the same namespace to keep the set countable, but round 16's rule ('index: for anything else true of indexes - settings, storage modes, rebalance methods, pushdowns, scan mechanics') says all six belong in index:. That is one deliberate move over six ids for phase 2, not six independent judgement calls.",
+  "cross_product_finding": "The page exists three times in the corpus: cloud/indexes/index_pushdowns.md (extracted), server/7.2/learn/services-and-indexes/indexes/index_pushdowns.md (extracted), and this one - and as with the rest of the batch the module moved from learn/services-and-indexes/indexes/ in 7.2 to indexes/ in 8.0, so recurrence counting will see one page three times. Two substantive differences between the 7.2 and 8.0 copies, both worth phase 2's attention. First, the MIN()/MAX() version framing has been deleted (see notable_absence), which means the existing server/7.2 extraction record asserts 'n1ql:max-pushdown availableSince version:server-5-5' on the strength of a sentence that no longer exists in the current release; that relation is still true history but is no longer verifiable against 8.0, and the 8.0 page's replacement sentence supports a different relation (index key order doesNotAffect the pushdown) rather than a version. Second, the 8.0 page has grown the whole 'Composite Predicate Pushdown' H2 with its 'Index Key Order and Structure' diagram and its 'Composite Predicate with Range Scan on Prefix Index-Keys' and 'Composite Predicate with Skip-Key Range Scan' subsections, which the 7.2 extraction record shows no trace of (that record's concepts are just the family, index projection, skip-key, MAX and MIN). So this page has gained real explanatory content between releases while losing version facts - the docs got better at mechanism and worse at history in the same edit."
+}

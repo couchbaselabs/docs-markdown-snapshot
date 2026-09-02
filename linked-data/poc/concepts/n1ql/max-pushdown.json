@@ -1,0 +1,21 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/max-pushdown",
+  "label": "MAX() pushdown to the Index service",
+  "type": "an aggregate operator pushdown: the Query service delegates evaluation of MAX() to the Indexer rather than computing it over fetched documents. A member of index:operator-pushdown, which sits under index:index-pushdown. NOT the same as index:group-aggregate-pushdown, which pushes a whole GROUP BY with its aggregates; this is the single-operator case.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "3 files, all three copies of the `index_pushdowns` page (cloud, server/7.2, server/8.0). `shared-source.py --check` returns `divergent`, so the shared-source discount is rejected and the raw count stands - see the note for why that verdict is honest and still weaker than three independently authored pages.",
+  "aliases": [
+    "index:max-pushdown"
+  ],
+  "isSubtypeOf": "index:operator-pushdown",
+  "evidence": [
+    "The Query engine tries to avoid unnecessary processing operators such as MIN(), MAX(), and COUNT(), which can be processed by the Indexer much more efficiently.",
+    "You do not need to create the index with the matching index keys sorted in descending order to push MAX() to the Indexer.",
+    "Prior to Couchbase Server 5.5, MAX() could be pushed to the Indexer only when the index was created with matching index keys in descending order. This limitation has been removed in Couchbase Server 5.5 and later."
+  ],
+  "evidence_note": "MIN() wants ASCENDING keys and MAX() wants DESCENDING ones in the pre-5.5 limitation, which is the one place the two members are not mirror images. The third quote exists only in the server/7.2 copy - 8.0 deleted it.",
+  "note": "PROMOTED AS A MEMBER OF THE FAMILY IT IS BETTER ATTESTED THAN, WHICH IS A CORRECTION TO ROUND 17'S OWN FIRST PASS. `concepts/index/operator-pushdown.json` was filed at recurrence 1 under the family exception while recording, in its own `recurrence_note`, that this member sits at 3 files and comes back `divergent` - i.e. clears the promotion bar on the mechanical rule. Filing the below-bar collecting term and withholding the above-bar member is the inversion of the rule, and it leaves an agent reusing this id truthfully reporting `extraction-layer` for something the registry has decided about. The family record's `members` list is not reachable by alias resolution, so it does not stand in for a record.\nTHE INDEPENDENCE IS REAL BUT WEAKER THAN THE NUMBER LOOKS, and the caveat belongs on the record rather than in the round writeup. The three files are three copies of one authored page - `index_pushdowns` in Capella, in server 7.2 and in server 8.0 - so `shared-source.py` discounts them to 1 by default. `--check` returns `divergent`, and the divergence is genuine: the 7.2 copy carries version history that 8.0 deleted, and the 8.0 copy carries collation and collation-rule statements the other two do not. But divergence across *releases of one lineage* is a weaker kind of independence than two separately authored pages, because one editor changed one page over time. Recorded here so a later round can revisit it rather than rediscover it.\nNAMESPACE: the id stays `n1ql:` because that is what 593 extraction records say, with the `index:` spelling as an alias - round 17's fork resolution, applied in both directions rather than by rewriting six ids. See `concepts/index/operator-pushdown.json` for the argument.",
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

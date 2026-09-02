@@ -5,30 +5,257 @@
   "concepts": [
     {
       "candidate_id": "index:covering-index",
-      "label": "Covering Index / Covered Query",
-      "reused_or_minted": "minted"
+      "label": "Covering index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. This page is the definitional source: it is the relational property that holds between an index and a query, not a kind of index, and the page says so ('An index, in this case, is called a covering index'), i.e. the same index is or is not covering depending on the query."
+    },
+    {
+      "candidate_id": "index:covered-query",
+      "label": "Covered query",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page names this as a separate term in the same sentence as the covering index ('the query is called a covered query'), and it is the other end of the same relation. Nothing in the corpus names it, although index:covering-index is promoted. Phase 2 may prefer to fold it into index:covering-index as the query-side alias; I have kept it separate because the plan-field evidence attaches to the query, not to the index."
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page calls it 'the data service' and 'the data nodes'; the whole benefit is stated as not fetching from it"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'not indexed by indexers'"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service / query engine",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'for the query engine to cover by GSI'"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'can be used with global secondary indexes (GSI)'"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Covering indexes are applicable to secondary index scans'"
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; the page's mandated remedy for the one-index-only rule ('You must create a composite index with all the required fields')"
+    },
+    {
+      "candidate_id": "index:covers-plan-field",
+      "label": "covers plan field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id from server/8.0/indexes/covering-indexes.json, the Server counterpart of this page"
+    },
+    {
+      "candidate_id": "index:filter-covers-plan-field",
+      "label": "filter_covers plan field",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the second covering-related plan field, present in this page's Example 6 plan and named as the analogue of early filtering's index_conditions by early-filters-and-pagination.md. index:covers-plan-field exists at the extraction layer but filter_covers has no id."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's stated method for confirming coverage"
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement",
+      "label": "Prepared statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:aggregate-functions",
+      "label": "Aggregate functions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Queries with expressions and aggregates benefit from covering indexes'"
+    },
+    {
+      "candidate_id": "n1ql:subqueries",
+      "label": "Sub-queries",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; one of the page's six covered-query scenarios"
+    },
+    {
+      "candidate_id": "n1ql:insert",
+      "label": "INSERT statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'SELECT in INSERT statements' is one of the page's covered-query scenarios"
+    },
+    {
+      "candidate_id": "n1ql:union",
+      "label": "UNION / INTERSECT / EXCEPT",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; the page's Example 2 scenario"
+    },
+    {
+      "candidate_id": "tool:cbq-shell",
+      "label": "cbq shell",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "capella:query-tab",
+      "label": "Capella Query tab",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "page:index-scans",
+      "label": "Index Scans page",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing page id, seeAlso object"
+    },
+    {
+      "candidate_id": "page:index-pushdowns",
+      "label": "Index Pushdowns page",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing page id, seeAlso object"
+    },
+    {
+      "candidate_id": "page:groupby-aggregate-performance",
+      "label": "Grouping and Aggregate Pushdowns page",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no page id for this document exists in the corpus. Also minted by cloud/indexes/index_pushdowns.json in this same wave; phase 2 will see one id, not two."
     }
   ],
   "relations": [
     {
       "subject": "index:covering-index",
+      "predicate": "doesNotSupport",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the defining property is stated negatively: the fetch step does not happen. Recorded with doesNotSupport rather than a minted predicate because the page's whole claim is the absence of the data-service fetch.",
+      "evidence": "When an index includes the actual values of all the fields specified in the query, the index covers the query and does not require an additional step to fetch the actual values from the data service. An index, in this case, is called a covering index and the query is called a covered query. As a result, covered queries are faster and deliver better performance."
+    },
+    {
+      "subject": "index:covered-query",
+      "predicate": "requiresIndex",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the query side of the same definitional sentence",
+      "evidence": "If we select `state` from the `hotel` keyspace, the actual values of the field `state` that are to be returned are present in the index `idx_state`, and avoids an additional step to fetch the data. In this case, the index `idx_state` is called a covering index and the query is a covered query."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:covers-plan-field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate, first used by the Server counterpart of this page",
+      "evidence": "The covers object shows details of the data covered by the index."
+    },
+    {
+      "subject": "index:covers-plan-field",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the field's absence is the documented negative signal, which is how the page teaches you to read the plan",
+      "evidence": "There is no covers object, showing that the data is not covered by the index."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "monitoredVia",
+      "object": "n1ql:explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To see details of covering indexes at work, you can view the query execution plan using the EXPLAIN statement. When a query uses a covering index, the EXPLAIN statement shows that a covering index is used for data access, thus avoiding the overhead associated with key-value document fetches."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "indicatesInQueryPlan",
+      "object": "index:filter-covers-plan-field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate",
+      "evidence": "The query plan for the above query shows that the index covers the query."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "hasExecutionConstraint",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the MISSING rule is a hard qualification condition, not a preference: the query must exclude MISSING for the index to qualify",
+      "evidence": "`MISSING` items are not indexed by indexers. To take advantage of covering indexes and for the index to qualify, a query needs to exclude documents where the index key expression evaluates to `MISSING`."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "restrictedToContext",
+      "object": "index-type:secondary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI). Queries with expressions and aggregates benefit from covering indexes."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "requiresIndex",
+      "object": "index-type:composite-secondary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the page states the one-index-only rule and the composite index as the required remedy in the same breath",
+      "evidence": "You cannot use multiple GSI indexes to cover a query. You must create a composite index with all the required fields for the query engine to cover by GSI and not require reading the documents from the data nodes."
+    },
+    {
+      "subject": "n1ql:prepared-statement",
       "predicate": "seeAlso",
-      "object": "index-type:gsi",
-      "reused_or_minted_predicate": "reused (seeAlso)",
-      "evidence": "Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI)."
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, standard term. The sentence is a bare 'also benefit from' with no mechanism, so seeAlso is the honest reading rather than a causal predicate.",
+      "evidence": "[Prepared statements](../n1ql/n1ql-language-reference/prepare.md) also benefit from using covering indexes."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "monitoredVia",
+      "object": "tool:cbq-shell",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The following queries can benefit from covering indexes. Try these statements using `cbq` or the Query tab to see the query execution plan."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "monitoredVia",
+      "object": "capella:query-tab",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The following queries can benefit from covering indexes. Try these statements using `cbq` or the Query tab to see the query execution plan."
     },
     {
       "subject": "index:covering-index",
       "predicate": "seeAlso",
-      "object": "capella:query-tab",
-      "reused_or_minted_predicate": "reused (seeAlso)",
-      "evidence": "Try these statements using `cbq` or the Query tab to see the query execution plan."
+      "object": "page:index-scans",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, standard term",
+      "evidence": "[Query Execution: Details](index-scans.md#query-execution-details)"
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "seeAlso",
+      "object": "page:index-pushdowns",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, standard term",
+      "evidence": "[Index Pushdowns](index%5Fpushdowns.md)"
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "seeAlso",
+      "object": "page:groupby-aggregate-performance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, standard term",
+      "evidence": "[Grouping and Aggregate Pushdowns](groupby-aggregate-performance.md)"
     }
   ],
   "notable_absence": {
-    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition",
-    "finding": "This page is purely a SQL++ performance/optimization topic (index design and EXPLAIN plan mechanics) with zero access-control, privilege, role, or edition content - confirms the batch hypothesis that the indexes/ performance pages are low-RBAC-content infrastructure topics. No forced concepts/relations were minted beyond what the text actually supports."
+    "predicate": "seeAlso",
+    "finding": "This is the only page of the four cross-linked performance pages whose Related Links omit early-filters-and-pagination.md. index_pushdowns.md, groupby-aggregate-performance.md and early-filters-and-pagination.md all carry the full set of four; covering-indexes.md carries three. The omission matters more here than anywhere else, because early-filters-and-pagination.md is written as the direct continuation of this page - its lede is 'When covering indexes and index pushdowns are not available...' and its whole explanatory device is that _index_key/index_conditions/index_keys are analogous to this page's cover/filter_covers/covers. So the page a reader of covering-indexes.md most needs next is the one link it lacks. A second absence: the page never states which index types CANNOT cover a query, only that secondary and GSI can, so there is no evidence here for a doesNotSupport relation to index-type:primary-index or index-type:view even though the restriction to 'secondary index scans' implies one."
   },
-  "cross_component_finding": "None applicable beyond the notable_absence above.",
-  "cross_product_finding": "None applicable - this page's content (EXPLAIN plan shape, covers/covers arrays) is generic SQL++ engine behavior shared identically with server/, with no Capella-specific gating."
+  "cross_component_finding": "The page teaches covering indexes entirely through two EXPLAIN plan fields - `covers` and `filter_covers` - and never names them in prose, only in code blocks and callout-table rows ('The covers object shows details of the data covered by the index'). That makes the ontology's hook into this page the plan field rather than the concept, and it is why index:covers-plan-field already exists at the extraction layer while its sibling filter_covers did not. Three of the five pages in this batch (this one, early-filters-and-pagination.md, groupby-aggregate-performance.md) are structured the same way: a mechanism, then the plan field that proves it fired. There is a case for phase 2 promoting a single `plan-field:` namespace or a consistent `index:*-plan-field` family rather than minting them one page at a time - the corpus currently has index:covers-plan-field and, after this wave, index:filter-covers-plan-field, index:index-keys-plan-field, index:index-conditions-plan-field, index:index-key-plan-expression and index:index-group-aggs-plan-field, all discovered the same way.",
+  "cross_product_finding": "Example 6 of this Capella page instructs the reader to 'insert the following documents into the default collection in the default scope in the `travel-sample` bucket' and then creates an index on `` `travel-sample` `` at the bucket level, while every other example on the page uses collection-level keyspaces (`hotel`, `landmark`) under an assumed inventory scope. That is a pre-collections example that survived the 7.0 keyspace change and the Capella re-edit, and it contradicts the sibling pages in this batch, which all open with 'you must set the query context to the `inventory` scope'. This page has no query-context instruction at all, so Examples 1-5 cannot be run as written without one. Worth a docs issue, but it is phase 2's call, not mine."
 }

@@ -1,0 +1,55 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/query-plan-index-fields",
+  "label": "The index-related fields of a SQL++ query plan",
+  "type": "scheme. The fields that appear in EXPLAIN output to show what the Index service was asked to do. A closed set as far as this corpus attests - and NOT closed as a matter of fact: nothing in the documentation claims to enumerate them, so this is the union of what five pages show.",
+  "promoted": true,
+  "recurrence": 8,
+  "fields": [
+    {
+      "id": "index:covers-plan-field",
+      "field": "covers",
+      "independent_sources": 3,
+      "note": "Promoted separately; the only member that clears the bar on its own."
+    },
+    {
+      "id": "index:filter-covers-plan-field",
+      "field": "filter_covers",
+      "independent_sources": 1,
+      "note": "DEFINED ONLY BY ANALOGY, ANYWHERE IN THE CORPUS: early-filters-and-pagination.md says 'The index_conditions section is analogous to the filter_covers section in the plan for a covered query' - defining the newer field in terms of one that is itself never defined. It appears in covering-indexes.md's own Example 6 plan output with no prose at all."
+    },
+    {
+      "id": "index:index-conditions-plan-field",
+      "field": "index_conditions",
+      "independent_sources": 1,
+      "note": "The early-filtering field. Defined only by the analogy above."
+    },
+    {
+      "id": "index:index-keys-plan-field",
+      "field": "index_keys",
+      "independent_sources": 1
+    },
+    {
+      "id": "index:keypos-plan-field",
+      "field": "keypos",
+      "independent_sources": 1
+    },
+    {
+      "id": "index:partial-plan-field",
+      "field": "partial",
+      "independent_sources": 1
+    },
+    {
+      "id": "index:index-group-aggs-plan-field",
+      "field": "index_group_aggs",
+      "independent_sources": 2,
+      "note": "The field through which BOTH index:group-aggregate-pushdown and the MIN/MAX/COUNT operator pushdowns are implemented - which is the evidence that those two families are one mechanism, and neither page says so."
+    },
+    {
+      "field": "exact",
+      "independent_sources": 0,
+      "note": "NOT MINTED, and the most important omission in this record. `exact` is a flag rather than a section, appears in roughly thirty plan outputs on index-scans.md, is absent in exactly the two cases where a predicate could not be fully pushed down, and is never defined on the page that owns it. It decides pushdown versus early filtering. It has no id because no record minted one - every agent that met it treated it as part of index:index-span. Recorded here so the next round does not have to notice it again. See docs-issues/server-index-scans-exact-flag-undefined."
+    }
+  ],
+  "note": "PROMOTED AS A FAMILY under the reconcile skill's family exception - one well-evidenced mechanism (reading a query plan to see what the Index service did) covered by terms that are individually rare. Six of the eight sit at ONE independent source once the shared-source discount is upheld, and would each be refused alone.\nWHY A SCHEME RATHER THAN EIGHT RECORDS, and why not a new namespace. Agents on this round discovered the family independently and proposed a `plan-field:` namespace for it. That would have created exactly the defect this round built an instrument to detect: `index:covers-plan-field` and `plan-field:covers` are one term in two namespaces, `variant_key()` would never cluster them because it strips punctuation while keeping the prefix, and the family would have read as two sets of weak terms. The fields keep their `index:` prefix; this scheme holds them together; relations/indicates-in-query-plan.json points at them.\nTHE ASYMMETRY WORTH NOTING: the plan fields are documented far better than they are DEFINED. Between them these eight appear in well over a hundred plan listings across five pages, always as demonstration and almost never as prose. `filter_covers` is defined by analogy to an undefined field; `exact` is shown thirty times and explained on a different page than the one that owns it. A reader can see what a correct plan looks like and cannot look up what any single field means, which is an unusual failure mode for reference documentation and the reason this scheme records `independent_sources` per field rather than a single count.",
+  "relates_to_competency_question": "How do I tell from EXPLAIN whether the optimisation I expected actually happened?"
+}

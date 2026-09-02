@@ -1,0 +1,367 @@
+{
+  "page_id": "server/8.0/indexes/index-scans",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/index-scans.md",
+  "concepts": [
+    {
+      "candidate_id": "index:index-scan",
+      "label": "Index scan (the Index service reads a range of index entries on the Query service's request)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the subject of this page and the operation every other page in the batch optimises, yet the corpus has no term for it. The server/7.2 round minted `learn:index-scans`, which names the document rather than the operation, and the Capella round minted only `index:index-span`. Also used as the seeAlso object of the four sibling records in this batch, since every one of them links here."
+    },
+    {
+      "candidate_id": "index:index-span",
+      "label": "Span (the low/high/inclusion range representation of a predicate passed to the Indexer)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. THIS is the page that defines it; the Capella copy of this page is where the id came from."
+    },
+    {
+      "candidate_id": "index:span-inclusion",
+      "label": "Span inclusion (0 NEITHER, 1 LOW, 2 HIGH, 3 BOTH)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuine closed four-member enum, given as a numbered table with names and descriptions, and used in the Low/High/Inclusion table of all 30 examples. Nothing in the registry covers it."
+    },
+    {
+      "candidate_id": "index:empty-span",
+      "label": "EMPTY SPAN (a span whose start exceeds its end, which produces no index scan at all)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named in capitals by the page as a distinct outcome, not merely a span with no matches: it suppresses the scan entirely."
+    },
+    {
+      "candidate_id": "index:exact-span",
+      "label": "Exact span",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/early-filters-and-pagination.json in this round, not promoted. Every plan on this page carries \"exact\": true except the two where the predicate cannot be fully pushed down, and the page never remarks on it (see notable_absence)."
+    },
+    {
+      "candidate_id": "index:full-index-scan",
+      "label": "Complete (full) index scan - the whole index is scanned because no predicate could be pushed down",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the worst-case outcome of span generation, named by the page ('performing a complete index scan') and also the documented fallback when an IN list exceeds 8192 elements. The corpus has no term for it."
+    },
+    {
+      "candidate_id": "index:span-combination-rules",
+      "label": "Span combination rules (how the optimizer merges the bounds of conjunctive and disjunctive predicates)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page gives a four-step algorithm (combined Low is the highest of the Lows, combined High the lowest of the Highs, combined inclusion the OR of the inclusions, repeated per AND clause) plus the disjunctive rule that duplicate ranges are removed and overlapping ones are not. That is a named mechanism, not an example."
+    },
+    {
+      "candidate_id": "index:index-scan3",
+      "label": "IndexScan3 (plan operator carrying the spans)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted."
+    },
+    {
+      "candidate_id": "index:predicate-pushdown",
+      "label": "Predicate pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page is the worked-example counterpart to index_pushdowns.md's Predicate Pushdown section, which links here for the details."
+    },
+    {
+      "candidate_id": "n1ql:in-predicate-pushdown",
+      "label": "IN predicate pushdown (each element becomes a separate range, up to a limit)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - in the extraction layer from the server/7.2 round, never promoted."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index-type:array-index",
+      "label": "Array index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page says predicates inside ANY ... SATISFIES are 'pushed to ARRAY index scan'."
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:collation-order",
+      "label": "SQL++ collation order",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the total order over JSON values that makes span arithmetic work: it is why LIKE \"American%\" becomes a range ending at \"Americao\", why \"\" is the lowest string, and why [] is greater than every string. The registry has n1ql:comparison-operators at the extraction layer, but that is the operator set, not the ordering it is defined against, and this page never links to it."
+    },
+    {
+      "candidate_id": "n1ql:like",
+      "label": "LIKE predicate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - two of this page's examples turn on it and it is the canonical un-pushable filter in early-filters-and-pagination.md ('a filter that uses a function or a LIKE operator on top of an index term'), so it recurs across the batch. No corpus id exists."
+    },
+    {
+      "candidate_id": "version:server-4-5",
+      "label": "Couchbase Server 4.5",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted by the server/7.2 round from this same NOTE, never promoted. Still the only version named anywhere on the 8.0 copy of the page."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service / Query node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service / data node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:select",
+      "label": "SELECT statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:request-level-query-parameters",
+      "label": "Query parameters ($1, $2)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. Four examples show spans built from parameter placeholders rather than literals."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:index-scan",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. A scan request IS a set of spans; this is the page's opening definition.",
+      "evidence": "During query execution, when the index path is chosen, the query engine requests the scan by providing a range of values to return. This range is represented as a _span_ in the query plan."
+    },
+    {
+      "subject": "index:index-scan",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService.",
+      "evidence": "Once the index path is chosen, the query engine requests the Index Service to perform a scan."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. The page's Query Execution section is the only place in the batch that describes the three-node division of labour from the Query node's point of view, which is why the other four pages all link to this anchor.",
+      "evidence": "During execution, depending on the query, using applicable indexes, the Query node works with the Index and Data nodes to retrieve and perform the planned operations."
+    },
+    {
+      "subject": "n1ql:select",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService.",
+      "evidence": "Applications and database drivers submit the SQL++ query to one of the available Query nodes on a cluster."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:order-by",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. The execution phases a query passes through depend on which clauses it has; the Sort phase is the page's own example.",
+      "evidence": "For example, the Query Service skips the Sort phase when it does not include an ORDER BY clause; and the Scan-Fetch-Join phases execute multiple times for correlated subqueries."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. Spans are the representation in which predicates travel to the Indexer, which is what makes this page the mechanism behind index_pushdowns.md.",
+      "evidence": "The query predicates are translated into spans in the query plan and passed to the Indexer. Spans simply express the predicates in terms of data ranges."
+    },
+    {
+      "subject": "index:index-span",
+      "predicate": "usesEnum",
+      "object": "index:span-inclusion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum, for a closed four-member numbered enum given as a table.",
+      "evidence": "| 0                | NEITHER | Neither High nor Low fields are included. |"
+    },
+    {
+      "subject": "index:index-span",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:span-inclusion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, recording what the enum governs: whether the boundary values themselves are scanned.",
+      "evidence": "Inclusion indicates if the values of the High and Low fields are included."
+    },
+    {
+      "subject": "index:index-span",
+      "predicate": "usesExecutionModel",
+      "object": "index:span-combination-rules",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesExecutionModel. The four numbered steps are how several AND-ed predicates on one index key become a single range.",
+      "evidence": "Combined Low becomes highest of both Low values (NULL is the lowest.)"
+    },
+    {
+      "subject": "index:span-combination-rules",
+      "predicate": "takesPrecedenceOver",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver, recording that a redundant conjunct is dropped from the span entirely rather than represented in it.",
+      "evidence": "Observe that the optimizer created the span without the `id < 25` predicate because the AND predicate `id <=20` makes the former predicate redundant. Internally, the optimizer breaks down each predicate and then combines it in a logically consistent manner."
+    },
+    {
+      "subject": "index:span-combination-rules",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The disjunctive rule is deliberately incomplete: identical ranges are collapsed, overlapping ones are not, so Example 30 really does scan an overlap twice.",
+      "evidence": "In this example, the predicate `id = 10 OR id = 20` produces two independent ranges and both of them are pushed to index scan. Duplicate ranges are eliminated, but overlaps are not eliminated."
+    },
+    {
+      "subject": "index:empty-span",
+      "predicate": "isSubtypeOf",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Note the consequence in the same sentence: an EMPTY SPAN is not a span that matches nothing, it is a span that suppresses the index scan altogether.",
+      "evidence": "In this case, the start value is higher than the end value and will not produce results; so, the span is converted to EMPTY SPAN, which will not do any IndexScan."
+    },
+    {
+      "subject": "index:full-index-scan",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:predicate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. When the predicate applies a function to an index key and no matching functional index exists, no predicate is pushed and the whole index is scanned.",
+      "evidence": "The span indicates that the index service is performing a complete index scan. If the index does not cover the query, the query service fetches the document from the data node and then applies the predicate."
+    },
+    {
+      "subject": "index:index-scan",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. Whether a fetch follows the scan depends on covering, stated here in passing.",
+      "evidence": "If the index does not cover the query, the query service fetches the document from the data node and then applies the predicate."
+    },
+    {
+      "subject": "n1ql:in-predicate-pushdown",
+      "predicate": "availableSince",
+      "object": "version:server-4-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince. Recorded as the page states it, while noting that 'In version 4.5' on an 8.0 page is a stale present-tense claim rather than a real availability statement (see cross_component_finding).",
+      "evidence": "In version 4.5, up to 8192 IN elements are pushed as separate ranges to the index service."
+    },
+    {
+      "subject": "index:full-index-scan",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:in-predicate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. The 8192-element threshold is the only numeric limit on span generation anywhere in the batch, and exceeding it costs a full scan of that key.",
+      "evidence": "If the number of elements exceed 8192, then the index service performs a full scan on that key."
+    },
+    {
+      "subject": "n1ql:in-predicate-pushdown",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. An IN list is rewritten as a disjunction and each surviving element becomes its own range.",
+      "evidence": "In this example, the predicate is `id IN [10,20]` (that is, id = 10 OR id = 20). After eliminating the duplicates, each element is pushed as a separate range to index scan."
+    },
+    {
+      "subject": "n1ql:like",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. A prefix LIKE is turned into a range whose upper bound is the next string in collation order, so the rewrite is only correct relative to that order.",
+      "evidence": "In this example, the predicate `name LIKE \"American%\"` is transformed to `name >= \"American\"` AND `name < \"Americao\"` (where \"Americao\" is the next string in SQL++ collation order after \"American\") and then pushed to index scan."
+    },
+    {
+      "subject": "index:index-span",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The bounds used for an unpushable LIKE - \"\" as the lowest string and [] as greater than every string - are facts about the collation order, not about the query.",
+      "evidence": "`\"\"` is the lowest string. `[]` is an empty array and is greater than every string value in the SQL++ collation order."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:like",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, restricted to the leading-wildcard case: a prefix LIKE pushes down fine, a leading-% LIKE cannot push any part of the string. This is the same limitation early-filters-and-pagination.md uses to motivate early filtering.",
+      "evidence": "In this LIKE predicate '%' is the leading portion of the string, so we can't push any portion of the string to the index service."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:array-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted. Predicates inside an ANY ... SATISFIES collection predicate become spans on an array index.",
+      "evidence": "In this example, the predicate `v.day = 0` is pushed to ARRAY index scan."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:composite-secondary-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/index_pushdowns.json in this round, not promoted. On a composite index one span carries one range per index key, and the examples cover the trailing-key-missing and unbounded-trailing-key cases.",
+      "evidence": "Example 19: AND Predicate with Composite Index"
+    },
+    {
+      "subject": "index:index-scan3",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. The spans live in the IndexScan3 section of the plan, which is how a reader finds them.",
+      "evidence": "You can see the spans in the `IndexScan3` section of the Explain for the query:"
+    },
+    {
+      "subject": "index:index-span",
+      "predicate": "monitoredVia",
+      "object": "n1ql:explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia. The page's closing advice makes plan inspection the intended practice, not just a debugging aid.",
+      "evidence": "When you analyze the explain plan, correlate the predicates in the explain to the spans. Ensure the most optimal index is selected and the spans have the expected range for all the index keys."
+    },
+    {
+      "subject": "index:index-scan",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql/n1ql-intro/queriesandresults.md#query-context)."
+    },
+    {
+      "subject": "index:index-scan",
+      "predicate": "seeAlso",
+      "object": "manage:install-sample-buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link. These two are the only outbound links on the page.",
+      "evidence": "For instructions on how to install the sample bucket, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso / availableSince",
+    "finding": "Four absences. (1) No Related Links section, and only two outbound links in the whole page (sample buckets, query context). Every other page in this module ends with a Related Links list of four items, and all four of them - covering-indexes.md, index_pushdowns.md, groupby-aggregate-performance.md and early-filters-and-pagination.md - link INTO this page's #query-execution-details anchor. So the hub of the module is the one page with no way out of it: the cross-referencing is entirely one-directional, and a reader who follows 'Query Execution: Details' from any sibling page reaches a dead end. The same is true of the Capella copy. (2) The `exact` flag is never explained. It appears in the plan output of nearly every example as \"exact\": true, and is silently ABSENT in exactly the two cases where the predicate could not be fully pushed down (Example 18's leading-% LIKE and Example 29's unindexed function). early-filters-and-pagination.md makes exactness the decisive criterion for pushdown versus early filtering ('does not generate an exact index span, and needs to be evaluated as an early index filter'), so the field that decides the behaviour is demonstrated 30 times here and defined on a different page. (3) No version information except the stale note discussed in cross_component_finding: nothing dates span generation, the inclusion enum, EMPTY SPAN conversion, or the skip-key behaviour that index_pushdowns.md dates to 6.5. (4) No vector indexes: an 8.0 page enumerating what a predicate can become for every index kind it knows about (secondary, composite, array, functional, primary via meta().id) never mentions the three 8.0 vector index types or how a vector search request differs from a span-based scan. Also unexplained, though shown four times: spans built from query parameters ($1, $2). Examples 23-26 put placeholders in the low and high fields with no comment on what that means for a plan that is cached or prepared before the values are known."
+  },
+  "cross_component_finding": "This page has four internal defects, three of which are prose that contradicts its own tables and plan output. (a) Example 15 is titled 'EQUALITY Predicate on String Type' and its query is `WHERE name = \"American Airlines\"`, but the prose reads 'In this example, the predicate `name >= \"American Airlines\"` is pushed to index scan' - a range operator for an equality query. The span table on the same screen gives Low and High both \"American Airlines\" with inclusion 3 (BOTH), and the plan output agrees, so the prose is simply wrong. (b) Example 14's query is `WHERE NOT (id >= 10 AND id < 25)` but the prose says 'the predicate `id >= 10 AND id < 25` is transformed to `id <10 OR id >=25`' - dropping the NOT, so as written it asserts that a conjunction is equivalent to its own negation. The transformation shown is correct for the actual query. (c) Example 8's prose says 'This is a special case where the span is Low: 10, High: 5, and Inclusion: 0' while the table immediately above it says Low NULL, High NULL, Inclusion 0 and the plan says \"high\": \"null\", \"low\": \"null\". Both are true at different stages - 10/5 before the EMPTY SPAN conversion, null/null after - but the page never says so, so a reader comparing the three cannot tell which is the answer. (d) Example 20's span table labels its third row 'stops' where every sibling row is labelled with the predicate ('destinationairport = \"JFK\"'), losing the `= 0`. Separately, on naming: this page calls the components 'Query nodes', 'Query node', 'query engine', 'Query Service', 'Index Service', 'index service' (lower case), 'Indexer' and 'data node' - eight spellings of three services in one document, where the sibling early-filters-and-pagination.md is consistent throughout. And the stale version: an 8.0 page states 'In version 4.5, up to 8192 IN elements are pushed as separate ranges to the index service' in the present tense. Whether 8192 is still the limit in 8.0 is unknowable from the page; the sentence is dated in a way that cannot age.",
+  "cross_product_finding": "Same three-way duplication as the rest of the batch - cloud/indexes/index-scans.md and server/7.2/learn/services-and-indexes/indexes/index-scans.md are both extracted already, and the module moved from learn/services-and-indexes/indexes/ to indexes/ between 7.2 and 8.0 - with two specifics worth phase 2's attention. First, the 'In version 4.5' note is present verbatim in all three copies (verified by grep in cloud/indexes/index-scans.md and server/7.2/.../index-scans.md), so a stale version reference has survived at least three releases and been carried across into the Capella product documentation unchanged. Second, this one page's central concept now has three ids in the corpus, one per copy: the server/7.2 round minted `n1ql:span` (plus `learn:index-scans` for the page), the Capella round minted `index:index-span`, and neither knew about the other. I reused `index:index-span` and did not mint a fourth, but a recurrence count that treats n1ql:span and index:index-span as different terms will read the single best-attested concept in this module as two weak ones - and will read `learn:index-scans` as a third. This is the clearest case in the batch for phase 2 resolving aliases before counting, rather than after."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-groupby-table1-contradicts-examples",
+  "type": "docs-issue",
+  "issueType": "internal-contradiction",
+  "description": "On groupby-aggregate-performance.md, Table 1 (Aggregate Comparison) contradicts the page's own prose and worked examples about its central subject. The 'Supports SUM() and COUNT()' row is marked UNSUPPORTED for 'Aggregate on Non-Array Index Field' - the commonest case in the document, demonstrated by Examples 1, 2, 5, 11, 12, 13, 14 and 16, and contradicted by the page's own sentence 'Currently, the only aggregate functions that are supported are SUM(), COUNT(), MIN(), MAX(), and AVG() with or without the DISTINCT modifier.' The same row marks MIN() and MAX() unsupported for both DISTINCT columns. As printed, Table 1 cannot be used.",
+  "about": [
+    "server/8.0/indexes/groupby-aggregate-performance",
+    "cloud/indexes/groupby-aggregate-performance"
+  ],
+  "note": "THE EXTRACTING AGENT DELIBERATELY REFUSED TO EXTRACT THE TABLE, and the reasoning is worth keeping: extracting it would have put 'a false negative into the ontology with a quotable citation behind it'. This is the failure mode the write-time evidence gate cannot catch - the quote is verbatim, the table is really on the page, and the resulting relation would pass every mechanical check while being false. The gate proves a sentence exists, never that it is right. A human needs to decide which of the page's two answers to believe, which is why this is a docs-issue and not a modelling decision.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

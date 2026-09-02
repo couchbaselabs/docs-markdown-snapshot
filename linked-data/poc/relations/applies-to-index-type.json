@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/applies-to-index-type",
+  "label": "appliesToIndexType",
+  "shape": "subject = an optimisation, restriction or behaviour; object = an index-type: concept; means: the subject holds for that kind of index and not necessarily for others.",
+  "recurrence": 4,
+  "note": "PROMOTED at recurrence 4. Earns its place because the indexing module's rules are almost never global - a pushdown applies to array indexes but not scalar ones, covering applies to secondary scans but not primary, and so on - and without this predicate every such rule has to be stated as if it were universal. Round 17 promoted four new index types (composite-secondary, array, functional, partial) largely because the pages distinguish behaviour by type, so the predicate and its range arrived together.\nWHAT IT CANNOT SAY, and the round's sharpest gap: it takes no EDITION. The decisive sentences behind concepts/index-storage-stack.json turn on Enterprise versus Community Edition, and nothing in this registry carries that dimension. `availableSince` takes a version; there is no `availableInEdition`.",
+  "promoted": true
+}

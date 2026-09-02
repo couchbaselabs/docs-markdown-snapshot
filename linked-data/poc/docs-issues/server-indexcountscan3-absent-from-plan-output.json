@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-indexcountscan3-absent-from-plan-output",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "On index_pushdowns.md, Example 14's callout (1) reads 'The index operator IndexCountScan3 counts values so the Query Service does not need to do additional processing' and Example 16's callout says the same for distinct values - but both callouts point at a line of plan output reading \"#operator\": \"IndexScan3\", and IndexCountScan3 appears in no plan anywhere on the page. Either the plans were regenerated from a version that no longer emits IndexCountScan3 and the callouts were not updated, or the callouts describe an operator the examples do not produce.",
+  "about": [
+    "server/8.0/indexes/index_pushdowns",
+    "cloud/indexes/index_pushdowns"
+  ],
+  "note": "Duplicated across two examples, so unlikely to be a typo. Worth noting alongside a gap the round found separately: no scan-operator enum exists anywhere in the corpus, though IntersectScan, OrderedIntersectScan, UnionScan, DistinctScan and IndexCountScan3 are each cited as decisive on three different pages. The operators are load-bearing and unenumerated, which is how a callout can name one that does not appear without anything noticing.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

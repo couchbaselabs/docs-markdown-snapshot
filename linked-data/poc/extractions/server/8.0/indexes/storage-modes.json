@@ -1,0 +1,697 @@
+{
+  "page_id": "server/8.0/indexes/storage-modes",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/storage-modes.md",
+  "concepts": [
+    {
+      "candidate_id": "index:index-storage-setting",
+      "label": "Index Storage Setting (the cluster-wide choice of storage mode)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own title term ('Index Storage Settings') and the subject of its third section. Distinct from the two modes it selects between: the modes are `index:memory-optimized-storage` and `index:standard-storage`, and this is the cluster-initialization-time setting whose value is one of them. Needed because every statement in 'Changing Index Storage Settings' is about the setting, not about either mode."
+    },
+    {
+      "candidate_id": "index:memory-optimized-storage",
+      "label": "Memory-optimized index storage",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:standard-storage",
+      "label": "Standard index storage",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage-engine:nitro",
+      "label": "Nitro storage engine",
+      "registry_status": "minted",
+      "reused_or_minted": "minted, and this is the round's genuinely new concept: `storage-engine:nitro` occurs NOWHERE in the extraction corpus and nowhere in the registry, whose `storage-engine:` namespace holds only couchstore and magma. Sixteen rounds of extraction from pages that mention index storage never picked it up, because this is the only page that names it. It is the engine beneath memory-optimized index storage, one level below the mode."
+    },
+    {
+      "candidate_id": "storage-engine:plasma",
+      "label": "Plasma storage engine",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/storage-modes.json already uses this id. Not promoted, despite being the engine behind the default storage mode of the Enterprise Edition product."
+    },
+    {
+      "candidate_id": "storage-engine:forestdb",
+      "label": "Forestdb storage engine",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - two existing records use this id."
+    },
+    {
+      "candidate_id": "index:mvcc",
+      "label": "Multi-version concurrency control (MVCC) in index storage",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - one existing record uses this id."
+    },
+    {
+      "candidate_id": "index:skiplist",
+      "label": "Lock-free skiplist",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/8.0/learn/services-and-indexes/services/index-service.json uses this id."
+    },
+    {
+      "candidate_id": "index:b-tree",
+      "label": "B-Tree index structure",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - one existing record uses this id."
+    },
+    {
+      "candidate_id": "index:log-structured-storage",
+      "label": "Log-Structured Storage (LSS)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the storage substrate of a Plasma instance, named and expanded on this page only."
+    },
+    {
+      "candidate_id": "index:data-lss",
+      "label": "Data LSS",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the two logs every Plasma instance runs, distinguished from the other by content ('the data LSS contains index data'). Minted separately from `index:recovery-lss` because the page gives them different contents, and the dedicated-versus-shared rule applies to the pair."
+    },
+    {
+      "candidate_id": "index:recovery-lss",
+      "label": "Recovery LSS",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see above; holds 'metadata required for recovery'."
+    },
+    {
+      "candidate_id": "index:lss-cleaner",
+      "label": "LSS Cleaner",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the component that removes stale blocks, with a documented default threshold. The page also calls it 'the LSS/Recovery cleaner' in the next sentence, which is a second spelling of the same component; I chose the capitalised form the page introduces it with."
+    },
+    {
+      "candidate_id": "index:hole-punching",
+      "label": "Hole punching (Plasma disk fragmentation control)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a filesystem-dependent mechanism with its own granularity default and its own 8.0 change. Nothing in the registry or corpus names it."
+    },
+    {
+      "candidate_id": "index:circular-write-mode",
+      "label": "Circular Write Mode",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of two Forestdb write modes, the Community Edition default, with its own fragmentation threshold."
+    },
+    {
+      "candidate_id": "index:append-only-write-mode",
+      "label": "Append-only Write Mode",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the other Forestdb write mode, retained only for backwards compatibility."
+    },
+    {
+      "candidate_id": "index:bloom-filter",
+      "label": "Per-page Bloom filters (Plasma)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/storage-modes.json uses this id."
+    },
+    {
+      "candidate_id": "index:in-memory-compression",
+      "label": "In-memory compression (Plasma)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/storage-modes.json uses this id."
+    },
+    {
+      "candidate_id": "index:index-snapshot",
+      "label": "Index snapshot",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - the same id index-replication.json uses; this page is where the memory-optimized recovery path from that snapshot is described."
+    },
+    {
+      "candidate_id": "indexer-mode",
+      "label": "Indexer mode on a node (Paused / Active)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted, at the top level with no namespace, following the registry's own convention for enums (`index-state`, `indexer-node-state`, `cluster-access-credential-type` are all namespace-less). THIS IS THE THIRD STATE VOCABULARY THE ROUND ASKED ABOUT, AND IT IS DELIBERATELY NOT MERGED WITH EITHER PROMOTED ENUM. Its two values are Paused and Active, both written as plain prose words with the word 'mode' after them ('the indexer goes into the Paused mode on that node', 'the indexer goes into Active mode again on that node'), and its subject is the indexer on one node - which is also the subject of promoted `indexer-node-state` (ready, pause, warmup, 'n mutations remaining'). 'Paused'/'pause' and 'Active'/'ready' are plausibly the same two states under two spellings, but THE PAGE NEVER SAYS SO and neither does any page in this batch, so merging them would be my inference presented as documentation. Minting it as a separate nameable thing is what lets phase 2 see that the corpus has two enums for one subject."
+    },
+    {
+      "candidate_id": "index-runtime-state",
+      "label": "Runtime state of an individual index (Warmup / Active)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted, top-level for the same reason as `indexer-mode`. Its two values are `Warmup` and `Active`, both in backticks on this page, and its subject is an INDEX, not the indexer: 'these indexes remain in the `Warmup` state', 'the indexes remain in `Active` state'. That makes it collide with promoted `index-state` (scheduled for creation, deferred, building, pending, online, offline, abridged), which is the index-level enum and contains neither Warmup nor Active. So the corpus now has, for the two subjects 'an index' and 'the indexer on a node', two promoted enums and two undefined prose vocabularies, and no page reconciles any pair. Kept separate for the same reason as above: the reconciliation is not stated anywhere, so it is not extractable."
+    },
+    {
+      "candidate_id": "server:service-memory-quota",
+      "label": "Index Service memory quota",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's percentage thresholds are all expressed against it."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's opening line scopes the whole storage-mode choice to secondary indexes."
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'The standard global secondary index uses a B-Tree index'."
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:scope",
+      "label": "Scope",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the default-versus-non-default scope rule decides whether a Plasma instance gets dedicated or shared LSS."
+    },
+    {
+      "candidate_id": "server:rebalance",
+      "label": "Rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - step 3 of the storage-setting change procedure."
+    },
+    {
+      "candidate_id": "data:item",
+      "label": "Item",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the unit Plasma compresses, flushes and ejects."
+    },
+    {
+      "candidate_id": "storage:auto-compaction",
+      "label": "Auto-compaction",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - two existing records use this id."
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Community Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "Scan consistency",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - but see the findings: this page spells its values `consistency=request_plus`, `consistency=at_plus` and `consistency=unbounded`, and the last of those is not a value of the enum."
+    },
+    {
+      "candidate_id": "version:server-7-0-2",
+      "label": "Couchbase Server 7.0.2",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/7.2/learn/services-and-indexes/indexes/storage-modes.json uses this id."
+    },
+    {
+      "candidate_id": "version:server-7-2-1",
+      "label": "Couchbase Server 7.2.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - absent from both the registry's `version:` namespace and the extraction corpus. Needed for the Bloom-filter default change ('From release 7.2.1 onward'), which is also an upgrade-behaviour statement, so the version is load-bearing rather than decorative."
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's one 8.0 change, the configurable hole-punching granularity."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:index-storage-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice. The page's premise sentence, and note that it scopes the choice to Secondary Indexes specifically.",
+      "evidence": "A Secondary Index can be saved in either of two ways: memory-optimized or standard."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "implementsConcurrencyControl",
+      "object": "index:mvcc",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - implementsConcurrencyControl. The registry has no predicate for a concurrency-control scheme, and this is the one property the page asserts of BOTH modes, so it belongs on `index:index` rather than on either mode.",
+      "evidence": "Both standard and memory-optimized indexes implement multi-version concurrency control (MVCC) to provide consistent index scan results and high throughput."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "isImplementedByEngine",
+      "object": "storage-engine:nitro",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isImplementedByEngine. THIS IS THE PREDICATE THE ROUND WAS LOOKING FOR: it names the relation between a user-selectable storage MODE and the storage ENGINE that implements it, which is the distinction the registry's note on `index:standard-storage` says the docs make at two levels. The page states it three times in the same grammatical form - 'X index storage is supported by the Y storage engine' - once per engine, which is about as clear a recurrence signal as a single page can give.",
+      "evidence": "Memory-optimized index storage is supported by the Nitro storage engine, and is only available in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "Memory-optimized index storage is supported by the Nitro storage engine, and is only available in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "usesDataStructure",
+      "object": "index:skiplist",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - usesDataStructure was minted by server/8.0/learn/services-and-indexes/services/index-service.json.",
+      "evidence": "A memory-optimized index uses a lock-free skiplist to maintain the index and keeps all the index data in memory."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "supportsBucketType",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - supportsBucketType appears twice in the corpus already.",
+      "evidence": "Memory-optimized indexes can be created for both Couchbase and Ephemeral buckets."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "supportsBucketType",
+      "object": "bucket:couchbase-bucket",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - supportsBucketType",
+      "evidence": "Memory-optimized indexes can be created for both Couchbase and Ephemeral buckets."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "hasInternalComponent",
+      "object": "index:index-snapshot",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent. The one on-disk artifact a fully-in-memory index has, and the reason it can survive a restart at all.",
+      "evidence": "A snapshot of the index is maintained on disk, to permit rapid recovery if node failures are experienced."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "requiresMemoryQuota",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMemoryQuota. Note the page's careful hedge, 'To be consistently beneficial', and that the requirement is on ALL Index Service nodes, not on the cluster in aggregate.",
+      "evidence": "To be consistently beneficial, memory-optimized index storage requires that all nodes running the Index Service have a memory quota sufficient for the number and size of their resident indexes, and for the frequency with which the indexes will be updated and scanned."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "hasExecutionConstraint",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, for the hard consequence of exceeding the quota: neither updates nor scans, which is a total loss of function rather than a degradation.",
+      "evidence": "Memory-optimized index storage may be less suitable for nodes where memory is constrained, since whenever the Index Service memory quota is exceeded, indexes on the node can neither be updated nor scanned."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "triggersAlert",
+      "object": "server:service-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - triggersAlert, for the 75% error notification, which the page links to the configure-alerts topic.",
+      "evidence": "If indexer RAM usage goes above 75% of the Index Service memory quota, an [error notification](../manage/manage-settings/configure-alerts.md) is provided."
+    },
+    {
+      "subject": "indexer-mode",
+      "predicate": "hasThreshold",
+      "object": "server:service-memory-quota",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasThreshold. The registry has `hasMinimumMemoryToDataRatio` (a single specific ratio) and `hasDefaultValue`, but nothing for 'this numeric threshold triggers this transition'. This page has four such thresholds (75%, 95%, 80% of the memory quota; 65% relative fragmentation) plus two byte thresholds, so the gap is real and recurring within one page.",
+      "evidence": "If indexer RAM usage then goes above 95% of the Index Service memory quota, the indexer goes into the Paused mode on that node."
+    },
+    {
+      "subject": "indexer-mode",
+      "predicate": "hasThreshold",
+      "object": "index:memory-optimized-storage",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasThreshold, for the recovery threshold, which is deliberately not the same number as the trip threshold (80% down versus 95% up - hysteresis the page states but never explains).",
+      "evidence": "When the indexer RAM usage drops below 80% of the Index Service memory quota, the indexer goes into Active mode again on that node."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "usesEnum",
+      "object": "indexer-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum is promoted, and only the OBJECT is new: `indexer-mode` is a freshly minted enum, so the pairing is new even though the predicate is not. Recording that the node-level Paused/Active vocabulary is a thing this page uses, without claiming it is the promoted `indexer-node-state`. NOTE THE SENTENCE IMMEDIATELY AFTER: 'Although the indexes remain in `Active` state, traffic is routed away from the node.' - the indexer is Paused and the indexes are simultaneously Active, which is the clearest evidence on the page that these are two vocabularies for two subjects and not one vocabulary.",
+      "evidence": "If indexer RAM usage then goes above 95% of the Index Service memory quota, the indexer goes into the Paused mode on that node. Although the indexes remain in `Active` state, traffic is routed away from the node."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "usesEnum",
+      "object": "index-runtime-state",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum is promoted; the object `index-runtime-state` is newly minted, as above. The index-level Warmup/Active vocabulary, whose only definition anywhere in the corpus is this restart sentence.",
+      "evidence": "Following the node's restart, these indexes remain in the `Warmup` state until all information has been read into memory: then, final updates are made with the indexes in `Active` state."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "rebuiltFrom",
+      "object": "index:index-snapshot",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - rebuiltFrom, the same predicate index-replication.json needs for the generic case. This page's version is more specific: it says which indexes (the node's resident memory-optimized ones) and what state they are in while it happens.",
+      "evidence": "In cases where recovery requires an Index Service node to be restarted, the node's resident memory-optimized indexes are rebuilt from the snapshots retained on disk."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. Recorded with the body's wording, which the page's own footnote then contradicts - see cross_component_finding. I am NOT recording a relation for the footnote's corrected behaviour, because the page states two incompatible behaviours and choosing one would be adjudication, not extraction.",
+      "evidence": "Once a rebuilt index is available, queries with `consistency=request_plus` or `consistency=at_plus` fail, if the specified timestamp exceeds the last timestamp processed by given index."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "cascadesDeletionTo",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - cascadesDeletionTo",
+      "evidence": "Remove buckets with indexes. Removing a bucket automatically removes all the dependent indexes."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "cascadesTo",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - cascadesTo. Flush is not deletion of the bucket, so it gets the weaker predicate, and the page is emphatic that pending updates do not protect the index data.",
+      "evidence": "Flushing a bucket deletes all data in a bucket. Even if there are pending updates not yet processed, flushing causes all indexes to drop their own data."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "hasDefaultValue",
+      "object": "index:index-storage-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue. Standard is the default value of the storage setting, which is why the memory-optimized path is the one that needs an edition gate.",
+      "evidence": "Standard is the default storage setting for Secondary Indexes: the indexes are saved on disk in a disk-optimized format that uses both memory and disk for index update and scanning."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "supportsBucketType",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - supportsBucketType. Note the version gate, which memory-optimized storage does not have: ephemeral support for standard storage arrived in 7.0.2.",
+      "evidence": "In Couchbase Server version 7.0.2 and later, standard index storage supports indexes for both Couchbase buckets and Ephemeral buckets. This applies both to Couchbase Server Enterprise Edition and to Couchbase Server Community Edition."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "availableSince",
+      "object": "version:server-7-0-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, for the ephemeral-bucket support specifically rather than for standard storage as a whole.",
+      "evidence": "In Couchbase Server version 7.0.2 and later, standard index storage supports indexes for both Couchbase buckets and Ephemeral buckets."
+    },
+    {
+      "subject": "index-type:gsi",
+      "predicate": "usesDataStructure",
+      "object": "index:b-tree",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - usesDataStructure. The B-Tree/skiplist pair is the cleanest structural contrast between the two storage modes, and the page draws the consequence: a standard index can exceed node memory, a memory-optimized one cannot.",
+      "evidence": "The standard global secondary index uses a B-Tree index and keeps the optimal working set of data in the buffer. This means the total size of the index can be much bigger than the amount of memory available in each index node."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "isImplementedByEngine",
+      "object": "storage-engine:plasma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isImplementedByEngine. THE SECOND OF THE THREE. Note the edition qualifier: the SAME storage mode is implemented by a different engine depending on the edition, which is the fact that makes mode and engine unmistakably different levels rather than synonyms.",
+      "evidence": "In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine. In this case, compaction is handled automatically."
+    },
+    {
+      "subject": "storage-engine:plasma",
+      "predicate": "hasCompactionModel",
+      "object": "storage:auto-compaction",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasCompactionModel. The page contrasts three compaction stories (Plasma: automatic; Circular: interval-triggered full compaction; Append-only: frequent full compaction required), so 'how this engine or mode compacts' is a recurring axis on the page and has no predicate in the registry.",
+      "evidence": "In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine. In this case, compaction is handled automatically."
+    },
+    {
+      "subject": "storage-engine:plasma",
+      "predicate": "hasInternalComponent",
+      "object": "index:data-lss",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "Each plasma instance has a data log and a recovery log to run. The log is based on Log-Structured Storage (LSS). The data LSS contains index data, while the recovery LSS stores metadata required for recovery."
+    },
+    {
+      "subject": "storage-engine:plasma",
+      "predicate": "hasInternalComponent",
+      "object": "index:recovery-lss",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "The data LSS contains index data, while the recovery LSS stores metadata required for recovery."
+    },
+    {
+      "subject": "index:log-structured-storage",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "server:scope",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. A dedicated LSS pair for default scope and collection, shared LSS otherwise - a resource-sharing rule keyed on whether you used the default scope, which appears nowhere else in the corpus and has real capacity consequences.",
+      "evidence": "If the index is created on a default scope and collection, plasma uses a pair of dedicated LSS. For non-default scope or collection, instances will use shared LSS."
+    },
+    {
+      "subject": "index:lss-cleaner",
+      "predicate": "hasDefaultValue",
+      "object": "16MB per LSS",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue",
+      "evidence": "The default threshold for the LSS Cleaner to run is 16MB per LSS. This means the LSS/Recovery cleaner will remove stale blocks only when the LSS used space exceeds 16MB."
+    },
+    {
+      "subject": "storage-engine:plasma",
+      "predicate": "minimizesFragmentationVia",
+      "object": "index:hole-punching",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - minimizesFragmentationVia. Note the filesystem dependency in the same sentence: the mechanism is conditional on the filesystem supporting it, and the page never says which do.",
+      "evidence": "Plasma minimizes disk fragmentation by using hole punching on filesystems that support it."
+    },
+    {
+      "subject": "index:hole-punching",
+      "predicate": "hasDefaultValue",
+      "object": "64MB granularity",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue. The page then derives a combined threshold from the two defaults, which is the only arithmetic on the page and worth keeping with the relation.",
+      "evidence": "Once the cleaner trims the LSS, hole punching occurs in fixed 64MB granularity. This means that the disk log file must expand to at least 80MB (64MB + 16MB) before blocks can be reclaimed or hole punched."
+    },
+    {
+      "subject": "index:hole-punching",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, for the configurability of the granularity rather than for hole punching itself. Recorded despite the sentence's editorial first-person voice, which is flagged in the findings.",
+      "evidence": "In 8.0, we have made the hole punching granularity configurable."
+    },
+    {
+      "subject": "index:standard-storage",
+      "predicate": "isImplementedByEngine",
+      "object": "storage-engine:forestdb",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isImplementedByEngine. THE THIRD OF THE THREE, and the Community Edition counterpart of the Plasma statement.",
+      "evidence": "In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine. In this case, each index saved with the standard option has two write modes:"
+    },
+    {
+      "subject": "storage-engine:forestdb",
+      "predicate": "requiresEdition",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition. Unusual direction of use: this is a feature that is present only in the LOWER edition, because it is what you get when Plasma is unavailable.",
+      "evidence": "In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine."
+    },
+    {
+      "subject": "storage-engine:forestdb",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:circular-write-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice, for the two write modes. Note that this is a THIRD level of configuration below mode and engine: setting -> mode -> engine -> write mode.",
+      "evidence": "In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine. In this case, each index saved with the standard option has two write modes:"
+    },
+    {
+      "subject": "index:circular-write-mode",
+      "predicate": "hasThreshold",
+      "object": "storage:auto-compaction",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasThreshold, for the 65% relative fragmentation figure that triggers block reuse.",
+      "evidence": "Writes changes to the end of the index file, until the relative index fragmentation exceeds 65%. Block reuse is then triggered: new data is written into stale blocks where possible, rather than to the end of the file, so as to optimize I/O throughput."
+    },
+    {
+      "subject": "index:circular-write-mode",
+      "predicate": "hasCompactionModel",
+      "object": "storage:auto-compaction",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasCompactionModel. Includes the page's own caveat that compaction does not much change the fragmentation data size, which reads as an admission that the setting does less than its name suggests.",
+      "evidence": "Full compaction runs in accordance with the value of the **Circular write mode with day + time interval trigger** setting: see [Index Fragmentation](../manage/manage-settings/configure-compact-settings.md#index-fragmentation). However, the index fragmentation data size is not significantly changed by compaction."
+    },
+    {
+      "subject": "index:append-only-write-mode",
+      "predicate": "hasCompactionModel",
+      "object": "storage:auto-compaction",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasCompactionModel. The third compaction story: frequent full compaction, required rather than scheduled.",
+      "evidence": "Writes changes to the end of the index file, invalidating existing pages within the index file, and requiring frequent, full compaction."
+    },
+    {
+      "subject": "index:circular-write-mode",
+      "predicate": "hasDefaultValue",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue, scoped to Community Edition because that is the only edition in which Forestdb write modes exist at all.",
+      "evidence": "By default, Couchbase Server Community Edition uses Circular Write Mode for standard index storage."
+    },
+    {
+      "subject": "index:append-only-write-mode",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "index:circular-write-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - retainedForLegacyCompatibility, which is exactly what the page says of it.",
+      "evidence": "Append-only Write Mode is provided for backwards compatibility with previous versions."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "configuredClusterWide",
+      "object": "server:bucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - configuredClusterWide. The registry has `configuredPerNode` (promoted) and no cluster-wide counterpart, which is a conspicuous asymmetry given how much of this corpus is settings. The scope here is emphatic and doubly stated: all indexes on the cluster, across all buckets.",
+      "evidence": "Settings are established at cluster initialization for all indexes on the cluster, across all buckets."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "hasExecutionConstraint",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The most operationally severe statement on the page: changing the setting after initialization requires removing every Index Service node, and on a single-node cluster requires reinstalling the product.",
+      "evidence": "Following cluster initialization, to change from one setting to the other, all nodes running the Index Service must be removed. If the cluster is single-node, uninstall and reinstall Couchbase Server."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "server:rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf, for the ordering in the five-step procedure: remove nodes, rebalance, THEN change the setting.",
+      "evidence": "Remove each of the nodes running the Index Service. As Index Service nodes are removed, so are the indexes they contain. In consequence, any ongoing queries fail."
+    },
+    {
+      "subject": "index:bloom-filter",
+      "predicate": "providesEnhancementFor",
+      "object": "storage-engine:plasma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - providesEnhancementFor. The page groups two features under a heading that says exactly this, and the registry has no predicate for 'is an optimisation of'. Both members are recorded with the same predicate so the grouping survives extraction.",
+      "evidence": "Couchbase Server provides the following enhancements for Plasma:"
+    },
+    {
+      "subject": "index:in-memory-compression",
+      "predicate": "providesEnhancementFor",
+      "object": "storage-engine:plasma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - providesEnhancementFor, second member of the same list.",
+      "evidence": "Couchbase Server provides the following enhancements for Plasma:"
+    },
+    {
+      "subject": "index:bloom-filter",
+      "predicate": "hasDefaultValue",
+      "object": "enabled",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue",
+      "evidence": "If Bloom filters are enabled (which is the default), when a lookup occurs, and the correct Plasma page is located, the Bloom filter indicates either that the item is not on the page, or that it may be on the page."
+    },
+    {
+      "subject": "index:bloom-filter",
+      "predicate": "configurableVia",
+      "object": "index:index-storage-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. The page names two surfaces (Web Console UI, REST API) and points at General settings.",
+      "evidence": "Bloom filters can be enabled or disabled by means of the Couchbase Web Console UI, or the REST API."
+    },
+    {
+      "subject": "index:bloom-filter",
+      "predicate": "availableSince",
+      "object": "version:server-7-2-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince, for the default change on back indexes rather than for Bloom filters themselves. The following sentences describe mixed-mode upgrade behaviour that re-enables them even where they were previously disabled, which is a surprising default-restoring behaviour worth keeping attached to the version.",
+      "evidence": "From release 7.2.1 onward, Bloom filters for plasma back indexes are enabled by default. During an upgrade, mixed mode clusters with nodes that support bloom filters will enable it for back indexes, even if they was disabled in the past."
+    },
+    {
+      "subject": "index:in-memory-compression",
+      "predicate": "hasDefaultValue",
+      "object": "every 10 minutes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue, for the disk flushing interval that gates which items are eligible for compression.",
+      "evidence": "Disk flushing occurs every 10 minutes."
+    },
+    {
+      "subject": "index:in-memory-compression",
+      "predicate": "doesNotApplyTo",
+      "object": "data:item",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - doesNotApplyTo. `doesNotAffect` (promoted) is about one thing not affecting another; this is about a mechanism's eligibility exclusions, of which the page states two (not yet flushed, recently used). Minting rather than overloading, and flagging the near-synonym for phase 2.",
+      "evidence": "Items not yet flushed to disk are not compressed, nor is any recently used item."
+    },
+    {
+      "subject": "index:in-memory-compression",
+      "predicate": "tradesOffAgainst",
+      "object": "data:item",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst, for the page's explicit cost/benefit statement: higher residence ratios in exchange for CPU.",
+      "evidence": "This new model of memory usage leads to higher residence ratios and greater access efficiency, at the cost of some additional CPU utilization, due to the more frequent performance of compression and decompression routines."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/buckets-memory-and-storage/buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Buckets](../learn/buckets-memory-and-storage/buckets.md)."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/configure-compact-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Other storage settings are described in detail in [Configuring Auto-Compaction](../manage/manage-settings/configure-compact-settings.md)."
+    },
+    {
+      "subject": "index:index-storage-setting",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-nodes/node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For information on adding and removing nodes, and on rebalancing a cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "index:bloom-filter",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See the information provided on establishing [General](../manage/manage-settings/general-settings.md) settings for the cluster."
+    },
+    {
+      "subject": "index:memory-optimized-storage",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/configure-alerts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "an [error notification](../manage/manage-settings/configure-alerts.md) is provided"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith / isSynonymOf between the four state vocabularies",
+    "finding": "I did NOT assert any relation between `indexer-mode`, `index-runtime-state`, promoted `indexer-node-state` and promoted `index-state`, because the page states no relation between them and no other page in this batch does either. That absence is the answer to the round's second question: THE STATE VOCABULARIES ARE NOT SETTLED BY THESE PAGES. What this page adds is not a reconciliation but a fourth vocabulary and one strong piece of evidence about its shape - the sentence 'the indexer goes into the Paused mode on that node. Although the indexes remain in `Active` state' proves that Paused and Active here belong to two DIFFERENT subjects (the indexer, and the indexes on it) and can hold simultaneously. That kills the simplest possible reconciliation, which would have been to treat Active/Warmup/Paused as one three-member enum: Active appears in both the index-level and the indexer-level sentences, so either it is one word for two states or the two vocabularies overlap in exactly one member. The page gives no definitions for any of the three words, no list of possible values, no statement of which component reports them, and no link to the UI or REST field where a user would see them. Second absence, related: `Warmup` here is capitalised and backticked as an index state, while promoted `indexer-node-state` has 'warmup' lowercase as a NODE state - same word, two subjects, and the promoted enum's own registry note already warns that this page's vocabulary is deliberately unpromoted and unmerged. Third absence, unrelated: the page never says what happens to a memory-optimized index when the snapshot on disk is itself lost or stale, though it stakes the whole recovery story on that snapshot; and it never states a memory-optimized equivalent of the standard mode's 'total size can be much bigger than memory' claim beyond the implicit one. Fourth: the page describes Plasma's LSS, cleaner, hole punching, Bloom filters and compression in detail and never once states a settings surface, key name or range for any of them except Bloom filters - so five tunables are documented as behaviour with no way to tune them."
+  },
+  "cross_component_finding": "THE ROUND'S FIRST QUESTION, ANSWERED: this page treats 'storage mode' and 'storage engine' as TWO DIFFERENT LEVELS and never as the same thing. It never uses the words 'storage mode' at all - its own term is 'storage setting'/'Index Storage Settings' - and it introduces engines only as implementations of a setting's value, three times, in one grammatical frame: (a) 'Memory-optimized index storage is supported by the Nitro storage engine, and is only available in Couchbase Server Enterprise Edition.' (b) 'In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine. In this case, compaction is handled automatically.' (c) 'In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine. In this case, each index saved with the standard option has two write modes:'. The decisive detail is (b) versus (c): ONE storage setting value, 'standard', is implemented by TWO different engines depending on edition. A setting whose value maps one-to-many onto engines cannot be the same kind of thing as an engine. So the registry's round-16 note on `index:standard-storage` ('THE DOCS USE STORAGE ENGINE AT TWO LEVELS AND THIS RECORD IS THE UPPER ONE') is confirmed by the only page that documents both levels, and the ruling that engines belong in `storage-engine:` is vindicated. There is also a FOURTH level below the engine - Forestdb's Circular and Append-only write modes - so the full stack the page describes is: Index Storage Setting -> memory-optimized | standard -> Nitro | Plasma | Forestdb -> (Forestdb only) Circular | Append-only. One caveat for phase 2: the page's own word for the upper level is 'setting', never 'mode', while the registry and the UI call it a storage mode ('#index-storage-mode' is the General Settings anchor index-replication.md links to), so the term 'storage mode' is attested in the module's LINKS but not in this page's prose. SEPARATE DEFECTS ON THE SAME PAGE: (1) A SELF-CONTRADICTION BETWEEN BODY AND FOOTNOTE. The body says 'queries with `consistency=request_plus` or `consistency=at_plus` fail, if the specified timestamp exceeds the last timestamp processed by given index'; footnote 1, attached to that very sentence, says 'In fact, queries in this case wait for a consistent snapshot to be available and time out, rather than fail immediately.' The footnote begins 'In fact' - i.e. it exists to correct the sentence it is attached to, and the sentence was not corrected. Fail-immediately and wait-then-time-out are materially different for a client. I recorded only the body's claim and flag the contradiction rather than pick a winner. (2) AN INVENTED ENUM VALUE. The same sentence and the next use `consistency=unbounded`. There is no such scan consistency value: the enum is not_bounded, at_plus, request_plus, statement_plus, and index-replication.md lists all four correctly. 'unbounded' also appears as a value in query-without-index.md's sample output ('\"scanConsistency\": \"unbounded\"'), so this is a recurring wrong spelling of not_bounded in the module, not a one-off. Also note the parameter is spelled `consistency=` here and `scan_consistency` on index-replication.md. (3) A BROKEN ANTORA XREF, identical in shape to the two on index-replication.md: 'see [Index Availability and Performance](#services-and-indexes/indexes/index-replication.adoc)' - a fragment link to a nonexistent anchor, where the intended target is index-replication.md, which is in the same directory. Three broken xrefs of one shape across two pages of this module is a systematic conversion failure. (4) FIRST-PERSON EDITORIAL VOICE AND A RAW ISSUE LINK: 'In 8.0, we have made the hole punching granularity configurable. ([MB-65161](https://jira.issues.couchbase.com/browse/MB-65161) )' - 'we have made' plus a Jira link in place of documentation. The sentence says the granularity is configurable and does not say how to configure it, what the range is, or where the setting lives, so the reader is left with the fixed 64MB figure two sentences earlier and no way to change it. (5) A GRAMMAR ERROR IN THE UPGRADE PARAGRAPH: 'even if they was disabled in the past'. (6) 'plasma' is lowercase in the LSS paragraph and capitalised as 'Plasma' everywhere else, including in the heading 'Plasma Memory Enhancements'. (7) The page is titled 'Index Storage Settings' but two of its five sections (Plasma Memory Enhancements, and the Bloom filter and compression subsections) document engine internals rather than settings, which is how the corpus ended up with Nitro attested nowhere: a reader looking for engines would not open a page called 'Index Storage Settings'.",
+  "cross_product_finding": "cloud/indexes/storage-modes.json and server/7.2/learn/services-and-indexes/indexes/storage-modes.json both cover this page, and I reused `storage-engine:plasma`, `storage-engine:forestdb`, `index:bloom-filter`, `index:in-memory-compression`, `index:mvcc`, `index:b-tree`, `index:skiplist` and `version:server-7-0-2` from them. THE SIGNIFICANT CROSS-PRODUCT FACT IS AN ASYMMETRY: the Capella record uses `storage-engine:plasma` and has no Nitro and no Forestdb, which is correct for that product - Capella exposes neither Community Edition nor, on the evidence of that page, memory-optimized storage - so `storage-engine:nitro` and `storage-engine:forestdb` are Server-only concepts and their absence from the Capella corpus is not a documentation gap there. It does mean, however, that the corpus's ONLY attestation of Nitro is this single sentence on this single Server page, which is why sixteen rounds missed it. Second: the 7.2 record for this page used `index:indexer-node-state` (an alias of promoted `indexer-node-state`) where I have minted `indexer-mode` and `index-runtime-state`. That is a deliberate divergence, not an oversight: the 7.2 record pointed this page's undefined prose vocabulary at the promoted node-state enum, and the registry's note on that enum records that the 8.0 rewrite splits the Paused sentence in two and that the third vocabulary remains unmerged. Phase 2 should treat the 7.2 record's mapping and this record's two mints as competing hypotheses about the same three words, and should notice that the 8.0 page's 'Although the indexes remain in `Active` state' clause is evidence against the single-enum hypothesis. Third, minor: the 7.2 record writes some relation objects as full URIs (https://docs.couchbase.com/ld/concepts/edition/enterprise) where this record uses the plain `edition:enterprise` form; the corpus is not consistent about that and a naive join on object strings will miss the overlap."
+}

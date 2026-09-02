@@ -1,0 +1,533 @@
+{
+  "page_id": "server/8.0/indexes/early-filters-and-pagination",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/early-filters-and-pagination.md",
+  "concepts": [
+    {
+      "candidate_id": "index:early-filtering",
+      "label": "Early filtering (Query service applies filters to index-scan results before the fetch)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records (cloud/indexes/early-filters-and-pagination.json and the server/7.2 equivalent, which spelled it n1ql:early-filtering), never promoted."
+    },
+    {
+      "candidate_id": "index:early-order-and-pagination",
+      "label": "Early order and pagination (Query service orders, limits and offsets index-scan results before the fetch)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page uses it as the best case of the four strategies it compares."
+    },
+    {
+      "candidate_id": "index:index-pushdown",
+      "label": "Index pushdown (family: filters, order, pagination, grouping and aggregates evaluated by the Index service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page is the closest thing in the batch to a statement of the family as a whole: it names filters, ordering, pagination, grouping and aggregates in one sentence as the things that 'may be pushed down to the Index service'."
+    },
+    {
+      "candidate_id": "index:predicate-pushdown",
+      "label": "Predicate pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. Named as the title of Example 2 and Example 4 on this page."
+    },
+    {
+      "candidate_id": "index:order-pushdown",
+      "label": "Order (index order) pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:pagination-pushdown",
+      "label": "Pagination (LIMIT/OFFSET) pushdown",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted. This page's plan callouts name 'Limit pushdown' and 'Offset pushdown' separately, which is weak evidence that the corpus's single pagination-pushdown id may be two things."
+    },
+    {
+      "candidate_id": "index:default-post-fetch-filtering",
+      "label": "Default filters, order, and pagination (performed by the Query service after the fetch)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fourth and least efficient strategy in this page's summary table, and the only one of the four with no name anywhere in the corpus. It is the baseline the other three are improvements on, so the family is incomplete without it."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "index:covers-plan-field",
+      "label": "covers (query plan field)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on server/8.0/indexes/covering-indexes.json in this round; not promoted."
+    },
+    {
+      "candidate_id": "index:filter-covers-plan-field",
+      "label": "filter_covers (query plan field carrying predicates satisfied by a partial index's WHERE clause)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named on this page only as the thing index_conditions is 'analogous to'. Minted because the analogy is the corpus's only definition of either field, and a relation needs both ends."
+    },
+    {
+      "candidate_id": "index:index-keys-plan-field",
+      "label": "index_keys (query plan field listing the index keys available for early evaluation)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the early-filtering counterpart of covers, named and explained on this page. New vocabulary: nothing in the registry or the extraction layer names it."
+    },
+    {
+      "candidate_id": "index:index-conditions-plan-field",
+      "label": "index_conditions (query plan field carrying the partial-index condition under early filtering)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the early-filtering counterpart of filter_covers, named and explained on this page."
+    },
+    {
+      "candidate_id": "index:index-key-expression",
+      "label": "_index_key() expression (marks a value read from an index key rather than from a fetched document)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the marker that makes an early filter or early sort term readable in a plan, appearing in this page's filter, index_keys and sort_terms output. The page defines it by analogy with cover(), so it is a distinct artifact from index:covers-plan-field, which is the plan field that holds cover() expressions."
+    },
+    {
+      "candidate_id": "index:exact-span",
+      "label": "Exact span (an index span that exactly represents the predicate, needing no re-evaluation)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this page makes exactness the criterion that decides pushdown versus early filtering ('does not generate an exact index span, and needs to be evaluated as an early index filter'). The corpus has n1ql:span and index:index-span but no term for the exact/inexact distinction."
+    },
+    {
+      "candidate_id": "index:index-span",
+      "label": "Index span",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "index:reverse-index-scan",
+      "label": "Reverse index scan (scanning an index in the opposite direction to its key order)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named here as a capability the Index service does not have, which is the stated reason ascending sorts on a DESC index cannot use order pushdown. The server/7.2 record for index_pushdowns.md flagged this same limitation as undated and unexplained; this page supplies the mechanism, so the concept is worth naming."
+    },
+    {
+      "candidate_id": "index:intersect-scan",
+      "label": "IntersectScan",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of four complex index scans this page excludes from early ordering. No corpus id exists for any of them."
+    },
+    {
+      "candidate_id": "index:ordered-intersect-scan",
+      "label": "OrderedIntersectScan",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of index:intersect-scan."
+    },
+    {
+      "candidate_id": "index:union-scan",
+      "label": "UnionScan",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of index:intersect-scan."
+    },
+    {
+      "candidate_id": "index:distinct-scan",
+      "label": "DistinctScan",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of index:intersect-scan."
+    },
+    {
+      "candidate_id": "index:single-keyspace-query",
+      "label": "Simple single-keyspace query (single keyspace, no joins)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the shape of query required both for a covering index to apply and for early ordering to be selected. Stated twice on this page in the same words ('the query is on a single keyspace' / 'referencing a single keyspace with no joins')."
+    },
+    {
+      "candidate_id": "n1ql:order-by",
+      "label": "ORDER BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:limit",
+      "label": "LIMIT clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:offset",
+      "label": "OFFSET clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:where",
+      "label": "WHERE clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:group-by",
+      "label": "GROUP BY clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - present in earlier extraction records, never promoted."
+    },
+    {
+      "candidate_id": "n1ql:aggregate-functions",
+      "label": "Aggregate functions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    },
+    {
+      "candidate_id": "n1ql:max-parallelism",
+      "label": "max_parallelism / query parallelism",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page states early ordering turns parallelism off, which connects an index-scan optimisation to a Query service setting documented in another module."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. Every example on the page is an EXPLAIN."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:covering-index",
+      "predicate": "eliminatesFetchFrom",
+      "object": "service:data-service",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted on server/8.0/indexes/covering-indexes.json in this round, not promoted. Same fact, stated here from the Query service's side.",
+      "evidence": "If a query has a [covering index](covering-indexes.md), and the query is on a single keyspace, then the index contains all the data needed to perform the query. The Query service does not need to fetch data from the Data service."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "restrictedToContext",
+      "object": "index:single-keyspace-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext. The page conditions the no-fetch claim on the query being on a single keyspace.",
+      "evidence": "If a query has a [covering index](covering-indexes.md), and the query is on a single keyspace, then the index contains all the data needed to perform the query."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. Under a covering index the filters, order and pagination are all done by the Index service.",
+      "evidence": "Any filters, order, or pagination (offset and limit) are performed by the Index service."
+    },
+    {
+      "subject": "index:default-post-fetch-filtering",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService.",
+      "evidence": "By default, any filters, order, or pagination are performed by the Query service after the fetch."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "mayDelegateOperationTo",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mayDelegateOperationTo. This is the page's statement of the pushdown family as a whole, listing its four members in one sentence.",
+      "evidence": "Some filters, ordering, and pagination may be pushed down to the Index service, along with grouping and aggregates. The Index service applies these operations to the result of the index scan."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService. Early filtering is Query service work, which is exactly what distinguishes it from a pushdown.",
+      "evidence": "With this feature, the Query service may apply filtering, ordering, and pagination directly to the results returned by the Index service, before performing the fetch."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService, same sentence.",
+      "evidence": "With this feature, the Query service may apply filtering, ordering, and pagination directly to the results returned by the Index service, before performing the fetch."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:predicate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. The condition is a filter that cannot be reduced to an index span, e.g. a function applied on top of an index key.",
+      "evidence": "In this case, the filter cannot be pushed down to the Index service. This is where early filtering comes into play. The Query service can apply the specified filter to the results of the index scan, before fetching the matching documents from the Data service."
+    },
+    {
+      "subject": "index:predicate-pushdown",
+      "predicate": "hasExecutionConstraint",
+      "object": "index:exact-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Exactness of the generated span is the criterion that decides pushdown versus early filter.",
+      "evidence": "The filter city = \"Paris\" generates an exact span, and thus can be pushed down to the Index service."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:exact-span",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen, the negative half of the same criterion: no exact span, so the filter is evaluated early instead of being pushed down.",
+      "evidence": "The filter name LIKE \"%Paris%\" does not generate an exact index span, and needs to be evaluated as an early index filter."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "index:early-filtering",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, recording the class of operation that is out of scope for pushdown and therefore left to early filtering.",
+      "evidence": "However, there are some operations that cannot be pushed down to the Index service: for example, a filter that uses a function or a LIKE operator on top of an index term."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "doesNotAffect",
+      "object": "index:early-order-and-pagination",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect. The two halves of the feature are independently selectable, which the page states twice.",
+      "evidence": "In addition, early filtering may be performed independently of early ordering and pagination, and vice versa."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:order-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. Condition: ORDER BY terms that do not match the index key order.",
+      "evidence": "However, if we change the order of the ordering terms so that they no longer match the index key order, ordering cannot be pushed down to the Index service."
+    },
+    {
+      "subject": "index:order-pushdown",
+      "predicate": "doesNotSupport",
+      "object": "index:reverse-index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. This is the mechanism behind the limitation the server/7.2 index_pushdowns record recorded as unexplained.",
+      "evidence": "Similarly, if we change the direction of the sort from descending to ascending, the ordering cannot be pushed down to the Index service, since it does not support reverse index scan."
+    },
+    {
+      "subject": "index:index-keys-plan-field",
+      "predicate": "isAnalogousTo",
+      "object": "index:covers-plan-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isAnalogousTo, stated in those exact words by the page.",
+      "evidence": "The index_keys section is analogous to the covers section in the plan for a covered query."
+    },
+    {
+      "subject": "index:index-conditions-plan-field",
+      "predicate": "isAnalogousTo",
+      "object": "index:filter-covers-plan-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isAnalogousTo, stated in those exact words by the page.",
+      "evidence": "The index_conditions section is analogous to the filter_covers section in the plan for a covered query."
+    },
+    {
+      "subject": "index:index-key-expression",
+      "predicate": "isAnalogousTo",
+      "object": "index:covers-plan-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isAnalogousTo. The page pairs the _index_key() expression with the cover() expression, which is the expression form held in the covers plan field; the object is the field rather than a separate cover-expression concept, to avoid minting two ids for one artifact.",
+      "evidence": "Inside the filter, _index_key ((`landmark`.`city`)) is analogous to cover ((`landmark`.`city`)) for a covering index scan."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "restrictedToContext",
+      "object": "index:single-keyspace-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, from the Limitations list.",
+      "evidence": "The query must be simple, referencing a single keyspace with no joins."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:group-by",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, from the Limitations list.",
+      "evidence": "There can be no `GROUP BY` or aggregates in the query."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:aggregate-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same bullet, second object.",
+      "evidence": "There can be no `GROUP BY` or aggregates in the query."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:pagination-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. Early ordering is a fallback only: the optimizer will not choose it while pushdown is available.",
+      "evidence": "Index pushdown for `ORDER`, `LIMIT` and `OFFSET` must not be possible."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:order-by",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. ORDER BY and LIMIT are both mandatory for early ordering; OFFSET is optional, so no relation is recorded for n1ql:offset.",
+      "evidence": "The `ORDER BY` clause and `LIMIT` clause must be present. The `OFFSET` clause is optional."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "hasExecutionConstraint",
+      "object": "n1ql:limit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, same bullet, second mandatory clause.",
+      "evidence": "The `ORDER BY` clause and `LIMIT` clause must be present. The `OFFSET` clause is optional."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "index:intersect-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, from the Limitations list.",
+      "evidence": "Only simple `IndexScan` is supported for early ordering. More complex index scans such as `IntersectScan`, `OrderedIntersectScan`, `UnionScan` and `DistinctScan` are not supported."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "index:ordered-intersect-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same sentence.",
+      "evidence": "Only simple `IndexScan` is supported for early ordering. More complex index scans such as `IntersectScan`, `OrderedIntersectScan`, `UnionScan` and `DistinctScan` are not supported."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "index:union-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same sentence.",
+      "evidence": "Only simple `IndexScan` is supported for early ordering. More complex index scans such as `IntersectScan`, `OrderedIntersectScan`, `UnionScan` and `DistinctScan` are not supported."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "doesNotSupport",
+      "object": "index:distinct-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same sentence.",
+      "evidence": "Only simple `IndexScan` is supported for early ordering. More complex index scans such as `IntersectScan`, `OrderedIntersectScan`, `UnionScan` and `DistinctScan` are not supported."
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:max-parallelism",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - implicitlySetsParameter. Selecting early ordering silently disables query parallelism, a side effect on a documented Query service setting.",
+      "evidence": "When early ordering is in effect, parallelism is turned off."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "isMoreEfficientThan",
+      "object": "index:index-pushdown",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - the page's summary table is an explicit total order over the four strategies, and no promoted predicate expresses relative efficiency (takesPrecedenceOver is about which one wins when both apply, which is a different claim - here the more efficient one is also chosen first, but the page states efficiency). The ordering of the objects comes from the table's column order, which the introducing sentence declares to be most-to-least efficient.",
+      "evidence": "The following table summarizes the different methods of performing filtering, order, or pagination, from most efficient to least."
+    },
+    {
+      "subject": "index:index-pushdown",
+      "predicate": "isMoreEfficientThan",
+      "object": "index:early-filtering",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - second step of the same total order. Both are 'after scan, before fetch'; the table distinguishes them only by which service does the work.",
+      "evidence": "The following table summarizes the different methods of performing filtering, order, or pagination, from most efficient to least."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "isMoreEfficientThan",
+      "object": "index:default-post-fetch-filtering",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - third step of the same total order.",
+      "evidence": "The following table summarizes the different methods of performing filtering, order, or pagination, from most efficient to least."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "index:index-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from Related Links ('Query Execution: Details').",
+      "evidence": "* [Query Execution: Details](index-scans.md#query-execution-details)"
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Covering Indexes](covering-indexes.md)"
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "index:index-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link from the body text.",
+      "evidence": "Index [pushdowns](index%5Fpushdowns.md) provide one way to reduce the amount of data to be fetched."
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "index:group-aggregate-pushdown",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Grouping and Aggregate Pushdowns](groupby-aggregate-performance.md)"
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "n1ql:where",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [WHERE clause](../n1ql/n1ql-language-reference/where.md) — to apply a filter"
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "seeAlso",
+      "object": "n1ql:order-by",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [ORDER BY clause](../n1ql/n1ql-language-reference/orderby.md) — to apply a sort"
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "seeAlso",
+      "object": "n1ql:offset",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [OFFSET clause](../n1ql/n1ql-language-reference/offset.md) and [LIMIT clause](../n1ql/n1ql-language-reference/limit.md) — to apply pagination"
+    },
+    {
+      "subject": "index:early-order-and-pagination",
+      "predicate": "seeAlso",
+      "object": "n1ql:limit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, same link line, second target.",
+      "evidence": "* [OFFSET clause](../n1ql/n1ql-language-reference/offset.md) and [LIMIT clause](../n1ql/n1ql-language-reference/limit.md) — to apply pagination"
+    },
+    {
+      "subject": "index:early-filtering",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql/n1ql-intro/queriesandresults.md#query-context)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / hasExecutionConstraint",
+    "finding": "Two absences, both structural rather than incidental. (1) No version, anywhere. The page introduces a named feature with the phrase 'In Couchbase Server, early filtering, early ordering, and early pagination provide another line of defense' and never says since when. Every other page in this batch that introduces an optimisation dates it (index_pushdowns.md dates index projection to 5.0, MIN/MAX pushdown to 5.5, skip-key range scan to 6.5; groupby-aggregate-performance.md dates group/aggregate pushdown to 5.5), so early filtering is the one member of this family with no availableSince obtainable from its own page. A reader cannot tell whether it is new in 8.0 or years old. (2) The Limitations section governs early ORDERING AND PAGINATION only - it sits under the 'Early Order and Pagination' heading and its first sentence says 'The optimizer only selects early ordering and pagination when the following conditions are met'. There is no corresponding list for early FILTERING. The page shows early filtering working in Examples 3 and 4 and never states when the optimizer will or will not choose it, so half the feature is documented by conditions and half by example only. This is the same asymmetry in reverse to the one the 7.2 record noticed about undated limitations."
+  },
+  "cross_component_finding": "This is the only page in the batch that names all three services in one place and assigns each a role in the same pipeline (Index service applies spans and pushdowns; Query service applies early filters, order and pagination; Data service serves the fetch), which makes it the load-bearing page for the whole family - covering-indexes.md never names the Query service at all. Two component couplings are stated here and nowhere else in the batch: (a) 'When early ordering is in effect, parallelism is turned off' ties an index-scan strategy to n1ql:max-parallelism, a Query service setting documented in a different module, and the coupling is one-directional - the query settings documentation is not told that early ordering can override it; (b) 'it does not support reverse index scan' attributes a hard capability limit to the Index service in a subordinate clause, on a page about the Query service's workaround. The reverse-scan limitation is the reason for a documented behaviour in at least three pages (this one, index_pushdowns.md's index-order section, and by implication groupby-aggregate-performance.md's ordering rules) and it has no page of its own; the 7.2 extraction of index_pushdowns.md recorded exactly this as a notable absence, and it is still absent in 8.0 - what changed is that this page now explains why, in seven words.",
+  "cross_product_finding": "The page is near-identical to cloud/indexes/early-filters-and-pagination.md (already extracted) and to server/7.2/learn/services-and-indexes/indexes/early-filters-and-pagination.md, with the same two example indexes (idx_eat_city_name, idx_landmark_city_name) and the same eight examples; the Capella copy differs only in substituting 'Couchbase Capella therefore attempts to apply filters, order, and pagination before fetching data' for this page's 'Couchbase Server therefore attempts...'. Two things worth phase 2's attention. First, the module moved between 7.2 and 8.0: in 7.2 this content lived under learn/services-and-indexes/indexes/, in 8.0 under indexes/, so the corpus holds the same page under three page_ids and its vocabulary will look three times as recurrent as it is. Second, the earlier Capella record for this page supports its order-pushdown relation with an evidence string that splices two non-adjacent sentences with an ellipsis ('...ordering cannot be pushed down to the Index service. ... So in this case, early ordering, limit, and offset are done by the Query service before fetch.'); that string is not verbatim on the page and would be refused by the current write-time gate, so at least one pre-gate record in the corpus carries evidence the gate would now reject. I recorded the same fact here from a single contiguous sentence instead."
+}

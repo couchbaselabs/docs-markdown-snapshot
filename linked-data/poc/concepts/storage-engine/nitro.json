@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage-engine/nitro",
+  "label": "Nitro (index storage engine)",
+  "type": "the index storage engine that implements `memory-optimized` index storage. A LEVEL-3 term - see concepts/index-storage-stack.json. Not a KV engine; see storage-engine:plasma's warning.",
+  "recurrence": 1,
+  "recurrence_note": "ONE file. One sentence, on one page, in 593 extraction records - the thinnest evidence behind any concept promoted in this POC, and promoted deliberately below the bar under the family exception the reconcile skill documents, with the exception named here rather than applied quietly.",
+  "note": "PROMOTED BELOW THE USUAL BAR, AS THE THIRD MEMBER OF A FAMILY, and the argument is structural rather than about importance. Level 2 of the storage stack has exactly two values, `standard` and `memory-optimized`. Promoting Plasma and Forestdb without Nitro would leave the memory-optimized branch with no engine, and the resulting registry would then assert something false by omission: that one of the two storage settings is implemented by an engine and the other by nothing. A family that is only *partly* promoted is worse than either promoting all of it or none of it, because the gap is indistinguishable from a fact.\nThe recurrence of 1 is itself the finding, not an embarrassment to be explained away. Nitro is the *implementation of a promoted concept* (index:memory-optimized-storage, recurrence 8) and it is named once in the entire corpus. Anyone querying this ontology for 'how confident is the documentation about Nitro' should get the answer 'one sentence', and that is what this record says.\nWATCHLIST, NOT SETTLED: if a later round extracts a page that names Nitro a second time, update `recurrence` and delete this paragraph. If a later round finds the corpus calls it 'Nitro' in one place and something else in another, that is an alias question and the citation is here.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/storage-modes",
+  "relates_to_competency_question": "Which storage engine actually backs my indexes, and is that something I chose?"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/group-aggregate-pushdown",
+  "label": "Grouping and aggregate pushdown",
+  "type": "the Index service performing GROUP BY and the aggregate functions SUM, COUNT, MIN, MAX and AVG, with or without DISTINCT, instead of returning rows for the Query service to aggregate. Member of index:index-pushdown. Surfaces in the query plan as the `index_group_aggs` field.",
+  "recurrence": 4,
+  "recurrence_note": "Five files discounted to 4 independent sources: `shared`, discount upheld. The most heavily attested unpromoted concept the round met - 37 occurrences across the corpus.",
+  "aliases": [
+    "index:partial-aggregation"
+  ],
+  "note": "PROMOTED. It also carried FIVE ids in the extraction layer, one per copy or audience - `index:group-aggregate-pushdown`, `n1ql:groupby-aggregate-performance`, `learn:grouping-and-aggregate-pushdown`, `page:groupby-aggregate-performance` and `guides:group-agg` - of which only the last denotes something genuinely different (cloud/guides/group-agg.md is a separate Capella guide, not a copy). The other four are the same subject reached from four directions: a concept, a page slug, a module-qualified name, and a page id. That is the alias problem this project has, in one place, and it is the reason recurrence must resolve aliases BEFORE counting rather than after.\n`index:partial-aggregation` is aliased in, not kept separate: partial aggregation is the mechanism by which this pushdown works on non-leading keys, and the page states the two-stage behaviour explicitly ('the indexer sends partial group aggregation, which the query merges to create the final group and aggregation'). It falls to 1 independent source alone and has no life apart from this concept.\nTHE PAGE IS THE LEAST INTERNALLY CONSISTENT IN THE MODULE and the caveats are not incidental to the concept - its own Table 1 marks SUM and COUNT unsupported for the commonest case, which thirteen of its worked examples demonstrate. See docs-issues/server-groupby-table1-contradicts-examples and docs-issues/server-groupby-array-agg-documented-three-ways. An ontology consumer should treat the *prose* claims here as promoted and Table 1 as disputed.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

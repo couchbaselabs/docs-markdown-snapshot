@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/pagination-pushdown",
+  "label": "Pagination pushdown",
+  "type": "pushing LIMIT and OFFSET into the index scan. Member of index:index-pushdown. DISTINGUISH FROM early pagination (index:early-order-and-pagination), which is what the Query service does when pagination CANNOT be pushed down - the two are alternatives, not synonyms, and the documentation places them on different pages.",
+  "recurrence": 3,
+  "recurrence_note": "Six files discounted to 3 independent sources: `shared`, so the discount stands. Three sources still clears the bar comfortably.",
+  "note": "PROMOTED. The contrast with early pagination is the load-bearing distinction and it is stated across two pages rather than on either one, which is worth recording: early-filters-and-pagination.md explains what the Query service does when the pushdown is unavailable, and index_pushdowns.md explains the pushdown, and neither says 'this is the fallback for that' in so many words. The relationship is inferable from both pages together and stated on neither.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

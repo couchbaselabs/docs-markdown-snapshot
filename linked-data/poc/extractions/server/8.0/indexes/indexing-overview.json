@@ -1,0 +1,255 @@
+{
+  "page_id": "server/8.0/indexes/indexing-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/indexing-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "page:indexing-overview",
+      "label": "Primary and Secondary Index Reference (navigation hub page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - the same id the cloud/indexes/indexing-overview.json record uses for the Capella version of this same hub page. This page is a document, not a thing, which is exactly the case retired-prefixes.json says `page:` is for."
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - servesService ('the subject produces or maintains an artifact for the object service's use'). This is the module's one-sentence statement of what the whole `indexes/` tree is for, asserted from the index side.",
+      "evidence": "Primary Indexes and Global Secondary Indexes (GSI) support queries made by the Query Service."
+    },
+    {
+      "subject": "index-type:gsi",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - servesService",
+      "evidence": "Primary Indexes and Global Secondary Indexes (GSI) support queries made by the Query Service."
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/query-without-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Query without Indexes](query-without-index.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/indexing-and-query-perf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Types of Primary and Secondary Index](indexing-and-query-perf.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/covering-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Covering Indexes](covering-indexes.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/index-scans",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Scans](index-scans.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/index_pushdowns",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Pushdowns](index%5Fpushdowns.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/groupby-aggregate-performance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Grouping and Aggregate Pushdowns](groupby-aggregate-performance.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/early-filters-and-pagination",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Early Filters, Order, and Pagination](early-filters-and-pagination.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/advise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[ADVISE](../n1ql/n1ql-language-reference/advise.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/createindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/createprimaryindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[CREATE PRIMARY INDEX](../n1ql/n1ql-language-reference/createprimaryindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/createvectorindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[CREATE VECTOR INDEX](../n1ql/n1ql-language-reference/createvectorindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/build-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[BUILD INDEX](../n1ql/n1ql-language-reference/build-index.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/alterindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[ALTER INDEX](../n1ql/n1ql-language-reference/alterindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/altervectorindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[ALTER VECTOR INDEX](../n1ql/n1ql-language-reference/altervectorindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/dropindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[DROP INDEX](../n1ql/n1ql-language-reference/dropindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/dropprimaryindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[DROP PRIMARY INDEX](../n1ql/n1ql-language-reference/dropprimaryindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/dropvectorindex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[DROP VECTOR INDEX](../n1ql/n1ql-language-reference/dropvectorindex.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/index-lifecycle",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Lifecycle](index-lifecycle.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/index-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Availability and Performance](index-replication.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/storage-modes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Storage Settings](storage-modes.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/services-and-indexes/indexes/indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[All Couchbase Server Indexes](../learn/services-and-indexes/indexes/indexes.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/services-and-indexes/services/index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Index Service Architecture](../learn/services-and-indexes/services/index-service.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-indexes/manage-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Manage Indexes](../manage/manage-indexes/manage-indexes.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/monitor/monitoring-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Monitor Indexes](../manage/monitor/monitoring-indexes.md)"
+    },
+    {
+      "subject": "page:indexing-overview",
+      "predicate": "seeAlso",
+      "object": "server/8.0/vector-index/vectors-and-indexes-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Use Vector Indexes for AI Applications](../vector-index/vectors-and-indexes-overview.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "belongsToIndexClass / requiresEdition / offersConfigurationChoice",
+    "finding": "This is the entry point of the whole `indexes/` module and it defines nothing. It has one sentence of prose (the description line) and 25 links. It never names the two index classes that server/current/learn/services-and-indexes/indexes/indexes.md declares up front (Traditional / Vector), never says which of the things it links are Enterprise Edition only (index replication and partitioning both are, per index-replication.md), and never mentions that a storage mode has to be chosen at cluster initialization even though it links `storage-modes.md` under the heading 'Storage and Availability'. A reader arriving at the module's front door learns the names of nine reference topics and ten statements and no concepts at all. Also absent: any link to `index-partitioning.md`, which index-replication.md points at, so partitioning has no entry in this table of contents despite having its own reference page."
+  },
+  "cross_component_finding": "Three separate naming mismatches, all visible on this one 52-line page. (1) The section heading 'Indexing and Query Performance' and the file `indexing-and-query-perf.md` share a name, but the link text for that file is 'Types of Primary and Secondary Index' - which is also the file's own H1. So the filename preserves an older title, and this hub reuses that older title as the name of the *section* containing it: one string, two referents, on adjacent lines. (2) The page's H1 is 'Primary and Secondary Index Reference', yet it lists CREATE VECTOR INDEX, ALTER VECTOR INDEX and DROP VECTOR INDEX among 'Index Commands' and links 'Use Vector Indexes for AI Applications' under 'Related Links'. A vector index is neither primary nor secondary in the page's own title vocabulary, though indexing-and-query-perf.md then states that both vector index types ARE kinds of secondary index - so the title is defensible only via a fact stated on a different page. (3) The two pages this hub calls 'All Couchbase Server Indexes' and 'Index Service Architecture' live under `../learn/services-and-indexes/`, i.e. outside the module. That is the split this extraction round exists because of: the index vocabulary is documented across two trees and this navigation page is the only place that joins them, under the demoted heading 'Related Links'.",
+  "cross_product_finding": "The Capella equivalent of this page was extracted as cloud/indexes/indexing-overview.json, which recorded exactly one concept (`page:indexing-overview`) and no substantive relations - the same shape as this record, for the same reason. Two trees, two hub pages, both purely navigational. Worth noting for phase 2 that this record's seeAlso objects use `server/8.0/...` page ids rather than the `server/current/...` form used by round 16's records (e.g. server/8.0/learn/services-and-indexes/indexes/indexes.json has `seeAlso -> server/current/indexes/indexing-overview`). The no-`current`-in-an-id rule applies to page ids in general, not only to the `page_id` field, so those objects and these will not join without normalisation; flagging rather than silently matching the older form."
+}

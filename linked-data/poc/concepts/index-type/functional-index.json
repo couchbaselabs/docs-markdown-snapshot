@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/functional-index",
+  "label": "Functional index",
+  "type": "an index whose key is an expression over a field rather than the field itself, e.g. `LOWER(name)`. Matters because a predicate must match the expression to produce a span: a query on the bare field cannot use the functional index, and vice versa.",
+  "recurrence": 2,
+  "recurrence_note": "Four files discounted to 2 independent sources - indexing-and-query-perf (three copies) and index-scans (one copy) - exactly at the bar, `shared`, discount upheld. Reversed from a planned refusal on the same evidence as index-type:array-index.\nONE HONEST WRINKLE, recorded because it slightly weakens the 2. Of the two copies of `index-scans.md` that score 0.99 against each other, only the CLOUD record captured this concept; the server/8.0 record, extracted by a different agent from a near-identical page, did not. So the second source is a real second authored page, but which of its twins attested it was down to the extracting agent. That is extraction variance rather than a documentation difference, and it is a reminder that a per-page count measures pages AND readers.",
+  "note": "PROMOTED at the bar. The reason it earns a record rather than being folded into index-type:secondary-index is that it changes the matching rule: `index-scans.md` demonstrates an unindexed function producing a non-exact span, i.e. the predicate could not be fully pushed down. The type has consequences for pushdown behaviour, which is the test this registry applies to index types.",
+  "promoted": true,
+  "relates_to_competency_question": "What kinds of index can I create, and which of my queries can each one serve?"
+}

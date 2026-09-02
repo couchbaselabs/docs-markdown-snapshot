@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/covers-plan-field",
+  "label": "covers (query plan field)",
+  "type": "the query-plan section listing the index keys and document key that a COVERING index supplied, proving the Data service was never consulted. Member of concepts/query-plan-index-fields.json. Distinguish from `filter_covers`, which is a different field about early filtering and is defined nowhere.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "Five files discounted to 3 independent sources: `shared`, discount upheld. The only member of the plan-field family that clears the bar without the family exception.",
+  "note": "PROMOTED. It is the evidence half of index:covering-index (already promoted): the concept says the fetch is unnecessary, this field is how a reader confirms it did not happen. Paired with relations/eliminates-fetch-from.json, which round 17 promoted for the same reason.",
+  "relates_to_competency_question": "How do I tell from EXPLAIN whether the optimisation I expected actually happened?"
+}

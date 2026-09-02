@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-pushdowns-version-facts-removed",
+  "type": "docs-issue",
+  "issueType": "version-information-lost",
+  "description": "Version history has been DELETED from index_pushdowns.md between 7.2 and 8.0. The 7.2 copy dated the MIN()/MAX() pushdown limitation explicitly - 'Prior to Couchbase Server 5.5, MAX() could be pushed to the Indexer only when the index was created with matching index keys in descending order. This limitation has been removed in Couchbase Server 5.5 and later', plus the mirror sentence for MIN() - and the 8.0 page replaces both with the undated 'You do not need to create the index with the matching index keys sorted in descending order to push MAX() to the Indexer.' version:server-5-5 is no longer attested anywhere on the page, and an 8.0-only reader cannot learn the limitation ever existed. Separately, the page dates only two of its seven optimizations at all (index projection to 5.0, skip-key range scan to 6.5), and dates the order-pushdown limitation with the word 'Currently'.",
+  "about": [
+    "server/8.0/indexes/index_pushdowns",
+    "server/7.2/learn/services-and-indexes/indexes/index_pushdowns"
+  ],
+  "note": "CONSEQUENCE FOR THIS REGISTRY, recorded because it is a live inconsistency rather than a tidy one: the existing server/7.2 extraction record asserts `n1ql:max-pushdown availableSince version:server-5-5` on the strength of a sentence that no longer exists in the current release. That relation is NOT withdrawn - it was true when extracted and remains true history - but it is no longer verifiable against 8.0, and verify-evidence.py would refuse it if it cited the 8.0 page. This is the first case in the POC of a correctly-extracted, still-true relation whose evidence has been deleted upstream, and the project has no mechanism for it: nothing distinguishes 'unquotable because fabricated' from 'unquotable because the docs changed'.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/eliminates-fetch-from",
+  "label": "eliminatesFetchFrom",
+  "shape": "subject = an index feature; object = the service whose round trip is avoided (in practice service:data-service); means: the query is answered without going to that service at all.",
+  "recurrence": 3,
+  "note": "PROMOTED at recurrence 3, and it draws a line the registry could not previously draw. The distinction between COVERING an index (the fetch never happens) and PUSHING DOWN work (the fetch happens, but on fewer documents) is the whole architecture of this module, and both were previously expressible only as vague optimisation relations. `eliminatesFetchFrom` says the strong thing; index:index-pushdown and its members say the weaker one.\nA NAMING NOTE, since the object is a service: the module names its three services eight different ways across five pages ('Query Service', 'Query service', 'query engine', 'query layer', 'Query nodes', 'Indexer', 'the indexer', 'SQL++ indexer'), and covering-indexes.md drifts between 'data service' and 'data nodes' within one page for the same thing. Relations using this predicate normalise to the promoted service: ids; the drift is filed as docs-issues/server-indexes-module-service-naming-drift.",
+  "promoted": true
+}

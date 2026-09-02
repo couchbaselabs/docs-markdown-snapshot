@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/predicate-pushdown",
+  "label": "Predicate pushdown",
+  "type": "pushing a WHERE-clause predicate into the index scan, so the Index service returns only matching entries. The most basic member of the index:index-pushdown family, and the one that produces an index span - see index:index-span.",
+  "recurrence": 6,
+  "recurrence_note": "Six files, undiscounted: `divergent` under shared-source.py --check, so the three copies of index_pushdowns.md do not collapse this count.",
+  "note": "PROMOTED. Distinguish from its own near-relative on the same page: COMPOSITE predicate pushdown (`index:composite-predicate-pushdown`) is the multi-key case and is NOT promoted - it falls to 1 independent source once the shared-source discount is upheld, which is a good illustration of why the two were kept apart rather than folded. The 8.0 page grew the whole composite section between 7.2 and 8.0; a later round extracting a second page about it should revisit.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

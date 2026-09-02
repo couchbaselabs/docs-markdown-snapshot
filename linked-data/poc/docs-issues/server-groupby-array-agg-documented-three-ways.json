@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-groupby-array-agg-documented-three-ways",
+  "type": "docs-issue",
+  "issueType": "internal-contradiction",
+  "description": "ARRAY_AGG() is documented three times on groupby-aggregate-performance.md with three different answers. (1) The positive-case list at the top includes `SELECT ARRAY_AGG(geo.alt) FROM airport WHERE geo.alt > 10;` under the heading 'Positive Case examples of queries that use indexing grouping and aggregation'. (2) The Limitations list says 'ARRAY_AGG() or any facility to add new Aggregate function, such as Median.' is NOT supported and not pushed to the indexer. (3) Table 1 marks 'Supports ARRAY_AGG()' as unsupported in all four columns. At least two of the three must be wrong.",
+  "about": [
+    "server/8.0/indexes/groupby-aggregate-performance",
+    "cloud/indexes/groupby-aggregate-performance"
+  ],
+  "note": "Filed separately from server-groupby-table1-contradicts-examples because it is a different shape of defect: that one is a table disagreeing with prose, this is the same claim stated three times in three places with three answers, which suggests three edits at three times rather than one mistake. `n1ql:array-agg` is consequently NOT promoted - it sits at 1 independent source, and there would be no defensible relation to attach to it.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

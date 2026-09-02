@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-scans-no-related-links",
+  "type": "docs-issue",
+  "issueType": "broken-navigation",
+  "description": "index-scans.md is the hub of the 8.0 indexes module - all four sibling pages (covering-indexes.md, index_pushdowns.md, groupby-aggregate-performance.md, early-filters-and-pagination.md) end with a Related Links list, and all four link INTO its #query-execution-details anchor - but index-scans.md itself has no Related Links section and only two outbound links in the whole page. A reader who follows 'Query Execution: Details' from any sibling reaches a dead end. The same is true of the Capella copy.",
+  "about": [
+    "server/8.0/indexes/index-scans",
+    "cloud/indexes/index-scans"
+  ],
+  "note": "The module's cross-referencing is entirely one-directional into its longest page. Also noted while mapping the topology: early-filters-and-pagination.md's Related Links has SEVEN entries (the four siblings plus WHERE, ORDER BY and OFFSET/LIMIT in the language reference) where the other three have four - so the module has three different link conventions across five pages.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

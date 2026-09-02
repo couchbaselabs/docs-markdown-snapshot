@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-scans-prose-contradicts-tables",
+  "type": "docs-issue",
+  "issueType": "internal-contradiction",
+  "description": "Four places on index-scans.md where prose disagrees with the span table or plan output printed beside it. (a) Example 15 is titled 'EQUALITY Predicate on String Type' with query `WHERE name = \"American Airlines\"`, but the prose says 'the predicate `name >= \"American Airlines\"` is pushed to index scan' - a range operator for an equality query, contradicted by the table (Low and High both the same value, inclusion 3/BOTH) and by the plan. (b) Example 14's query is `WHERE NOT (id >= 10 AND id < 25)` but the prose drops the NOT, saying 'the predicate `id >= 10 AND id < 25` is transformed to `id <10 OR id >=25`' - as written, asserting a conjunction is equivalent to its own negation. (c) Example 8's prose says 'the span is Low: 10, High: 5, and Inclusion: 0' while the table above says Low NULL, High NULL, Inclusion 0. Both are true at different STAGES - before and after EMPTY SPAN conversion - and the page never says so. (d) Example 20's span table labels a row 'stops' where every sibling row is labelled with the full predicate, losing the `= 0`.",
+  "about": [
+    "server/8.0/indexes/index-scans",
+    "cloud/indexes/index-scans",
+    "server/7.2/learn/services-and-indexes/indexes/index-scans"
+  ],
+  "note": "All four survive in all three copies of the page (cloud, 7.2 and 8.0 score 0.99 against each other), so these are not release-specific slips. (c) is the interesting one: it is not wrong, it is under-specified - the two answers describe two stages of the same transformation and the page presents them as one, which makes a correct sentence read as a contradiction.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

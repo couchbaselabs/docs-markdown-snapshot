@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/index-span",
+  "label": "Index span",
+  "type": "the low/high key range, with an inclusion flag, that a predicate is compiled into for an index scan. The unit of work an index scan actually performs. Reported in the query plan; carries an `exact` flag which decides whether the predicate was FULLY pushed down or needs re-evaluation afterwards.",
+  "recurrence": 4,
+  "aliases": [
+    "n1ql:span",
+    "index:exact-span",
+    "index:exact-index-span"
+  ],
+  "recurrence_note": "Seven files discounted to 4 independent sources - early-filters-and-pagination, groupby-aggregate-performance, index-scans and index_pushdowns. `shared`, discount upheld.",
+  "note": "PROMOTED, AND IT FOLDS THREE IDS FOR ONE CONCEPT. `index-scans.md` is this module's hub - all four sibling pages link into its #query-execution-details anchor - and its central concept had acquired one id per extraction: `n1ql:span` from the 7.2 round, `index:index-span` from the Capella round, plus `learn:index-scans` for the page itself, and this round's agents concurrently minted `index:exact-span` and `index:exact-index-span` for the same thing with its flag set. Five names, one concept, none of the minters aware of the others. `learn:index-scans` is NOT aliased in: it denotes the page, not the span, and folding a page id into a concept id is the category error `verify-registry-ids.py` exists to prevent.\nTHE `exact` FLAG IS THE PART THE DOCUMENTATION LOSES. It appears in roughly thirty plan outputs on index-scans.md and is never defined there; it is absent in precisely the two cases where the predicate could not be fully pushed down (a leading-wildcard LIKE, and an unindexed function). Its only prose definition anywhere is on a DIFFERENT page, early-filters-and-pagination.md, which makes exactness the criterion for pushdown versus early filtering. So the field that decides the behaviour is demonstrated thirty times on the page that owns the concept and explained on the page that consumes it. See docs-issues/server-index-scans-exact-flag-undefined.\nNOT PROMOTED alongside it, all falling to 1 independent source: index:empty-span, index:span-inclusion (the 0-3 inclusion enum), index:span-combination-rules, index:full-index-scan. The inclusion enum is the most substantial of these and the best candidate for a later round - it is a genuine closed value set, attested once.",
+  "promoted": true,
+  "relates_to_competency_question": "What does the Index service actually do with my WHERE clause?"
+}

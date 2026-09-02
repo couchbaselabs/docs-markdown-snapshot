@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/composite-secondary-index",
+  "label": "Composite secondary index",
+  "type": "a secondary index on two or more document fields, where key ORDER is significant - it determines which predicates can produce a span and whether ORDER BY can be pushed down. A specialisation of index-type:secondary-index (already promoted); not a separate mechanism from it.",
+  "recurrence": 5,
+  "recurrence_note": "Ten files discounted to 5 independent sources - the best-attested concept promoted this round. The ten collapse to five because four of the page-families involved exist in two or three trees each: create-index (guide), covering-indexes, groupby-aggregate-performance, index-scans and indexing-and-query-perf. Five distinct authored pages is a strong count by this project's standards even after the discount.",
+  "note": "PROMOTED. The load-bearing fact is that key order is part of the index's identity, not a detail of how it was typed: the same fields in a different order are a different index for every purpose the module discusses. This is what makes index-type:composite-secondary-index worth a record rather than being left as 'a secondary index with more keys'.",
+  "promoted": true,
+  "relates_to_competency_question": "What kinds of index can I create, and which of my queries can each one serve?"
+}

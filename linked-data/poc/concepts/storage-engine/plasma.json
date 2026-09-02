@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage-engine/plasma",
+  "label": "Plasma (index storage engine)",
+  "type": "the index storage engine that implements `standard` index storage in Enterprise Edition. A LEVEL-3 term - see concepts/index-storage-stack.json. NOT a KV storage engine: do not confuse with storage-engine:couchstore or storage-engine:magma, which back BUCKETS and are chosen per bucket. Plasma backs INDEXES and is never chosen directly.",
+  "recurrence": 2,
+  "recurrence_note": "Two files, and both are independent authorings rather than one page published twice. This mattered enough to check: `storage-modes.md` exists in three places, so its ids are exactly the kind that shared-source.py discounts. It does not discount these, because the three copies are the LEAST similar page trio the round measured - cloud vs server/8.0 scores 0.37, server/8.0 vs 7.2 scores 0.37, and cloud vs 7.2 scores 0.16 (26, 67 and 63 body lines). A page trio this divergent is three authorings, not three copies, so the count stands at 2 undiscounted.",
+  "note": "PROMOTED, and the least contentious member of the family. Enterprise Edition only, which is the fact that settles the whole engine-versus-setting question: 'In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine.' The Capella page attests it independently, which is worth noting because Capella has no Community Edition - so on the Capella side the setting-to-engine map is one-to-one and the ambiguity the server tree has is invisible. A reader of Capella alone could reasonably conclude `standard` and Plasma are the same thing, and would be wrong about Couchbase Server.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/storage-modes",
+  "relates_to_competency_question": "Which storage engine actually backs my indexes, and is that something I chose?"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-storage-stack",
+  "label": "Index storage: the four levels, and why a setting is not an engine",
+  "type": "scheme. FOUR DISTINCT LEVELS that Couchbase indexing documentation names with two overlapping phrases ('storage mode', 'storage engine'). This record exists to hold the levels apart; the members are promoted separately.",
+  "promoted": true,
+  "recurrence": 9,
+  "levels": [
+    {
+      "level": 1,
+      "label": "the setting",
+      "members": [
+        "index:index-storage-setting"
+      ],
+      "note": "The cluster-wide choice an administrator makes. `index:index-storage-setting` is attested on ONE page and is NOT promoted - the level is real, its name is not yet earned. The page's own term is 'index storage setting', never 'storage mode'."
+    },
+    {
+      "level": 2,
+      "label": "the setting's values",
+      "members": [
+        "index:standard-storage",
+        "index:memory-optimized-storage"
+      ],
+      "note": "Both already promoted, at recurrence 9 and 8. These are the values a reader chooses between. They are what the documentation usually means by 'storage mode'."
+    },
+    {
+      "level": 3,
+      "label": "the engine that implements a value",
+      "members": [
+        "storage-engine:plasma",
+        "storage-engine:forestdb",
+        "storage-engine:nitro"
+      ],
+      "note": "Promoted in round 17 as a family. NOT user-selectable: which engine you get follows from the value AND the edition."
+    },
+    {
+      "level": 4,
+      "label": "the engine's own write mode",
+      "members": [
+        "Circular",
+        "Append-only"
+      ],
+      "note": "Applies to Forestdb ONLY, and is not promoted - two words on one page, and a fourth level attested once is a level worth recording and not a term worth minting."
+    }
+  ],
+  "note": "THE ROUND'S HEADLINE, AND IT PROMOTES WHAT ROUND 16 HAD ALREADY WORKED OUT. A correction to this record's own first draft, which said round 16 made the engine-versus-setting ruling 'and could not cite a source'. It could and did: docs-issues/server-storage-engine-used-at-two-levels, filed in round 16, quotes storage-modes.md naming Nitro and states the conclusion this record reaches - 'Plasma / Forestdb / Nitro belong in storage-engine: beside couchstore and magma'. Round 16 was right, on the evidence, in writing.\nWHAT ROUND 16 DID NOT DO IS PROMOTE THEM, and the reason is the sharper version of this record's lesson. The three engine names existed in the PROSE OF A DOCS-ISSUE and in no extraction record, because `storage-modes.md` had never been extracted in the server tree. recurrence.py reads `extractions/`. So the terms were at recurrence 0 by the only measure the promotion machinery consults, while sitting written down, correctly, in the registry's own defect log. The evidence was not missing and was not even undiscovered - it was in a file the counting tool does not read. Any pipeline that decides promotions from one directory will do this again.\nThe decisive sentences, quoted here so they live somewhere a count can reach - ONE setting value maps to TWO engines, by edition:\n  'In Couchbase Server Enterprise Edition, standard index storage is supported by the Plasma storage engine.'\n  'In Couchbase Server Community Edition, standard index storage is supported by the Forestdb storage engine.'\nA one-to-many map settles it without any appeal to intuition: if `standard` were merely another name for Plasma, it could not also be Forestdb. The two levels cannot be folded, in either direction, and the argument does not depend on anyone's sense of what a 'mode' is.\nWHY SIXTEEN ROUNDS MISSED IT, which is the transferable part. Not obscurity - `index:standard-storage` has been promoted since round 11 and sits at recurrence 9. The engines were missed because the sentences that name them are on ONE page per tree, and that page had never been extracted in the server tree at all. `storage-engine:nitro` has exactly one attestation in 593 records. A term can be load-bearing, promoted, and *ten pages deep in the corpus* while the sentence that explains what it denotes sits on a page nobody has read yet, and no amount of recurrence counting over the extracted set will report it, because the count is a fact about the corpus and not about the documentation. This is the same lesson as `concepts/indexer-node-state.json`'s ('a refusal is only as good as the set it searched'), one layer out: a *promotion* is only as good as the set it counted.\nTHE DOCUMENTATION DOES NOT KEEP THESE LEVELS APART, and this is counter-evidence recorded rather than smoothed over. server/current/indexes/groupby-aggregate-performance.md says 'Grouping and aggregate pushdown is supported on both storage engines: Standard GSI and Memory Optimized GSI (MOI)' - calling the two LEVEL-2 VALUES 'engines', and naming no level-3 engine at all. Meanwhile storage-modes.md, the page that does name the engines, never uses the word 'mode': its own term is 'index storage setting'. So the phrase 'storage mode' is not the level-2 name in the source - it is the name of the FILE, plus the anchor text in other pages' links. The registry's `index:standard-storage` / `index:memory-optimized-storage` spellings are therefore better than the corpus's own, which is an unusual thing for a registry to be able to say. Already filed as docs-issues/server-storage-engine-used-at-two-levels (round 16) and docs-issues/capella-storage-modes-vocabulary-mismatch; round 17 adds the finding that storage-modes.md avoids the word 'mode' altogether.\nEDITION IS A DIMENSION THE REGISTRY CANNOT YET EXPRESS. The decisive sentences turn on Enterprise versus Community Edition, and no promoted predicate carries an edition. `availableSince` takes a version; nothing takes an edition. Recorded here rather than minted, because one page's two sentences is where this project would normally decline to mint - but noted as the sharpest gap the round found, since an ontology that cannot say 'EE only' cannot answer a large class of real questions about Couchbase.",
+  "relates_to_competency_question": "Which storage engine actually backs my indexes, and is that something I chose?"
+}

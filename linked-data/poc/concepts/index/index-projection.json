@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/index-projection",
+  "label": "Index projection",
+  "type": "returning only the index keys a query actually needs from an index scan, rather than all of them. Member of index:index-pushdown. Available since Couchbase Server 5.0 - one of only two members this corpus dates at all.",
+  "recurrence": 3,
+  "recurrence_note": "Four files discounted to 3 independent sources: `shared`, discount upheld. Absorbs the `n1ql:index-projection` fork (1 file) as an alias - see the note.",
+  "aliases": [
+    "n1ql:index-projection"
+  ],
+  "note": "PROMOTED, and it resolves a namespace fork. `index:index-projection` (4 files) and `n1ql:index-projection` (1 file) are one concept spelled in two namespaces; recurrence.py --forks reports the pair, and variant_key() never clustered them because it strips punctuation while keeping the prefix. Aliased rather than rewritten, which is the additive move: rewriting the local spelling in past extraction records is a migration, and this project does not edit history to make a count come out right.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/capella-groupby-page-published-verbatim-in-two-products",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "cloud/indexes/groupby-aggregate-performance.md and server/current/indexes/groupby-aggregate-performance.md have IDENTICAL bodies - 1730 lines each, similarity 1.00 - making this the largest verbatim cross-product duplication measured in the corpus. Roughly 200 of those lines are one eleven-row field-description table printed three times on the page (appendix, Table 2 and Table 3), with identical Description text and only the example column differing.",
+  "about": [
+    "cloud/indexes/groupby-aggregate-performance",
+    "server/8.0/indexes/groupby-aggregate-performance"
+  ],
+  "note": "FILED AS DUPLICATION, EXPLICITLY NOT AS UNADAPTED COPY, because the obvious accusation turns out to be false: the page mentions 'Couchbase Server' zero times, so it is genuinely product-neutral rather than a Server page leaked into the Capella tree. This was checked before filing - the round nearly filed an unadapted-content issue that does not exist. Its sibling early-filters-and-pagination.md IS adapted, substituting 'Couchbase Capella therefore attempts to apply filters...' for the Server wording, which shows the adaptation step exists and was simply not needed here.\nThe consequence is for recurrence counting rather than for readers: this page is the round's densest (63 relations in the server record, 39 in the cloud one) and it is ONE authored source, so every id resting on it alone sits at 1 independent witness however many trees publish it. See linked-data/poc/shared-source.py.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

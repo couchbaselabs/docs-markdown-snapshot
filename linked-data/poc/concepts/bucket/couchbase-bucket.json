@@ -5,5 +5,8 @@
   "promoted": true,
   "recurrence": 5,
   "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
-  "note": "The default and general-purpose type. In 8.0 the bucket-type set is closed at two members with bucket:ephemeral-bucket - memcached buckets have been removed, a change the buckets page presents as a plain two-type set without noting that a third type ever existed, while the CLI reference still documents the removed type. See docs-issues/server-buckets-page-states-closed-two-type-set-without-noting-removal and server-cli-bucket-compact-cites-removed-memcached-bucket."
+  "note": "The default and general-purpose type. In 8.0 the bucket-type set is closed at two members with bucket:ephemeral-bucket - memcached buckets have been removed, a change the buckets page presents as a plain two-type set without noting that a third type ever existed, while the CLI reference still documents the removed type. See docs-issues/server-buckets-page-states-closed-two-type-set-without-noting-removal and server-cli-bucket-compact-cites-removed-memcached-bucket.\nRound 17: alias licensed explicitly by cloud/management-api-reference/index.md - 'The options may also be referred to as Memory and Disk (Couchbase), Memory Only (Ephemeral) in the Couchbase documentation.' This is a CITED fold, not a similarity judgement; see concepts/terminology-equivalences.json for the full set of six such sentences in the corpus.'Memory and Disk' is the Capella UI's name for this bucket type. Aliased for symmetry with the ephemeral/Memory Only pair, from the same sentence.",
+  "aliases": [
+    "bucket:memory-and-disk-bucket"
+  ]
 }

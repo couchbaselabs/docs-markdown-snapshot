@@ -1,0 +1,441 @@
+{
+  "page_id": "server/8.0/indexes/indexing-and-query-perf",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/indexing-and-query-perf.md",
+  "concepts": [
+    {
+      "candidate_id": "page:indexing-and-query-perf",
+      "label": "Types of Primary and Secondary Index (page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - needed as the subject of this page's seeAlso links. The filename is `indexing-and-query-perf` but the page's H1 and its own xref title are 'Types of Primary and Secondary Index'; the id follows the file, since that is what other pages link to."
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:named-primary-index",
+      "label": "Named Primary Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already used by cloud/indexes/indexing-and-query-perf.json and server/7.2/learn/services-and-indexes/indexes/indexing-and-query-perf.json for the same section of the same page."
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite Secondary Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - five existing records use this id."
+    },
+    {
+      "candidate_id": "index-type:functional-index",
+      "label": "Functional Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:array-index",
+      "label": "Array Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:partial-index",
+      "label": "Partial Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:duplicate-index",
+      "label": "Duplicate Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - and note that `index:` rather than `index-type:` is exactly right here, for a reason this page states outright (see the cross_component_finding)."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the registry already files this under `index:` rather than `index-type:`, which this page's phrasing supports: it describes a query-engine behaviour ('the query engine skips retrieving the whole document'), not a CREATE INDEX variant."
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:composite-vector",
+      "label": "Composite Vector Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "data:document-key",
+      "label": "Document key",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/indexing-and-query-perf.json already mints this for the same 'Introduction: Document Keys' section."
+    },
+    {
+      "candidate_id": "data:attribute",
+      "label": "Field (attribute) within a document",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'any field within the keyspace' is the promoted `data:attribute`."
+    },
+    {
+      "candidate_id": "index:index-key-expression",
+      "label": "Index key expression",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/8.0/indexes/early-filters-and-pagination.json already uses this id."
+    },
+    {
+      "candidate_id": "data:transaction-record",
+      "label": "Transaction record",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/indexing-and-query-perf.json uses this id for the same NOTE block."
+    },
+    {
+      "candidate_id": "index:primary-scan",
+      "label": "Primary scan (full keyspace scan)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/indexing-and-query-perf.json uses this id."
+    },
+    {
+      "candidate_id": "index:asynchronous-maintenance",
+      "label": "Asynchronous index maintenance",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page states this as a property shared by every index ('like every other index'), which makes it a nameable thing rather than a fact about primary indexes only. index-replication.md states the same property in different words, so phase 2 may want to merge this with whatever that record names it."
+    },
+    {
+      "candidate_id": "index:round-robin-load-distribution",
+      "label": "Round-robin load distribution across duplicate indexes",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism by which duplicate indexes yield load distribution. index-replication.md describes load-balancing across replicas, which is a different subject (replicas of one index, not distinct indexes with identical definitions), so I have not merged them."
+    },
+    {
+      "candidate_id": "n1ql:where-clause",
+      "label": "WHERE clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - three existing records use this id."
+    },
+    {
+      "candidate_id": "index-state",
+      "label": "Index state",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the promoted enum, reached here only through the `system:indexes` metadata example, whose sample output shows `\"state\": \"online\"`."
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:multi-dimensional-scaling",
+      "label": "Multi-Dimensional Scaling",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - but see the cross_component_finding: this page attributes MDS to duplicate indexes, which does not match the promoted concept."
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:index",
+      "predicate": "createdVia",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createdVia. The page's framing sentence: every type it goes on to describe is something the Index Service creates.",
+      "evidence": "This topic provides an overview of the types of index that you can create using the Index Service, and explains how they help to query for data efficiently and improve query performance."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "hasIndexKey",
+      "object": "data:document-key",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasIndexKey. The registry has no predicate for 'what this kind of index is keyed on', which is the single organising distinction of this entire page: primary indexes key on the document key, secondary indexes on a field, functional indexes on an expression. `requiresIndex` and `providesIndexType` are about needing/offering an index, not about its key.",
+      "evidence": "The primary index is an index on the document key for the entire keyspace."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "scopedToKeyspace",
+      "object": "server:keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - scopedToKeyspace",
+      "evidence": "The primary index is an index on the document key for the entire keyspace."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "createdVia",
+      "object": "n1ql:create-primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createdVia",
+      "evidence": "CREATE PRIMARY INDEX ON airline;"
+    },
+    {
+      "subject": "index:index",
+      "predicate": "hasMaintenanceModel",
+      "object": "index:asynchronous-maintenance",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - hasMaintenanceModel already appears once in the corpus. Subject is `index:index` rather than the primary index because the page's own clause generalises it: 'like every other index'.",
+      "evidence": "The primary index, like every other index, is maintained asynchronously."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:primary-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. The page gives a condition ('when no other index or access path can be used') under which the primary index is the access path, and names the resulting scan.",
+      "evidence": "Use the primary index for full keyspace scans (primary scans) when the query does not have any filters (predicates) or when no other index or access path can be used."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "doesNotIndex",
+      "object": "data:transaction-record",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - doesNotIndex. `doesNotSupport` and `doesNotAffect` are both promoted but neither says 'omits from its index entries', which is the point of this NOTE: the omission changes document counts.",
+      "evidence": "A primary index does not index any [transaction records](../learn/data/transactions.md#additional-storage-use) that may be stored in a keyspace."
+    },
+    {
+      "subject": "data:document-key",
+      "predicate": "hasExecutionConstraint",
+      "object": "index-type:primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. Used here for the uniqueness constraint the data layer enforces, which is what makes the primary index's key unique without the index enforcing anything itself.",
+      "evidence": "The Couchbase data layer enforces the uniqueness constraint on the document key."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum. Reached through the `system:indexes` metadata example, whose output field is `\"state\": \"online\"`. The prose names the field but never enumerates its values.",
+      "evidence": "The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`)."
+    },
+    {
+      "subject": "index-type:named-primary-index",
+      "predicate": "isSubtypeOf",
+      "object": "index-type:primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. The page says the named primary index differs from the primary index in exactly one respect, which is a subtype claim expressed as a difference.",
+      "evidence": "The rest of the features of the primary index are the same, except that this index is named."
+    },
+    {
+      "subject": "index-type:named-primary-index",
+      "predicate": "hasExecutionConstraint",
+      "object": "index-type:primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, used for the capability naming unlocks: multiple primary indexes per keyspace.",
+      "evidence": "The advantage of naming a primary index is that you can have multiple primary indexes in the system."
+    },
+    {
+      "subject": "index:duplicate-index",
+      "predicate": "distributesLoadVia",
+      "object": "index:round-robin-load-distribution",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - distributesLoadVia. The registry has no predicate for 'the mechanism by which work is spread'; `usesExecutionModel` is about how a request is executed, not how load is shared between interchangeable artifacts.",
+      "evidence": "During query execution, these indexes are used in a round-robin fashion to distribute the load."
+    },
+    {
+      "subject": "index:duplicate-index",
+      "predicate": "createdVia",
+      "object": "n1ql:create-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createdVia. The page's own statement of how a duplicate index comes about: identical definitions, distinct names, placement chosen with WITH.",
+      "evidence": "All 3 indexes have identical keys and an identical WHERE clause; the only difference is the name of these indexes. You can choose their physical location using the WITH clause of the CREATE INDEX statement."
+    },
+    {
+      "subject": "index:duplicate-index",
+      "predicate": "isAnalogousTo",
+      "object": "server:multi-dimensional-scaling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isAnalogousTo, chosen deliberately as the WEAKEST available predicate, because the page asserts a benefit list that includes 'Multi-Dimensional Scaling' and I do not believe a duplicate index provides MDS in the sense the registry promotes (independent per-service scaling). Recording the page's claim without upgrading it to a mechanism claim. See cross_component_finding.",
+      "evidence": "This provides scale-out, Multi-Dimensional Scaling, performance, and high availability."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "hasIndexKey",
+      "object": "data:attribute",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasIndexKey (see above)",
+      "evidence": "The secondary index is an index on any field within the keyspace. The index key can be of any type: scalar, object, or array."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "requiresMatchingQueryFilter",
+      "object": "data:attribute",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - requiresMatchingQueryFilter already appears once in the corpus. This page states the rule twice, once for scalar/object/array keys generally and once for composite keys.",
+      "evidence": "The query has to use the same type of object for the query engine to use the index."
+    },
+    {
+      "subject": "index-type:composite-secondary-index",
+      "predicate": "isSubtypeOf",
+      "object": "index-type:secondary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Evidence is indirect on this page: it never says 'a composite secondary index is a secondary index', only that you use 'indexes with multiple keys'. The Composite Vector section supplies the missing link by calling Composite Secondary Index a thing that a vector index can be a type OF, and the section ordering places it under the secondary-index discussion.",
+      "evidence": "It's common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys."
+    },
+    {
+      "subject": "index-type:composite-secondary-index",
+      "predicate": "requiresMatchingQueryFilter",
+      "object": "data:attribute",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - requiresMatchingQueryFilter",
+      "evidence": "Each of the keys can be a scalar field, object, or an array. For the index filtering to be exploited, the filters have to use respective object type in the query filter."
+    },
+    {
+      "subject": "index-type:composite-secondary-index",
+      "predicate": "hasIndexKey",
+      "object": "data:document-key",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasIndexKey. Recording that document metadata may itself be a secondary index key, which is the one place the page connects the two halves of its own taxonomy.",
+      "evidence": "The keys to the secondary indexes can include document metadata (`meta().id`) explicitly if you need to filter on metadata in the index."
+    },
+    {
+      "subject": "index-type:functional-index",
+      "predicate": "hasIndexKey",
+      "object": "index:index-key-expression",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasIndexKey",
+      "evidence": "In order to do so, first create an index using an expression or a function as the key."
+    },
+    {
+      "subject": "index-type:array-index",
+      "predicate": "hasIndexKey",
+      "object": "index:index-key-expression",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasIndexKey. The array index and the functional index turn out to share their key mechanism, which the page states explicitly ('Because the key is a generalized expression').",
+      "evidence": "This index key is an expression on the array to clearly reference only the elements that need to be indexed."
+    },
+    {
+      "subject": "index-type:array-index",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:index-key-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice, for the DISTINCT/ALL choice in the array key.",
+      "evidence": "The index `travel_sched` stores only the distinct values within an array. To store all elements of an array in an index, do not use the DISTINCT modifier to the expression."
+    },
+    {
+      "subject": "index-type:partial-index",
+      "predicate": "filteredByPredicate",
+      "object": "n1ql:where-clause",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - filteredByPredicate. This is what makes a partial index partial and the registry has nothing for it: `hasExecutionConstraint` is about what a statement may do, not about which documents an artifact contains.",
+      "evidence": "When you want to create an index of restaurants, you can simply add the distinguishing field for the WHERE clause of the index."
+    },
+    {
+      "subject": "index-type:partial-index",
+      "predicate": "requiresMatchingQueryFilter",
+      "object": "n1ql:where-clause",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - requiresMatchingQueryFilter. The partial index's defining catch: the query must repeat the index's own filter or the index does not qualify.",
+      "evidence": "This creates an index only on documents that have `activity='eat'`. The queries must include the filter `activity='eat'` in addition to other filters for this index to qualify."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "selectsIndexBasedOn",
+      "object": "n1ql:where-clause",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - selectsIndexBasedOn. The page makes a strong and quotable claim about index selection ('solely depends on') that no promoted predicate expresses; the closest, `requiresIndex`, runs the other way.",
+      "evidence": "Index selection for a query solely depends on the filters in the WHERE clause of your query."
+    },
+    {
+      "subject": "index:covering-index",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - servesService. The covering-index payoff is entirely a Query Service behaviour: it decides it can answer from the index and skips the fetch.",
+      "evidence": "After the index selection is made, the query engine analyzes the query to see if it can be answered using only the data in the index. If it does, the query engine skips retrieving the whole document from the data nodes."
+    },
+    {
+      "subject": "index-type:hyperscale-vector",
+      "predicate": "isSubtypeOf",
+      "object": "index-type:secondary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf, and this is the clearest statement of it anywhere in the corpus: the page says 'are a type of Secondary Index' in so many words.",
+      "evidence": "Hyperscale Vector indexes are a type of [Secondary Index](#secondary-index) which contain a single vector field."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "isSubtypeOf",
+      "object": "index-type:composite-secondary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf. Note the object: composite vector indexes subtype the COMPOSITE secondary index, not the plain secondary index. That distinction is new information relative to the registry, which describes composite-vector without placing it in the secondary-index hierarchy at all.",
+      "evidence": "Composite Vector indexes are a type of [Composite Secondary Index](#composite-secondary-index) which contain a single vector field and one or more scalar fields."
+    },
+    {
+      "subject": "page:indexing-and-query-perf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/covering-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For further information and examples, see [Covering Indexes](covering-indexes.md)."
+    },
+    {
+      "subject": "page:indexing-and-query-perf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/indexing-arrays",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For further information and examples, see [Array Indexing](../n1ql/n1ql-language-reference/indexing-arrays.md)."
+    },
+    {
+      "subject": "page:indexing-and-query-perf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/vector-index/hyperscale-vector-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For further information and examples, see [Vector Search Using Hyperscale Vector Indexes](../vector-index/hyperscale-vector-index.md)."
+    },
+    {
+      "subject": "page:indexing-and-query-perf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/vector-index/composite-vector-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For further information and examples, see [Filtered Search Using Composite Vector Indexes](../vector-index/composite-vector-index.md)."
+    },
+    {
+      "subject": "page:indexing-and-query-perf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-intro/queriesandresults",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "see [Query Context](../n1ql/n1ql-intro/queriesandresults.md#query-context)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "belongsToIndexClass / requiresEdition / availableSince / requiresPrivilege",
+    "finding": "The page is the module's taxonomy page and it carries no axis metadata at all. (1) No `belongsToIndexClass`: the registry's `index-class:traditional` and the two-class framing that learn/services-and-indexes/indexes/indexes.md opens with are absent here, even though this page documents both Hyperscale Vector and Composite Vector indexes - the very types the class axis exists to separate. Two pages describe the same eleven index types with two incompatible top-level organisations, and neither mentions the other's. (2) No `requiresEdition` on anything, including the two vector types, which is notable because index-replication.md gates replication and partitioning on Enterprise Edition in a one-line admonition on the same module. (3) No `availableSince` anywhere: eleven index types, zero version statements, in a page that must have grown a section per release. The reader cannot tell that Hyperscale Vector indexes are new in 8.0 from this page. (4) No privilege or role statement for CREATE INDEX, though the module's query-without-index.md does state a role requirement for its feature. (5) The 'Partial Index' section lists four uses that are all forms of manual partitioning ('Partitioning a large index into multiple indexes using the mod function', 'Simulating index range partitioning via a range filter in the WHERE clause') and never links or contrasts index-partitioning.md, the feature that does this natively. I did not assert an `isAnalogousTo` between partial indexes and index partitioning because the page never connects them - the absence is the finding."
+  },
+  "cross_component_finding": "Three findings, one of them a direct hit on a registry decision. (1) VINDICATION OF AN ID: 'A duplicate index is not a special type of index, but a feature of Couchbase indexing.' The corpus files this as `index:duplicate-index` and not `index-type:duplicate-index`, and until now that was a judgement call made by extractors; the page says it outright. Phase 2 can treat the type/non-type boundary on this page as documented rather than inferred, and the same sentence pattern is worth grepping for elsewhere. (2) MDS MISUSE: 'This provides scale-out, Multi-Dimensional Scaling, performance, and high availability' is said of duplicate indexes. The promoted `server:multi-dimensional-scaling` is about deploying different services on different nodes so each scales independently. Creating three identical indexes and letting the query engine round-robin them is not that; it is intra-service scale-out. Either the page is using MDS loosely as a marketing synonym for 'scale-out', or it means 'you can place the duplicates on different Index Service nodes via WITH', which is index placement, not MDS. I recorded the claim with `isAnalogousTo` rather than a stronger predicate, and flag the term collision: MDS now has a second, weaker sense in the corpus. (3) 'PRIMARY KEYS' FOR 'PRIMARY INDEXES': the sentence 'It's not recommended to use primary keys for your production queries.' sits under the Primary Index heading and is about primary indexes; a primary key is a different thing (Couchbase does not have primary keys, it has document keys, which the page itself introduces two sections earlier under its own heading). Three terms - document key, primary key, primary index - and the recommendation uses the one that does not exist. I did not extract the recommendation as a relation because I could not name its subject honestly.",
+  "cross_product_finding": "This page exists in near-identical form in three places already extracted: cloud/indexes/indexing-and-query-perf.json (Capella) and server/7.2/learn/services-and-indexes/indexes/indexing-and-query-perf.json (Server 7.2, filed under `learn/` rather than `indexes/`). The 8.0 version adds the two vector index sections, which the 7.2 version cannot have. Two structural notes for phase 2: (a) the 7.2 record lives under a `learn/services-and-indexes/indexes/` path and this one under `indexes/`, so the same page has been extracted twice into two different tree positions for two Server versions - the module moved between releases and the extraction paths preserve the move, meaning a naive per-page diff across versions will not line them up; (b) the Capella record and this one agree on `index-type:*` for the six type sections and on `index:duplicate-index`, which is reassuring convergence given they were extracted independently, but I minted `hasIndexKey` where the earlier records may have used something else for the same key-of-the-index relation - phase 2 should check for a competing predicate rather than assume this is the first."
+}

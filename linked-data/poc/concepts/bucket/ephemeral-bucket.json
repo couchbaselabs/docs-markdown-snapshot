@@ -5,5 +5,9 @@
   "promoted": true,
   "recurrence": 5,
   "documented_at": "server/current/learn/buckets-memory-and-storage/buckets.md",
-  "note": "Promoted with bucket:couchbase-bucket as a closed two-member set - see that record for the memcached-removal story. Its constraint is the more interesting half: because nothing is persisted, durability:level-persist-to-majority is not available to it, which is a real product-level exclusion rather than a documentation gap."
+  "note": "Promoted with bucket:couchbase-bucket as a closed two-member set - see that record for the memcached-removal story. Its constraint is the more interesting half: because nothing is persisted, durability:level-persist-to-majority is not available to it, which is a real product-level exclusion rather than a documentation gap.\nRound 17: alias licensed explicitly by cloud/management-api-reference/index.md - 'The options may also be referred to as Memory and Disk (Couchbase), Memory Only (Ephemeral) in the Couchbase documentation.' This is a CITED fold, not a similarity judgement; see concepts/terminology-equivalences.json for the full set of six such sentences in the corpus. The Capella spelling was sitting unpromoted at 2 files under `bucket:memory-only-bucket`, and the duplication had a visible cost: query-without-index.md states the same restriction on sequential scans in each tree using each noun ('unavailable on Memory Only buckets' / 'unavailable on ephemeral buckets'), which this registry would otherwise have recorded as two unrelated constraints.",
+  "aliases": [
+    "bucket:memory-only-bucket",
+    "capella:memory-only-bucket"
+  ]
 }

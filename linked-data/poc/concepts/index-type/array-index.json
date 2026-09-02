@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/array-index",
+  "label": "Array index",
+  "type": "an index on the elements of an array field, created with the ARRAY / DISTINCT / ALL modifiers. Interacts specifically with index:group-aggregate-pushdown, which treats array index fields differently from scalar ones.",
+  "recurrence": 3,
+  "recurrence_note": "Seven files discounted to 3 independent sources: indexing-and-query-perf (three copies), index-scans (two) and groupby-aggregate-performance (two). `shared`, so the discount is upheld, and 3 still clears the bar.",
+  "note": "PROMOTED - AND THIS REVERSES A REFUSAL THIS ROUND HAD ALREADY DECIDED ON, which is worth recording because the reversal came from the instrument and not from a change of mind. Mid-round, on a partial corpus, array indexes appeared to be attested only on `indexing-and-query-perf.md`, whose cloud and 7.2 copies score 0.94 - one authored page, twice - and neither copy's record carried a relation with usable evidence. The round was going to refuse it and cite shared source as the reason. Completing the round added `index-scans.md` and `groupby-aggregate-performance.md` in both trees, which are different authored pages, and the count went to 3 independent sources.\nTHE GENERAL POINT, since this project keeps relearning it: a shared-source discount computed over a PARTIAL corpus is not conservative, it is just wrong, and it errs in the direction of refusing real terms. The discount tells you how many independent sources you have FOUND, and subtracting inflation from an incomplete count produces a number with no useful interpretation at all. Both of this round's reversals - this one and index:duplicate-index in the opposite direction - only became visible once all 22 records were on disk.",
+  "promoted": true,
+  "relates_to_competency_question": "What kinds of index can I create, and which of my queries can each one serve?"
+}

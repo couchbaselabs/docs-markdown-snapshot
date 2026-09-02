@@ -5,6 +5,7 @@
     python3 linked-data/poc/recurrence.py --scope server/8.0/learn
     python3 linked-data/poc/recurrence.py --min 4 --unpromoted-only
     python3 linked-data/poc/recurrence.py --variants      # one term, several spellings
+    python3 linked-data/poc/recurrence.py --forks         # one local name, several namespaces
     python3 linked-data/poc/recurrence.py --page-ids      # ids that are really pages
     python3 linked-data/poc/recurrence.py --selftest
 
@@ -86,12 +87,36 @@ reconstructing it from memory a ninth time:
    census are different decisions, and doing the first by editing a shared code
    path silently does the second.**
 
-The three reports, and why they are separate
--------------------------------------------
-The default output ranks; `--variants` finds one term spelled several ways;
-`--page-ids` finds ids that are not terms at all - 392 of 2,116, ids the corpus
-only ever *links to*, 305 of them not even carrying a namespace. All three read
-the same census, which is why bug #11 blinded all three at once.
+12. **`--variants` cannot see a namespace fork, by construction.** `variant_key`
+   strips punctuation and keeps the prefix, so `index:early-filtering` and
+   `n1ql:early-filtering` - one concept, two namespaces, three files between them
+   and neither above the bar alone - hash to different keys and never cluster.
+   Round 17's extraction agents reported instances of this independently, twice,
+   which is how it was found: `index:sequential-scan` against
+   `n1ql:sequential-scan`, `index:index-pushdown` against `n1ql:index-pushdown`,
+   `index:index-partitioning` against an 11-file `n1ql:index-partitioning`.
+   `--forks` is the report for it, and it is the *mirror* of bug #6: a punctuation
+   variant is one term two ways and so is a namespace fork, but where round 16's
+   `indexes:`/`index:` fork was visible to the eye, this one is invisible to the
+   tool that exists to find exactly it. Note the direction of the harm. Shared
+   source (see `shared-source.py`) *inflates* a count; a fork *deflates* one, by
+   splitting a term's files across two rows so a genuine candidate sits below the
+   bar twice. Deflation is the quieter failure and there was no instrument for it
+   for sixteen rounds.
+
+The four reports, and why they are separate
+------------------------------------------
+The default output ranks; `--variants` finds one term spelled several ways in one
+namespace; `--forks` finds one local name across several namespaces; `--page-ids`
+finds ids that are not terms at all - 392 of 2,116, ids the corpus only ever
+*links to*, 305 of them not even carrying a namespace. All four read the same
+census, which is why bug #11 blinded three of them at once.
+
+`--forks` reports and does not merge, and unlike `--variants` it must not be read
+as a defect list: the registry deliberately keeps same-named different things
+apart, and the largest cluster it prints is the five unrelated things called
+"role" - which is correct and documented, not debt. The output is a list to
+check, and the check is whether the two ids denote the same thing.
 
 What it deliberately does not do
 --------------------------------
@@ -198,6 +223,20 @@ def resolve(name, aliases):
     match one."""
     c = canonical(name)
     return aliases.get(c, aliases.get(name, c))
+
+
+def fork_key(name):
+    """The local name alone, punctuation stripped, for `--forks`. See bug #12.
+
+    `index:early-filtering` and `n1ql:early-filtering` both -> `earlyfiltering`.
+    Returns None for anything with no namespace, and for an external IRI - a
+    bare id has no prefix to fork, and this registry does not own a schema.org
+    term's spelling.
+    """
+    c = canonical(name)
+    if ":" not in c or c.startswith(("http://", "https://")):
+        return None
+    return re.sub(r"[^a-z0-9]+", "", c.split(":", 1)[1].lower()) or None
 
 
 def variant_key(name):
@@ -338,6 +377,25 @@ def selftest():
     # Bug #6: dot and dash forms cluster for reporting but do NOT compare equal.
     check("variant_key clusters dot/dash",
           variant_key("version:server-6.5") == variant_key("version:server-6-5"), True)
+
+    # Bug #12. The first of these is the whole reason `--forks` exists: the two
+    # ids are one concept, and the report that exists to find one-concept-two-
+    # spellings cannot see them.
+    check("variant_key does NOT cluster a namespace fork",
+          variant_key("index:early-filtering") == variant_key("n1ql:early-filtering"),
+          False)
+    check("fork_key DOES cluster a namespace fork",
+          fork_key("index:early-filtering") == fork_key("n1ql:early-filtering"), True)
+    check("fork_key ignores punctuation within the local name",
+          fork_key("index:early_filtering") == fork_key("n1ql:early-filtering"), True)
+    check("fork_key keeps different local names apart",
+          fork_key("index:early-filtering") == fork_key("index:early-ordering"), False)
+    check("fork_key folds the IRI form onto the shorthand",
+          fork_key("https://docs.couchbase.com/ld/concepts/edition/enterprise"),
+          fork_key("edition:enterprise"))
+    check("fork_key is None for a bare id", fork_key("index-state"), None)
+    check("fork_key is None for a foreign IRI",
+          fork_key("http://www.w3.org/2000/01/rdf-schema#seeAlso"), None)
     check("resolve keeps dot/dash distinct",
           resolve("version:server-6.5", aliases) != resolve("version:server-6-5", aliases),
           True)
@@ -413,6 +471,9 @@ def main():
     ap.add_argument("--findings", action="store_true", help="dump finding fields in full")
     ap.add_argument("--variants", action="store_true",
                     help="report ids that differ only in punctuation or IRI form")
+    ap.add_argument("--forks", action="store_true",
+                    help="report one local name spelled in several namespaces "
+                         "(a list to check, not a defect list - see bug #12)")
     ap.add_argument("--page-ids", action="store_true",
                     help="ids the corpus only ever links to - `page:` candidates")
     ap.add_argument("--stale-recurrence", action="store_true",
@@ -517,6 +578,56 @@ def main():
                 has = "file" if (form in con or form in pred) else "NO FILE"
                 print(f"      {len(files):4d} files  {form}  [{has}]")
         print(f"\n{found} clusters with more than one spelling.")
+
+    if args.forks:
+        # Bug #12. Same local name, different namespace. Read from `slots` rather
+        # than `mentions`: a fork only matters where it splits the *promotion*
+        # metric, and the mention table would add bare `concepts[]` entries that
+        # were never going to be promoted on their own anyway.
+        #
+        # The registry is seeded in for the same reason `--variants` seeds it
+        # (bug #8): a corpus that uses one namespace uniformly while the registry
+        # promotes another produces a cluster of size one and vanishes, which is
+        # the worst case rather than the mildest.
+        groups = collections.defaultdict(lambda: collections.defaultdict(set))
+        for name, files in d["slots"].items():
+            k = fork_key(name)
+            if k:
+                groups[k][resolve(name, aliases)] |= files
+        for name in list(con) + list(pred):
+            k = fork_key(name)
+            if k:
+                groups[k].setdefault(resolve(name, aliases), set())
+
+        print("\n\n=== NAMESPACE FORKS ===")
+        print("One local name, more than one namespace. Invisible to --variants, "
+              "which keeps the prefix. A fork SPLITS a term's recurrence, so a "
+              "candidate can sit below the bar in two rows at once.\n"
+              "NOT a defect list: the registry deliberately holds same-named "
+              "different things apart (five unrelated things are called 'role'). "
+              "The check is whether the ids denote the same thing.\n")
+        rows = []
+        for key, forms in groups.items():
+            if len(forms) < 2:
+                continue
+            merged = len(set().union(*forms.values()))
+            rows.append((merged, key, sorted(forms.items(),
+                                             key=lambda kv: -len(kv[1]))))
+        rows.sort(key=lambda r: (-r[0], r[1]))
+        below = 0
+        for merged, key, forms in rows:
+            # The rows that change a decision: nothing crosses the bar alone, but
+            # the union does. Everything else is bookkeeping or a real collision.
+            gain = merged >= 2 and all(len(f) < 2 for _, f in forms)
+            if gain:
+                below += 1
+            print(f"  {key}  (merged: {merged} files)"
+                  + ("   ** MERGING WOULD CROSS THE BAR **" if gain else ""))
+            for form, files in forms:
+                has = "file" if (form in con or form in pred) else "NO FILE"
+                print(f"      {len(files):4d} files  {form}  [{has}]")
+        print(f"\n{len(rows)} local names spelled in more than one namespace; "
+              f"{below} would cross the promotion bar only if merged.")
 
     if args.page_ids:
         # Round 16. An id that the corpus only ever *links to* - the object of a

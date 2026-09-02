@@ -1,0 +1,481 @@
+{
+  "page_id": "server/8.0/indexes/index-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/index-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "index:index-replication",
+      "label": "Index replication",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - five existing records use this id."
+    },
+    {
+      "candidate_id": "index:index-replica",
+      "label": "Index replica",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the corpus has `index:index-replication` (the feature) but nothing for the replica itself, which is the thing that gets counted, placed, lost and replaced. Every quantitative statement on this page is about replicas, not about replication."
+    },
+    {
+      "candidate_id": "index:num-replica-setting",
+      "label": "numReplica (cluster-wide default number of index replicas)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the cluster-level GSI setting, distinct from the per-statement `num_replica` WITH attribute that `n1ql:createindex-with-nodes-num_replica` covers. The page is explicit that these are two things and that one overrides the other, so collapsing them would erase the precedence rule."
+    },
+    {
+      "candidate_id": "n1ql:createindex-with-nodes-num_replica",
+      "label": "CREATE INDEX ... WITH {nodes, num_replica}",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/7.2/learn/services-and-indexes/indexes/index-replication.json uses this id for the same three-bullet WITH-clause explanation."
+    },
+    {
+      "candidate_id": "index:index-partitioning",
+      "label": "Index partitioning",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:index-consistency",
+      "label": "Index consistency",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/index-replication.json uses this id. Kept separate from `n1ql:scan-consistency` because this page uses it as the name of the SUBJECT AREA (its section title) and scan consistency as the name of the parameter within it."
+    },
+    {
+      "candidate_id": "index:eventual-consistency",
+      "label": "Eventual consistency of indexes",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's central contrast, and stated as a property of how Couchbase maintains indexes ('degrees of eventual consistency'). Nothing in the registry names a consistency model."
+    },
+    {
+      "candidate_id": "data:full-consistency",
+      "label": "Full consistency of data mutations",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the other half of the contrast, and filed under `data:` rather than `index:` because it is a property of the Data Service's vBucket routing, not of indexes."
+    },
+    {
+      "candidate_id": "index:index-snapshot",
+      "label": "Index snapshot",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/index-replication.json uses this id."
+    },
+    {
+      "candidate_id": "index:index-rollback",
+      "label": "Index rollback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:rollback-snapshot-revert",
+      "label": "Reverting to a stored index snapshot on rollback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/7.2/learn/services-and-indexes/indexes/index-replication.json uses this id for the 6.5 behaviour change."
+    },
+    {
+      "candidate_id": "index:dcp-failover-log",
+      "label": "DCP failover log (as maintained by the Index Service)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism that makes rollback possible. The registry promotes `protocol:dcp` but has nothing for the failover log, and this page's claim is specifically that the INDEX service maintains one, which is a non-obvious fact worth its own id."
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "Scan consistency",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - and this is the page that enumerates all four values, unlike index-lifecycle.md which lists three."
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:node",
+      "label": "Node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:vbucket",
+      "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "protocol:dcp",
+      "label": "Database Change Protocol (DCP)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "tool:query-workbench",
+      "label": "Query Workbench",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:request-level-query-parameters",
+      "label": "Request-level query parameters",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-vector-index",
+      "label": "CREATE VECTOR INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:index-partitioning",
+      "label": "Index partitioning (SQL++ reference)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - seven existing records use this id."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index:index-replication",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition",
+      "evidence": "You can replicate primary and secondary indexes across cluster nodes running the [Index Service](#services-and-indexes/services/index-service.adoc). This feature is available only in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "index:index-partitioning",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresEdition. Stated in the same words in a second section, which is why both are recorded rather than one generalised claim.",
+      "evidence": "Index partitioning increases query performance, by dividing and spreading a large index of documents across multiple nodes. This feature is available only in Couchbase Server Enterprise Edition."
+    },
+    {
+      "subject": "index:index-replica",
+      "predicate": "distributesLoadVia",
+      "object": "service:query-service",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - distributesLoadVia. Note this is a DIFFERENT mechanism from the round-robin over duplicate indexes on indexing-and-query-perf.md: there the artifacts are separate indexes with identical definitions, here they are copies of one index, and the page calls it load-balancing rather than round-robin. Same predicate, deliberately, so phase 2 can see the two mechanisms side by side.",
+      "evidence": "**High Performance**: If original and replica copies are available, incoming queries are load-balanced across them."
+    },
+    {
+      "subject": "index:index-replica",
+      "predicate": "hasExecutionConstraint",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The availability claim: losing one Index Service node does not lose access to replicated indexes.",
+      "evidence": "**Availability**: If one Index Service node is lost, the others continues to provide access to replicated indexes."
+    },
+    {
+      "subject": "index:index-replica",
+      "predicate": "createsOnAction",
+      "object": "server:node",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction, for the self-healing behaviour: replacement replicas are assigned to Index Service nodes as they are added, until the required count is restored.",
+      "evidence": "If the number of nodes running the Index Service decreases, and index replicas are lost, Couchbase Server progressively assigns replacement index replicas to all Index Service nodes subsequently added to the cluster, until the required number of index replicas again exists for each replicated index."
+    },
+    {
+      "subject": "n1ql:createindex-with-nodes-num_replica",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:index-replica",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice, for the `nodes` attribute used alone: placement is explicit and replica count is implied by the node list.",
+      "evidence": "In the `WITH` clause, use the `nodes` attribute to specify the destination nodes. When you use this attribute by itself, the index is placed on one of the destination nodes, and one replica is placed on each of the others."
+    },
+    {
+      "subject": "n1ql:createindex-with-nodes-num_replica",
+      "predicate": "hasExecutionConstraint",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The hard rule, stated twice on the page: replica count must be strictly smaller than the relevant node count or creation fails.",
+      "evidence": "The required number of replicas must be smaller than the number of cluster nodes currently running the Index Service. If it's not, the index creation fails."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "createsOnAction",
+      "object": "n1ql:create-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction. The automatic-replica path: the trigger is any of the three CREATE statements, with no WITH clause needed.",
+      "evidence": "The Index Service can create a number of index replicas automatically whenever [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md), [CREATE VECTOR INDEX](../n1ql/n1ql-language-reference/createvectorindex.md), or [CREATE PRIMARY INDEX](../n1ql/n1ql-language-reference/createprimaryindex.md) is invoked. The default number of replicas is `0`."
+    },
+    {
+      "subject": "index:num-replica-setting",
+      "predicate": "hasDefaultValue",
+      "object": "0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue",
+      "evidence": "The default number of replicas is `0`."
+    },
+    {
+      "subject": "index:num-replica-setting",
+      "predicate": "requiresMinimumNodeCount",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresMinimumNodeCount, which is precisely what this sentence states (n replicas needs n+1 Index Service nodes) and a better fit than the generic hasExecutionConstraint used for the per-statement form.",
+      "evidence": "This call only succeeds if the cluster contains enough Index Service nodes to host each new index and its replicas: for example, if you specify `2` as the default number of replicas, the Index Service must have been established on at least 3 nodes."
+    },
+    {
+      "subject": "n1ql:createindex-with-nodes-num_replica",
+      "predicate": "takesPrecedenceOver",
+      "object": "index:num-replica-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver. The reason the per-statement attribute and the cluster setting need separate ids.",
+      "evidence": "When you explicitly specify the number of replicas with the [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md), [CREATE VECTOR INDEX](../n1ql/n1ql-language-reference/createvectorindex.md), or [CREATE PRIMARY INDEX](../n1ql/n1ql-language-reference/createprimaryindex.md) statement, the explicit specification takes precedence over the index replication settings."
+    },
+    {
+      "subject": "index:num-replica-setting",
+      "predicate": "configurableVia",
+      "object": "server:node",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia, for the three-surface list (UI, CLI, REST API). Object is weak because the page names surfaces rather than nameable settings artifacts; recording the relation for the surface enumeration and flagging the broken UI anchor in the findings.",
+      "evidence": "You can change the index replication settings using the [UI](../manage/manage-settings/general-settings.md#index-storage-mode), the [CLI](../cli/cbcli/couchbase-cli-setting-index.md), or the [REST API](../rest-api/post-settings-indexes.md)."
+    },
+    {
+      "subject": "index:index-partitioning",
+      "predicate": "tradesOffAgainst",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst, for the benefit list: horizontal scale-out and parallel partition scans, at the cost of spreading one index over multiple nodes.",
+      "evidence": "Reduction of query latency for large, aggregated queries; since partitions can be scanned in parallel."
+    },
+    {
+      "subject": "index:index-partitioning",
+      "predicate": "doesNotAffect",
+      "object": "n1ql:create-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect, for the transparency claim: partitioning requires no query changes.",
+      "evidence": "Transparency to queries, requiring no change to existing queries."
+    },
+    {
+      "subject": "data:full-consistency",
+      "predicate": "hasConsistencyModel",
+      "object": "server:vbucket",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasConsistencyModel. The registry has no predicate for 'guarantees this consistency model'; `usesExecutionModel` is the nearest and is about request execution. The page's contrast between the two models is its whole reason for existing, so it needs saying.",
+      "evidence": "Couchbase Server handles data mutations with full consistency — all mutations to a given key are applied to the same vBucket, and become immediately available."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "hasConsistencyModel",
+      "object": "index:eventual-consistency",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasConsistencyModel. Note the page's hedge, 'degrees of eventual consistency', which is what the scan consistency enum then quantifies.",
+      "evidence": "In contrast, Couchbase Server maintains indexes with degrees of eventual consistency. This means that indexes may at times not contain the most up-to-date information, especially when deployed in a write-heavy environment: changes may take some time to propagate over to the index nodes."
+    },
+    {
+      "subject": "index-type:gsi",
+      "predicate": "hasMaintenanceModel",
+      "object": "index:eventual-consistency",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - hasMaintenanceModel. This is the same asynchronous-maintenance fact that indexing-and-query-perf.md states as 'maintained asynchronously'; here it is stated as the CAUSE of the eventual consistency and given its benefit (no recalculation at write time). Two pages, two framings, one property - a merge candidate for phase 2.",
+      "evidence": "The asynchronous updating nature of Global Secondary Indexes means that they can be quick to query and do not require the additional overhead of index recalculations at the time documents are modified."
+    },
+    {
+      "subject": "index:index-consistency",
+      "predicate": "usesEnum",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum. This page is the corpus's most complete statement of the enum: all four values, each with its wait semantics.",
+      "evidence": "For every query, you can specify the following scan consistency options:"
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "hasDefaultValue",
+      "object": "not_bounded",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue",
+      "evidence": "For SQL++, the default consistency is `not_bounded`."
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "hasExecutionConstraint",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, for what `request_plus` obliges the Query Service to do before it can query.",
+      "evidence": "When using the `request_plus` consistency mode, the Query Service ensures that the indexes are synchronized with the Data Service before querying."
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "configurableVia",
+      "object": "tool:query-workbench",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "You can specify the scan consistency via the [run-time preferences](../tools/query-workbench.md#query-preferences) in the Query Workbench, or by setting the [scan_consistency](../n1ql/n1ql-manage/query-settings.md#scan%5Fconsistency) request-level parameter."
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "configurableVia",
+      "object": "n1ql:request-level-query-parameters",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. Same sentence, second surface, and the one that pins scan consistency to the promoted request-level-parameter scope rather than to a cluster or node setting.",
+      "evidence": "You can specify the scan consistency via the [run-time preferences](../tools/query-workbench.md#query-preferences) in the Query Workbench, or by setting the [scan_consistency](../n1ql/n1ql-manage/query-settings.md#scan%5Fconsistency) request-level parameter."
+    },
+    {
+      "subject": "index:index-snapshot",
+      "predicate": "hasDefaultValue",
+      "object": "2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue",
+      "evidence": "By default, two index snapshots are stored on disk."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "rebuiltFrom",
+      "object": "index:index-snapshot",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - rebuiltFrom. The registry has nothing for 'is reconstructed from this artifact after a restart', and it is the point of both the snapshot and the rollback sections here, and of the memory-optimized recovery story on storage-modes.md - so it is a predicate three sections in this batch need.",
+      "evidence": "Couchbase Server maintains one or more index snapshots on disk, to permit rapid recovery if nodes fail. In cases where recovery requires an Index Service node to be restarted, the node's indexes are rebuilt from the snapshots retained on disk."
+    },
+    {
+      "subject": "service:index-service",
+      "predicate": "hasInternalComponent",
+      "object": "index:dcp-failover-log",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "The index service also maintains a [DCP failover log](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol). If necessary, the data service can request the index service to return to a specified rollback point and update its history."
+    },
+    {
+      "subject": "index:index-rollback",
+      "predicate": "usesProtocol",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesProtocol, via the failover log the rollback point is expressed in.",
+      "evidence": "The index service also maintains a [DCP failover log](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol)."
+    },
+    {
+      "subject": "index:index-rollback",
+      "predicate": "createsOnAction",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction. The trigger is a data-node failover in which the promoted replica is behind the index.",
+      "evidence": "When a data node [fails over](../learn/clusters-and-availability/failover.md), a replica data node is promoted to active. If the index service has more recent data than the new active data node, the data node issues a rollback request to the index service."
+    },
+    {
+      "subject": "index:rollback-snapshot-revert",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "In Couchbase Server 6.5 and later, when the index service receives the rollback request, it first attempts to revert to a stored index snapshot. If successful, the index service does not need to rebuild its indexes from scratch when the data node fails over."
+    },
+    {
+      "subject": "index:rollback-snapshot-revert",
+      "predicate": "takesPrecedenceOver",
+      "object": "index:index-rollback",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver, for the fallback ordering: revert if possible, otherwise full rebuild.",
+      "evidence": "If the index service cannot revert to a current index snapshot, it rebuilds all indexes from scratch."
+    },
+    {
+      "subject": "index:rollback-snapshot-revert",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - behavesDifferentlyUnder. The NOTE gives two different post-revert behaviours selected by the scan consistency setting - stale data for a short time under `not_bounded`, no scans at all under `request_plus`.",
+      "evidence": "If [scan consistency](#index-consistency) is set to `request_plus`, the index service will not perform any scans until a consistent snapshot is created. In this case, stale results are not returned."
+    },
+    {
+      "subject": "index:index-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/index-partitioning",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Index Partitioning](../n1ql/n1ql-language-reference/index-partitioning.md)."
+    },
+    {
+      "subject": "index:index-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/post-settings-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You can change index snapshot settings via the [CLI](../cli/cbcli/couchbase-cli-setting-index.md) or the [REST API](../rest-api/post-settings-indexes.md)."
+    },
+    {
+      "subject": "index:index-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-setting-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You can change index rollback settings via the [CLI](../cli/cbcli/couchbase-cli-setting-index.md) or the [REST API](../rest-api/post-settings-indexes.md)."
+    },
+    {
+      "subject": "index:index-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/failover",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "When a data node [fails over](../learn/clusters-and-availability/failover.md), a replica data node is promoted to active."
+    },
+    {
+      "subject": "index:index-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information on using SQL++, see [SQL++ for Query Reference](../n1ql/n1ql-language-reference/index.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum(index-state) / usesEnum(indexer-node-state) / hasLifecycleState",
+    "finding": "This is the page that describes what happens to indexes when nodes are lost, restarted, failed over and rolled back, and it names NO state at all - neither the promoted `index-state` values (online, offline, building, pending, deferred...) nor the promoted `indexer-node-state` values (ready, pause, warmup, 'n mutations remaining') nor storage-modes.md's undefined Active/Warmup/Paused. It says an index is 'rebuilt from the snapshots retained on disk' and never says what state it is in while that happens, even though storage-modes.md answers exactly that question for memory-optimized indexes ('these indexes remain in the `Warmup` state'). So the two pages in this batch that describe restart-and-rebuild give two different amounts of information about it, and the one filed under 'Availability and Performance' gives less. Second absence: the load-balancing claim ('incoming queries are load-balanced across them') is never given a mechanism, a granularity, or a settings surface - contrast indexing-and-query-perf.md, which does name the mechanism for the duplicate-index case ('round-robin'). Third: index partitioning gets a four-bullet benefits list and no syntax, no default, no partition count, no constraint, and no cross-reference to the fact that partial indexes can be used to hand-roll the same thing (which indexing-and-query-perf.md suggests in four bullets of its own). Fourth: nothing states whether replicas and partitions interact, though both are on this page and both place index copies on nodes."
+  },
+  "cross_component_finding": "Five defects, three of them link-level. (1) WRONG ANCHOR ON A SETTINGS LINK: 'You can change the index replication settings using the [UI](../manage/manage-settings/general-settings.md#index-storage-mode)' - the anchor is `#index-storage-mode`, which is the STORAGE MODE section of General Settings, not the replication settings. A reader following the UI link for replica counts lands on the memory-optimized-vs-standard control. The CLI and REST links in the same sentence are correct. (2) TWO BROKEN ANTORA XREFS SURVIVE THE MARKDOWN CONVERSION: '[Index Service](#services-and-indexes/services/index-service.adoc)' in the first line of Index Replication renders as a fragment link to a nonexistent anchor. storage-modes.md has the identical defect shape ('#services-and-indexes/indexes/index-replication.adoc'), so this is a systematic conversion failure for cross-module xrefs in this module, not a one-off typo. (3) GRAMMAR ERROR IN A BOLD BENEFIT BULLET: 'If one Index Service node is lost, the others continues to provide access to replicated indexes.' - 'the others continues'. Quoted verbatim above. (4) THE SCAN-CONSISTENCY ENUM IS INCONSISTENT ACROSS THE MODULE: this page lists four values with full semantics; index-lifecycle.md lists three and omits `statement_plus`; index-lifecycle.md also calls the parameter 'index consistency' in one bullet and 'scan consistency' in the next, while this page uses 'Index Consistency' as its section heading and 'scan consistency' for the parameter. So the module has a section title, a parameter name, and a partial enum that do not line up, and index-lifecycle.md links to this page's anchor for the definition. (5) An `at_plus` reader is under-served on both pages: this page's definition ('requiring indexes first to be updated to the timestamp of the last update') does not explain where that timestamp comes from, and storage-modes.md then says queries with `consistency=at_plus` can FAIL if the specified timestamp exceeds the last one processed - a failure mode this page's definition does not admit exists.",
+  "cross_product_finding": "The same page is extracted at cloud/indexes/index-replication.json (Capella) and server/7.2/learn/services-and-indexes/indexes/index-replication.json (Server 7.2, under `learn/`), and I reused four ids from those records (`index:index-consistency`, `index:index-snapshot`, `index:index-rollback`, `index:rollback-snapshot-revert`) plus `n1ql:createindex-with-nodes-num_replica`. Product-level divergence worth flagging: this Server page states the Enterprise Edition gating twice in bold admonitions, which a Capella page cannot meaningfully do (Capella has no editions), so any cross-product merge of `index:index-replication` will find `requiresEdition` present on the Server side and absent on the Capella side for reasons of product shape rather than feature difference. Second: this page's REST example posts `numReplica=2` to `/settings/indexes` on `localhost:8091`, a cluster-admin surface that does not exist for a Capella user - so the minted `index:num-replica-setting` is a Server-only concept even though the per-statement `num_replica` attribute is not. Phase 2 should not fold the setting into the WITH attribute for that reason as well as the precedence reason."
+}

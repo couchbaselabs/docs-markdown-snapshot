@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/indicates-in-query-plan",
+  "label": "indicatesInQueryPlan",
+  "shape": "subject = a feature or optimisation; object = the plan field, operator or flag that shows it happened; means: this is how you tell, from EXPLAIN output, that the subject was actually used.",
+  "recurrence": 8,
+  "note": "PROMOTED at recurrence 8, the highest of any unpromoted predicate in the corpus, and it fills a gap the registry had in a structural way rather than by accident. Every other predicate here describes what the product DOES; this one describes what the product SHOWS. The indexing documentation is built almost entirely around that distinction - each pushdown page's argument is 'here is the optimisation, and here is the line of plan output that proves it fired' - so a registry without this predicate can record the optimisations and none of their evidence.\nIt also subsumes a family question the round raised and then dropped. Agents discovered six `index:*-plan-field` concepts (covers, filter_covers, index_conditions, index_group_aggs, keypos, partial) and asked whether they wanted a `plan-field:` namespace of their own. They do not: a namespace fork is bug #12 and this round built the instrument that finds them. The fields stay `index:*-plan-field`, the closed set is recorded in concepts/query-plan-index-fields.json, and this predicate is what points at them.\nRANGE WARNING: the object is sometimes a promoted concept and sometimes a bare literal from plan output (`primaryScan.Seq`, `#sequentialscan`, `\"exact\": true`). Extraction records use both and neither is wrong - a plan field's NAME is often the only thing there is to name. Anything consuming this predicate must expect a literal.",
+  "promoted": true
+}

@@ -1,0 +1,46 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/terminology-equivalences",
+  "label": "Every sentence in the corpus that states two Couchbase terms are the same thing",
+  "type": "scheme, and an index of EVIDENCE rather than of concepts. The reconcile skill's rule is that two things may not be merged 'unless a source page states the relationship explicitly'. This record enumerates the sentences that do. There are six.",
+  "promoted": true,
+  "recurrence": 6,
+  "equivalences": [
+    {
+      "terms": ["bucket:couchbase-bucket", "Memory and Disk", "bucket:ephemeral-bucket", "bucket:memory-only-bucket"],
+      "quote": "The options may also be referred to as Memory and Disk (Couchbase), Memory Only (Ephemeral) in the Couchbase documentation.",
+      "source": "cloud/management-api-reference/index.md",
+      "acted_on": "yes - aliases added to concepts/bucket/ephemeral-bucket.json and concepts/bucket/couchbase-bucket.json in round 17"
+    },
+    {
+      "terms": ["capella:cluster", "capella:database"],
+      "quote": "A cluster may be referred to as a \"database\" in the documentation and in the Couchbase Capella user interface.",
+      "source": "cloud/management-api-reference/index.md",
+      "acted_on": "no - `capella:cluster` sits at 1 file in the extraction layer and is not promoted, so there is no record to attach the alias to. The licence is recorded HERE so that whichever round promotes it does not have to rediscover the sentence. This is the case the record exists for."
+    },
+    {
+      "terms": ["bucket-setting:eviction-policy", "Ejection Policy"],
+      "quote": "This may be also known as Ejection Policy in the Couchbase documentation.",
+      "source": "cloud/management-api-reference/index.md",
+      "acted_on": "no - not promoted under either name yet. Note the direction: the API field is `evictionPolicy` and the DOCUMENTATION says 'Ejection Policy', so the two surfaces disagree and the API reference is the one that admits it."
+    },
+    {
+      "terms": ["conflict-resolution", "bucketConflictResolution", "seqno = sequence number", "lww = timestamp"],
+      "quote": "This field may be referred to as \"conflict resolution\" in the Couchbase documentation, and seqno and lww may be referred to as \"sequence number\" and \"timestamp\" respectively.",
+      "source": "cloud/management-api-reference/index.md",
+      "acted_on": "no - and this is the densest of the six: one sentence licensing three equivalences, two of which are ENUM VALUE spellings rather than concept names. Nothing in this registry currently aliases enum values."
+    },
+    {
+      "terms": ["n1ql:range-predicate", "range conditions", "quantified expressions"],
+      "quote": "Range predicates may also be known as _range conditions_ or _quantified expressions_.",
+      "source": "server/current/n1ql/n1ql-language-reference/collectionops.md",
+      "acted_on": "no - the only one of the six outside the Capella Management API reference, and the only one where all three names are the DOCUMENTATION's own rather than an API-versus-docs translation."
+    },
+    {
+      "terms": ["analytics:local-analytics-collection", "analytics:analytics-collection"],
+      "quote": "may be referred to as a local Analytics collection, or simply as an Analytics collection without qualification",
+      "source": "server/current/analytics/5_ddl.md (also present verbatim in server/7.2 and server/7.6 - one authored sentence on three branches, so this licence is one witness and not three)",
+      "acted_on": "no - a self-abbreviation rather than a cross-surface synonym: the same document licenses dropping its own qualifier. Recorded for completeness because the rule does not distinguish kinds of licence, but it is the weakest of the six."
+    }
+  ],
+  "note": "THE ROUND'S METHODOLOGICAL FINDING, and it is about a rule this project has followed correctly for seventeen rounds without ever looking at its own evidence base. The reconcile skill forbids merging two concepts unless a source states the relationship - a good rule, adopted after an early round invented a relationship - and every round has applied it as a test to FAIL: an agent proposes a merge, no citation is found, the collision is documented and the terms stay apart. `concepts/indexer-node-state.json` records two such refusals; there are more.\nWhat nobody did was ask the question the other way round: WHICH SENTENCES IN THE CORPUS GRANT THE LICENCE? Searching for the handful of phrasings a technical writer uses to state a synonym ('may also be referred to as', 'also known as') returns six results across the whole corpus. Six. That set is small enough to read in a minute and it had never been enumerated, so seventeen rounds of alias decisions were made by asking 'can I recall a sentence licensing this?' when the answer was a grep away.\nWHY THAT IS WORTH A REGISTRY RECORD rather than a note in a round writeup. A refusal to merge is invisible in the output: two separate records look exactly like two genuinely distinct concepts, and nothing marks the pair as 'asked and answered'. So the cost of not knowing about a licence is a permanent, silent duplication - which is precisely what happened to Memory Only and ephemeral buckets. Two pages state the same restriction on sequential scans using two different bucket nouns, and this registry would have recorded two unrelated-looking constraints, because the sentence that joins them sits in an API reference eleven thousand lines long that no round had reason to read.\nTHE CAPELLA MANAGEMENT API REFERENCE IS A ROSETTA STONE, which is the transferable part. Four of the six licences are on that one page, and they are there for a structural reason: its job is to document API field names, so wherever a field name differs from the documentation's word it says so explicitly. It is the only page in the corpus with a systematic incentive to state equivalences. A future round wanting to resolve aliases should mine it deliberately rather than wait to stumble on it.\nWHAT THIS RECORD IS NOT: a licence to merge on similarity. Five of the six entries are still `acted_on: no`, because a licence establishes that two NAMES denote one thing - it does not promote either name, and it does not tell you which should be canonical. And the corpus's silence is still silence: the absence of a sentence about two terms remains a reason to keep them apart, exactly as before."
+}

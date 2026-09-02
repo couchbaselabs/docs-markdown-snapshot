@@ -1,0 +1,327 @@
+{
+  "page_id": "server/8.0/indexes/index-lifecycle",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/index-lifecycle.md",
+  "concepts": [
+    {
+      "candidate_id": "index:index-lifecycle",
+      "label": "Index lifecycle",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/index-lifecycle.json already uses this id for the Capella version of this page."
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - and note this page's subject is GSI specifically, not `index:index`: every substantive sentence says 'a Global Secondary Index'."
+    },
+    {
+      "candidate_id": "index:gsi-per-collection-scope",
+      "label": "A GSI is created on a single collection, not a bucket",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/7.2/learn/services-and-indexes/indexes/index-lifecycle.json uses this id for the same opening sentence."
+    },
+    {
+      "candidate_id": "index:index-creation-phase",
+      "label": "Index creation phase",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page names two phases as distinct things with distinct work and an ordering constraint between them, and the registry has nothing for either. This is the finer grain beneath `index-state`: 'building' is one value of that enum, whereas creation-phase/build-phase is the page's own two-part decomposition of what happens before an index is online."
+    },
+    {
+      "candidate_id": "index:index-build-phase",
+      "label": "Index build phase",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see above."
+    },
+    {
+      "candidate_id": "index:index-metadata",
+      "label": "Index metadata",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the artifact the creation phase produces on the host node, and the reason an index can exist before it is built. indexing-and-query-perf.md discusses index metadata from the other direction (the `system:indexes` catalog fields); phase 2 may want to merge."
+    },
+    {
+      "candidate_id": "index-service:projector",
+      "label": "Projector",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page names the projector in six numbered steps and it is the actor in all of the interesting ones. NOTE THE OVERLAP: server/8.0/learn/services-and-indexes/services/index-service.json already has `index-service:projector-and-router`, a compound id, because that page treats the two as a pair. This page never mentions a router at all, so I minted the simple id rather than assert the compound one and imply a component the page does not name. Phase 2 must decide whether these are one concept or two, and I flag it rather than resolve it."
+    },
+    {
+      "candidate_id": "index-service:indexer",
+      "label": "Indexer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the recipient of the projector's extracted fields, named only in step 4. Also the subject of the promoted `indexer-node-state` enum and of storage-modes.md's Paused/Active prose, neither of which this page mentions - so the corpus has had an unnamed subject for both."
+    },
+    {
+      "candidate_id": "index:deferred-build",
+      "label": "Deferred index build",
+      "registry_status": "minted",
+      "reused_or_minted": "minted, and deliberately NOT the promoted `index:indexer-settings-defer-build`. That id names the cluster-wide Index Service *setting* that changes the default; this page describes the per-statement *choice* ('When you create an index, you can choose to defer the build phase') and its payoff (batching builds to avoid re-scanning the keyspace once per index). Setting and feature are different subjects and the registry note on that id says so; conflating them would lose the batching rationale, which appears nowhere else."
+    },
+    {
+      "candidate_id": "index:scan-coordinator",
+      "label": "Scan coordinator",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named twice, in the scan-consistency bullets and in the sentence about other collections. It is the component that does the waiting that scan consistency configures, so it is the missing subject of the whole consistency vocabulary."
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "Scan consistency",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - but see notable_absence: this page uses two different names for it in adjacent bullets, and lists only three of its four values."
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "Collection",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - server/8.0/learn/data/scopes-and-collections.json uses this id. Notable that `server:scope` is promoted and `server:collection` is not, given that the collection is the unit this entire page is organised around."
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:node",
+      "label": "Node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "protocol:dcp",
+      "label": "Database Change Protocol (DCP)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "index-type:gsi",
+      "predicate": "scopedToKeyspace",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - scopedToKeyspace",
+      "evidence": "In Couchbase Server 7.0 and later, a Global Secondary Index is created on a single collection — not on an entire bucket."
+    },
+    {
+      "subject": "index:gsi-per-collection-scope",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince. The page's only version statement.",
+      "evidence": "In Couchbase Server 7.0 and later, a Global Secondary Index is created on a single collection — not on an entire bucket."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "hasLifecyclePhase",
+      "object": "index:index-creation-phase",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasLifecyclePhase. The registry has `hasLifecycleState` (promoted), which is for a state an artifact is IN; a phase of an ordered process is not a state of the index, and the page distinguishes them by having the phases produce and consume each other. Minting rather than stretching `hasLifecycleState`, and flagging the near-miss for phase 2.",
+      "evidence": "Index creation happens in 2 phases: the creation phase and the build phase."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "hasLifecyclePhase",
+      "object": "index:index-build-phase",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasLifecyclePhase, see above.",
+      "evidence": "Index creation happens in 2 phases: the creation phase and the build phase."
+    },
+    {
+      "subject": "index:index-build-phase",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "index:index-creation-phase",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf, which is exactly this sentence.",
+      "evidence": "The build phase cannot start until the creation phase is complete."
+    },
+    {
+      "subject": "index:index-creation-phase",
+      "predicate": "createsOnAction",
+      "object": "index:index-metadata",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "During the creation phase, the Index Service validates the user input, decides the host node for the index, and creates the index metadata on the host node."
+    },
+    {
+      "subject": "index:index-creation-phase",
+      "predicate": "dependsOnService",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService. The creation phase's three actions - validate input, pick the host node, write metadata - are all Index Service work, with no Data Service involvement, which is what distinguishes it from the build phase.",
+      "evidence": "During the creation phase, the Index Service validates the user input, decides the host node for the index, and creates the index metadata on the host node."
+    },
+    {
+      "subject": "index:index-build-phase",
+      "predicate": "dependsOnService",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dependsOnService",
+      "evidence": "During the build phase, the Index Service reads the documents from the Data Service and builds the index."
+    },
+    {
+      "subject": "index-service:projector",
+      "predicate": "usesProtocol",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesProtocol",
+      "evidence": "The projector requests a DCP stream on the specified collection."
+    },
+    {
+      "subject": "index-service:projector",
+      "predicate": "forwardsIndexedFieldsTo",
+      "object": "index-service:indexer",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - forwardsIndexedFieldsTo. NOTE THE EVIDENCE SHAPE: the sentence I quote is passive ('The indexed fields are forwarded to the indexer') and does not name the projector. Its subject comes from the immediately preceding numbered step, 'The projector evaluates each document and extracts the indexed fields.', which is the only actor that has any indexed fields to forward. I am recording the inference explicitly rather than quoting a sentence that names both, because no such sentence exists on the page.",
+      "evidence": "The projector evaluates each document and extracts the indexed fields."
+    },
+    {
+      "subject": "index-service:indexer",
+      "predicate": "hasInternalComponent",
+      "object": "index-service:projector",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent, used to record that both named actors are parts of one service's build path. Weak-but-quotable: the page never states the containment, only that the build phase is Index Service work and that the projector and indexer are the things doing it.",
+      "evidence": "During the build phase, the Index Service reads the documents from the Data Service and builds the index."
+    },
+    {
+      "subject": "index:deferred-build",
+      "predicate": "offersConfigurationChoice",
+      "object": "index:index-build-phase",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "When you create an index, you can choose to defer the build phase, and then build the deferred index later. This allows multiple indexes to be built at once rather than having to re-scan the entire keyspace for each index."
+    },
+    {
+      "subject": "index-service:projector",
+      "predicate": "hasExecutionConstraint",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint. The DCP stream is bucket-level even though the index is collection-level, and the page gives the reason (connection count). That mismatch of granularities is the load-bearing fact of the Index Updates section.",
+      "evidence": "The projector keeps a bucket-level DCP stream open for updates — this limits the number of DCP connections."
+    },
+    {
+      "subject": "index-service:projector",
+      "predicate": "filtersMutationsBy",
+      "object": "server:collection",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - filtersMutationsBy. This is the mechanism that makes a bucket-level stream serve collection-level indexes - filtering on the collection ID carried by each mutation - and the registry has no predicate for 'discriminates its input by'. `restrictedToContext` is about where a thing may be used, not about how a stream is demultiplexed.",
+      "evidence": "When a document within the collection is updated, the projector utilizes the collection ID available with each mutation, and only evaluates the indexes defined for that collection."
+    },
+    {
+      "subject": "index-service:projector",
+      "predicate": "filtersMutationsBy",
+      "object": "index:index",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - filtersMutationsBy. A second filter stage the page states separately: not just which collection, but which fields, for which qualified indexes.",
+      "evidence": "The projector only sends updated indexed fields for the qualified indexes within the collection."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "doesNotAffect",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect. The payoff sentence of the collection-filtering design, and the page's one performance guarantee.",
+      "evidence": "Indexes on unrelated collections have no additional processing or disk overhead."
+    },
+    {
+      "subject": "index:scan-coordinator",
+      "predicate": "configurableVia",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. The scan coordinator's waiting behaviour is what scan consistency selects between.",
+      "evidence": "If the scan consistency is `at_plus` or `request_plus`, the scan coordinator waits for the index to be updated for that collection only, and then performs the scan."
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "usesEnum",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesEnum, recording the values this page actually names. Subject and object coincide because the promoted id is both the parameter and its value set (the registry aliases `n1ql:scan-consistency-values` to it). The page names three: `not_bounded`, `at_plus`, `request_plus` - and calls the first 'index consistency' and the others 'scan consistency'.",
+      "evidence": "If the index consistency is `not_bounded`, the scan proceeds without waiting for the index to be updated."
+    },
+    {
+      "subject": "index:scan-coordinator",
+      "predicate": "doesNotAffect",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect. The consistency analogue of the earlier processing-overhead guarantee: collection isolation applies to waiting, not just to work.",
+      "evidence": "The scan coordinator does not need to wait for indexes on other collections to be updated, even if documents in other collections are being mutated."
+    },
+    {
+      "subject": "index:index",
+      "predicate": "tradesOffAgainst",
+      "object": "server:xdcr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst, for the migration-throughput advice: indexes existing during an XDCR migration cost throughput, so the page advises deferring their creation entirely.",
+      "evidence": "When migrating data using XDCR, avoid creating any indexes before the migration to achieve higher throughput. You can create the indexes after the migration to assist with query performance."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/build-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "see [CREATE PRIMARY INDEX](../n1ql/n1ql-language-reference/createprimaryindex.md), [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md), and [BUILD INDEX](../n1ql/n1ql-language-reference/build-index.md)."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/index-scans",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Index Scans](index-scans.md) and [Index Consistency](index-replication.md#index-consistency)."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/intra-cluster-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Database Change Protocol (DCP)](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol)."
+    },
+    {
+      "subject": "index:index-lifecycle",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/xdcr-with-scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Migration](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#migration)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasLifecycleState / usesEnum(index-state)",
+    "finding": "THE PAGE IS CALLED 'INDEX LIFECYCLE' AND NEVER NAMES A SINGLE INDEX STATE. The promoted `index-state` enum (scheduled for creation, deferred, building, pending, online, offline, abridged) is the corpus's model of exactly this page's subject, and the page does not mention any of its seven values - not even 'online', and not even 'deferred', despite having a paragraph about deferring a build. The promoted `indexer-node-state` enum (ready, pause, warmup, n mutations remaining) is likewise absent, as is the third, undefined Active/Warmup/Paused vocabulary that storage-modes.md uses. So on the question this round was asked to settle: THIS PAGE DOES NOT SETTLE THE STATE VOCABULARIES AND DOES NOT EVEN TOUCH THEM. It models the lifecycle as four activities (creation, building, updates, scans) with two internal phases, and the state enums model it as a set of labels; the two models are disjoint and no page in this batch joins them. That is a real documentation gap, not just an extraction gap: a reader who sees `\"state\": \"deferred\"` in system:indexes and comes to 'Index Lifecycle' to find out what that means will not find out. Also absent: any statement of where the build happens relative to the host node chosen in the creation phase, any mention of index replicas or partitions (index-replication.md's subject, though this page is the one that describes the build), and any `requiresEdition` or privilege statement."
+  },
+  "cross_component_finding": "TWO NAMES FOR ONE PARAMETER, IN ADJACENT BULLETS. The Index Scans section reads: '* If the index consistency is `not_bounded`, ...' followed immediately by '* If the scan consistency is `at_plus` or `request_plus`, ...'. Same parameter, two names, one bullet apart, and the reader is given no signal that they are the same thing. The registry promotes `n1ql:scan-consistency` and index-replication.md titles its section 'Index Consistency' with an anchor `#index-consistency` - which this very page links to as '[Index Consistency](index-replication.md#index-consistency)'. So 'index consistency' is a real term of art in this module, used as the section title on the neighbouring page, and here it is applied to one value of the parameter while 'scan consistency' is applied to two others. Second finding, on the same three lines: the enum is INCOMPLETE HERE. Four values exist (`not_bounded`, `at_plus`, `request_plus`, `statement_plus`) and index-replication.md lists all four; this page lists three and silently omits `statement_plus`. A reader who uses `statement_plus` gets no guidance from the page that explains what the scan coordinator does. Third: the page's architectural actors, 'the projector' and 'the indexer', appear only inside numbered step lists, are never defined, and are never linked to 'Index Service Architecture' (learn/services-and-indexes/services/index-service.md), which is where they are defined - and which, on that page, calls the projector part of a 'projector and router' pair that this page does not mention. Fourth, minor: step 4 of Index Building is the only step in either list written in the passive voice, so it is the only step that does not name its actor.",
+  "cross_product_finding": "cloud/indexes/index-lifecycle.json (Capella) and server/7.2/learn/services-and-indexes/indexes/index-lifecycle.json (Server 7.2, under `learn/`) already cover this page, and the 7.2 one already minted `index:gsi-per-collection-scope` for the opening sentence - so the same fact has now been extracted three times from three trees, which is a genuine recurrence signal for phase 2. Two divergences worth recording: (a) the tree position moved between 7.2 (`learn/services-and-indexes/indexes/`) and 8.0 (`indexes/`), so version-to-version comparison of this page requires knowing about the move; (b) I minted `index-service:projector` and `index-service:indexer` here while server/8.0/learn/services-and-indexes/services/index-service.json holds `index-service:projector-and-router` for overlapping subject matter. Do not treat that as a duplicate to collapse blindly: one page describes a projector paired with a router, the other describes a projector feeding an indexer, and whether that is two names for one component or three components in a chain is a question the documentation does not answer on either page."
+}

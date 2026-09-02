@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-sequential-scan-switch-on-procedure-uses-xor",
+  "type": "docs-issue",
+  "issueType": "factually-incorrect-content",
+  "description": "query-without-index.md documents the wrong bitwise operation for enabling sequential scans, and following it turns the feature OFF whenever it is already on. The N1QL Feature Controller is a disable mask: setting bit 16384 (0x4000) disables sequential scan. The page's 'To switch off sequential scans globally' procedure correctly says to compute 'a bitwise OR operation on the current value and the sequential scan control bit 16384' - OR sets the bit. But 'To switch on sequential scans globally' says to compute 'a bitwise XOR operation on the current value and the sequential scan control bit 16384'. XOR TOGGLES the bit; it does not clear it. The correct operation is AND NOT (`current & ~16384`). Worked Example 6 conceals the error by assuming the current value is 16460, i.e. that the bit is already set: 16460 ^ 16384 = 76, which happens to be right. Starting from 76 - the value the page's own Example 5 uses as a typical 'sequential scans enabled' state - the documented procedure yields 76 ^ 16384 = 16460 and DISABLES the feature the reader was trying to enable.",
+  "about": [
+    "server/8.0/indexes/query-without-index"
+  ],
+  "note": "THE MOST CONSEQUENTIAL DEFECT ROUND 17 FOUND, and the only one where following the documentation produces the opposite of the stated outcome. Two things make it worse than an arithmetic slip. First, the setting is a BITMASK controlling several unrelated query features, so a wrong value does not merely fail - it silently changes whatever else that mask encodes. Second, the page says the setting 'is usually reserved for support purposes' and requires administrator privileges, so the reader most likely to run this is an administrator following instructions under support guidance on a production cluster.\nNot modelled as an ontology relation: `index:sequential-scan configurableVia n1ql:n1ql-feature-controller` is promoted from this page and is true. The defect is in the arithmetic of the procedure, which is not a fact about the product at all - it is a fact about the documentation, which is why it lands here. The Capella copy of the page does not contain this procedure (Capella gates the feature by billing plan and support request instead), so the defect is server-only.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

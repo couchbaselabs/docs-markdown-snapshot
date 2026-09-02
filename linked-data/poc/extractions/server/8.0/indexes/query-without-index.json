@@ -1,0 +1,339 @@
+{
+  "page_id": "server/8.0/indexes/query-without-index",
+  "source_version": "8.0",
+  "source_path": "server/current/indexes/query-without-index.md",
+  "concepts": [
+    {
+      "candidate_id": "index:sequential-scan",
+      "label": "Sequential scan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - cloud/indexes/query-without-index.json uses this id. Filed under `index:` even though a sequential scan is what happens when there is NO index, which is correct under the round-16 rule (`index:` for scan mechanics) and worth noting as a slightly counter-intuitive consequence of it."
+    },
+    {
+      "candidate_id": "data:kv-range-scan",
+      "label": "K/V range scan (server-side mechanism)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - one existing record uses this id. DELIBERATELY NOT `sdk:kv-range-scan`, which also exists in the corpus: that id names the SDK's range-scan API surface, whereas this is the internal Data Service mechanism the Query Service uses under a sequential scan. Same words, two things - one a client method family, one a server internal - and I am flagging the near-duplicate for phase 2 rather than merging them on my own authority."
+    },
+    {
+      "candidate_id": "index:sequentialscan-placeholder",
+      "label": "#sequentialscan (placeholder index name in the query plan)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page goes out of its way to say this is not an index ('This name is a placeholder — in reality there is no index.'), which makes it a nameable documentation artifact in its own right: a string a user will see in an explain plan and must not mistake for an index. Compare `#primary`, the real index name that indexing-and-query-perf.md shows in system:indexes."
+    },
+    {
+      "candidate_id": "n1ql:n1ql-feature-controller",
+      "label": "N1QL Feature Controller setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - absent from the registry and the corpus, despite being the only switch for this feature and a bitmask that presumably gates others too. Filed under `n1ql:` because it is a Query Service setting, per the `setting:` dissolution rule ('a setting is always a setting OF something')."
+    },
+    {
+      "candidate_id": "n1ql:completed-requests-qualifier",
+      "label": "Completed requests qualifier (~qualifier)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - one existing record uses this id."
+    },
+    {
+      "candidate_id": "index:primary-scan",
+      "label": "Primary scan (query plan operator)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - three existing records use this id. This page shows the same operator being served by two different access paths (`sequentialscan` and `gsi`), which is what makes the operator worth naming separately from either."
+    },
+    {
+      "candidate_id": "role:query-use-sequential-scans",
+      "label": "Query Use Sequential Scans",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - AND THIS PAGE CONFIRMS ROUND 12'S RE-FILING. Round 12 moved eleven ids out of `privilege:` into `role:`; the earlier Capella extraction of this page used `privilege:query-use-sequential-scans`, which the registry now aliases to the promoted `role:` id. This page calls it a role twice, in prose, in bold: 'Users must have the **Query Use Sequential Scans** role on the keyspace' and 'Administrators must grant the **Query Use Sequential Scans** role to users'. So the re-filing was not a judgement call, it was a correction."
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:infer",
+      "label": "INFER",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - two existing records use this id."
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:system-completed-requests",
+      "label": "system:completed_requests",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:query-profiling",
+      "label": "Request profiling information",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - three existing records use this id."
+    },
+    {
+      "candidate_id": "n1ql:cluster-level-query-settings",
+      "label": "Cluster-level query settings",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - three of Table 1's four rows are cluster-level."
+    },
+    {
+      "candidate_id": "n1ql:node-level-query-settings",
+      "label": "Node-level query settings",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the fourth row of Table 1, and the only node-level one."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "service:query-service",
+      "predicate": "fallsBackTo",
+      "object": "index:sequential-scan",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - fallsBackTo. `mustUseInsteadWhen` (promoted) is about an obligation on the user; this is an automatic, conditional degradation the service performs by itself, and the page's own verb is 'fall back on'.",
+      "evidence": "If a keyspace does not have any suitable primary or secondary indexes for a query, the Query Service can fall back on a sequential scan of the data to retrieve the document keys."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "usesUnderlyingMechanism",
+      "object": "data:kv-range-scan",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - usesUnderlyingMechanism. `usesExecutionModel` (promoted) describes how a request is executed as a strategy; this is a named lower-level facility that two distinct features share, which is the fact the page uses twice (once for sequential scan, once for INFER) and which drives the INFER side effect.",
+      "evidence": "A sequential scan uses an underlying mechanism known as a K/V range scan."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "tradesOffAgainst",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - tradesOffAgainst. The page is unusually frank about the trade: easy access, not performance.",
+      "evidence": "Sequential scans are intended for easy access to data, and are not intended as a high performance solution."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index:sequential-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - mustUseInsteadWhen. The page states the condition under which a primary index strictly dominates: ordered document key operations.",
+      "evidence": "For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "doesNotSupport",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "Sequential scans are unavailable on ephemeral buckets."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "takesPrecedenceOver",
+      "object": "index:sequential-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver. Stated for both index kinds in one sentence; recorded twice so each kind carries the fact.",
+      "evidence": "If there is a primary index or any suitable secondary index available for the keyspace, the Query Service uses that in preference to sequential scan."
+    },
+    {
+      "subject": "index-type:secondary-index",
+      "predicate": "takesPrecedenceOver",
+      "object": "index:sequential-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - takesPrecedenceOver, second half of the same sentence.",
+      "evidence": "If there is a primary index or any suitable secondary index available for the keyspace, the Query Service uses that in preference to sequential scan."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "requiresServerRole",
+      "object": "role:query-use-sequential-scans",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole. Note the scope: the role is held ON THE KEYSPACE, not on the cluster, which the promoted role concept should carry.",
+      "evidence": "Users must have the **Query Use Sequential Scans** role on the keyspace to be able to execute a request with a sequential scan."
+    },
+    {
+      "subject": "index:primary-scan",
+      "predicate": "reportedInQueryPlanAs",
+      "object": "index:sequentialscan-placeholder",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - reportedInQueryPlanAs. The registry has `monitoredVia` (promoted) for observability surfaces, but a query plan is not monitoring and this is specifically about the STRING a plan shows for a mechanism, which is the page's most user-visible fact and its most confusing one.",
+      "evidence": "The explain plan reports that the primary scan operator uses an index called `#sequentialscan`. This name is a placeholder — in reality there is no index."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "monitoredVia",
+      "object": "n1ql:explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia. The plan distinguishes the two access paths by the `using` field, which is how a user tells a sequential scan from a GSI scan.",
+      "evidence": "The explain plan includes a primary scan operator, using `sequentialscan` rather than `gsi.`"
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "monitoredVia",
+      "object": "n1ql:system-completed-requests",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia",
+      "evidence": "You can monitor sequential scans using the `system:completed_requests` catalog."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "reportedInQueryPlanAs",
+      "object": "n1ql:system-completed-requests",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - reportedInQueryPlanAs, used here for the phase-counter property name that distinguishes a sequential scan from a GSI primary scan in monitoring output. `primaryScan.Seq` versus `primaryScan.GSI` is the same one-mechanism-two-spellings pattern as `sequentialscan` versus `gsi` in the plan.",
+      "evidence": "Completed requests which used sequential scan include a `primaryScan.Seq` property within the request's `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "reportedInQueryPlanAs",
+      "object": "n1ql:system-completed-requests",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - reportedInQueryPlanAs, the contrasting spelling for the index path.",
+      "evidence": "In contrast, queries which used a primary index include a `primaryScan.GSI` property within the request's `phaseCounts`, `phaseOperators`, and `phaseTimes`, in addition to the `primaryScan` property."
+    },
+    {
+      "subject": "n1ql:completed-requests-qualifier",
+      "predicate": "hasThreshold",
+      "object": "index:sequential-scan",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasThreshold, the same predicate storage-modes.md needs four times. Here the threshold is a key count that triggers automatic capture, and the page attaches a recommendation to it.",
+      "evidence": "A completed requests qualifier automatically captures any requests where more than 10000 keys have been returned by sequential scans. In most cases, this indicates that you should create an index to support the request."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "monitoredVia",
+      "object": "n1ql:query-profiling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - monitoredVia. A third observability surface, mentioned in one sentence with no example and no property names.",
+      "evidence": "Statistics on sequential scan usage are also available in request profiling information."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "hasDefaultValue",
+      "object": "on",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue. Note the two-part gate the page states in one paragraph: on by default globally, but unusable until an administrator grants the role.",
+      "evidence": "In Couchbase Server, sequential scans are switched on globally by default. Administrators must grant the **Query Use Sequential Scans** role to users before users can access the feature, as described under [Prerequisites](#prerequisites) above."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "configurableVia",
+      "object": "n1ql:n1ql-feature-controller",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. The parenthetical is worth keeping: the documented way to turn this feature off is a setting the docs describe as reserved for support.",
+      "evidence": "To turn sequential scans off or on globally, use the N1QL Feature Controller setting. (This setting is usually reserved for support purposes.) You must have administrator privileges to change this setting."
+    },
+    {
+      "subject": "n1ql:n1ql-feature-controller",
+      "predicate": "hasFeatureControlBit",
+      "object": "16384",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - hasFeatureControlBit. The registry has `requiresFlagToEnable` (promoted), which is about a boolean flag gating a feature; this is a specific bit position within a shared integer bitmask, and the bit value is the load-bearing detail a reader needs. Recorded once even though the page states it twice, in the off and on procedures.",
+      "evidence": "Find the result of a bitwise OR operation on the current value and the sequential scan control bit `16384` (hex `0x4000`)."
+    },
+    {
+      "subject": "n1ql:n1ql-feature-controller",
+      "predicate": "configurableVia",
+      "object": "n1ql:cluster-level-query-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. Evidence is the Table 1 row, which is where the cluster-level scope and the option name `queryN1QLFeatCtrl` are stated together.",
+      "evidence": "| REST API              | Cluster-level | [Query Settings REST API](../n1ql-rest-settings/index.md)                                                              | queryN1QLFeatCtrl           |"
+    },
+    {
+      "subject": "n1ql:n1ql-feature-controller",
+      "predicate": "configurableVia",
+      "object": "n1ql:node-level-query-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia. The node-level row, whose option name is spelled differently again (`n1ql-feat-ctrl`).",
+      "evidence": "| REST API              | Node-level    | [Query Admin REST API: Settings Endpoint](../n1ql-rest-admin/index.md#tag-Settings)                                    | n1ql-feat-ctrl              |"
+    },
+    {
+      "subject": "n1ql:infer",
+      "predicate": "usesUnderlyingMechanism",
+      "object": "data:kv-range-scan",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - usesUnderlyingMechanism, second use. This is the relation that makes the INFER side effect intelligible: INFER and sequential scan are siblings over one mechanism, not one built on the other.",
+      "evidence": "The [INFER](../n1ql/n1ql-language-reference/infer.md) command also uses K/V range scan, the mechanism that underlies sequential scan."
+    },
+    {
+      "subject": "n1ql:n1ql-feature-controller",
+      "predicate": "disablesFeatureFor",
+      "object": "n1ql:infer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - disablesFeatureFor. A cross-feature side effect of a setting named after neither feature, and the single most surprising fact on the page.",
+      "evidence": "If you turn off sequential scan globally, then INFER can no longer use sequential scan either."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about user roles, see [Authorization](../learn/security/authorization-overview.md)."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Manage and Monitor Queries](../n1ql/n1ql-manage/monitoring-n1ql-query.md)."
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/infer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "The [INFER](../n1ql/n1ql-language-reference/infer.md) command also uses K/V range scan"
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link, from the Table 1 UI row.",
+      "evidence": "[Configure General Settings with the UI: Query Settings](../manage/manage-settings/general-settings.md#query-settings)"
+    },
+    {
+      "subject": "index:sequential-scan",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-setting-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link, from the Table 1 CLI row.",
+      "evidence": "[couchbase-cli setting-query](../cli/cbcli/couchbase-cli-setting-query.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / availableSince / usesEnum",
+    "finding": "(1) No edition statement anywhere, even though this is a feature with a control bit and a dedicated role, and two other pages in this module carry bold EE admonitions. A reader cannot tell from this page whether sequential scans exist in Community Edition. (2) No `availableSince`, though sequential scans are a comparatively recent feature (7.6) and the page's own explain-plan and completed-requests output would differ on older releases. The `n1qlFeatCtrl` value `76` appears twice as a worked example with no statement of which release's default it is, so the arithmetic in Examples 5 and 6 is only reproducible on whatever version the author had. (3) No state or enum vocabulary at all, so this page contributes nothing to the state-vocabulary question - except negatively: its sample output contains `\"scanConsistency\": \"unbounded\"`, a value that is not in the promoted `n1ql:scan-consistency` enum, matching the same wrong spelling on storage-modes.md. (4) The `~qualifier` mechanism is described as automatic with a 10000-key threshold and the threshold is never said to be configurable or not. (5) The page never says what a sequential scan costs or how it scales, beyond 'Notice that the query takes one or more seconds' for 11 documents - which is a striking number to publish without comment. (6) No mention of whether a sequential scan can be used for anything other than retrieving document keys, i.e. whether predicates are pushed down; the first sentence says the fallback retrieves 'the document keys' and the plan then shows a Fetch operator, which implies no pushdown, but the page never states it."
+  },
+  "cross_component_finding": "(1) A SENTENCE THAT CONTRADICTS THE PAGE'S PREMISE. The 'Use Sequential Scans' section opens: 'To query an index using sequential scan, run the query as usual.' There is no index - that is the entire subject of the page, and two sections later the page says so explicitly ('This name is a placeholder — in reality there is no index'). The instruction should be to query a keyspace, or a collection. (2) FOUR SPELLINGS OF ONE SETTING, IN ONE TABLE. Table 1's 'Name of option' column reads **N1QL Feature Controller** (UI), --n1ql-feature-control (CLI), queryN1QLFeatCtrl (cluster REST), n1ql-feat-ctrl (node REST). Four surfaces, four names, no statement that they are one setting other than the table's own caption; and the sample completed-requests output uses a fifth spelling, `n1qlFeatCtrl`, as the field name. This is the same defect shape as the scan-consistency naming problem elsewhere in the module, and it is worse here because the setting is a bitmask, so a user who finds the wrong name and sets it to `16384` rather than to the OR of the current value will silently clear every other feature bit. (3) THE OFF/ON PROCEDURES ARE ASYMMETRIC AND FRAGILE. Switching off uses bitwise OR; switching on uses bitwise XOR. XOR is not the inverse of OR: applying the documented 'switch on' procedure to a value where the bit is already clear will SET it, i.e. switch the feature off. The correct inverse is AND NOT. The worked examples conceal this because they run OR then XOR on the same value (76 -> 16460 -> 76), which round-trips only because the first step actually changed the bit. A reader who runs Example 6 on a system where sequential scans are already on will turn them off. (4) The role's own name is stated in bold prose twice and never linked to its reference page, while the generic 'Authorization' overview is linked instead - so the one place a reader could confirm the role's exact name and scope is not linked from the page that requires it. (5) Table 1's cross-reference anchor is '[Table 1](#n1ql-feat-ctrl)', which is the CLI/REST option name rather than a table id, and the table itself is rendered as bold text ('__Table 1. How to get or set the N1QL Feature Controller__') rather than as a captioned table, so the anchor has no target in the Markdown snapshot.",
+  "cross_product_finding": "cloud/indexes/query-without-index.json already covers the Capella version of this page and used `privilege:query-use-sequential-scans`, an id the registry now aliases to promoted `role:query-use-sequential-scans` after round 12 re-filed eleven such ids. This Server page settles that question in the corpus's favour by calling it a role, in bold, twice - so the alias can be treated as a documented correction rather than a reconciliation guess, and phase 2 can retire the `privilege:` spelling for this term with a citation. The second cross-product note is the `data:kv-range-scan` / `sdk:kv-range-scan` pair: both ids exist in the corpus, both were minted from the phrase 'range scan', and they are not the same thing - the SDK id names a client API family (documented in the SDK trees), this one names the Data Service mechanism the Query Service uses internally. They will look like a namespace fork to any tool that compares suffixes, and they are not one. Third: the whole Manage Sequential Scans section is Server-only in substance, because its four configuration surfaces include a CLI and a node-level REST endpoint that a Capella user has no access to; a cross-product merge of `index:sequential-scan` will therefore find `configurableVia` relations on the Server side with no Capella counterpart, for product-shape reasons rather than feature differences."
+}

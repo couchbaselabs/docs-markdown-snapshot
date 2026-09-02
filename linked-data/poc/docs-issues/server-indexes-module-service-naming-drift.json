@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-indexes-module-service-naming-drift",
+  "type": "docs-issue",
+  "issueType": "terminology-inconsistency",
+  "description": "The 8.0 indexes module names its three services at least eight ways across five pages. index_pushdowns.md alone uses 'Query engine' (throughout), 'Query Service' (the IndexCountScan3 callouts), 'query layer' (pagination-pushdown factors) and 'Query nodes' / 'Indexer nodes' (the rationale at the top), while the Indexer is 'the Indexer', 'the indexer' and 'Query Indexer'. index-scans.md uses 'Query nodes', 'Query node', 'query engine', 'Query Service', 'Index Service', 'index service' (lower case), 'Indexer' and 'data node'. groupby-aggregate-performance.md adds 'SQL++ indexer' and 'data service (KV service)'. covering-indexes.md drifts between 'data service' and 'data nodes' for the same thing within one page. Only early-filters-and-pagination.md is internally consistent ('Index service' / 'Query service' / 'Data service' throughout).",
+  "about": [
+    "server/8.0/indexes/index_pushdowns",
+    "server/8.0/indexes/index-scans",
+    "server/8.0/indexes/groupby-aggregate-performance",
+    "server/8.0/indexes/covering-indexes",
+    "server/8.0/indexes/early-filters-and-pagination"
+  ],
+  "note": "Two of these are not merely inconsistent but WRONG, and both are on groupby-aggregate-performance.md: 'The SQL++ indexer will do 2nd level of aggregation and compute the final result' and 'The SQL++ indexer can pushdown only if the leading key has a predicate.' Both jobs belong to the Query service and the optimizer respectively, and the page's own Example C says so ('the indexer sends partial group aggregation, which the query merges'). 'SQL++ indexer' reads like a mechanical substitution into what was once 'N1QL engine'. Also a service/node conflation running throughout: 'service' and 'node' are used interchangeably for the same actor, which are different things once a cluster has more than one node.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

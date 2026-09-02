@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/order-pushdown",
+  "label": "Order pushdown",
+  "type": "pushing ORDER BY into the index scan, available only when the ORDER BY keys align with the index key order. Member of index:index-pushdown.",
+  "recurrence": 2,
+  "recurrence_note": "Four files discounted to 2 independent sources: `shared`, discount upheld, still at the bar.",
+  "note": "PROMOTED, with the round's clearest example of a fact that cannot survive extraction. The alignment condition is stated as 'Currently the Query engine supports order pushdown only when the ORDER BY keys are aligned with the Index order' - and 'Currently' is the only version information the sentence carries. A relation extracted from it is either undated or dated by a word that means 'whenever you happen to be reading', so the constraint is recorded here as a description and not as an `availableSince`.\nCOUPLED TO A SETTING IN ANOTHER MODULE, one-directionally: 'When early ordering is in effect, parallelism is turned off' ties ordering behaviour to n1ql:max-parallelism, a Query service setting whose own documentation is never told that an index-scan strategy can override it.",
+  "promoted": true,
+  "documented_at": "server/8.0/indexes/index_pushdowns",
+  "relates_to_competency_question": "What work does the Index service do on the Query service's behalf, and what is left over?"
+}

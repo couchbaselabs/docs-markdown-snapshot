@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-index-scans-exact-flag-undefined",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The `exact` flag appears in roughly thirty plan outputs on index-scans.md as \"exact\": true, and is silently ABSENT in exactly the two cases where the predicate could not be fully pushed down (Example 18's leading-wildcard LIKE, Example 29's unindexed function). The page never explains it. Its only prose definition anywhere in the corpus is on a different page, early-filters-and-pagination.md, which makes exactness the decisive criterion for pushdown versus early filtering: a predicate that 'does not generate an exact index span ... needs to be evaluated as an early index filter'. So the field that decides the behaviour is demonstrated thirty times on the page that owns the concept and defined only on the page that consumes it.",
+  "about": [
+    "server/8.0/indexes/index-scans",
+    "cloud/indexes/index-scans",
+    "server/8.0/indexes/early-filters-and-pagination"
+  ],
+  "note": "Related but distinct from the filter_covers gap: `filter_covers` is defined by analogy to an undefined field, `exact` is not defined at all. Both are recorded in concepts/query-plan-index-fields.json. `exact` has no concept id in the registry because no extraction record ever minted one - every agent that met it folded it into index:index-span.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}

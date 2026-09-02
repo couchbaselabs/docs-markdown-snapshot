@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-n1ql-feature-controller-named-four-ways",
+  "type": "docs-issue",
+  "issueType": "terminology-inconsistency",
+  "description": "The N1QL Feature Controller setting has a different name on each of the four surfaces that can change it, as set out in query-without-index.md's own Table 1: 'N1QL Feature Controller' (Couchbase Web Console), `--n1ql-feature-control` (CLI, couchbase-cli setting-query), `queryN1QLFeatCtrl` (cluster-level Query Settings REST API), and `n1ql-feat-ctrl` (node-level Query Admin REST API). Four surfaces, four spellings, with the CLI using 'control' where the UI uses 'Controller' and the two REST APIs disagreeing with each other.",
+  "about": [
+    "server/8.0/indexes/query-without-index",
+    "server/8.0/manage/manage-settings/general-settings",
+    "server/8.0/cli/cbcli/couchbase-cli-setting-query"
+  ],
+  "note": "Filed because of what the setting IS rather than for tidiness: it is a bitmask whose bits control unrelated query features, so a reader who guesses the wrong option name on the wrong surface does not get an error - they get a different setting, or a silently cleared set of bits. See docs-issues/server-sequential-scan-switch-on-procedure-uses-xor, which is the same setting documented with the wrong operation. The two defects compound: the procedure is wrong AND the thing it operates on is named differently everywhere.\nCredit where due: Table 1 is a good piece of documentation - it exists precisely to map the four names, and it is how this was found. The defect is upstream of the page, in the product's naming.",
+  "foundDuring": "round-17-indexes-module-first-contact-and-re-extraction",
+  "status": "open"
+}
