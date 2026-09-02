@@ -3,13 +3,39 @@
   "source_version": "Couchbase Lite (Android)",
   "source_path": "couchbase-lite/current/android/query-n1ql-mobile.md",
   "concepts": [
-    { "candidate_id": "cbl:sql-plus-plus-mobile", "label": "SQL++ for Mobile (N1QL Query Strings)", "reused_or_minted": "minted - CBL's own query-string dialect, run against a local embedded database via Database.createQuery(); documented as structurally based on server/'s SQL++ but with named divergences (see query-n1ql-mobile-server-diffs.md) - not reused as identical to a server/ concept because no server/ concept id for statement-level SQL++ was available in the given registry, and behavior differs materially" },
-    { "candidate_id": "cbl:sql-unnest", "label": "UNNEST (SQL++ for Mobile)", "reused_or_minted": "minted - unpacks arrays within a document into individual rows for joining with the parent object" }
+    {
+      "candidate_id": "cbl:sql-plus-plus-mobile",
+      "label": "SQL++ for Mobile (N1QL Query Strings)",
+      "reused_or_minted": "minted - CBL's own query-string dialect, run against a local embedded database via Database.createQuery(); documented as structurally based on server/'s SQL++ but with named divergences (see query-n1ql-mobile-server-diffs.md) - not reused as identical to a server/ concept because no server/ concept id for statement-level SQL++ was available in the given registry, and behavior differs materially"
+    },
+    {
+      "candidate_id": "cbl:sql-unnest",
+      "label": "UNNEST (SQL++ for Mobile)",
+      "reused_or_minted": "minted - unpacks arrays within a document into individual rows for joining with the parent object"
+    }
   ],
   "relations": [
-    { "subject": "cbl:sql-plus-plus-mobile", "predicate": "seeAlso", "object": "cbl:array-index", "reused_or_minted_predicate": "structural markdown link", "evidence": "You can also use a new type of index, the [Array Index](indexing.md#array-indexing), to allow querying with UNNEST more efficiently." },
-    { "subject": "cbl:sql-plus-plus-mobile", "predicate": "behavesDifferentlyUnder", "object": "version:cbl-3.3.0", "reused_or_minted_predicate": "reused - promoted relation, version-gated behavior change", "evidence": "Array literals are not supported in CBL 3.3.0. Attempting to create a query with array literals will return an error." },
-    { "subject": "cbl:sql-unnest", "predicate": "seeAlso", "object": "cbl:query-resultsets", "reused_or_minted_predicate": "structural markdown link", "evidence": "See [Query Resultsets](query-resultsets.md) for how to work with result sets." }
+    {
+      "subject": "cbl:sql-plus-plus-mobile",
+      "predicate": "seeAlso",
+      "object": "cbl:array-index",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "You can also use a new type of index, the [Array Index](indexing.md#array-indexing), to allow querying with UNNEST more efficiently."
+    },
+    {
+      "subject": "cbl:sql-plus-plus-mobile",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:cbl-3-3-0",
+      "reused_or_minted_predicate": "reused - promoted relation, version-gated behavior change",
+      "evidence": "Array literals are not supported in CBL 3.3.0. Attempting to create a query with array literals will return an error."
+    },
+    {
+      "subject": "cbl:sql-unnest",
+      "predicate": "seeAlso",
+      "object": "cbl:query-resultsets",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "See [Query Resultsets](query-resultsets.md) for how to work with result sets."
+    }
   ],
   "cross_product_finding": "This page is the CBL-side syntax reference for the same surface grammar as server/'s SQL++ (SELECT/FROM/WHERE/JOIN/GROUP BY/ORDER BY/LIMIT/OFFSET), and the doc explicitly states the format 'is based on that of Couchbase Server's SQL++ query language'. However, per the batch instructions we checked query-n1ql-mobile-server-diffs.md specifically, and it documents enough real divergence (no NEST, no UNION/INTERSECT/EXCEPT, only LEFT OUTER JOIN, scalar-only comparisons, SQLite-based ordering and boolean logic, query-only - no CRUD, no CREATE INDEX) that we minted a CBL-specific umbrella concept rather than reusing a server/ statement-level concept id verbatim. We do not have visibility into whether server/'s batch minted concept ids for SELECT/JOIN/UNNEST etc. (the given registry only lists privilege/edition/version/index-state concepts), so a coordinator will need to decide whether/how to link cbl:sql-plus-plus-mobile's sub-features to server/'s equivalents."
 }

@@ -3,46 +3,232 @@
   "source_version": "Sync Gateway",
   "source_path": "sync-gateway/current/access-control/sync-function/sync-function.md",
   "concepts": [
-    { "candidate_id": "sgw:sync-function", "label": "Sync Function", "reused_or_minted": "minted - JS-scripted access-control/validation/routing mechanism executed per document revision; no equivalent in server/'s static RBAC or Capella's static role grants" },
-    { "candidate_id": "sgw:collection", "label": "Collection (Sync Function scope)", "reused_or_minted": "minted - stub; the Sync Function is defined per-collection" },
-    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused from roles.md/users.md (same batch)" },
-    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused from roles.md" },
-    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused from users.md" },
-    { "candidate_id": "sgw:guest-user", "label": "GUEST user", "reused_or_minted": "minted - the special anonymous-request identity" },
-    { "candidate_id": "sgw:all-documents-channel", "label": "All Documents / Star Channel", "reused_or_minted": "minted - implicit wildcard-like channel that the default sync function assigns all documents to" },
-    { "candidate_id": "sgw:meta-xattr-arg", "label": "meta argument (XATTR access-grant data)", "reused_or_minted": "minted - v3.0+ optional third sync-function argument referencing a user-defined XATTR that can hold channel/role grant data instead of embedding it in the document body" },
-    { "candidate_id": "version:sgw-3.0", "label": "Sync Gateway 3.0", "reused_or_minted": "minted - SGW-specific version concept per instructions (do not reuse server/'s version:server-* namespace)" },
-    { "candidate_id": "sgw:access-cmd", "label": "access()", "reused_or_minted": "minted - sync-function helper: grants a user or role access to channel(s)" },
-    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "reused_or_minted": "minted - sync-function helper: routes the current document to channel(s)" },
-    { "candidate_id": "sgw:expiry-cmd", "label": "expiry()", "reused_or_minted": "minted - sync-function helper: sets a document TTL" },
-    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()", "reused_or_minted": "minted - sync-function helper: rejects updates unless the acting user has access to a given channel" },
-    { "candidate_id": "sgw:require-admin-cmd", "label": "requireAdmin()", "reused_or_minted": "minted - sync-function helper: rejects updates not made via the Admin REST API" },
-    { "candidate_id": "sgw:require-role-cmd", "label": "requireRole()", "reused_or_minted": "minted - sync-function helper: rejects updates unless the acting user has a given role" },
-    { "candidate_id": "sgw:require-user-cmd", "label": "requireUser()", "reused_or_minted": "minted - sync-function helper: rejects updates not made by a specific user" },
-    { "candidate_id": "sgw:role-cmd", "label": "role()", "reused_or_minted": "minted - sync-function helper: assigns a role to a user" },
-    { "candidate_id": "sgw:throw-cmd", "label": "throw()", "reused_or_minted": "minted - sync-function mechanism: reject/forbid the document update with an HTTP 403" },
-    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused stub from users.md" },
-    { "candidate_id": "sgw:document-revision-event", "label": "Document revision/update event", "reused_or_minted": "minted - the trigger event that invokes the Sync Function; distinct from a document itself" },
-    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway)", "reused_or_minted": "minted - stub, the entity that throw()/access()/channel() act upon" }
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "reused_or_minted": "minted - JS-scripted access-control/validation/routing mechanism executed per document revision; no equivalent in server/'s static RBAC or Capella's static role grants"
+    },
+    {
+      "candidate_id": "sgw:collection",
+      "label": "Collection (Sync Function scope)",
+      "reused_or_minted": "minted - stub; the Sync Function is defined per-collection"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel",
+      "reused_or_minted": "reused from roles.md/users.md (same batch)"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role",
+      "reused_or_minted": "reused from roles.md"
+    },
+    {
+      "candidate_id": "sgw:user",
+      "label": "Sync Gateway User",
+      "reused_or_minted": "reused from users.md"
+    },
+    {
+      "candidate_id": "sgw:guest-user",
+      "label": "GUEST user",
+      "reused_or_minted": "minted - the special anonymous-request identity"
+    },
+    {
+      "candidate_id": "sgw:all-documents-channel",
+      "label": "All Documents / Star Channel",
+      "reused_or_minted": "minted - implicit wildcard-like channel that the default sync function assigns all documents to"
+    },
+    {
+      "candidate_id": "sgw:meta-xattr-arg",
+      "label": "meta argument (XATTR access-grant data)",
+      "reused_or_minted": "minted - v3.0+ optional third sync-function argument referencing a user-defined XATTR that can hold channel/role grant data instead of embedding it in the document body"
+    },
+    {
+      "candidate_id": "version:sgw-3-0",
+      "label": "Sync Gateway 3.0",
+      "reused_or_minted": "minted - SGW-specific version concept per instructions (do not reuse server/'s version:server-* namespace)"
+    },
+    {
+      "candidate_id": "sgw:access-cmd",
+      "label": "access()",
+      "reused_or_minted": "minted - sync-function helper: grants a user or role access to channel(s)"
+    },
+    {
+      "candidate_id": "sgw:channel-cmd",
+      "label": "channel()",
+      "reused_or_minted": "minted - sync-function helper: routes the current document to channel(s)"
+    },
+    {
+      "candidate_id": "sgw:expiry-cmd",
+      "label": "expiry()",
+      "reused_or_minted": "minted - sync-function helper: sets a document TTL"
+    },
+    {
+      "candidate_id": "sgw:require-access-cmd",
+      "label": "requireAccess()",
+      "reused_or_minted": "minted - sync-function helper: rejects updates unless the acting user has access to a given channel"
+    },
+    {
+      "candidate_id": "sgw:require-admin-cmd",
+      "label": "requireAdmin()",
+      "reused_or_minted": "minted - sync-function helper: rejects updates not made via the Admin REST API"
+    },
+    {
+      "candidate_id": "sgw:require-role-cmd",
+      "label": "requireRole()",
+      "reused_or_minted": "minted - sync-function helper: rejects updates unless the acting user has a given role"
+    },
+    {
+      "candidate_id": "sgw:require-user-cmd",
+      "label": "requireUser()",
+      "reused_or_minted": "minted - sync-function helper: rejects updates not made by a specific user"
+    },
+    {
+      "candidate_id": "sgw:role-cmd",
+      "label": "role()",
+      "reused_or_minted": "minted - sync-function helper: assigns a role to a user"
+    },
+    {
+      "candidate_id": "sgw:throw-cmd",
+      "label": "throw()",
+      "reused_or_minted": "minted - sync-function mechanism: reject/forbid the document update with an HTTP 403"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Sync Gateway Admin REST API",
+      "reused_or_minted": "reused stub from users.md"
+    },
+    {
+      "candidate_id": "sgw:document-revision-event",
+      "label": "Document revision/update event",
+      "reused_or_minted": "minted - the trigger event that invokes the Sync Function; distinct from a document itself"
+    },
+    {
+      "candidate_id": "sgw:document",
+      "label": "Document (Sync Gateway)",
+      "reused_or_minted": "minted - stub, the entity that throw()/access()/channel() act upon"
+    }
   ],
   "relations": [
-    { "subject": "sgw:sync-function", "predicate": "triggersOnDocumentRevision", "object": "sgw:document-revision-event", "reused_or_minted_predicate": "minted - describes the sync function's event-driven execution model, with no counterpart in the static privilege/role grant shapes of prior batches", "evidence": "The function executes every time a new revision/update is made to a document." },
-    { "subject": "sgw:sync-function", "predicate": "scopedToCollection", "object": "sgw:collection", "reused_or_minted_predicate": "minted - captures the 1:1 collection-to-sync-function cardinality", "evidence": "Couchbase Sync Gateway defines a Sync Function at the collection level. ... Each collection in the system allows for only one Sync Function." },
-    { "subject": "sgw:sync-function", "predicate": "supportsArgument", "object": "sgw:meta-xattr-arg", "reused_or_minted_predicate": "minted - ties a function to one of its callback arguments", "evidence": "From 3.0 the Sync Function includes support for a new meta argument. This argument references the user defined XATTR that you can use to hold access grant data." },
-    { "subject": "sgw:meta-xattr-arg", "predicate": "availableSince", "object": "version:sgw-3.0", "reused_or_minted_predicate": "reused - direct match to the promoted availableSince shape, but pointed at a minted SGW-specific version concept per instructions", "evidence": "From 3.0 the Sync Function includes support for a new meta argument." },
-    { "subject": "sgw:access-cmd", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "minted in roles.md; reused here", "evidence": "Use the access() function to grant a user access to a channel." },
-    { "subject": "sgw:access-cmd", "predicate": "appliesToRoleWhenPrefixed", "object": "sgw:role", "reused_or_minted_predicate": "minted - encodes a lexical convention (role: string prefix) as the mechanism for a single function to target either a user or a role identity; no equivalent typed-argument split existed in server/ or Capella privilege models", "evidence": "If a user name string begins with role: then the remainder of the string is interpreted as a role name. There's no ambiguity here, because \":\" is an illegal character in a user or role name." },
-    { "subject": "sgw:access-cmd", "predicate": "publicAccessViaGuest", "object": "sgw:guest-user", "reused_or_minted_predicate": "minted - captures the specific idiom of granting the GUEST identity access to make a channel public", "evidence": "Because anonymous requests are authenticated as the user \"GUEST\", you can make a channel and its documents public by calling access with a username of GUEST." },
-    { "subject": "sgw:channel-cmd", "predicate": "routesDocumentToChannel", "object": "sgw:channel", "reused_or_minted_predicate": "minted - a document-routing action distinct from a grant-of-access action (access())", "evidence": "Use the channel() function to route the document to the named channel(s)." },
-    { "subject": "sgw:channel-cmd", "predicate": "seeAlso", "object": "sgw:all-documents-channel", "reused_or_minted_predicate": "structural reference to the default-channel behavior", "evidence": "The assignment of all documents to the collection channel is functionally similar to assigning them to the [All Documents Channel](../access-control-concepts.md#lbl-alldocs-channel)." },
-    { "subject": "sgw:require-access-cmd", "predicate": "requiresChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "minted - rejects an operation unless the actor already holds a channel grant; structurally closest to requiresPrivilege but keyed to a channel rather than a fixed privilege enum", "evidence": "Use the requireAccess() function to reject document updates that are not made by the a user with access to at least one of the given channels" },
-    { "subject": "sgw:require-admin-cmd", "predicate": "requiresAdminApi", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted - gates an operation behind a specific API surface rather than a role/privilege", "evidence": "Use the requireAdmin() function to reject document updates that are not made by the Sync Gateway Admin REST API." },
-    { "subject": "sgw:require-role-cmd", "predicate": "requiresRole", "object": "sgw:role", "reused_or_minted_predicate": "minted - the sync-function analogue of requiresPrivilege/requiresCapellaRole, but the object is an admin-defined arbitrary role rather than a fixed enum member", "evidence": "Use the requireRole() function to reject document updates that are not made by user with the specified role or roles" },
-    { "subject": "sgw:require-user-cmd", "predicate": "requiresUser", "object": "sgw:user", "reused_or_minted_predicate": "minted - rejects unless the actor's identity exactly matches, a finer-grained gate than any role/privilege check in prior batches", "evidence": "Use the requireUser() function to reject document updates that are not made by the specified user or users." },
-    { "subject": "sgw:role-cmd", "predicate": "assignsRole", "object": "sgw:role", "reused_or_minted_predicate": "reused - direct match: the function's stated purpose is to add a role to a user", "evidence": "Use the role() function to add a role to a user. This indirectly gives them access to any channels assigned to that role." },
-    { "subject": "sgw:throw-cmd", "predicate": "preventsDocumentPersistence", "object": "sgw:document", "reused_or_minted_predicate": "minted - no promoted predicate captures 'rejects/aborts an operation on an entity'", "evidence": "Use throw() to prevent a document from persisting or syncing to any other users." },
-    { "subject": "sgw:expiry-cmd", "predicate": "setsDocumentExpiry", "object": "sgw:document", "reused_or_minted_predicate": "minted - TTL-setting behavior, unrelated to any access-control shape in prior batches", "evidence": "Use expiry(value) to set the expiry value (TTL) on the document." },
-    { "subject": "sgw:sync-function", "predicate": "seeAlso", "object": "sgw:access-cmd", "reused_or_minted_predicate": "structural markdown link", "evidence": "to grant a user access to a channel use the [access()](sync-function-api-access-cmd.md) helper function in the Sync Function." }
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "triggersOnDocumentRevision",
+      "object": "sgw:document-revision-event",
+      "reused_or_minted_predicate": "minted - describes the sync function's event-driven execution model, with no counterpart in the static privilege/role grant shapes of prior batches",
+      "evidence": "The function executes every time a new revision/update is made to a document."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "scopedToCollection",
+      "object": "sgw:collection",
+      "reused_or_minted_predicate": "minted - captures the 1:1 collection-to-sync-function cardinality",
+      "evidence": "Couchbase Sync Gateway defines a Sync Function at the collection level. ... Each collection in the system allows for only one Sync Function."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "supportsArgument",
+      "object": "sgw:meta-xattr-arg",
+      "reused_or_minted_predicate": "minted - ties a function to one of its callback arguments",
+      "evidence": "From 3.0 the Sync Function includes support for a new meta argument. This argument references the user defined XATTR that you can use to hold access grant data."
+    },
+    {
+      "subject": "sgw:meta-xattr-arg",
+      "predicate": "availableSince",
+      "object": "version:sgw-3-0",
+      "reused_or_minted_predicate": "reused - direct match to the promoted availableSince shape, but pointed at a minted SGW-specific version concept per instructions",
+      "evidence": "From 3.0 the Sync Function includes support for a new meta argument."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "minted in roles.md; reused here",
+      "evidence": "Use the access() function to grant a user access to a channel."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "appliesToRoleWhenPrefixed",
+      "object": "sgw:role",
+      "reused_or_minted_predicate": "minted - encodes a lexical convention (role: string prefix) as the mechanism for a single function to target either a user or a role identity; no equivalent typed-argument split existed in server/ or Capella privilege models",
+      "evidence": "If a user name string begins with role: then the remainder of the string is interpreted as a role name. There's no ambiguity here, because \":\" is an illegal character in a user or role name."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "publicAccessViaGuest",
+      "object": "sgw:guest-user",
+      "reused_or_minted_predicate": "minted - captures the specific idiom of granting the GUEST identity access to make a channel public",
+      "evidence": "Because anonymous requests are authenticated as the user \"GUEST\", you can make a channel and its documents public by calling access with a username of GUEST."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "routesDocumentToChannel",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "minted - a document-routing action distinct from a grant-of-access action (access())",
+      "evidence": "Use the channel() function to route the document to the named channel(s)."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "seeAlso",
+      "object": "sgw:all-documents-channel",
+      "reused_or_minted_predicate": "structural reference to the default-channel behavior",
+      "evidence": "The assignment of all documents to the collection channel is functionally similar to assigning them to the [All Documents Channel](../access-control-concepts.md#lbl-alldocs-channel)."
+    },
+    {
+      "subject": "sgw:require-access-cmd",
+      "predicate": "requiresChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "minted - rejects an operation unless the actor already holds a channel grant; structurally closest to requiresPrivilege but keyed to a channel rather than a fixed privilege enum",
+      "evidence": "Use the requireAccess() function to reject document updates that are not made by the a user with access to at least one of the given channels"
+    },
+    {
+      "subject": "sgw:require-admin-cmd",
+      "predicate": "requiresAdminApi",
+      "object": "sgw:admin-rest-api",
+      "reused_or_minted_predicate": "minted - gates an operation behind a specific API surface rather than a role/privilege",
+      "evidence": "Use the requireAdmin() function to reject document updates that are not made by the Sync Gateway Admin REST API."
+    },
+    {
+      "subject": "sgw:require-role-cmd",
+      "predicate": "requiresRole",
+      "object": "sgw:role",
+      "reused_or_minted_predicate": "minted - the sync-function analogue of requiresPrivilege/requiresCapellaRole, but the object is an admin-defined arbitrary role rather than a fixed enum member",
+      "evidence": "Use the requireRole() function to reject document updates that are not made by user with the specified role or roles"
+    },
+    {
+      "subject": "sgw:require-user-cmd",
+      "predicate": "requiresUser",
+      "object": "sgw:user",
+      "reused_or_minted_predicate": "minted - rejects unless the actor's identity exactly matches, a finer-grained gate than any role/privilege check in prior batches",
+      "evidence": "Use the requireUser() function to reject document updates that are not made by the specified user or users."
+    },
+    {
+      "subject": "sgw:role-cmd",
+      "predicate": "assignsRole",
+      "object": "sgw:role",
+      "reused_or_minted_predicate": "reused - direct match: the function's stated purpose is to add a role to a user",
+      "evidence": "Use the role() function to add a role to a user. This indirectly gives them access to any channels assigned to that role."
+    },
+    {
+      "subject": "sgw:throw-cmd",
+      "predicate": "preventsDocumentPersistence",
+      "object": "sgw:document",
+      "reused_or_minted_predicate": "minted - no promoted predicate captures 'rejects/aborts an operation on an entity'",
+      "evidence": "Use throw() to prevent a document from persisting or syncing to any other users."
+    },
+    {
+      "subject": "sgw:expiry-cmd",
+      "predicate": "setsDocumentExpiry",
+      "object": "sgw:document",
+      "reused_or_minted_predicate": "minted - TTL-setting behavior, unrelated to any access-control shape in prior batches",
+      "evidence": "Use expiry(value) to set the expiry value (TTL) on the document."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "seeAlso",
+      "object": "sgw:access-cmd",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "to grant a user access to a channel use the [access()](sync-function-api-access-cmd.md) helper function in the Sync Function."
+    }
   ],
   "cross_product_finding": "The sync function is the headline structural departure for this batch: it is imperative JavaScript (ES5), executed per-document-revision, that combines validation, access-control grants, and document routing in one place - versus server/'s static named-privilege-to-operation table and Capella's static role-to-privilege grants, both of which are declarative and evaluated at request time against a fixed catalog. Its helper functions fall into two families with no analogue elsewhere: 'require*' functions (requireRole/requireUser/requireAccess/requireAdmin) that *gate* the current write, and 'access()'/'channel()'/'role()' that *mutate* the access graph (channel membership, role membership) as a side effect of processing a document - i.e., authorization state here is written by application-level script logic, not by an admin-facing grant API alone (though roles/users are still provisioned via REST API, see roles.md/users.md). The role: string-prefix convention is a notable ad hoc mechanism: one identity-argument slot is polymorphic over user vs role by lexical convention rather than a typed field, unlike Capella's credential-type-keyed privilege model.",
   "notable_absence": "There is no fixed enum of channels, roles, or 'privileges' anywhere in this API - channels and roles are freeform strings created implicitly (a channel 'comes into existence when a document is routed to it') or explicitly via REST API. This is the opposite of server/'s closed set of named RBAC privileges and Capella's closed set of management-plane roles."

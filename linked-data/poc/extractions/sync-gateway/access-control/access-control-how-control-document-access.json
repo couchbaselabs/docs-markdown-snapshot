@@ -3,42 +3,205 @@
   "source_version": "Sync Gateway",
   "source_path": "sync-gateway/current/access-control/access-control-how-control-document-access.md",
   "concepts": [
-    { "candidate_id": "sgw:read-access-control", "label": "Read Access Control (channel-grant-based)", "reused_or_minted": "minted - fully defined on this page" },
-    { "candidate_id": "sgw:write-access-control", "label": "Write Access Control (Sync Function-implemented)", "reused_or_minted": "minted - promoted from stub referenced in access-control-model.json; fully defined here" },
-    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:access-cmd", "label": "access()", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:require-user-cmd", "label": "requireUser()", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:require-role-cmd", "label": "requireRole()", "reused_or_minted": "reused from sync-function.json/sync-function-api-require-role-cmd.json" },
-    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:throw-cmd", "label": "throw()", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway)", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:role-name-prefix-convention", "label": "role: name-prefix convention", "reused_or_minted": "reused from sync-function-api-require-role-cmd.json - same lexical convention, here shown applying to access() rather than requireRole()" },
-    { "candidate_id": "sgw:meta-xattr-arg", "label": "meta argument (XATTR access-grant data)", "reused_or_minted": "reused from sync-function.json" },
-    { "candidate_id": "sgw:admin-channels-property", "label": "admin_channels property (collection_access)", "reused_or_minted": "reused from access-control-concepts.json" },
-    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 Configuration File", "reused_or_minted": "reused from access-control-concepts.json" },
-    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config flag", "reused_or_minted": "minted - the specific CLI/config flag gating use of legacy pre-3.0 configuration" },
-    { "candidate_id": "version:sgw-3.0", "label": "Sync Gateway 3.0", "reused_or_minted": "reused from sync-function.json" }
+    {
+      "candidate_id": "sgw:read-access-control",
+      "label": "Read Access Control (channel-grant-based)",
+      "reused_or_minted": "minted - fully defined on this page"
+    },
+    {
+      "candidate_id": "sgw:write-access-control",
+      "label": "Write Access Control (Sync Function-implemented)",
+      "reused_or_minted": "minted - promoted from stub referenced in access-control-model.json; fully defined here"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:user",
+      "label": "Sync Gateway User",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:access-cmd",
+      "label": "access()",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:channel-cmd",
+      "label": "channel()",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:require-user-cmd",
+      "label": "requireUser()",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:require-role-cmd",
+      "label": "requireRole()",
+      "reused_or_minted": "reused from sync-function.json/sync-function-api-require-role-cmd.json"
+    },
+    {
+      "candidate_id": "sgw:require-access-cmd",
+      "label": "requireAccess()",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:throw-cmd",
+      "label": "throw()",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:document",
+      "label": "Document (Sync Gateway)",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:role-name-prefix-convention",
+      "label": "role: name-prefix convention",
+      "reused_or_minted": "reused from sync-function-api-require-role-cmd.json - same lexical convention, here shown applying to access() rather than requireRole()"
+    },
+    {
+      "candidate_id": "sgw:meta-xattr-arg",
+      "label": "meta argument (XATTR access-grant data)",
+      "reused_or_minted": "reused from sync-function.json"
+    },
+    {
+      "candidate_id": "sgw:admin-channels-property",
+      "label": "admin_channels property (collection_access)",
+      "reused_or_minted": "reused from access-control-concepts.json"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Sync Gateway Admin REST API",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "reused_or_minted": "reused from access-control-concepts.json"
+    },
+    {
+      "candidate_id": "sgw:disable-persistent-config-flag",
+      "label": "disable_persistent_config flag",
+      "reused_or_minted": "minted - the specific CLI/config flag gating use of legacy pre-3.0 configuration"
+    },
+    {
+      "candidate_id": "version:sgw-3-0",
+      "label": "Sync Gateway 3.0",
+      "reused_or_minted": "reused from sync-function.json"
+    }
   ],
   "relations": [
-    { "subject": "sgw:user", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused", "evidence": "Every document in the database is assigned a list of channels it is distributed to. Every user (or role) is granted access to a list of channels." },
-    { "subject": "sgw:role", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused", "evidence": "By granting a user (or role) access to a channel, you are imposing access control. Users can only access documents that are channels that they have been granted access to." },
-    { "subject": "sgw:read-access-control", "predicate": "grantedVia", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted - ties the abstract access-control category to one of three concrete provisioning mechanisms this page enumerates; server/'s privilege model has only one grant surface (RBAC role assignment), so this multi-mechanism shape is new", "evidence": "Using `admin_channels` property inside the `collection_access` property using the admin REST API endpoint." },
-    { "subject": "sgw:read-access-control", "predicate": "grantedVia", "object": "sgw:access-cmd", "reused_or_minted_predicate": "reused (minted above)", "evidence": "Dynamically via Sync Function: Programmatically within the sync function using the exposed helper function access()." },
-    { "subject": "sgw:read-access-control", "predicate": "grantedVia", "object": "sgw:legacy-pre-3-config", "reused_or_minted_predicate": "reused (minted above)", "evidence": "Configuration File (pre 3.0): Using the appropriate admin_channels property in the Legacy Pre-3.0 Configuration." },
-    { "subject": "sgw:legacy-pre-3-config", "predicate": "requiresFlagToEnable", "object": "sgw:disable-persistent-config-flag", "reused_or_minted_predicate": "minted - a version-gated feature flag requirement, a shape not present in server/'s or Capella's static privilege/role catalogs", "evidence": "This option is disabled by default in 3.0; to use it, set the disable_persistent_config CLI or configuration file property flag to true and provide a full configuration." },
-    { "subject": "sgw:access-cmd", "predicate": "appliesToRoleWhenPrefixed", "object": "sgw:role-name-prefix-convention", "reused_or_minted_predicate": "reused - established in sync-function-api-require-role-cmd.json for requireRole(); same convention shown here governing access()", "evidence": "The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name." },
-    { "subject": "sgw:channel-cmd", "predicate": "suppliedBy", "object": "sgw:meta-xattr-arg", "reused_or_minted_predicate": "minted - the channel() call's argument can be sourced from the XATTR referenced by the sync function's meta argument rather than from document body content", "evidence": "Optionally, the access grant can be specified via a designated extended attribute (XATTR) — see: Use XATTRs for Access Grants for how to define the XATTR." },
-    { "subject": "sgw:write-access-control", "predicate": "enforcedBy", "object": "sgw:require-user-cmd", "reused_or_minted_predicate": "minted - ties the abstract write-access-control category to the specific helper functions an author must opt into calling; unlike requiresPrivilege, none of this is enforced unless the sync function author writes the call", "evidence": "You can build user validation into your Sync Function... Do this using any combination of: requireUser(), requireRole() or requireAccess()." },
-    { "subject": "sgw:write-access-control", "predicate": "enforcedBy", "object": "sgw:require-role-cmd", "reused_or_minted_predicate": "reused (minted above)", "evidence": "requireRole(\"admin\") (3) throw an error unless the user has the \"admin\" role" },
-    { "subject": "sgw:write-access-control", "predicate": "enforcedBy", "object": "sgw:require-access-cmd", "reused_or_minted_predicate": "reused (minted above)", "evidence": "requireAccess(\"events\") (5) throw an error unless the user has access to read the \"events\" channel" },
-    { "subject": "sgw:admin-rest-api", "predicate": "bypassesRequireChecks", "object": "sgw:write-access-control", "reused_or_minted_predicate": "minted - the single closest analogue in this batch to a coarse 'superuser' bypass; it is a binary admin-vs-not gate on which API port/endpoint was called, not a checked, named privilege the way server/'s requiresPrivilege works", "evidence": "Note that when sending a change to Sync Gateway through the Admin REST API, the Sync Function executes with admin privileges. Calls to requireUser, requireAccess and requireRole will be no-ops, and will always appear successful." },
-    { "subject": "sgw:require-user-cmd", "predicate": "operatesOn", "object": "sgw:document", "reused_or_minted_predicate": "minted - captures that requireUser() checks the acting identity against a document-level owner property recorded on the prior revision, a per-document dynamic check with no equivalent in a static privilege table", "evidence": "This example shows Sync Function logic that allows only the document owner to make changes. It does so by requiring that the current user is the one recorded as an owner on the old document." },
-    { "subject": "sgw:throw-cmd", "predicate": "preventsDocumentPersistence", "object": "sgw:document", "reused_or_minted_predicate": "reused from sync-function.json", "evidence": "throw(\"No channel access granted\")" }
+    {
+      "subject": "sgw:user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Every document in the database is assigned a list of channels it is distributed to. Every user (or role) is granted access to a list of channels."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "By granting a user (or role) access to a channel, you are imposing access control. Users can only access documents that are channels that they have been granted access to."
+    },
+    {
+      "subject": "sgw:read-access-control",
+      "predicate": "grantedVia",
+      "object": "sgw:admin-rest-api",
+      "reused_or_minted_predicate": "minted - ties the abstract access-control category to one of three concrete provisioning mechanisms this page enumerates; server/'s privilege model has only one grant surface (RBAC role assignment), so this multi-mechanism shape is new",
+      "evidence": "Using `admin_channels` property inside the `collection_access` property using the admin REST API endpoint."
+    },
+    {
+      "subject": "sgw:read-access-control",
+      "predicate": "grantedVia",
+      "object": "sgw:access-cmd",
+      "reused_or_minted_predicate": "reused (minted above)",
+      "evidence": "Dynamically via Sync Function: Programmatically within the sync function using the exposed helper function access()."
+    },
+    {
+      "subject": "sgw:read-access-control",
+      "predicate": "grantedVia",
+      "object": "sgw:legacy-pre-3-config",
+      "reused_or_minted_predicate": "reused (minted above)",
+      "evidence": "Configuration File (pre 3.0): Using the appropriate admin_channels property in the Legacy Pre-3.0 Configuration."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:disable-persistent-config-flag",
+      "reused_or_minted_predicate": "minted - a version-gated feature flag requirement, a shape not present in server/'s or Capella's static privilege/role catalogs",
+      "evidence": "This option is disabled by default in 3.0; to use it, set the disable_persistent_config CLI or configuration file property flag to true and provide a full configuration."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "appliesToRoleWhenPrefixed",
+      "object": "sgw:role-name-prefix-convention",
+      "reused_or_minted_predicate": "reused - established in sync-function-api-require-role-cmd.json for requireRole(); same convention shown here governing access()",
+      "evidence": "The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "suppliedBy",
+      "object": "sgw:meta-xattr-arg",
+      "reused_or_minted_predicate": "minted - the channel() call's argument can be sourced from the XATTR referenced by the sync function's meta argument rather than from document body content",
+      "evidence": "Optionally, the access grant can be specified via a designated extended attribute (XATTR) — see: Use XATTRs for Access Grants for how to define the XATTR."
+    },
+    {
+      "subject": "sgw:write-access-control",
+      "predicate": "enforcedBy",
+      "object": "sgw:require-user-cmd",
+      "reused_or_minted_predicate": "minted - ties the abstract write-access-control category to the specific helper functions an author must opt into calling; unlike requiresPrivilege, none of this is enforced unless the sync function author writes the call",
+      "evidence": "You can build user validation into your Sync Function... Do this using any combination of: requireUser(), requireRole() or requireAccess()."
+    },
+    {
+      "subject": "sgw:write-access-control",
+      "predicate": "enforcedBy",
+      "object": "sgw:require-role-cmd",
+      "reused_or_minted_predicate": "reused (minted above)",
+      "evidence": "requireRole(\"admin\") (3) throw an error unless the user has the \"admin\" role"
+    },
+    {
+      "subject": "sgw:write-access-control",
+      "predicate": "enforcedBy",
+      "object": "sgw:require-access-cmd",
+      "reused_or_minted_predicate": "reused (minted above)",
+      "evidence": "requireAccess(\"events\") (5) throw an error unless the user has access to read the \"events\" channel"
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "bypassesRequireChecks",
+      "object": "sgw:write-access-control",
+      "reused_or_minted_predicate": "minted - the single closest analogue in this batch to a coarse 'superuser' bypass; it is a binary admin-vs-not gate on which API port/endpoint was called, not a checked, named privilege the way server/'s requiresPrivilege works",
+      "evidence": "Note that when sending a change to Sync Gateway through the Admin REST API, the Sync Function executes with admin privileges. Calls to requireUser, requireAccess and requireRole will be no-ops, and will always appear successful."
+    },
+    {
+      "subject": "sgw:require-user-cmd",
+      "predicate": "operatesOn",
+      "object": "sgw:document",
+      "reused_or_minted_predicate": "minted - captures that requireUser() checks the acting identity against a document-level owner property recorded on the prior revision, a per-document dynamic check with no equivalent in a static privilege table",
+      "evidence": "This example shows Sync Function logic that allows only the document owner to make changes. It does so by requiring that the current user is the one recorded as an owner on the old document."
+    },
+    {
+      "subject": "sgw:throw-cmd",
+      "predicate": "preventsDocumentPersistence",
+      "object": "sgw:document",
+      "reused_or_minted_predicate": "reused from sync-function.json",
+      "evidence": "throw(\"No channel access granted\")"
+    }
   ],
-  "notable_absence": { "predicate": "requiresPrivilege / any default write gate", "finding": "The page states plainly: 'Channels enforce read access control to the documents. Any user who has access to a document can update the document.' In other words, the DEFAULT is fail-open for writes: read access to a channel implicitly grants write access to any document in it, unless the docs author explicitly writes requireUser/requireRole/requireAccess calls into the sync function to narrow that down. This is the inverse of server/'s RBAC model, where every verb (select, insert, update, delete) has its own separately-granted named privilege and nothing is implied. It is worth flagging clearly to the coordinator: there is no requiresPrivilege-shaped gate for writes in SGW at all - the closest thing is opt-in, hand-authored script logic, not a platform-declared requirement." },
+  "notable_absence": {
+    "predicate": "requiresPrivilege / any default write gate",
+    "finding": "The page states plainly: 'Channels enforce read access control to the documents. Any user who has access to a document can update the document.' In other words, the DEFAULT is fail-open for writes: read access to a channel implicitly grants write access to any document in it, unless the docs author explicitly writes requireUser/requireRole/requireAccess calls into the sync function to narrow that down. This is the inverse of server/'s RBAC model, where every verb (select, insert, update, delete) has its own separately-granted named privilege and nothing is implied. It is worth flagging clearly to the coordinator: there is no requiresPrivilege-shaped gate for writes in SGW at all - the closest thing is opt-in, hand-authored script logic, not a platform-declared requirement."
+  },
   "cross_product_finding": "This page is the strongest evidence in the batch that requiresPrivilege genuinely does not generalize to Sync Gateway. Two access categories exist and they are handled completely differently: (1) READ access is 100% channel-membership-based - a static (though dynamically re-computable) set-membership grant, provisioned via REST API, Sync Function access(), or legacy config; no verb-specific privilege exists at all. (2) WRITE/delete access has no platform-level model whatsoever - it is whatever the customer's own Sync Function JavaScript happens to check, using optional helper functions (requireUser/requireRole/requireAccess) that the platform provides but does not require anyone to call, and even when called, are silently skipped for calls made through the Admin REST API ('execute with admin privileges... will always appear successful'). That bypass is the one place in this whole page that resembles a privilege-style gate, and it is coarse (admin API vs not) rather than named and enumerable like privilege:query-manage-index or requiresCapellaRole. Concretely: server/ says 'this N1QL statement requires privilege X'; Capella says 'this API call requires role Y for credential type Z'; SGW says 'this document write executes whatever arbitrary logic a developer wrote, which may or may not check anything, and which is skipped entirely if you're an admin.' The three models are not variations on a theme - they are answering different questions (what privilege does the operation need vs what role does the caller have vs what does this specific piece of custom code decide to check)."
 }

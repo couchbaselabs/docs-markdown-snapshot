@@ -3,21 +3,85 @@
   "source_version": "Sync Gateway",
   "source_path": "sync-gateway/current/access-control/access-control-how-create-roles.md",
   "concepts": [
-    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused from roles.json" },
-    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 Configuration File", "reused_or_minted": "reused from access-control-concepts.json" },
-    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config flag", "reused_or_minted": "reused from access-control-how-control-document-access.json" },
-    { "candidate_id": "sgw:admin-channels-property", "label": "admin_channels property (collection_access)", "reused_or_minted": "reused - this page shows the property used on a role rather than a user" },
-    { "candidate_id": "version:sgw-3.0", "label": "Sync Gateway 3.0", "reused_or_minted": "reused from sync-function.json" }
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role",
+      "reused_or_minted": "reused from roles.json"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Sync Gateway Admin REST API",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "reused_or_minted": "reused from access-control-concepts.json"
+    },
+    {
+      "candidate_id": "sgw:disable-persistent-config-flag",
+      "label": "disable_persistent_config flag",
+      "reused_or_minted": "reused from access-control-how-control-document-access.json"
+    },
+    {
+      "candidate_id": "sgw:admin-channels-property",
+      "label": "admin_channels property (collection_access)",
+      "reused_or_minted": "reused - this page shows the property used on a role rather than a user"
+    },
+    {
+      "candidate_id": "version:sgw-3-0",
+      "label": "Sync Gateway 3.0",
+      "reused_or_minted": "reused from sync-function.json"
+    }
   ],
   "relations": [
-    { "subject": "sgw:role", "predicate": "createdVia", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted - role creation is an explicit provisioning action distinct from grantsChannelAccess (which describes the resulting relationship, not the mechanism of creation)", "evidence": "Roles are created via the Sync Gateway Admin REST API." },
-    { "subject": "sgw:role", "predicate": "createdVia", "object": "sgw:legacy-pre-3-config", "reused_or_minted_predicate": "reused (minted above)", "evidence": "File-based Configuration Properties: Configure roles in the Legacy Configuration Properties file." },
-    { "subject": "sgw:legacy-pre-3-config", "predicate": "requiresFlagToEnable", "object": "sgw:disable-persistent-config-flag", "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json", "evidence": "To use this option in v3.x, you must use the -disable_persistent_config CLI option." },
-    { "subject": "sgw:role", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused from roles.json", "evidence": "Here we add the Edge1 role which grants channel access to channel1 and channel3 in scope scopename and collection collectionname." },
-    { "subject": "sgw:role", "predicate": "revocationRevokesChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused - established in roles.json for exactly this deletion-cascade behavior", "evidence": "Note that removing a role effectively revokes access to the channel that role is associated with and may mean users will lose access to required documents." },
-    { "subject": "sgw:role", "predicate": "seeAlso", "object": "sgw:admin-channels-property", "reused_or_minted_predicate": "structural reference - the admin_channels array is the field used inside the role-creation call", "evidence": "'{\"name\": \"Edge1\", \"collection_acces\": {\"scopename\": {\"collectionname\": {\"admin_channels\": [\"channel1\", \"channel3\"]}}}}'" }
+    {
+      "subject": "sgw:role",
+      "predicate": "createdVia",
+      "object": "sgw:admin-rest-api",
+      "reused_or_minted_predicate": "minted - role creation is an explicit provisioning action distinct from grantsChannelAccess (which describes the resulting relationship, not the mechanism of creation)",
+      "evidence": "Roles are created via the Sync Gateway Admin REST API."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "createdVia",
+      "object": "sgw:legacy-pre-3-config",
+      "reused_or_minted_predicate": "reused (minted above)",
+      "evidence": "File-based Configuration Properties: Configure roles in the Legacy Configuration Properties file."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:disable-persistent-config-flag",
+      "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json",
+      "evidence": "To use this option in v3.x, you must use the -disable_persistent_config CLI option."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused from roles.json",
+      "evidence": "Here we add the Edge1 role which grants channel access to channel1 and channel3 in scope scopename and collection collectionname."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "revocationRevokesChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused - established in roles.json for exactly this deletion-cascade behavior",
+      "evidence": "Note that removing a role effectively revokes access to the channel that role is associated with and may mean users will lose access to required documents."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "seeAlso",
+      "object": "sgw:admin-channels-property",
+      "reused_or_minted_predicate": "structural reference - the admin_channels array is the field used inside the role-creation call",
+      "evidence": "'{\"name\": \"Edge1\", \"collection_acces\": {\"scopename\": {\"collectionname\": {\"admin_channels\": [\"channel1\", \"channel3\"]}}}}'"
+    }
   ],
   "cross_product_finding": "Creating a role in SGW is structurally closer to defining a small, ad hoc, admin-authored access-control POLICY OBJECT (a name plus a channel list, scoped to a specific scope/collection) than to assigning someone a role from a fixed catalog. There is no enumerable, product-shipped list of role names to choose from (unlike Capella's Organization Owner / Project Admin / etc., or even server/'s fixed privilege names) - 'Edge1' and 'Edge2' in these examples are entirely customer-invented strings, created and destroyed at will via a REST call. The one place this page's shape DOES echo the other batches is the cascading-revocation behavior: deleting a role in SGW silently revokes the channel access it conferred on every member, in the same spirit as revoking a Capella management-plane role removing its granted permissions - but the object being revoked (a channel-membership grant) is still a fundamentally different kind of thing than a privilege or an API-scoped role."
 }

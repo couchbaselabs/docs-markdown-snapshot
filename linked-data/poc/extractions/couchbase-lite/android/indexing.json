@@ -3,19 +3,75 @@
   "source_version": "Couchbase Lite (Android)",
   "source_path": "couchbase-lite/current/android/indexing.md",
   "concepts": [
-    { "candidate_id": "cbl:indexing", "label": "Indexing (Couchbase Lite)", "reused_or_minted": "minted - CBL indexes are a local, embedded (SQLite-backed) mechanism created via API/config objects, not a server-side GSI; do NOT reuse server/'s index-state concept" },
-    { "candidate_id": "cbl:value-index", "label": "Value Index", "reused_or_minted": "minted - basic property index created via ValueIndexConfiguration or IndexBuilder.valueIndex" },
-    { "candidate_id": "cbl:partial-index", "label": "Partial Index", "reused_or_minted": "minted - index restricted by a WHERE clause; selection governed by SQLite's partial-index optimizer rules, not a Couchbase-server concept" },
-    { "candidate_id": "cbl:partial-full-text-index", "label": "Partial Full-Text Index", "reused_or_minted": "minted - unlike partial value indexes, always used when match() is invoked regardless of the optimizer" },
-    { "candidate_id": "cbl:array-index", "label": "Array Index", "reused_or_minted": "minted - indexes values within a nested array to make UNNEST queries more efficient; no analogue in server/'s GSI index types documented so far" }
+    {
+      "candidate_id": "cbl:indexing",
+      "label": "Indexing (Couchbase Lite)",
+      "reused_or_minted": "minted - CBL indexes are a local, embedded (SQLite-backed) mechanism created via API/config objects, not a server-side GSI; do NOT reuse server/'s index-state concept"
+    },
+    {
+      "candidate_id": "cbl:value-index",
+      "label": "Value Index",
+      "reused_or_minted": "minted - basic property index created via ValueIndexConfiguration or IndexBuilder.valueIndex"
+    },
+    {
+      "candidate_id": "cbl:partial-index",
+      "label": "Partial Index",
+      "reused_or_minted": "minted - index restricted by a WHERE clause; selection governed by SQLite's partial-index optimizer rules, not a Couchbase-server concept"
+    },
+    {
+      "candidate_id": "cbl:partial-full-text-index",
+      "label": "Partial Full-Text Index",
+      "reused_or_minted": "minted - unlike partial value indexes, always used when match() is invoked regardless of the optimizer"
+    },
+    {
+      "candidate_id": "cbl:array-index",
+      "label": "Array Index",
+      "reused_or_minted": "minted - indexes values within a nested array to make UNNEST queries more efficient; no analogue in server/'s GSI index types documented so far"
+    }
   ],
   "relations": [
-    { "subject": "cbl:partial-index", "predicate": "availableSince", "object": "version:cbl-3.2.2", "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape", "evidence": "Couchbase Lite 3.2.2 introduced support for Partial Index - Partial Value and Partial Full-Text Indexes." },
-    { "subject": "cbl:array-index", "predicate": "availableSince", "object": "version:cbl-3.2.1", "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape", "evidence": "Couchbase Lite 3.2.1 introduced functionality to optimize querying arrays." },
-    { "subject": "cbl:indexing", "predicate": "behavesDifferentlyUnder", "object": "version:cbl-3.3.0", "reused_or_minted_predicate": "reused - promoted relation fits a version-gated behavior change (array literals rejected)", "evidence": "Array literals are not supported in CBL 3.3.0. Attempting to create a query with array literals will return an error." },
-    { "subject": "cbl:partial-full-text-index", "predicate": "seeAlso", "object": "cbl:full-text-search", "reused_or_minted_predicate": "structural markdown link", "evidence": "For details, see [Using Full-Text Search — Working with Queries](fts.md)." },
-    { "subject": "cbl:array-index", "predicate": "seeAlso", "object": "cbl:sql-plus-plus-mobile", "reused_or_minted_predicate": "structural markdown link (UNNEST cross-reference)", "evidence": "[Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array's values." },
-    { "subject": "cbl:indexing", "predicate": "seeAlso", "object": "cbl:querybuilder", "reused_or_minted_predicate": "structural markdown link", "evidence": "You can use SQL++ or QueryBuilder syntaxes to create an index" }
+    {
+      "subject": "cbl:partial-index",
+      "predicate": "availableSince",
+      "object": "version:cbl-3.2.2",
+      "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape",
+      "evidence": "Couchbase Lite 3.2.2 introduced support for Partial Index - Partial Value and Partial Full-Text Indexes."
+    },
+    {
+      "subject": "cbl:array-index",
+      "predicate": "availableSince",
+      "object": "version:cbl-3.2.1",
+      "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape",
+      "evidence": "Couchbase Lite 3.2.1 introduced functionality to optimize querying arrays."
+    },
+    {
+      "subject": "cbl:indexing",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:cbl-3-3-0",
+      "reused_or_minted_predicate": "reused - promoted relation fits a version-gated behavior change (array literals rejected)",
+      "evidence": "Array literals are not supported in CBL 3.3.0. Attempting to create a query with array literals will return an error."
+    },
+    {
+      "subject": "cbl:partial-full-text-index",
+      "predicate": "seeAlso",
+      "object": "cbl:full-text-search",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "For details, see [Using Full-Text Search — Working with Queries](fts.md)."
+    },
+    {
+      "subject": "cbl:array-index",
+      "predicate": "seeAlso",
+      "object": "cbl:sql-plus-plus-mobile",
+      "reused_or_minted_predicate": "structural markdown link (UNNEST cross-reference)",
+      "evidence": "[Array UNNEST](query-n1ql-mobile.md#lbl-unnest) to unpack arrays within a document to allow joins with the parent object, and array indexes for indexing unnested array's values."
+    },
+    {
+      "subject": "cbl:indexing",
+      "predicate": "seeAlso",
+      "object": "cbl:querybuilder",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "You can use SQL++ or QueryBuilder syntaxes to create an index"
+    }
   ],
   "cross_product_finding": "Indexing here is a purely local, embedded concept (SQLite-backed), with none of server/'s GSI machinery (no index-service, no index-state lifecycle enum, no CREATE INDEX statement executed as a cluster operation - confirmed later by query-n1ql-mobile-server-diffs.md, which states 'CREATE INDEX ... Not Supported' for SQL++ for Mobile). Indexes are created only through platform API/config objects (ValueIndexConfiguration, IndexBuilder, ArrayIndexConfiguration, FullTextIndexConfiguration), never through a SQL++ statement string. Partial indexes are gated by SQLite's own query-optimizer rules (explicitly cited from sqlite.org), which is a mechanism with no counterpart in server/'s or Capella's access-control or index vocabularies. Array indexing is a CBL-specific optimization for UNNEST that also has no server/ or Capella analogue found so far.",
   "notable_absence": "No index-state lifecycle enum (comparable to server/'s GSI index-state) is documented on this page - index creation/deletion via the API appears synchronous from the developer's point of view, with no 'building/online/deferred' style states described."

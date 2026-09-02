@@ -3,24 +3,102 @@
   "source_version": "Sync Gateway",
   "source_path": "sync-gateway/current/access-control/access-control-model.md",
   "concepts": [
-    { "candidate_id": "sgw:channel", "label": "Channel", "reused_or_minted": "reused from roles.json/access-control-concepts.json (same batch)" },
-    { "candidate_id": "sgw:role", "label": "Role", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:user", "label": "Sync Gateway User", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:sync-function", "label": "Sync Function", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:collection", "label": "Collection (Sync Function scope)", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "reused_or_minted": "reused" },
-    { "candidate_id": "sgw:channel-access-revocation", "label": "Channel Access Revocation (auto-purge on loss of channel access)", "reused_or_minted": "reused from access-control-concepts.json - this page carries the identical revocation section verbatim" },
-    { "candidate_id": "version:sgw-2.x", "label": "Sync Gateway 2.x", "reused_or_minted": "reused from access-control-concepts.json" },
-    { "candidate_id": "sgw:write-access-control", "label": "Write Access Control (Sync Function-implemented)", "reused_or_minted": "minted stub - this page only forward-references it; fully defined in access-control-how-control-document-access.json" }
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel",
+      "reused_or_minted": "reused from roles.json/access-control-concepts.json (same batch)"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:user",
+      "label": "Sync Gateway User",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:collection",
+      "label": "Collection (Sync Function scope)",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:channel-cmd",
+      "label": "channel()",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access)",
+      "reused_or_minted": "reused from access-control-concepts.json - this page carries the identical revocation section verbatim"
+    },
+    {
+      "candidate_id": "version:sgw-2-x",
+      "label": "Sync Gateway 2.x",
+      "reused_or_minted": "reused from access-control-concepts.json"
+    },
+    {
+      "candidate_id": "sgw:write-access-control",
+      "label": "Write Access Control (Sync Function-implemented)",
+      "reused_or_minted": "minted stub - this page only forward-references it; fully defined in access-control-how-control-document-access.json"
+    }
   ],
   "relations": [
-    { "subject": "sgw:user", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused - see access-control-concepts.json for the fuller shape discussion", "evidence": "Every Sync Gateway user is granted access to zero, one or more channels." },
-    { "subject": "sgw:role", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused from roles.json", "evidence": "A Sync Gateway role is a way of logically grouping users. Like the channel, a role is granted access to zero, one or more channels." },
-    { "subject": "sgw:sync-function", "predicate": "assignsDefaultChannelNamedAfter", "object": "sgw:collection", "reused_or_minted_predicate": "reused from access-control-concepts.json", "evidence": "By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name." },
-    { "subject": "sgw:channel-access-revocation", "predicate": "behavesDifferentlyUnder", "object": "version:sgw-2.x", "reused_or_minted_predicate": "reused from access-control-concepts.json", "evidence": "3.0 Breaking Change\n\nWhenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.\nIn Sync Gateway 2.x these documents remain in the local database on channel access loss." },
-    { "subject": "sgw:user", "predicate": "grantsChannelAccess", "object": "sgw:channel", "reused_or_minted_predicate": "reused - separate evidence: access grants have no type (read vs write) attached at grant time, only at write-access-control-implementation time", "evidence": "Note that access grants neither confer, nor constrain, the type of access. Instead you can explicitly implement write access controls within the Sync Function; perhaps restricting updates to specific users or roles." },
-    { "subject": "sgw:sync-function", "predicate": "seeAlso", "object": "sgw:write-access-control", "reused_or_minted_predicate": "structural markdown link", "evidence": "for more on this see [Control Write Access](access-control-how-control-document-access.md)." },
-    { "subject": "sgw:sync-function", "predicate": "seeAlso", "object": "sgw:channel", "reused_or_minted_predicate": "structural markdown link", "evidence": "_Related Concepts_: [Access Control Model](access-control-model.md) | [Channels](channels.md) | [Roles](roles.md) | [Sync Function](sync-function/sync-function.md) | [Users](users.md)" }
+    {
+      "subject": "sgw:user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused - see access-control-concepts.json for the fuller shape discussion",
+      "evidence": "Every Sync Gateway user is granted access to zero, one or more channels."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused from roles.json",
+      "evidence": "A Sync Gateway role is a way of logically grouping users. Like the channel, a role is granted access to zero, one or more channels."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "assignsDefaultChannelNamedAfter",
+      "object": "sgw:collection",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json",
+      "evidence": "By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name."
+    },
+    {
+      "subject": "sgw:channel-access-revocation",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:sgw-2-x",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json",
+      "evidence": "3.0 Breaking Change\n\nWhenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.\nIn Sync Gateway 2.x these documents remain in the local database on channel access loss."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "reused - separate evidence: access grants have no type (read vs write) attached at grant time, only at write-access-control-implementation time",
+      "evidence": "Note that access grants neither confer, nor constrain, the type of access. Instead you can explicitly implement write access controls within the Sync Function; perhaps restricting updates to specific users or roles."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "seeAlso",
+      "object": "sgw:write-access-control",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "for more on this see [Control Write Access](access-control-how-control-document-access.md)."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "seeAlso",
+      "object": "sgw:channel",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "_Related Concepts_: [Access Control Model](access-control-model.md) | [Channels](channels.md) | [Roles](roles.md) | [Sync Function](sync-function/sync-function.md) | [Users](users.md)"
+    }
   ],
   "cross_product_finding": "This page is a shorter, near-identical subset of access-control-concepts.md (same Concept/Model/Context/Revocation sections, same quotes) - flagging for the coordinator as a likely duplicate-content pair, similar to the sync-function.json / sync-function-api-require-role-cmd.json split already noted in this tree. The one substantively new sentence here versus the concepts page is the explicit statement that 'access grants neither confer, nor constrain, the type of access' - i.e. a channel grant is undifferentiated with respect to read/write/delete. This is the clearest textual confirmation in the whole batch that SGW's channel model is fundamentally single-dimensional (you either can or can't reach a document via some channel) where server/'s privilege model is inherently multi-dimensional (separate named privileges per verb, e.g. query_select vs query_insert). Any write/delete-level distinction in SGW is bolted on afterward, entirely inside hand-written Sync Function code, not declared anywhere in the channel/role/user grant model itself."
 }

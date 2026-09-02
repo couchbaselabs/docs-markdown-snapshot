@@ -277,6 +277,20 @@ def selftest():
           resolve("version:server-6.5", aliases) != resolve("version:server-6-5", aliases),
           True)
 
+    # Bug #8: a variant cluster must be visible when only ONE spelling is in use.
+    # The registry has to be seeded in as a speller, or a corpus that uniformly
+    # misspells a promoted id produces a cluster of size 1 and is skipped - the
+    # worst case, since every file using it is denied by the gate. Asserted on the
+    # real registry rather than a fixture: pick any promoted concept, and the
+    # punctuation-stripped key must be reachable from a spelling of it that no
+    # extraction record uses.
+    seeded = collections.defaultdict(set)
+    for name in list(con) + list(pred):
+        seeded[variant_key(name)].add(resolve(name, aliases))
+    probe = "version:server-6-5"
+    check("registry is seeded as a speller",
+          probe in seeded.get(variant_key("version:server-6.5"), set()), True)
+
     # Bug #2: seeAlso must change the concept ranking.
     a = scan(keep_see_also=False)
     b = scan(keep_see_also=True)
@@ -363,13 +377,32 @@ def main():
         # Bug #6: ids that are the same term spelled differently. Reported, never
         # merged - the fix belongs in the records, and the gate is right to
         # reject the non-canonical form until then.
+        #
+        # Bug #8 (round 13, found while summarising round 13): the registry has to
+        # be seeded in alongside the corpus. Clustering the corpus against itself
+        # only finds a variant when *both* spellings are in use somewhere in
+        # extractions/. A corpus that uses one spelling uniformly, differing from
+        # the registry's, produces a cluster of size one and is skipped silently -
+        # which is the worst case, not the mildest, because every file using it is
+        # denied by the gate and lands in the unpromoted backlog. Round 13 closed
+        # 13 clusters this way and left 7 (`version:sgw-3.0` at 6 files against the
+        # promoted `version:sgw-3-0`, `n1ql:dropindex` against `n1ql:drop-index`)
+        # invisible to the very check that was meant to enumerate them. Registry
+        # forms are seeded with an empty file set so they show as `0 files`, which
+        # is what distinguishes "the canonical spelling nobody uses" from a genuine
+        # two-way split.
         clusters = collections.defaultdict(lambda: collections.defaultdict(set))
         for table in (d["mentions"], d["predicates"]):
             for name, files in table.items():
                 clusters[variant_key(name)][resolve(name, aliases)] |= files
+        for name in list(con) + list(pred):
+            clusters[variant_key(name)].setdefault(resolve(name, aliases), set())
         print("\n\n=== ID SPELLING VARIANTS ===")
-        print("Same term, more than one spelling. The form with a registry file "
-              "is canonical; the others will be denied by the write-time gate.\n")
+        print("Same term, more than one spelling, counting the registry as a "
+              "speller. The form with a registry file is canonical; the others "
+              "will be denied by the write-time gate. `0 files` means the form "
+              "exists only in the registry - so any cluster whose only used form "
+              "is the NO FILE one is pure false debt.\n")
         found = 0
         for key, forms in sorted(clusters.items()):
             if len(forms) < 2:

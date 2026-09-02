@@ -310,6 +310,15 @@ the thing anywhere (`version:server-6.5`, `n1ql:createfunction`) - aliasing a ty
 enshrines it as vocabulary. Then re-run `--variants`: the count must go down, and
 each surviving cluster must be one you decided to leave.
 
+Read the `0 files` rows. `--variants` seeds the registry in as a speller, so a
+cluster whose *only used* form is the `NO FILE` one is pure false debt: the corpus
+spells the term one way, uniformly, and the registry spells it another. That is the
+worst case rather than the mildest, because every file using it is gate-denied and
+sits in the backlog. It is also the case the check could not see until round 13 -
+it clustered the corpus against itself, so a one-sided variant gave a cluster of
+size one and was skipped in silence, hiding three instances of the very defect
+round 13 was written to fix.
+
 Run this every round, not only when something looks wrong. The loud failure is a
 promoted term reading as unpromoted debt; the quiet one is a genuine candidate
 held *below* the promotion bar because its count is split across two spellings,

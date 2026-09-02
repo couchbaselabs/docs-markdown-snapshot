@@ -2848,6 +2848,34 @@ Variant clusters went **13 → 1**, and the survivor is not an id at all: the
 literals `1` and `1%`, two files each, which is a data-modelling question about
 untyped literal objects rather than a spelling one.
 
+**Correction, made while writing this section up: that count was wrong, because
+`--variants` could not see three of the clusters.** It clustered the corpus
+against *itself*, so a variant is only visible when both spellings appear
+somewhere in `extractions/`. A corpus that uses one spelling **uniformly**,
+differing from the registry's, produces a cluster of size one and is skipped
+silently - and that is the *worst* case, not the mildest, because every file using
+it is denied by the gate and sits in the unpromoted backlog. Three had it:
+`version:sgw-3.0` (6 files, against the promoted `version:sgw-3-0`),
+`version:sgw-2.x` (2) and `version:cbl-3.3.0` (2). The same dot/dash drift as the
+headline finding, in the same namespace, invisible to the very check written to
+enumerate it - and found only because summarising the round's remaining backlog by
+namespace put `version:sgw-3.0` on screen next to a `version:` entry that should
+not have existed.
+
+Fixed in both places rather than just the records. `--variants` now seeds the
+registry in as a speller, printing registry-only forms as `0 files`, so "the
+canonical spelling nobody uses" is distinguishable from a genuine two-way split;
+`recurrence.py --selftest` gained a case asserting it, as bug #8. Then 15
+substitutions across 9 more files, and the count is genuinely **16 → 1**.
+
+Four more punctuation near-misses turned up in the same sweep and are *not*
+defects: `n1ql:dropindex`, `n1ql:dropprimaryindex`, `n1ql:createprimaryindex` and
+`n1ql:alterindex` appear only as `seeAlso` objects - link targets named after
+`dropindex.md`, which are page references rather than concept mentions, and
+`scan()` correctly excludes them. That distinction is round 11's `seeAlso` finding
+paying off twice: the same exclusion that stopped documentation pages outranking
+every real concept also keeps four filename-shaped ids out of this count.
+
 The first pass closed only 10 of the 13, and the reason is a good illustration of
 the same trap the round is about: `ID_RENAMES` was keyed on the `ns:kebab`
 shorthand, while `recurrence.py` canonicalises IRI and shorthand forms together
@@ -3196,7 +3224,16 @@ once, so worth treating as durable rather than one-off:
   the query is correct, but that its corrections accumulate instead of being
   re-derived from memory each round.
 
-  Round 13 supplies an eighth, and it repeats bug #5 in a new script rather than
+  Round 13 supplies an eighth **and a ninth**, and the ninth is in the variant
+  reporter itself: it clustered the corpus against itself, so a spelling the corpus
+  used *uniformly* while the registry used another produced a cluster of size one
+  and was skipped in silence. The check written to enumerate the round's central
+  defect could not see three instances of it, including one at 6 files. This is the
+  sharpest form of the general point, because it is not a wrong answer - it is a
+  question the query cannot ask. `--variants` now seeds the registry in as a
+  speller and `--selftest` asserts it.
+
+  The eighth repeats bug #5 in a new script rather than
   in a new form: `normalise-ids.py`'s rename table was keyed on the `ns:kebab`
   shorthand while `recurrence.py` canonicalises shorthand and IRI together before
   counting, so its first pass silently missed 11 dotted-version occurrences written
@@ -3359,7 +3396,7 @@ once, so worth treating as durable rather than one-off:
   (`hooks/gate-evidence.py`), its verdict log (`hooks/gate-log.jsonl`), the
   dispatch-time registry digest (`registry-digest.py`), the corpus audit
   (`verify-evidence.py`), the promotion report (`verify-promotions.py`), the
-  self-testing recurrence query (`recurrence.py --selftest`, 17 checks), the
+  self-testing recurrence query (`recurrence.py --selftest`, 18 checks), the
   registry path/id check (`verify-registry-ids.py`, 514 records), and the id
   normaliser (`normalise-ids.py`) - which is the odd one out, being the only one
   that *writes*, and the only one that bypasses the gate. It is allowed to because

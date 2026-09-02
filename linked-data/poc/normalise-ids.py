@@ -89,6 +89,14 @@ ID_RENAMES = {
     "version:server-6.5": "version:server-6-5",
     "version:server-6.6": "version:server-6-6",
     "version:server-7.0": "version:server-7-0",
+    # Round 13, second pass. These three were missed by the first pass because
+    # `--variants` clustered the corpus against itself and no extraction record
+    # used the dashed form, so each cluster had size one and was skipped - see
+    # recurrence.py bug #8. They are the worst case of the dot/dash drift, not the
+    # mildest: every file using them was denied by the gate.
+    "version:sgw-3.0": "version:sgw-3-0",
+    "version:sgw-2.x": "version:sgw-2-x",
+    "version:cbl-3.3.0": "version:cbl-3-3-0",
     # Run-together statement names. Minted from the source *filename*
     # (createfunction.md) rather than the statement; every promoted sibling in
     # the n1ql: namespace is kebab-cased.

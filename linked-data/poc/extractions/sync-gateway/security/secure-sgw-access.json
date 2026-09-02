@@ -3,31 +3,143 @@
   "source_version": "Sync Gateway",
   "source_path": "sync-gateway/current/security/secure-sgw-access.md",
   "concepts": [
-    { "candidate_id": "sgw:tls-server-connection", "label": "Sync Gateway <-> Couchbase Server TLS connection", "reused_or_minted": "minted - transport-security concept, not RBAC/channel-shaped at all" },
-    { "candidate_id": "sgw:tls-client-connection", "label": "Client (Couchbase Lite) <-> Sync Gateway TLS connection", "reused_or_minted": "minted - separate transport leg with its own cert/key settings" },
-    { "candidate_id": "sgw:bootstrap-use-tls-server", "label": "bootstrap.use_tls_server setting", "reused_or_minted": "minted - CLI/bootstrap flag that fully disables server-leg TLS (dev/test only)" },
-    { "candidate_id": "sgw:bootstrap-server-tls-skip-verify", "label": "bootstrap.server_tls_skip_verify setting", "reused_or_minted": "minted - CLI/bootstrap flag that keeps encryption but skips certificate verification" },
-    { "candidate_id": "sgw:bootstrap-ca-cert-path", "label": "bootstrap.ca_cert_path setting", "reused_or_minted": "minted - path to root CA cert for verifying the Couchbase Server chain" },
-    { "candidate_id": "sgw:bootstrap-x509-cert-path", "label": "bootstrap.x509_cert_path setting", "reused_or_minted": "minted - client cert for authenticating to Couchbase Server (5.5+)" },
-    { "candidate_id": "sgw:bootstrap-x509-key-path", "label": "bootstrap.x509_key_path setting", "reused_or_minted": "minted - client private key for authenticating to Couchbase Server (5.5+)" },
-    { "candidate_id": "sgw:api-https-tls-cert-path", "label": "api.https.tls_cert_path setting", "reused_or_minted": "minted - TLS certificate served to clients on the client-facing leg" },
-    { "candidate_id": "sgw:api-https-tls-key-path", "label": "api.https.tls_key_path setting", "reused_or_minted": "minted - TLS private key served to clients on the client-facing leg" },
-    { "candidate_id": "sgw:rbac-user", "label": "Couchbase Server RBAC User", "reused_or_minted": "reused from users.md" },
-    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API", "reused_or_minted": "reused from users.md" },
-    { "candidate_id": "sgw:metrics-rest-api", "label": "Sync Gateway Metrics REST API", "reused_or_minted": "minted stub" },
-    { "candidate_id": "version:sgw-3.0", "label": "Sync Gateway 3.0", "reused_or_minted": "reused from sync-function.md" }
+    {
+      "candidate_id": "sgw:tls-server-connection",
+      "label": "Sync Gateway <-> Couchbase Server TLS connection",
+      "reused_or_minted": "minted - transport-security concept, not RBAC/channel-shaped at all"
+    },
+    {
+      "candidate_id": "sgw:tls-client-connection",
+      "label": "Client (Couchbase Lite) <-> Sync Gateway TLS connection",
+      "reused_or_minted": "minted - separate transport leg with its own cert/key settings"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-use-tls-server",
+      "label": "bootstrap.use_tls_server setting",
+      "reused_or_minted": "minted - CLI/bootstrap flag that fully disables server-leg TLS (dev/test only)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-server-tls-skip-verify",
+      "label": "bootstrap.server_tls_skip_verify setting",
+      "reused_or_minted": "minted - CLI/bootstrap flag that keeps encryption but skips certificate verification"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-ca-cert-path",
+      "label": "bootstrap.ca_cert_path setting",
+      "reused_or_minted": "minted - path to root CA cert for verifying the Couchbase Server chain"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-x509-cert-path",
+      "label": "bootstrap.x509_cert_path setting",
+      "reused_or_minted": "minted - client cert for authenticating to Couchbase Server (5.5+)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-x509-key-path",
+      "label": "bootstrap.x509_key_path setting",
+      "reused_or_minted": "minted - client private key for authenticating to Couchbase Server (5.5+)"
+    },
+    {
+      "candidate_id": "sgw:api-https-tls-cert-path",
+      "label": "api.https.tls_cert_path setting",
+      "reused_or_minted": "minted - TLS certificate served to clients on the client-facing leg"
+    },
+    {
+      "candidate_id": "sgw:api-https-tls-key-path",
+      "label": "api.https.tls_key_path setting",
+      "reused_or_minted": "minted - TLS private key served to clients on the client-facing leg"
+    },
+    {
+      "candidate_id": "sgw:rbac-user",
+      "label": "Couchbase Server RBAC User",
+      "reused_or_minted": "reused from users.md"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Sync Gateway Admin REST API",
+      "reused_or_minted": "reused from users.md"
+    },
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Sync Gateway Metrics REST API",
+      "reused_or_minted": "minted stub"
+    },
+    {
+      "candidate_id": "version:sgw-3-0",
+      "label": "Sync Gateway 3.0",
+      "reused_or_minted": "reused from sync-function.md"
+    }
   ],
   "relations": [
-    { "subject": "sgw:tls-server-connection", "predicate": "requiresTLSByDefault", "object": "version:sgw-3.0", "reused_or_minted_predicate": "minted - a default-secure-by-version behavioral fact; different in kind from requiresEdition (edition-gated feature) since this is a default that can be opted out of at any edition", "evidence": "TLS is required by default for all communications with Couchbase Server [1]. TLS v1.3 is supported as the default protocol. [1] From release 3.0" },
-    { "subject": "sgw:bootstrap-use-tls-server", "predicate": "disablesRequirement", "object": "sgw:tls-server-connection", "reused_or_minted_predicate": "minted - a config flag fully disabling a security requirement; not privilege- or role-shaped, so no promoted predicate fits", "evidence": "Set this false in CLI or bootstrap file to turn-off off TLS completely — development and testing only" },
-    { "subject": "sgw:bootstrap-server-tls-skip-verify", "predicate": "skipsCertVerification", "object": "sgw:tls-server-connection", "reused_or_minted_predicate": "minted - a weaker opt-out than full disablement (encryption stays on, verification is skipped); distinct enough from disablesRequirement to warrant its own predicate", "evidence": "Set this true in CLI or bootstrap file to skip server verification of certificates (self- or CA-signed) but leave encryption enabled." },
-    { "subject": "sgw:tls-server-connection", "predicate": "requiresSetting", "object": "sgw:bootstrap-ca-cert-path", "reused_or_minted_predicate": "reused (promoted requiresSetting) - direct match: verifying the cert chain requires this path to be set", "evidence": "Provides the path to the root CA certificate to verify the certificate chain and hostname of the Couchbase Server cluster" },
-    { "subject": "sgw:tls-server-connection", "predicate": "requiresSetting", "object": "sgw:bootstrap-x509-cert-path", "reused_or_minted_predicate": "reused (promoted requiresSetting)", "evidence": "Provides the path to the client's certificate to authenticate against Couchbase Server" },
-    { "subject": "sgw:tls-client-connection", "predicate": "requiresSetting", "object": "sgw:api-https-tls-cert-path", "reused_or_minted_predicate": "reused (promoted requiresSetting) - the client-facing leg needs its own cert/key pair configured for TLS to be served", "evidence": "Provide the path to the TLS certificate file." },
-    { "subject": "sgw:tls-client-connection", "predicate": "requiresTLSByDefault", "object": "sgw:api-https-tls-cert-path", "reused_or_minted_predicate": "reused predicate (minted above for the server leg); reused here for the client leg with its own settings as object", "evidence": "Couchbase Lite client applications must be updated to use TLS when connecting to Sync Gateway nodes running in default mode." },
-    { "subject": "sgw:rbac-user", "predicate": "requiredForApiAccess", "object": "sgw:admin-rest-api", "reused_or_minted_predicate": "minted in users.md; reused here with this page's own evidence quote", "evidence": "the Admin and Metrics REST API security is also enhanced by the use of Couchbase Server RBAC user credentials to authenticate and authorize access — see: REST API Access" },
-    { "subject": "sgw:rbac-user", "predicate": "requiredForApiAccess", "object": "sgw:metrics-rest-api", "reused_or_minted_predicate": "minted in users.md; reused here", "evidence": "the Admin and Metrics REST API security is also enhanced by the use of Couchbase Server RBAC user credentials to authenticate and authorize access" },
-    { "subject": "sgw:tls-server-connection", "predicate": "seeAlso", "object": "sgw:tls-client-connection", "reused_or_minted_predicate": "structural section reference", "evidence": "Related _Security_ topics: [User Authentication](authentication-users.md) | [TLS Certificate Authentication](authentication-certs.md)" }
+    {
+      "subject": "sgw:tls-server-connection",
+      "predicate": "requiresTLSByDefault",
+      "object": "version:sgw-3-0",
+      "reused_or_minted_predicate": "minted - a default-secure-by-version behavioral fact; different in kind from requiresEdition (edition-gated feature) since this is a default that can be opted out of at any edition",
+      "evidence": "TLS is required by default for all communications with Couchbase Server [1]. TLS v1.3 is supported as the default protocol. [1] From release 3.0"
+    },
+    {
+      "subject": "sgw:bootstrap-use-tls-server",
+      "predicate": "disablesRequirement",
+      "object": "sgw:tls-server-connection",
+      "reused_or_minted_predicate": "minted - a config flag fully disabling a security requirement; not privilege- or role-shaped, so no promoted predicate fits",
+      "evidence": "Set this false in CLI or bootstrap file to turn-off off TLS completely — development and testing only"
+    },
+    {
+      "subject": "sgw:bootstrap-server-tls-skip-verify",
+      "predicate": "skipsCertVerification",
+      "object": "sgw:tls-server-connection",
+      "reused_or_minted_predicate": "minted - a weaker opt-out than full disablement (encryption stays on, verification is skipped); distinct enough from disablesRequirement to warrant its own predicate",
+      "evidence": "Set this true in CLI or bootstrap file to skip server verification of certificates (self- or CA-signed) but leave encryption enabled."
+    },
+    {
+      "subject": "sgw:tls-server-connection",
+      "predicate": "requiresSetting",
+      "object": "sgw:bootstrap-ca-cert-path",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - direct match: verifying the cert chain requires this path to be set",
+      "evidence": "Provides the path to the root CA certificate to verify the certificate chain and hostname of the Couchbase Server cluster"
+    },
+    {
+      "subject": "sgw:tls-server-connection",
+      "predicate": "requiresSetting",
+      "object": "sgw:bootstrap-x509-cert-path",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+      "evidence": "Provides the path to the client's certificate to authenticate against Couchbase Server"
+    },
+    {
+      "subject": "sgw:tls-client-connection",
+      "predicate": "requiresSetting",
+      "object": "sgw:api-https-tls-cert-path",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - the client-facing leg needs its own cert/key pair configured for TLS to be served",
+      "evidence": "Provide the path to the TLS certificate file."
+    },
+    {
+      "subject": "sgw:tls-client-connection",
+      "predicate": "requiresTLSByDefault",
+      "object": "sgw:api-https-tls-cert-path",
+      "reused_or_minted_predicate": "reused predicate (minted above for the server leg); reused here for the client leg with its own settings as object",
+      "evidence": "Couchbase Lite client applications must be updated to use TLS when connecting to Sync Gateway nodes running in default mode."
+    },
+    {
+      "subject": "sgw:rbac-user",
+      "predicate": "requiredForApiAccess",
+      "object": "sgw:admin-rest-api",
+      "reused_or_minted_predicate": "minted in users.md; reused here with this page's own evidence quote",
+      "evidence": "the Admin and Metrics REST API security is also enhanced by the use of Couchbase Server RBAC user credentials to authenticate and authorize access — see: REST API Access"
+    },
+    {
+      "subject": "sgw:rbac-user",
+      "predicate": "requiredForApiAccess",
+      "object": "sgw:metrics-rest-api",
+      "reused_or_minted_predicate": "minted in users.md; reused here",
+      "evidence": "the Admin and Metrics REST API security is also enhanced by the use of Couchbase Server RBAC user credentials to authenticate and authorize access"
+    },
+    {
+      "subject": "sgw:tls-server-connection",
+      "predicate": "seeAlso",
+      "object": "sgw:tls-client-connection",
+      "reused_or_minted_predicate": "structural section reference",
+      "evidence": "Related _Security_ topics: [User Authentication](authentication-users.md) | [TLS Certificate Authentication](authentication-certs.md)"
+    }
   ],
   "cross_product_finding": "This page's subject matter - TLS transport security between Sync Gateway<->Couchbase Server and Sync Gateway<->client (Couchbase Lite), configured via bootstrap/CLI flags and cert/key file paths - is a THIRD distinct authorization/security shape alongside this batch's channel/role sync-function model and the server RBAC model reused for Admin/Metrics API access. It is not privilege-shaped, not role-shaped, and not channel-shaped: it is boolean/path-valued configuration gating a default-secure transport behavior, closer in shape to server/'s edition gates (requiresEdition) than to any access-control relation, except the gate here is a config flag rather than a license edition. Also notable: this page again explicitly reuses Couchbase Server RBAC users (from the server/ batch) for Admin/Metrics API auth, reinforcing the users.md finding that Sync Gateway's security model is genuinely two-layered (own channel/role model for data sync + reused server RBAC for administration) plus this transport-security layer that sits underneath both and is orthogonal to either.",
   "notable_absence": "No audit-log-specific permission or setting appears on this page despite the coordinator's expectation that security/ pages might reveal one; TLS/cert configuration is the only 'security' concern covered here. Audit logging, if present in Sync Gateway docs, was not found on this page and may need coverage confirmation from another batch or a follow-up pass."

@@ -112,7 +112,7 @@ the thirteenth a corrective pass over what they left behind:
     statement about an id, so it can repair a wrong concept and never a wrong
     predicate — `requiresServerRole` had been minted with `recurrence: 20` and zero
     records using it. 16 concepts promoted, three aliases that existed only in prose
-    made machine-readable (one recurrence 9 → 50), variant clusters 13 → 1, and two
+    made machine-readable (one recurrence 9 → 50), variant clusters 16 → 1, and two
     new controls: `verify-registry-ids.py` and `normalise-ids.py`.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
@@ -648,9 +648,9 @@ from "still in `extractions/`."
   `extractions/` tree, resolving aliases and both id spellings, with
   `--unpromoted-only` for the backlog, `--variants` for ids that are one term
   spelled two ways, and `--findings` to dump the finding fields in full. It has
-  been wrong in eight distinct ways across rounds 10–13, every one caught because
+  been wrong in nine distinct ways across rounds 10–13, every one caught because
   the output looked implausible and none by anyone reading the code, so all eight
-  are pinned as regression cases in `--selftest` (17 checks) — the point being that
+  are pinned as regression cases in `--selftest` (18 checks) — the point being that
   its corrections accumulate rather than being re-derived from memory each round.
   The worst was structural rather than a bug: until round 12 it counted only the
   **object** slot, so any concept a page was *about* was invisible to the promotion
@@ -1263,10 +1263,18 @@ the *kind* of page mattered more than the tree:**
     across two spellings shows up as nothing at all. Five terms had silently
     suffered it, including `n1ql:explain-function` at recurrence 7, split between
     `explainfunction` and `explain-function` and invisible to every round.
-    Variant clusters went 13 → 1. Note the limit: `--variants` keys on typography,
-    so it catches `createfunction` and never `Application Access` vs
-    `bucket_full_access` — the reason role ids are now filed under internal names,
-    not display labels.
+    Variant clusters went 16 → 1. Note two limits, both found the hard way.
+    `--variants` keys on typography, so it catches `createfunction` and never
+    `Application Access` vs `bucket_full_access` — the reason role ids are now filed
+    under internal names rather than display labels. And it originally clustered the
+    corpus against *itself*, so a spelling the corpus used **uniformly** while the
+    registry used another gave a cluster of size one and was skipped silently: the
+    worst case, since every file using it was gate-denied. Three clusters were
+    invisible for that reason, one at 6 files (`version:sgw-3.0` against the
+    promoted `version:sgw-3-0`) — the round's own headline defect, hidden from the
+    check written to enumerate it, and caught only when a by-namespace summary of
+    the remaining backlog put it on screen. The registry is now seeded in as a
+    speller, asserted by `--selftest` as bug #8.
 68. **A record can be correct extraction of an incorrect source, and no control on
     this shelf can tell.** `role:query-use-sequences` was promoted as "Manage
     Sequences" because `roles.md`'s table heading says so; the internal name is
