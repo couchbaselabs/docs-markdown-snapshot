@@ -3,17 +3,54 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/n1ql-auditing.md",
   "concepts": [
-    { "candidate_id": "n1ql:sql-auditing", "label": "SQL++ Auditing (auditing of SQL++-related activities on Couchbase Capella)", "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention" },
-    { "candidate_id": "capella:audit-events", "label": "Audit Events (general Capella auditing description)", "reused_or_minted": "minted - seeAlso target for the general Capella auditing page this page defers to" },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator (role permitted to configure the audit service)", "reused_or_minted": "minted - no existing namespace fits: not a capella-role:* management-plane role, not rbac-role:role's generic data-plane placeholder, and not sgw:role; using a new 'role:' namespace pending reconciliation" },
-    { "candidate_id": "role:local-user-security-administrator", "label": "Local User Security Administrator (role permitted to configure the audit service)", "reused_or_minted": "minted - same reasoning as role:full-administrator" }
+    {
+      "candidate_id": "n1ql:sql-auditing",
+      "label": "SQL++ Auditing (auditing of SQL++-related activities on Couchbase Capella)",
+      "reused_or_minted": "minted - page-level concept; n1ql: namespace per convention"
+    },
+    {
+      "candidate_id": "capella:audit-events",
+      "label": "Audit Events (general Capella auditing description)",
+      "reused_or_minted": "minted - seeAlso target for the general Capella auditing page this page defers to"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator (role permitted to configure the audit service)",
+      "reused_or_minted": "minted - no existing namespace fits: not a capella-role:* management-plane role, not rbac-role:role's generic data-plane placeholder, and not sgw:role; using a new 'role:' namespace pending reconciliation"
+    },
+    {
+      "candidate_id": "role:local-user-security-administrator",
+      "label": "Local User Security Administrator (role permitted to configure the audit service)",
+      "reused_or_minted": "minted - same reasoning as role:full-administrator"
+    }
   ],
   "relations": [
-    { "subject": "n1ql:sql-auditing", "predicate": "seeAlso", "object": "capella:audit-events", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For a general description of auditing with Couchbase Capella, see [Audit Events](../../security/auditing.md)." },
-    { "subject": "n1ql:sql-auditing", "predicate": "requiresPrivilege", "object": "role:full-administrator", "reused_or_minted_predicate": "reused predicate, applied to a role rather than a named privilege - see cross_component_finding for why this doesn't fit requiresCapellaRole", "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators." },
-    { "subject": "n1ql:sql-auditing", "predicate": "requiresPrivilege", "object": "role:local-user-security-administrator", "reused_or_minted_predicate": "reused predicate, applied to a role rather than a named privilege - see cross_component_finding", "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators." }
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "seeAlso",
+      "object": "capella:audit-events",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For a general description of auditing with Couchbase Capella, see [Audit Events](../../security/auditing.md)."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused predicate, applied to a role rather than a named privilege - see cross_component_finding for why this doesn't fit requiresCapellaRole",
+      "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
+    },
+    {
+      "subject": "n1ql:sql-auditing",
+      "predicate": "requiresServerRole",
+      "object": "role:local-user-security-administrator",
+      "reused_or_minted_predicate": "reused predicate, applied to a role rather than a named privilege - see cross_component_finding",
+      "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
+    }
   ],
-  "notable_absence": { "predicate": "requiresCapellaRole", "finding": "This page gates audit-configuration access by role names ('Full Administrator', 'Local User Security Administrator') that are classic server/ RBAC role names, not members of the capella-role:* management-plane catalog (organization-owner/project-owner/project-data-writer) established in round 2, and not the rbac-role:role generic data-plane placeholder either. No requiresCapellaRole relation was minted because these role names don't belong to that fixed catalog - this looks like server/ prose ported into the Capella docs largely unchanged." },
+  "notable_absence": {
+    "predicate": "requiresCapellaRole",
+    "finding": "This page gates audit-configuration access by role names ('Full Administrator', 'Local User Security Administrator') that are classic server/ RBAC role names, not members of the capella-role:* management-plane catalog (organization-owner/project-owner/project-data-writer) established in round 2, and not the rbac-role:role generic data-plane placeholder either. No requiresCapellaRole relation was minted because these role names don't belong to that fixed catalog - this looks like server/ prose ported into the Capella docs largely unchanged."
+  },
   "cross_component_finding": "The role names gating audit configuration ('Full Administrator', 'Local User Security Administrator') don't match either of Capella's own two established role families in this registry (capella-role:* management-plane roles, or rbac-role:role data-plane RBAC) - suggesting the auditing subsystem's access model wasn't adapted to either of Capella's role taxonomies when this page was written.",
   "cross_product_finding": "Section 'Audit Event Types' cross-references directly into server/ docs for the bulk of the event list: 'Data access operations — see Query and Index Service Events in the Server documentation' - a Capella reference page deferring wholesale to a server/-only page for its main content, rather than restating or adapting it for Capella's model."
 }

@@ -26,7 +26,7 @@
     {
       "subject": "fts:dynamic-index",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "The preferred method as of version 7.0 is shown in [Creating a Dynamic Index](fts-creating-index-from-UI-classic-editor-dynamic.md) above."
     },

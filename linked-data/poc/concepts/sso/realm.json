@@ -3,6 +3,7 @@
   "label": "Realm (Capella SSO)",
   "type": "the SSO configuration boundary an identity provider is registered under",
   "promoted": true,
-  "recurrence": 8,
-  "note": "Consolidates two independent mints of the same real concept: 'sso:realm' (most files) and 'auth:realm' (one batch) - kept under sso: since that's the higher-recurrence, more specific namespace, with auth: reserved for the higher-level authentication-vs-authorization axis concepts (auth:sso, auth:mfa)."
+  "recurrence": 12,
+  "aliases": ["auth:realm"],
+  "note": "Consolidates two independent mints of the same real concept: 'sso:realm' (most files) and 'auth:realm' (one batch) - kept under sso: since that's the higher-recurrence, more specific namespace, with auth: reserved for the higher-level authentication-vs-authorization axis concepts (auth:sso, auth:mfa).\n\nRound 13: the `aliases` array above is new, and this is the point of the round-13 variant sweep rather than an afterthought. The consolidation was decided and written down in this note, in prose, at promotion time - but no machine-readable alias was ever recorded, so every tool in the pipeline continued to read auth:realm's 4 files as unpromoted debt, and it duly resurfaced two rounds later in the backlog sweep that prompted this round. A decision recorded only in prose is not a consolidation; it is a note *about* a consolidation. Recurrence also corrected from 8 to 12, the true union of both spellings.\n\nMerge evidence, since the shared name alone would not license it: manage-identity-providers.md states 'Realms manage the link with your identity provider (IdP). Each organization supports one realm', and the auth:realm and sso:realm records agree on every asserted property - one per organization, links to an IdP, requires the Organization Owner role to manage, and deleting it revokes the permissions of all SSO users connected through it."
 }

@@ -3,33 +3,121 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md",
   "concepts": [
-    { "candidate_id": "n1ql:query-monitoring", "label": "Query management and monitoring system keyspaces", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-manage/monitoring-n1ql-query.json for the same mechanism" },
-    { "candidate_id": "n1ql:system-vitals", "label": "system:vitals catalog", "reused_or_minted": "reused - matches the Capella record for the same catalog" },
-    { "candidate_id": "n1ql:system-active-requests", "label": "system:active_requests catalog", "reused_or_minted": "reused - matches the Capella record for the same catalog" },
-    { "candidate_id": "n1ql:system-prepareds", "label": "system:prepareds catalog", "reused_or_minted": "reused - matches the Capella record for the same catalog" },
-    { "candidate_id": "n1ql:system-completed-requests", "label": "system:completed_requests catalog", "reused_or_minted": "reused - matches the Capella record for the same catalog" },
-    { "candidate_id": "n1ql:query-profiling", "label": "Query Profiling (off/phases/timings)", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:query-profiling-level-values", "label": "Query profiling level enum (off | phases | timings)", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:system-completed-requests-history", "label": "system:completed_requests_history keyspace (SQL++ access to archived request files)", "reused_or_minted": "minted - Server-only keyspace; absent from the Capella page and from the Capella extraction record, and no existing id covers it" },
-    { "candidate_id": "n1ql:completed-request-streaming", "label": "Completed request streaming to disk (GZIP archives in the server logs directory)", "reused_or_minted": "minted - Server-only feature introduced in 7.6.4; no existing id" },
-    { "candidate_id": "n1ql:completed-request-archive-file", "label": "Archived request file (local_request_log GZIP archive)", "reused_or_minted": "minted - the on-disk artefact of completed request streaming; no existing id" },
-    { "candidate_id": "n1ql:completed-request-logging-qualifiers", "label": "Completed request logging qualifiers (threshold/aborted/error/client/user/context/statement/plan/errors, logical OR)", "reused_or_minted": "minted - Server-only configuration vocabulary; the Capella page has no Configure Completed Requests section at all" },
-    { "candidate_id": "n1ql:completed-request-tagged-set", "label": "Tagged set of completed request logging qualifiers (logical AND, ~tag field)", "reused_or_minted": "minted - Server-only; no existing id" },
-    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level query settings (/admin/settings endpoint)", "reused_or_minted": "minted - shared with the server query-settings record in this batch; the Capella docs do not expose node-level settings" },
-    { "candidate_id": "rbac-role:query-system-catalog", "label": "Query System Catalog role (query_system_catalog)", "reused_or_minted": "minted - the registry only has the generic placeholder rbac-role:role; this is a specific named Server RBAC role. Deliberately NOT merged with privilege:query-manage-system-catalog from the Capella query-awr record: server/current/learn/security/roles.md documents 'Query System Catalog (query_system_catalog)' and 'Query Manage System Catalog (query_manage_system_catalog)' as two distinct roles" },
-    { "candidate_id": "setting:profile", "label": "profile query setting (node-level and request-level)", "reused_or_minted": "minted - settings namespace does not yet exist in the registry; profile is referenced as the constraint that turns query profiling on" },
-    { "candidate_id": "setting:completed-threshold", "label": "completed-threshold node-level setting (default 1000 ms)", "reused_or_minted": "minted - referenced elsewhere on this page as the constraint that gates entry into system:completed_requests" },
-    { "candidate_id": "setting:completed-limit", "label": "completed-limit node-level setting (default 4000)", "reused_or_minted": "minted - referenced as the constraint bounding system:completed_requests retention" },
-    { "candidate_id": "setting:completed-stream-size", "label": "completed-stream-size node-level setting (file size in MiB; 0 disables streaming)", "reused_or_minted": "minted - shared id with the server query-settings record in this batch; the setting that gates completed request streaming" },
-    { "candidate_id": "api:query-admin-rest-api", "label": "Query Admin REST API (/admin/... endpoints, port 8093)", "reused_or_minted": "minted - the Server access surface for query monitoring; the registry only has capella:data-api and capella:management-api, which are different surfaces" },
-    { "candidate_id": "tool:query-workbench", "label": "Query Workbench (Couchbase Web Console query UI)", "reused_or_minted": "minted - deliberately NOT merged with the registry's capella:query-tab; the Capella page names the Query tab, this page names the Query Workbench with a Couchbase-Web-Console-specific Query Preferences panel" },
-    { "candidate_id": "version:server-7-6-4", "label": "Couchbase Server 7.6.4", "reused_or_minted": "minted - matches the existing version:server-7-0 / version:server-6-5 style; no 7.6.x version concept exists yet" },
-    { "candidate_id": "n1ql:request-level-query-parameters", "label": "Request-Level Query Parameters", "reused_or_minted": "reused - matches the Capella query-settings record and the server query-settings record in this batch; declared here because a relation on this page points at it" }
+    {
+      "candidate_id": "n1ql:query-monitoring",
+      "label": "Query management and monitoring system keyspaces",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-manage/monitoring-n1ql-query.json for the same mechanism"
+    },
+    {
+      "candidate_id": "n1ql:system-vitals",
+      "label": "system:vitals catalog",
+      "reused_or_minted": "reused - matches the Capella record for the same catalog"
+    },
+    {
+      "candidate_id": "n1ql:system-active-requests",
+      "label": "system:active_requests catalog",
+      "reused_or_minted": "reused - matches the Capella record for the same catalog"
+    },
+    {
+      "candidate_id": "n1ql:system-prepareds",
+      "label": "system:prepareds catalog",
+      "reused_or_minted": "reused - matches the Capella record for the same catalog"
+    },
+    {
+      "candidate_id": "n1ql:system-completed-requests",
+      "label": "system:completed_requests catalog",
+      "reused_or_minted": "reused - matches the Capella record for the same catalog"
+    },
+    {
+      "candidate_id": "n1ql:query-profiling",
+      "label": "Query Profiling (off/phases/timings)",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:query-profiling-level-values",
+      "label": "Query profiling level enum (off | phases | timings)",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:system-completed-requests-history",
+      "label": "system:completed_requests_history keyspace (SQL++ access to archived request files)",
+      "reused_or_minted": "minted - Server-only keyspace; absent from the Capella page and from the Capella extraction record, and no existing id covers it"
+    },
+    {
+      "candidate_id": "n1ql:completed-request-streaming",
+      "label": "Completed request streaming to disk (GZIP archives in the server logs directory)",
+      "reused_or_minted": "minted - Server-only feature introduced in 7.6.4; no existing id"
+    },
+    {
+      "candidate_id": "n1ql:completed-request-archive-file",
+      "label": "Archived request file (local_request_log GZIP archive)",
+      "reused_or_minted": "minted - the on-disk artefact of completed request streaming; no existing id"
+    },
+    {
+      "candidate_id": "n1ql:completed-request-logging-qualifiers",
+      "label": "Completed request logging qualifiers (threshold/aborted/error/client/user/context/statement/plan/errors, logical OR)",
+      "reused_or_minted": "minted - Server-only configuration vocabulary; the Capella page has no Configure Completed Requests section at all"
+    },
+    {
+      "candidate_id": "n1ql:completed-request-tagged-set",
+      "label": "Tagged set of completed request logging qualifiers (logical AND, ~tag field)",
+      "reused_or_minted": "minted - Server-only; no existing id"
+    },
+    {
+      "candidate_id": "n1ql:node-level-query-settings",
+      "label": "Node-level query settings (/admin/settings endpoint)",
+      "reused_or_minted": "minted - shared with the server query-settings record in this batch; the Capella docs do not expose node-level settings"
+    },
+    {
+      "candidate_id": "rbac-role:query-system-catalog",
+      "label": "Query System Catalog role (query_system_catalog)",
+      "reused_or_minted": "minted - the registry only has the generic placeholder rbac-role:role; this is a specific named Server RBAC role. Deliberately NOT merged with privilege:query-manage-system-catalog from the Capella query-awr record: server/current/learn/security/roles.md documents 'Query System Catalog (query_system_catalog)' and 'Query Manage System Catalog (query_manage_system_catalog)' as two distinct roles"
+    },
+    {
+      "candidate_id": "setting:profile",
+      "label": "profile query setting (node-level and request-level)",
+      "reused_or_minted": "minted - settings namespace does not yet exist in the registry; profile is referenced as the constraint that turns query profiling on"
+    },
+    {
+      "candidate_id": "setting:completed-threshold",
+      "label": "completed-threshold node-level setting (default 1000 ms)",
+      "reused_or_minted": "minted - referenced elsewhere on this page as the constraint that gates entry into system:completed_requests"
+    },
+    {
+      "candidate_id": "setting:completed-limit",
+      "label": "completed-limit node-level setting (default 4000)",
+      "reused_or_minted": "minted - referenced as the constraint bounding system:completed_requests retention"
+    },
+    {
+      "candidate_id": "setting:completed-stream-size",
+      "label": "completed-stream-size node-level setting (file size in MiB; 0 disables streaming)",
+      "reused_or_minted": "minted - shared id with the server query-settings record in this batch; the setting that gates completed request streaming"
+    },
+    {
+      "candidate_id": "api:query-admin-rest-api",
+      "label": "Query Admin REST API (/admin/... endpoints, port 8093)",
+      "reused_or_minted": "minted - the Server access surface for query monitoring; the registry only has capella:data-api and capella:management-api, which are different surfaces"
+    },
+    {
+      "candidate_id": "tool:query-workbench",
+      "label": "Query Workbench (Couchbase Web Console query UI)",
+      "reused_or_minted": "minted - deliberately NOT merged with the registry's capella:query-tab; the Capella page names the Query tab, this page names the Query Workbench with a Couchbase-Web-Console-specific Query Preferences panel"
+    },
+    {
+      "candidate_id": "version:server-7-6-4",
+      "label": "Couchbase Server 7.6.4",
+      "reused_or_minted": "minted - matches the existing version:server-7-0 / version:server-6-5 style; no 7.6.x version concept exists yet"
+    },
+    {
+      "candidate_id": "n1ql:request-level-query-parameters",
+      "label": "Request-Level Query Parameters",
+      "reused_or_minted": "reused - matches the Capella query-settings record and the server query-settings record in this batch; declared here because a relation on this page points at it"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:query-monitoring",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:query-system-catalog",
       "reused_or_minted_predicate": "reused - requiresRole is in the promoted predicate list; object minted",
       "evidence": "Users must have the **Query System Catalog** role to access restricted system keyspaces. For more information about user roles, see [Authorization](../../learn/security/authorization-overview.md)."

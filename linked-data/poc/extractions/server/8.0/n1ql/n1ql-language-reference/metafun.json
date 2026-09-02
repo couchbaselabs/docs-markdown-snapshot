@@ -3,38 +3,166 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/metafun.md",
   "concepts": [
-    { "candidate_id": "n1ql:misc-utility-functions", "label": "Miscellaneous Utility Functions (page-level family: ABORT, BASE64, CURRENT_USERS, DS_VERSION, EVALUATE, EXTRACTDDL, FINDERR, FLATTEN_KEYS, FORMALIZE, HASHBYTES, LEN, META, NODE_NAME, NODE_UUID, PAIRS, REDACT, UNNEST_POS, UUID, VERSION)", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/metafun.json" },
-    { "candidate_id": "n1ql:extractddl", "label": "EXTRACTDDL(filter [, options]) function", "reused_or_minted": "reused - matches the Capella record for the same function" },
-    { "candidate_id": "n1ql:extractddl-flag-function", "label": "EXTRACTDDL 'function' flag (extracts CREATE OR REPLACE FUNCTION statements)", "reused_or_minted": "minted - needed as a distinct subject because this one flag value carries a version gate (8.0.1) later than the function that hosts it (8.0); the Capella record had no such gate to model" },
-    { "candidate_id": "n1ql:extractddl-flag-prepared", "label": "EXTRACTDDL 'prepared' flag (extracts PREPARE statements)", "reused_or_minted": "minted - sibling of the flag above, gated on the same later version" },
-    { "candidate_id": "n1ql:fn-abort", "label": "ABORT(expression) function", "reused_or_minted": "minted - carries its own constraint: it raises two different error codes depending on execution context" },
-    { "candidate_id": "n1ql:fn-evaluate", "label": "EVALUATE(statement [, params]) function", "reused_or_minted": "minted - carries its own constraints (read-only requirement, privilege inheritance, memory materialisation)" },
-    { "candidate_id": "n1ql:fn-finderr", "label": "FINDERR(expression) function", "reused_or_minted": "minted - subject of a version gate on the Capella twin and of a cross-reference to a CLI tool that exists only in Server" },
-    { "candidate_id": "n1ql:fn-hashbytes", "label": "HASHBYTES(input [, options]) function", "reused_or_minted": "minted - subject of a version gate on the Capella twin" },
-    { "candidate_id": "n1ql:fn-flatten-keys", "label": "FLATTEN_KEYS(expr1 [modifiers], ...) function", "reused_or_minted": "minted - carries a hard placement constraint (usable only in an array index key definition)" },
-    { "candidate_id": "n1ql:fn-formalize", "label": "FORMALIZE(statement [, query_context]) function", "reused_or_minted": "minted - subject of an explicit synonym declaration" },
-    { "candidate_id": "n1ql:fn-formalise", "label": "FORMALISE(statement [, query_context]) function (spelling variant)", "reused_or_minted": "minted - object of the synonym declaration; not merged with FORMALIZE because the ontology should record the synonymy rather than assume it" },
-    { "candidate_id": "n1ql:fn-base64", "label": "BASE64(expression) function", "reused_or_minted": "minted - subject of an explicit alias declaration" },
-    { "candidate_id": "n1ql:fn-base64-encode", "label": "BASE64_ENCODE(expression) function", "reused_or_minted": "minted - declared alias of BASE64()" },
-    { "candidate_id": "n1ql:fn-base64-decode", "label": "BASE64_DECODE(expression) function", "reused_or_minted": "minted - the inverse operation, not an alias" },
-    { "candidate_id": "n1ql:fn-meta", "label": "META([keyspace_expr])[.property] function", "reused_or_minted": "reused - same id used in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch" },
-    { "candidate_id": "n1ql:fn-unnest-pos", "label": "UNNEST_POS(expr) function", "reused_or_minted": "minted - subject of an explicit synonym declaration" },
-    { "candidate_id": "n1ql:fn-unnest-position", "label": "UNNEST_POSITION(expr) function", "reused_or_minted": "minted - declared synonym of UNNEST_POS()" },
-    { "candidate_id": "n1ql:fn-redact", "label": "REDACT(expression [, filter-obj...]) function", "reused_or_minted": "minted - carries a documented type restriction (masking applies to string values only)" },
-    { "candidate_id": "n1ql:fn-ds-version", "label": "DS_VERSION() function", "reused_or_minted": "minted - a function whose entire purpose is to return a version/edition string, which makes it directly relevant to this wave's target vocabulary" },
-    { "candidate_id": "n1ql:xattrs-in-query", "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query", "reused_or_minted": "reused - same id minted in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch; the same feature is gated again here" },
-    { "candidate_id": "data:virtual-xattr", "label": "Virtual extended attribute (e.g. META().xattrs.`$document`)", "reused_or_minted": "minted - no existing id; a distinct kind of XATTR (server-synthesised, read-only) from the user XATTRs modelled by n1ql:xattrs-in-query, and the page treats them separately with its own performance caveat" },
-    { "candidate_id": "n1ql:error-5010", "label": "Error 5010 'not a readonly request'", "reused_or_minted": "minted - the page cites this code as *behaviour* of EVALUATE(), which is exactly the case the brief flags as making an error code worth modelling" },
-    { "candidate_id": "n1ql:error-5011", "label": "Error 5011 'Abort: «reason»'", "reused_or_minted": "minted - cited as the documented behaviour of ABORT() in a query" },
-    { "candidate_id": "n1ql:error-10109", "label": "Error 10109 (ABORT() raised inside a user-defined function)", "reused_or_minted": "minted - cited as the documented behaviour of ABORT() inside a UDF; distinct from 5011, and the pair is the evidence for a context-dependent behaviour" },
-    { "candidate_id": "n1ql:sql-error-codes", "label": "SQL++ Error Codes reference", "reused_or_minted": "reused - same id as the Capella record and as n1ql-error-codes.json in this batch" },
-    { "candidate_id": "cli:finderr", "label": "finderr command line tool", "reused_or_minted": "minted - no cli: namespace concept exists yet; needed because this cross-reference exists only in the Server page (Capella has no CLI surface), making it a genuine product-shape difference rather than a link difference" },
-    { "candidate_id": "privilege:query-system-catalog", "label": "query_system_catalog role/privilege", "reused_or_minted": "reused - established in prior extraction records (cloud/n1ql/n1ql-manage/query-awr.json and the system-catalog pages); note this page calls it a 'role' while other pages treat it as a privilege - see cross_component_finding" },
-    { "candidate_id": "n1ql:array-index", "label": "Array index (index whose key includes flattened array expressions)", "reused_or_minted": "minted - needed as the object of FLATTEN_KEYS's placement constraint; not the same concept as index-type:gsi (the technology axis)" },
-    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement (inline user-defined functions)", "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records for createfunction.md" },
-    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/stringfun.json and server/current/.../createindex.json" },
-    { "candidate_id": "version:server-8-0-1", "label": "Couchbase Server 8.0.1", "reused_or_minted": "minted - no 8.0.x concept exists; a patch-level id is required because this page gates two EXTRACTDDL flag values on 8.0.1 specifically, one minor release later than the function itself. This is the first *forward-looking* version reference found in this wave: an 8.0 page citing a release later than itself" },
-    { "candidate_id": "version:server-7-6-2", "label": "Couchbase Server 7.6.2", "reused_or_minted": "reused - established in server/current/.../createindex.json and searchfun.json in this wave" }
+    {
+      "candidate_id": "n1ql:misc-utility-functions",
+      "label": "Miscellaneous Utility Functions (page-level family: ABORT, BASE64, CURRENT_USERS, DS_VERSION, EVALUATE, EXTRACTDDL, FINDERR, FLATTEN_KEYS, FORMALIZE, HASHBYTES, LEN, META, NODE_NAME, NODE_UUID, PAIRS, REDACT, UNNEST_POS, UUID, VERSION)",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/metafun.json"
+    },
+    {
+      "candidate_id": "n1ql:extractddl",
+      "label": "EXTRACTDDL(filter [, options]) function",
+      "reused_or_minted": "reused - matches the Capella record for the same function"
+    },
+    {
+      "candidate_id": "n1ql:extractddl-flag-function",
+      "label": "EXTRACTDDL 'function' flag (extracts CREATE OR REPLACE FUNCTION statements)",
+      "reused_or_minted": "minted - needed as a distinct subject because this one flag value carries a version gate (8.0.1) later than the function that hosts it (8.0); the Capella record had no such gate to model"
+    },
+    {
+      "candidate_id": "n1ql:extractddl-flag-prepared",
+      "label": "EXTRACTDDL 'prepared' flag (extracts PREPARE statements)",
+      "reused_or_minted": "minted - sibling of the flag above, gated on the same later version"
+    },
+    {
+      "candidate_id": "n1ql:fn-abort",
+      "label": "ABORT(expression) function",
+      "reused_or_minted": "minted - carries its own constraint: it raises two different error codes depending on execution context"
+    },
+    {
+      "candidate_id": "n1ql:fn-evaluate",
+      "label": "EVALUATE(statement [, params]) function",
+      "reused_or_minted": "minted - carries its own constraints (read-only requirement, privilege inheritance, memory materialisation)"
+    },
+    {
+      "candidate_id": "n1ql:fn-finderr",
+      "label": "FINDERR(expression) function",
+      "reused_or_minted": "minted - subject of a version gate on the Capella twin and of a cross-reference to a CLI tool that exists only in Server"
+    },
+    {
+      "candidate_id": "n1ql:fn-hashbytes",
+      "label": "HASHBYTES(input [, options]) function",
+      "reused_or_minted": "minted - subject of a version gate on the Capella twin"
+    },
+    {
+      "candidate_id": "n1ql:fn-flatten-keys",
+      "label": "FLATTEN_KEYS(expr1 [modifiers], ...) function",
+      "reused_or_minted": "minted - carries a hard placement constraint (usable only in an array index key definition)"
+    },
+    {
+      "candidate_id": "n1ql:fn-formalize",
+      "label": "FORMALIZE(statement [, query_context]) function",
+      "reused_or_minted": "minted - subject of an explicit synonym declaration"
+    },
+    {
+      "candidate_id": "n1ql:fn-formalise",
+      "label": "FORMALISE(statement [, query_context]) function (spelling variant)",
+      "reused_or_minted": "minted - object of the synonym declaration; not merged with FORMALIZE because the ontology should record the synonymy rather than assume it"
+    },
+    {
+      "candidate_id": "n1ql:fn-base64",
+      "label": "BASE64(expression) function",
+      "reused_or_minted": "minted - subject of an explicit alias declaration"
+    },
+    {
+      "candidate_id": "n1ql:fn-base64-encode",
+      "label": "BASE64_ENCODE(expression) function",
+      "reused_or_minted": "minted - declared alias of BASE64()"
+    },
+    {
+      "candidate_id": "n1ql:fn-base64-decode",
+      "label": "BASE64_DECODE(expression) function",
+      "reused_or_minted": "minted - the inverse operation, not an alias"
+    },
+    {
+      "candidate_id": "n1ql:fn-meta",
+      "label": "META([keyspace_expr])[.property] function",
+      "reused_or_minted": "reused - same id used in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch"
+    },
+    {
+      "candidate_id": "n1ql:fn-unnest-pos",
+      "label": "UNNEST_POS(expr) function",
+      "reused_or_minted": "minted - subject of an explicit synonym declaration"
+    },
+    {
+      "candidate_id": "n1ql:fn-unnest-position",
+      "label": "UNNEST_POSITION(expr) function",
+      "reused_or_minted": "minted - declared synonym of UNNEST_POS()"
+    },
+    {
+      "candidate_id": "n1ql:fn-redact",
+      "label": "REDACT(expression [, filter-obj...]) function",
+      "reused_or_minted": "minted - carries a documented type restriction (masking applies to string values only)"
+    },
+    {
+      "candidate_id": "n1ql:fn-ds-version",
+      "label": "DS_VERSION() function",
+      "reused_or_minted": "minted - a function whose entire purpose is to return a version/edition string, which makes it directly relevant to this wave's target vocabulary"
+    },
+    {
+      "candidate_id": "n1ql:xattrs-in-query",
+      "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query",
+      "reused_or_minted": "reused - same id minted in server/current/n1ql/n1ql-language-reference/searchfun.json in this batch; the same feature is gated again here"
+    },
+    {
+      "candidate_id": "data:virtual-xattr",
+      "label": "Virtual extended attribute (e.g. META().xattrs.`$document`)",
+      "reused_or_minted": "minted - no existing id; a distinct kind of XATTR (server-synthesised, read-only) from the user XATTRs modelled by n1ql:xattrs-in-query, and the page treats them separately with its own performance caveat"
+    },
+    {
+      "candidate_id": "n1ql:error-5010",
+      "label": "Error 5010 'not a readonly request'",
+      "reused_or_minted": "minted - the page cites this code as *behaviour* of EVALUATE(), which is exactly the case the brief flags as making an error code worth modelling"
+    },
+    {
+      "candidate_id": "n1ql:error-5011",
+      "label": "Error 5011 'Abort: «reason»'",
+      "reused_or_minted": "minted - cited as the documented behaviour of ABORT() in a query"
+    },
+    {
+      "candidate_id": "n1ql:error-10109",
+      "label": "Error 10109 (ABORT() raised inside a user-defined function)",
+      "reused_or_minted": "minted - cited as the documented behaviour of ABORT() inside a UDF; distinct from 5011, and the pair is the evidence for a context-dependent behaviour"
+    },
+    {
+      "candidate_id": "n1ql:sql-error-codes",
+      "label": "SQL++ Error Codes reference",
+      "reused_or_minted": "reused - same id as the Capella record and as n1ql-error-codes.json in this batch"
+    },
+    {
+      "candidate_id": "cli:finderr",
+      "label": "finderr command line tool",
+      "reused_or_minted": "minted - no cli: namespace concept exists yet; needed because this cross-reference exists only in the Server page (Capella has no CLI surface), making it a genuine product-shape difference rather than a link difference"
+    },
+    {
+      "candidate_id": "privilege:query-system-catalog",
+      "label": "query_system_catalog role/privilege",
+      "reused_or_minted": "reused - established in prior extraction records (cloud/n1ql/n1ql-manage/query-awr.json and the system-catalog pages); note this page calls it a 'role' while other pages treat it as a privilege - see cross_component_finding"
+    },
+    {
+      "candidate_id": "n1ql:array-index",
+      "label": "Array index (index whose key includes flattened array expressions)",
+      "reused_or_minted": "minted - needed as the object of FLATTEN_KEYS's placement constraint; not the same concept as index-type:gsi (the technology axis)"
+    },
+    {
+      "candidate_id": "n1ql:create-function",
+      "label": "CREATE FUNCTION statement (inline user-defined functions)",
+      "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records for createfunction.md"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/stringfun.json and server/current/.../createindex.json"
+    },
+    {
+      "candidate_id": "version:server-8-0-1",
+      "label": "Couchbase Server 8.0.1",
+      "reused_or_minted": "minted - no 8.0.x concept exists; a patch-level id is required because this page gates two EXTRACTDDL flag values on 8.0.1 specifically, one minor release later than the function itself. This is the first *forward-looking* version reference found in this wave: an 8.0 page citing a release later than itself"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "reused_or_minted": "reused - established in server/current/.../createindex.json and searchfun.json in this wave"
+    }
   ],
   "relations": [
     {
@@ -46,7 +174,7 @@
     },
     {
       "subject": "n1ql:extractddl",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-system-catalog",
       "reused_or_minted_predicate": "reused - requiresRole, because the page says 'role' explicitly; the object id lives in the privilege: namespace from earlier records, which is itself the inconsistency noted in cross_component_finding. Not merged with, and not to be confused with, the Capella twin's credential-keyed privilege:capella-advanced-access-query-catalog",
       "evidence": "To execute this function, you must have the `query_system_catalog` role. Also, to extract DDLs from a specific bucket, you need necessary permissions on that bucket."

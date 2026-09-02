@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/data-reader",
+  "label": "Data Reader (Server RBAC role)",
+  "internal_name": "data_reader",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. MUST NOT be merged with capella-role:data-reader, which is a Capella *project* role granted per-project in the management plane and documented at cloud/projects/project-roles.md. The two share a display name and nothing else: different control plane, different grant scope, different catalogue. This is the fourth same-name-different-thing collision in the registry's role families.",
+  "promoted": true,
+  "recurrence": 3,
+  "aliases": [
+    "rbac-role:data-reader"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Data Reader (data_reader)",
+  "promoted_in_round": 13,
+  "note": "Surfaced by round 13's namespace-variant sweep, which flagged rbac-role:data-reader as having the same local name as the promoted capella-role:data-reader. The merge was DECLINED - they are different roles in different products - but the sweep was still right that rbac-role:data-reader was a third spelling of a Server role, alongside role:* and the round-12 privilege:* forms. Filed under role: with the internal name, per round 13's role-id convention.\n\nCited by searchfun.md in both the server/ and cloud/ trees ('the role **Data Reader** to those who intend to perform searches'), which is unadapted shared reference content - the same pattern as docs-issues/cloud-sqlpp-pages-cite-server-rbac-roles. The same sentence also names a 'Data Admin' role that does not exist in the catalogue; see docs-issues/searchfun-cites-nonexistent-data-admin-role.",
+  "docsIssue": "https://docs.couchbase.com/ld/docs-issues/searchfun-cites-nonexistent-data-admin-role"
+}

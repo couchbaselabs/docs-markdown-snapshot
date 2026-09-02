@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/curl-function",
+  "label": "SQL++ CURL() function",
+  "type": "the SQL++ built-in function that issues an outbound HTTP request from a Query node. MUST NOT be merged with eventing:curl-function, which is the JavaScript curl() built-in available inside an Eventing Function. Both are 'curl', and that is all they share: this one is a SQL++ function evaluated by the Query service, gated by the QUERY_EXTERNAL_ACCESS role and by a per-query-node allow list (queryCurlWhitelist); the Eventing one is a JavaScript call gated by a declared URL binding whose prefix bounds the reachable URLs. Different language, different service, different authorization mechanism.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/n1ql/n1ql-language-reference/curl.md",
+  "evidence": "For all other users, the RBAC role `QUERY_EXTERNAL_ACCESS` is required to run the `CURL()` function.",
+  "promoted_in_round": 13,
+  "note": "Promoted as the *refusal* half of round 13's namespace-variant sweep. The sweep flags any unpromoted id whose local name matches a promoted id; n1ql:curl-function matched eventing:curl-function and was the one case of five where the merge had to be declined. Both extraction records had already reached that conclusion independently - query-settings.json says 'deliberately NOT merged with the registry's eventing:curl-function' - so the sweep's value here was not the lead but the confirmation that a correctly-refused merge still leaves a genuine promotion candidate behind. Left unpromoted, it would have resurfaced as debt every round, and a later round with less context might have taken the merge.\n\nNote that curl.json also asserts `n1ql:curl-function requiresPrivilege version:server-5-0` from the quote 'RBAC credentials are required when CURL() accesses Couchbase Server version 5.0 or later'. That relation is quotable and mis-predicated - the object is a version, not a privilege. See reconciliation.md round 13, 'Three open questions left open'."
+}

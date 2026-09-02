@@ -3,35 +3,131 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/join.md",
   "concepts": [
-    { "candidate_id": "n1ql:join", "label": "JOIN clause", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/join.json" },
-    { "candidate_id": "n1ql:from", "label": "FROM clause", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:nest", "label": "NEST clause", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:unnest", "label": "UNNEST clause", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:comma-separated-join", "label": "Comma-separated join", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:use-hash-clause", "label": "USE HASH clause / USE HASH hint", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:use-nl-clause", "label": "USE NL clause / USE NL hint", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:use-hash-hint", "label": "USE_HASH optimizer hint (hint-comment form)", "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence" },
-    { "candidate_id": "n1ql:use-nl-hint", "label": "USE_NL optimizer hint (hint-comment form)", "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence" },
-    { "candidate_id": "n1ql:ansi-join", "label": "ANSI join", "reused_or_minted": "minted - the page's own named join family, and the subject of every edition and version constraint on the page, so it cannot be folded into n1ql:join without losing the constraints" },
-    { "candidate_id": "n1ql:lookup-join", "label": "Lookup join (legacy join syntax)", "reused_or_minted": "minted - named and defined on the page; carries its own mixing restriction" },
-    { "candidate_id": "n1ql:index-join", "label": "Index join (legacy join syntax)", "reused_or_minted": "minted - named and defined on the page; carries its own index prerequisite and mixing restriction" },
-    { "candidate_id": "n1ql:lateral-keyword", "label": "LATERAL keyword", "reused_or_minted": "minted - version-gated at 7.6, so it needs to exist as a subject; the Capella twin states the same gate but its extraction record did not capture it" },
-    { "candidate_id": "n1ql:hash-join-method", "label": "Hash join (join method)", "reused_or_minted": "minted - distinct from the USE HASH hint that requests it: the METHOD is edition-gated, the HINT exists in both editions but is ignored in one. Conflating them would destroy exactly the distinction this page is making" },
-    { "candidate_id": "n1ql:nested-loop-join-method", "label": "Nested-loop join (join method)", "reused_or_minted": "minted - the only method available in Community Edition; needed as the object of the CE fallback behaviour" },
-    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-based optimizer", "reused_or_minted": "minted - the page links to cost-based-optimizer.md and names a concrete way LATERAL degrades its behaviour" },
-    { "candidate_id": "n1ql:right-outer-join", "label": "RIGHT OUTER JOIN", "reused_or_minted": "minted - needed because it is the one join type that does NOT support LATERAL and the one with a positional restriction, both of which are constraints rather than catalogue entries" },
-    { "candidate_id": "index:inverse-index", "label": "Inverse index on a foreign key", "reused_or_minted": "minted - the prerequisite for index joins; no existing id. New namespace prefix index: - reconciliation may prefer to fold this under the established index-type: family, though this is a required index rather than an index type" },
-    { "candidate_id": "privilege:query-select", "label": "query_select privilege (Server RBAC)", "reused_or_minted": "reused - same id used in insert.json in this batch. Note this page spells it in code style and lowercase with an underscore (`query_select`) where insert.md spells it in italics and title case (_Query Select_) - see cross_component_finding" },
-    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "edition:community", "label": "Community Edition", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "reused - established in the cloud/n1ql/ records and in searchfun.json in this batch" },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "minted - first appearance in this POC as far as I can see; a pre-7.x version still cited as a behaviour boundary on the 8.0 page" },
-    { "candidate_id": "version:server-4-1", "label": "Couchbase Server 4.1", "reused_or_minted": "minted - cited only to bound the legacy lookup-join syntax; the oldest version named anywhere in this batch" }
+    {
+      "candidate_id": "n1ql:join",
+      "label": "JOIN clause",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/join.json"
+    },
+    {
+      "candidate_id": "n1ql:from",
+      "label": "FROM clause",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:nest",
+      "label": "NEST clause",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:unnest",
+      "label": "UNNEST clause",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:comma-separated-join",
+      "label": "Comma-separated join",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:use-hash-clause",
+      "label": "USE HASH clause / USE HASH hint",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:use-nl-clause",
+      "label": "USE NL clause / USE NL hint",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:use-hash-hint",
+      "label": "USE_HASH optimizer hint (hint-comment form)",
+      "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence"
+    },
+    {
+      "candidate_id": "n1ql:use-nl-hint",
+      "label": "USE_NL optimizer hint (hint-comment form)",
+      "reused_or_minted": "reused - object of the Capella record's isSynonymOf relation for the same sentence"
+    },
+    {
+      "candidate_id": "n1ql:ansi-join",
+      "label": "ANSI join",
+      "reused_or_minted": "minted - the page's own named join family, and the subject of every edition and version constraint on the page, so it cannot be folded into n1ql:join without losing the constraints"
+    },
+    {
+      "candidate_id": "n1ql:lookup-join",
+      "label": "Lookup join (legacy join syntax)",
+      "reused_or_minted": "minted - named and defined on the page; carries its own mixing restriction"
+    },
+    {
+      "candidate_id": "n1ql:index-join",
+      "label": "Index join (legacy join syntax)",
+      "reused_or_minted": "minted - named and defined on the page; carries its own index prerequisite and mixing restriction"
+    },
+    {
+      "candidate_id": "n1ql:lateral-keyword",
+      "label": "LATERAL keyword",
+      "reused_or_minted": "minted - version-gated at 7.6, so it needs to exist as a subject; the Capella twin states the same gate but its extraction record did not capture it"
+    },
+    {
+      "candidate_id": "n1ql:hash-join-method",
+      "label": "Hash join (join method)",
+      "reused_or_minted": "minted - distinct from the USE HASH hint that requests it: the METHOD is edition-gated, the HINT exists in both editions but is ignored in one. Conflating them would destroy exactly the distinction this page is making"
+    },
+    {
+      "candidate_id": "n1ql:nested-loop-join-method",
+      "label": "Nested-loop join (join method)",
+      "reused_or_minted": "minted - the only method available in Community Edition; needed as the object of the CE fallback behaviour"
+    },
+    {
+      "candidate_id": "n1ql:cost-based-optimizer",
+      "label": "Cost-based optimizer",
+      "reused_or_minted": "minted - the page links to cost-based-optimizer.md and names a concrete way LATERAL degrades its behaviour"
+    },
+    {
+      "candidate_id": "n1ql:right-outer-join",
+      "label": "RIGHT OUTER JOIN",
+      "reused_or_minted": "minted - needed because it is the one join type that does NOT support LATERAL and the one with a positional restriction, both of which are constraints rather than catalogue entries"
+    },
+    {
+      "candidate_id": "index:inverse-index",
+      "label": "Inverse index on a foreign key",
+      "reused_or_minted": "minted - the prerequisite for index joins; no existing id. New namespace prefix index: - reconciliation may prefer to fold this under the established index-type: family, though this is a required index rather than an index type"
+    },
+    {
+      "candidate_id": "privilege:query-select",
+      "label": "query_select privilege (Server RBAC)",
+      "reused_or_minted": "reused - same id used in insert.json in this batch. Note this page spells it in code style and lowercase with an underscore (`query_select`) where insert.md spells it in italics and title case (_Query Select_) - see cross_component_finding"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Community Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "reused_or_minted": "reused - established in the cloud/n1ql/ records and in searchfun.json in this batch"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "minted - first appearance in this POC as far as I can see; a pre-7.x version still cited as a behaviour boundary on the 8.0 page"
+    },
+    {
+      "candidate_id": "version:server-4-1",
+      "label": "Couchbase Server 4.1",
+      "reused_or_minted": "minted - cited only to bound the legacy lookup-join syntax; the oldest version named anywhere in this batch"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:join",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-select",
       "reused_or_minted_predicate": "reused - promoted predicate. Object is the Server RBAC privilege, NOT the Capella record's privilege:capella-advanced-access-query-read or privilege:capella-basic-access-read; the two access models must stay separate",
       "evidence": "For you to select data from keyspace or expression, you must have the `query_select` privilege on that keyspace."

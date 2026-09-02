@@ -158,6 +158,39 @@ it is and - critically - what it must **not** be confused with if a
 same-named-but-different thing exists elsewhere in the registry, `promoted:
 true`, `recurrence`, and a short `note` with the promotion reasoning.
 
+**A record's `id` must mirror its own file path**, and this is now checked:
+`python3 linked-data/poc/verify-registry-ids.py` exits non-zero on any mismatch.
+It is not a formatting rule. The pipeline derives a term's id from its *path*
+(`recurrence.py`), while extraction agents copy the id from the record's *`id`
+field*, so when the two disagree the tooling and the agents believe different
+things and both behave correctly. Nine `concepts/version/` records declared
+dotted ids (`.../version/server-6.5`) under dashed filenames
+(`server-6-5.json`); agents copied the dots faithfully and their correctness
+registered as unpromoted debt for several rounds, while two of them diagnosed the
+cause in their notes and asked reconciliation to settle it. `pages/*.jsonld` is
+exempt and excluded by the checker: those records describe a real documentation
+page, so their `@id` is that page's public URL, which the registry does not own.
+
+**Filing convention for Server RBAC roles: use the internal name, not the
+display label.** `roles.md` gives every role both - "Role: Manage Global
+Functions (query_manage_global_functions)" - and the registry files under
+`role:query-manage-global-functions`, recording `internal_name` as a field and
+the label form in `aliases`. Two reasons this has to be a rule rather than a
+preference. First, the label is not a stable key: 20 of the 55 role tables have a
+label word absent from the internal name, and in eight of those the internal name
+uses an entirely different word (`Application Access` is `bucket_full_access`),
+so two ids minted from the two names share no substring and
+`recurrence.py --variants` can never cluster them - it catches typography, not
+synonymy. Second, `roles.md` itself mislabels at least one table, so the label is
+sometimes simply wrong where the internal name is right.
+
+Do **not** push this upstream into the extract skill. An agent extracting a SQL++
+reference page sees only the display label; requiring the internal name would
+mean every such agent reads `roles.md` first. Minting the label form at
+extraction time is correct, and re-filing to the internal name with an alias is
+reconciliation's job - which is exactly the two-layer split the pipeline is built
+on.
+
 **When you fold one id into another, record it in an `aliases` array on the
 surviving record.** This used to be documentation; it is now load-bearing. The
 write-time gate resolves aliases when it checks an extraction record's
@@ -247,8 +280,11 @@ natural thing to try).
 ## 8. Run the checks before committing
 
 ```bash
-python3 linked-data/poc/verify-evidence.py     # gate: exits non-zero on any problem
-python3 linked-data/poc/verify-promotions.py   # report: always exits 0, always read it
+python3 linked-data/poc/verify-evidence.py      # gate: exits non-zero on any problem
+python3 linked-data/poc/verify-registry-ids.py  # gate: every record's id mirrors its path
+python3 linked-data/poc/recurrence.py --selftest
+python3 linked-data/poc/verify-promotions.py    # report: always exits 0, always read it
+python3 linked-data/poc/recurrence.py --variants  # report: read it, decide alias vs rewrite
 ```
 
 `verify-promotions.py` lists every `ns:kebab-id` and `camelCaseTerm` named in
@@ -262,6 +298,26 @@ the writeup was finished found 3 more, including a concept at recurrence 6 whose
 own extraction record claimed it was "already promoted". This is the fourth-plus
 recurrence of "narrated as promoted, never actually filed" (rounds 2, 3, 5, 8),
 which is why the check exists at all rather than being left to care.
+
+`recurrence.py --variants` clusters ids that are the same term spelled more than
+one way, and every cluster needs a decision - **alias it or rewrite it**, per the
+rule in `normalise-ids.py`'s docstring. Alias when the variant is a defensible
+alternative name (a different namespace, a display label against an internal
+name): that is additive and forward-only, and it converts any future reuse of the
+old form into a gate denial rather than a silent duplicate. Rewrite the extraction
+records, with `normalise-ids.py`, when the variant is not a legitimate name for
+the thing anywhere (`version:server-6.5`, `n1ql:createfunction`) - aliasing a typo
+enshrines it as vocabulary. Then re-run `--variants`: the count must go down, and
+each surviving cluster must be one you decided to leave.
+
+Run this every round, not only when something looks wrong. The loud failure is a
+promoted term reading as unpromoted debt; the quiet one is a genuine candidate
+held *below* the promotion bar because its count is split across two spellings,
+and round 13 found five terms that had silently suffered it. Note also what the
+clustering cannot see: it keys on typography, so it catches `create-function` vs
+`createfunction` and never `Application Access` vs `bucket_full_access`. Namespace
+variants need a separate local-name match, which is how round 13's other five
+turned up.
 
 Expect known-bad numbers from `verify-evidence.py` over the whole corpus: 322
 unquotable relations and 130 with no evidence, nearly all in rounds 1-9, written

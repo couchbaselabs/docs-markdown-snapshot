@@ -3,16 +3,56 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/javascript-udfs/javascript-functions-with-couchbase.md",
   "concepts": [
-    { "candidate_id": "js-udf:inline-function", "label": "Inline user-defined function (defined using SQL++ or JavaScript expressions, no external library)", "reused_or_minted": "minted - js-udf: namespace for the JavaScript UDF feature family" },
-    { "candidate_id": "js-udf:external-function", "label": "External user-defined function (defined in an external language, stored in a UDF library)", "reused_or_minted": "minted" },
-    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "reused_or_minted": "minted" },
-    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "reused_or_minted": "minted" },
-    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide to users with read/write permissions)", "reused_or_minted": "minted" },
-    { "candidate_id": "js-udf:sql-managed-udf", "label": "SQL++ managed user-defined function (JavaScript code stored inline with the SQL++ UDF, no separate library; Couchbase Server 7.6+)", "reused_or_minted": "minted" },
-    { "candidate_id": "js-udf:unsupported-feature", "label": "Unsupported JavaScript feature family (browser extensions, global state/global arrow functions, console.log logging)", "reused_or_minted": "minted - enum/scheme concept, same modeling pattern as cluster-access-credential-type" },
-    { "candidate_id": "js-udf:restricted-feature", "label": "Restricted JavaScript feature family (eval/Function removed for code-injection prevention, Date granularity reduced to 1 second; Couchbase Server 7.6.2+)", "reused_or_minted": "minted - enum/scheme concept" },
-    { "candidate_id": "n1ql:createfunction", "label": "CREATE FUNCTION statement", "reused_or_minted": "minted - no existing candidate found in registry slice" },
-    { "candidate_id": "n1ql:query-context", "label": "Query context (bucket/scope resolution scope for relative UDF library paths and scoped-function calls)", "reused_or_minted": "minted - no existing candidate found in registry slice" }
+    {
+      "candidate_id": "js-udf:inline-function",
+      "label": "Inline user-defined function (defined using SQL++ or JavaScript expressions, no external library)",
+      "reused_or_minted": "minted - js-udf: namespace for the JavaScript UDF feature family"
+    },
+    {
+      "candidate_id": "js-udf:external-function",
+      "label": "External user-defined function (defined in an external language, stored in a UDF library)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "js-udf:udf-library",
+      "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "js-udf:scoped-function",
+      "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "js-udf:global-function",
+      "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide to users with read/write permissions)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "js-udf:sql-managed-udf",
+      "label": "SQL++ managed user-defined function (JavaScript code stored inline with the SQL++ UDF, no separate library; Couchbase Server 7.6+)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "js-udf:unsupported-feature",
+      "label": "Unsupported JavaScript feature family (browser extensions, global state/global arrow functions, console.log logging)",
+      "reused_or_minted": "minted - enum/scheme concept, same modeling pattern as cluster-access-credential-type"
+    },
+    {
+      "candidate_id": "js-udf:restricted-feature",
+      "label": "Restricted JavaScript feature family (eval/Function removed for code-injection prevention, Date granularity reduced to 1 second; Couchbase Server 7.6.2+)",
+      "reused_or_minted": "minted - enum/scheme concept"
+    },
+    {
+      "candidate_id": "n1ql:create-function",
+      "label": "CREATE FUNCTION statement",
+      "reused_or_minted": "minted - no existing candidate found in registry slice"
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context (bucket/scope resolution scope for relative UDF library paths and scoped-function calls)",
+      "reused_or_minted": "minted - no existing candidate found in registry slice"
+    }
   ],
   "relations": [
     {

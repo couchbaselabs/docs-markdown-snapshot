@@ -3,30 +3,126 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/altervectorindex.md",
   "concepts": [
-    { "candidate_id": "n1ql:alter-vector-index", "label": "ALTER VECTOR INDEX statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/altervectorindex.json" },
-    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused - matches the Capella and 7.2 records; asserted here as a synonym, per the page" },
-    { "candidate_id": "n1ql:create-vector-index", "label": "CREATE VECTOR INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "index-type:hyperscale-vector", "label": "Hyperscale Vector index", "reused_or_minted": "minted - same id as in this batch's createvectorindex.json; every example on this page operates on a Hyperscale Vector index" },
-    { "candidate_id": "index-type:standard-gsi-plasma", "label": "Standard GSI (Plasma) index storage", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "index-type:moi", "label": "Memory-Optimized Index (MOI)", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "index-type:forestdb", "label": "Forest DB index storage", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "index-state", "label": "GSI index lifecycle state enum", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "role:administrator", "label": "Administrator (Server RBAC role)", "reused_or_minted": "minted - same id as in this batch's alterindex.json; see that record's note on the 7.2 `rbac:administrator-role` collision" },
-    { "candidate_id": "edition:enterprise", "label": "Couchbase Server Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "version:server-5-5", "label": "Couchbase Server 5.5", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "minted - same id as in this batch's createindex.json; cited here only in notable_absence / version_finding, not asserted as a relation, because the page provides no quote for it" },
-    { "candidate_id": "n1ql:alter-vector-index-replica-management", "label": "ALTER VECTOR INDEX replica_count / drop_replica actions (sub-capability)", "reused_or_minted": "minted - mirrors the 7.2-established id n1ql:alter-index-replica-management for the synonym statement. Reconciliation should probably collapse this into the ALTER INDEX one given isSynonymOf, rather than carry two." },
-    { "candidate_id": "n1ql:alter-vector-index-with-action-move", "label": "ALTER VECTOR INDEX WITH {\"action\": \"move\"} value", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
-    { "candidate_id": "n1ql:alter-vector-index-with-nodes", "label": "ALTER VECTOR INDEX WITH {\"nodes\": [...]} property", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
-    { "candidate_id": "n1ql:alter-vector-index-index-path-dotted-syntax", "label": "ALTER VECTOR INDEX dotted index-path syntax (legacy-compatibility form)", "reused_or_minted": "minted - mirrors this batch's alterindex.json id. See version_finding: on this page the legacy-compatibility claim is incoherent, since the statement is new at 8.0." },
-    { "candidate_id": "indexes:file-based-index-rebalancing", "label": "File-based index rebalancing (shard affinity)", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "indexes:index-redistribution-setting", "label": "Index redistribution setting", "reused_or_minted": "minted - same id as in this batch's alterindex.json" },
-    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "minted - same id as in this batch's createindex.json" }
+    {
+      "candidate_id": "n1ql:alter-vector-index",
+      "label": "ALTER VECTOR INDEX statement",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/altervectorindex.json"
+    },
+    {
+      "candidate_id": "n1ql:alter-index",
+      "label": "ALTER INDEX statement",
+      "reused_or_minted": "reused - matches the Capella and 7.2 records; asserted here as a synonym, per the page"
+    },
+    {
+      "candidate_id": "n1ql:create-vector-index",
+      "label": "CREATE VECTOR INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:drop-primary-index",
+      "label": "DROP PRIMARY INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector index",
+      "reused_or_minted": "minted - same id as in this batch's createvectorindex.json; every example on this page operates on a Hyperscale Vector index"
+    },
+    {
+      "candidate_id": "index-type:standard-gsi-plasma",
+      "label": "Standard GSI (Plasma) index storage",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "index-type:moi",
+      "label": "Memory-Optimized Index (MOI)",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "index-type:forestdb",
+      "label": "Forest DB index storage",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "index-state",
+      "label": "GSI index lifecycle state enum",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "role:administrator",
+      "label": "Administrator (Server RBAC role)",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json; see that record's note on the 7.2 `rbac:administrator-role` collision"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Couchbase Server Enterprise Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "version:server-5-5",
+      "label": "Couchbase Server 5.5",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "reused_or_minted": "minted - same id as in this batch's createindex.json; cited here only in notable_absence / version_finding, not asserted as a relation, because the page provides no quote for it"
+    },
+    {
+      "candidate_id": "n1ql:alter-vector-index-replica-management",
+      "label": "ALTER VECTOR INDEX replica_count / drop_replica actions (sub-capability)",
+      "reused_or_minted": "minted - mirrors the 7.2-established id n1ql:alter-index-replica-management for the synonym statement. Reconciliation should probably collapse this into the ALTER INDEX one given isSynonymOf, rather than carry two."
+    },
+    {
+      "candidate_id": "n1ql:alter-vector-index-with-action-move",
+      "label": "ALTER VECTOR INDEX WITH {\"action\": \"move\"} value",
+      "reused_or_minted": "reused - exact id minted by the Capella record for this page"
+    },
+    {
+      "candidate_id": "n1ql:alter-vector-index-with-nodes",
+      "label": "ALTER VECTOR INDEX WITH {\"nodes\": [...]} property",
+      "reused_or_minted": "reused - exact id minted by the Capella record for this page"
+    },
+    {
+      "candidate_id": "n1ql:alter-vector-index-index-path-dotted-syntax",
+      "label": "ALTER VECTOR INDEX dotted index-path syntax (legacy-compatibility form)",
+      "reused_or_minted": "minted - mirrors this batch's alterindex.json id. See version_finding: on this page the legacy-compatibility claim is incoherent, since the statement is new at 8.0."
+    },
+    {
+      "candidate_id": "indexes:file-based-index-rebalancing",
+      "label": "File-based index rebalancing (shard affinity)",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "indexes:index-redistribution-setting",
+      "label": "Index redistribution setting",
+      "reused_or_minted": "minted - same id as in this batch's alterindex.json"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "reused_or_minted": "minted - same id as in this batch's createindex.json"
+    }
   ],
   "relations": [
     {
@@ -38,7 +134,7 @@
     },
     {
       "subject": "n1ql:alter-vector-index",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:administrator",
       "reused_or_minted_predicate": "reused - promoted predicate (a role, not a privilege)",
       "evidence": "Only users with the RBAC role of `Administrator` are allowed to run the `ALTER VECTOR INDEX` statement."
@@ -113,10 +209,34 @@
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance."
     },
-    { "subject": "n1ql:alter-vector-index", "predicate": "seeAlso", "object": "n1ql:alter-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [ALTER INDEX](alterindex.md)" },
-    { "subject": "n1ql:alter-vector-index", "predicate": "seeAlso", "object": "n1ql:create-vector-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
-    { "subject": "n1ql:alter-vector-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [BUILD INDEX](build-index.md)" },
-    { "subject": "n1ql:alter-vector-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+    {
+      "subject": "n1ql:alter-vector-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:alter-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [ALTER INDEX](alterindex.md)"
+    },
+    {
+      "subject": "n1ql:alter-vector-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-vector-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)"
+    },
+    {
+      "subject": "n1ql:alter-vector-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:build-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [BUILD INDEX](build-index.md)"
+    },
+    {
+      "subject": "n1ql:alter-vector-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:drop-primary-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)"
+    }
   ],
   "notable_absence": {
     "predicate": "availableSince",

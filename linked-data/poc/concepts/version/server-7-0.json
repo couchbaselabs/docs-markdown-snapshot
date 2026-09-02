@@ -1,5 +1,5 @@
 {
-  "id": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
   "label": "Couchbase Server 7.0",
   "type": "closed vocabulary term - pre-minted before extraction began, not discovered by recurrence",
   "promoted": true,
@@ -8,5 +8,6 @@
     "server/n1ql-language-reference/createindex",
     "server/n1ql-language-reference/index-partitioning",
     "server/n1ql-language-reference/createprimaryindex"
-  ]
+  ],
+  "note": "Round 13: the id field above read 'server-7.0' - dots where this file's own path has dashes - in violation of the rule that a record's id mirrors its path. Extraction agents that copied the id faithfully produced an id no tool in the pipeline could resolve, so their correct behaviour registered as unpromoted debt; two of them flagged the drift in their notes and asked reconciliation to settle it. Nine of the thirteen version records had this defect and no other namespace had it. verify-registry-ids.py now checks it."
 }

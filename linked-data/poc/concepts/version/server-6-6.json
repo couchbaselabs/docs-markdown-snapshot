@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-6-6",
+  "label": "Couchbase Server 6.6",
+  "type": "a Server release cited as a feature-availability threshold; distinct from version:server-6-6-1, which is a separate patch-level concept already in the registry",
+  "promoted": true,
+  "recurrence": 2,
+  "promoted_in_round": 13,
+  "note": "Promoted in round 13 as a direct consequence of the variant normalisation: the dotted and dashed spellings were counted as two terms, so neither crossed the promotion bar on its own. Unifying them put the real recurrence above the threshold. This is the quiet half of the spelling-variant problem - the loud half is false debt (a promoted term reported as unpromoted), the quiet half is a genuine candidate held below the bar by having its count split. recurrence.py's docstring already warned that splitting is 'the opposite of the false-debt failure, and quieter'; these are the first five terms found to have actually suffered it.\n\nExactly at the bar, and only because of the unification: one file each spelling. Note the registry separately holds version:server-6-6-1 - a patch release - so this namespace now carries both minor and patch granularity without a stated rule for when each is appropriate. Flagged rather than resolved; see reconciliation.md round 13."
+}

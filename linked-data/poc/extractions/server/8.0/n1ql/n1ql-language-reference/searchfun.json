@@ -3,20 +3,76 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/searchfun.md",
   "concepts": [
-    { "candidate_id": "n1ql:search-function", "label": "Search Functions family (SEARCH/SEARCH_META/SEARCH_SCORE)", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/searchfun.json for the same page-level family" },
-    { "candidate_id": "n1ql:fn-search", "label": "SEARCH(identifier, query [, options]) function", "reused_or_minted": "minted - the Capella record modelled only the family; SEARCH() needs its own id because it carries constraints the other two do not (clause restriction, index selection, the Search-index-vs-temporary-index fallback)" },
-    { "candidate_id": "n1ql:fn-search-meta", "label": "SEARCH_META([identifier]) function", "reused_or_minted": "minted - carries its own constraint (it is the only way to project XATTRs data when a suitable Search index exists), so it needs a distinct subject from the family id" },
-    { "candidate_id": "n1ql:fn-search-score", "label": "SEARCH_SCORE([identifier]) function", "reused_or_minted": "minted - needed as the subject of an explicit identity claim with SEARCH_META().score" },
-    { "candidate_id": "n1ql:fn-meta", "label": "META() function", "reused_or_minted": "minted - cross-page target on this page and the subject of relations on metafun.json in this same batch; same id used in both records" },
-    { "candidate_id": "n1ql:xattrs-in-query", "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query", "reused_or_minted": "minted - this is the feature the page version-gates, and it is not the same thing as any single function; the same id is reused in metafun.json and insert.json in this batch, where the same feature is gated again" },
-    { "candidate_id": "service:search-service", "label": "Search Service (Full Text Search)", "reused_or_minted": "reused - service:search-service is already used in six extraction records; note the Capella twin of this page used the bare string 'search-service' as a relation object instead, which should be normalised to this id in reconciliation" },
-    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - established id, used in 25 extraction records" },
-    { "candidate_id": "rbac-role:data-admin", "label": "Data Admin (Server RBAC role required to create Search indexes)", "reused_or_minted": "reused - matches the Capella record for this same page" },
-    { "candidate_id": "rbac-role:data-reader", "label": "Data Reader (Server RBAC role required to perform searches)", "reused_or_minted": "reused - matches the Capella record for this same page" },
-    { "candidate_id": "search:vector-search", "label": "Vector Search using Search vector indexes", "reused_or_minted": "minted - no search: namespace concept exists yet; the page documents a distinct Search capability (knn objects in the SEARCH() query argument) with its own reference page" },
-    { "candidate_id": "search:docid-regexp-type-identifier", "label": "docid_regexp Search index type identifier", "reused_or_minted": "minted - needed as the object of an explicit unsupported-feature statement; not the same concept as the supported type_field / docid_prefix identifiers" },
-    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/stringfun.json" },
-    { "candidate_id": "version:server-7-6-2", "label": "Couchbase Server 7.6.2", "reused_or_minted": "reused - established in server/current/n1ql/n1ql-language-reference/createindex.json in this wave" }
+    {
+      "candidate_id": "n1ql:search-function",
+      "label": "Search Functions family (SEARCH/SEARCH_META/SEARCH_SCORE)",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/searchfun.json for the same page-level family"
+    },
+    {
+      "candidate_id": "n1ql:fn-search",
+      "label": "SEARCH(identifier, query [, options]) function",
+      "reused_or_minted": "minted - the Capella record modelled only the family; SEARCH() needs its own id because it carries constraints the other two do not (clause restriction, index selection, the Search-index-vs-temporary-index fallback)"
+    },
+    {
+      "candidate_id": "n1ql:fn-search-meta",
+      "label": "SEARCH_META([identifier]) function",
+      "reused_or_minted": "minted - carries its own constraint (it is the only way to project XATTRs data when a suitable Search index exists), so it needs a distinct subject from the family id"
+    },
+    {
+      "candidate_id": "n1ql:fn-search-score",
+      "label": "SEARCH_SCORE([identifier]) function",
+      "reused_or_minted": "minted - needed as the subject of an explicit identity claim with SEARCH_META().score"
+    },
+    {
+      "candidate_id": "n1ql:fn-meta",
+      "label": "META() function",
+      "reused_or_minted": "minted - cross-page target on this page and the subject of relations on metafun.json in this same batch; same id used in both records"
+    },
+    {
+      "candidate_id": "n1ql:xattrs-in-query",
+      "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query",
+      "reused_or_minted": "minted - this is the feature the page version-gates, and it is not the same thing as any single function; the same id is reused in metafun.json and insert.json in this batch, where the same feature is gated again"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search Service (Full Text Search)",
+      "reused_or_minted": "reused - service:search-service is already used in six extraction records; note the Capella twin of this page used the bare string 'search-service' as a relation object instead, which should be normalised to this id in reconciliation"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "reused_or_minted": "reused - established id, used in 25 extraction records"
+    },
+    {
+      "candidate_id": "rbac-role:data-admin",
+      "label": "Data Admin (Server RBAC role required to create Search indexes)",
+      "reused_or_minted": "reused - matches the Capella record for this same page"
+    },
+    {
+      "candidate_id": "rbac-role:data-reader",
+      "label": "Data Reader (Server RBAC role required to perform searches)",
+      "reused_or_minted": "reused - matches the Capella record for this same page"
+    },
+    {
+      "candidate_id": "search:vector-search",
+      "label": "Vector Search using Search vector indexes",
+      "reused_or_minted": "minted - no search: namespace concept exists yet; the page documents a distinct Search capability (knn objects in the SEARCH() query argument) with its own reference page"
+    },
+    {
+      "candidate_id": "search:docid-regexp-type-identifier",
+      "label": "docid_regexp Search index type identifier",
+      "reused_or_minted": "minted - needed as the object of an explicit unsupported-feature statement; not the same concept as the supported type_field / docid_prefix identifiers"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "reused_or_minted": "reused - established in cloud/n1ql/n1ql-language-reference/stringfun.json"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "reused_or_minted": "reused - established in server/current/n1ql/n1ql-language-reference/createindex.json in this wave"
+    }
   ],
   "relations": [
     {
@@ -28,14 +84,14 @@
     },
     {
       "subject": "n1ql:search-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:data-admin",
       "reused_or_minted_predicate": "reused - requiresRole rather than requiresPrivilege, because the Server page names a *role* ('The role **Data Admin** must be assigned'). The Capella record for the identical sentence filed it under requiresPrivilege; flagged for reconciliation, see cross_product_finding",
       "evidence": "The role **Data Admin** must be assigned to those who intend to create indexes; and the role **Data Reader** to those who intend to perform searches."
     },
     {
       "subject": "n1ql:search-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:data-reader",
       "reused_or_minted_predicate": "reused - same rationale as the Data Admin relation above",
       "evidence": "The role **Data Admin** must be assigned to those who intend to create indexes; and the role **Data Reader** to those who intend to perform searches."

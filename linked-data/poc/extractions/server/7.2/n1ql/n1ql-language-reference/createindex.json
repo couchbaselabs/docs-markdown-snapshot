@@ -35,20 +35,20 @@
   "relations": [
     {
       "subject": "n1ql:create-index",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-index",
       "evidence": "User executing the CREATE INDEX statement must have the Query Manage Index privilege granted on the keyspace."
     },
     {
       "subject": "n1ql:create-index",
       "predicate": "availableSince",
-      "object": "version:server-7.0",
+      "object": "version:server-7-0",
       "evidence": "In Couchbase Server 7.0 and later, CREATE INDEX allows you to make multiple concurrent index creation requests."
     },
     {
       "subject": "n1ql:create-index",
       "predicate": "requiresMinVersionFor",
-      "object": "version:server-6.5",
+      "object": "version:server-6-5",
       "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI)."
     },
     {

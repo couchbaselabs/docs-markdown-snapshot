@@ -28,7 +28,7 @@
       "note": "a specific alternative syntax form within the statement, not the whole statement"
     },
     {
-      "candidate_id": "version:server-5.5",
+      "candidate_id": "version:server-5-5",
       "label": "Couchbase Server 5.5",
       "reused_or_minted": "minted",
       "note": "not in the promoted registry (only 6.5 and 7.0 are); minted using the same local-shorthand convention"
@@ -53,28 +53,28 @@
     {
       "subject": "n1ql:alter-index",
       "predicate": "availableSince",
-      "object": "version:server-5.5",
+      "object": "version:server-5-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "This statement is only supported only in Couchbase Server 5.5 and later; if the cluster is a mix of Couchbase Server 5.5 and previous versions, then this statement will not work."
     },
     {
       "subject": "n1ql:alter-index-replica-management",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In addition, altering the number of replicas or deleting an index replica is only supported in Couchbase Server 6.5 and later; if the cluster is a mix of Couchbase Server 6.5 and previous versions, then these operations will not work."
     },
     {
       "subject": "n1ql:alter-index-keyspace-on-syntax",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 7.0 and later, you can use the index name with the `ON` keyword and a keyspace reference to specify the keyspace on which the index is built."
     },
     {
       "subject": "n1ql:alter-index",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
       "reused_or_minted_predicate": "reused",
       "note": "distinct sub-fact from the replica-management version gate above: this one governs the USING clause / GSI-only index type requirement",
       "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted."

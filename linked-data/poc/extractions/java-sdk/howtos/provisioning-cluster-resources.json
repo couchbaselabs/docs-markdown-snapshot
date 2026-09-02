@@ -3,18 +3,65 @@
   "source_version": "Java SDK",
   "source_path": "java-sdk/current/howtos/provisioning-cluster-resources.md",
   "concepts": [
-    { "candidate_id": "sdk:bucket-management", "label": "BucketManager API (create/update/drop/flush bucket)", "reused_or_minted": "minted - bucket lifecycle management is a cluster-administration concern with no SQL++ statement equivalent (server/'s CREATE BUCKET etc. are Capella/cloud-only N1QL statements per the registry, not something the self-managed-cluster BucketManager wraps here - this API predates and is separate from that)." },
-    { "candidate_id": "sdk:collection-management", "label": "CollectionManager API (createScope/createCollection/dropScope/dropCollection)", "reused_or_minted": "minted - management-API surface, not a SQL++ statement" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement, invoked via QueryIndexManager.createIndex()/createPrimaryIndex()", "reused_or_minted": "reused - this page states the QueryIndexManager 'contains the means for managing indexes used for queries' and its createIndex()/createPrimaryIndex() methods are a thin Java wrapper directly over the same statement server/'s CREATE INDEX / CREATE PRIMARY INDEX pages document (same privilege gate, same primary/secondary/deferred/build semantics). Reusing the established server/ concept id rather than minting an SDK duplicate." },
-    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX / DROP PRIMARY INDEX statement, invoked via QueryIndexManager.dropIndex()/dropPrimaryIndex()", "reused_or_minted": "reused - same reasoning as n1ql:create-index; dropIndex()/dropPrimaryIndex() are direct SDK wrappers over the DROP INDEX/DROP PRIMARY INDEX statements." },
-    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement, invoked via QueryIndexManager.buildDeferredIndexes()", "reused_or_minted": "reused - the 'Deferring index creation' example explicitly builds deferred indexes, which is the BUILD INDEX statement's job." },
-    { "candidate_id": "sdk:views-management", "label": "Views Management API (ViewIndexManager, DesignDocument)", "reused_or_minted": "minted - Views/design-documents have no SQL++ statement equivalent at all (pre-dates N1QL, see view-queries-with-sdk.json)." }
+    {
+      "candidate_id": "sdk:bucket-management",
+      "label": "BucketManager API (create/update/drop/flush bucket)",
+      "reused_or_minted": "minted - bucket lifecycle management is a cluster-administration concern with no SQL++ statement equivalent (server/'s CREATE BUCKET etc. are Capella/cloud-only N1QL statements per the registry, not something the self-managed-cluster BucketManager wraps here - this API predates and is separate from that)."
+    },
+    {
+      "candidate_id": "sdk:collection-management",
+      "label": "CollectionManager API (createScope/createCollection/dropScope/dropCollection)",
+      "reused_or_minted": "minted - management-API surface, not a SQL++ statement"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement, invoked via QueryIndexManager.createIndex()/createPrimaryIndex()",
+      "reused_or_minted": "reused - this page states the QueryIndexManager 'contains the means for managing indexes used for queries' and its createIndex()/createPrimaryIndex() methods are a thin Java wrapper directly over the same statement server/'s CREATE INDEX / CREATE PRIMARY INDEX pages document (same privilege gate, same primary/secondary/deferred/build semantics). Reusing the established server/ concept id rather than minting an SDK duplicate."
+    },
+    {
+      "candidate_id": "n1ql:drop-index",
+      "label": "DROP INDEX / DROP PRIMARY INDEX statement, invoked via QueryIndexManager.dropIndex()/dropPrimaryIndex()",
+      "reused_or_minted": "reused - same reasoning as n1ql:create-index; dropIndex()/dropPrimaryIndex() are direct SDK wrappers over the DROP INDEX/DROP PRIMARY INDEX statements."
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX statement, invoked via QueryIndexManager.buildDeferredIndexes()",
+      "reused_or_minted": "reused - the 'Deferring index creation' example explicitly builds deferred indexes, which is the BUILD INDEX statement's job."
+    },
+    {
+      "candidate_id": "sdk:views-management",
+      "label": "Views Management API (ViewIndexManager, DesignDocument)",
+      "reused_or_minted": "minted - Views/design-documents have no SQL++ statement equivalent at all (pre-dates N1QL, see view-queries-with-sdk.json)."
+    }
   ],
   "relations": [
-    { "subject": "n1ql:create-index", "predicate": "requiresPrivilege", "object": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index", "reused_or_minted_predicate": "reused predicate and object - direct cross-product reuse, this is the strongest such match in the whole batch since the page names the privilege by its exact registry label", "evidence": "To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information." },
-    { "subject": "sdk:collection-management", "predicate": "requiresPrivilege", "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role", "reused_or_minted_predicate": "reused - generic role placeholder, since the page names two roles by informal label ('Manage Scopes', 'Data Reader') rather than the canonical privilege id format used for query-manage-index", "evidence": "Note that the most minimal permissions to create and drop a Scope or Collections is [Manage Scopes](../../../server/current/learn/security/roles.md#manage-scopes) along with [Data Reader](../../../server/current/learn/security/roles.md#data-reader)" },
-    { "subject": "sdk:bucket-management", "predicate": "behavesDifferentlyUnder", "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5", "evidence": "When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster.bucket(name)` before you can use cluster level managers." },
-    { "subject": "n1ql:drop-index", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "structural relation within the page's Index Management section", "evidence": "To delete a query index you can use the `dropIndex()` or `dropPrimaryIndex()` methods. Which one you use depends on the type of query index you wish to drop from the database." }
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "requiresServerRole",
+      "object": "https://docs.couchbase.com/ld/concepts/privilege/query-manage-index",
+      "reused_or_minted_predicate": "reused predicate and object - direct cross-product reuse, this is the strongest such match in the whole batch since the page names the privilege by its exact registry label",
+      "evidence": "To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information."
+    },
+    {
+      "subject": "sdk:collection-management",
+      "predicate": "requiresServerRole",
+      "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role",
+      "reused_or_minted_predicate": "reused - generic role placeholder, since the page names two roles by informal label ('Manage Scopes', 'Data Reader') rather than the canonical privilege id format used for query-manage-index",
+      "evidence": "Note that the most minimal permissions to create and drop a Scope or Collections is [Manage Scopes](../../../server/current/learn/security/roles.md#manage-scopes) along with [Data Reader](../../../server/current/learn/security/roles.md#data-reader)"
+    },
+    {
+      "subject": "sdk:bucket-management",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
+      "evidence": "When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster.bucket(name)` before you can use cluster level managers."
+    },
+    {
+      "subject": "n1ql:drop-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "structural relation within the page's Index Management section",
+      "evidence": "To delete a query index you can use the `dropIndex()` or `dropPrimaryIndex()` methods. Which one you use depends on the type of query index you wish to drop from the database."
+    }
   ],
   "cross_product_finding": "This is the batch's clearest example favoring STATEMENT reuse over minting an SDK-specific duplicate: the page's own text equates the SDK's QueryIndexManager operations with the underlying N1QL statements ('managing indexes used for queries'), names the exact privilege label from the registry ('Query Manage Index'), and links directly to server/'s Roles page anchor for it. Unlike sqlpp-queries-with-sdk.json (a generic ad-hoc query, correctly SDK-specific) or full-text-searching-with-sdk.json (no SQL++ equivalent at all, necessarily SDK-specific), this page is fundamentally ABOUT running CREATE INDEX/CREATE PRIMARY INDEX/DROP INDEX/DROP PRIMARY INDEX/BUILD INDEX through a typed Java API, so I reused n1ql:create-index, n1ql:drop-index, and n1ql:build-index directly as the subjects/objects rather than minting sdk:query-index-manager. SECOND FINDING: this page explicitly disclaims any connection to Capella's management plane - 'This part of the SDK API predates the Capella Management API, and is only intended to work with self-managed Couchbase Server clusters. Management of your Capella Operational cluster is available away from the Web UI with the Capella Management API' - so requiresCapellaRole is explicitly NOT applicable to BucketManager/CollectionManager/QueryIndexManager; Capella cluster provisioning goes through a wholly separate API surface outside this page's scope. Combined with the finding on sdk-user-management-example.json, neither of the two pages the coordinator flagged as requiresCapellaRole candidates actually uses that mechanism - both are firmly on the self-managed-cluster/data-plane side of the fence."
 }

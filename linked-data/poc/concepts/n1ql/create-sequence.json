@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/create-sequence",
+  "label": "CREATE SEQUENCE",
+  "type": "the SQL++ statement that creates a sequence, the generator behind the Use Sequences and Manage Sequences roles",
+  "promoted": true,
+  "recurrence": 3,
+  "promoted_in_round": 13,
+  "note": "Promoted in round 13 as a direct consequence of the variant normalisation: the dotted and dashed spellings were counted as two terms, so neither crossed the promotion bar on its own. Unifying them put the real recurrence above the threshold. This is the quiet half of the spelling-variant problem - the loud half is false debt (a promoted term reported as unpromoted), the quiet half is a genuine candidate held below the bar by having its count split. recurrence.py's docstring already warned that splitting is 'the opposite of the false-debt failure, and quieter'; these are the first five terms found to have actually suffered it.\n\nCompletes a set: the registry already holds role:query-use-sequences and role:query-use-sequential-scans, and roles.md documents Manage Sequences (query_manage_sequences) as a 56th-catalogue role, but the statement those roles govern had no record."
+}

@@ -147,7 +147,13 @@ Rules to state explicitly in every prompt:
 - Mint a new predicate/concept whenever nothing in the registry fits - this is
   expected and desired, not a failure. Name predicates as camelCase verb
   phrases (`grantsChannelAccess`), concepts as `namespace:kebab-case`
-  (`sgw:channel`).
+  (`sgw:channel`). Mint from the name the page actually gives you - if a page
+  shows a Server RBAC role only as "Manage Global Functions", `role:manage-global-functions`
+  is the correct thing to write, and reconciliation will re-file it under the
+  internal name (`role:query-manage-global-functions`) with yours recorded as an
+  alias. Don't go and look the internal name up; the two-layer design exists so
+  that this kind of normalisation is the coordinator's cost, paid once, rather
+  than every agent's.
 - `notable_absence` / `cross_component_finding` / `cross_product_finding` are
   for things noticed that aren't ontology relations at all (missing docs,
   content duplication, unadapted copy, internal contradictions, empty stub

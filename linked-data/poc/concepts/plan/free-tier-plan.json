@@ -3,6 +3,7 @@
   "label": "Free Tier",
   "type": "no-cost commercial plan - object of requiresSupportPlan/gatedByBillingPlan (e.g. Capella iQ Insights' chart-generation rate limit differs by tier)",
   "promoted": true,
-  "recurrence": 2,
-  "note": "Consolidates two independent mints of the same real tier: 'billing:free-tier-plan' and 'plan:free-tier-plan' - kept under the plan: namespace for consistency with the other three support tiers."
+  "recurrence": 14,
+  "aliases": ["billing:free-tier-plan"],
+  "note": "Consolidates two independent mints of the same real tier: 'billing:free-tier-plan' and 'plan:free-tier-plan' - kept under the plan: namespace for consistency with the other three support tiers.\n\nRound 13: alias recorded, recurrence corrected from 2 to 14. Same failure as concepts/sso/realm.json and found in the same sweep - the consolidation was stated in this note and never made machine-readable, so billing:free-tier-plan's 3 files stayed in the unpromoted backlog. Two independent instances of the identical omission, in records written in the same round, is what makes this a systematic gap in the reconciliation procedure rather than an oversight: nothing checked that a note claiming a consolidation was backed by an alias. See reconciliation.md round 13 for the check that now does."
 }

@@ -2722,7 +2722,324 @@ JSON-LD coverage is still the deferred step it has been at every round.
   positives, against 3 false positives in 9 pages the round before. Where a
   check must read agent output, remove the English.
 
-## Cumulative verdict (all twelve rounds)
+## Round 13 — no new pages: the corrective round round 12 made necessary
+
+**Scope.** No extraction. This round reconciles the corpus as it already stands
+(582 records, 3,522 relations) against two things round 12 exposed and did not
+finish:
+
+1. **The promotion backlog.** Round 12 found that the concept-promotion metric had
+   counted only the *object* slot since round 1, so every concept a page was
+   *about* - the subject of its own assertions - was invisible to it. Correcting it
+   to either slot took the ≥2-file candidate list from a number that looked like a
+   healthy tail to **222**. That is not a queue to be worked through in one pass,
+   so this round took the coherent slice: the eight SQL++ function roles, plus
+   whatever the second half surfaced.
+2. **The spelling variants.** `recurrence.py --variants` reported **13 clusters**
+   of one term spelled more than one way, and a separate local-name match found
+   **5 more** that differ by namespace rather than by punctuation.
+
+Both are debt this project created, not findings about Couchbase's documentation,
+and the round is filed accordingly: its four new `docs-issues/` are incidental,
+and its real output is two new controls and a convention written down.
+
+### Headline finding: the registry was the source of the drift it was blaming on agents
+
+Nine of the thirteen `concepts/version/` records declared an `id` that did not
+match their own filename. `concepts/version/server-6-5.json` said its id was
+`https://docs.couchbase.com/ld/concepts/version/server-6.5`, and the same
+disagreement ran through `server-6-6-1`, `server-7-0`, `cbl-3-3-0`, `sdk-3-3-0`,
+`sgw-2-x`, `sgw-3-0` and two `.jsonld` siblings. Dotted release numbers read so
+naturally that the filing convention simply lost.
+
+The consequence is the part worth keeping. The pipeline derives a term's id from
+its **path** (`recurrence.py`'s `concept_name()`); an extraction agent copies the
+id from the record's **`id` field**, because that is the authoritative-looking
+string in front of it. So the tooling believed `version:server-6-5` was promoted,
+agents wrote `version:server-6.5`, the write-time gate rejected it as unpromoted,
+and the term landed in the backlog with nothing indicating the registry had caused
+it. **A wrong record teaches every future agent to be wrong, and the agents'
+correctness registers as debt.**
+
+And it had already been diagnosed correctly, by the parties being blamed. Two
+extraction agents wrote it up in their own notes - one of them: "the registry
+file's `id` field uses the dot form while the filename uses hyphens ...
+reconciliation must pick one" - and a prior reconciliation pass recorded the
+dotted spellings as *their* mistake, to be normalised out of the extraction
+records. The agents were right and were overruled. There is no amount of care in
+an extraction prompt that survives an authoritative file disagreeing with itself,
+which is the same argument that produced `gate-evidence.py`, so the fix is the
+same shape: `verify-registry-ids.py`, which exits non-zero on any record whose
+`id` does not mirror its path. It now checks **514 records, 0 mismatches**.
+
+It overreached on its first run, flagging all 8 `pages/*.jsonld` records. Those
+were correct: a `pages/` record is structured data *about* a real documentation
+page, so its `@id` is that page's public `docs.couchbase.com` URL - a resource the
+registry describes and does not own. `pages/` is excluded, with that reasoning in
+the source, because "the id must mirror the path" turns out to be a rule about
+ownership rather than about strings.
+
+### Second finding: an alias can repair an object, but never a predicate
+
+Round 12 fixed its category error additively - re-file the eleven roles, record
+the old `privilege:` ids as `aliases` - and reported that as a control rather than
+a note, because it converts a future silent reuse into a gate denial. That was
+right, and it was **half a fix**, in a way that generalises.
+
+An alias maps one id to another, so it can only ever repair a **concept**. Round
+12 also minted `requiresServerRole`, the predicate those eleven objects needed,
+and could not alias `requiresPrivilege` into it, because 48 files use
+`requiresPrivilege` correctly for Capella's genuinely separate privilege
+catalogue. Aliasing a predicate that two products use for two different things
+corrupts the correct users to fix the incorrect ones. So round 12 did the half
+that aliasing reaches and left the other half, and `requiresServerRole` was
+minted with `recurrence: 20` while **no extraction record used it at all** - the
+20 counted the files that *should* have. Every other recurrence figure in the
+registry means "distinct files that use this term," so this one silently meant
+something else and read as the best-evidenced new predicate of its round with
+zero users.
+
+Round 13 wrote `normalise-ids.py` to close it, and found the error was one species
+deeper than round 12 had measured. 38 `requiresPrivilege` occurrences pointed at
+objects that resolve to roles - the expected half. But **18 Server and Capella
+records used `requiresRole`**, which is Sync Gateway's `requireRole()`
+sync-function check, to mean "the user must hold this Server RBAC role." Round
+12's sweep keyed on the *other* predicate name and on `privilege:*` object ids, so
+those 18 had neither marker and fell between the two sieves. A predicate whose
+name is more general than its meaning attracts exactly this.
+
+After the rewrite: `requiresServerRole` is at a real **43 files, 76 occurrences**
+(the record now also carries `recurrence_at_minting: 0`, so the discrepancy is on
+the face of it rather than in this log), and `requiresRole` is down to 5
+occurrences in 3 files - the two `sync-gateway/` records that mean the Sync
+Gateway thing, and three in `transactions.json` left deliberately alone, below.
+
+### The new control, and why it is allowed to bypass the gate
+
+`normalise-ids.py` rewrites extraction records in place with plain Python file
+I/O, so it **does not pass through `hooks/gate-evidence.py`**. That is worth
+stating plainly rather than burying, since the gate is this project's central
+control.
+
+It is safe because of what the script refuses to touch. It rewrites `subject`,
+`predicate`, `object` and `candidate_id`, and nothing else - never `evidence`,
+`evidence_source`, `page_id` or `source_path`, so evidence quotability is
+preserved *by construction*: a rename cannot make a quote stop matching a page.
+It never touches `registry_status` either, because pre-round-11 records have none
+and a bulk rewrite is the last place that should start guessing at one. The
+compensating control is a before/after `verify-evidence.py` over the whole corpus:
+**582 records, 3,522 relations, 452 problems, identical on both sides of 151
+substitutions across 67 files.**
+
+Its docstring carries the round's most reusable decision, the one that turns
+`--variants` output into action:
+
+- **Alias** when the variant is a *defensible alternative name* - a different
+  namespace for the same thing, or a display label where the registry uses an
+  internal name. The old id denoted the right thing; only the filing convention
+  differs. Additive, forward-only, and it converts future reuse into a gate
+  denial. This stays the default.
+- **Rewrite the records** when the variant is *not a legitimate name for the thing
+  anywhere*: `version:server-6.5` is not how this project spells a release,
+  `n1ql:createfunction` is not how it spells a statement. Aliasing those would
+  enshrine a typo as vocabulary and quietly bless the next one.
+
+Variant clusters went **13 → 1**, and the survivor is not an id at all: the
+literals `1` and `1%`, two files each, which is a data-modelling question about
+untyped literal objects rather than a spelling one.
+
+The first pass closed only 10 of the 13, and the reason is a good illustration of
+the same trap the round is about: `ID_RENAMES` was keyed on the `ns:kebab`
+shorthand, while `recurrence.py` canonicalises IRI and shorthand forms together
+before counting, so 11 dotted-version occurrences written as full IRIs survived
+untouched and were reported as still-open clusters. The fix looks up
+`R.canonical(value)` and then re-emits in whichever form the record used, because
+shorthand-versus-IRI is a *separate* axis, already resolved by folding rather than
+rewriting.
+
+### The role slice (13 promotions)
+
+**Eight SQL++ function roles**, filed under their internal names with the label
+form aliased:
+
+| id | label in the docs | `internal_name` | recurrence |
+|---|---|---|---|
+| `role:query-manage-global-functions` | Manage Global Functions | `query_manage_global_functions` | 2 |
+| `role:query-manage-functions` | Manage Scope Functions | `query_manage_functions` | 2 |
+| `role:query-manage-global-external-functions` | Manage Global External Functions | `query_manage_global_external_functions` | 2 |
+| `role:query-manage-external-functions` | Manage Scope External Functions | `query_manage_external_functions` | 2 |
+| `role:query-execute-global-functions` | Execute Global Functions | `query_execute_global_functions` | 1 |
+| `role:query-execute-functions` | Execute Scope Functions | `query_execute_functions` | 1 |
+| `role:query-execute-global-external-functions` | Execute Global External Functions | `query_execute_global_external_functions` | 1 |
+| `role:query-execute-external-functions` | Execute Scope External Functions | `query_execute_external_functions` | 1 |
+
+The four `execute-*` members are at recurrence 1 and promoted under the
+family exception, documented in each record: this is a closed eight-member family
+that `roles.md` presents as a single grid, and promoting the manage half while
+leaving the execute half unpromoted would split a mechanism down the middle for no
+reason but a counting artefact.
+
+Also promoted: **`role:data-reader`** (recurrence 3, with `rbac-role:data-reader`
+aliased), and three versions the variant split had been hiding - `version:server-5-0`
+(4), `version:server-5-5` (5), `version:server-6-6` (2) - and two SQL++ statements
+in the same position, `n1ql:explain-function` (7) and `n1ql:create-sequence` (3).
+`n1ql:explain-function` at recurrence 7 had been split across `explainfunction`
+and `explain-function` and was sitting below nothing at all; it was simply
+invisible.
+
+**The convention this slice needed, now written into the reconcile skill.** Server
+RBAC role ids use the **internal name** from `roles.md`'s
+`| Role: <label> (<internal_name>)` table; the display label goes in `aliases`.
+Two reasons it has to be a rule and not a preference. The label is not a stable
+key - 20 of the 55 role tables have a label word absent from the internal name,
+and in eight of those the internal name uses a different word entirely
+(`Application Access` is `bucket_full_access`), so ids minted from the two names
+share no substring and `--variants` can never cluster them: it catches typography,
+never synonymy. And `roles.md` itself mislabels at least one table, so the label is
+sometimes just wrong where the internal name is right.
+
+The convention deliberately does **not** go into the extract skill as a
+requirement. An agent extracting a SQL++ reference page sees only the display
+label; making it use the internal name means every such agent reads `roles.md`
+first, a per-agent cost for a normalisation the coordinator can do once. The
+extract skill now says so explicitly - mint from the name the page gives you, your
+id will be re-filed with an alias - which is the two-layer split the pipeline is
+built on, applied to a case that had been left to chance.
+
+### Three notes that claimed a consolidation and never made it machine-readable
+
+Round 12's mechanism only works if the alias is actually recorded. Three records
+described a fold in their own `note` and had no `aliases` array, so the folded id's
+files stayed in the unpromoted backlog and any agent reusing the old form would
+have been denied by the gate for declaring something true:
+
+| surviving record | alias it had claimed in prose | recurrence before → after |
+|---|---|---|
+| `concepts/cluster-access-credential-type.json` | `enum:cluster-access-credential-type` | 9 → **50** |
+| `concepts/sso/realm.json` | `auth:realm` | 8 → **12** |
+| `concepts/plan/free-tier-plan.json` | `billing:free-tier-plan` | 2 → **14** |
+
+Two of the three were written in the same round, which makes this a gap in the
+procedure rather than three oversights: nothing checked that a note claiming a
+consolidation was backed by an `aliases` entry. `recurrence.py --variants` is that
+check, and the reconcile skill now says to run it every round rather than when
+something looks wrong.
+
+### What the round declined to do
+
+Four refusals, listed because "never merge on a shared name without explicit
+textual evidence" is a rule that only means anything in the direction of refusal:
+
+- **`n1ql:curl-function` is not `eventing:curl-function`.** Promoted separately
+  (recurrence 2). Different language, different service, different authorization
+  mechanism; nothing on any page states a relationship.
+- **`role:data-reader` is not `capella-role:data-reader`.** Different control
+  plane, different grant scope, different catalogue. The name is the only thing
+  they share.
+- **`role:administrator` and `rbac-role:data-admin` name nothing in the 56-role
+  catalogue.** Both were checked against `roles.md` directly rather than by
+  impression - the same discipline round 10 used to refuse a merge - and both
+  became `docs-issues/` rather than concepts. A promotion would have minted
+  vocabulary for a documentation error.
+- **Three `rbac-role-category:*` assertions in `transactions.json` keep the wrong
+  predicate,** because neither predicate's range admits a role *category*, and
+  minting `requiresServerRoleInCategory` for 3 occurrences in 1 file would be
+  minting vocabulary to avoid recording an open question. It is recorded as an open
+  question instead.
+
+### A green check on a wrong record, again - and this one is the cleanest example yet
+
+`role:query-use-sequences` was promoted in round 12 with the label "Manage
+Sequences". `roles.md`'s table for it is headed
+`| Role: Manage Sequences (query_use_sequences)` - the label and the internal name
+disagree, and the internal name is the correct one, because the role's own
+permission table grants `execute` on sequences and not `manage`. The label in the
+source is wrong.
+
+So the record's `evidence` field quotes, verbatim, a line that is itself false.
+Every control passed it: the gate confirmed the quote was on the page,
+`verify-evidence.py` confirmed the same, `verify-promotions.py` confirmed the id
+resolved to a file. **"A green check is not a green record"** has been in this log
+since round 10 as a caveat about mis-objected triples; this is the sharper form -
+correct extraction of an incorrect source. The label is now
+`"Use Sequences (Server RBAC role)"` with
+`mislabelled_in_source_as: "Manage Sequences"`, and the `evidence` field still
+quotes the wrong line, because that is what the page says and the record's job is
+to report the page.
+
+### New `docs-issues/` (4)
+
+- `roles-md-use-sequences-table-mislabelled` - the above.
+- `roles-md-external-function-role-tables-copy-pasted` - the four external-function
+  role tables carry permission rows that appear copied from their non-external
+  siblings.
+- `searchfun-cites-nonexistent-data-admin-role` - a SQL++ page requires "Data
+  Admin"; no such role exists in the catalogue.
+- `n1ql-pages-cite-nonexistent-administrator-role` - several pages require an
+  "Administrator" role; the catalogue has Full Admin, Cluster Admin and several
+  scoped admins, and no "Administrator".
+
+### Existing `docs-issues/` corrected (1)
+
+- `server-role-label-does-not-match-internal-name` - rewritten with measured data.
+  It claimed 2 instances; there are **20 of 55**, with 8 where the two names share
+  no word. It also inherited round 12's "58 role tables", which is the heading
+  count, not the table count (55 tables, 56 roles, one documented in prose only) -
+  corrected in place. And its diagnosis of the Manage/Use Sequences case was
+  backwards: it read the internal name as the drifted one.
+
+### What this round taught about the method
+
+- **A control's own output is data about the control.** `--variants` had been run
+  before and read as a list of agent spelling mistakes. Read as a question - *why
+  would an agent write this?* - nine of thirteen clusters turn out to be the
+  registry's fault. The output was the same both times; the framing decided
+  whether it was actionable.
+- **The loud half of a debt problem hides the quiet half.** A promoted term
+  reading as unpromoted is loud - it shows up as a big number. A genuine candidate
+  held *below* the promotion bar because its count is split across two spellings
+  shows up as nothing at all. Five terms had silently suffered it, including one at
+  recurrence 7. Both halves come from the same variant, and only one of them
+  announces itself.
+- **Additive-and-forward-only has a reach, and it is worth knowing where it
+  ends.** Aliasing is the right default and round 12 was right to use it. But an
+  alias is a statement about an *id*, so a wrong predicate is outside its reach
+  entirely, and a round that resolves everything by aliasing will leave exactly the
+  predicate half undone - silently, and with a plausible recurrence figure on the
+  new record. When a correction has a concept half and a predicate half, they need
+  two different mechanisms.
+- **A recurrence figure needs to say which question it answers.** `recurrence: 20`
+  on a predicate with zero users was not a lie, it was a different measurement -
+  files that *should* use the term - recorded in a field that everywhere else means
+  files that *do*. The registry now has 100-odd records whose `recurrence` was
+  true when written and is not recomputed; that ambiguity is flagged here rather
+  than settled, because a mass update would be guessing at the intent of records
+  from eleven rounds.
+- **Blame direction is worth checking before writing a correction down.** The dot/
+  dash drift was recorded as an agent error and normalised out of the records, when
+  the records were right and the registry was wrong. A reconciliation pass sits
+  above the agents and its verdicts are not reviewed by anything, which makes "the
+  agents got this wrong" the cheapest available conclusion and the one to be most
+  suspicious of.
+
+### Where the backlog stands
+
+222 → **206** candidates at ≥2 files, and the shape has changed more than the
+number: the highest remaining is **recurrence 8** (`eventing:eventing-storage`),
+so the double-digit debt round 12 uncovered is fully cleared. What is left is a
+long tail that wants a namespace-by-namespace coherence pass rather than more
+promotion - `vector-index:` has two members at 6 and no promoted parent,
+`backup:` has two at 5, and round 11's index-taxonomy question is the precedent
+for what happens if a family gets promoted before its axes are understood. 18
+predicates also sit at ≥2, headed by `requiresMinVersionFor` at 5, which was
+consolidated into `availableSince` in round 2 and re-minted by a later round -
+that one is a fold, not a promotion.
+
+Roughly 15 `sgw:` and `cbl:` candidates in the tail are not promotable at all
+until round 3's two trees are re-extracted, since their records are 45%-50%
+verbatim. That remains the tracked next step it has been since round 10.
+
+## Cumulative verdict (all thirteen rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -2779,6 +3096,17 @@ reference coverage would have corrected it - more reference pages were precisely
 what made it look well-supported. The check that caught it was reading the one
 page that defines the domain.
 
+Round 13 is the first round that read no new pages, and it belongs in this verdict
+for a different reason from the twelve before it: it is the first time the corpus
+was audited against **itself** rather than against a new surface, and the largest
+single defect it found was in the registry. Nine `concepts/version/` records
+declared an `id` that contradicted their own filename, so the tooling and the
+extraction agents disagreed about what was promoted, agents were denied for being
+correct, and a prior reconciliation pass had recorded the whole thing as *their*
+error. Twelve rounds of scrutiny went outward, at the documentation and then at the
+records and then at the queries. This one went at the authored registry that all
+three depend on, and it should not have taken thirteen rounds to look there.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: 322 of 2,780
@@ -2798,8 +3126,11 @@ Round 12 found the sharp edge of that trade-off: aggregate statistics are
 themselves code, and nine rounds of scrutiny went to the extraction records while
 none went to the query aggregating them. The object-only concept metric had been
 wrong since round 1, produced plausible output every time, and was hiding 276
-promotion candidates. Twelve limits of the method are now visible across multiple
-rounds, not just once, so worth treating as durable rather than one-off:
+promotion candidates. Round 13 completes that thought from the other side: the
+aggregates were also being fed a registry that disagreed with itself, so the query
+and its input had both gone unaudited while the records were audited twice.
+Fourteen limits of the method are now visible across multiple rounds, not just
+once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
   control.** Every brief for nine rounds required evidence to be a direct
@@ -2865,6 +3196,16 @@ rounds, not just once, so worth treating as durable rather than one-off:
   the query is correct, but that its corrections accumulate instead of being
   re-derived from memory each round.
 
+  Round 13 supplies an eighth, and it repeats bug #5 in a new script rather than
+  in a new form: `normalise-ids.py`'s rename table was keyed on the `ns:kebab`
+  shorthand while `recurrence.py` canonicalises shorthand and IRI together before
+  counting, so its first pass silently missed 11 dotted-version occurrences written
+  as full IRIs and closed only 10 of 13 clusters. `--selftest` covers the same
+  mistake in `recurrence.py` and could not carry the lesson across a file boundary.
+  A self-test protects the function it tests, not the invariant it was written
+  about, which is an argument for putting the canonicalisation in one place and
+  importing it - as this script does for the registry, and did not for the keys.
+
 - **Promotion can be a control point, not only a conclusion.** Round 12's
   correction had a contagion problem: an agent reusing `privilege:query-delete`
   and truthfully declaring it `extraction-layer` passes the write-time gate,
@@ -2875,6 +3216,29 @@ rounds, not just once, so worth treating as durable rather than one-off:
   promoted on this reasoning alone, which is a genuinely new use of promotion in
   this project and is documented as such in each record rather than passed off as
   ordinary.
+
+  Round 13 marks the boundary of the mechanism, which matters as much as the
+  mechanism. **An alias is a statement about an id, so it can repair a wrong
+  concept and never a wrong predicate.** `requiresPrivilege` could not be aliased
+  into `requiresServerRole` because 48 files use it correctly for a different
+  product's genuinely separate catalogue - aliasing a predicate that two products
+  use for two things corrupts the correct users to fix the incorrect ones. So round
+  12 did the concept half, left the predicate half, and minted the new predicate
+  with `recurrence: 20` against the zero records that used it, the 20 counting
+  files that *should* have. Nothing about that record looked unfinished. When a
+  correction has a concept half and a predicate half, they need two mechanisms, and
+  the round that only has one will leave the other half silently and plausibly
+  undone.
+
+- **A recurrence figure has to say which question it answers.** Everywhere in the
+  registry `recurrence` means "distinct files that use this term", except on one
+  round-12 record where it meant "files that should", and nothing distinguished
+  them. More generally the field is true when written and never recomputed, so
+  across 100-odd records it is a mixture of current counts and historical ones.
+  Round 13 added `recurrence_at_minting` to the one record it could establish it
+  for and flagged the rest rather than mass-updating, because a bulk rewrite would
+  be guessing at the intent of records from eleven rounds - but the ambiguity is
+  real and any consumer reading these as live counts will be wrong somewhere.
 
 - **A "needs a subject-matter expert" verdict can be a coverage gap in
   disguise.** `search-admin-fts-admin-role-overlap` sat open from round 2 to
@@ -2981,11 +3345,28 @@ rounds, not just once, so worth treating as durable rather than one-off:
   throwaway script - it was the definition of the concept-promotion signal, wrong
   since round 1, agreeing with itself every time it ran.
 
-  Six controls now exist where nine rounds had none: the write-time gate
+  Round 13 adds a fifth instance, in the registry rather than in a script: nine
+  `concepts/version/` records whose declared `id` contradicted their own filename,
+  which is the same species again - the reconcile skill had required ids to mirror
+  paths since round 1 and nothing checked, so the rule held for as long as care
+  held. Two extraction agents diagnosed it correctly and were overruled. Five
+  instances now, four of them committed by the reconciler that had already written
+  the previous one up as a known risk, is enough to stop calling it a pattern and
+  call it the default: **an unchecked invariant decays, and the decay shows up as
+  someone else's mistake.**
+
+  Eight controls now exist where nine rounds had none: the write-time gate
   (`hooks/gate-evidence.py`), its verdict log (`hooks/gate-log.jsonl`), the
   dispatch-time registry digest (`registry-digest.py`), the corpus audit
-  (`verify-evidence.py`), the promotion report (`verify-promotions.py`), and the
-  self-testing recurrence query (`recurrence.py --selftest`, 17 checks).
+  (`verify-evidence.py`), the promotion report (`verify-promotions.py`), the
+  self-testing recurrence query (`recurrence.py --selftest`, 17 checks), the
+  registry path/id check (`verify-registry-ids.py`, 514 records), and the id
+  normaliser (`normalise-ids.py`) - which is the odd one out, being the only one
+  that *writes*, and the only one that bypasses the gate. It is allowed to because
+  it touches `subject`, `predicate`, `object` and `candidate_id` and nothing else,
+  so it cannot make a quote stop matching a page; the compensating control is a
+  before/after `verify-evidence.py` over the whole corpus, byte-identical across
+  151 substitutions in 67 files.
   Round 11 is the first batch written entirely under the gate, and reports a
   mixed result honestly. What worked: 11 gated invocations, 2 denials, both
   rewritten records returning at the *same* relation count, so the gate's own
@@ -3045,5 +3426,16 @@ rounds, not just once, so worth treating as durable rather than one-off:
   ten-file-deep category error, and the thing that caught it was reading one page
   and noticing that the registry disagreed with it. The scripts are worth having
   precisely because they free up the attention that reading requires; they are not
-  a substitute for it, and after twelve rounds there is no sign they are becoming
+  a substitute for it, and after thirteen rounds there is no sign they are becoming
   one.
+
+  Round 13 adds the case where the checks were green because they were checking the
+  wrong file. `role:query-use-sequences` carries evidence quoting, verbatim, a table
+  heading in `roles.md` that is itself wrong - the label says "Manage Sequences",
+  the internal name says `query_use_sequences`, and the role's own permission table
+  grants `execute`. The gate confirmed the quote was on the page.
+  `verify-evidence.py` confirmed it again. `verify-promotions.py` confirmed the id
+  resolved. All three were right, and the record was wrong, because correct
+  extraction of an incorrect source is indistinguishable from correct extraction.
+  Nothing on this shelf can reach that, and nothing that could be added to it
+  would - the only check is a second source, or a person who knows the product.

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/query-manage-external-functions",
+  "label": "Manage Scope External Functions (Server RBAC role)",
+  "internal_name": "query_manage_external_functions",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege, and NOT a capella-role:* management-plane role. Do NOT confuse with rbac-role:role (the abstract TBox concept) or sgw:role (Sync Gateway's channel-access role).",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "role:manage-scope-external-functions"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Manage Scope External Functions (query_manage_external_functions)",
+  "promoted_in_round": 13,
+  "note": "Filed under its internal name, not its display label, per the role-id convention recorded in round 13: roles.md gives every role both a display label ('Manage Global Functions') and a parenthesised internal name ('query_manage_global_functions'), and 15 of the 17 role records promoted before this round used the internal name. The label form is recorded in aliases so the two extraction records that minted it resolve, and so any future reuse of the label form is a gate denial rather than a silent duplicate.\n\nSee docs-issues/roles-md-external-function-role-tables-copy-pasted: this role's permission table contradicts its own prose on the manage-vs-call and scope-vs-global axes."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/searchfun-cites-nonexistent-data-admin-role",
+  "type": "docs-issue",
+  "issueType": "cites-nonexistent-role",
+  "description": "searchfun.md states 'The role **Data Admin** must be assigned to those who intend to create indexes; and the role **Data Reader** to those who intend to perform searches.' There is no Data Admin role in Couchbase Server's 56-role catalogue. roles.md documents Data Reader (data_reader), Data Writer (data_writer), Data DCP Reader (data_dcp_reader), Data Monitor (data_monitoring) and Data Backup & Restore (data_backup) - plus Bucket Admin (bucket_admin) and Search Admin (fts_admin), either of which may be what was meant for index creation. So a single sentence names one real role and one that does not exist, and the reader cannot tell which is which. The page appears in both the server/ and cloud/ trees with identical wording, so the error is duplicated - same unadapted-shared-content pattern as cloud-sqlpp-pages-cite-server-rbac-roles.",
+  "about": [
+    "server/8.0/n1ql/n1ql-language-reference/searchfun",
+    "cloud/n1ql/n1ql-language-reference/searchfun"
+  ],
+  "foundDuring": "round-13-role-slice-and-variant-normalisation",
+  "status": "open"
+}

@@ -3,13 +3,41 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/auto-update-statistics.md",
   "concepts": [
-    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics (AUS)", "reused_or_minted": "minted - Capella/server-shared feature, no prior term in registry" },
-    { "candidate_id": "n1ql:update-statistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json" },
-    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json" },
-    { "candidate_id": "n1ql:system-aus", "label": "system:aus catalog (AUS global configuration)", "reused_or_minted": "minted" },
-    { "candidate_id": "n1ql:system-aus-settings", "label": "system:aus_settings catalog (AUS per-keyspace configuration)", "reused_or_minted": "minted" },
-    { "candidate_id": "privilege:query-system-catalog", "label": "query_system_catalog role", "reused_or_minted": "minted - distinct from privilege:query-manage-system-catalog (minted in cloud/n1ql/n1ql-manage/query-awr.json, same round); this page cites both the read-only and the manage variant of the same catalog-privilege family" },
-    { "candidate_id": "privilege:query-manage-system-catalog", "label": "query_manage_system_catalog role", "reused_or_minted": "reused - minted in cloud/n1ql/n1ql-manage/query-awr.json (same round, different batch)" }
+    {
+      "candidate_id": "n1ql:auto-update-statistics",
+      "label": "Auto Update Statistics (AUS)",
+      "reused_or_minted": "minted - Capella/server-shared feature, no prior term in registry"
+    },
+    {
+      "candidate_id": "n1ql:update-statistics",
+      "label": "UPDATE STATISTICS statement",
+      "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json"
+    },
+    {
+      "candidate_id": "n1ql:cost-based-optimizer",
+      "label": "Cost-Based Optimizer (CBO)",
+      "reused_or_minted": "reused - already minted from server/n1ql-language-reference/cost-based-optimizer.json"
+    },
+    {
+      "candidate_id": "n1ql:system-aus",
+      "label": "system:aus catalog (AUS global configuration)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:system-aus-settings",
+      "label": "system:aus_settings catalog (AUS per-keyspace configuration)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "privilege:query-system-catalog",
+      "label": "query_system_catalog role",
+      "reused_or_minted": "minted - distinct from privilege:query-manage-system-catalog (minted in cloud/n1ql/n1ql-manage/query-awr.json, same round); this page cites both the read-only and the manage variant of the same catalog-privilege family"
+    },
+    {
+      "candidate_id": "privilege:query-manage-system-catalog",
+      "label": "query_manage_system_catalog role",
+      "reused_or_minted": "reused - minted in cloud/n1ql/n1ql-manage/query-awr.json (same round, different batch)"
+    }
   ],
   "relations": [
     {
@@ -28,28 +56,28 @@
     },
     {
       "subject": "n1ql:system-aus",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-system-catalog",
       "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
       "evidence": "To execute SELECT on `system:aus`, you need the `query_system_catalog` role."
     },
     {
       "subject": "n1ql:system-aus",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-system-catalog",
       "reused_or_minted_predicate": "reused - requiresPrivilege base predicate; object concept reused from query-awr.json",
       "evidence": "To execute UPDATE on `system:aus`, you need the `query_manage_system_catalog` role."
     },
     {
       "subject": "n1ql:system-aus-settings",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-system-catalog",
       "reused_or_minted_predicate": "reused",
       "evidence": "To execute SELECT on `system:aus_settings`, you need the `query_system_catalog` role."
     },
     {
       "subject": "n1ql:system-aus-settings",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-system-catalog",
       "reused_or_minted_predicate": "reused",
       "evidence": "To execute UPDATE, DELETE, INSERT, and UPSERT on `system:aus_settings`, you need the `query_manage_system_catalog` role."

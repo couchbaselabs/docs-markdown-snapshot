@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/roles-md-external-function-role-tables-copy-pasted",
+  "type": "docs-issue",
+  "issueType": "table-contradicts-own-prose",
+  "description": "Two of the four external-function role tables in roles.md have Query-permission cells copy-pasted from a sibling role, contradicting their own prose. (a) 'Manage Scope External Functions': the prose says the role 'lets the user create and drop external language functions defined at the scope level', but the table's Query row reads 'Can call globally defined external functions' - wrong on both axes at once, manage-vs-call and scope-vs-global. Its cells are identical to those of Execute Scope External Functions. (b) 'Execute Scope External Functions': prose says 'call external functions defined in a scope', table says 'Can call globally defined external functions' - wrong on the scope-vs-global axis. Since a role table is the authoritative statement of what a role permits, a reader following the table would grant the wrong role. Also in this family: 'Manage Global External Functions' is the only one of the four with no Buckets row, and the eight SQL++ function roles are scattered non-contiguously through the page (Manage Scope Functions is the 27th heading, Execute Scope Functions the 35th, with the Query Select/Update/Insert/Delete roles in between), so the family cannot be read as a set. Minor copy-editing defect in the same family: 'When granting this role, You select the scopes' capitalises 'You' mid-sentence.",
+  "about": [
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-13-role-slice-and-variant-normalisation",
+  "status": "open"
+}

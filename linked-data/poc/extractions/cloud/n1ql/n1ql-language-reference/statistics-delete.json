@@ -3,19 +3,27 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/statistics-delete.md",
   "concepts": [
-    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "minted" },
-    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "n1ql:update-statistics",
+      "label": "UPDATE STATISTICS statement",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:cost-based-optimizer",
+      "label": "Cost-Based Optimizer",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
     {
-      "subject": "n1ql:updatestatistics",
+      "subject": "n1ql:update-statistics",
       "predicate": "isSynonymOf",
-      "object": "n1ql:updatestatistics",
+      "object": "n1ql:update-statistics",
       "reused_or_minted_predicate": "reused",
       "evidence": "For this syntax, `UPDATE STATISTICS` and `ANALYZE` are synonyms. The statement must begin with one of these alternatives."
     },
     {
-      "subject": "n1ql:updatestatistics",
+      "subject": "n1ql:update-statistics",
       "predicate": "dependsOnService",
       "object": "n1ql:cost-based-optimizer",
       "reused_or_minted_predicate": "reused",

@@ -3,13 +3,41 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/javascript-udfs/calling-javascript-from-n1ql.md",
   "concepts": [
-    { "candidate_id": "n1ql:createfunction", "label": "CREATE FUNCTION statement", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
-    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
-    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
-    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch" },
-    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "reused_or_minted": "reused - already minted in n1ql batch (transactions.json)" },
-    { "candidate_id": "js-udf:variadic-parameter", "label": "Variadic parameter for a user-defined function (accepts a variable-length list of values, denoted by `...`)", "reused_or_minted": "minted" },
-    { "candidate_id": "capella:query-tab", "label": "Capella Query tab (Web Console UI)", "reused_or_minted": "reused - already promoted" }
+    {
+      "candidate_id": "n1ql:create-function",
+      "label": "CREATE FUNCTION statement",
+      "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch"
+    },
+    {
+      "candidate_id": "js-udf:scoped-function",
+      "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)",
+      "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch"
+    },
+    {
+      "candidate_id": "js-udf:global-function",
+      "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide)",
+      "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch"
+    },
+    {
+      "candidate_id": "js-udf:udf-library",
+      "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)",
+      "reused_or_minted": "reused - minted in javascript-functions-with-couchbase.json, same batch"
+    },
+    {
+      "candidate_id": "n1ql:execute-function",
+      "label": "EXECUTE FUNCTION statement",
+      "reused_or_minted": "reused - already minted in n1ql batch (transactions.json)"
+    },
+    {
+      "candidate_id": "js-udf:variadic-parameter",
+      "label": "Variadic parameter for a user-defined function (accepts a variable-length list of values, denoted by `...`)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "capella:query-tab",
+      "label": "Capella Query tab (Web Console UI)",
+      "reused_or_minted": "reused - already promoted"
+    }
   ],
   "relations": [
     {

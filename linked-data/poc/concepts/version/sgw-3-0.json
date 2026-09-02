@@ -1,7 +1,8 @@
 {
-  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-3.0",
+  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-3-0",
   "label": "Sync Gateway 3.0",
   "type": "Sync Gateway's own independent version family - kept separate from version:server-* per the extraction batch's explicit instructions",
   "promoted": true,
-  "recurrence": 3
+  "recurrence": 3,
+  "note": "Round 13: the id field above read 'sgw-3.0' - dots where this file's own path has dashes - in violation of the rule that a record's id mirrors its path. Extraction agents that copied the id faithfully produced an id no tool in the pipeline could resolve, so their correct behaviour registered as unpromoted debt; two of them flagged the drift in their notes and asked reconciliation to settle it. Nine of the thirteen version records had this defect and no other namespace had it. verify-registry-ids.py now checks it."
 }

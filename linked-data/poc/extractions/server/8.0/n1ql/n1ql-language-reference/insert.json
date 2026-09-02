@@ -3,66 +3,146 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/insert.md",
   "concepts": [
-    { "candidate_id": "n1ql:insert", "label": "INSERT statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/insert.json for the same statement" },
-    { "candidate_id": "n1ql:upsert", "label": "UPSERT statement", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:explain", "label": "EXPLAIN statement", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:select", "label": "SELECT statement", "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records; named here as the clause whose presence adds a privilege requirement" },
-    { "candidate_id": "n1ql:returning-clause", "label": "RETURNING clause", "reused_or_minted": "minted - needed as a distinct subject because RETURNING, independently of SELECT, is what triggers the additional read privilege; the Capella record folded the two together in prose" },
-    { "candidate_id": "privilege:query-insert", "label": "Query Insert (Server RBAC privilege)", "reused_or_minted": "minted - sibling of the promoted privilege:query-manage-index in the Server RBAC privilege family. MUST NOT be merged with privilege:capella-advanced-access-query-insert from the Capella record: the labels are identical ('Query Insert') but the access models are different, and merging them would assert an identity neither page states. See cross_product_finding" },
-    { "candidate_id": "privilege:query-select", "label": "Query Select (Server RBAC privilege)", "reused_or_minted": "reused - already used in server/7.2/n1ql/n1ql-language-reference/selectintro.json and server/current/n1ql/n1ql-rest-api/exauthhttp.json. Distinct from the Capella record's privilege:capella-advanced-access-query-read, which that record labelled 'Query Read' - note the two products use different privilege NAMES for the read privilege on the same statement (Server: Query Select; Capella: Query Read), which is itself worth reconciliation's attention" },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator role", "reused_or_minted": "reused - promoted registry concept; named on this page as one of the roles that can insert into any keyspace" },
-    { "candidate_id": "role:cluster-administrator", "label": "Cluster administrator role (as named by this page)", "reused_or_minted": "minted - the page names 'the cluster administrator' alongside the full administrator; minted with the caveat that the page uses lowercase prose rather than the canonical role name, so this id may need to be reconciled against the actual RBAC role list on learn/security/roles.md rather than taken at face value" },
-    { "candidate_id": "role:keyspace-administrator", "label": "Keyspace administrator role (as named by this page)", "reused_or_minted": "minted - same caveat as above; 'the keyspace administrator for the specified keyspace' is not a role name that appears in the promoted role: family, and may be this page's informal gloss for a bucket-scoped admin role" },
-    { "candidate_id": "rbac-role:read-only", "label": "Read-only role (on a bucket)", "reused_or_minted": "minted - needed as the object of the page's SASL-bucket prohibition; the page names it only as 'a read-only role for the SASL bucket'" },
-    { "candidate_id": "data:sasl-bucket", "label": "SASL bucket (password-protected bucket)", "reused_or_minted": "minted - no existing id; the object of a hard prohibition on this page and, notably, terminology that predates the modern RBAC model (see notable_absence)" },
-    { "candidate_id": "n1ql:xattrs-in-query", "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query", "reused_or_minted": "reused - same id used in searchfun.json and metafun.json in this batch; the 15-XATTR limit is restated here twice" },
-    { "candidate_id": "data:document-expiration", "label": "Document expiration (TTL)", "reused_or_minted": "reused - same id minted in time-series.json in this batch. The Capella record used sdk:document-expiration for the same link target; both records link to the Java SDK KV-operations how-to, so reconciliation should pick one - I have used the data: id because the page's substantive claims (the 30-day seconds-vs-timestamp rule, bucket/collection inheritance) are about the data model, not the SDK" },
-    { "candidate_id": "setting:pipeline-batch", "label": "pipeline_batch request-level parameter / pipeline-batch service-level setting", "reused_or_minted": "minted - one named setting with two names depending on scope (underscore for request level, hyphen for service level); the Server page documents both, the Capella page only the request-level one" },
-    { "candidate_id": "setting:max-parallelism", "label": "max_parallelism request-level parameter / max-parallelism service-level setting", "reused_or_minted": "minted - same request/service dual-naming pattern as pipeline-batch" },
-    { "candidate_id": "setting:indexer-scan-timeout", "label": "indexer.settings.scan_timeout (Index Settings REST API property)", "reused_or_minted": "minted - sibling of setting:indexer-settings-defer-build minted in server/current/.../createindex.json in this wave; present only in the Server page" },
-    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused - established id (20 extraction records)" },
-    { "candidate_id": "service:data-service", "label": "Data Service", "reused_or_minted": "reused - established id; the page describes INSERT batching documents 'to the data node'" },
-    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "reused_or_minted": "reused - established in cloud/.../stringfun.json and server/current/.../createindex.json" }
+    {
+      "candidate_id": "n1ql:insert",
+      "label": "INSERT statement",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/insert.json for the same statement"
+    },
+    {
+      "candidate_id": "n1ql:upsert",
+      "label": "UPSERT statement",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:explain",
+      "label": "EXPLAIN statement",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:select",
+      "label": "SELECT statement",
+      "reused_or_minted": "reused - established id in the cloud/n1ql/ extraction records; named here as the clause whose presence adds a privilege requirement"
+    },
+    {
+      "candidate_id": "n1ql:returning-clause",
+      "label": "RETURNING clause",
+      "reused_or_minted": "minted - needed as a distinct subject because RETURNING, independently of SELECT, is what triggers the additional read privilege; the Capella record folded the two together in prose"
+    },
+    {
+      "candidate_id": "privilege:query-insert",
+      "label": "Query Insert (Server RBAC privilege)",
+      "reused_or_minted": "minted - sibling of the promoted privilege:query-manage-index in the Server RBAC privilege family. MUST NOT be merged with privilege:capella-advanced-access-query-insert from the Capella record: the labels are identical ('Query Insert') but the access models are different, and merging them would assert an identity neither page states. See cross_product_finding"
+    },
+    {
+      "candidate_id": "privilege:query-select",
+      "label": "Query Select (Server RBAC privilege)",
+      "reused_or_minted": "reused - already used in server/7.2/n1ql/n1ql-language-reference/selectintro.json and server/current/n1ql/n1ql-rest-api/exauthhttp.json. Distinct from the Capella record's privilege:capella-advanced-access-query-read, which that record labelled 'Query Read' - note the two products use different privilege NAMES for the read privilege on the same statement (Server: Query Select; Capella: Query Read), which is itself worth reconciliation's attention"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator role",
+      "reused_or_minted": "reused - promoted registry concept; named on this page as one of the roles that can insert into any keyspace"
+    },
+    {
+      "candidate_id": "role:cluster-administrator",
+      "label": "Cluster administrator role (as named by this page)",
+      "reused_or_minted": "minted - the page names 'the cluster administrator' alongside the full administrator; minted with the caveat that the page uses lowercase prose rather than the canonical role name, so this id may need to be reconciled against the actual RBAC role list on learn/security/roles.md rather than taken at face value"
+    },
+    {
+      "candidate_id": "role:keyspace-administrator",
+      "label": "Keyspace administrator role (as named by this page)",
+      "reused_or_minted": "minted - same caveat as above; 'the keyspace administrator for the specified keyspace' is not a role name that appears in the promoted role: family, and may be this page's informal gloss for a bucket-scoped admin role"
+    },
+    {
+      "candidate_id": "rbac-role:read-only",
+      "label": "Read-only role (on a bucket)",
+      "reused_or_minted": "minted - needed as the object of the page's SASL-bucket prohibition; the page names it only as 'a read-only role for the SASL bucket'"
+    },
+    {
+      "candidate_id": "data:sasl-bucket",
+      "label": "SASL bucket (password-protected bucket)",
+      "reused_or_minted": "minted - no existing id; the object of a hard prohibition on this page and, notably, terminology that predates the modern RBAC model (see notable_absence)"
+    },
+    {
+      "candidate_id": "n1ql:xattrs-in-query",
+      "label": "Access to document Extended Attributes (XATTRs) from within a SQL++ query",
+      "reused_or_minted": "reused - same id used in searchfun.json and metafun.json in this batch; the 15-XATTR limit is restated here twice"
+    },
+    {
+      "candidate_id": "data:document-expiration",
+      "label": "Document expiration (TTL)",
+      "reused_or_minted": "reused - same id minted in time-series.json in this batch. The Capella record used sdk:document-expiration for the same link target; both records link to the Java SDK KV-operations how-to, so reconciliation should pick one - I have used the data: id because the page's substantive claims (the 30-day seconds-vs-timestamp rule, bucket/collection inheritance) are about the data model, not the SDK"
+    },
+    {
+      "candidate_id": "setting:pipeline-batch",
+      "label": "pipeline_batch request-level parameter / pipeline-batch service-level setting",
+      "reused_or_minted": "minted - one named setting with two names depending on scope (underscore for request level, hyphen for service level); the Server page documents both, the Capella page only the request-level one"
+    },
+    {
+      "candidate_id": "setting:max-parallelism",
+      "label": "max_parallelism request-level parameter / max-parallelism service-level setting",
+      "reused_or_minted": "minted - same request/service dual-naming pattern as pipeline-batch"
+    },
+    {
+      "candidate_id": "setting:indexer-scan-timeout",
+      "label": "indexer.settings.scan_timeout (Index Settings REST API property)",
+      "reused_or_minted": "minted - sibling of setting:indexer-settings-defer-build minted in server/current/.../createindex.json in this wave; present only in the Server page"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "reused_or_minted": "reused - established id (20 extraction records)"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data Service",
+      "reused_or_minted": "reused - established id; the page describes INSERT batching documents 'to the data node'"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "reused_or_minted": "reused - established in cloud/.../stringfun.json and server/current/.../createindex.json"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:insert",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-insert",
       "reused_or_minted_predicate": "reused - promoted predicate. Object is the Server RBAC privilege, deliberately NOT merged with the Capella record's identically-labelled credential-model privilege",
       "evidence": "To execute the INSERT statement, you must have the _Query Insert_ privilege on the target keyspace."
     },
     {
       "subject": "n1ql:insert",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-select",
       "reused_or_minted_predicate": "reused - promoted predicate; this requirement is conditional on the statement containing a SELECT or RETURNING clause, and the condition is carried in the evidence quote. The registry has no way to express a conditional privilege requirement, which matters here because the unconditional and conditional requirements are otherwise indistinguishable once modelled",
       "evidence": "If the statement has any SELECT or RETURNING data-read clauses, then the _Query Select_ privilege is also required on the keyspaces referred in the respective clauses."
     },
     {
       "subject": "n1ql:returning-clause",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-select",
       "reused_or_minted_predicate": "reused - filed against the clause rather than the statement, so the conditionality is expressed structurally rather than being lost. Evidence is the worked RBAC example, where adding RETURNING * to an otherwise identical statement is the only change that adds the privilege",
       "evidence": "To execute the following statement, you must have the _Query Insert_ and _Query Select_ privileges on `hotel`."
     },
     {
       "subject": "n1ql:insert",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:full-administrator",
       "reused_or_minted_predicate": "reused - read as 'this role suffices', not 'this role is required'; the page lists three admin roles as alternatives to keyspace credentials. The registry's requiresRole cannot express 'any one of these', so this and the two relations below over-state the requirement individually while the set understates it collectively - flagged rather than dropped",
       "evidence": "Any user who has the keyspace credentials or any Couchbase administrator should be able to insert documents into a keyspace. This includes the keyspace administrator for the specified keyspace, the cluster administrator, and the full administrator roles."
     },
     {
       "subject": "n1ql:insert",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:cluster-administrator",
       "reused_or_minted_predicate": "reused - same 'any one of these' caveat as above",
       "evidence": "This includes the keyspace administrator for the specified keyspace, the cluster administrator, and the full administrator roles."
     },
     {
       "subject": "n1ql:insert",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:keyspace-administrator",
       "reused_or_minted_predicate": "reused - same caveat; object id minted with the reservation noted in the concept list",
       "evidence": "This includes the keyspace administrator for the specified keyspace, the cluster administrator, and the full administrator roles."

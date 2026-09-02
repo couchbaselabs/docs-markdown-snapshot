@@ -3,8 +3,16 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/statistics-index.md",
   "concepts": [
-    { "candidate_id": "n1ql:updatestatistics", "label": "UPDATE STATISTICS statement", "reused_or_minted": "reused - already minted in statistics-delete.json from this batch" },
-    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "n1ql:update-statistics",
+      "label": "UPDATE STATISTICS statement",
+      "reused_or_minted": "reused - already minted in statistics-delete.json from this batch"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
     {

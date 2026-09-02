@@ -12,7 +12,7 @@
   "relations": [
     {
       "subject": "n1ql:drop-index",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-index",
       "reused_or_minted_predicate": "reused - registry hit, identical phrasing to createindex.md",
       "evidence": "User executing the DROP INDEX statement must have the Query Manage Index privilege granted on the keyspace/bucket."

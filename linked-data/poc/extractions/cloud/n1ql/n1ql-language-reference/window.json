@@ -3,17 +3,67 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/window.md",
   "concepts": [
-    { "candidate_id": "n1ql:window-clause", "label": "WINDOW clause", "reused_or_minted": "minted - no existing match; n1ql: namespace, '-clause' suffix per n1ql:orderby-clause convention" },
-    { "candidate_id": "privilege:query-select", "label": "query_select (named RBAC privilege)", "reused_or_minted": "minted - distinct in shape from privilege:capella-basic-access-read/privilege:capella-advanced-access-query-read; this page cites the raw underlying server/-style RBAC privilege name directly, with no Basic/Advanced credential-type branching table. See cross_component_finding." }
+    {
+      "candidate_id": "n1ql:window-clause",
+      "label": "WINDOW clause",
+      "reused_or_minted": "minted - no existing match; n1ql: namespace, '-clause' suffix per n1ql:orderby-clause convention"
+    },
+    {
+      "candidate_id": "privilege:query-select",
+      "label": "query_select (named RBAC privilege)",
+      "reused_or_minted": "minted - distinct in shape from privilege:capella-basic-access-read/privilege:capella-advanced-access-query-read; this page cites the raw underlying server/-style RBAC privilege name directly, with no Basic/Advanced credential-type branching table. See cross_component_finding."
+    }
   ],
   "relations": [
-    { "subject": "n1ql:window-clause", "predicate": "requiresPrivilege", "object": "privilege:query-select", "reused_or_minted_predicate": "predicate reused; object minted", "evidence": "To select data from keyspace or expression, your client must have the `query_select` privilege on that keyspace." },
-    { "subject": "n1ql:window-clause", "predicate": "requiresEdition", "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise", "reused_or_minted_predicate": "reused", "evidence": "In Couchbase Server Enterprise Edition, [aggregate functions](aggregatefun.md) can also be used as window functions when they are used with an OVER clause." },
-    { "subject": "n1ql:window-clause", "predicate": "availableSince", "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0", "reused_or_minted_predicate": "reused", "evidence": "In Couchbase Server 7.0 and later, window functions (and aggregate functions used as window functions) may specify their own inline window definitions, or they may refer to a named window defined by the WINDOW clause elsewhere in the query." },
-    { "subject": "n1ql:window-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/windowfun", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Refer to [Aggregate Functions](aggregatefun.md) or [Window Functions](windowfun.md) for the details of window function calls." },
-    { "subject": "n1ql:window-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/orderby", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "To guarantee the order of the final results, use the query [ORDER BY clause](orderby.md)." },
-    { "subject": "n1ql:window-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/groupby", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "the WINDOW clause must be included after the [GROUP BY](groupby.md), [LETTING](groupby.md#letting-clause), and [HAVING](groupby.md#having-clause) clauses" },
-    { "subject": "n1ql:window-clause", "predicate": "seeAlso", "object": "cloud/n1ql/n1ql-language-reference/datefun", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "use the appropriate [date or time function](datefun.md) to convert the date or time into milliseconds" }
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "requiresServerRole",
+      "object": "privilege:query-select",
+      "reused_or_minted_predicate": "predicate reused; object minted",
+      "evidence": "To select data from keyspace or expression, your client must have the `query_select` privilege on that keyspace."
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "requiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server Enterprise Edition, [aggregate functions](aggregatefun.md) can also be used as window functions when they are used with an OVER clause."
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "availableSince",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 7.0 and later, window functions (and aggregate functions used as window functions) may specify their own inline window definitions, or they may refer to a named window defined by the WINDOW clause elsewhere in the query."
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/windowfun",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Refer to [Aggregate Functions](aggregatefun.md) or [Window Functions](windowfun.md) for the details of window function calls."
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/orderby",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To guarantee the order of the final results, use the query [ORDER BY clause](orderby.md)."
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/groupby",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "the WINDOW clause must be included after the [GROUP BY](groupby.md), [LETTING](groupby.md#letting-clause), and [HAVING](groupby.md#having-clause) clauses"
+    },
+    {
+      "subject": "n1ql:window-clause",
+      "predicate": "seeAlso",
+      "object": "cloud/n1ql/n1ql-language-reference/datefun",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "use the appropriate [date or time function](datefun.md) to convert the date or time into milliseconds"
+    }
   ],
   "notable_absence": {
     "predicate": "requiresCapellaRole / incompatibleWithCredentialType / cluster-access-credential-type",

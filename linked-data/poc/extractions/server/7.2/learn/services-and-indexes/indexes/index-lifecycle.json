@@ -18,7 +18,7 @@
     {
       "subject": "index:gsi-per-collection-scope",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 7.0 and later, a Global Secondary Index is created on a single collection — not on an entire bucket."
     },

@@ -25,14 +25,14 @@
   "relations": [
     {
       "subject": "fts:full-text-search",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:fts-admin",
       "reused_or_minted_predicate": "reused",
       "evidence": "The role **FTS Admin** must therefore be assigned to those who intend to create indexes; and the role **FTS Searcher** to those who intend to perform searches."
     },
     {
       "subject": "fts:full-text-search",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:fts-searcher",
       "reused_or_minted_predicate": "reused",
       "evidence": "The role **FTS Admin** must therefore be assigned to those who intend to create indexes; and the role **FTS Searcher** to those who intend to perform searches."

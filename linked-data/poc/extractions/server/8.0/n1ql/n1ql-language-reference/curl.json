@@ -3,31 +3,111 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/curl.md",
   "concepts": [
-    { "candidate_id": "n1ql:curl-function", "label": "CURL() function", "reused_or_minted": "minted - no prior id anywhere. This page has NO Capella counterpart (Capella has no n1ql-language-reference/curl.md at all), so every concept here is minted by necessity rather than by preference." },
-    { "candidate_id": "role:query-external-access", "label": "QUERY_EXTERNAL_ACCESS (Server RBAC role)", "reused_or_minted": "minted as a ROLE, not a privilege. This is the answer to open item 2: Server gates CURL() on an RBAC role, so it must NOT be merged with the promoted concept privilege:capella-advanced-access-query-curl-access. See cross_product_finding for the full argument." },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator (Server RBAC role)", "reused_or_minted": "reused - the registry already has a full-administrator role concept. On this page it is doubly load-bearing: it is both the only role for which CURL() should be enabled and the only role that can grant QUERY_EXTERNAL_ACCESS or edit the access list." },
-    { "candidate_id": "security:curl-access-list", "label": "CURL() access list (allowlist/denylist of URLs and REST endpoints)", "reused_or_minted": "minted - no prior id. Minting into a security: namespace rather than setting: because the docs describe it as an access list FILE defined per query node, configured through a settings endpoint - it is a security policy object, not a scalar setting. Reconciliation may prefer setting:curl-whitelist to match the REST path; flagging the choice explicitly." },
-    { "candidate_id": "setting:curl-all-access", "label": "all_access (CURL() access list property)", "reused_or_minted": "minted - a required property of the access list with a documented gating effect on the other two properties" },
-    { "candidate_id": "setting:curl-allowed-urls", "label": "allowed_urls (CURL() access list property)", "reused_or_minted": "minted - prefix-match allowlist" },
-    { "candidate_id": "setting:curl-disallowed-urls", "label": "disallowed_urls (CURL() access list property)", "reused_or_minted": "minted - prefix-match denylist, documented as taking precedence over allowed_urls" },
-    { "candidate_id": "setting:curl-result-cap", "label": "result-cap (CURL() result memory cap option, default 20MB)", "reused_or_minted": "minted - no prior id" },
-    { "candidate_id": "setting:couchbase-ssl-cipher-list", "label": "COUCHBASE_SSL_CIPHER_LIST", "reused_or_minted": "minted - no prior id; an environment-level control that determines which SSL ciphers CURL() can negotiate" },
-    { "candidate_id": "security:x-n1ql-user-agent-header", "label": "X-N1QL-User-Agent request header", "reused_or_minted": "minted - no prior id. Worth a concept of its own because it is an outward-facing contract: external API owners are told to detect and block on it, so it is the one part of Couchbase's security surface that third parties are expected to implement against." },
-    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - minted in this batch's createfunction.json" },
-    { "candidate_id": "server:query-node", "label": "Query node", "reused_or_minted": "minted - no prior id; needed as a distinct concept from the Query Service because the access list is defined per NODE ('Each query node in the cluster must define its access list file'), which is a deployment-topology fact, not a service fact" },
-    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "minted - no prior id in the registry (which has only service:eventing-service); referenced as the alternative to CURL() for full-text search from 6.5 onward" },
-    { "candidate_id": "n1ql:search-functions", "label": "SQL++ Search functions", "reused_or_minted": "minted - no prior id; the 6.5 in-query alternative to CURL() for full-text search" },
-    { "candidate_id": "surface:query-workbench", "label": "Query Workbench (Advanced Query Settings)", "reused_or_minted": "minted - no prior id. Deliberately NOT merged with the promoted concept capella:query-tab: that is the Capella UI, this is the Server Query Workbench, and this page names it as one of the two places the access list can be created." },
-    { "candidate_id": "api:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings/curlWhitelist)", "reused_or_minted": "minted - no prior id; the second configuration surface for the access list" },
-    { "candidate_id": "surface:cbq", "label": "cbq (Couchbase Query shell)", "reused_or_minted": "minted - no prior id; named as the second route to creating the access list" },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - registry concept; same hyphen-vs-dot id spelling caveat noted throughout this batch" },
-    { "candidate_id": "version:server-5-0", "label": "Couchbase Server 5.0", "reused_or_minted": "minted - no 5.0 concept in the registry; the oldest version boundary encountered anywhere in this batch" },
-    { "candidate_id": "product:sync-gateway", "label": "Couchbase Mobile Sync Gateway (Admin endpoint)", "reused_or_minted": "minted - no prior id; appears as the worked threat-model example for why the access list exists, i.e. the concrete privilege-escalation path CURL() opens" }
+    {
+      "candidate_id": "n1ql:curl-function",
+      "label": "CURL() function",
+      "reused_or_minted": "minted - no prior id anywhere. This page has NO Capella counterpart (Capella has no n1ql-language-reference/curl.md at all), so every concept here is minted by necessity rather than by preference."
+    },
+    {
+      "candidate_id": "role:query-external-access",
+      "label": "QUERY_EXTERNAL_ACCESS (Server RBAC role)",
+      "reused_or_minted": "minted as a ROLE, not a privilege. This is the answer to open item 2: Server gates CURL() on an RBAC role, so it must NOT be merged with the promoted concept privilege:capella-advanced-access-query-curl-access. See cross_product_finding for the full argument."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator (Server RBAC role)",
+      "reused_or_minted": "reused - the registry already has a full-administrator role concept. On this page it is doubly load-bearing: it is both the only role for which CURL() should be enabled and the only role that can grant QUERY_EXTERNAL_ACCESS or edit the access list."
+    },
+    {
+      "candidate_id": "security:curl-access-list",
+      "label": "CURL() access list (allowlist/denylist of URLs and REST endpoints)",
+      "reused_or_minted": "minted - no prior id. Minting into a security: namespace rather than setting: because the docs describe it as an access list FILE defined per query node, configured through a settings endpoint - it is a security policy object, not a scalar setting. Reconciliation may prefer setting:curl-whitelist to match the REST path; flagging the choice explicitly."
+    },
+    {
+      "candidate_id": "setting:curl-all-access",
+      "label": "all_access (CURL() access list property)",
+      "reused_or_minted": "minted - a required property of the access list with a documented gating effect on the other two properties"
+    },
+    {
+      "candidate_id": "setting:curl-allowed-urls",
+      "label": "allowed_urls (CURL() access list property)",
+      "reused_or_minted": "minted - prefix-match allowlist"
+    },
+    {
+      "candidate_id": "setting:curl-disallowed-urls",
+      "label": "disallowed_urls (CURL() access list property)",
+      "reused_or_minted": "minted - prefix-match denylist, documented as taking precedence over allowed_urls"
+    },
+    {
+      "candidate_id": "setting:curl-result-cap",
+      "label": "result-cap (CURL() result memory cap option, default 20MB)",
+      "reused_or_minted": "minted - no prior id"
+    },
+    {
+      "candidate_id": "setting:couchbase-ssl-cipher-list",
+      "label": "COUCHBASE_SSL_CIPHER_LIST",
+      "reused_or_minted": "minted - no prior id; an environment-level control that determines which SSL ciphers CURL() can negotiate"
+    },
+    {
+      "candidate_id": "security:x-n1ql-user-agent-header",
+      "label": "X-N1QL-User-Agent request header",
+      "reused_or_minted": "minted - no prior id. Worth a concept of its own because it is an outward-facing contract: external API owners are told to detect and block on it, so it is the one part of Couchbase's security surface that third parties are expected to implement against."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "server:query-node",
+      "label": "Query node",
+      "reused_or_minted": "minted - no prior id; needed as a distinct concept from the Query Service because the access list is defined per NODE ('Each query node in the cluster must define its access list file'), which is a deployment-topology fact, not a service fact"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search Service",
+      "reused_or_minted": "minted - no prior id in the registry (which has only service:eventing-service); referenced as the alternative to CURL() for full-text search from 6.5 onward"
+    },
+    {
+      "candidate_id": "n1ql:search-functions",
+      "label": "SQL++ Search functions",
+      "reused_or_minted": "minted - no prior id; the 6.5 in-query alternative to CURL() for full-text search"
+    },
+    {
+      "candidate_id": "surface:query-workbench",
+      "label": "Query Workbench (Advanced Query Settings)",
+      "reused_or_minted": "minted - no prior id. Deliberately NOT merged with the promoted concept capella:query-tab: that is the Capella UI, this is the Server Query Workbench, and this page names it as one of the two places the access list can be created."
+    },
+    {
+      "candidate_id": "api:query-settings-rest-api",
+      "label": "Query Settings REST API (/settings/querySettings/curlWhitelist)",
+      "reused_or_minted": "minted - no prior id; the second configuration surface for the access list"
+    },
+    {
+      "candidate_id": "surface:cbq",
+      "label": "cbq (Couchbase Query shell)",
+      "reused_or_minted": "minted - no prior id; named as the second route to creating the access list"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "reused - registry concept; same hyphen-vs-dot id spelling caveat noted throughout this batch"
+    },
+    {
+      "candidate_id": "version:server-5-0",
+      "label": "Couchbase Server 5.0",
+      "reused_or_minted": "minted - no 5.0 concept in the registry; the oldest version boundary encountered anywhere in this batch"
+    },
+    {
+      "candidate_id": "product:sync-gateway",
+      "label": "Couchbase Mobile Sync Gateway (Admin endpoint)",
+      "reused_or_minted": "minted - no prior id; appears as the worked threat-model example for why the access list exists, i.e. the concrete privilege-escalation path CURL() opens"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:curl-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:query-external-access",
       "reused_or_minted_predicate": "reused - promoted predicate. THE key fact for open item 2, and note it is requiresRole and not requiresPrivilege: the page says 'RBAC role' in those words.",
       "evidence": "For all other users, the RBAC role `QUERY_EXTERNAL_ACCESS` is required to run the `CURL()` function. Only the Full Administrator can assign the `QUERY_EXTERNAL_ACCESS` role to other users."
@@ -41,7 +121,7 @@
     },
     {
       "subject": "n1ql:curl-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:full-administrator",
       "reused_or_minted_predicate": "reused - promoted predicate, but recorded with a caveat: the source sentence is a security RECOMMENDATION ('Enable the CURL() function only for the Full Administrator role'), not a hard requirement, and the very next bullet contemplates other users holding QUERY_EXTERNAL_ACCESS. The registry has no predicate for a recommended-but-not-enforced hardening step. Reconciliation should consider recommendedRestriction or similar; asserting requiresRole here overstates the docs slightly and the quote is preserved so that can be corrected.",
       "evidence": "Enable the `CURL()` function only for the Full Administrator role."

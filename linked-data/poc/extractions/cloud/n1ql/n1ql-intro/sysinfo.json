@@ -17,7 +17,7 @@
   "relations": [
     {
       "subject": "n1ql:system-indexes-catalog",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:select",
       "reused_or_minted_predicate": "reused - this is a straightforward single-privilege-gates-single-resource-visibility check, the same shape `requiresPrivilege` was promoted for on server/. Unlike the CREATE/DROP/GRANT/REVOKE family on this batch, there is no management-plane role involved here, so no need to mint `requiresCapellaRole`.",
       "evidence": "Similarly, users must have SELECT permission on the target of an index to be able to view that index in the system catalog."

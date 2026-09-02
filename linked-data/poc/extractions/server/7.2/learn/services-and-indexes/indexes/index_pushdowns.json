@@ -29,13 +29,13 @@
       "reused_or_minted": "minted"
     },
     {
-      "candidate_id": "version:server-5.0",
+      "candidate_id": "version:server-5-0",
       "label": "Couchbase Server 5.0",
       "reused_or_minted": "minted",
       "note": "not present in the provided registry table; minted following the version: namespace convention"
     },
     {
-      "candidate_id": "version:server-5.5",
+      "candidate_id": "version:server-5-5",
       "label": "Couchbase Server 5.5",
       "reused_or_minted": "minted",
       "note": "not present in the provided registry table; minted following the version: namespace convention"
@@ -45,28 +45,28 @@
     {
       "subject": "n1ql:index-projection",
       "predicate": "availableSince",
-      "object": "version:server-5.0",
+      "object": "version:server-5-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "In earlier releases, the Indexer used to return all index-keys available in the index for the matching documents. From Couchbase Server 5.0, the Query engine requests the exact list of fields needed for the query."
     },
     {
       "subject": "n1ql:skip-key-range-scan",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 6.5 and later, it is possible to push down a composite predicate on non-continuous leading index-keys. There must be a predicate on the first key in the index definition, and then on any of the subsequent index-keys."
     },
     {
       "subject": "n1ql:max-pushdown",
       "predicate": "availableSince",
-      "object": "version:server-5.5",
+      "object": "version:server-5-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "Prior to Couchbase Server 5.5, MAX() could be pushed to the Indexer only when the index was created with matching index keys in descending order. This limitation has been removed in Couchbase Server 5.5 and later."
     },
     {
       "subject": "n1ql:min-pushdown",
       "predicate": "availableSince",
-      "object": "version:server-5.5",
+      "object": "version:server-5-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "Prior to Couchbase Server 5.5, MIN() could be pushed to the Indexer only when the index was created with matching index keys in ascending order. This limitation has been removed in Couchbase Server 5.5 and later."
     },

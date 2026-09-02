@@ -12,7 +12,7 @@
   "relations": [
     {
       "subject": "n1ql:drop-primary-index",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-index",
       "reused_or_minted_predicate": "reused, but flagged",
       "evidence": "User executing the DROP PRIMARY INDEX statement must have the Query Manage Index privilege granted on the keyspace.",
@@ -21,7 +21,7 @@
     {
       "subject": "n1ql:drop-primary-index",
       "predicate": "requiresMinVersionFor",
-      "object": "version:server-6.5",
+      "object": "version:server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 6.5 and later, the index type for a primary index must be Global Secondary Index (GSI)."
     },

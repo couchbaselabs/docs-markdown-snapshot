@@ -14,7 +14,7 @@
     {
       "subject": "n1ql:update-statistics-single-index",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 6.5 and later, the index type for a secondary index must be Global Secondary Index (GSI). The `USING GSI` keywords are optional and may be omitted."
     },

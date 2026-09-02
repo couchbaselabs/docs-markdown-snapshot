@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/query-execute-global-functions",
+  "label": "Execute Global Functions (Server RBAC role)",
+  "internal_name": "query_execute_global_functions",
+  "type": "a Server RBAC role, one of the 56 in learn/security/roles.md. NOT a privilege, and NOT a capella-role:* management-plane role. Do NOT confuse with rbac-role:role (the abstract TBox concept) or sgw:role (Sync Gateway's channel-access role).",
+  "promoted": true,
+  "recurrence": 1,
+  "aliases": [
+    "role:execute-global-functions"
+  ],
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Execute Global Functions (query_execute_global_functions)",
+  "promoted_in_round": 13,
+  "note": "Filed under its internal name, not its display label, per the role-id convention recorded in round 13: roles.md gives every role both a display label ('Manage Global Functions') and a parenthesised internal name ('query_manage_global_functions'), and 15 of the 17 role records promoted before this round used the internal name. The label form is recorded in aliases so the two extraction records that minted it resolve, and so any future reuse of the label form is a gate denial rather than a silent duplicate.\n\nPromoted under the family exception at recurrence 1: the eight SQL++ user-defined-function roles (manage/execute x global/scope x inline/external) are one mechanism documented as one set, and the four execute-* members recur once each only because createfunction.md is the single page that enumerates them. Promoting the four manage-* members and leaving their execute-* counterparts as debt would split a closed 8-member family down the middle.",
+  "promotion_reason": "family exception - closed 8-member SQL++ function-role family"
+}

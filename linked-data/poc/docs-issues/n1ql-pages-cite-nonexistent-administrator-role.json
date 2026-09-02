@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/n1ql-pages-cite-nonexistent-administrator-role",
+  "type": "docs-issue",
+  "issueType": "cites-nonexistent-role",
+  "description": "Three SQL++ reference pages gate a statement on an RBAC role called 'Administrator', which is not a role in Couchbase Server's 56-role catalogue. alterindex.md and altervectorindex.md both say 'Only users with the RBAC role of `Administrator` are allowed to run the `ALTER INDEX` statement' (resp. ALTER VECTOR INDEX), and n1ql-error-codes.md says 'In a CE system, add the administrator role to see all rows.' roles.md's catalogue uses 'Admin', never 'Administrator': the closest candidates are Full Admin (admin) and Cluster Admin (cluster_admin), and the two differ in what they permit, so the ambiguity is material rather than cosmetic. This POC declined to promote a role:administrator concept in round 10 on the grounds that 'the docs themselves are loose about it', and round 13 confirmed the refusal against the catalogue rather than by impression. The extraction records still assert requiresServerRole against the name the pages use, because what the pages mean is unambiguous even though what they name does not exist.",
+  "about": [
+    "server/8.0/n1ql/n1ql-language-reference/alterindex",
+    "server/8.0/n1ql/n1ql-language-reference/altervectorindex",
+    "server/8.0/n1ql/n1ql-language-reference/n1ql-error-codes"
+  ],
+  "foundDuring": "round-13-role-slice-and-variant-normalisation",
+  "status": "open"
+}

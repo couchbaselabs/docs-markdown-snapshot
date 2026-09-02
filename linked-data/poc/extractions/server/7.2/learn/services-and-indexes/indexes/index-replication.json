@@ -48,7 +48,7 @@
     {
       "subject": "index:rollback-snapshot-revert",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-6.5",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 6.5 and later, when the index service receives the rollback request, it first attempts to revert to a stored index snapshot. If successful, the index service does not need to rebuild its indexes from scratch when the data node fails over."
     },

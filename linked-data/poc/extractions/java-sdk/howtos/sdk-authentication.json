@@ -3,15 +3,49 @@
   "source_version": "Java SDK",
   "source_path": "java-sdk/current/howtos/sdk-authentication.md",
   "concepts": [
-    { "candidate_id": "sdk:authentication", "label": "SDK Client Authentication (PasswordAuthenticator, RBAC connection)", "reused_or_minted": "minted - this is a client-connection-establishment concern (how the Java process proves its identity to the cluster), a property of the client library, not of any SQL++ statement. No n1ql:* reuse candidate exists." },
-    { "candidate_id": "sdk:certificate-authentication", "label": "Certificate (X.509 mTLS) Authentication from the SDK", "reused_or_minted": "minted - SDK-specific (CertificateAuthenticator, KeyStore handling)" },
-    { "candidate_id": "sdk:ldap-authentication", "label": "LDAP Authentication (PLAIN SASL mechanism) from the SDK", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "sdk:authentication",
+      "label": "SDK Client Authentication (PasswordAuthenticator, RBAC connection)",
+      "reused_or_minted": "minted - this is a client-connection-establishment concern (how the Java process proves its identity to the cluster), a property of the client library, not of any SQL++ statement. No n1ql:* reuse candidate exists."
+    },
+    {
+      "candidate_id": "sdk:certificate-authentication",
+      "label": "Certificate (X.509 mTLS) Authentication from the SDK",
+      "reused_or_minted": "minted - SDK-specific (CertificateAuthenticator, KeyStore handling)"
+    },
+    {
+      "candidate_id": "sdk:ldap-authentication",
+      "label": "LDAP Authentication (PLAIN SASL mechanism) from the SDK",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
-    { "subject": "sdk:authentication", "predicate": "requiresPrivilege", "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role", "reused_or_minted_predicate": "reused - server/'s generic RBAC role placeholder concept, since this page discusses RBAC roles/privileges generically rather than naming one specific role", "evidence": "Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization]. For a list of available roles and corresponding privileges, see [Roles]." },
-    { "subject": "sdk:certificate-authentication", "predicate": "requiresEdition", "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise", "evidence": "Couchbase Server supports the use of X.509 certificates to authenticate clients (only available in the Enterprise Edition, not the Community Edition)." },
-    { "subject": "sdk:authentication", "predicate": "seeAlso", "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role", "reused_or_minted_predicate": "structural markdown link, reused registry concept as target", "evidence": "RBAC is also implemented by the Community Edition of Couchbase Server, but with fewer roles — see the [Roles overview]." },
-    { "subject": "sdk:ldap-authentication", "predicate": "mustUseInsteadWhen", "object": "sdk:certificate-authentication", "evidence": "If LDAP is enabled, Couchbase Server will only allow PLAIN sasl authentication which by default, for good security, the SDK will not allow ... the secure solution is [to use TLS](managing-connections.md#ssl)." }
+    {
+      "subject": "sdk:authentication",
+      "predicate": "requiresServerRole",
+      "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role",
+      "reused_or_minted_predicate": "reused - server/'s generic RBAC role placeholder concept, since this page discusses RBAC roles/privileges generically rather than naming one specific role",
+      "evidence": "Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization]. For a list of available roles and corresponding privileges, see [Roles]."
+    },
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "requiresEdition",
+      "object": "https://docs.couchbase.com/ld/concepts/edition/enterprise",
+      "evidence": "Couchbase Server supports the use of X.509 certificates to authenticate clients (only available in the Enterprise Edition, not the Community Edition)."
+    },
+    {
+      "subject": "sdk:authentication",
+      "predicate": "seeAlso",
+      "object": "https://docs.couchbase.com/ld/concepts/rbac-role/role",
+      "reused_or_minted_predicate": "structural markdown link, reused registry concept as target",
+      "evidence": "RBAC is also implemented by the Community Edition of Couchbase Server, but with fewer roles — see the [Roles overview]."
+    },
+    {
+      "subject": "sdk:ldap-authentication",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:certificate-authentication",
+      "evidence": "If LDAP is enabled, Couchbase Server will only allow PLAIN sasl authentication which by default, for good security, the SDK will not allow ... the secure solution is [to use TLS](managing-connections.md#ssl)."
+    }
   ],
   "cross_product_finding": "Authentication is a textbook case of a client-library-specific concern that has no SQL++ statement to reuse at all - there is no CREATE USER-equivalent being run here, just connection-time credential handshaking (PasswordAuthenticator, CertificateAuthenticator, SASL mechanism selection). The one place this page touches the server/-batch's RBAC vocabulary is generic and non-specific: it points at server/'s Roles and Authorization pages without naming any single privilege the way sdk-user-management-example.md names 'query_manage_index' verbatim in code. I therefore reused the coarse rbac-role:role placeholder (already promoted in the registry as a stand-in for un-named specific roles) rather than minting a new sdk:-specific role concept or reusing privilege:query-manage-index (which would misrepresent this page as being about that one specific privilege, when it is not)."
 }

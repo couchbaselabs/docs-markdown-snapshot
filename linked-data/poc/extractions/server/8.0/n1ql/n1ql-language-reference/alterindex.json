@@ -3,35 +3,131 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/alterindex.md",
   "concepts": [
-    { "candidate_id": "n1ql:alter-index", "label": "ALTER INDEX statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/alterindex.json and the 7.2 record server/7.2/.../alterindex.json" },
-    { "candidate_id": "n1ql:alter-vector-index", "label": "ALTER VECTOR INDEX statement", "reused_or_minted": "reused - matches the Capella record; asserted here as a synonym, per the page" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:create-vector-index", "label": "CREATE VECTOR INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:build-index", "label": "BUILD INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:create-primary-index", "label": "CREATE PRIMARY INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX statement", "reused_or_minted": "reused" },
-    { "candidate_id": "role:administrator", "label": "Administrator (Server RBAC role)", "reused_or_minted": "minted - the registry has a promoted role: namespace (role:full-administrator, role:eventing-full-admin, role:local-user-security-administrator) but no role:administrator. IMPORTANT: the 7.2 record for this same page minted this concept as `rbac:administrator-role`, in a namespace that does not exist in the registry. I am using role:administrator to match the promoted namespace. These are the same concept under two ids - reconciliation must merge, not keep both. Note also this is a ROLE, deliberately kept distinct from privilege:query-manage-index (a privilege), per the 7.2 record's own reasoning." },
-    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "index-type:standard-gsi-plasma", "label": "Standard GSI (Plasma) index storage", "reused_or_minted": "minted - the page's edition gate is stated in terms of three named index storage technologies (Standard GSI/Plasma, MOI, Forest DB); the registry's storage-engine namespace covers only the DATA service (couchstore, magma), so neither storage-engine:* nor index-type:gsi fits. Flagged: reconciliation may prefer an index-storage-engine: namespace parallel to storage-engine:." },
-    { "candidate_id": "index-type:moi", "label": "Memory-Optimized Index (MOI)", "reused_or_minted": "minted - named on this page as one of the two index storage technologies ALTER INDEX supports; no existing id" },
-    { "candidate_id": "index-type:forestdb", "label": "Forest DB index storage", "reused_or_minted": "minted - named on this page as the index storage technology ALTER INDEX explicitly does NOT support; must not be conflated with storage-engine:couchstore or storage-engine:magma, which are data-service storage engines" },
-    { "candidate_id": "index-state", "label": "GSI index lifecycle state enum", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "edition:enterprise", "label": "Couchbase Server Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "version:server-5-5", "label": "Couchbase Server 5.5", "reused_or_minted": "minted - not in the registry; the 7.2 record for this page minted the same concept as `version:server-5.5` (dot form). Reconciliation should settle on one spelling; I use the hyphen form the brief specifies (version:server-8-0 style), which matches the registry FILENAMES (server-6-5.json) even though the registry's id field uses dots (version/server-7.0)." },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "n1ql:alter-index-replica-management", "label": "ALTER INDEX replica_count / drop_replica actions (sub-capability)", "reused_or_minted": "reused - exact id minted by the 7.2 record for this page, for exactly this sub-capability; the 8.0 page still carries the same 6.5 gate on it" },
-    { "candidate_id": "n1ql:alter-index-with-action-move", "label": "ALTER INDEX WITH {\"action\": \"move\"} value", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
-    { "candidate_id": "n1ql:alter-index-with-nodes", "label": "ALTER INDEX WITH {\"nodes\": [...]} property", "reused_or_minted": "reused - exact id minted by the Capella record for this page" },
-    { "candidate_id": "n1ql:alter-index-index-path-dotted-syntax", "label": "ALTER INDEX dotted index-path syntax (legacy-compatibility form)", "reused_or_minted": "minted - the 7.2 record minted the sibling id n1ql:alter-index-keyspace-on-syntax for the OTHER syntax form; this id names the dotted form, which the page marks as a legacy-compatibility affordance" },
-    { "candidate_id": "n1ql:alter-index-keyspace-on-syntax", "label": "ALTER INDEX index-name ON keyspace-ref syntax (sub-capability)", "reused_or_minted": "reused - exact id minted by the 7.2 record for this page. See version_finding: its 7.2 availableSince evidence no longer exists at 8.0." },
-    { "candidate_id": "indexes:file-based-index-rebalancing", "label": "File-based index rebalancing (shard affinity)", "reused_or_minted": "minted - no existing concept; needed as the subject of a NEW-AT-8.0 restriction on the nodes property. This is the same underlying mechanism the Capella records attribute to deployment:capella ('as it defaults to file-based index rebalancing'), but on Server it is an opt-in cluster setting, not a deployment property - see cross_product_finding." },
-    { "candidate_id": "indexes:index-redistribution-setting", "label": "Index redistribution setting (automatic index redistribution on rebalance)", "reused_or_minted": "minted - named on this page; no existing id" },
-    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "minted - same id as in this batch's createindex.json; the registry has service:eventing-service but no service:index-service" }
+    {
+      "candidate_id": "n1ql:alter-index",
+      "label": "ALTER INDEX statement",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/alterindex.json and the 7.2 record server/7.2/.../alterindex.json"
+    },
+    {
+      "candidate_id": "n1ql:alter-vector-index",
+      "label": "ALTER VECTOR INDEX statement",
+      "reused_or_minted": "reused - matches the Capella record; asserted here as a synonym, per the page"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-vector-index",
+      "label": "CREATE VECTOR INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "n1ql:drop-primary-index",
+      "label": "DROP PRIMARY INDEX statement",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:administrator",
+      "label": "Administrator (Server RBAC role)",
+      "reused_or_minted": "minted - the registry has a promoted role: namespace (role:full-administrator, role:eventing-full-admin, role:local-user-security-administrator) but no role:administrator. IMPORTANT: the 7.2 record for this same page minted this concept as `rbac:administrator-role`, in a namespace that does not exist in the registry. I am using role:administrator to match the promoted namespace. These are the same concept under two ids - reconciliation must merge, not keep both. Note also this is a ROLE, deliberately kept distinct from privilege:query-manage-index (a privilege), per the 7.2 record's own reasoning."
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "index-type:standard-gsi-plasma",
+      "label": "Standard GSI (Plasma) index storage",
+      "reused_or_minted": "minted - the page's edition gate is stated in terms of three named index storage technologies (Standard GSI/Plasma, MOI, Forest DB); the registry's storage-engine namespace covers only the DATA service (couchstore, magma), so neither storage-engine:* nor index-type:gsi fits. Flagged: reconciliation may prefer an index-storage-engine: namespace parallel to storage-engine:."
+    },
+    {
+      "candidate_id": "index-type:moi",
+      "label": "Memory-Optimized Index (MOI)",
+      "reused_or_minted": "minted - named on this page as one of the two index storage technologies ALTER INDEX supports; no existing id"
+    },
+    {
+      "candidate_id": "index-type:forestdb",
+      "label": "Forest DB index storage",
+      "reused_or_minted": "minted - named on this page as the index storage technology ALTER INDEX explicitly does NOT support; must not be conflated with storage-engine:couchstore or storage-engine:magma, which are data-service storage engines"
+    },
+    {
+      "candidate_id": "index-state",
+      "label": "GSI index lifecycle state enum",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Couchbase Server Enterprise Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "version:server-5-5",
+      "label": "Couchbase Server 5.5",
+      "reused_or_minted": "minted - not in the registry; the 7.2 record for this page minted the same concept as `version:server-5.5` (dot form). Reconciliation should settle on one spelling; I use the hyphen form the brief specifies (version:server-8-0 style), which matches the registry FILENAMES (server-6-5.json) even though the registry's id field uses dots (version/server-7.0)."
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-replica-management",
+      "label": "ALTER INDEX replica_count / drop_replica actions (sub-capability)",
+      "reused_or_minted": "reused - exact id minted by the 7.2 record for this page, for exactly this sub-capability; the 8.0 page still carries the same 6.5 gate on it"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-with-action-move",
+      "label": "ALTER INDEX WITH {\"action\": \"move\"} value",
+      "reused_or_minted": "reused - exact id minted by the Capella record for this page"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-with-nodes",
+      "label": "ALTER INDEX WITH {\"nodes\": [...]} property",
+      "reused_or_minted": "reused - exact id minted by the Capella record for this page"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-index-path-dotted-syntax",
+      "label": "ALTER INDEX dotted index-path syntax (legacy-compatibility form)",
+      "reused_or_minted": "minted - the 7.2 record minted the sibling id n1ql:alter-index-keyspace-on-syntax for the OTHER syntax form; this id names the dotted form, which the page marks as a legacy-compatibility affordance"
+    },
+    {
+      "candidate_id": "n1ql:alter-index-keyspace-on-syntax",
+      "label": "ALTER INDEX index-name ON keyspace-ref syntax (sub-capability)",
+      "reused_or_minted": "reused - exact id minted by the 7.2 record for this page. See version_finding: its 7.2 availableSince evidence no longer exists at 8.0."
+    },
+    {
+      "candidate_id": "indexes:file-based-index-rebalancing",
+      "label": "File-based index rebalancing (shard affinity)",
+      "reused_or_minted": "minted - no existing concept; needed as the subject of a NEW-AT-8.0 restriction on the nodes property. This is the same underlying mechanism the Capella records attribute to deployment:capella ('as it defaults to file-based index rebalancing'), but on Server it is an opt-in cluster setting, not a deployment property - see cross_product_finding."
+    },
+    {
+      "candidate_id": "indexes:index-redistribution-setting",
+      "label": "Index redistribution setting (automatic index redistribution on rebalance)",
+      "reused_or_minted": "minted - named on this page; no existing id"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "reused_or_minted": "minted - same id as in this batch's createindex.json; the registry has service:eventing-service but no service:index-service"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:alter-index",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:administrator",
       "reused_or_minted_predicate": "reused - promoted predicate. NOTE: the 7.2 record used requiresPrivilege for this same sentence, which is wrong - the sentence names a ROLE, and requiresRole exists in the promoted predicate list. Correcting here; see version_finding.",
       "evidence": "Only users with the RBAC role of `Administrator` are allowed to run the `ALTER INDEX` statement."
@@ -106,9 +202,27 @@
       "reused_or_minted_predicate": "reused - promoted predicate; the page frames the setting as the scalable alternative to running this statement repeatedly",
       "evidence": "Using this statement to move 1 index at a time may be cumbersome if there are a lot of indexes to be moved. The index redistribution setting enables you to specify how Couchbase Server redistributes indexes automatically on rebalance."
     },
-    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:create-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)" },
-    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:build-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [BUILD INDEX](build-index.md)" },
-    { "subject": "n1ql:alter-index", "predicate": "seeAlso", "object": "n1ql:drop-primary-index", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)" }
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [CREATE PRIMARY INDEX](createprimaryindex.md)| [CREATE INDEX](createindex.md)| [CREATE VECTOR INDEX](createvectorindex.md)"
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:build-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [BUILD INDEX](build-index.md)"
+    },
+    {
+      "subject": "n1ql:alter-index",
+      "predicate": "seeAlso",
+      "object": "n1ql:drop-primary-index",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [DROP PRIMARY INDEX](dropprimaryindex.md)| [DROP INDEX](dropindex.md)| [DROP VECTOR INDEX](dropvectorindex.md)"
+    }
   ],
   "notable_absence": {
     "predicate": "requiresPrivilege",

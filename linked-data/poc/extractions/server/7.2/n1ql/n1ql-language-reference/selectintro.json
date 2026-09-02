@@ -25,7 +25,7 @@
   "relations": [
     {
       "subject": "n1ql:select-statement",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-select",
       "reused_or_minted_predicate": "reused",
       "evidence": "The user executing the SELECT statement must have the _Query Select_ privileges granted on all keyspaces referred in the query."

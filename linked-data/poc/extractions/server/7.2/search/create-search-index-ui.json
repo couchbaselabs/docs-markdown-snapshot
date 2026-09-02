@@ -37,7 +37,7 @@
   "relations": [
     {
       "subject": "search:create-search-index-ui",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:search-admin",
       "reused_or_minted_predicate": "reused",
       "evidence": "Your user account has the **Search Admin** role for the bucket where you want to create the index.",

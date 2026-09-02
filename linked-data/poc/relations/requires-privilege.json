@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-privilege",
+  "label": "requires privilege",
+  "kind": "relation (schema-level)",
+  "type": "subject = a SQL++ statement, REST endpoint or UI action; object = a genuine privilege, which in this corpus means a Capella privilege:capella-*-access-* id from Capella's separately enumerable 28-member privilege catalogue. NOT for Couchbase Server role names: Server's concrete catalogue (learn/security/roles.md) has 56 roles and no separately enumerable privilege tier, so a Server access requirement is requiresServerRole. Distinct from requiresRole (Sync Gateway's sync-function requireRole() check) and requiresCapellaRole (Capella's management-plane roles).",
+  "promoted": true,
+  "recurrence": 48,
+  "note": "Had only a .jsonld until round 13; this .json sibling exists because the predicate needed a `type` field stating what it must not be used for, and the .jsonld's rdfs:range of skos:Concept cannot express that.\n\nRound 13 rewrote 38 occurrences of this predicate to requiresServerRole - the ones whose object resolved to a member of Server's role catalogue. Those were round 12's leftovers: round 12 re-filed eleven misclassified privilege:* concepts to role: and recorded the old ids as aliases, but an alias repairs an object and cannot repair a predicate, so the statements kept asserting that a role was a privilege. What remains here is correct: 48 files, dominated by the 16 privilege:capella-advanced-access-* and privilege:capella-basic-access-* objects that are real privileges.\n\nOne survivor is deliberately unresolved: privilege:underlying-statement-privileges, a meta-object standing for 'whatever the statement being wrapped requires' rather than a named privilege. It is the object of a true statement that this predicate cannot properly type."
+}

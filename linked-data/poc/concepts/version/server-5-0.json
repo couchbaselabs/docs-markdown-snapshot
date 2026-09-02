@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-5-0",
+  "label": "Couchbase Server 5.0",
+  "type": "the Server release that introduced RBAC credentials as a requirement for client access",
+  "promoted": true,
+  "recurrence": 4,
+  "promoted_in_round": 13,
+  "note": "Promoted in round 13 as a direct consequence of the variant normalisation: the dotted and dashed spellings were counted as two terms, so neither crossed the promotion bar on its own. Unifying them put the real recurrence above the threshold. This is the quiet half of the spelling-variant problem - the loud half is false debt (a promoted term reported as unpromoted), the quiet half is a genuine candidate held below the bar by having its count split. recurrence.py's docstring already warned that splitting is 'the opposite of the false-debt failure, and quieter'; these are the first five terms found to have actually suffered it.\n\nThe release most often cited as a *lower bound* in this corpus rather than as a feature's arrival: pages say things like 'RBAC credentials are required when CURL() accesses Couchbase Server version 5.0 or later'. Worth noting that one such relation, in curl.json, records this version as the object of requiresPrivilege - see reconciliation.md round 13, 'Three open questions left open'."
+}

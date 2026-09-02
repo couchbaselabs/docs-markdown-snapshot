@@ -65,7 +65,7 @@
     {
       "subject": "index:standard-storage",
       "predicate": "availableSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "As of Couchbase Server 7.0, multiple indexes are stored in a given file."
     },

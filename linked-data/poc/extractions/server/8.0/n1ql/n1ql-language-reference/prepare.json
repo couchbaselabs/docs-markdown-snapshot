@@ -4,35 +4,103 @@
   "source_path": "server/current/n1ql/n1ql-language-reference/prepare.md",
   "record_corrected": "Relations were rewritten during wave-1 reconciliation after an automated evidence check found that 11 of this record's 13 original relations carried evidence strings that do not appear on the source page. Most were paraphrase; two were substantive errors. (a) The record asserted 'n1ql:automatic-reprepare-on-index-changes availableSince version:server-8-0' quoting 'In Couchbase Server 8.0 and later, the Query service automatically reprepares...'. No such sentence exists and the page states no version for this feature at all - the fabricated triple has been deleted, not re-evidenced. (b) The n1ql-feat-ctrl evidence read 'To disable this feature, set bit 23...' where the page reads 'To enable the feature, set bit 23...' - inverted polarity. (c) 'prepared statements are propagated to all query nodes in the cluster' was replaced by what the page actually says about cache priming. All evidence strings below are verified verbatim substrings of the source page.",
   "concepts": [
-    { "candidate_id": "n1ql:prepare", "label": "PREPARE statement", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/prepare.json" },
-    { "candidate_id": "n1ql:execute", "label": "EXECUTE statement", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:prepared-statement", "label": "Prepared statement", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:prepared-statement-name", "label": "Prepared statement name", "reused_or_minted": "minted - no prior id; needed because the page states a naming rule and a query-context-relative storage rule about it specifically" },
-    { "candidate_id": "n1ql:query-context", "label": "Query context", "reused_or_minted": "reused - minted in this batch's createfunction.json; on this page it scopes prepared-statement storage and lookup" },
-    { "candidate_id": "privilege:query-select", "label": "Query Select (Server RBAC privilege)", "reused_or_minted": "minted - the promoted registry's privilege: namespace contains only Capella Basic/Advanced cluster-access privileges. This is a Server RBAC privilege and MUST NOT be merged with privilege:capella-advanced-access-query-read, even though the two name the same underlying capability - see cross_product_finding and the existing docs-issue cloud-n1ql-privilege-naming-inconsistency-select-vs-read." },
-    { "candidate_id": "privilege:query-update", "label": "Query Update (Server RBAC privilege)", "reused_or_minted": "minted - Server RBAC privilege. This is the concept the Capella prepare record should have pointed at; see cross_product_finding for the defect. Not to be merged with privilege:capella-advanced-access-query-update, which is the Capella-side twin and already exists as a promoted concept." },
-    { "candidate_id": "n1ql:encoded-plan", "label": "encoded_plan (prepared statement encoded plan)", "reused_or_minted": "minted - no prior id; this is the batch's only quotable instance of an explicitly-legacy, backward-compatibility-only artifact and so is directly relevant to the wave's deprecation-vocabulary question" },
-    { "candidate_id": "setting:auto-prepare", "label": "auto-prepare (Query service-level setting)", "reused_or_minted": "minted - no prior id; a named service-level setting that changes statement behaviour" },
-    { "candidate_id": "setting:auto-execute", "label": "auto_execute (request-level query setting)", "reused_or_minted": "minted - no prior id; distinct from auto-prepare in both spelling (hyphen vs underscore) and scope (request vs service), and the docs are explicit about both differences, so they must be two concepts" },
-    { "candidate_id": "setting:n1ql-feat-ctrl", "label": "n1ql-feat-ctrl (Query feature-control bitmask setting)", "reused_or_minted": "minted - no prior id; the opt-in gate for the extended automatic-reprepare behaviour. A notable modelling case because the gate is a specific BIT of the setting rather than the setting as a whole. NOTE: the original version of this record described this as gating a 'new 8.0' behaviour; the page makes no version claim, so that framing has been removed." },
-    { "candidate_id": "n1ql:automatic-reprepare-on-index-changes", "label": "Automatic reprepare on index changes (opt-in extension to default reprepare)", "reused_or_minted": "minted - no prior id. The page distinguishes two behaviours: a DEFAULT reprepare when a plan becomes invalid, and an OPT-IN extension that additionally monitors GSI metadata version changes. This concept is the opt-in extension. The page states no version for either." },
-    { "candidate_id": "n1ql:prepared-statement-cache", "label": "Prepared statement cache", "reused_or_minted": "minted - no prior id" },
-    { "candidate_id": "n1ql:prepared-statement-cache-priming", "label": "Prepared statement cache priming on node start/restart", "reused_or_minted": "minted - replaces the original record's n1ql:prepared-statement-propagation, which claimed statements are 'propagated to all query nodes in the cluster'. The page says only that a starting or restarting node's cache is primed from another node - a narrower and differently-shaped claim." },
-    { "candidate_id": "version:server-6-5", "label": "Couchbase Server 6.5", "reused_or_minted": "reused - the registry has a 6.5 concept (filename server-6-5.json). NOTE the id-spelling drift already flagged in this batch: the registry file's id field uses the dot form (concepts/version/server-6.5) while the filename uses hyphens. Using the hyphen form consistently across this batch; reconciliation must pick one." },
-    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused - minted in this batch's createfunction.json" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - the opt-in reprepare extension is triggered by index creation and dropping, so it links to the index DDL extracted elsewhere in this batch" }
+    {
+      "candidate_id": "n1ql:prepare",
+      "label": "PREPARE statement",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/prepare.json"
+    },
+    {
+      "candidate_id": "n1ql:execute",
+      "label": "EXECUTE statement",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement",
+      "label": "Prepared statement",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement-name",
+      "label": "Prepared statement name",
+      "reused_or_minted": "minted - no prior id; needed because the page states a naming rule and a query-context-relative storage rule about it specifically"
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "Query context",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json; on this page it scopes prepared-statement storage and lookup"
+    },
+    {
+      "candidate_id": "privilege:query-select",
+      "label": "Query Select (Server RBAC privilege)",
+      "reused_or_minted": "minted - the promoted registry's privilege: namespace contains only Capella Basic/Advanced cluster-access privileges. This is a Server RBAC privilege and MUST NOT be merged with privilege:capella-advanced-access-query-read, even though the two name the same underlying capability - see cross_product_finding and the existing docs-issue cloud-n1ql-privilege-naming-inconsistency-select-vs-read."
+    },
+    {
+      "candidate_id": "privilege:query-update",
+      "label": "Query Update (Server RBAC privilege)",
+      "reused_or_minted": "minted - Server RBAC privilege. This is the concept the Capella prepare record should have pointed at; see cross_product_finding for the defect. Not to be merged with privilege:capella-advanced-access-query-update, which is the Capella-side twin and already exists as a promoted concept."
+    },
+    {
+      "candidate_id": "n1ql:encoded-plan",
+      "label": "encoded_plan (prepared statement encoded plan)",
+      "reused_or_minted": "minted - no prior id; this is the batch's only quotable instance of an explicitly-legacy, backward-compatibility-only artifact and so is directly relevant to the wave's deprecation-vocabulary question"
+    },
+    {
+      "candidate_id": "setting:auto-prepare",
+      "label": "auto-prepare (Query service-level setting)",
+      "reused_or_minted": "minted - no prior id; a named service-level setting that changes statement behaviour"
+    },
+    {
+      "candidate_id": "setting:auto-execute",
+      "label": "auto_execute (request-level query setting)",
+      "reused_or_minted": "minted - no prior id; distinct from auto-prepare in both spelling (hyphen vs underscore) and scope (request vs service), and the docs are explicit about both differences, so they must be two concepts"
+    },
+    {
+      "candidate_id": "setting:n1ql-feat-ctrl",
+      "label": "n1ql-feat-ctrl (Query feature-control bitmask setting)",
+      "reused_or_minted": "minted - no prior id; the opt-in gate for the extended automatic-reprepare behaviour. A notable modelling case because the gate is a specific BIT of the setting rather than the setting as a whole. NOTE: the original version of this record described this as gating a 'new 8.0' behaviour; the page makes no version claim, so that framing has been removed."
+    },
+    {
+      "candidate_id": "n1ql:automatic-reprepare-on-index-changes",
+      "label": "Automatic reprepare on index changes (opt-in extension to default reprepare)",
+      "reused_or_minted": "minted - no prior id. The page distinguishes two behaviours: a DEFAULT reprepare when a plan becomes invalid, and an OPT-IN extension that additionally monitors GSI metadata version changes. This concept is the opt-in extension. The page states no version for either."
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement-cache",
+      "label": "Prepared statement cache",
+      "reused_or_minted": "minted - no prior id"
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement-cache-priming",
+      "label": "Prepared statement cache priming on node start/restart",
+      "reused_or_minted": "minted - replaces the original record's n1ql:prepared-statement-propagation, which claimed statements are 'propagated to all query nodes in the cluster'. The page says only that a starting or restarting node's cache is primed from another node - a narrower and differently-shaped claim."
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "reused_or_minted": "reused - the registry has a 6.5 concept (filename server-6-5.json). NOTE the id-spelling drift already flagged in this batch: the registry file's id field uses the dot form (concepts/version/server-6.5) while the filename uses hyphens. Using the hyphen form consistently across this batch; reconciliation must pick one."
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "reused_or_minted": "reused - minted in this batch's createfunction.json"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused - the opt-in reprepare extension is triggered by index creation and dropping, so it links to the index DDL extracted elsewhere in this batch"
+    }
   ],
   "relations": [
     {
       "subject": "n1ql:prepare",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-select",
       "reused_or_minted_predicate": "reused - promoted predicate. THIS IS THE CORRECTED FACT for open item 1: Server 8.0 names 'Query Select', not 'Query Index' and not 'Query Read'.",
       "evidence": "To execute the following statement, user must have the _Query Select_ privilege on both keyspaces `airport` and `landmark`."
     },
     {
       "subject": "n1ql:prepare",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-update",
       "reused_or_minted_predicate": "reused - promoted predicate. Second half of the open item 1 correction: where the Capella record recorded 'Query Update' but linked privilege:capella-advanced-access-query-index, the Server page names Query Update alongside Query Select for a prepared UPDATE.",
       "evidence": "To execute the following statement, user must have the _Query Update_ and _Query Select_ privileges on `hotel`."

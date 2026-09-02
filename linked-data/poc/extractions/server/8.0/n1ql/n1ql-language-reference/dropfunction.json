@@ -92,28 +92,28 @@
   "relations": [
     {
       "subject": "n1ql:drop-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:manage-global-functions",
       "reused_or_minted_predicate": "reused - promoted predicate; applies to dropping a global inline function",
       "evidence": "| Global inline functions   | **Manage Global Functions** role.                                                             |"
     },
     {
       "subject": "n1ql:drop-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:manage-scope-functions",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "| Scoped inline functions   | **Manage Scope Functions** role, with permissions on the specified bucket and scope.          |"
     },
     {
       "subject": "n1ql:drop-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:manage-global-external-functions",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "| Global external functions | **Manage Global External Functions** role.                                                    |"
     },
     {
       "subject": "n1ql:drop-function",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:manage-scope-external-functions",
       "reused_or_minted_predicate": "reused - promoted predicate",
       "evidence": "| Scoped external functions | **Manage Scope External Functions** role, with permissions on the specified bucket and scope. |"

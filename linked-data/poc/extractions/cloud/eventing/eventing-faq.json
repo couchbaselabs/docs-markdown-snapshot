@@ -3,30 +3,136 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/eventing/eventing-faq.md",
   "concepts": [
-    { "candidate_id": "eventing:function", "label": "Eventing Function", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:onupdate-handler", "label": "OnUpdate handler", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:ondelete-handler", "label": "OnDelete handler", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:eventing-storage", "label": "Eventing Storage (Eventing metadata keyspace)", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:document-metadata", "label": "Document metadata (the `meta` handler parameter: id, CAS, expiration, datatype)", "reused_or_minted": "minted - explicitly distinguished by the page from Eventing Storage's own 'metadata collection'; no existing KV-metadata concept was found in the registry to reuse" },
-    { "candidate_id": "eventing:recursive-mutation", "label": "Recursive mutation", "reused_or_minted": "reused - minted this round in eventing-Terminologies.json" },
-    { "candidate_id": "eventing:timer", "label": "Timer (createTimer/cancelTimer construct)", "reused_or_minted": "reused - minted this round in eventing-language-constructs.json" },
-    { "candidate_id": "eventing:database-trigger", "label": "Database Trigger (relational-DB comparison concept)", "reused_or_minted": "minted - an external, non-Couchbase concept the page explicitly compares Functions against and then disclaims" },
-    { "candidate_id": "eventing:rules-engine", "label": "Rules Engine (comparison concept)", "reused_or_minted": "minted - external comparison concept" },
-    { "candidate_id": "eventing:stored-procedure", "label": "Stored Procedure (comparison concept)", "reused_or_minted": "minted - external comparison concept" },
-    { "candidate_id": "eventing:kafka-connector", "label": "Couchbase Kafka Connector (SDK component, comparison concept)", "reused_or_minted": "minted - an actual Couchbase product component named in direct comparison to Eventing" },
-    { "candidate_id": "version:server-6.6.0", "label": "Couchbase Server 6.6.0", "reused_or_minted": "minted - a new patch-level sibling in the version:server-* family (distinct from the already-promoted 6.6.1), gating cancelTimer()/recurring-timer support" }
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage (Eventing metadata keyspace)",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:document-metadata",
+      "label": "Document metadata (the `meta` handler parameter: id, CAS, expiration, datatype)",
+      "reused_or_minted": "minted - explicitly distinguished by the page from Eventing Storage's own 'metadata collection'; no existing KV-metadata concept was found in the registry to reuse"
+    },
+    {
+      "candidate_id": "eventing:recursive-mutation",
+      "label": "Recursive mutation",
+      "reused_or_minted": "reused - minted this round in eventing-Terminologies.json"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer (createTimer/cancelTimer construct)",
+      "reused_or_minted": "reused - minted this round in eventing-language-constructs.json"
+    },
+    {
+      "candidate_id": "eventing:database-trigger",
+      "label": "Database Trigger (relational-DB comparison concept)",
+      "reused_or_minted": "minted - an external, non-Couchbase concept the page explicitly compares Functions against and then disclaims"
+    },
+    {
+      "candidate_id": "eventing:rules-engine",
+      "label": "Rules Engine (comparison concept)",
+      "reused_or_minted": "minted - external comparison concept"
+    },
+    {
+      "candidate_id": "eventing:stored-procedure",
+      "label": "Stored Procedure (comparison concept)",
+      "reused_or_minted": "minted - external comparison concept"
+    },
+    {
+      "candidate_id": "eventing:kafka-connector",
+      "label": "Couchbase Kafka Connector (SDK component, comparison concept)",
+      "reused_or_minted": "minted - an actual Couchbase product component named in direct comparison to Eventing"
+    },
+    {
+      "candidate_id": "version:server-6.6.0",
+      "label": "Couchbase Server 6.6.0",
+      "reused_or_minted": "minted - a new patch-level sibling in the version:server-* family (distinct from the already-promoted 6.6.1), gating cancelTimer()/recurring-timer support"
+    }
   ],
   "relations": [
-    { "subject": "eventing:eventing-storage", "predicate": "shouldNotBeConfusedWith", "object": "eventing:document-metadata", "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)", "evidence": "It should be noted, \"document metadata\" is different from the \"Eventing Storage\" keyspace (metadata collection), described in the next section, used by the Eventing Service to maintain state and checkpoints." },
-    { "subject": "eventing:function", "predicate": "hasNoRelationshipTo", "object": "eventing:database-trigger", "reused_or_minted_predicate": "reused (hasNoRelationshipTo)", "evidence": "What an Eventing Function sees is the actual event of the change, and hence it does not directly correlate with Database Triggers." },
-    { "subject": "eventing:function", "predicate": "shouldNotBeConfusedWith", "object": "eventing:rules-engine", "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith) - softer disclaimer than the trigger comparison ('Not exactly' rather than 'does not directly correlate')", "evidence": "Are Functions similar to a Rules Engine?  \nNot exactly. A Rules Engine enforces ordering and other semantics that is not possible out of the box with Functions." },
-    { "subject": "eventing:function", "predicate": "shouldNotBeConfusedWith", "object": "eventing:stored-procedure", "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)", "evidence": "Stored Procedures enforce a request-response model. A stored procedure will not be invoked automatically; it has to be invoked by a calling method. Functions are based on the idea of events." },
-    { "subject": "eventing:function", "predicate": "shouldNotBeConfusedWith", "object": "eventing:kafka-connector", "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)", "evidence": "The Functions offering is about server-side processing or compute of business logic; it does not require any additional infrastructure layer or middleware to be deployed or managed. Couchbase's Kafka connector is an SDK component that needs an application container or middleware to run." },
-    { "subject": "eventing:timer", "predicate": "availableSince", "object": "version:server-6.6.0", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "Yes. As of the release 6.6.0 Eventing Timers can be cancelled using _cancelTimer()_ function, or by creating a new Timer with the same reference as an existing Timer." },
-    { "subject": "eventing:timer", "predicate": "availableSince", "object": "version:server-6.6.0", "reused_or_minted_predicate": "reused (availableSince) - recurring timer support, same version", "evidence": "Yes. As of the release 6.6.0 Recurring Timers are fully supported, i.e. a function that is invoked by a Timer callback can reliably create fresh Timers." },
-    { "subject": "eventing:function", "predicate": "hasNoRelationshipTo", "object": "eventing:document-metadata", "reused_or_minted_predicate": "reused (hasNoRelationshipTo) - explicit disclaimer that meta does not carry change-tracking information", "evidence": "No, the meta parameter does not include information on what fields changed or mutated in the document." },
-    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/eventing-language-constructs", "reused_or_minted_predicate": "structural markdown link", "evidence": "refer to the [Language Constructs: Removed Language Features](eventing-language-constructs.md#removed-lang-features) section." }
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "eventing:document-metadata",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)",
+      "evidence": "It should be noted, \"document metadata\" is different from the \"Eventing Storage\" keyspace (metadata collection), described in the next section, used by the Eventing Service to maintain state and checkpoints."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasNoRelationshipTo",
+      "object": "eventing:database-trigger",
+      "reused_or_minted_predicate": "reused (hasNoRelationshipTo)",
+      "evidence": "What an Eventing Function sees is the actual event of the change, and hence it does not directly correlate with Database Triggers."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "eventing:rules-engine",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith) - softer disclaimer than the trigger comparison ('Not exactly' rather than 'does not directly correlate')",
+      "evidence": "Are Functions similar to a Rules Engine?  \nNot exactly. A Rules Engine enforces ordering and other semantics that is not possible out of the box with Functions."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "eventing:stored-procedure",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)",
+      "evidence": "Stored Procedures enforce a request-response model. A stored procedure will not be invoked automatically; it has to be invoked by a calling method. Functions are based on the idea of events."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "eventing:kafka-connector",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)",
+      "evidence": "The Functions offering is about server-side processing or compute of business logic; it does not require any additional infrastructure layer or middleware to be deployed or managed. Couchbase's Kafka connector is an SDK component that needs an application container or middleware to run."
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "availableSince",
+      "object": "version:server-6.6.0",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Yes. As of the release 6.6.0 Eventing Timers can be cancelled using _cancelTimer()_ function, or by creating a new Timer with the same reference as an existing Timer."
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "availableSince",
+      "object": "version:server-6.6.0",
+      "reused_or_minted_predicate": "reused (availableSince) - recurring timer support, same version",
+      "evidence": "Yes. As of the release 6.6.0 Recurring Timers are fully supported, i.e. a function that is invoked by a Timer callback can reliably create fresh Timers."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasNoRelationshipTo",
+      "object": "eventing:document-metadata",
+      "reused_or_minted_predicate": "reused (hasNoRelationshipTo) - explicit disclaimer that meta does not carry change-tracking information",
+      "evidence": "No, the meta parameter does not include information on what fields changed or mutated in the document."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-language-constructs",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "refer to the [Language Constructs: Removed Language Features](eventing-language-constructs.md#removed-lang-features) section."
+    }
   ],
-  "notable_absence": { "predicate": "requiresCapellaRole / requiresPrivilege", "finding": "Despite being the longest page in this batch, the FAQ names no Capella role or privilege anywhere - all of its many questions are architectural/behavioral (DCP dedup, recursion, statelessness, node sizing, worker counts, encryption), not access-control questions. Confirms eventing-rbac.md (this batch) is genuinely the sole authoritative source for Eventing's access-control story; nothing here contradicts or supplements it." },
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege",
+    "finding": "Despite being the longest page in this batch, the FAQ names no Capella role or privilege anywhere - all of its many questions are architectural/behavioral (DCP dedup, recursion, statelessness, node sizing, worker counts, encryption), not access-control questions. Confirms eventing-rbac.md (this batch) is genuinely the sole authoritative source for Eventing's access-control story; nothing here contradicts or supplements it."
+  },
   "cross_component_finding": "This page restates, in different words, facts already captured with better evidence elsewhere in this batch: recursive mutation/recursion checks (eventing-Terminologies.json, troubleshooting-best-practices.json), the Eventing Storage keyspace's three-document-per-timer structure and space budgeting (eventing-timers.json), and the deploy/undeploy/pause/resume mutual exclusion with rebalance (eventing-lifecycle.json). No contradictions were found across any of these restatements - a good sign of internal consistency in Eventing's own documentation set.",
-  "cross_product_finding": "The Functions-vs-Kafka-Connector comparison is a genuine, named cross-product reference within Couchbase's own portfolio (the Kafka Connector is a real, separate SDK-adjacent component), distinct from the crc64/Sync Gateway coupling found in eventing-language-constructs.json - Eventing's docs compare themselves against at least two other real Couchbase integration surfaces (Sync Gateway and the Kafka Connector), not just against generic outside concepts (triggers/rules engines/stored procedures)." }
+  "cross_product_finding": "The Functions-vs-Kafka-Connector comparison is a genuine, named cross-product reference within Couchbase's own portfolio (the Kafka Connector is a real, separate SDK-adjacent component), distinct from the crc64/Sync Gateway coupling found in eventing-language-constructs.json - Eventing's docs compare themselves against at least two other real Couchbase integration surfaces (Sync Gateway and the Kafka Connector), not just against generic outside concepts (triggers/rules engines/stored procedures)."
+}

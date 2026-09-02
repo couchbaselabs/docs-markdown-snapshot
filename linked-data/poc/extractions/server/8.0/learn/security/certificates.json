@@ -3,48 +3,302 @@
   "source_version": "8.0",
   "source_path": "server/current/learn/security/certificates.md",
   "concepts": [
-    { "candidate_id": "cert:root-certificate", "label": "Certificate Authority (CA) / Root Certificate", "registry_status": "minted", "reused_or_minted": "minted - fresh cert: namespace opened for this round. The page equates the two terms directly: 'the certificate you use to sign another is called a Certificate Authority (CA) or a root certificate.'" },
-    { "candidate_id": "cert:intermediate-certificate", "label": "Intermediate Certificate", "registry_status": "minted", "reused_or_minted": "minted - sibling of cert:root-certificate, signs node/client certificates on the CA's behalf" },
-    { "candidate_id": "cert:node-certificate", "label": "Node Certificate", "registry_status": "minted", "reused_or_minted": "minted - the certificate a Couchbase Server node presents to identify itself to other nodes/clients" },
-    { "candidate_id": "cert:client-certificate", "label": "Client Certificate", "registry_status": "minted", "reused_or_minted": "minted - the certificate an SDK client or XDCR peer presents to identify itself to Couchbase Server" },
-    { "candidate_id": "cert:trust-store", "label": "Trust Store", "registry_status": "minted", "reused_or_minted": "minted - 'a collection of certificates that's shared cluster-wide' holding the CAs/intermediates Couchbase Server trusts" },
-    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 Certificate", "registry_status": "minted", "reused_or_minted": "minted - node-only certificate bundle format, distinct from the X.509/PEM path" },
-    { "candidate_id": "cert:subject-alternative-name", "label": "Subject Alternative Name (SAN)", "registry_status": "minted", "reused_or_minted": "minted - the certificate attribute Couchbase Server requires on node certificates from 7.2 onward" },
-    { "candidate_id": "cert:subject-common-name", "label": "Subject Common Name", "registry_status": "minted", "reused_or_minted": "minted - the IETF-deprecated identity field Couchbase Server still supports; sibling of cert:subject-alternative-name" },
-    { "candidate_id": "cert:private-key", "label": "Private Key (RSA / Elliptic Curve)", "registry_status": "minted", "reused_or_minted": "minted - the key material paired with a certificate; page distinguishes PKCS#1 (unencrypted-RSA-only) from PKCS#8 (RSA+EC, encrypted or not)" },
-    { "candidate_id": "tls:mutual-tls", "label": "Mutual TLS (mTLS) / mutual authentication", "registry_status": "minted", "reused_or_minted": "minted - opens tls: namespace for this round; the two-way certificate-based authentication process this page names explicitly by both abbreviations" },
-    { "candidate_id": "cert:certificate-management", "label": "Certificate management (task)", "registry_status": "minted", "reused_or_minted": "minted - the role-gated administrative task this page states outright ('Managing certificates requires the Full Admin or Security Admin roles'), needed as a subject for that requirement" },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused - the page's 'Full Admin' is the short form of the already-promoted classic cluster-wide role:full-administrator" },
-    { "candidate_id": "role:security-administrator", "label": "Security Admin", "registry_status": "minted", "reused_or_minted": "minted - COLLISION CANDIDATE, deliberately NOT merged with the already-promoted role:local-user-security-administrator. This page says only 'Security Admin' with no elaboration; the promoted concept is specifically 'Local User Security Administrator', minted from Capella pages gating audit-service configuration. Same family of name ('security admin'), different exact name, no page states they are the same role - mint separately per project rule and flag for SME review." }
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Certificate Authority (CA) / Root Certificate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - fresh cert: namespace opened for this round. The page equates the two terms directly: 'the certificate you use to sign another is called a Certificate Authority (CA) or a root certificate.'"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate Certificate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of cert:root-certificate, signs node/client certificates on the CA's behalf"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node Certificate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the certificate a Couchbase Server node presents to identify itself to other nodes/clients"
+    },
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client Certificate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the certificate an SDK client or XDCR peer presents to identify itself to Couchbase Server"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust Store",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'a collection of certificates that's shared cluster-wide' holding the CAs/intermediates Couchbase Server trusts"
+    },
+    {
+      "candidate_id": "cert:pkcs12-certificate",
+      "label": "PKCS #12 Certificate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - node-only certificate bundle format, distinct from the X.509/PEM path"
+    },
+    {
+      "candidate_id": "cert:subject-alternative-name",
+      "label": "Subject Alternative Name (SAN)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the certificate attribute Couchbase Server requires on node certificates from 7.2 onward"
+    },
+    {
+      "candidate_id": "cert:subject-common-name",
+      "label": "Subject Common Name",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the IETF-deprecated identity field Couchbase Server still supports; sibling of cert:subject-alternative-name"
+    },
+    {
+      "candidate_id": "cert:private-key",
+      "label": "Private Key (RSA / Elliptic Curve)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the key material paired with a certificate; page distinguishes PKCS#1 (unencrypted-RSA-only) from PKCS#8 (RSA+EC, encrypted or not)"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS) / mutual authentication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - opens tls: namespace for this round; the two-way certificate-based authentication process this page names explicitly by both abbreviations"
+    },
+    {
+      "candidate_id": "cert:certificate-management",
+      "label": "Certificate management (task)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the role-gated administrative task this page states outright ('Managing certificates requires the Full Admin or Security Admin roles'), needed as a subject for that requirement"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'Full Admin' is the short form of the already-promoted classic cluster-wide role:full-administrator"
+    },
+    {
+      "candidate_id": "role:security-administrator",
+      "label": "Security Admin",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - COLLISION CANDIDATE, deliberately NOT merged with the already-promoted role:local-user-security-administrator. This page says only 'Security Admin' with no elaboration; the promoted concept is specifically 'Local User Security Administrator', minted from Capella pages gating audit-service configuration. Same family of name ('security admin'), different exact name, no page states they are the same role - mint separately per project rule and flag for SME review."
+    }
   ],
   "relations": [
-    { "subject": "cert:root-certificate", "predicate": "signsCertificateFor", "object": "cert:node-certificate", "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captured a certificate signing another; verb phrase per the schema's own suggested example", "evidence": "It uses this CA to sign server certificates that it automatically generates for each node." },
-    { "subject": "cert:root-certificate", "predicate": "signsCertificateFor", "object": "cert:intermediate-certificate", "registry_status": "minted", "reused_or_minted_predicate": "minted - same predicate, second use in this record", "evidence": "You can also use the signed certificate as an intermediate certificate by using its own private key to sign new certificates." },
-    { "subject": "cert:intermediate-certificate", "predicate": "signsCertificateFor", "object": "cert:client-certificate", "registry_status": "minted", "reused_or_minted_predicate": "minted - same predicate, third use in this record", "evidence": "The main purpose of the intermediate certificate is to sign node certificates, client certificates, or other intermediate certificates." },
-    { "subject": "cert:trust-store", "predicate": "verifiesIdentityOf", "object": "cert:node-certificate", "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captured a trust store verifying a presented certificate's chain of trust; authenticatesVia was considered and rejected as it describes an access surface's credential mechanism, not this chain-of-trust check", "evidence": "The node tries to identify the system by establishing a chain of trust from the system's certificate to a certificate in the trust store." },
-    { "subject": "cert:trust-store", "predicate": "verifiesIdentityOf", "object": "cert:client-certificate", "registry_status": "minted", "reused_or_minted_predicate": "minted - same predicate, second use in this record", "evidence": "If Couchbase Server finds that the certificate's chain of trust leads to a root authority that it recognizes, it trusts the client." },
-    { "subject": "tls:mutual-tls", "predicate": "authenticatesVia", "object": "cert:client-certificate", "registry_status": "promoted", "reused_or_minted_predicate": "reused - authenticatesVia fits here because the subject is a named access process (mTLS), not a bare credential artifact", "evidence": "A similar process allows the server to authenticate with the client in a process called mutual TLS (mTLS) or [mutual authentication](https://en.wikipedia.org/wiki/Mutual%5Fauthentication)." },
-    { "subject": "cert:client-certificate", "predicate": "identifiesUserVia", "object": "cert:subject-common-name", "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captured extracting a username from a specific certificate field", "evidence": "The `Subject` for the certificate, featuring the Common Name. For example, when creating the client-certificate using the command line, you can set the subject of the certificate to `clientname` by using the `-subj \"/CN=clientuser\"` argument." },
-    { "subject": "cert:client-certificate", "predicate": "identifiesUserVia", "object": "cert:subject-alternative-name", "registry_status": "minted", "reused_or_minted_predicate": "minted - same predicate, second use in this record", "evidence": "The `DNS` name, provided as a Subject Alternative Name for the certificate. For example, if you add `subjectAltName = DNS:node2.cb.com` to the certificate, you can configure Couchbase Server to use `node2.cb.com` as the username without a prefix or delimiter specified in the handling-configuration." },
-    { "subject": "cert:subject-common-name", "predicate": "retainedForLegacyCompatibility", "object": "cert:subject-alternative-name", "registry_status": "promoted", "reused_or_minted_predicate": "reused - retainedForLegacyCompatibility's shape (superseded construct kept alive for older clients) matches exactly", "evidence": "The Internet Engineering Task Force (IETF) has deprecated the Subject Common Name as described in [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4). Couchbase Server continues to support using the Subject Common Name." },
-    { "subject": "cert:node-certificate", "predicate": "requiresSetting", "object": "cert:subject-alternative-name", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "The node certificate for each server in the cluster must specify its node name as a Subject Alternative Name." },
-    { "subject": "cert:node-certificate", "predicate": "availableSince", "object": "version:server-7-2", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "For Couchbase Enterprise Server Version 7.2 and later, this means that:" },
-    { "subject": "cert:pkcs12-certificate", "predicate": "doesNotSupport", "object": "cert:client-certificate", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "Couchbase Server only supports this format for nodes." },
-    { "subject": "cert:private-key", "predicate": "doesNotSupport", "object": "encrypted private keys under PKCS #1", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "Couchbase Server supports using the PKCS #1 file format only for unencrypted private keys. This format only supports RSA keys." },
-    { "subject": "cert:certificate-management", "predicate": "requiresRole", "object": "role:full-administrator", "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresRole was minted for Sync Gateway's requireRole() check; this is its first non-Sync-Gateway use, generalizing the shape ('subject action requires an authenticated user hold the named role') to a Server administrative task rather than a sync-function write", "evidence": "Managing certificates requires the Full Admin or Security Admin roles." },
-    { "subject": "cert:certificate-management", "predicate": "requiresRole", "object": "role:security-administrator", "registry_status": "promoted", "reused_or_minted_predicate": "reused predicate, minted object concept - see role:security-administrator's collision note above", "evidence": "Managing certificates requires the Full Admin or Security Admin roles." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/configure-server-certificates", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "For step-by-step instructions for creating and deploying certificate for Couchbase Server and clients, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md)" },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/configure-client-certificates", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "and [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/learn/security/using-multiple-cas", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link, to a sibling page in this same batch", "evidence": "You can upload intermediate certificates to the Couchbase Server trust store. For information, see [Adding Intermediate Certificates to the Trust Store](using-multiple-cas.md#adding-intermediate-certificates-to-the-trust-store)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "For an example of using private keys to secure XDCR, see [Specify Root and Client Certificates, and Client Private Key](../../manage/manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/configure-ldap", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "For an example iof using certificates to secure a connection to an LDAP host, see [Configure LDAP](../../manage/manage-security/configure-ldap.md#client-certificate)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/enable-client-certificate-handling", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "See [Enable Client Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md) for details." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/manage-certificates", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "Examples of certificate creation provided in [Manage Certificates](../../manage/manage-security/manage-certificates.md) continue to include definitions of Subject Common Name for both server and client." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/nodes", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "To learn when you can rename a node, see [Node Renaming](../clusters-and-availability/nodes.md#node-renaming)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/rest-api/rest-cluster-email-notifications", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "See [Setting Alerts](../../rest-api/rest-cluster-email-notifications.md) for more steps to change this setting." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/configure-alerts", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "Couchbase Server also alerts a second time if a certificate has expired. See [Alerts](../../manage/manage-settings/configure-alerts.md) for more information about alerts." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/rotate-server-certificates", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "It also helps enforce certificate rotation. See [Certificate Rotation](../../manage/manage-security/rotate-server-certificates.md)." },
-    { "subject": "server/8.0/learn/security/certificates", "predicate": "seeAlso", "object": "server/8.0/rest-api/upload-retrieve-node-cert", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "You register the passphrase by passing Couchbase Server a JSON object using the REST API. For information, see [Upload and Retrieve a Node Certificate](../../rest-api/upload-retrieve-node-cert.md)." }
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:node-certificate",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate captured a certificate signing another; verb phrase per the schema's own suggested example",
+      "evidence": "It uses this CA to sign server certificates that it automatically generates for each node."
+    },
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:intermediate-certificate",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate, second use in this record",
+      "evidence": "You can also use the signed certificate as an intermediate certificate by using its own private key to sign new certificates."
+    },
+    {
+      "subject": "cert:intermediate-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:client-certificate",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate, third use in this record",
+      "evidence": "The main purpose of the intermediate certificate is to sign node certificates, client certificates, or other intermediate certificates."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "verifiesIdentityOf",
+      "object": "cert:node-certificate",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate captured a trust store verifying a presented certificate's chain of trust; authenticatesVia was considered and rejected as it describes an access surface's credential mechanism, not this chain-of-trust check",
+      "evidence": "The node tries to identify the system by establishing a chain of trust from the system's certificate to a certificate in the trust store."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "verifiesIdentityOf",
+      "object": "cert:client-certificate",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate, second use in this record",
+      "evidence": "If Couchbase Server finds that the certificate's chain of trust leads to a root authority that it recognizes, it trusts the client."
+    },
+    {
+      "subject": "tls:mutual-tls",
+      "predicate": "authenticatesVia",
+      "object": "cert:client-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - authenticatesVia fits here because the subject is a named access process (mTLS), not a bare credential artifact",
+      "evidence": "A similar process allows the server to authenticate with the client in a process called mutual TLS (mTLS) or [mutual authentication](https://en.wikipedia.org/wiki/Mutual%5Fauthentication)."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-common-name",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no existing predicate captured extracting a username from a specific certificate field",
+      "evidence": "The `Subject` for the certificate, featuring the Common Name. For example, when creating the client-certificate using the command line, you can set the subject of the certificate to `clientname` by using the `-subj \"/CN=clientuser\"` argument."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate, second use in this record",
+      "evidence": "The `DNS` name, provided as a Subject Alternative Name for the certificate. For example, if you add `subjectAltName = DNS:node2.cb.com` to the certificate, you can configure Couchbase Server to use `node2.cb.com` as the username without a prefix or delimiter specified in the handling-configuration."
+    },
+    {
+      "subject": "cert:subject-common-name",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - retainedForLegacyCompatibility's shape (superseded construct kept alive for older clients) matches exactly",
+      "evidence": "The Internet Engineering Task Force (IETF) has deprecated the Subject Common Name as described in [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4). Couchbase Server continues to support using the Subject Common Name."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "requiresSetting",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The node certificate for each server in the cluster must specify its node name as a Subject Alternative Name."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "availableSince",
+      "object": "version:server-7-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For Couchbase Enterprise Server Version 7.2 and later, this means that:"
+    },
+    {
+      "subject": "cert:pkcs12-certificate",
+      "predicate": "doesNotSupport",
+      "object": "cert:client-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server only supports this format for nodes."
+    },
+    {
+      "subject": "cert:private-key",
+      "predicate": "doesNotSupport",
+      "object": "encrypted private keys under PKCS #1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server supports using the PKCS #1 file format only for unencrypted private keys. This format only supports RSA keys."
+    },
+    {
+      "subject": "cert:certificate-management",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRole was minted for Sync Gateway's requireRole() check; this is its first non-Sync-Gateway use, generalizing the shape ('subject action requires an authenticated user hold the named role') to a Server administrative task rather than a sync-function write",
+      "evidence": "Managing certificates requires the Full Admin or Security Admin roles."
+    },
+    {
+      "subject": "cert:certificate-management",
+      "predicate": "requiresServerRole",
+      "object": "role:security-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused predicate, minted object concept - see role:security-administrator's collision note above",
+      "evidence": "Managing certificates requires the Full Admin or Security Admin roles."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For step-by-step instructions for creating and deploying certificate for Couchbase Server and clients, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md)"
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "and [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/using-multiple-cas",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link, to a sibling page in this same batch",
+      "evidence": "You can upload intermediate certificates to the Couchbase Server trust store. For information, see [Adding Intermediate Certificates to the Trust Store](using-multiple-cas.md#adding-intermediate-certificates-to-the-trust-store)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an example of using private keys to secure XDCR, see [Specify Root and Client Certificates, and Client Private Key](../../manage/manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an example iof using certificates to secure a connection to an LDAP host, see [Configure LDAP](../../manage/manage-security/configure-ldap.md#client-certificate)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Enable Client Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md) for details."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Examples of certificate creation provided in [Manage Certificates](../../manage/manage-security/manage-certificates.md) continue to include definitions of Subject Common Name for both server and client."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/nodes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "To learn when you can rename a node, see [Node Renaming](../clusters-and-availability/nodes.md#node-renaming)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/rest-cluster-email-notifications",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Setting Alerts](../../rest-api/rest-cluster-email-notifications.md) for more steps to change this setting."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/configure-alerts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Couchbase Server also alerts a second time if a certificate has expired. See [Alerts](../../manage/manage-settings/configure-alerts.md) for more information about alerts."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/rotate-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "It also helps enforce certificate rotation. See [Certificate Rotation](../../manage/manage-security/rotate-server-certificates.md)."
+    },
+    {
+      "subject": "server/8.0/learn/security/certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/rest-api/upload-retrieve-node-cert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "You register the passphrase by passing Couchbase Server a JSON object using the REST API. For information, see [Upload and Retrieve a Node Certificate](../../rest-api/upload-retrieve-node-cert.md)."
+    }
   ],
   "notable_absence": {
     "predicate": "n/a - revocation",

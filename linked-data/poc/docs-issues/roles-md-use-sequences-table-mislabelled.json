@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/roles-md-use-sequences-table-mislabelled",
+  "type": "docs-issue",
+  "issueType": "copy-pasted-label",
+  "description": "The section headed 'Use Sequences' in roles.md carries the permission-table header 'Role: Manage Sequences (query_use_sequences)'. The label has been copy-pasted from the preceding 'Manage Sequences' role, whose own table correctly reads 'Role: Manage Sequences (query_manage_sequences)'. So the page shows two tables both labelled 'Manage Sequences' with different internal names, and the Use Sequences role has no table bearing its own name. A reader scanning table headers - or any tool parsing them, which is how this POC reads the catalogue - gets the wrong label for query_use_sequences; this registry itself promoted the role under the wrong label in round 12 and corrected it in round 13. Fix: change the table header to 'Role: Use Sequences (query_use_sequences)'.",
+  "about": [
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-13-role-slice-and-variant-normalisation",
+  "status": "open"
+}

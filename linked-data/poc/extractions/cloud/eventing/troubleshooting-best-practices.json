@@ -3,24 +3,104 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/eventing/troubleshooting-best-practices.md",
   "concepts": [
-    { "candidate_id": "role:eventing-full-admin", "label": "Eventing Full Admin (classic Couchbase Server role)", "reused_or_minted": "reused - minted this round in eventing-Terminologies.json; THIS page is the one that actually defines what it is and why it exists" },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:function", "label": "Eventing Function", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:recursive-mutation", "label": "Recursive mutation", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket alias binding", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:worker", "label": "Worker (per-node execution thread allocated to a Function)", "reused_or_minted": "minted - the horizontal-scaling unit within a single Function, distinct from Eventing nodes/cluster-level scaling" },
-    { "candidate_id": "version:server-7.0", "label": "Couchbase Server 7.0", "reused_or_minted": "reused - already promoted" }
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin (classic Couchbase Server role)",
+      "reused_or_minted": "reused - minted this round in eventing-Terminologies.json; THIS page is the one that actually defines what it is and why it exists"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:recursive-mutation",
+      "label": "Recursive mutation",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket alias binding",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:worker",
+      "label": "Worker (per-node execution thread allocated to a Function)",
+      "reused_or_minted": "minted - the horizontal-scaling unit within a single Function, distinct from Eventing nodes/cluster-level scaling"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "reused_or_minted": "reused - already promoted"
+    }
   ],
   "relations": [
-    { "subject": "role:eventing-full-admin", "predicate": "reducesPrivilegeScopeOf", "object": "role:full-administrator", "reused_or_minted_predicate": "minted - camelCase verb phrase for a narrower role deliberately carved out of a broader one by removing specific capabilities; a genuinely new but small predicate, not a new namespace", "evidence": "Prior to 7.0.0 Eventing always run as \"Full Admin\" this blocked some use cases and adoption as this role allowed creation of new users and the ability to escalate privilege sets. The new \"Eventing Full Admin\" role removes the capability of creating users and modifying credentials thus providing a bit more security." },
-    { "subject": "role:eventing-full-admin", "predicate": "availableSince", "object": "version:server-7.0", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "Prior to 7.0.0 Eventing always run as \"Full Admin\"" },
-    { "subject": "eventing:worker", "predicate": "behavesDifferentlyUnder", "object": "version:server-7.0", "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)", "evidence": "The default number of workers per function was three (3) in 6.X and is now one (1) in 7.0.0." },
-    { "subject": "eventing:function", "predicate": "requiresSetting", "object": "eventing:worker", "reused_or_minted_predicate": "reused (requiresSetting)", "evidence": "Couchbase Server for a specific Function limits the maximum number of workers to 64 (note the default is 3 workers)." },
-    { "subject": "eventing:function", "predicate": "requiresRole", "object": "role:full-administrator", "reused_or_minted_predicate": "reused (requiresRole) - repurposed for a REST-API config toggle rather than a UI action; 'admin privileges' is the doc's own generic phrasing, mapped to the closest matching classic role in this registry slice", "evidence": "To disable recursion checks (requires admin privileges):" },
-    { "subject": "eventing:function", "predicate": "shouldNotBeConfusedWith", "object": "eventing:recursive-mutation", "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)", "evidence": "There is a special case of direct self-recursion, which is highly useful, when a Eventing Function chooses to create a Read-Write binding to its own source collection we can perform document enrichment operations. In this case the direct self-recursive mutations and detected and suppressed by the Eventing framework." },
-    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/eventing-example-data-enrichment", "reused_or_minted_predicate": "structural markdown link", "evidence": "the following design is taken from the [Data Enrichment, Case: 2](eventing-example-data-enrichment.md)" },
-    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/eventing-handler-ConvertBucketToCollections", "reused_or_minted_predicate": "structural markdown link", "evidence": "For example trying to run [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) in a single bucket (as both source and target) will emit an 'ERR\\_INTER\\_FUNCTION\\_RECURSION' error." }
+    {
+      "subject": "role:eventing-full-admin",
+      "predicate": "reducesPrivilegeScopeOf",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "minted - camelCase verb phrase for a narrower role deliberately carved out of a broader one by removing specific capabilities; a genuinely new but small predicate, not a new namespace",
+      "evidence": "Prior to 7.0.0 Eventing always run as \"Full Admin\" this blocked some use cases and adoption as this role allowed creation of new users and the ability to escalate privilege sets. The new \"Eventing Full Admin\" role removes the capability of creating users and modifying credentials thus providing a bit more security."
+    },
+    {
+      "subject": "role:eventing-full-admin",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Prior to 7.0.0 Eventing always run as \"Full Admin\""
+    },
+    {
+      "subject": "eventing:worker",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-7-0",
+      "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)",
+      "evidence": "The default number of workers per function was three (3) in 6.X and is now one (1) in 7.0.0."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:worker",
+      "reused_or_minted_predicate": "reused (requiresSetting)",
+      "evidence": "Couchbase Server for a specific Function limits the maximum number of workers to 64 (note the default is 3 workers)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused (requiresRole) - repurposed for a REST-API config toggle rather than a UI action; 'admin privileges' is the doc's own generic phrasing, mapped to the closest matching classic role in this registry slice",
+      "evidence": "To disable recursion checks (requires admin privileges):"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "eventing:recursive-mutation",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)",
+      "evidence": "There is a special case of direct self-recursion, which is highly useful, when a Eventing Function chooses to create a Read-Write binding to its own source collection we can perform document enrichment operations. In this case the direct self-recursive mutations and detected and suppressed by the Eventing framework."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-example-data-enrichment",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "the following design is taken from the [Data Enrichment, Case: 2](eventing-example-data-enrichment.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-handler-ConvertBucketToCollections",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "For example trying to run [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) in a single bucket (as both source and target) will emit an 'ERR\\_INTER\\_FUNCTION\\_RECURSION' error."
+    }
   ],
-  "notable_absence": { "predicate": "requiresCapellaRole / requiresPrivilege", "finding": "Zero mentions of any capella-role:* or privilege:capella-advanced-access-* concept anywhere on this page - every access-control reference here is to the OTHER, classic-Couchbase-Server-RBAC role axis (Full Admin / Eventing Full Admin / generic 'admin privileges'), never to Capella's management-plane roles or Advanced-credential privileges documented in eventing-rbac.json. Confirms Eventing's access story runs on two genuinely separate, pre-existing systems side by side (Capella management-plane roles for the UI/credential surface; classic server RBAC roles for cluster-node-level admin operations like the recursion-check REST toggle and historical Eventing-as-Full-Admin bootstrapping) rather than unifying them or adding a third." },
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresPrivilege",
+    "finding": "Zero mentions of any capella-role:* or privilege:capella-advanced-access-* concept anywhere on this page - every access-control reference here is to the OTHER, classic-Couchbase-Server-RBAC role axis (Full Admin / Eventing Full Admin / generic 'admin privileges'), never to Capella's management-plane roles or Advanced-credential privileges documented in eventing-rbac.json. Confirms Eventing's access story runs on two genuinely separate, pre-existing systems side by side (Capella management-plane roles for the UI/credential surface; classic server RBAC roles for cluster-node-level admin operations like the recursion-check REST toggle and historical Eventing-as-Full-Admin bootstrapping) rather than unifying them or adding a third."
+  },
   "cross_component_finding": "role:eventing-full-admin is the definitive fifth member of the role-naming-collision family documented in role:full-administrator's own promotion note (capella-role:*, rbac-role:role, sgw:role, role:full-administrator/role:local-user-security-administrator) - and critically, it is a NARROWER, PURPOSE-BUILT variant of an already-registered role (role:full-administrator), created specifically to give Eventing least-privilege bootstrapping without the ability to create users or escalate privileges. This is strong evidence against the round's 'new structural layer' hypothesis at the role-naming level too: Eventing's answer to 'we need a privileged role but not full admin' was to mint one narrower instance inside the SAME classic role: namespace, not to invent an Eventing-specific role system.",
-  "cross_product_finding": "None specific to this page." }
+  "cross_product_finding": "None specific to this page."
+}

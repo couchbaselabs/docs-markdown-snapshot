@@ -72,14 +72,14 @@
   "relations": [
     {
       "subject": "n1ql:sql-auditing",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:full-administrator",
       "reused_or_minted_predicate": "reused - requiresRole is in the promoted list and is a better fit than the requiresPrivilege the Capella record used, since the objects are roles not named privileges. Flagged: the Capella record and this record now disagree on the predicate for identical prose",
       "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
     },
     {
       "subject": "n1ql:sql-auditing",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:local-user-security-administrator",
       "reused_or_minted_predicate": "reused - requiresRole, same sentence as above",
       "evidence": "To prevent unauthorized modification of the audit service configuration, the auditing system restricts access to configuring only to Full and Local User Security Administrators."
@@ -142,7 +142,7 @@
     },
     {
       "subject": "n1ql:audit-trail-immutability",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:full-administrator",
       "reused_or_minted_predicate": "reused - requiresRole; the immutability guarantee is stated in the same section as, and is the purpose of, the configuration access restriction",
       "evidence": "Audit records are immutable since the auditing system prevents changes of audit event records once written."

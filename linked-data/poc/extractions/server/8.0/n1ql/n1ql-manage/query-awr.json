@@ -129,7 +129,7 @@
     },
     {
       "subject": "n1ql:system-awr",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:query-manage-system-catalog",
       "reused_or_minted_predicate": "reused - requiresRole from the promoted list. Note the Capella record recorded this as requiresPrivilege against privilege:query-manage-system-catalog; requiresRole is used here because the page and server/current/learn/security/roles.md both call it a role",
       "evidence": "Only admins or users with the `query_manage_system_catalog` role can modify settings in `system:awr`. For more information, see [Authentication and Client Privileges](../n1ql-intro/sysinfo.md#authentication-and-client-privileges)."

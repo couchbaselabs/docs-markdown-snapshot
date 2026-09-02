@@ -2,10 +2,16 @@
   "id": "https://docs.couchbase.com/ld/docs-issues/server-role-label-does-not-match-internal-name",
   "type": "docs-issue",
   "issueType": "naming-inconsistency",
-  "description": "Two of the 58 role tables in roles.md have a display label that does not correspond to the internal name granted in the same table header: 'Role: Manage Sequences (query_use_sequences)' and 'Role: Search Reader (fts_searcher)'. Every other query_* role follows label-mirrors-token ('Role: Query Select (query_select)'). Anyone scripting role grants from the prose labels, or searching the page for 'Query Use Sequences' or 'FTS Searcher', will not find the entry. Related: search-admin-fts-admin-role-overlap, where the Search Admin / FTS Admin label split across product-era naming caused the POC's own registry to hold two ids for one role.",
+  "description": "Role display labels in roles.md frequently do not correspond to the internal name granted in the same table header. Round 13 measured it mechanically: 20 of the 55 role tables have at least one significant label word absent from the internal name. Many are harmless abbreviations ('Read-Only Admin' / ro_admin, 'Sync Gateway Application' / sync_gateway_app, 'Eventing Full Admin' / eventing_admin). The substantive cases are those where the internal name uses a *different word*, so neither string can be guessed from the other: 'Application Access' / bucket_full_access, 'Manage Scopes' / scope_admin, 'Query Curl Access' / query_external_access, 'XDCR Admin' / replication_admin, 'XDCR Inbound' / replication_target, 'Sync Gateway Architect' / sync_gateway_configurator, 'Data Backup & Restore' / data_backup, 'Search Reader' / fts_searcher. A fourth pattern is a whole missing qualifier on the four scope-level SQL++ function roles: 'Manage Scope Functions' is query_manage_functions and 'Manage Global Functions' is query_manage_global_functions, so 'global' is marked in the token and 'scope' is the unmarked default - readable once you know, invisible until then. Anyone scripting role grants from the prose labels, or searching the page for a label they saw in a reference page, will not find the entry.\n\nROUND 13 CORRECTION to this issue's own reasoning: it originally cited 'Role: Manage Sequences (query_use_sequences)' as an instance of label/internal-name divergence. That inverted the diagnosis. query_use_sequences is the correct internal name for the Use Sequences role; what is wrong is the table's *label*, copy-pasted from the preceding Manage Sequences role, so the page carries two tables both labelled 'Manage Sequences'. Split out as docs-issues/roles-md-use-sequences-table-mislabelled, which is a different and more serious defect - a wrong fact rather than an unhelpful naming convention. 'Role: Search Reader (fts_searcher)', this issue's other original example, remains a genuine instance and is now one of 20.\n\nAlso corrected: this issue said 'the 58 role tables in roles.md'. There are 58 '###' headings, of which two are prose sections, giving 56 roles; and 55 of those 56 carry a '| Role:' table (Full Admin has none). Neither 58 nor 55 is the number of roles.",
   "about": [
     "server/8.0/learn/security/roles"
   ],
   "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
-  "status": "open"
+  "status": "open",
+  "relatedIssues": [
+    "https://docs.couchbase.com/ld/docs-issues/roles-md-use-sequences-table-mislabelled",
+    "https://docs.couchbase.com/ld/docs-issues/search-admin-fts-admin-role-overlap",
+    "https://docs.couchbase.com/ld/docs-issues/roles-md-external-function-role-tables-copy-pasted"
+  ],
+  "revisedDuring": "round-13-role-slice-and-variant-normalisation"
 }

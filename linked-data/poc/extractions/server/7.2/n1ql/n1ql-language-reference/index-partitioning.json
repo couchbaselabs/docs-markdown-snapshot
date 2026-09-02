@@ -19,14 +19,14 @@
     {
       "subject": "n1ql:index-partitioning",
       "predicate": "requiresMinVersionFor",
-      "object": "version:server-6.5",
+      "object": "version:server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "Starting with Couchbase Server 6.5, max_parallelism is set by default to match the number of partitions of the index."
     },
     {
       "subject": "n1ql:index-partitioning",
       "predicate": "availableSince",
-      "object": "version:server-7.0",
+      "object": "version:server-7-0",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 7.0 and later, the index redistribution setting enables you to specify how Couchbase Server redistributes indexes on rebalance."
     },

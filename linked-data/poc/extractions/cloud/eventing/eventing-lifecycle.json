@@ -3,25 +3,113 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/eventing/eventing-lifecycle.md",
   "concepts": [
-    { "candidate_id": "eventing:function", "label": "Eventing Function", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:function-lifecycle-state", "label": "Eventing Function lifecycle state", "reused_or_minted": "reused - minted this round in eventing-overview.json" },
-    { "candidate_id": "eventing:function-scope", "label": "Function Scope (RBAC grouping, a bucket.scope)", "reused_or_minted": "reused - minted this round in eventing-Terminologies.json" },
-    { "candidate_id": "eventing:listen-to-location", "label": "Listen to Location (Eventing source keyspace)", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:eventing-storage", "label": "Eventing Storage (Eventing metadata keyspace)", "reused_or_minted": "reused" },
-    { "candidate_id": "eventing:deployment-feed-boundary", "label": "Deployment Feed Boundary (Everything / From Now)", "reused_or_minted": "reused - minted this round in eventing-Terminologies.json" },
-    { "candidate_id": "eventing:rebalance-operation", "label": "Eventing rebalance operation", "reused_or_minted": "minted - a cluster-topology operation documented as structurally exclusive with Function lifecycle operations" },
-    { "candidate_id": "role:eventing-full-admin", "label": "Eventing Full Admin", "reused_or_minted": "reused - minted this round in eventing-Terminologies.json" },
-    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "reused_or_minted": "reused" }
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:function-lifecycle-state",
+      "label": "Eventing Function lifecycle state",
+      "reused_or_minted": "reused - minted this round in eventing-overview.json"
+    },
+    {
+      "candidate_id": "eventing:function-scope",
+      "label": "Function Scope (RBAC grouping, a bucket.scope)",
+      "reused_or_minted": "reused - minted this round in eventing-Terminologies.json"
+    },
+    {
+      "candidate_id": "eventing:listen-to-location",
+      "label": "Listen to Location (Eventing source keyspace)",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage (Eventing metadata keyspace)",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "eventing:deployment-feed-boundary",
+      "label": "Deployment Feed Boundary (Everything / From Now)",
+      "reused_or_minted": "reused - minted this round in eventing-Terminologies.json"
+    },
+    {
+      "candidate_id": "eventing:rebalance-operation",
+      "label": "Eventing rebalance operation",
+      "reused_or_minted": "minted - a cluster-topology operation documented as structurally exclusive with Function lifecycle operations"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "reused_or_minted": "reused - minted this round in eventing-Terminologies.json"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator",
+      "reused_or_minted": "reused"
+    }
   ],
   "relations": [
-    { "subject": "eventing:function-lifecycle-state", "predicate": "mutuallyExclusiveWith", "object": "eventing:rebalance-operation", "reused_or_minted_predicate": "minted - camelCase verb phrase; the doc's own word 'mutually exclusive' names this shape directly, and it's structurally distinct from tradesOffAgainst (a comparative strength/weakness relation) or incompatibleWithCredentialType (a permanent type ban) - this is a temporal, in-progress-operation lock", "evidence": "The Eventing Function lifecycle operations (deploying, undeploying, pausing, resuming, and deleting operations) and the Eventing rebalance operation **are mutually exclusive**. The Eventing rebalance operation fails when an Eventing Function lifecycle operation is currently in progress. Likewise, when the Eventing rebalance operation is in progress, you cannot perform an Eventing Function lifecycle operation." },
-    { "subject": "eventing:function-scope", "predicate": "requiresRole", "object": "role:eventing-full-admin", "reused_or_minted_predicate": "reused (requiresRole)", "evidence": "For the Function Scope or RBAC grouping, we will use the **\\*.\\***, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"." },
-    { "subject": "eventing:function-scope", "predicate": "requiresRole", "object": "role:full-administrator", "reused_or_minted_predicate": "reused (requiresRole)", "evidence": "For the Function Scope or RBAC grouping, we will use the **\\*.\\***, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"." },
-    { "subject": "eventing:function", "predicate": "usesEnum", "object": "eventing:deployment-feed-boundary", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "The Feed Boundary determines whether documents previously in existence need to be included in the Function's activities: the options are **Everything** and **From now**." },
-    { "subject": "eventing:function", "predicate": "requiresSetting", "object": "eventing:function-scope", "reused_or_minted_predicate": "reused (requiresSetting)", "evidence": "In order to show the basic life cycle of an Eventing Function, we need a Function Scope (a RBAC grouping), a Listen To Location (a source keyspace) and a separate Eventing Storage keyspace." },
-    { "subject": "eventing:eventing-storage", "predicate": "requiresSetting", "object": "eventing:function-scope", "reused_or_minted_predicate": "reused (requiresSetting) - repurposed to express a residency/persistence recommendation rather than a direct config dependency", "evidence": "You must have an Eventing storage keyspace, which should be typically 100% resident, and the collection is to be used solely by the Eventing Service." },
-    { "subject": "eventing:function", "predicate": "seeAlso", "object": "cloud/eventing/eventing-examples", "reused_or_minted_predicate": "structural markdown link", "evidence": "For a deeper insight refer to the more detailed [Eventing Examples](eventing-examples.md)." },
-    { "subject": "eventing:function-scope", "predicate": "seeAlso", "object": "cloud/eventing/eventing-rbac", "reused_or_minted_predicate": "structural markdown link", "evidence": "For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)." }
+    {
+      "subject": "eventing:function-lifecycle-state",
+      "predicate": "mutuallyExclusiveWith",
+      "object": "eventing:rebalance-operation",
+      "reused_or_minted_predicate": "minted - camelCase verb phrase; the doc's own word 'mutually exclusive' names this shape directly, and it's structurally distinct from tradesOffAgainst (a comparative strength/weakness relation) or incompatibleWithCredentialType (a permanent type ban) - this is a temporal, in-progress-operation lock",
+      "evidence": "The Eventing Function lifecycle operations (deploying, undeploying, pausing, resuming, and deleting operations) and the Eventing rebalance operation **are mutually exclusive**. The Eventing rebalance operation fails when an Eventing Function lifecycle operation is currently in progress. Likewise, when the Eventing rebalance operation is in progress, you cannot perform an Eventing Function lifecycle operation."
+    },
+    {
+      "subject": "eventing:function-scope",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "reused_or_minted_predicate": "reused (requiresRole)",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **\\*.\\***, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"."
+    },
+    {
+      "subject": "eventing:function-scope",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "reused_or_minted_predicate": "reused (requiresRole)",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **\\*.\\***, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "usesEnum",
+      "object": "eventing:deployment-feed-boundary",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The Feed Boundary determines whether documents previously in existence need to be included in the Function's activities: the options are **Everything** and **From now**."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:function-scope",
+      "reused_or_minted_predicate": "reused (requiresSetting)",
+      "evidence": "In order to show the basic life cycle of an Eventing Function, we need a Function Scope (a RBAC grouping), a Listen To Location (a source keyspace) and a separate Eventing Storage keyspace."
+    },
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "requiresSetting",
+      "object": "eventing:function-scope",
+      "reused_or_minted_predicate": "reused (requiresSetting) - repurposed to express a residency/persistence recommendation rather than a direct config dependency",
+      "evidence": "You must have an Eventing storage keyspace, which should be typically 100% resident, and the collection is to be used solely by the Eventing Service."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-examples",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "For a deeper insight refer to the more detailed [Eventing Examples](eventing-examples.md)."
+    },
+    {
+      "subject": "eventing:function-scope",
+      "predicate": "seeAlso",
+      "object": "cloud/eventing/eventing-rbac",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    }
   ],
-  "notable_absence": { "predicate": "requiresCapellaRole / requiresEdition", "finding": "This UI walkthrough never once names a Capella project role (Data Reader/Data Writer/Project Owner) or an edition badge - it defers entirely to the classic-role axis (Full Admin/Eventing Full Admin) for its own prerequisites and points readers at eventing-rbac.md (this batch) for 'standard or non-privileged users'. Confirms the same page-splits-by-audience pattern as eventing-overview.json: this tutorial page assumes the reader already has elevated access and simply doesn't surface the Capella-role-gated path at all." },
-  "cross_component_finding": "This is a pure UI-tutorial page (screenshots, click-by-click steps) rather than a reference page, yet it independently restates the same Deploy/Undeploy/Pause/Resume/Delete/mutual-exclusion-with-rebalance facts documented more thoroughly in eventing-Terminologies.md's Operations section (this batch) - the lifecycle model is stated consistently across both pages with no contradiction, a good sign for the round's 'does it fit existing shapes' hypothesis (compare eventing:function-lifecycle-state's Deployed/Undeployed/Paused/Deploying/Undeploying/Pausing shape directly against index-state's scheduled-for-creation/deferred/building/pending/online/offline/abridged shape: both are closed, UI-status enums with stable and in-progress members - no genuinely new state-machine shape was needed for Eventing)." }
+  "notable_absence": {
+    "predicate": "requiresCapellaRole / requiresEdition",
+    "finding": "This UI walkthrough never once names a Capella project role (Data Reader/Data Writer/Project Owner) or an edition badge - it defers entirely to the classic-role axis (Full Admin/Eventing Full Admin) for its own prerequisites and points readers at eventing-rbac.md (this batch) for 'standard or non-privileged users'. Confirms the same page-splits-by-audience pattern as eventing-overview.json: this tutorial page assumes the reader already has elevated access and simply doesn't surface the Capella-role-gated path at all."
+  },
+  "cross_component_finding": "This is a pure UI-tutorial page (screenshots, click-by-click steps) rather than a reference page, yet it independently restates the same Deploy/Undeploy/Pause/Resume/Delete/mutual-exclusion-with-rebalance facts documented more thoroughly in eventing-Terminologies.md's Operations section (this batch) - the lifecycle model is stated consistently across both pages with no contradiction, a good sign for the round's 'does it fit existing shapes' hypothesis (compare eventing:function-lifecycle-state's Deployed/Undeployed/Paused/Deploying/Undeploying/Pausing shape directly against index-state's scheduled-for-creation/deferred/building/pending/online/offline/abridged shape: both are closed, UI-status enums with stable and in-progress members - no genuinely new state-machine shape was needed for Eventing)."
+}

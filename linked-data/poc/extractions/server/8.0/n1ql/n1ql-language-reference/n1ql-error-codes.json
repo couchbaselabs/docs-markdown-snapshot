@@ -3,22 +3,86 @@
   "source_version": "8.0",
   "source_path": "server/current/n1ql/n1ql-language-reference/n1ql-error-codes.md",
   "concepts": [
-    { "candidate_id": "n1ql:sql-error-codes", "label": "SQL++ error codes", "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/n1ql-error-codes.json" },
-    { "candidate_id": "n1ql:fn-finderr", "label": "FINDERR() function", "reused_or_minted": "reused - matches the Capella record; also a subject in metafun.json in this batch" },
-    { "candidate_id": "cli:finderr", "label": "finderr command line tool", "reused_or_minted": "reused - matches the Capella record" },
-    { "candidate_id": "n1ql:error-3230", "label": "Error 3230 - «feature» is an enterprise level feature", "reused_or_minted": "minted - one of only two codes on the page whose entire purpose is to report a missing edition, which makes it ontologically interesting in a way the other 563 codes are not" },
-    { "candidate_id": "n1ql:error-9999", "label": "Error 9999 - Not implemented", "reused_or_minted": "minted - the other edition-reporting code; notable because a generic 'Not implemented' error is documented as the channel through which an edition gate surfaces to the user" },
-    { "candidate_id": "n1ql:error-11011", "label": "Error 11011 - documents excluded from a system bucket for insufficient permissions", "reused_or_minted": "minted - the only code on the page that prescribes DIFFERENT remedial roles depending on edition, which is a genuine behavesDifferentlyUnder shape rather than a gate" },
-    { "candidate_id": "n1ql:error-5500", "label": "Error 5500 - Request has exceeded memory quota", "reused_or_minted": "minted - the only code on the page carrying an attached explanatory NOTE with configuration instructions, and the note is Server-only (see cross_product_finding)" },
-    { "candidate_id": "n1ql:transaction-statements", "label": "Transactions (SQL++ transaction operations)", "reused_or_minted": "reused - the transaction statement family already has records at server/current/.../begin-transaction.json, commit-transaction.json, rollback-transaction.json, savepoint.json, set-transaction.json and transactions.json in this wave; this page supplies an independent edition gate for it" },
-    { "candidate_id": "n1ql:auto-update-statistics", "label": "Auto Update Statistics", "reused_or_minted": "minted - named as an Enterprise-only feature by error 20000; no existing id in the extraction set" },
-    { "candidate_id": "n1ql:typed-user-defined-function", "label": "Typed user-defined function", "reused_or_minted": "minted - error 10100 gates functions 'of type «type»' on Enterprise Edition. The «type» placeholder means the page does not say WHICH function types are gated, so this concept is deliberately vague and is recorded as such - see notable_absence" },
-    { "candidate_id": "privilege:query-system-catalog", "label": "query_system_catalog role/privilege", "reused_or_minted": "reused - same id used in metafun.json in this batch, where EXTRACTDDL requires it. Note this page also calls it a role rather than a privilege, matching metafun.md and compounding the namespace collision flagged there" },
-    { "candidate_id": "role:administrator", "label": "administrator role (as named by this page)", "reused_or_minted": "minted with reservations - error 11011 says 'add the administrator role', which is not a canonical Couchbase role name (the canonical names are Full Administrator, Cluster Administrator, and so on). Minted so the relation can be recorded, but flagged for reconciliation against learn/security/roles.md rather than trusted" },
-    { "candidate_id": "setting:query-memory-quota", "label": "queryMemoryQuota cluster-level setting", "reused_or_minted": "minted - named in the Server-only note attached to error 5500" },
-    { "candidate_id": "cli:couchbase-cli-setting-query", "label": "couchbase-cli setting-query", "reused_or_minted": "minted - named in the Server-only note attached to error 5500 as the CLI route to the memory quota" },
-    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "reused_or_minted": "reused - promoted registry concept" },
-    { "candidate_id": "edition:community", "label": "Community Edition", "reused_or_minted": "reused - promoted registry concept" }
+    {
+      "candidate_id": "n1ql:sql-error-codes",
+      "label": "SQL++ error codes",
+      "reused_or_minted": "reused - matches the Capella record cloud/n1ql/n1ql-language-reference/n1ql-error-codes.json"
+    },
+    {
+      "candidate_id": "n1ql:fn-finderr",
+      "label": "FINDERR() function",
+      "reused_or_minted": "reused - matches the Capella record; also a subject in metafun.json in this batch"
+    },
+    {
+      "candidate_id": "cli:finderr",
+      "label": "finderr command line tool",
+      "reused_or_minted": "reused - matches the Capella record"
+    },
+    {
+      "candidate_id": "n1ql:error-3230",
+      "label": "Error 3230 - «feature» is an enterprise level feature",
+      "reused_or_minted": "minted - one of only two codes on the page whose entire purpose is to report a missing edition, which makes it ontologically interesting in a way the other 563 codes are not"
+    },
+    {
+      "candidate_id": "n1ql:error-9999",
+      "label": "Error 9999 - Not implemented",
+      "reused_or_minted": "minted - the other edition-reporting code; notable because a generic 'Not implemented' error is documented as the channel through which an edition gate surfaces to the user"
+    },
+    {
+      "candidate_id": "n1ql:error-11011",
+      "label": "Error 11011 - documents excluded from a system bucket for insufficient permissions",
+      "reused_or_minted": "minted - the only code on the page that prescribes DIFFERENT remedial roles depending on edition, which is a genuine behavesDifferentlyUnder shape rather than a gate"
+    },
+    {
+      "candidate_id": "n1ql:error-5500",
+      "label": "Error 5500 - Request has exceeded memory quota",
+      "reused_or_minted": "minted - the only code on the page carrying an attached explanatory NOTE with configuration instructions, and the note is Server-only (see cross_product_finding)"
+    },
+    {
+      "candidate_id": "n1ql:transaction-statements",
+      "label": "Transactions (SQL++ transaction operations)",
+      "reused_or_minted": "reused - the transaction statement family already has records at server/current/.../begin-transaction.json, commit-transaction.json, rollback-transaction.json, savepoint.json, set-transaction.json and transactions.json in this wave; this page supplies an independent edition gate for it"
+    },
+    {
+      "candidate_id": "n1ql:auto-update-statistics",
+      "label": "Auto Update Statistics",
+      "reused_or_minted": "minted - named as an Enterprise-only feature by error 20000; no existing id in the extraction set"
+    },
+    {
+      "candidate_id": "n1ql:typed-user-defined-function",
+      "label": "Typed user-defined function",
+      "reused_or_minted": "minted - error 10100 gates functions 'of type «type»' on Enterprise Edition. The «type» placeholder means the page does not say WHICH function types are gated, so this concept is deliberately vague and is recorded as such - see notable_absence"
+    },
+    {
+      "candidate_id": "privilege:query-system-catalog",
+      "label": "query_system_catalog role/privilege",
+      "reused_or_minted": "reused - same id used in metafun.json in this batch, where EXTRACTDDL requires it. Note this page also calls it a role rather than a privilege, matching metafun.md and compounding the namespace collision flagged there"
+    },
+    {
+      "candidate_id": "role:administrator",
+      "label": "administrator role (as named by this page)",
+      "reused_or_minted": "minted with reservations - error 11011 says 'add the administrator role', which is not a canonical Couchbase role name (the canonical names are Full Administrator, Cluster Administrator, and so on). Minted so the relation can be recorded, but flagged for reconciliation against learn/security/roles.md rather than trusted"
+    },
+    {
+      "candidate_id": "setting:query-memory-quota",
+      "label": "queryMemoryQuota cluster-level setting",
+      "reused_or_minted": "minted - named in the Server-only note attached to error 5500"
+    },
+    {
+      "candidate_id": "cli:couchbase-cli-setting-query",
+      "label": "couchbase-cli setting-query",
+      "reused_or_minted": "minted - named in the Server-only note attached to error 5500 as the CLI route to the memory quota"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Community Edition",
+      "reused_or_minted": "reused - promoted registry concept"
+    }
   ],
   "relations": [
     {
@@ -65,14 +129,14 @@
     },
     {
       "subject": "n1ql:error-11011",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-system-catalog",
       "reused_or_minted_predicate": "reused - promoted predicate, read as 'this role is what resolves the condition the error reports'. Scoped to Enterprise Edition by the evidence quote",
       "evidence": "In an EE system, add the query\\_system\\_catalog role to see all rows."
     },
     {
       "subject": "n1ql:error-11011",
-      "predicate": "requiresRole",
+      "predicate": "requiresServerRole",
       "object": "role:administrator",
       "reused_or_minted_predicate": "reused - promoted predicate, scoped to Community Edition by the evidence quote. The escalation is worth noting on security grounds: to read system keyspace contents in CE the documentation tells you to grant an administrator role, where EE lets you grant a narrow catalog role",
       "evidence": "In a CE system, add the administrator role to see all rows."

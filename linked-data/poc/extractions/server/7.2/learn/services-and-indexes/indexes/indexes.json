@@ -38,7 +38,7 @@
     {
       "subject": "index:view",
       "predicate": "deprecatedSince",
-      "object": "https://docs.couchbase.com/ld/concepts/version/server-7.0",
+      "object": "https://docs.couchbase.com/ld/concepts/version/server-7-0",
       "reused_or_minted_predicate": "minted",
       "note": "availableSince covers a capability/constraint starting at a version; this is the inverse (a capability being retired starting at a version), so a distinct predicate is minted rather than overloading availableSince.",
       "evidence": "Views are deprecated in Couchbase Server 7.0, and will be removed in a future release."

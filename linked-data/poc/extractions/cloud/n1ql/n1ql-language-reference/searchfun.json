@@ -3,9 +3,21 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/n1ql/n1ql-language-reference/searchfun.md",
   "concepts": [
-    { "candidate_id": "n1ql:search-function", "label": "Search Functions (SEARCH/SEARCH_META/SEARCH_SCORE)", "reused_or_minted": "minted - matches n1ql:<kebab-case> convention, covers the family described on this page" },
-    { "candidate_id": "rbac-role:data-admin", "label": "Data Admin (RBAC role required to create Search indexes used with SEARCH functions)", "reused_or_minted": "minted - a specific named member of the promoted coarse rbac-role:role family; this page is the first in this batch to name a specific data-plane role by name rather than referring to the family generically" },
-    { "candidate_id": "rbac-role:data-reader", "label": "Data Reader (RBAC role required to perform searches using SEARCH functions)", "reused_or_minted": "minted - specific named member of rbac-role:role, sibling of rbac-role:data-admin" }
+    {
+      "candidate_id": "n1ql:search-function",
+      "label": "Search Functions (SEARCH/SEARCH_META/SEARCH_SCORE)",
+      "reused_or_minted": "minted - matches n1ql:<kebab-case> convention, covers the family described on this page"
+    },
+    {
+      "candidate_id": "rbac-role:data-admin",
+      "label": "Data Admin (RBAC role required to create Search indexes used with SEARCH functions)",
+      "reused_or_minted": "minted - a specific named member of the promoted coarse rbac-role:role family; this page is the first in this batch to name a specific data-plane role by name rather than referring to the family generically"
+    },
+    {
+      "candidate_id": "rbac-role:data-reader",
+      "label": "Data Reader (RBAC role required to perform searches using SEARCH functions)",
+      "reused_or_minted": "minted - specific named member of rbac-role:role, sibling of rbac-role:data-admin"
+    }
   ],
   "relations": [
     {
@@ -17,14 +29,14 @@
     },
     {
       "subject": "n1ql:search-function",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:data-admin",
       "reused_or_minted_predicate": "reused - requiresPrivilege base predicate applied to a named RBAC role rather than a credential-type privilege; this is a different gating axis from the Basic/Advanced credential-type pair seen elsewhere in this batch",
       "evidence": "The role **Data Admin** must be assigned to those who intend to create indexes; and the role **Data Reader** to those who intend to perform searches."
     },
     {
       "subject": "n1ql:search-function",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "rbac-role:data-reader",
       "reused_or_minted_predicate": "reused - requiresPrivilege base predicate",
       "evidence": "...and the role **Data Reader** to those who intend to perform searches."

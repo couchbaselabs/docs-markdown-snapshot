@@ -12,7 +12,7 @@
   "relations": [
     {
       "subject": "n1ql:build-index",
-      "predicate": "requiresPrivilege",
+      "predicate": "requiresServerRole",
       "object": "privilege:query-manage-index",
       "reused_or_minted_predicate": "reused",
       "evidence": "User executing the BUILD INDEX statement must have the Query Manage Index privilege granted on the keyspace."
@@ -20,7 +20,7 @@
     {
       "subject": "n1ql:build-index",
       "predicate": "requiresMinVersionFor",
-      "object": "version:server-6.5",
+      "object": "version:server-6-5",
       "reused_or_minted_predicate": "reused",
       "evidence": "In Couchbase Server 6.5 and later, each index term may be an index name, an index expression, or a subquery expression."
     },

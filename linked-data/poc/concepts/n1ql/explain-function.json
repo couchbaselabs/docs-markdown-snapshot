@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/explain-function",
+  "label": "EXPLAIN FUNCTION",
+  "type": "the SQL++ statement that reports the execution plan of a user-defined function",
+  "promoted": true,
+  "recurrence": 7,
+  "promoted_in_round": 13,
+  "note": "Promoted in round 13 as a direct consequence of the variant normalisation: the dotted and dashed spellings were counted as two terms, so neither crossed the promotion bar on its own. Unifying them put the real recurrence above the threshold. This is the quiet half of the spelling-variant problem - the loud half is false debt (a promoted term reported as unpromoted), the quiet half is a genuine candidate held below the bar by having its count split. recurrence.py's docstring already warned that splitting is 'the opposite of the false-debt failure, and quieter'; these are the first five terms found to have actually suffered it.\n\nAt recurrence 7 this was the largest genuine candidate the variant split was hiding - 5 files under n1ql:explain-function and 2 under n1ql:explainfunction, neither of which had a registry file, so it read as two separate items of backlog rather than one well-evidenced statement. Sibling of the promoted n1ql:create-function and n1ql:drop-function, whose run-together spellings were normalised in the same pass."
+}

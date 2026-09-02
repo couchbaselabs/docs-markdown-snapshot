@@ -10,7 +10,7 @@
       "note": "a feature/capability page, not itself a single SQL++ statement"
     },
     {
-      "candidate_id": "version:server-6.6",
+      "candidate_id": "version:server-6-6",
       "label": "Couchbase Server 6.6",
       "reused_or_minted": "minted",
       "note": "not in the promoted registry"
@@ -20,7 +20,7 @@
     {
       "subject": "n1ql:flex-indexes",
       "predicate": "availableSince",
-      "object": "version:server-6.6",
+      "object": "version:server-6-6",
       "reused_or_minted_predicate": "reused",
       "evidence": "Starting with Couchbase Server 6.6, the _Flex Index_ feature provides the ability for a SQL++ query to leverage either a global secondary index or full-text index transparently with standard SQL++ syntax, simplifying the application development process."
     },
