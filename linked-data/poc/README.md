@@ -1977,14 +1977,20 @@ document.
   `allow → deny → allow` with fewer relations is the documented fabrication-becomes-
   omission signal, and round 12's only instance was a correctly-dropped relation.
   Only reading the page distinguishes them.
-- **Re-extract the two `indexes/` directories — this is round 17, and it comes before
-  wave 4.** `server/8.0/indexes/` is 11 pages that have **never been extracted**, and
-  they are the canonical documentation of the subject rounds 14–16 spent three waves
-  reorganising; round 12 missed them because it walked `learn/` after Antora had moved
-  them out. `cloud/indexes/` is 11 more, read in round 6 before the gate existed and
-  thin at a mean of 3.2 relations. Doing them together makes each a diff-gated wave
-  against the other, which is the shape that finds content problems at the highest
-  rate. Then promote what the corpus currently cannot support: the pushdown family,
+- **Extract `server/8.0/indexes/` and re-extract `cloud/indexes/` — this is round 17,
+  and it comes before wave 4.** Two different jobs, worth keeping apart.
+  `server/8.0/indexes/` is 11 pages that have **never been extracted** — first
+  contact, not remediation — and they are the canonical documentation of the subject
+  rounds 14–16 spent three waves reorganising; round 12 missed them because it walked
+  `learn/` after Antora had moved them out. `cloud/indexes/` is 11 records that *do*
+  exist, read in round 6 before the gate and thin at a mean of 3.2 relations, so it
+  belongs with the re-extraction backlog above. Both report as a low recurrence count
+  and **nothing distinguishes them**, which is the trap: bad records make checkable
+  claims, while an unread directory makes none, so it produces no defect for any
+  control to find and its only symptom is a number that reads as modest importance.
+  Run them together anyway — each is the other's diff-gate, the shape that finds
+  content problems at the highest rate this project has measured. Then promote what
+  the corpus currently cannot support: the pushdown family,
   the three storage engines, `index:sequential-scan`, `index:index-span`, the
   key-shape types. The general lesson to carry into the wave plan: **a coverage plan
   written as a list of directories inherits every reorganisation the docs have

@@ -228,10 +228,20 @@ ls server/8.0/indexes/ | wc -l; ls linked-data/poc/extractions/server/8.0/indexe
 ```
 
 A missing directory reports as a low count, not as a gap, and there is no number
-anywhere that distinguishes the two. When you find one, the wave's honest output is a
-*re-extraction round*, not a set of promotions made on the evidence that happens to
+anywhere that distinguishes the two. When you find one, the wave's honest output is
+**an extraction round**, not a set of promotions made on whatever evidence happens to
 exist - which is why round 16 refused to promote Plasma, Forestdb and Nitro despite
 having read the sentences that define them.
+
+Keep "extract" and "re-extract" distinct when you write that up, because they are
+different jobs with different success criteria and the words are the only thing
+separating them. A directory nobody walked needs **first-contact extraction**, and the
+question is what the pages say that no round has read. A directory walked badly - round
+3's `sync-gateway`, `cloud/vector-index/`, `cloud/indexes/` - needs **re-extraction**,
+and the question is whether the conclusions already drawn from those records survive.
+Round 16's own draft called both of them a re-extraction, which quietly filed the
+never-read module under a backlog whose framing is "these records are unreliable" -
+the one thing that was not wrong with it.
 
 Taken with (a) and the variant problem, the five failures are one failure:
 **recurrence measures repetition, and repetition is an editorial property of the

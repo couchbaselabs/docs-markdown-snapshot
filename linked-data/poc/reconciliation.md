@@ -4329,12 +4329,30 @@ right.
 
 ### Round 17 is a content round, and this wave is why
 
-**Re-extract `server/8.0/indexes/` (11 pages) and `cloud/indexes/` (11).** The first
-has *never been extracted* — round 12 walked `learn/` looking for these pages and
-they had already moved out of it — and it is the canonical documentation of the
-subject this wave spent its whole length reorganising. The second is pre-gate and
-thin: 35 relations over 11 pages, mean 3.2, against round 10's baseline of 13.4, with
-three defective quotes.
+**Extract `server/8.0/indexes/` (11 pages) and re-extract `cloud/indexes/` (11).**
+Two different jobs, and the wording matters, because this round's own draft called
+both of them a re-extraction and thereby mis-filed the more important half.
+`server/8.0/indexes/` has *never been extracted* — round 12 walked `learn/` looking
+for these pages and they had already moved out of it — so it is **first contact**
+with the canonical documentation of the subject this wave spent its whole length
+reorganising, and its success criterion is new coverage: what does the module say
+that nine rounds have never read? `cloud/indexes/` is the other kind — 11 records
+that exist, written pre-gate, thin at 35 relations over 11 pages (mean 3.2, against
+round 10's baseline of 13.4) with three defective quotes — so it joins
+`sync-gateway/`, `couchbase-lite/` and `cloud/vector-index/` on the remediation
+list, where the criterion is that the records become trustworthy and the *existing*
+conclusions either survive or are corrected.
+
+The distinction is the finding, not pedantry. A never-walked directory and a
+badly-walked one both report as a low recurrence count, and **nothing in this
+pipeline distinguishes them** — but they fail differently. Bad records make claims
+that can be checked and found wrong; a directory nobody read makes no claims at all,
+so it produces no defect for any control to catch, and the only symptom is a number
+that looks like modest importance. Filing the first kind under "re-extraction" hides
+it inside a backlog whose whole framing is "these records are unreliable", which is
+the one thing that is not wrong with it. Run them together anyway: each is the
+other's diff-gate, and a diff-gated wave finds content problems at the highest rate
+this project has measured.
 
 This is the round's largest finding about the method, and it is not about namespaces:
 **the corpus is not the documentation.** Recurrence measures extraction history. Every
@@ -4345,7 +4363,7 @@ recurrence measures repetition rather than importance; this adds that it measure
 repetition *within the sample*, and that a coverage plan built from directory names
 inherits every reorganisation the docs have ever undergone.
 
-Then, and only then, promote out of the re-extraction: the pushdown family, the three
+Then, and only then, promote out of the new records: the pushdown family, the three
 storage engines, `index:sequential-scan`, `index:index-span`, and the key-shape index
 types (`array-index`, `functional-index`, `partial-index`, `composite-secondary-index`,
 `named-primary-index`) with real evidence behind them rather than a shadow copy's.
