@@ -33,14 +33,14 @@
     {
       "subject": "cbl:partial-index",
       "predicate": "availableSince",
-      "object": "version:cbl-3.2.2",
+      "object": "version:cbl-3-2-2",
       "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape",
       "evidence": "Couchbase Lite 3.2.2 introduced support for Partial Index - Partial Value and Partial Full-Text Indexes."
     },
     {
       "subject": "cbl:array-index",
       "predicate": "availableSince",
-      "object": "version:cbl-3.2.1",
+      "object": "version:cbl-3-2-1",
       "reused_or_minted_predicate": "reused - direct match to promoted availableSince shape",
       "evidence": "Couchbase Lite 3.2.1 introduced functionality to optimize querying arrays."
     },

@@ -3,20 +3,78 @@
   "source_version": "Capella",
   "source_path": "cloud/search/create-search-index-ui.md",
   "concepts": [
-    { "candidate_id": "search:create-search-index-ui", "label": "Create a Search Index with the Capella UI (task/how-to page)", "reused_or_minted": "reused - same concept id as the server/ version of this page (server/search/create-search-index-ui.json); cross-product reuse" },
-    { "candidate_id": "search:simple-search-ui", "label": "Run a Simple Search with the Capella UI", "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-ui.json" },
-    { "candidate_id": "search:set-advanced-settings", "label": "Add and Configure Advanced Settings on a Search Index", "reused_or_minted": "minted - referenced from cloud/search/set-advanced-settings.md, not yet extracted in this repo" },
-    { "candidate_id": "search:create-type-mapping", "label": "Create a New Mapping or Type Mapping (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/create-type-mapping.json" },
-    { "candidate_id": "search:customize-index", "label": "Search Index Features (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/customize-index.json" },
-    { "candidate_id": "search:index-name-uniqueness", "label": "Search index name uniqueness (per bucket/scope, version-gated behavior)", "reused_or_minted": "reused - minted in cloud/search/create-search-indexes.json in this same batch; same rule text repeated verbatim on this page" },
-    { "candidate_id": "version:server-7.6", "label": "Couchbase Server 7.6 (feature-gate marker referenced from a Capella page)", "reused_or_minted": "reused - already minted in cloud/vector-index/use-vector-indexes.json" }
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Search Index with the Capella UI (task/how-to page)",
+      "reused_or_minted": "reused - same concept id as the server/ version of this page (server/search/create-search-index-ui.json); cross-product reuse"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run a Simple Search with the Capella UI",
+      "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-ui.json"
+    },
+    {
+      "candidate_id": "search:set-advanced-settings",
+      "label": "Add and Configure Advanced Settings on a Search Index",
+      "reused_or_minted": "minted - referenced from cloud/search/set-advanced-settings.md, not yet extracted in this repo"
+    },
+    {
+      "candidate_id": "search:create-type-mapping",
+      "label": "Create a New Mapping or Type Mapping (Capella)",
+      "reused_or_minted": "reused - already extracted in cloud/search/create-type-mapping.json"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Search Index Features (Capella)",
+      "reused_or_minted": "reused - already extracted in cloud/search/customize-index.json"
+    },
+    {
+      "candidate_id": "search:index-name-uniqueness",
+      "label": "Search index name uniqueness (per bucket/scope, version-gated behavior)",
+      "reused_or_minted": "reused - minted in cloud/search/create-search-indexes.json in this same batch; same rule text repeated verbatim on this page"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6 (feature-gate marker referenced from a Capella page)",
+      "reused_or_minted": "reused - already minted in cloud/vector-index/use-vector-indexes.json"
+    }
   ],
   "relations": [
-    { "subject": "search:create-search-index-ui", "predicate": "seeAlso", "object": "search:simple-search-ui", "note": "structural link", "evidence": "You must create a Search index before you can [run a search](simple-search-ui.md) with the Search Service." },
-    { "subject": "search:create-search-index-ui", "predicate": "seeAlso", "object": "search:set-advanced-settings", "note": "structural link", "evidence": "(Optional) [Choose to add and configure advanced settings on your Search index](set-advanced-settings.md)." },
-    { "subject": "search:create-search-index-ui", "predicate": "seeAlso", "object": "search:create-type-mapping", "note": "structural link", "evidence": "it's recommended that you create more [specific type mappings](create-type-mapping.md) to improve performance and reduce the index size." },
-    { "subject": "search:create-search-index-ui", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link", "evidence": "For more information about the different features you can add to your Search index to improve performance and search results, see [Search Index Features](customize-index.md)." },
-    { "subject": "search:index-name-uniqueness", "predicate": "availableSince", "object": "version:server-7.6", "reused_or_minted_predicate": "reused (availableSince) - same relation logged on cloud/search/create-search-indexes.json in this batch, new evidence from this page", "evidence": "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope." }
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "note": "structural link",
+      "evidence": "You must create a Search index before you can [run a search](simple-search-ui.md) with the Search Service."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "note": "structural link",
+      "evidence": "(Optional) [Choose to add and configure advanced settings on your Search index](set-advanced-settings.md)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "note": "structural link",
+      "evidence": "it's recommended that you create more [specific type mappings](create-type-mapping.md) to improve performance and reduce the index size."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "note": "structural link",
+      "evidence": "For more information about the different features you can add to your Search index to improve performance and search results, see [Search Index Features](customize-index.md)."
+    },
+    {
+      "subject": "search:index-name-uniqueness",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused (availableSince) - same relation logged on cloud/search/create-search-indexes.json in this batch, new evidence from this page",
+      "evidence": "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope."
+    }
   ],
   "notable_absence": {
     "predicate": "requiresCapellaRole",

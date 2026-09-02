@@ -21,12 +21,23 @@ Scans `reconciliation.md` for anything shaped like a promoted term:
 
   * `ns:kebab-case-id`   -> expect concepts/<ns>/<id>.json(ld)
   * `camelCasePredicate` -> expect relations/<kebab-case>.json(ld)
+  * `long-kebab-slug`    -> expect docs-issues/<slug>.json
 
 and reports the ones with no file. It cannot tell "claimed as promoted" from
 "mentioned as rejected, folded, deferred or watchlisted" - the prose says which,
 the string does not - so every finding needs a human glance. That is the
 intended cost: a short list to read each round beats rediscovering a missing
 file three rounds later.
+
+The docs-issue scan is new in round 14, and it was added because that round wrote
+a "### New `docs-issues/`" subsection naming four entries, all four of which were
+never filed - while this script reported nothing, having only ever looked at
+concepts and predicates. The gap was in the control, not in the care: three
+artefact families are written by hand each round and only two were checked. The
+slug pattern is loose on purpose (three or more kebab segments, backticked, no
+colon or slash) and so it catches ordinary hyphenated prose in backticks; the
+docstring's own instruction applies with more force here than anywhere else -
+**read the list, don't diff it.**
 
 Exit status is always 0. This is a report, not a gate; `verify-evidence.py` is
 the gate.
@@ -62,6 +73,11 @@ def main():
         for p in glob.glob(os.path.join(POC, "relations", "*.json*"))
     }
 
+    issues = {
+        re.sub(r"\.json$", "", os.path.basename(p))
+        for p in glob.glob(os.path.join(POC, "docs-issues", "*.json"))
+    }
+
     text = open(os.path.join(POC, "reconciliation.md"), errors="ignore").read()
     # Strip fenced code blocks: they hold sample JSON, not claims.
     text = re.sub(r"```.*?```", " ", text, flags=re.S)
@@ -73,21 +89,38 @@ def main():
     }
     named_p = set(re.findall(r"\b([a-z][a-z0-9]*(?:[A-Z][a-z0-9]*){1,})\b", text))
 
+    # Backticked kebab slugs of three or more segments. A docs-issue slug is
+    # always written this way; so is the occasional file stem, which is why the
+    # concepts'/relations' own local names are subtracted rather than reported.
+    local_names = {c.split(":")[-1] for c in concepts} | {kebab(p) for p in predicates}
+    named_i = {
+        m.group(1)
+        for m in re.finditer(r"`([a-z0-9]+(?:-[a-z0-9]+){2,})`", text)
+        if m.group(1) not in local_names
+    }
+
     missing_c = sorted(c for c in named_c if c not in concepts)
     missing_p = sorted(p for p in named_p if kebab(p) not in predicates)
+    missing_i = sorted(i for i in named_i if i not in issues)
 
-    print(f"registry: {len(concepts)} concepts, {len(predicates)} relations")
-    print(f"reconciliation.md names {len(named_c)} concept ids, {len(named_p)} camelCase terms\n")
+    print(f"registry: {len(concepts)} concepts, {len(predicates)} relations, "
+          f"{len(issues)} docs-issues")
+    print(f"reconciliation.md names {len(named_c)} concept ids, {len(named_p)} "
+          f"camelCase terms, {len(named_i)} kebab slugs\n")
     print(f"concept ids with no registry file ({len(missing_c)}):")
     for c in missing_c:
         print(f"  {c}")
     print(f"\ncamelCase terms with no relations/ file ({len(missing_p)}):")
     for p in missing_p:
         print(f"  {p}")
+    print(f"\nkebab slugs with no docs-issues/ file ({len(missing_i)}):")
+    for i in missing_i:
+        print(f"  {i}")
     print(
         "\nNot every line above is a defect: rejected, folded, deferred and "
-        "watchlisted terms are named in the prose too, and camelCase catches "
-        "ordinary identifiers. Read the list; don't diff it."
+        "watchlisted terms are named in the prose too, camelCase catches "
+        "ordinary identifiers, and the slug scan catches hyphenated prose in "
+        "backticks. Read the list; don't diff it."
     )
     return 0
 

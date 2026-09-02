@@ -3,17 +3,60 @@
   "source_version": "Capella",
   "source_path": "cloud/search/run-searches.md",
   "concepts": [
-    { "candidate_id": "search:run-searches", "label": "Run a Search With a Search Index (Capella)", "reused_or_minted": "reused - matches concept minted in linked-data/poc/extractions/server/search/run-searches.json (server/7.2/search/run-searches.md); this cloud/ page covers the same task (UI, SQL++, SDKs) for Capella" },
-    { "candidate_id": "search:scoring-model", "label": "Search Index Scoring Model (tf-idf / bm25)", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json" },
-    { "candidate_id": "search:scoring-algorithm-enum", "label": "Search scoring algorithm enum (tf-idf, bm25)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-search:vector-search", "label": "Vector Search (hybrid search with Search Service)", "reused_or_minted": "minted" }
+    {
+      "candidate_id": "search:run-searches",
+      "label": "Run a Search With a Search Index (Capella)",
+      "reused_or_minted": "reused - matches concept minted in linked-data/poc/extractions/server/search/run-searches.json (server/7.2/search/run-searches.md); this cloud/ page covers the same task (UI, SQL++, SDKs) for Capella"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:scoring-algorithm-enum",
+      "label": "Search scoring algorithm enum (tf-idf, bm25)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "reused_or_minted": "minted"
+    }
   ],
   "relations": [
-    { "subject": "search:scoring-model", "predicate": "usesEnum", "object": "search:scoring-algorithm-enum", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms for your Search index: * [tf-idf](#tf-idf) * [bm25](#bm25)" },
-    { "subject": "search:scoring-algorithm-enum", "predicate": "availableSince", "object": "version:server-8.0", "reused_or_minted_predicate": "reused (availableSince) - object concept minted in cloud/search/search-index-params.json; bm25 specifically is the new option, tf-idf is the pre-existing default", "evidence": "Couchbase Server version 8.0\n\nAs of Couchbase Server version 8.0, you can choose to use the [bm25](https://en.wikipedia.org/wiki/Okapi%5FBM25) algorithm instead of `tf-idf` for your Search index." },
-    { "subject": "search:run-searches", "predicate": "seeAlso", "object": "vector-search:vector-search", "evidence": "If one of your Search queries is a [Vector Search query](../vector-search/vector-search.md), the calculation changes to: hit_score = (query_1_boost * query_1_hit_score) + (knn_boost * knn_distance)" },
-    { "subject": "search:run-searches", "predicate": "seeAlso", "object": "search:customize-index", "evidence": "* [Search Index Features](customize-index.md)" },
-    { "subject": "search:run-searches", "predicate": "seeAlso", "object": "search:create-search-indexes", "evidence": "> [!NOTE]\n> You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service." }
+    {
+      "subject": "search:scoring-model",
+      "predicate": "usesEnum",
+      "object": "search:scoring-algorithm-enum",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms for your Search index: * [tf-idf](#tf-idf) * [bm25](#bm25)"
+    },
+    {
+      "subject": "search:scoring-algorithm-enum",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused (availableSince) - object concept minted in cloud/search/search-index-params.json; bm25 specifically is the new option, tf-idf is the pre-existing default",
+      "evidence": "Couchbase Server version 8.0\n\nAs of Couchbase Server version 8.0, you can choose to use the [bm25](https://en.wikipedia.org/wiki/Okapi%5FBM25) algorithm instead of `tf-idf` for your Search index."
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "vector-search:vector-search",
+      "evidence": "If one of your Search queries is a [Vector Search query](../vector-search/vector-search.md), the calculation changes to: hit_score = (query_1_boost * query_1_hit_score) + (knn_boost * knn_distance)"
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "evidence": "* [Search Index Features](customize-index.md)"
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "search:create-search-indexes",
+      "evidence": "> [!NOTE]\n> You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service."
+    }
   ],
   "cross_component_finding": {
     "observation": "Like the server/ counterpart of this page, this cloud/ page documents running a Search query from SQL++ via the Query tab and the SEARCH() function - a genuine cross-component bridge between the search/ and n1ql/ doc trees that holds true on Capella as well as server/.",

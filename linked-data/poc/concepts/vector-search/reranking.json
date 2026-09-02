@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vector-search/reranking",
+  "label": "Reranking",
+  "recurrence": 2,
+  "aliases": [
+    "vector-index:reranking"
+  ],
+  "type": "a post-search phase that reorders approximate vector results by comparing full (unquantized) vectors",
+  "note": "Enabled through the fifth parameter of n1ql:approx-vector-distance rather than through a statement of its own, and it requires vector-search:persist-full-vector. Do NOT confuse with the page id vector-index:hyperscale-reranking, which is the title of the how-to page 'Hyperscale Vector Index Reranking and Full Vector Persistence' and denotes a document; that id is retired by this round. Same word, one concept and one page, and the page outranked the concept on every mention count until seeAlso stopped counting as recurrence.",
+  "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
+  "promoted": true
+}

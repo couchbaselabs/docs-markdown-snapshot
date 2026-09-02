@@ -3,19 +3,71 @@
   "source_version": "Capella",
   "source_path": "cloud/vector-index/hyperscale-reranking.md",
   "concepts": [
-    { "candidate_id": "vector-index:hyperscale-reranking", "label": "Hyperscale Vector Index Reranking and Full Vector Persistence (task/reference page)", "reused_or_minted": "reused - stub referenced from cloud/vector-index/hyperscale-vector-index.json in this same batch; this is the full detail page for that stub" },
-    { "candidate_id": "vector-index:reranking", "label": "Reranking (post-search full-vector reorder phase)", "reused_or_minted": "reused - general mechanism concept minted in vector-index-best-practices.json; this page documents it in Hyperscale-specific detail" },
-    { "candidate_id": "vector-index:persist-full-vector", "label": "persist_full_vector setting", "reused_or_minted": "reused - minted in vector-index-best-practices.json" },
-    { "candidate_id": "vector-index:memory-footprint", "label": "Vector index memory footprint (recurring resource-consumption concept)", "reused_or_minted": "reused - minted in vector-index-best-practices.json" },
-    { "candidate_id": "vector-index:hyperscale-vector-index", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch)" },
-    { "candidate_id": "vector-index:approx-vector-distance", "label": "APPROX_VECTOR_DISTANCE() function", "reused_or_minted": "reused - minted in vector-index-best-practices.json; reranking is enabled via this function's 5th (boolean) parameter" },
-    { "candidate_id": "n1ql:create-vector-index", "label": "CREATE VECTOR INDEX statement (Hyperscale Vector index)", "reused_or_minted": "reused - cross-product concept id already used for cloud/n1ql/n1ql-language-reference/createvectorindex.md" }
+    {
+      "candidate_id": "vector-search:hyperscale-reranking",
+      "label": "Hyperscale Vector Index Reranking and Full Vector Persistence (task/reference page)",
+      "reused_or_minted": "reused - stub referenced from cloud/vector-index/hyperscale-vector-index.json in this same batch; this is the full detail page for that stub"
+    },
+    {
+      "candidate_id": "vector-search:reranking",
+      "label": "Reranking (post-search full-vector reorder phase)",
+      "reused_or_minted": "reused - general mechanism concept minted in vector-index-best-practices.json; this page documents it in Hyperscale-specific detail"
+    },
+    {
+      "candidate_id": "vector-search:persist-full-vector",
+      "label": "persist_full_vector setting",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json"
+    },
+    {
+      "candidate_id": "vector-search:memory-footprint",
+      "label": "Vector index memory footprint (recurring resource-consumption concept)",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch)"
+    },
+    {
+      "candidate_id": "n1ql:approx-vector-distance",
+      "label": "APPROX_VECTOR_DISTANCE() function",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json; reranking is enabled via this function's 5th (boolean) parameter"
+    },
+    {
+      "candidate_id": "n1ql:create-vector-index",
+      "label": "CREATE VECTOR INDEX statement (Hyperscale Vector index)",
+      "reused_or_minted": "reused - cross-product concept id already used for cloud/n1ql/n1ql-language-reference/createvectorindex.md"
+    }
   ],
   "relations": [
-    { "subject": "vector-index:hyperscale-reranking", "predicate": "requiresSetting", "object": "vector-index:persist-full-vector", "reused_or_minted_predicate": "reused - predicate minted in vector-index-best-practices.json for this exact index-creation-time configuration dependency", "evidence": "To enable reranking, your index must have a copy of the full vector value in addition to the quantized value. The `CREATE VECTOR INDEX` statement adds this copy of the full vector value to the index by default." },
-    { "subject": "vector-index:reranking", "predicate": "tradesOffAgainst", "object": "vector-index:recall-rate", "reused_or_minted_predicate": "reused (tradesOffAgainst) - predicate minted in vector-index-best-practices.json; same relation logged there, new evidence from this page", "evidence": "Reranking can improve the accuracy of recall in some cases. However, it always decreases queries per second (QPS) when enabled. In many cases, you can achieve acceptable recall accuracy without reranking." },
-    { "subject": "vector-index:persist-full-vector", "predicate": "tradesOffAgainst", "object": "vector-index:memory-footprint", "reused_or_minted_predicate": "reused (tradesOffAgainst) - predicate minted family-wide in vector-index-best-practices.json; not previously logged for this specific subject/object pair", "evidence": "Storing the full vector significantly increases the size of the index. If you do not plan to use reranking, you can save space in your index by having it not save the full vector value." },
-    { "subject": "vector-index:hyperscale-reranking", "predicate": "seeAlso", "object": "n1ql:create-vector-index", "note": "structural link - persist_full_vector is set in the CREATE VECTOR INDEX statement's WITH clause", "evidence": "To prevent an index from persisting the full vector, set the `persist_full_vector` attribute to `False` in the `WITH` clause of the `CREATE VECTOR INDEX` statement you use to create it" }
+    {
+      "subject": "vector-search:hyperscale-reranking",
+      "predicate": "requiresSetting",
+      "object": "vector-search:persist-full-vector",
+      "reused_or_minted_predicate": "reused - predicate minted in vector-index-best-practices.json for this exact index-creation-time configuration dependency",
+      "evidence": "To enable reranking, your index must have a copy of the full vector value in addition to the quantized value. The `CREATE VECTOR INDEX` statement adds this copy of the full vector value to the index by default."
+    },
+    {
+      "subject": "vector-search:reranking",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:recall-rate",
+      "reused_or_minted_predicate": "reused (tradesOffAgainst) - predicate minted in vector-index-best-practices.json; same relation logged there, new evidence from this page",
+      "evidence": "Reranking can improve the accuracy of recall in some cases. However, it always decreases queries per second (QPS) when enabled. In many cases, you can achieve acceptable recall accuracy without reranking."
+    },
+    {
+      "subject": "vector-search:persist-full-vector",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:memory-footprint",
+      "reused_or_minted_predicate": "reused (tradesOffAgainst) - predicate minted family-wide in vector-index-best-practices.json; not previously logged for this specific subject/object pair",
+      "evidence": "Storing the full vector significantly increases the size of the index. If you do not plan to use reranking, you can save space in your index by having it not save the full vector value."
+    },
+    {
+      "subject": "vector-search:hyperscale-reranking",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-vector-index",
+      "note": "structural link - persist_full_vector is set in the CREATE VECTOR INDEX statement's WITH clause",
+      "evidence": "To prevent an index from persisting the full vector, set the `persist_full_vector` attribute to `False` in the `WITH` clause of the `CREATE VECTOR INDEX` statement you use to create it"
+    }
   ],
   "cross_product_finding": "This page has no Prerequisites/RBAC section at all - it assumes the reader already satisfies the requiresCapellaRole gate documented on hyperscale-vector-index.md, consistent with it being an advanced companion topic rather than a standalone task page. No literal 'Couchbase Server X.Y' version citation appears on this page either, consistent with the other vector-index/ pages in this batch."
 }

@@ -3,11 +3,31 @@
   "source_version": "Capella",
   "source_path": "cloud/vector-index/hyperscale-filter.md",
   "concepts": [
-    { "candidate_id": "vector-index:hyperscale-filter", "label": "Use Scalar Columns to Filter Hyperscale Vector Index Scans (task/how-to page)", "reused_or_minted": "minted - narrow companion topic to vector-index:hyperscale-vector-index (the INCLUDE clause for adding non-indexed scalar filter columns); no server/ equivalent since Hyperscale Vector Index is a Capella-only/8.0+ feature" },
-    { "candidate_id": "vector-index:hyperscale-vector-index", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch)" }
+    {
+      "candidate_id": "vector-search:hyperscale-filter",
+      "label": "Use Scalar Columns to Filter Hyperscale Vector Index Scans (task/how-to page)",
+      "reused_or_minted": "minted - narrow companion topic to vector-index:hyperscale-vector-index (the INCLUDE clause for adding non-indexed scalar filter columns); no server/ equivalent since Hyperscale Vector Index is a Capella-only/8.0+ feature"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch)"
+    }
   ],
   "relations": [
-    { "subject": "vector-index:hyperscale-filter", "predicate": "seeAlso", "object": "vector-index:hyperscale-vector-index", "note": "structural link - this page's examples directly extend the Query Example and CREATE VECTOR INDEX example from the Hyperscale Vector Index page", "evidence": "The following example creates a new Hyperscale Vector index for the `embedding-vector-dot` vector column from the [Hyperscale Vector Index Query Example](hyperscale-vector-index.md#query-example). It also includes the `brightness` key from the document." },
-    { "subject": "vector-index:hyperscale-filter", "predicate": "seeAlso", "object": "vector-index:hyperscale-vector-index", "note": "structural link - second reference, to the querying section", "evidence": "The following example performs the same query as the example from [Query with a Hyperscale Vector Index](hyperscale-vector-index.md#query-with-a-hyperscale-vector-index), but adds the `brightness` key as a predicate in the `WHERE` clause" }
+    {
+      "subject": "vector-search:hyperscale-filter",
+      "predicate": "seeAlso",
+      "object": "index-type:hyperscale-vector",
+      "note": "structural link - this page's examples directly extend the Query Example and CREATE VECTOR INDEX example from the Hyperscale Vector Index page",
+      "evidence": "The following example creates a new Hyperscale Vector index for the `embedding-vector-dot` vector column from the [Hyperscale Vector Index Query Example](hyperscale-vector-index.md#query-example). It also includes the `brightness` key from the document."
+    },
+    {
+      "subject": "vector-search:hyperscale-filter",
+      "predicate": "seeAlso",
+      "object": "index-type:hyperscale-vector",
+      "note": "structural link - second reference, to the querying section",
+      "evidence": "The following example performs the same query as the example from [Query with a Hyperscale Vector Index](hyperscale-vector-index.md#query-with-a-hyperscale-vector-index), but adds the `brightness` key as a predicate in the `WHERE` clause"
+    }
   ]
 }

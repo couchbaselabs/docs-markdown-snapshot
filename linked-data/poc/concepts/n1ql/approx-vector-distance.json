@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/approx-vector-distance",
+  "label": "APPROX_VECTOR_DISTANCE() function",
+  "recurrence": 3,
+  "aliases": [
+    "vector-index:approx-vector-distance"
+  ],
+  "type": "SQL++ function returning an approximate distance between a stored vector and a query vector, and the only way to make a query use a vector index",
+  "note": "Re-filed from vector-index: into n1ql: on the pages' own evidence, not on inference: cloud/vector-index/hyperscale-vector-index.md links it as n1ql/n1ql-language-reference/vectorfun.md#approx_vector_distance, and the extraction record says in as many words 'treated as the same real-world function'. A link into the SQL++ function reference is the source stating which namespace this belongs to. Paired with n1ql:vector-distance, which is the exact brute-force alternative; the two are related by mustUseInsteadWhen in both directions across three files, because which one you want depends on whether you need index acceleration or exact results. Reranking is enabled through this function's fifth (boolean) parameter, which is why vector-search:reranking has no statement-level id of its own.",
+  "relates_to_competency_question": "How do I query a vector index?",
+  "promoted": true
+}

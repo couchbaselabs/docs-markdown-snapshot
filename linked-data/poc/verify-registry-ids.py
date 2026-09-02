@@ -34,6 +34,27 @@ file that disagrees with itself, which is the same argument that produced
 `gate-evidence.py` - an invariant in a prompt is a hope, the same invariant in a
 script is a control.
 
+Also checked, since round 14: **no alias may be a mere punctuation variant of its
+own target.** `concepts/version/server-8-0.json` used to list `version:server-8.0`
+as an alias, which is the alias-or-rewrite rule applied backwards. Aliasing a
+punctuation variant is worse than leaving it broken, in a specific way: it makes
+the 12 records using the dotted form pass the gate, which removes the only
+pressure to fix them, and it hides the defect from `recurrence.py --variants`,
+which resolves aliases *before* clustering and therefore reported no variant at
+all. Two of the largest instances of the very drift round 13 set out to enumerate
+were invisible for exactly this reason.
+
+The test is mechanical and does not need a list of releases: strip every
+non-alphanumeric character from the alias and from its target, and if what remains
+is identical, the alias adds no name - only punctuation. That discriminates
+correctly in both directions. `version:couchbase-server-7.6` differs from
+`version:server-7-6` by a word as well as by dots, so it is a real alternative
+name and passes (round 14 chose to rewrite it anyway, on a separate argument about
+this namespace's local-name convention, but the check does not force that);
+`role:manage-scope-functions` against `role:query-manage-functions` passes for the
+same reason. A punctuation variant belongs in `normalise-ids.py`, where the fix is
+applied to the records and the next mint of the bad form is denied.
+
 Deliberately not checked here: whether an id is *well-formed* beyond matching its
 path (that would be a naming-convention checker, a different and much more
 opinionated job), and whether two records denote the same thing (that is
@@ -43,6 +64,7 @@ opinionated job), and whether two records denote the same thing (that is
 import glob
 import json
 import os
+import re
 import sys
 
 POC = os.path.dirname(os.path.abspath(__file__))
@@ -75,6 +97,22 @@ def expected(fp):
     return None
 
 
+def squash(name):
+    """`version:server-8.0` and `version:server-8-0` both -> `versionserver80`."""
+    return re.sub(r"[^a-z0-9]+", "", name.lower())
+
+
+def punctuation_aliases(data, own_id):
+    """Aliases that differ from `own_id` only in punctuation. See the docstring."""
+    al = data.get("aliases") or data.get("alias") or []
+    al = [al] if isinstance(al, str) else al
+    # The record's own shorthand, e.g. `.../concepts/version/server-8-0` ->
+    # `version:server-8-0`, so an alias written in shorthand can be compared to it.
+    short = own_id.replace(BASE + "concepts/", "").replace("/", ":")
+    return [a for a in al
+            if isinstance(a, str) and a.strip() and squash(a) == squash(short)]
+
+
 def main():
     problems, checked = [], 0
     for fp in sorted(glob.glob(os.path.join(POC, "**", "*.json*"), recursive=True)):
@@ -97,11 +135,15 @@ def main():
             problems.append((short, "(no id field)", want))
         elif got != want:
             problems.append((short, got, want))
+        for a in punctuation_aliases(data, want):
+            problems.append((short, f"alias {a!r} is a punctuation variant of "
+                                    f"this record's own id",
+                             "rewrite the records with normalise-ids.py instead"))
 
     for short, got, want in problems:
         print(f"FAIL  {short}\n        declares: {got}\n        path says: {want}")
-    print(f"\n{checked} registry records checked, {len(problems)} with a "
-          f"path/id mismatch")
+    print(f"\n{checked} registry records checked, {len(problems)} problems "
+          f"(path/id mismatch, or an alias that only re-punctuates the id)")
     return 1 if problems else 0
 
 

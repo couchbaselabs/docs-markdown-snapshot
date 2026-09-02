@@ -3,29 +3,131 @@
   "source_version": "Capella",
   "source_path": "cloud/search/create-search-indexes.md",
   "concepts": [
-    { "candidate_id": "search:create-search-index", "label": "Create a Search Index (task/how-to page)", "reused_or_minted": "reused - same concept id as the server/ version of this page (server/search/create-search-indexes.json); cross-product reuse per project convention" },
-    { "candidate_id": "search:create-search-index-ui", "label": "Create a Search Index with the Capella UI", "reused_or_minted": "reused - cross-product concept id, same shape as server/'s search:create-search-index-ui" },
-    { "candidate_id": "search:import-search-index", "label": "Import a Search Index Definition with the Capella UI", "reused_or_minted": "minted - referenced from cloud/search/import-search-index.md, not yet extracted in this repo" },
-    { "candidate_id": "search:search-index-params", "label": "Search Index JSON Properties (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/search-index-params.json" },
-    { "candidate_id": "search:customize-index", "label": "Search Index Features (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/customize-index.json" },
-    { "candidate_id": "search:index-aliases", "label": "Create Search Index Aliases", "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-alias.json and cloud/search/search-index-params.json" },
-    { "candidate_id": "search:run-searches", "label": "Run a Search With a Search Index (Capella)", "reused_or_minted": "reused - already extracted in cloud/search/run-searches.json" },
-    { "candidate_id": "search:index-name-uniqueness", "label": "Search index name uniqueness (per bucket/scope, version-gated behavior)", "reused_or_minted": "minted - a recurring rule text ('index names must be unique inside a bucket and scope') that also appears verbatim on cloud/search/create-search-index-ui.md (this batch); giving it its own concept id so both pages' availableSince relations attach to the same target" },
-    { "candidate_id": "search:synonym-source", "label": "Search Index Synonym Source", "reused_or_minted": "minted - referenced from cloud/search/synonyms/synonyms-search.md, not yet extracted in this repo" },
-    { "candidate_id": "search:scoring-model", "label": "Search Index Scoring Model (tf-idf / bm25)", "reused_or_minted": "reused - already minted in cloud/search/search-index-params.json / customize-index.json" },
-    { "candidate_id": "version:server-8.0", "label": "Couchbase Server 8.0 (feature-gate marker referenced from a Capella page)", "reused_or_minted": "reused - already minted in cloud/search/search-index-params.json" },
-    { "candidate_id": "version:server-7.6", "label": "Couchbase Server 7.6 (feature-gate marker referenced from a Capella page)", "reused_or_minted": "reused - already minted in cloud/vector-index/use-vector-indexes.json" }
+    {
+      "candidate_id": "search:create-search-index",
+      "label": "Create a Search Index (task/how-to page)",
+      "reused_or_minted": "reused - same concept id as the server/ version of this page (server/search/create-search-indexes.json); cross-product reuse per project convention"
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Search Index with the Capella UI",
+      "reused_or_minted": "reused - cross-product concept id, same shape as server/'s search:create-search-index-ui"
+    },
+    {
+      "candidate_id": "search:import-search-index",
+      "label": "Import a Search Index Definition with the Capella UI",
+      "reused_or_minted": "minted - referenced from cloud/search/import-search-index.md, not yet extracted in this repo"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties (Capella)",
+      "reused_or_minted": "reused - already extracted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Search Index Features (Capella)",
+      "reused_or_minted": "reused - already extracted in cloud/search/customize-index.json"
+    },
+    {
+      "candidate_id": "search:index-aliases",
+      "label": "Create Search Index Aliases",
+      "reused_or_minted": "reused - stub already minted cross-product in server/search/create-search-index-alias.json and cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:run-searches",
+      "label": "Run a Search With a Search Index (Capella)",
+      "reused_or_minted": "reused - already extracted in cloud/search/run-searches.json"
+    },
+    {
+      "candidate_id": "search:index-name-uniqueness",
+      "label": "Search index name uniqueness (per bucket/scope, version-gated behavior)",
+      "reused_or_minted": "minted - a recurring rule text ('index names must be unique inside a bucket and scope') that also appears verbatim on cloud/search/create-search-index-ui.md (this batch); giving it its own concept id so both pages' availableSince relations attach to the same target"
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "reused_or_minted": "minted - referenced from cloud/search/synonyms/synonyms-search.md, not yet extracted in this repo"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "reused_or_minted": "reused - already minted in cloud/search/search-index-params.json / customize-index.json"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0 (feature-gate marker referenced from a Capella page)",
+      "reused_or_minted": "reused - already minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6 (feature-gate marker referenced from a Capella page)",
+      "reused_or_minted": "reused - already minted in cloud/vector-index/use-vector-indexes.json"
+    }
   ],
   "relations": [
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:import-search-index", "note": "structural link", "evidence": "A JSON payload that you [import through the UI](import-search-index.md)." },
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:create-search-index-ui", "note": "structural link", "evidence": "When you [create a new Search index](create-search-index-ui.md), you can:" },
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:search-index-params", "note": "structural link", "evidence": "All Search indexes are built from a JSON payload. For more information about the available properties for a Search index JSON payload, see [Search Index JSON Properties](search-index-params.md)." },
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:customize-index", "note": "structural link", "evidence": "* [Search Index Features](customize-index.md)" },
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:index-aliases", "note": "structural link", "evidence": "* [Create Search Index Aliases](index-aliases.md)" },
-    { "subject": "search:create-search-index", "predicate": "seeAlso", "object": "search:run-searches", "note": "structural link", "evidence": "* [Run a Search With a Search Index](run-searches.md)" },
-    { "subject": "search:synonym-source", "predicate": "availableSince", "object": "version:server-8.0", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "As of Couchbase Server version 8.0, configuring a [synonym source](synonyms/synonyms-search.md)" },
-    { "subject": "search:scoring-model", "predicate": "availableSince", "object": "version:server-8.0", "reused_or_minted_predicate": "reused (availableSince) - same relation already logged elsewhere in this repo, new evidence from this page", "evidence": "As of Couchbase Server version 8.0, changing your Search index's [scoring model](customize-index.md#scoring-model)" },
-    { "subject": "search:index-name-uniqueness", "predicate": "availableSince", "object": "version:server-7.6", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Capella operational cluster running version 7.6 or later." }
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:import-search-index",
+      "note": "structural link",
+      "evidence": "A JSON payload that you [import through the UI](import-search-index.md)."
+    },
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "note": "structural link",
+      "evidence": "When you [create a new Search index](create-search-index-ui.md), you can:"
+    },
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:search-index-params",
+      "note": "structural link",
+      "evidence": "All Search indexes are built from a JSON payload. For more information about the available properties for a Search index JSON payload, see [Search Index JSON Properties](search-index-params.md)."
+    },
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "note": "structural link",
+      "evidence": "* [Search Index Features](customize-index.md)"
+    },
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:index-aliases",
+      "note": "structural link",
+      "evidence": "* [Create Search Index Aliases](index-aliases.md)"
+    },
+    {
+      "subject": "search:create-search-index",
+      "predicate": "seeAlso",
+      "object": "search:run-searches",
+      "note": "structural link",
+      "evidence": "* [Run a Search With a Search Index](run-searches.md)"
+    },
+    {
+      "subject": "search:synonym-source",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "As of Couchbase Server version 8.0, configuring a [synonym source](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:scoring-model",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused (availableSince) - same relation already logged elsewhere in this repo, new evidence from this page",
+      "evidence": "As of Couchbase Server version 8.0, changing your Search index's [scoring model](customize-index.md#scoring-model)"
+    },
+    {
+      "subject": "search:index-name-uniqueness",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Capella operational cluster running version 7.6 or later."
+    }
   ],
   "notable_absence": {
     "predicate": "requiresCapellaRole",

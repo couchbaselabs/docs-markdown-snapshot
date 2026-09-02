@@ -3,13 +3,39 @@
   "source_version": "Couchbase Lite (Android)",
   "source_path": "couchbase-lite/current/android/scopes-collections-manage.md",
   "concepts": [
-    { "candidate_id": "cbl:scopes-collections", "label": "Scopes and Collections (Couchbase Lite)", "reused_or_minted": "minted - the organizational hierarchy within a CBL database (Database > Scope > Collection), managed entirely client-side with no server/cluster-level namespace-management privilege involved" },
-    { "candidate_id": "cbl:default-scope-collection", "label": "Default Scope / Default Collection (_default)", "reused_or_minted": "minted - every database's implicit scope/collection; cannot be dropped" }
+    {
+      "candidate_id": "cbl:scopes-collections",
+      "label": "Scopes and Collections (Couchbase Lite)",
+      "reused_or_minted": "minted - the organizational hierarchy within a CBL database (Database > Scope > Collection), managed entirely client-side with no server/cluster-level namespace-management privilege involved"
+    },
+    {
+      "candidate_id": "cbl:default-scope-collection",
+      "label": "Default Scope / Default Collection (_default)",
+      "reused_or_minted": "minted - every database's implicit scope/collection; cannot be dropped"
+    }
   ],
   "relations": [
-    { "subject": "cbl:default-scope-collection", "predicate": "behavesDifferentlyUnder", "object": "version:cbl-3.1", "reused_or_minted_predicate": "reused - promoted relation, version-gated migration behavior", "evidence": "If you upgrade from a version of Couchbase Lite prior to 3.1, all existing data is automatically placed in the default scope and default collection." },
-    { "subject": "cbl:scopes-collections", "predicate": "seeAlso", "object": "cbl:database", "reused_or_minted_predicate": "structural cross-reference (this page manages the hierarchy database.md defines)", "evidence": "Scopes and collections allow you to organize your documents within a database." },
-    { "subject": "cbl:scopes-collections", "predicate": "seeAlso", "object": "cbl:indexing", "reused_or_minted_predicate": "structural cross-reference - collections are the unit indexes are created against", "evidence": "collection.createIndex(\"nameIndex1\", IndexBuilder.valueIndex(ValueIndexItem.property(\"lastName\")))" }
+    {
+      "subject": "cbl:default-scope-collection",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:cbl-3-1",
+      "reused_or_minted_predicate": "reused - promoted relation, version-gated migration behavior",
+      "evidence": "If you upgrade from a version of Couchbase Lite prior to 3.1, all existing data is automatically placed in the default scope and default collection."
+    },
+    {
+      "subject": "cbl:scopes-collections",
+      "predicate": "seeAlso",
+      "object": "cbl:database",
+      "reused_or_minted_predicate": "structural cross-reference (this page manages the hierarchy database.md defines)",
+      "evidence": "Scopes and collections allow you to organize your documents within a database."
+    },
+    {
+      "subject": "cbl:scopes-collections",
+      "predicate": "seeAlso",
+      "object": "cbl:indexing",
+      "reused_or_minted_predicate": "structural cross-reference - collections are the unit indexes are created against",
+      "evidence": "collection.createIndex(\"nameIndex1\", IndexBuilder.valueIndex(ValueIndexItem.property(\"lastName\")))"
+    }
   ],
   "cross_product_finding": "No access-control dimension whatsoever: creating, indexing, dropping, and listing scopes/collections are plain client-API operations with no privilege check, no role, and no edition gate mentioned on this page. The only 'rule enforcement' described is structural/naming validation (character sets, length limits, uniqueness within scope) rather than an authorization decision - a useful contrast with server/'s privilege-gated bucket/scope/collection management (e.g. a presumed 'manage-scopes' style privilege on the server side) which has no counterpart in CBL, since collections here are purely local, developer-controlled containers with no multi-tenant or multi-user contention to arbitrate."
 }

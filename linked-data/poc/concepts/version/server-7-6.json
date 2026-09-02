@@ -4,9 +4,5 @@
   "type": "the previous Server release",
   "promoted": true,
   "recurrence": 11,
-  "aliases": [
-    "version:server-7.6",
-    "version:couchbase-server-7.6"
-  ],
-  "note": "Folds version:server-7.6 and version:couchbase-server-7.6."
+  "note": "Round 14 removed two aliases and rewrote the 14 records that used them. version:server-7.6 was a punctuation variant of this id and version:couchbase-server-7.6 a long-form spelling of the same release, and aliasing them was the wrong half of the alias-or-rewrite rule: it made the corpus pass the gate while leaving the next dotted mint looking correct, and it hid both forms from recurrence.py --variants, which resolves aliases before clustering and so reported no variant at all. One release, one id, dashes; enforced by normalise-ids.py's version rule going forward and by verify-registry-ids.py's rejection of punctuation-variant aliases."
 }

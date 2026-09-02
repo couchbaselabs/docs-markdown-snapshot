@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-6-4",
+  "label": "Couchbase Server 7.6.4",
+  "type": "a Server maintenance release",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Promoted with version:server-7-6-2 and version:server-7-6-6 as the maintenance-release siblings the namespace was missing."
+}

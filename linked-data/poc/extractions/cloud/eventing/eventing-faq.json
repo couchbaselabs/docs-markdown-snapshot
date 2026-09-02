@@ -59,7 +59,7 @@
       "reused_or_minted": "minted - an actual Couchbase product component named in direct comparison to Eventing"
     },
     {
-      "candidate_id": "version:server-6.6.0",
+      "candidate_id": "version:server-6-6-0",
       "label": "Couchbase Server 6.6.0",
       "reused_or_minted": "minted - a new patch-level sibling in the version:server-* family (distinct from the already-promoted 6.6.1), gating cancelTimer()/recurring-timer support"
     }
@@ -103,14 +103,14 @@
     {
       "subject": "eventing:timer",
       "predicate": "availableSince",
-      "object": "version:server-6.6.0",
+      "object": "version:server-6-6-0",
       "reused_or_minted_predicate": "reused (availableSince)",
       "evidence": "Yes. As of the release 6.6.0 Eventing Timers can be cancelled using _cancelTimer()_ function, or by creating a new Timer with the same reference as an existing Timer."
     },
     {
       "subject": "eventing:timer",
       "predicate": "availableSince",
-      "object": "version:server-6.6.0",
+      "object": "version:server-6-6-0",
       "reused_or_minted_predicate": "reused (availableSince) - recurring timer support, same version",
       "evidence": "Yes. As of the release 6.6.0 Recurring Timers are fully supported, i.e. a function that is invoked by a Timer callback can reliably create fresh Timers."
     },

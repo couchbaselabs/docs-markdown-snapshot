@@ -82,21 +82,13 @@ import recurrence as R  # noqa: E402  - same directory, and the registry logic m
 # Concept-id rewrites. Left-hand side is not a legitimate name for the thing.
 # --------------------------------------------------------------------------
 ID_RENAMES = {
-    # Dotted release numbers. This project spells a release with dashes
-    # throughout; the dotted form has never had a registry file.
-    "version:server-5.0": "version:server-5-0",
-    "version:server-5.5": "version:server-5-5",
-    "version:server-6.5": "version:server-6-5",
-    "version:server-6.6": "version:server-6-6",
-    "version:server-7.0": "version:server-7-0",
-    # Round 13, second pass. These three were missed by the first pass because
-    # `--variants` clustered the corpus against itself and no extraction record
-    # used the dashed form, so each cluster had size one and was skipped - see
-    # recurrence.py bug #8. They are the worst case of the dot/dash drift, not the
-    # mildest: every file using them was denied by the gate.
-    "version:sgw-3.0": "version:sgw-3-0",
-    "version:sgw-2.x": "version:sgw-2-x",
-    "version:cbl-3.3.0": "version:cbl-3-3-0",
+    # Long-form product word in a version id. Not a punctuation slip and so not
+    # covered by the rule below: `couchbase-server-7.6` is a verbose spelling of
+    # the same release, and this namespace's local names are
+    # <short-product>-<release> (server, sgw, cbl, sdk, cbq). Round 14 dropped the
+    # alias that used to absorb it, because one release must have one id.
+    "version:couchbase-server-7.6": "version:server-7-6",
+    "version:couchbase-server-7.6.2": "version:server-7-6-2",
     # Run-together statement names. Minted from the source *filename*
     # (createfunction.md) rather than the statement; every promoted sibling in
     # the n1ql: namespace is kebab-cased.
@@ -109,6 +101,78 @@ ID_RENAMES = {
     # boundary falls after "on".
     "eventing:onupdate-handler": "eventing:on-update-handler",
     "eventing:ondelete-handler": "eventing:on-delete-handler",
+    # --- Round 14. The vector-index: namespace named an axis it did not hold. ---
+    # Five members belonged to axes the registry had already settled, and are
+    # evacuated to them by exact match; the rest keep their local names and move
+    # to the vector-search: subject area via NAMESPACE_RENAMES below. These five
+    # must be listed here, and looked up first, precisely so the prefix rule does
+    # not sweep them into vector-search: along with everything else.
+    #
+    # Each destination is licensed by a statement on the page, not by resemblance:
+    # the three index types are the objects of `providesIndexType` /
+    # `belongsToIndexClass` relations that name the axis in the predicate, and the
+    # two functions are linked by the pages into
+    # n1ql/n1ql-language-reference/vectorfun.md.
+    "vector-index:hyperscale-vector-index": "index-type:hyperscale-vector",
+    "vector-index:composite-vector-index": "index-type:composite-vector",
+    "vector-index:search-vector-index": "index-type:search-vector",
+    "vector-index:approx-vector-distance": "n1ql:approx-vector-distance",
+    "vector-index:vector-distance-function": "n1ql:vector-distance",
+    # The four similarity metrics are a closed enum, not a subject-area term, so
+    # they leave vector-search: for a namespace of their own.
+    "vector-index:euclidean-distance": "vector-similarity-metric:euclidean",
+    "vector-index:euclidean-squared-distance": "vector-similarity-metric:euclidean-squared",
+    "vector-index:cosine-similarity": "vector-similarity-metric:cosine",
+    "vector-index:dot-product": "vector-similarity-metric:dot-product",
+}
+
+# --------------------------------------------------------------------------
+# Rules, for defects with a shape rather than a list. Applied after ID_RENAMES,
+# so an explicit entry always wins. A rule earns its place over a table entry
+# when the defect will recur on inputs that do not exist yet.
+# --------------------------------------------------------------------------
+
+
+def _version_dots_to_dashes(cid):
+    """`version:server-6.5` -> `version:server-6-5`, for any release, forever.
+
+    Round 13 fixed this with eight table entries and missed four more, then a
+    ninth and tenth turned up in round 14 (`version:server-8.0` at 12 mentions,
+    `version:server-7.6` at 10) - hidden because someone had *aliased* those two
+    instead, so `recurrence.py --variants` resolved the alias and reported no
+    cluster. A table needs a new line per release and is therefore wrong by
+    construction on a namespace whose members arrive with every product release;
+    at least four extraction records across three rounds diagnosed the dot/dash
+    drift in their own notes and asked reconciliation to pick a form.
+
+    This is the pick, and it is one-directional: dashes. A dotted release number
+    is a perfectly good *label* ("Couchbase Server 7.6" is what the docs say) and
+    a bad *id*, so the dotted form is never aliased - an alias would leave the
+    next dotted mint looking correct. `verify-registry-ids.py` now rejects an
+    alias that is a mere punctuation variant of its own target, which is the
+    other half of this rule and the part that makes it hold from now on.
+    """
+    return cid.replace(".", "-") if cid.startswith("version:") and "." in cid else None
+
+
+ID_RULES = (_version_dots_to_dashes,)
+
+# --------------------------------------------------------------------------
+# Whole-namespace renames, applied last: an id matched by ID_RENAMES or a rule
+# is already at its destination and is not reconsidered here.
+# --------------------------------------------------------------------------
+NAMESPACE_RENAMES = {
+    # `vector-index:` is named like an axis (compare index-type:, index-class:,
+    # auth-mechanism:) and populated like a subject area: of its 30 members, three
+    # were index types, two were SQL++ functions, four were similarity metrics,
+    # six were settings, three were metrics, five were page titles, and the rest
+    # were storage algorithms. Renaming the prefix rather than dissolving the
+    # namespace is the fix because the remainder IS a coherent subject area, in
+    # exactly the way eventing:, monitoring:, backup: and sgw: already are - it
+    # was only the name that claimed otherwise. Rewritten rather than aliased
+    # because a prefix rename over 25 ids would otherwise leave 25 dead twins in
+    # the registry, one per record.
+    "vector-index:": "vector-search:",
 }
 
 # --------------------------------------------------------------------------
@@ -141,6 +205,22 @@ ID_FIELDS = ("subject", "object")
 IRI_CONCEPT_PREFIX = "https://docs.couchbase.com/ld/concepts/"
 
 
+def _destination(cid):
+    """The canonical id `cid` should become, or None. Exact table, then rules,
+    then namespace prefix - in that order, first match wins, so an id evacuated
+    to another namespace by name is never also swept by its old prefix."""
+    if cid in ID_RENAMES:
+        return ID_RENAMES[cid]
+    for rule in ID_RULES:
+        new = rule(cid)
+        if new and new != cid:
+            return new
+    for old_ns, new_ns in NAMESPACE_RENAMES.items():
+        if cid.startswith(old_ns):
+            return new_ns + cid[len(old_ns):]
+    return None
+
+
 def rename(value):
     """Look up `value` in ID_RENAMES, matching either spelling form, or None.
 
@@ -157,7 +237,7 @@ def rename(value):
     """
     if not isinstance(value, str):
         return None
-    new = ID_RENAMES.get(R.canonical(value))
+    new = _destination(R.canonical(value))
     if not new:
         return None
     if value.startswith(IRI_CONCEPT_PREFIX):

@@ -3,27 +3,107 @@
   "source_version": "Capella (continuously deployed, no discrete version number)",
   "source_path": "cloud/indexes/indexing-and-query-perf.md",
   "concepts": [
-    { "candidate_id": "index-type:primary-index", "label": "Primary Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:secondary-index", "label": "Secondary Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:composite-secondary-index", "label": "Composite Secondary Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:functional-index", "label": "Functional Index (expression-key index)", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:array-index", "label": "Array Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:partial-index", "label": "Partial Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:duplicate-index", "label": "Duplicate Index", "reused_or_minted": "minted" },
-    { "candidate_id": "index-type:covering-index", "label": "Covering Index / Covered Query", "reused_or_minted": "reused - minted in cloud/indexes/covering-indexes.json" },
-    { "candidate_id": "vector-index:hyperscale-vector-index", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - already a candidate in cloud/vector-index/hyperscale-vector-index.json" },
-    { "candidate_id": "vector-index:composite-vector-index", "label": "Composite Vector Index", "reused_or_minted": "reused - already a candidate in cloud/vector-index/composite-vector-index.json" },
-    { "candidate_id": "index-state", "label": "Index State (GSI lifecycle enum)", "reused_or_minted": "reused - promoted concept in linked-data/poc/concepts/index-state.json" }
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:composite-secondary-index",
+      "label": "Composite Secondary Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:functional-index",
+      "label": "Functional Index (expression-key index)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:array-index",
+      "label": "Array Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:partial-index",
+      "label": "Partial Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:duplicate-index",
+      "label": "Duplicate Index",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "index-type:covering-index",
+      "label": "Covering Index / Covered Query",
+      "reused_or_minted": "reused - minted in cloud/indexes/covering-indexes.json"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - already a candidate in cloud/vector-index/hyperscale-vector-index.json"
+    },
+    {
+      "candidate_id": "index-type:composite-vector",
+      "label": "Composite Vector Index",
+      "reused_or_minted": "reused - already a candidate in cloud/vector-index/composite-vector-index.json"
+    },
+    {
+      "candidate_id": "index-state",
+      "label": "Index State (GSI lifecycle enum)",
+      "reused_or_minted": "reused - promoted concept in linked-data/poc/concepts/index-state.json"
+    }
   ],
   "relations": [
-    { "subject": "index-type:primary-index", "predicate": "usesEnum", "object": "index-state", "reused_or_minted_predicate": "reused (usesEnum) - direct confirmation of the promoted index-state enum from a prior batch, seen here in a primary-index metadata example", "evidence": "\"indexes\": {\n  \"bucket_id\": \"travel-sample\",\n  ...\n  \"name\": \"#primary\",\n  ...\n  \"state\": \"online\",\n  \"using\": \"gsi\"\n}" },
-    { "subject": "index-type:primary-index", "predicate": "dependsOnService", "object": "index-type:gsi", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`)." },
-    { "subject": "index-type:duplicate-index", "predicate": "tradesOffAgainst", "object": "index-type:primary-index", "reused_or_minted_predicate": "reused (tradesOffAgainst) - used loosely: duplicate indexes trade extra storage/maintenance for high availability and load distribution", "evidence": "During query execution, these indexes are used in a round-robin fashion to distribute the load. This provides scale-out, Multi-Dimensional Scaling, performance, and high availability." },
-    { "subject": "index-type:covering-index", "predicate": "seeAlso", "object": "index-type:secondary-index", "evidence": "For further information and examples, see [Covering Indexes](covering-indexes.md)." },
-    { "subject": "vector-index:hyperscale-vector-index", "predicate": "seeAlso", "object": "index-type:secondary-index", "evidence": "Hyperscale Vector indexes are a type of [Secondary Index](#secondary-index) which contain a single vector field. They excel at indexing huge datasets that can scale into the billions of documents." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "seeAlso", "object": "index-type:composite-secondary-index", "evidence": "Composite Vector indexes are a type of [Composite Secondary Index](#composite-secondary-index) which contain a single vector field and one or more scalar fields." }
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "usesEnum",
+      "object": "index-state",
+      "reused_or_minted_predicate": "reused (usesEnum) - direct confirmation of the promoted index-state enum from a prior batch, seen here in a primary-index metadata example",
+      "evidence": "\"indexes\": {\n  \"bucket_id\": \"travel-sample\",\n  ...\n  \"name\": \"#primary\",\n  ...\n  \"state\": \"online\",\n  \"using\": \"gsi\"\n}"
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "dependsOnService",
+      "object": "index-type:gsi",
+      "reused_or_minted_predicate": "reused (dependsOnService)",
+      "evidence": "The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`)."
+    },
+    {
+      "subject": "index-type:duplicate-index",
+      "predicate": "tradesOffAgainst",
+      "object": "index-type:primary-index",
+      "reused_or_minted_predicate": "reused (tradesOffAgainst) - used loosely: duplicate indexes trade extra storage/maintenance for high availability and load distribution",
+      "evidence": "During query execution, these indexes are used in a round-robin fashion to distribute the load. This provides scale-out, Multi-Dimensional Scaling, performance, and high availability."
+    },
+    {
+      "subject": "index-type:covering-index",
+      "predicate": "seeAlso",
+      "object": "index-type:secondary-index",
+      "evidence": "For further information and examples, see [Covering Indexes](covering-indexes.md)."
+    },
+    {
+      "subject": "index-type:hyperscale-vector",
+      "predicate": "seeAlso",
+      "object": "index-type:secondary-index",
+      "evidence": "Hyperscale Vector indexes are a type of [Secondary Index](#secondary-index) which contain a single vector field. They excel at indexing huge datasets that can scale into the billions of documents."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "seeAlso",
+      "object": "index-type:composite-secondary-index",
+      "evidence": "Composite Vector indexes are a type of [Composite Secondary Index](#composite-secondary-index) which contain a single vector field and one or more scalar fields."
+    }
   ],
-  "notable_absence": { "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition", "finding": "This is the most concept-rich of the batch's 4 indexes/ pages (it's a proper taxonomy of index types: primary, named-primary, secondary, composite, functional, array, partial, duplicate, covering, hyperscale-vector, composite-vector), but still has zero access-control or edition content - fully consistent with the batch hypothesis. One line ('It's not recommended to use primary keys for your production queries') is a best-practice caveat with no privilege gate attached." },
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresCapellaRole / requiresEdition",
+    "finding": "This is the most concept-rich of the batch's 4 indexes/ pages (it's a proper taxonomy of index types: primary, named-primary, secondary, composite, functional, array, partial, duplicate, covering, hyperscale-vector, composite-vector), but still has zero access-control or edition content - fully consistent with the batch hypothesis. One line ('It's not recommended to use primary keys for your production queries') is a best-practice caveat with no privilege gate attached."
+  },
   "cross_component_finding": "This page links out to '../../server/current/learn/data/transactions.md#additional-storage-use' - a cross-product link into server/'s current (symlinked, non-version-pinned) docs tree for an explanation of why primary indexes don't index transaction records. Unlike the known docs-issue anomaly, this link does NOT cite a literal version number (it uses the 'current' alias), so it is not a recurrence of docs-issues/capella-pages-cite-server-versions.json - flagged here only as a genuine, well-formed cross-product reference for the coordinator's awareness.",
   "cross_product_finding": "Both vector index types documented elsewhere in cloud/vector-index/ (hyperscale-vector-index, composite-vector-index) are explicitly framed here as subtypes of the classic Secondary Index / Composite Secondary Index taxonomy, giving a clean taxonomic anchor between the vector-index:* namespace and the index-type:* namespace that a coordinator could use to unify the two families under one parent hierarchy."
 }

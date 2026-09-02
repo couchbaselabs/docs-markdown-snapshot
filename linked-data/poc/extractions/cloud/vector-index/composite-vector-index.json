@@ -3,32 +3,148 @@
   "source_version": "Capella",
   "source_path": "cloud/vector-index/composite-vector-index.md",
   "concepts": [
-    { "candidate_id": "vector-index:composite-vector-index", "label": "Composite Vector Index", "reused_or_minted": "reused - stub minted in cloud/vector-index/vectors-and-indexes-overview.json (this batch); this page is the full detail page for that stub" },
-    { "candidate_id": "vector-index:hyperscale-vector-index", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - stub minted in vectors-and-indexes-overview.json, fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch); referenced here only as a contrast/alternative" },
-    { "candidate_id": "capella-role:organization-owner", "label": "Organization Owner (Capella management-plane role)", "reused_or_minted": "reused - same concept id already minted cross-product in cloud/n1ql/n1ql-language-reference/createbucket.json etc." },
-    { "candidate_id": "capella-role:project-owner", "label": "Project Owner (Capella management-plane role)", "reused_or_minted": "reused - same as above" },
-    { "candidate_id": "capella-role:project-data-writer", "label": "Data Writer (Capella management-plane role)", "reused_or_minted": "reused - same as above; page text says 'Data Writer' and links to the project-roles.md#project-cluster-data-reader-writer anchor, matching the same anchor mismatch already noted for this concept elsewhere in the repo" },
-    { "candidate_id": "vector-index:ivf-index", "label": "Inverted File (IVF) index format", "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json" },
-    { "candidate_id": "vector-index:scalar-quantization", "label": "Scalar Quantization (SQ)", "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json" },
-    { "candidate_id": "vector-index:product-quantization", "label": "Product Quantization (PQ)", "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json" },
-    { "candidate_id": "vector-index:approx-vector-distance", "label": "APPROX_VECTOR_DISTANCE() function", "reused_or_minted": "reused - minted in vector-index-best-practices.json" },
-    { "candidate_id": "vector-index:vector-distance-function", "label": "VECTOR_DISTANCE() function (brute-force, exact)", "reused_or_minted": "reused - minted in vector-index-best-practices.json" },
-    { "candidate_id": "vector-index:nlist", "label": "nList setting (number of IVF centroids)", "reused_or_minted": "reused - minted in vector-index-best-practices.json" },
-    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "reused_or_minted": "reused - cross-product concept id already used for cloud/n1ql/n1ql-language-reference/createindex.md" },
-    { "candidate_id": "guides:create-index", "label": "Create Indexes (guide/overview page)", "reused_or_minted": "minted - referenced from cloud/guides/create-index.md, not yet extracted in this repo" },
-    { "candidate_id": "guides:load-data", "label": "Import/Load Data into Capella (guide page)", "reused_or_minted": "minted - referenced from cloud/guides/load.md, not yet extracted in this repo" }
+    {
+      "candidate_id": "index-type:composite-vector",
+      "label": "Composite Vector Index",
+      "reused_or_minted": "reused - stub minted in cloud/vector-index/vectors-and-indexes-overview.json (this batch); this page is the full detail page for that stub"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - stub minted in vectors-and-indexes-overview.json, fully detailed in cloud/vector-index/hyperscale-vector-index.json (this batch); referenced here only as a contrast/alternative"
+    },
+    {
+      "candidate_id": "capella-role:organization-owner",
+      "label": "Organization Owner (Capella management-plane role)",
+      "reused_or_minted": "reused - same concept id already minted cross-product in cloud/n1ql/n1ql-language-reference/createbucket.json etc."
+    },
+    {
+      "candidate_id": "capella-role:project-owner",
+      "label": "Project Owner (Capella management-plane role)",
+      "reused_or_minted": "reused - same as above"
+    },
+    {
+      "candidate_id": "capella-role:project-data-writer",
+      "label": "Data Writer (Capella management-plane role)",
+      "reused_or_minted": "reused - same as above; page text says 'Data Writer' and links to the project-roles.md#project-cluster-data-reader-writer anchor, matching the same anchor mismatch already noted for this concept elsewhere in the repo"
+    },
+    {
+      "candidate_id": "vector-search:ivf-index",
+      "label": "Inverted File (IVF) index format",
+      "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json"
+    },
+    {
+      "candidate_id": "vector-search:scalar-quantization",
+      "label": "Scalar Quantization (SQ)",
+      "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json"
+    },
+    {
+      "candidate_id": "vector-search:product-quantization",
+      "label": "Product Quantization (PQ)",
+      "reused_or_minted": "reused - minted in vectors-and-indexes-overview.json"
+    },
+    {
+      "candidate_id": "n1ql:approx-vector-distance",
+      "label": "APPROX_VECTOR_DISTANCE() function",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json"
+    },
+    {
+      "candidate_id": "n1ql:vector-distance",
+      "label": "VECTOR_DISTANCE() function (brute-force, exact)",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json"
+    },
+    {
+      "candidate_id": "vector-search:nlist",
+      "label": "nList setting (number of IVF centroids)",
+      "reused_or_minted": "reused - minted in vector-index-best-practices.json"
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX statement",
+      "reused_or_minted": "reused - cross-product concept id already used for cloud/n1ql/n1ql-language-reference/createindex.md"
+    },
+    {
+      "candidate_id": "guides:create-index",
+      "label": "Create Indexes (guide/overview page)",
+      "reused_or_minted": "minted - referenced from cloud/guides/create-index.md, not yet extracted in this repo"
+    },
+    {
+      "candidate_id": "guides:load-data",
+      "label": "Import/Load Data into Capella (guide page)",
+      "reused_or_minted": "minted - referenced from cloud/guides/load.md, not yet extracted in this repo"
+    }
   ],
   "relations": [
-    { "subject": "vector-index:composite-vector-index", "predicate": "requiresCapellaRole", "object": "capella-role:organization-owner", "reused_or_minted_predicate": "reused - predicate already established cross-product in this repo (e.g. cloud/n1ql/n1ql-language-reference/createbucket.json) for Capella management-plane role gates, distinct from requiresPrivilege", "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "requiresCapellaRole", "object": "capella-role:project-owner", "reused_or_minted_predicate": "reused", "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "requiresCapellaRole", "object": "capella-role:project-data-writer", "reused_or_minted_predicate": "reused", "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "mustUseInsteadWhen", "object": "vector-index:hyperscale-vector-index", "reused_or_minted_predicate": "reused (promoted predicate) - same relation direction already established in cloud/vector-index/use-vector-indexes.json", "evidence": "If a Composite Vector index has multiple index keys, the leading index key may be a scalar field, rather than the vector field. This enables the Index Service to pre-filter using a scalar field. This is a key advantage that a Composite Vector index has over a Hyperscale Vector index with included scalar fields." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "sharesOptionSetWith", "object": "vector-index:hyperscale-vector-index", "reused_or_minted_predicate": "reused (watchlist predicate) - the 'Quantization and Centroid Settings' (#algo_settings), IVF/SQ/PQ subsections, and algorithm-settings-examples table on this page are near-verbatim identical to the same sections on hyperscale-vector-index.md", "evidence": "Composite Vector index uses several algorithms to organize its data to improve its performance. One of these algorithms, [Inverted File (IVF)](vectors-and-indexes-overview.md#IVF), has a setting you can adjust to control how it subdivides the dataset. The other algorithms that Composite Vector index uses do not have settings you can adjust." },
-    { "subject": "vector-index:approx-vector-distance", "predicate": "mustUseInsteadWhen", "object": "vector-index:vector-distance-function", "reused_or_minted_predicate": "reused (promoted predicate) - production-query context; contrasts with the opposite-direction relation logged in vector-index-best-practices.json (VECTOR_DISTANCE preferred only for recall-rate ground-truth measurement)", "evidence": "To use your Composite Vector index, use the `SELECT` statement with an `ORDER BY` clause containing a call to the `APPROX_VECTOR_DISTANCE` function. This function selects the Composite Vector index when you query the vector key that the index covers... You can also perform vector comparisons using the VECTOR\\_DISTANCE function. This function does not select a Hyperscale Vector index or a Composite Vector Index, but performs a brute-force comparison." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "seeAlso", "object": "guides:create-index", "note": "structural link", "evidence": "Creating a Composite Vector index is similar to creating a non-vector GSI index. See [Create Indexes](../guides/create-index.md) for an overview of creating indexes." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "seeAlso", "object": "n1ql:create-index", "note": "structural link", "evidence": "For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "seeAlso", "object": "guides:load-data", "note": "structural link", "evidence": "When you have downloaded `color_data_2vectors.zip`, unzip it, then [import](../guides/load.md) the `rgb_questions.json` file with the following settings" },
-    { "subject": "vector-index:composite-vector-index", "predicate": "seeAlso", "object": "vector-index:nlist", "note": "structural link", "evidence": "See [nList](vector-index-best-practices.md#nlist) for more guidance on choosing the number of centroids for the index." }
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:organization-owner",
+      "reused_or_minted_predicate": "reused - predicate already established cross-product in this repo (e.g. cloud/n1ql/n1ql-language-reference/createbucket.json) for Capella management-plane role gates, distinct from requiresPrivilege",
+      "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-owner",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "requiresCapellaRole",
+      "object": "capella-role:project-data-writer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Your account must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Owner](../projects/project-roles.md#project-owner-role), or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role to be able to create an index."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index-type:hyperscale-vector",
+      "reused_or_minted_predicate": "reused (promoted predicate) - same relation direction already established in cloud/vector-index/use-vector-indexes.json",
+      "evidence": "If a Composite Vector index has multiple index keys, the leading index key may be a scalar field, rather than the vector field. This enables the Index Service to pre-filter using a scalar field. This is a key advantage that a Composite Vector index has over a Hyperscale Vector index with included scalar fields."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "sharesOptionSetWith",
+      "object": "index-type:hyperscale-vector",
+      "reused_or_minted_predicate": "reused (watchlist predicate) - the 'Quantization and Centroid Settings' (#algo_settings), IVF/SQ/PQ subsections, and algorithm-settings-examples table on this page are near-verbatim identical to the same sections on hyperscale-vector-index.md",
+      "evidence": "Composite Vector index uses several algorithms to organize its data to improve its performance. One of these algorithms, [Inverted File (IVF)](vectors-and-indexes-overview.md#IVF), has a setting you can adjust to control how it subdivides the dataset. The other algorithms that Composite Vector index uses do not have settings you can adjust."
+    },
+    {
+      "subject": "n1ql:approx-vector-distance",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:vector-distance",
+      "reused_or_minted_predicate": "reused (promoted predicate) - production-query context; contrasts with the opposite-direction relation logged in vector-index-best-practices.json (VECTOR_DISTANCE preferred only for recall-rate ground-truth measurement)",
+      "evidence": "To use your Composite Vector index, use the `SELECT` statement with an `ORDER BY` clause containing a call to the `APPROX_VECTOR_DISTANCE` function. This function selects the Composite Vector index when you query the vector key that the index covers... You can also perform vector comparisons using the VECTOR\\_DISTANCE function. This function does not select a Hyperscale Vector index or a Composite Vector Index, but performs a brute-force comparison."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "seeAlso",
+      "object": "guides:create-index",
+      "note": "structural link",
+      "evidence": "Creating a Composite Vector index is similar to creating a non-vector GSI index. See [Create Indexes](../guides/create-index.md) for an overview of creating indexes."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "seeAlso",
+      "object": "n1ql:create-index",
+      "note": "structural link",
+      "evidence": "For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "seeAlso",
+      "object": "guides:load-data",
+      "note": "structural link",
+      "evidence": "When you have downloaded `color_data_2vectors.zip`, unzip it, then [import](../guides/load.md) the `rgb_questions.json` file with the following settings"
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "seeAlso",
+      "object": "vector-search:nlist",
+      "note": "structural link",
+      "evidence": "See [nList](vector-index-best-practices.md#nlist) for more guidance on choosing the number of centroids for the index."
+    }
   ],
   "cross_product_finding": "Access to create a Composite Vector index is gated entirely by Capella management-plane roles (Organization Owner / Project Owner / Data Writer) via requiresCapellaRole, the same shape already established for n1ql DDL statements elsewhere in this repo (e.g. cloud/n1ql/n1ql-language-reference/createbucket.json) - not by a server/-style requiresPrivilege RBAC privilege, and not by requiresEdition. Notably, unlike several sibling search/ and vector-index/ pages already processed in this project (cloud/search/search-index-params.json, cloud/vector-index/use-vector-indexes.json), this page does NOT cite any literal 'Couchbase Server X.Y' version marker anywhere in its prose - it stays fully version-less/Capella-native, which is a useful counterexample to the version-citation anomaly flagged elsewhere in this batch."
 }

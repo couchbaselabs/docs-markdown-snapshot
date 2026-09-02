@@ -104,7 +104,7 @@
       "reused_or_minted": "reused - already minted in cloud/n1ql/query.json"
     },
     {
-      "candidate_id": "version:server-7.6",
+      "candidate_id": "version:server-7-6",
       "label": "Couchbase Server 7.6",
       "reused_or_minted": "minted - a new entry in the version:server-* family, gating analyticsQuery()/crc_64_go_iso()/base64() built-ins"
     }
@@ -148,21 +148,21 @@
     {
       "subject": "eventing:analytics-query-function",
       "predicate": "availableSince",
-      "object": "version:server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused (availableSince)",
       "evidence": "Couchbase Server 7.6"
     },
     {
       "subject": "eventing:crc-64-go-iso-function",
       "predicate": "availableSince",
-      "object": "version:server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused (availableSince)",
       "evidence": "Couchbase Server 7.6"
     },
     {
       "subject": "eventing:base64-function",
       "predicate": "availableSince",
-      "object": "version:server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused (availableSince)",
       "evidence": "Couchbase Server 7.6"
     },

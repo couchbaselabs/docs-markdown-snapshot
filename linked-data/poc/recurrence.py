@@ -50,6 +50,20 @@ reconstructing it from memory a ninth time:
    difference stays visible. Bare `concepts[]` membership remains the weakest
    signal - a term can be listed there without participating in any relation -
    so it is reported but not used for promotion.
+10. **`seeAlso` came back through the subject door.** Bug #2 excluded `seeAlso`
+   *objects* from the ranking, and bug #7 then broadened the promotion metric
+   from the object slot to *either* slot - which silently re-admitted every page
+   id as a `seeAlso` **subject**. `search:customize-index` has 24 `seeAlso`
+   relations and no others, and still sat in the round-13 backlog at recurrence 2
+   because two different files name it as a link source. 27 of the 203 backlog
+   items were this, 9 of them with no non-`seeAlso` relation whatsoever. A
+   `seeAlso` triple is evidence about documents in *both* directions, so it now
+   contributes to neither slot. Note what this is not: dropping out of the
+   promotion queue is not a verdict that the id denotes a page.
+   `index-type:covering-index` is a real concept ("Covering indexes are
+   applicable to secondary index scans") whose only relations were mis-typed as
+   `seeAlso` because they came from Markdown links - correctly below the bar for
+   lack of non-link evidence, correctly still a concept.
 6. **Dot-vs-dash spellings of the same version.** `version:server-6.5` and
    `version:server-6-5` are one release; only the dashed form has a file. This
    one is *not* silently normalised, because unlike the IRI case the two forms
@@ -204,13 +218,18 @@ def scan(scope="", keep_see_also=False):
 
         for r in rec.get("relations", []):
             pred, obj, subj = r.get("predicate"), r.get("object"), r.get("subject")
+            keep = keep_see_also or pred != "seeAlso"
             if pred:
                 pred_files[pred].add(short)
                 status[pred][r.get("registry_status") or "(absent)"] += 1
             if subj:
                 mention_files[subj].add(short)
-                slot_files[subj].add(short)
-            if obj and (keep_see_also or pred != "seeAlso"):
+                # Bug #10: `keep` here, not unconditional. A seeAlso relation is
+                # evidence about documents, not about concepts, in *either*
+                # direction.
+                if keep:
+                    slot_files[subj].add(short)
+            if obj and keep:
                 obj_files[obj].add(short)
                 slot_files[obj].add(short)
                 mention_files[obj].add(short)
@@ -298,6 +317,17 @@ def selftest():
           len(a["objects"]) < len(b["objects"]), True)
     check("seeAlso absent from excluded run",
           "seeAlso" not in a["predicates"] or True, True)
+
+    # Bug #10: the exclusion must apply to the SUBJECT slot as well, or every
+    # page id re-enters the promotion metric as a link source. Asserted on a
+    # known instance: search:customize-index has 24 seeAlso relations and no
+    # others, so it must be absent from `slots` entirely and present in `mentions`.
+    check("seeAlso subjects excluded from the promotion metric",
+          len(a["slots"].get("search:customize-index", ())), 0)
+    check("seeAlso-only id still visible as a mention",
+          len(a["mentions"].get("search:customize-index", ())) >= 2, True)
+    check("keep-see-also restores the seeAlso subject",
+          len(b["slots"].get("search:customize-index", ())) >= 2, True)
 
     print("\nself-test:", "PASS" if ok else "FAIL")
     return 0 if ok else 1

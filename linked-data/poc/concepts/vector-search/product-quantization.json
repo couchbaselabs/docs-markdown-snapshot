@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vector-search/product-quantization",
+  "label": "Product Quantization (PQ)",
+  "recurrence": 2,
+  "aliases": [
+    "vector-index:product-quantization"
+  ],
+  "type": "a vector compression method that splits each vector into subvectors and quantizes each independently",
+  "note": "Promoted with vector-search:scalar-quantization as a two-member closed family - see that record for the family-exception reasoning. Support is index-type-dependent and stated as such: 'Hyperscale Vector indexes and Composite Vector indexes support PQ quantization. Search Vector Indexes do not support it.'",
+  "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
+  "promoted": true
+}

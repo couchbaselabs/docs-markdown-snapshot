@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vector-similarity-metric/dot-product",
+  "label": "Dot Product",
+  "recurrence": 1,
+  "aliases": [
+    "vector-index:dot-product"
+  ],
+  "type": "a distance/similarity function a vector index can be built and queried with",
+  "note": "Member of the closed family headed by vector-similarity-metric:euclidean.",
+  "relates_to_competency_question": "Which similarity metrics can a given vector index type use?",
+  "promoted": true
+}

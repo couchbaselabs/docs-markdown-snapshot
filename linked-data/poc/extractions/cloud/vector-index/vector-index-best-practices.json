@@ -3,38 +3,184 @@
   "source_version": "Capella",
   "source_path": "cloud/vector-index/vector-index-best-practices.md",
   "concepts": [
-    { "candidate_id": "vector-index:vector-index-best-practices", "label": "Hyperscale and Composite Vector Index Best Practices (guidance page)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:nlist", "label": "nList setting (number of IVF centroids)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:train-list", "label": "train_list setting (number of vectors sampled to find centroids)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:partitions-setting", "label": "Partitions setting (PARTITION BY, logical index sharding)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:replicas-setting", "label": "Replicas setting (num_replicas)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:nprobes", "label": "nProbes query parameter (centroids to search)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:reranking", "label": "Reranking (post-search full-vector reorder phase)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:recall-rate", "label": "Recall rate (% of true nearest neighbors returned by an approximate query)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:approx-vector-distance", "label": "APPROX_VECTOR_DISTANCE() function", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:vector-distance-function", "label": "VECTOR_DISTANCE() function (brute-force, exact)", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:persist-full-vector", "label": "persist_full_vector setting", "reused_or_minted": "minted" },
-    { "candidate_id": "vector-index:memory-footprint", "label": "Vector index memory footprint (recurring resource-consumption concept)", "reused_or_minted": "minted - introduced to give the pervasive memory-use tradeoff statements in this page a concrete relation target" },
-    { "candidate_id": "vector-index:scalar-quantization", "label": "Scalar Quantization (SQ)", "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch" },
-    { "candidate_id": "vector-index:product-quantization", "label": "Product Quantization (PQ)", "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch" },
-    { "candidate_id": "vector-index:hyperscale-vector-index", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch" },
-    { "candidate_id": "vector-index:composite-vector-index", "label": "Composite Vector Index", "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch" },
-    { "candidate_id": "n1ql:index-partitioning", "label": "Index Partitioning (PARTITION BY clause)", "reused_or_minted": "reused - already minted in linked-data/poc/extractions/cloud/n1ql/n1ql-language-reference/index-partitioning.json in this repo" }
+    {
+      "candidate_id": "vector-search:vector-index-best-practices",
+      "label": "Hyperscale and Composite Vector Index Best Practices (guidance page)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:nlist",
+      "label": "nList setting (number of IVF centroids)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:train-list",
+      "label": "train_list setting (number of vectors sampled to find centroids)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:partitions-setting",
+      "label": "Partitions setting (PARTITION BY, logical index sharding)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:replicas-setting",
+      "label": "Replicas setting (num_replicas)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:nprobes",
+      "label": "nProbes query parameter (centroids to search)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:reranking",
+      "label": "Reranking (post-search full-vector reorder phase)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:recall-rate",
+      "label": "Recall rate (% of true nearest neighbors returned by an approximate query)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:approx-vector-distance",
+      "label": "APPROX_VECTOR_DISTANCE() function",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "n1ql:vector-distance",
+      "label": "VECTOR_DISTANCE() function (brute-force, exact)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:persist-full-vector",
+      "label": "persist_full_vector setting",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "vector-search:memory-footprint",
+      "label": "Vector index memory footprint (recurring resource-consumption concept)",
+      "reused_or_minted": "minted - introduced to give the pervasive memory-use tradeoff statements in this page a concrete relation target"
+    },
+    {
+      "candidate_id": "vector-search:scalar-quantization",
+      "label": "Scalar Quantization (SQ)",
+      "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch"
+    },
+    {
+      "candidate_id": "vector-search:product-quantization",
+      "label": "Product Quantization (PQ)",
+      "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch"
+    },
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch"
+    },
+    {
+      "candidate_id": "index-type:composite-vector",
+      "label": "Composite Vector Index",
+      "reused_or_minted": "reused - same concept minted in cloud/vector-index/vectors-and-indexes-overview.json in this batch"
+    },
+    {
+      "candidate_id": "n1ql:index-partitioning",
+      "label": "Index Partitioning (PARTITION BY clause)",
+      "reused_or_minted": "reused - already minted in linked-data/poc/extractions/cloud/n1ql/n1ql-language-reference/index-partitioning.json in this repo"
+    }
   ],
   "relations": [
-    { "subject": "vector-index:nlist", "predicate": "behavesDifferentlyUnder", "object": "vector-index:composite-vector-index", "reused_or_minted_predicate": "reused (promoted predicate)", "evidence": "For Composite Vector indexes, tests show that increasing `nList` beyond the default does not affect the build time of the index. However, it does improve the queries per second (QPS) that the index can handle." },
-    { "subject": "vector-index:nlist", "predicate": "behavesDifferentlyUnder", "object": "vector-index:hyperscale-vector-index", "reused_or_minted_predicate": "reused (promoted predicate)", "evidence": "Hyperscale Vector indexes tend to perform better with larger centroids (smaller `nList` values)." },
-    { "subject": "vector-index:composite-vector-index", "predicate": "sharesOptionSetWith", "object": "vector-index:hyperscale-vector-index", "reused_or_minted_predicate": "reused (watchlist predicate)", "evidence": "Most of the tests were performed using the Hyperscale Vector index. However, many of the results also apply to Composite Vector indexes where the two index types share the same settings." },
-    { "subject": "vector-index:nprobes", "predicate": "tradesOffAgainst", "object": "vector-index:recall-rate", "reused_or_minted_predicate": "minted - tradesOffAgainst. Reason: this page is dominated by explicit speed/accuracy/memory tradeoff statements (increase X, get more accuracy but lower QPS/higher latency) that don't fit mustUseInsteadWhen (not a substitution) or behavesDifferentlyUnder (not an index-type contrast); no promoted predicate captures a graduated cost/benefit knob.", "evidence": "Tests show that increasing `nProbes` beyond the default improves the accuracy of results non-linearly (larger values show diminishing improvements). However, it caused a linear decrease in QPS and increase in latency." },
-    { "subject": "vector-index:reranking", "predicate": "tradesOffAgainst", "object": "vector-index:recall-rate", "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above", "evidence": "Testing shows that enabling reranking improves the accuracy of recall in limited cases and decreases QPS." },
-    { "subject": "vector-index:reranking", "predicate": "requiresSetting", "object": "vector-index:persist-full-vector", "reused_or_minted_predicate": "minted - requiresSetting. Reason: captures an index-creation-time configuration dependency (one setting only works if another setting was enabled at index-creation time), distinct in kind from requiresPrivilege/requiresEdition/requiresCapellaRole which are all about actor access rights, not index configuration state.", "evidence": "You must have your index set to persist the full vector value, which increases memory use." },
-    { "subject": "vector-index:train-list", "predicate": "tradesOffAgainst", "object": "vector-index:memory-footprint", "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above", "evidence": "Tests show that increasing the `trainlist` improves QPS and reduces latency, but slightly increases memory usage for the index." },
-    { "subject": "vector-index:replicas-setting", "predicate": "tradesOffAgainst", "object": "vector-index:memory-footprint", "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above", "evidence": "Tests show that increasing the number of replicas linearly increases the QPS and linearly reduces the latency of queries that use the index. However, it also linearly increases the memory footprint of the index." },
-    { "subject": "vector-index:partitions-setting", "predicate": "tradesOffAgainst", "object": "vector-index:memory-footprint", "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above", "evidence": "Tests show that increasing the number of partitions linearly reduces both the time it takes to build and train the index and index's memory use." },
-    { "subject": "vector-index:product-quantization", "predicate": "tradesOffAgainst", "object": "vector-index:memory-footprint", "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above", "evidence": "Use PQ when you're willing to trade some accuracy for higher compression and less memory use. PQ is a good choice for larger datasets (millions to billions of vectors) where you want to reduce memory use and improve search performance." },
-    { "subject": "vector-index:vector-distance-function", "predicate": "mustUseInsteadWhen", "object": "vector-index:approx-vector-distance", "reused_or_minted_predicate": "reused (promoted predicate) - context-specific: for recall-rate ground-truth measurement only, not for normal production queries (see the opposite-direction relation logged in hyperscale-vector-index.json for the production-query context)", "evidence": "The `VECTOR_DISTANCE` function performs a brute-force full vector comparison, so it returns the most accurate results." },
-    { "subject": "vector-index:partitions-setting", "predicate": "seeAlso", "object": "n1ql:index-partitioning", "note": "structural link", "evidence": "See [Index Partitioning](../n1ql/n1ql-language-reference/index-partitioning.md) for more information about partitioning indexes." },
-    { "subject": "vector-index:vector-index-best-practices", "predicate": "seeAlso", "object": "vector-index:hyperscale-reranking", "note": "structural link", "evidence": "See [Hyperscale Vector Index Reranking and Full Vector Persistence](hyperscale-reranking.md) for more information about how reranking works." }
+    {
+      "subject": "vector-search:nlist",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index-type:composite-vector",
+      "reused_or_minted_predicate": "reused (promoted predicate)",
+      "evidence": "For Composite Vector indexes, tests show that increasing `nList` beyond the default does not affect the build time of the index. However, it does improve the queries per second (QPS) that the index can handle."
+    },
+    {
+      "subject": "vector-search:nlist",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "index-type:hyperscale-vector",
+      "reused_or_minted_predicate": "reused (promoted predicate)",
+      "evidence": "Hyperscale Vector indexes tend to perform better with larger centroids (smaller `nList` values)."
+    },
+    {
+      "subject": "index-type:composite-vector",
+      "predicate": "sharesOptionSetWith",
+      "object": "index-type:hyperscale-vector",
+      "reused_or_minted_predicate": "reused (watchlist predicate)",
+      "evidence": "Most of the tests were performed using the Hyperscale Vector index. However, many of the results also apply to Composite Vector indexes where the two index types share the same settings."
+    },
+    {
+      "subject": "vector-search:nprobes",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:recall-rate",
+      "reused_or_minted_predicate": "minted - tradesOffAgainst. Reason: this page is dominated by explicit speed/accuracy/memory tradeoff statements (increase X, get more accuracy but lower QPS/higher latency) that don't fit mustUseInsteadWhen (not a substitution) or behavesDifferentlyUnder (not an index-type contrast); no promoted predicate captures a graduated cost/benefit knob.",
+      "evidence": "Tests show that increasing `nProbes` beyond the default improves the accuracy of results non-linearly (larger values show diminishing improvements). However, it caused a linear decrease in QPS and increase in latency."
+    },
+    {
+      "subject": "vector-search:reranking",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:recall-rate",
+      "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above",
+      "evidence": "Testing shows that enabling reranking improves the accuracy of recall in limited cases and decreases QPS."
+    },
+    {
+      "subject": "vector-search:reranking",
+      "predicate": "requiresSetting",
+      "object": "vector-search:persist-full-vector",
+      "reused_or_minted_predicate": "minted - requiresSetting. Reason: captures an index-creation-time configuration dependency (one setting only works if another setting was enabled at index-creation time), distinct in kind from requiresPrivilege/requiresEdition/requiresCapellaRole which are all about actor access rights, not index configuration state.",
+      "evidence": "You must have your index set to persist the full vector value, which increases memory use."
+    },
+    {
+      "subject": "vector-search:train-list",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:memory-footprint",
+      "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above",
+      "evidence": "Tests show that increasing the `trainlist` improves QPS and reduces latency, but slightly increases memory usage for the index."
+    },
+    {
+      "subject": "vector-search:replicas-setting",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:memory-footprint",
+      "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above",
+      "evidence": "Tests show that increasing the number of replicas linearly increases the QPS and linearly reduces the latency of queries that use the index. However, it also linearly increases the memory footprint of the index."
+    },
+    {
+      "subject": "vector-search:partitions-setting",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:memory-footprint",
+      "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above",
+      "evidence": "Tests show that increasing the number of partitions linearly reduces both the time it takes to build and train the index and index's memory use."
+    },
+    {
+      "subject": "vector-search:product-quantization",
+      "predicate": "tradesOffAgainst",
+      "object": "vector-search:memory-footprint",
+      "reused_or_minted_predicate": "minted - see tradesOffAgainst reasoning above",
+      "evidence": "Use PQ when you're willing to trade some accuracy for higher compression and less memory use. PQ is a good choice for larger datasets (millions to billions of vectors) where you want to reduce memory use and improve search performance."
+    },
+    {
+      "subject": "n1ql:vector-distance",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:approx-vector-distance",
+      "reused_or_minted_predicate": "reused (promoted predicate) - context-specific: for recall-rate ground-truth measurement only, not for normal production queries (see the opposite-direction relation logged in hyperscale-vector-index.json for the production-query context)",
+      "evidence": "The `VECTOR_DISTANCE` function performs a brute-force full vector comparison, so it returns the most accurate results."
+    },
+    {
+      "subject": "vector-search:partitions-setting",
+      "predicate": "seeAlso",
+      "object": "n1ql:index-partitioning",
+      "note": "structural link",
+      "evidence": "See [Index Partitioning](../n1ql/n1ql-language-reference/index-partitioning.md) for more information about partitioning indexes."
+    },
+    {
+      "subject": "vector-search:vector-index-best-practices",
+      "predicate": "seeAlso",
+      "object": "vector-search:hyperscale-reranking",
+      "note": "structural link",
+      "evidence": "See [Hyperscale Vector Index Reranking and Full Vector Persistence](hyperscale-reranking.md) for more information about how reranking works."
+    }
   ],
   "cross_component_finding": "This page's guidance is explicitly framed as Hyperscale-first with a caveat that findings often (not always) transfer to Composite Vector indexes ('Most of the tests were performed using the Hyperscale Vector index... many of the results also apply to Composite Vector indexes where the two index types share the same settings') - but nList is called out as a case where the two index types respond in OPPOSITE directions (Composite wants larger nList for better QPS; Hyperscale wants smaller nList/larger centroids for better performance). This is a concrete example of sharesOptionSetWith (same setting name/mechanism) coexisting with behavesDifferentlyUnder (opposite tuning advice) for the same setting across two index types - worth the coordinator's attention since these two predicates are not mutually exclusive here."
 }

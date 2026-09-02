@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vector-search/recall-rate",
+  "label": "Recall rate",
+  "recurrence": 2,
+  "aliases": [
+    "vector-index:recall-rate"
+  ],
+  "type": "the percentage of true nearest neighbours an approximate vector query returns - the accuracy quantity every vector-index setting is tuned against",
+  "note": "The object of three tradesOffAgainst relations, from two different subjects (nProbes and reranking), which is what earns it a record: it is the thing the settings are traded against, not a setting itself. NOTABLE ABSENCE: queries per second is the other side of every one of those quotes - 'it caused a linear decrease in QPS', 'it always decreases queries per second (QPS) when enabled' - and the corpus has never minted it. The vector tuning story has three quantities (recall, QPS, memory footprint) and the ontology holds two.",
+  "relates_to_competency_question": "What can I tune on a vector index, and what does it cost?",
+  "promoted": true
+}

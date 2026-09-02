@@ -121,6 +121,53 @@ relations, mean 13.4. Its three sparsest records hold 1, 2 and 2 relations
 API pages of 30-odd lines, so sparse for real reasons. That's the shape to expect:
 a *long* page with a thin record is the signal, not a thin record as such.
 
+**c. Decide by namespace, not by rank, once the backlog is a long tail.** The
+recurrence bar answers "is this term real?" and is structurally silent on "do this
+namespace's members answer the same question?" Thirteen rounds took the
+highest-recurrence candidates and decided each on its merits; round 14 grouped the
+backlog by prefix and immediately found two defects that are invisible per-item:
+
+```bash
+python3 linked-data/poc/recurrence.py --unpromoted-only --min 2   # the worklist
+python3 linked-data/poc/candidate-evidence.py --ns vector-index:  # read one namespace
+```
+
+`candidate-evidence.py` dumps every mention of a candidate id or a whole namespace
+with page, relation slot, predicate and evidence quote, plus whether the id is
+already promoted under another name. Its counts are every mention and are
+deliberately **not** the promotion metric.
+
+Do this before promoting any member of a namespace you have not looked at as a
+whole, and in this order:
+
+1. **Read the namespace's existing promoted records first.** `fts:` versus
+   `search:` looks like a one-member collision and is a documented, deliberate
+   resolution of a five-way split; a tidying pass would have destroyed a correct
+   decision. The record explains itself - so read it before deciding it.
+2. **Ask which kind of namespace it is.** Both kinds are legitimate: **subject
+   areas** (`eventing:`, `capella:`, `monitoring:`, `backup:`) and **closed axes**
+   (`index-type:`, `index-class:`, `auth-mechanism:`). `vector-index:` was named as
+   the second and populated as the first for three rounds. When the answer is
+   "axis-named, subject-populated", the fix is usually a **rename** - the remainder
+   is a coherent subject area and only the name claimed otherwise - plus exact-match
+   evacuations for the members that belong to axes that already exist.
+3. **Check whether a member is already promoted under another prefix**, and do not
+   assume the majority spelling is the promoted one. `index-type:hyperscale-vector`
+   was promoted at recurrence 2 while `vector-index:hyperscale-vector-index` had 5
+   files in another product tree. Same defect shape as round 12's misfiled roles:
+   the wrong answer looked better-evidenced.
+4. **Read the predicates the namespace's relations use.** They are the reliable
+   signal, because there are ~100 predicates and every agent prompt lists them all,
+   against ~300 concepts where the table an agent gets is partial - so the relation
+   layer converges while the concept layer forks. `service:search-service
+   -providesIndexType-> vector-index:search-vector-index` names the axis in the
+   predicate and contradicts it in the object.
+
+Expect a namespace pass to *retire* ids as well as promote them, and expect
+families that straddle the bar (five page ids above it, five real concepts below
+it, in one namespace). A family straddling the bar is an argument for reading the
+family, not for lowering the bar.
+
 ## 2. Apply the promotion rule
 
 **A predicate or concept is a promotion candidate once it recurs across two or
@@ -224,6 +271,20 @@ internal contradiction, an empty stub page)? The former gets modeled as
 concepts/relations. The latter goes to
 `linked-data/poc/docs-issues/<kebab-case-slug>.json`:
 
+There is a third category, and rounds where the input is the *registry* rather
+than a page produce mostly this one: a fact about **this registry** - a
+namespace named as a closed axis but populated as a subject area, a predicate
+whose declared range contradicts its ten uses, 86 relation objects pointing at
+an alias that will move. None of those is a docs-issue. `docs-issues/` is for
+facts about Couchbase's documentation, and filing a registry defect there
+misdirects whoever eventually triages the file. Registry defects belong in
+`reconciliation.md` - measured, in the round's section, with the fix either
+applied or explicitly queued in `README.md`'s next steps. Round 14 got this
+wrong in the other direction too: it wrote up four docs-issues, none of which
+survived checking the pages, because an extraction record's finding field is
+evidence *about* a page, never a substitute for reading it. Before filing, open
+the page the finding is about.
+
 ```json
 {
   "id": "https://docs.couchbase.com/ld/docs-issues/<slug>",
@@ -285,12 +346,21 @@ python3 linked-data/poc/verify-registry-ids.py  # gate: every record's id mirror
 python3 linked-data/poc/recurrence.py --selftest
 python3 linked-data/poc/verify-promotions.py    # report: always exits 0, always read it
 python3 linked-data/poc/recurrence.py --variants  # report: read it, decide alias vs rewrite
+python3 linked-data/poc/candidate-evidence.py --ns <ns>  # while deciding, not at the end
 ```
 
-`verify-promotions.py` lists every `ns:kebab-id` and `camelCaseTerm` named in
-`reconciliation.md` that has no registry file. It cannot tell "claimed as
-promoted" from "named while being rejected, folded, deferred or watchlisted" -
-the prose says which, the string doesn't - so **read the list, don't diff it**.
+`verify-promotions.py` lists every `ns:kebab-id`, `camelCaseTerm` and backticked
+`long-kebab-slug` named in `reconciliation.md` that has no file in `concepts/`,
+`relations/` or `docs-issues/` respectively. It cannot tell "claimed as promoted"
+from "named while being rejected, folded, deferred or watchlisted" - the prose
+says which, the string doesn't - so **read the list, don't diff it**. The slug
+check is looser than the other two by construction and will report ordinary
+hyphenated prose in backticks; that is the price of catching round 14's miss,
+where a "New `docs-issues/`" subsection named four entries, none of which was
+ever filed, and this script reported nothing because it only looked at two of
+the three hand-written artefact families. **A control's coverage is itself a
+claim** - when a round writes a new kind of file, check that something checks
+it.
 
 Run it *after* writing the round's section, not before, and then run it again if
 you edit that section. Round 10's first run found 5 real gaps; re-running it once

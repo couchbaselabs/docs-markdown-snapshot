@@ -25,7 +25,7 @@
       "note": "enum candidate: Active | Warmup | Paused - describes the operating mode of the Indexer process on a node (memory-pressure driven), distinct from the promoted per-index lifecycle enum at https://docs.couchbase.com/ld/concepts/index-state (scheduled for creation | deferred | building | pending | online | offline | abridged)"
     },
     {
-      "candidate_id": "version:server-7.0.2",
+      "candidate_id": "version:server-7-0-2",
       "label": "Couchbase Server 7.0.2",
       "reused_or_minted": "minted",
       "note": "specific patch version; registry only has server-6.5 and server-7.0 (minor versions)"
@@ -56,7 +56,7 @@
     {
       "subject": "index:standard-storage",
       "predicate": "availableSince",
-      "object": "version:server-7.0.2",
+      "object": "version:server-7-0-2",
       "reused_or_minted_predicate": "reused",
       "evidence": "In version 7.0.2 and after, standard index storage supports indexes for both Couchbase buckets _and_ Ephemeral buckets. This applies both to Enterprise and to Community Edition."
     },

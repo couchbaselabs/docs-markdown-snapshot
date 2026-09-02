@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index-type/search-vector",
+  "label": "Search Vector Index",
+  "recurrence": 4,
+  "aliases": [
+    "vector-index:search-vector-index"
+  ],
+  "type": "a vector index provided by the Search Service rather than the Index Service, supporting a single vector column",
+  "note": "Filed here rather than under search: because the relation that introduces it already says which axis it belongs to: 'The Search Service provides [Search Vector Indexes] that support a single vector column' is service:search-service -providesIndexType-> this, and the same record asserts belongsToIndexClass index-class:vector. A round-11 agent wrote both relations correctly and kept the vector-index: prefix, so the predicate named the axis while the namespace contradicted it. Distinguish from index-type:hyperscale-vector and index-type:composite-vector, which are Index Service GSIs: the source separates them by capability, not just by provider - a Search Vector Index supports neither Euclidean distance nor an explicitly chosen quantization method, and falls back to a flat index below 1000 vectors. Distinguish also from search:full-text-index, the Search Service's non-vector index, and from fts:full-text-search, the capability.",
+  "relates_to_competency_question": "What kinds of index can I create?",
+  "promoted": true
+}

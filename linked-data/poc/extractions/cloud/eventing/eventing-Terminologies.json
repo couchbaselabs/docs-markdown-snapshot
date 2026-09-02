@@ -99,7 +99,7 @@
       "reused_or_minted": "reused - already promoted"
     },
     {
-      "candidate_id": "version:server-6.6.2",
+      "candidate_id": "version:server-6-6-2",
       "label": "Couchbase Server 6.6.2",
       "reused_or_minted": "minted - a new patch-level entry in the version:server-* family, gating binary-document pass-through to OnUpdate"
     },
@@ -134,7 +134,7 @@
     {
       "subject": "eventing:ondeploy-handler",
       "predicate": "availableSince",
-      "object": "version:server-8.0",
+      "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused (availableSince)",
       "evidence": "Couchbase Server 8.0"
     },
@@ -148,7 +148,7 @@
     {
       "subject": "eventing:on-update-handler",
       "predicate": "behavesDifferentlyUnder",
-      "object": "version:server-6.6.2",
+      "object": "version:server-6-6-2",
       "reused_or_minted_predicate": "reused (behavesDifferentlyUnder)",
       "evidence": "To prevent the suppression of binary documents, you must set the language compatibility of your Function to Couchbase Server version 6.6.2 or later."
     },

@@ -3,21 +3,82 @@
   "source_version": "Capella",
   "source_path": "cloud/search/customize-index.md",
   "concepts": [
-    { "candidate_id": "search:customize-index", "label": "Search Index Features (Capella)", "reused_or_minted": "minted - no server/ counterpart found in this snapshot yet; strong candidate for future cross-product reuse" },
-    { "candidate_id": "search:analyzers", "label": "Search Index Analyzers", "reused_or_minted": "minted" },
-    { "candidate_id": "search:scoring-model", "label": "Search Index Scoring Model (tf-idf / bm25)", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json" },
-    { "candidate_id": "search:doc-filter", "label": "Document Filter", "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json" },
-    { "candidate_id": "search:type-mapping", "label": "Search Index Type Mapping", "reused_or_minted": "minted" },
-    { "candidate_id": "search:custom-analyzer-components", "label": "Custom Analyzer Components (character filters, tokenizers, token filters, word lists)", "reused_or_minted": "minted" },
-    { "candidate_id": "capella:advanced-mode", "label": "Capella Search Index Editor - Advanced Mode", "reused_or_minted": "minted - a Capella UI editing-mode toggle (Quick Mode vs Advanced Mode), not an RBAC privilege or a server edition; gates which index-config options are exposed in the editor" }
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Search Index Features (Capella)",
+      "reused_or_minted": "minted - no server/ counterpart found in this snapshot yet; strong candidate for future cross-product reuse"
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Search Index Analyzers",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:doc-filter",
+      "label": "Document Filter",
+      "reused_or_minted": "reused - same page-batch concept minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:type-mapping",
+      "label": "Search Index Type Mapping",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "search:custom-analyzer-components",
+      "label": "Custom Analyzer Components (character filters, tokenizers, token filters, word lists)",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "capella:advanced-mode",
+      "label": "Capella Search Index Editor - Advanced Mode",
+      "reused_or_minted": "minted - a Capella UI editing-mode toggle (Quick Mode vs Advanced Mode), not an RBAC privilege or a server edition; gates which index-config options are exposed in the editor"
+    }
   ],
   "relations": [
-    { "subject": "search:doc-filter", "predicate": "requiresUiMode", "object": "capella:advanced-mode", "reused_or_minted_predicate": "minted - requiresUiMode. This is not requiresPrivilege (no RBAC check) and not requiresEdition (no EE/CE distinction); it's purely a client-side Capella UI editor mode toggle that changes which fields are exposed", "evidence": "Some features are only available in [Advanced Mode editing](create-search-indexes.md#advanced-mode)." },
-    { "subject": "search:custom-analyzer-components", "predicate": "requiresUiMode", "object": "capella:advanced-mode", "reused_or_minted_predicate": "minted - requiresUiMode", "evidence": "You cannot create custom analyzers or custom filters if **Advanced Options** are not enabled." },
-    { "subject": "search:scoring-model", "predicate": "availableSince", "object": "version:server-8.0", "reused_or_minted_predicate": "reused (availableSince) - object concept minted in cloud/search/search-index-params.json", "evidence": "Couchbase Server version 8.0 As of Couchbase Server version 8.0, in Advanced Mode editing, you can choose the specific scoring model you want to use for a Search index." },
-    { "subject": "search:type-mapping", "predicate": "seeAlso", "object": "search:create-type-mapping", "evidence": "For more information about how to configure a type mapping in the Search index editor, see [Create a New Mapping or Type Mapping](create-type-mapping.md)." },
-    { "subject": "search:type-mapping", "predicate": "seeAlso", "object": "search:about-mappings", "evidence": "For more information about the different types of type mappings, see [About Mapping Collections, Objects and Fields](about-mappings.md)." },
-    { "subject": "search:customize-index", "predicate": "seeAlso", "object": "search:run-searches", "evidence": "[Run a Search With a Search Index](run-searches.md)" }
+    {
+      "subject": "search:doc-filter",
+      "predicate": "requiresUiMode",
+      "object": "capella:advanced-mode",
+      "reused_or_minted_predicate": "minted - requiresUiMode. This is not requiresPrivilege (no RBAC check) and not requiresEdition (no EE/CE distinction); it's purely a client-side Capella UI editor mode toggle that changes which fields are exposed",
+      "evidence": "Some features are only available in [Advanced Mode editing](create-search-indexes.md#advanced-mode)."
+    },
+    {
+      "subject": "search:custom-analyzer-components",
+      "predicate": "requiresUiMode",
+      "object": "capella:advanced-mode",
+      "reused_or_minted_predicate": "minted - requiresUiMode",
+      "evidence": "You cannot create custom analyzers or custom filters if **Advanced Options** are not enabled."
+    },
+    {
+      "subject": "search:scoring-model",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "reused_or_minted_predicate": "reused (availableSince) - object concept minted in cloud/search/search-index-params.json",
+      "evidence": "Couchbase Server version 8.0 As of Couchbase Server version 8.0, in Advanced Mode editing, you can choose the specific scoring model you want to use for a Search index."
+    },
+    {
+      "subject": "search:type-mapping",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "evidence": "For more information about how to configure a type mapping in the Search index editor, see [Create a New Mapping or Type Mapping](create-type-mapping.md)."
+    },
+    {
+      "subject": "search:type-mapping",
+      "predicate": "seeAlso",
+      "object": "search:about-mappings",
+      "evidence": "For more information about the different types of type mappings, see [About Mapping Collections, Objects and Fields](about-mappings.md)."
+    },
+    {
+      "subject": "search:customize-index",
+      "predicate": "seeAlso",
+      "object": "search:run-searches",
+      "evidence": "[Run a Search With a Search Index](run-searches.md)"
+    }
   ],
   "cross_product_finding": "This page introduces capella:advanced-mode as a distinct access/feature-gating primitive that sits alongside (not instead of) the availableSince/version gating seen on search-index-params.json: a feature can require BOTH Couchbase Server 8.0 AND Advanced Mode simultaneously (see the Scoring Model relation above, which carries both gates). This is a genuinely different shape from server/'s requiresPrivilege (RBAC check against a logged-in user's roles) - Advanced Mode is a UI affordance toggle available to any user editing the index, with no privilege check implied by the text. Recommend the coordinator keep requiresUiMode separate from requiresPrivilege/requiresEdition rather than merging them, since 'privilege' and 'edition' both describe server-enforced constraints, while 'UI mode' describes a client-side editor setting."
 }

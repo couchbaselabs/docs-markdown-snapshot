@@ -3,7 +3,11 @@
   "source_version": "8.0",
   "source_path": "server/current/learn/services-and-indexes/indexes/indexes.md",
   "concepts": [
-    { "candidate_id": "index:index", "label": "Index (coarse supertype)", "reused_or_minted": "reused - minted this batch on index-service.json. This page is the corpus's canonical statement that 'index' is a genus with species, so the supertype belongs here." },
+    {
+      "candidate_id": "index:index",
+      "label": "Index (coarse supertype)",
+      "reused_or_minted": "reused - minted this batch on index-service.json. This page is the corpus's canonical statement that 'index' is a genus with species, so the supertype belongs here."
+    },
     {
       "candidate_id": "index-class:traditional",
       "label": "Traditional Indexes (index class)",
@@ -14,9 +18,21 @@
       "label": "Vector Indexes (index class)",
       "reused_or_minted": "minted - sibling of index-class:traditional"
     },
-    { "candidate_id": "index-type:primary-index", "label": "Primary index", "reused_or_minted": "reused - extraction-layer id" },
-    { "candidate_id": "index-type:secondary-index", "label": "Secondary index", "reused_or_minted": "reused - extraction-layer id" },
-    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "reused_or_minted": "reused" },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary index",
+      "reused_or_minted": "reused - extraction-layer id"
+    },
+    {
+      "candidate_id": "index-type:secondary-index",
+      "label": "Secondary index",
+      "reused_or_minted": "reused - extraction-layer id"
+    },
+    {
+      "candidate_id": "index-type:gsi",
+      "label": "Global Secondary Index (GSI)",
+      "reused_or_minted": "reused"
+    },
     {
       "candidate_id": "search:full-text-index",
       "label": "Search index (Search Service)",
@@ -32,14 +48,46 @@
       "label": "View index (Couchbase Views)",
       "reused_or_minted": "reused - an extraction-layer id (1 prior occurrence, the 7.2 record of this page). Kept on the index: namespace rather than moved to index-type: to avoid creating a second id for the same thing; the namespace question goes to reconciliation."
     },
-    { "candidate_id": "index-type:hyperscale-vector", "label": "Hyperscale Vector Index", "reused_or_minted": "reused - extraction-layer id (3 prior occurrences)" },
-    { "candidate_id": "index-type:composite-vector", "label": "Composite Vector Index", "reused_or_minted": "reused - extraction-layer id (2 prior occurrences)" },
-    { "candidate_id": "vector-index:search-vector-index", "label": "Search Vector Index", "reused_or_minted": "reused - extraction-layer id (3 prior occurrences). A third namespace for what this page presents as one flat list of index kinds; see cross_component_finding." },
-    { "candidate_id": "service:index-service", "label": "Index Service", "reused_or_minted": "reused" },
-    { "candidate_id": "service:search-service", "label": "Search Service", "reused_or_minted": "reused" },
-    { "candidate_id": "service:analytics-service", "label": "Analytics Service", "reused_or_minted": "reused" },
-    { "candidate_id": "service:query-service", "label": "Query Service", "reused_or_minted": "reused" },
-    { "candidate_id": "version:server-7-0", "label": "Couchbase Server 7.0", "reused_or_minted": "reused" }
+    {
+      "candidate_id": "index-type:hyperscale-vector",
+      "label": "Hyperscale Vector Index",
+      "reused_or_minted": "reused - extraction-layer id (3 prior occurrences)"
+    },
+    {
+      "candidate_id": "index-type:composite-vector",
+      "label": "Composite Vector Index",
+      "reused_or_minted": "reused - extraction-layer id (2 prior occurrences)"
+    },
+    {
+      "candidate_id": "index-type:search-vector",
+      "label": "Search Vector Index",
+      "reused_or_minted": "reused - extraction-layer id (3 prior occurrences). A third namespace for what this page presents as one flat list of index kinds; see cross_component_finding."
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index Service",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search Service",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:analytics-service",
+      "label": "Analytics Service",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query Service",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "reused_or_minted": "reused"
+    }
   ],
   "relations": [
     {
@@ -113,7 +161,7 @@
       "evidence": "Couchbase Server also supports indexes for vector search. These indexes let you perform semantic similarity searches that form the basis of AI applications."
     },
     {
-      "subject": "vector-index:search-vector-index",
+      "subject": "index-type:search-vector",
       "predicate": "belongsToIndexClass",
       "object": "index-class:vector",
       "reused_or_minted_predicate": "minted - belongsToIndexClass",
@@ -164,7 +212,7 @@
     {
       "subject": "service:search-service",
       "predicate": "providesIndexType",
-      "object": "vector-index:search-vector-index",
+      "object": "index-type:search-vector",
       "reused_or_minted_predicate": "minted - providesIndexType",
       "evidence": "The Search Service provides [Search Vector Indexes](../../../vector-search/vector-search.md) that support a single vector column."
     },

@@ -44,7 +44,7 @@
       "reused_or_minted": "reused"
     },
     {
-      "candidate_id": "version:couchbase-server-7.6",
+      "candidate_id": "version:server-7-6",
       "label": "Couchbase Server 7.6",
       "reused_or_minted": "reused - version badge, consistent with the recurring server-version-string-citation pattern flagged in prior rounds"
     }
@@ -67,28 +67,28 @@
     {
       "subject": "eventing:mutatein-operation",
       "predicate": "availableSince",
-      "object": "version:couchbase-server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused",
       "evidence": "Couchbase Server 7.6\n\n`result = couchbase.mutateIn(binding, meta, subdoc_operation_array, options)`"
     },
     {
       "subject": "eventing:lookupin-operation",
       "predicate": "availableSince",
-      "object": "version:couchbase-server-7.6.2",
+      "object": "version:server-7-6-2",
       "reused_or_minted_predicate": "reused",
       "evidence": "Couchbase Server 7.6.2\n\n`result = couchbase.lookupIn(binding, meta, subdoc_array, options)`"
     },
     {
       "subject": "eventing:touch-operation",
       "predicate": "availableSince",
-      "object": "version:couchbase-server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused",
       "evidence": "Couchbase Server 7.6\n\n`result = couchbase.touch(binding, meta)`"
     },
     {
       "subject": "eventing:self-recursion-parameter",
       "predicate": "availableSince",
-      "object": "version:couchbase-server-7.6",
+      "object": "version:server-7-6",
       "reused_or_minted_predicate": "reused",
       "evidence": "Couchbase Server 7.6\n\nYou can use the optional fourth parameter `{ \"self_recursion\": true }` to prevent the suppression of recursive source bucket mutations and to process the mutations that you have just created."
     },
