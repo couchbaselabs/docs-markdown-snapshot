@@ -1,0 +1,47 @@
+{
+  "page_id": "server/8.0/fts/fts-cluster-options",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-cluster-options.md",
+  "concepts": [
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-bleveMaxResultWindow",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[bleveMaxResultWindow](fts-advanced-settings-bleveMaxResultWindow.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-bleveMaxClauseCount",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[bleveMaxClauseCount](fts-advanced-settings-bleveMaxClauseCount.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-maxFeedsPerDCPAgent",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[maxFeedsPerDCPAgent](fts-advanced-settings-maxFeedsPerDCPAgent.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-disable-file-transfer-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[disableFileTransferRebalance](fts-advanced-settings-disable-file-transfer-rebalance.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[maxConcurrentPartitionMovesPerNode](fts-advance-settings-maxConcurrentPartitionMovesPerNode.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-enableVerboseLogging",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[enableVerboseLogging](fts-advanced-settings-enableVerboseLogging.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-ftsMemoryQuota",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[ftsMemoryQuota](fts-advanced-settings-ftsMemoryQuota.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-maxReplicasAllowed",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[maxReplicasAllowed](fts-advanced-settings-maxReplicasAllowed.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-slowQueryLogTimeout",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[slowQueryLogTimeout](fts-advanced-settings-slowQueryLogTimeout.md)" },
+    { "subject": "server/8.0/fts/fts-cluster-options", "predicate": "seeAlso", "object": "server/8.0/fts/fts-advanced-settings-CBFT-ENV-OPTIONS",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[CBFT\\_ENV\\_OPTIONS](fts-advanced-settings-CBFT-ENV-OPTIONS.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is a pure link index - ten cluster-level settings, each named only as a link to its own dedicated fts-advanced-settings-*.md page, none of which are in this round's batch. Each setting's actual name/default/effect could not be captured here since this page states none of it; a future round reading the fts-advanced-settings-* family directly would need to."
+  },
+  "cross_component_finding": "n/a - a link-index page, no architectural content of its own.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

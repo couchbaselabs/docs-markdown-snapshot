@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/index-partitioning",
+  "label": "Search index partitioning",
+  "type": "the division of a Search index into partitions distributed across Search Service nodes - an Enterprise Edition feature. During rebalance, newly-assigned partitions are rebuilt on their new node via a DCP feed.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "This feature is available only in Couchbase Server Enterprise Edition.",
+    "The newly assigned index partitions are built utilizing the DCP feed on the new nodes."
+  ],
+  "requiresEdition": "edition:enterprise",
+  "usesProtocol": "protocol:dcp",
+  "documented_at": "server/8.0/fts/fts-rebalance-failover",
+  "relates_to_competency_question": "How is a Search index divided and redistributed across nodes, and what mechanism rebuilds a partition that moves to a new node?"
+}

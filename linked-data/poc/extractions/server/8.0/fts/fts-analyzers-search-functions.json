@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/fts/fts-analyzers-search-functions",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-analyzers-search-functions.md",
+  "concepts": [
+    { "candidate_id": "n1ql:search-function", "label": "SEARCH() function (SQL++)",
+      "registry_status": "minted", "reused_or_minted": "minted - the named SQL++ function letting a query invoke full-text search inline; no existing concept covers it" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "index:covering-index", "label": "Covering Index / Covered Query",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page applies the SAME relational property (previously documented for GSI/query-service indexes) to Search indexes for the first time, see cross_component_finding" },
+    { "candidate_id": "fts:verification-phase", "label": "Verification phase (Search + SQL++ non-covering query)",
+      "registry_status": "minted", "reused_or_minted": "minted - a named process step this page defines explicitly (fetch-and-validate against a non-covering Search index), distinct from index:covering-index itself" },
+    { "candidate_id": "search:analyzers", "label": "Analyzer (Search)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "server/8.0/fts/fts-analyzers-search-functions", "predicate": "seeAlso", "object": "server/8.0/n1ql/n1ql-language-reference/searchfun",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[Search functions](../n1ql/n1ql-language-reference/searchfun.md) allow users to execute full text search requests within a SQL++ query." },
+    { "subject": "server/8.0/fts/fts-analyzers-search-functions", "predicate": "seeAlso", "object": "server/8.0/indexes/covering-indexes",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted (structural markdown link, always seeAlso)",
+      "evidence": "[Covering index](../indexes/covering-indexes.md)" },
+    { "subject": "search:full-text-index", "predicate": "relatesToProperty", "object": "index:covering-index",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for an index artifact exhibiting the covering/non-covering relational property; distinct from hasInternalComponent and other composition predicates",
+      "evidence": "A SQL++ query against a non-covering index will go through a \"Verification phase\"." },
+    { "subject": "index:covering-index", "predicate": "triggersProcess", "object": "fts:verification-phase",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for a relational property (non-covering) triggering a named runtime process",
+      "evidence": "In this phase documents are fetched from the query service based on the results of the search index, and the documents are validated as per the clauses defined in the query." },
+    { "subject": "n1ql:search-function", "predicate": "requiresMatchingAnalyzer", "object": "search:analyzers",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for a query-time analyzer-consistency requirement",
+      "evidence": "If the query does not use the same analyzer as specified in the full text search index, the query will not be allowed to run." }
+  ],
+  "notable_absence": {
+    "predicate": "hasFailureMode",
+    "finding": "The page states a concrete risk of the verification phase without an analyzer-context - 'the verification phase might drop documents that should have been returned as results due to lack of query context' - but this is a risk/warning, not a stable fact about the mechanism's normal operation, so it wasn't forced into a relation triple; recorded here as prose so it isn't lost. Same for the default-fallback rule: 'By default, the analyzer used for indexing the field (as per the index definition) will be picked up if no analyzer is specified in the analytic query' - a real default-value fact but about query-time behavior rather than a settings object, so it didn't fit hasDefaultValue's subject shape (a configurable setting) cleanly enough to force."
+  },
+  "cross_component_finding": "This page is the first in the batch to connect the Search Service to the Query service's own covering-index machinery: index:covering-index was previously documented only for GSI/query-service indexes (per the registry digest's own description: 'the relational property that holds between an index and a query when the index carries every field the query projects'). This page states the identical property in identical covering/non-covering terms for FULL-TEXT SEARCH indexes accessed via the SEARCH() SQL++ function - 'a full text search index can be described as one of the following: Covering index / Non-covering index.' Reused index:covering-index rather than minting a Search-specific duplicate, since the underlying relational property (does the index carry every field the query needs) is stated as literally the same concept, just applied to a new index kind - the page's own [Covering index] link points at the SAME indexes/covering-indexes.md page used for GSI indexes elsewhere in the docs.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

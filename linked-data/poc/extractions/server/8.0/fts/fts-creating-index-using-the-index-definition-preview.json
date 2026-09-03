@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/fts/fts-creating-index-using-the-index-definition-preview",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-creating-index-using-the-index-definition-preview.md",
+  "concepts": [
+    {
+      "candidate_id": "search:index-definition-preview",
+      "label": "Index Definition Preview (Web Console panel)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id names this specific UI panel. Checked candidate-evidence.py and registry-digest.py for 'preview' first: nothing matched. The panel itself (a live JSON preview pane beside the Edit Index screen) is distinct from the JSON artifact it displays, which IS already promoted (see search:search-index-definition-json below) - this is a genuine near-miss the round's registry check caught: reuse the artifact concept, mint only the UI-surface concept that shows it."
+    },
+    {
+      "candidate_id": "search:search-index-definition-json",
+      "label": "Search index definition (JSON)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (from server/8.0/search/export-search-index.json and import-search-index.json, 'the portable JSON artifact both export-search-index.md and import-search-index.md operate on'). This page's Index Definition Preview panel displays exactly that same JSON artifact live, inside the index editor, rather than exporting/importing it - same artifact, a third surface. Ran candidate-evidence.py search:search-index-definition-json before minting anything, per this round's near-miss-check instructions, and found this exact match."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:index-definition-preview",
+      "predicate": "operatesOnFormat",
+      "object": "search:search-index-definition-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate operatesOnFormat, same relation shape used for export/import-search-index.md's use of this artifact.",
+      "evidence": "The preview consists of the JSON document that describes the current index configuration, as created by means of the user interface."
+    },
+    {
+      "subject": "search:customize-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:index-definition-preview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent (part-whole composition); the preview panel is part of the Edit Index screen that customizing a Search index's definition is done through.",
+      "evidence": "The _Index Definition Preview_ appears to the right-hand side of the **Edit Index** screen."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "operatesOnFormat / convertibleTo",
+    "finding": "The page states the definition 'can be saved' via 'copy to clipboard' but never says what a reader is expected to DO with the copied JSON afterward - it doesn't cross-reference search/export-search-index.md or import-search-index.md (the pages that actually promoted search:search-index-definition-json), even though 'copy the JSON definition for reuse elsewhere' is exactly the use case those pages describe. No seeAlso relation can be extracted here because the page contains no link to either."
+  },
+  "cross_component_finding": "No cross-component finding on this page - it is a single, narrow UI-panel description.",
+  "cross_product_finding": "Not among the round's 14 confirmed 7.2 twins by filename. This is the clearest near-miss caught in this batch by checking the registry before minting: the temptation would have been to mint a brand-new 'index definition JSON' concept for this page in isolation, when a promoted concept for exactly that artifact (search:search-index-definition-json) already exists from a completely different pair of pages (export/import-search-index.md) read in an earlier round. Reused the artifact id and minted only the UI-panel id that was genuinely missing."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-bleve-max-result-window-effect-sentence-incomplete",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "fts-advanced-settings-bleveMaxResultWindow.md's own sentence stating the setting's effect is grammatically incomplete/self-contradictory in the source, making the actual behavioral effect of raising or lowering the value harder to state confidently from the page alone than the numeric default itself.",
+  "about": [
+    "server/8.0/fts/fts-advanced-settings-bleveMaxResultWindow"
+  ],
+  "foundDuring": "round 23",
+  "status": "open"
+}

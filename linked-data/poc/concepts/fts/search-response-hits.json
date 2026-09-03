@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/search-response-hits",
+  "label": "Search Response hits field",
+  "type": "the child object containing the array of document matches for an executed Search query.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Hits return an array containing the matches for the executed query."
+  ],
+  "documented_at": "server/8.0/fts/fts-search-response-hits",
+  "relates_to_competency_question": "Where in a Search response JSON do the actual matching documents appear?"
+}

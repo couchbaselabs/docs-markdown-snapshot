@@ -1,0 +1,25 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-enableVerboseLogging",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-enableVerboseLogging.md",
+  "concepts": [
+    { "candidate_id": "fts:enable-verbose-logging", "label": "enableVerboseLogging (Search Service debug-logging setting)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked registry-digest.py and candidate-evidence.py, nothing matched" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" }
+  ],
+  "relations": [
+    { "subject": "fts:enable-verbose-logging", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "Unlike bleveMaxClauseCount/bleveMaxResultWindow/maxFeedsPerDCPAgent/maxReplicasAllowed/slowQueryLogTimeout, this page states no default value (on/off) for enableVerboseLogging - only what enabling it does ('enables collecting additional logs for debugging purpose... periodically adds more statistics whenever user runs the /api/stats endpoint')."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-CBFT-ENV-OPTIONS",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-CBFT-ENV-OPTIONS.md",
+  "concepts": [
+    { "candidate_id": "fts:cbft-env-options", "label": "CBFT_ENV_OPTIONS (Search Service cluster-level environment variable)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked registry-digest.py and candidate-evidence.py, nothing matched; a command-line/environment-variable mechanism for setting cluster-level FTS configuration option defaults, distinct from the per-setting REST-based fts:manager-options-endpoint mechanism this batch's other pages use" },
+    { "candidate_id": "fts:bleve-max-result-window", "label": "bleveMaxResultWindow (Search Service maximum-query-result-window setting)",
+      "registry_status": "minted", "reused_or_minted": "minted here - checked, nothing matched; this page's own example names it, and this batch's own dedicated fts-advanced-settings-bleveMaxResultWindow.md page documents it fully; minted here and reused there" }
+  ],
+  "relations": [
+    { "subject": "fts:cbft-env-options", "predicate": "implicitlySetsParameter", "object": "fts:bleve-max-result-window",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate implicitlySetsParameter; the environment variable supplies the named option's value on the operator's behalf at process startup, rather than the option being set explicitly per-request via the REST endpoint",
+      "evidence": "export CBFT_ENV_OPTIONS=bleveMaxResultWindow=10000000’" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page states what CBFT_ENV_OPTIONS is for ('Specifies the cluster level FTS configuration options... allows you to specify the default value for the configuration option on the command line') but gives no default value of its own - it is a mechanism for supplying defaults to OTHER settings, not a setting with a default itself, so no hasDefaultValue relation applies to fts:cbft-env-options directly."
+  },
+  "cross_component_finding": "This is the only page in the batch documenting a command-line/environment-variable configuration surface rather than the /api/managerOptions REST endpoint used by the other nine pages. Its own worked example ('export CBFT_ENV_OPTIONS=bleveMaxResultWindow=10000000') names bleveMaxResultWindow - the exact setting this batch's fts-advanced-settings-bleveMaxResultWindow.md page documents via the REST endpoint - showing the same underlying setting is configurable through two distinct surfaces (a startup environment variable versus a live REST call), though the page does not state whether a CBFT_ENV_OPTIONS-supplied value can later be overridden at runtime via /api/managerOptions or vice versa."
+}

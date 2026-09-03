@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/clone-index",
+  "label": "Clone a Search index",
+  "type": "creating a copy of an existing Search index, unchanged since Server 7.2. Underlies zero-downtime index upgrades: the current index keeps serving traffic while a clone is modified/rebuilt, then an alias is repointed at the clone.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "This may be particularly useful when an index needs to be updated: to avoid downtime, while the current index remains in service, a clone of the current index can be created, modified"
+  ],
+  "documented_at": "server/8.0/fts/fts-clone-index",
+  "relates_to_competency_question": "Can a Search index be safely modified/upgraded without taking it offline, and does that rely on cloning?"
+}

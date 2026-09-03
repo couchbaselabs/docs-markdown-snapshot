@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/fts/fts-architecture",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-architecture.md",
+  "concepts": [
+    { "candidate_id": "fts:full-text-search", "label": "Full Text Search (capability)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:scatter-gather", "label": "Scatter-gather (Search execution model)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:coordinator-node", "label": "coordinator (Search Service node acting as request coordinator)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "service:search-service", "predicate": "usesExecutionModel", "object": "search:scatter-gather",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "How the coordinator scatters the search request to all other search-index partitions (here, _Node 2_ and _Node 3_) in the cluster." },
+    { "subject": "search:coordinator-node", "predicate": "assumedPerRequest", "object": "service:search-service",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer (predicate used on search:coordinator-node's own promotion source page, but not itself among the 104 promoted predicates)",
+      "evidence": "When one particular Search Service node is chosen for a search request, it assumes the role of _coordinator_; and is thereby responsible for applying the search request to the other Search Service nodes and for gathering and returning results." },
+    { "subject": "search:full-text-index", "predicate": "usesProtocol", "object": "protocol:dcp",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The _Data Service_ uses the DCP protocol to stream data-mutations as batches, from the producer to multiple consumers (_vBuckets_), instantiated across the search nodes." },
+    { "subject": "search:full-text-index", "predicate": "partitionsDataAcross", "object": "server:vbucket",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captures a search index partition's assignment of vBucket ranges; distinct from usesProtocol (the feed mechanism) and from any capacity/count predicate",
+      "evidence": "search-index data-handling for the vBuckets is divided equally among the established search-index partitions." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page has no cross-reference at all to fts-introduction.md or fts-quickstart-guide.md (both retired from current/8.0 per the round context), even though it reads like the natural landing point for 'what is the Search Service' - its only forward link is to search/search.md#fundamentals-of-full-text-search. If those two retired pages' content survives anywhere in 8.0, it isn't linked from here."
+  },
+  "cross_component_finding": "This page (the OLD-generation fts/ tree) and server/8.0/search/search-index-architecture.json (the NEW-generation search/ tree, read last round) describe the coordinator role in near-verbatim identical language: this page says 'When one particular Search Service node is chosen for a search request, it assumes the role of _coordinator_; and is thereby responsible for applying the search request to the other Search Service nodes and for gathering and returning results,' which is almost word-for-word the sentence already quoted as evidence for search:coordinator-node's promotion from server/8.0/learn/services-and-indexes/services/search-service.json. No contradiction found - this is confirmation, not a new finding, that fts-architecture.md, search-index-architecture.json and search-service.json are three current-docs pages describing one identical mechanism under identical wording. Reused the promoted ids rather than minting.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

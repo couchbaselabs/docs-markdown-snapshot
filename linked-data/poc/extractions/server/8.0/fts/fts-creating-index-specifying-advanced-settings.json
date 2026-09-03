@@ -1,0 +1,45 @@
+{
+  "page_id": "server/8.0/fts/fts-creating-index-specifying-advanced-settings",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-creating-index-specifying-advanced-settings.md",
+  "concepts": [
+    {
+      "candidate_id": "search:set-advanced-settings",
+      "label": "Set Search Index Advanced Settings",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (20 prior mentions). This page is the old-generation (fts/) description of the same Advanced panel that search/set-advanced-settings.md documents for the current generation: both describe a Default Type, a Default Analyzer, a Default Date/Time Parser and a Default Field setting for the index/bucket. This page predates the 8.0 scoring-model choice (search:scoring-model) that set-advanced-settings.md now also covers in the same panel - not present here at all, since this page has no bm25/tf-idf mention. Same task, older and narrower content, not a separate concept."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "hasDefaultValue",
+      "object": "standard",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue (object is a literal, not a concept, per its own registry description).",
+      "evidence": "**Default Analyzer**: The default analyzer to be used for this bucket. The default value is `standard`."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "hasDefaultValue",
+      "object": "dateTimeOptional",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue.",
+      "evidence": "**Default Date/Time Parser**: The default date/time parser to be used for this bucket. The default value is `dateTimeOptional`."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "hasDefaultValue",
+      "object": "_all",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue.",
+      "evidence": "**Default Field**: The default field for this bucket. the default value is `_all`."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "This page's Advanced panel has no Scoring Model field at all - no tf-idf/bm25 choice, no search:scoring-algorithm-enum reference, nothing. That setting (search:scoring-model, promoted from search/set-advanced-settings.md) is documented as living in the SAME Advanced panel in the current-generation docs. Since this fts/ page and the current search:set-advanced-settings.md page describe what is stated to be the identical UI panel, the absence is a genuine content gap between the two generations' accounts of one panel, not a sign that this page is about something different - it simply predates the 8.0 scoring-model addition to that panel. Also absent: 'Store Dynamic Fields' and 'Index Dynamic Fields', the two checkbox settings this page lists, have no corresponding availableSince or effect-detail beyond the one-line description quoted ('When checked, ensures inclusion of field-content in returned results...'); no default value is stated for either, unlike the four other fields on this page."
+  },
+  "cross_component_finding": "No cross-component finding on this page - its content is entirely scoped to one Search index configuration panel.",
+  "cross_product_finding": "Not among the round's 14 pages with a confirmed 7.2 exact-filename twin, but it is the fts/ (old-generation) twin-in-substance of search/set-advanced-settings.md: same four core fields (Default Type/Analyzer/Date-Time Parser/Field) under the same 'Advanced' panel name. The scoring-model field that search:scoring-model and search:scoring-algorithm-enum were promoted from is absent here entirely, confirming this page reflects an earlier state of the same panel rather than a different panel."
+}

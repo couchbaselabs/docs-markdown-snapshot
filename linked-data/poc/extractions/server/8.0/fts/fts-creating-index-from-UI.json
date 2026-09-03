@@ -1,0 +1,51 @@
+{
+  "page_id": "server/8.0/fts/fts-creating-index-from-UI",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-creating-index-from-UI.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (standard editor)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (33 prior mentions). This is the fts/ (OLD-generation) walkthrough of the exact same Add-Index-button task that search/create-search-index-ui.md documents for the current generation: same steps (Add Index button, Name field, Bucket pull-down, non-default scope/collection checkbox, Create Index button), told with older screenshots and no mention of the standard-editor's newer features (type mappings, advanced settings). Not a separate task."
+    },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "Full Text index (Search service)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted artifact concept. This page documents the artifact's creation via the classic/standard UI editor."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "createsOnAction",
+      "object": "search:full-text-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate createsOnAction (the subject action creates the object artifact as a side effect).",
+      "evidence": "This is all you need to specify to create a basic index for test and development. No further configuration is required."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "manage:install-sample-buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "For instructions on how to load this sample bucket, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "manage:manage-statistics",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "The appearance of the main panel of the Dashboard varies in accordance with customizations that have been performed. For information, see [Manage Statistics](../manage/manage-statistics/manage-statistics.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The current-generation search:create-search-index-ui.md states 'Your user account has the Search Admin role for the bucket where you want to create the index' (a concrete requiresServerRole -> role:fts-admin relation). This old-generation page only gestures at the requirement in the vaguest terms - 'you must have permission to log into the console, create indexes, and perform searches. For information on Role-Based Access Control, see Authorization' - and names no specific role, and 'Authorization' is not even rendered as a link in the Markdown snapshot. No requiresServerRole relation can be extracted from this page with real evidence; the concrete role name is a fact this page simply lacks, not one this extraction is choosing to omit."
+  },
+  "cross_component_finding": "The page's failover note - 'If one or more of the nodes in the cluster running data service goes down and/or are failed over, indexing progress may show a value > 100%' - ties Search index build progress directly to Data service node failover behavior, but the page never names a failover or high-availability concept, and the registry has no standalone failover concept id to attach this to (only vbucket-level ones). Recorded here rather than forced onto an ill-fitting predicate.",
+  "cross_product_finding": "This exact filename is not among the round's 14 pages with a confirmed 7.2 twin, but its content is clearly the OLD-generation duplicate of search/create-search-index-ui.md's task: the same Add Index walkthrough against the travel-sample bucket, using the Couchbase Web Console's Search tab. Two of this page's sibling pages in this same batch (fts-creating-index-specifying-advanced-settings.md, fts-creating-index-using-the-index-definition-preview.md) cover the standard editor's Advanced panel and Definition Preview panel respectively - together the three pages document one classic-editor task across sub-pages, each mapping onto an existing search: concept rather than needing a new shared task id."
+}

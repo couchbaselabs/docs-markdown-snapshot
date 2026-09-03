@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-privilege-documentation-gap-persists-72-to-80",
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "None of the Search index-lifecycle task pages (clone, delete, edit, create-index-alias) or the managerOptions REST endpoint state a required role or privilege for the operation they document - a gap present in the server/7.2/fts/ versions of these exact pages and carried unchanged into server/8.0/fts/, across three major releases, despite the rest of the corpus's RBAC documentation being read and corrected multiple times in the interim.",
+  "about": [
+    "server/8.0/fts/fts-clone-index",
+    "server/8.0/fts/fts-delete-index",
+    "server/8.0/fts/fts-edit-index",
+    "server/8.0/fts/fts-create-index-aliases",
+    "server/8.0/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode"
+  ],
+  "foundDuring": "round 23",
+  "status": "open"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/max-feeds-per-dcp-agent",
+  "label": "maxFeedsPerDCPAgent setting",
+  "type": "the number of index partitions one physical DCP connection to the Data service handles. Default 6; part of a rebalance-throughput tuning trio with maxConcurrentPartitionMovesPerNode and ftsMemoryQuota.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The default value for the maxFeedsPerDCPAgent setting is 6.",
+    "The maxFeedsPerDCPAgent setting refers to the number of index partitions a single physical connection to KV will handle."
+  ],
+  "hasDefaultValue": "6",
+  "usesProtocol": "protocol:dcp",
+  "documented_at": "server/8.0/fts/fts-advanced-settings-maxFeedsPerDCPAgent",
+  "relates_to_competency_question": "How many index partitions share one DCP connection to the Data service, and can that be tuned?"
+}

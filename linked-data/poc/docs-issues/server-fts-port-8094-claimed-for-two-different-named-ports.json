@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-port-8094-claimed-for-two-different-named-ports",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "fts-architecture-ports-used.md's own port table gives the identical port number (8094, and its TLS counterpart 18094) for two differently-NAMED ports - an HTTP REST port and the gRPC scatter-gather transport port. Either the table has a real error (one of the two should be a different number), or Couchbase genuinely multiplexes both protocols on one port and the table's naming implies two separate ports where there is only one - the page does not state which.",
+  "about": [
+    "server/8.0/fts/fts-architecture-ports-used"
+  ],
+  "foundDuring": "round 23",
+  "status": "open",
+  "severity": "needs-sme"
+}

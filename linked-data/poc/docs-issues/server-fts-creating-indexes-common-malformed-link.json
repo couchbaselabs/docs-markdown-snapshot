@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-creating-indexes-common-malformed-link",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "fts-creating-indexes-common.md's 'One Field Index' link renders as a malformed anchor (a raw .adoc-style fragment rather than a working Markdown link), and fts-quick-index.md's 'see Creating Indexes' reference is never rendered as a link at all in either file - two adjacent, unrelated link-rendering defects on sibling pages describing the same index-creation task.",
+  "about": [
+    "server/8.0/fts/fts-creating-indexes-common",
+    "server/8.0/fts/fts-quick-index"
+  ],
+  "foundDuring": "round 23",
+  "status": "open"
+}

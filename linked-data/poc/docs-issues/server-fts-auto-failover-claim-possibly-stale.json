@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-auto-failover-claim-possibly-stale",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "fts-high-availability-for-search.md states 'As of Couchbase Server 7.1, the Search service doesn't offer auto-failover' - phrased as a fact about 7.1 and carried unchanged into the 8.0 docs with no indication whether auto-failover has since been added, remains absent, or whether the sentence itself was simply never revisited across three major releases.",
+  "about": [
+    "server/8.0/fts/fts-high-availability-for-search"
+  ],
+  "foundDuring": "round 23",
+  "status": "open",
+  "severity": "needs-sme"
+}

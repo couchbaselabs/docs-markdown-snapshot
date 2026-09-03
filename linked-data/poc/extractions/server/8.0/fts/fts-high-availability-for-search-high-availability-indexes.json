@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/fts/fts-high-availability-for-search-high-availability-indexes",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-high-availability-for-search-high-availability-indexes.md",
+  "concepts": [
+    { "candidate_id": "fts:index-replicas", "label": "Index Replicas (FTS availability feature)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, also reused in fts-high-availability-for-search.json in this same batch" },
+    { "candidate_id": "manage:server-group", "label": "Server Group (Couchbase Server node grouping for rack/AZ awareness)", "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fts-high-availability-for-search.json earlier in this same batch; this page independently restates and defines it" },
+    { "candidate_id": "search:set-advanced-settings", "label": "Set Search Index Advanced Settings (task/how-to page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id; this page's own markdown link target for index-replica configuration" },
+    { "candidate_id": "version:server-7-0-2", "label": "Couchbase Server 7.0.2", "registry_status": "minted", "reused_or_minted": "minted - maintenance-release version id, following the same pattern as version:server-7-6-2/version:server-7-6-4 already in the registry; no 7.0.2 id existed" }
+  ],
+  "relations": [
+    { "subject": "fts:index-replicas", "predicate": "hasDefaultValue", "object": "not automatically enabled (0 replicas)", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue; object is a literal per the predicate's own documented shape", "evidence": "Replica for the index is not automatically enabled." },
+    { "subject": "fts:index-replicas", "predicate": "doesNotAffect", "object": "search:full-text-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate doesNotAffect; changing replica count for an existing index leaves its primary partitions/live traffic untouched", "evidence": "They could also update the replica count without rebuilding the primary partitions or live traffic for an existing index." },
+    { "subject": "fts:index-replicas", "predicate": "seeAlso", "object": "search:set-advanced-settings", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "Refer [Index Replicas](../search/set-advanced-settings.md) to the index replica section during index creation." },
+    { "subject": "manage:server-group", "predicate": "availableSince", "object": "version:server-7-0-2", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate availableSince", "evidence": "Starting with Couchbase Server release 7.0.2, the Search service supports Server Groups/Rack zone aware replica placements." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for configuring index replicas or server-group-aware placement, consistent with the recurring fts/ privilege-documentation gap this batch's version-twin pages also flagged."
+  },
+  "cross_component_finding": "This page's body is a near-verbatim subset of fts-high-availability-for-search.md's own 'High Availability Indexes' and 'Server Groups/Rack zone awareness' sections (same batch) - but it ADDS one fact the parent overview page omits entirely: the 7.0.2 availableSince date for Server Group/rack-zone-aware replica placement ('Starting with Couchbase Server release 7.0.2, the Search service supports Server Groups/Rack zone aware replica placements.'). The parent page's own Server Groups section, by contrast, describes the mechanism in far more detail (optimum-distribution note, illustration, the auto-failover caveat) but never dates it. The two pages complement rather than simply duplicate each other.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all."
+}

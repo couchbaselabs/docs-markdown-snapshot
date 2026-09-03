@@ -1,0 +1,18 @@
+{
+  "page_id": "server/8.0/fts/fts-system-indexes",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-system-indexes.md",
+  "concepts": [
+    { "candidate_id": "fts:system-indexes", "label": "system:indexes / system:all_indexes - FTS indexes queryable from SQL++", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, exact-filename version twin already minted in server/7.2/fts/fts-system-indexes.json" },
+    { "candidate_id": "n1ql:searchfun-limitations", "label": "FTS/SQL++ search-function limitations (n1ql-language-reference/searchfun.adoc#limitations)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, seeAlso-only stub already present from the 7.2 twin" }
+  ],
+  "relations": [
+    { "subject": "fts:system-indexes", "predicate": "seeAlso", "object": "n1ql:searchfun-limitations", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "[Scenarios where FTS Index becomes ineligible to be queried by SQL++](#n1ql/pages/n1ql-language-reference/searchfun.adoc#limitations)" }
+  ],
+  "notable_absence": {
+    "predicate": "N/A - no content change",
+    "finding": "Body content is byte-identical to the 7.2 twin (front matter aside) - the only fts/-to-search/ migration signal found on five of this batch's six other twins is absent here; this page's SQL++-system-keyspace content has no search/ equivalent at all (confirmed: no mention of system:indexes or system:all_indexes anywhere in server/current/search/), so it appears to be genuinely surviving, un-duplicated content rather than a stale copy awaiting migration."
+  },
+  "cross_component_finding": "As the 7.2 twin already observed, this page bridges fts/ and n1ql/: it documents querying FTS indexes via the SQL++ system:indexes / system:all_indexes system keyspaces and links directly into the N1QL Search Functions limitations documentation. Still no shared promoted concept exists across the FTS and N1QL ontologies for system:indexes / system:all_indexes as of this round - the open question the 7.2 twin raised remains unresolved.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all; only server/ retains this old-generation page."
+}

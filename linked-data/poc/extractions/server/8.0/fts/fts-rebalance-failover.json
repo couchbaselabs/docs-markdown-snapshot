@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/fts/fts-rebalance-failover",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-rebalance-failover.md",
+  "concepts": [
+    { "candidate_id": "fts:index-partitioning", "label": "Index Partitioning (FTS)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id (server/7.2/fts/fts-index-partitions.json; also reused in round 22's set-advanced-settings.json and search-index-architecture.json). This page documents the redistribution of partitions across nodes during rebalance." },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page names DCP explicitly as how newly-assigned partitions are built on their new node" },
+    { "candidate_id": "fts:max-concurrent-partition-moves-per-node-param", "label": "maxConcurrentPartitionMovesPerNode (Search manager runtime option)", "registry_status": "minted", "reused_or_minted": "minted - a REST-configurable rebalance-concurrency tuning parameter with no existing registry term; named following the same '-param' convention as search:index-partitions-param/search:max-partitions-per-pindex-param" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id (1 prior mention); this page's own curl examples target this port" },
+    { "candidate_id": "fts:manual-failover-for-search", "label": "Manual failover for the Search Service (no auto-failover)", "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fts-high-availability-for-search.json earlier in this same batch, whose one-sentence caveat this page expands into a full step-by-step procedure" }
+  ],
+  "relations": [
+    { "subject": "fts:index-partitioning", "predicate": "usesProtocol", "object": "protocol:dcp", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesProtocol", "evidence": "The newly assigned index partitions are built utilizing the DCP feed on the new nodes." },
+    { "subject": "fts:index-partitioning", "predicate": "configurableVia", "object": "fts:max-concurrent-partition-moves-per-node-param", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate configurableVia", "evidence": "There is a configurable option [maxConcurrentPartitionMovesPerNode] to bring the additional concurrency to how we move/build partitions during a rebalance operation." },
+    { "subject": "fts:max-concurrent-partition-moves-per-node-param", "predicate": "usesPort", "object": "port:8094", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort", "evidence": "curl -XPUT -u <username>:<password> http://<nodeIP>:8094/api/managerOptions -d '\n{\"maxConcurrentPartitionMovesPerNode\":\"5\"}'" },
+    { "subject": "fts:index-partitioning", "predicate": "completes", "object": "fts:manual-failover-for-search", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate completes; the recovery rebalance finishes what the failover deliberately left unfinished (the failed-over node's reintegration)", "evidence": "4. Perform recover rebalance operation.\n5. Cluster is back to normal/pre-failover safe state." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege or Server RBAC role is documented for the /api/managerOptions endpoint shown in the curl examples, despite it being a mutating admin operation (setting maxConcurrentPartitionMovesPerNode) shown with basic-auth credentials in the URL - the same recurring fts/ privilege-documentation gap this batch's version-twin pages also flagged, now appearing on a first-contact page too."
+  },
+  "cross_component_finding": "This page is the operational detail behind two summary statements on fts-high-availability-for-search.md (same batch): (1) its 'administrator has to explicitly failover the nodes' caveat is spelled out here as the full five-step Failover-recovery procedure (fts:manual-failover-for-search), and (2) its bare mention of 'Number of replicas' as an availability factor is explained here mechanically - 'the search service does not wait for all replicas of an index to be built... since the replica partitions are not used for serving FTS query traffic' during rebalance, and 'Failover triggers replica partitions to become active' during an actual failure. The two pages were dispatched together in this batch specifically to be read against each other, and they do connect.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all, and no cloud/ page under any name was found documenting Search rebalance/failover mechanics in this dispatch."
+}

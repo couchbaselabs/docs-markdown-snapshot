@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/search-response-status",
+  "label": "Search Response status field",
+  "type": "the child object reporting whether a Search request succeeded, failed, or partially succeeded (status 200 with an errors object, if one or more index partitions failed to respond).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "A Full Text Search Response Object is composed of multiple child objects that provides important information.",
+    "If one or more of the index partitions failed to cater to the request, the user can see partial results. In such a case, the response status is shown as 200, and the errors object"
+  ],
+  "documented_at": "server/8.0/fts/fts-search-response-search-status-expect",
+  "relates_to_competency_question": "Can a Search query report partial success, and how does a client tell that apart from full success or full failure?"
+}

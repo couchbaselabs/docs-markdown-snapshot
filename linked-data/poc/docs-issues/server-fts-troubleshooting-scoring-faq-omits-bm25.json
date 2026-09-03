@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-troubleshooting-scoring-faq-omits-bm25",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "fts-troubleshooting.md's tf-idf scoreFn formula FAQ presents tf-idf as the Search Service's scoring mechanism, with no mention of bm25 or the Server 8.0+ index-level scoring-model choice (search:scoring-model) that lets an administrator pick between the two. tf-idf remains bleve's legacy default, so the FAQ isn't wrong, but it reads as though tf-idf is the only option - stale relative to search/set-advanced-settings.md, read in the same product tree one round earlier.",
+  "about": [
+    "server/8.0/fts/fts-troubleshooting",
+    "server/8.0/search/set-advanced-settings"
+  ],
+  "foundDuring": "round 23",
+  "status": "open"
+}

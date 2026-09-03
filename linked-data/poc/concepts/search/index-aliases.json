@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/index-aliases",
+  "label": "Search index alias",
+  "type": "an alias pointing to one or more Full Text Indexes (or other aliases), merging their results - comparable to a filesystem symbolic link. Enables zero-downtime index rebuild/upgrade by letting a client-facing alias be repointed at a freshly-built clone while the old index keeps serving traffic.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "fts:create-index-aliases"
+  ],
+  "aliases_note": "Folds the OLD-generation (server/7.2/fts/fts-create-index-aliases.json) id into the id this round's own reading of the identical UI walkthrough (fts-create-index-aliases.md, unchanged since 7.2 apart from one seeAlso retarget) confirmed is the same mechanism round 22 had already promoted from search/index-aliases.md under this spelling - a genuine cross-generation duplicate, unlike its five sibling index-lifecycle pages (clone/delete/edit/system-indexes), which this round confirmed have NO search/ equivalent at all.",
+  "evidence": [
+    "An index alias points to one or more Full Text Indexes or to additional aliases: its purpose is therefore somewhat comparable to that of a symbolic link in a filesystem.",
+    "Users can update/recreate/rebuild the indexes without interfering with the live systems by leveraging the index-alias feature."
+  ],
+  "mergesResultsFrom": "search:full-text-index",
+  "documented_at": "server/8.0/search/index-aliases",
+  "relates_to_competency_question": "Can a Search index be rebuilt or upgraded without downtime, and does that rely on the alias mechanism?"
+}

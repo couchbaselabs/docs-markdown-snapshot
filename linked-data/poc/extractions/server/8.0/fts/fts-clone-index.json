@@ -1,0 +1,18 @@
+{
+  "page_id": "server/8.0/fts/fts-clone-index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-clone-index.md",
+  "concepts": [
+    { "candidate_id": "fts:clone-index", "label": "Clone (Full-Text) Index - Web Console UI action", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, exact-filename version twin already minted in server/7.2/fts/fts-clone-index.json" },
+    { "candidate_id": "search:simple-search-ui", "label": "Run A Simple Search with the Web Console", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id (31 prior mentions); this page's own seeAlso link target" }
+  ],
+  "relations": [
+    { "subject": "fts:clone-index", "predicate": "seeAlso", "object": "search:simple-search-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "You can access the Full Text Indexes from the **Search** tab. Left-click on this to display the **Full Text Search** panel, which contains a tabular presentation of currently existing indexes, with a row for each index. (See [Searching from the UI](../search/simple-search-ui.md) for a full illustration.)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for cloning a full text index - the same gap the 7.2 twin already flagged, and it is still unaddressed in 8.0."
+  },
+  "cross_component_finding": "The ONLY substantive difference between this page and its server/7.2/fts/fts-clone-index.md twin (front matter aside) is the seeAlso link target: 7.2 pointed to fts-searching-from-the-UI.md (an fts/ page with no 8.0 twin at all per this round's brief), and 8.0 retargets the identical sentence to ../search/simple-search-ui.md. This is direct, textual confirmation that fts-searching-from-the-UI.md's content was migrated into search/simple-search-ui.md (read in round 22) rather than silently dropped - the clearest single piece of evidence this batch found for the fts/-to-search/ migration the round framing predicted.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all; only server/ retains this old-generation page. The meaningful comparison for this page is the 7.2-vs-8.0 version-twin check above, not a cross-product one."
+}

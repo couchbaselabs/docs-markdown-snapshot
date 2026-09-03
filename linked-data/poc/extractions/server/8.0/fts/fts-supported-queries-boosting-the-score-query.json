@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/fts/fts-supported-queries-boosting-the-score-query",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-supported-queries-boosting-the-score-query.md",
+  "concepts": [
+    { "candidate_id": "fts:fts-supported-queries-boosting-the-score-query", "label": "Boosting the Score Query (boost property)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - existing extraction-layer id (already present in server/8.0/search/search-request-params.json from round 22); refreshed here with this page's own evidence." },
+    { "candidate_id": "fts:query-string-boost-operator", "label": "Query-string boost operator (^N suffix)",
+      "registry_status": "minted", "reused_or_minted": "minted - a distinct query-string syntax surface for boosting (suffixing a clause with '^' and a number), separate from the JSON 'boost' request parameter that fts:fts-supported-queries-boosting-the-score-query already names; this page states the two are two ways to reach the same effect, so kept as two concepts linked by hasEquivalentEffectAs rather than folded into one id." }
+  ],
+  "relations": [
+    { "subject": "fts:query-string-boost-operator", "predicate": "hasEquivalentEffectAs", "object": "fts:fts-supported-queries-boosting-the-score-query",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasEquivalentEffectAs); the page states these are two surfaces for one outcome, which is exactly this predicate's documented shape",
+      "evidence": "you can specify the relative importance to a given clause by suffixing it with the `^` operator, followed by a number or by specifying the `boost` parameter with the number to boost the search." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page's second JSON example has a literal syntax error as written on the page itself - a stray backtick and comma inside the object: `{\"field\":\"city\", \"match\": \"glossop\", \"boost\":5\\`, \\`field\":\"title\", \"match\": \"glossop\"}` - which is not valid JSON (a bare backtick mid-object, and no enclosing array or second query-clause key). This looks like a docs source error rather than a deliberate syntax; flagging for the docs-issues pass rather than silently 'correcting' it in evidence."
+  },
+  "cross_component_finding": "n/a - no other component discussed on this page.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

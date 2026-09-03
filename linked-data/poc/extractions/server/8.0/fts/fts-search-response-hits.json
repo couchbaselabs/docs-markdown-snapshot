@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/fts/fts-search-response-hits",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-search-response-hits.md",
+  "concepts": [
+    { "candidate_id": "fts:search-response-hits", "label": "Hits (Search response field)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json; this page's entire body (heading through the 'Total_hits' subsection) is a verbatim subset of that page's own '## Hits' section, see cross_component_finding." },
+    { "candidate_id": "fts:search-response-object", "label": "Search Response Object (FTS)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json" }
+  ],
+  "relations": [
+    { "subject": "fts:search-response-object", "predicate": "hasInternalComponent", "object": "fts:search-response-hits",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasInternalComponent), same relation already recorded from fts-search-response.json, re-grounded here in this page's own text",
+      "evidence": "Hits return an array containing the matches for the executed query." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's text (title through the Total_hits subsection, including the identical 'Sample Locations Fragment' JSON example) is byte-for-byte the same as the '## Hits' section embedded inside fts-search-response.md - there is no new fact here that isn't already captured on the overview page. This confirms the round framing directly: the five fts-search-response*.md pages are one response-object concept split across files, not five independent topics."
+  },
+  "cross_component_finding": "n/a - this page's only relevant finding is the exact-duplication one recorded in notable_absence above; no other component or product is discussed on this page.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

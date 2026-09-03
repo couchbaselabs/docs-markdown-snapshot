@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-maxReplicasAllowed",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-maxReplicasAllowed.md",
+  "concepts": [
+    { "candidate_id": "fts:max-replicas-allowed", "label": "maxReplicasAllowed (Search Service maximum-index-partition-replica-count setting)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked registry-digest.py and candidate-evidence.py, nothing matched; this is a Search-service-internal ceiling on index PARTITION replicas, distinct from n1ql:alter-index (which moves/changes GSI replicas) and from search:full-text-index itself" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" }
+  ],
+  "relations": [
+    { "subject": "fts:max-replicas-allowed", "predicate": "hasDefaultValue", "object": "3",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue",
+      "evidence": "The default limit value of this is **3**." },
+    { "subject": "fts:max-replicas-allowed", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" }
+  ],
+  "notable_absence": {
+    "predicate": "hasEffect (descriptive, not a registry predicate)",
+    "finding": "The page is unusually thin even for this batch: a one-sentence definition ('the maximum number of copies of primary index partitions that the index can support'), a one-sentence default, and a curl example that sets it to 2 rather than illustrating a scenario for changing it - no guidance is given on why or when to raise or lower this limit, unlike e.g. ftsMemoryQuota's sizing guidance or maxFeedsPerDCPAgent's throughput/resource tradeoff."
+  }
+}

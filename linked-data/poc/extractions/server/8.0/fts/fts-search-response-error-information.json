@@ -1,0 +1,27 @@
+{
+  "page_id": "server/8.0/fts/fts-search-response-error-information",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-search-response-error-information.md",
+  "concepts": [
+    { "candidate_id": "fts:search-response-errors", "label": "Error Information (Search response field)",
+      "registry_status": "minted", "reused_or_minted": "minted here - the fourth of the response object's four documented components (hits/status/took minted already in this batch's fts-search-response.json; this page supplies the missing 'errors' one). Covers both the top-level HTTP response-status-code table and the partial-errors example showing errors nested inside the status object." },
+    { "candidate_id": "fts:search-response-object", "label": "Search Response Object (FTS)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json" },
+    { "candidate_id": "fts:search-response-status", "label": "Status (Search response field)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json; this page's 'errors' array is documented here as nested inside the status object." }
+  ],
+  "relations": [
+    { "subject": "fts:search-response-object", "predicate": "hasInternalComponent", "object": "fts:search-response-errors",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasInternalComponent)",
+      "evidence": "For all errors listed in the table below, the \"status\" in the search response always show \"fail\"." },
+    { "subject": "fts:search-response-status", "predicate": "hasInternalComponent", "object": "fts:search-response-errors",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasInternalComponent) - the errors array is a sub-field of status, not a sibling of it",
+      "evidence": "If one or more of the index partitions failed to cater to the request, the user can see partial results. In such a case, the response status is shown as 200 , and the errors object in the response will be a non-zero length value." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is a verbatim subset of fts-search-response.md's own '## Error Information' section (identical table, identical Partial Errors example and Table 2). Because that finding surfaced on the overview page after fts:search-response-errors had not yet been minted there, that earlier record (fts-search-response.json, written earlier in this same batch) does not carry the hasInternalComponent -> fts:search-response-errors relation this page establishes - the two records should be read together, and reconciliation should treat this as the canonical source for that relation rather than a gap in the earlier one."
+  },
+  "cross_component_finding": "n/a - see notable_absence for the one cross-file note relevant to this page; no other product/component discussed here.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

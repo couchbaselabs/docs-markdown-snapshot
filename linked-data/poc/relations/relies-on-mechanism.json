@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/relies-on-mechanism",
+  "label": "relies on mechanism",
+  "type": "the subject capability/procedure depends on the object concept as its underlying implementation. Distinct from dependsOnService (a service-to-service architectural dependency) - this is a feature depending on a specific, named mechanism, not a service.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Users can update/recreate/rebuild the indexes without interfering with the live systems by leveraging the index-alias feature.",
+    "This may be particularly useful when an index needs to be updated: to avoid downtime, while the current index remains in service, a clone of the current index can be created, modified, and tested."
+  ],
+  "note": "Both occurrences have the same subject, zero-downtime index upgrades, and two different object mechanisms (search:index-aliases, fts:clone-index) it composes - stated on two sibling pages (the HA overview and its zero-downtime-upgrades sub-page) independently.",
+  "documented_at": "server/8.0/fts/fts-high-availability-for-search",
+  "relates_to_competency_question": "What underlying mechanism does a higher-level capability (like zero-downtime index upgrades) actually depend on?"
+}

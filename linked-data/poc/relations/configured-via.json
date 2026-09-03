@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/configured-via",
+  "label": "configured via",
+  "type": "the subject setting's value is SET through the named REST/UI/env-var surface. Distinct from the promoted configurableVia, which is for the subject's BEHAVIOUR being influenced by the object setting or surface - configuredVia is about the mechanism used to assign a value, not about one setting affecting another's effect.",
+  "promoted": true,
+  "recurrence": 8,
+  "note": "Minted on the fts: advanced-settings family, all 8 occurrences pointing at fts:manager-options-endpoint.",
+  "documented_at": "server/8.0/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode",
+  "relates_to_competency_question": "Through which surface (REST endpoint, UI panel, environment variable) is a given setting's value actually assigned?"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/fts-supported-queries-docid-query",
+  "label": "Document ID query (Search)",
+  "type": "a query restricting results to a named set of document IDs, typically paired with a conjunction query to further restrict another query's output.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases_note": "This concept's own id had a same-round case-variant fork before promotion: the 7.2 tree's dangling seeAlso target used the page's own mixed-case heading spelling ('DocID query'), carried into fts:fts-supported-queries-DocID-query; this round's mint followed the family's all-lowercase convention. Rewritten via normalise-ids.py's ID_RENAMES (a pure punctuation/casing variant, not a defensible alternate name), not aliased - the same treatment as the eventing onX-handler slips.",
+  "evidence": [
+    "This is typically used in conjunction queries, to restrict the scope of other queries' output."
+  ],
+  "documented_at": "server/8.0/fts/fts-supported-queries-DocID-query",
+  "relates_to_competency_question": "Can a Search query restrict itself to a specific, named list of document IDs?"
+}

@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/fts/fts-flex",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-flex.md",
+  "concepts": [
+    { "candidate_id": "fts:fts-flex", "label": "FTS FLEX (FTS + SQL++ extended support for collections)",
+      "registry_status": "minted", "reused_or_minted": "minted - the page's own named feature title; concept-shaped (a named mechanism, not just this page's task)" },
+    { "candidate_id": "search:collection-aware-fts-index", "label": "Collection-aware FTS index",
+      "registry_status": "minted", "reused_or_minted": "minted - explicitly named and defined by the page itself" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:doc-config-object", "label": "doc_config object (Search index JSON)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:doc-config-mode-enum", "label": "doc_config mode (type_field | docid_prefix | docid_regexp | custom)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted, see cross_component_finding for a discrepancy this page raises against the promoted enum" },
+    { "candidate_id": "search:type-mapping", "label": "Type mapping (Search)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:use-index-fts-hint", "label": "USE INDEX(USING FTS) hint (SQL++)",
+      "registry_status": "minted", "reused_or_minted": "minted - a nameable SQL++ syntax element (query-time index hint routing a statement to a Search index), no existing concept covers it" }
+  ],
+  "relations": [
+    { "subject": "search:collection-aware-fts-index", "predicate": "isSubtypeOf", "object": "search:full-text-index",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "We will refer to FTS index definitions in this mode as collection-aware FTS indexes." },
+    { "subject": "fts:fts-flex", "predicate": "configuredVia", "object": "search:doc-config-mode-enum",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for a feature being toggled on via a specific enum-valued setting",
+      "evidence": "they will be able to do so by toggling the \"doc\\_config.mode\" to either of \\[\"scope.collection.type\\_field\", \"scope.collection.docid\\_prefix\"\\]." },
+    { "subject": "search:type-mapping", "predicate": "hasDefaultValue", "object": "scope_name.collection_name or scope_name.collection_name.type_name",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The type mappings will now take the form of either \"scope\\_name.collection\\_name\" (to index all documents within that scope.collection) or \"scope\\_name.collection\\_name.type\\_name\" (to index only those documents within that scope.collection that match \"type\" = \"type\\_name\")" },
+    { "subject": "n1ql:use-index-fts-hint", "predicate": "targets", "object": "search:full-text-index",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for a query hint routing execution to a specific index artifact",
+      "evidence": "FROM `travel-sample`.`inventory`.`landmark` t USE INDEX(USING FTS)" }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "n/a"
+  },
+  "cross_component_finding": "This page states doc_config.mode can be toggled to \"scope.collection.type_field\" or \"scope.collection.docid_prefix\" - values with a 'scope.collection.' prefix that do NOT appear among the promoted search:doc-config-mode-enum's four canonical values (type_field | docid_prefix | docid_regexp | custom, per the registry digest). This isn't necessarily a contradiction - the prefixed forms read as collection-aware VARIANTS of the same two base modes, layered on top of the plain enum by this FLEX feature - but it's a real extension the promoted enum's own description doesn't capture. Recorded here rather than silently merged into the plain enum values; the reconciliation pass should decide whether search:doc-config-mode-enum's value set needs a note about these collection-scoped variants or whether they're better modeled as a distinct FLEX-specific enum.",
+  "cross_product_finding": "n/a - this page is Search/N1QL cross-INTEGRATION content (the USE INDEX(USING FTS) SQL++ hint), not cross-PRODUCT (Capella vs Server) content."
+}

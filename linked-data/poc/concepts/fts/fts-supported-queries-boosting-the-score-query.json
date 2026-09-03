@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/fts-supported-queries-boosting-the-score-query",
+  "label": "Boosting the score (Search query modifier)",
+  "type": "assigning a clause a relative-importance weight via the `boost` request parameter or, in query-string syntax, the `^N` suffix operator (fts:query-string-boost-operator, hasEquivalentEffectAs this concept).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "you can specify the relative importance to a given clause by suffixing it with the ^ operator, followed by a number or by specifying the boost parameter with the number to boost",
+    "Experiment with boost to adjust this. For example, a query like \"name:margaret^2 hobby:singing\" would give twice as much weight to a match in the name field as the hobby field."
+  ],
+  "note": "The page's own second worked JSON example contains a literal syntax error in the source (an invalid trailing character) - see docs-issues/server-fts-boosting-example-invalid-json.",
+  "documented_at": "server/8.0/fts/fts-supported-queries-boosting-the-score-query",
+  "relates_to_competency_question": "Can a Search query weight one search clause more heavily than another, and is that expressed the same way in query-string syntax as in the request body?"
+}

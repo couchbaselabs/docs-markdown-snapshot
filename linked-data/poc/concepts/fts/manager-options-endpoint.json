@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/manager-options-endpoint",
+  "label": "/api/managerOptions REST endpoint",
+  "type": "the shared REST surface (port 8094) most fts: advanced-settings pages use to set a Search Service tuning parameter's value - a dual configuration surface alongside the CBFT_ENV_OPTIONS environment variable, which one page's own example shows setting the identical parameter.",
+  "promoted": true,
+  "recurrence": 8,
+  "evidence": [
+    "http://<username>:<password>@<ip>:8094/api/managerOptions"
+  ],
+  "usesPort": "port:8094",
+  "documented_at": "server/8.0/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode",
+  "relates_to_competency_question": "Is there one shared REST endpoint for setting the Search Service's individual advanced tuning parameters, or does each parameter have its own?"
+}

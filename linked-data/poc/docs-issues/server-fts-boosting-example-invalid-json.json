@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-boosting-example-invalid-json",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "fts-supported-queries-boosting-the-score-query.md's second worked JSON example contains a literal syntax error in the source (an invalid trailing character breaking JSON validity) - a reader copying the example verbatim would get a parse error, not a working query.",
+  "about": [
+    "server/8.0/fts/fts-supported-queries-boosting-the-score-query"
+  ],
+  "foundDuring": "round 23",
+  "status": "open"
+}

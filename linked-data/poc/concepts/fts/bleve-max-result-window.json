@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/bleve-max-result-window",
+  "label": "bleveMaxResultWindow setting",
+  "type": "the maximum from+size (pagination window) a Search query may request, at the bleve engine level. Default 10000; settable via the manager-options REST endpoint or the CBFT_ENV_OPTIONS environment variable.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The default value of the bleveMaxResultWindow setting is 10000.",
+    "export CBFT_ENV_OPTIONS=bleveMaxResultWindow=10000000"
+  ],
+  "hasDefaultValue": "10000",
+  "configuredVia": "fts:manager-options-endpoint",
+  "documented_at": "server/8.0/fts/fts-advanced-settings-bleveMaxResultWindow",
+  "relates_to_competency_question": "Is there a hard ceiling on how deep a Search query can paginate, and can that ceiling be raised?"
+}

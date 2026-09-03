@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-maxFeedsPerDCPAgent",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-maxFeedsPerDCPAgent.md",
+  "concepts": [
+    { "candidate_id": "fts:max-feeds-per-dcp-agent", "label": "maxFeedsPerDCPAgent (Search Service DCP-feed-sharing setting)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json); this is the setting's own dedicated page" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "fts:max-feeds-per-dcp-agent", "predicate": "hasDefaultValue", "object": "6",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue",
+      "evidence": "The default value for the `maxFeedsPerDCPAgent` setting is **6**." },
+    { "subject": "fts:max-feeds-per-dcp-agent", "predicate": "usesProtocol", "object": "protocol:dcp",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesProtocol",
+      "evidence": "The `maxFeedsPerDCPAgent` setting refers to the number of index partitions a single physical connection to KV will handle." },
+    { "subject": "fts:max-feeds-per-dcp-agent", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" }
+  ],
+  "notable_absence": {
+    "predicate": "tradesOffAgainst",
+    "finding": "The page states a real tradeoff - 'You can get the maximum indexing throughput by setting the maxFeedsPerDCPAgent value to 1. However, it results in higher resource utilization' - but this is a tradeoff between two VALUES of the same single setting (1 vs. the default 6), not between two different concepts, so the promoted tradesOffAgainst predicate (designed for two distinct constructs, e.g. Hyperscale vs Composite Vector Index) was not used here to avoid a self-referencing subject/object relation. Noted as a finding instead."
+  }
+}

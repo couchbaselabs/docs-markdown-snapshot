@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-bleveMaxResultWindow",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-bleveMaxResultWindow.md",
+  "concepts": [
+    { "candidate_id": "fts:bleve-max-result-window", "label": "bleveMaxResultWindow (Search Service maximum-query-result-window setting)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advanced-settings-CBFT-ENV-OPTIONS.json), which named this same setting in its own worked example; this is the setting's dedicated page" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" }
+  ],
+  "relations": [
+    { "subject": "fts:bleve-max-result-window", "predicate": "hasDefaultValue", "object": "10000",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue",
+      "evidence": "The default value of the `bleveMaxResultWindow` setting is **10000**." },
+    { "subject": "fts:bleve-max-result-window", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" http://username:password@<ip>:8094/api/managerOptions" }
+  ],
+  "notable_absence": {
+    "predicate": "hasEffect (descriptive, not a registry predicate)",
+    "finding": "The page's second paragraph is internally inconsistent about the setting's effect: it says bleveMaxResultWindow 'controls the maximum number of results a query can obtain, which helps limit the max results, thereby limiting the resource usage,' then immediately adds 'It may also increase' with no object stated for what increases (resource usage? the result count itself?) - the sentence is grammatically incomplete in the source page, not an extraction omission. Quoted verbatim rather than paraphrased into a relation, since no promoted predicate cleanly captures a self-contradictory/incomplete source sentence."
+  }
+}

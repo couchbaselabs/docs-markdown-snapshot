@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/fts/fts-highlighting",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-highlighting.md",
+  "concepts": [
+    {
+      "candidate_id": "search:highlight-object",
+      "label": "Highlight object (search request parameter: style, fields)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked candidate-evidence.py and registry-digest.py first (search:highlight-object, search:sort-object, search:highlighting all queried); nothing existing names this specific request object. Parallel in shape to search:sort-object (also minted from a search-request-params.md sub-object): a named JSON object within the Search request body, here with `style` and `fields` sub-fields."
+    },
+    {
+      "candidate_id": "search:highlighting-requires-store-and-term-vectors",
+      "label": "Highlighting requires term vectors and store enabled at the field level",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a stated execution constraint on search:highlight-object, parallel in shape to this batch's search:sort-field-must-be-indexed and to the existing index:missing-not-indexed pattern: a named constraint concept, not folded into the object it constrains."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:highlight-object",
+      "predicate": "hasExecutionConstraint",
+      "object": "search:highlighting-requires-store-and-term-vectors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasExecutionConstraint, same shape as this batch's fts-sorting.json relation.",
+      "evidence": "The pre-requisite includes term vectors and store options to be enabled at the field level to support Highlighting."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "The `style` field's own description names exactly two example values ('html' or 'ansi') but explicitly frames them as examples ('For example, \"html\"or \"ansi\"'), not a closed enum - so no usesEnum relation can be extracted with confidence that these are the only two valid highlighter styles, unlike search:quick-index-language (24-value enum) or search:scoring-algorithm-enum (2-value enum) elsewhere in this corpus, both of which are stated as closed sets on their own pages."
+  },
+  "cross_component_finding": "No cross-component finding on this page.",
+  "cross_product_finding": "Not among the round's 14 confirmed 7.2 exact-filename twins. Worth flagging for reconciliation: this batch's fts-quick-index.json (same round, same fts/ directory) independently documents a 'Support highlighting' Quick Editor field checkbox whose own text - 'For this option, you must select the Include in search result option' - is plausibly the UI-level mechanism that satisfies this page's 'term vectors and store options... enabled at the field level' prerequisite. Not asserted as a formal relation here because fts-quick-index.md is a different page and no sentence on fts-highlighting.md itself makes the connection explicit - noted as a same-batch candidate link for phase 2 rather than forced through evidence_source."
+}

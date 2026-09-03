@@ -1,0 +1,15 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-ftsMemoryQuota",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-ftsMemoryQuota.md",
+  "concepts": [
+    { "candidate_id": "fts:fts-memory-quota", "label": "ftsMemoryQuota (Search Service per-node memory quota setting)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json); this is the setting's own dedicated page" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "Unlike most of this batch's sibling pages, this page never states ftsMemoryQuota's own default numeric value - only sizing guidance ('set the ftsMemoryQuota to 80% or less of the total available RAM for that node' when Search is the only service on the node)."
+  },
+  "cross_component_finding": "This is the only page in the batch whose configuration surface is exclusively the Couchbase Server Web Console ('You can configure the `ftsMemoryQuota` from the Couchbase Server Web Console at any time', via Settings > Memory Quotas > Search field), with no REST/curl example at all - every other page in the batch shows a curl call against fts:manager-options-endpoint (port 8094) as its primary or only configuration method. This corroborates the maxConcurrentPartitionMovesPerNode page's own grouping of ftsMemoryQuota alongside maxFeedsPerDCPAgent and maxConcurrentPartitionMovesPerNode as a rebalance-throughput tuning trio, while showing ftsMemoryQuota is configured through a visibly different (UI-only) surface than its two partners in that trio."
+}

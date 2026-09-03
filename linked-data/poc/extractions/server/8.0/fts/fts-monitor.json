@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/fts/fts-monitor",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-monitor.md",
+  "concepts": [
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "fts:search-index-statistics", "label": "FTS index statistics (Dashboard/Search page charts)",
+      "registry_status": "minted", "reused_or_minted": "minted - the named family of per-index graphical statistics charts; no existing concept covers monitoring/statistics for the Search Service" },
+    { "candidate_id": "fts:runtime-query-monitoring-api", "label": "FTS runtime query monitoring REST API (/api/query, /api/query/index/{indexName})",
+      "registry_status": "minted", "reused_or_minted": "minted - a distinct REST surface for inspecting currently-running Search queries, separate from the Search index CRUD/query REST API" },
+    { "candidate_id": "fts:longerthan-parameter", "label": "longerThan (runtime query monitoring filter argument)",
+      "registry_status": "minted", "reused_or_minted": "minted - a real, nameable request parameter with its own duration-string syntax rules stated on the page" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "minted", "reused_or_minted": "reused within this batch - minted earlier from fts-architecture-ports-used.md" }
+  ],
+  "relations": [
+    { "subject": "service:search-service", "predicate": "exposesEndpoint", "object": "fts:runtime-query-monitoring-api",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for a service exposing a named REST endpoint family",
+      "evidence": "FTS provides new REST endpoints to supervise the runtime queries." },
+    { "subject": "fts:runtime-query-monitoring-api", "predicate": "hasParameter", "object": "fts:longerthan-parameter",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for an endpoint's own filter/query argument",
+      "evidence": "With this endpoint, the users can also use the longerThan argument to filter the queries running beyond the given span of time." },
+    { "subject": "fts:longerthan-parameter", "predicate": "hasDefaultValue", "object": "a signed duration string such as \"20s\", \"-1.5h\" or \"2h45m\"",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The longerThan duration string is a signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"20s\", \"-1.5h\" or \"2h45m\"." },
+    { "subject": "port:8094", "predicate": "usedBy", "object": "fts:runtime-query-monitoring-api",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer",
+      "evidence": "curl -XGET -H \"Content-Type: application/json\" -u <username>:<password> http://localhost:8094/api/query" },
+    { "subject": "service:search-service", "predicate": "exposesEndpoint", "object": "fts:search-index-statistics",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - reused from above",
+      "evidence": "Couchbase provides statistics for the FTS indexes on the Dashboard page and the Search page." }
+  ],
+  "notable_absence": {
+    "predicate": "hasMember",
+    "finding": "The page names 18 distinct statistics charts on the Search page alone (Search Query Latency, Search Docs, Search Disk Size, Search Disk Files, Search Memory Segments, Search Disk Segments, Search Mutations Remaining, Search Partitions, Search Partitions Expected, Search Records to Persist, Search Index Rate, Search Result Rate, Search Compaction Rate, Search Query Rate, Search Query Error Rate, Search Slow Queries, Search Query Timeout Rate, Term Searchers Start Rate), each with its own one-line definition, plus a 19th (Search Mutations Remaining) on the Dashboard page. These were deliberately NOT each minted as a separate concept - that would be 18-19 near-identical, low-reuse-potential metric-name concepts for one page - but the names and definitions are real, quotable content a future round or a coordinator may want; recorded here in full so nothing is silently dropped. Example verbatim definitions: 'Search Slow Queries: The number of queries that run slowly (Greater than 5 seconds to run) per second.' and 'Search Query Timeout Rate: The number of queries that timeout per second.'"
+  },
+  "cross_component_finding": "n/a - pure Search Service statistics/monitoring UI and REST reference, no interaction with other services on this page.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

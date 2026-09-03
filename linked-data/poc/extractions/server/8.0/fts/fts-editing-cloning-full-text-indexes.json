@@ -1,0 +1,20 @@
+{
+  "page_id": "server/8.0/fts/fts-editing-cloning-full-text-indexes",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-editing-cloning-full-text-indexes.md",
+  "concepts": [
+    { "candidate_id": "fts:editing-cloning-full-text-indexes", "label": "Editing / Cloning Full Text Indexes - overview page", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, exact-filename version twin already minted in server/7.2/fts/fts-editing-cloning-full-text-indexes.json" },
+    { "candidate_id": "fts:edit-index", "label": "Edit (Full-Text) Index - Web Console UI action", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, minted for the dedicated page fts-edit-index.md in this same batch; this overview page restates its content" },
+    { "candidate_id": "fts:clone-index", "label": "Clone (Full-Text) Index - Web Console UI action", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, minted for the dedicated page fts-clone-index.md in this same batch; this overview page restates its content" },
+    { "candidate_id": "search:simple-search-ui", "label": "Run A Simple Search with the Web Console", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id (31 prior mentions); this page's own seeAlso link target" }
+  ],
+  "relations": [
+    { "subject": "fts:editing-cloning-full-text-indexes", "predicate": "seeAlso", "object": "search:simple-search-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "Full Text Indexes, once created can be cloned, edited and/or deleted. They are accessed from the **Search** tab: left-click on this to display the **Full Text Search** panel, which contains a tabular presentation of currently existing indexes, with a row for each index.\n\n(See [Searching from the UI](../search/simple-search-ui.md) for a full illustration.)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "No privilege documented for editing or cloning an index - same gap as the dedicated fts-edit-index.md and fts-clone-index.md pages this overview duplicates, and the same gap the 7.2 twin already flagged."
+  },
+  "cross_component_finding": "This page's two body sections ('Editing Full Text Indexes' / 'Cloning Full Text Indexes') are near-verbatim restatements of the dedicated fts-edit-index.md and fts-clone-index.md pages in this same batch - same wording, same screenshot reference ('fts-index-management-ui.png'). Confirmed unchanged content duplication carried forward unaltered from the 7.2 twin, which noted the identical overlap. The only content change from 7.2 is, again, the seeAlso retarget to ../search/simple-search-ui.md.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all; only server/ retains this old-generation page."
+}

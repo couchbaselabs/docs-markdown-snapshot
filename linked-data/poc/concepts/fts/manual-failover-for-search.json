@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/manual-failover-for-search",
+  "label": "Manual failover for Search",
+  "type": "the Search Service has no auto-failover (stated as of Server 7.1, possibly stale in 8.0 docs - flagged as a docs-issue) - an administrator must explicitly fail over affected nodes.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "the administrator has to explicitly failover the nodes to ensure the seamless service for Search"
+  ],
+  "documented_at": "server/8.0/fts/fts-high-availability-for-search",
+  "relates_to_competency_question": "If a Search Service node goes down, does the cluster fail over automatically, or does an administrator have to act?"
+}

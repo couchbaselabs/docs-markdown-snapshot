@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-two rounds so far, eighteen of them deliberate escalations and
+automating it. Twenty-three rounds so far, nineteen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -333,6 +333,27 @@ four corrective passes over what they left behind:
     and gave it real content — precisely the outcome the check exists to guarantee,
     arriving at the one id it had assumed never would. Re-anchored, with the story
     kept in a comment.
+23. **45 pages, `server/8.0/fts/`** — round 1's oldest open question, finally
+    answered: "what looks like two overlapping documentation generations (fts/ vs
+    search/)." Checked before dispatch: the surviving 45 pages are a strict subset
+    of the 7.2 tree's ~150 filenames — the great majority of the old generation's
+    per-field, per-query-shape reference pages have been retired since 7.2. 147
+    relations, 0 evidence problems. Five of six version-twinned index-lifecycle
+    pages confirmed the hypothesis (genuinely un-duplicated, with textual proof one
+    retired page's content migrated straight into round 22's `search/`); the sixth
+    broke the pattern and turned out to be a real cross-generation duplicate — caught
+    only because each twin was read on its own terms rather than assumed to follow
+    its siblings. **A pattern holding for most of a filename family is not permission
+    to stop reading the rest of it.** For the second round running, the sharpest
+    same-tree overlap was one nobody flagged in advance
+    (`fts:search-consistency-level` against the already-promoted
+    `n1ql:scan-consistency` — near-identical wording, a structurally different,
+    separately-implemented mechanism) — enough to call the "check a near-miss's
+    relations before minting" discipline a settled habit rather than a one-off catch.
+    Also drew a clean line this project hadn't needed before: two batches
+    independently minting the identical spelling (`fts:search-response-object`) for
+    one real thing is corroboration, not a fork — confirmed with a five-second
+    string check rather than treated as something to reconcile.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -340,7 +361,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-782 pages total:
+827 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -478,6 +499,13 @@ time/cost projections and how they held up against the round-2 run's real number
   (add-synonym-source, create-synonym-collection-docs, synonyms-search, each with a
   Quick-Editor variant). Eight pages have a filename-identical Capella twin already
   extracted; the rest is first contact.
+- **45 more, `server/8.0/fts/`** — the surviving "old generation" Search
+  documentation: architecture (including scatter-gather and port usage), advanced
+  tuning settings (one page per setting), index lifecycle (clone/delete/edit/
+  aliases/system indexes) and high availability, index-creation via the Classic
+  Editor, scoring and sorting, the Search Response Object schema, and two more
+  query-type pages. 14 pages have an exact-filename version twin in
+  `server/7.2/fts/`; the rest is first contact.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1007,6 +1035,27 @@ from "still in `extractions/`."
   `search:create-quick-index`) — a known corpus defect this round was briefed to
   recognise and not propagate, deliberately left for a future namespace-coherence
   pass rather than fixed here.
+  Round 23 read `server/8.0/fts/` — round 1's oldest open question, "fts/ vs search/,
+  two overlapping generations?" — and promoted **19**, `fts:`'s first content
+  promotion since round 2. **Search Response Object** (5 members): the Search
+  Service's own JSON envelope, deliberately kept apart from `n1ql:query-response-object`
+  and, on an unflagged near-miss, from `n1ql:scan-consistency`
+  (`fts:search-consistency-level` — near-identical wording, a structurally different,
+  2-member FTS mechanism). `fts:manager-options-endpoint` (8) is the shared REST
+  surface most advanced-settings pages use. `search:index-aliases` (4) folds a real
+  cross-generation duplicate: five of six version-twinned index-lifecycle pages
+  confirmed this round's "old tree, no duplication" hypothesis, and the sixth
+  (`fts-create-index-aliases.md`) broke it, turning out to be a genuine duplicate of
+  round 22's `search/create-search-index-alias.md` — caught only because each twin
+  was read on its own terms rather than assumed to follow its siblings.
+  `search:sort-object`/`ctl-object` and `fts:index-replicas`/`index-partitioning`/
+  `clone-index`/`manual-failover-for-search` round out the individual promotions. The
+  `fts:fts-supported-queries-*` family — 15 members sitting in the extraction layer
+  since round 2, nobody having promoted the family itself — finally got a scheme plus
+  three members; `docid-query` folds a same-round case-variant fork
+  (`--variants` caught it; rewritten via `normalise-ids.py`, not aliased). Two
+  batches independently minted the identical spelling, `fts:search-response-object`,
+  for the same real thing — checked and confirmed as corroboration, not a fork.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1178,14 +1227,21 @@ from "still in `extractions/`."
   encoded in a named format (a storage engine's on-disk layout, a backup archive's own
   file format), distinct from `offersConfigurationChoice`. All three occurrences so
   far are read access; worth revisiting if a write-access case turns up.
+  Rounds 21 and 22 added none. Round 23 added **three**: `configuredVia` (8 — the
+  mechanism a setting's *value* is assigned through, e.g. a REST endpoint, distinct
+  from `configurableVia`'s "one setting influences another's behaviour");
+  `mergesResultsFrom` (2, minted in round 22 and promoted now on its second
+  attestation — an alias fanning a query to several indexes and merging results);
+  `relies-on-mechanism` (2 — a capability composing a named underlying mechanism,
+  stated independently on two sibling pages for zero-downtime index upgrades).
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **151
-  entries** as of round 22. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **158
+  entries** as of round 23. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -1326,6 +1382,16 @@ from "still in `extractions/`."
   type-mapping task its Capella twin does; ambiguous role wording for a global,
   multi-bucket alias endpoint; and an asymmetry between export (silent on whether
   alias definitions can be exported) and import (explicit that they can).
+  Round 23 added **7**: an invalid-JSON syntax error in a worked example; the same
+  port number claimed for two differently-named ports in the architecture
+  reference's own table (`needs-sme`); a scoring FAQ still presenting tf-idf as the
+  only mechanism, with no mention of the bm25 choice documented one round earlier in
+  the same tree; an auto-failover claim dated "as of Server 7.1" carried unchanged
+  through three further releases (`needs-sme`); a privilege-documentation gap on
+  every index-lifecycle task page, present since 7.2 and untouched across multiple
+  rounds' worth of RBAC corrections elsewhere; two adjacent broken/unrendered links
+  on sibling index-creation pages; and a grammatically incomplete effect-sentence
+  for one advanced setting.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1562,8 +1628,8 @@ from "still in `extractions/`."
   `--kind` restricts which duplications count), and — the part that decides
   anything — `--check` asks whether a *specific* id's evidence rescues it: **a quote
   present on its own copy and absent from every sibling copy** is an independent
-  attestation regardless of how similar the pages are. Corpus-wide: **99 clusters over
-  203 extracted pages, 311 discounted ids** (`shared` 182, `divergent` 115, `unchecked`
+  attestation regardless of how similar the pages are. Corpus-wide: **103 clusters over
+  211 extracted pages, 315 discounted ids** (`shared` 183, `divergent` 118, `unchecked`
   14), **105 below the bar** once the discount is upheld — up from 5 before round 17,
   because extracting a module that exists in three trees buys density and not
   independence, and round 18's `eventing:` module turned out to be the most heavily
@@ -1585,7 +1651,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 714 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 743 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2711,6 +2777,33 @@ namespace left in the corpus):**
      would. A red selftest after legitimate new content lands should be read as
      "check the anchor" before "check the code."
 
+**Round 23 (45 pages, `fts/` - round 1's oldest open question, finally checked):**
+
+103. **A pattern holding for most of a filename family is not permission to stop
+     reading the rest of it.** Five of six version-twinned pages confirmed this
+     round's own hypothesis (the old FTS doc generation's surviving pages are
+     genuinely un-duplicated by the new `search/` generation, with direct textual
+     proof one retired page's content migrated straight into round 22's `search/`);
+     the sixth broke the pattern and was a real cross-generation duplicate, caught
+     only because it was read on its own terms rather than assumed to follow its
+     siblings. A pairing is evidence about the specific page it pairs, never about
+     the sibling pages that happen to share a naming convention.
+104. **Naming a risk in advance catches that risk; checking as a default habit
+     catches the risks nobody thought to name.** For the second round running, the
+     sharpest same-tree overlap was one the dispatch briefing never flagged
+     (`fts:search-consistency-level` against the already-promoted
+     `n1ql:scan-consistency` - near-identical wording for a structurally different,
+     separately-implemented mechanism) - found only because checking a near-miss's
+     relations before minting had become a reflex. Two rounds is enough to call this
+     a settled property of the habit, not a coincidence.
+105. **Two batches minting the identical spelling for one real thing is
+     corroboration, not a fork, and a five-second check tells the two apart.** A
+     self-fork is two *different* names for one mechanism (rounds 19-22); this
+     round's `fts:search-response-object`, minted independently by two batches under
+     the exact same spelling, is the opposite failure mode's absence. Confirming the
+     string match before treating a same-round double-mint as a problem avoids
+     inventing a fold where the two batches had already agreed.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -2803,7 +2896,7 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 277 have now been read.
+  `server/8.0/` is ~1,033 pages of which 322 have now been read.
 - **The pairing strategy has two payoff axes, and round 18 is the case where they
   split — read both, every time, rather than assuming one implies the other.**
   Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*
@@ -2836,20 +2929,24 @@ document.
   **up to 261**, round 21 (28 more pages, into a namespace with almost no promoted
   members to draw down against) took it **up to** roughly the same level after its own
   8 promotions, and round 22 (54 pages into `search:`, the largest unread namespace
-  left) took it **up to 302** — the expected direction, not a regression: dense new
-  pages mint far more candidates than a round's own promotions retire, and the
-  backlog is a function of the corpus, not a measure of how well a round went. Three
-  numbers should be read beside it from now on, because a raw count of candidates at
-  ≥2 no longer means what it did: **311 of the corpus's ids rest partly on a shared
-  source and 105 fall below the bar once that is discounted** (`shared-source.py`),
-  **77 local names are forked across namespaces, 26 of which would cross the bar only
-  if merged** (`recurrence.py --forks`), and — round 18's addition, with no instrument
-  yet — an unknown number of **same-prefix synonym forks**, where two agents name one
-  mechanism through two different predicates and mint two ids sharing a prefix and no
-  substring; four confirmed instances in round 18, four more of a related but distinct
-  shape in round 19, and a third variant again in round 22 (a `seeAlso` stub minted
-  for an unread page, disagreeing with the concept minted once the page was actually
-  read). Shadow prefixes, the other measure of the same debt, are at
+  left) took it **up to 302**, and round 23 (45 pages into `fts:`, `fts:`'s first
+  content promotions since round 2) took it **up to 311** — the expected direction,
+  not a regression: dense new pages mint far more candidates than a round's own
+  promotions retire, and the backlog is a function of the corpus, not a measure of
+  how well a round went. Three numbers should be read beside it from now on, because
+  a raw count of candidates at ≥2 no longer means what it did: **315 of the corpus's
+  ids rest partly on a shared source and 105 fall below the bar once that is
+  discounted** (`shared-source.py`), **78 local names are forked across namespaces,
+  26 of which would cross the bar only if merged** (`recurrence.py --forks`), and —
+  round 18's addition, with no instrument yet — an unknown number of **same-prefix
+  synonym forks**, where two agents name one mechanism through two different
+  predicates and mint two ids sharing a prefix and no substring; four confirmed
+  instances in round 18, four more of a related but distinct shape in round 19, and a
+  third variant again in round 22 (a `seeAlso` stub minted for an unread page,
+  disagreeing with the concept minted once the page was actually read; round 23 found
+  a fourth case, the mirror image — two batches converging on the *identical*
+  spelling for one thing, which is corroboration rather than a fork, confirmed with a
+  string check rather than assumed). Shadow prefixes, the other measure of the same debt, are at
   **55 holding 210 ids** — which is *up* from the 43 reported in rounds 14 and 15, with
   no change to the corpus: those two figures were measured with the census bug in
   place, and 55 is the first honest count. Treat it as the new baseline, not as a
@@ -2873,12 +2970,14 @@ document.
   same-prefix synonym forks as a side effect of reading the module, but did not run a
   coherence pass over it — the ~10 individual Advanced Keyspace Accessor operations
   still have inconsistent per-operation naming beyond the three folded that round, and
-  are the obvious next member to check); `search:` (round 22 read the whole module and
-  promoted 37 members, but most of the namespace's ~60 pre-existing extraction-layer
-  members - and most of this round's own remaining mints - are page-shaped ids
-  (`search:create-child-field`, `search:create-quick-index`), deliberately left
-  unfixed per this round's own briefing; the obvious next coherence-pass target, now
-  with a much larger and better-understood member set to sort); then `n1ql:`, largest
+  are the obvious next member to check); `search:`/`fts:` (rounds 22-23 read both
+  whole modules and promoted 37 + 19 members between them, but most of `search:`'s
+  ~60 pre-existing extraction-layer members - and most of both rounds' own remaining
+  mints - are page-shaped ids (`search:create-child-field`,
+  `search:create-quick-index`), deliberately left unfixed per each round's own
+  briefing; the obvious next coherence-pass target, now with a much larger and
+  better-understood member set to sort, and with round 1's fts/search
+  doc-generation question finally settled as background); then `n1ql:`, largest
   and the one the metric fix most changed.
   Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,

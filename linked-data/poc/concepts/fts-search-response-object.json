@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts-search-response-object",
+  "label": "Search Response Object: status/hits/errors/took",
+  "type": "scheme. The Search Service's own JSON response envelope - deliberately NOT merged with the already-promoted n1ql:query-response-object (the Query service's own, structurally different envelope); no page states the two are the same shape. Members promoted separately.",
+  "promoted": true,
+  "members": [
+    "fts:search-response-object",
+    "fts:search-response-status",
+    "fts:search-response-hits",
+    "fts:search-response-took"
+  ],
+  "note": "A fifth member, fts:search-response-errors, is real (a status:fail/partial-results object) but sits at 1 file, below the bar. Five source pages (one overview, four sub-pages) turned out to be one object described piecemeal - the four sub-pages are near-verbatim subsets of the overview page's own sections, confirmed by two independently-dispatched batches converging on the identical id spelling for the umbrella concept without seeing each other's work.",
+  "relates_to_competency_question": "What does the Search Service's own response JSON actually contain, and is it the same shape as the Query service's?"
+}

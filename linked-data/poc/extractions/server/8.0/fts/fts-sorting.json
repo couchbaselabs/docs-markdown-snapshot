@@ -1,0 +1,81 @@
+{
+  "page_id": "server/8.0/fts/fts-sorting",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-sorting.md",
+  "concepts": [
+    {
+      "candidate_id": "search:sort-object",
+      "label": "Sort Object",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, minted on server/8.0/search/search-request-params.json ('no existing id for this object'). This page is the fts/ (old-generation) full account of the exact same `sort` field: string array shorthand (field name / `_id` / `_score`, `-` prefix for descending), object form (`by`/`field`/`missing`/`mode`/`type`), and mixed string+object arrays. Reused rather than re-minted, per this round's near-miss-check instructions."
+    },
+    {
+      "candidate_id": "search:sort-field-must-be-indexed",
+      "label": "Sort field must be indexed (dynamically or specifically) to sort on it",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a stated execution constraint on search:sort-object, parallel in shape to index:missing-not-indexed (a named constraint object, not the sort object itself). No existing registry id names this constraint."
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (standard editor)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, linked from this page's example prerequisite ('For instructions on creating a default Full Text Index by means of the Couchbase Web Console, see Creating Index from UI')."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasDefaultValue",
+      "object": "score, descending",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue, corroborating the same default already recorded on search/search-request-params.json and on this batch's fts-scoring.json.",
+      "evidence": "FTS sorting is sorted by descending order of relevance. It can , however, be customized to sort by different fields, depending on the application."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasDefaultValue",
+      "object": "last (missing values sort after other results)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue, a second, distinct default value on the same sort-object concept (the `missing` sub-field).",
+      "evidence": "The value of `missing` can be `first`, in which case results with missing values appear _before_ other results; or `last` (the default), in which case they appear _after_."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasDefaultValue",
+      "object": "undefined but deterministic (mode)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue, a third distinct default on the same concept (the `mode` sub-field for multi-valued index fields).",
+      "evidence": "The `default` order is undefined but deterministic, allowing the paging of results from `from (_offset_)`, with reliable ordering."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasExecutionConstraint",
+      "object": "search:sort-field-must-be-indexed",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasExecutionConstraint.",
+      "evidence": "Any document-field may be specified to hold the value on which sorting is to be based, provided that the field has been indexed in some way, whether dynamically or specifically."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "seeAlso",
+      "object": "manage:install-sample-buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "For information on loading sample buckets, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md)."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "For instructions on creating a default Full Text Index by means of the Couchbase Web Console, see [Creating Index from UI](../search/create-search-index-ui.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "The page's own 'Sorting with Numeric' section promises a distinct numeric sort-value type ('You can specify the value of the `sort` field as a numeric type') but its example is identical in shape to the preceding object-sort example (an object with `by`/`field`/`mode`/`missing`/`type: number`) - there is no actual bare-numeric example anywhere on the page, so the section's own claim that `sort` accepts 'strings, objects, or numeric' as three distinct value shapes is not demonstrated for the third shape. Recorded as a gap between what the page claims and what it shows, not silently corrected."
+  },
+  "cross_component_finding": "No cross-component finding on this page - the `sort` mechanism it describes stays entirely inside the Search service's query response ordering.",
+  "cross_product_finding": "Not among the round's 14 confirmed 7.2 exact-filename twins, but this is squarely the fts/ (old-generation) counterpart of search:sort-object, which was minted only from server/8.0/search/search-request-params.json ('no existing id for this object') in an earlier round. Reusing it here, with fresh evidence for three separate hasDefaultValue facts (score/descending, missing/last, mode/undefined-but-deterministic), is exactly the kind of same-tree overlap this round is checking extraction agents catch without being told the id in advance - the round's context file flagged only search:scoring-model/scoring-algorithm-enum and search:scatter-gather/coordinator-node explicitly as near-misses for this batch; search:sort-object was not pre-flagged, and was found only by running candidate-evidence.py / registry-digest.py before minting."
+}

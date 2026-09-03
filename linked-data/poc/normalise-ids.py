@@ -103,6 +103,11 @@ ID_RENAMES = {
     "eventing:ondelete-handler": "eventing:on-delete-handler",
     # Round 18: same onX-handler kebab-boundary slip, on the third handler.
     "eventing:ondeploy-handler": "eventing:on-deploy-handler",
+    # Round 23: a pure case variant. Round 7.2's fts-introduction.md named this
+    # query type as a dangling seeAlso target with the page's own mixed-case
+    # heading ("DocID query") carried straight into the id; every promoted
+    # sibling in the fts:fts-supported-queries-* family is all-lowercase kebab.
+    "fts:fts-supported-queries-DocID-query": "fts:fts-supported-queries-docid-query",
     # --- Round 14. The vector-index: namespace named an axis it did not hold. ---
     # Five members belonged to axes the registry had already settled, and are
     # evacuated to them by exact match; the rest keep their local names and move

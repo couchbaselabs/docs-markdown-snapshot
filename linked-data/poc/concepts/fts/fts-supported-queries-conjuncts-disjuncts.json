@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/fts-supported-queries-conjuncts-disjuncts",
+  "label": "Conjunction / disjunction query (Search)",
+  "type": "an AND/OR compound query over sub-queries. The `+` (MUST) operator in query-string syntax is the conjunction shorthand.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Using conjunction (AND) queries can help make the search faster. In a query string, you can do this by using the + operator (MUST).",
+    "You must use compound query arrays to run a boolean query, but you can use a compound query array outside of a boolean query."
+  ],
+  "documented_at": "server/8.0/fts/fts-troubleshooting",
+  "relates_to_competency_question": "Can a Search query require that a document match several sub-queries at once, and what is the query-string shorthand for that?"
+}

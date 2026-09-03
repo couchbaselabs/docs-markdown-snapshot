@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/fts/fts-architecture-ports-used",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-architecture-ports-used.md",
+  "concepts": [
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:scatter-gather", "label": "Scatter-gather (Search execution model)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "minted", "reused_or_minted": "minted - following the established port:NNNN pattern (port:18091 etc.); NOTE the page lists this same number for two distinct named ports, see notable_absence" },
+    { "candidate_id": "port:18094", "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "minted", "reused_or_minted": "minted - following the established port:NNNN pattern; same duplicate-number caveat as port:8094" }
+  ],
+  "relations": [
+    { "subject": "port:8094", "predicate": "usedBy", "object": "service:search-service",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer (usedBy is a plain component-to-service predicate seen elsewhere in port records)",
+      "evidence": "fts_http_port / fts_ssl_port | 8094 / 18094 | Search Service REST/HTTP traffic" },
+    { "subject": "port:8094", "predicate": "usedBy", "object": "search:scatter-gather",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer",
+      "evidence": "fts_grpc_port / fts_grpc_ssl_port | 8094 / 18094 | Search Service gRPC port used for [scatter-gather](fts-architecture-scatter-gather.md) operations between FTS nodes" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDistinctPortNumber",
+    "finding": "The page's own port table gives IDENTICAL default numbers (8094 unencrypted / 18094 encrypted) for two DIFFERENT named ports: fts_http_port/fts_ssl_port (REST/HTTP, client-to-node) and fts_grpc_port/fts_grpc_ssl_port (gRPC, node-to-node, used for scatter-gather). A single port number cannot serve two different listener roles on the same node - this reads as a probable docs table error (the real fts_grpc_port is very likely a different number, distinct from the HTTP port), not a deliberate statement that FTS multiplexes both protocols on one port. Flagging for the docs-issues pass rather than resolving it myself, since extraction is quote-only and I cannot verify the correct number from this page alone."
+  },
+  "cross_component_finding": "This is the first page in the batch to state explicitly, in prose, that the gRPC port is 'used for [scatter-gather] operations between FTS nodes' and marks it Node-to-node only (not client-to-node, not XDCR) - a concrete transport detail neither fts-architecture.md nor fts-architecture-scatter-gather.md state (they describe the scatter/gather behavior but never name gRPC or a port number). server/8.0/search/search-index-architecture.json (round 22) does name gRPC as the scatter-gather transport but without a port number, so this page is the only one across both generations to pin down the actual port for the mechanism.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

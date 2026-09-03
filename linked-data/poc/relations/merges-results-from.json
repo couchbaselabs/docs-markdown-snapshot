@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/merges-results-from",
+  "label": "merges results from",
+  "type": "the subject alias fans a query out to each of the object indexes and merges their results into one result set. Minted for search:index-aliases, round 22; promoted this round on its second independent attestation.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The Search Service runs the Search query on each Search index in the alias, and returns a merged set of results.",
+    "An index alias points to one or more Full Text Indexes or to additional aliases."
+  ],
+  "documented_at": "server/8.0/search/index-aliases",
+  "relates_to_competency_question": "When a query targets an alias spanning several indexes, does it run against each and merge the results, or pick one?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/search-response-took",
+  "label": "Search Response took field",
+  "type": "the child object reporting query execution time in nanoseconds.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The time taken (in nanoseconds) to complete the execution of a query."
+  ],
+  "documented_at": "server/8.0/fts/fts-search-response-took",
+  "relates_to_competency_question": "Does a Search response report how long the query took to execute, and in what unit?"
+}

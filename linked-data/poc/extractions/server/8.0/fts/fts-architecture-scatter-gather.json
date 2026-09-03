@@ -1,0 +1,27 @@
+{
+  "page_id": "server/8.0/fts/fts-architecture-scatter-gather",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-architecture-scatter-gather.md",
+  "concepts": [
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:scatter-gather", "label": "Scatter-gather (Search execution model)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:coordinator-node", "label": "coordinator (Search Service node acting as request coordinator)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "service:search-service", "predicate": "usesExecutionModel", "object": "search:scatter-gather",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The following illustration depicts this _scatter-gather_ execution of a search request:" },
+    { "subject": "search:coordinator-node", "predicate": "assumedPerRequest", "object": "service:search-service",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer (used on search:coordinator-node's own promotion source page, but not itself among the 104 promoted predicates)",
+      "evidence": "When one particular Search Service node is chosen for a search request, it assumes the role of _coordinator_; and is thereby responsible for applying the search request to the other Search Service nodes and for gathering and returning results." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "No mention of gRPC as the scatter transport, unlike server/8.0/search/search-index-architecture.json which states the coordinator uses gRPC to scatter to other partitions. This older page describes the same mechanism one layer more abstractly and never names the wire protocol."
+  },
+  "cross_component_finding": "This is the exact confirmation case the round context predicted: this page's own text - 'All available Search Service nodes in the cluster are individually searchable. When one particular Search Service node is chosen for a search request, it assumes the role of _coordinator_...' plus 'The following illustration depicts this _scatter-gather_ execution of a search request' - is reproduced verbatim (including the same image asset searchServiceOperation.png) in fts-architecture.md (this round's own batch) and in near-identical wording in server/8.0/search/search-index-architecture.json (round 22, NEW generation). All three pages describe the identical mechanism; this page is the clearest and most explicit of the three since it uses the literal term 'scatter-gather' in prose (most others use it only as an image caption or paraphrase). No contradiction found - reused search:scatter-gather and search:coordinator-node rather than minting anything new.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

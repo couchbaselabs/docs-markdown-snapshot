@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/index-replicas",
+  "label": "Search index replicas",
+  "type": "extra copies of a Search index's partitions for high availability. NOT automatically enabled (0 by default). The replica count can be changed without rebuilding the index's primary partitions or interrupting live traffic.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Replica for the index is not automatically enabled.",
+    "They could also update the replica count without rebuilding the primary partitions or live traffic for an existing index."
+  ],
+  "hasDefaultValue": "not automatically enabled (0 replicas)",
+  "doesNotAffect": "search:full-text-index (when replica count changes)",
+  "documented_at": "server/8.0/fts/fts-high-availability-for-search-high-availability-indexes",
+  "relates_to_competency_question": "Does a Search index get redundant copies of its partitions by default, and can that be changed without a rebuild?"
+}

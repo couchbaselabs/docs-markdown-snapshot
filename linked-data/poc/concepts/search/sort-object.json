@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/sort-object",
+  "label": "Search result sort configuration",
+  "type": "the object controlling result ordering for a Search query. Default: score, descending. Missing sort-field values default to sorting last, unless explicitly set to sort first.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "FTS sorting is sorted by descending order of relevance. It can, however, be customized to sort by different fields, depending on the application.",
+    "The value of missing can be first, in which case results with missing values appear before other results; or last (the default), in which case they appear after."
+  ],
+  "hasDefaultValue": [
+    "score, descending",
+    "last (for missing values)"
+  ],
+  "documented_at": "server/8.0/fts/fts-sorting",
+  "relates_to_competency_question": "How does a Search query order its results by default, and what happens to documents missing the sort field?"
+}

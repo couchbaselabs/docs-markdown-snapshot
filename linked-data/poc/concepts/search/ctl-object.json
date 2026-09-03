@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/ctl-object",
+  "label": "ctl (consistency/control) object",
+  "type": "the Search request parameter controlling result consistency level (fts:search-consistency-level) and, since Server 8.0, which replica partition serves a query - the latter requiring the bm25 scoring algorithm (search:scoring-model).",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The consistency level is a parameter that either takes an empty string indicating the unbounded (not_bounded) consistency or at_plus indicating the bounded consistency.",
+    "As of Couchbase Server version 8.0 and later, you can also use it to control which replica partition the Search Service uses to find results for a query.",
+    "You can only use global_scoring if you're using the bm25 scoring algorithm."
+  ],
+  "usesEnum": "fts:search-consistency-level",
+  "availableSince": "version:server-8-0",
+  "documented_at": "server/8.0/search/search-request-params",
+  "relates_to_competency_question": "Can a Search request control consistency and replica routing, and did that capability change in Server 8.0?"
+}

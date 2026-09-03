@@ -1,0 +1,26 @@
+{
+  "page_id": "server/8.0/fts/fts-advanced-settings-disable-file-transfer-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advanced-settings-disable-file-transfer-rebalance.md",
+  "concepts": [
+    { "candidate_id": "fts:disable-file-transfer-rebalance", "label": "disableFileTransferRebalance (Search Service rebalance-mode setting)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked registry-digest.py and candidate-evidence.py, nothing matched; controls whether FTS index partitions are copied between nodes during rebalance versus regenerated from scratch" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" }
+  ],
+  "relations": [
+    { "subject": "fts:disable-file-transfer-rebalance", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused - minted earlier in this batch (fts-advance-settings-maxConcurrentPartitionMovesPerNode.json)",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" \\\nhttp://<Administrator>:<pwd>@<node>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "curl -XPUT -H \"Content-type:application/json\" \\\nhttp://<Administrator>:<pwd>@<node>:8094/api/managerOptions" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page describes file-transfer rebalance as the normal/default behavior ('FTS index partitions are copied between nodes instead of regenerating them from scratch, to facilitate faster rebalancing') and shows how to disable it, strongly implying disableFileTransferRebalance defaults to false, but it never states 'the default value of disableFileTransferRebalance is false' as a literal sentence, so no hasDefaultValue relation is captured here per the evidence-gate rule against reconstructing values from implication."
+  },
+  "cross_component_finding": "Thematically this setting belongs with the rebalance-tuning trio named explicitly on fts-advance-settings-maxConcurrentPartitionMovesPerNode.md (maxConcurrentPartitionMovesPerNode, maxFeedsPerDCPAgent, ftsMemoryQuota) - all four settings affect rebalance behavior or throughput - but this page never mentions any of the other three, and none of the other three mention disableFileTransferRebalance. No page states the four-way grouping explicitly, so per this round's brief this is recorded only as an observed theme, not as a minted umbrella concept or a forced relation between the pages."
+}

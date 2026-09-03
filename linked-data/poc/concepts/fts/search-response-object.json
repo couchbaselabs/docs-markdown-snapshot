@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/search-response-object",
+  "label": "Search Response Object",
+  "type": "the JSON envelope a Search Service query request returns. Composed of status/hits/errors/took child objects.",
+  "promoted": true,
+  "recurrence": 6,
+  "evidence": [
+    "A Full Text Search Response Object is composed of multiple child objects that provides important information."
+  ],
+  "hasInternalComponent": [
+    "fts:search-response-status",
+    "fts:search-response-hits",
+    "fts:search-response-took"
+  ],
+  "documented_at": "server/8.0/fts/fts-search-response",
+  "relates_to_competency_question": "What top-level shape does a Search query's JSON response have?"
+}

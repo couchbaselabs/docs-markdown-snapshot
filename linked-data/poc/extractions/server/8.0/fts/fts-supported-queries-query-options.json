@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/fts/fts-supported-queries-query-options",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-supported-queries-query-options.md",
+  "concepts": [
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search request parameters",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (already reused repeatedly elsewhere in this round for search:scoring-model, search:sort-object). This entire page is two bullet links pointing at that one page, for Boosting and Field Scoping respectively - genuinely thin/near-empty, per this round's instructions for such pages."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:search-request-params",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link (self-referential in the sense that both this page's bullets target the same page; recorded once per bullet below for the distinct anchor text).",
+      "evidence": "* [Boosting](../search/search-request-params.md)"
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso, structural Markdown link.",
+      "evidence": "* [Field Scoping](../search/search-request-params.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "everything",
+    "finding": "This page has no content beyond two bullet-point links; no prose, no example, no evidence of what 'Boosting' or 'Field Scoping' actually mean beyond their link text. It is, in this Markdown snapshot, essentially a stub/placeholder page titled 'Query Options' that never explains a query option itself - it only points elsewhere. Per this round's instructions for thin reference pages, concepts/relations arrays are kept minimal rather than forced."
+  },
+  "cross_component_finding": "No cross-component finding on this page.",
+  "cross_product_finding": "IMPORTANT DISAMBIGUATION for reconciliation: this page's 'Boosting' link points at search/search-request-params.md, NOT at fts:fts-supported-queries-boosting-the-score-query (an already-existing member of the fts:fts-supported-queries-<kebab-name> query-type family named in this round's registry-state briefing). Despite the near-identical name, this page is not that query type's twin or duplicate - it is a request-parameter index entry (boosting a match's score via a `boost` field) rather than the BOOLEAN query-shape that fts-supported-queries-boosting-the-score-query documents. No relation was minted between the two to avoid conflating a request parameter with a query-clause type; flagged here explicitly so phase 2 does not merge them on name similarity alone."
+}

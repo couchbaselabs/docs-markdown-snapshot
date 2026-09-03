@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts-supported-queries",
+  "label": "FTS supported query types",
+  "type": "scheme, first promoted this round despite 16+ extraction-layer members accumulated since round 2 - a real backlog item nobody had crossed the bar on before now. Each query type is filed as fts:fts-supported-queries-<kebab-name>; members promoted separately as they clear the bar.",
+  "promoted": true,
+  "members": [
+    "fts:fts-supported-queries-conjuncts-disjuncts",
+    "fts:fts-supported-queries-boosting-the-score-query",
+    "fts:fts-supported-queries-docid-query"
+  ],
+  "note": "12 further members remain unpromoted at 1 file each (match, match-phrase, boolean-field-query, date-range, fuzzy, geopoint-spatial, ip-range, numeric-range, prefix-query, query-string-query, regexp, wildcard, term-query, term-range) - real query types, just not yet independently attested a second time. Not a page-id defect like search:'s create-*/set-*/child-field-* ids: each of these names an actual SQL++-adjacent query-clause type, not a page's own task.",
+  "relates_to_competency_question": "What are all the query types a Search index request can express?"
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/fts/fts-search-response-took",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-search-response-took.md",
+  "concepts": [
+    { "candidate_id": "fts:search-response-took", "label": "Took (Search response field)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json; this page is the dedicated, one-sentence home for the field." },
+    { "candidate_id": "fts:search-response-object", "label": "Search Response Object (FTS)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json" }
+  ],
+  "relations": [
+    { "subject": "fts:search-response-object", "predicate": "hasInternalComponent", "object": "fts:search-response-took",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasInternalComponent)",
+      "evidence": "The time taken (in nanoseconds) to complete the execution of a query." }
+  ],
+  "notable_absence": {
+    "predicate": "hasUnit",
+    "finding": "The page states 'took' is measured in nanoseconds but the field is never given an explicit unit-typed relation anywhere in this family of pages beyond the prose 'in nanoseconds' - there is no dedicated hasUnit-style predicate in the registry for this, and this page is thin enough (one sentence plus a three-line example) that minting one from a single occurrence would be premature; noting the gap rather than forcing a predicate. This is the smallest page in the batch: title, one definitional sentence, and a three-line JSON snippet ('total_hits', 'max_score', 'took') that is itself the identical example reproduced under the 'Took' heading of fts-search-response.md."
+  },
+  "cross_component_finding": "n/a - no other component or product discussed on this page.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

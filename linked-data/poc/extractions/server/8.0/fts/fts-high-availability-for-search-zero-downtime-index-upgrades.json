@@ -1,0 +1,19 @@
+{
+  "page_id": "server/8.0/fts/fts-high-availability-for-search-zero-downtime-index-upgrades",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-high-availability-for-search-zero-downtime-index-upgrades.md",
+  "concepts": [
+    { "candidate_id": "search:index-aliases", "label": "Create Search Index Aliases", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id (round 22); also reused in fts-high-availability-for-search.json earlier in this same batch" },
+    { "candidate_id": "fts:clone-index", "label": "Clone (Full-Text) Index - Web Console UI action", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id, minted for fts-clone-index.md in this same batch" }
+  ],
+  "relations": [
+    { "subject": "fts:fts-high-availability-for-search", "predicate": "reliesOnMechanism", "object": "search:index-aliases", "registry_status": "minted", "reused_or_minted_predicate": "reused - minted in fts-high-availability-for-search.json earlier in this same batch; this page independently restates the identical fact with its own quote", "evidence": "Users can update/recreate/rebuild the indexes without interfering with the live systems by leveraging the index-alias feature." },
+    { "subject": "fts:fts-high-availability-for-search", "predicate": "reliesOnMechanism", "object": "fts:clone-index", "registry_status": "minted", "reused_or_minted_predicate": "reused - minted in fts-high-availability-for-search.json earlier in this same batch; this page independently restates the identical fact with its own quote", "evidence": "This may be particularly useful when an index needs to be updated: to avoid downtime, while the current index remains in service, a clone of the current index can be created, modified, and tested." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A - no distinct content",
+    "finding": "This page's entire body is a byte-identical copy of the 'Zero Downtime Index Upgrades' section in fts-high-availability-for-search.md (same batch) - no fact appears here that isn't already on the parent page. Unlike fts-high-availability-for-search-high-availability-indexes.md (its sibling sub-page in this batch), which adds a dated availableSince fact its parent omits, this sub-page adds nothing."
+  },
+  "cross_component_finding": "Directly confirms the round framing's question for this batch: yes, the zero-downtime index upgrade mechanism relies on exactly the clone-index mechanism fts-clone-index.md documents ('a clone of the current index can be created, modified, and tested') plus the index-alias mechanism - which this round found duplicates the NEW-generation search:index-aliases/search:create-search-index-alias concepts (see fts-create-index-aliases.json in this same batch), not a purely old-generation fts: one.",
+  "cross_product_finding": "No Capella/cloud twin exists - Capella's docs have no fts/ tree at all."
+}

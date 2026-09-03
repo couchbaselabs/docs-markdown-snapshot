@@ -5604,7 +5604,161 @@ work from.
   what happened and why, rather than treating a red selftest as evidence something
   broke.
 
-## Cumulative verdict (all twenty-two rounds)
+## Round 23 — `fts/`, and round 1's oldest open question finally gets an answer
+
+**Scope.** 45 pages, `server/8.0/fts/` - the "old generation" Search documentation
+round 1 flagged, on the project's very first round, as "what looks like two
+overlapping documentation generations (fts/ vs search/)" and no round since had
+returned to check. Cross-checked before dispatch: `server/current/fts/`'s 45 pages
+are a strict subset of `server/7.2/fts/`'s ~150 filenames - the great majority of the
+old tree's per-field, per-query-shape, per-editor reference pages have been retired
+from the 8.0 docs since 7.2. What survives is architecture, high availability,
+advanced tuning settings, response-object schema, scoring, and a handful of
+index-lifecycle task pages - genuinely un-duplicated content, confirmed rather than
+assumed once fourteen pages' worth of version-twin evidence came back. 147 relations,
+0 evidence problems, 8 gate denials, one benign single-relation drop, no thinning.
+
+**The hypothesis holds, with one exception the round found by reading rather than
+assuming.** Five of six version-twinned index-lifecycle pages (clone/delete/edit/
+editing-cloning/system-indexes) changed nothing but a single `seeAlso` retarget
+between 7.2 and 8.0 - `fts-searching-from-the-UI.md` (retired, no 8.0 twin) became
+`../search/simple-search-ui.md` - direct textual proof the retired page's content
+migrated into round 22's `search/simple-search-ui.md`, and that these five pages'
+own content genuinely has no `search/` equivalent. The sixth, `fts-create-index-aliases.md`,
+broke the pattern: its UI walkthrough is a real duplicate of round 22's
+`search/create-search-index-alias.md`, described almost identically. **Two-thirds of
+one filename family confirmed the "old tree, un-duplicated" hypothesis and one-third
+of it quietly contradicted it** - the round's own extraction correctly told the two
+apart by reading each page rather than trusting the version-twin pattern to hold
+uniformly across siblings.
+
+### Three flagged near-misses, three different resolutions, all correct
+
+The dispatch briefing named three specific same-tree overlaps to check via
+`candidate-evidence.py` before minting - the "check relations, not just labels"
+habit round 22 turned into a standing instruction. All three resolved correctly, and
+differently, which is the point of testing it against three cases rather than one:
+
+- **`fts-architecture-scatter-gather.md` vs. the promoted `search:scatter-gather`/
+  `search:coordinator-node`**: the identical mechanism, confirmed and reused with
+  fresh evidence, no contradiction. A clean reuse.
+- **`fts-scoring.md` vs. the promoted `search:scoring-model`/`scoring-algorithm-enum`**:
+  neither reuse nor pure predecessor. The page never mentions bm25 or the 8.0+
+  model-choice setting at all - it explains how tf-idf itself computes a score, a
+  mechanism-level explanation the promoted records only name. Minted
+  `search:tf-idf-scoring-algorithm` (`isSubtypeOf` the promoted enum) rather than
+  reusing or ignoring the overlap.
+- **`fts-search-response*.md` vs. the promoted `n1ql:query-response-object`**:
+  confirmed as genuinely separate - the Search Service's own response envelope,
+  structurally different, no page states the two are the same shape. A new family
+  minted rather than merged.
+
+**A fourth near-miss the briefing never named turned up anyway, in the same shape as
+round 22's `search:scoring-model`/Capella match**: `fts-search-response.md`'s
+Consistency section describes `at_plus`/`not_bounded` in wording near-identical to
+the already-promoted `n1ql:scan-consistency`'s description of the same two token
+names - a different, separately-implemented, 2-member FTS mechanism (vBucket-sequence-
+vector based) against N1QL's 4-member enum. Minted `fts:search-consistency-level`
+rather than merged, and the resemblance recorded rather than silently reused. Two
+rounds running, the sharpest same-tree overlaps have been the ones nobody flagged in
+advance - found only by the relation-checking habit being applied as a default, not
+only where a briefing pointed.
+
+### Two batches, one id, arrived at independently - a convergence, not a fork
+
+Batch A minted `fts:search-response-object` from a stray FAQ on `fts-troubleshooting.md`;
+batch E, assigned the five-page response-object family directly, minted the identical
+spelling for the umbrella concept. Checked: same exact string, not a near-miss. This
+is what the fork-prevention habit is *for* - when two agents independently reach for
+the same well-formed name for the same real thing, that is corroboration, and the
+right response is to note it and move on, not to treat every same-round coincidence
+as suspicious.
+
+### Promotions
+
+**19 concepts, 3 predicates, 2 folds.** `fts:`'s **first promoted content since
+round 2's original 8-page batch** - eight of the fifteen pre-existing
+`fts:fts-supported-queries-*` family members had sat in the extraction layer since
+then with nobody promoting the family itself.
+
+- **Search response object** (5): the scheme plus `search-response-object`,
+  `-status`, `-hits`, `-took` (a fifth member, `-errors`, stays at 1 file). Deliberately
+  kept apart from `n1ql:query-response-object` and, on a second, unflagged near-miss,
+  from `n1ql:scan-consistency` (`fts:search-consistency-level`).
+- **`fts:manager-options-endpoint`** (8) and the new predicate **`configuredVia`**
+  (8) - the shared REST surface most advanced-settings pages use to set a value,
+  distinct from the promoted `configurableVia` (one setting's *behaviour* being
+  influenced by another) - `configuredVia` is about the mechanism used to *assign* a
+  value, not about effect. `fts:max-feeds-per-dcp-agent` and
+  `fts:bleve-max-result-window` (2 each) are two of the individual settings that use it.
+- **`search:index-aliases`** (4, folding `fts:create-index-aliases`) - the real
+  cross-generation duplicate above - plus the new predicate **`mergesResultsFrom`**
+  (2, minted in round 22, promoted now on its second attestation) and
+  **`relies-on-mechanism`** (2, zero-downtime index upgrades composing
+  `search:index-aliases` and `fts:clone-index`, stated on two sibling pages
+  independently).
+- **`search:sort-object`** (3) and **`search:ctl-object`** (2) - neither was on the
+  pre-flagged list; both found only because the batches checked the registry as a
+  habit before minting a task-shaped duplicate.
+- **`fts:index-replicas`**, **`fts:index-partitioning`**, **`fts:clone-index`**,
+  **`fts:manual-failover-for-search`** (2-3 each) - index-lifecycle mechanics, several
+  corroborated across the 7.2/8.0 version boundary.
+- **The `fts:fts-supported-queries-*` family, finally promoted** (a scheme plus
+  `conjuncts-disjuncts`, `boosting-the-score-query`, `docid-query`) - twelve more
+  members remain at 1 file each, real query types simply not yet independently
+  attested a second time. `docid-query` folds a same-round case-variant fork: the
+  7.2 tree's dangling `seeAlso` target carried the page's own mixed-case heading
+  ("DocID query") into an id; this round's mint followed the family's lowercase
+  convention. `--variants` caught the pair immediately (case differences normalise
+  the same way punctuation does); rewritten via `normalise-ids.py`, not aliased - a
+  casing slip is not a defensible alternate name.
+
+**Deliberately not promoted:** most of `search:`/`fts:`'s page-shaped ids, same
+discipline as round 22; `search:tf-idf-scoring-algorithm`, `fts:search-consistency-level`,
+and a dozen more real mechanisms at 1 file each, genuinely first-contact and nothing
+to corroborate them yet.
+
+### New `docs-issues/` (7, taking the total to 158)
+
+- A literal invalid-JSON syntax error in a worked example (boosting-the-score-query).
+- The same port number claimed for two differently-named ports (HTTP vs. gRPC) in
+  the architecture reference's own table - `needs-sme`.
+- A scoring FAQ that still presents tf-idf as *the* mechanism with no mention of the
+  8.0+ bm25 choice, read in the same tree as the page that documents the choice, one
+  round apart.
+- An auto-failover claim dated "as of Server 7.1" and carried unchanged into three
+  further major releases with no indication whether it's still true - `needs-sme`.
+- A privilege-documentation gap on every index-lifecycle task page, present in 7.2
+  and carried unchanged into 8.0, across three major releases and multiple rounds'
+  worth of RBAC corrections elsewhere in the corpus.
+- Two adjacent, unrelated broken/unrendered links on sibling index-creation pages.
+- A grammatically incomplete effect-sentence for one advanced setting, making its
+  documented default easier to state than its documented behaviour.
+
+### What this round taught about the method
+
+- **A version-twin pattern found for most of a filename family does not hold for all
+  of it, and the only way to know which member is the exception is to read each one.**
+  Five of six twinned index-lifecycle pages confirmed "old tree, no duplication";
+  the sixth was a real cross-generation duplicate. The round's own instruction to
+  read each twin rather than trust the pattern is what caught the exception - a
+  weaker instruction ("these six are twins, expect confirmation") would have missed
+  it on the one page where the pattern broke.
+- **The relation-checking habit keeps finding what the briefing didn't name.** Two
+  rounds running now, the sharpest same-tree overlap in the round has been one nobody
+  flagged in advance (`search:scoring-model`/Capella in round 22;
+  `n1ql:scan-consistency`/`fts:search-consistency-level` in this one). A named
+  near-miss is caught because someone thought to name it; an unnamed one is caught
+  only if checking the registry before minting is a reflex rather than a response to
+  an instruction - which is exactly what happened both times.
+- **Two agents converging on one spelling is corroboration, not a fork, and the two
+  are easy to tell apart mechanically.** A same-round self-fork (rounds 19-22) is two
+  *different* names for one thing; this round's `fts:search-response-object` is one
+  name, minted twice, by two batches that could not see each other. Checking the
+  exact string before treating a same-round double-mint as a problem is a five-second
+  grep that prevents inventing a fold where none is needed.
+
+## Cumulative verdict (all twenty-three rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -5896,6 +6050,28 @@ the check exists to protect, arriving at the one id the check had assumed never
 would. Re-anchored, with the reason on record, rather than treated as a red light to
 chase down as if something had broken.
 
+Round 23 finally returned to a question round 1 raised and no round since had
+checked: "what looks like two overlapping documentation generations (fts/ vs
+search/)." It does, and it doesn't, in a ratio a coverage plan could not have
+predicted — `server/current/fts/`'s 45 surviving pages are almost entirely
+un-duplicated content the newer `search/` tree never grew an equivalent for, except
+for one page in six version-twinned siblings, which genuinely does duplicate work
+round 22 had already promoted. The round's real lesson is that the pattern holding
+for most of a filename family is not permission to stop reading the rest of it; the
+one exception was caught only because each twin was read on its own rather than
+assumed to follow its siblings. The round also ran the "check a near-miss's
+relations before minting" habit against three flagged cases and, for the second
+round running, found the sharpest overlap in a case nobody had flagged at all —
+`fts:search-consistency-level` against the already-promoted `n1ql:scan-consistency`,
+near-identical wording for a structurally different, separately-implemented
+mechanism. Two rounds is enough to call this a settled property of the habit rather
+than a coincidence: **naming a risk in advance catches that risk; the habit, applied
+by default, catches the risks nobody thought to name.** And the round drew a clean
+line between this project's two same-round shapes that look alike on the surface: a
+self-fork is two different names for one thing; two batches independently minting
+the identical spelling for one thing is corroboration, checked with a five-second
+grep rather than assumed to need reconciling either way.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -5946,7 +6122,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Thirty-six limits of the method are now visible across multiple rounds, not just
+Thirty-eight limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -6627,3 +6803,23 @@ once, so worth treating as durable rather than one-off:
   anchor" before "check the code," and the fix is a new anchor with the old one's
   story kept in a comment, not a rewritten assertion with no memory of why the first
   one existed.
+
+- **A pattern holding for most of a filename family is not permission to stop
+  reading the rest of it.** Five of six version-twinned pages in round 23 confirmed
+  the round's own hypothesis (an old doc generation's surviving pages are genuinely
+  un-duplicated); the sixth was a real cross-generation duplicate, caught only
+  because it was read on its own terms rather than assumed to follow its siblings.
+  A version-twin or cross-product pairing is evidence about the specific page it
+  pairs, never about the sibling pages that happen to share a naming convention.
+- **Naming a risk in advance catches that risk; checking as a default habit catches
+  the risks nobody thought to name.** Two rounds running, the sharpest same-tree
+  overlap in the round was one the dispatch briefing never flagged
+  (`search:scoring-model` in round 22, `fts:search-consistency-level` against
+  `n1ql:scan-consistency` in round 23) — found only because checking a near-miss's
+  relations before minting had become a reflex, not a response to an instruction.
+- **Two batches minting the identical spelling for one real thing is corroboration,
+  and a five-second check tells it apart from a self-fork.** A self-fork is two
+  different names for one mechanism; independent convergence on one name for one
+  mechanism is the opposite failure mode's absence, not a new problem. Confirming the
+  exact string match before treating a same-round double-mint as something to
+  reconcile avoids inventing a fold where the two batches already agreed.

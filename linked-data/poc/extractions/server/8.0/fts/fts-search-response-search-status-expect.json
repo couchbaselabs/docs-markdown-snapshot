@@ -1,0 +1,27 @@
+{
+  "page_id": "server/8.0/fts/fts-search-response-search-status-expect",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-search-response-search-status-expect.md",
+  "concepts": [
+    { "candidate_id": "fts:search-response-status", "label": "Status (Search response field)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json; this page is the canonical, dedicated home for the status-object schema (total/successful/failed/errors)." },
+    { "candidate_id": "fts:search-response-object", "label": "Search Response Object (FTS)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json" },
+    { "candidate_id": "fts:fts-scoring", "label": "Scoring (fts-scoring.md)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's fts-search-response.json; this page carries the identical seeAlso link to it." }
+  ],
+  "relations": [
+    { "subject": "fts:search-response-object", "predicate": "hasInternalComponent", "object": "fts:search-response-status",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (hasInternalComponent)",
+      "evidence": "A Full Text Search _Response Object_ is composed of multiple child objects that provides important information." },
+    { "subject": "fts:search-response-status", "predicate": "seeAlso", "object": "fts:fts-scoring",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate (seeAlso), structural Markdown link",
+      "evidence": "For more details on scores, follow the link [Scoring](fts-scoring.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's 'Status' subsection (heading through the Example Status: Failure JSON block) and its 'Search Response Score' subsection are both byte-for-byte identical to the '## Search Status Expect' section of fts-search-response.md - same finding as the other three sub-pages in this family. Distinctively, this is the only one of the four sub-pages that bundles two differently-named topics (the status object's schema, and a short scoring note) under one file and one page title ('Search Status Expect') that names neither of them directly."
+  },
+  "cross_component_finding": "n/a - the scoring seeAlso link is already recorded and discussed in this batch's fts-search-response.json (near-miss risk 2's fts-scoring.md is out of scope for this batch).",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

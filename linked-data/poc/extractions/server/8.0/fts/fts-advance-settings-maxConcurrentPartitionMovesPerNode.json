@@ -1,0 +1,36 @@
+{
+  "page_id": "server/8.0/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode.md",
+  "concepts": [
+    { "candidate_id": "fts:max-concurrent-partition-moves-per-node", "label": "maxConcurrentPartitionMovesPerNode (Search Service rebalance-concurrency setting)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked registry-digest.py and candidate-evidence.py, nothing matched; a Search-service-internal runtime tuning setting distinct from the promoted search:scatter-gather/coordinator-node query-execution model and from search:set-advanced-settings' per-index UI settings" },
+    { "candidate_id": "fts:manager-options-endpoint", "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "minted", "reused_or_minted": "minted - checked, nothing matched; the shared REST endpoint this page and most of this batch's sibling pages use to set runtime cluster options" },
+    { "candidate_id": "port:8094", "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already minted this round in this same directory's fts-architecture-ports-used.json" },
+    { "candidate_id": "fts:max-feeds-per-dcp-agent", "label": "maxFeedsPerDCPAgent (Search Service DCP-feed-sharing setting)",
+      "registry_status": "minted", "reused_or_minted": "minted here - checked, nothing matched; this page mentions it before this batch's own dedicated page (fts-advanced-settings-maxFeedsPerDCPAgent.md) is reached, so it is minted here and reused there" },
+    { "candidate_id": "fts:fts-memory-quota", "label": "ftsMemoryQuota (Search Service per-node memory quota setting)",
+      "registry_status": "minted", "reused_or_minted": "minted here - checked, nothing matched; this page's closing note references 'enough memory quota' for the Search Service, the same setting this batch's dedicated fts-advanced-settings-ftsMemoryQuota.md page documents; minted here and reused there" }
+  ],
+  "relations": [
+    { "subject": "fts:max-concurrent-partition-moves-per-node", "predicate": "configuredVia", "object": "fts:manager-options-endpoint",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - configuredVia (the subject setting's value is set through the named REST endpoint or UI surface); distinct from the already-promoted configurableVia, which is for one setting's behavior being influenced by another setting, not for how a setting's value is entered",
+      "evidence": "http://<username>:<password>@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:manager-options-endpoint", "predicate": "usesPort", "object": "port:8094",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate usesPort",
+      "evidence": "http://<username>:<password>@<ip>:8094/api/managerOptions" },
+    { "subject": "fts:max-concurrent-partition-moves-per-node", "predicate": "configurableVia", "object": "fts:max-feeds-per-dcp-agent",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate configurableVia; the page ties the two settings together for one goal (rebalance throughput) without either being a hard prerequisite of the other",
+      "evidence": "Setting `maxFeedsPerDCPAgent` to 1 with a sufficient FTS memory quota can help to maximize the rebalancing throughput." },
+    { "subject": "fts:max-concurrent-partition-moves-per-node", "predicate": "configurableVia", "object": "fts:fts-memory-quota",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate configurableVia; same sentence also names a sufficient FTS memory quota as part of maximizing rebalance throughput",
+      "evidence": "Setting `maxFeedsPerDCPAgent` to 1 with a sufficient FTS memory quota can help to maximize the rebalancing throughput." }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "This page explains how to set maxConcurrentPartitionMovesPerNode to a chosen N to increase rebalance concurrency ('During the rebalance operations, FTS moves or builds partitions one at a time per node'), but never states the setting's own default numeric value - unlike bleveMaxClauseCount (1024), bleveMaxResultWindow (10000), maxFeedsPerDCPAgent (6), maxReplicasAllowed (3) and slowQueryLogTimeout (5 seconds), all in the same page family, which each state a specific default. A reader can infer from 'FTS moves or builds partitions one at a time per node' that the effective default behavior is N=1, but the page never states this as the setting's literal default value, so it is not captured as a hasDefaultValue relation here."
+  },
+  "cross_component_finding": "This page explicitly ties three settings together for a single stated goal (fastest rebalance throughput): 'Setting `maxFeedsPerDCPAgent` to 1 with a sufficient FTS memory quota can help to maximize the rebalancing throughput.' That is, maxConcurrentPartitionMovesPerNode (this page), maxFeedsPerDCPAgent and ftsMemoryQuota (both documented on their own dedicated pages elsewhere in this same batch) are presented as a tuning trio for rebalance throughput, not as independent, unrelated knobs - captured above via configurableVia. A fourth setting in this same batch, disableFileTransferRebalance, is thematically about rebalance behavior too (whether partitions are copied between nodes or rebuilt from scratch during rebalance) but is never mentioned on this page, and this page is never mentioned on disableFileTransferRebalance's own page - no page states that connection explicitly, so disableFileTransferRebalance is noted here only as a plausible but UNEVIDENCED fourth member of a broader 'rebalance tuning' theme, per this round's instruction not to force an umbrella concept without a page stating the grouping itself."
+}

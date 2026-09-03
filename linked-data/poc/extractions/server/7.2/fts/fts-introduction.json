@@ -70,7 +70,7 @@
     {
       "subject": "fts:full-text-search",
       "predicate": "seeAlso",
-      "object": "fts:fts-supported-queries-DocID-query",
+      "object": "fts:fts-supported-queries-docid-query",
       "note": "structural link"
     },
     {

@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/fts/fts-supported-queries-DocID-query",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-supported-queries-DocID-query.md",
+  "concepts": [
+    { "candidate_id": "fts:fts-supported-queries-docid-query", "label": "DocID Query",
+      "registry_status": "minted", "reused_or_minted": "minted, following the fts:fts-supported-queries-<kebab-name> naming pattern of the 15 already-extracted family members (match, match-phrase, regexp, wildcard, etc.) per the round context's instruction. NOTE: a DIFFERENTLY-CASED id, 'fts:fts-supported-queries-DocID-query' (capital DocID, not kebab-lowercased), already appears as a seeAlso target in linked-data/poc/extractions/server/7.2/fts/fts-introduction.json, but that id was never itself given its own extraction record/concept - it exists only as a dangling link target. This is a real naming-alias collision for reconciliation to resolve (fold the old capitalised id into this one, or record it as an alias), not something I silently merged." },
+    { "candidate_id": "fts:fts-supported-queries-conjuncts-disjuncts", "label": "Conjuncts and Disjuncts Query",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, part of the same fts:fts-supported-queries-* family already extracted in round 22's server/8.0/search/search-request-params.json" }
+  ],
+  "relations": [
+    { "subject": "fts:fts-supported-queries-docid-query", "predicate": "commonlyPairedWith", "object": "fts:fts-supported-queries-conjuncts-disjuncts",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captures 'typically used alongside' as a loose, non-mandatory association (distinct from restrictedToContext, which is a hard syntactic-position constraint, and from requiresRequestParameter/permitsWithinTransaction, which are hard preconditions); this page states only a typical usage pattern, not a requirement",
+      "evidence": "This is typically used in conjunction queries, to restrict the scope of other queries' output." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page gives only the query's purpose and a single bare JSON example ('query':{'ids':['airport_8850', 'airport_8851']}) with no prose at all describing the 'ids' property's type, cardinality limits, or interaction with other query clauses beyond the one sentence about conjunction queries - one of the thinnest pages in the fts-supported-queries-* family (shorter even than fts-supported-queries-boosting-the-score-query.md in this same batch)."
+  },
+  "cross_component_finding": "n/a - no other component discussed on this page.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

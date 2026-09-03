@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/fts/fts-scoring",
+  "source_version": "8.0",
+  "source_path": "server/current/fts/fts-scoring.md",
+  "concepts": [
+    {
+      "candidate_id": "search:scoring-algorithm-enum",
+      "label": "Search scoring algorithm enum (tf-idf, bm25)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, described in the registry as 'the two-member value set of search:scoring-model - bm25 (new in 8.0) or tf-idf (the prior default)'. Ran candidate-evidence.py search:scoring-model FIRST as instructed, and read this page carefully before deciding: this page is NOT about the 8.0+ scoring-model SETTING (search:scoring-model) - it never mentions bm25, never mentions choosing between algorithms, and never mentions the Advanced-panel setting at all. It is exclusively about tf-idf, the only algorithm this page knows about, described in mechanism-level detail the promoted scoring-algorithm-enum record only names ('tf-idf (the prior default)') without explaining. VERDICT: this page is neither a straight reuse of search:scoring-model (wrong setting entirely) nor purely a predecessor of it - it is the explanatory content behind ONE MEMBER of an already-promoted enum, which nothing in the corpus previously explained. Reused the enum id as the anchor and minted the explanatory concept below rather than force-fitting search:scoring-model onto a page that never discusses a model CHOICE."
+    },
+    {
+      "candidate_id": "search:tf-idf-scoring-algorithm",
+      "label": "tf-idf scoring algorithm (term frequency-inverse document frequency, per-partition, bleve sub-score summation)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the actual scoring mechanism this page explains (how a document's relevance score is computed), which search:scoring-algorithm-enum only names as a value and search:scoring-model only names as a choosable option. This is exactly the near-miss risk flagged for this page: reuse where identical, mint where the promoted record names-but-doesn't-explain. Related to search:scoring-algorithm-enum via isSubtypeOf below."
+    },
+    {
+      "candidate_id": "search:sort-object",
+      "label": "Sort Object",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, minted on server/8.0/search/search-request-params.json with the relation search:sort-object -hasDefaultValue-> 'score, descending' ('By default, the Search Service sorts results based on score values, from highest to lowest'). This page independently corroborates the exact same default from the old-generation side, found by checking the registry rather than re-minting a new 'default sort order' concept."
+    },
+    {
+      "candidate_id": "fts:full-text-search",
+      "label": "Full Text Search (capability)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted capability concept. This page's two per-request scoring controls (explain score, score:none) are both options ON this capability, not on the scoring-model setting."
+    },
+    {
+      "candidate_id": "search:explain-score-option",
+      "label": "explain score (per-request scoring diagnostic option)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a per-search-request diagnostic option ('explain score') that surfaces how a hit's score was computed. Not found anywhere else in the registry under this or a similar name; distinct from search:scoring-model (an index-level setting) and from n1ql:explain (the Query service's own, unrelated EXPLAIN statement)."
+    },
+    {
+      "candidate_id": "search:score-none-option",
+      "label": "score: none (per-request scoring-disable option)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a per-search-request option that disables relevance scoring entirely for performance, distinct from search:scoring-model (which still scores, just picks the algorithm) and from search:sort-object's `-_score` sort key (which assumes scoring is on)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:tf-idf-scoring-algorithm",
+      "predicate": "isSubtypeOf",
+      "object": "search:scoring-algorithm-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf (the subject is a specialisation of the object).",
+      "evidence": "Couchbase uses a slightly modified version of the standard **tf-idf** algorithm. This deviation is to normalize the score and is based on **tf-idf** algorithm."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasDefaultValue",
+      "object": "score, descending",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue, same relation shape already recorded on server/8.0/search/search-request-params.json; this page corroborates it independently.",
+      "evidence": "Search result scoring occurs at a query time. The result of the search request is ordered by **score** (relevance), with the descending sort order unless explicitly set not to do so."
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "configurableVia",
+      "object": "search:explain-score-option",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia.",
+      "evidence": "By selecting the `explain score` option within the search request, you can obtain the explanation of how the score was calculated for a result alongside it."
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "configurableVia",
+      "object": "search:score-none-option",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia.",
+      "evidence": "In a search request, you can set `score` to `none` to disable scoring by. See [Score:none](#scoring-option-none)"
+    },
+    {
+      "subject": "search:score-none-option",
+      "predicate": "doesNotSupport",
+      "object": "search:tf-idf-scoring-algorithm",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate doesNotSupport (a stated, bounded non-support boundary): setting score:none means tf-idf computation is skipped for that request.",
+      "evidence": "This improves the search query performance significantly in many cases, especially for composite queries with many child search clauses."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / usesEnum",
+    "finding": "This page never mentions bm25 and never states an availableSince version for anything on the page - it reads as though tf-idf were the only scoring algorithm that has ever existed, with no acknowledgment that Couchbase Server 8.0 introduced a second one (search:scoring-model / search:scoring-algorithm-enum, promoted from search/set-advanced-settings.md). Since fts-scoring.md sits in the current (8.0) docs tree alongside that newer content, this is either a stale page the 8.0 docs migration didn't update, or a deliberate scope split (this page = the tf-idf algorithm itself; set-advanced-settings.md = the choice of algorithm) that the docs never state as a split. Recorded as a finding, not resolved either way."
+  },
+  "cross_component_finding": "No cross-component finding on this page - it stays entirely within the Search service.",
+  "cross_product_finding": "THE NEAR-MISS CHECK THIS PAGE WAS FLAGGED FOR: search:scoring-model and search:scoring-algorithm-enum are already promoted from search/set-advanced-settings.md (the 8.0+ tf-idf/bm25 CHOICE, an index-level Advanced-panel setting). fts-scoring.md is a different, older page in the same current (8.0) docs tree, also nominally about Search scoring, but reading it closely shows it is doing a different job: it explains HOW tf-idf itself computes a relevance score (term frequency-inverse document frequency, per-partition scoring, bleve's summed sub-scores, non-comparability across different search criteria), plus two per-request controls (explain score, score:none) that the promoted scoring-model/scoring-algorithm-enum records say nothing about. Verdict recorded on each concept above: reused search:scoring-algorithm-enum as the anchor for 'which algorithm this page is about', minted search:tf-idf-scoring-algorithm as isSubtypeOf it for the mechanism-level explanation the promoted record lacks, and minted the two per-request option concepts as siblings of, not instances of, search:scoring-model."
+}
