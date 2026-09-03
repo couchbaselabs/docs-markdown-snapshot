@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/is-variant-of",
+  "label": "is variant of",
+  "type": "the subject is a closely-related dialect/implementation of the object, sharing most of its design while diverging in specific, stated ways - a general family-membership claim, weaker than isSynonymOf and less specific than generalizesSyntaxOf/differsFrom, which state HOW two variants relate rather than just THAT they are related.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Minted independently on three different Analytics pages (introduction.md, 3_query.md, primer-beer.md), all making the identical general claim about analytics:sqlpp-for-analytics and n1ql:sqlpp, while a fourth page (6_n1ql.md) separately minted the more specific generalizesSyntaxOf/differsFrom for the concrete mechanisms behind that general claim. Kept as a distinct, coarser predicate rather than merging generalizesSyntaxOf into it: this predicate says two things are related; the other two say exactly how.",
+  "documented_at": "server/8.0/analytics/introduction",
+  "relates_to_competency_question": "When two Couchbase features share a name or a close resemblance, is one a variant of the other, and how strong is that claim?"
+}

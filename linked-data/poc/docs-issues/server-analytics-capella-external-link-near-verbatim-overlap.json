@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-capella-external-link-near-verbatim-overlap",
+  "type": "docs-issue",
+  "issueType": "possible-concept-duplication",
+  "description": "Server's analytics:external-link ('a link to an external data source (Amazon S3, Google Cloud Storage, Azure Blob)') and Capella's own capella:analytics-external-link are defined almost word-for-word identically, and the S3/Azure/GCS credential-security caution on the Server page closely echoes Capella's own IAM caution on the same feature. Neither page states the two mechanisms are the same, and no page anywhere states that Server's remote-link connectivity model (ports, encryption modes, SCRAM-SHA) has any Capella counterpart at all. Kept separate per the no-silent-merge rule - a strong candidate for a future round to resolve with an SME or a page that finally states the correspondence explicitly.",
+  "about": [
+    "server/8.0/analytics/5_ddl",
+    "cloud/clusters/analytics-service/analytics-links"
+  ],
+  "foundDuring": "round 21",
+  "status": "open",
+  "severity": "needs-sme"
+}

@@ -1,0 +1,73 @@
+{
+  "page_id": "server/8.0/analytics/6_n1ql",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/6_n1ql.md",
+  "concepts": [
+    { "candidate_id": "analytics:sqlpp-for-analytics", "label": "SQL++ for Analytics", "registry_status": "extraction-layer", "reused_or_minted": "reused" },
+    { "candidate_id": "n1ql:sqlpp", "label": "SQL++ for Query", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "analytics:with-clause", "label": "WITH Clause (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 3_query.json, this batch" },
+    { "candidate_id": "analytics:join", "label": "JOIN (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 3_query.json, this batch" },
+    { "candidate_id": "analytics:group-by-clause", "label": "GROUP BY Clause (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 3_query.json, this batch" },
+    { "candidate_id": "analytics:subquery", "label": "Subquery (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 3_query.json, this batch" },
+    { "candidate_id": "analytics:create-analytics-index", "label": "CREATE ANALYTICS INDEX", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch" },
+    { "candidate_id": "n1ql:create-index", "label": "CREATE INDEX statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:insert", "label": "INSERT", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:upsert", "label": "UPSERT", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:delete", "label": "DELETE", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "generalizesSyntaxOf",
+      "object": "n1ql:sqlpp",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - generalizesSyntaxOf. This is the page the round's dialect warning names as the one that settles the relationship, and it settles it in exactly this shape: not identity, not a teaching analogy, but a documented claim that one dialect's composability subsumes specific named constructs of the other (USE KEYS, ON KEYS, ON KEY, NEST, LEFT OUTER NEST, ARRAY) and thereby eliminates the need for some of that other dialect's special syntax. More specific than introduction.json's isVariantOf, which this relation refines rather than replaces.",
+      "evidence": "SQL++ for Analytics generalizes SQL++ for Query's syntax constructs such as `USE KEYS`, `ON KEYS`, `ON KEY`, `NEST`, `LEFT OUTER NEST` and `ARRAY` and thus eliminates cases where must-be-indexed or must-use-keys restrictions are required for certain SQL++ for Query queries or expressions to be acceptable."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:with-clause",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct",
+      "evidence": "WITH: SQL++ for Analytics supports the ANSI SQL WITH clause to allow the definition of inlined views or variables of primitive types to simplify complex query construction."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:insert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "Note that INSERT/UPSERT/DELETE are not supported at all in the Couchbase Analytics Service. Data is mutated in Couchbase Server, using the Couchbase Server SDK or SQL++ for Query mutation, and the mutations will then be automatically synchronized into the Couchbase Analytics Service."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:upsert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same evidence",
+      "evidence": "Note that INSERT/UPSERT/DELETE are not supported at all in the Couchbase Analytics Service. Data is mutated in Couchbase Server, using the Couchbase Server SDK or SQL++ for Query mutation, and the mutations will then be automatically synchronized into the Couchbase Analytics Service."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:delete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport, same evidence",
+      "evidence": "Note that INSERT/UPSERT/DELETE are not supported at all in the Couchbase Analytics Service. Data is mutated in Couchbase Server, using the Couchbase Server SDK or SQL++ for Query mutation, and the mutations will then be automatically synchronized into the Couchbase Analytics Service."
+    },
+    {
+      "subject": "analytics:create-analytics-index",
+      "predicate": "differsFrom",
+      "object": "n1ql:create-index",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - differsFrom. This is the direct textual confirmation the round's dialect warning asked this page to settle: the two CREATE INDEX statements share a name and are individually 'Supported' in their own dialect, but the page states them as different statements rather than one - exactly the fork this batch was told not to make by assumption, now made on evidence instead.",
+      "evidence": "Supported but different (e.g., typed)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "The page also states that SQL++ for Analytics 'does not require or support the IN/WITHIN subclauses of SQL++ for Query's existential (SOME, ANY, or EVERY) expressions' - a second, more specific doesNotSupport fact - but no n1ql:* concept for that specific subclause is visible in this batch's registry state to serve as the relation's object, and minting one for a construct this page only mentions in passing (to explain why Analytics does NOT need it) risked overweighting a negative aside. Recorded here in full rather than forced into a relation: 'the general composability of SQL++ for Analytics queries eliminates the need for some of SQL++ for Query's special syntax; for example, SQL++ for Analytics does not require or support the IN/WITHIN subclauses of SQL++ for Query's existential (SOME, ANY, or EVERY) expressions.'"
+  },
+  "cross_component_finding": "This page is the one the round's framing note names as the place the Analytics/Query dialect relationship 'gets settled', and it settles it unambiguously as GENERALIZATION-WITH-DIVERGENCE, not identity and not a simple superset: SQL++ for Analytics generalizes several of SQL++ for Query's syntax constructs (USE KEYS, ON KEYS, ON KEY, NEST, LEFT OUTER NEST, ARRAY) into more composable forms, while simultaneously lacking entire statement categories SQL++ for Query has (INSERT/UPSERT/DELETE, 'unsupported by design'), restricting others (comparison operators 'only scalar values may be compared' vs. Query's 'either complex or scalar'; ORDER BY likewise scalar-only; OFFSET without LIMIT unsupported), and reusing a statement NAME for a DIFFERENT statement (CREATE INDEX). No single predicate captures this multi-directional relationship; this record models it with four distinct predicates (generalizesSyntaxOf, supportsLanguageConstruct, doesNotSupport, differsFrom) rather than collapsing it into one, which is itself the most useful thing this page contributes to the ontology's model of dialect relationships."
+}

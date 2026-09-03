@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/accessible-via",
+  "label": "accessible via",
+  "type": "the subject service/feature can be reached through the named client interface - a positive statement of an access surface. The counterpart to the already-promoted incompatibleWithAccessSurface (a negative, statement of a surface that does NOT work) - kept as two separate predicates rather than one signed relation, since a page rarely enumerates both the working and non-working surfaces together.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "You can run queries using the Analytics Workbench, the command line query tool cbq, or directly through the REST API.",
+    "The Search Service can be accessed by means of the search functions provided by SQL++ — which provides the principal interface to the Query and Index Services."
+  ],
+  "documented_at": "server/8.0/analytics/run-query",
+  "relates_to_competency_question": "Through which client surfaces can a given service actually be reached?"
+}

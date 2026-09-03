@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty rounds so far, sixteen of them deliberate escalations and
+automating it. Twenty-one rounds so far, seventeen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -289,6 +289,29 @@ four corrective passes over what they left behind:
     contradiction — the extraction schema forces every page to state its own
     understanding fully, and reconciliation is where two pages' full sentences finally
     sit side by side.
+21. **28 pages, first contact on the whole `analytics/` module** — the Analytics
+    service's SQL++ dialect, DDL, functions, and management/REST reference, never
+    extracted before. 240 relations, 0 evidence problems. Settled the dialect question
+    the briefing posed as a hypothesis: Analytics' SQL++ is **generalization-with-
+    divergence, not identity** — it generalizes several Query constructs into more
+    composable forms, lacks INSERT/UPSERT/DELETE entirely, and reuses the surface name
+    `CREATE INDEX` for a genuinely different, typed statement. That collision reaches
+    a real reader: the module's own worked tutorial writes its index example in the
+    *short* `CREATE INDEX` form, with no way for a reader who's only seen the tutorial
+    to know they aren't writing a Query-service statement. The round's method finding
+    is the mirror image of round 19-20's fork lesson: every briefing trims the full
+    registry to a curated "relevant state" table, and this round's table omitted
+    `server:rebalance` — promoted since round 11 — so an agent needing it correctly
+    declined to invent a mismatched object rather than force one, and the fact went
+    unmodeled on that page. It survived only because a second, unrelated page in the
+    same round happened to need the identical fact and its own registry check caught
+    it. **A declined-for-lack-of-evidence relation and a genuinely absent one are
+    indistinguishable in the output.** Also required a mid-round recovery: two of three
+    batches stalled on an infrastructure timeout, one 8/9 pages in, one 7/9; validated
+    what was on disk, relaunched only the missing pages (a second stall on that
+    relaunch, at zero progress, resolved on a plain retry) — the extract skill's own
+    prescribed failure response, and it needed no change to the batches' scope or
+    instructions to work.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -296,7 +319,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-700 pages total:
+728 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -417,6 +440,14 @@ time/cost projections and how they held up against the round-2 run's real number
 - **11 more, `server/8.0/tools/`** — individual CLI/UI tool reference pages:
   cbdatarecovery, cbexport/cbexport-json, cbimport/cbimport-csv/cbimport-json,
   cbriftdump, cbsqlitedump, query-monitoring, query-workbench, udfs-ui.
+- **28 more, `server/8.0/analytics/`** — the whole module: the language/DDL core
+  (introduction, intro, expressions, query, errors, DDL, views, cost-based optimizer,
+  the N1QL-relationship page, index usage), functions/UDF/appendices (built-ins, UDFs,
+  data types, keywords, parameters, resolution, examples, the Python UDF appendix, the
+  beer-sample tutorial), and management/ops/REST (config, dataset/link management,
+  monitoring, query params/responses, the REST API reference, run-query, error codes).
+  No Capella twin by filename; extends the small `analytics:` namespace Capella's
+  `cloud/clusters/analytics-service/` pages had already started.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -871,6 +902,47 @@ from "still in `extractions/`."
   tools' pages gave them a second attestation). New predicate: `operatesOnFormat` (3 —
   a tool reads/writes data physically encoded in a named format; all three occurrences
   so far are read access).
+  Round 21 read `server/8.0/analytics/` and promoted **8**, the `analytics:` namespace's
+  first. `analytics:sqlpp-for-analytics` (9) is the dialect itself; `isVariantOf`
+  `n1ql:sqlpp` per three independent pages, while `6_n1ql.md` alone settles the
+  relationship as **generalization-with-divergence, not identity** — Analytics
+  generalizes several Query constructs into more composable forms, has no
+  INSERT/UPSERT/DELETE at all, and reuses the surface name `CREATE INDEX` for a
+  statement that is typed and behaviourally different
+  (`analytics:create-analytics-index differsFrom n1ql:create-index`, promoted at 5).
+  That collision reaches a real reader: the module's own worked tutorial writes its
+  index example in the *short* `CREATE INDEX` form, giving a reader who's only seen
+  the tutorial no way to know they aren't writing a Query-service statement.
+  `analytics:analytics-collection` (5) applies a licensed equivalence
+  (`concepts/terminology-equivalences.json`) from the start, so "local Analytics
+  collection" was never minted as a separate id needing a later fold.
+  `analytics:workbench` (5) was checked against the extraction-layer
+  `capella:analytics-workbench` — near-identical description — *before* minting, per
+  this round's fork-prevention instruction, and correctly kept separate: no page states
+  the two UIs share an implementation, which is the no-silent-merge rule working as
+  designed, not a missed fold. `analytics:alter-collection-statement` (3, folding
+  `analytics:alter-collection`) is the same DDL-reference-page-vs-management-page
+  genre fork rounds 18–20 kept finding, minted by two concurrently-dispatched batches
+  with no visibility into each other. `analytics:local-link`/`remote-link` (3 each,
+  two of three link kinds — the third, `external-link`, stays unpromoted and flagged
+  as a strong Capella near-duplicate) and `analytics:query-service-rest-api` (3,
+  sharing a real option set with `n1ql:query-service-rest-api`, which the pages state
+  implement the same HTTP interface). Three new predicates: `isVariantOf` (3),
+  `hasEquivalentEffectAs` (2, a statement and a UI action producing the same result),
+  `accessibleVia` (2, the positive counterpart to the already-promoted
+  `incompatibleWithAccessSurface`). Round 12's `hasPrivilege` record — "Server's docs
+  define a privilege tier ... and then never name a member of it" — got a correction
+  rather than a new record: `appendix_5_python.md` names three concrete permission
+  strings in prose and ties one to a role directly, the first place in the corpus a
+  permission string and a role are named together, though it doesn't overturn the
+  original finding.
+  The round's own method finding is the mirror image of rounds 19–20's fork lesson:
+  every context file trims the full registry to a curated "relevant state" table, and
+  this round's table omitted `server:rebalance` — promoted since round 11 — so an
+  agent needing it correctly declined to invent a mismatched object, and the fact went
+  unmodeled on that page, surviving only because a second, unrelated page in the same
+  round happened to need it too. **A declined-for-lack-of-evidence relation and a
+  genuinely absent one are indistinguishable in the output.**
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1048,8 +1120,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **139
-  entries** as of round 20. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **144
+  entries** as of round 21. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -1168,6 +1240,17 @@ from "still in `extractions/`."
   pages for the same feature mention); a stated XDCR/Go NaN-comparison divergence too
   fine-grained for this round's concept work; and a record of the `cbimport`/`cbexport`
   fork's resolution, filed as confirmed rather than open once the fold was verified.
+  Round 21 added **5**: the module's worked error examples use ASX-prefixed
+  (AsterixDB-internal) codes while the page promising "the full list" documents an
+  entirely different, non-overlapping numeric scheme — the eventing LCB error-code
+  mismatch shape, found a second time in an unrelated module; a page's own internal
+  "dataverse"/"dataset" vs. "Analytics scope"/"Analytics collection" terminology
+  drift, with no sentence connecting the two vocabularies; the `CREATE INDEX`
+  short-form collision demonstrated in practice by the module's own tutorial, not
+  just described on a reference page; two differently-shaped query-response objects
+  sharing an identical one-line description verbatim; and a `needs-sme` flag on a
+  near-verbatim Server/Capella external-link definition overlap, kept apart per the
+  no-silent-merge rule.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1416,7 +1499,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 654 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 670 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2487,6 +2570,32 @@ pre-checked):**
     every page state its own understanding in full, and reconciliation is the first
     place two pages' full sentences are read side by side.
 
+**Round 21 (28 pages, first contact on the whole `analytics/` module):**
+
+98. **A curated registry excerpt in a briefing is a bet with an invisible failure
+    mode in both directions.** Rounds 19-20 found the direction where an incomplete
+    excerpt lets an agent re-mint something the full registry already had. Round 21
+    found the mirror direction: the excerpt omitted `server:rebalance` - promoted
+    since round 11 - and an agent needing it did the responsible thing (declined to
+    invent a mismatched object rather than force one), and the fact went unmodeled on
+    that page anyway, surviving only because a second, unrelated page in the same
+    round happened to need it too and its own registry check caught it. **A
+    declined-for-lack-of-evidence relation and a genuinely absent one look identical
+    in the output** - there is no way to notice this failure except the fact
+    resurfacing elsewhere by luck.
+99. **Settling a comparison precisely is worth more predicates than settling it
+    loosely is worth one.** Asked whether Analytics' SQL++ dialect is the same as the
+    Query service's, the pages returned at least three distinguishable claim shapes -
+    a coarse family relationship (`isVariantOf`), a specific generalization
+    (`generalizesSyntaxOf`), a specific divergence (`differsFrom`) - plus a fourth
+    nobody asked for (both dialects implement one external academic spec,
+    `isImplementationOf`). One blunt "related to" predicate would have been cheaper
+    and would have discarded exactly the distinction the round was run to find. The
+    collision this settles reaches a real reader, not just a reference table: the
+    module's own worked tutorial writes its index-creation example in the short
+    `CREATE INDEX` form, giving a reader who's only seen the tutorial no way to know
+    they aren't writing a Query-service statement.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -2579,7 +2688,7 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 195 have now been read.
+  `server/8.0/` is ~1,033 pages of which 223 have now been read.
 - **The pairing strategy has two payoff axes, and round 18 is the case where they
   split — read both, every time, rather than assuming one implies the other.**
   Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*

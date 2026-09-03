@@ -1,0 +1,76 @@
+{
+  "page_id": "server/8.0/analytics/5a_views",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/5a_views.md",
+  "concepts": [
+    { "candidate_id": "analytics:analytics-collection", "label": "Analytics collection (dataset)", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch" },
+    { "candidate_id": "analytics:create-analytics-index", "label": "CREATE ANALYTICS INDEX", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch; the page's own examples show the ANALYTICS keyword is optional in this statement ('CREATE INDEX idx1 ON orders(custid:STRING);'), consistent with 5_ddl.md's grammar `\"CREATE\" \"ANALYTICS\"? \"INDEX\"`, so this is the same statement, not a separate one" },
+    { "candidate_id": "analytics:analytics-view", "label": "Analytics view", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:tabular-analytics-view", "label": "Tabular Analytics View (TAV)", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:create-analytics-view", "label": "CREATE ANALYTICS VIEW", "registry_status": "minted", "reused_or_minted": "minted - one statement family covering both plain and tabular (TAV) views, per the page's own CreateView/CreateTabularView grammar" },
+    { "candidate_id": "analytics:drop-analytics-view", "label": "DROP ANALYTICS VIEW", "registry_status": "minted", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:analytics-view",
+      "predicate": "isDerivedFrom",
+      "object": "analytics:analytics-collection",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isDerivedFrom. Neither isSubtypeOf (a view is not a specialisation of a collection, it is an unmaterialized query over one) nor hasInternalComponent fits; the page's own word is 'derived'.",
+      "evidence": "Analytics views are virtual Analytics collections that are derived from actual stored Analytics collections."
+    },
+    {
+      "subject": "analytics:tabular-analytics-view",
+      "predicate": "isSubtypeOf",
+      "object": "analytics:analytics-view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSubtypeOf",
+      "evidence": "A Tabular Analytics view (abbreviated here as TAV) is a special kind of Analytics view that enables Couchbase Analytics to interact with software tools that are designed for relational databases."
+    },
+    {
+      "subject": "analytics:analytics-view",
+      "predicate": "createdVia",
+      "object": "analytics:create-analytics-view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createdVia",
+      "evidence": "An Analytics view is created by a CREATE statement with the following syntax:"
+    },
+    {
+      "subject": "analytics:drop-analytics-view",
+      "predicate": "removedVia",
+      "object": "analytics:analytics-view",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused - removedVia, minted in 5_ddl.json, this batch",
+      "evidence": "Any Analytics view (including a TAV) can be dropped using the following statement:"
+    },
+    {
+      "subject": "analytics:create-analytics-index",
+      "predicate": "restrictedToContext",
+      "object": "analytics:analytics-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext",
+      "evidence": "The index must be created on the underlying Analytics collection rather than on the view itself."
+    },
+    {
+      "subject": "analytics:analytics-view",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/7_using_index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "More details about the creation and use of indexes in Analytics can be found in [Using Indexes](7%5Fusing%5Findex.md)."
+    },
+    {
+      "subject": "analytics:tabular-analytics-view",
+      "predicate": "seeAlso",
+      "object": "tableau-connector/current/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Currently, Couchbase Analytics provides a [Connector for the Tableau tool](../../../tableau-connector/current/index.md)that is used to visualize relational data."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "No version or edition gating anywhere on the page for either plain Analytics views or TAVs - both are presented as generally-available DDL objects."
+  },
+  "cross_component_finding": "This page names a real, if unenforced, relational-modelling surface inside SQL++ for Analytics: TAV's PRIMARY KEY / FOREIGN KEY clauses ('these clauses ... enable you to specify which columns in the TAV serve as primary or foreign keys ... the primary and foreign key relationships are not enforced by Couchbase Analytics') and the DEFAULT NULL / NOT UNKNOWN casting rules exist purely so external relational tools (the Tableau Connector) can consume Couchbase's schemaless JSON model - a bridge concept with no counterpart anywhere else the corpus's data-model vocabulary has reached so far."
+}

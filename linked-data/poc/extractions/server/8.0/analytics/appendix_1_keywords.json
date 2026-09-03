@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/analytics/appendix_1_keywords",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/appendix_1_keywords.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts / relations",
+    "finding": "A bare reserved-keyword table (roughly 100 tokens, e.g. ALL, DATASET, DATAVERSE, SHADOW, FEED, RTREE) with no prose, no links, and no per-keyword explanation. Per the round's own guidance, a keyword list has no concepts to extract - left empty deliberately rather than minting one concept per keyword, which would be disproportionate. Worth noting for reconciliation: DATASET, DATAVERSE, SHADOW and FEED are reserved here specifically because they are Analytics-specific DDL nouns (analytics:shadow-collection is already an extraction-layer concept from the Capella round), evidence that the keyword list is downstream of the dialect's own object model rather than a generic SQL reservation."
+  },
+  "cross_component_finding": "Not applicable - the page carries no prose statement of any kind, so no cross-dialect or cross-service claim can be extracted from it.",
+  "cross_product_finding": "Not applicable - no Capella-specific content or comparison appears on this page."
+}

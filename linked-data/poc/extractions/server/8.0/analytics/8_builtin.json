@@ -1,0 +1,131 @@
+{
+  "page_id": "server/8.0/analytics/8_builtin",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/8_builtin.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:sqlpp-for-analytics",
+      "label": "SQL++ for Analytics",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, already minted from Capella's cloud/clusters/analytics-service/ pages"
+    },
+    {
+      "candidate_id": "analytics:builtin-functions",
+      "label": "SQL++ for Analytics built-in functions",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own subject: a large catalog of built-in numeric/string/temporal/object/aggregate/array/comparison/type/conditional/env/JSON/bitwise/window functions specific to the Analytics dialect. Not merged with any n1ql:* function concept because the page repeatedly documents behavior that diverges from SQL++ for Query (see the doesNotSupport relation below); only the one function the page states is literally equivalent (array_infer_schema) is related across dialects, and even that is kept as a distinct id, per the DIALECT WARNING."
+    },
+    {
+      "candidate_id": "analytics:date-functions",
+      "label": "Date Functions (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's Temporal Functions family. Named to parallel the sibling n1ql:date-functions extraction-layer concept (from cloud/n1ql/n1ql-language-reference/datefun.json) rather than merged with it, because the page itself states the two support different date-format inputs."
+    },
+    {
+      "candidate_id": "n1ql:date-functions",
+      "label": "Date Functions (SQL++ for Query)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id already minted in cloud/n1ql/n1ql-language-reference/datefun.json for the Query-service date function family; reused here rather than re-minted, since this page explicitly contrasts against it."
+    },
+    {
+      "candidate_id": "analytics:array-infer-schema-function",
+      "label": "array_infer_schema() function",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a single named function singled out for individual treatment (rather than folded into the page-level analytics:builtin-functions concept) because the page states it is the functional equivalent of a Query-service DDL/utility statement, which is the strongest cross-dialect claim on the page."
+    },
+    {
+      "candidate_id": "n1ql:infer-statement",
+      "label": "INFER statement (SQL++ for Query)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the registry and extraction layer have no existing id for the Query service's INFER statement (checked: no file under linked-data/poc/concepts/ or extractions/ mentions an INFER statement/n1ql:infer* id). Minted under n1ql: because the object of the equivalence claim is a SQL++ for Query statement, not an Analytics construct."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:builtin-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (supportsLanguageConstruct)",
+      "evidence": "A description of Couchbase SQL++ for Analytics builtin functions."
+    },
+    {
+      "subject": "analytics:array-infer-schema-function",
+      "predicate": "isSynonymOf",
+      "object": "n1ql:infer-statement",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isSynonymOf)",
+      "evidence": "This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.md)."
+    },
+    {
+      "subject": "analytics:date-functions",
+      "predicate": "doesNotSupport",
+      "object": "date string codes, Go reference dates, or percent-style dates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "Note that in SQL++ for Analytics, temporal functions only support ISO-8601 example date formats. They do not support date string codes, Go reference dates, or percent-style dates, which are supported by SQL++ for Query."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/appendix_4_examples",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Refer to [Appendix 4: Example Data](appendix%5F4%5Fexamples.md) to install this example data."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/5_ddl",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "You can use the [USE statement](5%5Fddl.md#Use%5Fstatements)to set the default scope for the statement immediately following."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/datefun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "representing an [ISO-8601 example date format](../n1ql/n1ql-language-reference/datefun.md#date-string) to use for the result"
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/infer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.md)."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/3_query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Refer to [Aggregation Pseudo-Functions](3%5Fquery.html#Aggregation%5FPseudoFunctions) for details."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/2_expr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Refer to [Function Calls](2%5Fexpr.html#Function%5Fcall%5Fexpressions) for details."
+    },
+    {
+      "subject": "server/8.0/analytics/8_builtin",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/10_data_type",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Checks whether the given expression is evaluated to be a value of a [primitive](10%5Fdata%5Ftype.html#PrimitiveTypes) type."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresServerRole / availableSince",
+    "finding": "Across roughly 130 individual function definitions (numeric, string, temporal, object, aggregate, array, comparison, type, conditional, environment, JSON, bitwise and window functions), not one carries an RBAC gate or a version-introduced statement. Every function's documented constraints are purely type-level (argument types, MISSING/NULL propagation, type-error conditions) rather than access- or version-gated, in clear contrast to n1ql's statement pages, most of which carry both."
+  },
+  "cross_component_finding": "The page draws exactly two explicit lines to SQL++ for Query, and they point opposite directions. First, an equivalence: 'This function is the equivalent to the SQL++ for Query INFER statement' (array_infer_schema). Second, a divergence: 'in SQL++ for Analytics, temporal functions only support ISO-8601 example date formats. They do not support date string codes, Go reference dates, or percent-style dates, which are supported by SQL++ for Query.' Read together, they answer the round's framing question directly: Analytics's SQL++ functions are NOT simply the Query service's SQL++ functions reused under another name - they are a separate, similarly-named catalog that the docs equate function-by-function only where they choose to state it, and otherwise document as independently as any other dialect difference. This licenses the analytics:builtin-functions / n1ql:* split rather than a merge.",
+  "cross_product_finding": "No Capella-facing content appears anywhere on this page - no Query Workbench, Data API or credential-type framing of any kind, unlike the statement-reference pages elsewhere in this corpus that routinely carry a Capella access-surface angle. The page is pure language reference with no product-tier framing at all."
+}

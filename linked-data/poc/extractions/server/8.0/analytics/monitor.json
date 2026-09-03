@@ -1,0 +1,21 @@
+{
+  "page_id": "server/8.0/analytics/monitor",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/monitor.md",
+  "concepts": [
+    { "candidate_id": "service:analytics-service", "label": "Analytics service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "analytics:monitor-screen", "label": "Monitor screen (Analytics, Couchbase Server)", "registry_status": "minted", "reused_or_minted": "minted - the Couchbase Web Console UI tab showing Active and Completed Analytics queries plus service statistics. NEAR-MISS CHECKED against capella:analytics-monitor-flyout ('the UI panel for monitoring Analytics queries and Analytics Service metrics', cloud/clusters/analytics-service/analytics-monitor.json, unpromoted) - functionally near-identical description, but no page states the two UIs are the same, and this round's brief explicitly warns against forcing a Capella/server correspondence for this page in particular, so kept separate." },
+    { "candidate_id": "analytics:query-instance", "label": "Analytics query (a running or completed query instance)", "registry_status": "minted", "reused_or_minted": "minted - a submitted Analytics query as tracked by the Monitor screen. NEAR-MISS CHECKED against capella:analytics-query ('Analytics query (a submitted SQL++ for Analytics statement)', cloud/clusters/analytics-service/analytics-monitor.json, unpromoted) - same referent by description, kept separate per the no-silent-merge rule pending a source stating the equivalence." },
+    { "candidate_id": "analytics:query-state", "label": "Analytics query state enum (running, completed)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in an earlier round from Capella's analytics-monitor.md ('the State of the request: running or completed'). This page attests the same two-value split under different display labels: 'Active (currently running)' for the query list/tab name, vs. the per-row 'current state of the query' / 'final state of the query' column, so the scheme is reused rather than re-minted under a Server-specific id." }
+  ],
+  "relations": [
+    { "subject": "analytics:monitor-screen", "predicate": "dependsOnService", "object": "service:analytics-service", "registry_status": "promoted", "reused_or_minted_predicate": "reused (dependsOnService)", "evidence": "The Monitor screen is a UI that allows you to monitor the current state of the Analytics service." },
+    { "subject": "analytics:query-instance", "predicate": "usesEnum", "object": "analytics:query-state", "registry_status": "promoted", "reused_or_minted_predicate": "reused (usesEnum)", "evidence": "The Monitor screen shows the analytics queries that are Active (currently running) and Completed (recently run)." },
+    { "subject": "analytics:query-instance", "predicate": "seeAlso", "object": "server/8.0/analytics/run-query", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "[Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresPrivilege",
+    "finding": "The page states plainly that 'Different information may be shown depending on the user's access control role', but never names which role, what the visible difference actually is, or how many roles are involved - an explicit acknowledgment of an RBAC-gated view with none of the specifics an ontology could otherwise capture. Structurally similar to the registry's existing hasPrivilege writeup (Server's docs asserting a privilege tier exists while never naming a concrete instance)."
+  },
+  "cross_component_finding": "This page is a second confirmation (with manage-datasets.json and manage-links.json, this batch) that the Server-side Analytics Workbench/Monitor UI and Capella's own Analytics Workbench/Monitor flyout are described in near-identical terms on independently-written pages, without either tree ever stating the two are the same feature - three separate near-miss pairs now on record for this one round (workbench, monitor screen, query instance), all withheld from merging by the same no-silent-merge rule for want of a citing sentence."
+}

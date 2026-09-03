@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/create-analytics-index",
+  "label": "CREATE ANALYTICS INDEX",
+  "type": "the Analytics DDL statement creating an index on an analytics:analytics-collection. Reuses the surface name 'CREATE INDEX' from the Query service's n1ql:create-index but is a genuinely DIFFERENT, typed statement per 6_n1ql.md's own comparison ('Supported but different (e.g., typed)') - deliberately NOT merged with n1ql:create-index. Must be created on the underlying collection, never on a view.",
+  "promoted": true,
+  "recurrence": 5,
+  "evidence": [
+    "The CREATE statement is used to create Analytics scopes, collections, synonyms, and indexes.",
+    "The index must be created on the underlying Analytics collection rather than on the view itself.",
+    "Supported but different (e.g., typed)"
+  ],
+  "differsFrom": "n1ql:create-index",
+  "restrictedToContext": "analytics:analytics-collection",
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "Is Analytics' own CREATE INDEX statement the same statement as the Query service's, or does the shared name hide a different mechanism?"
+}

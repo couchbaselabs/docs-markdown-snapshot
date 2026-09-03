@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/analytics/7_using_index",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/7_using_index.md",
+  "concepts": [
+    { "candidate_id": "analytics:using-index", "label": "Using Indexes (Analytics query-optimizer index selection)", "registry_status": "extraction-layer", "reused_or_minted": "reused - this is the concept's own defining page. It previously existed in the corpus only as a seeAlso target from index-type:analytics-index (server/7.2/learn/services-and-indexes/indexes/indexes.json), pointing at exactly this page with no content of its own on either end; this record supplies that content." },
+    { "candidate_id": "analytics:analytics-index", "label": "Analytics index (standard)", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch" },
+    { "candidate_id": "analytics:array-index", "label": "Array index (Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch" },
+    { "candidate_id": "analytics:join", "label": "JOIN (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "reused - minted in 3_query.json, this batch" },
+    { "candidate_id": "index:covering-index", "label": "Covering Index / Covered Query", "registry_status": "promoted", "reused_or_minted": "reused - promoted; the page explicitly rules this property out for Analytics array indexes" },
+    { "candidate_id": "analytics:skip-index-hint", "label": "skip-index hint", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:index-join-hint", "label": "indexnl (index join) hint", "registry_status": "minted", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:using-index",
+      "predicate": "restrictedToContext",
+      "object": "analytics:analytics-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext",
+      "evidence": "The query optimizer chooses to use a secondary index for query execution if both of the following conditions are met:"
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:skip-index-hint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct",
+      "evidence": "If you would like an available index to not be used for a particular query predicate (e.g., because there will be many, many matching objects), a skip-index hint can be used:"
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:index-join-hint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct",
+      "evidence": "The index join hint, `/*+ indexnl */`, is provided for the join predicate;"
+    },
+    {
+      "subject": "analytics:join",
+      "predicate": "configurableVia",
+      "object": "analytics:index-join-hint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "Note that you must specify the `indexnl` join hint to tell Analytics that you want to optimize this specific join, as hash join is the default join method otherwise."
+    },
+    {
+      "subject": "analytics:array-index",
+      "predicate": "doesNotSupport",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "It should be noted that in Analytics, array indexes are _not_ meant to serve as covering indexes. Instead, array indexes are simply meant to accelerate queries involving multi-valued fields."
+    }
+  ],
+  "cross_component_finding": "This page settles a name collision the round flagged as a risk: analytics:array-index's relationship to index:covering-index (promoted, recurrence-bearing, defined generically as 'the relational property that holds between an index and a query when the index carries every field the query projects, so the query needs no fetch from the Data Service'). Analytics's own array indexes explicitly are NOT this - the page states outright that they are not meant to serve as covering indexes, ruling out a fold that the shared vocabulary ('covering') might otherwise invite. This is exactly the kind of near-miss the round's fork-prevention habit was written for, caught by reading the page rather than the name."
+}

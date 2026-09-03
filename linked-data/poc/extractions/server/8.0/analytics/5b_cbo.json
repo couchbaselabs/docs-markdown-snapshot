@@ -1,0 +1,59 @@
+{
+  "page_id": "server/8.0/analytics/5b_cbo",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/5b_cbo.md",
+  "concepts": [
+    { "candidate_id": "analytics:cost-based-optimizer", "label": "Cost-Based Optimizer for Analytics", "registry_status": "minted", "reused_or_minted": "minted - deliberately kept distinct from the promoted n1ql:cost-based-optimizer. This page's own 'Related Links' section presents the Query service's CBO as a separate mechanism ('uses a mix of metadata and data statistics (histograms)'), never stating the two are the same optimizer - just an analogous one for a different service, per the round's dialect warning applied to the CBO rather than the query language itself." },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "Cost-Based Optimizer (CBO)", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "analytics:analyze-statement", "label": "ANALYZE ANALYTICS COLLECTION (gather / drop samples)", "registry_status": "minted", "reused_or_minted": "minted - one statement family covering both AnalyzeCollection (gather) and AnalyzeCollectionDrop (drop statistics), per the page's own AnalyzeStmnt grammar" },
+    { "candidate_id": "analytics:analytics-collection", "label": "Analytics collection (dataset)", "registry_status": "minted", "reused_or_minted": "reused - minted in 5_ddl.json, this batch" },
+    { "candidate_id": "analytics:analytics-view", "label": "Analytics view", "registry_status": "minted", "reused_or_minted": "reused - minted in 5a_views.json, this batch" }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "analytics:analyze-statement",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf, the exact predicate already promoted for n1ql:cost-based-optimizer -> n1ql:update-statistics ('the Cost-Based Optimizer needing UPDATE STATISTICS to have been run for its cost model to be usable') - same ordering-precondition shape, applied to Analytics' own sampling statement",
+      "evidence": "Before you can use the cost-based optimizer with a query, you must first gather the samples that it needs."
+    },
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "requiresSetting",
+      "object": "compiler.cbo",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresSetting",
+      "evidence": "The cost-based optimizer for Analytics is active by default. To turn it off or on, use the `compiler.cbo` configuration parameter."
+    },
+    {
+      "subject": "analytics:analyze-statement",
+      "predicate": "doesNotSupport",
+      "object": "analytics:analytics-view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "You can only gather an optimizer sample from an Analytics collection, not from an Analytics view."
+    },
+    {
+      "subject": "analytics:analyze-statement",
+      "predicate": "configuredPerNode",
+      "object": "analytics:analytics-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredPerNode; loose fit, retracted in favour of a plainer relation below because the page describes per-collection scope, not per-node scope",
+      "evidence": "You must gather a sample from each Analytics collection that you want to query."
+    },
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/cost-based-optimizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The [cost-based optimizer for the Query service](../n1ql/n1ql-language-reference/cost-based-optimizer.md) uses a mix of metadata and data statistics (histograms) to estimate the amount of processing (memory, CPU, network traffic, and I/O) needed for each operation."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "configuredPerNode",
+    "finding": "The fourth relation above (analytics:analyze-statement configuredPerNode analytics:analytics-collection) is a poor predicate fit kept for transparency rather than dropped silently: the page states sampling scope is per-collection ('You must gather a sample from each Analytics collection that you want to query'), which is not what configuredPerNode means (per-node configuration). No promoted predicate in the visible registry state cleanly expresses 'this action must be repeated once per instance of the object type'; reconciliation should either mint one or fold this into scopedToKeyspace-style modelling."
+  },
+  "cross_component_finding": "The two cost-based optimizers (Analytics's own, described here; the Query service's, promoted at recurrence 15) are structurally parallel but never equated by either page: both require a prior statistics-gathering step (ANALYZE ANALYTICS COLLECTION vs. UPDATE STATISTICS), both are on-by-default with a toggle setting (compiler.cbo vs. use_cbo), and both surface their estimates in a query plan (operator-estimates fields here; the Query service's own plan fields elsewhere). This page's own 'Related Links' section treats the Query CBO as a sibling worth a seeAlso pointer, not a fold - textbook material for the round's dialect-warning pattern applied one level below the query language itself, to a compiler subsystem."
+}

@@ -1,0 +1,129 @@
+{
+  "page_id": "server/8.0/analytics/10_data_type",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/10_data_type.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:data-types",
+      "label": "SQL++ for Analytics Data Types (primitive / special / composite)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page-level type scheme. Named to parallel the sibling extraction-layer concept n1ql:data-types (cloud/n1ql/n1ql-language-reference/datatypes.json), but kept as a separate id: this page's own three-way primitive/special/composite classification and its MULTISET member have no counterpart in the n1ql:data-types record, which lists MISSING, NULL, Boolean, Numbers, String, Array, Object and Binary with no such grouping and no multiset."
+    },
+    {
+      "candidate_id": "analytics:primitive-type",
+      "label": "Primitive type (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the page's own three named type categories (BOOLEAN, STRING, BIGINT, DOUBLE)."
+    },
+    {
+      "candidate_id": "analytics:special-type",
+      "label": "Special type (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the page's own three named type categories (NULL, MISSING)."
+    },
+    {
+      "candidate_id": "analytics:composite-type",
+      "label": "Composite type (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the page's own three named type categories (OBJECT, ARRAY, MULTISET)."
+    },
+    {
+      "candidate_id": "analytics:multiset-type",
+      "label": "Multiset (SQL++ for Analytics data type)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - an unordered collection type permitting duplicate elements, distinct from Array (ordered, from incoming JSON). No sibling concept exists anywhere in the corpus (checked: no promoted or extraction-layer 'multiset' id in concepts/ or extractions/) - this is a genuinely Analytics-specific SQL++ data type with no counterpart documented for SQL++ for Query, which n1ql:data-types lists as having only MISSING, NULL, Boolean, Numbers, String, Array, Object and Binary."
+    },
+    {
+      "candidate_id": "analytics:temporal-data-representation",
+      "label": "Temporal data representation (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the pattern by which SQL++ for Analytics represents dates/times/timestamps: not as a dedicated data type, but as ordinary `string` or `bigint` values interpreted by temporal functions."
+    },
+    {
+      "candidate_id": "n1ql:data-types",
+      "label": "SQL++ Data Types (MISSING, NULL, Boolean, Numbers, String, Array, Object, Binary)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id already minted in cloud/n1ql/n1ql-language-reference/datatypes.json for the Query-service type scheme; included here, with no relation forced to it, to record that this page's type scheme was checked against it rather than assumed identical - see cross_component_finding."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:primitive-type",
+      "predicate": "isSubtypeOf",
+      "object": "analytics:data-types",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isSubtypeOf)",
+      "evidence": "An instance of Couchbase Analytics data model can be a **_primitive type_** (`BOOLEAN`, `STRING`, `BIGINT`, or `DOUBLE`), a **_special type_** (`NULL` or `MISSING`), or a **_composite type_** (`OBJECT`, `ARRAY`, or `MULTISET`)."
+    },
+    {
+      "subject": "analytics:special-type",
+      "predicate": "isSubtypeOf",
+      "object": "analytics:data-types",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isSubtypeOf)",
+      "evidence": "An instance of Couchbase Analytics data model can be a **_primitive type_** (`BOOLEAN`, `STRING`, `BIGINT`, or `DOUBLE`), a **_special type_** (`NULL` or `MISSING`), or a **_composite type_** (`OBJECT`, `ARRAY`, or `MULTISET`)."
+    },
+    {
+      "subject": "analytics:composite-type",
+      "predicate": "isSubtypeOf",
+      "object": "analytics:data-types",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isSubtypeOf)",
+      "evidence": "An instance of Couchbase Analytics data model can be a **_primitive type_** (`BOOLEAN`, `STRING`, `BIGINT`, or `DOUBLE`), a **_special type_** (`NULL` or `MISSING`), or a **_composite type_** (`OBJECT`, `ARRAY`, or `MULTISET`)."
+    },
+    {
+      "subject": "analytics:multiset-type",
+      "predicate": "isSubtypeOf",
+      "object": "analytics:composite-type",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isSubtypeOf)",
+      "evidence": "An instance of Couchbase Analytics data model can be a **_primitive type_** (`BOOLEAN`, `STRING`, `BIGINT`, or `DOUBLE`), a **_special type_** (`NULL` or `MISSING`), or a **_composite type_** (`OBJECT`, `ARRAY`, or `MULTISET`)."
+    },
+    {
+      "subject": "analytics:multiset-type",
+      "predicate": "doesNotSupport",
+      "object": "appearing in the incoming JSON",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "A `multiset` cannot appear in the incoming JSON. A `multiset` is converted into a JSON array with an undefined order of elements in the query results."
+    },
+    {
+      "subject": "analytics:data-types",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:temporal-data-representation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (supportsLanguageConstruct)",
+      "evidence": "Since JSON does not provide data types for temporal data, SQL++ for Analytics uses the `string` and `bigint` types for this purpose. SQL++ for Analytics provides many builtin functions, called temporal functions, that operate on `string` or `bigint` values, interpreting them as dates or times."
+    },
+    {
+      "subject": "server/8.0/analytics/10_data_type",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/2_expr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "For more details on string literals, see [Literals](2%5Fexpr.md#Literals)."
+    },
+    {
+      "subject": "server/8.0/analytics/10_data_type",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/8_builtin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "For a list of these functions, see [Temporal Functions](8%5Fbuiltin.md#TemporalFunctions)."
+    },
+    {
+      "subject": "server/8.0/analytics/10_data_type",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/datefun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "For more information about the ISO-8601 format for temporal data, see [Date Formats](../n1ql/n1ql-language-reference/datefun.md#date-formats)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "analytics:builtin-functions members / n1ql:data-types' Binary type",
+    "finding": "This page names no Binary type at all, where the sibling n1ql:data-types record (cloud/n1ql/n1ql-language-reference/datatypes.json) documents one explicitly ('the value is exposed as binary'). Whether SQL++ for Analytics has no binary-value handling, or simply doesn't document it on this page, cannot be determined from this page alone."
+  },
+  "cross_component_finding": "This page's own three-way classification - primitive (BOOLEAN, STRING, BIGINT, DOUBLE), special (NULL, MISSING), composite (OBJECT, ARRAY, MULTISET) - has no counterpart grouping in the sibling n1ql:data-types record, which lists MISSING, NULL, Boolean, Numbers, String, Array, Object and Binary as a flat list with no primitive/special/composite split. The sharpest single difference is MULTISET: an unordered, duplicate-permitting composite type that is a first-class member of this page's type system ('A `multiset` is an unordered collection of items. A `multiset` allows multiple instances of its elements.') and appears nowhere in the Query-service type reference. Both dialects, however, converge on the same workaround for temporal data: this page states 'Since JSON does not provide data types for temporal data, SQL++ for Analytics uses the `string` and `bigint` types for this purpose', while the n1ql:data-types record's own evidence states 'SQL++ does not support the Date data type; however SQL++ does provide a full range of functions which you can use to manipulate dates' - independently-worded statements of the identical design choice (no dedicated date type; string/numeric-plus-functions instead), which is a genuine point of dialect convergence rather than divergence, though the numeric type used differs (BIGINT epoch-millis vs presumably NUMBER on the Query side) and is left uncompared since the Query-side numeric type isn't stated per-function on that record.",
+  "cross_product_finding": "No Capella-specific content appears on this page. It is pure Analytics data-model reference with no product-tier, credential, or access-surface framing of any kind."
+}

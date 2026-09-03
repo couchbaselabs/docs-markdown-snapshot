@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/analytics-collection",
+  "label": "Analytics collection",
+  "type": "the Analytics-service object holding shadowed or externally-sourced data, contained within an analytics:analytics-scope. Also called a 'local Analytics collection' when qualified - the two names are explicitly licensed as equivalent by the source page itself ('may be referred to as a local Analytics collection, or simply as an Analytics collection without qualification'). NOT merged with the extraction-layer analytics:shadow-collection or capella:analytics-dataset - both may denote the same underlying mechanism (all three descriptions use the verb 'shadow' identically), but no source page states the three are one thing, so all three stay apart per the standing no-silent-merge rule.",
+  "promoted": true,
+  "recurrence": 5,
+  "aliases_note": "This record deliberately carries no `aliases` field: 'local Analytics collection' is a qualifier on this SAME name, licensed as droppable by the source sentence quoted in concepts/terminology-equivalences.json, not a separate id ever minted in the extraction layer. There is nothing to alias.",
+  "evidence": [
+    "An Analytics scope, or dataverse, is a container for the other Analytics entities (links, collections, synonyms, indexes).",
+    "An Analytics collection on a remote link shadows the data from a remote Couchbase cluster to a local Analytics collection.",
+    "An external Analytics collection reads data directly from an external source, such as Amazon S3, without shadowing it locally."
+  ],
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "What is the Analytics-side object that holds shadowed data, and is 'local Analytics collection' a different thing from 'Analytics collection'?"
+}

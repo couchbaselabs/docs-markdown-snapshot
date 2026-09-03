@@ -1,0 +1,167 @@
+{
+  "page_id": "server/8.0/analytics/9_udf",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/9_udf.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:create-analytics-function",
+      "label": "CREATE ANALYTICS FUNCTION",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Analytics DDL statement that creates a user-defined function, scoped to an Analytics scope and operating on Analytics collections/scopes rather than buckets/scopes/collections. NOT merged with n1ql:create-function per the round's DIALECT WARNING: different keyword ('ANALYTICS FUNCTION' vs 'FUNCTION'), different owning namespace (Analytics scope vs bucket.scope), and a different external-language story (Python only, vs js-udf's JavaScript). No page states these are the same statement."
+    },
+    {
+      "candidate_id": "analytics:drop-analytics-function",
+      "label": "DROP ANALYTICS FUNCTION",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Analytics DDL statement that removes a user-defined function. NOT merged with n1ql:drop-function for the same reason as analytics:create-analytics-function."
+    },
+    {
+      "candidate_id": "analytics:internal-udf",
+      "label": "Internal (SQL++ for Analytics-bodied) user-defined function",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a UDF whose body is a SQL++ for Analytics expression or subquery, as against analytics:external-udf. Sibling pair, closed two-member set per the page's own framing."
+    },
+    {
+      "candidate_id": "analytics:external-udf",
+      "label": "External (language-bound) user-defined function (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a UDF bound to a function in an externally-uploaded library, currently Python only. Deliberately NOT named or merged with js-udf:external-function: that concept is a SQL++ for Query UDF referencing a JavaScript UDF library (n1ql:create-function, LANGUAGE JAVASCRIPT); this one is created by analytics:create-analytics-function's AS ... AT ... syntax and is bound to a Python library. Same shape (library-backed external UDF), different statement, different owning dialect, different language - kept as a distinct id under a distinct local name specifically so a namespace-fork check does not read the two as accidental duplicates of one concept."
+    },
+    {
+      "candidate_id": "analytics:python-udf",
+      "label": "Python UDF (SQL++ for Analytics external function language)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific external language documented for analytics:external-udf, marked Developer Preview. The page names no other external language, so this is currently a one-member closed set rather than a family."
+    },
+    {
+      "candidate_id": "analytics:function-library",
+      "label": "Analytics UDF Library",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named collection of Python modules an external UDF is bound to via AT, created via the Libraries REST API and belonging to an Analytics scope. Deliberately given a distinct local name from the already-promoted-family js-udf:udf-library (also a UDF library concept, but for JavaScript UDFs at bucket/scope granularity via a different REST surface) - same role in two different dialects, not stated anywhere to be the same mechanism."
+    },
+    {
+      "candidate_id": "analytics:function-signature",
+      "label": "Function signature (Analytics UDF)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the identity key for a user-defined function within an Analytics scope: its name plus its parameter count, not its name alone. Lets two functions share a name if their parameter counts differ."
+    },
+    {
+      "candidate_id": "analytics:variadic-function",
+      "label": "Variadic Analytics UDF",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a user-defined function declared to take any number of arguments (or none) via a single `...` parameter, with all call-time arguments collected into an array named `args`."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:create-analytics-function",
+      "predicate": "createsOnAction",
+      "object": "analytics:internal-udf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (createsOnAction)",
+      "evidence": "There are two types of user-defined function: _internal_ functions, which are defined using SQL++ for Analytics expressions; and _external_ functions, which are defined using an external language."
+    },
+    {
+      "subject": "analytics:create-analytics-function",
+      "predicate": "createsOnAction",
+      "object": "analytics:external-udf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (createsOnAction)",
+      "evidence": "There are two types of user-defined function: _internal_ functions, which are defined using SQL++ for Analytics expressions; and _external_ functions, which are defined using an external language."
+    },
+    {
+      "subject": "analytics:external-udf",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (availableSince)",
+      "evidence": "In Couchbase Server 7.0 you can create external user-defined functions using Python code. This is a Developer Preview feature."
+    },
+    {
+      "subject": "analytics:external-udf",
+      "predicate": "supportsLanguageConstruct",
+      "object": "analytics:python-udf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (supportsLanguageConstruct)",
+      "evidence": "Python UDFs allow you to utilize your Python code from SQL++ for Analytics as a normal function. Each Python function is defined from within a Library."
+    },
+    {
+      "subject": "analytics:external-udf",
+      "predicate": "requiresIndex",
+      "object": "analytics:function-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (requiresIndex). Used here as the closest structural fit for 'cannot run without the named object existing', even though the object is a function library rather than a database index - flagged as an approximate reuse rather than an exact one.",
+      "evidence": "Each Python function is defined from within a Library. Libraries belong to Scopes and are created by uploads to the UDF API endpoint."
+    },
+    {
+      "subject": "analytics:create-analytics-function",
+      "predicate": "createsOnAction",
+      "object": "analytics:variadic-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (createsOnAction)",
+      "evidence": "To create a variadic function, that is, a function which you can call with any number of arguments or none, specify `...` as the only parameter."
+    },
+    {
+      "subject": "analytics:internal-udf",
+      "predicate": "restrictedToContext",
+      "object": "analytics:function-signature",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (restrictedToContext)",
+      "evidence": "Within an Analytics scope, a function is uniquely identified by its _function signature_: that is, its name and the number of parameters it takes. You can create more than one function with the same name in the same Analytics scope, as long as each function has a different number of parameters."
+    },
+    {
+      "subject": "analytics:internal-udf",
+      "predicate": "doesNotSupport",
+      "object": "recursive function invocation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "Note that recursive function invocation is not permitted. The function body may not refer to itself, nor to another user-defined function which calls this function indirectly."
+    },
+    {
+      "subject": "server/8.0/analytics/9_udf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/appendix_3_resolution",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "if the [query\\_context](appendix%5F3%5Fresolution.md#Query%5Fcontext) parameter is set, the function is located in the Analytics scope specified by the query context"
+    },
+    {
+      "subject": "server/8.0/analytics/9_udf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/appendix_5_python",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "This is a Developer Preview feature. For further details see [Appendix 5: Python UDFs](appendix%5F5%5Fpython.md)."
+    },
+    {
+      "subject": "server/8.0/analytics/9_udf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/appendix_4_examples",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Refer to [Appendix 4: Example Data](appendix%5F4%5Fexamples.md) to install this example data."
+    },
+    {
+      "subject": "server/8.0/analytics/9_udf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/5_ddl",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "You can use the [USE statement](5%5Fddl.md#Use%5Fstatements)to set the default scope for the statement immediately following."
+    },
+    {
+      "subject": "server/8.0/analytics/9_udf",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/3_query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Compare this with example Q3.29 in the section on [Subqueries](3%5Fquery.md#Subqueries)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresServerRole",
+    "finding": "Neither CREATE ANALYTICS FUNCTION nor DROP ANALYTICS FUNCTION carries any stated RBAC gate on this page - unlike the Query-service statement family, where n1ql:create-function/n1ql:drop-function pages are gated by role:query-manage-functions/role:query-manage-external-functions. Whether Analytics UDF management is gated by an equivalent role, or by the Analytics service's own separate access model, is not stated here."
+  },
+  "cross_component_finding": "The page directly answers the round's framing question for this concept pair: Analytics user-defined functions are a structurally distinct mechanism from SQL++ for Query's, not a reuse under a different label. The creation statement is CREATE ANALYTICS FUNCTION (not CREATE FUNCTION), the owning namespace is the Analytics scope/collection hierarchy (not bucket.scope.collection), the external-language story is Python via a Libraries REST API-created Library, marked Developer Preview and dated to Couchbase Server 7.0 ('In Couchbase Server 7.0 you can create external user-defined functions using Python code. This is a Developer Preview feature.') - not JavaScript via js-udf:udf-library. No sentence on this page equates the two families, so analytics:create-analytics-function/analytics:drop-analytics-function/analytics:external-udf/analytics:function-library are minted as separate ids rather than folded into the n1ql:create-function/n1ql:drop-function/js-udf:external-function/js-udf:udf-library family, per the round's explicit DIALECT WARNING.",
+  "cross_product_finding": "No Capella-specific content appears on this page (no Query Workbench, Data API, or credential-type framing) - consistent with the round's note that Capella's own Analytics pages are UI-driven management guides rather than a language-reference twin of this one."
+}

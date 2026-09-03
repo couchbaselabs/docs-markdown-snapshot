@@ -1,0 +1,149 @@
+{
+  "page_id": "server/8.0/analytics/appendix_3_resolution",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/appendix_3_resolution.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:variable-binding",
+      "label": "Variable binding (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism by which WITH/LET clauses and FROM/GROUP BY/SELECT's optional AS subclauses attach a name to the result of an expression, or to individual members of an iterated collection."
+    },
+    {
+      "candidate_id": "analytics:name-resolution",
+      "label": "Name resolution (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the process of determining what a possibly multi-part, dot-separated name refers to, starting from its leftmost identifier, with rules that differ by clause type and by whether the name appears in a FROM clause versus elsewhere."
+    },
+    {
+      "candidate_id": "analytics:single-variable-rule",
+      "label": "Single Variable Rule",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the named rule (page's own term) that, outside a FROM clause, treats a bare identifier as a field access on the sole variable bound by the current query block's FROM clause, failing with an ambiguous-name error if more than one variable is bound and an undefined-identifier error if none is. Explicitly does not apply after a GROUP BY clause, and does not consult LET-bound variables."
+    },
+    {
+      "candidate_id": "analytics:group-as-clause",
+      "label": "GROUP AS clause",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the optional clause following GROUP BY that binds a variable to the whole group, as a multiset of per-member objects, so subqueries can iterate over the group's individual members."
+    },
+    {
+      "candidate_id": "analytics:pseudo-variable",
+      "label": "Pseudo-variable (GROUP BY expression alias)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - when a GROUP BY expression has no explicit alias, the page states it binds a pseudo-variable lexicographically identical to the expression itself, retained (the page says) 'for SQL compatibility' even though the expression is not actually re-evaluated in later clauses."
+    },
+    {
+      "candidate_id": "analytics:dataverse",
+      "label": "Dataverse",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the top-level namespace term used throughout this page's Binding Variables/Scoping/Resolving Names sections ('a might represent a dataverse and b might represent a dataset in that dataverse'). NOT aliased to analytics:sqlpp-for-analytics's more recent 'Analytics scope' terminology (used by 8_builtin.md, 9_udf.md, and this same page's own later 'Resolving Database Entities' section): no sentence anywhere in this page equates the two terms, so the fold is left unmade - see cross_component_finding for the terminology-drift observation this produces."
+    },
+    {
+      "candidate_id": "analytics:database-entity-reference",
+      "label": "Database entity reference (qualified name)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a FROM-clause or DDL-statement name consisting of an optional Analytics scope name and a local name, resolved using (in order) a preceding USE statement, the query_context parameter, or the bare reference itself."
+    },
+    {
+      "candidate_id": "analytics:query-context-parameter",
+      "label": "query_context parameter (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Analytics-scope-selecting request parameter, set via the cbq shell or the Analytics Service REST API, valued as 'default:<scope name>' and defaulting to 'default:Default'. Deliberately NOT merged with the promoted n1ql:query-context (recurrence 22, 'the setting that establishes the default namespace, bucket and scope against which unqualified keyspace references in a statement resolve'): the two share a literal parameter name and a similar role, but this page never states they are the same setting, and per the round's DIALECT WARNING a shared name is not sufficient licence to merge."
+    },
+    {
+      "candidate_id": "analytics:synonym",
+      "label": "Analytics synonym",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named reference that resolves to a target Analytics collection or view (potentially through a chain of synonyms), used inside FROM clauses and database entity references. Datasets and views take precedence over synonyms of the same name."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:group-as-clause",
+      "predicate": "createsOnAction",
+      "object": "analytics:multiset-type",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (createsOnAction)",
+      "evidence": "The `GROUP AS` variable is bound to a multiset of objects. Each object represents one of the members of the group."
+    },
+    {
+      "subject": "analytics:single-variable-rule",
+      "predicate": "doesNotSupport",
+      "object": "resolution against variables bound in an outer (containing) query block",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "Note that the Single Variable Rule searches for bound variables only in the current query block, not in outer (containing) blocks."
+    },
+    {
+      "subject": "analytics:database-entity-reference",
+      "predicate": "doesNotSupport",
+      "object": "referring to a bucket's default scope and default collection using just the bucket name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "The Query service enables you to refer to the default scope within the default collection using just the bucket name. However, Analytics does not support this type of reference."
+    },
+    {
+      "subject": "analytics:database-entity-reference",
+      "predicate": "doesNotSupport",
+      "object": "resolving individual missing identifiers in the middle of a qualified name (e.g. analytics..customers)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "Unlike the Query service, Analytics does not enable you to resolve individual missing elements in the middle of a database entity reference."
+    },
+    {
+      "subject": "analytics:database-entity-reference",
+      "predicate": "configurableVia",
+      "object": "analytics:query-context-parameter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (configurableVia)",
+      "evidence": "Analytics uses the following three resources to resolve database entity references: * (Optional) The preceding USE statement. * (Optional) The `query_context` parameter. * The database entity reference provided in the query."
+    },
+    {
+      "subject": "analytics:synonym",
+      "predicate": "cascadesTo",
+      "object": "analytics:database-entity-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (cascadesTo)",
+      "evidence": "If the database entity is an Analytics synonym, the synonym is then resolved to find the Analytics collection."
+    },
+    {
+      "subject": "analytics:synonym",
+      "predicate": "takesPrecedenceOver",
+      "object": "analytics:synonym",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (takesPrecedenceOver). Used approximately: the actual precedence is dataset/view over a same-named synonym, which this schema has no cleaner triple for without separate dataset/view concept ids.",
+      "evidence": "Datasets and views take precedence over synonyms, so if both a dataset (or a view) and a synonym have the same name then the resolution is to the dataset."
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_3_resolution",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/run-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "You can set the `query_context` parameter using the [cbq shell](run-query.md#Using%5Fcommand%5Fline)or the [Analytics Service REST API](../analytics-rest-service/index.md)."
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_3_resolution",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics-rest-service/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "You can set the `query_context` parameter using the [cbq shell](run-query.md#Using%5Fcommand%5Fline)or the [Analytics Service REST API](../analytics-rest-service/index.md)."
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_3_resolution",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/query-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "For more details, refer to [Analytics Query Parameters](query-params.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso (5_ddl.md)",
+    "finding": "The page's own link to the USE statement is malformed: '[Use Statements](#5%5Fdll.adoc#Use%5Fstatements)' misspells '5_ddl' as '5_dll' and prefixes the target with '#', turning what should be a cross-file link to 5_ddl.md into a same-page anchor reference that does not exist on this page. Not extracted as a seeAlso relation because the link, as written, does not resolve to a real page id - flagged here rather than silently 'corrected' into the link the author evidently intended."
+  },
+  "cross_component_finding": "This page is internally inconsistent about Analytics's own top-level namespace vocabulary, and the inconsistency looks like terminology drift rather than error: the Binding Variables, Scoping and Resolving Names sections use 'dataverse' and 'dataset' throughout ('it has a list of all the available dataverses and datasets', 'a might represent a dataverse and b might represent a dataset in that dataverse'), while the page's own later Resolving Database Entities section switches to 'Analytics scope' and 'Analytics collection' ('A database entity reference (or _qualified name_) may consist of an optional Analytics scope name...') - the same terminology used by 8_builtin.md and 9_udf.md elsewhere in this batch. No sentence on this page states that a dataverse is what is now called an Analytics scope, or that a dataset is what is now called an Analytics collection, so analytics:dataverse is minted as its own concept rather than aliased, but the pattern (older section vocabulary preserved unedited alongside newer section vocabulary, on the same page) is worth a reconciliation look across the whole analytics/ tree, not just this page. Separately, the page draws two explicit, directly-quoted contrasts with 'the Query service' - the FROM-clause default-scope/default-collection shorthand, and mid-reference missing-identifier resolution - both captured above as doesNotSupport relations, and both are exactly the kind of stated (not inferred) dialect divergence the round's DIALECT WARNING asks this batch to look for.",
+  "cross_product_finding": "No Capella-specific content appears on this page - no Query Workbench, Data API, or credential-type framing of any kind."
+}

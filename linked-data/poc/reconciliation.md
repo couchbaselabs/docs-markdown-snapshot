@@ -5275,7 +5275,185 @@ confirm against yet).
   to speak in full sentences is itself a comparison instrument**, once two pages'
   outputs sit side by side in reconciliation.
 
-## Cumulative verdict (all twenty rounds)
+## Round 21 — `analytics/`, first contact on a whole module, and a briefing's own blind spot
+
+**Scope.** 28 pages, the whole `server/8.0/analytics/` module - the Analytics
+service's own SQL++ dialect, DDL, functions, and management/REST reference. Never
+extracted before. No Capella twin by filename; extends a small 8-member `analytics:`
+extraction-layer namespace Capella's `cloud/clusters/analytics-service/` pages had
+already started. 240 relations, 0 evidence problems, 8 gate denials, all resolved
+without thinning.
+
+**The round needed a retry mid-flight.** Two of the three original batches stalled
+after 600 seconds of no progress, one after 8 of 9 pages, one after 7 of 9. Following
+the extract skill's own guidance for exactly this failure mode: checked what was
+already on disk (25 of 28 files, all valid JSON, all passing `verify-evidence.py`
+cleanly), then relaunched a small batch covering only the 3 missing pages rather than
+resending either original batch. That relaunch itself stalled a second time with
+*zero* progress; a plain retry of the identical 3-page batch completed cleanly. Nothing
+about the content caused either stall - the eventual output for all three pages is
+unremarkable in quality - so this is recorded as an infrastructure note rather than a
+methodological finding: a stall is not evidence anything is wrong with the batch's
+scope or instructions, and the right response is exactly what the skill already
+says - check disk, retry the remainder, don't rewrite the brief.
+
+### A curated registry excerpt can cause a false negative as easily as a full registry causes a false positive
+
+Every context file this project writes includes a hand-picked "relevant registry
+state" table - a convenience subset of the full registry, meant to save an agent from
+running `registry-digest.py` for every obvious reuse. Round 19-20 found that omitting
+a real relation from that table lets an agent mint a duplicate concept it should have
+reused. Round 21 found the mirror failure: `5_ddl.md`'s own extraction record states,
+in a `notable_absence`, that the page names a real topology-change constraint on the
+whole DDL statement family ("No CREATE/DROP or CONNECT/DISCONNECT statement can be
+executed while the cluster topology changes") and **declined to model it as a
+relation**, because "there is no promoted 'rebalance' or 'topology change' concept in
+this batch's visible registry state." `server:rebalance` has been promoted since
+round 11. It simply wasn't one of the dozen-odd items this round's context file
+listed as "relevant." The agent did exactly the right thing with the information it
+had - it declined to force a mismatched or invented object rather than guess - and
+the fact went unmodeled anyway, for one page. A second page (`error-codes.md`, in the
+cleanup batch) independently found the same constraint via its own error-code table's
+own row (`23003 | Operation cannot be performed during rebalance`) and correctly
+linked it to the full `server:rebalance`, because that batch's own registry check
+happened to surface it. **The fact survived by accident, not because the process
+caught the gap.** A curated excerpt is a convenience with a cost nobody has priced:
+every round's context file is a bet that the coordinator listed everything the
+batch will need, and the bet is invisible when it pays off and just as invisible when
+it doesn't, because a correctly-declined-for-lack-of-evidence relation looks exactly
+like a genuinely absent one.
+
+### The dialect question, settled with more nuance than the briefing's own hypothesis
+
+The briefing warned that Analytics' SQL++ dialect might not be identical to the Query
+service's and asked agents to read `6_n1ql.md` for the actual answer rather than
+assume. It settled as **generalization-with-divergence, not identity, and not simple
+derivation either**: Analytics generalizes several Query constructs into more
+composable forms (`USE KEYS`, `ON KEYS`, `NEST`, `ARRAY`), lacks INSERT/UPSERT/DELETE
+entirely, restricts comparisons and `ORDER BY` to scalars, and reuses the surface name
+`CREATE INDEX` for a statement that is typed and behaviourally different
+(`analytics:create-analytics-index differsFrom n1ql:create-index`, "supported but
+different (e.g., typed)"). A second page (`1_intro.md`) supplied a detail the
+briefing's own framing hadn't anticipated: **both dialects are themselves
+implementations of one external academic specification** ("SQL-for-JSON query
+language specification called SQL++"), which reframes the relationship as two
+siblings descending from one external spec rather than one dialect being derived from
+the other. Six new predicates came out of stating these distinctions precisely rather
+than reusing one blunt "related to" relation: `isVariantOf` (the coarse family claim,
+independently minted on three separate pages, `divergent`-clean and promoted at 3),
+`generalizesSyntaxOf` and `differsFrom` (the two specific *shapes* of divergence a
+page can state, both still below the promotion bar at 1 file each but kept distinct on
+purpose - they answer different questions and folding them into `isVariantOf` would
+lose which one a given page actually asserts), `isImplementationOf`, `canActAs`, and
+`isDerivedFrom` (each attested once so far, each capturing a relationship shape no
+existing predicate covered).
+
+**The collision this settles is not hypothetical.** `primer-beer.md`'s own worked
+tutorial writes its index-creation example in the *short* form - bare `CREATE INDEX`,
+with a typed field - not the long `CREATE ANALYTICS INDEX` form `5_ddl.md`'s reference
+page uses. A reader who has only ever seen the tutorial has no way to know they are
+not writing a Query-service statement; the short spelling is the tutorial's only
+spelling of it. Filed as `docs-issues/server-analytics-create-index-short-form-causes-real-confusion`
+because the collision demonstrably reaches a reader, not just a reference table.
+
+### Promotions
+
+**`analytics:` (8, the namespace's first promotions):** `analytics:sqlpp-for-analytics`
+(9, the dialect itself); `analytics:analytics-collection` (5) - the licensed
+equivalence already on record (`concepts/terminology-equivalences.json`, from
+`5_ddl.md`) applied from the start, so "local Analytics collection" was never minted
+as a separate id to fold later; `analytics:create-analytics-index` (5, kept apart from
+`n1ql:create-index` above); `analytics:workbench` (5) - checked against the
+extraction-layer `capella:analytics-workbench` (near-identical description) *before*
+minting, per this round's fork-prevention instruction, and kept separate anyway
+because no page states the two UIs are the same implementation - correct behaviour
+under the no-silent-merge rule, not a missed fold; `analytics:alter-collection-statement`
+(3, folding `analytics:alter-collection` - a DDL reference page and a management-guide
+page, dispatched concurrently with no visibility into each other, minting the
+identical ALTER COLLECTION statement under two names, the same genre-fork shape
+rounds 18-20 kept finding); `analytics:local-link`/`remote-link` (3 each, two of the
+three link kinds, the third - `external-link` - staying unpromoted at 1 file and
+flagged as a strong Capella near-duplicate candidate, see docs-issues below);
+`analytics:query-service-rest-api` (3, sharing a real option set with
+`n1ql:query-service-rest-api` per an explicit statement that the two REST APIs
+implement the same HTTP interface).
+
+**Three new predicates:** `isVariantOf` (3, above); `hasEquivalentEffectAs` (2 - a
+statement and a UI action, or a statement and a sequence of other statements,
+producing the same result, distinct from `isSynonymOf`'s two-names-one-thing and
+`mustUseInsteadWhen`'s required substitution); `accessibleVia` (2, the positive
+counterpart to the already-promoted `incompatibleWithAccessSurface` - which client
+surfaces a service *can* be reached through, kept as a separate predicate rather than
+a signed relation because a page rarely enumerates both the working and non-working
+surfaces at once).
+
+**A correction to an existing promoted record rather than a new one.** Round 12's
+`hasPrivilege` record states plainly that Server's docs "define a privilege tier,
+assert that roles correspond to system-defined privileges, and then never name a
+member of it." `appendix_5_python.md` names three concrete internal permission
+strings in prose - `cluster.analytics!manage`, `cluster.analytics!select`,
+`cluster.admin.diag!write` - and ties the third to a named role directly ("normally
+only available to the role Full Administrator"). This does not overturn round 12's
+finding - the other two permissions are still never mapped to any role, and nothing
+treats these strings as an enumerable catalogue the way `roles.md` enumerates roles -
+but it is the first place in the corpus a permission string and a role are named
+together, and the promoted record now says so.
+
+**Deliberately not promoted:** `analytics:external-link` (1 file, near-identical to
+Capella's own `capella:analytics-external-link` by description - flagged, not merged,
+per the standing rule); `generalizesSyntaxOf`, `differsFrom`, `isImplementationOf`,
+`canActAs`, `isDerivedFrom`, `canRaiseError`, `removedVia`, `implementsSameInterfaceAs`,
+`blockedDuring`, `triggers`, `shadowsDataVia` (each 1 file, real relationships, not yet
+independently attested); `analytics:shadow-collection` and `capella:analytics-dataset`
+(both checked against `analytics:analytics-collection` as likely synonyms of the same
+underlying "shadowed data" object - all three use the verb "shadow" identically - kept
+apart because no page states the equivalence outright, the identical discipline that
+correctly kept `analytics:workbench` and `capella:analytics-workbench` apart above).
+
+### New `docs-issues/` (5, taking the total to 144)
+
+- `server-analytics-error-codes-asx-vs-icode-mismatch` - the module's own worked
+  error examples use ASX-prefixed codes; the page promising "the full list" documents
+  an entirely different, non-overlapping numeric scheme. Same shape as the eventing
+  LCB error-code mismatch, found a second time in an unrelated module.
+- `server-analytics-create-index-short-form-causes-real-confusion` - above.
+- `server-analytics-dataverse-dataset-terminology-drift` - one page uses "dataverse"/
+  "dataset" in its earlier sections and "Analytics scope"/"Analytics collection" - this
+  module's vocabulary everywhere else - in its own later section, with no sentence
+  connecting the two vocabularies.
+- `server-analytics-query-response-duplicate-metrics-description` - two differently-
+  shaped response objects (six fields vs. one) share the identical one-line
+  description verbatim, with nothing distinguishing why a response needs both.
+- `server-analytics-capella-external-link-near-verbatim-overlap` - `needs-sme`, the
+  external-link near-duplicate above.
+
+### What this round taught about the method
+
+- **A curated registry excerpt is a bet with an invisible failure mode.** Every
+  context file trims the full registry to "what this batch probably needs," and the
+  trim is a judgment call made before anyone has read the pages. This round's excerpt
+  omitted `server:rebalance` - promoted, real, and exactly what one page needed - and
+  the agent that hit the gap did everything right (declined to invent an object rather
+  than guess) and the fact still went unmodeled on that page. It survived only because
+  a second, unrelated page happened to need the same fact and its own registry check
+  caught it. **A declined-for-lack-of-evidence relation and a genuinely absent one are
+  indistinguishable in the output**, which means this failure mode can hide
+  indefinitely unless someone happens to notice the same fact needed twice.
+- **Settling a comparison precisely is worth more predicates than settling it loosely
+  is worth one.** The briefing asked one question (is Analytics' SQL++ the same
+  dialect as Query's SQL++?) and the pages answered with at least three distinguishable
+  claim shapes - a coarse family relationship, a specific generalization, a specific
+  divergence - plus a fourth nobody asked for (both are implementations of one
+  external spec). Minting one predicate for "related to" would have been cheaper and
+  would have thrown away exactly the information the round was run to find.
+- **A batch stalling is not evidence the batch's scope or instructions were wrong.**
+  Two batches stalled at different completion points with no correlation to page
+  content, and the fix the extract skill already prescribes - validate what's on disk,
+  relaunch only the remainder - worked immediately once applied. Worth restating
+  because it is tempting to over-explain a stall by revising the brief; the correct
+  response here required no content diagnosis at all.
+
+## Cumulative verdict (all twenty-one rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -5524,6 +5702,26 @@ page to state its own understanding fully, in its own words, and reconciliation 
 where two pages' full sentences finally sit side by side. **Forcing every page to
 speak in full sentences is itself a comparison instrument.**
 
+Round 21 finds the mirror image of round 19-20's fork lesson, on the same instrument
+that produces context files in the first place. Every round's briefing trims the full
+registry to a curated "relevant state" table, and round 21's table omitted
+`server:rebalance` — promoted since round 11, and exactly what one Analytics DDL page
+needed to model a stated topology-change constraint. The agent that hit the gap did
+everything right: it declined to invent a mismatched object rather than force one, and
+recorded the omission honestly. The fact survived anyway, purely by accident — a
+second, unrelated page in the same round happened to need the identical fact and its
+own registry check caught it. **A declined-for-lack-of-evidence relation and a
+genuinely absent one are indistinguishable in the output**, which is round 19-20's
+"a label-only check will miss a relation" turned inside out: there, a full registry
+existed and an agent's check of it missed something; here, the registry a batch was
+actually shown was itself incomplete, by the coordinator's own hand, before the batch
+ever started. The round also found that settling a comparison precisely produces more
+predicates than settling it loosely, and that this is a feature rather than scope
+creep: asked whether Analytics' SQL++ dialect is the same as the Query service's, the
+pages returned at least three distinguishable claim shapes — a coarse family
+relationship, a specific generalization, a specific divergence — and folding them into
+one relation would have discarded exactly the distinction the round was run to find.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -5574,7 +5772,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Thirty-two limits of the method are now visible across multiple rounds, not just
+Thirty-three limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -6220,3 +6418,13 @@ once, so worth treating as durable rather than one-off:
   answers and teaching a technique: a list only ever covers what the coordinator
   already knows to worry about, and a technique, applied as a habit, finds what nobody
   thought to name.
+
+- **A curated registry excerpt in a briefing is a bet with an invisible failure mode
+  in both directions.** Rounds 19-20 found the direction where an incomplete excerpt
+  lets an agent re-mint something the full registry already had. Round 21 found the
+  other direction: the excerpt omitted `server:rebalance` - promoted, real - and an
+  agent needing it did the responsible thing (declined to invent a mismatched object)
+  and the fact went unmodeled anyway, surviving only because a second page in the same
+  round happened to need it too. A correctly-declined-for-lack-of-evidence relation and
+  a genuinely absent one look identical in the output, so there is no way to notice this
+  failure except by the fact resurfacing elsewhere - which is luck, not a control.

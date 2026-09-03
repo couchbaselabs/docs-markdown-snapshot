@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-equivalent-effect-as",
+  "label": "has equivalent effect as",
+  "type": "the subject statement/action produces the same end result as the object statement, action, or sequence of statements, even though the surface mechanism differs (one statement vs. a sequence, a DDL statement vs. a UI action). Distinct from isSynonymOf (two names for one thing) and from mustUseInsteadWhen (a required substitution) - this predicate is for two DIFFERENT mechanisms that a page explicitly states reach the same outcome.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "This is equivalent to running CREATE ANALYTICS SCOPE followed by CREATE ANALYTICS COLLECTION.",
+    "This is equivalent to running DROP ANALYTICS COLLECTION, and if necessary DROP ANALYTICS SYNONYM."
+  ],
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "Are two differently-shaped operations (a single statement vs. a sequence, a statement vs. a UI click) stated to produce the same result?"
+}

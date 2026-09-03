@@ -1,0 +1,85 @@
+{
+  "page_id": "server/8.0/analytics/appendix_2_parameters",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/appendix_2_parameters.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:set-statement",
+      "label": "SET statement (SQL++ for Analytics, performance parameters)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Analytics statement that overrides a cluster-wide configuration parameter for one request. Deliberately NOT merged with the promoted n1ql:set-transaction (a different SET-prefixed statement that sets a transaction's isolation level): this SET has no relationship to transactions at all, and the page states it only affects performance, never correctness."
+    },
+    {
+      "candidate_id": "analytics:cost-based-optimizer",
+      "label": "Cost-Based Optimizer (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Analytics's own query-plan optimizer, configured through compiler.queryplanshape/compiler.forcejoinorder/compiler.cbo and steered per-query by hint comments. NOT merged with the promoted n1ql:cost-based-optimizer (recurrence 15): no page states the two are the same optimizer, and the tuning surface described here (join build/probe side, zigzag/leftdeep/rightdeep plan shapes, hash broadcast) is specific to Analytics's partitioned-parallel execution model and has no counterpart in the n1ql:cost-based-optimizer record."
+    },
+    {
+      "candidate_id": "analytics:query-plan-shape",
+      "label": "Query plan shape (zigzag / leftdeep / rightdeep)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the closed three-value enum for compiler.queryplanshape, governing which side of each hash join in a multi-way join plan is the build side and which is the probe side."
+    },
+    {
+      "candidate_id": "analytics:optimizer-hints",
+      "label": "Cost-Based Optimizer hints (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the family of /*+ ... */ hint comments (productivity, hashjoin, hash-bcast) that steer the Analytics cost-based optimizer for an individual query. NOT merged with the promoted n1ql:optimizer-hints (recurrence 10): the hint syntax, the hint names, and the join-side (build/probe) and broadcast concepts they express are specific to Analytics's own join-execution model, and no page equates the two hint systems."
+    },
+    {
+      "candidate_id": "analytics:hash-broadcast-join-hint",
+      "label": "hash-bcast hint",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific optimizer hint that forces one side of an equi-join to be broadcast (replicated) to every partition of the other side, rather than the default partitioned-parallel hash join where both sides are repartitioned on the join key."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "configurableVia",
+      "object": "analytics:set-statement",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (configurableVia)",
+      "evidence": "The `SET` statement can be used to override some cluster-wide configuration parameters for a specific request"
+    },
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "offersConfigurationChoice",
+      "object": "analytics:query-plan-shape",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (offersConfigurationChoice)",
+      "evidence": "**compiler.queryplanshape**: A string specifying the shape of the query plan produced by the query compiler for multi-way hash join queries. Three settings are available for this parameter: `zigzag`, `leftdeep`, and `rightdeep`."
+    },
+    {
+      "subject": "analytics:cost-based-optimizer",
+      "predicate": "configurableVia",
+      "object": "analytics:optimizer-hints",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (configurableVia)",
+      "evidence": "You can supply hints to the cost-based optimizer using a hint comment. These enable you to specify the behavior of the cost-based optimizer for individual queries."
+    },
+    {
+      "subject": "analytics:optimizer-hints",
+      "predicate": "configurableVia",
+      "object": "analytics:hash-broadcast-join-hint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (configurableVia)",
+      "evidence": "Analytics provides the `hash-bcast` join hint to enable this strategy. This hint forces one side of the join to be replicated while the other retains its original partitioning."
+    },
+    {
+      "subject": "analytics:set-statement",
+      "predicate": "doesNotAffect",
+      "object": "query correctness",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotAffect)",
+      "evidence": "Note that changing query parameters will not affect query correctness but only impact performance characteristics, such as response time and throughput."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresServerRole / availableSince",
+    "finding": "None of the compiler.* performance parameters or optimizer hints carry a stated RBAC gate or a version-introduced marker, unlike the Query-service's node/cluster-level settings pages, several of which are role- or version-qualified. All constraints described here are purely behavioral (default values, valid ranges, warning conditions for an invalid hint parameter)."
+  },
+  "cross_component_finding": "This page's tuning surface has no stated relationship to SQL++ for Query's equivalents, but the shapes rhyme closely enough that a reconciler should look rather than assume: this page's per-request SET-based override for compiler.* parameters ('The SET statement can be used to override some cluster-wide configuration parameters for a specific request') mirrors the request-vs-cluster-vs-node layering the registry already models for the Query service via n1ql:request-level-query-parameters/n1ql:cluster-level-query-settings/n1ql:node-level-query-settings - but no page anywhere states the two mechanisms are the same, and Analytics's parameters (compiler.parallelism, compiler.groupmemory/sortmemory/joinmemory/windowmemory, compiler.sort.parallel, compiler.arrayindex, compiler.queryplanshape, compiler.forcejoinorder, compiler.cbo) are named nothing like the Query service's queryXxx-style settings. Left as an observation rather than a relation, since asserting the analogy as a triple would be this agent's inference, not a documented fact.",
+  "cross_product_finding": "No Capella-specific content appears on this page - no mention of the Query Workbench, Data API, credential types, or any Capella tuning-parameter equivalent."
+}

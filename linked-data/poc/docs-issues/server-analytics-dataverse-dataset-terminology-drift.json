@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-dataverse-dataset-terminology-drift",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "appendix_3_resolution.md is internally inconsistent about Analytics' own namespace vocabulary. Its Binding Variables/Scoping/Resolving Names sections use 'dataverse' and 'dataset' throughout ('a might represent a dataverse and b might represent a dataset in that dataverse'); its own later Resolving Database Entities section switches to 'Analytics scope' and 'Analytics collection' - the terminology used consistently elsewhere in this module (8_builtin.md, 9_udf.md). No sentence on the page states that a dataverse is what is now called an Analytics scope, or that a dataset is what is now called an Analytics collection, so the older names read as a different vocabulary rather than a synonym pair. Terminology drift within one page, not an error across pages - worth a reconciliation look across the whole analytics/ tree for other instances of the same drift.",
+  "about": [
+    "server/8.0/analytics/appendix_3_resolution"
+  ],
+  "foundDuring": "round 21",
+  "status": "open"
+}

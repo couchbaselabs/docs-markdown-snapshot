@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/analytics/4_error",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/4_error.md",
+  "concepts": [
+    { "candidate_id": "analytics:sqlpp-for-analytics", "label": "SQL++ for Analytics", "registry_status": "extraction-layer", "reused_or_minted": "reused" },
+    { "candidate_id": "analytics:syntax-error", "label": "Syntax Error (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:identifier-resolution-error", "label": "Identifier Resolution Error (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:type-error", "label": "Type Error (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "minted" },
+    { "candidate_id": "analytics:resource-error", "label": "Resource Error (SQL++ for Analytics)", "registry_status": "minted", "reused_or_minted": "minted" }
+  ],
+  "relations": [
+    { "subject": "analytics:sqlpp-for-analytics", "predicate": "canRaiseError", "object": "analytics:syntax-error", "registry_status": "minted", "reused_or_minted_predicate": "minted - canRaiseError. No existing predicate models a language/statement's own documented error taxonomy.", "evidence": "A valid query must satisfy the grammar rules of the query language. Otherwise, a syntax error will be raised." },
+    { "subject": "analytics:sqlpp-for-analytics", "predicate": "canRaiseError", "object": "analytics:identifier-resolution-error", "registry_status": "minted", "reused_or_minted_predicate": "reused - canRaiseError, minted earlier in this record", "evidence": "Referring to an undefined identifier can cause an error if the identifier cannot be successfully resolved as a valid field access." },
+    { "subject": "analytics:sqlpp-for-analytics", "predicate": "canRaiseError", "object": "analytics:type-error", "registry_status": "minted", "reused_or_minted_predicate": "reused - canRaiseError, minted earlier in this record", "evidence": "The query compiler does type checks based on its available type information. In addition, the query runtime also reports type errors if a data model instance it processes does not satisfy the type requirement." },
+    { "subject": "analytics:sqlpp-for-analytics", "predicate": "canRaiseError", "object": "analytics:resource-error", "registry_status": "minted", "reused_or_minted_predicate": "reused - canRaiseError, minted earlier in this record", "evidence": "A query can potentially exhaust system resources, such as the number of open files and disk spaces." },
+    { "subject": "analytics:sqlpp-for-analytics", "predicate": "seeAlso", "object": "server/8.0/analytics/error-codes", "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link", "evidence": "For a full list of error codes, see [Analytics Error Codes](error-codes.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince / requiresEdition / requiresServerRole",
+    "finding": "A pure behavioural-taxonomy page (four error categories, worked examples of each with literal error codes like ASX1001/ASX1077/ASX1074/ASX1073/ASX0002, and generic OS-level remediation advice for 'no space left on device' / 'too many open files'). No version, edition, or role gating anywhere on the page."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "page_id": "server/8.0/analytics/introduction",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/introduction.md",
+  "concepts": [
+    { "candidate_id": "service:analytics-service", "label": "Analytics service", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "service:search-service", "label": "Full Text Search service", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:sqlpp", "label": "SQL++ for Query", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "analytics:sqlpp-for-analytics", "label": "SQL++ for Analytics", "registry_status": "extraction-layer", "reused_or_minted": "reused - minted earlier from Capella's cloud/clusters/analytics-service/ pages; this is the module's own top-level overview naming it as the query language" },
+    { "candidate_id": "analytics:massively-parallel-processing", "label": "massively parallel processing (MPP) architecture", "registry_status": "extraction-layer", "reused_or_minted": "reused - minted earlier on server/8.0/learn/services-and-indexes/services/analytics-service.json" },
+    { "candidate_id": "analytics:shadow-collection", "label": "shadow collection / shadow copy (Analytics)", "registry_status": "extraction-layer", "reused_or_minted": "reused" },
+    { "candidate_id": "analytics:near-real-time-analytics", "label": "near real-time analytics", "registry_status": "extraction-layer", "reused_or_minted": "reused - this page gives the concept its clearest definition yet ('changes in the operational data are reflected in your Analytics data in real time'), where the page it was minted on left it undefined" },
+    { "candidate_id": "analytics:etl-to-separate-system", "label": "ETL to a separate analytics system", "registry_status": "extraction-layer", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    {
+      "subject": "service:analytics-service",
+      "predicate": "usesExecutionModel",
+      "object": "analytics:massively-parallel-processing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - usesExecutionModel (promoted)",
+      "evidence": "Because Analytics supports efficient parallel query processing and bulk data handling, and runs on separate nodes in a Couchbase cluster, Couchbase Analytics is often preferable for expensive queries, even if the queries are predetermined and could be supported by a frontend (operational) index."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "createsOnAction",
+      "object": "analytics:shadow-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "The Analytics service enables you to create shadow copies of the data that you want to analyze."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "hasFocusArea",
+      "object": "analytics:near-real-time-analytics",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - hasFocusArea",
+      "evidence": "When the shadowed Analytics data is linked to the operational data, changes in the operational data are reflected in your Analytics data in real time."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "eliminatesNeedFor",
+      "object": "analytics:etl-to-separate-system",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - eliminatesNeedFor",
+      "evidence": "a fast memory-to-memory protocol that Couchbase Server nodes use to synchronize data among themselves — so Analytics runs on data that's extremely current, without ETL (extract, transform, load) or other hassles and delays."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "supportsQueryLanguage",
+      "object": "analytics:sqlpp-for-analytics",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - supportsQueryLanguage, minted on server/8.0/learn/services-and-indexes/services/query-service.json for service:query-service -> n1ql:sqlpp; same shape applied here",
+      "evidence": "Couchbase Analytics is queried using the SQL++ for Analytics query language, a next-generation declarative query language for JSON data."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "isVariantOf",
+      "object": "n1ql:sqlpp",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isVariantOf. No existing predicate captures 'very similar sibling language, not identical, not a teaching analogy (isAnalogousTo is reserved for comparisons to OTHER data models), not a simple alias'. This page states the relationship in exactly that shape and defers the details to 6_n1ql.md, which is in this same batch and settles it further.",
+      "evidence": "In fact, SQL++ for Analytics and SQL++ for Query are very similar, with SQL++ for Analytics offering some additional advances beyond SQL++ for Query."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/6_n1ql",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The section [SQL++ for Analytics vs. SQL++ for Query](6%5Fn1ql.md) provides additional details."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/1_intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For more details, refer to the [SQL++ for Analytics Reference](1%5Fintro.md) section."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/run-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Now you can continue to [Running Queries](run-query.md)to get familiar with the ways you can run a query"
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/primer-beer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "or continue directly to the [Analytics Tutorial](primer-beer.md)."
+    },
+    {
+      "subject": "service:analytics-service",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/intra-cluster-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Couchbase Analytics uses [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol), a fast memory-to-memory protocol"
+    }
+  ],
+  "cross_component_finding": "This overview page is the first place in the corpus where service:analytics-service is explicitly connected to a NAMED query language via a stated verb ('Couchbase Analytics is queried using the SQL++ for Analytics query language'), and it is also the first page to state outright that SQL++ for Analytics and SQL++ for Query are two similar-but-distinct languages rather than one language under two names ('SQL++ for Analytics and SQL++ for Query are very similar, with SQL++ for Analytics offering some additional advances'). This directly supports the round's dialect warning: the relationship is sibling/variant, not identity, and the page defers the details to 6_n1ql.md (also in this batch)."
+}

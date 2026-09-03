@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/remote-link",
+  "label": "Remote link (Analytics)",
+  "type": "an analytics:analytics-link connecting an Analytics scope to a DIFFERENT, remote Couchbase cluster's Data service - sibling of analytics:local-link (same cluster) and the external-link type (a non-Couchbase source such as S3). Editable and deletable, unlike a local link. Offers an encryption-type configuration choice a local link has no equivalent of.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "A remote link is a link to a remote Couchbase cluster.",
+    "Disconnecting a local link or a remote link disconnects all collections on that link from their data sources.",
+    "Open the Encryption Type drop-down list and select the type of encryption:"
+  ],
+  "isSubtypeOf": "analytics:analytics-link",
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "Can Analytics shadow data from a different Couchbase cluster entirely, and does that connection support encryption the same way a local link would?"
+}

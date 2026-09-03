@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-create-index-short-form-causes-real-confusion",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "6_n1ql.md correctly documents that 'CREATE INDEX' names two different, differently-typed statements depending on dialect (Query service vs. Analytics). primer-beer.md's own worked tutorial then demonstrates the collision in practice rather than just describing it: its index-creation example is written in the short form (`CREATE INDEX callsignidx ON airline (callsign: STRING);`), not the long `CREATE ANALYTICS INDEX` form 5_ddl.md's own DDL reference uses. A reader who has only seen this tutorial, with no exposure to 5_ddl.md's terminology, has no way to know they are not writing a Query-service GSI statement - the short spelling is the tutorial's only spelling of it.",
+  "about": [
+    "server/8.0/analytics/primer-beer",
+    "server/8.0/analytics/5_ddl",
+    "server/8.0/analytics/6_n1ql"
+  ],
+  "foundDuring": "round 21",
+  "status": "open"
+}

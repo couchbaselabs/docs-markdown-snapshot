@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/alter-collection-statement",
+  "label": "ALTER COLLECTION ENABLE/DISABLE ANALYTICS",
+  "type": "the DDL statement mapping a Data-service collection into Analytics (or removing that mapping) - equivalent to CREATE ANALYTICS SCOPE + CREATE ANALYTICS COLLECTION (enable) or DROP ANALYTICS COLLECTION (+ DROP ANALYTICS SYNONYM if needed) (disable). Also performable through analytics:workbench's 'Map From Data Service' UI action - the statement and the UI action are two surfaces for one operation, stated directly on the management page.",
+  "promoted": true,
+  "recurrence": 3,
+  "aliases": [
+    "analytics:alter-collection"
+  ],
+  "aliases_note": "Folds a genre fork of the same shape rounds 18-20 kept finding: a DDL reference page (5_ddl.md, and this round's worked-example page primer-beer.md) minted analytics:alter-collection-statement, while a management-guide page (manage-datasets.md, a different batch, dispatched concurrently with no visibility into the other) minted the shorter analytics:alter-collection for the identical statement. 2 files vs 1, zero overlap, 3 combined. Kept the longer, more specific spelling as canonical because 5_ddl.md's own naming convention reserves the bare CRUD-verb form (create-analytics-collection, drop-analytics-index) for statements whose object noun disambiguates them, and uses a `-statement` suffix specifically for the four statements whose bare name would otherwise be a generic word (ALTER, CONNECT, DISCONNECT, USE) - alter-collection alone reads as an English phrase, not obviously a SQL++ statement id.",
+  "evidence": [
+    "This is equivalent to running CREATE ANALYTICS SCOPE followed by CREATE ANALYTICS COLLECTION.",
+    "This is equivalent to running DROP ANALYTICS COLLECTION, and if necessary DROP ANALYTICS SYNONYM.",
+    "You can also map collections from the Data service using the ALTER COLLECTION statement."
+  ],
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "Can an existing Data-service collection be mapped into Analytics after the fact, and is that a UI action, a DDL statement, or both?"
+}

@@ -1,0 +1,73 @@
+{
+  "page_id": "server/8.0/analytics/appendix_4_examples",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/appendix_4_examples.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:shadow-collection",
+      "label": "shadow collection / shadow copy (Analytics)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id already used by the sibling introduction.json record in this same batch/round. This page is the first in this batch to demonstrate the mechanism end-to-end rather than just naming it: create the KV bucket/scope/collection, import JSON into it, then CREATE ANALYTICS SCOPE and CREATE ANALYTICS COLLECTION ... ON ... to shadow it into Analytics."
+    },
+    {
+      "candidate_id": "tool:cbq-shell",
+      "label": "cbq shell",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (folds n1ql:cbq). This page names it as one of two ways (alongside the Analytics Workbench) to issue the CREATE ANALYTICS SCOPE/COLLECTION statements."
+    },
+    {
+      "candidate_id": "tool:cbimport",
+      "label": "cbimport",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. Used in this page's worked example to load the Commerce customers/orders JSON data into Data-service collections, which the subsequent CREATE ANALYTICS COLLECTION ... ON ... step then shadows into Analytics."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:shadow-collection",
+      "predicate": "createdVia",
+      "object": "tool:cbq-shell",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (createdVia)",
+      "evidence": "Now, using the Analytics service via the Analytics Workbench or the `cbq` shell, create an Analytics scope to shadow the `Commerce` scope"
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_4_examples",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "at the command line, use the [bucket-create](../cli/cbcli/couchbase-cli-bucket-create.md) tool to create a bucket for the example Analytics data"
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_4_examples",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-collection-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Use the [collection-manage](../cli/cbcli/couchbase-cli-collection-manage.md) tool to create a scope for the `Commerce` data"
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_4_examples",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbimport",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "Use the [cbimport](../tools/cbimport.md) tool to import the `customers` data to the Data service"
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_4_examples",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/install-sample-buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "To install the `travel-sample` bucket, refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresServerRole",
+    "finding": "The installation walkthrough uses the Administrator credential throughout every couchbase-cli/cbimport invocation, and never mentions a role or privilege requirement specific to any of the Analytics DDL steps (CREATE ANALYTICS SCOPE, CREATE ANALYTICS COLLECTION). Whether a lesser-privileged role could complete this same workflow is not addressed."
+  },
+  "cross_component_finding": "This page is a worked, end-to-end demonstration that a shadow collection is not created by a single statement in isolation but by a five-part pipeline crossing two services: (1) couchbase-cli bucket-create/collection-manage provisions a bucket/scope/collection in the Data service, (2) cbimport loads the example JSON into that Data-service collection, (3) CREATE ANALYTICS SCOPE creates the Analytics-side namespace, (4) CREATE ANALYTICS COLLECTION ... ON ... points the Analytics collection at the Data-service collection just populated, and (5) 'The Analytics service ingests the data.' Confirms, concretely, that analytics:shadow-collection genuinely bridges the Data service and the Analytics service rather than being an Analytics-only construct - the ON clause's target ('ON analytics.Commerce.customers') is a Data-service bucket.scope.collection path, not an Analytics-side one.",
+  "cross_product_finding": "No Capella-specific content appears on this page. The installation steps are couchbase-cli/cbimport-based, which is a Server-side administration path; a Capella equivalent (if any) is not addressed here."
+}

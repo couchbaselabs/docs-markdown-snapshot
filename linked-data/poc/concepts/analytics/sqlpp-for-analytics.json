@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/sqlpp-for-analytics",
+  "label": "SQL++ for Analytics",
+  "type": "the Analytics service's own SQL++ dialect - a Couchbase implementation of the emerging SQL-for-JSON specification `sqlpp:sql-for-json-specification`. RELATED TO BUT NOT IDENTICAL TO n1ql:sqlpp (the Query service's SQL++): isVariantOf that dialect, and a page (6_n1ql.md) settles the relationship as generalization-with-divergence rather than identity - several Query constructs are generalized into more composable forms (USE KEYS, ON KEYS, NEST, ARRAY), but Analytics has no INSERT/UPSERT/DELETE at all, restricts comparisons/ORDER BY to scalars, and reuses the statement name 'CREATE INDEX' for a genuinely different, typed statement (analytics:create-analytics-index).",
+  "promoted": true,
+  "recurrence": 9,
+  "evidence": [
+    "SQL++ for Analytics is a Couchbase implementation, focused on parallel data analysis, of an emerging SQL-for-JSON query language specification called SQL++.",
+    "In fact, SQL++ for Analytics and SQL++ for Query are very similar, with SQL++ for Analytics offering some additional advances beyond SQL++ for Query.",
+    "SQL++ for Analytics is also closely related to SQL++ for Query, the query language used in the Query Service of Couchbase Server. SQL++ for Analytics is mostly a functional superset of SQL++ for Query."
+  ],
+  "isVariantOf": "n1ql:sqlpp",
+  "operatesOnFormat": "data:document",
+  "note": "Three separate comparison surfaces exist in this module for SQL++ for Analytics, deliberately kept apart rather than collapsed into one relation: vs. SQL-92 (3_query.md), vs. the abstract SQL++ specification (1_intro.md, via isImplementationOf), and vs. SQL++ for Query specifically (6_n1ql.md, via isVariantOf/generalizesSyntaxOf/differsFrom). Each source page draws its own comparison for its own purpose; forcing them into one predicate would lose which comparison is actually being made.",
+  "documented_at": "server/8.0/analytics/1_intro",
+  "relates_to_competency_question": "Is Analytics' own query language a separate dialect from the Query service's SQL++, or the same language under a different service?"
+}

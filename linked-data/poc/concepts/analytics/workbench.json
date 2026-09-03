@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/workbench",
+  "label": "Analytics Workbench (Couchbase Server)",
+  "type": "the Couchbase Web Console UI for developing/running Analytics queries and managing links/collections. NOT merged with the extraction-layer capella:analytics-workbench (Capella's own UI feature of the identical name and near-identical description) - checked against it before minting, per this round's fork-prevention instruction, and kept separate anyway because no page in either tree states the two are the same UI implementation. A same-name-different-product-surface collision, documented rather than resolved, consistent with the standing no-silent-merge rule.",
+  "promoted": true,
+  "recurrence": 5,
+  "evidence": [
+    "The Analytics Workbench enables you to create, edit, and drop collections.",
+    "You can run queries using the Analytics Workbench, the command line query tool cbq, or directly through the REST API.",
+    "you can use the query context drop-down list at the top right of the query editor to select travel-sample.inventory as the default scope"
+  ],
+  "documented_at": "server/8.0/analytics/manage-datasets",
+  "relates_to_competency_question": "Can Analytics collections be created and managed through a UI, without writing DDL statements directly?"
+}

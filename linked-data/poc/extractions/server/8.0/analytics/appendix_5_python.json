@@ -1,0 +1,137 @@
+{
+  "page_id": "server/8.0/analytics/appendix_5_python",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/appendix_5_python.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:python-udf",
+      "label": "Python UDF (SQL++ for Analytics external function language)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch's 9_udf.json record; this page is the detailed author's guide and tutorial for the same construct."
+    },
+    {
+      "candidate_id": "analytics:external-udf",
+      "label": "External (language-bound) user-defined function (SQL++ for Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch's 9_udf.json record."
+    },
+    {
+      "candidate_id": "analytics:function-library",
+      "label": "Analytics UDF Library",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch's 9_udf.json record; this page adds the packaging (shiv) and upload (REST, loopback-only) requirements for a library."
+    },
+    {
+      "candidate_id": "analytics:hyracks-job",
+      "label": "Hyracks job (Analytics query execution unit)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the underlying execution-engine abstraction the page names ('Analytics queries are deployed across the cluster as Hyracks jobs'), with a three-phase lifecycle (open / nextFrame / close) relevant to how a Python UDF's class is instantiated and torn down."
+    },
+    {
+      "candidate_id": "analytics:python-udf-type-mapping",
+      "label": "Python UDF type mapping",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the closed set of SQL++ for Analytics types a Python UDF may receive/return (integer types int8/16/32/64, float, double, string, boolean, arrays/sets as Python lists, objects as Python dicts), with unsupported types requiring an explicit cast before being passed."
+    },
+    {
+      "candidate_id": "analytics:library-upload",
+      "label": "Library upload (Analytics Library REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the REST mechanism (POST to /analytics/library/<scope>/<name>) that uploads and deploys a packaged Python library across every node in the cluster using a two-phase commit protocol, restricted to loopback-origin requests from an Analytics node."
+    },
+    {
+      "candidate_id": "relational:unfenced-external-function",
+      "label": "unfenced external function (traditional RDBMS)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a foreign-domain term the page uses purely as a teaching analogy, following the same pattern as the already-extraction-layer relational:table (deliberately not promoted; this ontology does not own the relational domain)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:python-udf",
+      "predicate": "isAnalogousTo",
+      "object": "relational:unfenced-external-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (isAnalogousTo)",
+      "evidence": "This is similar to an unfenced external function in a traditional RDBMS."
+    },
+    {
+      "subject": "analytics:python-udf",
+      "predicate": "doesNotSupport",
+      "object": "sandboxing or other code and process isolation techniques",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "To enable maximum flexibility for cases where specialized hardware (e.g. GPUs) might be needed for the function, no additional sandboxing or other code and process isolation techniques are used."
+    },
+    {
+      "subject": "analytics:library-upload",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (requiresServerRole)",
+      "evidence": "This requires the permission `cluster.admin.diag!write`, which is normally only available to the role `Full Administrator`."
+    },
+    {
+      "subject": "analytics:library-upload",
+      "predicate": "restrictedToContext",
+      "object": "requests originating locally from a node running the Analytics service (the loopback interface)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (restrictedToContext)",
+      "evidence": "This request must also originate locally from a node that is running Analytics. Upload requests from non-local origins are blocked for security purposes."
+    },
+    {
+      "subject": "analytics:function-library",
+      "predicate": "requiresCapability",
+      "object": "packaging as a shiv archive bundling all Python dependencies",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (requiresCapability)",
+      "evidence": "Python UDFs need to be rolled into a [shiv](https://github.com/linkedin/shiv) package with all their dependencies."
+    },
+    {
+      "subject": "analytics:python-udf",
+      "predicate": "usesExecutionModel",
+      "object": "analytics:hyracks-job",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (usesExecutionModel)",
+      "evidence": "Analytics queries are deployed across the cluster as Hyracks jobs."
+    },
+    {
+      "subject": "analytics:python-udf-type-mapping",
+      "predicate": "doesNotSupport",
+      "object": "any Python/SQL++ type outside integer types (int8/16/32/64), floating point types, string, boolean, arrays/sets (as lists), and objects (as dicts)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (doesNotSupport)",
+      "evidence": "Currently only a subset of types are supported in Python UDFs."
+    },
+    {
+      "subject": "analytics:external-udf",
+      "predicate": "hasDefaultValue",
+      "object": "deterministic: true",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (hasDefaultValue)",
+      "evidence": "By default, Analytics will treat all external functions as deterministic."
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_5_python",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/9_udf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "See [User-Defined Functions](9%5Fudf.md) for details of the SQL++ for Analytics syntax for creating external functions."
+    },
+    {
+      "subject": "server/8.0/analytics/appendix_5_python",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics-rest-library/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (seeAlso, structural link)",
+      "evidence": "See the [Analytics Library REST API](../analytics-rest-library/index.md) for complete details."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / role catalog mapping",
+    "finding": "The page names three distinct internal permission strings gating three different actions - `cluster.analytics!manage` (expose a function from a library via CREATE ANALYTICS FUNCTION), `cluster.analytics!select` (execute an already-exposed function), and `cluster.admin.diag!write` (upload a library) - but only the third is tied to a named role ('normally only available to the role Full Administrator'). The other two are never mapped to any role in roles.md's 56-entry catalog on this page, so whether an administrator needs a role beyond Full Administrator, or whether these are Full-Administrator-implied permissions too, cannot be determined from this page alone."
+  },
+  "cross_component_finding": "This page is a rare case in the corpus where concrete Server-side permission strings appear directly in prose rather than as an abstract two-tier role/privilege claim - the registry's existing hasPrivilege record notes that Server's docs otherwise 'define a privilege tier, assert that roles correspond to system-defined privileges, and then never name a member of it' (all 55 roles.md permission tables use plain-English prose instead). Here, by contrast, three named permission strings appear verbatim (cluster.analytics!manage, cluster.analytics!select, cluster.admin.diag!write), which is a genuine counter-example worth flagging for reconciliation against that earlier finding - though it does not fully overturn it, since two of the three are still not tied to any named role (see notable_absence). Separately, the security section draws an explicit analogy to conventional database engines ('This is similar to an unfenced external function in a traditional RDBMS') to explain why Python UDFs run unsandboxed as the Analytics process's own user - a genuinely different security posture from js-udf's JavaScript UDFs, which this page does not compare against directly but which the round's framing flagged as worth checking.",
+  "cross_product_finding": "No Capella-specific content appears on this page. The library-upload restriction to loopback-origin requests from an Analytics node is a Server on-premises administrative concept with no stated Capella analogue (Capella customers do not have node-level shell/loopback access at all)."
+}

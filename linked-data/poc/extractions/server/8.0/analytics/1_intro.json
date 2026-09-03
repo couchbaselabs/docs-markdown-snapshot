@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/analytics/1_intro",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics/1_intro.md",
+  "concepts": [
+    { "candidate_id": "analytics:sqlpp-for-analytics", "label": "SQL++ for Analytics", "registry_status": "extraction-layer", "reused_or_minted": "reused - this page is the reference guide's own preamble, defining the language's lineage" },
+    {
+      "candidate_id": "sqlpp:sql-for-json-specification",
+      "label": "SQL++ (SQL-for-JSON language specification)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuinely new namespace. The page states that SQL++ for Analytics is Couchbase's implementation of 'an emerging SQL-for-JSON query language specification called SQL++' - a THIRD thing, distinct from both analytics:sqlpp-for-analytics and n1ql:sqlpp (Couchbase's Query-service dialect, 'formerly known as N1QL'). Both Couchbase dialects appear to be separate implementations of this one academic/community spec, which is not itself a Couchbase product concept and has no other home in the registry."
+    },
+    { "candidate_id": "data:document", "label": "Document (JSON data model)", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "isImplementationOf",
+      "object": "sqlpp:sql-for-json-specification",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - isImplementationOf. Distinct from isVariantOf (minted on introduction.json in this same batch, for the direct Analytics-vs-Query comparison): this relation is about lineage from a shared external specification, not a comparison between the two Couchbase dialects themselves.",
+      "evidence": "SQL++ for Analytics is a Couchbase implementation, focused on parallel data analysis, of an emerging SQL-for-JSON query language specification called SQL++."
+    },
+    {
+      "subject": "analytics:sqlpp-for-analytics",
+      "predicate": "operatesOnFormat",
+      "object": "data:document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - operatesOnFormat",
+      "evidence": "In particular, SQL++ for Analytics is intended for working with the JSON data model."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page's only outbound reference is a bare, non-structural mention of an external book ('_SQL++ For SQL Users: A Tutorial_ by Don Chamberlin ... available from Couchbase here') pointing to a marketing URL outside this documentation corpus, not a Markdown link to another docs page - so no seeAlso relation was extracted from it, per the rule that seeAlso objects are page IDs within the corpus."
+  },
+  "cross_component_finding": "This thin preamble page turns out to be where the round's dialect question gets its clearest lineage statement, ahead of 6_n1ql.md: SQL++ for Analytics is explicitly named as a Couchbase implementation of an external, academic 'SQL-for-JSON query language specification called SQL++' - the same specification n1ql:sqlpp (SQL++ for Query, 'formerly known as N1QL') separately implements. That reframes the Analytics/Query dialect relationship as two siblings descending from one external spec, rather than one dialect being derived from the other - complementary to, not contradicting, introduction.md's isVariantOf framing of the two dialects compared directly."
+}

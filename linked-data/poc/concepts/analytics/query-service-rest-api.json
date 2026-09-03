@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/query-service-rest-api",
+  "label": "Analytics Service REST API",
+  "type": "the REST surface for submitting Analytics queries and configuring per-request parameters, sharing a real option set with n1ql:query-service-rest-api (the Query service's own REST API) - the two are documented as implementing the SAME underlying HTTP interface (per run-query.md), while remaining two distinct service endpoints.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "To specify request-level parameters for the Analytics Service, do one of the following:",
+    "The Analytics Service supports the following parameters in common with the Query Service."
+  ],
+  "sharesOptionSetWith": "n1ql:query-service-rest-api",
+  "documented_at": "server/8.0/analytics/query-params",
+  "relates_to_competency_question": "Does the Analytics REST API accept the same request parameters as the Query service's REST API, or a distinct parameter set?"
+}

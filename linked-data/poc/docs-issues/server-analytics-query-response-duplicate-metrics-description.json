@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-query-response-duplicate-metrics-description",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "query-responses.md gives the Common Metrics object and the Analytics-only Metrics object the exact same one-line description verbatim - 'An object containing metrics about the request.' - with nothing on the page distinguishing why a query response carries two separately-named metrics objects (one with six fields: elapsedTime/executionTime/resultCount/resultSize/errorCount/warningCount; one with a single field, processedObjects) rather than one merged object. A reader has to infer the split from the schema tables alone.",
+  "about": [
+    "server/8.0/analytics/query-responses"
+  ],
+  "foundDuring": "round 21",
+  "status": "open"
+}

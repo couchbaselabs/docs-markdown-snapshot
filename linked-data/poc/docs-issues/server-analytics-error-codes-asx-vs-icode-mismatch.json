@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-error-codes-asx-vs-icode-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "4_error.md sends readers to error-codes.md for 'a full list of error codes' after showing five worked examples, every one reported with an ASX-prefixed internal code (ASX1001, ASX1077, ASX1074, ASX1073, ASX0002). Not one of those codes, or the ASX prefix itself, appears anywhere in error-codes.md's ~240-row ICode table, which runs 20000-25000 with no letter prefix at all. The page readers are sent to for 'the full list' documents a different, non-overlapping numbering scheme from the one the referring page's own examples actually produce - the same shape as the previously-recorded eventing LCB error-code mismatch, now found a second time in an unrelated module. Couchbase Analytics is built on Apache AsterixDB, and ASX is a recognizable AsterixDB-internal code prefix, suggesting the two schemes may come from two different layers of the same error-reporting stack that the docs never reconcile for the reader.",
+  "about": [
+    "server/8.0/analytics/4_error",
+    "server/8.0/analytics/error-codes"
+  ],
+  "foundDuring": "round 21",
+  "status": "open"
+}

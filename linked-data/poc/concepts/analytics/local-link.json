@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/local-link",
+  "label": "Local link (Analytics)",
+  "type": "the default analytics:analytics-link type, connecting an Analytics scope to the local Couchbase Server cluster's own Data service. Uniquely uneditable and undeletable among the three link kinds (local/remote/external) - a page states this as a stated asymmetry, not an oversight.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "In Analytics, a link represents a connection to a data source. The default type of link is a Local link.",
+    "you must connect the link, so that collections on the link can shadow data from their data sources.",
+    "You can edit a remote link or an external link. You cannot edit a local link."
+  ],
+  "isSubtypeOf": "analytics:analytics-link",
+  "documented_at": "server/8.0/analytics/5_ddl",
+  "relates_to_competency_question": "Which Analytics link type connects to the same cluster's own Data service, and can it be edited or deleted like the other link types?"
+}
