@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-03T05:31:47.619Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/compatibility.adoc
   xref: xref:go-sdk:project-docs:compatibility.adoc[]
@@ -85,7 +85,7 @@ Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for 
 
 ### [](#capella-compatibility)Capella Compatibility
 
-At time of release, the Couchbase 2.12.4 Go SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the 2.12.4 SDK includes the Capella client certificate already installed.
+At time of release, the Couchbase 2.12.5 Go SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the 2.12.5 SDK includes the Capella client certificate already installed.
 
 Note, Capella is offered as a fully provisioned service, so the underlying version of Couchbase Server changes over time. For this reason, compatibility information between Capella and the SDK is available [on the Capella compatibility page](../../../cloud/reference/sdk-compatibility.md).
 

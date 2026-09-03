@@ -2,7 +2,7 @@
 title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-03T05:31:47.619Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
   xref: xref:server:release-notes:relnotes.adoc[]
@@ -18,6 +18,60 @@ antora:
 These release notes are focused on bug fixes and breaking changes.
 
 For information about new features and major improvements made in Couchbase Server 8.0, see [What's New](../introduction/whats-new.md).
+
+## [](#release-8-0-3)Release 8.0.3 (September 2026)
+
+Couchbase Server 8.0.3 was released in September 2026\. This maintenance release contains fixes for issues listed below.
+
+### [](#fixed-issues)Fixed Issues
+
+#### [](#cluster-manager)Cluster Manager
+
+[MB-72097](https://jira.issues.couchbase.com/browse/MB-72097)
+
+This fix prevents a critical bug where undefined bucket storage properties caused incorrect transitions to Magma during upgrades. The issue affected buckets created before version 5.0.0.
+
+[MB-70951](https://jira.issues.couchbase.com/browse/MB-70951)
+
+The `/metrics` REST API reported certain low-cardinality statistics twice. This update ensures each statistic appears only once in the output.
+
+#### [](#data-service)Data Service
+
+[MB-70640](https://jira.issues.couchbase.com/browse/MB-70640)
+
+This fix addresses a rebalance hang observed during node scaling and swap rebalance operations. The issue was related to socket receive buffer management on specific Linux kernels.
+
+#### [](#analytics-service)Analytics Service
+
+[MB-71453](https://jira.issues.couchbase.com/browse/MB-71453)
+
+Queries combining LIMIT with index-nested-loop joins could return incorrect results. The fix ensures all filter conditions are evaluated before applying the limit.
+
+#### [](#xdcr)XDCR
+
+[MB-72305](https://jira.issues.couchbase.com/browse/MB-72305)
+
+Upgraded nodes now handle rebalancing when replications or buckets were deleted and recreated. This prevents issues with stale manifests and incomplete backfills.
+
+[MB-71586](https://jira.issues.couchbase.com/browse/MB-71586)
+
+The new `forwardLocalOnly` setting allows XDCR to replicate only local mutations. This feature reduces data transfer by identifying mutations originating from source clusters.
+
+[MB-71257](https://jira.issues.couchbase.com/browse/MB-71257)
+
+A race condition causing deadlocks during replication pause or deletion has been resolved. The fix ensures goroutines exit properly during rollback operations.
+
+[MB-71013](https://jira.issues.couchbase.com/browse/MB-71013)
+
+XDCR now handles conflict resolution for locked documents on target clusters. This fix prevents unnecessary skipping of mutations and potential data loss.
+
+#### [](#tools)Tools
+
+[MB-70745](https://jira.issues.couchbase.com/browse/MB-70745)
+
+Restore operations no longer fail when Cost-Based Optimizer statistics contain keys with double colons. This fix applies to indexes using specific string functions.
+
+---
 
 ## [](#release-802)Release 8.0.2 (June 2026)
 
@@ -41,7 +95,9 @@ Fixes a critical bug whereby an undefined storage mode property for a bucket cau
 
 The undefined storage mode could only occur if the bucket was created pre-Couchbase Server 5.0.x, and bucket properties have not been modified since.
 
-To check if this issue might potentially affect any cluster, run the `fix_undefined_storage_mode scan` script attached to [MB-72097](https://jira.issues.couchbase.com/browse/MB-72097). '''
+To check if this issue might potentially affect any cluster, run the `fix_undefined_storage_mode scan` script attached to [MB-72097](https://jira.issues.couchbase.com/browse/MB-72097).
+
+---
 
 ## [](#release-801)Release 8.0.1 (March 2026)
 
@@ -450,7 +506,7 @@ Automated the process of resolving name conflicts between collections or scopes 
 
 Couchbase Server 8.0 was released in October 2025\. This release contains the following breaking changes:
 
-### [](#cluster-manager)Cluster Manager
+### [](#cluster-manager-2)Cluster Manager
 
 **[MB-47905](https://jira.issues.couchbase.com/browse/MB-47905/)**
 
@@ -470,7 +526,7 @@ This change reduces the minimum memory quota from 1 GiB (required by Magma with 
 
 For more details, see the [What's New](../introduction/whats-new.md#whats-new-magma-vbuckets) page.
 
-### [](#data-service)Data Service
+### [](#data-service-2)Data Service
 
 **[MB-9418](https://jira.issues.couchbase.com/browse/MB-9418/)**
 
@@ -531,7 +587,7 @@ Previously, task scheduling relied on a basic two-priority queue (high and low),
 
 The latest updates introduce a new shard assignment algorithm, impacting both vector and non-vector indexes by offering more aggressive sharing of plasma shards in version 8.0 compared to 7.6\. This adjustment might affect performance when comparing upgrades from earlier versions like 7.2 to 8.0 or 7.6 to 8.0\. Shard assignment logic should be functionally tested in these scenarios. The algorithm is behind a feature flag and can be toggled off to revert to older behaviors if needed. For Capella upgrades, it's possible all shards might already exist, potentially requiring additional shards for vector indexes depending on resource availability. On-prem clusters keep file-based rebalance off by default. Performance testing, as noted in ongoing evaluations, indicates a 7% regression during initial index builds at CPU saturation, but no impact on incremental builds. The benefits include improved memory control, suggesting the changes are acceptable at this stage.
 
-### [](#tools)Tools
+### [](#tools-2)Tools
 
 **[MB-60337](https://jira.issues.couchbase.com/browse/MB-60337/)**
 
