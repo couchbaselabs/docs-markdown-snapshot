@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbbackupmgr-backup-type-enum-incomplete",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "This registry's promoted backup-type enum has two members (backup:full-backup, backup:incremental-backup). cbbackupmgr-info.md's own command output states a backup's type field can be 'a full backup (FULL), and incremental backup (INCR) or a merge (MERGE)' - a third value the reference documentation for the merge command itself never states is a new backup TYPE rather than a full backup that happens to have been produced by merging. No promoted concept exists for it yet (filed as backup:merge-result, extraction-layer, 2 files).",
+  "about": [
+    "server/8.0/backup-restore/cbbackupmgr-info",
+    "server/8.0/backup-restore/cbbackupmgr-merge"
+  ],
+  "foundDuring": "round 19",
+  "status": "open"
+}

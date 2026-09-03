@@ -1,0 +1,21 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-compact",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-compact.md",
+  "concepts": [
+    { "candidate_id": "tool:cbbackupmgr", "label": "cbbackupmgr", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:cbbackupmgr-compact-command", "label": "cbbackupmgr compact sub-command", "registry_status": "minted", "reused_or_minted": "minted - the per-sub-command concept this page is about, distinct from the whole tool:cbbackupmgr" },
+    { "candidate_id": "backup:cbbackupmgr-backup-command", "label": "cbbackupmgr backup sub-command", "registry_status": "minted", "reused_or_minted": "reused - minted in cbbackupmgr-backup.json, this batch" },
+    { "candidate_id": "version:server-6-6", "label": "Couchbase Server 6.6", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:cbbackupmgr-compact-command", "predicate": "requiresPriorExecutionOf", "object": "backup:cbbackupmgr-backup-command", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Compacts a backup in a backup repository in order to free up disk space. Should be run on each backup after it completes." },
+    { "subject": "backup:cbbackupmgr-compact-command", "predicate": "retainedForLegacyCompatibility", "object": "version:server-6-6", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted; applied to a command whose need, rather than its syntax, is what version-gated obsolescence affects - the command still runs, but is stated as pointless past this version's storage format change", "evidence": "Compacting backups created with a 6.6.0+ version of `cbbackupmgr` is no longer supported/required due to changes in the storage format which significantly reduced backup fragmentation." },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-compact", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-backup", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[cbbackupmgr-backup](cbbackupmgr-backup.md)" },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-compact", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-info", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)" },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-compact", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-strategies", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[cbbackupmgr-strategies](cbbackupmgr-strategies.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresEdition", "finding": "Unlike merge and examine (both explicitly stated elsewhere in this batch to be 'an Enterprise Edition command'), this page never states whether compact is edition-gated at all - the whole-tool AUTHORS-section claim on cbbackupmgr.md ('cbbackupmgr is a Couchbase Enterprise Edition tool') would imply yes, but this page itself is silent, leaving compact as the one command in the batch with no edition statement anywhere on its own page." },
+  "cross_component_finding": "This page states plainly that compaction is 'no longer supported/required' for backups made by cbbackupmgr 6.6.0 and later due to a storage-format change - the same 6.6.0 boundary that cbbackupmgr-backup.md and cbbackupmgr-examine.md (this batch) both cite as when Native cloud integration was introduced, suggesting 6.6.0 was a wider storage/architecture rework than either page states on its own.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,203 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-cloud",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-cloud.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:cloud-integration",
+      "label": "Native cloud integration (cbbackupmgr)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch; this page is its fullest treatment: 'A document which should give you a basic understanding of how to utilize cbbackupmgr's Enterprise Edition feature, native cloud interactions.'"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:staging-directory",
+      "label": "Staging directory (cloud archives)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'The staging directory is a location on disk where temporary data is stored during the execution of a sub-command.' Only relevant when the archive itself lives in cloud object storage; document values are never written there."
+    },
+    {
+      "candidate_id": "backup:archive-locking",
+      "label": "Archive locking",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-network-filesystems.json), where it appears as SQLite locking disabled in favor of cbbackupmgr's own archive-level lock; here it appears as a concrete S3 lockfile object: 'this is enforced using a lockfile ... it has the format lock-${UUID}.lk'."
+    },
+    {
+      "candidate_id": "backup:archive",
+      "label": "Backup archive",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json)"
+    },
+    {
+      "candidate_id": "backup:repository",
+      "label": "Backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json)"
+    },
+    {
+      "candidate_id": "backup:collection-string",
+      "label": "Collection string",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-info.json); used again in this page's examine example: '--collection-string beer-sample'."
+    },
+    {
+      "candidate_id": "backup:merge-operation",
+      "label": "Merge operation (cbbackupmgr merge)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the sibling batch extracting cbbackupmgr-merge.md directly will likely mint its own id for this same operation from its own page; this record mints independently per this round's framing (no cross-batch coordination expected) and flags the likely duplicate for reconciliation. 'One of the main reasons for merging incremental backups is to save disk space... For this reason merging incremental backups stored in the cloud is not supported.'"
+    },
+    {
+      "candidate_id": "object-store:aws-s3",
+      "label": "AWS S3 (as a cbbackupmgr archive target)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - deliberately NOT reusing the existing cloud-provider:aws, which the registry defines specifically as 'AWS (as a Capella deployment substrate)' - the infrastructure a Capella CLUSTER runs on. This page's AWS is a completely different relationship: an external object-storage TARGET that a Server-side CLI writes an archive to. Same provider name, two unrelated roles in two unrelated products; filed as a fresh namespace (object-store:) rather than conflating with cloud-provider:. See cross_component_finding."
+    },
+    {
+      "candidate_id": "object-store:azure-blob-storage",
+      "label": "Azure Blob Storage (as a cbbackupmgr archive target)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of object-store:aws-s3, same collision caveat with cloud-provider:azure applies."
+    },
+    {
+      "candidate_id": "object-store:gcp-storage",
+      "label": "GCP Google Storage (as a cbbackupmgr archive target)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of object-store:aws-s3, same collision caveat with cloud-provider:gcp applies."
+    },
+    {
+      "candidate_id": "object-store:azure-data-lake-storage-gen2",
+      "label": "Azure Data Lake Storage Gen 2 (hierarchical namespace)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'using Azure storage accounts with Data Lake Storage Gen 2 enabled (also known as \"hierarchical namespace\") will not work with `cbbackupmgr` and is not a supported configuration.'"
+    },
+    {
+      "candidate_id": "version:server-7-1-2",
+      "label": "Couchbase Server 7.1.2",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new maintenance-release entry in the version:server-* family, cited as the release that added Azure Blob Storage support, per this page's own section heading 'Azure (7.1.2+)' (repeated as both a CREDENTIALS subsection and a CLOUD PROVIDER SPECIFIC FEATURES subsection)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "A document which should give you a basic understanding of how to utilize cbbackupmgr's Enterprise Edition feature, native cloud interactions."
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "requiresCapability",
+      "object": "backup:staging-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "When creating an archive to store in a cloud provider you are required to provide a location for the `obj-staging-dir`."
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "doesNotSupport",
+      "object": "backup:merge-operation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For this reason merging incremental backups stored in the cloud is not supported."
+    },
+    {
+      "subject": "object-store:azure-blob-storage",
+      "predicate": "availableSince",
+      "object": "version:server-7-1-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Azure (7.1.2+)"
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "doesNotSupport",
+      "object": "object-store:azure-data-lake-storage-gen2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "using Azure storage accounts with Data Lake Storage Gen 2 enabled (also known as \"hierarchical namespace\") will not work with `cbbackupmgr`and is not a supported configuration."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "createsOnAction",
+      "object": "backup:archive-locking",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "It's important that only one instance of cbbackupmgr has access to the archive at a time; this is enforced using a lockfile meaning most of the time you shouldn't need to worry about this."
+    },
+    {
+      "subject": "backup:repository",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-config](cbbackupmgr-config.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-backup](cbbackupmgr-backup.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-restore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-restore](cbbackupmgr-restore.md)"
+    },
+    {
+      "subject": "backup:merge-operation",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-merge",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-merge](cbbackupmgr-merge.md)"
+    },
+    {
+      "subject": "backup:collection-string",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-examine",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-examine](cbbackupmgr-examine.md)"
+    },
+    {
+      "subject": "backup:archive",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresCapability",
+    "finding": "The RBAC section lists cloud-PROVIDER permissions required to operate cbbackupmgr against remote storage (AWS actions like GetObject/PutObject; Azure's 'Storage Blob Data Owner'; GCP's 'Storage Object Admin') alongside an explicit caveat that these 'are subject to change between releases' - but never once cross-references the Couchbase-side RBAC roles (data_backup, analytics_admin, eventing_admin, fts_admin) documented on cbbackupmgr-generate.md that are ALSO required for the same operation against the same cluster. A cloud backup needs both a cloud-provider IAM grant and a Couchbase Server role, and no single page states that a user needs both at once. The cloud-provider roles themselves are deliberately not minted as Couchbase concepts here - they belong to AWS/Azure/GCP's own IAM systems, a foreign domain this ontology does not own, matching the precedent set by relational:table."
+  },
+  "cross_component_finding": "cbbackupmgr-cloud.md's AWS/Azure/GCP are a genuine name collision with the already-promoted cloud-provider:aws/azure/gcp family, and NOT a case for reuse: the promoted concepts are explicitly typed as 'a Capella deployment substrate' - i.e. what infrastructure a CAPELLA CLUSTER runs on - while this page's AWS/Azure/GCP are external object-storage TARGETS a Server-side CLI archives to. Nothing connects a Capella cluster's hosting provider to a cbbackupmgr archive's storage provider; they happen to share three brand names because there are only three major clouds; that is a coincidence of the market, not a documented relationship. Filed under a fresh object-store: namespace rather than reusing cloud-provider: to avoid silently asserting the two things are the same axis.",
+  "cross_product_finding": "None of this page's cloud-object-storage content bears on Capella - Capella's own snapshot/backup facility (cloud/clusters/cloud-snapshots.md, per the registry's service:backup-service collision note) is a wholly separate, provider-managed mechanism from cbbackupmgr writing an archive INTO a customer-controlled S3/Blob/GCS bucket. The two 'backup + cloud' stories in this corpus (cbbackupmgr writing archives to object storage vs. a CSP's own snapshot service backing up a Capella cluster) remain unrelated and unmerged, consistent with the module's no-twin framing."
+}

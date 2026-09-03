@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbcollect-info",
+  "label": "cbcollect_info",
+  "type": "the cluster-wide diagnostic log-collection utility. Explicitly does NOT collect audit logs or Eventing Application logs - two stated, bounded non-support facts about what a reader might otherwise assume 'collect everything' means.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "The eventing.log contains redactable user data and the log is collected using the cbcollect_info tool.",
+    "The cbcollect_info tool does not collect the Application log files.",
+    "The cbcollect_info utility does not collect audit logs."
+  ],
+  "documented_at": "server/8.0/eventing/eventing-debugging-and-diagnosability",
+  "relates_to_competency_question": "If a support engineer runs cbcollect_info, are audit logs and Eventing application logs included, or must they be gathered separately?"
+}

@@ -1,0 +1,109 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-info",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-info.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:archive",
+      "label": "Backup archive",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json); confirmed again here: 'This command provides information about the given path, be it the whole archive, repository, backup or bucket.'"
+    },
+    {
+      "candidate_id": "backup:repository",
+      "label": "Backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json); confirmed again here in the same sentence as backup:archive."
+    },
+    {
+      "candidate_id": "backup:full-backup",
+      "label": "full backup",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:incremental-backup",
+      "label": "incremental backup",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:merge-result",
+      "label": "Merged backup (MERGE type)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third, previously-unrecorded value of the backup type shown in cbbackupmgr's own output, alongside the two already-promoted types: 'the type which can be either a full backup (FULL), and incremental backup (INCR) or a merge (MERGE).' See notable_absence."
+    },
+    {
+      "candidate_id": "backup:collection-string",
+      "label": "Collection string",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'A dot separated collection string representing the bucket/scope/collection to get info for.' Recurs on cbbackupmgr-config.md (--include-data/--exclude-data) and cbbackupmgr-cloud.md (examine example), so this is the page giving it its clearest definition."
+    },
+    {
+      "candidate_id": "backup:cloud-integration",
+      "label": "Native cloud integration (cbbackupmgr)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch; same 'Enterprise Edition feature ... introduced in Couchbase Server 6.6.0' boilerplate repeated verbatim on this page."
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "backup:archive",
+      "predicate": "hasInternalComponent",
+      "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This command provides information about the given path, be it the whole archive, repository, backup or bucket."
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Native cloud integration is an Enterprise Edition feature which was introduced in Couchbase Server 6.6.0."
+    },
+    {
+      "subject": "backup:collection-string",
+      "predicate": "restrictedToContext",
+      "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The `--backup` flag must be provided if this flag is used."
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-cloud",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-cloud](cbbackupmgr-cloud.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - contradicts an existing closed-set assumption rather than absenting one",
+    "finding": "The registry currently holds backup:full-backup and backup:incremental-backup as the only two promoted backup-type concepts, with no note that a third exists. cbbackupmgr-info.md's own EXAMPLES section shows a third value directly in the tool's real output - 'Name | Size | Type | Complete | Retention | Expiry State' rows showing 'FULL', 'INCR', and, after a merge, 'MERGE - FULL' - and states in prose: 'the type which can be either a full backup (FULL), and incremental backup (INCR) or a merge (MERGE).' Treating backup type as a two-member closed set (as the registry implicitly does by only having promoted the first two) would be wrong; backup:merge-result is minted here to fill the gap. Separately, the JSON output schema documents its own internal deprecation - 'Note that the \"range\" and \"merged_range\" fields contain the same data. The range field is included for backwards compatibility but is deprecated' - a clean retainedForLegacyCompatibility candidate, but with no version attached to when the deprecation happened, so it could not be tied to deprecatedIn without inventing a date."
+  },
+  "cross_component_finding": "This page's --start/--end range-selection logic is the one that later determines whether a merge will include a full backup ('When I merge with this range, will it include a full backup?') - i.e. info's read-only reporting function is a documented prerequisite step for using the merge command correctly, even though info itself performs no merge. This is a workflow dependency between two commands (info -> merge) that neither page's own OPTIONS/SYNOPSIS section states as a formal requirement; it only appears in the worked EXAMPLES prose. Relevant to whichever sibling batch record extracts cbbackupmgr-merge.md.",
+  "cross_product_finding": "The info command's own note that S3-stored archives can be queried without downloading the whole archive ('This will download a very minimal amount of data e.g. it won't download the whole archive') is the same non-Capella, cloud-object-store-as-target pattern flagged in cbbackupmgr-cloud.md - reinforcing that cbbackupmgr's 'cloud' vocabulary means AWS/Azure/GCP object storage as an archive location, never Capella as a target service, which remains a separate axis with no source stating a correspondence."
+}

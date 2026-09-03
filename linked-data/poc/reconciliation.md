@@ -4974,7 +4974,180 @@ below the bar (full list in the shared-source.py run) stay in the extraction lay
   as unverified as anything an extraction agent might assert** until a page confirms
   it.
 
-## Cumulative verdict (all eighteen rounds)
+## Round 19 — `cbbackupmgr` (first contact, no twin) and `javascript-udfs` (paired, pre-checked)
+
+**Scope.** 22 pages, two unrelated modules dispatched together because both were small
+and both had a known shape going in. `server/8.0/backup-restore/` (18 pages, the whole
+`cbbackupmgr` CLI reference - **no Capella twin exists at all**, first contact in the
+plainest sense) and `server/8.0/javascript-udfs/` (4 pages, paired against round 6's
+already-extracted `cloud/javascript-udfs/`, similarity **measured before dispatch** at
+0.92-1.00 - the exact caution round 18 closed with). 158 relations, 0 evidence problems,
+10 gate denials, all resolved without thinning.
+
+**The pre-check paid for itself immediately.** Briefed with its own measured similarity
+number up front, the javascript-udfs batch minted nothing at all - "nothing new minted
+this batch" - and instead spent its attention on divergence: two pages carrying
+unadapted "Capella" wording on a Server page, a selective version-gate drop, and a
+real interop question the previous round's framing didn't ask for (does a JS UDF called
+from SQL++, calling back into SQL++, actually recurse? - yes, resource-pool exhaustion
+is the limit, not a documented depth cap). Exactly the split round 18 named: defect-
+finding worked, promotion-independence was never going to, and knowing that in advance
+meant the batch didn't waste a sentence minting concepts destined to sit below the bar.
+
+### The context file's own warnings worked - and one collision it didn't name still happened
+
+The dispatch briefing warned about two specific collisions in advance:
+`js-udf:` vs. `eventing:` (both "JavaScript", different mechanisms), and cbbackupmgr's
+`object-store:aws-s3` vs. Capella's `cloud-provider:aws` (both "AWS", different axes -
+one is a backup destination, the other is a hosting substrate). Both were caught
+cleanly; `js-udf:n1ql-function-call` and the already-promoted `eventing:n1ql-function-call`
+were kept deliberately apart with a do-not-confuse note the moment the second batch
+minted the first, precisely because the warning had primed the question. `recurrence.py
+--forks` now reports the pair explicitly (`n1qlfunctioncall`, 8 merged files) - the fork
+report's first entry that is *documented as a correct non-merge* rather than left for a
+later round to puzzle over.
+
+The two `cbbackupmgr` batches, run concurrently with the same context file and no
+visibility into each other, then independently minted the **same** concept under two
+names **four separate times**, none of them warned about in advance:
+
+- `backup:cbbackupmgr-repository` (1 file) vs. the extraction-layer `backup:repository`
+  (5 files, used across the other batch's entire output) - and the fold here is the
+  sharper lesson. The batch that minted the new spelling explicitly *reasoned* about
+  reuse and got it wrong: it checked `registry-digest.py`'s label for `backup:repository`
+  ("the storage location a plan writes into") and concluded the tool's own filesystem
+  repository was a different thing. Round 11's own extraction of `backup-service.md`,
+  already sitting in the registry, states `tool:cbbackupmgr acquiresLockOn
+  backup:repository` - the correspondence was already on record, in a *relation*, not
+  in the label a digest prints. **A refusal to reuse is only as good as the set it
+  checked, and a concept's existing relations are part of that set.** Folded, 7 files
+  combined, promoted as `concepts/backup/repository.json`.
+- `backup:cloud-integration` (4 files) vs. `backup:native-cloud-integration` (2 files) -
+  identical label, "Native cloud integration (cbbackupmgr)", on both. Folded, 6 files.
+- `backup:cbbackupmgr-merge-command` (2 files, the sub-command's own reference pages)
+  vs. `backup:merge-operation` (2 files, pages discussing merging from the outside -
+  cloud-storage compatibility, the tutorial). Folded, 4 files.
+- `role:data-backup` (2 files, this round) vs. `role:data-backup-and-restore` (1 file,
+  minted by *round 12*'s RBAC catalogue read and left sitting unpromoted for seven
+  rounds, plus 1 more file this round under the same spelling) - the same role, the
+  same internal name (`data_backup`), spelled two ways across three separate extraction
+  events spanning two rounds. Folded, 4 files, filed under the internal name per the
+  convention round 13 established.
+
+Four same-round self-forks in one 18-page module, after a context file that had
+already demonstrated it could prevent exactly this shape when the collision was named
+in advance. **The warnings worked on what they warned about and did nothing for what
+they didn't - which is the whole problem with warning-based prevention**: it scales
+with how many collisions the coordinator thought to name, not with how many exist.
+None of round 18's fork-detection instruments (`--variants`, `--forks`) would have
+caught any of these four either - `repository`/`cbbackupmgr-repository` is a
+near-punctuation-adjacent pair `--variants` still doesn't cluster because
+`variant_key()` normalises punctuation, not word-insertion; the other three are
+same-prefix synonym forks, round 18's fourth species, confirmed here as a repeat
+occurrence within one round rather than only across rounds.
+
+### Promotions
+
+**Backup module (9):** `backup:archive` (7, the top-level directory) and
+`backup:repository` (7, folding the tool/service fork above) establish the container
+hierarchy every other page assumes and only the tutorial states in prose.
+`backup:native-cloud-integration` (6, folding `cloud-integration`) and
+`backup:cbbackupmgr-merge-command` (4, folding `merge-operation`). `role:data-backup`
+(4, folding `data-backup-and-restore`) and `role:analytics-admin` (4) are two of the
+service-specific admin roles `cbbackupmgr` requires for cluster-level data, alongside
+the already-promoted `role:eventing-full-admin`/`role:fts-admin` - the same pattern
+recurring a third and fourth time. `tool:cbcollect-info` (3, two pre-existing files
+plus this round's) - notable for what it explicitly does **not** collect: audit logs
+and Eventing's own Application log, two bounded non-support facts a reader might
+otherwise assume "collect everything" covers.
+
+**JavaScript UDF module (7):** all seven promotions came from `cloud/javascript-udfs/`
+guide pages read in round 6 and left unpromoted for thirteen rounds, confirmed rather
+than discovered by this round's own four pages. `js-udf:global-function` (5) and
+`js-udf:scoped-function` (5) are the visibility/keyspace-resolution pair;
+`js-udf:udf-library` (4) is the named container both attach to;
+`js-udf:external-function` (3) and `js-udf:sql-managed-udf` (3) are the two ways to
+back a `CREATE FUNCTION ... LANGUAGE JAVASCRIPT` statement - one library-backed, one
+inline, and they `tradesOffAgainst` each other explicitly on the page.
+`js-udf:inline-statement-call` and `js-udf:n1ql-function-call` (2 each, exactly at the
+bar) are the two ways to run SQL++ from inside a JS UDF, distinguished by parameter
+style and by whether the statement may have side effects. All seven cleared
+`shared-source.py`'s discount as `divergent` - real independent evidence across the
+cloud/server pair, not merely republished text - which is worth noting given round
+18's caution: a heavily-duplicated module can still yield independently-attested
+concepts when the concept in question is stated on more than just the duplicated pair
+itself (these guide pages, not the four paired reference pages, are where three of the
+seven quotes actually come from).
+
+**Deliberately not promoted, and why:** `backup:merge-result` (2, a third `MERGE` value
+in cbbackupmgr's own backup-type output, alongside the promoted FULL/INCR types - real,
+but the reference page for the merge command that produces it never states it as a type
+in its own right, filed as a docs-issue instead of a concept until a page does); seven
+per-sub-command `backup:cbbackupmgr-*-command` concepts at 1-2 files each (real, useful
+subjects for `requiresEdition`/`requiresServerRole` relations, but each is currently
+attested only by its own single reference page); the `js-udf:` family's six `shared`-
+verdict members that fell below the bar once discounted (`function-error-handling`,
+`iterator-result`, `javascript-worker`, `nested-function-call`, `runtime-error-handling`,
+`throw-vs-return`, `transaction-support`) and six more `unchecked` and left that way
+rather than marked refused (`inline-function`, `named-parameter`,
+`positional-parameter`, `restricted-feature`, `unsupported-feature`,
+`variadic-parameter`).
+
+### New `docs-issues/` (7, taking the total to 135)
+
+- `server-cbbackupmgr-edition-and-role-three-way-contradiction` - the round's headline.
+  `cbbackupmgr.md` states the tool is Enterprise-only; `enterprise-backup-restore.md`
+  contradicts that directly ("available for both... Enterprise... and... Community
+  Edition") and adds that only Full Administrators may use it; the tool's own
+  backup/restore RBAC sections contradict *that*, showing bucket-level work needs only
+  the narrower `data_backup` role. Three pages, none cross-referencing the others, three
+  different answers to "who can run this and under which edition."
+- `server-cbbackupmgr-strategies-omits-merge-enterprise-gate` - the page recommending
+  the "periodic merge" strategy never repeats that the merge command it depends on is
+  Enterprise-only, stated only on the command's own separate reference page.
+- `server-cbbackupmgr-compact-660-threshold-undocumented-scope` - compaction became
+  unnecessary in the same release (6.6.0) that introduced native cloud integration,
+  "due to changes in the storage format" no page describes, `needs-sme`.
+- `server-cbbackupmgr-backup-type-enum-incomplete` - the tool's own output shows a
+  third backup-type value, MERGE, the reference documentation never names as a type.
+- `server-cbbackupmgr-repository-and-native-encryption-unconnected` - two structurally
+  identical "auto-generated key protected by a human secret or a KMS" mechanisms,
+  designed independently, with no page stating whether backing up a natively-encrypted
+  bucket produces plaintext or still-encrypted archive data.
+- `server-javascript-udfs-unadapted-capella-wording` - two of four pages retain "in
+  Capella" wording verbatim; a sibling page has the correctly adapted "in Couchbase
+  Server" text for the identical sentence, proving the adaptation was attempted and
+  applied inconsistently rather than skipped everywhere.
+- `server-javascript-udfs-selective-762-gate-omission` - one version badge dropped,
+  an adjacent one on the same page kept, `needs-sme`.
+
+### What this round taught about the method
+
+- **A pre-dispatch similarity check pays for itself in what an agent doesn't do.**
+  Told in advance that its module was heavily duplicated, the javascript-udfs batch
+  minted nothing and spent its full attention on divergence - two real unadapted-content
+  defects and one real interop question, from four pages, with zero wasted effort on
+  concepts that were never going to clear the bar. This is the payoff round 18's closing
+  recommendation predicted, on the first round that tried it.
+- **A same-round self-fork can happen even inside a briefing that explicitly warns
+  about fork risk**, and the warned-about collisions are exactly the ones that don't
+  happen. Two batches sharing one context file, dispatched in the same breath, minted
+  the same concept twice under four different name pairs - none of them among the two
+  the briefing had named. Warning about a specific collision prevents that collision;
+  it does not generalise to the shape of collision. The fix that would generalise -
+  giving concurrent batches a live view of each other's mints, or running them
+  sequentially with a shared scratch registry - has not been tried, and remains the
+  more expensive alternative to reconciling forks after the fact.
+- **A concept's existing relations are part of what "already in the registry" means,
+  and a label-only check will miss it.** The `backup:repository`/`cbbackupmgr-repository`
+  fork happened because an agent correctly followed the instruction to check
+  `registry-digest.py` before minting, and the digest shows labels, not the relations
+  already on file that would have settled the question. This is round 10's "a refusal
+  is only as good as the set it searched" recurring a third time, in the sharpest form
+  yet: the set that mattered here was not a directory of unread pages, it was a single
+  relation already sitting in the registry the checking tool doesn't surface.
+
+## Cumulative verdict (all nineteen rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -5184,6 +5357,26 @@ shown, one round later, to have two axes that can come apart; reading a paired
 round's output now means checking defect-finding and promotion-evidence separately
 rather than assuming a good result on one implies the other.
 
+Round 19 acts on round 18's closing recommendation and measures what acting on it
+buys. Told in advance that `javascript-udfs/`'s Server/Capella pair was measured at
+0.92-1.00 similarity, the batch reading it minted nothing and spent its attention on
+divergence instead — two real unadapted-content defects and a real interop question,
+from four pages. The check paid for itself in what the batch didn't waste effort on.
+The round's other half, run in the same breath with no twin at all (`cbbackupmgr`),
+shows the fork problem operating at a finer grain than either round 17 or round 18
+found it: two batches sharing one context file that explicitly named two collisions
+to avoid caught both, and then independently minted the same concept under four
+*other*, un-warned-about name pairs — `backup:repository` twice,
+`native-cloud-integration` twice, the merge command twice, one RBAC role twice
+(the second time reaching back to a round-12 mint left unpromoted for seven rounds).
+Warning about a specific collision prevents that collision and nothing else; it does
+not generalise. And the sharpest of the four forks was caused by an agent doing
+exactly what it was told — checking the registry before minting — and still missing
+the answer, because the answer was sitting in a *relation* from round 11, and
+`registry-digest.py` shows labels. **A refusal to reuse is only as good as the set it
+checked, and a concept's existing relations are part of that set** — round 10's lesson,
+found a third time, in its most granular form yet.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -5234,7 +5427,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Twenty-nine limits of the method are now visible across multiple rounds, not just
+Thirty-one limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -5835,3 +6028,37 @@ once, so worth treating as durable rather than one-off:
   file that exists" rule this project's own memory-management guidance states applies
   one level up too: before asserting a structural asymmetry in a briefing, check it
   against the pages on both sides, not just the directory listing on one.**
+
+- **A pre-dispatch similarity check pays for itself in what an agent doesn't do, not
+  just in what it finds.** Round 18 recommended checking a candidate pairing's
+  page-similarity before committing to the full module; round 19 is the first round
+  that tried it. Briefed with `javascript-udfs/`'s 0.92-1.00 measurement up front, the
+  batch minted nothing and spent its entire attention on divergence — two real
+  unadapted-content defects and a genuine interop question, from four pages, with zero
+  effort spent minting concepts that were never going to clear a discount they'd
+  already been told to expect. The saving is invisible in the output (a report with no
+  new mints looks identical to a report from a lazy batch) and shows up only in what a
+  batch chose to spend its reading on instead — which is a real cost of the discipline:
+  a coordinator has to trust the absence of mints as a sign of a good briefing, not a
+  thin one, and the only way to tell the two apart is to read what the batch found
+  instead.
+
+- **Warning about a specific collision prevents that collision, and nothing else** —
+  a same-round self-fork can happen inside a briefing that explicitly warns about fork
+  risk, provided the fork isn't one of the ones named. Round 19's dispatch briefing
+  named two real collisions in advance (`js-udf:` vs. `eventing:`, `object-store:` vs.
+  `cloud-provider:`) and both were avoided cleanly, one of them even correctly
+  registered as a documented non-merge rather than left ambiguous. The same two
+  batches, sharing that same briefing, then independently minted one concept twice
+  under four *other* name pairs the briefing hadn't named
+  (`repository`/`cbbackupmgr-repository`, `cloud-integration`/`native-cloud-integration`,
+  the merge command under two names, one RBAC role under two names). A warning is a
+  targeted fix for the specific case it names; it carries no information about the
+  cases it doesn't, and a coordinator who reads a clean run on the named risks as
+  evidence the briefing "worked" will miss exactly this. The sharpest of the four is
+  worth its own line: the fork happened because an agent did precisely what it was
+  told — check the registry before minting — and the check still missed, because the
+  answer lived in a *relation* (`tool:cbbackupmgr acquiresLockOn backup:repository`,
+  written in round 11) rather than in the label `registry-digest.py` prints. **A
+  concept's existing relations are part of what "already in the registry" means, and
+  a label-only check will never surface them.**

@@ -1,0 +1,137 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-tutorial",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-tutorial.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:archive",
+      "label": "Backup archive",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json); this page gives the definition every other page in the batch assumes: 'This directory is referred to as the backup archive. The backup archive contains one or more backup repositories.'"
+    },
+    {
+      "candidate_id": "backup:repository",
+      "label": "Backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json); this page's definitional sentence: 'The easiest way to think of a backup repository is that it corresponds directly to a single cluster that you want to back up.'"
+    },
+    {
+      "candidate_id": "backup:full-backup",
+      "label": "full backup",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:incremental-backup",
+      "label": "incremental backup",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:merge-result",
+      "label": "Merged backup (MERGE type)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-info.json); confirmed again here in the worked example's info output showing 'MERGE - FULL'."
+    },
+    {
+      "candidate_id": "backup:merge-operation",
+      "label": "Merge operation (cbbackupmgr merge)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-cloud.json); this page is the one that demonstrates it end-to-end against a local archive: 'In order to do this we use the [cbbackupmgr-merge](cbbackupmgr-merge.md)subcommand to merge two or more backups together.'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "backup:archive",
+      "predicate": "hasInternalComponent",
+      "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This directory is referred to as the backup archive. The backup archive contains one or more backup repositories."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "createsOnAction",
+      "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "A backup repository is created by using the config subcommand."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-backup](cbbackupmgr-backup.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-config](cbbackupmgr-config.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)"
+    },
+    {
+      "subject": "backup:merge-operation",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-merge",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-merge](cbbackupmgr-merge.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-remove",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-remove](cbbackupmgr-remove.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-restore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-restore](cbbackupmgr-restore.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-strategies",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-strategies](cbbackupmgr-strategies.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This tutorial's own worked sequence is Configuring a Backup -> Backing up a Cluster (full, then incremental) -> Restoring a Backup -> Merging backups -> Removing a Backup Repository. Restore is demonstrated directly against an unmerged incremental backup ('let's say we want to restore the 2016-03-22T10_26_08.933579821-07_00 from the \"cluster\" backup repository'), and merge is introduced only afterward, purely as a disk-space-reclamation step ('Using an incremental backup solution means that each backup we take increases disk space. Since disk space in not infinite we need to be able to reclaim this disk space.') - not as something you would normally do before a restore. Individual command reference pages (config/info/backup/restore/merge) each document their own flags in isolation and none of them states this ordering constraint or its rationale; only the tutorial's narrative shows it. A reader who only consulted the reference pages could reasonably assume merge-then-restore is the more natural or more common order, when this walkthrough demonstrates the opposite."
+  },
+  "cross_component_finding": "This page is the clearest single source in the batch for the backup:archive / backup:repository hierarchy definition that every other page in this module assumes without restating - 'This directory is referred to as the backup archive. The backup archive contains one or more backup repositories. These backup repositories are where your backups will be contained.' Both concepts, minted from cbbackupmgr-config.json's flag descriptions earlier in this batch, get their fullest prose definition here instead - a reminder that in a flag-heavy reference module, the clearest definitions of the module's own core nouns often live on the one narrative/tutorial page, not on the reference pages that use those nouns constantly.",
+  "cross_product_finding": "No Capella content; the tutorial's entire workflow (travel-sample/beer-sample buckets, localhost cluster) is Server-only and does not touch cbbackupmgr's Capella-awareness (the --capella config flag) at all, consistent with the module's no-twin framing."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/sql-managed-udf",
+  "label": "SQL++ managed JavaScript UDF",
+  "type": "a JavaScript user-defined function whose body is stored inline by the CREATE FUNCTION statement itself and managed internally by the Query Service - no js-udf:udf-library required. Trades off against js-udf:udf-library: cannot group related functions or change access restrictions for several functions at once.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "4 files, `divergent` - discount rejected, raw count stands.",
+  "evidence": [
+    "A SQL++ managed JavaScript function is a user-defined function that executes a JavaScript function. The JavaScript function is stored internally by the Query Service. You do not need to create a JavaScript library to create this type of function.",
+    "If you create a user-defined function this way, you cannot group related functions or change access restrictions for multiple related functions at once."
+  ],
+  "tradesOffAgainst": "js-udf:udf-library",
+  "documented_at": "cloud/guides/javascript-udfs",
+  "relates_to_competency_question": "Can a JavaScript UDF be created without setting up a separate library first, and what do you give up by doing that?"
+}

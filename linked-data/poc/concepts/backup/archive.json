@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/archive",
+  "label": "Backup archive",
+  "type": "the top-level filesystem directory cbbackupmgr manages, created for a specific Couchbase cluster and containing one or more backup:repository entries plus a logs folder.",
+  "promoted": true,
+  "recurrence": 7,
+  "evidence": [
+    "The backup archive is the top-level directory and contains one or more backup repositories and a logs folder.",
+    "This directory is referred to as the backup archive. The backup archive contains one or more backup repositories."
+  ],
+  "hasInternalComponent": "backup:repository",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr",
+  "relates_to_competency_question": "What is the top-level container cbbackupmgr organizes its data under, and what does it hold?"
+}

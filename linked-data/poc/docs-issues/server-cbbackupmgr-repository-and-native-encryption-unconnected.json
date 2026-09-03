@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbbackupmgr-repository-and-native-encryption-unconnected",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cbbackupmgr's repository encryption and Couchbase Server's own native encryption at rest are structurally the same shape - an auto-generated data key protected by either a human-supplied passphrase or an external KMS - designed independently with no stated relationship. cbbackupmgr-config.md's --disable-bucket-config note ('encryption-at-rest settings are not backed up') is the closest the corpus comes to relating them, and it only states that the SETTING isn't captured, not what happens to already-encrypted DATA. No page answers whether backing up a bucket that has native encryption at rest enabled produces plaintext or still-encrypted data in the archive.",
+  "about": [
+    "server/8.0/backup-restore/cbbackupmgr-encryption",
+    "server/8.0/backup-restore/cbbackupmgr-config"
+  ],
+  "foundDuring": "round 19",
+  "status": "open",
+  "severity": "needs-sme"
+}

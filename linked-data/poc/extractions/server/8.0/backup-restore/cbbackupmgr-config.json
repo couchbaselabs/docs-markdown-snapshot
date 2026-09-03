@@ -1,0 +1,211 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-config",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-config.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:repository",
+      "label": "Backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named backup configuration created inside a backup archive; 'Creates a new backup repository with a new backup configuration. The configuration created is used for all backups in this backup repository.' First introduced in this batch; expected to recur across every other page in this module."
+    },
+    {
+      "candidate_id": "backup:archive",
+      "label": "Backup archive",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the directory that holds one or more backup repositories; option description: 'The directory where the new backup repository will be created.'"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:cloud-integration",
+      "label": "Native cloud integration (cbbackupmgr)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'Native cloud integration is an Enterprise Edition feature which was introduced in Couchbase Server 6.6.0.'"
+    },
+    {
+      "candidate_id": "backup:collection-level-selection",
+      "label": "Collection-level data selection (--include-data / --exclude-data)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the ability to scope a backup/restore down to specific collections, called out as edition-gated separately from the rest of the config command."
+    },
+    {
+      "candidate_id": "backup:repository-encryption",
+      "label": "Encrypted backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the config command's --encrypted mode. This page documents the flags exhaustively but never itself states the edition gate; see cbbackupmgr-encryption.md for the explicit Enterprise Edition statement, captured on that page's own record."
+    },
+    {
+      "candidate_id": "backup:external-key-management-service",
+      "label": "External Key Management Service (cbbackupmgr)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'Provides the Key Identifier in the external Key Management system. Currently supported KMSs are AWS KMS, GCP KMS, Azure KeyVault, HashiCorp Vault Transit secrets engine.'"
+    },
+    {
+      "candidate_id": "deployment:capella",
+      "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:local-user-security-administrator",
+      "label": "Local User Security Administrator",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:external-user-security-administrator",
+      "label": "External User Security Admin (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the registry's own name-collision notes (role:ro-admin) already describe an 8.0 three-way role split into Local User Security Admin / External User Security Admin / Read-Only Admin, but only two of the three had their own concept id; this page is the first to require minting the third. 'If the user has External User Security Admin then external users will be included in the backup.'"
+    },
+    {
+      "candidate_id": "role:ro-admin",
+      "label": "Read-Only Admin (Server RBAC role, part of the 8.0 security-hardening split)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "encryption:native-encryption-at-rest",
+      "label": "Native encryption at rest",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "createsOnAction",
+      "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Creates a new backup repository with a new backup configuration."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "excludesFromCapture",
+      "object": "encryption:native-encryption-at-rest",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Modifies the repository configuration to disable backing up bucket configuration for all buckets. Note that encryption-at-rest settings are not backed up."
+    },
+    {
+      "subject": "backup:collection-level-selection",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Note that including data at the scope/collection level is an Enterprise Edition feature."
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Native cloud integration is an Enterprise Edition feature which was introduced in Couchbase Server 6.6.0."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "deployment:capella",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Modifies the repository configuration to disable backing up the services that are not supported with Capella including: analytics, cluster analytics, bucket query, cluster query, views and users."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If the user has Full Admin, then all users will be included in the backup."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:local-user-security-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If the user has Local User Security Admin then local users will be included in the backup."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:external-user-security-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (note: the OBJECT concept role:external-user-security-administrator is newly minted; the predicate itself is already promoted)",
+      "evidence": "If the user has External User Security Admin then external users will be included in the backup."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:ro-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If the user has Read-Only Admin then all users will be included in the backup."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-strategies",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-strategies](cbbackupmgr-strategies.md)"
+    },
+    {
+      "subject": "backup:cloud-integration",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-cloud",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-cloud](cbbackupmgr-cloud.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-encryption](cbbackupmgr-encryption.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "cbbackupmgr-config.md documents every --encrypted/--km-*/--passphrase flag in full but never once states that repository encryption is an Enterprise Edition feature - that fact only appears on the separate cbbackupmgr-encryption.md tutorial page ('A tutorial that explains how to use the encryption feature of cbbackupmgr Enterprise Edition.'). A reader who only consults the flag reference (this page) has no way to learn the feature is edition-gated at all."
+  },
+  "cross_component_finding": "config.md's --enable-users section requires exactly the three-way 8.0 role split the registry's role:ro-admin collision note already describes (Local User Security Admin / External User Security Admin / Read-Only Admin) plus Full Admin, but applied to a completely different surface than security pages: which USERS get included in a cbbackupmgr backup depends on which of these roles the operating user holds. This is independent confirmation, from a tooling reference page rather than a security page, that the 8.0 split is a real, consistently-applied product decision - and it forced minting role:external-user-security-administrator, which previously existed only as prose inside another concept's note, never as its own id.",
+  "cross_product_finding": "The --capella flag ('Modifies the repository configuration to disable backing up the services that are not supported with Capella including: analytics, cluster analytics, bucket query, cluster query, views and users') shows that cbbackupmgr - a Server-only CLI with no Capella twin - can nonetheless produce a backup repository explicitly shaped for eventual use against a Capella cluster. This nuances the module's 'no Capella twin' framing: Capella does not expose cbbackupmgr, but cbbackupmgr is aware of Capella as a restore target and knows which services Capella doesn't support. Filed as a finding rather than a merge - no page states that a cbbackupmgr archive can actually be restored into Capella, only that the config command can be shaped for it."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/data-backup",
+  "label": "Data Backup & Restore (data_backup)",
+  "type": "a Server RBAC role granting bucket-level backup/restore access via cbbackupmgr, WITHOUT cluster-level administrative access - does not cover cluster-level data such as Analytics Synonyms (role:analytics-admin's domain). Filed under its internal name per this project's role-naming convention (display label in aliases).",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "role:data-backup-and-restore"
+  ],
+  "aliases_note": "Folds a same-round self-fork with a twist: round 12's own RBAC catalogue extraction (learn/security/roles.json) had already named this role as role:data-backup-and-restore (the display-label spelling) and left it unpromoted at 1 file since round 12. Round 19's two backup-restore batches then independently re-encountered it - one under the internal name (role:data-backup, 2 files), one under the display label again (role:data-backup-and-restore, 1 more file) - for a combined 4 files across three extraction events spanning two rounds, zero overlap. Filed under the internal name per the convention `roles.md`-derived ids have used since round 13.",
+  "evidence": [
+    "Bucket level data may be backed up/restored using the `data_backup` (Data Backup & Restore) role.",
+    "The `data_backup` role does not have access to cluster level data such as: Analytics Synonyms"
+  ],
+  "doesNotSupport": "role:analytics-admin",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-backup",
+  "relates_to_competency_question": "Does backing up a bucket require a cluster administrator, or is there a narrower role scoped to just that operation?"
+}

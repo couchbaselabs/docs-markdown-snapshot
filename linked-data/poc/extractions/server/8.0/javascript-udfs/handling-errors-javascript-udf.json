@@ -1,0 +1,51 @@
+{
+  "page_id": "server/8.0/javascript-udfs/handling-errors-javascript-udf",
+  "source_version": "8.0",
+  "source_path": "server/current/javascript-udfs/handling-errors-javascript-udf.md",
+  "concepts": [
+    { "candidate_id": "js-udf:runtime-error-handling", "label": "Runtime-level error handling (uncaught SQL++/DML error surfaced as a JSON error object by the query engine)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:function-error-handling", "label": "Function-level error handling (try/catch inside the JavaScript UDF, using standard JavaScript exception mechanism)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:throw-vs-return", "label": "Throw vs. return semantics for JavaScript UDF errors (throw halts subsequent statements; return is treated as success)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page's own worked example calls a function via EXECUTE FUNCTION" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:function-error-handling",
+      "predicate": "mustUseInsteadWhen",
+      "object": "js-udf:runtime-error-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin; a stylistic/quality preference rather than a hard requirement, flagged as a close-call reuse of mustUseInsteadWhen (whose canonical shape is a statement-vs-statement substitution, not an error-handling-style preference)",
+      "evidence": "In most cases, it's better to use your JavaScript function to handle likely errors. You can provide a more user-friendly message or take an alternative course of action."
+    },
+    {
+      "subject": "js-udf:throw-vs-return",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:function-error-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin",
+      "evidence": "If the JavaScript function returns any value, including an error, then the SQL++ runtime will assume that the function completed successfully, and the caller will continue to run subsequent statements."
+    },
+    {
+      "subject": "js-udf:function-error-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/metafun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "SQL++ also supports using the [ABORT()](../n1ql/n1ql-language-reference/metafun.md#abort) function inside a query or a user-defined function to return an error."
+    },
+    {
+      "subject": "js-udf:function-error-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/guides/javascript-udfs",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / incompatibleWithAccessSurface",
+    "finding": "This page's error examples are all triggered by ordinary DML conflicts (dml.statement.duplicatekey / DML Error) surfaced through the same generic error-object shape used elsewhere in this batch's worked examples (code 10109, 'Error executing function') - no error path on this page is attributable to an access-surface or role restriction. This is consistent with the rest of the batch: JS UDF errors are ordinary runtime/DML errors, not authorization errors.\n\nSEPARATE, MORE SIGNIFICANT DOCUMENTATION DEFECT: this Server 8.0 page's line 18 is byte-for-byte identical to its Capella twin's line 18 and was evidently never adapted for the Server audience: 'For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).' A Couchbase Server reference page directs the reader to 'user-defined functions in Capella.' This is the same defect class found in this batch's calling-javascript-from-n1ql.md (which also retains 'in Capella' verbatim, plus a stray 'Query tab'), and the two affected pages sit alongside a third sibling page, calling-n1ql-from-javascript.md, whose identical sentence pattern IS correctly adapted ('For more information about user-defined functions in Couchbase Server, see...'). Of this batch's four pages, exactly 2 of 4 (calling-javascript-from-n1ql.md and this page) carry the unedited 'in Capella' wording and 1 of 4 (calling-n1ql-from-javascript.md) has the corrected wording; javascript-functions-with-couchbase.md does not use this sentence pattern at all. Flagging the exact quote and the cross-page count for reconciliation/docs-issue triage rather than asserting a relation from it."
+  },
+  "cross_component_finding": "The error-object shape shown here (`code`, `msg`, `reason.details.Exception.cause.key: \"dml.statement.duplicatekey\"`) is identical in structure to calling-n1ql-from-javascript.json's nested-recursion error example (`function.nested.error` / code 10112) elsewhere in this Server batch - both share one uniform error-envelope format regardless of whether the underlying cause is a DML conflict or a nested-call worker-pool exhaustion. This corroborates, from the Server side, the twin's cross_component_finding that JS UDF errors, DML errors, and other Query-Service-surfaced errors all flow through one underlying error-reporting mechanism rather than several separate error models.",
+  "cross_product_finding": null
+}

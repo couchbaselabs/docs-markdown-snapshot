@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/n1ql-function-call",
+  "label": "N1QL() function call (from a JavaScript UDF)",
+  "type": "the N1QL(stmt, params, opts) call form for running SQL++ from inside a JavaScript UDF - supports both named and positional parameters, unlike js-udf:inline-statement-call. NOT the same concept as the already-promoted eventing:n1ql-function-call: both are the SQL++ N1QL() built-in, but invoked from two different JavaScript runtimes (a JS UDF vs. an Eventing handler) with different available parameter/feature support - the source page itself flags 'changes available parameter support' as part of this concept's own label, meaning the two runtimes are NOT drop-in equivalents. Do not merge without a source page stating the two are the same.",
+  "promoted": true,
+  "recurrence": 2,
+  "recurrence_note": "2 files, `divergent`, exactly at the promotion bar.",
+  "evidence": [
+    "Calling SQL++ from the N1QL() function supports both named and positional parameters.",
+    "To execute a SQL++ statement from a JavaScript function, you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement."
+  ],
+  "documented_at": "cloud/javascript-udfs/calling-n1ql-from-javascript",
+  "relates_to_competency_question": "Can a JavaScript UDF call back into SQL++ using the same N1QL() form Eventing handlers use, or is it a separate mechanism?"
+}

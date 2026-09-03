@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-javascript-udfs-selective-762-gate-omission",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "javascript-functions-with-couchbase.md's 'Restricted JavaScript Features' section drops the Capella twin's explicit 'Couchbase Server 7.6.2 and later' version admonition entirely, while the same page's 'SQL++ Managed User-Defined Functions' section, immediately adjacent, retains its own '7.6 and later' gate. Could be intentional (8.0 postdates 7.6.2, so the gate is moot on this version's docs) or an editing slip that dropped one badge and not the other - no page states which.",
+  "about": [
+    "server/8.0/javascript-udfs/javascript-functions-with-couchbase",
+    "cloud/javascript-udfs/javascript-functions-with-couchbase"
+  ],
+  "foundDuring": "round 19",
+  "status": "open",
+  "severity": "needs-sme"
+}

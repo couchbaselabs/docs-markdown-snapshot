@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/global-function",
+  "label": "Global JavaScript UDF/library",
+  "type": "a JavaScript user-defined function or library created in the default: namespace, at the same level as buckets - available to every client with no scope restriction. Sibling of js-udf:scoped-function; a value of js-udf:udf-library's global/scoped choice.",
+  "promoted": true,
+  "recurrence": 5,
+  "recurrence_note": "7 files, shared-source verdict `divergent` (a real second author across cloud and server pages, not a republished duplicate) - discount rejected, raw file count stands.",
+  "evidence": [
+    "A global library is created within the default: namespace, at the same level as the buckets in your database. A global library is available to all clients.",
+    "If you do not add a prefix before the library name in your SQL++ statement, the user-defined function will be created as a Global function. You cannot create another global function called GetBusinessDays on your cluster.",
+    "When you call a global function, any partial keyspace references within the function definition are resolved against the default: namespace, regardless of the current query context."
+  ],
+  "documented_at": "cloud/guides/create-javascript-library",
+  "relates_to_competency_question": "Can a JavaScript UDF be shared across every bucket in a cluster, or is it always scoped to one?"
+}

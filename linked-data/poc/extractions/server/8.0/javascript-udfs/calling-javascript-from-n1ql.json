@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/javascript-udfs/calling-javascript-from-n1ql",
+  "source_version": "8.0",
+  "source_path": "server/current/javascript-udfs/calling-javascript-from-n1ql.md",
+  "concepts": [
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "js-udf:variadic-parameter", "label": "Variadic parameter for a user-defined function (accepts a variable-length list of values, denoted by `...`)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin under this exact page pairing" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page uses 'Query Workbench' once (correct Server UI term) but also uses 'Query tab' once, a leftover Capella term - see notable_absence for the exact quotes" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:global-function",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:scoped-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin",
+      "evidence": "If you do not add a prefix before the library name in your SQL++ statement, the user-defined function will be created as a **Global** function. You cannot create another global function called `GetBusinessDays` on your cluster, but you can create a scoped function called `GetBusinessDays`."
+    },
+    {
+      "subject": "js-udf:global-function",
+      "predicate": "createdVia",
+      "object": "tool:query-workbench",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You can also define **Global** user-defined functions from the Query Workbench using SQL++."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "seeAlso",
+      "object": "server/8.0/guides/create-javascript-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You could define this JavaScript function as part of an [external library](../guides/create-javascript-library.md) or as a [SQL++ managed user-defined function](../guides/create-user-defined-function.md#create-inline)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresPrivilege",
+    "finding": "Nothing on this page restricts JS UDF creation or invocation to a particular access surface, role, or credential type - UDFs are created 'from the Query tab or by running a SQL++ statement' with no stated exclusion, mirroring the twin's same silence (there the term was 'Query Tab'). DOCUMENTATION DEFECT (separate from the access-surface question): this page carries two leftover Capella-specific terms not corrected for the Server audience. First, line 18 reads verbatim 'For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).' - this is a Couchbase SERVER documentation page that tells the reader to consult 'user-defined functions in Capella'; the sibling page in this same batch, calling-n1ql-from-javascript.md, has the corrected wording ('in Couchbase Server') for the identical sentence pattern, so this is an inconsistency within the batch, not house style. Second, this page also retains 'from the Query tab' verbatim ('you can [create the user-defined function](../guides/create-user-defined-function.md) from the Query tab or by running a SQL++ statement') even though a few lines later the same page correctly uses 'Query Workbench' ('You can also define **Global** user-defined functions from the Query Workbench using SQL++') - Couchbase Server's UI element is the Query Workbench (tool:query-workbench, promoted), and 'Query tab' is Capella's term (capella:query-tab). Both instances read as a half-completed find-and-replace when this page's content was adapted from the Capella source; flagging both quotes in full for reconciliation/docs-issue triage rather than minting a false relation from either."
+  },
+  "cross_component_finding": "Same shape as the Capella twin: SELECT, EXECUTE FUNCTION, and inline-expression calls are presented as equally valid call styles for a side-effect-free UDF, with no access-surface restriction stated. Where this page diverges from the twin is purely terminological, not architectural - the two leftover-Capella-wording issues recorded in notable_absence.",
+  "cross_product_finding": "Directly relevant to this round's interop question about the two calling directions: this page (SQL++ CREATE FUNCTION ... LANGUAGE JAVASCRIPT calling into JS) does not itself discuss whether the JS side can call back into SQL++, or recurse - that distinction is drawn on the other page in this pairing, calling-n1ql-from-javascript.md, in its 'Executing SQL++ Statements That Call Functions' section (see that file's own relations for the nested-call/JavaScript-worker-exhaustion evidence). This page and that one are non-overlapping halves of the same interop boundary: this one creates/calls a JS-backed UDF from SQL++, the other calls SQL++ from inside the JS body, and only the second page states what happens when the two compose (nested/recursive JS UDF calls exhaust the JavaScript worker pool and eventually error)."
+}

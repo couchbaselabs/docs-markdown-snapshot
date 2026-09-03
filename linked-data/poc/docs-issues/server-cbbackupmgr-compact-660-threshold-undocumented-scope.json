@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbbackupmgr-compact-660-threshold-undocumented-scope",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cbbackupmgr-compact.md states compacting backups is 'no longer supported/required' for backups created with cbbackupmgr 6.6.0+, 'due to changes in the storage format which significantly reduced backup fragmentation'. cbbackupmgr-backup.md's native cloud integration feature was introduced in the same version, 6.6.0. Neither page states whether the two are related - a storage-format change large enough to make an entire command unnecessary, landing in the same release as a new cloud-writing capability, is exactly the shape of an undocumented wider rework, and no page describes what changed or why the two coincide.",
+  "about": [
+    "server/8.0/backup-restore/cbbackupmgr-compact",
+    "server/8.0/backup-restore/cbbackupmgr-backup"
+  ],
+  "foundDuring": "round 19",
+  "status": "open",
+  "severity": "needs-sme"
+}

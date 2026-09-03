@@ -1,0 +1,27 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-merge",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-merge.md",
+  "concepts": [
+    { "candidate_id": "tool:cbbackupmgr", "label": "cbbackupmgr", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:cbbackupmgr-merge-command", "label": "cbbackupmgr merge sub-command", "registry_status": "minted", "reused_or_minted": "reused - minted in cbbackupmgr-strategies.json, this batch; this page is its own reference documentation" },
+    { "candidate_id": "backup:full-backup", "label": "Full backup", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:incremental-backup", "label": "Incremental backup", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:sqlite-backup-format", "label": "SQLite backup file format", "registry_status": "minted", "reused_or_minted": "minted - a backup-archive storage format named on this page; deliberately in the backup: namespace and NOT merged with storage-engine:*, which is the registry's already-promoted family for KV/index engines (Couchstore/Magma/Plasma/Forestdb/Nitro) - this is a different layer, the format of the backup files themselves" },
+    { "candidate_id": "backup:rift-backup-format", "label": "Rift backup file format", "registry_status": "minted", "reused_or_minted": "minted - sibling of backup:sqlite-backup-format, the other backup file format named on this page" },
+    { "candidate_id": "backup:key-deduplication", "label": "Key deduplication (merge)", "registry_status": "minted", "reused_or_minted": "minted - the space-reclaiming mechanism the merge command performs, format-dependent per this page" }
+  ],
+  "relations": [
+    { "subject": "backup:cbbackupmgr-merge-command", "predicate": "requiresEdition", "object": "edition:enterprise", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "The merge command is an Enterprise Edition command which can be used to merge two or more backups together." },
+    { "subject": "backup:cbbackupmgr-merge-command", "predicate": "requiresPriorExecutionOf", "object": "backup:incremental-backup", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "In order to merge data, you need to have a backup repository with at least two backups." },
+    { "subject": "backup:cbbackupmgr-merge-command", "predicate": "createsOnAction", "object": "backup:full-backup", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Doing merges should replace the full backup step by taking multiple incremental backups of a Couchbase cluster and converting them into a single full backup." },
+    { "subject": "backup:key-deduplication", "predicate": "requiresCapability", "object": "backup:sqlite-backup-format", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "with the SQLite format it will deduplicate identical keys in backup files merged together in order to create a single smaller backup file." },
+    { "subject": "backup:key-deduplication", "predicate": "doesNotSupport", "object": "backup:rift-backup-format", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Note that this deduplication does not currently happen with the Rift format." },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-merge", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-encryption", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more on how to authenticate using the different providers see [cbbackupmgr-encryption](cbbackupmgr-encryption.md)." },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-merge", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-info", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)" },
+    { "subject": "server/8.0/backup-restore/cbbackupmgr-merge", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-network-filesystems", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[cbbackupmgr-network-filesystems](cbbackupmgr-network-filesystems.md)" }
+  ],
+  "notable_absence": { "predicate": "requiresMemoryQuota", "finding": "DISCUSSION states 'Since the merge command creates a new backup file before it removes the old ones it is necessary to have at least as much free space as the backups that are to be merge together' - a real disk-space precondition - but the page has no structured requirement section for it (no minimum-free-space flag, no pre-flight check described), unlike the cloud-integration and encryption options which each get their own itemized OPTIONS entries." },
+  "cross_component_finding": "cbbackupmgr-strategies.md recommends the Periodic Merge strategy as the default, cluster-friendliest approach without repeating this page's edition gate; a Community Edition administrator following that page's top recommendation would only discover here, on the merge command's own reference page, that 'The merge command is an Enterprise Edition command' and the strategy is closed to them.",
+  "cross_product_finding": ""
+}

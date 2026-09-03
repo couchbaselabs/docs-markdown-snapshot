@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/repository",
+  "label": "Backup repository",
+  "type": "a named storage location inside a backup:archive, created via cbbackupmgr's config sub-command and holding one cluster's backups (full and incremental). The SAME construct whether it is written to by the cbbackupmgr CLI directly or by the Backup Service's own plan mechanism - a plan storesDataIn a repository, and cbbackupmgr acquiresLockOn one, per round 11's own already-promoted relation.",
+  "promoted": true,
+  "recurrence": 6,
+  "aliases": [
+    "backup:cbbackupmgr-repository"
+  ],
+  "aliases_note": "Round 19's dispatch briefing warned agents not to conflate the Backup SERVICE (cluster-managed, plan-driven) with the cbbackupmgr TOOL (administrator-run CLI) - correctly, for most of what the two do. One batch applied that warning to 'repository' itself and minted backup:cbbackupmgr-repository 'deliberately NOT reused' as the extraction-layer backup:repository, reasoning the tool's repository is a filesystem directory it manages directly while the service's is a plan target. That reasoning turned out to be wrong about THIS term specifically: round 11's own extraction of backup-service.md, already in the registry before round 19 ran, states `tool:cbbackupmgr acquiresLockOn backup:repository` - the tool and the service were already on record as writing into the same kind of repository, and the batch's own registry check (registry-digest.py, which shows labels, not existing relations) could not have surfaced that. A refusal to reuse is only as good as the set it checked, and a concept's existing RELATIONS are part of that set, not just its label. Folded here, 7 files combined (6 for backup:repository, 1 for the now-retired spelling), zero overlap.",
+  "evidence": [
+    "This directory is referred to as the backup archive. The backup archive contains one or more backup repositories.",
+    "A backup repository is created by using the config subcommand.",
+    "The `cbbackupmgr` tool takes a lock on the repository to which it's backing up data.",
+    "You associate a plan with a repository where it stored backup data."
+  ],
+  "hasInternalComponent": "member of backup:archive",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-tutorial",
+  "relates_to_competency_question": "Is a backup repository a tool-specific filesystem construct, or the same storage location the Backup Service's own plans write into?"
+}

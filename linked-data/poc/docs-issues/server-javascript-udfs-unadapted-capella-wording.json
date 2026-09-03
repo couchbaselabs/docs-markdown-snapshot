@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-javascript-udfs-unadapted-capella-wording",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "Two of four server/8.0/javascript-udfs/ pages carry verbatim, unadapted Capella wording. calling-javascript-from-n1ql.md and handling-errors-javascript-udf.md both retain the sentence 'For more information about user-defined functions in Capella...' on a Server documentation page; the sibling page calling-n1ql-from-javascript.md has the correctly adapted 'in Couchbase Server' wording for the identical sentence pattern, proving the adaptation was done inconsistently rather than never attempted. calling-javascript-from-n1ql.md additionally retains the Capella-only UI term 'Query tab' a few lines before correctly using 'Query Workbench' - a half-completed find/replace on one page.",
+  "about": [
+    "server/8.0/javascript-udfs/calling-javascript-from-n1ql",
+    "server/8.0/javascript-udfs/handling-errors-javascript-udf",
+    "server/8.0/javascript-udfs/calling-n1ql-from-javascript"
+  ],
+  "foundDuring": "round 19",
+  "status": "open"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbbackupmgr-strategies-omits-merge-enterprise-gate",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "cbbackupmgr-strategies.md recommends the 'periodic merge' strategy (daily incrementals, merged weekly, never a second full backup) without repeating that the merge command it depends on is Enterprise-only, per cbbackupmgr-merge.md's own reference page ('The merge command is an Enterprise Edition command'). A Community Edition reader following the strategies page's own recommendation as written would only discover the gate by separately reading the merge command's reference page.",
+  "about": [
+    "server/8.0/backup-restore/cbbackupmgr-strategies",
+    "server/8.0/backup-restore/cbbackupmgr-merge"
+  ],
+  "foundDuring": "round 19",
+  "status": "open"
+}

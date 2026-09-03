@@ -1,0 +1,53 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-help",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-help.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-config](cbbackupmgr-config.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-tutorial",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-tutorial](cbbackupmgr-tutorial.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-strategies",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-strategies](cbbackupmgr-strategies.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This is a genuinely thin reference page - a one-line SYNOPSIS, a DESCRIPTION sentence, and three usage examples - and it legitimately extracts to almost nothing beyond its links. Its one notable feature is that it names 'strategies' (cbbackupmgr help strategies) as a documented help page, but cbbackupmgr-strategies.md is not among the 9 pages in this batch, so this record cannot confirm what that page covers beyond cbbackupmgr-config.md's own single cross-reference to it ('For more details on backup strategies see cbbackupmgr-strategies')."
+  },
+  "cross_component_finding": "None - the page is purely a meta-command (a help viewer for the other pages in this suite) and contributes no domain content of its own beyond the tool concept it names.",
+  "cross_product_finding": "None - no Capella-relevant content."
+}

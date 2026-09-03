@@ -1,0 +1,73 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-network-filesystems",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-network-filesystems.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:archive",
+      "label": "Backup archive",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json)"
+    },
+    {
+      "candidate_id": "backup:archive-locking",
+      "label": "Archive locking",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - cbbackupmgr's own locking mechanism, used because network filesystems often don't implement the file locking SQLite relies on: 'For that reason cbbackupmgr instructs SQLite not to use file locking and it handles the locking itself at the archive level.' Reused on cbbackupmgr-cloud.json, where the same mechanism appears as an S3 lockfile - two attestations within this batch alone."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "backup:archive-locking",
+      "predicate": "requiredForApiAccess",
+      "object": "backup:archive",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, stretched slightly from its original API-access framing to a general 'prerequisite for safe concurrent access' shape; flagged as a loose fit for a reconciler to reconsider",
+      "evidence": "Care should be taken to ensure that programs other than cbbackupmgr do not access the archive files whilst cbbackupmgr is running to avoid corruption."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-backup](cbbackupmgr-backup.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-restore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-restore](cbbackupmgr-restore.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-merge",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-merge](cbbackupmgr-merge.md),"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page explains WHY cbbackupmgr avoids relying on filesystem locking (SQLite's read-modify-write pattern plus unreliable locking on network filesystems) but never cross-references cbbackupmgr-cloud.md's ARCHIVE LOCKING section, even though both describe the identical underlying concern - a non-local storage backend that cannot be trusted to serialize concurrent access - solved two different ways (disabling SQLite's own locking here; an explicit lockfile object there). SEE ALSO on this page links only to backup/restore/merge, not to cloud.md."
+  },
+  "cross_component_finding": "This page and cbbackupmgr-cloud.md's ARCHIVE LOCKING section are two halves of one story the corpus never states as one: both exist because cbbackupmgr's archive may live somewhere the tool cannot fully trust for concurrency control (a network filesystem here, an object store there), and both describe cbbackupmgr compensating with its own locking logic rather than relying on the storage layer. Concept backup:archive-locking is minted once and reused across both records in this batch to keep that connection visible rather than losing it to two independently-worded pages.",
+  "cross_product_finding": "No Capella content; this is Server-tooling-specific storage-backend guidance with no stated equivalent."
+}

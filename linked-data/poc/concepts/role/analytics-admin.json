@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/analytics-admin",
+  "label": "Analytics Admin (analytics_admin)",
+  "type": "a Server RBAC role required to back up/restore cluster-level Analytics Synonyms via cbbackupmgr - one of several service-specific admin roles cbbackupmgr requires for cluster-level (as against bucket-level) data, alongside the already-promoted role:eventing-full-admin and role:fts-admin.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "Backing up/restoring cluster level data requires additional RBAC roles, each of which is highlighted below: Analytics Synonyms `analytics_admin` (Analytics Admin)",
+    "The `data_backup` role does not have access to cluster level data such as: Analytics Synonyms"
+  ],
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-generate",
+  "relates_to_competency_question": "Which role must a backup administrator additionally hold to capture Analytics Synonyms, since data_backup alone does not cover them?"
+}

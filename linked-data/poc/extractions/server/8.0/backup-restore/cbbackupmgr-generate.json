@@ -1,0 +1,97 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-generate",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-generate.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:document-generator",
+      "label": "Document generator (cbbackupmgr generate)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a testing-only subcommand, structurally different from the rest of the suite: 'The generate command is primarily meant for testing the internal pipeline for backup/restore. It allows you to very quickly generate documents and send them to a desired \"sink\".' Not a backup/restore operation itself."
+    },
+    {
+      "candidate_id": "role:data-backup-and-restore",
+      "label": "Data Backup & Restore (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'Bucket level data may be backed up/restored using the `data_backup` (Data Backup & Restore) role.'"
+    },
+    {
+      "candidate_id": "role:analytics-admin",
+      "label": "Analytics Admin (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - '`analytics_admin` (Analytics Admin)'. Distinct from the already-promoted privilege:capella-advanced-access-analytics-admin, which is a Capella data-plane privilege on a separate catalogue entirely - same display name, two different products' access-control tiers."
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. '`eventing_admin` (Eventing Full Admin)' - matches the already-promoted concept by display label; good independent confirmation from a page unrelated to eventing."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (aliases already include privilege:search-admin/role:search-admin). '`fts_admin` (Search Admin)'."
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. 'This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication).'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:data-backup-and-restore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Bucket level data may be backed up/restored using the `data_backup` (Data Backup & Restore) role."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Backing up/restoring cluster level data requires additional RBAC roles, each of which is highlighted below: Analytics Synonyms `analytics_admin` (Analytics Admin)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Eventing Metadata `eventing_admin` (Eventing Full Admin)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "FTS Aliases `fts_admin` (Search Admin)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "'The `data_backup` role does not have access to cluster level data such as: * Analytics Synonyms * Eventing Metadata * FTS Aliases' is a clean doesNotSupport-shaped statement (a bounded non-support boundary, already a promoted predicate), but its object is a bulleted list of three named data categories rather than a single concept, and none of Analytics Synonyms / Eventing Metadata / FTS Aliases yet has its own confident concept id in this registry (eventing:eventing-storage is the metadata KEYSPACE, not 'Eventing Metadata' as a backed-up artifact - a related but not identical thing). Left unminted rather than force a fit; flagged so a reconciler with a clearer view of the eventing/analytics/fts namespaces can split this into three well-typed triples."
+  },
+  "cross_component_finding": "This page's RBAC section names the exact same three cluster-level roles (Analytics Admin, Eventing Full Admin, Search Admin) as are required for the equivalent flags on cbbackupmgr-config.md's --disable-cluster-analytics/--disable-eventing/--disable-ft-alias options, giving independent, cross-page confirmation that cbbackupmgr's cluster-level-metadata categories (Analytics Synonyms, Eventing Metadata, FTS Aliases) form one consistent triad across the whole tool, not just this page's testing utility.",
+  "cross_product_finding": "None found on this page specific to Capella; generate is explicitly a testing-only subcommand with no restore/backup semantics of its own, so it does not bear on the module's no-Capella-twin framing."
+}

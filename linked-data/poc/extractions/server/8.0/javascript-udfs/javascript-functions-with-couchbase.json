@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/javascript-udfs/javascript-functions-with-couchbase",
+  "source_version": "8.0",
+  "source_path": "server/current/javascript-udfs/javascript-functions-with-couchbase.md",
+  "concepts": [
+    { "candidate_id": "js-udf:inline-function", "label": "Inline user-defined function (defined using SQL++ or JavaScript expressions, no external library)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin javascript-functions-with-couchbase.json" },
+    { "candidate_id": "js-udf:external-function", "label": "External user-defined function (defined in an external language, stored in a UDF library)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; Server prose calls this an 'external library' where the Capella twin says 'UDF library' - same concept, different label, noted in cross_component_finding" },
+    { "candidate_id": "js-udf:scoped-function", "label": "Scoped user-defined function / library (created within a scope, name isolated from global namespace)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, at recurrence 5 already (js-udf:global-function/scoped-function are the two members closest to the promotion bar)" },
+    { "candidate_id": "js-udf:global-function", "label": "Global user-defined function / library (created within a namespace, accessible cluster-wide to users with read/write permissions)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "js-udf:sql-managed-udf", "label": "SQL++ managed user-defined function (JavaScript code stored inline with the SQL++ UDF, no separate library; Couchbase Server 7.6+)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "js-udf:unsupported-feature", "label": "Unsupported JavaScript feature family (browser extensions, global state/global arrow functions, console.log logging)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "js-udf:restricted-feature", "label": "Restricted JavaScript feature family (eval/Function removed for code-injection prevention, Date granularity reduced to 1 second)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this Server page omits the '7.6.2 and later' version gate the Capella twin states for this same feature family - see notable_absence" },
+    { "candidate_id": "n1ql:create-function", "label": "CREATE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:explain-function", "label": "EXPLAIN FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:query-context", "label": "query_context (setting that resolves unqualified keyspace references)", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "n1ql:query-functions-rest-api", "label": "Query Functions REST API (/evaluator/v1/libraries, JavaScript library management)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in server/8.0/n1ql/n1ql-rest-api/intro.json; this page's 'SQL++ Functions REST API' link is the same surface" },
+    { "candidate_id": "version:server-7-6", "label": "Couchbase Server 7.6", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "dependsOnService",
+      "object": "js-udf:udf-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin javascript-functions-with-couchbase.json; the promoted definition of dependsOnService is narrower (service-to-service), so this is a close-call reuse flagged for reconciliation rather than a clean fit",
+      "evidence": "You cannot call external function code directly from SQL++."
+    },
+    {
+      "subject": "js-udf:sql-managed-udf",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation."
+    },
+    {
+      "subject": "js-udf:scoped-function",
+      "predicate": "requiresSetting",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When you want to use a SQL++ user-defined function which calls external JavaScript code in a scoped library, you must set the [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to the same bucket and scope as the scoped library."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "createdVia",
+      "object": "tool:query-workbench",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You must create the external library and the external function code using the [Query Workbench](../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../n1ql-rest-functions/index.md)."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "createdVia",
+      "object": "n1ql:query-functions-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches js-udf:library createdVia n1ql:query-functions-rest-api already recorded in server/8.0/n1ql/n1ql-rest-api/intro.json",
+      "evidence": "You must create the external library and the external function code using the [Query Workbench](../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../n1ql-rest-functions/index.md)."
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/createfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link; seeAlso object is a page id per registry definition",
+      "evidence": "* [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)"
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/explainfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [EXPLAIN FUNCTION](../n1ql/n1ql-language-reference/explainfunction.md)"
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/execfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)"
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/dropfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md)"
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql-rest-functions/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "* [Query Functions REST API](../n1ql-rest-functions/index.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The Capella twin (cloud/javascript-udfs/javascript-functions-with-couchbase.md) states the version gate for its 'Restricted JavaScript Features' section explicitly, in its own admonition line: 'Couchbase Server 7.6.2 - The following features are restricted in JavaScript functions for Query in Couchbase Server 7.6.2 and later:'. This Server 8.0 page's equivalent section drops that line entirely - its text reads only 'The following features are restricted in JavaScript functions for Query:' with no version mentioned anywhere in the Code Injection or Date Granularity subsections. By contrast, the SQL++ Managed User-Defined Functions section on this same Server page DOES retain its version gate ('In Couchbase Server 7.6 and later, you can create the code for an external function...'). So the omission is selective, not a wholesale drop of version language from the page, and js-udf:restricted-feature can no longer be tied to version:server-7-6-2 via this Server-side source page even though its twin supports that relation. Could be intentional (8.0 postdates 7.6.2 so the gate is moot for a current-release reader) or an editing slip; flagging rather than asserting availableSince here."
+  },
+  "cross_component_finding": "This page changes how global-vs-scoped library visibility is justified, compared to its Capella twin. The twin states: 'Any code that you store in a global library is available to all users with read and write permissions on your operational cluster' - explicitly tying visibility to the cluster RBAC read/write-permission model. This Server page instead says: 'Code which is stored in a scoped library is private to users of that scope, and is not visible or available to users of another scope. Code which is stored in a global library is available to users of all scopes.' - a scope-boundary/namespace-visibility framing with no mention of read/write permissions or RBAC at all. Both statements are almost certainly compatible in practice (scope access is itself gated by RBAC elsewhere), but this page's own text does not make that connection - it is silent on the permission model entirely, unlike its twin. This softens (does not confirm) the twin's cross_component_finding that JS UDF library visibility 'ties directly to the existing cluster read/write permission model' - on this page, the tie is stated in terms of scope visibility only.",
+  "cross_product_finding": "Confirms the round's namespace-coherence guidance in practice: this page's SQL++ statement family (CREATE/EXPLAIN/EXECUTE/DROP FUNCTION, all reused here as promoted n1ql: concepts) is treated as a strictly separate layer from the js-udf: JavaScript-implementation concepts - the 'See Also' section groups them under separate headings ('SQL++ User-Defined Function Commands' vs 'External Libraries' vs 'JavaScript Functions'), matching this round's instruction to reuse n1ql: ids for the statement and js-udf: ids for the JavaScript implementation rather than merging them. Also notable: this Server page's 'External Libraries' See Also block links BOTH 'Create a JavaScript Library' and the 'Query Functions REST API' (a Server-only REST surface minted in an earlier n1ql-rest-api round); the Capella twin's equivalent block links only 'Create a JavaScript Library' - Capella has no directly-addressed Query Functions REST API of its own (per that earlier round's cross_product_finding), so this single extra link is a real, structural Server/Capella divergence rather than noise."
+}

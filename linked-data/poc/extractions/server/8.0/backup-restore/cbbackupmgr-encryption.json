@@ -1,0 +1,123 @@
+{
+  "page_id": "server/8.0/backup-restore/cbbackupmgr-encryption",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/cbbackupmgr-encryption.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "backup:repository-encryption",
+      "label": "Encrypted backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json's --encrypted flag); this page is the one that states the edition gate explicitly: 'A tutorial that explains how to use the encryption feature of cbbackupmgr Enterprise Edition.'"
+    },
+    {
+      "candidate_id": "backup:external-key-management-service",
+      "label": "External Key Management Service (cbbackupmgr)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json); this page names the closed list of four supported KMSs: 'The currently supported external KMS are: 1. Amazon Web Services Key Management Service (AWS KMS) 2. Google Cloud Key Management Service (GCP KMS) 3. Azure Key Vault 4. HashiCorp Vault Transit Secret Engine'."
+    },
+    {
+      "candidate_id": "backup:repository",
+      "label": "Backup repository",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this batch (cbbackupmgr-config.json)"
+    },
+    {
+      "candidate_id": "encryption:master-password",
+      "label": "Master password",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted, but flagged NOT to be conflated with this page's own repository-encryption passphrase; see cross_component_finding. Not used in a relation below because this page never states the two are related or unrelated - the distinction is this record's own observation, not an extracted fact."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "A tutorial that explains how to use the encryption feature of cbbackupmgr Enterprise Edition."
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "configurableVia",
+      "object": "backup:external-key-management-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "In this mode the command will attempt to communicate with an external KMS to encrypt the repository key."
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-config](cbbackupmgr-config.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-backup](cbbackupmgr-backup.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-restore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-restore](cbbackupmgr-restore.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-merge",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-merge](cbbackupmgr-merge.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-examine",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-examine](cbbackupmgr-examine.md)"
+    },
+    {
+      "subject": "backup:repository-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr-info](cbbackupmgr-info.md)"
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/backup-restore/cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "[cbbackupmgr](cbbackupmgr.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page states repository encryption always wraps an auto-generated per-repository key ('Whenever an encrypted repository is created the tool will auto-generate an encryption key that we then will encrypt and persist using the external KMS or passphrase provided by the user') but never says how that key relates, if at all, to Couchbase Server's own native-encryption-at-rest key (encryption:encryption-at-rest-key) or its master password (encryption:master-password). These are two entirely separate 'encryption key protected by a secret' mechanisms in the corpus - one protects data on a Server node's disk, the other protects a backup archive - and nothing states whether an encrypted backup of a cluster that itself uses native encryption at rest involves any interaction between the two. Recorded as an absence rather than a relation because no page asserts either a connection or its lack."
+  },
+  "cross_component_finding": "cbbackupmgr's repository encryption and Couchbase Server's native encryption at rest (encryption:master-password / encryption:encryption-at-rest-key, promoted from an earlier round) are structurally the same shape - an auto-generated data-encryption key, itself protected by a human-supplied secret or an external KMS - but are two independently-designed mechanisms with no stated relationship. cbbackupmgr-config.md's own --disable-bucket-config note ('encryption-at-rest settings are not backed up') is the closest the corpus comes to relating them, and it is a statement of non-capture, not of shared machinery. A future round should watch for a page that finally states whether backing up a bucket with native encryption at rest enabled produces plaintext or still-encrypted data in the archive - this page's own passphrase-mode warning ('Due to the inherent insecurity of human friendly passphrases using passphrase mode in production is strongly discouraged') does not address that question at all.",
+  "cross_product_finding": "No Capella content on this page; consistent with the module's no-twin framing - Capella's own backup/restore is UI-driven and does not expose repository-level KMS configuration in this tree."
+}

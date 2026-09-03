@@ -1,0 +1,20 @@
+{
+  "page_id": "server/8.0/backup-restore/enterprise-backup-restore",
+  "source_version": "8.0",
+  "source_path": "server/current/backup-restore/enterprise-backup-restore.md",
+  "concepts": [
+    { "candidate_id": "tool:cbbackupmgr", "label": "cbbackupmgr", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "edition:community", "label": "Community Edition", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "tool:cbbackup", "label": "cbbackup (legacy, superseded backup tool)", "registry_status": "minted", "reused_or_minted": "minted - the predecessor tool this page names only to say cbbackupmgr cannot read its backups; no page in the corpus so far documents cbbackup itself" },
+    { "candidate_id": "version:server-7-2", "label": "Couchbase Server 7.2", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "tool:cbbackupmgr", "predicate": "requiresServerRole", "object": "role:full-administrator", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server Enterprise Edition and Couchbase Server Community Edition." },
+    { "subject": "tool:cbbackupmgr", "predicate": "doesNotSupport", "object": "tool:cbbackup", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted; applied here to a format-compatibility boundary between two tools rather than a feature/object pair, which is the closest existing fit", "evidence": "`cbbackupmgr` is not backward compatible with backups created by means of `cbbackup`." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "The page never reconciles its own 'available for both editions' claim with cbbackupmgr's Enterprise-only packaging note two paragraphs later ('In Couchbase Enterprise Server 7.2 and later, cbbackupmgr is available in the Tools package that must be downloaded') - it names the download package 'Enterprise Server' in the same breath as calling the tool available on Community, without explaining whether Community users get the same Tools package under a different name or a different distribution path at all." },
+  "cross_component_finding": "Direct contradiction with the tool's own overview page. This page states: 'Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server Enterprise Edition and Couchbase Server Community Edition.' cbbackupmgr.md's AUTHORS section states the opposite: 'cbbackupmgr is a Couchbase Enterprise Edition tool and was written by Couchbase.' Separately, this page's own Full-Administrator-only claim is itself narrower than what cbbackupmgr-backup.md's RBAC section documents: that page states bucket-level backup/restore may be performed by a user holding only the `data_backup` (Data Backup & Restore) role, with cluster-level metadata (Analytics Synonyms, Eventing Metadata, FTS Aliases) requiring the specific admin roles for those services (analytics_admin, eventing_admin, fts_admin) rather than Full Admin. So within this one module there are three different, mutually inconsistent statements of who may run cbbackupmgr and under which edition.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/scoped-function",
+  "label": "Scoped JavaScript UDF/library",
+  "type": "a JavaScript user-defined function or library created within a specific bucket/scope, at the same level as collections - available only to clients with access to that bucket and scope. Sibling of js-udf:global-function.",
+  "promoted": true,
+  "recurrence": 5,
+  "recurrence_note": "7 files, `divergent` - discount rejected, raw count stands.",
+  "evidence": [
+    "A scoped library is created within a scope, at the same level as the collections within the scope. A scoped library is only available to clients that have access to that bucket and scope.",
+    "When you call a scoped function, any partial keyspace references within the function definition are resolved against the function's bucket and scope, regardless of the current query context.",
+    "If required, set the query context for a scoped function, or unset the context for a global function."
+  ],
+  "documented_at": "cloud/guides/create-javascript-library",
+  "relates_to_competency_question": "Can a JavaScript UDF be restricted to one bucket/scope's clients, and how does that change keyspace resolution inside it?"
+}

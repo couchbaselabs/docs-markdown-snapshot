@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/udf-library",
+  "label": "JavaScript UDF library",
+  "type": "a named collection of JavaScript function definitions, created global or scoped (js-udf:global-function / js-udf:scoped-function), that a SQL++ CREATE FUNCTION statement (js-udf:external-function) references by name. Distinct from js-udf:sql-managed-udf, which needs no library at all.",
+  "promoted": true,
+  "recurrence": 4,
+  "recurrence_note": "6 files, `divergent` - discount rejected, raw count stands.",
+  "evidence": [
+    "A JavaScript library can be global or scoped.",
+    "Before you can delete a library, you must first drop all SQL++ user-defined functions which point to any of the JavaScript functions within that library."
+  ],
+  "usesEnum": [
+    "js-udf:global-function",
+    "js-udf:scoped-function"
+  ],
+  "documented_at": "cloud/guides/create-javascript-library",
+  "relates_to_competency_question": "How does a SQL++ CREATE FUNCTION statement find the JavaScript code it should run, and can a library be deleted while functions still reference it?"
+}

@@ -1,0 +1,73 @@
+{
+  "page_id": "server/8.0/javascript-udfs/calling-n1ql-from-javascript",
+  "source_version": "8.0",
+  "source_path": "server/current/javascript-udfs/calling-n1ql-from-javascript.md",
+  "concepts": [
+    { "candidate_id": "js-udf:inline-statement-call", "label": "Inline SQL++ statement embedded directly in JavaScript UDF code", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin under this exact page pairing" },
+    { "candidate_id": "js-udf:n1ql-function-call", "label": "N1QL() function call (executes a SQL++ statement from JavaScript, changes available parameter support)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "n1ql:execute-function", "label": "EXECUTE FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "js-udf:iterator-result", "label": "Iterator result handle (JavaScript iterable returned by a SELECT-shaped SQL++ call, streamed in batches)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:positional-parameter", "label": "Positional parameter for a SQL++ call from JavaScript", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:named-parameter", "label": "Named parameter for a SQL++ call from JavaScript", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:transaction-support", "label": "SQL++ transaction execution from within a JavaScript UDF (start, run within, or roll back a transaction)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:javascript-worker", "label": "JavaScript worker process (per-nested-call execution unit; count = 4 x number of CPUs)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "js-udf:nested-function-call", "label": "Nested/recursive JavaScript UDF call (each level consumes a JavaScript worker; deep nesting exhausts the pool and errors)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cloud twin" },
+    { "candidate_id": "rbac-model:role", "label": "Role (Server RBAC model term)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page's own RBAC section names no specific role: concept, only this abstract model term, so no requiresServerRole relation can be written from this page alone - see notable_absence" }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:inline-statement-call",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:execute-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin; a data-changing side effect forces a different call mechanism",
+      "evidence": "If you choose to use a SQL++ statement inside a JavaScript function, that function cannot have side effects that change data stored by Couchbase Server."
+    },
+    {
+      "subject": "js-udf:n1ql-function-call",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:inline-statement-call",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Calling SQL++ from the `N1QL()` function supports both **named** and **positional** parameters. Calling a SQL++ statement or expression inline supports only **named** parameters."
+    },
+    {
+      "subject": "js-udf:iterator-result",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "js-udf:inline-statement-call",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - synchronous vs. asynchronous execution depends on whether the call returns a value",
+      "evidence": "If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation."
+    },
+    {
+      "subject": "js-udf:transaction-support",
+      "predicate": "requiresSetting",
+      "object": "js-udf:iterator-result",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely."
+    },
+    {
+      "subject": "js-udf:n1ql-function-call",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about roles that control data access in Couchbase Server, see [Authorization](../learn/security/authorization-overview.md)."
+    },
+    {
+      "subject": "js-udf:nested-function-call",
+      "predicate": "dependsOnService",
+      "object": "js-udf:javascript-worker",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - matches the same relation minted in cloud twin; recursive nesting exhausts the finite worker pool",
+      "evidence": "Each function call executed from a parent call uses a new JavaScript worker process to run. The deeper you nest your calls, the fewer JavaScript workers you will have available to execute those calls. Your calling chain will eventually fail and throw an error."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (named role)",
+    "finding": "The 'Role-Based Access Control and Functions' section names no specific role: concept at all - it only says generically 'To execute a SQL++ statement from a JavaScript function, you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement,' and points to the generic Authorization overview page rather than to learn/security/roles.md's 56-role catalogue or to any named role such as role:query-select. This is the Server-side counterpart of the same absence the Capella twin records for its own 'Project Roles' pointer: neither page names a concrete privilege/role for JS-embedded SQL++ calls, so this feature is gated by the ordinary object-level permission check applied to whatever the embedded statement touches, not by a JS-UDF-specific role. Because no role: concept is named on this page, no requiresServerRole relation can be written from it (that predicate's object must be a concrete role: id per the registry definition, and rbac-model:role, the abstract model term, is not a valid object for it)."
+  },
+  "cross_component_finding": "Directly confirms the round's central JS-UDF hypothesis, and matches the Capella twin's own conclusion despite using the Server RBAC model rather than Capella's Project Roles: JavaScript UDFs do NOT get a separate authorization model - RBAC for JS-embedded SQL++ calls is explicitly the same object-permission check as for any other SQL++ statement ('you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement'). The genuinely different execution-model elements here - synchronous vs. asynchronous iterator semantics, the JavaScript-worker pool and its 4xCPU sizing formula, recursion/nesting exhaustion - are all runtime/execution-engine concerns, not access-control concerns, exactly as the twin found. js-udf: therefore needs its own concept family for execution semantics but explicitly reuses, rather than replaces or extends, the existing Server RBAC model for authorization.",
+  "cross_product_finding": "This page directly answers this round's posed interop question: yes, a JS-UDF function called from SQL++ can itself call back into SQL++ via N1QL(), and that call can in turn EXECUTE FUNCTION another (or the same) JS UDF, and this DOES recurse - the page's own worked example is exactly this case: 'You can also create a JavaScript function that calls a SQL++ statement, which then calls another JavaScript function... For example, if you used the following user-defined function, doRecursion(): function doRecursion() { var q = N1QL(\"EXECUTE FUNCTION doRecursion()\") }'. There is a limit, but it is a resource-pool exhaustion limit, not a fixed recursion-depth constant stated in prose: 'Each function call executed from a parent call uses a new JavaScript worker process to run. The deeper you nest your calls, the fewer JavaScript workers you will have available to execute those calls. Your calling chain will eventually fail and throw an error.' The worked error example shows the engine stopping the chain after 10 nested calls in that specific run ('Error executing function 'doRecursion': 10 nested javascript calls'), but the page frames the true limit as the formula-driven worker pool, not the number 10: 'Number of JavaScript Workers = 4 x Number of CPUs. Couchbase Server will automatically prevent recursive calls if there are fewer than 50% of the total JavaScript workers available.' So the two calling directions in this batch (SQL++-calls-JS on calling-javascript-from-n1ql.md, JS-calls-SQL++ here) compose and can recurse across the boundary repeatedly, bounded by JavaScript worker availability rather than by any stated call-depth or product limit."
+}

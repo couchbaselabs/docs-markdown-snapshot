@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Eighteen rounds so far, fourteen of them deliberate escalations and
+automating it. Nineteen rounds so far, fifteen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -243,6 +243,32 @@ four corrective passes over what they left behind:
     self-caught error: this round's own dispatch briefing asserted Capella has no
     Eventing memory-quota control, unchecked, and one of its own batches found
     Capella's FAQ contradicting it.
+19. **22 pages, two small modules dispatched together** — `server/8.0/backup-restore/`
+    (18 pages, the whole `cbbackupmgr` CLI reference, **no Capella twin exists at all**)
+    and `server/8.0/javascript-udfs/` (4 pages, paired against round 6's twin, similarity
+    **measured before dispatch** at 0.92–1.00 — the exact caution round 18 closed with).
+    158 relations, 0 evidence problems. The pre-check paid off immediately: told in
+    advance its module was heavily duplicated, the javascript-udfs batch minted
+    **nothing** and spent its attention on divergence instead — two real unadapted-
+    Capella-wording defects and a genuine interop question (does a JS UDF called from
+    SQL++, calling back into SQL++, actually recurse? yes — resource-pool exhaustion is
+    the limit, not a documented depth cap). The `cbbackupmgr` half shows the fork problem
+    at a finer grain than rounds 17–18 found it: the dispatch briefing named two real
+    collisions in advance (`js-udf:` vs. `eventing:`; `object-store:` vs.
+    `cloud-provider:`) and both were avoided cleanly — and the same two batches, sharing
+    that briefing, still independently minted one concept twice under **four other,
+    un-warned-about name pairs** (`backup:repository`/`cbbackupmgr-repository`,
+    `cloud-integration`/`native-cloud-integration`, the merge command twice, one RBAC
+    role twice — the second time reaching back to a round-12 mint left unpromoted for
+    seven rounds). **Warning about a specific collision prevents that collision and
+    nothing else.** The sharpest fork happened because an agent did exactly what it was
+    told — check the registry before minting — and still missed, because the answer
+    was sitting in a *relation* from round 11 (`tool:cbbackupmgr acquiresLockOn
+    backup:repository`), not in the label `registry-digest.py` prints: **a concept's
+    existing relations are part of what "already in the registry" means.** Also found
+    a real three-way contradiction within `cbbackupmgr`'s own pages over who may run
+    it and under which edition, with none of the three pages cross-referencing the
+    others.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -250,7 +276,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-660 pages total:
+682 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -354,6 +380,15 @@ time/cost projections and how they held up against the round-2 run's real number
   individual JS handler code-sample pages. Paired against round 8's already-extracted
   `cloud/eventing/` (67 pages, same feature) exactly as round 17 recommended. 400
   relations, 0 evidence problems, 1.64× round 8's density.
+- **18 more, `server/8.0/backup-restore/`** — the whole `cbbackupmgr` CLI reference:
+  the tool overview, the Enterprise-vs-Community page, best-practice strategies, the
+  backup/restore/merge/compact/remove/examine/config/info/generate/collect-logs
+  commands, encryption, network-filesystem and cloud-object-store targets, help, and
+  a worked tutorial. **No Capella twin exists at all** — Capella exposes no equivalent
+  CLI. 158 relations combined with the batch below.
+- **4 more, `server/8.0/javascript-udfs/`** — paired against round 6's already-extracted
+  `cloud/javascript-udfs/` (4 pages, identical filenames), whose similarity was
+  **measured before dispatch** at 0.92–1.00 per round 18's closing recommendation.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -740,6 +775,43 @@ from "still in `extractions/`."
   below-the-bar count jumping from 38 to 89 in one round), so the pairing found real
   defects (12 new docs-issues) while buying almost no independence for newly-minted
   concepts — the two payoffs round 17's indexes module had delivered together came apart.
+  Round 19 tested round 18's own closing recommendation — check a pairing's
+  page-similarity before dispatching it — for the first time, and promoted **14**.
+  `javascript-udfs/`'s pairing was measured at 0.92–1.00 before dispatch; briefed with
+  that number, the batch minted nothing new and instead confirmed **seven** concepts
+  round 6 had left unpromoted for thirteen rounds: `js-udf:global-function`/
+  `scoped-function` (5 each, the visibility/keyspace-resolution pair), `js-udf:udf-library`
+  (4, the container both attach to), `js-udf:external-function`/`sql-managed-udf`
+  (3 each, the two ways to back a `CREATE FUNCTION ... LANGUAGE JAVASCRIPT` statement,
+  which `tradesOffAgainst` each other explicitly), and `js-udf:inline-statement-call`/
+  `n1ql-function-call` (2 each, exactly at the bar, the two ways to run SQL++ from
+  inside a JS UDF). The last is deliberately **not** merged with the already-promoted
+  `eventing:n1ql-function-call` despite the identical local name — the same `N1QL()`
+  built-in, invoked from two different JavaScript runtimes with different available
+  parameter support per the page's own wording — and `recurrence.py --forks` now
+  carries the pair as a documented non-merge rather than an unexplained collision.
+  `server/8.0/backup-restore/` (no Capella twin at all) promoted **7**, and four of
+  them are same-round self-folds: two batches sharing one dispatch briefing, working
+  concurrently on the same 18-page module, independently minted one concept twice under
+  four name pairs the briefing hadn't warned about. `backup:repository` (7, folding
+  `backup:cbbackupmgr-repository`) is the sharpest instance — the batch that minted the
+  new spelling explicitly checked `registry-digest.py` first and still missed the
+  reuse, because the correspondence was stated in a *relation* from round 11
+  (`tool:cbbackupmgr acquiresLockOn backup:repository`), not in the label a digest
+  prints. `backup:archive` (7, no fork) is the container `backup:repository` sits
+  inside. `backup:native-cloud-integration` (6, folding `cloud-integration`) and
+  `backup:cbbackupmgr-merge-command` (4, folding `merge-operation`) are the tool's own
+  self-forks. `role:data-backup` (4, folding `role:data-backup-and-restore` — a
+  round-12 mint left unpromoted for seven rounds, independently re-spelled twice more
+  this round) and `role:analytics-admin` (4) are two more service-specific admin roles
+  `cbbackupmgr` requires for cluster-level data, joining the already-promoted
+  `role:eventing-full-admin`/`role:fts-admin`. `tool:cbcollect-info` (3, mostly
+  pre-existing) is notable for what it explicitly does **not** collect — audit logs and
+  Eventing's own Application log. The round's method finding is the fork problem at a
+  finer grain than rounds 17–18 found it: the dispatch briefing named two real
+  collisions in advance and both were avoided cleanly, while the same briefing did
+  nothing for the four collisions nobody had thought to name — **warning about a
+  specific collision prevents that collision and nothing else.**
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -911,8 +983,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **128
-  entries** as of round 18. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **135
+  entries** as of round 19. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -1008,6 +1080,21 @@ from "still in `extractions/`."
   handler's behaviour, a role label drift). One correction rather than a new filing:
   round 8 characterized a broken cross-reference as Capella-specific unadapted content;
   round 18 confirms the identical break is on the Server 8.0 original too.
+  Round 19 added **7**, headed by `server-cbbackupmgr-edition-and-role-three-way-contradiction`:
+  `cbbackupmgr.md` states the tool is Enterprise-only, `enterprise-backup-restore.md`
+  contradicts that directly and adds that only Full Administrators may use it, and the
+  tool's own RBAC sections contradict *that*, showing bucket-level work needs only the
+  narrower `data_backup` role — three pages, none cross-referencing the others. The
+  rest: a best-practices page recommending a strategy without repeating that the
+  command it depends on is Enterprise-only, a storage-format change large enough to
+  retire a whole command landing in the same release as a new feature with no stated
+  connection between the two (`needs-sme`), a third backup-type value in the tool's own
+  output that the promoted two-member enum doesn't cover, two independently-designed
+  "key protected by a secret" encryption mechanisms with no stated relationship, and
+  two `javascript-udfs/` findings — unadapted "in Capella" wording on two Server pages
+  where a sibling page has the correctly adapted text for the identical sentence
+  (proving the adaptation was attempted and applied inconsistently), and one version
+  badge dropped where an adjacent one on the same page was kept.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1233,13 +1320,16 @@ from "still in `extractions/`."
   `--kind` restricts which duplications count), and — the part that decides
   anything — `--check` asks whether a *specific* id's evidence rescues it: **a quote
   present on its own copy and absent from every sibling copy** is an independent
-  attestation regardless of how similar the pages are. Corpus-wide: **91 clusters over
-  187 extracted pages, 272 discounted ids** (`shared` 166, `divergent` 100, `unchecked`
-  6), **89 below the bar** once the discount is upheld — up from 5 before round 17,
+  attestation regardless of how similar the pages are. Corpus-wide: **95 clusters over
+  195 extracted pages, 293 discounted ids** (`shared` 173, `divergent` 108, `unchecked`
+  12), **103 below the bar** once the discount is upheld — up from 5 before round 17,
   because extracting a module that exists in three trees buys density and not
   independence, and round 18's `eventing:` module turned out to be the most heavily
   duplicated pairing in the corpus (0.89–1.00 page-similarity, more than doubling the
-  cluster count in one round). Two rules are enforced in code rather than left to a reader.
+  cluster count in one round; round 19's `javascript-udfs/` pairing added a fourth
+  cluster at 0.92–1.00 with its similarity known before dispatch, which is why it minted
+  nothing new against the discount rather than adding to the below-the-bar count).
+  Two rules are enforced in code rather than left to a reader.
   `effective()` makes **the verdict decide which count applies**: `divergent` rejects
   the discount and licenses the raw file count, `shared` upholds it, and `unchecked`
   settles nothing and is never marked below the bar. And the report says
@@ -1253,7 +1343,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 615 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 636 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2244,6 +2334,64 @@ re-extraction):**
     distinction produce identical output: two separate records. **A rule that is only
     ever used to reject has an evidence base nobody has counted.**
 
+**Round 18 (67 pages, the `eventing/` module, first contact paired against round 8's
+twin):**
+
+90. **A pairing strategy's payoff has two independent axes, and a good result on one
+    does not transfer to the other.** Round 17's indexes module delivered
+    defect-finding *and* promotion-independence together; round 18 paired the same way
+    against a module that turned out to be the corpus's most heavily duplicated
+    (0.89-1.00 Server/Capella page-similarity, "all quotes appear on every copy" on
+    most concepts). Defect-finding still worked (12 docs-issues, the RBAC-gate
+    asymmetry); promotion-independence barely did, because there was no independence in
+    the module to buy. **The two payoffs came apart for the first time**, and reading a
+    paired round's output now means checking both meters separately.
+91. **Eventing has four declared entry points, not two, and two of them were minted
+    twice under names no existing instrument catches.** `eventing:on-deploy-handler`
+    and `eventing:timer-callback` join the long-promoted OnUpdate/OnDelete pair -
+    both had been named on pages already in the corpus since round 8, just never filed.
+    Both were also independently minted a second time: one a hyphen variant
+    (`--variants` catches it), one a same-prefix synonym fork -
+    `firesCallback`-minted `timer-callback` vs. `hasHandler`-minted
+    `timer-callback-handler`, sharing a prefix and no substring, invisible to both
+    `--variants` and `--forks`. **A fourth fork species**, found four times in one
+    round by reading records side by side and by no instrument.
+92. **A round's framing paragraph is a hypothesis with the coordinator's own name on
+    it.** Round 18's own dispatch briefing asserted Capella auto-manages Eventing
+    memory, unchecked - one of its own batches, reading a Capella page for background
+    exactly as instructed, found Capella's FAQ contradicting it. The same
+    read-the-page discipline every extraction agent is held to caught its own
+    coordinator's error.
+
+**Round 19 (22 pages, `cbbackupmgr` first contact + `javascript-udfs` paired and
+pre-checked):**
+
+93. **A pre-dispatch similarity check pays for itself in what a batch doesn't do.**
+    Round 18 closed by recommending a similarity check before pairing; round 19 tried
+    it. Briefed that `javascript-udfs/`'s twin measured 0.92-1.00 similarity, the batch
+    minted nothing new and spent its attention on divergence instead - two real
+    unadapted-Capella-wording defects and a genuine interop question. The saving is
+    invisible in the output (a report with no new mints looks identical to a lazy
+    one) and shows up only in what the batch read instead.
+94. **Warning about a specific collision prevents that collision, and nothing else.**
+    Round 19's dispatch briefing named two real namespace collisions in advance and
+    both were avoided cleanly - one even correctly filed as a documented non-merge
+    (`js-udf:n1ql-function-call` vs. the promoted `eventing:n1ql-function-call`). The
+    same two batches, sharing that same briefing, independently minted one concept
+    twice under **four other name pairs the briefing hadn't named**
+    (`backup:repository`/`cbbackupmgr-repository`,
+    `cloud-integration`/`native-cloud-integration`, the merge command twice, one RBAC
+    role twice). A targeted warning fixes the case it names and carries no information
+    about the cases it doesn't.
+95. **A concept's existing relations are part of what "already in the registry"
+    means, and a label-only check will miss it.** The sharpest of round 19's four
+    forks happened because an agent did exactly what it was told - check the registry
+    before minting - and still missed the reuse, because the correspondence
+    (`tool:cbbackupmgr acquiresLockOn backup:repository`) was stated in a *relation*
+    written by round 11, not in the label `registry-digest.py` prints. Round 10's
+    lesson ("a refusal is only as good as the set it searched") recurring a third
+    time, in its most granular form yet.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -2336,7 +2484,7 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 155 have now been read.
+  `server/8.0/` is ~1,033 pages of which 177 have now been read.
 - **The pairing strategy has two payoff axes, and round 18 is the case where they
   split — read both, every time, rather than assuming one implies the other.**
   Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*
@@ -2346,30 +2494,40 @@ document.
   module run 0.89–1.00 similarity — closer to verbatim republication than the
   indexes module's 0.16–1.00 spread — so `shared-source.py`'s below-the-bar count
   jumped from 38 to 89 in one round while only a handful of newly-minted concepts
-  cleared the bar on real independent evidence. **Before recommending "pair with an
-  already-extracted twin" for the next module, check the twin's page-similarity
-  first** (`shared-source.py --clusters` on a small pilot batch, before committing
-  the whole module) — a module documented as near-identical prose on both trees is
-  still worth reading for defects, just not for promotion evidence.
+  cleared the bar on real independent evidence. Round 18 recommended checking a
+  pairing's page-similarity before dispatching it, and round 19 is the round that
+  tried it: `javascript-udfs/`'s pairing was measured at 0.92–1.00 before dispatch, and
+  briefed with that number the batch minted nothing new at all, spending its whole
+  attention on divergence instead. **The check paid off in what the batch chose not to
+  do** — a real saving, and one that is invisible in the output, since a report with no
+  new mints looks identical whether the briefing was good or the batch was lazy; the
+  only way to tell the two apart is reading what the batch found instead (round 19's
+  batch found two real unadapted-content defects and a genuine interop question).
+  `shared-source.py --clusters` on a small pilot batch before committing the whole
+  module remains the right check, now with one confirmed payoff behind it.
 - **Continue the namespace coherence pass — wave 4.** Round 12's
   corrected metric exposed 276 unpromoted concepts at recurrence ≥ 2; rounds 12 and
   13 took it to 206, round 14's wave 1 (`vector-index:` and `version:`) took it
   to 163 — 27 of those retired by the metric fix rather than promoted, because
   they were documentation pages the widened metric had let back in — and round 15's
   wave 2 (`setting:`, dissolved) took it to 159, and round 16's wave 3 (`indexes:`,
-  retired) to **156**. Round 17 took it **up to 233**, and round 18 (another
-  67-page content round, not a coherence pass) took it **up to 256** — the expected
-  direction, not a regression: dense new pages mint far more candidates than a
-  round's own promotions retire, and the backlog is a function of the corpus. Three
-  numbers should be read beside it from now on, because a raw count of candidates at
-  ≥2 no longer means what it did: **272 of the corpus's ids rest partly on a shared
-  source and 89 fall below the bar once that is discounted** (`shared-source.py`),
-  **62 local names are forked across namespaces, 20 of which would cross the bar only
-  if merged** (`recurrence.py --forks`), and — round 18's addition, with no instrument
-  yet — an unknown number of **same-prefix synonym forks**, where two agents name one
-  mechanism through two different predicates and mint two ids sharing a prefix and no
-  substring; four confirmed instances in round 18 alone, found only by reading records
-  side by side. Shadow prefixes, the other measure of the same debt, are at
+  retired) to **156**. Round 17 took it **up to 233**, round 18 (another 67-page
+  content round, not a coherence pass) took it **up to 256**, and round 19 (22 more
+  pages, and 14 of the round's own mints promoted straight out of the backlog) took it
+  **up to 261** — the expected direction, not a regression: dense new pages mint far
+  more candidates than a round's own promotions retire, and the backlog is a function
+  of the corpus. Three numbers should be read beside it from now on, because a raw
+  count of candidates at ≥2 no longer means what it did: **293 of the corpus's ids rest
+  partly on a shared source and 103 fall below the bar once that is discounted**
+  (`shared-source.py`), **63 local names are forked across namespaces, 21 of which
+  would cross the bar only if merged** (`recurrence.py --forks`), and — round 18's
+  addition, with no instrument yet — an unknown number of **same-prefix synonym
+  forks**, where two agents name one mechanism through two different predicates and
+  mint two ids sharing a prefix and no substring; four confirmed instances in round 18
+  and **four more, of a related but distinct shape, in round 19** — two batches
+  minting the same concept under two full names with no shared substring at all,
+  inside one round, despite a shared dispatch briefing that had already warned about
+  two other collisions and prevented both. Shadow prefixes, the other measure of the same debt, are at
   **55 holding 210 ids** — which is *up* from the 43 reported in rounds 14 and 15, with
   no change to the corpus: those two figures were measured with the census bug in
   place, and 55 is the first honest count. Treat it as the new baseline, not as a
@@ -2382,13 +2540,19 @@ document.
   order the coherence question is answerable:
   `capella:`/`capellaiq:` (`capella-iq` is in both); `plan:`/`billing:`; `backup:`
   (`cluster-backup`/`bucket-backup` at 5 look like a *scope* axis crossing the
-  promoted *type* axis — round 11's crossing shape);
-  `js-udf:` (6 members, none promoted); `eventing:` (round 18 grew this from 22 to
-  40+ promoted members and folded four same-prefix synonym forks as a side effect of
-  reading the module, but did not run a coherence pass over it — the ~10 individual
-  Advanced Keyspace Accessor operations still have inconsistent per-operation naming
-  beyond the three folded this round, and are the obvious next member to check); then
-  `search:` and `n1ql:`, largest but also the two the metric fix most changed.
+  promoted *type* axis — round 11's crossing shape, and round 19 added a dozen more
+  `backup:` members from `cbbackupmgr` without checking whether any of them cross the
+  same axis - the per-sub-command `backup:cbbackupmgr-*-command` family in particular
+  looks like it could be one);
+  `js-udf:` (round 19 read the module properly - 7 members promoted, six confirmed
+  `shared`-verdict-below-bar and six left genuinely `unchecked` rather than refused -
+  close enough to settled that it may not need its own coherence wave);
+  `eventing:` (round 18 grew this from 22 to 40+ promoted members and folded four
+  same-prefix synonym forks as a side effect of reading the module, but did not run a
+  coherence pass over it — the ~10 individual Advanced Keyspace Accessor operations
+  still have inconsistent per-operation naming beyond the three folded that round, and
+  are the obvious next member to check); then `search:` and `n1ql:`, largest but also
+  the two the metric fix most changed.
   Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,
   correct resolution of a five-way split, which a tidying pass would have destroyed.
@@ -2414,6 +2578,19 @@ document.
   measurement; the sweep itself is not done. It is mostly mechanical, but not
   entirely — an id both linked to *and* labelled is a genuine concept that also has a
   page, so the report deliberately excludes those.
+- **Give concurrent batches a way to see each other's mints mid-round, or accept the
+  fork cost and fold afterward.** Round 19 dispatched two batches against the same
+  18-page module with one shared context file, and they independently minted one
+  concept twice under four different name pairs — none of them among the two
+  collisions the briefing had explicitly warned about. Naming specific collisions in
+  advance works (both named ones were avoided cleanly) and does not generalise (the
+  four un-named ones happened anyway), so the remedy that would actually prevent this
+  is structural: either serialize batches touching one namespace so each can see what
+  the last one minted, or give concurrent batches a shared, live scratch file of
+  same-round mints to check against before minting their own. Neither has been tried;
+  reconciling the forks after the fact (what rounds 18 and 19 both did) costs roughly
+  one extra read-the-relations pass per fork and has been sufficient so far, but it
+  will not scale past a handful of concurrent batches on one namespace.
 - **Add a variant ratchet to the gate.** Round 13 took the variant clusters from 13
   to 1 (the survivor is the `1`/`1%` literal pair, which is the object-typing
   question below, not a spelling one; round 17 added a second of exactly the same kind

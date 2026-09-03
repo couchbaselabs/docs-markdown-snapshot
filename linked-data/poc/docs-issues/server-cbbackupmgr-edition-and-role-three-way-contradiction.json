@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbbackupmgr-edition-and-role-three-way-contradiction",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Three pages of the cbbackupmgr module disagree about who may run the tool and under which edition, and none cross-references the others. cbbackupmgr.md states flatly 'cbbackupmgr is a Couchbase Enterprise Edition tool'. enterprise-backup-restore.md contradicts the edition claim directly ('available for both... Enterprise... and... Community Edition') and adds a role claim of its own ('Only Full Administrators can use cbbackupmgr'). cbbackupmgr-backup.md and cbbackupmgr-restore.md's own RBAC sections contradict the role claim: bucket-level backup/restore needs only the data_backup role, and cluster-level metadata needs service-specific admin roles (analytics_admin, eventing_admin, fts_admin) - never Full Admin specifically. A reader could combine any two of the three pages and reach a different, confident, wrong answer.",
+  "about": [
+    "server/8.0/backup-restore/cbbackupmgr",
+    "server/8.0/backup-restore/enterprise-backup-restore",
+    "server/8.0/backup-restore/cbbackupmgr-backup",
+    "server/8.0/backup-restore/cbbackupmgr-restore"
+  ],
+  "foundDuring": "round 19",
+  "status": "open",
+  "severity": "needs-sme"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/native-cloud-integration",
+  "label": "Native cloud integration (cbbackupmgr)",
+  "type": "cbbackupmgr's ability to write a backup archive directly to a cloud object store (object-store:aws-s3/azure-blob-storage/gcp-storage/azure-data-lake-storage-gen2) without a filesystem mount in between. An Enterprise Edition feature, introduced in Couchbase Server 6.6.0.",
+  "promoted": true,
+  "recurrence": 6,
+  "aliases": [
+    "backup:cloud-integration"
+  ],
+  "aliases_note": "Folds a same-round self-fork: two batches dispatched together in round 19, working concurrently with no visibility into each other's mints, independently named this exact concept twice - backup:native-cloud-integration (2 files) and backup:cloud-integration (4 files), both carrying the identical label 'Native cloud integration (cbbackupmgr)'. Zero file overlap, 6 distinct files total. The round's dispatch briefing had warned about two OTHER specific collisions (js-udf: vs eventing:, object-store: vs cloud-provider:) and caught both; it said nothing about this one, and this one happened anyway - the warned-about collisions were caught precisely because someone had already thought to warn about them.",
+  "evidence": [
+    "Native cloud integration is an Enterprise Edition feature which was introduced in Couchbase Server 6.6.0."
+  ],
+  "requiresEdition": "edition:enterprise",
+  "availableSince": "version:server-6-6",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-backup",
+  "relates_to_competency_question": "Can cbbackupmgr write a backup straight to S3/Azure/GCS, or does it always need a mounted filesystem first?"
+}

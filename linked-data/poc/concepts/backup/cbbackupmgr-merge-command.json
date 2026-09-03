@@ -1,0 +1,21 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/cbbackupmgr-merge-command",
+  "label": "cbbackupmgr merge command",
+  "type": "the sub-command that converts two or more backups in a repository (at least one full plus incremental(s)) into a single full backup, freeing the repository of the merged-away incrementals. An Enterprise Edition command. The recommended alternative to ever taking a second full cluster backup (see backup:periodic-merge-strategy).",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "backup:merge-operation"
+  ],
+  "aliases_note": "Folds a same-round self-fork, the same species as native-cloud-integration above: backup:cbbackupmgr-merge-command (2 files, the sub-command's own reference/strategy pages) and backup:merge-operation (2 files, pages discussing merging from the outside - cloud-storage compatibility, the tutorial walkthrough), zero file overlap, one mechanism. Kept under the cbbackupmgr-*-command spelling for consistency with the family of per-sub-command concepts this round minted (backup, restore, compact, remove, examine, config).",
+  "evidence": [
+    "The merge command is an Enterprise Edition command which can be used to merge two or more backups together.",
+    "In order to merge data, you need to have a backup repository with at least two backups.",
+    "Doing merges should replace the full backup step by taking multiple incremental backups of a Couchbase cluster and converting them into a single full backup."
+  ],
+  "requiresEdition": "edition:enterprise",
+  "requiresPriorExecutionOf": "backup:incremental-backup",
+  "createsOnAction": "backup:full-backup",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-merge",
+  "relates_to_competency_question": "Can old incremental backups be consolidated into a new full backup without re-reading the whole cluster, and what does that require?"
+}

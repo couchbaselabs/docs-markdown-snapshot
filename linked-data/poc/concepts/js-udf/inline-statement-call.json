@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/inline-statement-call",
+  "label": "Inline SQL++ call (from a JavaScript UDF)",
+  "type": "embedding a SQL++ statement or expression directly as JavaScript syntax inside a UDF body, as against js-udf:n1ql-function-call's N1QL(stmt, params, opts) call form. Supports only named parameters (the N1QL() form supports both named and positional). Read-only - a data-changing statement must use n1ql:execute-function instead.",
+  "promoted": true,
+  "recurrence": 2,
+  "recurrence_note": "2 files, `divergent`, exactly at the promotion bar.",
+  "evidence": [
+    "Calling SQL++ from the N1QL() function supports both named and positional parameters. Calling a SQL++ statement or expression inline supports only named parameters.",
+    "If you choose to use a SQL++ statement inside a JavaScript function, that function cannot have side effects that change data stored by Capella. Functions that change data must be called using the EXECUTE FUNCTION statement."
+  ],
+  "mustUseInsteadWhen": "n1ql:execute-function (when the statement has side effects)",
+  "documented_at": "cloud/javascript-udfs/calling-n1ql-from-javascript",
+  "relates_to_competency_question": "Are there two different ways to run SQL++ from inside a JavaScript UDF, and do they support the same parameter styles?"
+}

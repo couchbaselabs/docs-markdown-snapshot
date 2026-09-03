@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/js-udf/external-function",
+  "label": "External (library-backed) JavaScript UDF",
+  "type": "a SQL++ user-defined function (n1ql:create-function, LANGUAGE JAVASCRIPT) that references a named function inside a js-udf:udf-library, as against js-udf:sql-managed-udf, whose JavaScript body is stored inline by the function definition itself with no separate library.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "4 files, `divergent` - discount rejected, raw count stands.",
+  "evidence": [
+    "If you have created a JavaScript function in a JavaScript library, you must create a SQL++ user-defined function to reference it.",
+    "If the JavaScript library is scoped, create a scoped user-defined function in the same scope as the library."
+  ],
+  "requiresPriorExecutionOf": "js-udf:udf-library",
+  "documented_at": "cloud/guides/create-user-defined-function",
+  "relates_to_competency_question": "What is the difference between a UDF that references a library and one whose JavaScript is stored inline?"
+}
