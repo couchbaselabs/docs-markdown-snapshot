@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/search/default-tokenizers-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-tokenizers-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id denotes the general tokenizer component type (search:custom-analyzer-components is a page-shaped umbrella covering all four custom-component kinds at once, not this one specifically); page-shaped alternative would be search:default-tokenizers-reference, noted here for reconciliation"
+    },
+    {
+      "candidate_id": "search:create-custom-tokenizer",
+      "label": "Create a Custom Tokenizer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id from prior rounds"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, heavily attested"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link; predicate itself is promoted",
+      "evidence": "You can use a [tokenizer](customize-index.md#tokenizers) when you [create a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link; predicate itself is promoted",
+      "evidence": "Choose a default tokenizer or [create your own](create-custom-tokenizer.md)."
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent) - part-whole composition, subject is the promoted index-artifact concept",
+      "evidence": "Tokenizers control how the Search Service splits input strings into individual tokens."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page lists 6 built-in tokenizers (hebrew, letter, single, unicode, web, whitespace) but never states which one a Search index uses if no tokenizer is explicitly configured. This contrasts with search-index-params.md, which explicitly states 'standard' as the default_analyzer and 'dateTimeOptional' as the default_datetime_parser - no equivalent 'default_tokenizer' property or stated fallback exists anywhere in this batch's pages for tokenizers specifically."
+  },
+  "cross_component_finding": "None found for this page - it is a self-contained component-reference table with no cross-component (e.g. search/ to n1ql/) content.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page in the corpus (confirmed absent from cloud/search/ on disk), and this round's framing states none of the reference-table pages in this batch have a measured twin."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/xattrs-mapping",
+  "label": "XATTRs mapping (Search)",
+  "type": "a mapping kind for a document's extended attributes, available since Server 7.6.2. Static or dynamic, sharesOptionSetWith search:collection-mapping. Split onto its own page in Server 8.0's docs; Capella's twin (measured similarity 0.30) still bundles the equivalent content inline in create-type-mapping.md, gated by Advanced Mode UI rather than by version.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "XATTRs mappings can be static or dynamic, based on whether you add Child Field Mappings.",
+    "You can only use XATTRs mappings on Couchbase Server version 7.6.2 or later."
+  ],
+  "availableSince": "version:server-7-6-2",
+  "sharesOptionSetWith": "search:collection-mapping",
+  "documented_at": "server/8.0/search/create-xattrs-mapping",
+  "relates_to_competency_question": "Can a Search index mapping reach a document's extended attributes (XATTRs), and is that gated by version or by product?"
+}

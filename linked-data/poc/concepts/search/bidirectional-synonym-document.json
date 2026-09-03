@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/bidirectional-synonym-document",
+  "label": "Bidirectional synonym document",
+  "type": "a synonym document with a single synonyms array defining a two-way relationship - a search for any term in the array can return any other term in it. Sibling of search:unidirectional-synonym-document.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Bidirectional synonym documents define a two-way synonym relationship. All terms are contained in a single synonyms array. Any search for a term in the synonyms array can return any other term in that array."
+  ],
+  "documented_at": "server/8.0/search/synonyms/create-synonym-collection-docs",
+  "relates_to_competency_question": "Can a group of terms be declared mutually synonymous in one document, rather than pairing each input term with its own output list?"
+}

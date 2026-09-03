@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/collection-mapping",
+  "label": "Collection mapping (Search)",
+  "type": "the per-collection top-level mapping. Shares its static/dynamic option set with search:object-mapping and search:xattrs-mapping.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "You can also choose to control the type of a document by setting a type identifier.",
+    "For more information about how to create a type mapping in the standard editor, see Create a Type Mapping."
+  ],
+  "documented_at": "server/8.0/search/create-type-mapping",
+  "relates_to_competency_question": "What is the default mapping scope for a collection within a Search index, before any type or child mapping narrows it?"
+}

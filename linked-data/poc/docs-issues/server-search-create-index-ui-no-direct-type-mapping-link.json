@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-create-index-ui-no-direct-type-mapping-link",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "create-search-index-ui.md never links directly to create-type-mapping.md, routing all customization through customize-index.md instead - unlike its Capella twin (measured similarity 0.61), which links to Create a Type Mapping explicitly. The two products' otherwise-similar index-creation UI walkthroughs diverge in how directly a reader can reach the type-mapping task from the basic-index-creation page.",
+  "about": [
+    "server/8.0/search/create-search-index-ui",
+    "cloud/search/create-search-index-ui"
+  ],
+  "foundDuring": "round 22",
+  "status": "open"
+}

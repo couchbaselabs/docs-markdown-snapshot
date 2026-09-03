@@ -1,0 +1,149 @@
+{
+  "page_id": "server/8.0/search/import-search-index",
+  "source_version": "8.0",
+  "source_path": "server/current/search/import-search-index.md",
+  "concepts": [
+    {
+      "candidate_id": "search:import-search-index",
+      "label": "Import a Search Index Definition with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing stub id, minted by cloud/search/create-search-indexes.json ('Import a Search Index Definition with the Capella UI', referencing cloud/search/import-search-index.md, itself not yet extracted). This record supplies the first full extraction for this id from the server tree, per the corpus's cross-product-reuse convention."
+    },
+    {
+      "candidate_id": "search:search-index-definition-json",
+      "label": "Search index definition (JSON)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused within this same batch - minted on the paired export-search-index.json, this same round; see that record for the definition. This page is the clearest evidence the artifact covers TWO kinds (index and alias): 'Use the Couchbase Server Web Console to import a JSON Search index definition or Search index alias.'"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin role",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted id (aliases privilege:search-admin, privilege:fts-admin, role:search-admin)."
+    },
+    {
+      "candidate_id": "search:create-search-indexes",
+      "label": "Creating (Search) Indexes guide",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, the Procedure's link target for 'Search index definition'."
+    },
+    {
+      "candidate_id": "search:index-aliases",
+      "label": "Create Search Index Aliases",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, the Procedure's link target for 'Search alias'."
+    },
+    {
+      "candidate_id": "search:create-search-index-alias",
+      "label": "Create a Search Index Alias with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing id from server/7.2/search/create-search-index-alias.json, the Procedure step 6 link target when the imported artifact is an alias."
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Procedure step 6 / Next Steps link target when the imported artifact is a plain index."
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run a Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Next Steps link target."
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Next Steps link target."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:import-search-index",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the index."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "operatesOnFormat",
+      "object": "search:search-index-definition-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - operatesOnFormat",
+      "evidence": "In the Import Index window, paste the JSON definition of your Search index or index alias."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:create-search-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "To import a Search index definition, click **Add Index**."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:create-search-index-alias",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "To import a Search index alias definition, click **\\+ Add Alias**."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:create-search-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To import a [Search index definition](create-search-indexes.md) or [Search alias](index-aliases.md) with the Couchbase Server Web Console:"
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:index-aliases",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To import a [Search index definition](create-search-indexes.md) or [Search alias](index-aliases.md) with the Couchbase Server Web Console:"
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Customize a Search Index with the Web Console](customize-index.md) or [Create a Search Index Alias with the Web Console](create-search-index-alias.md)."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-alias",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Customize a Search Index with the Web Console](customize-index.md) or [Create a Search Index Alias with the Web Console](create-search-index-alias.md)."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To run a search with your Search index or index alias, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:import-search-index",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To run a search with your Search index or index alias, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (index-alias import)",
+    "finding": "The Prerequisites' single role sentence is worded 'the bucket where you want to create the index' - even though the Procedure it gates explicitly branches into importing either an index OR an alias ('Add Index' vs '+ Add Alias'). The page never separately states whether importing an alias requires the same Search Admin role, a different one, or whether 'the bucket' even has a single well-defined referent for a global (multi-bucket) alias import - the same ambiguity already flagged on create-search-index-alias-rest-api.md in this same batch for alias creation via REST. The wording gap recurs at every surface (UI import, REST create) where an alias's bucket-scoped role requirement is stated using index-only language."
+  },
+  "cross_component_finding": "See export-search-index.json (this same batch) for the shared search:search-index-definition-json artifact and the export/import scope asymmetry: import explicitly supports both an index and an alias definition, while export's own Procedure and role wording never mentions an alias at all. Additionally, this page's Procedure step 6 sends the reader to TWO different next pages depending on which artifact they imported (customize-index.md for a plain index, create-search-index-alias.md for an alias) in a single sentence - a real branch in the task, correctly reflected here as two offersConfigurationChoice relations plus two seeAlso relations from one piece of source text.",
+  "cross_product_finding": "An unread Capella-tree twin exists on disk at cloud/search/import-search-index.md (confirmed present by directory listing) and is already referenced, but not yet extracted, from cloud/search/create-search-indexes.json under the exact id this record uses (search:import-search-index) - so this server-tree extraction and a future Capella-tree extraction of the same-named page are expected to share one id by the corpus's own established convention, not by a fresh judgement call made here. No measured similarity score was dispatched for either file this round, so no diff-gate comparison is attempted; noted as a strong candidate for a future paired round given the id is already shared."
+}

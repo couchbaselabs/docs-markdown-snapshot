@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search-mapping-types",
+  "label": "Search index mapping types: type, child (object), collection, XATTRs",
+  "type": "scheme. All four mapping kinds can be static (only indexes specified fields) or dynamic (indexes everything); object and XATTRs mappings sharesOptionSetWith collection mappings. A type mapping controls document inclusion/exclusion for the whole index; a child (object) mapping nests inside it for a field that contains a JSON object; a collection mapping is the top-level per-collection default; XATTRs mapping (7.6.2+) is a distinct fourth kind for extended attributes.",
+  "promoted": true,
+  "members": [
+    "search:type-mapping",
+    "search:object-mapping",
+    "search:collection-mapping",
+    "search:xattrs-mapping",
+    "search:dynamic-mapping"
+  ],
+  "relates_to_competency_question": "How many distinct kinds of mapping does a Search index configuration have, and how do they nest?"
+}

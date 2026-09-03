@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/type-mapping",
+  "label": "Type mapping (Search)",
+  "type": "controls which documents are included/excluded from a Search index, based on document type. Can be static or dynamic (search:dynamic-mapping).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Create a type mapping with the Couchbase Server Web Console to control what documents are included or excluded from a Search index.",
+    "(Optional) To switch from a dynamic type mapping to a static type mapping, select Only index specified fields."
+  ],
+  "offersConfigurationChoice": "search:dynamic-mapping",
+  "documented_at": "server/8.0/search/create-type-mapping",
+  "relates_to_competency_question": "How does a Search index decide which documents belong to it in the first place?"
+}

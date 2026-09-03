@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/search/default-wordlists-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-wordlists-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:wordlist",
+      "label": "Wordlist (Search analyzer component / token map)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - general component-type concept, same pattern as search:tokenizer/search:token-filter/search:date-time-parser minted this round; page-shaped alternative would be search:default-wordlists-reference"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:create-custom-token-filter",
+      "label": "Create a Custom Token Filter",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:wordlist",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresPriorExecutionOf) - a wordlist is applied to a tokenizer's output, not to raw input",
+      "evidence": "Use wordlists with [token filters](customize-index.md#token-filters) to choose what input from a [tokenizer](customize-index.md#tokenizers) becomes a token."
+    },
+    {
+      "subject": "search:token-filter",
+      "predicate": "configurableVia",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia) - a token filter's behaviour is influenced by which wordlist it is given, without the wordlist being a hard prerequisite for every token filter type",
+      "evidence": "Use wordlists with [token filters](customize-index.md#token-filters) to choose what input from a [tokenizer](customize-index.md#tokenizers) becomes a token."
+    },
+    {
+      "subject": "search:wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "The following default wordlists are available when you create a [custom token filter](create-custom-token-filter.md):"
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent) - part-whole composition",
+      "evidence": "A wordlist can contain articles, conjunctions, prepositions, or other terms that limit matches in a search."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "This page lists 31 built-in wordlists (4 article lists plus 27 language stop-word lists) but, like the tokenizer and token-filter reference pages, states no default wordlist and no default token filter that uses one - the wordlist mechanism is entirely opt-in per the page's own text ('Use wordlists with token filters to choose what input...becomes a token')."
+  },
+  "cross_component_finding": "None found for this page.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page in the corpus."
+}

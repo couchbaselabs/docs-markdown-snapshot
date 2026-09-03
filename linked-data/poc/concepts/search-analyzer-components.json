@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search-analyzer-components",
+  "label": "Search analyzer composition: analyzer > tokenizer + character filters + token filters",
+  "type": "scheme. An analyzer (built-in or custom) is composed of exactly one tokenizer plus zero-or-more character filters (run before tokenizing) and zero-or-more token filters (run after). Members promoted separately; this record holds the composition together.",
+  "promoted": true,
+  "members": [
+    "search:analyzers",
+    "search:custom-analyzer",
+    "search:tokenizer",
+    "search:character-filter",
+    "search:token-filter",
+    "search:wordlist"
+  ],
+  "note": "search:custom-analyzer isSubtypeOf search:analyzers (the general concept, built-in or custom). Both independently attest hasInternalComponent -> tokenizer/character-filter/token-filter - this is not a fork, it's the same composition stated at two levels of generality, corroborated by two separately-authored pages (create-custom-analyzer.md and default-analyzers-reference.md). search:wordlist is consumed by SOME token filters (dict_compound, elision), not a direct analyzer component - it sits one level deeper. Composition can recurse: create-custom-tokenizer.md's Exception Tokenizer contains another tokenizer, and several token filter types contain a wordlist - `hasInternalComponent` models both depths but the registry has no transitive-closure annotation, so 'everything under an analyzer' still requires walking the chain by hand.\nA GENUINE CONTAINMENT-DEPTH INCONSISTENCY, recorded rather than silently resolved: default-tokenizers-reference.json states `search:full-text-index hasInternalComponent search:tokenizer` directly, skipping the analyzer and type-mapping levels every other page in this batch respects, on weak evidence ('Tokenizers control how the Search Service splits input strings...') that doesn't actually assert containment. Left as a documented inconsistency rather than edited - see docs-issues/server-search-tokenizer-containment-depth-inconsistent.\nDATE/TIME PARSERS ARE A SIBLING MECHANISM, NOT AN ANALYZER COMPONENT: create-custom-date-time-parser.md's own text never states it is used WITH an analyzer (unlike the character-filter/tokenizer/token-filter pages, each of which says so explicitly), and is instead set index-wide as the default date/time parser. Filed separately (concepts/search/date-time-parser.json), not as a seventh analyzer component.",
+  "relates_to_competency_question": "What is a Search analyzer actually made of, and can that composition recurse or exclude a component the way an index configuration otherwise implies?"
+}

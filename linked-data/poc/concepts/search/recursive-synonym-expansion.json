@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/recursive-synonym-expansion",
+  "label": "Recursive synonym expansion",
+  "type": "the (unsupported) behavior of chaining synonym lookups - a synonym of a synonym. Object of search:thesaurus doesNotSupport.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term's synonyms."
+  ],
+  "documented_at": "server/8.0/search/synonyms/synonyms-search",
+  "relates_to_competency_question": "If term A is a synonym of B, and B is a synonym of C, does searching for A also match documents containing C?"
+}

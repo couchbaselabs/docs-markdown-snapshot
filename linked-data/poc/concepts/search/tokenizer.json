@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/tokenizer",
+  "label": "Tokenizer (Search)",
+  "type": "the analyzer component splitting input strings into individual tokens - exactly one per analyzer, unlike character/token filters which are zero-or-more. Two custom kinds: regexp (isSubtypeOf) and exception (which itself wraps another tokenizer for the remaining input, a recursive composition).",
+  "promoted": true,
+  "recurrence": 6,
+  "evidence": [
+    "Tokenizers control how the Search Service splits input strings into individual tokens.",
+    "You can create 2 types of custom tokenizers:"
+  ],
+  "documented_at": "server/8.0/search/default-tokenizers-reference",
+  "relates_to_competency_question": "How does a Search analyzer decide where one token ends and the next begins?"
+}

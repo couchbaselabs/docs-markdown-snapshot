@@ -1,0 +1,161 @@
+{
+  "page_id": "server/8.0/search/create-custom-wordlist",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-custom-wordlist.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-custom-wordlist",
+      "label": "Create a Custom Wordlist (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (seeAlso target from server/7.2/search/customize-index.json and from every other create-custom-* page in this same batch)"
+    },
+    {
+      "candidate_id": "search:wordlist",
+      "label": "Wordlist (analyzer sub-component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-token-filter.json; this page is the concept's own dedicated procedure page and states the general relation directly (not just the four wordlist-composed token filter subtypes)"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:token-filter",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; this page states the relation at the general search:token-filter level, generalizing the four subtype-specific instances (dict_compound/elision/keyword_marker/stop_tokens) recorded in create-custom-token-filter.json",
+      "evidence": "After you create a custom wordlist, you can use it with [a custom token filter](create-custom-token-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "A custom wordlist gives greater control over the input you want to remove from [tokenizer](customize-index.md#tokenizers) results."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to create a custom token filter, see [Create a Custom Token Filter](create-custom-token-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Type Mapping](create-type-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Field](create-child-field.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Mapping](create-child-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Analyzer](create-custom-analyzer.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Character Filter](create-custom-character-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Tokenizer](create-custom-tokenizer.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set Search Index Advanced Settings](set-advanced-settings.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-custom-wordlist",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(no cardinality predicate; recurring finding across this batch)",
+    "finding": "Step 9 ('(Optional) To add more words to the wordlist, repeat the previous steps') is the third occurrence in this batch of the same unmodelable one-to-many pattern (after the exception tokenizer's exception patterns and the date/time parser's layouts) - a single wordlist holds an open-ended, user-repeated set of words, and the registry has no predicate for that cardinality."
+    },
+  "cross_component_finding": "Confirms and generalizes create-custom-token-filter.json's finding from the opposite direction: that page found four SPECIFIC token filter subtypes (dict_compound/elision/keyword_marker/stop_tokens) each composed with a wordlist; this page states the relation once, generally, at the search:token-filter level ('use it with a custom token filter', with no subtype named) - so the corpus now has the same fact asserted at two different granularities from two different pages, which is expected and desired (the general statement here, the specific mechanism-level statements there) rather than a conflict to resolve.",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged, and no Capella-side create-custom-wordlist equivalent has been read in this round, so no comparison is forced."
+}

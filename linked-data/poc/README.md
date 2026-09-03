@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-one rounds so far, seventeen of them deliberate escalations and
+automating it. Twenty-two rounds so far, eighteen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -312,6 +312,27 @@ four corrective passes over what they left behind:
     relaunch, at zero progress, resolved on a plain retry) — the extract skill's own
     prescribed failure response, and it needed no change to the batches' scope or
     instructions to work.
+22. **54 pages, the whole `search/` module** — the largest genuinely unread namespace
+    left in the corpus: `fts:`/`search:` had exactly two promoted concepts between
+    them going in, against ~60 unpromoted extraction-layer members. 611 relations, 0
+    evidence problems. Eight pages have a filename-identical Capella twin; similarity
+    was measured on seven before dispatch (0.30–0.96), and the eighth
+    (`search-index-params.md`, 1,566 lines) timed out on the diff and was dispatched
+    unmeasured rather than guessed at — it turned out to hold the round's **largest**
+    content gap, with the majority of its schema having no Capella counterpart at
+    all. **The timeout was itself a signal, not a blank** — a diff too expensive to
+    finish quickly is weak evidence the pairing is worth reading carefully regardless
+    of what number it would have produced. Also found a third variant of the
+    same-round fork species rounds 19–21 catalogued: a batch minted a `seeAlso` stub
+    for an unread page's likely subject; the batch that later read the real page
+    found the guess already in place and, correctly, flagged the tension rather than
+    silently reusing or overriding it — a stub is a promise about a page nobody has
+    read yet, and the promise isn't always kept. And a real `recurrence.py --selftest`
+    failure turned out not to be a regression: a regression-check anchor assumed one
+    page would stay `seeAlso`-only forever, and this round extracted that exact page
+    and gave it real content — precisely the outcome the check exists to guarantee,
+    arriving at the one id it had assumed never would. Re-anchored, with the story
+    kept in a comment.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -319,7 +340,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-728 pages total:
+782 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -448,6 +469,15 @@ time/cost projections and how they held up against the round-2 run's real number
   monitoring, query params/responses, the REST API reference, run-query, error codes).
   No Capella twin by filename; extends the small `analytics:` namespace Capella's
   `cloud/clusters/analytics-service/` pages had already started.
+- **54 more, `server/8.0/search/`** — the whole Full Text Search reference: core
+  architecture and index creation, mapping/field detail (type/child/XATTRs mappings,
+  field options, data types), analyzer/tokenizer/character-filter/token-filter/
+  date-time-parser/wordlist creation and reference tables, query execution
+  (run-searches, facets, request/index params), REST/UI pairs (simple search, geo
+  search, alias creation, autocomplete), export/import, and the `synonyms/` subtree
+  (add-synonym-source, create-synonym-collection-docs, synonyms-search, each with a
+  Quick-Editor variant). Eight pages have a filename-identical Capella twin already
+  extracted; the rest is first contact.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -943,6 +973,40 @@ from "still in `extractions/`."
   unmodeled on that page, surviving only because a second, unrelated page in the same
   round happened to need it too. **A declined-for-lack-of-evidence relation and a
   genuinely absent one are indistinguishable in the output.**
+  Round 22 read `server/8.0/search/` — the largest genuinely unread namespace left in
+  the corpus, two promoted concepts against ~60 unpromoted members going in — and
+  promoted **37**, the largest single-round concept count since round 10 (70) and
+  round 12 (55/66), organised into three schemes rather than 37 flat records.
+  **Analyzer composition** (`concepts/search-analyzer-components.json`, 8 members):
+  `search:analyzers`/`search:custom-analyzer` both independently attest
+  `hasInternalComponent` to exactly one `search:tokenizer` plus zero-or-more
+  `search:character-filter`/`search:token-filter` — corroborated by two separately
+  authored pages, not a fork — with `search:wordlist` sitting one level deeper, and
+  `search:date-time-parser` **deliberately excluded** because no page states it is
+  used *with* an analyzer, unlike its siblings, each of which says so explicitly.
+  **Synonym family** (`concepts/search-synonym-family.json`, 6 members): the full
+  containment chain `search:thesaurus > search:synonym-collection >
+  {unidirectional,bidirectional}-synonym-document > search:synonym-source`, never
+  stated together on one page. **Mapping types** (`concepts/search-mapping-types.json`,
+  5 members): type/object/collection/XATTRs mappings, all sharing a static/dynamic
+  option set; XATTRs mapping was split onto its own Server 8.0 page while Capella's
+  twin (similarity 0.30) still bundles it inline, gated by UI mode instead of
+  version. Plus 18 more individually — scoring model (bm25/tf-idf, corroborated on the
+  Capella side by a near-verbatim match found without being on the pre-flagged
+  pairing list), document filters, doc-config, index-name uniqueness (7.6+),
+  coordinator-node/scatter-gather (the gRPC execution model), and others.
+  A third fork species, distinct from rounds 19–21's: a batch minted a `seeAlso` stub
+  for an unread page's likely subject; the batch that later read the real page found
+  the guess already in place and correctly flagged the tension rather than resolving
+  it unilaterally — folded here (`search:synonyms-search`, absorbing the stub). And
+  the round's one **unmeasured** pairing (a pre-dispatch similarity check that timed
+  out on a 1,566-line page) turned out to hold the largest content gap in the round —
+  **a diff timeout is itself weak evidence of divergence, not a reason to skip.**
+  Most of `search:`'s ~60 pre-existing members, and most of this round's own
+  remaining mints, are page-shaped ids (`search:create-child-field`,
+  `search:create-quick-index`) — a known corpus defect this round was briefed to
+  recognise and not propagate, deliberately left for a future namespace-coherence
+  pass rather than fixed here.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1120,8 +1184,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **144
-  entries** as of round 21. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **151
+  entries** as of round 22. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -1251,6 +1315,17 @@ from "still in `extractions/`."
   sharing an identical one-line description verbatim; and a `needs-sme` flag on a
   near-verbatim Server/Capella external-link definition overlap, kept apart per the
   no-silent-merge rule.
+  Round 22 added **7**: a containment-depth disagreement (one page routes tokenizer
+  containment through the analyzer, its own sibling page skips straight from the
+  index to the tokenizer, on evidence that doesn't actually assert direct
+  containment); a named-but-undefined date/time layout style (`sanitizedgo`, in a
+  section header, never in the comparison table); an undocumented default for both
+  tokenizers and token filters, unlike the analyzer and date/time parser, which do
+  have a stated default; a version-vs-UI-mode gating mismatch for XATTRs mappings
+  between Server and Capella; a UI walkthrough that never links directly to the
+  type-mapping task its Capella twin does; ambiguous role wording for a global,
+  multi-bucket alias endpoint; and an asymmetry between export (silent on whether
+  alias definitions can be exported) and import (explicit that they can).
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1464,6 +1539,17 @@ from "still in `extractions/`."
   `index:index-partitioning`/`fts:index-partitioning` are genuinely different things.
   Any tool that compares suffixes will flag those, which is why the report's job is to
   hand a human a short list.
+  Round 22 found a different kind of instrument-maintenance issue, not a logic bug: the
+  bug #10 regression check in `--selftest` was pinned to a real page,
+  `search:customize-index`, on the assumption it would carry only `seeAlso` relations
+  forever - true when the check was written in round 14, false the moment round 22
+  finally extracted that page and gave it real content. The selftest went red for
+  exactly the reason it exists to check *for* - a page moving correctly into the
+  promotion metric - not because anything broke. Re-anchored to
+  `monitoring:activity-log`, with the old anchor's story kept in a code comment so a
+  future red run from the same cause reads as expected rather than alarming: **a
+  selftest anchored to a real corpus fact will eventually be un-anchored by the
+  corpus's own growth, and that is success, not failure.**
 - **`shared-source.py`** — round 17's other new instrument, and the counterpart to
   `--forks`: it measures the direction in which the promotion rule **over**-counts.
   "Two distinct files" is a proxy for "two independent attestations", and it fails
@@ -1476,9 +1562,9 @@ from "still in `extractions/`."
   `--kind` restricts which duplications count), and — the part that decides
   anything — `--check` asks whether a *specific* id's evidence rescues it: **a quote
   present on its own copy and absent from every sibling copy** is an independent
-  attestation regardless of how similar the pages are. Corpus-wide: **95 clusters over
-  195 extracted pages, 293 discounted ids** (`shared` 173, `divergent` 108, `unchecked`
-  12), **103 below the bar** once the discount is upheld — up from 5 before round 17,
+  attestation regardless of how similar the pages are. Corpus-wide: **99 clusters over
+  203 extracted pages, 311 discounted ids** (`shared` 182, `divergent` 115, `unchecked`
+  14), **105 below the bar** once the discount is upheld — up from 5 before round 17,
   because extracting a module that exists in three trees buys density and not
   independence, and round 18's `eventing:` module turned out to be the most heavily
   duplicated pairing in the corpus (0.89–1.00 page-similarity, more than doubling the
@@ -1499,7 +1585,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 670 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 714 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2596,6 +2682,35 @@ pre-checked):**
     `CREATE INDEX` form, giving a reader who's only seen the tutorial no way to know
     they aren't writing a Query-service statement.
 
+**Round 22 (54 pages, the whole `search/` module - the largest genuinely unread
+namespace left in the corpus):**
+
+100. **A diff timeout is evidence, not a blank.** One of eight paired pages was too
+     large (1,566 lines) for the pre-dispatch similarity check to finish, and was
+     dispatched unmeasured rather than guessed at. It turned out to hold the round's
+     **largest** content gap - the majority of its schema has no Capella counterpart
+     at all. A pairing too expensive to diff quickly is itself weak evidence the two
+     sides have diverged enough to be worth reading regardless of what number the
+     diff would have produced; treating "unmeasured" as "skip" would have hidden
+     exactly the finding that mattered most.
+101. **A same-round self-fork can be created by a stub minted for a page nobody has
+     read yet, not just by two batches independently naming a mechanism.** A batch
+     minted a `seeAlso` stub - an honest guess at what an unread page's subject would
+     be called - and the batch that later read the real page found the guess already
+     in place, disagreeing with what it would itself have chosen. It did the right
+     thing: flagged the tension rather than silently reusing or overriding it. A
+     fourth fork species, after rounds 19-21's first three - not two things existing
+     before anyone noticed they should be one, but one thing minted as a bet on a
+     fact that hadn't been checked yet, which the fact then disagreed with.
+102. **A selftest anchored to a real corpus fact will eventually be un-anchored by
+     the corpus's own growth - and that is success, not failure.** `recurrence.py`'s
+     bug #10 regression check assumed one specific page would carry only `seeAlso`
+     relations forever; this round finally extracted that page and gave it real
+     content, correctly moving it into the promotion metric - exactly the outcome the
+     check exists to guarantee, arriving at the one id the check had assumed never
+     would. A red selftest after legitimate new content lands should be read as
+     "check the anchor" before "check the code."
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -2688,7 +2803,7 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 223 have now been read.
+  `server/8.0/` is ~1,033 pages of which 277 have now been read.
 - **The pairing strategy has two payoff axes, and round 18 is the case where they
   split — read both, every time, rather than assuming one implies the other.**
   Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*
@@ -2718,20 +2833,23 @@ document.
   retired) to **156**. Round 17 took it **up to 233**, round 18 (another 67-page
   content round, not a coherence pass) took it **up to 256**, and round 19 (22 more
   pages, and 14 of the round's own mints promoted straight out of the backlog) took it
-  **up to 261** — the expected direction, not a regression: dense new pages mint far
-  more candidates than a round's own promotions retire, and the backlog is a function
-  of the corpus. Three numbers should be read beside it from now on, because a raw
-  count of candidates at ≥2 no longer means what it did: **293 of the corpus's ids rest
-  partly on a shared source and 103 fall below the bar once that is discounted**
-  (`shared-source.py`), **63 local names are forked across namespaces, 21 of which
-  would cross the bar only if merged** (`recurrence.py --forks`), and — round 18's
-  addition, with no instrument yet — an unknown number of **same-prefix synonym
-  forks**, where two agents name one mechanism through two different predicates and
-  mint two ids sharing a prefix and no substring; four confirmed instances in round 18
-  and **four more, of a related but distinct shape, in round 19** — two batches
-  minting the same concept under two full names with no shared substring at all,
-  inside one round, despite a shared dispatch briefing that had already warned about
-  two other collisions and prevented both. Shadow prefixes, the other measure of the same debt, are at
+  **up to 261**, round 21 (28 more pages, into a namespace with almost no promoted
+  members to draw down against) took it **up to** roughly the same level after its own
+  8 promotions, and round 22 (54 pages into `search:`, the largest unread namespace
+  left) took it **up to 302** — the expected direction, not a regression: dense new
+  pages mint far more candidates than a round's own promotions retire, and the
+  backlog is a function of the corpus, not a measure of how well a round went. Three
+  numbers should be read beside it from now on, because a raw count of candidates at
+  ≥2 no longer means what it did: **311 of the corpus's ids rest partly on a shared
+  source and 105 fall below the bar once that is discounted** (`shared-source.py`),
+  **77 local names are forked across namespaces, 26 of which would cross the bar only
+  if merged** (`recurrence.py --forks`), and — round 18's addition, with no instrument
+  yet — an unknown number of **same-prefix synonym forks**, where two agents name one
+  mechanism through two different predicates and mint two ids sharing a prefix and no
+  substring; four confirmed instances in round 18, four more of a related but distinct
+  shape in round 19, and a third variant again in round 22 (a `seeAlso` stub minted
+  for an unread page, disagreeing with the concept minted once the page was actually
+  read). Shadow prefixes, the other measure of the same debt, are at
   **55 holding 210 ids** — which is *up* from the 43 reported in rounds 14 and 15, with
   no change to the corpus: those two figures were measured with the census bug in
   place, and 55 is the first honest count. Treat it as the new baseline, not as a
@@ -2755,8 +2873,13 @@ document.
   same-prefix synonym forks as a side effect of reading the module, but did not run a
   coherence pass over it — the ~10 individual Advanced Keyspace Accessor operations
   still have inconsistent per-operation naming beyond the three folded that round, and
-  are the obvious next member to check); then `search:` and `n1ql:`, largest but also
-  the two the metric fix most changed.
+  are the obvious next member to check); `search:` (round 22 read the whole module and
+  promoted 37 members, but most of the namespace's ~60 pre-existing extraction-layer
+  members - and most of this round's own remaining mints - are page-shaped ids
+  (`search:create-child-field`, `search:create-quick-index`), deliberately left
+  unfixed per this round's own briefing; the obvious next coherence-pass target, now
+  with a much larger and better-understood member set to sort); then `n1ql:`, largest
+  and the one the metric fix most changed.
   Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,
   correct resolution of a five-way split, which a tidying pass would have destroyed.

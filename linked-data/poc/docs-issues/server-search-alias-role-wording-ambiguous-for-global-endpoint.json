@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-alias-role-wording-ambiguous-for-global-endpoint",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "create-search-index-alias-rest-api.md states the Search Admin role is required 'for the bucket', but the page's own global (cluster-wide) alias endpoint names no bucket at all - an alias can span multiple buckets. The role wording, written for the bucket-scoped endpoint, does not state what role scope applies when creating a global alias spanning several buckets.",
+  "about": [
+    "server/8.0/search/create-search-index-alias-rest-api"
+  ],
+  "foundDuring": "round 22",
+  "status": "open",
+  "severity": "needs-sme"
+}

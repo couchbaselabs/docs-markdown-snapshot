@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/search/search",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search.md",
+  "concepts": [
+    { "candidate_id": "search:search", "label": "Add Search to Your Application (landing/overview page for the Search Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, same page-shaped id already minted for server/7.2/search/search.json; kept for continuity across versions of this same landing page" },
+    { "candidate_id": "fts:full-text-search", "label": "Full Text Search (capability)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page is the capability's own overview/landing page" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page's 'Search Indexes' section describes the artifact directly" },
+    { "candidate_id": "index-type:search-vector", "label": "Search Vector Index", "registry_status": "promoted", "reused_or_minted": "reused - promoted; the page's Vector Search section names this exact index type" },
+    { "candidate_id": "search:synonym-source", "label": "Search Index Synonym Source", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, already minted in cloud/search/create-search-indexes.json; this page restates the same 8.0 synonym-collection capability" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "version:server-7-6-2", "label": "Couchbase Server 7.6.2", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-indexes", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about how to create a Search index, see [Create a Search Index](create-search-indexes.md)." },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-index-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [With the Couchbase Server Web Console](create-search-index-ui.md)" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:create-search-index-rest-api", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [From the REST API](create-search-index-rest-api.md)" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:run-searches", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about how you can run a search against a Search index, see [Run a Search With a Search Index](run-searches.md)." },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:simple-search-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [With the Couchbase Server Web Console](simple-search-ui.md)" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [From the REST API](simple-search-rest-api.md)" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:customize-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [Customize a Search Index with the Web Console](customize-index.md)" },
+    { "subject": "search:search", "predicate": "seeAlso", "object": "search:index-aliases", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [Create Search Index Aliases](index-aliases.md)" },
+    { "subject": "fts:full-text-search", "predicate": "providesIndexType", "object": "index-type:search-vector", "registry_status": "promoted", "reused_or_minted_predicate": "reused (providesIndexType)", "evidence": "Vector Search adds a new index type to the Search Service to support AI application development, known as a Vector Search index." },
+    { "subject": "search:full-text-index", "predicate": "availableSince", "object": "version:server-7-6-2", "registry_status": "promoted", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "If your cluster is running Couchbase Server version 7.6.2 and later, it can also include any document metadata stored in Extended Attributes (XATTRs)." },
+    { "subject": "search:synonym-source", "predicate": "availableSince", "object": "version:server-8-0", "registry_status": "promoted", "reused_or_minted_predicate": "reused (availableSince)", "evidence": "As of Couchbase Server version 8.0, you can also add synonym collections to your cluster and Search index to run synonym searches on text fields." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This landing/overview page for the entire Search Service names no RBAC role at all - not even a pointer to where one might be documented - despite two other pages in this same batch (create-quick-index.md and view-index-details.md) explicitly requiring the role:fts-admin ('Search Admin') role for their respective tasks. Identical gap already logged against the 7.2 version of this same page (server/7.2/search/search.json): a reader starting at the module's own front door would not learn a role is needed anywhere in the flow."
+  },
+  "cross_component_finding": "The Vector Search section states directly, in its own words, that Vector Search 'adds a new index type to the Search Service ... known as a Vector Search index' - the module's own overview page independently corroborates the registry's existing decision to keep fts:full-text-search (capability) and index-type:search-vector (a distinct index type within that capability) as separate concepts rather than folding vector search into the text-search capability record; the page draws exactly the line the registry's do-not-confuse note already draws.",
+  "cross_product_finding": "No forced comparison - this page has no measured Capella twin in this batch's dispatch."
+}

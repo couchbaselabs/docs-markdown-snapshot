@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/unidirectional-synonym-document",
+  "label": "Unidirectional synonym document",
+  "type": "a synonym document with separate input and synonyms arrays - a search for a term in input can return terms in synonyms, but not the reverse. Sibling of search:bidirectional-synonym-document.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "A unidirectional synonym document contains an input array and a synonyms array. Any search for a term in input can return any term in synonyms."
+  ],
+  "documented_at": "server/8.0/search/synonyms/create-synonym-collection-docs",
+  "relates_to_competency_question": "Can a synonym relationship be one-directional - term A finds term B, but not the reverse?"
+}

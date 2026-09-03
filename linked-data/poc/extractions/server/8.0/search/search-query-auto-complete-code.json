@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/search/search-query-auto-complete-code",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search-query-auto-complete-code.md",
+  "concepts": [
+    {
+      "candidate_id": "search:autocomplete-application-code",
+      "label": "Add Autocomplete to Your Application (code samples)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted here (first full extraction); reused from the stub declared in search-query-auto-complete.json (this batch). This is the third leg of the search-query-auto-complete three-way split: overview (search-query-auto-complete.md) -> index configuration (search-query-auto-complete-ui.md) -> application code (this page)."
+    },
+    {
+      "candidate_id": "search:autocomplete",
+      "label": "Autocomplete (type-ahead) for the Search Service",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in search-query-auto-complete.json (this batch)"
+    },
+    {
+      "candidate_id": "search:configure-autocomplete-index",
+      "label": "Configure an Autocomplete Search Index (task page covering both the Web Console and REST API procedures)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - full record in search-query-auto-complete-ui.json (this batch)"
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-rest-api.json)"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run A Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-ui.json)"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you created the Search index."
+    },
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "seeAlso",
+      "object": "search:configure-autocomplete-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "After you [create and configure a Search index that supports autocomplete](search-query-auto-complete-ui.md), configure your application to return results from the Search Service."
+    },
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Run a Search query from the REST API](simple-search-rest-api.md) with 2-8 characters in the `query` property."
+    },
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Run a Search query from the Web Console](simple-search-ui.md) with 2-8 characters in the **Search** field."
+    },
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Customize your Search index with the Web Console](customize-index.md)."
+    },
+    {
+      "subject": "search:autocomplete-application-code",
+      "predicate": "seeAlso",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "Change the [JSON payload](search-index-params.md) for your Search index."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "sdkLanguage",
+    "finding": "No 'sdkLanguage' or similar enum predicate exists in the registry for the code-sample languages this page provides (C#, Go, Java, JavaScript, Python) - all five samples call the same conceptual operation (a QueryStringQuery/query-string search limited to 8 results on the field 'name'), but the page provides no SDK-language concept to attach that fact to. Not minting a new one here since it would be a single-page, single-use id with no reuse signal yet; flagging for reconciliation in case a broader sdk:query-string-query or sdk-language: family already exists or is warranted."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

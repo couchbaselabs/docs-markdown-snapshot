@@ -1,0 +1,265 @@
+{
+  "page_id": "server/8.0/search/create-custom-token-filter",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-custom-token-filter.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-custom-token-filter",
+      "label": "Create a Custom Token Filter (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (seeAlso target from server/7.2/search/customize-index.json and create-custom-analyzer.json/create-custom-character-filter.json/create-custom-tokenizer.json in this same batch)"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json; this page is the concept's own dedicated procedure page, enumerating 10 named subtypes (dict_compound, edge_ngram, elision, keyword_marker, length, ngram, normalize_unicode, shingle, stop_tokens, truncate_token)"
+    },
+    {
+      "candidate_id": "search:wordlist",
+      "label": "Wordlist (analyzer sub-component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for the wordlist concept (checked search:wordlist and search:custom-wordlist, nothing matched). Not a direct component of an analyzer itself; it is a component of certain TOKEN FILTER types, one level further down the composition than hasInternalComponent(custom-analyzer, token-filter) - see cross_component_finding."
+    },
+    {
+      "candidate_id": "search:dict-compound-token-filter",
+      "label": "dict_compound Token Filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the page's 10 named custom token filter types; singled out (with elision/keyword_marker/stop_tokens) for its own concept id because it composes with search:wordlist, unlike the other 6 which are purely character-length/enum parameterized"
+    },
+    {
+      "candidate_id": "search:elision-token-filter",
+      "label": "elision Token Filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - wordlist-composed token filter type, same rationale as search:dict-compound-token-filter"
+    },
+    {
+      "candidate_id": "search:keyword-marker-token-filter",
+      "label": "keyword_marker Token Filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - wordlist-composed token filter type, same rationale as search:dict-compound-token-filter"
+    },
+    {
+      "candidate_id": "search:stop-tokens-token-filter",
+      "label": "stop_tokens Token Filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - wordlist-composed token filter type, same rationale as search:dict-compound-token-filter"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:dict-compound-token-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "You can create any of the following custom token filters:"
+    },
+    {
+      "subject": "search:elision-token-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "You can create any of the following custom token filters:"
+    },
+    {
+      "subject": "search:keyword-marker-token-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "You can create any of the following custom token filters:"
+    },
+    {
+      "subject": "search:stop-tokens-token-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "You can create any of the following custom token filters:"
+    },
+    {
+      "subject": "search:dict-compound-token-filter",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "A `dict_compound` token filter uses a wordlist to find subwords inside an input token."
+    },
+    {
+      "subject": "search:elision-token-filter",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "In the **Articles** list, select a wordlist to use to find elisions in input tokens."
+    },
+    {
+      "subject": "search:keyword-marker-token-filter",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "In the **Keywords** list, select a wordlist to use to find keywords to create tokens."
+    },
+    {
+      "subject": "search:stop-tokens-token-filter",
+      "predicate": "hasInternalComponent",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "A `stop_tokens` token filter uses a wordlist to remove specific tokens from input."
+    },
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; corroborates the same relation asserted on create-custom-analyzer.json, with this page's own evidence",
+      "evidence": "After you create a custom token filter, you can use it with [a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "[Token filters](customize-index.md#token-filters) can improve your search results by removing characters from your Search index or Search queries that prevent matches."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can choose your own [custom wordlist](create-custom-wordlist.md) or a [default wordlist](default-wordlists-reference.md). Each subword match creates a new token."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:default-wordlists-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can choose your own [custom wordlist](create-custom-wordlist.md) or a [default wordlist](default-wordlists-reference.md). Each subword match creates a new token."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:default-tokenizers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For example, if you use a [whitespace tokenizer](default-tokenizers-reference.md#whitespace), a range with a minimum of two and a maximum of three, and a space as a separator, the token `abc def` becomes `abc`, `def`, and `abc def`."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "After you create a custom token filter, you can use it with [a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Type Mapping](create-type-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Field](create-child-field.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Mapping](create-child-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Character Filter](create-custom-character-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Tokenizer](create-custom-tokenizer.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set Search Index Advanced Settings](set-advanced-settings.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-custom-token-filter",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(no ordering/pipeline predicate exists in the registry)",
+    "finding": "The shingle token filter's Filler field ('enter a character or characters to replace tokens that are removed by another token filter') is direct textual evidence that Token Filters chain in a stated order within one analyzer - one filter's output depends on what an earlier filter in the same list removed. This corroborates, from a second page in this batch, the ordering gap already flagged in create-custom-analyzer.json's cross_component_finding: hasInternalComponent captures containment (an analyzer has these token filters) but the registry has no predicate for sequence/order among sibling components, so 'shingle's Filler depends on another token filter having already run' is recorded here as prose evidence only, with no relation asserted, because 'another token filter' is not a specific, nameable concept on this page - asserting a relation to search:token-filter generically would overclaim a self-referential ordering fact as an ordinary containment fact. Also unmodeled: 6 of the 10 named token filter types (edge_ngram, length, ngram, normalize_unicode, shingle, truncate_token) are purely parameterized by character-length ranges or (normalize_unicode only) a fixed 4-member form enum (nfc/nfd/nfkc/nfkd) with no further composition - I did not mint individual concept ids for these six, unlike the four wordlist-composed types, because they add an enumeration member but no new relation the registry can express (hasDefaultValue is the nearest fit for a Min/Max character-length parameter but none of these fields states a default value, only that Min/Max must be entered)."
+  },
+  "cross_component_finding": "The most consequential finding of this page for the batch: FOUR of its ten token filter types (dict_compound, elision, keyword_marker, stop_tokens) are themselves composed with a wordlist ('Use a wordlist to find and create tokens from compound words', 'select a wordlist to use to find elisions', 'select a wordlist to use to find keywords', 'uses a wordlist to remove specific tokens from input') - so search:wordlist is NOT a fourth direct component of search:custom-analyzer (contra a naive reading of create-custom-analyzer.md's own Next-Steps bullet list, which lists 'Create a Custom Wordlist' alongside the character-filter/tokenizer/token-filter links as if it were a sibling). It is a component ONE LEVEL DEEPER, nested inside specific token filter subtypes, mirroring exactly the recursive containment shape already found in create-custom-tokenizer.json's Exception Tokenizer (which nests another tokenizer). hasInternalComponent is now confirmed, from two independent pages in this batch, to model composition at more than one depth with no strain - but neither this record nor the tokenizer one can express the DEPTH itself (search:custom-analyzer -> search:token-filter -> search:wordlist is a two-hop chain that a flat triple store can only recover by walking hasInternalComponent transitively).",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged, and no Capella-side create-custom-token-filter equivalent has been read in this round, so no comparison is forced."
+}

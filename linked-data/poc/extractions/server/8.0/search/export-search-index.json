@@ -1,0 +1,113 @@
+{
+  "page_id": "server/8.0/search/export-search-index",
+  "source_version": "8.0",
+  "source_path": "server/current/search/export-search-index.md",
+  "concepts": [
+    {
+      "candidate_id": "search:export-search-index",
+      "label": "Get a Search Index Definition from the Web Console (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no prior id in the registry for this page under either tree; note the page's own title is 'Get a Search Index Definition', not 'Export', but the file/URL slug and its Next-Steps/import-page cross-links both use 'export', so the page-shaped id follows the slug for consistency with the paired search:import-search-index id."
+    },
+    {
+      "candidate_id": "search:search-index-definition-json",
+      "label": "Search index definition (JSON)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the shared artifact concept behind both this page and the paired import-search-index.md: a Search index's (or index alias's) full configuration expressed as one JSON document, portable by copy/paste between the Web Console, the REST API, and different clusters. Distinct from the existing extraction-layer search:search-index-params (the JSON PROPERTIES reference page/schema) - this concept is the ARTIFACT INSTANCE a user copies and moves, not the schema documentation page."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin role",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted id (aliases privilege:search-admin, privilege:fts-admin, role:search-admin)."
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Prerequisites/Tip target."
+    },
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Prerequisites/Next Steps target."
+    },
+    {
+      "candidate_id": "search:import-search-index",
+      "label": "Import a Search Index Definition with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already exists as a stub, minted by cloud/search/create-search-indexes.json (labeled there 'Import a Search Index Definition with the Capella UI', referencing cloud/search/import-search-index.md, not yet extracted). This page's Next Steps links to BOTH the server-tree import page and the Capella import page under the same wording pattern, and this batch's own server/current/search/import-search-index.md reuses this exact id (see that record) - so one id now covers the Capella stub reference and the full server-tree extraction, per the corpus's established cross-product-reuse convention for UI task pages of the same name."
+    },
+    {
+      "candidate_id": "search:index-definition-download",
+      "label": "Downloadable Search index definition file",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the explicitly negated capability: the page states directly that this does NOT exist as a feature, only copy-to-clipboard does. Minted so the doesNotSupport relation below has a real object rather than a literal string."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:export-search-index",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to export an index definition."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "doesNotSupport",
+      "object": "search:index-definition-download",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "You cannot export a Search index definition as a downloadable file. You can only copy the Search index definition from an existing index."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "operatesOnFormat",
+      "object": "search:search-index-definition-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - operatesOnFormat",
+      "evidence": "Use the Couchbase Server Web Console to copy and paste a JSON Search index definition for use in the REST API or another cluster."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "When you [create a Search index with the Server Web Console](create-search-index-ui.md), you can also click **copy to clipboard** on the **Index Definition Preview** to copy the Search index definition."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You can paste the copied definition into a new `.json` file to import it into a new cluster, or use the definition with the [Search REST API](create-search-index-rest-api.md)."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "seeAlso",
+      "object": "search:import-search-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To import your Search index definition into a new Couchbase Server cluster through the Web Console, see [Import a Search Index Definition with the Web Console](import-search-index.md)."
+    },
+    {
+      "subject": "search:export-search-index",
+      "predicate": "seeAlso",
+      "object": "search:import-search-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link (second, Capella-facing crosslink to the same task, cited separately because it names a different target page than the previous relation even though both resolve to the same reused id)",
+      "evidence": "To import your Search index into a Couchbase Capella cluster, see [Import a Search Index Definition with the Capella UI](../../../cloud/search/import-search-index.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (index-alias export)",
+    "finding": "The Prerequisites gate the Search Admin role on exporting 'an index definition' specifically. This page never states whether copying an INDEX ALIAS's definition (as opposed to a plain index's) works the same way in the Web Console, or requires the same role - the Procedure's 'Show index definition JSON' / 'Copy to Clipboard' steps are described only in terms of a Search index, with no alias-specific mention, even though the paired import-search-index.md explicitly handles both an index AND an alias definition. If exporting an alias's definition works identically, the page never says so; if it does not work at all, that is an undocumented gap given that import supports it."
+  },
+  "cross_component_finding": "This page and the paired import-search-index.md (both in this batch) form a matched export/import pair sharing one real mechanism - the portable JSON Search index definition, minted here as search:search-index-definition-json - but the two pages are asymmetric in scope: export's Procedure and role requirement are written only in terms of a plain Search index, while import's Procedure explicitly branches into two menu actions, **Add Index** and **+ Add Alias**, for the two artifact kinds. So a reader can IMPORT an alias definition through this Web Console flow but the corpus (as documented on this export page) never confirms they can EXPORT one the same way. The 'JSON payload' language used generically elsewhere in this namespace (e.g. cloud/search/create-search-indexes.json's 'All Search indexes are built from a JSON payload') is the same underlying artifact this page calls a 'Search index definition' and calls it copyable 'for use in the REST API or another cluster' - three different pages, three slightly different names (JSON payload / Search index definition / JSON Search index definition) for what is functionally one thing.",
+  "cross_product_finding": "An unread Capella-tree twin exists on disk at cloud/search/export-search-index.md but was not dispatched with a measured similarity score for this round and is not compared here, per this round's first-contact framing (forcing a comparison without real content read on both sides is explicitly out of scope). Noted only as a fact for a future paired round: cloud/search/create-search-indexes.json (already extracted) already references a Capella import-search-index.md via the search:import-search-index stub, but no equivalent Capella reference to an export page was found in any extraction read so far."
+}

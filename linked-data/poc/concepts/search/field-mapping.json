@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/field-mapping",
+  "label": "Field mapping / child field (Search)",
+  "type": "the leaf-level mapping for a single field within a type/object mapping, setting its data type and per-type options (including appliesToIndexType index-type:search-vector for vector fields, and search:synonym-source for text fields).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "For a vector child field, enter the total number of elements in the vector embedding array. From Couchbase Server version 7.6.2 and later, Vector Search indexes can support arrays of scalars representing a vector."
+  ],
+  "appliesToIndexType": "index-type:search-vector",
+  "documented_at": "server/8.0/search/child-field-options-reference",
+  "relates_to_competency_question": "What per-field options does a Search mapping expose, and do they differ for a vector field versus a text field?"
+}

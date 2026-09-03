@@ -1,0 +1,161 @@
+{
+  "page_id": "server/8.0/search/synonyms/synonyms-search-quick",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/synonyms-search-quick.md",
+  "concepts": [
+    {
+      "candidate_id": "search:synonyms-search-quick",
+      "label": "Add Synonyms with the Quick Editor",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing id, ALREADY MINTED by a concurrent sibling batch this same round (server/8.0/search/create-quick-index.json), which used it as a page-shaped stub distinct from search:synonyms-search. This record supplies its first full extraction. NOTE ON THE TENSION THIS CREATES: this page's body text is near-byte-identical to synonyms-search.md (same intro, same Defining Synonyms section, same Running a Search for Synonyms section including the identical scoring bullets and SQL++ example, same Synonym Search Processing section) - differing only in the title, the removed opening blockquote sentence, and the two link targets (create-synonym-collection-docs-quick.md, add-synonym-source-quick.md vs their non-quick equivalents). By the same 'reuse one concept, capture the difference as a relation' logic this batch applied to add-synonym-source and create-synonym-collection-docs, this page would have shared search:synonyms-search rather than getting its own id - but the id already existed on disk before this record was written, so it is reused here rather than contested. See cross_component_finding."
+    },
+    {
+      "candidate_id": "search:thesaurus",
+      "label": "Thesaurus (Search index synonym lookup structure)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in synonyms-search.json, this same batch; this page restates every substantive thesaurus fact from that page verbatim."
+    },
+    {
+      "candidate_id": "search:synonym-collection",
+      "label": "Synonym collection",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in synonyms-search.json, this same batch."
+    },
+    {
+      "candidate_id": "search:recursive-synonym-expansion",
+      "label": "Recursive synonym expansion",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in synonyms-search.json, this same batch."
+    },
+    {
+      "candidate_id": "search:synonym-score-penalty",
+      "label": "Synonym match score penalty",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in synonyms-search.json, this same batch; identical formula restated verbatim on this page."
+    },
+    {
+      "candidate_id": "search:run-searches",
+      "label": "Run a Search With a Search Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request Parameters (REST API reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "n1ql:searchfun",
+      "label": "SQL++ Search Functions",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "search:create-synonym-collection-docs",
+      "label": "Create a Synonym Collection and Documents (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in create-synonym-collection-docs.json, this same batch; this page's See Also link points to the -quick.md file, which shares this same concept id per create-synonym-collection-docs-quick.json."
+    },
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in add-synonym-source.json, this same batch; this page's See Also link points to the -quick.md file, which shares this same concept id per add-synonym-source-quick.json."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:thesaurus",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "As of Couchbase Server version 8.0 and later, the Search Service supports a user-defined thesaurus on each Search index."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "hasInternalComponent",
+      "object": "search:synonym-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "A thesaurus is divided into synonym collections that contain synonym documents."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "doesNotSupport",
+      "object": "search:recursive-synonym-expansion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term's synonyms."
+    },
+    {
+      "subject": "search:synonym-score-penalty",
+      "predicate": "hasDefaultValue",
+      "object": "half the exact-match score (x/2)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue; object is a literal, not a concept id",
+      "evidence": "Synonyms for the exact term have a score of \\\\$x/2\\\\$"
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "doesNotSupport",
+      "object": "vector-search:vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "You cannot use synonyms in a [Vector Search](../../vector-search/vector-search.md) query. Any synonyms in a Search index do not affect or contribute to the results of a Vector Search query."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:searchfun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct",
+      "evidence": "You can return results from a synonym search when running a Search query through SQL++."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "seeAlso",
+      "object": "search:run-searches",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the process for scoring results with the Search Service, see [Scoring for Search Queries](../run-searches.md#scoring)."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For [fuzzy queries](../search-request-params.md#fuzziness), [prefix queries](../search-request-params.md#prefix), and [wildcard queries](../search-request-params.md#wildcard), the Search Service:"
+    },
+    {
+      "subject": "search:synonyms-search-quick",
+      "predicate": "seeAlso",
+      "object": "search:create-synonym-collection-docs",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Create a Synonym Collection and Documents](create-synonym-collection-docs-quick.md)."
+    },
+    {
+      "subject": "search:synonyms-search-quick",
+      "predicate": "seeAlso",
+      "object": "search:add-synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "* [Add a Synonym Source Using the Quick Editor](add-synonym-source-quick.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresUiMode",
+    "finding": "Despite its title ('Add Synonyms with the Quick Editor') and its own '-quick' id, this page's BODY never once mentions the Quick Editor, Quick Mode, or any Quick-Editor-specific UI step - every sentence about the thesaurus, recursion boundary, scoring, Vector Search exclusion, and SQL++ integration is byte-identical to synonyms-search.md. The only Quick-Editor-specific content anywhere in this pair is the two outbound link targets. This is the same 'difference is entirely in the links, not the facts' shape already flagged on create-synonym-collection-docs-quick.json, and it is direct evidence AGAINST this page needing a separate id from search:synonyms-search - the split exists in the registry, but not in the documentation's own content."
+  },
+  "cross_component_finding": "REGISTRY FORK TENSION (full writeup; see also add-synonym-source-quick.json for the shorter cross-reference). Of this batch's three -quick/non-quick pairs, the two most textually different (add-synonym-source vs -quick: different UI steps, Analyzer vs Language field) were kept as ONE shared concept per this round's dispatch instructions. This pair - the two most textually IDENTICAL of the three, tied with create-synonym-collection-docs for near-duplication - ended up with TWO ids instead, purely because a concurrent sibling batch (server/8.0/search/create-quick-index.json) reached and minted search:synonyms-search-quick before this batch read either page. The inconsistency is not a judgement call this record is making; it is a fact about extraction order that reconciliation should see and resolve, most likely by folding search:synonyms-search-quick into search:synonyms-search (an aliasesTo-style merge) given how much stronger the identity evidence is here than for the pair that was kept apart.",
+  "cross_product_finding": "No Capella-tree file named synonyms-search-quick.md exists anywhere in this snapshot (cloud/search/synonyms/ has no -quick files at all, confirmed by directory listing) - Capella's Search index editor has no Quick Editor equivalent, so this page is structurally server-only, not merely unread."
+}

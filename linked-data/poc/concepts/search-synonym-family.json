@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search-synonym-family",
+  "label": "Search synonyms: thesaurus > synonym collection > synonym document > synonym source",
+  "type": "scheme, the full containment chain, never stated together on one source page - assembled here from separate statements across the synonyms/ subtree. A thesaurus (index-level, Server 8.0+) holds synonym collections, which hold synonym documents (unidirectional or bidirectional), which are referenced as a synonym source from a text field's mapping.",
+  "promoted": true,
+  "members": [
+    "search:thesaurus",
+    "search:synonym-collection",
+    "search:unidirectional-synonym-document",
+    "search:bidirectional-synonym-document",
+    "search:synonym-source"
+  ],
+  "note": "search:synonyms-search (folding search:synonyms-search-quick, a same-round self-fork - see below) is the task concept for setting this up.",
+  "relates_to_competency_question": "What is the full object hierarchy behind a Search synonym, from the thesaurus down to the field-level reference?"
+}

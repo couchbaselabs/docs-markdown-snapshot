@@ -1,0 +1,185 @@
+{
+  "page_id": "server/8.0/search/create-custom-date-time-parser",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-custom-date-time-parser.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-custom-date-time-parser",
+      "label": "Create a Custom Date/Time Parser (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (3 prior mentions, including as a seeAlso target from other pages in this same round's search/ tree)"
+    },
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id already minted this same round by a concurrent batch (date-time-parser-layout-styles.json, default-date-time-parsers-reference.json, search-facets.json), with the relation search:full-text-index -hasInternalComponent-> search:date-time-parser already asserted there. Reused as-is rather than minting configurableVia, to avoid contradicting sibling-batch work with a different predicate for the same triple. NOTE: the existing label calls this an 'analyzer component', but this page's own Next Steps text never states it is used WITH a custom analyzer (contrast create-custom-character-filter.json/create-custom-tokenizer.json/create-custom-token-filter.json in this batch, each of which has its own explicit 'you can use it with a custom analyzer' sentence) - see cross_component_finding."
+    },
+    {
+      "candidate_id": "search:date-time-parser-layout-style",
+      "label": "Date/Time Parser Layout Style (enum)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted this same round by a concurrent batch (date-time-parser-layout-styles.json); this page corroborates the same usesEnum relation with its own evidence"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; corroborates the same relation already asserted in server/8.0/search/default-date-time-parsers-reference.json (a concurrent batch this round), with this page's own evidence",
+      "evidence": "After you create a custom date/time parser, you can [set it as the default date/time parser](set-advanced-settings.md#date-time) for your Search index."
+    },
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "usesEnum",
+      "object": "search:date-time-parser-layout-style",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate usesEnum; corroborates the same relation already asserted in server/8.0/search/date-time-parser-layout-styles.json (a concurrent batch this round), with this page's own evidence",
+      "evidence": "In the **Layout Style** list, choose the specific layout style you want to use for your date/time parser."
+    },
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "hasDefaultValue",
+      "object": "RFC-3339 (ISO-8601)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue ('object is frequently a LITERAL ... which the extraction schema has no way to mark'); the page states the built-in assumed date/time format, departure from which is exactly what makes a custom parser necessary",
+      "evidence": "If you store date data in a format other than RFC-3339 (ISO-8601), then you need to create a date/time parser."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:date-time-parser-layout-styles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Date/Time Parser Layout Styles](date-time-parser-layout-styles.md)."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "After you create a custom date/time parser, you can [set it as the default date/time parser](set-advanced-settings.md#date-time) for your Search index."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Type Mapping](create-type-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Field](create-child-field.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Mapping](create-child-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Analyzer](create-custom-analyzer.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Character Filter](create-custom-character-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Tokenizer](create-custom-tokenizer.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Token Filter](create-custom-token-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Wordlist](create-custom-wordlist.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-custom-date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(no cardinality predicate; see also create-custom-analyzer.json/create-custom-tokenizer.json in this batch)",
+    "finding": "Step 10 ('(Optional) To add an additional layout, repeat the previous steps') is the same repeatable one-to-many pattern already flagged as unmodelable in this batch's other pages (exception tokenizer's exception patterns) - a single date/time parser can have multiple layout entries, and the registry has no predicate for that cardinality."
+  },
+  "cross_component_finding": "This page is the batch's clearest NEGATIVE case for analyzer composition: unlike create-custom-character-filter.json, create-custom-tokenizer.json and create-custom-token-filter.json - each of which states in its own Next Steps sentence that the component 'can [be used] with a custom analyzer' - this page's Next Steps instead says the custom date/time parser can be 'set ... as the default date/time parser for your Search index' (an index-level default, via set-advanced-settings.md#date-time), and 'Create a Custom Analyzer' appears only as an ordinary sibling bullet in the generic 'continue customizing' list, not as a stated usage relation. This matches the concurrent batch's own modeling choice (search:full-text-index -hasInternalComponent-> search:date-time-parser, not search:custom-analyzer -hasInternalComponent-> search:date-time-parser) and confirms the dispatch brief's caveat was correctly narrow: the tokenizer/character-filter/token-filter composition is specific to the analyzer, and date/time parsers (like the default analyzer setting itself) are a separate, index-level customization living alongside analyzers under 'Customize Index', not inside one.",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged, and no Capella-side create-custom-date-time-parser equivalent has been read in this round, so no comparison is forced."
+}

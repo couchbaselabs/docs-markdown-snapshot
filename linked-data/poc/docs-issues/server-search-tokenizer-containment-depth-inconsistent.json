@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-tokenizer-containment-depth-inconsistent",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Two pages in the same batch model tokenizer containment at different depths. create-custom-analyzer.md and default-analyzers-reference.md consistently state a tokenizer is a component of an ANALYZER (analyzer -> tokenizer/character-filter/token-filter), which is itself scoped to a type mapping, not asserted as a direct property of the index. default-tokenizers-reference.md instead states 'Tokenizers control how the Search Service splits input strings into individual tokens' and models this as the Search index containing the tokenizer directly, skipping the analyzer and type-mapping levels every other page in the same module respects. The quoted sentence does not actually assert direct containment - it is a looser, coarser claim than the rest of the module's careful chain, and the two depths were never reconciled by any page.",
+  "about": [
+    "server/8.0/search/default-tokenizers-reference",
+    "server/8.0/search/create-custom-analyzer",
+    "server/8.0/search/default-analyzers-reference"
+  ],
+  "foundDuring": "round 22",
+  "status": "open"
+}

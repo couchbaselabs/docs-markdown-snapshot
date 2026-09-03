@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/thesaurus",
+  "label": "Thesaurus (Search)",
+  "type": "a per-index, user-defined synonym container, available since Server 8.0. Divided into synonym collections. Synonym searches do NOT run recursively (a synonym of a synonym is not returned).",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "As of Couchbase Server version 8.0 and later, the Search Service supports a user-defined thesaurus on each Search index.",
+    "Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term's synonyms."
+  ],
+  "availableSince": "version:server-8-0",
+  "hasInternalComponent": "search:synonym-collection",
+  "doesNotSupport": "recursive synonym expansion",
+  "documented_at": "server/8.0/search/synonyms/synonyms-search",
+  "relates_to_competency_question": "Can Couchbase's Search index expand a query term to its synonyms, and does that expansion chain (synonyms of synonyms)?"
+}

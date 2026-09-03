@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/search-index-definition-json",
+  "label": "Search index definition (JSON)",
+  "type": "the portable JSON artifact both export-search-index.md and import-search-index.md operate on - copy/paste between the Web Console, the REST API, or another cluster. Import explicitly supports index ALIASES as well as indexes; export's own wording does not state whether alias definitions are exportable the same way.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Use the Couchbase Server Web Console to copy and paste a JSON Search index definition for use in the REST API or another cluster.",
+    "In the Import Index window, paste the JSON definition of your Search index or index alias."
+  ],
+  "documented_at": "server/8.0/search/export-search-index",
+  "relates_to_competency_question": "Can a Search index's full definition be moved between clusters or into version control as a portable artifact?"
+}

@@ -5453,7 +5453,158 @@ correctly kept `analytics:workbench` and `capella:analytics-workbench` apart abo
   because it is tempting to over-explain a stall by revising the brief; the correct
   response here required no content diagnosis at all.
 
-## Cumulative verdict (all twenty-one rounds)
+## Round 22 — `search/`, the largest remaining unread namespace, and a stub minted ahead of its own page
+
+**Scope.** 54 pages, the whole `server/8.0/search/` module - the Search (Full Text
+Search) service's index-mapping, analyzer/tokenizer/filter, query, and management
+reference. Never extracted before this round; `fts:`/`search:` had exactly **two**
+promoted concepts between them going in, against ~60 unpromoted extraction-layer
+members left over from partial earlier rounds - the largest genuinely unread
+namespace this project had identified. Eight pages have a filename-identical Capella
+twin already extracted; similarity was **measured on seven of the eight before
+dispatch** (0.30-0.96, a real spread like round 17's indexes module, not round 18's
+near-total duplication) and the eighth (`search-index-params.md`) timed out on the
+diff and was dispatched unmeasured rather than guessed at. 611 relations, 0 evidence
+problems, 15 gate denials, all resolved without thinning (four with a single-relation
+drop, consistent with a correctly-dropped unquotable relation rather than the
+fabrication-to-omission pattern the reconcile skill warns about).
+
+**The unmeasured pair turned out to be the sharpest divergence in the round.**
+`search-index-params.md` is 1,566 lines; `difflib` gave up before dispatch. Reading it
+in full: the majority of its content - the entire Analyzers/Char_filters/Tokenizers/
+Token_filters/Token_maps/Date_time_parsers/Synonym_sources breakdown, the full
+mapping-object JSON schema including vector-field properties, and the Store/
+ScorchPersisterOptions/ScorchMergePlanOptions performance-tuning objects - has no
+counterpart anywhere in the Capella record. **The diff timeout was itself a signal,
+not an obstacle**: a page too large for a quick similarity check is exactly the kind
+of page likely to hold content its shorter twin never grew to match, and treating
+"unmeasured" as "read anyway, report what's actually there" rather than "skip" is what
+surfaced this.
+
+### A third variant of the same-round self-fork species, and the correct response to it
+
+Rounds 19-21 found self-forks where two batches independently mint two *different*
+names for one thing. This round's dispatch briefing pre-empted that for two of the
+three quick/non-quick synonym-page pairs by instructing one concept per pair - and the
+instruction worked for both. On the third pair, a **different** batch had already
+minted `search:synonyms-search-quick` as a bare `seeAlso` stub, earlier in the same
+dispatch, pointing at a page nobody had read yet - "target of a structural link into
+the not-yet-read search/synonyms/ subtree." When the batch assigned to actually read
+that page arrived, it found the split already in place and did the right thing: it did
+**not** silently reuse the stub as though it settled the question, and did **not**
+unilaterally rewrite a sibling batch's output - it flagged the tension for
+reconciliation, exactly as this project's standing convention asks. Folded here, 10
+files to 4, comfortably promotable either way. **A stub minted for an unread page is a
+promise about what that page will say, and the promise is not always kept** - the fix
+is a coordinator decision after the fact, not a rule an extraction agent can apply
+mid-batch, because the agent minting the stub cannot know what the real page will
+assert and the agent reading the real page cannot see the stub's sibling batch's
+private reasoning.
+
+### A containment-depth disagreement, found the same way round 19-21 have kept finding vocabulary splits
+
+Every other page in this batch that discusses tokenizers routes the containment
+through an analyzer: `search:custom-analyzer hasInternalComponent search:tokenizer`,
+corroborated independently by `create-custom-analyzer.md` and
+`default-analyzers-reference.md`. `default-tokenizers-reference.md` instead states
+`search:full-text-index hasInternalComponent search:tokenizer` directly - skipping the
+analyzer and type-mapping levels every sibling page respects - on evidence that does
+not actually assert direct containment ("Tokenizers control how the Search Service
+splits input strings into individual tokens"). Not a contradiction about the product;
+a difference in how carefully two pages' claims were modeled, found because the
+extraction schema forces every page to state its own understanding fully and
+reconciliation is where they are finally read side by side - the same mechanism
+rounds 19-21 used for three different findings in three different modules. Filed as
+`docs-issues/server-search-tokenizer-containment-depth-inconsistent` rather than
+silently corrected in either direction.
+
+### Promotions
+
+**37 concepts, 0 new predicates, 2 folds.** The largest single-round concept count
+since round 10 (70, the largest ever) and round 12 (55/66 counting re-filings) -
+proportionate to reading a 54-page module with only two prior promotions to build on.
+Organised into three schemes rather than 37 flat records:
+
+- **Analyzer composition** (`concepts/search-analyzer-components.json`, 8 members):
+  `search:analyzers` (general) and `search:custom-analyzer` (`isSubtypeOf`) both
+  independently attest `hasInternalComponent` to `search:tokenizer` (exactly one),
+  `search:character-filter` and `search:token-filter` (zero-or-more) - corroborated by
+  two separately-authored pages, not a fork. `search:wordlist` sits one level deeper,
+  consumed by specific token-filter kinds. `search:date-time-parser` is deliberately
+  **excluded** from this scheme despite living in the same reference-page family: no
+  page states it is used *with* an analyzer, unlike the character-filter/tokenizer/
+  token-filter pages, each of which says so explicitly - it is index-scoped, set as
+  the index's default, not an analyzer component. Two real modeling gaps recorded but
+  not instrumented, given each is a single instance: composition can *recurse*
+  (an Exception Tokenizer contains another tokenizer; several token-filter kinds
+  contain a wordlist) with no transitive-closure predicate, and a `shingle` token
+  filter depends on another filter having already run, with no ordering predicate.
+- **Synonym family** (`concepts/search-synonym-family.json`, 6 members): the full
+  containment chain `search:thesaurus > search:synonym-collection >
+  {unidirectional, bidirectional}-synonym-document > search:synonym-source`, never
+  stated together on one page - assembled here from separate statements across the
+  `synonyms/` subtree. `search:thesaurus doesNotSupport
+  search:recursive-synonym-expansion` - a synonym search does not chain (a synonym of
+  a synonym is not returned), and a synonym match's score is fixed at half the
+  exact-match score. `search:synonyms-search` folds the self-fork above.
+- **Mapping types** (`concepts/search-mapping-types.json`, 5 members):
+  `search:type-mapping` / `search:object-mapping` / `search:collection-mapping` /
+  `search:xattrs-mapping` all `sharesOptionSetWith` static/dynamic
+  (`search:dynamic-mapping`); XATTRs mapping (7.6.2+) was split onto its own Server
+  8.0 page while Capella's twin (similarity 0.30) still bundles the equivalent content
+  inline, gated by an Advanced-Mode UI toggle instead of by version - recorded as a
+  docs-issue, not resolved.
+- **The rest, individually**: `search:scoring-model`/`scoring-algorithm-enum` (an 8.0+
+  choice between bm25 and tf-idf) - independently corroborated on the Capella side by
+  a near-verbatim match this round found without the pairing being on the pre-flagged
+  list; `search:doc-filter`, `search:doc-config-object`/`doc-config-mode-enum`;
+  `search:index-name-uniqueness` (7.6+, scoped to bucket-and-scope);
+  `search:coordinator-node`/`scatter-gather` (the query execution model, over gRPC);
+  `search:quick-index-language`; `search:field-mapping`; the deprecated
+  `search:max-partitions-per-pindex-param` → `search:index-partitions-param` pair; and
+  `search:search-index-definition-json`, the portable export/import artifact.
+
+**Deliberately not promoted, and why:** a large majority of `search:`'s ~60
+pre-existing extraction-layer members and most of this round's own remaining mints -
+they are **page-shaped ids** (`search:create-child-field`, `search:create-quick-index`,
+`search:create-search-index-ui`, and similarly for most of the `create-*`/`set-*`
+task pages), a known corpus defect this round was briefed to recognise and not
+propagate but explicitly not asked to fix - that remains a namespace-coherence-pass
+job, per the wave-4 queue, now with a much larger and better-understood member set to
+work from.
+
+### What this round taught about the method
+
+- **An unmeasured pair is not a pair to skip - "unmeasured" should mean "read it and
+  report," not "assume."** The one pairing whose similarity check timed out before
+  dispatch turned out to hold the round's largest content gap. A pre-dispatch
+  similarity check is a triage tool, not a gate; a diff too expensive to run quickly
+  is itself weak evidence the two sides have diverged enough to be worth reading
+  regardless of the number it would have produced.
+- **A same-round self-fork can be pre-empted by instruction for the cases the
+  coordinator names, and can still occur for the case a sibling batch's *stub*
+  quietly created before the real page was ever read.** This is a third variant of
+  the fork species rounds 19-21 have been cataloguing: not a briefing gap (round 21),
+  not two batches independently naming one mechanism (rounds 19-20), but a forward
+  reference minted honestly, before the fact it was guessing about had been checked,
+  turning out to guess wrong once the fact arrived. The correct response - flag,
+  don't silently resolve either way - is the same response the reconcile skill
+  already prescribes for genuine namespace collisions, and it worked here without
+  needing a new rule.
+- **A `selftest`'s real-corpus anchor can go stale from the very success it is meant
+  to guard.** `recurrence.py --selftest`'s bug #10 regression check was pinned to
+  `search:customize-index` having "24 seeAlso relations and no others" - true when
+  the check was written in round 14, when that page had never been extracted. Round
+  22 extracted it, gave it real content, and correctly moved it into the promotion
+  metric's `slots` table - which is exactly the fix bug #10 exists to guarantee,
+  applied to the one id the test had assumed would stay seeAlso-only forever. Not a
+  regression: the anchor's assumption expired. Re-anchored to a currently-true
+  instance (`monitoring:activity-log`), with the failure mode named in the code
+  comment so the next round that legitimately extracts *that* page's context knows
+  what happened and why, rather than treating a red selftest as evidence something
+  broke.
+
+## Cumulative verdict (all twenty-two rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -5722,6 +5873,29 @@ pages returned at least three distinguishable claim shapes — a coarse family
 relationship, a specific generalization, a specific divergence — and folding them into
 one relation would have discarded exactly the distinction the round was run to find.
 
+Round 22 took on `search/`, the largest genuinely unread namespace left in the
+corpus — two promoted concepts against ~60 unpromoted members going in — and found a
+third variant of the fork species rounds 19–21 had been cataloguing. Not a briefing
+gap and not two batches independently naming one mechanism: a batch minted a `seeAlso`
+stub for an unread page's likely subject, honestly labelled as a guess, and the batch
+that later read the real page found the guess already sitting there rather than
+matching what it would itself have chosen. It did the right thing anyway — flagged
+the tension rather than silently reusing or overriding it — which confirms the
+reconcile skill's standing rule (flag a namespace collision, don't resolve it
+mid-batch) generalises to a collision an agent created for itself in good faith,
+not just one it stumbled into. The round's other finding cuts against a shortcut this
+project had been taking without naming it: a pre-dispatch similarity check that times
+out on a large file was being treated as a check that simply didn't run. The one pair
+whose diff timed out turned out to hold the round's largest content gap — the size
+that broke the diff was itself evidence the two sides had grown apart, and dispatching
+it unmeasured rather than skipping it is what let that surface. And a real selftest
+failure, this round's own, turned out not to be a regression: `recurrence.py`'s bug
+#10 regression check was pinned to a real page staying `seeAlso`-only forever, and
+this round finally extracted that page and gave it real content — exactly the outcome
+the check exists to protect, arriving at the one id the check had assumed never
+would. Re-anchored, with the reason on record, rather than treated as a red light to
+chase down as if something had broken.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -5772,7 +5946,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Thirty-three limits of the method are now visible across multiple rounds, not just
+Thirty-six limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -6428,3 +6602,28 @@ once, so worth treating as durable rather than one-off:
   round happened to need it too. A correctly-declined-for-lack-of-evidence relation and
   a genuinely absent one look identical in the output, so there is no way to notice this
   failure except by the fact resurfacing elsewhere - which is luck, not a control.
+
+- **A pre-dispatch check that times out is evidence, not a blank.** A diff too
+  expensive to finish quickly is a diff between two pages large or divergent enough
+  to resist a quick comparison - itself a weak signal the pairing is worth reading
+  carefully, not a reason to guess a similarity score or skip the pairing. Round 22's
+  one unmeasured pair held the round's largest content gap; treating "unmeasured" as
+  "dispatch it anyway and report what's actually there" is what surfaced that, and
+  treating a timeout as a null result would have hidden it.
+- **A forward-reference stub is a promise about a page nobody has read yet, and the
+  promise is not always kept.** Two batches independently naming one mechanism (fork
+  species one and two) and an incomplete briefing excerpt (species three) both
+  involve two things existing before anyone noticed they should be one. This is a
+  fourth shape: one thing minted honestly as a guess about content that did not yet
+  exist in the corpus, which the guess then turned out to disagree with once read.
+  The fix is the same as for the others - flag, don't resolve unilaterally - but the
+  cause is different enough to name separately: a stub is a bet on the future, not a
+  duplicate of something already known.
+- **A selftest anchored to a real corpus fact will eventually be un-anchored by the
+  corpus's own growth, and that is not a regression.** `recurrence.py`'s bug #10
+  check assumed one specific page would stay seeAlso-only forever; the corpus grew
+  past that assumption by doing exactly what the project is for - reading the page.
+  A red selftest after legitimate new content lands should be read as "check the
+  anchor" before "check the code," and the fix is a new anchor with the old one's
+  story kept in a comment, not a rewritten assertion with no memory of why the first
+  one existed.

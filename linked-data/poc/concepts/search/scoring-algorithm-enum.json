@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/scoring-algorithm-enum",
+  "label": "Scoring algorithm (bm25 | tf-idf)",
+  "type": "the two-member value set of search:scoring-model - bm25 (new in 8.0) or tf-idf (the prior default).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "As of Couchbase Server version 8.0, you can choose to use the bm25 algorithm instead of tf-idf for your Search index."
+  ],
+  "availableSince": "version:server-8-0",
+  "documented_at": "server/8.0/search/set-advanced-settings",
+  "relates_to_competency_question": "What are the two relevance-scoring algorithms a Search index can use, and which one is new?"
+}

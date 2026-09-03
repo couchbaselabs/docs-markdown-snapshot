@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/character-filter",
+  "label": "Character filter (Search)",
+  "type": "an analyzer component removing/transforming characters from search input BEFORE tokenizing - zero or more per analyzer.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "To remove specific characters from search input before tokenizing, in the Character Filters list, do one of the following:",
+    "After you create a custom character filter, you can use it with a custom analyzer."
+  ],
+  "documented_at": "server/8.0/search/default-character-filters-reference",
+  "relates_to_competency_question": "Can unwanted characters be stripped from input before it's split into tokens, rather than after?"
+}

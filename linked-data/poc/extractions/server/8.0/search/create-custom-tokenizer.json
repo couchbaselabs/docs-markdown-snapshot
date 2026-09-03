@@ -1,0 +1,191 @@
+{
+  "page_id": "server/8.0/search/create-custom-tokenizer",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-custom-tokenizer.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-custom-tokenizer",
+      "label": "Create a Custom Tokenizer (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (seeAlso target from server/7.2/search/customize-index.json and create-custom-analyzer.json in this same batch)"
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json; this page is the concept's own dedicated procedure page"
+    },
+    {
+      "candidate_id": "search:regexp-tokenizer",
+      "label": "Regular Expression Tokenizer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of the page's own stated '2 types of custom tokenizers' (checked search:regexp-tokenizer, nothing matched)"
+    },
+    {
+      "candidate_id": "search:exception-tokenizer",
+      "label": "Exception Tokenizer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the second of the page's own stated '2 types of custom tokenizers' (checked search:exception-tokenizer, nothing matched); notable for recursively wrapping another tokenizer (see cross_component_finding)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:regexp-tokenizer",
+      "predicate": "isSubtypeOf",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf ('the subject is a specialisation of the object, as stated by the source')",
+      "evidence": "You can create 2 types of custom tokenizers:"
+    },
+    {
+      "subject": "search:exception-tokenizer",
+      "predicate": "isSubtypeOf",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "You can create 2 types of custom tokenizers:"
+    },
+    {
+      "subject": "search:exception-tokenizer",
+      "predicate": "hasInternalComponent",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; a finer-grained, recursive use of the same containment predicate used for the outer analyzer-to-component relation - an exception tokenizer contains another tokenizer as its own internal sub-component",
+      "evidence": "In the **Tokenizer for Remaining Input** field, select a tokenizer to apply to input after removing any content that matches the regular expression."
+    },
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; corroborates the same relation asserted on create-custom-analyzer.json, with this page's own evidence",
+      "evidence": "After you create a custom tokenizer, you can use it with [a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:default-tokenizers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about the available tokenizers, see [Default Tokenizers](default-tokenizers-reference.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "After you create a custom tokenizer, you can use it with [a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Type Mapping](create-type-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Field](create-child-field.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Mapping](create-child-mapping.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Character Filter](create-custom-character-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Token Filter](create-custom-token-filter.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Wordlist](create-custom-wordlist.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set Search Index Advanced Settings](set-advanced-settings.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-custom-tokenizer",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(no cardinality/quantity predicate exists for 'at least one exception pattern, repeatable')",
+    "finding": "Step 11 ('(Optional) To add additional regular expressions to the list of exception patterns, repeat the previous steps') describes a repeatable one-to-many sub-list (exception patterns) nested inside a single exception tokenizer, the same cardinality gap already flagged in create-custom-analyzer.json's notable_absence (there for character/token filters against the analyzer). The registry still has no predicate or datatype property for 'zero/one-or-more of X per Y', so this record captures containment via hasInternalComponent-equivalent phrasing in prose only, not as a separate relation."
+  },
+  "cross_component_finding": "This page is the clearest evidence in the batch that hasInternalComponent composition is RECURSIVE, not just a flat analyzer-to-three-component-types shape: an Exception Tokenizer itself contains another tokenizer ('Tokenizer for Remaining Input') as an internal sub-component, one level deeper than the analyzer-to-tokenizer containment stated on create-custom-analyzer.json. The same promoted predicate models both levels correctly with no strain, which is a positive finding about hasInternalComponent's generality, but it also means a naive query for 'components of a custom analyzer' would need to walk hasInternalComponent transitively to reach the exception tokenizer's wrapped tokenizer - the registry has no transitive/closure annotation on this predicate. Also notable: the page states a closed, numbered enumeration ('2 types of custom tokenizers') exactly the shape isSubtypeOf was minted for in an earlier round (Composite Vector Index / GSI), reused here for regexp and exception tokenizers.",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged, and no Capella-side create-custom-tokenizer equivalent has been read in this round, so no comparison is forced."
+}

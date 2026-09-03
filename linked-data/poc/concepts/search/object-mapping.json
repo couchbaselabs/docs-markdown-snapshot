@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/object-mapping",
+  "label": "Object mapping / child mapping (Search)",
+  "type": "a mapping nested inside a type mapping for a field that contains a JSON object. Static or dynamic like search:collection-mapping; can itself contain child field mappings.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Like Collection Mappings, object mappings can be static or dynamic. You can add Child Field Mappings to make an object mapping a static mapping.",
+    "Create a child mapping with the Couchbase Server Web Console to add or remove a field that contains a JSON object from a Search index."
+  ],
+  "sharesOptionSetWith": "search:collection-mapping",
+  "documented_at": "server/8.0/search/create-child-mapping",
+  "relates_to_competency_question": "Can a Search index mapping reach inside a nested JSON object field, or only top-level fields?"
+}

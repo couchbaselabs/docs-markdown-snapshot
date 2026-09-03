@@ -1,0 +1,123 @@
+{
+  "page_id": "server/8.0/search/geo-search-rest-api",
+  "source_version": "8.0",
+  "source_path": "server/current/search/geo-search-rest-api.md",
+  "concepts": [
+    {
+      "candidate_id": "search:geo-search-rest-api",
+      "label": "Run a Geospatial Search Query with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub minted from run-searches.json; this is the first extraction of the page itself"
+    },
+    {
+      "candidate_id": "search:geo-search",
+      "label": "Run a Geospatial Search Query (task, shared by the REST and UI surfaces)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - task-level concept for the REST/UI pair (geo-search-rest-api.md / geo-search-ui.md), same shape as search:simple-search in this batch. NOT the same as fts:fts-supported-queries-geopoint-spatial (an earlier-round extraction-layer id for the geopoint/geoshape QUERY TYPE itself, e.g. the distance/radius query clause) - that concept is the query-clause shape; this one is the end-to-end task of building a geo-capable index and running a query against it. Kept apart; reconciliation may want to relate them (query type is used within this task) but no page states them as the same thing."
+    },
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (create-search-index-rest-api.json)"
+    },
+    {
+      "candidate_id": "search:field-data-types-reference",
+      "label": "Search Index Field Data Types Reference (geopoint/geoshape etc.)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (field-data-types-reference.md, not yet extracted itself)"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (customize-index.md has a measured Capella twin per this round's context, but that twin is a different page from this one)"
+    },
+    {
+      "candidate_id": "search:autocomplete",
+      "label": "Autocomplete (type-ahead) for the Search Service",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see full definition and evidence in search-query-auto-complete.json (this batch); reused here purely as the target of this page's own Next Steps link"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the Search index."
+    },
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - narrower prerequisite for the query-only path",
+      "evidence": "If you only want to run a search, you only need the **Search Reader** role."
+    },
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md) with the following JSON payload, replacing all placeholder values that start with a `$`:"
+    },
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:field-data-types-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "For more information about the supported data types, see [geopoint](field-data-types-reference.md#geopoint) or [geoshape](field-data-types-reference.md#geoshape)."
+    },
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You can [customize your Search index](customize-index.md) to improve search results and performance."
+    },
+    {
+      "subject": "search:geo-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:autocomplete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "If you want to add autocomplete to your cluster's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page and its UI counterpart, geo-search-ui.md, do not link directly to each other anywhere in either page's text - unlike the simple-search pair in this same batch, where simple-search-rest-api.md links to simple-search-ui.md. Both geo-search pages instead link outward to the same set of supporting pages (customize-index.md, search-query-auto-complete.md), which is how the pair is actually joined in the corpus graph."
+  },
+  "cross_component_finding": "The REST and UI surfaces for building a geospatial-capable Search index document genuinely different underlying construction mechanisms for what is presented as the same outcome, not just a different client for one mechanism. This page has the user PUT a single JSON payload to the Search index REST endpoint with the field's `type` set directly to `\"geopoint\"` inside the mapping (`'geopoint' if your field contains GeoJSON data' comment aside`) - one API call, no intermediate index-building steps. Its UI counterpart, geo-search-ui.md, instead walks the user through [Create a Type Mapping](create-type-mapping.md) followed by [Create a Child Field](create-child-field.md), where the geopoint type is chosen from a **Type** list inside the Child Field UI action, after which the two pages converge again once a query is issued. Both apparently produce an equivalent index, but the documented paths to get there are structurally different (one JSON write vs. two chained UI actions each referencing their own separate reference pages) - worth flagging for reconciliation since it means 'search:create-search-index-rest-api' and 'search:create-type-mapping'/'search:create-child-field' are the REST and UI's respective real dependencies for this specific task, not a shared single mechanism underneath a REST/UI skin.",
+  "cross_product_finding": ""
+}

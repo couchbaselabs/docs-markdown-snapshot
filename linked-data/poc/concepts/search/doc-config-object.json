@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/doc-config-object",
+  "label": "doc_config object (Search index JSON)",
+  "type": "the JSON object configuring how an index determines a document's type, via search:doc-config-mode-enum.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "You can choose from one of the following mode values: type_field: Use the value from a specific field in the documents."
+  ],
+  "usesEnum": "search:doc-config-mode-enum",
+  "documented_at": "server/8.0/search/search-index-params",
+  "relates_to_competency_question": "In the Search index's own JSON definition, which object controls document-type detection?"
+}

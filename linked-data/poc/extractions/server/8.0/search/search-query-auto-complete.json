@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/search/search-query-auto-complete",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search-query-auto-complete.md",
+  "concepts": [
+    {
+      "candidate_id": "search:autocomplete",
+      "label": "Autocomplete (type-ahead) for the Search Service",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a real, nameable feature/mechanism ('also known as auto suggest or type-ahead'), not just this page's own task, so given a concept-shaped id rather than a page-shaped one per this round's framing note. This page (search-query-auto-complete.md) is the task-overview member of a THREE-way split across search-query-auto-complete.md (this page, overview), search-query-auto-complete-ui.md (index configuration - itself containing BOTH a UI and a REST procedure as #ui/#api anchors on one page, not two separate pages), and search-query-auto-complete-code.md (application code samples). All three pages are bound to this one concept."
+    },
+    {
+      "candidate_id": "search:configure-autocomplete-index",
+      "label": "Configure an Autocomplete Search Index (task page covering both the Web Console and REST API procedures)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - referenced from this page as the next step; full record is search-query-auto-complete-ui.json (this batch)"
+    },
+    {
+      "candidate_id": "search:autocomplete-application-code",
+      "label": "Add Autocomplete to Your Application (code samples)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - referenced from this page; full record is search-query-auto-complete-code.json (this batch)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:autocomplete",
+      "predicate": "seeAlso",
+      "object": "search:configure-autocomplete-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link; note the same target page is linked twice via two different anchors on one page, not two separate pages",
+      "evidence": "Create a compatible Search index. You can create the index [with the UI](search-query-auto-complete-ui.md#ui) or [with the REST API](search-query-auto-complete-ui.md#api)."
+    },
+    {
+      "subject": "search:autocomplete",
+      "predicate": "seeAlso",
+      "object": "search:autocomplete-application-code",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "Configure your application to return autocomplete search results from the Search Service. For example code that you can use with your application, see [Add Autocomplete to Your Application](search-query-auto-complete-code.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This overview page states no role or privilege requirement at all for using autocomplete - it has no Prerequisites section, only a 'Set Up Autocomplete' procedure summary. The role gate (Search Admin) appears only on its two child pages, search-query-auto-complete-ui.json and search-query-auto-complete-code.json (both this batch)."
+  },
+  "cross_component_finding": "This page's own link text treats the UI and REST procedures as two anchors ('#ui' and '#api') on a SINGLE page (search-query-auto-complete-ui.md), not as two separate REST/UI pages the way create-search-index and simple-search and geo-search are each split in this same batch. The autocomplete feature is documented as one task-overview page (this one) fanning out to one combined UI+REST configuration page and one code-sample page - a three-way split by DOCUMENT ROLE (overview / configuration / code), not by client surface. This is worth flagging alongside this batch's other three REST/UI pairs, since it shows the corpus does not apply the REST-vs-UI split uniformly even within one module.",
+  "cross_product_finding": ""
+}

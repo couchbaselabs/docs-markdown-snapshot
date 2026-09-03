@@ -1,0 +1,31 @@
+{
+  "page_id": "server/8.0/search/view-index-details",
+  "source_version": "8.0",
+  "source_path": "server/current/search/view-index-details.md",
+  "concepts": [
+    { "candidate_id": "search:view-index-details", "label": "View Index Details with the Web Console (task/how-to page)", "registry_status": "minted", "reused_or_minted": "minted - first-contact page, no prior extraction on either side of the product and no measured Capella twin in this batch's dispatch" },
+    { "candidate_id": "role:fts-admin", "label": "Search Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "search:partition-layout-tab", "label": "Partition Layout tab (Index Details page)", "registry_status": "minted", "reused_or_minted": "minted - a named Web Console UI surface showing partition-to-vBucket-to-node placement for a Search index" },
+    { "candidate_id": "search:query-monitor-tab", "label": "Query Monitor tab (Index Details page)", "registry_status": "minted", "reused_or_minted": "minted - a named Web Console UI surface for viewing and pausing active Search queries that exceed a specified execution time" },
+    { "candidate_id": "search:search-index-partition", "label": "search-index partition", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, already minted from server/8.0/learn/services-and-indexes/services/search-service.json" },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "promoted", "reused_or_minted": "reused - promoted (aliases: data:vbucket)" },
+    { "candidate_id": "search:create-search-indexes", "label": "Create a Search Index (task/how-to page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:customize-index", "label": "Customize a Search Index with the Web Console (task/how-to hub page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:run-searches", "label": "Run a Search With a Search Index", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" }
+  ],
+  "relations": [
+    { "subject": "search:view-index-details", "predicate": "requiresServerRole", "object": "role:fts-admin", "registry_status": "promoted", "reused_or_minted_predicate": "reused (requiresServerRole)", "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you created your Search index." },
+    { "subject": "search:view-index-details", "predicate": "hasInternalComponent", "object": "search:partition-layout-tab", "registry_status": "promoted", "reused_or_minted_predicate": "reused (hasInternalComponent)", "evidence": "Use the **Partition Layout** tab to view the location of your Search index partitions inside your Couchbase cluster:" },
+    { "subject": "search:view-index-details", "predicate": "hasInternalComponent", "object": "search:query-monitor-tab", "registry_status": "promoted", "reused_or_minted_predicate": "reused (hasInternalComponent)", "evidence": "Use the **Query Monitor** tab to view active queries that meet or exceed a specified execution time, and pause those queries:" },
+    { "subject": "search:search-index-partition", "predicate": "holdsDataFor", "object": "server:vbucket", "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused (holdsDataFor) - same relation already established in server/8.0/learn/services-and-indexes/services/search-service.json, restated here with this page's own evidence", "evidence": "For each Search index partition, the specific [vBucket](../learn/buckets-memory-and-storage/vbuckets.md) or vBuckets that contain the partition." },
+    { "subject": "search:view-index-details", "predicate": "seeAlso", "object": "search:create-search-indexes", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about how to create a Search index, see [Create a Search Index](create-search-indexes.md)." },
+    { "subject": "search:view-index-details", "predicate": "seeAlso", "object": "search:customize-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "To edit your Search index configuration, see [Customize a Search Index with the Web Console](customize-index.md)." },
+    { "subject": "search:view-index-details", "predicate": "seeAlso", "object": "search:run-searches", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "To run a search with your Search index, see [Run a Search With a Search Index](run-searches.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The Query Monitor tab lets a user filter active queries by a 'Longer than' time value entered in ms/s/m, and pause them, but the page never states what happens to a paused query afterward (whether it is killed, queued, or resumable), nor what privilege beyond role:fts-admin (if any) is needed specifically to pause another user's in-flight query."
+  },
+  "cross_component_finding": "The Partition Layout tab's vBucket-to-partition relationship confirms, from a third independent page in this batch, the same search:search-index-partition -holdsDataFor-> server:vbucket relation already established in server/8.0/learn/services-and-indexes/services/search-service.json and restated in this batch's search-index-architecture.json context - the partition/vBucket model is documented consistently across the learn/ and search/ trees.",
+  "cross_product_finding": "No forced comparison - this page has no measured Capella twin in this batch's dispatch; first contact."
+}

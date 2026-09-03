@@ -1,0 +1,221 @@
+{
+  "page_id": "server/8.0/search/create-custom-analyzer",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-custom-analyzer.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-custom-analyzer",
+      "label": "Create a Custom Analyzer (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (used as a seeAlso target from server/7.2/search/create-child-field.json, create-type-mapping.json and customize-index.json). Kept as the subject of this page's own seeAlso links, alongside the new concept-shaped search:custom-analyzer minted below for the artifact itself."
+    },
+    {
+      "candidate_id": "search:custom-analyzer",
+      "label": "Custom Analyzer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - concept-shaped id for the artifact this page creates (a user-defined analyzer composed of one tokenizer plus optional character/token filters), distinct from the page-shaped search:create-custom-analyzer. Checked search:custom-analyzer-components first (per dispatch instructions) - that extraction-layer id denotes the general, Capella-side category 'character filters, tokenizers, token filters, word lists' gated by Advanced Mode, not the specific composed analyzer object this page's procedure builds. Also checked search:analyzers (Capella, 'Search Index Analyzers') - too generic/unrelated in scope to reuse here. Neither is the same referent, so this is a genuine new mint, not a duplicate."
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for the tokenizer component type (checked search:tokenizer, nothing matched); reusable across create-custom-tokenizer.md and default-tokenizers-reference.md in this same batch"
+    },
+    {
+      "candidate_id": "search:character-filter",
+      "label": "Character Filter (analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for the character-filter component type; reusable across create-custom-character-filter.md and default-character-filters-reference.md in this same batch"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for the token-filter component type; reusable across create-custom-token-filter.md and default-token-filters-reference.md in this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent ('part-whole composition ... Object is a component concept, not a service'), which fits an analyzer containing a tokenizer as an internal sub-component",
+      "evidence": "In the **Tokenizer** list, click the tokenizer you want to use to create tokens from Search input."
+    },
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "To remove specific characters from search input before tokenizing, in the **Character Filters** list, do one of the following:"
+    },
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "To modify the tokens created by the tokenizer, in the **Token Filters** list, do one of the following:"
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "configurableVia",
+      "object": "search:custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia ('the subject's behaviour is influenced by the object setting or surface, without the setting being a hard prerequisite'), fitting a Search index's default analyzer being settable to a custom one without requiring it",
+      "evidence": "After you create a custom analyzer, you can [set it as the default analyzer](set-advanced-settings.md#default-analyzer) for your Search index."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso (structural Markdown link)",
+      "evidence": "For more information about analyzers, see [customize-index.adoc#analyzers](customize-index.md#analyzers)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:default-character-filters-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Character Filters](default-character-filters-reference.md) or [Create a Custom Character Filter](create-custom-character-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Character Filters](default-character-filters-reference.md) or [Create a Custom Character Filter](create-custom-character-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:default-tokenizers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Tokenizers](default-tokenizers-reference.md) or [Create a Custom Tokenizer](create-custom-tokenizer.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Tokenizers](default-tokenizers-reference.md) or [Create a Custom Tokenizer](create-custom-tokenizer.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:default-token-filters-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Token Filters](default-token-filters-reference.md) or [Create a Custom Token Filter](create-custom-token-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information, see [Default Token Filters](default-token-filters-reference.md) or [Create a Custom Token Filter](create-custom-token-filter.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "After you create a custom analyzer, you can [set it as the default analyzer](set-advanced-settings.md#default-analyzer) for your Search index."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can also use the custom analyzer when you [Create a Type Mapping](create-type-mapping.md), [Create a Child Mapping](create-child-mapping.md), and [Create a Child Field](create-child-field.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can also use the custom analyzer when you [Create a Type Mapping](create-type-mapping.md), [Create a Child Mapping](create-child-mapping.md), and [Create a Child Field](create-child-field.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can also use the custom analyzer when you [Create a Type Mapping](create-type-mapping.md), [Create a Child Mapping](create-child-mapping.md), and [Create a Child Field](create-child-field.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Wordlist](create-custom-wordlist.md)"
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-custom-analyzer",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasCardinality / requiresExactly (no such predicate exists in the registry)",
+    "finding": "The page never states in words that an analyzer has exactly one tokenizer and zero-or-more character/token filters - that cardinality is only implied by the UI shape (step 8 says 'click the tokenizer you want to use', singular selection from a list with no add/remove affordance, versus steps 7 and 9's explicit 'To add ... / To remove ...' list operations for character and token filters). I modeled all three as hasInternalComponent without a cardinality qualifier, since the registry has no predicate or datatype property for 'exactly one' vs 'zero or more' sub-components - the same subsumption-vocabulary gap noted in earlier rounds (indexes.md's notable_absence) shows up here as a cardinality gap instead."
+  },
+  "cross_component_finding": "This page is the assembly point for the four 'create-custom-*' analyzer-component pages in this batch (create-custom-character-filter.md, create-custom-tokenizer.md, create-custom-token-filter.md, and create-custom-wordlist.md via search:custom-analyzer-components' broader Word Lists category) - they are not four disconnected topics but one composed object's parts, exactly as the dispatch brief suspected. The procedure's own step order and verbs state the composition and its direction explicitly: character filters act 'before tokenizing' (pre-tokenization), the tokenizer 'create[s] tokens from Search input', and token filters 'modify the tokens created by the tokenizer' (post-tokenization) - so the three component families are not just co-located UI sections but a stated processing pipeline (character filters -> tokenizer -> token filters), which hasInternalComponent captures the containment half of but not the ordering half. There is no promoted or extraction-layer predicate in the registry for pipeline/processing order (e.g. a 'precedes'/'appliesBefore' shape) - only hasInternalComponent (containment) and requiresPriorExecutionOf (statement-ordering, not applicable to a per-request text-processing pipeline) exist, so the ordering fact is stated in this record's evidence quotes but not captured as a separate relation.",
+  "cross_product_finding": "No measured Capella twin for this page (create-custom-analyzer.md is not among the eight filename-identical pairs this round's dispatch flagged), so no cross_product_finding fires per the evidence-gate rule against forcing a comparison with no real content on both sides. The nearest Capella-side content is cloud/search/customize-index.json's search:custom-analyzer-components and search:analyzers, both minted from a single UI-gating sentence ('You cannot create custom analyzers or custom filters if Advanced Options are not enabled') rather than from a procedure - Capella's own dedicated custom-analyzer creation page, if one exists on disk, has not been read in this round."
+}

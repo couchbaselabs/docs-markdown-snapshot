@@ -1,0 +1,107 @@
+{
+  "page_id": "server/8.0/search/synonyms/add-synonym-source-quick",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/add-synonym-source-quick.md",
+  "concepts": [
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - same concept as the standard-editor sibling add-synonym-source.md (this same batch), which mints the id. Per this round's dispatch guidance, the Quick Editor variant is treated as the SAME underlying task rather than a second concept; the surface/parameter differences below are recorded as relations on this record instead."
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, the artifact this task creates one instance of."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin role",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted id."
+    },
+    {
+      "candidate_id": "search:create-quick-index",
+      "label": "Create a Search Index with the Quick Editor (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, both the Prerequisites link target and the concept standing in for 'the Quick Editor' UI mode in the requiresUiMode relation below (the corpus's established pattern for naming this mode, per server/8.0/search/create-search-indexes.json's convertibleTo/doesNotSupport relations between search:create-quick-index and search:create-search-index-ui)."
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Search Index Analyzers",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (cloud/search/customize-index.json); the object of the implicitlySetsParameter relation below, since this page's 'Language' selector stands in for the analyzer choice the standard editor exposes directly."
+    },
+    {
+      "candidate_id": "search:synonyms-search-quick",
+      "label": "Add Synonyms with the Quick Editor",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing id, ALREADY MINTED by a concurrent sibling batch this same round (server/8.0/search/create-quick-index.json), as a page-shaped stub distinct from search:synonyms-search. See this record's cross_component_finding: that sibling forked the quick/full synonyms-search pair into two ids, in tension with this batch's own add-synonym-source/create-synonym-collection-docs pairs, which were kept as one id each per dispatch instructions."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Your user account has the [Search Admin](../../learn/security/roles.md#search-admin) role for the bucket where you want to edit the Search index."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "requiresUiMode",
+      "object": "search:create-quick-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresUiMode, already promoted; previously used in cloud/search/customize-index.json for Capella's Advanced Mode, reused here for Server's own quick/standard editor split since it is the same shape of relation (a client-side UI affordance gate, not RBAC/edition) applied to a different product's UI-mode axis.",
+      "evidence": "To add a synonym source to a Search index with the Couchbase Server Web Console's Quick Editor:"
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "implicitlySetsParameter",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - implicitlySetsParameter",
+      "evidence": "In the **Language** list, select the language for your synonym collection. Choose the same language as the language or analyzer on the text field."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "operatesOnFormat",
+      "object": "search:synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - operatesOnFormat",
+      "evidence": "You can add a Synonym Source to set the collection where your synonym documents are stored with the Quick Editor."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search-quick",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about synonym searches with the Search Service, see [Add Synonyms with the Quick Editor](synonyms-search-quick.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:create-quick-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created an index with the Quick Editor. For more information, see [Create a Search Index with the Quick Editor](../create-quick-index.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "server/8.0/search/quick-index-field-options",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object left as a page id since this record does not extract that page and no existing concept id was found for it in the registry search performed this batch",
+      "evidence": "For more information about other features and options for Search indexes in the Quick Editor, see [Quick Index Field Options](../quick-index-field-options.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresUiMode (inverse direction)",
+    "finding": "Neither this page nor its standard-editor sibling states what happens to a synonym source added via the Quick Editor if the index is later edited in the standard editor (or vice versa) - the create-search-indexes.md/create-quick-index.md pages in this namespace explicitly document a one-directional convertibility/lockout for the INDEX as a whole (convertibleTo / doesNotSupport: Quick-created indexes can be opened in the standard editor, but standard-editor indexes cannot return to Quick Mode), but neither synonym-source page says whether a synonym source specifically survives that conversion, or whether the Language-vs-Analyzer distinction this page introduces causes any loss of information when converted."
+  },
+  "cross_component_finding": "REGISTRY FORK TENSION, FLAGGED RATHER THAN RESOLVED: this batch's own add-synonym-source/add-synonym-source-quick pair and create-synonym-collection-docs/-quick pair were each kept as ONE shared concept per this round's dispatch instructions (the quick/full split recorded as a relation, not a second id). But a CONCURRENT sibling batch this same round (server/8.0/search/create-quick-index.json) already minted search:synonyms-search-quick as a SEPARATE id from search:synonyms-search for the third pair in this exact set of three - and synonyms-search.md/synonyms-search-quick.md are, if anything, MORE nearly identical in body text than this add-synonym-source pair (see synonyms-search-quick.json, this same batch, for the full comparison). So within one three-pair set, dispatched under one instruction, the corpus will end up with two pairs sharing one id each and one pair split into two ids - purely because of extraction order, not because of any real difference in how identical the underlying pages are. Recorded here for reconciliation rather than resolved unilaterally: either fold search:synonyms-search-quick into search:synonyms-search now that this record exists to justify it, or split add-synonym-source-quick and create-synonym-collection-docs-quick out to match the precedent already on disk - but not both directions at once, silently, by different extraction batches.",
+  "cross_product_finding": "No Capella-tree file named add-synonym-source-quick.md exists anywhere in this snapshot (cloud/search/synonyms/ has no -quick files at all, confirmed by directory listing) - Capella's Search index editor has no Quick Editor equivalent, so this page and its concept membership are structurally server-only, not merely unread."
+}

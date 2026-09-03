@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/date-time-parser",
+  "label": "Date/time parser (Search)",
+  "type": "an INDEX-scoped component (set as the index's default date/time parser), NOT an analyzer component - deliberately excluded from the analyzer-composition scheme because no page states it is used with an analyzer, unlike the character-filter/tokenizer/token-filter pages which say so explicitly.",
+  "promoted": true,
+  "recurrence": 6,
+  "evidence": [
+    "After you create a custom date/time parser, you can set it as the default date/time parser for your Search index.",
+    "In the Layout List list, choose the specific layout style you want to use for your date/time parser."
+  ],
+  "usesEnum": "search:date-time-parser-layout-style",
+  "documented_at": "server/8.0/search/create-custom-date-time-parser",
+  "relates_to_competency_question": "Is a custom date/time parser part of an analyzer's pipeline, or a separate, index-wide setting?"
+}

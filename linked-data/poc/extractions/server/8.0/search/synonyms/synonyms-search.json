@@ -1,0 +1,189 @@
+{
+  "page_id": "server/8.0/search/synonyms/synonyms-search",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/synonyms-search.md",
+  "concepts": [
+    {
+      "candidate_id": "search:synonyms-search",
+      "label": "Add Synonyms to a Search Index (task/concept page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing stub id, already referenced (with no label) from server/8.0/search/create-custom-analyzer.json and two sibling pages this same round; this record supplies the page's first full extraction and its first real label."
+    },
+    {
+      "candidate_id": "search:thesaurus",
+      "label": "Thesaurus (Search index synonym lookup structure)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own top-level term for the aggregate structure a Search index builds from all its synonym collections: 'the Search Service supports a user-defined thesaurus on each Search index. A thesaurus is divided into synonym collections that contain synonym documents.' Not previously in the registry under any name."
+    },
+    {
+      "candidate_id": "search:synonym-collection",
+      "label": "Synonym collection",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the ARTIFACT (a Couchbase collection storing synonym documents), distinct from search:create-synonym-collection-docs (the task page for creating one) and from search:synonym-source (the index-level named pointer to one, paired with an analyzer). Not previously in the registry as a standalone concept."
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Search Index Analyzers",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "search:recursive-synonym-expansion",
+      "label": "Recursive synonym expansion",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the explicitly negated capability (synonym searches do not cascade through synonyms-of-synonyms), needed as the object of the doesNotSupport relation below."
+    },
+    {
+      "candidate_id": "search:synonym-score-penalty",
+      "label": "Synonym match score penalty",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's explicit scoring rule that a synonym match scores exactly half of an equivalent exact-term match, stated separately for plain and fuzzy queries."
+    },
+    {
+      "candidate_id": "search:run-searches",
+      "label": "Run a Search With a Search Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, target of the Scoring cross-link."
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request Parameters (REST API reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, target of the fuzzy/prefix/wildcard cross-links."
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; per this round's registry-state warning, this is the vector-search: axis (Search-Service-built vector indexes), a DIFFERENT axis from this page's own full-text/synonym content - reused only because the page itself explicitly names the boundary between the two, not because synonyms and vectors are being conflated."
+    },
+    {
+      "candidate_id": "n1ql:searchfun",
+      "label": "SQL++ Search Functions",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, the SEARCH() function this page's SQL++ example uses."
+    },
+    {
+      "candidate_id": "search:create-synonym-collection-docs",
+      "label": "Create a Synonym Collection and Documents (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in create-synonym-collection-docs.json, this same batch; this page's forward and See Also link target."
+    },
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in add-synonym-source.json, this same batch; this page's See Also link target."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:thesaurus",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - availableSince",
+      "evidence": "As of Couchbase Server version 8.0 and later, the Search Service supports a user-defined thesaurus on each Search index."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "hasInternalComponent",
+      "object": "search:synonym-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent",
+      "evidence": "A thesaurus is divided into synonym collections that contain synonym documents."
+    },
+    {
+      "subject": "search:synonym-source",
+      "predicate": "configurableVia",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "Synonym documents and indexed fields in a Search index must use the same analyzer to return the correct matches in search results."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "doesNotSupport",
+      "object": "search:recursive-synonym-expansion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "Synonym searches do not run recursively. If you run a Search query for a single term, the Search Service will not run cascading searches for synonyms of that term's synonyms."
+    },
+    {
+      "subject": "search:synonym-score-penalty",
+      "predicate": "hasDefaultValue",
+      "object": "half the exact-match score (x/2)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue; object is a literal, not a concept id, per this predicate's documented range",
+      "evidence": "Synonyms for the exact term have a score of \\\\$x/2\\\\$"
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "doesNotSupport",
+      "object": "vector-search:vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport",
+      "evidence": "You cannot use synonyms in a [Vector Search](../../vector-search/vector-search.md) query. Any synonyms in a Search index do not affect or contribute to the results of a Vector Search query."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "doesNotSupport",
+      "object": "server/8.0/vector-search/pre-filtering-vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport; object left as a page id, not a concept, since the pre-filtered-vector-search page itself is unread this round and this batch was told not to conflate the vector-search: axis with this page's own subject",
+      "evidence": "Synonyms cannot be used in [pre-filtered Vector Search queries](../../vector-search/pre-filtering-vector-search.md)."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:searchfun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - supportsLanguageConstruct",
+      "evidence": "You can return results from a synonym search when running a Search query through SQL++."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "seeAlso",
+      "object": "search:run-searches",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about the process for scoring results with the Search Service, see [Scoring for Search Queries](../run-searches.md#scoring)."
+    },
+    {
+      "subject": "search:thesaurus",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For [fuzzy queries](../search-request-params.md#fuzziness), [prefix queries](../search-request-params.md#prefix), and [wildcard queries](../search-request-params.md#wildcard), the Search Service:"
+    },
+    {
+      "subject": "search:synonyms-search",
+      "predicate": "seeAlso",
+      "object": "search:create-synonym-collection-docs",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information, see [Create a Synonym Collection and Documents](create-synonym-collection-docs.md)."
+    },
+    {
+      "subject": "search:synonyms-search",
+      "predicate": "seeAlso",
+      "object": "search:add-synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "* [Add a Synonym Source Using the Web Console](add-synonym-source.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "excludesFromCapture / requiresSetting",
+    "finding": "The page states a hard constraint with no named enforcement mechanism: 'your synonym documents and collections must not be included as fields in your Search index definition' - but never says what happens if they ARE included (a build error, silently wrong results, or something else), and no predicate in the registry cleanly captures a 'must be excluded from a definition' shape (doesNotSupport is about a feature not working with something, not about a required exclusion of input data) - flagged rather than force-fit."
+  },
+  "cross_component_finding": "This page's thesaurus/synonym-collection language ('a thesaurus is divided into synonym collections that contain synonym documents') is the first page in this batch to name the FULL containment chain explicitly: thesaurus > synonym collection > synonym document, with 'synonym source' (search:synonym-source, already extraction-layer) as the fourth, index-level naming layer that POINTS INTO a synonym collection rather than containing it. Four names, four distinct roles, and no single page in this batch states all four in one place - add-synonym-source.md and its Quick sibling describe the source-to-field wiring, create-synonym-collection-docs.md and its sibling describe the collection/document creation, and only this page names the aggregate thesaurus. Also notable: this page and synonyms-search-quick.json (this same batch) are near-identical in body text in exactly the same way the create-synonym-collection-docs pair is (see that record's finding) - but a concurrent sibling batch this round already split THIS pair into two ids (search:synonyms-search / search:synonyms-search-quick) before this batch could apply its own one-id convention; see synonyms-search-quick.json for the full writeup of that tension.",
+  "cross_product_finding": "cloud/search/synonyms/synonyms-search.md exists on disk but is unread and carries no measured similarity score for this round; no diff-gate comparison is attempted, per this round's first-contact framing. Note that cloud/search/create-search-indexes.json (already extracted, prior round) already cites this exact page for its search:synonym-source stub and gates it at version:server-8-0 - so the Capella tree already has a partial, secondhand view of this page's content even though the page itself has never been read on that side either."
+}

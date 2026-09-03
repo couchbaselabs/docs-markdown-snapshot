@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/max-partitions-per-pindex-param",
+  "label": "maxPartitionsPerPIndex (deprecated REST parameter)",
+  "type": "a deprecated REST parameter, superseded by search:index-partitions-param.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "This setting is deprecated. Use indexPartitions, instead."
+  ],
+  "mustUseInsteadWhen": "search:index-partitions-param",
+  "documented_at": "server/8.0/search/search-index-params",
+  "relates_to_competency_question": "Is maxPartitionsPerPIndex still a valid REST parameter to set on a Search index?"
+}

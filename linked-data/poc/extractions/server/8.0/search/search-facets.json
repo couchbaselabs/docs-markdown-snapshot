@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/search/search-facets",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search-facets.md",
+  "concepts": [
+    {
+      "candidate_id": "search:term-facet",
+      "label": "Term Facet",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of 3 facet types this page explicitly enumerates as a closed taxonomy ('The Search Service supports the following facet types'), same pattern as the already-established fts:fts-supported-queries-* family of query-type ids"
+    },
+    {
+      "candidate_id": "search:numeric-range-facet",
+      "label": "Numeric Range Facet",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see search:term-facet note"
+    },
+    {
+      "candidate_id": "search:date-range-facet",
+      "label": "Date Range Facet",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see search:term-facet note"
+    },
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, also extracted as a full record in this same batch"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run A Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:date-range-facet",
+      "predicate": "configurableVia",
+      "object": "search:date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "For best results with a date range facet, use a field with the `datetime` type in your documents. Make sure to use a [date/time parser](customize-index.md#date-time) that matches your date and time data."
+    },
+    {
+      "subject": "search:term-facet",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "[Run a search with the Server Web Console](simple-search-ui.md) to view facet information in a table format."
+    },
+    {
+      "subject": "search:numeric-range-facet",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "* [numeric\\_ranges Array Objects](search-request-params.md#numeric)"
+    },
+    {
+      "subject": "search:date-range-facet",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "* [date\\_ranges Array Objects](search-request-params.md#date)"
+    },
+    {
+      "subject": "search:term-facet",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about how to configure a term facet in your Search query, see [facets](search-request-params.md#facets) or [{facet-name} Object](search-request-params.md#facet-name)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue / requiresRequestParameter",
+    "finding": "The page repeatedly says a facet's `total` count 'can change if...your size parameter is not large enough to accommodate all of the unique terms for your facet', implying size has an effective upper bound worth choosing carefully, but never states what happens if size is omitted, nor whether there is a hard maximum for size on a facet (as opposed to the documented maximum of 3 replicas or the 100-document-filter cap documented elsewhere in this batch on search-index-params.md) - no numeric ceiling for facet size is ever given."
+  },
+  "cross_component_finding": "None found for this page - facets are a search/-internal mechanism with no content bridging to another service's doc tree.",
+  "cross_product_finding": "Not applicable - first contact page per this round's framing; no Capella twin exists for search-facets.md in the corpus."
+}

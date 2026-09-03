@@ -1,0 +1,107 @@
+{
+  "page_id": "server/8.0/search/default-character-filters-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-character-filters-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:default-character-filters-reference",
+      "label": "Default Character Filters (reference)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (2 prior mentions)"
+    },
+    {
+      "candidate_id": "search:character-filter",
+      "label": "Character Filter (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    },
+    {
+      "candidate_id": "search:custom-analyzer",
+      "label": "Custom Analyzer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    },
+    {
+      "candidate_id": "search:asciifolding-character-filter",
+      "label": "asciifolding character filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of only 3 named default character filters on this small table (unlike default-analyzers-reference.json's 21 near-duplicate language rows, all 3 here have distinct mechanisms, so all 3 earn concept ids; checked search:asciifolding-character-filter, nothing matched)"
+    },
+    {
+      "candidate_id": "search:html-character-filter",
+      "label": "html character filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct-mechanism default character filter, same rationale as search:asciifolding-character-filter"
+    },
+    {
+      "candidate_id": "search:zero-width-spaces-character-filter",
+      "label": "zero_width_spaces character filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct-mechanism default character filter, same rationale as search:asciifolding-character-filter"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; corroborates the relation already asserted on create-custom-analyzer.json and default-analyzers-reference.json in this same batch, with this page's own evidence",
+      "evidence": "You can use a [character filter](customize-index.md#character-filters) when you [create a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:asciifolding-character-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default character filters are available:"
+    },
+    {
+      "subject": "search:html-character-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default character filters are available:"
+    },
+    {
+      "subject": "search:zero-width-spaces-character-filter",
+      "predicate": "isSubtypeOf",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default character filters are available:"
+    },
+    {
+      "subject": "search:default-character-filters-reference",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can use a [character filter](customize-index.md#character-filters) when you [create a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:default-character-filters-reference",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You can use a [character filter](customize-index.md#character-filters) when you [create a custom analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:default-character-filters-reference",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "Choose a default character filter or [create your own](create-custom-character-filter.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(documentation-wording observation, not a modeling gap)",
+    "finding": "All three table rows attribute the described mechanism to 'The analyzer' rather than 'The character filter' ('The analyzer converts any characters that aren't in the Basic Latin Unicode block to their ASCII equivalent', 'The analyzer removes all HTML tags from search input', 'The analyzer replaces zero-width non-joiner spaces with regular space characters') even though the table's own subject column is 'Character Filter'. This is consistent with, and mildly corroborates, the hasInternalComponent(custom-analyzer, character-filter) composition model - the docs themselves sometimes attribute a sub-component's action to the whole analyzer - but it also means the three isSubtypeOf relations above rest on the table's structural framing ('The following default character filters are available') rather than each row's own sentence, since each row's sentence names 'the analyzer', not 'the character filter', as the actor."
+  },
+  "cross_component_finding": "Thin reference table, as anticipated by the dispatch brief - no cross-component content beyond corroborating this batch's central hasInternalComponent(custom-analyzer, character-filter) finding for a fourth time (after create-custom-analyzer.json, create-custom-character-filter.json, and default-analyzers-reference.json).",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged, and no Capella-side default-character-filters-reference equivalent has been read in this round, so no comparison is forced."
+}

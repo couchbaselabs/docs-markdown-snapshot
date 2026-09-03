@@ -1,0 +1,263 @@
+{
+  "page_id": "server/8.0/search/default-analyzers-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-analyzers-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:default-analyzers-reference",
+      "label": "Default Analyzers (reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (8 prior mentions)"
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Search Index Analyzers",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted in cloud/search/customize-index.json with no relations recorded there yet; this record gives it its first hasInternalComponent relations, using this page's opening statement ('Analyzers contain: ...') as the primary, most explicit composition evidence found anywhere in this batch - clearer than create-custom-analyzer.json's procedural evidence, which only implies the same containment through UI step order"
+    },
+    {
+      "candidate_id": "search:character-filter",
+      "label": "Character Filter (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id; same id independently minted this same round by both this batch (create-custom-analyzer.json) and a concurrent sibling batch (default-tokenizers-reference.json), with slightly different label text ('Tokenizer (analyzer component)' here vs 'Tokenizer (Search analyzer component)' there) - same id, no fork, but a label-normalization item for reconciliation"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id; same id independently minted this same round by both this batch and a concurrent sibling batch (default-token-filters-reference.json), same label-normalization note as search:tokenizer"
+    },
+    {
+      "candidate_id": "search:custom-analyzer",
+      "label": "Custom Analyzer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    },
+    {
+      "candidate_id": "search:type-mapping",
+      "label": "Search Index Type Mapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted in cloud/search/customize-index.json"
+    },
+    {
+      "candidate_id": "search:set-advanced-settings",
+      "label": "Set Search Index Advanced Settings (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id, minted/reused earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:inherit-analyzer",
+      "label": "inherit (default analyzer value)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named analyzer-selection value meaning 'defer to the index-level default analyzer', distinct from a real language/mechanism analyzer (checked search:inherit-analyzer, nothing matched)"
+    },
+    {
+      "candidate_id": "search:keyword-analyzer",
+      "label": "keyword analyzer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of five default analyzers with a distinctive, non-language-tied mechanism, rather than one of the 21 rows that are purely per-language variants of the same generic description (checked search:keyword-analyzer, nothing matched)"
+    },
+    {
+      "candidate_id": "search:simple-analyzer",
+      "label": "simple analyzer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinctive-mechanism default analyzer, same rationale as search:keyword-analyzer"
+    },
+    {
+      "candidate_id": "search:standard-analyzer",
+      "label": "standard analyzer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinctive-mechanism default analyzer; also the only default analyzer whose own component composition is named explicitly on this page (see relations)"
+    },
+    {
+      "candidate_id": "search:web-analyzer",
+      "label": "web analyzer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinctive-mechanism default analyzer, same rationale as search:keyword-analyzer"
+    },
+    {
+      "candidate_id": "search:unicode-tokenizer",
+      "label": "unicode tokenizer (default)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named on this page as a specific component of the standard analyzer (checked search:unicode-tokenizer, nothing matched; the sibling batch's default-tokenizers-reference.json deliberately did not mint per-tokenizer ids, treating its own table as thin - this page names this one specifically in a compositional claim, not just a list entry, so it earns its own id here)"
+    },
+    {
+      "candidate_id": "search:to-lower-token-filter",
+      "label": "to_lower token filter (default)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named on this page as a specific component of the standard analyzer, same rationale as search:unicode-tokenizer"
+    },
+    {
+      "candidate_id": "search:stop-en-token-filter",
+      "label": "stop_en token filter (default)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named on this page as a specific component of the standard analyzer, same rationale as search:unicode-tokenizer"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:analyzers",
+      "predicate": "hasInternalComponent",
+      "object": "search:character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; this is the clearest, most direct composition statement found in this batch",
+      "evidence": "[Character filters](customize-index.md#character-filters), which remove unwanted characters from search input."
+    },
+    {
+      "subject": "search:analyzers",
+      "predicate": "hasInternalComponent",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "[Tokenizers](customize-index.md#tokenizers), which separate input strings into individual tokens."
+    },
+    {
+      "subject": "search:analyzers",
+      "predicate": "hasInternalComponent",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "[Token filters](customize-index.md#token-filters), which modify tokens."
+    },
+    {
+      "subject": "search:custom-analyzer",
+      "predicate": "isSubtypeOf",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "When you [create a type mapping](create-type-mapping.md), you can choose a default analyzer for your type mappings, or [create your own](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:type-mapping",
+      "predicate": "configurableVia",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia; corroborates set-advanced-settings.json's refinement (analyzer assignment is type-mapping-scoped) with a second, independent page's evidence",
+      "evidence": "When you [create a type mapping](create-type-mapping.md), you can choose a default analyzer for your type mappings, or [create your own](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:inherit-analyzer",
+      "predicate": "configurableVia",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia",
+      "evidence": "If you set an analyzer to inherit, the Search index component inherits the [default analyzer set for an index](set-advanced-settings.md#default-analyzer)."
+    },
+    {
+      "subject": "search:standard-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:unicode-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; a concrete, named instance of the general analyzer-contains-tokenizer composition stated earlier on this same page",
+      "evidence": "The standard analyzer uses the [unicode tokenizer](default-tokenizers-reference.md#unicode) with the [to\\_lower](default-token-filters-reference.md#to-lower) and [stop\\_en](default-token-filters-reference.md#stop-en) token filters."
+    },
+    {
+      "subject": "search:standard-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:to-lower-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "The standard analyzer uses the [unicode tokenizer](default-tokenizers-reference.md#unicode) with the [to\\_lower](default-token-filters-reference.md#to-lower) and [stop\\_en](default-token-filters-reference.md#stop-en) token filters."
+    },
+    {
+      "subject": "search:standard-analyzer",
+      "predicate": "hasInternalComponent",
+      "object": "search:stop-en-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent",
+      "evidence": "The standard analyzer uses the [unicode tokenizer](default-tokenizers-reference.md#unicode) with the [to\\_lower](default-token-filters-reference.md#to-lower) and [stop\\_en](default-token-filters-reference.md#stop-en) token filters."
+    },
+    {
+      "subject": "search:standard-analyzer",
+      "predicate": "isSubtypeOf",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default analyzer options are available:"
+    },
+    {
+      "subject": "search:keyword-analyzer",
+      "predicate": "isSubtypeOf",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default analyzer options are available:"
+    },
+    {
+      "subject": "search:simple-analyzer",
+      "predicate": "isSubtypeOf",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default analyzer options are available:"
+    },
+    {
+      "subject": "search:web-analyzer",
+      "predicate": "isSubtypeOf",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate isSubtypeOf",
+      "evidence": "The following default analyzer options are available:"
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "[Character filters](customize-index.md#character-filters), which remove unwanted characters from search input."
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "When you [create a type mapping](create-type-mapping.md), you can choose a default analyzer for your type mappings, or [create your own](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "When you [create a type mapping](create-type-mapping.md), you can choose a default analyzer for your type mappings, or [create your own](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "If you set an analyzer to inherit, the Search index component inherits the [default analyzer set for an index](set-advanced-settings.md#default-analyzer)."
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:default-tokenizers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "The standard analyzer uses the [unicode tokenizer](default-tokenizers-reference.md#unicode) with the [to\\_lower](default-token-filters-reference.md#to-lower) and [stop\\_en](default-token-filters-reference.md#stop-en) token filters."
+    },
+    {
+      "subject": "search:default-analyzers-reference",
+      "predicate": "seeAlso",
+      "object": "search:default-token-filters-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "The standard analyzer uses the [unicode tokenizer](default-tokenizers-reference.md#unicode) with the [to\\_lower](default-token-filters-reference.md#to-lower) and [stop\\_en](default-token-filters-reference.md#stop-en) token filters."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "(no predicate for 'purely a language variant of an otherwise-identical mechanism')",
+    "finding": "21 of the 26 rows in this table (ar, cjk, ckb, da, de, en, es, fa, fi, fr, he, hi, hr, hu, it, nl, no, pt, ro, ru, sv, tr) are stated in an identical template - 'The X analyzer uses character filters, tokenizers, and token filters designed for [language] language searches' - naming a language ISO code with no further distinguishing mechanism given on this page. Per the dispatch brief's own allowance for thin reference content, I did not mint a concept per language analyzer; the registry has no 'language variant of' predicate that would let 21 near-identical rows be modeled as one relation with 21 objects rather than 21 near-duplicate concepts anyway, so this is recorded as an absence rather than either extreme (a 21-concept mint or a false single generalization)."
+  },
+  "cross_component_finding": "TWO FINDINGS. (1) This page's opening line - 'Analyzers contain: Character filters ... Tokenizers ... Token filters' - is the most explicit, least-inferred composition statement in the whole batch, more direct than create-custom-analyzer.json's procedural evidence. I attached it to the pre-existing, previously-relation-less search:analyzers id (Capella-origin) rather than to this batch's search:custom-analyzer, since the statement is about analyzers in general, not specifically custom ones; search:custom-analyzer is now recorded as isSubtypeOf search:analyzers, and both concepts' hasInternalComponent claims are consistent with each other, not competing. (2) A REAL SAME-ROUND MODELING DIVERGENCE, found by reading a concurrent sibling batch's own extraction file (server/8.0/search/default-tokenizers-reference.json) directly: that record asserts search:full-text-index -hasInternalComponent-> search:tokenizer (evidence: 'Tokenizers control how the Search Service splits input strings into individual tokens'), i.e. containment straight from the INDEX to the tokenizer, skipping the analyzer entirely. This batch (via create-custom-analyzer.json and now this page) asserts the analyzer as the intermediate container: index -> [implicitly, via configurableVia/type-mapping] -> analyzer -> tokenizer. Both are textually supportable from their own pages, but they describe two different containment DEPTHS for what is physically the same nesting (a Search index's type mapping selects an analyzer, and that analyzer is what actually contains the tokenizer) - a genuine reconciliation question, not a mistake on either side, and exactly the kind of fork this project's process is designed to surface rather than silently resolve mid-extraction. Also corroborates (a third independent statement) the set-advanced-settings.json finding that analyzer assignment is TYPE-MAPPING-scoped, not index-scoped: 'you can choose a default analyzer for your type mappings'.",
+  "cross_product_finding": "No measured Capella twin for this page; not among the eight filename-identical pairs this round's dispatch flagged. Capella's own analyzer content lives in cloud/search/customize-index.json (source of the reused search:analyzers and search:custom-analyzer-components ids), which is a single UI-gating paragraph, not a per-analyzer reference table like this page - no comparable structure exists on the Capella side to diff against."
+}

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/synonym-source",
+  "label": "Synonym source (field-level setting)",
+  "type": "a text-field mapping option (Server 8.0+) naming which search:synonym-collection to consult for synonym searches on that field.",
+  "promoted": true,
+  "recurrence": 8,
+  "evidence": [
+    "Synonym Source (Text Fields Only) | Couchbase Server 8.0 Choose a synonym source to use for synonym searches in the child field."
+  ],
+  "availableSince": "version:server-8-0",
+  "usesEnum": "member of search:field-mapping's options",
+  "documented_at": "server/8.0/search/child-field-options-reference",
+  "relates_to_competency_question": "How does a text field's mapping connect to a specific synonym collection?"
+}

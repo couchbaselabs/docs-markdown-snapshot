@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/synonym-score-penalty",
+  "label": "Synonym match score penalty",
+  "type": "a synonym match's relevance score is halved relative to an exact-term match (x/2) - a stated, fixed scoring rule, not a configurable setting.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Synonyms for the exact term have a score of $x/2$"
+  ],
+  "hasDefaultValue": "half the exact-match score (x/2)",
+  "documented_at": "server/8.0/search/synonyms/synonyms-search",
+  "relates_to_competency_question": "Does a document matched via a synonym rank the same as one matched by the exact query term?"
+}

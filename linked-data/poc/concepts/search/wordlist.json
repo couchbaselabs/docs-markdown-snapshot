@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/wordlist",
+  "label": "Wordlist (Search)",
+  "type": "a named list of words consumed by certain token filter kinds (dict_compound: finds subwords inside a token; elision: finds elisions/articles to strip) - a component one level deeper than the token filter itself, not a direct analyzer component.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "A dict_compound token filter uses a wordlist to find subwords inside an input token.",
+    "In the Articles list, select a wordlist to use to find elisions in input tokens."
+  ],
+  "documented_at": "server/8.0/search/create-custom-wordlist",
+  "relates_to_competency_question": "Which token filter kinds need a supporting list of words, and what do they use it for?"
+}

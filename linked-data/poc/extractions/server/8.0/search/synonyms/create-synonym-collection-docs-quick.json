@@ -1,0 +1,127 @@
+{
+  "page_id": "server/8.0/search/synonyms/create-synonym-collection-docs-quick",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/create-synonym-collection-docs-quick.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-synonym-collection-docs",
+      "label": "Create a Synonym Collection and Documents (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - same concept as the standard sibling create-synonym-collection-docs.md (this same batch), which mints the id. This source file is BYTE-IDENTICAL to that one except for the terminal Next Steps link target (add-synonym-source-quick.md here vs add-synonym-source.md there) - the strongest evidence in this batch that a pair should share one concept id rather than mint two."
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "role:full-admin",
+      "label": "Full Admin",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in create-synonym-collection-docs.json, this same batch."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "role:bucket-admin",
+      "label": "Bucket Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id."
+    },
+    {
+      "candidate_id": "search:unidirectional-synonym-document",
+      "label": "Unidirectional synonym document",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in create-synonym-collection-docs.json, this same batch."
+    },
+    {
+      "candidate_id": "search:bidirectional-synonym-document",
+      "label": "Bidirectional synonym document",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in create-synonym-collection-docs.json, this same batch."
+    },
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in add-synonym-source.json, this same batch; this page's Next Steps target (via the Quick Editor's own add-synonym-source-quick.md, which shares this same concept id per that record)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:bucket-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "createsOnAction",
+      "object": "search:unidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "A unidirectional synonym document contains an `input` array and a `synonyms` array. Any search for a term in `input` can return any term in `synonyms`."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "createsOnAction",
+      "object": "search:bidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "Bidirectional synonym documents define a two-way synonym relationship. All terms are contained in a single `synonyms` array. Any search for a term in the `synonyms` array can return any other term in the array."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id",
+      "evidence": "You have created a bucket and scope where you want to store your Search index and its synonym collections. For more information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-scopes-and-collections/manage-scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id",
+      "evidence": "For more information about how to create a new collection, see [Manage Scopes and Collections](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "search:add-synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link. THIS IS THE ONE RELATION THAT DIFFERS FROM THE STANDARD SIBLING'S FILE, in link text and target file (add-synonym-source-quick.md) though not in the reused concept id, since add-synonym-source-quick.md shares search:add-synonym-source per add-synonym-source-quick.json (this same batch).",
+      "evidence": "To use your defined synonyms in a Search index, see [Add a Synonym Source Using the Quick Editor](add-synonym-source-quick.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresUiMode",
+    "finding": "Unlike add-synonym-source-quick.md and synonyms-search-quick.md, this page's own Prerequisites and Procedure never mention the Quick Editor at all - creating a synonym collection and its documents is described here purely as generic collection/document administration (bucket, scope, collection, KV document creation), identical in every word to the standard-editor sibling. The '-quick' distinction exists ONLY at the level of which downstream page you are sent to next, not in anything this page itself does differently - so no requiresUiMode relation is minted here, in deliberate contrast to the two sibling pages in this set that do state UI-mode-specific content."
+  },
+  "cross_component_finding": "Confirms the note already filed on create-synonym-collection-docs.json (the standard sibling, this same batch): the two source files differ in exactly one line, and it is a link target, not a fact. This is the cleanest possible case for one shared concept id in this batch, and stands in direct contrast to the synonyms-search/synonyms-search-quick pair (see add-synonym-source-quick.json's cross_component_finding), which is comparably near-identical in body text but was independently minted as two separate ids by a concurrent sibling batch this same round.",
+  "cross_product_finding": "cloud/search/synonyms/create-synonym-collection-docs.md exists on disk but is unread and carries no measured similarity score for this round; no diff-gate comparison is attempted here. Capella has no Quick Editor, so this page (like the rest of the -quick half of this batch) has no Capella-tree counterpart at all, by product design rather than by omission."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/scoring-model",
+  "label": "Scoring model (Search index setting)",
+  "type": "an 8.0+ index-level setting choosing between two scoring algorithms (search:scoring-algorithm-enum). Independently corroborated on the Capella side: Capella's own search:scoring-model record has near-verbatim matching content in set-advanced-settings.md's Scoring Model row, found by this round without being on the pre-flagged similarity list.",
+  "promoted": true,
+  "recurrence": 8,
+  "evidence": [
+    "As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms for your Search index:",
+    "Couchbase Server 8.0 Choose the specific scoring model you want to use for scoring search results for this Search index"
+  ],
+  "availableSince": "version:server-8-0",
+  "usesEnum": "search:scoring-algorithm-enum",
+  "documented_at": "server/8.0/search/set-advanced-settings",
+  "relates_to_competency_question": "Can an administrator choose which relevance-scoring algorithm a Search index uses, and since when?"
+}

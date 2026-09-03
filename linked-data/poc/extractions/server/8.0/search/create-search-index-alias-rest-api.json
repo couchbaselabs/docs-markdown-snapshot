@@ -1,0 +1,141 @@
+{
+  "page_id": "server/8.0/search/create-search-index-alias-rest-api",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-search-index-alias-rest-api.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-alias-rest-api",
+      "label": "Create a Search Index Alias with the REST API (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - page-shaped id for the REST-API task, parallel to the existing search:create-search-index-rest-api (the plain-index REST task) alongside search:create-search-index-ui. NOT a new alias concept from scratch: the underlying subject is the SAME alias mechanism already extracted at server/7.2/search/create-search-index-alias.json under search:create-search-index-alias (a UI-flavoured task page, still extraction-layer/unpromoted at 2 files). A sibling batch this round is extracting server/current/search/create-search-index-alias.md itself, which very likely reuses that same id or supplies its own - I cannot see that output, so I am reusing search:create-search-index-alias below as a concept membership rather than either re-minting the core alias concept or guessing the sibling's exact id. No literal Markdown link exists between the two pages, so the connection is recorded as a shared concept, not a seeAlso relation (the evidence gate correctly refused a seeAlso with no quotable link)."
+    },
+    {
+      "candidate_id": "search:create-search-index-alias",
+      "label": "Create a Search Index Alias with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing id from server/7.2/search/create-search-index-alias.json, the UI-surface twin of this REST-API page's same underlying task; included as a concept membership (not a relation) since no Markdown link between the two pages exists to cite as evidence."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin role",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted id (aliases privilege:search-admin, privilege:fts-admin, role:search-admin); the page's own prerequisite wording matches the alias used by other search/ task pages verbatim."
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id for the JSON payload properties reference this page's alias payload draws from."
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, this page's Next Steps target."
+    },
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, one of two Prerequisites alternatives for having already created a Search index."
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, the other Prerequisites alternative."
+    },
+    {
+      "candidate_id": "search:scoped-search-index-alias",
+      "label": "Scoped Search index alias",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a Search index alias whose target Search indexes are all in the same bucket and scope, created via the bucket/scope-scoped index-creation REST endpoint. Genuinely new REST-specific content: nothing in the registry names this scoped/global split, and it is not visible from the UI-surface alias page's own extraction, which has no REST endpoint detail at all."
+    },
+    {
+      "candidate_id": "search:global-search-index-alias",
+      "label": "Global Search index alias",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the counterpart to search:scoped-search-index-alias: an alias whose target indexes span different buckets or scopes, created via the global (non-bucket-scoped) index-creation REST endpoint."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Your user account has the **Search Admin** role for the bucket where you want to create the alias."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:scoped-search-index-alias",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "If your alias's target Search indexes are all in the same bucket and scope, use the scoped index creation endpoint:"
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:global-search-index-alias",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - offersConfigurationChoice",
+      "evidence": "If your target Search indexes are in different buckets or scopes, use the global index creation endpoint:"
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "requiresRequestParameter",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRequestParameter",
+      "evidence": "Your Search index alias only requires the properties from [the start of a Search index JSON payload](search-index-params.md#initial), except where otherwise noted."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created at least one Search index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md) or [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md)."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created at least one Search index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md) or [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md)."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "After you create a Search index alias, you can [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md) to test your alias and Search indexes."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "If you want to edit your alias with another REST API call, include the [uuid](search-index-params.md#uuid) parameter with your alias UUID."
+    },
+    {
+      "subject": "search:create-search-index-alias-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/fts-rest-indexing/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id, not a concept, since this page has never been extracted and names no reusable concept from the excerpt linked to here",
+      "evidence": "You can also use the [Index Definition](../fts-rest-indexing/index.md) endpoints provided by the Search REST API."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (scope ambiguity)",
+    "finding": "The Prerequisites state the Search Admin role is required 'for the bucket where you want to create the alias' - but the page immediately offers two endpoint choices, and the global endpoint's URL (`/api/index/${INDEX_NAME}`) names no bucket at all, unlike the scoped endpoint's `/api/bucket/${BUCKET_NAME}/scope/${SCOPE_NAME}/index/${INDEX_NAME}`. For a global alias whose targets span multiple buckets, the page never states which bucket's Search Admin role (if any single one) authorizes the create call, or whether a cluster-wide variant of the role is actually required. The same single Prerequisites sentence is reused unchanged from the single-bucket-scoped index/alias task pages, without being adapted for the global-alias case this page itself introduces."
+  },
+  "cross_component_finding": "This page and the sibling create-search-index-rest-api.md (server/7.2, already extracted) share verbatim Prerequisites wording for the Search Admin role requirement ('Your user account has the **Search Admin** role for the bucket where you want to create the index/alias') - the same pattern already noted in that record's own extraction. The alias REST page adds one genuinely new mechanism not present on the plain-index REST page at all: a closed choice between a 'scoped' and a 'global' creation endpoint, driven entirely by whether the alias's target indexes share a bucket and scope. This scoped/global split exists ONLY because an alias, unlike a plain index, can name targets outside its own bucket - it is a direct structural consequence of what an alias is (a pointer to other indexes) rather than an independent REST design choice, but no page states that connection explicitly. Separately: this page has NO Markdown link at all to create-search-index-alias.md (the UI-surface alias task, extracted at server/7.2/search/create-search-index-alias.json as search:create-search-index-alias) - despite being its REST-API counterpart for the same underlying task. The UI page's own prerequisites likewise link only to index:-aliases, create-search-index-ui, customize-index, simple-search-ui, and simple-search-rest-api - never to this REST page either. The two surfaces of one task do not cross-reference each other anywhere in the corpus; recorded here as a concept-membership relationship instead of a seeAlso, since no quotable link exists to support seeAlso.",
+  "cross_product_finding": "No measured Capella twin was dispatched for this page, and no file named create-search-index-alias-rest-api(.md) exists under cloud/ in this snapshot at all (verified by listing cloud/search/) - unlike export-search-index.md, import-search-index.md, and two of the three synonyms task pages in this same batch, which DO have unread Capella-tree counterparts on disk. So for this page specifically, first contact appears to be genuinely one-sided: Capella's Search-index-alias REST documentation, if it exists, is not present in this snapshot's cloud/ tree under this name."
+}

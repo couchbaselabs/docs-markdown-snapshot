@@ -1,0 +1,139 @@
+{
+  "page_id": "server/8.0/search/geo-search-ui",
+  "source_version": "8.0",
+  "source_path": "server/current/search/geo-search-ui.md",
+  "concepts": [
+    {
+      "candidate_id": "search:geo-search-ui",
+      "label": "Run a Geospatial Search Query with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub minted from run-searches.json; this is the first extraction of the page itself"
+    },
+    {
+      "candidate_id": "search:geo-search",
+      "label": "Run a Geospatial Search Query (task, shared by the REST and UI surfaces)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - same task concept minted in geo-search-rest-api.json (this batch) for the REST/UI pair"
+    },
+    {
+      "candidate_id": "search:create-type-mapping",
+      "label": "Create a Type Mapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (create-type-mapping.md has a measured Capella twin per this round's context; genuinely different content each side per that twin's similarity score of 0.30)"
+    },
+    {
+      "candidate_id": "search:create-child-field",
+      "label": "Create a Child Field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (create-child-field.md, not yet extracted itself)"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:autocomplete",
+      "label": "Autocomplete (type-ahead) for the Search Service",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see full definition and evidence in search-query-auto-complete.json (this batch); reused here as target of this page's own Next Steps link"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the Search index."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - narrower prerequisite for the query-only path",
+      "evidence": "If you only want to run a search, you only need the **Search Reader** role."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Create a Type Mapping](create-type-mapping.md) on the collection in your cluster that you want to search."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "[Create a Child Field](create-child-field.md) on the new type mapping with the following settings:"
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You can [customize your Search index](customize-index.md) to improve search results and performance."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:autocomplete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "If you want to add autocomplete to your cluster's search, see [Use Autocomplete with the Search Service](search-query-auto-complete.md)."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page",
+      "evidence": "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope."
+    },
+    {
+      "subject": "search:geo-search-ui",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page, gates the curl-example-generation affordance",
+      "evidence": "Couchbase Server version 7.6.2"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "See geo-search-rest-api.json (this batch) for the full finding: this page and geo-search-rest-api.md do not link to each other anywhere in either page's text, unlike the simple-search REST/UI pair in this same batch."
+  },
+  "cross_component_finding": "See the fuller cross_component_finding logged on geo-search-rest-api.json (this batch): this page's index-building step (Create a Type Mapping, then Create a Child Field, choosing 'geopoint' from a Type list) is a structurally different documented mechanism from the REST page's single JSON payload with an inline `\"type\": \"geopoint\"` field - the same nominal task, two genuinely different build paths, not merely two clients on one mechanism.",
+  "cross_product_finding": ""
+}

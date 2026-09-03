@@ -1,0 +1,159 @@
+{
+  "page_id": "server/8.0/search/synonyms/create-synonym-collection-docs",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/create-synonym-collection-docs.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-synonym-collection-docs",
+      "label": "Create a Synonym Collection and Documents (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - ONE concept shared with the -quick sibling (create-synonym-collection-docs-quick.md, this same batch), which is the strongest case in this batch for sharing one id: the two source files are BYTE-IDENTICAL in every section (Prerequisites, Procedure, both synonym-document examples) except for the single terminal Next Steps link, which points to add-synonym-source.md here and add-synonym-source-quick.md on the sibling. There is no procedural or content difference to capture as a relation beyond that one differing seeAlso target."
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page creates the collection and documents that a synonym source (search:add-synonym-source) later points at."
+    },
+    {
+      "candidate_id": "role:full-admin",
+      "label": "Full Admin",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not previously in the registry; one of three disjunctive roles this page names for bucket/scope/collection management."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (server/8.0/analytics/5_ddl.json)."
+    },
+    {
+      "candidate_id": "role:bucket-admin",
+      "label": "Bucket Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (server/8.0/learn/security/roles.json)."
+    },
+    {
+      "candidate_id": "search:unidirectional-synonym-document",
+      "label": "Unidirectional synonym document",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a real, nameable document shape (an `input` array plus a `synonyms` array, defining a one-way synonym relationship), not previously in the registry."
+    },
+    {
+      "candidate_id": "search:bidirectional-synonym-document",
+      "label": "Bidirectional synonym document",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the counterpart shape: a single `synonyms` array, defining a two-way synonym relationship among all its terms."
+    },
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted in add-synonym-source.json, this same batch; this page's Next Steps target."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole is a promoted predicate; the object role concept itself is newly minted (see concepts[])",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "requiresServerRole",
+      "object": "role:bucket-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "For example, the [Full Admin](../../learn/security/roles.md#full-admin), [Cluster Admin](../../learn/security/roles.md#cluster-admin), or [Bucket Admin](../../learn/security/roles.md#bucket-admin) roles allow you to create and manage buckets, scopes, and collections."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "createsOnAction",
+      "object": "search:unidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "A unidirectional synonym document contains an `input` array and a `synonyms` array. Any search for a term in `input` can return any term in `synonyms`."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "createsOnAction",
+      "object": "search:bidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction",
+      "evidence": "Bidirectional synonym documents define a two-way synonym relationship. All terms are contained in a single `synonyms` array. Any search for a term in the `synonyms` array can return any other term in the array."
+    },
+    {
+      "subject": "search:unidirectional-synonym-document",
+      "predicate": "restrictedToContext",
+      "object": "search:unidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, self-referential because the constraint is a cardinality limit on the document's own shape rather than a relationship to a different concept",
+      "evidence": "You can only include a single `input` and `synonyms` array per unidirectional synonym document."
+    },
+    {
+      "subject": "search:bidirectional-synonym-document",
+      "predicate": "restrictedToContext",
+      "object": "search:bidirectional-synonym-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, self-referential, same shape as the unidirectional constraint above",
+      "evidence": "You can only include a single `synonyms` array per bidirectional synonym document."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id, outside this batch's search/ scope and not previously extracted",
+      "evidence": "You have created a bucket and scope where you want to store your Search index and its synonym collections. For more information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-scopes-and-collections/manage-scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id, outside this batch's search/ scope and not previously extracted",
+      "evidence": "For more information about how to create a new collection, see [Manage Scopes and Collections](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/guides/creating-data",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id, outside this batch's search/ scope and not previously extracted",
+      "evidence": "To insert a new document into your cluster with a command line tool or SDK, see [Create Documents](../../guides/creating-data.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/guides/load",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link; object is a page id, outside this batch's search/ scope and not previously extracted",
+      "evidence": "To import multiple documents into your cluster at one time with the Couchbase Server Web Console, command line tools, or an SDK, see [Import and Export Data](../../guides/load.md)."
+    },
+    {
+      "subject": "search:create-synonym-collection-docs",
+      "predicate": "seeAlso",
+      "object": "search:add-synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "To use your defined synonyms in a Search index, see [Add a Synonym Source Using the Web Console](add-synonym-source.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "scopedToKeyspace",
+    "finding": "The page states the synonym collection MUST live in the same bucket and scope as the Search index it will be used with ('You must create your synonym collections in the same bucket and scope where you want to create your Search index'), but never states what happens if the Search index and its intended synonym collections already exist in different scopes - whether the index must be recreated, the collection moved, or the constraint is simply unenforceable after the fact."
+  },
+  "cross_component_finding": "This page and its -quick sibling (create-synonym-collection-docs-quick.json, this same batch) are the most extreme case of near-duplication found in this batch: every section is byte-identical - same Prerequisites, same two NOTE callouts, same two synonym-document JSON examples verbatim, same section anchors - and the ONLY difference anywhere in either file is the Next Steps target (add-synonym-source.md vs add-synonym-source-quick.md). Recorded here as one shared concept per dispatch guidance, with the sibling's own seeAlso relation supplying the one real point of divergence.",
+  "cross_product_finding": "cloud/search/synonyms/create-synonym-collection-docs.md exists on disk but is unread and carries no measured similarity score for this round, so no diff-gate comparison is attempted, per this round's first-contact framing."
+}

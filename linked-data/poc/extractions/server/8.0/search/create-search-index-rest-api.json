@@ -1,0 +1,139 @@
+{
+  "page_id": "server/8.0/search/create-search-index-rest-api",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-search-index-rest-api.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub (create-search-index-ui.md, simple-search-ui.md, simple-search-rest-api.md, create-type-mapping.md, create-child-field.md, search:search); this is the first extraction of the page itself"
+    },
+    {
+      "candidate_id": "search:create-search-index",
+      "label": "Create a Search Index (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - task-level concept already established for this REST/UI pair by the sibling batch's create-search-indexes.md and by the Capella twin cloud/search/create-search-indexes.json (which explicitly logs 'reused - same concept id as the server/ version of this page' for search:create-search-index-ui). This page and create-search-index-ui.md (this batch) are the two client surfaces of exactly that task - see reused_or_minted note on create-search-index-ui.json for the same-round self-fork risk this creates."
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (create-search-index-ui.json)"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-rest-api.json)"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run A Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-ui.json)"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the index."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You must create a Search index before you can [run a search](simple-search-rest-api.md) with the Search Service."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You can also [Run A Simple Search with the Web Console](simple-search-ui.md) or with one of the Couchbase SDKs:"
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "For more information about how to create an index with the UI, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "For more information about the available JSON properties for a Search index, see [Search Index JSON Properties](search-index-params.md)."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page",
+      "evidence": "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page",
+      "evidence": "XATTRs mappings are only available in Couchbase Server version 7.6.2 and later."
+    },
+    {
+      "subject": "search:create-search-index-rest-api",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page, gates the custom document filter / conjunct filter example",
+      "evidence": "Couchbase Server 8.0"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page's next-steps SDK list ('.NET | Go | Java | Kotlin | Node.js | PHP | Python | Ruby | Scala') links out to nine separate SDK full-text-search howto pages, none of which have any extraction-layer id yet in this registry under any namespace searched (sdk:, fts:, search:) - a large, entirely unextracted fan-out from this one page that no round in this project appears to have touched yet."
+  },
+  "cross_component_finding": "This REST reference page demonstrates two advanced index-configuration features inline, as full worked JSON examples, that create-search-index-ui.md (this batch, the paired UI page for the identical task) does not mention at all: a dynamic XATTRs mapping (availableSince 7.6.2) and a custom document filter using a conjunct filter (availableSince 8.0, Couchbase Server 8.0 marker). create-search-index-ui.md instead explicitly scopes itself to a 'basic index' and defers ALL customization, including presumably these same two features, to a separate page, [Customize a Search Index with the Web Console](customize-index.md), which is outside this batch. So the REST/UI content gap here is not a real capability difference (the UI can plausibly reach the same JSON structure through Customize a Search Index) but it is a real documentation-scope difference: the REST page teaches these two advanced features directly as part of 'how to create an index', while the UI-facing task page teaches only the minimal path and pushes everything else one hop further away. Flagging since it affects how discoverable these two version-gated features are depending on which of the two paired pages a reader lands on first.",
+  "cross_product_finding": ""
+}

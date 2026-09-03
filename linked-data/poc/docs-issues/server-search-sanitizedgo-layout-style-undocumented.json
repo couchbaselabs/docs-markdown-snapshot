@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-sanitizedgo-layout-style-undocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "date-time-parser-layout-styles.md's own Go-syntax section header reads 'flexiblego and sanitizedgo date/time layouts use the following syntax', naming a fourth layout style, sanitizedgo, alongside the Go-standard and flexiblego styles the page actually documents. sanitizedgo never appears as a row in the page's main Layout Style comparison table and is never mentioned again anywhere else on the page - a named but undefined value.",
+  "about": [
+    "server/8.0/search/date-time-parser-layout-styles"
+  ],
+  "foundDuring": "round 22",
+  "status": "open",
+  "severity": "needs-sme"
+}

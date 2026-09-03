@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/index-name-uniqueness",
+  "label": "Search index name uniqueness constraint",
+  "type": "since Server 7.6, an index name must be unique within its bucket and scope (previously, presumably, a looser scope - no page states the pre-7.6 rule explicitly).",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope."
+  ],
+  "availableSince": "version:server-7-6",
+  "documented_at": "server/8.0/search/create-search-indexes",
+  "relates_to_competency_question": "At what scope must a Search index's name be unique - the whole cluster, a bucket, or a bucket-and-scope pair?"
+}

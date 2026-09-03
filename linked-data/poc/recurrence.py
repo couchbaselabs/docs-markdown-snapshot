@@ -424,14 +424,22 @@ def selftest():
 
     # Bug #10: the exclusion must apply to the SUBJECT slot as well, or every
     # page id re-enters the promotion metric as a link source. Asserted on a
-    # known instance: search:customize-index has 24 seeAlso relations and no
-    # others, so it must be absent from `slots` entirely and present in `mentions`.
+    # known instance, and the instance has already expired once: this anchor
+    # used to be `search:customize-index` ("24 seeAlso relations and no others"),
+    # true when bug #10 was fixed in round 14. Round 22 finally extracted
+    # customize-index.md itself, giving `search:customize-index` real
+    # non-seeAlso content - correctly moving it into `slots`, which broke this
+    # check on a stale assumption rather than on a regression. Re-anchored to
+    # `monitoring:activity-log`, seeAlso-only as of round 22. This is the same
+    # "a control's verdict can expire" lesson `hooks/test-gate.py` already
+    # carries for the gate; the fix here is the same shape - re-anchor, don't
+    # assume a real-corpus probe stays true forever.
     check("seeAlso subjects excluded from the promotion metric",
-          len(a["slots"].get("search:customize-index", ())), 0)
+          len(a["slots"].get("monitoring:activity-log", ())), 0)
     check("seeAlso-only id still visible as a mention",
-          len(a["mentions"].get("search:customize-index", ())) >= 2, True)
+          len(a["mentions"].get("monitoring:activity-log", ())) >= 2, True)
     check("keep-see-also restores the seeAlso subject",
-          len(b["slots"].get("search:customize-index", ())) >= 2, True)
+          len(b["slots"].get("monitoring:activity-log", ())) >= 2, True)
 
     # Bug #11: the mirror of #10. Excluding seeAlso from the promotion *metric*
     # must not exclude it from the *census*: `mentions` is the table labelled

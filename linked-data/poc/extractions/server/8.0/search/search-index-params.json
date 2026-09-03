@@ -1,0 +1,269 @@
+{
+  "page_id": "server/8.0/search/search-index-params",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search-index-params.md",
+  "concepts": [
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties (reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - established in server/7.2/search/search-index-params.json and cloud/search/search-index-params.json (the latter is this round's UNMEASURED Capella twin)"
+    },
+    {
+      "candidate_id": "search:planparams-object",
+      "label": "planParams Object (partitions/replicas settings)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:index-partitions-param",
+      "label": "indexPartitions property (planParams)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/7.2/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:max-partitions-per-pindex-param",
+      "label": "maxPartitionsPerPIndex property (planParams)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/7.2/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:doc-config-object",
+      "label": "doc_config Object (document type identification)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:doc-config-mode-enum",
+      "label": "doc_config mode value enum",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/about-mappings.json and cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:doc-filter",
+      "label": "Document Filter (boolean/date range/numeric range/term/conjunct/disjunct)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/search-index-params.json"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/search-index-params.json, also reused twice earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch on default-tokenizers-reference.md"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:wordlist",
+      "label": "Wordlist (Search analyzer component / token map)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:date-time-parser-layout-style",
+      "label": "Date/Time Parser Layout Style (flexiblego / isostyle / percentstyle / sanitizedgo)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, minted from cloud/search/create-search-indexes.json"
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Search Index Analyzers",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:store-object",
+      "label": "Store Object (merge policy, persister, and file-format settings)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for this performance-tuning object, which is absent from the Capella twin entirely"
+    },
+    {
+      "candidate_id": "search:vector-field-type",
+      "label": "Vector child field type (vector / vector_base64, with similarity and vector_index_optimized_for)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a FIELD TYPE OPTION inside a general Search index's type-mapping fields array, not a whole vector index; deliberately kept apart from the promoted index-type:search-vector (a Search-Service-built vector INDEX) per this round's do-not-conflate warning - no page in this batch states the two are the same, so they are not merged"
+    },
+    {
+      "candidate_id": "search:index-aliases",
+      "label": "Create Search Index Aliases",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:field-data-types-reference",
+      "label": "Field Data Types",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, seeAlso-only until now"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, also extracted as a full record in this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:search-index-params",
+      "predicate": "hasInternalComponent",
+      "object": "search:planparams-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent)",
+      "evidence": "An object that sets the Search index's partitions and replications."
+    },
+    {
+      "subject": "search:max-partitions-per-pindex-param",
+      "predicate": "mustUseInsteadWhen",
+      "object": "search:index-partitions-param",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (mustUseInsteadWhen)",
+      "evidence": "This setting is deprecated. Use indexPartitions, instead."
+    },
+    {
+      "subject": "search:doc-config-object",
+      "predicate": "usesEnum",
+      "object": "search:doc-config-mode-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "You can choose from one of the following mode values: type\\_field: Use the value from a specific field in the documents."
+    },
+    {
+      "subject": "search:doc-filter",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Couchbase Server 8.0 If mode is custom, provide an object that sets a custom document filter for a scope and collection in your Search index."
+    },
+    {
+      "subject": "search:scoring-model",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Couchbase Server 8.0 Choose the specific scoring model you want to use for scoring search results for this Search index"
+    },
+    {
+      "subject": "search:synonym-source",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Couchbase Server 8.0 The name of the default synonym source to use for the Search index."
+    },
+    {
+      "subject": "search:store-object",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Couchbase Server 8.0 An object that contains settings for in-memory buffer processing in your Search index."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "hasInternalComponent",
+      "object": "search:store-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent)",
+      "evidence": "The `store` object can change settings for merge policy, concurrent persister behavior, and file format version on your Search index."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "hasInternalComponent",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent)",
+      "evidence": "The `mapping` object contains a Search index's [analyzers](customize-index.md#analyzers) and other [advanced settings from the UI](set-advanced-settings.md):"
+    },
+    {
+      "subject": "search:token-filter",
+      "predicate": "configurableVia",
+      "object": "search:wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "A `dict_compound` token filter uses a wordlist to find subwords inside an input token."
+    },
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "usesEnum",
+      "object": "search:date-time-parser-layout-style",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The type of date/time parser you want to create and use in your Search index, based on a specific layout style: flexiblego isostyle percentstyle sanitizedgo"
+    },
+    {
+      "subject": "search:vector-field-type",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice) - inverted direction from the usual (component-listing subject); kept because the exact quote names the field type list, not the object containing it",
+      "evidence": "The child field's type. Can be one of: text number datetime boolean geopoint geoshape disabled ip vector (Server version 7.6.2 and later) vector\\_base64"
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:index-aliases",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about Search index aliases, see [Create Search Index Aliases](index-aliases.md)."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:field-data-types-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about the available field data types, see [Field Data Types](field-data-types-reference.md)."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "To include the value for each instance of an indexed field in the Search index to support [facets](search-request-params.md#facet-name) and sorting search results, set docvalues\\_dynamic to true."
+    },
+    {
+      "subject": "search:search-index-params",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "The `params` object sets a Search index's [type identifier](customize-index.md#type-identifiers), [type mappings](about-mappings.md), and [analyzers](customize-index.md#analyzers)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue / requiresCapability",
+    "finding": "The `similarity` property table states 'It's recommended to choose the same similarity metric for your Search index as the one used in your embedding model' for dot_product/l2_norm/cosine, but never states what similarity metric a vector field defaults to if the property is omitted entirely - unlike default_analyzer ('standard') and default_datetime_parser ('dateTimeOptional'), which this same page gives explicit defaults for. This is a real gap for anyone building a vector field definition from this page alone."
+  },
+  "cross_component_finding": "The vector child-field type documented here (type: vector / vector_base64, with similarity and vector_index_optimized_for properties) is a FIELD-LEVEL option inside an ordinary Search index's type mapping, usable alongside text/number/boolean/geopoint fields in the same document - not the same thing as a whole Search Vector Index (index-type:search-vector, built and managed by the Index Service axis this round's registry state explicitly warns against conflating with search:full-text-index content). This page's own vector properties feed search-request-params.md's knn object and run-searches.md's hybrid tf-idf/bm25 scoring calculation directly (via the dims/similarity properties cross-referenced from both pages), making this genuinely a bridge between the mapping/analyzer half of the Search module and the query/scoring half - both firmly on the fts:full-text-search side, never the vector-index side.",
+  "cross_product_finding": "This page's twin, cloud/search/search-index-params.json, was left UNMEASURED before this round's dispatch (the diff timed out on this file's size) and its extraction record contains only 7 concepts covering Initial Settings, planParams, doc_config, doc_filter, doc-config-mode-enum, and scoring_model - i.e. everything up through the start of the mapping object. Having now read this server/8.0 page in full (1566 lines vs. a much shorter Capella record), the real similarity is LOW, not the 'near-duplicate' pattern seen on about-mappings.md (0.96) or even the mid-range create-search-index-alias.md (0.80): everything past the initial doc_config/scoring_model section - the entire Analyzers/Char_filters/Tokenizers/Token_filters/Token_maps/Date_time_parsers/Synonym_sources breakdown, the Default_mapping and Types/{scope}.{collection}/{field_name}/Fields-array objects (including the full vector-field property set: dims, similarity, vector_index_optimized_for), and the Store/ScorchPersisterOptions/ScorchMergePlanOptions performance-tuning objects - has NO counterpart anywhere in the Capella extraction. That is the majority of this page's content and concept yield. The size-driven diff timeout was not a fluke of tooling; it reflects a real, large content gap between the two products' documented JSON schemas, not two pages that happen to be hard to diff."
+}

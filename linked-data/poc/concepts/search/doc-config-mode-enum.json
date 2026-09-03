@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/doc-config-mode-enum",
+  "label": "doc_config mode (type_field | docid_prefix | docid_regexp | custom)",
+  "type": "the value set of search:doc-config-object's mode property - how document type is determined for indexing.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "You can choose from one of the following mode values: type_field: Use the value from a specific field in the documents."
+  ],
+  "documented_at": "server/8.0/search/search-index-params",
+  "relates_to_competency_question": "What are the possible ways a Search index can determine a document's type?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/index-partitions-param",
+  "label": "indexPartitions (REST parameter)",
+  "type": "the current REST parameter controlling per-index partition count, replacing the deprecated search:max-partitions-per-pindex-param.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "This setting is deprecated. Use indexPartitions, instead."
+  ],
+  "documented_at": "server/8.0/search/search-index-params",
+  "relates_to_competency_question": "Which REST parameter currently controls a Search index's partition count, and does an older, deprecated name still appear in the docs?"
+}

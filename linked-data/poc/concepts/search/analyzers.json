@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/analyzers",
+  "label": "Analyzer (Search)",
+  "type": "the general analyzer concept - built-in (5 named defaults: inherit/keyword/simple/standard/web) or custom (search:custom-analyzer). Composed of one tokenizer plus character/token filters; see the analyzer-composition scheme.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "Character filters, which remove unwanted characters from search input.",
+    "For more information about how to create a custom analyzer, see Create a Custom Analyzer."
+  ],
+  "hasInternalComponent": [
+    "search:tokenizer",
+    "search:character-filter",
+    "search:token-filter"
+  ],
+  "documented_at": "server/8.0/search/default-analyzers-reference",
+  "relates_to_competency_question": "What text-processing pipeline does a Search index apply to a field before it becomes searchable?"
+}

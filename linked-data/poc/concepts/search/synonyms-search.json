@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/synonyms-search",
+  "label": "Add Synonyms to a Search Index",
+  "type": "the task of setting up search:thesaurus/synonym-collection/synonym-document/synonym-source for an index.",
+  "promoted": true,
+  "recurrence": 10,
+  "aliases": [
+    "search:synonyms-search-quick"
+  ],
+  "aliases_note": "Folds a same-round self-fork of the exact shape this round's own dispatch briefing asked agents to avoid for two OTHER quick/non-quick pairs. One batch minted `search:synonyms-search-quick` as a bare seeAlso stub before the page itself had been read ('target of a structural link into the not-yet-read search/synonyms/ subtree'); the batch that later read both pages correctly reused one concept for the other two quick/non-quick pairs (add-synonym-source, create-synonym-collection-docs) but, on this third pair, found the split already pre-existing and flagged it for reconciliation rather than resolving it unilaterally - the right call. Folded here: 10 files for the base spelling, 4 for -quick, comfortably promotable either way.",
+  "evidence": [
+    "Add Synonyms to a Search Index",
+    "As of Couchbase Server version 8.0, you can Add Synonyms with the Quick Editor."
+  ],
+  "documented_at": "server/8.0/search/synonyms/synonyms-search",
+  "relates_to_competency_question": "What is the end-to-end task of adding synonym support to a Search index, and does the Quick Editor path change what gets created?"
+}

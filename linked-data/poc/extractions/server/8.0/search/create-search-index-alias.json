@@ -1,0 +1,26 @@
+{
+  "page_id": "server/8.0/search/create-search-index-alias",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-search-index-alias.md",
+  "concepts": [
+    { "candidate_id": "search:create-search-index-alias", "label": "Create a Search Index Alias with the Web Console (task/how-to page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, same cross-product id already used for server/7.2/search/create-search-index-alias.json and the measured Capella twin cloud/search/create-search-index-alias.json" },
+    { "candidate_id": "search:index-aliases", "label": "Create Search Index Aliases", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this page's own content is now backed by the real search:index-aliases record written earlier in this same batch (server/8.0/search/index-aliases.json)" },
+    { "candidate_id": "search:create-search-index-ui", "label": "Create a Basic Search Index with the Web Console (standard editor)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:customize-index", "label": "Customize a Search Index with the Web Console (task/how-to hub page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:simple-search-ui", "label": "Run a Simple Search with the Web Console", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:simple-search-rest-api", "label": "Run a Simple Search with the REST API and curl/HTTP", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" }
+  ],
+  "relations": [
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:index-aliases", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about Search index aliases, see [Create Search Index Aliases](index-aliases.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:create-search-index-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "You have created at least one Search index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:customize-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "To customize a Search index, see [Customize a Search Index with the Web Console](customize-index.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:simple-search-ui", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "To run a search and test the contents of your Search index or Search index alias, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)." },
+    { "subject": "search:create-search-index-alias", "predicate": "seeAlso", "object": "search:simple-search-rest-api", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "To run a search and test the contents of your Search index or Search index alias, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role/privilege is stated in this page's Prerequisites for creating a Search index alias - only Search Service enablement, at least one existing Search index, and being logged in. This matches the identical gap already logged for both the 7.2 version of this page (server/7.2/search/create-search-index-alias.json) and the measured Capella twin (cloud/search/create-search-index-alias.json), and is notable because the sibling task page create-quick-index.md in this same batch explicitly requires role:fts-admin ('Search Admin') for the analogous action of creating a Search index."
+  },
+  "cross_component_finding": "None found beyond what the Capella twin and the 7.2 predecessor already established.",
+  "cross_product_finding": "This is the measured 0.80-similarity twin of cloud/search/create-search-index-alias.json. Confirmed as predicted: the two pages are structurally near-identical (same Prerequisites shape, same 5-step procedure shape - name the alias, CTRL+click to multi-select Target Indexes, create - same Next Steps pointing at customize-index.md and simple-search-ui.md/simple-search-rest-api.md), and the same requiresServerRole/requiresCapellaRole absence was independently confirmed on both sides. No new divergence found beyond the platform-native UI action names (Web Console 'Add Alias' vs Capella's equivalent), which is expected platform terminology, not a content difference."
+}

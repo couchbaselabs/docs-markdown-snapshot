@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/coordinator-node",
+  "label": "Coordinating node (Search)",
+  "type": "the Search Service node that receives a query and scatters it (via gRPC) to every other partition-holding node, per search:scatter-gather.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The Search Service node that receives the Search request is assigned as the coordinating node.",
+    "Using gRPC, the coordinating node scatters the request to all other partitions for the Search index in the request across other nodes."
+  ],
+  "usesProtocol": "protocol:grpc",
+  "documented_at": "server/8.0/search/run-searches",
+  "relates_to_competency_question": "When a Search query is submitted, which node coordinates gathering results from every partition, and how does it reach them?"
+}

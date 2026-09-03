@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/synonym-collection",
+  "label": "Synonym collection (Search)",
+  "type": "a division within a search:thesaurus, containing synonym documents.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "A thesaurus is divided into synonym collections that contain synonym documents."
+  ],
+  "isSubtypeOf": "member of search:thesaurus",
+  "documented_at": "server/8.0/search/synonyms/synonyms-search",
+  "relates_to_competency_question": "How are a thesaurus's synonym documents organized - flat, or grouped into named collections?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-xattrs-gate-differs-server-vs-capella",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Server's create-xattrs-mapping.md gates XATTRs mapping by VERSION ('You can only use XATTRs mappings on Couchbase Server version 7.6.2 or later'), documented on its own dedicated page split out in Server 8.0's docs. Capella's twin (create-type-mapping.md, measured similarity 0.30 against the Server page) still bundles the equivalent content inline and gates it by UI mode (Advanced Mode) rather than by version, with no cross-link from the Server page to acknowledge the split ever happened.",
+  "about": [
+    "server/8.0/search/create-xattrs-mapping",
+    "cloud/search/create-type-mapping"
+  ],
+  "foundDuring": "round 22",
+  "status": "open"
+}

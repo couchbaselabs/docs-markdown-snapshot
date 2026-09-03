@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/custom-analyzer",
+  "label": "Custom analyzer (Search)",
+  "type": "a user-defined search:analyzers instance, assembled from a chosen tokenizer plus optional character/token filters via the Web Console UI or REST.",
+  "promoted": true,
+  "recurrence": 7,
+  "isSubtypeOf": "search:analyzers",
+  "evidence": [
+    "In the Tokenizer list, click the tokenizer you want to use to create tokens from Search input.",
+    "To remove specific characters from search input before tokenizing, in the Character Filters list, do one of the following:"
+  ],
+  "hasInternalComponent": [
+    "search:tokenizer",
+    "search:character-filter",
+    "search:token-filter"
+  ],
+  "documented_at": "server/8.0/search/create-custom-analyzer",
+  "relates_to_competency_question": "Can an administrator assemble their own analyzer from chosen components, rather than using one of the built-in ones?"
+}

@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/search/date-time-parser-layout-styles",
+  "source_version": "8.0",
+  "source_path": "server/current/search/date-time-parser-layout-styles.md",
+  "concepts": [
+    {
+      "candidate_id": "search:date-time-parser-layout-style",
+      "label": "Date/Time Parser Layout Style (flexiblego / isostyle / percentstyle / sanitizedgo)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch on default-date-time-parsers-reference.md; this page is the detailed syntax reference for that same enum"
+    },
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:create-custom-date-time-parser",
+      "label": "Create a Custom Date/Time Parser",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "usesEnum",
+      "object": "search:date-time-parser-layout-style",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "You can choose from the following layout styles for a date/time parser."
+    },
+    {
+      "subject": "search:date-time-parser-layout-styles",
+      "predicate": "seeAlso",
+      "object": "search:default-date-time-parsers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "* [Default Date/Time Parsers](default-date-time-parsers-reference.md)"
+    },
+    {
+      "subject": "search:date-time-parser-layout-styles",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "* [Create a Custom Date/Time Parser](create-custom-date-time-parser.md)"
+    },
+    {
+      "subject": "search:date-time-parser-layout-styles",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "* [Customize a Search Index with the Web Console](customize-index.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "isSubtypeOf / hasEquivalentEffectAs",
+    "finding": "The page's own Go-syntax section header reads 'flexiblego and sanitizedgo date/time layouts use the following syntax', naming a fourth style, sanitizedgo, that never appears as a row in the main Layout Style comparison table (which lists only flexiblego, isostyle, and percentstyle) and is never mentioned again anywhere else on the page. The relationship between flexiblego and sanitizedgo - whether sanitizedgo is a validated/restricted variant of flexiblego, or something else - is never stated, so no relation could be extracted for it even though the id is clearly implied by the shared syntax-table heading."
+  },
+  "cross_component_finding": "None found for this page - it is a self-contained syntax reference for one Search-index component (date/time parsers) with no cross-component content.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page in the corpus."
+}

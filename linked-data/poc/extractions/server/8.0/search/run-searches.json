@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/search/run-searches",
+  "source_version": "8.0",
+  "source_path": "server/current/search/run-searches.md",
+  "concepts": [
+    {
+      "candidate_id": "search:run-searches",
+      "label": "Run a Search (task/overview page - UI, REST API, SQL++, SDKs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - established in server/7.2/search/run-searches.json and cloud/search/run-searches.json (measured Capella twin, similarity 0.92)"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/search-index-params.json and cloud/search/run-searches.json"
+    },
+    {
+      "candidate_id": "search:scoring-algorithm-enum",
+      "label": "Search scoring algorithm enum (tf-idf, bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/run-searches.json"
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/run-searches.json"
+    },
+    {
+      "candidate_id": "n1ql:searchfun",
+      "label": "SQL++ Search Functions",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "tool:query-workbench",
+      "label": "Query Workbench",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the page's 'Query tab' link resolves to the same web-console SQL++ editor already promoted as tool:query-workbench; supersedes the un-promoted n1ql:query-workbench id the server/7.2 sibling record used for the same fact"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:scoring-model",
+      "predicate": "usesEnum",
+      "object": "search:scoring-algorithm-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms for your Search index:"
+    },
+    {
+      "subject": "search:scoring-algorithm-enum",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "Couchbase Server version 8.0\n\nAs of Couchbase Server version 8.0, you can choose to use the [bm25](https://en.wikipedia.org/wiki/Okapi%5FBM25) algorithm instead of `tf-idf` for your Search index."
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "vector-search:vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "If one of your Search queries is a [Vector Search query](../vector-search/vector-search.md), the calculation changes to:"
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "n1ql:searchfun",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about how to use the Search Service from a SQL++ query, see [Search Functions](../n1ql/n1ql-language-reference/searchfun.md)."
+    },
+    {
+      "subject": "search:run-searches",
+      "predicate": "seeAlso",
+      "object": "search:search-facets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link; predicate is promoted, object concept minted in this same batch on search-facets.md",
+      "evidence": "* [Collect Additional Information with Search Facets](search-facets.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page states the Search Service 'chooses reasonable defaults for the value of k1 and b' (the bm25 saturation and length-normalization parameters) but never states what those default numeric values actually are, nor points to a page that does - a reader who wants to know the literal default k1/b values has no path to that fact from this page."
+  },
+  "cross_component_finding": "This page documents running a Search query from SQL++ via the Query tab (tool:query-workbench) and the SEARCH() function, including explicit SQL++ code samples for conjunct (AND) vs disjunct (OR) combination of a regular Search query with a Vector Search knn clause - a genuine cross-component bridge between the search/ and n1ql/ doc trees, matching the same bridge already recorded on the Capella twin and the server/7.2 predecessor of this exact page.",
+  "cross_product_finding": "Confirms the measured 0.92 similarity: this server/8.0 page and the Capella twin (cloud/search/run-searches.json) cover the same ground (UI/REST/SQL++/SDK entry points, tf-idf vs bm25 scoring gated behind 'Couchbase Server version 8.0') almost identically. One real divergence found: this server page gives substantially more mechanical detail on bm25 than the Capella twin's extraction captured - specifically the saturation parameter k1 ('Diminishing returns for a term that continues to frequently appear in documents') and the length-normalization parameter b ('adjustment to the resulting score, based on the total length of the current document field, divided by a normalized average length of the field across all documents'), plus a concrete tip about spam/clickbait scoring - none of which appear as concepts or relations in the Capella record, which only extracted the availableSince gate and the enum choice itself. The bm25-vs-tf-idf comparison and the SDK-language listing are otherwise structurally identical between the two pages."
+}

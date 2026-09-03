@@ -1,0 +1,63 @@
+{
+  "page_id": "server/8.0/search/default-token-filters-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-token-filters-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token Filter (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - general component-type concept, same pattern as search:tokenizer minted this round on default-tokenizers-reference.md; page-shaped alternative would be search:default-token-filters-reference"
+    },
+    {
+      "candidate_id": "search:tokenizer",
+      "label": "Tokenizer (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted earlier in this same batch on default-tokenizers-reference.md"
+    },
+    {
+      "candidate_id": "search:create-custom-token-filter",
+      "label": "Create a Custom Token Filter",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id from prior rounds"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:token-filter",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "search:tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresPriorExecutionOf) - a token filter's documented behavior depends on a tokenizer having already produced tokens for it to filter",
+      "evidence": "The Search Service's [token filters](customize-index.md#token-filters) work with [tokenizers](customize-index.md#tokenizers) to filter search input tokens. Tokens can come from the content of your Search index or a Search query."
+    },
+    {
+      "subject": "search:token-filter",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about token filters, see [Token Filters](customize-index.md#token-filters)."
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent) - part-whole composition",
+      "evidence": "Use a token filter to filter a tokenizer's results and get better search result matches."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "This page enumerates roughly 60 built-in token filters (apostrophe, camelCase, elision_*, stemmer_*, stop_*, to_lower, unique, etc.) but states no default token filter set for a new analyzer - unlike default_analyzer and default_datetime_parser, which search-index-params.md gives explicit default values for."
+  },
+  "cross_component_finding": "None found for this page.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page in the corpus."
+}

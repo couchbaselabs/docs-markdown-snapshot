@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/token-filter",
+  "label": "Token filter (Search)",
+  "type": "an analyzer component modifying tokens AFTER the tokenizer has produced them - zero or more per analyzer. Several built-in kinds (dict_compound, elision, and others) consume a search:wordlist.",
+  "promoted": true,
+  "recurrence": 7,
+  "evidence": [
+    "To modify the tokens created by the tokenizer, in the Token Filters list, do one of the following:",
+    "You can create any of the following custom token filters:"
+  ],
+  "hasInternalComponent": "search:wordlist (for wordlist-based kinds only)",
+  "documented_at": "server/8.0/search/default-token-filters-reference",
+  "relates_to_competency_question": "Can tokens be modified after splitting - stemmed, lowercased, filtered against a list - and is that a different mechanism from the tokenizer itself?"
+}

@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/search/simple-search-ui",
+  "source_version": "8.0",
+  "source_path": "server/current/search/simple-search-ui.md",
+  "concepts": [
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run A Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub minted from earlier rounds (create-search-index-ui.md, create-search-index-alias.md, create-child-field.md, create-quick-index.md, create-type-mapping.md, run-searches.md, search:search); this is the first extraction of the page itself"
+    },
+    {
+      "candidate_id": "search:simple-search",
+      "label": "Run a Simple Search Against a Search Index (task, shared by the REST and UI surfaces)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - same task concept minted in simple-search-rest-api.json (this batch) for the REST/UI pair; both pages document the same task through two client surfaces with no stated capability difference"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (search-request-params.md, not yet extracted itself)"
+    },
+    {
+      "candidate_id": "search:index-aliases",
+      "label": "Create Search Index Aliases",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (index-aliases.md, not yet extracted itself); this page's TIP mentions using an alias to search multiple indexes"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6-4",
+      "label": "Couchbase Server 7.6.4",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) or [Search Reader](../learn/security/roles.md#search-reader) role for the bucket or buckets that contain the Search indexes you want to search."
+    },
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - disjunctive with Search Admin above",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) or [Search Reader](../learn/security/roles.md#search-reader) role for the bucket or buckets that contain the Search indexes you want to search."
+    },
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:index-aliases",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "Use a [Search index alias](index-aliases.md) to search multiple Search indexes in a single search query."
+    },
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "If you do not get the search results you were expecting, you can change the [JSON payload for your Search query](search-request-params.md)."
+    },
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-4",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page",
+      "evidence": "Couchbase Server 7.6.4"
+    },
+    {
+      "subject": "search:simple-search-ui",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - new evidence from this page; gates the direct JSON-editing UI affordance",
+      "evidence": "(Couchbase Server version 7.6.2 and later) To directly edit the [Search request JSON payload](search-request-params.md) for your Search query and run a new search:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "Unlike simple-search-rest-api.md, which explicitly links to this page ('see [Run A Simple Search with the Web Console](simple-search-ui.md)'), this page contains no reciprocal link back to simple-search-rest-api.md anywhere in its text - the REST/UI cross-reference in this pair is one-directional, not symmetric."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

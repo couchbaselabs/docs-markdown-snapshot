@@ -1,0 +1,131 @@
+{
+  "page_id": "server/8.0/search/create-search-index-ui",
+  "source_version": "8.0",
+  "source_path": "server/current/search/create-search-index-ui.md",
+  "concepts": [
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub; also explicitly named cross-product in the measured Capella twin (cloud/search/create-search-index-ui.json, similarity 0.61 per this round's context), which logged 'reused - same concept id as the server/ version of this page' before this page had ever been extracted. This is the first full extraction."
+    },
+    {
+      "candidate_id": "search:create-search-index",
+      "label": "Create a Search Index (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - task-level concept already established for this REST/UI pair by the sibling batch's create-search-indexes.md and the Capella twin family. This page and create-search-index-rest-api.md (this batch) are the two client surfaces. NOTE for reconciliation: this batch's own extraction of create-search-index-rest-api.md and this page independently reuse this same id, and a sibling batch is separately extracting create-search-indexes.md (the general task overview, per this round's flagged same-round self-fork risk) - check that sibling batch's output lands on the identical id 'search:create-search-index' rather than a near-miss spelling."
+    },
+    {
+      "candidate_id": "search:create-search-index-rest-api",
+      "label": "Create a Search Index with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (create-search-index-rest-api.json)"
+    },
+    {
+      "candidate_id": "search:create-quick-index",
+      "label": "Create a Basic Search Index Quickly (Quick Editor)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, page-shaped stub from an earlier round (server/7.2/search/create-quick-index.json); this page links to it as a faster alternative"
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub"
+    },
+    {
+      "candidate_id": "search:simple-search-ui",
+      "label": "Run A Simple Search with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-ui.json)"
+    },
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extracted in this same batch (simple-search-rest-api.json)"
+    },
+    {
+      "candidate_id": "search:import-search-index",
+      "label": "Import a Search Index Definition with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub, cross-product with the Capella version (cloud/search/import-search-index.md, minted in cloud/search/create-search-indexes.json per this round's context)"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) role for the bucket where you want to create the index."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:create-quick-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "Use the [Quick Editor](create-quick-index.md) if you do not need full customization or advanced settings to quickly create a Search index and [type mappings](customize-index.md#type-mappings)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "For more information about how to customize an index, see [Customize a Search Index with the Web Console](customize-index.md)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You must create a Search index before you can [run a search](simple-search-ui.md) with the Search Service."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "For more information about how to run a search, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "seeAlso",
+      "object": "search:import-search-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link",
+      "evidence": "You can also [Import a Search Index Definition with the Web Console](import-search-index.md)."
+    },
+    {
+      "subject": "search:create-search-index-ui",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - identical rule text to the Capella twin's own availableSince relation, new evidence from this page",
+      "evidence": "For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page never links directly to [Create a Type Mapping](create-type-mapping.md), unlike its Capella twin (cloud/search/create-search-index-ui.md), which explicitly recommends 'it's recommended that you create more specific type mappings [...] see create-type-mapping.md' as its own next step. This server page instead routes all further customization, type mappings included, through the single link to customize-index.md."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": "This page confirms, with real content, the contrast its Capella twin (cloud/search/create-search-index-ui.json, similarity 0.61) predicted from absence alone. The twin's notable_absence said it 'cannot tell from the text alone whether Capella's Search Service genuinely dropped this role gate or it is simply undocumented' against 'the server/ counterpart of this exact page, which explicitly requires the Search Admin role' - this page is that server counterpart, and it does state exactly that ('Your user account has the Search Admin role for the bucket where you want to create the index'), while Capella's version states no role requirement of any kind. Two further, previously-unrecorded divergences beyond that role gate: (1) this server page links to [Create a Basic Search Index Quickly](create-quick-index.md) (the 'Quick Editor') as a faster alternative path - the Capella twin has no Quick Editor equivalent and does not mention one; (2) the Capella twin links to search:set-advanced-settings ('Add and Configure Advanced Settings on a Search Index') as an explicit optional step in its own procedure, a page/action this server page never mentions at all, routing advanced configuration only through the generic customize-index.md link instead. All three divergences (role gate, Quick Editor, advanced-settings step) point the same direction: the Capella UI flow for this exact task is measurably thinner/different from the server Web Console flow it was matched against, not a near-duplicate as the raw 0.61 similarity score alone might suggest for a lower-divergence pair in this batch."
+}

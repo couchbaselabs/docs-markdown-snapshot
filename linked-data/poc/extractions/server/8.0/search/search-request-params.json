@@ -1,0 +1,315 @@
+{
+  "page_id": "server/8.0/search/search-request-params",
+  "source_version": "8.0",
+  "source_path": "server/current/search/search-request-params.md",
+  "concepts": [
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, seeAlso-only until this record"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-match",
+      "label": "Match Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page is the JSON-parameter-level documentation of that same query type"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-match-phrase",
+      "label": "Match Phrase Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-boolean-field-query",
+      "label": "Boolean Field Query (bool property)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-boosting-the-score-query",
+      "label": "Boosting the Score Query (boost property)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-conjuncts-disjuncts",
+      "label": "Conjuncts/Disjuncts (Compound and Boolean) Queries",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-date-range",
+      "label": "Date Range Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-fuzzy",
+      "label": "Fuzzy Query (fuzziness property)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-geopoint-spatial",
+      "label": "Geopoint Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-numeric-range",
+      "label": "Numeric Range Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-prefix-query",
+      "label": "Prefix Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-query-string-query",
+      "label": "Query String Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-regexp",
+      "label": "Regexp Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-wildcard",
+      "label": "Wildcard Query",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-term-range",
+      "label": "Term Range Query",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not in the existing fts:fts-supported-queries-* family; following that family's established naming convention rather than inventing a differently-shaped id"
+    },
+    {
+      "candidate_id": "fts:fts-supported-queries-ip-range",
+      "label": "IP Address Range Query",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see fts:fts-supported-queries-term-range note"
+    },
+    {
+      "candidate_id": "search:geojson-query",
+      "label": "GeoJSON Query (Point/LineString/Polygon/MultiPoint/MultiLineString/MultiPolygon/GeometryCollection/Circle/Envelope)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted as one umbrella concept rather than 9 separate shape ids - the page defines 9 distinct GeoJSON shape query variants but they share one field-type prerequisite (geoshape) and one relation-property vocabulary (intersects/contains/within); splitting further is left to reconciliation if the finer grain proves useful"
+    },
+    {
+      "candidate_id": "search:knn-object",
+      "label": "Knn Object (Vector Search parameters inside a Search request)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for this specific request-level object"
+    },
+    {
+      "candidate_id": "search:ctl-object",
+      "label": "Ctl Object (query consistency and execution control)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for this object"
+    },
+    {
+      "candidate_id": "search:sort-object",
+      "label": "Sort Object",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for this object"
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/search/run-searches.json, also reused earlier in this same batch"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, also reused earlier in this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-match",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the match property to run a match query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-match-phrase",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Match phrase query for \"very nice\" in reviews.content"
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-boolean-field-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the bool property to query a field that contains a boolean value."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-boosting-the-score-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "If you use multiple clauses in a query, you can use the `boost` property to assign the relative importance to a clause."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-conjuncts-disjuncts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "You must use compound query arrays to run a [boolean query](#boolean-queries), but you can use a compound query array outside of a boolean query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-date-range",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use a date range query to search for a range of date values inside documents in your Search index:"
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-fuzzy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the `fuzziness` property to run a fuzzy query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-geopoint-spatial",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use a Geopoint distance/radius-based query to search for geo location values in a set radius around a specified latitude and longitude:"
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-numeric-range",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use a numeric range query to search for a range of numbers inside documents in your Search index:"
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-prefix-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the prefix property to run a prefix query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-query-string-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Query String queries let you express more complex queries with a special syntax."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-regexp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the regexp property to run a regular expression query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-wildcard",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use the wildcard property to run a wildcard query."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-term-range",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use a term range query to search for a range of terms inside documents in your Search index."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "fts:fts-supported-queries-ip-range",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "Use an IP Address Range query to search for IP address data in your Search index."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "offersConfigurationChoice",
+      "object": "search:geojson-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "To use a GeoJSON query, you must have a child field in your Search index with the `geoshape` type."
+    },
+    {
+      "subject": "search:knn-object",
+      "predicate": "seeAlso",
+      "object": "vector-search:vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "Each object inside the `knn` array in a Search query describes a [Vector Search](../vector-search/vector-search.md) query."
+    },
+    {
+      "subject": "search:ctl-object",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince)",
+      "evidence": "As of Couchbase Server version 8.0 and later, you can also use it to control which replica partition the Search Service uses to find results for a query."
+    },
+    {
+      "subject": "search:ctl-object",
+      "predicate": "requiresCapability",
+      "object": "search:scoring-model",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability)",
+      "evidence": "You can only use global_scoring if you're using the [bm25 scoring algorithm](run-searches.md#bm25)."
+    },
+    {
+      "subject": "search:sort-object",
+      "predicate": "hasDefaultValue",
+      "object": "score, descending",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasDefaultValue) - object is a literal, per the predicate's documented range",
+      "evidence": "By default, the Search Service sorts results based on score values, from highest to lowest."
+    },
+    {
+      "subject": "search:search-request-params",
+      "predicate": "seeAlso",
+      "object": "search:search-facets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "Contains {facet-name} objects to define each [facet](search-facets.md) you want to return with search results."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The knn object's `k` property description states 'The size or limit property overrides any value set in k', and the top-level size/limit description states the Search Service defaults to size 10 and from 0 - but the page never states what k defaults to if a knn object omits it entirely (k is marked Required=Yes for a knn object, so this may be a non-issue, but no page in this batch states what error, if any, results from omitting a required property like k)."
+  },
+  "cross_component_finding": "The Query Object's Query String syntax section states that, from Couchbase Server 7.6 and later, running a Search query through the SQL++ SEARCH() function relaxes two Search-index requirements that apply everywhere else on this page: the query's analyzer no longer needs to match the index's analyzer, and non-analytic queries no longer need the keyword analyzer on the target field. This is a genuine cross-component behavior change - the n1ql:searchfun access path measurably changes Search-request semantics, not just how the request is issued.",
+  "cross_product_finding": "Not applicable - first contact page per this round's framing; no Capella twin exists for search-request-params.md in the corpus."
+}

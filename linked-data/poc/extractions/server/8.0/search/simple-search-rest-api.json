@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/search/simple-search-rest-api",
+  "source_version": "8.0",
+  "source_path": "server/current/search/simple-search-rest-api.md",
+  "concepts": [
+    {
+      "candidate_id": "search:simple-search-rest-api",
+      "label": "Run a Simple Search with the REST API and curl/HTTP",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer, seeAlso-only stub minted from earlier rounds (run-searches.md, create-search-index-rest-api.md, create-type-mapping.md, etc.); this is the first extraction of the page itself"
+    },
+    {
+      "candidate_id": "search:simple-search",
+      "label": "Run a Simple Search Against a Search Index (task, shared by the REST and UI surfaces)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - task-level concept for the REST/UI pair (simple-search-rest-api.md / simple-search-ui.md), per this round's instruction to bind two client surfaces of one task to a single concept rather than minting per-surface only. No standalone 'search:simple-search' page exists in this batch (unlike search:create-search-index, which has create-search-indexes.md as its own page in a sibling batch) - minted from this page's own framing. Both search:simple-search-rest-api and search:simple-search-ui belong under it; see the reused_or_minted note on the geo-search pair for the same-round self-fork risk this creates against a possible sibling-batch concept of the same shape."
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer stub (search-request-params.md, not yet extracted itself)"
+    },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "full-text index (artifact)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this page runs a query against exactly this artifact"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (aliases include role:search-admin)"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (aliases include role:search-reader)"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "version:server-7-6-4",
+      "label": "Couchbase Server 7.6.4",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - promoted predicate",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) or [Search Reader](../learn/security/roles.md#search-reader) role for the bucket or buckets that contain the Search indexes you want to search."
+    },
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - disjunctive with the Search Admin role above; either role suffices per the page's own wording ('or')",
+      "evidence": "Your user account has the [Search Admin](../learn/security/roles.md#search-admin) or [Search Reader](../learn/security/roles.md#search-reader) role for the bucket or buckets that contain the Search indexes you want to search."
+    },
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link, predicate itself is promoted",
+      "evidence": "For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](simple-search-ui.md)."
+    },
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural link, predicate itself is promoted",
+      "evidence": "For more information about the available properties for a Search query JSON payload, see [Search Request JSON Properties](search-request-params.md)."
+    },
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-4",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - promoted predicate, new evidence from this page",
+      "evidence": "Couchbase Server 7.6.4"
+    },
+    {
+      "subject": "search:simple-search-rest-api",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - promoted predicate, new evidence from this page",
+      "evidence": "Couchbase Server version 7.6.2"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page's own prerequisite list is unusually precise about disjunctive roles ('Search Admin or Search Reader') compared to sibling pages in this same batch: create-search-index-rest-api.md and create-search-index-ui.md require only 'Search Admin' (index creation), while this page and simple-search-ui.md require 'Search Admin OR Search Reader' (running a query, a lower-privilege operation). The role gate is consistently narrower for creation than for querying across this batch - a real, consistently-documented privilege gradient, not a gap."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

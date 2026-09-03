@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-export-alias-support-unstated",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "import-search-index.md explicitly supports importing either a Search index or a Search index alias definition ('paste the JSON definition of your Search index or index alias'). export-search-index.md's own wording never states whether an alias's definition can be exported the same way an index's can - the two pages describe the same JSON-definition mechanism asymmetrically.",
+  "about": [
+    "server/8.0/search/export-search-index",
+    "server/8.0/search/import-search-index"
+  ],
+  "foundDuring": "round 22",
+  "status": "open"
+}

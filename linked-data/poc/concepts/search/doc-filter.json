@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/doc-filter",
+  "label": "Document filter (Search)",
+  "type": "an 8.0+ custom filter selecting which documents in a scope/collection are indexed, based on field values - distinct from a type mapping's document-type inclusion/exclusion.",
+  "promoted": true,
+  "recurrence": 5,
+  "evidence": [
+    "Custom: As of Couchbase Server version 8.0, custom document filters select only documents that match a custom filter, based on the values of specific fields.",
+    "If mode is custom, provide an object that sets a custom document filter for a scope and collection in your Search index."
+  ],
+  "availableSince": "version:server-8-0",
+  "documented_at": "server/8.0/search/search-index-params",
+  "relates_to_competency_question": "Beyond type mapping, can a Search index filter which documents it indexes by field VALUE, not just field presence?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/scatter-gather",
+  "label": "Scatter-gather (Search execution model)",
+  "type": "the execution model the Search Service uses for every query when multiple nodes run the service - a search:coordinator-node scatters the request, then gathers results back.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The Search Service uses a scatter-gather process for running all Search queries, when there are multiple nodes in the cluster running the Search Service."
+  ],
+  "documented_at": "server/8.0/search/run-searches",
+  "relates_to_competency_question": "How does a Search query executed against a multi-node cluster actually run - does one node handle everything, or is the work distributed?"
+}

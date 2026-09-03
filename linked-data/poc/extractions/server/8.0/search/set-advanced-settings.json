@@ -1,0 +1,311 @@
+{
+  "page_id": "server/8.0/search/set-advanced-settings",
+  "source_version": "8.0",
+  "source_path": "server/current/search/set-advanced-settings.md",
+  "concepts": [
+    {
+      "candidate_id": "search:set-advanced-settings",
+      "label": "Set Search Index Advanced Settings (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer page-shaped id already in the corpus (17 prior mentions, including as a seeAlso target from every create-custom-* page in this same batch)"
+    },
+    {
+      "candidate_id": "search:scoring-model",
+      "label": "Search Index Scoring Model (tf-idf / bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (5 prior mentions across cloud/ and server/8.0 records, including a concurrent sibling batch's server/8.0/search/run-searches.json this same round). This page's Advanced Settings table row states the identical fact server-side."
+    },
+    {
+      "candidate_id": "search:scoring-algorithm-enum",
+      "label": "Search scoring algorithm enum (tf-idf, bm25)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (2 prior mentions)"
+    },
+    {
+      "candidate_id": "search:type-mapping",
+      "label": "Search Index Type Mapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted in cloud/search/customize-index.json"
+    },
+    {
+      "candidate_id": "search:custom-analyzer",
+      "label": "Custom Analyzer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted earlier in this same batch on create-custom-analyzer.json"
+    },
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id minted this same round by a concurrent batch; reused again in create-custom-date-time-parser.json earlier in this batch"
+    },
+    {
+      "candidate_id": "search:default-field",
+      "label": "Default Field (_all field)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing id for this mechanism (checked search:default-field and search:all-field, nothing matched); the special aggregate field ('_all field') that lets a search query match content without naming the specific field"
+    },
+    {
+      "candidate_id": "search:dynamic-mapping",
+      "label": "Dynamic Mapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (6 prior mentions)"
+    },
+    {
+      "candidate_id": "fts:index-replicas",
+      "label": "Index Replicas (FTS availability feature)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (1 prior mention, server/7.2/fts/fts-index-replicas.json)"
+    },
+    {
+      "candidate_id": "fts:index-partitioning",
+      "label": "Index Partitioning (FTS)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (1 prior mention)"
+    },
+    {
+      "candidate_id": "search:index-type-setting",
+      "label": "Index Type (Advanced Settings option)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific UI setting name, distinct from the corpus's general index-type taxonomy (index-type:*) - this setting is a legacy, effectively-frozen field on the Search index editor itself, not a member of the index-type:* enumeration"
+    },
+    {
+      "candidate_id": "fts:fts-high-availability-for-search",
+      "label": "High Availability for Search",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new page id (checked, nothing matched); seeAlso target only"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:scoring-model",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate availableSince; corroborates the relation already asserted across cloud/ and server/ records, with this page's own evidence",
+      "evidence": "Couchbase Server version 8.0 Choose the specific scoring model you want to use for scoring search results for this Search index: tf-idf: The standard scoring model for the Search Service."
+    },
+    {
+      "subject": "search:scoring-model",
+      "predicate": "usesEnum",
+      "object": "search:scoring-algorithm-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate usesEnum; corroborates the relation already asserted elsewhere, with this page's own evidence",
+      "evidence": "bm25: A scoring model better suited to hybrid searches with the Search Service."
+    },
+    {
+      "subject": "search:type-mapping",
+      "predicate": "configurableVia",
+      "object": "search:custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia. REFINES create-custom-analyzer.json's configurableVia(search:full-text-index, search:custom-analyzer): this page states the default analyzer is assigned to TYPE MAPPINGS specifically, not the index as an undifferentiated whole - see cross_component_finding",
+      "evidence": "Change the default analyzer assigned to type mappings in the index."
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasInternalComponent; corroborates the relation already asserted in default-date-time-parsers-reference.json (a concurrent batch this round) and create-custom-date-time-parser.json (earlier in this batch), with this page's own evidence",
+      "evidence": "Change the default date/time parser used for date data in your documents."
+    },
+    {
+      "subject": "search:default-field",
+      "predicate": "hasDefaultValue",
+      "object": "_all",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate hasDefaultValue (object is a literal, per its own definition note)",
+      "evidence": "When you [create a mapping for a child field](create-child-field.md), you can choose to include that field in an \\_all field."
+    },
+    {
+      "subject": "search:dynamic-mapping",
+      "predicate": "configurableVia",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia",
+      "evidence": "Select **Store Dynamic Fields** to include field values in search results from a [dynamic type mapping](about-mappings.md#dynamic) in the index."
+    },
+    {
+      "subject": "fts:index-replicas",
+      "predicate": "configuredPerNode",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configuredPerNode; describes the node-scoped placement constraint on replicas stated here",
+      "evidence": "Replicas exist on nodes separate from the current active replica or any other replicas."
+    },
+    {
+      "subject": "fts:index-partitioning",
+      "predicate": "configurableVia",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate configurableVia",
+      "evidence": "Enter a number greater than one to divide the index into partitions across multiple nodes running the Search Service."
+    },
+    {
+      "subject": "search:index-type-setting",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "Version 6.0 (Scorch)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate retainedForLegacyCompatibility ('the subject ... still exists only so that older clients, scripts or versions keep working; the object is the modern construct that supersedes it')",
+      "evidence": "This setting is included for compatibility only. For new indexes, this setting is always **Version 6.0 (Scorch)**."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "manage:node-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:default-analyzers-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about the available default analyzers, see [Default Analyzers](default-analyzers-reference.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-analyzer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to create your own custom analyzer, see [Create a Custom Analyzer](create-custom-analyzer.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about how to create your own custom date/time parser, see [Create a Custom Date/Time Parser](create-custom-date-time-parser.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "When you [create a mapping for a child field](create-child-field.md), you can choose to include that field in an \\_all field."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:about-mappings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "Select **Store Dynamic Fields** to include field values in search results from a [dynamic type mapping](about-mappings.md#dynamic) in the index."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "Select **DocValues for Dynamic Fields** to include the values of each field from a [dynamic type mapping](about-mappings.md#dynamic) in the index for [Facets](search-request-params.md#facets) and sorting search results."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "fts:fts-high-availability-for-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "For more information about replication and the Search Service, see [High Availability for Search](../fts/fts-high-availability-for-search.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:set-type-identifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Set the Type Identifier for a Search Index](set-type-identifier.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Type Mapping](create-type-mapping.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-child-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Child Mapping](create-child-mapping.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-character-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Character Filter](create-custom-character-filter.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Token Filter](create-custom-token-filter.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-tokenizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Tokenizer](create-custom-tokenizer.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:create-custom-wordlist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Create a Custom Wordlist](create-custom-wordlist.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "* [Add Synonyms to a Search Index](synonyms/synonyms-search.md)"
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    },
+    {
+      "subject": "search:set-advanced-settings",
+      "predicate": "seeAlso",
+      "object": "search:simple-search-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso",
+      "evidence": "To run a search and test the contents of your Search index, see [Run A Simple Search with the Web Console](simple-search-ui.md) or [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasInternalComponent / offersConfigurationChoice (imprecise fit for two rows)",
+    "finding": "Two rows resist clean modeling. (1) 'Index Replicas' states a placement constraint on WHERE a replica may live ('Replicas exist on nodes separate from the current active replica or any other replicas') rather than a per-node configuration value, so configuredPerNode is a loose fit - the registry's closest real match (requiresDedicatedNode) is about services, not index replicas, so I used configuredPerNode as the least-wrong available predicate and am flagging the mismatch rather than forcing a better-sounding one. (2) The table itself is a flat list of unrelated settings (scoring, defaults, dynamic-field storage, replicas, index type, partitions) with no stated grouping predicate - I did not mint a 'hasSetting' or 'offersAdvancedSetting' predicate to link search:set-advanced-settings to each option as a component, because the page's own structure is a UI form, not a stated part-whole claim, and hasInternalComponent is reserved (per its own definition) for real component concepts, not arbitrary form fields."
+  },
+  "cross_component_finding": "MOST IMPORTANT FINDING OF THIS PAGE: create-custom-analyzer.json (earlier in this batch) asserted search:full-text-index -configurableVia-> search:custom-analyzer from the sentence 'you can set it as the default analyzer ... for your Search index.' This page's own Advanced Settings table is more precise about WHERE that default lives: 'Change the default analyzer assigned to type mappings in the index' - the default analyzer is a property of a TYPE MAPPING (search:type-mapping), not the index as a flat whole. I recorded the more precise relation here (search:type-mapping -configurableVia-> search:custom-analyzer) alongside, not instead of, the coarser one already on disk, since both are independently true statements from two different pages and only reconciliation should decide whether the coarser one should be narrowed or kept as a valid looser paraphrase. The same refinement likely applies to the Default Date/Time Parser row, which this page states at the index level ('used for date data in your documents') consistent with the sibling batch's search:full-text-index -hasInternalComponent-> search:date-time-parser - so date/time parser and analyzer defaults are NOT symmetric: one is index-scoped, the other (per this page's own wording) is type-mapping-scoped, even though both are configured from the same Advanced Settings form.",
+  "cross_product_finding": "search:scoring-model was minted independently on the Capella side (cloud/search/customize-index.json, cloud/search/search-index-params.json, cloud/search/run-searches.json) from wording nearly identical to this server page's Scoring Model row - both say 'Couchbase Server version 8.0 ... Choose the specific scoring model you want to use for scoring search results for this Search index: tf-idf ... bm25'. This page was not among the round's eight pre-flagged filename-identical pairs (set-advanced-settings.md has no measured Capella twin comparison in this round's dispatch), but the Scoring Model content itself is genuinely shared verbatim wording across cloud/ and server/8.0/, now corroborated a sixth time by this record - real content on both sides, so this finding is reported rather than skipped, per the evidence-gate rule that a cross_product_finding fires only where there is real content on both sides to compare (which there is here, discovered independently of the pre-flagged list)."
+}

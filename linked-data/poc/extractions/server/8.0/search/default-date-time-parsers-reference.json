@@ -1,0 +1,83 @@
+{
+  "page_id": "server/8.0/search/default-date-time-parsers-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/search/default-date-time-parsers-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "search:date-time-parser",
+      "label": "Date/Time Parser (Search analyzer component)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - general component-type concept, same pattern as search:tokenizer/search:token-filter minted this round; page-shaped alternative would be search:default-date-time-parsers-reference"
+    },
+    {
+      "candidate_id": "search:date-time-parser-layout-style",
+      "label": "Date/Time Parser Layout Style (flexiblego / isostyle / percentstyle / sanitizedgo)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the layout-style mechanism this page's dateTimeOptional entry explicitly names and links to date-time-parser-layout-styles.md for"
+    },
+    {
+      "candidate_id": "search:create-custom-date-time-parser",
+      "label": "Create a Custom Date/Time Parser",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:set-advanced-settings",
+      "label": "Add and Configure Advanced Settings on a Search Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties (reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, and also being extracted as a full record in this same batch"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, and also being extracted as a full record in this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "usesEnum",
+      "object": "search:date-time-parser-layout-style",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The dateTimeOptional date/time parser uses 6 layouts, in [percentStyle](date-time-parser-layout-styles.md#percent) format, to parse date and time strings."
+    },
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:set-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "Set the default date/time parser for your Search index from the Server Web Console's' [Advanced Settings](set-advanced-settings.md) or your [JSON Search index definition](search-index-params.md#default-date-time-parser)."
+    },
+    {
+      "subject": "search:date-time-parser",
+      "predicate": "seeAlso",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "You can also set a date/time parser when using [Date Range facets](search-request-params.md#date) or a [date range query](search-request-params.md#date-range-queries)."
+    },
+    {
+      "subject": "search:full-text-index",
+      "predicate": "hasInternalComponent",
+      "object": "search:date-time-parser",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasInternalComponent) - part-whole composition",
+      "evidence": "Use a date/time parser to tell the Search Service how to interpret date and time data in your documents."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "Unlike tokenizers and token filters, this component DOES have a documented default: search-index-params.md states default_datetime_parser's value is 'dateTimeOptional' in its example payload. This page itself, however, never states that dateTimeOptional is the default - a reader landing on this page alone would not learn which parser applies by default; that fact only surfaces on the separate search-index-params.md page."
+  },
+  "cross_component_finding": "None found for this page.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page in the corpus."
+}

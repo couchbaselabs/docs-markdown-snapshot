@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/search/index-aliases",
+  "source_version": "8.0",
+  "source_path": "server/current/search/index-aliases.md",
+  "concepts": [
+    { "candidate_id": "search:index-aliases", "label": "Create Search Index Aliases", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this id existed only as a seeAlso-only stub (5 files, no page ever extracted for it) before this page was read - this record supplies its first real content" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; an alias is defined in terms of the indexes it targets" },
+    { "candidate_id": "search:create-search-index-alias", "label": "Create a Search Index Alias with the Web Console (task/how-to page)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "search:create-search-index-alias-rest-api", "label": "Create a Search Index Alias with the REST API", "registry_status": "minted", "reused_or_minted": "minted - page-shaped stub, first contact" },
+    { "candidate_id": "search:import-search-index", "label": "Import a Search Index Definition with the Web Console", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted cross-product in cloud/search/create-search-indexes.json" }
+  ],
+  "relations": [
+    { "subject": "search:index-aliases", "predicate": "mergesResultsFrom", "object": "search:full-text-index", "registry_status": "minted", "reused_or_minted_predicate": "minted - mergesResultsFrom; the subject fans a single query out to every object index it targets and combines their results into one result set - distinct from scatter-gather (search:scatter-gather), which fans a query out across the PARTITIONS of a single index, not across multiple independent indexes", "evidence": "The Search Service runs the Search query on each Search index in the alias, and returns a merged set of results." },
+    { "subject": "search:index-aliases", "predicate": "seeAlso", "object": "search:create-search-index-alias", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about how to create a Search index alias, see [Create a Search Index Alias with the Web Console](create-search-index-alias.md) or [Create a Search Index Alias with the REST API](create-search-index-alias-rest-api.md)." },
+    { "subject": "search:index-aliases", "predicate": "seeAlso", "object": "search:create-search-index-alias-rest-api", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "For more information about how to create a Search index alias, see [Create a Search Index Alias with the Web Console](create-search-index-alias.md) or [Create a Search Index Alias with the REST API](create-search-index-alias-rest-api.md)." },
+    { "subject": "search:index-aliases", "predicate": "seeAlso", "object": "search:import-search-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted", "evidence": "* [Import a Search Index Definition with the Web Console](import-search-index.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "cascadesTo",
+    "finding": "The page's own worked example (swap 'old-index' out of alias 'my-alias' for an updated clone) never states what happens to queries running against the alias AT THE MOMENT the target-index list is changed - whether in-flight queries against the old target complete against the old index, or whether the swap is atomic from a query's perspective. The page's selling point is 'lets you edit old-index without any downtime', but downtime-for-the-alias-itself during the swap step is not addressed."
+  },
+  "cross_component_finding": "None found - this page's content (multi-index/bucket/scope query fan-out with merged results) does not restate or contradict anything established elsewhere in this batch or in the registry.",
+  "cross_product_finding": "No forced comparison - this page has no measured Capella twin in this batch's dispatch; first contact. (Its structural links are reused heavily by the measured twin cloud/search/create-search-index-alias.json and cloud/search/create-search-indexes.json, both of which minted search:index-aliases as a seeAlso-only stub in advance of this page being read.)"
+}

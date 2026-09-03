@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/dynamic-mapping",
+  "label": "Dynamic mapping (Search)",
+  "type": "a mapping mode indexing every field automatically, as against a static mapping which indexes only explicitly-added fields. A configuration choice shared across type/object/collection/XATTRs mappings.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "(Optional) To only index the fields you add to the child mapping, select only index specified fields. Otherwise, your child mapping is a dynamic mapping.",
+    "(Optional) To switch from a dynamic type mapping to a static type mapping, select Only index specified fields."
+  ],
+  "documented_at": "server/8.0/search/about-mappings",
+  "relates_to_competency_question": "Does a Search mapping have to explicitly list every field to index, or can it index a whole document/object automatically?"
+}

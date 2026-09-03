@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/date-time-parser-layout-style",
+  "label": "Date/time parser layout style",
+  "type": "the syntax style (Go-standard, flexiblego, or a fourth, 'sanitizedgo', named once in a section header but never defined or placed in the main comparison table) a search:date-time-parser uses to specify its expected format.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "In the Layout Style list, choose the specific layout style you want to use for your date/time parser.",
+    "You can choose from the following layout styles for a date/time parser."
+  ],
+  "note": "sanitizedgo is a genuine documentation gap, not modeled beyond this note - see docs-issues/server-search-sanitizedgo-layout-style-undocumented.",
+  "documented_at": "server/8.0/search/date-time-parser-layout-styles",
+  "relates_to_competency_question": "What syntax rules govern how a custom date/time parser's layout string is written?"
+}

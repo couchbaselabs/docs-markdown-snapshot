@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-search-tokenizer-token-filter-default-undocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "default-tokenizers-reference.md lists 6 built-in tokenizers and default-token-filters-reference.md lists roughly 60 built-in token filters, but neither page states which one a Search index uses if none is explicitly configured. This contrasts with search-index-params.md, which explicitly states 'standard' as the default_analyzer and 'dateTimeOptional' as the default_datetime_parser - a stated default exists for the analyzer and the date/time parser, but no equivalent default_tokenizer (or default token filter) property or fallback is documented anywhere in this module for tokenizers or token filters specifically.",
+  "about": [
+    "server/8.0/search/default-tokenizers-reference",
+    "server/8.0/search/default-token-filters-reference",
+    "server/8.0/search/search-index-params"
+  ],
+  "foundDuring": "round 22",
+  "status": "open"
+}

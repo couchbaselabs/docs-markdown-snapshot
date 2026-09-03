@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/search/quick-index-language",
+  "label": "Quick Index text field language",
+  "type": "a Quick Editor field-creation option naming the language of a text field's content, which the Search Service uses to automatically choose an analyzer for that field.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Select the language for the content inside a text field. The Search Service automatically applies an analyzer to the field's contents based on the specified language."
+  ],
+  "configurableVia": "search:analyzers",
+  "documented_at": "server/8.0/search/quick-index-field-options",
+  "relates_to_competency_question": "In the Quick Editor's simplified index-creation path, how is an analyzer chosen without the administrator picking one directly?"
+}

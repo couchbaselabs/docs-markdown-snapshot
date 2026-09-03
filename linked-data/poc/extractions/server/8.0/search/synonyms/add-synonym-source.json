@@ -1,0 +1,155 @@
+{
+  "page_id": "server/8.0/search/synonyms/add-synonym-source",
+  "source_version": "8.0",
+  "source_path": "server/current/search/synonyms/add-synonym-source.md",
+  "concepts": [
+    {
+      "candidate_id": "search:add-synonym-source",
+      "label": "Add a Synonym Source to a Search Index (task/how-to page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - ONE concept shared with the -quick sibling (add-synonym-source-quick.md, this same batch) per this round's dispatch guidance: the two pages perform the same underlying task (add a synonym source to an index/child field so synonym searches work) through two different Web Console surfaces - the standard editor here, the Quick Editor on the sibling. The surface difference is captured as relations on the -quick record, not as a second concept."
+    },
+    {
+      "candidate_id": "search:synonym-source",
+      "label": "Search Index Synonym Source",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (cloud/search/create-search-indexes.json, server/8.0/search/search.json), the ARTIFACT this task page creates one instance of."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin role",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted id (aliases privilege:search-admin, privilege:fts-admin, role:search-admin)."
+    },
+    {
+      "candidate_id": "search:create-search-index-ui",
+      "label": "Create a Basic Search Index with the Web Console (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Prerequisites target."
+    },
+    {
+      "candidate_id": "search:create-type-mapping",
+      "label": "Create a Type Mapping (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Prerequisites target."
+    },
+    {
+      "candidate_id": "search:create-child-field",
+      "label": "Create a Child Field (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Prerequisites target."
+    },
+    {
+      "candidate_id": "search:child-field-options-reference",
+      "label": "Child Field Options (reference page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Procedure step 8 link target."
+    },
+    {
+      "candidate_id": "search:customize-index",
+      "label": "Customize a Search Index with the Web Console",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id, Next Steps target."
+    },
+    {
+      "candidate_id": "search:synonyms-search",
+      "label": "Add Synonyms to a Search Index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing stub id (already referenced from server/8.0/search/create-custom-analyzer.json and others, this same round), the intro paragraph's forward-reference target; also extracted in full in this same batch, see synonyms-search.json."
+    },
+    {
+      "candidate_id": "search:create-quick-index",
+      "label": "Create a Search Index with the Quick Editor (task/how-to page)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; NOT referenced on this page directly, but included as a concept membership because it is the object of the requiresUiMode-style contrast recorded on the -quick sibling record (add-synonym-source-quick.json), so both halves of that relation appear in the registry even though only one page cites the quote."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Your user account has the [Search Admin](../../learn/security/roles.md#search-admin) role for the bucket where you want to edit the Search index."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf",
+      "evidence": "You have created a type mapping. For more information about how to create a type mapping on an index, see [Create a Type Mapping](../create-type-mapping.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf",
+      "evidence": "You have created a text child field where you want to run synonym searches. For more information about how to create a child field on an index, see [Create a Child Field](../create-child-field.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "operatesOnFormat",
+      "object": "search:synonym-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - operatesOnFormat",
+      "evidence": "Add a Synonym Source to set the collection where your synonym documents are stored."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:synonyms-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about synonym searches with the Search Service, see [Add Synonyms to a Search Index](synonyms-search.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:create-search-index-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created an index. For more information, see [Create a Basic Search Index with the Web Console](../create-search-index-ui.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:create-type-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created a type mapping. For more information about how to create a type mapping on an index, see [Create a Type Mapping](../create-type-mapping.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:create-child-field",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "You have created a text child field where you want to run synonym searches. For more information about how to create a child field on an index, see [Create a Child Field](../create-child-field.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:child-field-options-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about how to set the analyzer for a child field, see [Child Field Options](../child-field-options-reference.md)."
+    },
+    {
+      "subject": "search:add-synonym-source",
+      "predicate": "seeAlso",
+      "object": "search:customize-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information about other features you can add to your Search index, see [Customize a Search Index with the Web Console](../customize-index.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (analyzer/child-field consistency check)",
+    "finding": "The example's index definition JSON shows `synonym_source` set on two text fields with `analyzer: en` matching the synonym source's own `analyzer: en` - but the Procedure's step 8 states only that you should 'Choose the same analyzer as the text fields where you want to use synonym searches', with no statement of what happens (an error, a silent mismatch, degraded results) if the analyzers do NOT match. The page states the rule but never states its enforcement or failure mode."
+  },
+  "cross_component_finding": "See add-synonym-source-quick.json (this same batch, sharing this record's search:add-synonym-source concept) for the standard-editor/Quick-Editor divergence: this page's Procedure uses an **Analyzer** list (step 8) while the Quick Editor sibling uses a **Language** list for the same underlying decision - a real, quotable UI-surface difference in a supposedly identical task, captured there via implicitlySetsParameter rather than as a second concept here.",
+  "cross_product_finding": "cloud/search/synonyms/add-synonym-source.md exists on disk (confirmed by directory listing) but is unread and has no measured similarity score dispatched for this round, so no diff-gate comparison is attempted here, per this round's first-contact framing. Worth flagging for a future paired round: cloud/search/synonyms/ contains exactly three files - create-synonym-collection-docs.md, add-synonym-source.md, synonyms-search.md - with no -quick variants at all, since Capella's Search index editor has no Quick Editor equivalent; the -quick half of every pair in this batch is therefore server-only by construction, not by omission."
+}
