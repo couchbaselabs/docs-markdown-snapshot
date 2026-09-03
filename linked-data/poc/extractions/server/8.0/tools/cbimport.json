@@ -1,0 +1,45 @@
+{
+  "page_id": "server/8.0/tools/cbimport",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbimport.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbimport",
+      "label": "cbimport (import data from files/URLs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cloud/reference/command-line-tools.json and already seeAlso-linked straight to THIS page from server/8.0/n1ql/n1ql-language-reference/time-series.json ('you can use the [cbimport](../../tools/cbimport.md) command line tool'). This is first contact on the tool's own canonical Server reference page. NOT merged with the separately-minted server:cbimport (cloud/connect/cli-import-export.json) - see cross_component_finding"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbimport",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbimport-csv",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbimport-csv](cbimport-csv.md), [cbimport-json](cbimport-json.md)"
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbimport-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbimport-csv](cbimport-csv.md), [cbimport-json](cbimport-json.md)"
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "doesNotSupport",
+      "object": "backup:major-cluster-configuration-change",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same predicate/object pairing already recorded for tool:cbbackupmgr and, earlier in this batch, tool:cbdatarecovery and tool:cbexport - reused rather than re-minted",
+      "evidence": "Operations (commands or sub-commands) which connect to a cluster are not supported during major cluster configuration changes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "cascadesTo",
+    "finding": "INSERTING/OVERWRITING DOCUMENTS states a real, specific mechanism - 'If cbimport encounters an existing record in the bucket that has a document id that matches a record from the input source then it will overwrite the existing record' - but never says which conflict-resolution mechanism governs the overwrite (last-write-wins? CAS check?), unlike cbdatarecovery.md's --force-updates flag which explicitly names 'Couchbase's conflict resolution mechanism' as the default and describes overriding it. No relation minted for the overwrite behavior itself: it is a plain KV upsert with no named mechanism on this page to attach it to."
+  },
+  "cross_component_finding": "Mirrors cbexport.json's finding: the extraction layer currently carries THREE ids for this one tool - tool:cbimport (minted in cloud/reference/command-line-tools.json, and independently in server/8.0/n1ql/n1ql-language-reference/time-series.json), server:cbimport (minted separately in cloud/connect/cli-import-export.json), and capella:import-tool (a DIFFERENT thing - cloud/clusters/data-service/import-data-documents.json's 'Capella Import tool (UI)' is explicitly a browser UI that 'generates cbimport commands or loads data directly', not this CLI binary, so that one is correctly separate and should not be folded in). tool:cbimport and server:cbimport, by contrast, name the identical CLI utility this page documents and should converge - flagging for reconciliation rather than merging here, per this batch's extraction-only scope.",
+  "cross_product_finding": "Capella's cli-import-export.md states this Server CLI tool is exposed unchanged on Capella clusters, but this page itself (cbimport's own canonical reference) says nothing about Capella and nothing about the SDK-scripted bulk-import alternative (sdk:bulk-import-workflow, already distinguished from this exact tool in the registry's own notes: 'a third bulk-load path...distinct from capella:data-api...and the tool:cbimport/server:cbimport CLI path'). No merge attempted with Capella's Data Tools > Import UI (capella:import-tool) or with the Data API, consistent with the batch instructions: this tool's own page draws no such correspondence, so none is asserted here."
+}

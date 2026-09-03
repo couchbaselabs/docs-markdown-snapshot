@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/tools/cbimport-csv",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbimport-csv.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbimport",
+      "label": "cbimport (import data from files/URLs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer. This page is the csv subcommand's manual; footer 'Part of the cbimport suite' ties it back to the parent tool"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. Identical CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) opening sentence as cbdatarecovery.json and cbexport-json.json earlier in this batch"
+    },
+    {
+      "candidate_id": "tool:cbimport-key-generator-expression",
+      "label": "Key generator expression (--generate-key)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the --generate-key mini-language (%field% substitution, #GENERATOR# functions MONO_INCR/UUID, custom delimiters). Checked before minting: cbimport-json.md (read later in this same batch) documents the identical KEY GENERATORS mechanism in near-verbatim wording for the JSON subcommand, so this id is deliberately named for the mechanism itself rather than for the CSV subcommand specifically, so it can be reused rather than re-minted there"
+    },
+    {
+      "candidate_id": "tool:cbimport-scope-collection-expression",
+      "label": "Scope/collection expression (--scope-collection-exp)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the --scope-collection-exp text/field parser for routing imported rows to a scope/collection. Same reuse-not-refork reasoning as the key generator concept above: cbimport-json.md documents the identical SCOPE/COLLECTION PARSER mechanism verbatim and will reuse this id rather than mint its own"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbimport",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "configurableVia",
+      "object": "tool:cbimport-key-generator-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate ('the subject's behaviour is influenced by the object setting or surface, without the setting being a hard prerequisite') - key generation is optional per the OPTIONS table",
+      "evidence": "The cbimport command also supports custom key-generation for each document in the imported file. Key generation is done with a combination of pre-existing fields in a document and custom generator functions supplied by cbimport."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "configurableVia",
+      "object": "tool:cbimport-scope-collection-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same predicate as the key-generator relation above",
+      "evidence": "When importing to a collection aware cluster you may optionally choose to provide a scope/collection expression which will be used to determine which scope/collection to insert the imported document in."
+    },
+    {
+      "subject": "server/8.0/tools/cbimport-csv",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbimport-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbimport-json](cbimport-json.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "Neither the REQUIRED nor OPTIONAL flag tables state which RBAC role/privilege the -u/--username account must hold; the page only says generically 'The user must have the appropriate privileges to import data.' Contrast with learn/security/roles.md's 56 named roles elsewhere in the corpus - this page never names one, so no requiresServerRole relation could be minted here without inventing the role name."
+  },
+  "cross_component_finding": "DISCUSSION states 'While importing CSV the cbimport command only utilizes a single reader. As a result importing large dataset may benefit from being partitioned into multiple files and running a separate cbimport process on each file' - a scaling recommendation with no named mechanism (no flag, no concept) to attach it to; recorded here rather than forced onto -t/--threads, which controls write-side concurrency to the cluster, not the read-side single-reader limitation this sentence describes. Those are two different bottlenecks on the same command and the page does not conflate them, so this record does not either.",
+  "cross_product_finding": ""
+}

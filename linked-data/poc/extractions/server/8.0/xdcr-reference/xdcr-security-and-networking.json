@@ -1,0 +1,162 @@
+{
+  "page_id": "server/8.0/xdcr-reference/xdcr-security-and-networking",
+  "source_version": "8.0",
+  "source_path": "server/current/xdcr-reference/xdcr-security-and-networking.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:dns-srv-resolution",
+      "label": "XDCR DNS SRV resolution (LookupSRV)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism by which XDCR resolves a Couchbase-scheme (couchbase://, couchbases://) or untagged FQDN replication target to a concrete node address, via a LookupSRV call against a DNS SRV record. First contact."
+    },
+    {
+      "candidate_id": "xdcr:alternate-address-target",
+      "label": "XDCR alternate-address target",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the externally-visible address of an XDCR target cluster's nodes, used when the target keeps its internally-visible addresses private (Kubernetes, AWS, other clouds) and exposes alternate addresses instead. First contact; scoped to XDCR's own use of the general alternate-addresses mechanism (learn/clusters-and-availability/connectivity.md, out of this batch)."
+    },
+    {
+      "candidate_id": "xdcr:fully-secure-replication",
+      "label": "Fully secure XDCR replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the configuration state in which the target cluster has x.509 certificates established and the source cluster (client) validates the target's (server's) certificate chain during the TLS handshake, optionally also authenticating itself with a client certificate. First contact."
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "auth-mechanism:username-password",
+      "label": "Username and password authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:dns-srv-resolution",
+      "predicate": "doesNotSupport",
+      "object": "the couchbase:// / couchbases:// scheme prefixes as literal XDCR target strings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "Targets _cannot_ be specified with the _Couchbase_ schemes _couchbase://_ and _couchbases://_, which are, instead, used to support the memcached protocol on ports `11210` and `11207`, respectively."
+    },
+    {
+      "subject": "xdcr:dns-srv-resolution",
+      "predicate": "requiresCapability",
+      "object": "a DNS SRV record published for the target's FQDN",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit: object is a DNS-infrastructure precondition rather than a bucket/storage/edition capability, matching the corpus's precedent of loose predicate reuse over minting near-duplicates",
+      "evidence": "XDCR performs a [LookupSRV](https://go.dev/src/net/lookup.go) on the FQDN, using the local machine's _DNS resolver_."
+    },
+    {
+      "subject": "xdcr:alternate-address-target",
+      "predicate": "requiresCapability",
+      "object": "port forwarding configured on the target cluster",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit, same convention as above",
+      "evidence": "This involves, on the target, _port forwarding_, which is described in [Alternate Addresses](../learn/clusters-and-availability/connectivity.md#alternate-addresses)."
+    },
+    {
+      "subject": "xdcr:alternate-address-target",
+      "predicate": "configurableVia",
+      "object": "the REST API's `network_type=external` parameter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "Note that the REST API provides a `network_type` parameter, which can be set to `external`, so as to enforce a secure connection: see [Setting a Reference](../rest-api/rest-xdcr-create-ref.md)."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "usesEnum",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The source cluster can authenticate with the target by means _either_ of a username and password _or_ of its own x.509 certificates."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "usesEnum",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The source cluster can authenticate with the target by means _either_ of a username and password _or_ of its own x.509 certificates."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "requiresCapability",
+      "object": "cert:trust-store",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability)",
+      "evidence": "This root certificate (or _CA_) must be included in the _trust store_ of the target cluster."
+    },
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "verifiesIdentityOf",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (verifiesIdentityOf)",
+      "evidence": "The CA for the target cluster must have been used to _digitally sign_ each node certificate: either directly, or (more likely) _indirectly_, by means of an _intermediate_ certificate."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "dependsOnService",
+      "object": "cert:intermediate-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose composition relationship, not a service dependency: a node certificate is concatenated with intermediate certificates to form its certificate chain",
+      "evidence": "When signing is complete, each node certificate must be _concatenated_ with however many intermediate certificates have been used, to form a _certificate chain_, and then appropriately posted on the node it is representing."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "dependsOnService",
+      "object": "tls:mutual-tls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose dependency: fully secure replication may additionally rely on mutual TLS when the source authenticates with its own client certificate",
+      "evidence": "If the source cluster (the _client_) wishes to authenticate with the target cluster (the _server_) by means of _client certificates_, the administrator must first [Enable Client-Certificate Handling](../manage/manage-security/enable-client-certificate-handling.md), on the server."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "verifiesIdentityOf",
+      "object": "cert:root-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (verifiesIdentityOf) - the source cluster's own trust store must recognize the target's CA for authentication to succeed",
+      "evidence": "Additionally, this CA must be recognizable to the source cluster: therefore, XDCR allows the CA to be passed to the source cluster during the set-up of the secure connection."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresEdition / requiresPrivilege",
+    "finding": "Despite being titled 'XDCR Security and Networking' and running to three substantial sections (DNS SRV, alternate addresses, certificates), this page never once names a role, privilege, or edition badge. Its entire security model is: (1) how a target address resolves (DNS/SRV/alternate-address mechanics) and (2) how a TLS/certificate chain is built, trusted, and validated between source and target. Two version-shaped facts are stated but not modeled as relations here because neither cites a registry version concept cleanly: 'Couchbase Server 7.1 and later versions, _multiple root certificates_ are supported' (7.1 has no exact version: concept in the registry - closest are 7.0 and 7.2), and the Dynamic Admissions Controller (DAC) note about Couchbase Operator's own TLS rotation, which is an Operator-product detail with no XDCR-specific gate attached."
+  },
+  "cross_product_finding": "DIRECT ECHO OF A ROUND-7 FINDING, NOW CONFIRMED ON THE SERVER SIDE. cloud/clusters/xdcr/manage-xdcr-security.json's cross_component_finding states that Capella's XDCR security page 'does NOT reveal a genuinely new access-control mechanism for XDCR... its entire security model is a choice among three NETWORK connectivity mechanisms... not by identity or authorization at all.' Server's own xdcr-security-and-networking.md is the reference-manual-level confirmation of the exact same pattern from the opposite side of the product line: zero roles, zero privileges, zero edition gates - 'security' here means address resolution and certificate-chain mechanics (DNS SRV, alternate addresses, x.509/mTLS), not RBAC. The two products independently arrived at describing 'XDCR security' as a network/transport concern rather than an authorization concern, which is a genuinely strong cross-product signal rather than a coincidence of two thin pages."
+}

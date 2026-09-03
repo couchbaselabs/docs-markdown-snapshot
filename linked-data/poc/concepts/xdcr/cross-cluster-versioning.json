@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/cross-cluster-versioning",
+  "label": "Cross Cluster Versioning (CCV)",
+  "type": "a bucket property, available since Server 8.0, that both source and target clusters must enable to use XDCR conflict logging. xdcr:optimistic-replication-threshold's own optimistic-replication mode is applicable only when CCV is DISABLED - the two features are mutually exclusive on one bucket.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "To enable conflict logging, both the source and target clusters must run Server version 8.0 or later, and have the bucket property Cross Cluster Versioning (CCV) enabled on their buckets.",
+    "XDCR optimistic replication is applicable only when the enableCrossClusterVersioning property is disabled."
+  ],
+  "availableSince": "version:server-8-0",
+  "documented_at": "cloud/clusters/xdcr/manage-xdcr-replications",
+  "relates_to_competency_question": "Can a bucket use both XDCR conflict logging and optimistic replication at the same time, or do the two settings exclude each other?"
+}

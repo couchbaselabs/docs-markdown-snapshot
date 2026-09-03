@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/regular-expression",
+  "label": "XDCR Regular Expression",
+  "type": "the JavaScript-flavoured regular-expression syntax usable within an xdcr:filtering-expression, alongside xdcr:filtering-expression's own SQL++-subset syntax. Case-sensitive matching.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "The following JavaScript regular expressions (RegExes) can be used for XDCR Advanced Filtering.",
+    "Note that regular expressions are case-sensitive: a lowercase 'a' is distinct from an uppercase 'A'.",
+    "Matches are established by means of Regular Expressions and Filtering Expressions."
+  ],
+  "supportsLanguageConstruct": "xdcr:lookahead-assertion",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-regular-expressions",
+  "relates_to_competency_question": "Can an XDCR filter use regular-expression matching, and does it follow the same case rules as SQL++?"
+}

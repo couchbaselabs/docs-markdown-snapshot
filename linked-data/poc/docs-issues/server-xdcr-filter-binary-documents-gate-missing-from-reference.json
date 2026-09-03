@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-xdcr-filter-binary-documents-gate-missing-from-reference",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Capella's manage-xdcr-replications.md documents a 'Filter Binary Documents' checkbox, gated on source/target Server 7.2.2+, as part of XDCR filtering configuration. None of the five filtering-family reference pages under server/8.0/xdcr-reference/ mention binary-document filtering or its version gate at all - a one-way documentation asymmetry where the Capella guide states a capability the Server reference manual for the same feature omits.",
+  "about": [
+    "cloud/clusters/xdcr/manage-xdcr-replications",
+    "server/8.0/xdcr-reference/xdcr-filtering-reference-intro"
+  ],
+  "foundDuring": "round 20",
+  "status": "open"
+}

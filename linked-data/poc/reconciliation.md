@@ -5147,7 +5147,135 @@ rather than marked refused (`inline-function`, `named-parameter`,
   yet: the set that mattered here was not a directory of unread pages, it was a single
   relation already sitting in the registry the checking tool doesn't surface.
 
-## Cumulative verdict (all nineteen rounds)
+## Round 20 — `xdcr-reference` and `tools`, two more first-contact modules with a known shape
+
+**Scope.** 18 pages, two unrelated modules again, both first contact. `server/8.0/xdcr-reference/`
+(7 pages, XDCR's filtering/settings/security reference manual, extending the
+extraction-layer `xdcr:` namespace round 7's Capella pages had already started) and
+`server/8.0/tools/` (11 pages, individual CLI/UI tool reference pages, three of them
+direct continuities from the last two rounds: the two backup-file-format dump tools,
+the canonical reference page for the already-promoted `tool:query-workbench`, and the
+Web Console UI for the `js-udf:` family). 105 relations, 0 evidence problems, 3 gate
+denials, all resolved without thinning.
+
+**The dispatch briefing this round did something new: it named the exact failure mode
+from the last round and asked agents to check for it directly** - "if a very
+similarly-shaped concept already exists under a different name, check that concept's
+*relations*, not just its label, before deciding they are different things." It
+worked twice, cleanly: the `tools` batch used `candidate-evidence.py` on
+near-misses before minting and caught two real reuses this way
+(`auth-mechanism:x509-certificate` and `backup:major-cluster-configuration-change`,
+both verbatim boilerplate shared with the `backup-restore` tree). And it surfaced a
+**pre-existing** fork that predates round 19 entirely: `tool:cbimport`/`tool:cbexport`
+had already been minted under three spellings across earlier rounds
+(`tool:*`, `server:*`, and a `capella:cbexport` from a UI/REST export page), invisible
+until this round finally read the tool's own canonical reference pages and the batch
+checked. Verified before folding rather than assumed: `capella:cbexport`'s own relation
+is a direct `seeAlso` to the server tool's page, quoting "the cbexport json
+command-line tool exports data from Capella to JSON format" - confirming all three
+spellings name one CLI tool, not Capella's separate export surface. **This is round
+19's fork lesson generalising in the direction that matters**: not every self-fork is
+same-round or even recent, and the same relation-checking discipline that would have
+caught round 19's `backup:repository` fork also finds forks nobody warned about at
+all, simply by being applied as a habit rather than only when named in advance.
+
+### A within-batch naming split, one page over from where the last one was found
+
+`xdcr-filtering-reference-intro.md` and `xdcr-advanced-settings.md` - two sibling
+pages in this same round's own batch - name the identical bucket-level conflict-
+resolution choice differently: "revision-based"/"timestamp-based" on one,
+"sequence number"/"timestamp" on the other, for the one setting whose default is
+sequence-number-based. This is the same *species* of defect round 19 found within
+`cbbackupmgr` (two Server pages disagreeing about who may run the tool), but a
+different *cause*: round 19's contradiction was a factual disagreement about the
+product; this one is two names for one already-correctly-understood thing, discovered
+because the extraction schema forces every page to state its own vocabulary in full
+rather than assume a reader already knows it from a sibling page. Filed as
+`docs-issues/server-xdcr-conflict-resolution-method-named-inconsistently` rather than
+resolved by picking a winner - a docs-issue, not a concept fork, because there is only
+one id (`xdcr:conflict-resolution-method`) and no registry duplication to fold; the
+disagreement lives entirely in the documentation's own prose.
+
+### Promotions
+
+**`xdcr:` (8 concepts, the namespace's first promotions):** `xdcr:replication-filter`
+(4, "XDCR Advanced Filtering" - cannot be performed on a bare JSON array),
+`xdcr:regular-expression` (3) and `xdcr:filtering-expression` (3) - the two syntaxes a
+filter can use, one JavaScript-flavoured regex, one a SQL++ subset with three Number
+Functions explicitly excluded; `xdcr:data-type-conversion` (3) and
+`xdcr:collation-comparison` (3) - the two implicit procedures for comparing values
+across data types, kept as siblings because the docs themselves present them as two
+alternatives rather than one mechanism; `xdcr:conflict-resolution-method` (3, promoted
+out of the extraction layer six rounds after round 7 minted it from a Capella page -
+this round's two server-side attestations finally cross the bar); `xdcr:cross-cluster-
+versioning` (2, a Server-8.0 bucket property mutually exclusive with
+`xdcr:optimistic-replication-threshold`'s optimistic mode on the same bucket); and
+`xdcr:advanced-settings` (2, the configuration group that creates
+`xdcr:checkpoint-document` entries during replication).
+
+**Tools (5 concepts, 1 enrichment, 1 predicate):** `tool:cbimport`/`tool:cbexport` (7/6,
+folding the pre-existing three-way fork above); `tool:cbsqlitedump` (2, the SQLite
+backup-format dump tool - deliberately not merged with `storage-engine:forestdb`
+despite describing itself as resembling the historical `forestdb_dump` utility, a
+naming echo and not a shared mechanism); `backup:rift-backup-format` and
+`backup:sqlite-backup-format` (2 each, promoted the moment their own dump tools' pages
+gave them a second attestation - both minted last round from `cbbackupmgr-merge.md`
+alone). `tool:query-workbench` (already promoted at 8) gained its first citation from
+its own canonical Server reference page rather than from a Capella description of it,
+plus a real new fact: its Import/Export buttons for saved queries/history/results
+name-collide with the unrelated `tool:cbimport`/`tool:cbexport` (bulk document data) -
+filed `shouldNotBeConfusedWith` on the page's own record. New predicate:
+`operatesOnFormat` (3 - a tool reads/writes data physically encoded in a named
+format, distinct from `offersConfigurationChoice`; all three occurrences so far are
+read access, worth revisiting if a write-access case turns up).
+
+**Deliberately not promoted:** `tool:cbriftdump` (1 file - its own page only;
+`tool:cbsqlitedump` cleared the bar by being named comparatively from *within*
+`cbriftdump`'s own page, which `cbriftdump` had no equivalent second mention of),
+`tool:cbdatarecovery` (2 mentions but only 1 with real content - the Capella mention is
+a bare `seeAlso` link, which the promotion metric correctly excludes), `tool:udfs-ui`
+and `tool:query-monitoring` (1 file each, genuinely first contact with nothing to
+confirm against yet).
+
+### New `docs-issues/` (4, taking the total to 139)
+
+- `server-xdcr-conflict-resolution-method-named-inconsistently` - the within-batch
+  naming split above.
+- `server-xdcr-filter-binary-documents-gate-missing-from-reference` - Capella's guide
+  documents a "Filter Binary Documents" checkbox gated on Server 7.2.2+; none of the
+  five Server filtering-reference pages for the same feature mention it.
+- `server-xdcr-nan-comparison-diverges-from-golang` - XDCR's own NaN comparison
+  semantics for `<=`/`>=` are stated to differ from Go's standard library, on the
+  page's own authority; too fine-grained a fact for this round's concept but worth a
+  future round's attention.
+- `server-cbimport-cbexport-fork-predates-round-19` - the pre-existing three-way tool
+  fork, filed as a record of what was found and verified rather than as an open
+  question, since the fold was confirmed before this round closed.
+
+### What this round taught about the method
+
+- **Telling agents to check a near-miss's relations, not just its label, works when
+  they actually run the check.** Round 19 found the failure (an agent checked
+  `registry-digest.py`'s label and missed a relation that would have settled the
+  question); round 20 tried naming the fix directly in the briefing
+  (`candidate-evidence.py <id>` before minting a near-duplicate) and it caught two real
+  reuses cleanly. The instruction generalised further than expected: the same
+  discipline, applied as a habit rather than only on the two collisions a briefing
+  happened to name, is what surfaced the `cbimport`/`cbexport` fork - a defect from
+  *before* round 19 that nobody had warned about at all, because nobody knew it was
+  there to warn about. **A specific instruction that teaches a general check outlives
+  the specific case that motivated it.**
+- **A within-batch vocabulary split is the same defect shape as a within-batch factual
+  contradiction, discovered by the same mechanism.** Round 19 found `cbbackupmgr`'s
+  three-page RBAC/edition contradiction because the extraction schema makes every page
+  state its own understanding fully, in its own words, rather than deferring to a
+  sibling page. This round's `xdcr:conflict-resolution-method` naming split was found
+  the identical way, one round later, on an unrelated module - which is worth stating
+  as a general property of the method rather than a coincidence: **forcing every page
+  to speak in full sentences is itself a comparison instrument**, once two pages'
+  outputs sit side by side in reconciliation.
+
+## Cumulative verdict (all twenty rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -5377,6 +5505,25 @@ the answer, because the answer was sitting in a *relation* from round 11, and
 checked, and a concept's existing relations are part of that set** — round 10's lesson,
 found a third time, in its most granular form yet.
 
+Round 20 acts on round 19's own lesson directly, by turning it into an instruction —
+"check a near-miss concept's relations, not just its label, before minting a
+near-duplicate" — rather than a warning about two specific ids. It worked twice: two
+real reuses caught cleanly on sight, and, more tellingly, a fork the briefing never
+named at all. `tool:cbimport`/`tool:cbexport` had been minted under three spellings
+across several *earlier* rounds, sitting unfound until this round finally read the
+tool's own canonical pages and a batch applied the relation-checking habit rather than
+only the two collisions round 19 happened to name. Verified before folding, not
+assumed: the third spelling's own relation was a direct `seeAlso` to the tool's page,
+quoting the sentence that settles it. **A specific instruction that teaches a general
+check outlives the specific case that motivated it** — round 19's fix generalised
+because it was framed as a method, not a lookup table of two ids to avoid. The round
+also found a within-batch vocabulary split (`xdcr:conflict-resolution-method` named
+two different ways by two sibling pages in one module) by the identical mechanism that
+found round 19's three-page RBAC contradiction: the extraction schema forces every
+page to state its own understanding fully, in its own words, and reconciliation is
+where two pages' full sentences finally sit side by side. **Forcing every page to
+speak in full sentences is itself a comparison instrument.**
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -5427,7 +5574,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Thirty-one limits of the method are now visible across multiple rounds, not just
+Thirty-two limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -6062,3 +6209,14 @@ once, so worth treating as durable rather than one-off:
   written in round 11) rather than in the label `registry-digest.py` prints. **A
   concept's existing relations are part of what "already in the registry" means, and
   a label-only check will never surface them.**
+
+- **A specific instruction that teaches a general check outlives the specific case
+  that motivated it.** Round 19 warned about two named namespace collisions and
+  missed four others; round 20 turned the lesson into a method instead of a lookup
+  table - "check a near-miss's relations, not just its label, before minting" - and it
+  caught a fork that predated round 19 entirely and that no briefing had ever named
+  (`tool:cbimport`/`tool:cbexport`, forked across three spellings over several
+  rounds). The difference between the two briefings is the difference between listing
+  answers and teaching a technique: a list only ever covers what the coordinator
+  already knows to worry about, and a technique, applied as a habit, finds what nobody
+  thought to name.

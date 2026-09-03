@@ -3,5 +3,14 @@
   "label": "Query Workbench",
   "type": "the web-console SQL++ editor, which supplies txid and tximplicit implicitly",
   "promoted": true,
-  "recurrence": 8
+  "recurrence": 9,
+  "recurrence_note": "8 -> 9 in round 20, first contact on the tool's own canonical Server reference page (query-workbench.md) - all eight prior attestations came from Capella pages describing the same web-console feature.",
+  "evidence": [
+    "The Query Workbench only runs on nodes which are running the Query service.",
+    "In either case, you do not need to specify the `txid` parameter or the `tximplicit` parameter.",
+    "Note that in Couchbase Server Community Edition, index advice is provided in a different way."
+  ],
+  "dependsOnService": "service:query-service",
+  "note": "Round 20 also found query-workbench.md's own Import/Export buttons (for saved queries/history/results) name-collide with the unrelated tool:cbimport/tool:cbexport (bulk document data CLI tools) - flagged shouldNotBeConfusedWith on the page's own extraction record. Same word, two products' worth of unrelated meaning within one tool's UI.",
+  "documented_at": "server/8.0/tools/query-workbench"
 }

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/data-type-conversion",
+  "label": "XDCR Data-Type Conversion",
+  "type": "the implicit procedure XDCR filtering uses to compare values of differing data types within a filtering expression, alongside xdcr:collation-comparison. There is no explicit, administrator-selected conversion mode.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "All conversion performed by XDCR is implicit, meaning that it is performed automatically within the system. No explicit conversion (that is, data-type conversion selected and imposed by the administrator) is available.",
+    "Note that expressions that attempt to compare values whose data types differ from one another must be handled either by data-type conversion or by collation comparison."
+  ],
+  "documented_at": "server/8.0/xdcr-reference/xdcr-filtering-data-type-conversion",
+  "relates_to_competency_question": "When an XDCR filter expression compares values of two different data types, can an administrator choose how the comparison is resolved?"
+}

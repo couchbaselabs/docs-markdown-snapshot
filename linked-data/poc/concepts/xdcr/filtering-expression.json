@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/filtering-expression",
+  "label": "XDCR Filtering Expression",
+  "type": "the expression language an xdcr:replication-filter is written in - a subset of SQL++ expressions with additions (xdcr:regular-expression support), and with some SQL++ Number Functions (RANDOM, SIGN, TRUNC) explicitly excluded.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "XDCR filtering expressions constitute a subset of SQL++ expressions, with some additions.",
+    "XDCR Advanced Filtering is supported by Number Functions. These functions are the same as those provided by SQL++. However, the following SQL++ Number Functions do not apply to XDCR Advanced Filtering: RANDOM, SIGN, and TRUNC."
+  ],
+  "isSubtypeOf": "SQL++ expression language",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-filtering-expressions",
+  "relates_to_competency_question": "Is XDCR's filter expression language the full SQL++ expression grammar, or a deliberately restricted subset?"
+}

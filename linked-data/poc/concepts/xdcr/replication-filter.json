@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/replication-filter",
+  "label": "XDCR Advanced Filtering",
+  "type": "the mechanism restricting which documents an XDCR replication carries from source to target, evaluated via an xdcr:filtering-expression using xdcr:regular-expression syntax and xdcr:collation-comparison semantics. Cannot be performed on documents that are a bare JSON array with no enclosing object.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "Full, Cluster, and XDCR Administrators can configure XDCR filtering.",
+    "It cannot be performed on documents that contain only a JSON array — with the elements surrounded only by square brackets.",
+    "If your operational cluster is on Couchbase Server version 7.2.2 or later, choose whether to Filter Binary Documents."
+  ],
+  "note": "Capella's manage-xdcr-replications.md names a 'Filter Binary Documents' checkbox gated on Server 7.2.2+; none of this batch's five Server filtering-reference pages mention binary-document filtering or that version gate - a one-way documentation asymmetry recorded rather than resolved (see docs-issues).",
+  "requiresServerRole": "role:full-administrator",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-filtering-reference-intro",
+  "relates_to_competency_question": "Can an XDCR replication be restricted to a subset of documents, and are there document shapes that restriction can never reach?"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/advanced-settings",
+  "label": "XDCR Advanced Settings",
+  "type": "the per-replication configuration group covering xdcr:conflict-resolution-method, xdcr:optimistic-replication-threshold, xdcr:compression-type-setting and related tuning parameters, and the mechanism that creates xdcr:checkpoint-document entries during replication.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "During this interval (which does not affect the persistence of data), XDCR computes and persists checkpoint documents, which contain the high sequence number for each vBucket successfully replicated to the target cluster.",
+    "A detailed reference is provided in XDCR Advanced Settings."
+  ],
+  "createsOnAction": "xdcr:checkpoint-document",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-advanced-settings",
+  "relates_to_competency_question": "What per-replication tuning parameters does XDCR expose beyond the basic source/target/filter setup, and what checkpointing does it do under the hood?"
+}

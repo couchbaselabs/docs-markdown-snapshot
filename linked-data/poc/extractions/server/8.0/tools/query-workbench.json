@@ -1,0 +1,209 @@
+{
+  "page_id": "server/8.0/tools/query-workbench",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/query-workbench.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:query-workbench",
+      "label": "Query Workbench",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (recurrence 8), all prior attestations from Capella pages per the batch context. This page is first contact on the tool's own canonical Server reference page, and the definitive source for the promoted label's own defining fact ('supplies txid and tximplicit implicitly') - see cross_component_finding"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "n1ql:txid",
+      "label": "txid (transaction ID query parameter)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "n1ql:tximplicit",
+      "label": "tximplicit (query parameter)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "n1ql:cost-based-optimizer",
+      "label": "cost-based optimizer (CBO)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "n1ql:advise",
+      "label": "ADVISE",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Community Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted, closed vocabulary term"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted. A slight semantic stretch of dependsOnService's usual service-to-service shape (a UI tool, not a service, is the subject), but no closer predicate exists for 'this surface only functions on nodes running the named service', and the direction and meaning are otherwise exactly right",
+      "evidence": "The Query Workbench only runs on nodes which are running the Query service."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:txid",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted. This is the direct, same-page confirmation of the fact already baked into tool:query-workbench's own promoted label ('supplies txid and tximplicit implicitly') - previously asserted only in the promoted registry's own type string with no extraction-record citation behind it",
+      "evidence": "In either case, you do not need to specify the `txid` parameter or the `tximplicit` parameter."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "implicitlySetsParameter",
+      "object": "n1ql:tximplicit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, sibling of the txid relation above, same evidence sentence naming both parameters",
+      "evidence": "In either case, you do not need to specify the `txid` parameter or the `tximplicit` parameter."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "configurableVia",
+      "object": "n1ql:cost-based-optimizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted. The Query Preferences dialog's 'Use Cost-Based Optimizer' toggle is exactly the shape configurableVia describes: a surface whose behaviour is influenced by a setting that is not a hard prerequisite",
+      "evidence": "Specifies whether the [cost-based optimizer](../n1ql/n1ql-language-reference/cost-based-optimizer.md) is enabled."
+    },
+    {
+      "subject": "tool:query-workbench",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "edition:community",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted. The tool exists in both editions but the Index Advisor feature is delivered differently in each (an integrated graphical Advisor in Enterprise Edition vs. an external website link in Community Edition) - exactly behavesDifferentlyUnder's definition, distinct from requiresEdition since the capability is not absent in Community Edition, just relocated",
+      "evidence": "Note that in Couchbase Server Community Edition, index advice is provided in a different way."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/infer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "View the structure of the documents in a keyspace by using the SQL++ [INFER](../n1ql/n1ql-language-reference/infer.md) command."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-manage/query-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To set the query context from the cbq shell or the REST API, use the [query\\_context](../n1ql/n1ql-manage/query-settings.md#query%5Fcontext) request-level parameter."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information on scopes and collections, refer to [Scopes and Collections](../learn/data/scopes-and-collections.md)."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/limit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "we recommend using the [LIMIT](../n1ql/n1ql-language-reference/limit.md) clause as part of your query when appropriate."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/update",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This appears only for [UPDATE](../n1ql/n1ql-language-reference/update.md) and [DELETE](../n1ql/n1ql-language-reference/delete.md) queries instead of Result Count."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/delete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This appears only for [UPDATE](../n1ql/n1ql-language-reference/update.md) and [DELETE](../n1ql/n1ql-language-reference/delete.md) queries instead of Result Count."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Each time a query is executed, an [EXPLAIN](../n1ql/n1ql-language-reference/explain.md) command is automatically run in the background to retrieve the query plan for that query."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/selectintro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "When you execute a [SELECT](../n1ql/n1ql-language-reference/selectintro.md) query, a [MERGE](../n1ql/n1ql-language-reference/merge.md) query, an [UPDATE](../n1ql/n1ql-language-reference/update.md) query, or a [DELETE](../n1ql/n1ql-language-reference/delete.md) query, an [ADVISE](../n1ql/n1ql-language-reference/advise.md) command is automatically run in the background to generate index advice for that query."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/merge",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "When you execute a [SELECT](../n1ql/n1ql-language-reference/selectintro.md) query, a [MERGE](../n1ql/n1ql-language-reference/merge.md) query, an [UPDATE](../n1ql/n1ql-language-reference/update.md) query, or a [DELETE](../n1ql/n1ql-language-reference/delete.md) query, an [ADVISE](../n1ql/n1ql-language-reference/advise.md) command is automatically run in the background to generate index advice for that query."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/advise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "When you execute a [SELECT](../n1ql/n1ql-language-reference/selectintro.md) query, a [MERGE](../n1ql/n1ql-language-reference/merge.md) query, an [UPDATE](../n1ql/n1ql-language-reference/update.md) query, or a [DELETE](../n1ql/n1ql-language-reference/delete.md) query, an [ADVISE](../n1ql/n1ql-language-reference/advise.md) command is automatically run in the background to generate index advice for that query."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/covering-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "If the Index Advisor can also recommend any [covering indexes](../indexes/covering-indexes.md) for this query, in addition to the secondary indexes, array indexes, functional indexes, or partial indexes, they are listed under this heading."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/cost-based-optimizer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Specifies whether the [cost-based optimizer](../n1ql/n1ql-language-reference/cost-based-optimizer.md) is enabled."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/begin-transaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Only applies to [BEGIN TRANSACTION](../n1ql/n1ql-language-reference/begin-transaction.md) statements, or statements executed with the **Run as TX** button."
+    },
+    {
+      "subject": "server/8.0/tools/query-workbench",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "If there is no primary index on a collection, the count of documents within the collection includes any [transaction records](../learn/data/transactions.md#additional-storage-use) that may be stored in that collection."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "The Query Workbench's own 'Import Data'/'Export Data' buttons (Import Query/History window, Export Query/Data/History window) import and export QUERIES, QUERY HISTORY, and QUERY RESULTS as JSON/text files - a completely different operation from tool:cbimport/tool:cbexport (elsewhere in this same batch), which import and export DOCUMENT DATA to/from buckets. The page never mentions cbimport/cbexport and draws no connection, correctly, but the shared 'Import'/'Export' button names sitting in the same product surface as two unrelated CLI tools of nearly the same name is a real naming collision worth recording explicitly so reconciliation does not accidentally merge them."
+  },
+  "cross_component_finding": "tool:query-workbench was promoted at recurrence 8 with its defining fact ('supplies txid and tximplicit implicitly') carried only in the promoted registry's own type string, with no extraction-record citation behind it - every prior attestation came from Capella pages per this round's context file. This page is the first Server-side, same-page, directly-quotable source for exactly that fact (the implicitlySetsParameter relations above), and is otherwise the fullest single description of the tool in the corpus (Query Editor, Results, Explore Your Data/bucket analyzer, Index Advisor, Query Preferences) - the eight prior Capella-side attestations were necessarily partial views of one Server-implemented feature reused unchanged on Capella.",
+  "cross_product_finding": "No Capella page states a divergence from this page's behavior; the prior 8 attestations of tool:query-workbench (all Capella-side, per the batch context) describe the identical tool. This page adds detail no Capella page had already stated (e.g. the Community Edition External Query Advisor fallback, which is Server-edition-specific and has no Capella analogue since Capella has no Community Edition)."
+}

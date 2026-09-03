@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-xdcr-nan-comparison-diverges-from-golang",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "xdcr-filtering-data-type-conversion.md states that NaN float values are treated as less than any other real number for XDCR's own comparison purposes, so the operators <= and >= return true against NaN - explicitly stated to differ from the Go standard library's own NaN comparison semantics, which return false for the same operators. A real, citable implementation quirk with no promoted concept yet (too fine-grained for this round's batch), left as a candidate for a future round focused specifically on XDCR filtering internals.",
+  "about": [
+    "server/8.0/xdcr-reference/xdcr-filtering-data-type-conversion"
+  ],
+  "foundDuring": "round 20",
+  "status": "open"
+}

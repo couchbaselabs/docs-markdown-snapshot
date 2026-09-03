@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/xdcr-reference/xdcr-regular-expressions",
+  "source_version": "8.0",
+  "source_path": "server/current/xdcr-reference/xdcr-regular-expressions.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:regular-expression",
+      "label": "XDCR Regular Expression",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in xdcr-reference-intro.json; this is that concept's own defining/detailed page (a JavaScript-regex syntax cheat sheet: character classes, anchors, shorthand classes, quantifiers)."
+    },
+    {
+      "candidate_id": "xdcr:replication-filter",
+      "label": "XDCR Advanced Filtering",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/clusters/xdcr/manage-xdcr-replications.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "supportsLanguageConstruct",
+      "object": "xdcr:regular-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (supportsLanguageConstruct)",
+      "evidence": "The following JavaScript regular expressions (RegExes) can be used for XDCR Advanced Filtering."
+    },
+    {
+      "subject": "xdcr:regular-expression",
+      "predicate": "doesNotAffect",
+      "object": "case (matches are case-sensitive)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotAffect) - loose fit, capturing the stated case-sensitivity constraint",
+      "evidence": "Note that regular expressions are case-sensitive: a lowercase '`a`' is distinct from an uppercase '`A`'."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / requiresServerRole / availableSince",
+    "finding": "A pure syntax cheat-sheet (character-class ranges, anchors ^ and $, shorthand classes \\d \\D \\s \\S \\w \\W \\xhh \\uhhhh, and quantifiers * + ? {n} {n,m} {n,}) with no prose beyond the case-sensitivity note and a pointer to external MDN/regular-expressions.info references. No version, edition, or role content anywhere - the thinnest page in the batch, exactly as reference tables of this kind are expected to be per this round's batch guidance."
+  }
+}

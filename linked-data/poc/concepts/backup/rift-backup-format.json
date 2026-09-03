@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/rift-backup-format",
+  "label": "Rift backup file format",
+  "type": "one of cbbackupmgr's two backup-archive file formats, alongside backup:sqlite-backup-format. Deliberately in the backup: namespace, not storage-engine:*, which names the Server data engines (Plasma/Forestdb/Nitro/couchstore/magma) rather than a backup file's own on-disk encoding. Inspected via tool:cbriftdump. Does NOT support key-deduplication during merge, unlike the SQLite format.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Note that this deduplication does not currently happen with the Rift format."
+  ],
+  "doesNotSupport": "backup:key-deduplication",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-merge",
+  "relates_to_competency_question": "What are the two possible on-disk encodings of a cbbackupmgr backup file, and do they behave the same way under merge?"
+}

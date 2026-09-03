@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/operates-on-format",
+  "label": "operates on format",
+  "type": "the subject tool reads/writes data physically encoded in the named format - a storage engine's on-disk layout, a backup archive's file format, or a data-interchange format. Distinct from offersConfigurationChoice (a choice a tool's own OUTPUT may take) and from usesEnum (a value set) - this predicate is specifically about what a tool can already-existing, externally-produced data in a given encoding.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Minted in round 20 on tool:cbdatarecovery (storage-engine:couchstore / storage-engine:magma - the two Server data-engine on-disk formats it reads directly from a data directory) and reused for the two cbbackupmgr file-dump tools (tool:cbriftdump -> backup:rift-backup-format, tool:cbsqlitedump -> backup:sqlite-backup-format). All three occurrences are a tool paired with a format it reads, never one it writes - worth revisiting if a future round finds a tool that writes a format under this same predicate, since read and write access are not obviously the same claim.",
+  "documented_at": "server/8.0/tools/cbdatarecovery",
+  "relates_to_competency_question": "Which tools can read data directly from a storage engine's on-disk files or a backup archive's own format, bypassing the normal cluster API?"
+}

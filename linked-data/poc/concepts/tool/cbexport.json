@@ -1,0 +1,23 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbexport",
+  "label": "cbexport",
+  "type": "the command-line tool for bulk-exporting documents from a Couchbase Server bucket/collection to a JSON or CSV file. Sibling of tool:cbimport. NOT the same as Capella's own Data API / UI export surface (cloud/clusters/data-service/export.md) - this is a Server CLI tool; no source page states the two are the same mechanism.",
+  "promoted": true,
+  "recurrence": 6,
+  "aliases": [
+    "server:cbexport",
+    "capella:cbexport"
+  ],
+  "aliases_note": "Folds a pre-existing three-way fork, older than round 19's same-round forks and only surfaced now that this tool's own reference pages were finally read: `tool:cbexport` (Capella's command-line-tools.json plus this round's two server pages), `server:cbexport` (cloud/connect/cli-import-export.json), and `capella:cbexport` (cloud/clusters/data-service/export.json). Verified before folding, not assumed: export.json's own relation is a direct `seeAlso` to the server tool's reference page ('The cbexport json command-line tool exports data from Capella to JSON format'), confirming all three spellings name the identical CLI tool rather than Capella's separate UI/REST export surface. 6 distinct files combined.",
+  "evidence": [
+    "Operations (commands or sub-commands) which connect to a cluster are not supported during major cluster configuration changes.",
+    "The lines format specifies a file that contains one JSON document on every line in the file. This format is specified by setting the --format option to \"lines\".",
+    "The list format specifies a file which contains a JSON list where each element in the list is a JSON document."
+  ],
+  "offersConfigurationChoice": [
+    "dataset-format:lines",
+    "dataset-format:list"
+  ],
+  "documented_at": "server/8.0/tools/cbexport",
+  "relates_to_competency_question": "Is there a CLI tool for bulk-exporting documents from Couchbase Server directly, separate from any UI or REST export surface?"
+}

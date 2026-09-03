@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Nineteen rounds so far, fifteen of them deliberate escalations and
+automating it. Twenty rounds so far, sixteen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -269,6 +269,26 @@ four corrective passes over what they left behind:
     a real three-way contradiction within `cbbackupmgr`'s own pages over who may run
     it and under which edition, with none of the three pages cross-referencing the
     others.
+20. **18 pages, two more first-contact modules** — `server/8.0/xdcr-reference/`
+    (7 pages, extending the `xdcr:` namespace's extraction-layer members from round 7)
+    and `server/8.0/tools/` (11 pages, three deliberate continuities from the last two
+    rounds: the two backup-file-format dump tools, the canonical reference page for
+    the already-promoted `tool:query-workbench`, and the `js-udf:` family's Web Console
+    UI). 105 relations, 0 evidence problems. This round turned round 19's lesson into
+    an instruction rather than a list of named collisions — "check a near-miss's
+    *relations*, not just its label, before minting" — and it worked twice: two clean
+    reuses caught on sight, and a fork that **predates round 19 entirely**,
+    `tool:cbimport`/`tool:cbexport`, forked across three spellings over several earlier
+    rounds and invisible until this round's batch applied the habit rather than only
+    the two collisions a briefing happened to name. Verified before folding: the third
+    spelling's own relation was a direct `seeAlso` quoting the sentence that settles it.
+    **A specific instruction that teaches a general check outlives the specific case
+    that motivated it.** Also found a within-batch vocabulary split
+    (`xdcr:conflict-resolution-method` named two different ways by two sibling pages in
+    one module) by the same mechanism round 19 used to find `cbbackupmgr`'s three-page
+    contradiction — the extraction schema forces every page to state its own
+    understanding fully, and reconciliation is where two pages' full sentences finally
+    sit side by side.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -276,7 +296,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-682 pages total:
+700 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -389,6 +409,14 @@ time/cost projections and how they held up against the round-2 run's real number
 - **4 more, `server/8.0/javascript-udfs/`** — paired against round 6's already-extracted
   `cloud/javascript-udfs/` (4 pages, identical filenames), whose similarity was
   **measured before dispatch** at 0.92–1.00 per round 18's closing recommendation.
+- **7 more, `server/8.0/xdcr-reference/`** — XDCR's filtering/settings/security
+  reference manual: the reference and filtering intros, advanced settings, filtering
+  expressions, data-type conversion, regular expressions, and security/networking.
+  No identically-named Capella twin; extends the `xdcr:` namespace round 7's Capella
+  pages had already started.
+- **11 more, `server/8.0/tools/`** — individual CLI/UI tool reference pages:
+  cbdatarecovery, cbexport/cbexport-json, cbimport/cbimport-csv/cbimport-json,
+  cbriftdump, cbsqlitedump, query-monitoring, query-workbench, udfs-ui.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -812,6 +840,37 @@ from "still in `extractions/`."
   collisions in advance and both were avoided cleanly, while the same briefing did
   nothing for the four collisions nobody had thought to name — **warning about a
   specific collision prevents that collision and nothing else.**
+  Round 20 turned that lesson into an instruction — check a near-miss's *relations*,
+  not just its label, before minting — and promoted **13**. The `xdcr:` namespace got
+  its first eight promotions: `xdcr:replication-filter` (4, "XDCR Advanced Filtering",
+  cannot be performed on a bare JSON array), `xdcr:regular-expression`/
+  `filtering-expression` (3 each, the two syntaxes a filter can use — one
+  JavaScript-flavoured regex, one a SQL++ subset with three Number Functions
+  explicitly excluded), `xdcr:data-type-conversion`/`collation-comparison` (3 each,
+  the two implicit procedures for cross-type comparison, kept as siblings because the
+  docs present them as alternatives rather than one mechanism),
+  `xdcr:conflict-resolution-method` (3, promoted six rounds after round 7 minted it
+  from a Capella page — this round's two server-side attestations finally cross the
+  bar), and `xdcr:cross-cluster-versioning`/`advanced-settings` (2 each). The
+  namespace's own new find: two sibling pages in this round's own batch name the
+  identical conflict-resolution choice differently ("revision-based"/"timestamp-based"
+  vs. "sequence number"/"timestamp") — the same defect *shape* round 19 found in
+  `cbbackupmgr`'s three-page contradiction, found by the identical mechanism: the
+  extraction schema forces every page to state its own vocabulary in full, and
+  reconciliation is where two pages' full sentences finally sit side by side.
+  `tool:cbimport`/`tool:cbexport` (7/6) fold a fork that **predates round 19
+  entirely** — three spellings minted across several earlier rounds
+  (`tool:*`/`server:*`/`capella:cbexport`), invisible until this round's batch checked
+  a near-miss's relations as a habit rather than only the two collisions its own
+  briefing had named, and verified before folding rather than assumed: the third
+  spelling's own relation was a direct `seeAlso` quoting the sentence that settles it.
+  **A specific instruction that teaches a general check outlives the specific case
+  that motivated it.** `tool:cbsqlitedump` (2) and the two backup file formats it and
+  its sibling dump tool inspect, `backup:rift-backup-format`/`sqlite-backup-format` (2
+  each, minted last round from one page alone and promoted the moment their own dump
+  tools' pages gave them a second attestation). New predicate: `operatesOnFormat` (3 —
+  a tool reads/writes data physically encoded in a named format; all three occurrences
+  so far are read access).
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -977,14 +1036,20 @@ from "still in `extractions/`."
   had only been able to describe with the same words. `isSupportedOnStorageMode` was
   refused at 1, and `requiresMinVersionFor` remains unpromoted at 5 files because it
   is a fold into `availableSince`, not a candidate.
+  Rounds 18 and 19 added none - both reused the existing vocabulary throughout, the
+  converged-relations pattern holding for the fourth and fifth time in six rounds.
+  Round 20 added **one**: `operatesOnFormat` (3) — a tool reads/writes data physically
+  encoded in a named format (a storage engine's on-disk layout, a backup archive's own
+  file format), distinct from `offersConfigurationChoice`. All three occurrences so
+  far are read access; worth revisiting if a write-access case turns up.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **135
-  entries** as of round 19. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **139
+  entries** as of round 20. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -1095,6 +1160,14 @@ from "still in `extractions/`."
   where a sibling page has the correctly adapted text for the identical sentence
   (proving the adaptation was attempted and applied inconsistently), and one version
   badge dropped where an adjacent one on the same page was kept.
+  Round 20 added **4**: a within-batch naming split for
+  `xdcr:conflict-resolution-method` (two sibling pages call the same setting's values
+  "revision-based"/"timestamp-based" vs. "sequence number"/"timestamp"); a one-way
+  documentation asymmetry (Capella's guide documents a "Filter Binary Documents"
+  checkbox gated on Server 7.2.2+ that none of the five Server filtering-reference
+  pages for the same feature mention); a stated XDCR/Go NaN-comparison divergence too
+  fine-grained for this round's concept work; and a record of the `cbimport`/`cbexport`
+  fork's resolution, filed as confirmed rather than open once the fold was verified.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1343,7 +1416,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 636 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 654 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2392,6 +2465,28 @@ pre-checked):**
     lesson ("a refusal is only as good as the set it searched") recurring a third
     time, in its most granular form yet.
 
+**Round 20 (18 pages, `xdcr-reference` + `tools`, two more first-contact modules):**
+
+96. **A specific instruction that teaches a general check outlives the specific case
+    that motivated it.** Round 19 named two collisions in advance and missed four
+    others; round 20 turned the lesson into a method - "check a near-miss's
+    *relations*, not just its label, before minting" - and it caught a fork that
+    **predates round 19 entirely**: `tool:cbimport`/`tool:cbexport`, forked across
+    three spellings over several earlier rounds, found only because a batch applied
+    the habit rather than only the two collisions its own briefing had named. Verified
+    before folding: the third spelling's own relation was a direct `seeAlso` quoting
+    the sentence that settles it. A list of named risks only ever covers what the
+    coordinator already knew to worry about; a technique, applied as a habit, finds
+    what nobody thought to name.
+97. **Forcing every page to speak in full sentences is itself a comparison
+    instrument.** `xdcr:conflict-resolution-method`'s value names split between two
+    sibling pages in this round's own batch ("revision-based"/"timestamp-based" vs.
+    "sequence number"/"timestamp") the identical way `cbbackupmgr`'s three pages
+    contradicted each other on RBAC and edition one round earlier - not because either
+    round's pages were unusually careless, but because the extraction schema makes
+    every page state its own understanding in full, and reconciliation is the first
+    place two pages' full sentences are read side by side.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -2484,7 +2579,7 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 177 have now been read.
+  `server/8.0/` is ~1,033 pages of which 195 have now been read.
 - **The pairing strategy has two payoff axes, and round 18 is the case where they
   split — read both, every time, rather than assuming one implies the other.**
   Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*

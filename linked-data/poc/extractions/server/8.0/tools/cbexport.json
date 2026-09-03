@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/tools/cbexport",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbexport.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbexport",
+      "label": "cbexport (export data to files)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cloud/reference/command-line-tools.json. This is first contact on the tool's own canonical Server reference page. NOT merged with the separately-minted server:cbexport (cloud/connect/cli-import-export.json) or capella:cbexport (cloud/clusters/data-service/export.json) - see cross_component_finding: those are near-duplicate ids for the same tool minted independently in earlier rounds, which reconciliation should fold onto this one rather than the reverse, since this page is the tool's own definitive reference"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbexport",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbexport-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbexport-json](cbexport-json.md)"
+    },
+    {
+      "subject": "tool:cbexport",
+      "predicate": "doesNotSupport",
+      "object": "backup:major-cluster-configuration-change",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same predicate/object pairing already recorded for tool:cbbackupmgr (server/8.0/backup-restore/cbbackupmgr.json) and, in this same batch, tool:cbdatarecovery (cbdatarecovery.json) - reused rather than re-minted for the third time this constraint appears verbatim in this batch alone",
+      "evidence": "Operations (commands or sub-commands) which connect to a cluster are not supported during major cluster configuration changes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresMinimumNodeCount",
+    "finding": "The page's only compatibility rule is a version-matching admonition ('Ensure that the version of `cbexport` is the same or greater than the version of Couchbase server') - directionally the mirror image of command-line-tools.json's already-promoted-shaped isBackwardCompatibleWith claim between two command-line-tools-package versions, but this page states it as a live constraint on the CURRENT tool/server pairing rather than a historical compatibility claim between two named package versions, so isBackwardCompatibleWith's range (a version literal) does not fit without forcing it. No relation minted for this sentence; recorded here rather than papered over with a strained reuse."
+  },
+  "cross_component_finding": "The extraction layer currently carries FOUR different ids for what this page states is one tool: tool:cbexport (minted in cloud/reference/command-line-tools.json), server:cbexport (minted separately in cloud/connect/cli-import-export.json, 'a server/-native tool reused unchanged on Capella'), and capella:cbexport (minted in cloud/clusters/data-service/export.json, 'the recommended tool for exporting to third-party, non-Couchbase systems' - and candidate-evidence.py flags its own seeAlso evidence quote as NOT actually present on its citing page). None of these three prior mints had this page - cbexport's own canonical Server reference - as a source; all three were minted from Capella-side pages describing the same CLI tool from a distance. This round's read of cbexport.md finds nothing that would justify three separate ids: it is the same command-line utility in every case. Flagging for reconciliation rather than silently merging, per the batch's extraction-only scope; tool:cbexport (already the plain, unqualified name, matching the tool:cbbackupmgr/tool:cbq-shell naming pattern for CLI tools) looks like the right survivor.",
+  "cross_product_finding": "Capella's own bulk export surface (cloud/clusters/data-service/export.md, cloud/connect/cli-import-export.md) is UI/REST/Data-API driven for most paths, but cli-import-export.md documents that Capella clusters ALSO expose this exact Server CLI tool unchanged - so unlike XDCR's reference layer (no CLI/REST reference exposed to Capella at all, per this round's other module), cbexport's reference layer IS shared verbatim between Server and Capella. This page itself, however, says nothing about Capella; the cross-product link is asserted only from the Capella side, which is exactly why the id triplicated (see cross_component_finding) rather than converging on one."
+}

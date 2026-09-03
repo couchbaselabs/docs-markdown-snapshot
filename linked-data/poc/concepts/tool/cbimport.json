@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbimport",
+  "label": "cbimport",
+  "type": "the command-line tool for bulk-loading JSON or CSV data into a Couchbase Server bucket/collection from a file. Sibling of tool:cbexport. NOT the same as Capella's own Data API / UI import surface (cloud/clusters/data-service/import-data-documents.md) - this is a Server CLI tool; no source page states the two are the same mechanism.",
+  "promoted": true,
+  "recurrence": 7,
+  "aliases": [
+    "server:cbimport"
+  ],
+  "aliases_note": "Folds a pre-existing fork, older than round 19's same-round forks and only surfaced now that this tool's own reference pages were finally read: `tool:cbimport` (minted from Capella's command-line-tools.json and this round's three server pages) and `server:cbimport` (minted independently from cloud/connect/cli-import-export.json and cloud/guides/load.json) named the identical CLI tool under two namespace conventions. `capella:cbimport` was also minted at some point but has 0 corpus occurrences - not aliased, nothing to fold. 7 distinct files combined.",
+  "evidence": [
+    "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication).",
+    "The cbimport command also supports custom key-generation for each document in the imported file.",
+    "The cbimport command supports files that have a JSON document on each line, files that contain a JSON list where each element is a document, and the internal Couchbase Samples format."
+  ],
+  "authenticatesVia": "auth-mechanism:x509-certificate",
+  "documented_at": "server/8.0/tools/cbimport",
+  "relates_to_competency_question": "Is there a CLI tool for bulk-loading JSON/CSV files into Couchbase Server directly, separate from any UI or REST import surface?"
+}

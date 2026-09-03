@@ -1,0 +1,101 @@
+{
+  "page_id": "server/8.0/tools/udfs-ui",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/udfs-ui.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:udfs-ui",
+      "label": "User-Defined Functions UI (Web Console Query > UDF screen)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a UI-specific concept for the management surface itself, per the batch instructions' explicit steer to decide per-fact whether it belongs to the existing js-udf: family or to the UI surface. The page is entirely about the console screen (create/update/delete UDFs and libraries); every underlying JS-UDF concept it touches (library, inline function, external function, sql-managed UDF) is reused from the already-promoted js-udf: family below rather than re-described here"
+    },
+    {
+      "candidate_id": "js-udf:udf-library",
+      "label": "JavaScript UDF library",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. The page's 'JavaScript Function Libraries' section is this UI's create/edit/drop surface for the concept"
+    },
+    {
+      "candidate_id": "js-udf:inline-function",
+      "label": "Inline user-defined function (defined using SQL++ expressions, no external library)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cloud/javascript-udfs/javascript-functions-with-couchbase.json. The UI's 'Inline' function-type row ('a function written in SQL++ which can be used as part of another SQL++ statement') is this same SQL++-expression-only concept, not the broader class that includes sql-managed JavaScript - checked against the concept's own recorded evidence ('An inline SQL++ function is a user-defined function that executes a SQL++ expression') before reusing rather than minting a UI-specific duplicate"
+    },
+    {
+      "candidate_id": "js-udf:external-function",
+      "label": "External (library-backed) JavaScript UDF",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. The UI's 'JavaScript' function-type row ('You can create SQL++ functions that call the JavaScript functions defined in your library') is exactly this concept: a SQL++ function referencing a named function inside a js-udf:udf-library"
+    },
+    {
+      "candidate_id": "js-udf:sql-managed-udf",
+      "label": "SQL++ managed JavaScript UDF",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. The page's own closing NOTE names this concept by definition ('JavaScript functions which are not stored in a library') specifically to state that the UI does NOT support creating it - see the doesNotSupport relation below"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "createdVia",
+      "object": "tool:udfs-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same predicate/shape already recorded for js-udf:udf-library createdVia tool:query-workbench in server/8.0/javascript-udfs/javascript-functions-with-couchbase.json - this UI is a second, distinct creation surface for the same concept",
+      "evidence": "Click on the `+ add function library` link to create a library of JavaScript functions."
+    },
+    {
+      "subject": "js-udf:inline-function",
+      "predicate": "createdVia",
+      "object": "tool:udfs-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same createdVia pattern",
+      "evidence": "If you are defining an `inline` function then you can fill in any valid SQL++ expression which can then be used as part of another SQL++ statement. This is the default when creating a function."
+    },
+    {
+      "subject": "js-udf:external-function",
+      "predicate": "createdVia",
+      "object": "tool:udfs-ui",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same createdVia pattern",
+      "evidence": "If you switch **Function Type** to `javascript` then the dialog will change to configure a JavaScript function call."
+    },
+    {
+      "subject": "tool:udfs-ui",
+      "predicate": "doesNotSupport",
+      "object": "js-udf:sql-managed-udf",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate ('a stated, bounded non-support boundary'), same shape already used for tool:cbcollect-info's audit-log/Eventing-log exclusions per the registry digest",
+      "evidence": "You cannot use the UDF console to create SQL++ managed user-defined functions — that is, JavaScript functions which are not stored in a library. To do this, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)."
+    },
+    {
+      "subject": "server/8.0/tools/udfs-ui",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/createfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You cannot use the UDF console to create SQL++ managed user-defined functions — that is, JavaScript functions which are not stored in a library. To do this, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)."
+    },
+    {
+      "subject": "server/8.0/tools/udfs-ui",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/selectintro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This is a function written in SQL++ which can be used as part of another SQL++ statement, such as [SELECT](../n1ql/n1ql-language-reference/selectintro.md) and [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)."
+    },
+    {
+      "subject": "server/8.0/tools/udfs-ui",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/execfunction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This is a function written in SQL++ which can be used as part of another SQL++ statement, such as [SELECT](../n1ql/n1ql-language-reference/selectintro.md) and [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "'Users will need permissions to access this namespace to run the function' is a direct RBAC statement with no role named - contrast with learn/security/roles.md's 56 named roles elsewhere in the corpus. No requiresServerRole relation minted since the page never names the role; recorded as a finding rather than invented, matching the same gap found on query-monitoring.md and cbimport-csv.md elsewhere in this batch."
+  },
+  "cross_component_finding": "This page is the clean case the batch instructions asked to watch for: it is entirely about a management UI (tool:udfs-ui, minted) laid over concepts the js-udf: family already owns and promoted last round. No fact on this page needed a new js-udf: concept - every JavaScript-UDF-family fact here (library creation, inline vs. external function types, the sql-managed exclusion) already had a promoted or extraction-layer home, and the only genuinely new thing to mint was the UI surface itself.",
+  "cross_product_finding": "Capella's own UDF-creation guides (cloud/guides/create-user-defined-function.json, cloud/guides/create-javascript-library.json, round 6) describe the same createdVia relationship using SQL++ (CREATE FUNCTION) and the Query Workbench as the creation surfaces; this page adds a THIRD creation surface - a dedicated Web Console screen - that is Server-specific vocabulary ('Query > UDF') not named on any Capella page in the corpus."
+}

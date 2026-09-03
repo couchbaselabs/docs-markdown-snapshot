@@ -1,0 +1,121 @@
+{
+  "page_id": "server/8.0/tools/cbimport-json",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbimport-json.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbimport",
+      "label": "cbimport (import data from files/URLs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer. This page is the json subcommand's manual; footer 'Part of the cbimport suite' ties it back to the parent tool"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. Identical CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) opening sentence as the other three cluster-connecting tools in this batch"
+    },
+    {
+      "candidate_id": "dataset-format:lines",
+      "label": "Lines dataset format (one JSON document per line)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cbexport-json.json earlier in this batch for the export direction's identical --format lines value. Checked before minting an import-side duplicate: the LINES section here is worded near-verbatim to cbexport-json.md's, describing the same file shape, just consumed instead of produced"
+    },
+    {
+      "candidate_id": "dataset-format:list",
+      "label": "List dataset format (single JSON array of documents)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, same reasoning as dataset-format:lines above"
+    },
+    {
+      "candidate_id": "dataset-format:sample",
+      "label": "Sample dataset format (internal Couchbase Samples format; --format sample)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third --format value with no export-side counterpart (cbexport-json.md's DATASET FORMATS section only has lines/list), and the only one of the three that can create buckets. Not reused from anywhere else in the corpus; checked and nothing matched"
+    },
+    {
+      "candidate_id": "tool:cbimport-key-generator-expression",
+      "label": "Key generator expression (--generate-key)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cbimport-csv.json earlier in this batch. This page's KEY GENERATORS section is near-verbatim the same mechanism (same %field%/#GENERATOR# syntax, same MONO_INCR/UUID generators), differing only in substituting 'field' for 'column' since JSON documents have fields rather than CSV columns - same underlying concept, reused rather than re-minted"
+    },
+    {
+      "candidate_id": "tool:cbimport-scope-collection-expression",
+      "label": "Scope/collection expression (--scope-collection-exp)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cbimport-csv.json earlier in this batch. This page's SCOPE/COLLECTION PARSER section is near-verbatim the same mechanism"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbimport",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "offersConfigurationChoice",
+      "object": "dataset-format:lines",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The cbimport command supports files that have a JSON document on each line, files that contain a JSON list where each element is a document, and the internal Couchbase Samples format."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "offersConfigurationChoice",
+      "object": "dataset-format:list",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The cbimport command supports files that have a JSON document on each line, files that contain a JSON list where each element is a document, and the internal Couchbase Samples format."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "offersConfigurationChoice",
+      "object": "dataset-format:sample",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The cbimport command supports files that have a JSON document on each line, files that contain a JSON list where each element is a document, and the internal Couchbase Samples format."
+    },
+    {
+      "subject": "dataset-format:sample",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "dataset-format:lines",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate ('the subject...exists only so that older clients/scripts/versions keep working; object = the modern construct that supersedes it'). The page recommends preprocessing into lines format with awk/jq over --format sample directly",
+      "evidence": "This method is recommended over using `--format sample` because arguments such as `--generate-key` are supported."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "configurableVia",
+      "object": "tool:cbimport-key-generator-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same relation already recorded for the csv subcommand in cbimport-csv.json",
+      "evidence": "The cbimport command also supports custom key-generation for each document in the imported file. Key generation is done with a combination of pre-existing fields in a document and custom generator functions supplied by cbimport."
+    },
+    {
+      "subject": "tool:cbimport",
+      "predicate": "configurableVia",
+      "object": "tool:cbimport-scope-collection-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same relation already recorded for the csv subcommand in cbimport-csv.json",
+      "evidence": "When importing to a collection aware cluster you may optionally choose to provide a scope/collection expression which will be used to determine which scope/collection to insert the imported document in."
+    },
+    {
+      "subject": "server/8.0/tools/cbimport-json",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbexport-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbexport-json](cbexport-json.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability",
+    "finding": "'Note that only the sample format can create buckets so providing this flag when using the list or lines format will exit with an error' (re: --eviction-policy) is a hard, stated restriction tying bucket-creation ability to exactly one of the three dataset-format choices, but the page gives no named mechanism for WHY sample format alone can create buckets (no reference to bucket-creation privileges or to the Couchbase Samples catalog it draws from). No relation minted to avoid inventing that reason; recorded as a finding instead."
+  },
+  "cross_component_finding": "Together with cbexport-json.json and cbimport-csv.json earlier in this batch, this page completes a three-way check for the exact self-fork risk the round's context file called out by name ('a common file format, a common flag'): the LINES/LIST dataset-format pair and the key-generator/scope-collection-expression mechanisms are each documented independently on two-to-three pages within this single batch, in near-identical wording. All were minted once and reused thereafter rather than re-minted per page.",
+  "cross_product_finding": ""
+}

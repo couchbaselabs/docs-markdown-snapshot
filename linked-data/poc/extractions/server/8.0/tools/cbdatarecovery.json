@@ -1,0 +1,77 @@
+{
+  "page_id": "server/8.0/tools/cbdatarecovery",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbdatarecovery.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbdatarecovery",
+      "label": "cbdatarecovery (recover data from offline/failed-over nodes)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in cloud/reference/command-line-tools.json (which seeAlso-links straight to this page); this is first contact on the tool's own canonical Server reference page"
+    },
+    {
+      "candidate_id": "storage-engine:couchstore",
+      "label": "Couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. This page names it as one of the two on-disk formats cbdatarecovery reads directly from a data directory"
+    },
+    {
+      "candidate_id": "storage-engine:magma",
+      "label": "Magma",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted, sibling of storage-engine:couchstore named in the same sentence"
+    },
+    {
+      "candidate_id": "backup:major-cluster-configuration-change",
+      "label": "Major cluster configuration change (cbbackupmgr operational constraint)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer, minted in server/8.0/backup-restore/cbbackupmgr.json for cbbackupmgr's own OPERATIONS DURING MAJOR CLUSTER CONFIGURATION CHANGES section. This page's own section under that exact heading is worded near-identically ('Operations (commands or sub-commands) which connect to a cluster are not supported during major cluster configuration changes'), so this is reuse of the same constraint rather than a second, tool-specific one - checked before minting a cbdatarecovery-only near-duplicate"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. This page's CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section opens with the identical sentence already used to attach this concept to cbbackupmgr-generate.json ('This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)') - checked candidate-evidence.py before minting a new mTLS concept for this tool family"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbdatarecovery",
+      "predicate": "operatesOnFormat",
+      "object": "storage-engine:couchstore",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - operatesOnFormat. No existing predicate captures 'this diagnostic/transfer tool reads data physically stored in the named on-disk format'; requiresCapability's definition (a feature needing a capability of the underlying storage engine to be USABLE) is the closest existing fit but is about usability gating, not about which format a tool's input is encoded in, so it would have been a semantic stretch not a reuse. Minted once here and reused (not re-minted) later in this same batch for cbriftdump/cbsqlitedump's own format-dumping relations - checked to avoid the self-fork risk the round's context file warned about",
+      "evidence": "cbdatarecovery transfers key value data stored in Couchstore or Magma files from a Couchbase Server data directory into an active cluster."
+    },
+    {
+      "subject": "tool:cbdatarecovery",
+      "predicate": "operatesOnFormat",
+      "object": "storage-engine:magma",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - same predicate as the Couchstore relation above, second use in this same record",
+      "evidence": "cbdatarecovery transfers key value data stored in Couchstore or Magma files from a Couchbase Server data directory into an active cluster."
+    },
+    {
+      "subject": "tool:cbdatarecovery",
+      "predicate": "doesNotSupport",
+      "object": "backup:major-cluster-configuration-change",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, same predicate/object pairing already recorded for tool:cbbackupmgr in server/8.0/backup-restore/cbbackupmgr.json",
+      "evidence": "Operations (commands or sub-commands) which connect to a cluster are not supported during major cluster configuration changes."
+    },
+    {
+      "subject": "tool:cbdatarecovery",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "cbdatarecovery.md never links to, or names, any cbbackupmgr page, backup:archive, or backup:repository, even though its own OPERATIONS DURING MAJOR CLUSTER CONFIGURATION CHANGES section reuses cbbackupmgr's exact wording ('performing a backup or performing a restore whilst changing the TLS configuration/security settings is unsupported') and its examples' error-handling shares cbbackupmgr's own remap vocabulary almost verbatim (--map-data, the `_default` scope restriction). Despite the strong family resemblance in wording, the page frames cbdatarecovery purely as reading a raw Couchbase Server data directory ('The path to a Couchbase Server data directory') - never as consuming a cbbackupmgr backup archive at all. The two tools appear to be siblings by implementation (shared flag vocabulary, shared constraint text) but the documentation draws no explicit line between them."
+  },
+  "cross_component_finding": "This page is the clearest evidence in the round-20 tools batch for the 'same-round self-fork' risk the batch instructions warned about, resolved by REUSE rather than re-minting: its OPERATIONS DURING MAJOR CLUSTER CONFIGURATION CHANGES section and its CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section are both near-verbatim restatements of mechanisms already extracted elsewhere in the corpus (backup:major-cluster-configuration-change from cbbackupmgr.json; auth-mechanism:x509-certificate from cbbackupmgr-generate.json and the security/authentication pages). Both were reused here, and the same two ids recur identically on cbexport.md/cbimport.md (the configuration-change constraint) and cbexport-json.md/cbimport-csv.md/cbimport-json.md (the mTLS section) later in this same batch - checked against candidate-evidence.py each time rather than re-minted per page.",
+  "cross_product_finding": "No Capella page in the corpus mentions cbdatarecovery or an equivalent raw-data-directory recovery path; cloud/reference/command-line-tools.json's tool:cbdatarecovery entry is a bare seeAlso pointer straight back to this Server page with no Capella-specific behaviour described. Consistent with the batch framing: this is a pure Server-only disaster-recovery tool with no Capella twin, UI or otherwise."
+}

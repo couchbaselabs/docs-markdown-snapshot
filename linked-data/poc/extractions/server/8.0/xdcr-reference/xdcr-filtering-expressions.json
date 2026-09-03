@@ -1,0 +1,78 @@
+{
+  "page_id": "server/8.0/xdcr-reference/xdcr-filtering-expressions",
+  "source_version": "8.0",
+  "source_path": "server/current/xdcr-reference/xdcr-filtering-expressions.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:filtering-expression",
+      "label": "XDCR Filtering Expression",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in xdcr-reference-intro.json; this is that concept's own defining/detailed page (pattern matching, metadata access, logical/comparison/arithmetic/number/date operators, reserved words, BNF grammar)."
+    },
+    {
+      "candidate_id": "xdcr:regular-expression",
+      "label": "XDCR Regular Expression",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in xdcr-reference-intro.json; embedded in filtering expressions via REGEXP_CONTAINS's pattern argument."
+    },
+    {
+      "candidate_id": "xdcr:lookahead-assertion",
+      "label": "XDCR lookahead assertion (positive/negative)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named pattern-matching feature ((?=char) positive, (?!char) negative) that XDCR filtering expressions support and that SQL++ explicitly does not. First contact."
+    },
+    {
+      "candidate_id": "cbl:server-sql-plusplus-dialect",
+      "label": "SQL++ for Couchbase Server (whole-dialect stub)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the umbrella concept for 'the full server/ SQL++ language taken as a whole'. This page states XDCR filtering expressions are a subset of this dialect, with additions, and repeatedly compares individual XDCR operators against it."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "isSubtypeOf",
+      "object": "cbl:server-sql-plusplus-dialect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (isSubtypeOf) - imperfect fit noted: the page describes a subset WITH ADDITIONS (lookahead), not a pure specialisation; isSubtypeOf is the closest existing predicate rather than minting a new 'restricted superset of' relation for a single occurrence",
+      "evidence": "XDCR filtering expressions constitute a subset of _SQL++_ expressions, with some additions."
+    },
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "supportsLanguageConstruct",
+      "object": "xdcr:lookahead-assertion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (supportsLanguageConstruct)",
+      "evidence": "XDCR Advanced Filtering is supported by _lookahead_."
+    },
+    {
+      "subject": "cbl:server-sql-plusplus-dialect",
+      "predicate": "doesNotSupport",
+      "object": "xdcr:lookahead-assertion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "The function `REGEXP_CONTAINS` is also supported by SQL++. Note, however, that SQL++ does not support forward lookahead."
+    },
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "doesNotSupport",
+      "object": "the SQL++ Number Functions RANDOM, SIGN, and TRUNC",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "XDCR Advanced Filtering is supported by Number Functions. These functions are the same as those provided by SQL++. However, the following SQL++ Number Functions do _not_ apply to XDCR Advanced Filtering: * RANDOM * SIGN * TRUNC"
+    },
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "doesNotSupport",
+      "object": "SQL++ date functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "SQL++ date functions are _not_ supported by XDCR Advanced Filtering."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / requiresServerRole / availableSince",
+    "finding": "This is the richest page in the module (pattern matching, metadata/xattrs access, EXISTS, AND/OR/NOT, six comparison operators, field/element selection, arithmetic operators, number functions, date handling, a full reserved-word list, and a BNF grammar) and states no edition, role, or version gate anywhere - the only per-cluster requirement it names ('Full, Cluster, and XDCR Administrators can configure XDCR filtering') lives on the sibling xdcr-filtering-reference-intro.md, not here."
+  },
+  "cross_component_finding": "CONSISTENT VOCABULARY ACROSS ALL FOUR FILTERING-FAMILY PAGES, UNLIKE ROUND 19'S cbbackupmgr FORK. This page, xdcr-filtering-reference-intro.md, xdcr-regular-expressions.md, and xdcr-filtering-data-type-conversion.md all use the same three terms for the same three things throughout: 'XDCR Advanced Filtering' for the overall feature (already xdcr:replication-filter), 'filtering expression'/'XDCR Filtering Expressions' for the SQL++-subset language, and 'regular expression'/'Regular Expressions' for the embedded JavaScript-style pattern syntax used inside REGEXP_CONTAINS. There is no independent re-naming of the same mechanism across these four pages - the round's explicit concern (a repeat of round 19's cbbackupmgr-style forking) does not materialize in this filtering sub-family. The one real naming split found in this batch is elsewhere: the conflict-resolution enum ('sequence number'/'timestamp' vs 'revision-based'/'timestamp-based'), documented in xdcr-advanced-settings.json and xdcr-filtering-reference-intro.json."
+}

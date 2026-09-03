@@ -1,0 +1,65 @@
+{
+  "page_id": "server/8.0/tools/query-monitoring",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/query-monitoring.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:query-monitoring",
+      "label": "Query Monitor (Web Console UI)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct Web Console screen (Query > Query Monitor) from tool:query-workbench (Query > Query Workbench), which this page itself treats as a separate tab it links out to rather than a part of. Checked candidate-evidence.py for a near-miss before minting; nothing matched"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted, closed vocabulary term"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:query-monitoring",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Query Monitoring is only available in Enterprise Edition."
+    },
+    {
+      "subject": "service:query-service",
+      "predicate": "monitoredVia",
+      "object": "tool:query-monitoring",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate ('subject = a component, service or resource; object = the metric, endpoint, log or UI surface through which its state is observed')",
+      "evidence": "Couchbase Server provides a UI to monitor the current state of Query Service."
+    },
+    {
+      "subject": "server/8.0/tools/query-monitoring",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/query-workbench",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Click the **edit** link to edit that particular query in the [Query Workbench](query-workbench.md)."
+    },
+    {
+      "subject": "server/8.0/tools/query-monitoring",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about system keyspaces and API for monitoring the operation of individual queries and query service nodes, see [Manage and Monitor Queries](../n1ql/n1ql-manage/monitoring-n1ql-query.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "'Different information may be shown, depending on your access control role' is a direct statement that RBAC gates what this UI displays, but no role is named anywhere on the page - contrast with learn/security/roles.md's 56 named roles elsewhere in the corpus. No requiresServerRole relation minted since no role name is stated; recorded as a finding rather than invented."
+  },
+  "cross_component_finding": "The Completed Queries table's 'runtime exceeded a system-specified threshold (default 1 second)' is a hasDefaultValue-shaped fact (a configurable setting with a stated default) but the page never names the setting that controls the threshold, unlike query-settings.md elsewhere in the corpus which names request-level parameters like timeout/txtimeout explicitly with their own anchors. No relation minted for the same reason as the role gap above: the mechanism is real but unnamed on this page.",
+  "cross_product_finding": ""
+}

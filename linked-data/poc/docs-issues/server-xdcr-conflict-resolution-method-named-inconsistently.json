@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-xdcr-conflict-resolution-method-named-inconsistently",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Two sibling pages of server/8.0/xdcr-reference/ name the identical bucket-level conflict-resolution choice differently. xdcr-filtering-reference-intro.md calls the two values 'revision-based' and 'timestamp-based'; xdcr-advanced-settings.md, in the same batch, calls the same fixed-at-creation choice 'sequence number' and 'timestamp'. Both describe one setting whose default is sequence-number-based - a reader moving between the two pages would reasonably wonder whether 'revision-based' and 'sequence-number-based' are the same option or two different ones.",
+  "about": [
+    "server/8.0/xdcr-reference/xdcr-filtering-reference-intro",
+    "server/8.0/xdcr-reference/xdcr-advanced-settings"
+  ],
+  "foundDuring": "round 20",
+  "status": "open"
+}

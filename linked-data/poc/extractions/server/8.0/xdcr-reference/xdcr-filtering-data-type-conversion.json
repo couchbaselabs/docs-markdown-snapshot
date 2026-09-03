@@ -1,0 +1,69 @@
+{
+  "page_id": "server/8.0/xdcr-reference/xdcr-filtering-data-type-conversion",
+  "source_version": "8.0",
+  "source_path": "server/current/xdcr-reference/xdcr-filtering-data-type-conversion.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:data-type-conversion",
+      "label": "XDCR Data-Type Conversion",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in xdcr-reference-intro.json; this is that concept's own defining/detailed page."
+    },
+    {
+      "candidate_id": "xdcr:collation-comparison",
+      "label": "XDCR Collation Comparison",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in xdcr-reference-intro.json; this is that concept's own defining/detailed page."
+    },
+    {
+      "candidate_id": "xdcr:data-type-precedence",
+      "label": "XDCR data-type precedence order (Invalid, Missing, Null, Boolean, Numeric, String, Time, Array, Object, Binary)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fixed 10-level ordered list of data types XDCR Advanced Filtering uses to resolve conversion and collation comparison. First contact."
+    },
+    {
+      "candidate_id": "n1ql:collation-order",
+      "label": "SQL++ collation order",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/indexes/index-scans.json. This page explicitly compares its own data-type precedence list against this one and states they are similar but not identical - see relation and shouldNotBeConfusedWith."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:collation-comparison",
+      "predicate": "usesEnum",
+      "object": "xdcr:data-type-precedence",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "_Magnitude comparison_ between different data types is resolved in accordance with the respective positions of the data types in the list of [Supported Data Types](#supported-data-types))."
+    },
+    {
+      "subject": "xdcr:data-type-precedence",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:collation-order",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (shouldNotBeConfusedWith)",
+      "evidence": "The data types listed above, and their order of precedence, can be compared with those used by [SQL++](../n1ql/n1ql-language-reference/datatypes.md#collation) — which are _similar_, but not identical."
+    },
+    {
+      "subject": "xdcr:data-type-conversion",
+      "predicate": "doesNotSupport",
+      "object": "explicit, administrator-selected data-type conversion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "All conversion performed by XDCR is _implicit_, meaning that it is performed automatically within the system. No _explicit_ conversion (that is, data-type conversion selected and imposed by the administrator) is supported."
+    },
+    {
+      "subject": "xdcr:collation-comparison",
+      "predicate": "hasDefaultValue",
+      "object": "false (for equality between differing data types)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasDefaultValue) - loose fit: records the fixed outcome collation comparison returns for cross-type equality, not a configurable default",
+      "evidence": "Checking for _equality_ between different data types returns `false`."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition / requiresServerRole / availableSince",
+    "finding": "This page is the most implementation-detailed page in the batch (a full numeric-internal-type conversion table, a 27-row type-conversion validity/comparison table, implicit-conversion-mode rules for constant-vs-variable and variable-vs-variable comparisons) and, like its siblings, states no edition, role, or version gate. One documented behavioral divergence is worth flagging for future concept work but was not minted as its own concept here (too fine-grained relative to this batch's proportionality guidance): 'NaN (_Not-a-Number_) float-values are considered _less_ than any other real number... the operators `<=` and `=>` return `true`: this differs from the `golang` standard (according to which these operators return `false`).' This is a stated, citable implementation quirk that a future round focused on XDCR's filtering internals specifically might want to model."
+  }
+}

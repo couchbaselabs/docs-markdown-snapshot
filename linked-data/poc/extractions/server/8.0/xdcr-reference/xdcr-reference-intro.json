@@ -1,0 +1,113 @@
+{
+  "page_id": "server/8.0/xdcr-reference/xdcr-reference-intro",
+  "source_version": "8.0",
+  "source_path": "server/current/xdcr-reference/xdcr-reference-intro.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:advanced-settings",
+      "label": "XDCR Advanced Settings",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the configuration-settings mechanism (compression, nozzles, checkpoints, batching, network limits) used to fine-tune XDCR performance. First contact for this concept anywhere in the corpus."
+    },
+    {
+      "candidate_id": "xdcr:replication-filter",
+      "label": "XDCR Advanced Filtering",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/clusters/xdcr/manage-xdcr-replications.json as 'a filter-expression mechanism for excluding documents from a replication'. This page's 'Advanced Filtering... allows specified subsets of documents to be replicated from the source bucket' is the same mechanism described from the Server reference-manual side."
+    },
+    {
+      "candidate_id": "xdcr:regular-expression",
+      "label": "XDCR Regular Expression",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the JavaScript-style regex pattern syntax used inside XDCR filtering-expression pattern-matching functions. First contact."
+    },
+    {
+      "candidate_id": "xdcr:filtering-expression",
+      "label": "XDCR Filtering Expression",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the SQL++-subset expression language (with additions) used to write XDCR Advanced Filtering match conditions. Distinct from xdcr:replication-filter (the overall feature) and from xdcr:regular-expression (the pattern syntax it embeds via REGEXP_CONTAINS). First contact."
+    },
+    {
+      "candidate_id": "xdcr:data-type-conversion",
+      "label": "XDCR Data-Type Conversion",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the implicit procedure that converts one differently-typed value to another so a filtering-expression comparison or operation can proceed. First contact."
+    },
+    {
+      "candidate_id": "xdcr:collation-comparison",
+      "label": "XDCR Collation Comparison",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fallback comparison procedure used when two differently-typed values cannot be converted into a common type; resolved instead by data-type precedence order. First contact."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:advanced-settings",
+      "predicate": "seeAlso",
+      "object": "server/8.0/xdcr-reference/xdcr-advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "A detailed reference is provided in [XDCR Advanced Settings](xdcr-advanced-settings.md)."
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "seeAlso",
+      "object": "server/8.0/xdcr-reference/xdcr-filtering-reference-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "General configuration information is provided in [XDCR Advanced Filtering](xdcr-filtering-reference-intro.md)."
+    },
+    {
+      "subject": "xdcr:regular-expression",
+      "predicate": "seeAlso",
+      "object": "server/8.0/xdcr-reference/xdcr-regular-expressions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Matches are established by means of [Regular Expressions](xdcr-regular-expressions.md) and [Filtering Expressions](xdcr-filtering-expressions.md)."
+    },
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "seeAlso",
+      "object": "server/8.0/xdcr-reference/xdcr-filtering-expressions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Matches are established by means of [Regular Expressions](xdcr-regular-expressions.md) and [Filtering Expressions](xdcr-filtering-expressions.md)."
+    },
+    {
+      "subject": "xdcr:data-type-conversion",
+      "predicate": "seeAlso",
+      "object": "server/8.0/xdcr-reference/xdcr-filtering-data-type-conversion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "The procedures, as they apply to different data-type combinations, are described in [XDCR Data-Type Conversion](xdcr-filtering-data-type-conversion.md)."
+    },
+    {
+      "subject": "xdcr:filtering-expression",
+      "predicate": "dependsOnService",
+      "object": "xdcr:regular-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - used loosely for a language-embeds-a-syntax relationship rather than a service dependency, matching the loose usage already recorded on capella:xdcr's own dependsOnService relations",
+      "evidence": "Matches are established by means of [Regular Expressions](xdcr-regular-expressions.md) and [Filtering Expressions](xdcr-filtering-expressions.md)."
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "dependsOnService",
+      "object": "xdcr:data-type-conversion",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose structural dependency, same convention as above",
+      "evidence": "Matches that involve different data types are handled implicitly, through either _data-type conversion_ or _collation comparison_."
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "dependsOnService",
+      "object": "xdcr:collation-comparison",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose structural dependency, same convention as above",
+      "evidence": "Matches that involve different data types are handled implicitly, through either _data-type conversion_ or _collation comparison_."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresEdition / availableSince",
+    "finding": "This page is a pure navigational/TOC page for the xdcr-reference module - it names Advanced Settings and Advanced Filtering as the two things the module documents and links to each, but states no access-control, edition, or version fact of its own. All substantive gating (if any) lives on the five sub-pages, not here."
+  }
+}

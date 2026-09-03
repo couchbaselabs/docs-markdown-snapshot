@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/conflict-resolution-method",
+  "label": "XDCR conflict resolution method",
+  "type": "the bucket-level, fixed-at-creation choice determining which side wins when XDCR detects a write conflict: Sequence Number (the default) or Timestamp. Named inconsistently across this project's own two server-side reference pages - see docs-issues.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "First minted from a Capella page (round 7); this round's server pages are the second and third independent attestations.",
+  "evidence": [
+    "XDCR provides two types of conflict resolution, based on either sequence number or timestamp, whereby conflicted data can be saved consistently on source and target.",
+    "The default conflict resolution setting is based on sequence number."
+  ],
+  "note": "NAMED INCONSISTENTLY WITHIN THIS ROUND'S OWN BATCH: xdcr-filtering-reference-intro.md calls the two values 'revision-based'/'timestamp-based'; xdcr-advanced-settings.md calls the identical choice 'sequence number'/'timestamp'. Both resolve to this one concept; the docs themselves do not agree on what to call the non-timestamp option. See docs-issues/server-xdcr-conflict-resolution-method-named-inconsistently.",
+  "hasDefaultValue": "Sequence Number",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-advanced-settings",
+  "relates_to_competency_question": "When XDCR replication produces a write conflict, which of two possible rules decides the winner, and is that choice named consistently across the docs?"
+}

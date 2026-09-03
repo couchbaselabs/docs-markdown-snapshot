@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/collation-comparison",
+  "label": "XDCR Collation Comparison",
+  "type": "the ordering-based procedure XDCR filtering uses to compare values of differing data types by their relative position in the supported-data-types list, alongside xdcr:data-type-conversion. Equality between two differing data types always evaluates false.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Magnitude comparison between different data types is resolved in accordance with the respective positions of the data types in the list of Supported Data Types.",
+    "Checking for equality between different data types returns false."
+  ],
+  "usesEnum": "xdcr:data-type-precedence",
+  "documented_at": "server/8.0/xdcr-reference/xdcr-filtering-data-type-conversion",
+  "relates_to_competency_question": "Can an XDCR filter expression's greater-than/less-than comparison ever succeed across two different data types, and can equality?"
+}

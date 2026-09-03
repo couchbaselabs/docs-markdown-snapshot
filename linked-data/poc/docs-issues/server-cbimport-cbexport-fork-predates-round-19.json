@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbimport-cbexport-fork-predates-round-19",
+  "type": "docs-issue",
+  "issueType": "possible-concept-duplication",
+  "description": "tool:cbimport and tool:cbexport were each independently minted under three spellings across earlier rounds before this round's own reference pages were read: tool:cbimport/tool:cbexport (from Capella's command-line-tools.json), server:cbimport/server:cbexport (from cloud/connect/cli-import-export.json and cloud/guides/load.json), and capella:cbexport (from cloud/clusters/data-service/export.json). Verified rather than assumed: export.json's own relation is `capella:cbexport seeAlso server/current/tools/cbexport-json`, quoting 'The cbexport json command-line tool exports data from Capella to JSON format' - a direct cross-reference confirming all three spellings name the identical CLI tool, not a distinct UI/REST surface. Folded into tool:cbimport/tool:cbexport. This is a fork about the concept's NAME rather than its REFERENT - the underlying tool was always correctly understood as one thing on each page; only the id disagreed.",
+  "about": [
+    "cloud/reference/command-line-tools",
+    "cloud/connect/cli-import-export",
+    "cloud/guides/load",
+    "cloud/clusters/data-service/export"
+  ],
+  "foundDuring": "round 20",
+  "status": "open"
+}

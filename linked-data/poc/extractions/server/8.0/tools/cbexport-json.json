@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/tools/cbexport-json",
+  "source_version": "8.0",
+  "source_path": "server/current/tools/cbexport-json.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbexport",
+      "label": "cbexport (export data to files)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer. This page is the json subcommand's manual; footer 'Part of the cbexport suite' ties it back to the parent tool"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. This page's CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section opens with the identical sentence already attached to cbbackupmgr-generate.json and, earlier in this batch, cbdatarecovery.json"
+    },
+    {
+      "candidate_id": "dataset-format:lines",
+      "label": "Lines dataset format (one JSON document per line)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept names this file-shape choice. Checked before minting: cbimport-json.md (read later in this same batch) documents the identical LINES/LIST distinction in near-verbatim wording for the import direction, so this id is deliberately named for the FORMAT itself rather than for cbexport specifically, precisely so it can be reused rather than re-minted on that page - the self-fork risk the batch instructions warned about"
+    },
+    {
+      "candidate_id": "dataset-format:list",
+      "label": "List dataset format (single JSON array of documents)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of dataset-format:lines, same reasoning; both are the two --format values this command and cbimport-json share"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbexport",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)."
+    },
+    {
+      "subject": "tool:cbexport",
+      "predicate": "offersConfigurationChoice",
+      "object": "dataset-format:lines",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate ('the subject offers a closed choice between the named alternative configurations'), applied here to the --format flag's two values",
+      "evidence": "The lines format specifies a file that contains one JSON document on every line in the file. This format is specified by setting the --format option to \"lines\"."
+    },
+    {
+      "subject": "tool:cbexport",
+      "predicate": "offersConfigurationChoice",
+      "object": "dataset-format:list",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted, sibling of the lines relation above",
+      "evidence": "The list format specifies a file which contains a JSON list where each element in the list is a JSON document. The file may only contain a single list, but the list may be specified over multiple lines."
+    },
+    {
+      "subject": "server/8.0/tools/cbexport-json",
+      "predicate": "seeAlso",
+      "object": "server/8.0/tools/cbimport-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cbimport-json](cbimport-json.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "scopedToKeyspace",
+    "finding": "The `_system` scope exclusion is stated as a plain default ('Note that the `_system` scope is not exported by default. To do this use the `--include-data` flag') with no reference to any privilege or role gating why - contrast with the rest of the corpus's system-keyspace pages, which usually pair a `_system`/system-scope restriction with a named privilege (e.g. query_system_catalog). No relation minted since the page states only the default behavior, not a reason."
+  },
+  "cross_component_finding": "The CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) and HOST FORMATS sections on this page are verbatim-identical to cbdatarecovery.md (earlier in this batch) and cbimport-csv.md/cbimport-json.md (later in this batch) - reused auth-mechanism:x509-certificate consistently across all four rather than minting a per-tool mTLS concept each time. HOST FORMATS itself (connection-string syntax, SRV records, CAO/K8s alternate addressing) is pure CLI flag-syntax documentation with no semantic content beyond string-format rules and was left unextracted here, consistent with prior rounds never having extracted it either (no existing record in the corpus captures 'HOST FORMATS' text at all, checked via grep before deciding not to force a concept for it).",
+  "cross_product_finding": "Capella's cli-import-export.md and export.md both name cbexport/cbexport json explicitly as the CLI export path (as against the UI/REST Data Tools path), but neither states the lines/list format distinction this page defines - dataset-format:lines and dataset-format:list are first attested here, not on any Capella page."
+}
