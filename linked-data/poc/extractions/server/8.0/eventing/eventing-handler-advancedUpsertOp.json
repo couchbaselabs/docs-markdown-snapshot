@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedUpsertOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedUpsertOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.upsert(src_col, new_meta, new_doc)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedUpsertOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced UPSERT Operation](eventing-advanced-keyspace-accessors.md#advanced-upsert-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "mustUseInsteadWhen",
+    "finding": "The code comment states 'note that CAS, if supplied, is ignored. You can use REPLACE instead.' - a documented upsert-vs-replace contrast that would fit mustUseInsteadWhen's shape if eventing:advanced-keyspace-accessor's upsert and replace sub-operations were separately identified concepts. The Capella twin for this exact page left concepts/relations empty, treating this as standard Data Service upsert-vs-replace semantics rather than an Eventing-specific mechanism; this record makes the same call for consistency (the underlying couchbase.upsert()/couchbase.replace() CAS behavior is generic KV semantics, not something Eventing itself introduces), but flags the sentence here in case reconciliation wants to model the upsert/replace CAS contrast explicitly."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

@@ -19,7 +19,7 @@
       "reused_or_minted": "minted - the deletion/expiration entry point"
     },
     {
-      "candidate_id": "eventing:ondeploy-handler",
+      "candidate_id": "eventing:on-deploy-handler",
       "label": "OnDeploy handler",
       "reused_or_minted": "minted - a Couchbase Server 8.0 one-time setup entry point run on deploy/resume, before mutation processing begins"
     },
@@ -127,12 +127,12 @@
     {
       "subject": "eventing:function",
       "predicate": "hasHandler",
-      "object": "eventing:ondeploy-handler",
+      "object": "eventing:on-deploy-handler",
       "reused_or_minted_predicate": "reused (hasHandler)",
       "evidence": "The `OnDeploy` handler runs once when an Eventing function is deployed or resumed, before any mutations are processed."
     },
     {
-      "subject": "eventing:ondeploy-handler",
+      "subject": "eventing:on-deploy-handler",
       "predicate": "availableSince",
       "object": "version:server-8-0",
       "reused_or_minted_predicate": "reused (availableSince)",

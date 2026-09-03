@@ -1,0 +1,18 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-curl-get",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-curl-get.md",
+  "concepts": [
+    { "candidate_id": "eventing:curl-function", "label": "curl() function call (Eventing)", "registry_status": "promoted", "reused_or_minted": "reused - promoted (the twin's speculative eventing:curl-call id has since been promoted under this name)" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:url-alias-binding", "label": "URL Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:url-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)." },
+    { "subject": "eventing:curl-function", "predicate": "requiresSetting", "object": "eventing:url-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)." },
+    { "subject": "server/8.0/eventing/eventing-handler-curl-get", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-examples-rest-via-curl-get", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For a more complete example using this public REST endpoint (or to make your own service), refer to [External REST via cURL GET](eventing-examples-rest-via-curl-get.md)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "The Version 7.1+ binding table's misc. column value is 'no auth' ('\"URL alias\",    \"exchangeRateApi\", \"https://api.frankfurter.app/\", \"no auth\"'), identical to the Capella twin - recurrence of the same open question (what other auth modes exist for URL Alias bindings) rather than a new fact." },
+  "cross_component_finding": "Confirms the twin's hypothesis directly on the Server tree too: curl() is gated by a URL Alias binding whose base URL bounds what the handler can reach, and the code comment shows the request is built from a relative `path` against that bound alias (`var request = { path: \"latest\" };`, `curl('GET', exchangeRateApi, request)`) rather than a full URL.",
+  "cross_product_finding": ""
+}

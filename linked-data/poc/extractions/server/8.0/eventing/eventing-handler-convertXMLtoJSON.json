@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-convertXMLtoJSON",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-convertXMLtoJSON.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-convertXMLtoJSON",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-convertAdvXMLtoJSON",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If you need to also convert XML attributes refer to **[convertAdvXMLtoJSON](eventing-handler-convertAdvXMLtoJSON.md)**"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: the simple (non-attribute) variant of a recursive XML-to-JSON regex parser, run inside OnUpdate with a checksum guard on doc.in_xml. Content is byte-identical to the Capella twin (cloud/eventing/eventing-handler-convertXMLtoJSON.md) apart from front matter - same boilerplate settings-comment block, same checksum-guard pattern, same dual 6.6.0/7.0.0 implementation comment block. No genuinely new Eventing mechanism beyond what's already captured by eventing:function/eventing:binding; matches the Capella record's own thin extraction with no disagreement found."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

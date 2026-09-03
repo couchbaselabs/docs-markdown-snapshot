@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-deepCloneAndModify",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-deepCloneAndModify.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page generalizes eventing-handler-dateToEpochConversion.md's deep-walk-and-apply pattern into a reusable deepCloneAndModify(obj, control, fn, fntype) helper, and says so in prose - \"The sample applies **convertStrToEpoch** and copies the behavior of the sample dateToEpochConversion.\" - but unlike convertXMLtoJSON/convertAdvXMLtoJSON's mutual cross-links, this reference is plain text, not a Markdown link, so no seeAlso is extracted here. Content is byte-identical to the Capella twin apart from front matter; purely a generic JavaScript recursion/higher-order-function technique wrapped in the standard boilerplate, matching the Capella record's own finding of the same gap."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

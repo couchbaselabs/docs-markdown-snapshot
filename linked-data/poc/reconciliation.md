@@ -4720,7 +4720,261 @@ of the page it cites** — the shape closest to undetectable by review.
   organised around the interesting computation rather than around the decision. Selftests
   built from real rows caught it; nothing else would have.
 
-## Cumulative verdict (all seventeen rounds)
+## Round 18 — the eventing module: first contact, paired with round 8's twin
+
+**Scope.** 67 pages, `server/8.0/eventing/` + `server/8.0/eventing-rest-api/`, first
+contact — never extracted before this round. Paired against round 8's already-extracted
+`cloud/eventing/` (67 pages, same feature, same page structure, most of them
+byte-identical filenames). 400 relations, 0 evidence problems, 8 gate denials all
+fixed at the same relation count (no thinning). This is the shape round 17 recommended
+for round 18 explicitly: run first contact on a module whose twin is already
+extracted, so each tree is the other's diff-gate.
+
+**The density result was smaller than round 17's, for a reason worth recording rather
+than treating as a shortfall.** Server's 400 relations over 67 pages (mean 5.97)
+against Capella's round-8 244 (mean 3.64) is a real 1.64× improvement, not the 9.8×
+recovery round 17 found on the indexes module. The difference is the material: over
+40 of these 67 pages are individual JS handler code-sample pages, several of them
+genuinely and honestly near-empty (`eventing-handler-dateToEpochConversion.md`,
+`eventing-handler-deepCloneAndModify.md` and four others extracted at **0
+relations** — pure data-transformation JavaScript with no Couchbase-specific
+mechanism to extract). A thin record is not a defect when the page has nothing to
+say; round 17's own reconcile skill says this and round 18 is the clean
+demonstration. The densest pages (`eventing-Terminologies.md` at 34,
+`eventing-rest-api/index.md` at 24, `eventing-language-constructs.md` and
+`eventing-debugging-and-diagnosability.md` at 22) are the reference/terminology
+pages, exactly where round 17's density gain also concentrated.
+
+### Four handler entry points, not two, and a fork no existing instrument catches
+
+Round 8 promoted `eventing:on-update-handler` and `eventing:on-delete-handler` as
+*the* Eventing handler pair. Round 18 found two more, on pages round 8 had already
+extracted: `eventing-Terminologies.md` states plainly — "The Eventing Service calls
+the OnUpdate, OnDelete, **and Timer Callback** handlers on mutations and fired
+timers" — three explicit handlers in one sentence, on a page read in round 8, and
+only two of the three were ever filed. **OnDeploy** is even easier to miss: its own
+page (`eventing-lifecycle.md`) frames it as a *lifecycle step* ("runs once when a
+Function is deployed or resumed") rather than as a handler, so an agent reading only
+that page reasonably extracts it under `createsOnAction`/`behavesDifferentlyUnder`.
+It took the Terminologies glossary, on a different page, to state it as a fourth
+entry point in the same breath as the first three. `concepts/eventing-handler-family.json`
+now holds all four; each is promoted separately.
+
+Two of the four were independently minted **twice**, under names neither existing
+instrument catches, and the two misses are different species:
+
+- `eventing:on-deploy-handler` (round 18, server) vs. `eventing:ondeploy-handler`
+  (round 8, cloud) — a pure hyphen difference. **`recurrence.py --variants` catches
+  this one.** Resolved the way round 8's identical `onupdate-handler`/`ondelete-handler`
+  slip was resolved: rewritten via `normalise-ids.py`'s `ID_RENAMES` table, not
+  aliased — `verify-registry-ids.py` correctly refused the alias as a mere
+  punctuation variant of its own target, and the rewrite folded it automatically
+  once no corpus occurrence of the old spelling remained.
+- `eventing:timer-callback` (used with `firesCallback`, from the pages that
+  demonstrate a Timer actually firing) vs. `eventing:timer-callback-handler` (used
+  with `hasHandler`, from the pages that state the entry-point list) — **not a
+  punctuation variant, and neither `--variants` nor `--forks` catches it.**
+  `--variants` groups by stripped-punctuation string equality; `timer-callback` and
+  `timer-callback-handler` share no such equality. `--forks` groups by
+  cross-*namespace* forks; both already carry the `eventing:` prefix, so there is no
+  cross-namespace signal to find. Two agents, reading the mechanism through two
+  different predicates, minted two names for it, and it is a genuinely new species
+  of fork — **a same-prefix synonym fork**, distinct from bug #12 (cross-namespace)
+  and from an ordinary spelling variant. Zero file overlap between the two names —
+  16 distinct files once merged, spanning both code-sample pages and reference
+  pages, which is a *better* independence signal than a duplicate pair would give.
+  Folded by hand; no instrument exists yet that would have found it un-prompted.
+
+The same genre-fork shape recurred at smaller scale on three Advanced Keyspace
+Accessor operations: `eventing-advanced-keyspace-accessors.md` (the operation-list
+overview page) names LookupIn, MutateIn and Touch generically, while each
+operation's own worked-example page (`eventing-handler-advancedLookupInOp.md`,
+`-advancedMutateInArray.md`/`-advancedMutateInField.md`, `-advancedTouchOp.md`)
+independently minted its own name for the identical mechanism. All three folded
+(`eventing:lookupin-operation`, `eventing:mutatein-operation`,
+`eventing:touch-operation`), each promoted at 3-4 files with zero overlap between
+the folded pair. **A reference/overview page and a worked-demonstration page
+naming the same mechanism is now a recognised, recurring shape, not a one-off** —
+four instances in one round, all invisible to the same two instruments, all found
+only by reading records side by side.
+
+### The corpus's most heavily duplicated module yet, and what that does to the promotion metric
+
+`shared-source.py --clusters` went from 40 clusters/85 pages (round 17) to **91
+clusters/187 pages** in this round alone — the `eventing:` module's Server/Capella
+page pairs measure **0.89 to 1.00 similarity**, higher and more uniform than the
+indexes module's spread (0.16-1.00). Most of these 65 page-pairs are not merely
+similar, they are close to verbatim republication: `--check`'s own diagnostic line
+reads "all N quotes appear on every copy" for the overwhelming majority of
+eventing-namespaced ids, where round 17's index module returned a healthy mix of
+`shared` and `divergent`. The discounted-id count rose from 188 to **272**, and the
+below-the-bar count from 38 to **89** — a bigger jump than round 17's, on a
+smaller-page module, because eventing's Server and Capella docs are simply closer
+to one authored source republished twice.
+
+This matters for how the pairing strategy itself should be read going forward:
+**round 17's recommendation — run first contact on a module whose twin is already
+extracted, because each is the other's diff-gate — worked exactly as prescribed for
+finding *content* defects (11 docs-issues, the RBAC-gate asymmetry, the LCB error
+code inconsistency), and did nothing to buy *independence* for newly-minted
+concepts, because this particular module's independence was never there to buy.**
+The strategy's payoff has two separate axes — defect-finding and promotion
+evidence — and round 17's indexes module happened to deliver on both; round 18's
+eventing module delivered on the first and not the second. A handful of round 18's
+concepts cleared the bar anyway, either because they had a real second, differently-
+framed source (the four-instance genre-fork pattern above) or because they were
+attested on genuinely distinct pages beyond the duplicate pair
+(`eventing:function-scope`, `eventing:listen-to-location`, both `divergent` at 7→5).
+Most of what a single duplicate pair minted on its own did not.
+
+### Promotions
+
+**The handler family (2 new members + 1 scheme):** `eventing:on-deploy-handler` (5,
+folding `eventing:ondeploy-handler`) and `eventing:timer-callback` (16, folding
+`eventing:timer-callback-handler`) join the already-promoted OnUpdate/OnDelete pair
+under `concepts/eventing-handler-family.json`.
+
+**Function-configuration concepts (4):** `eventing:eventing-storage` (17→13, the
+metadata bucket/scope/collection a Function uses as a scratchpad — deleting it
+undeploys *every* Function using it, cluster-wide, a hazard stated only in the
+terminology glossary and nowhere on the settings page itself);
+`eventing:function-scope` (7→5, divergent, the RBAC-grouping bucket.scope pair — the
+wildcard `*.*` form requires Full Admin or Eventing Full Admin);
+`eventing:listen-to-location` (7→5, divergent, the DCP mutation source, explicitly
+distinguished from a binding); `eventing:deployment-feed-boundary` (4→2, exactly at
+the bar, the Everything/From-Now DCP-replay setting that doubles as the Paused-resume
+checkpoint marker).
+
+**Operation/mechanism concepts (6):** the three Advanced Accessor genre-folds above
+(`lookupin-operation`, `mutatein-operation`, `touch-operation`);
+`eventing:meta-keyspace-parameter` (4→2, exactly at the bar, the required argument
+for a wildcard-scoped binding); `eventing:n1ql-result-iterator` (5→3, the cursor
+object `requiresExplicitClose` already governs — and one page in its own batch
+doesn't close it, filed as a docs-issue); `eventing:recursive-mutation` (6→4, a
+correction to round 8's own record, which had filed it under `shouldNotBeConfusedWith`
+— reserved for two things a reader might wrongly conflate, not a hazard a Function
+can exhibit — refiled under `createsOnAction`).
+
+**Error concepts (2):** `eventing:lcb-key-eexists-error` and
+`eventing:lcb-key-enoent-error` (5→3 each), the two libcouchbase KV errors surfaced
+to handlers — `EEXISTS` is overloaded across two conditions (CAS mismatch on a
+conditioned write vs. duplicate key on insert) with no shared predicate to
+distinguish them, and its numeric code is documented inconsistently across two
+sibling pages (docs-issues below).
+
+**A generalisation of an existing record:** `eventing:cas-conditioned-write` widens
+round 8's `eventing:cas-conditioned-delete` to cover the near-identical harness
+`eventing-handler-advancedReplaceOp.md` demonstrates for REPLACE. Round 8 had reasoned
+the DELETE version was "standard Data Service optimistic-concurrency behavior, not
+Eventing-specific" and left REPLACE's version unmodeled entirely; this round's own
+extraction of the REPLACE page kept that call for consistency, but flagged the
+asymmetry explicitly rather than repeating it silently — **applied evenly, that
+reasoning should mint neither page's harness or both**, and reconciliation chose
+both, generalizing the name rather than leaving one operation's evidence stranded
+under the other's id.
+
+**One concept:** `eventing:visual-debugger` (3 files, no shared-source discount —
+its files aren't a duplicate pair). Corrects this round's *own* dispatch framing:
+the briefing treated `eventing-debugging-and-diagnosability.md` as Server-only
+evidence for a Server-only debugger, but Capella's own `eventing-Terminologies.md`
+glossary describes the identical mechanism in one entry rather than a dedicated
+page. **"No twin page" does not mean "no twin feature"** — what is genuinely
+Server-only on that page is the node/OS-administration content (`static_config`
+editing, NAT workarounds, log paths), not the debugger itself.
+
+**A same-round self-fork, folded without a merge decision:** `eventing:bucket-binding`
+(5 files, minted in round 8) turned out to be round 8's own restatement of round 8's
+own already-promoted `eventing:bucket-alias-binding` — the same mechanism minted
+twice **within one round**, not across two. Folded as an alias into the existing
+promoted record; no new concept.
+
+**Deliberately not promoted:** `eventing:rest-api` and half a dozen node-administration
+concepts (`worker-process`, `eventing-producer-process`, `residency-ratio`, and
+similarly) sit at 1 file each — real, but this round's REST API page is the corpus's
+only extraction of that surface, and Capella genuinely has no equivalent (node-topology
+controls a managed service cannot hand to customers). `writesToBinding` (2 files, no
+server-side reuse this round) and the ~25 ids the shared-source discount actually put
+below the bar (full list in the shared-source.py run) stay in the extraction layer.
+
+### New `docs-issues/` (12, taking the total to 128)
+
+- `server-eventing-worked-examples-rbac-gate-missing-from-capella` — **the round's
+  structural headline.** All nine Server worked-example pages carry the identical
+  sentence gating Function creation behind Full Admin/Eventing Full Admin; every one
+  of their Capella twins is silent on any equivalent gate, and round 8's own
+  extraction had flagged "no privilege/capella-role gate anywhere" as an unexplained
+  absence. Now explained: Capella's access model for Eventing is project-scope
+  roles (Data Reader/Writer/Project Owner), a materially different shape from
+  Server's classic cluster-wide role catalog plus per-scope RBAC grouping — not a
+  documentation gap, a real product asymmetry.
+- `server-eventing-memory-quota-premise-contradicted` — this round's *own* dispatch
+  briefing reasoned that `eventing-memory-quota.md` has no Capella twin because
+  Capella manages memory automatically, and never checked that premise before
+  acting on it. Capella's own `eventing-faq.md` states a user-configurable
+  256MB→512MB memory-quota knob in near-identical wording to the Server page. Either
+  the automatic-management premise is wrong, or Capella's FAQ carries stale
+  un-adapted Server language describing a control Capella customers cannot reach —
+  filed `needs-sme` because no page resolves which, and recorded plainly as a
+  briefing error this round made and then caught by reading the pages it named.
+- `server-eventing-lcb-error-code-inconsistent` — the identical `LCB_KEY_ENOENT`
+  error object is documented with `"code": 272` on one page and `"code": 1` on its
+  sibling in the same batch.
+- `server-eventing-advanced-keyspace-accessors-orphaned-version-badges` — four
+  "Couchbase Server 7.6/7.6.2" version-since badges on Capella pages with zero
+  matching mentions on the byte-identical-otherwise Server 8.0 twins, on four
+  separate pages — consistent with a version-since macro rendering on the Capella
+  build and not the current Server build, rather than four independent omissions.
+- Five smaller, concretely diagnosed inconsistencies: a copy-paste log message
+  (`advancedDecrementOp` logs "increment"), an undocumented third `OnUpdate`
+  parameter on one handler page inconsistent with every sibling's two-argument
+  signature, a worked example whose cleanup instructions name the *other* example's
+  Function, a goal description ("redact sensitive data") that doesn't match its
+  handler's actual behaviour (domain normalisation, no redaction), and a role
+  display label that doesn't match `roles.md`'s own canonical spelling.
+- Two REST/config-surface findings: an internal port/path inconsistency within the
+  REST API reference itself (8091/`_p/event` vs. 8096/`api/v1` for the same kind of
+  setting), and one N1QL()-call worked example that never closes its result
+  iterator where three siblings in the same batch do.
+- One duplication finding **corrected rather than newly filed**: round 8's Capella
+  extraction characterized a broken cross-reference on
+  `eventing-buckets-to-collections.md` as Capella-specific unadapted content; this
+  round confirms the identical broken link is present on the Server 8.0 original,
+  so it is a pre-existing defect in the shared source, not something Capella's
+  adaptation introduced.
+
+### What this round taught about the method
+
+- **A pairing strategy's payoff has two independent axes, and a good result on one
+  round does not transfer to the other.** Round 17 recommended "first contact on a
+  module whose twin is already extracted" because it delivered on both
+  defect-finding and promotion evidence at once. Round 18 shows the two can split:
+  the eventing module delivered eleven real docs-issues and the RBAC-gate finding —
+  defect-finding worked exactly as prescribed — while its near-total
+  cross-product duplication (0.89-1.00 similarity, "all quotes appear on every
+  copy") meant most newly-minted concepts got no independence boost from the pairing
+  at all. **The strategy is still right; its output has to be read on two separate
+  meters, not one.**
+- **A same-prefix synonym fork is a fourth failure mode, and nothing catches it
+  yet.** Bug #12 (cross-namespace fork) has `--forks`. An ordinary spelling variant
+  has `--variants`. This round found a third shape — two agents reading the same
+  mechanism through two different *predicates* (`firesCallback` vs. `hasHandler`)
+  and minting two names that share a prefix and share no substring — four times in
+  one round, at zero file overlap each time, meaning zero collision-detection signal
+  for either existing instrument to work from. No script is proposed for it here;
+  the pattern (a reference/overview page names an operation generically while its
+  own worked-example page names it specifically) is at least now a named thing to
+  read for, the way "extraction record vs. registry" collisions became a named thing
+  to read for after round 12.
+- **The briefing itself is not exempt from the "verify before recommending" rule.**
+  Round 18's own dispatch prompt asserted a Capella/Server asymmetry (no memory-quota
+  twin because Capella auto-manages memory) without checking the claim against
+  Capella's own pages first — and one of the five batches, reading the Capella FAQ
+  for background as instructed, found the premise contradicted. **A round's framing
+  paragraph is a hypothesis with the coordinator's own name on it, and it is exactly
+  as unverified as anything an extraction agent might assert** until a page confirms
+  it.
+
+## Cumulative verdict (all eighteen rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -4913,6 +5167,23 @@ sentence one layer out: **a promotion is only as good as the set it counted**, a
 pipeline that decides promotions from one directory will keep re-losing what it has
 already worked out.
 
+Round 18 pairs the same strategy against a module where the answer comes out
+differently, and the difference is itself the finding. `server/8.0/eventing/`
+first contact yields 400 relations over 67 pages, 1.64× round 8's `cloud/eventing/`
+baseline of 244 - a real gain, and much smaller than round 17's 9.8×, because most
+of these 67 pages are individual JS handler samples and several are honestly
+near-empty. The module also turns out to be the corpus's most heavily duplicated:
+Server/Capella page-pair similarity runs 0.89-1.00, `shared-source.py` finds "all
+quotes appear on every copy" on the overwhelming majority of its concepts, and the
+below-the-bar count jumps from 38 to 89 in one round. **Round 17's pairing
+recommendation delivered on defect-finding again - eleven docs-issues, the RBAC-gate
+asymmetry - and did nothing for promotion independence, because this module's two
+trees are close enough to one authored source republished twice that there was no
+independence to buy.** A strategy that worked on both axes at once in round 17 is
+shown, one round later, to have two axes that can come apart; reading a paired
+round's output now means checking defect-finding and promotion-evidence separately
+rather than assuming a good result on one implies the other.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -4954,9 +5225,16 @@ reference page plus a guide are *more* independent than the number can express. 
 both instruments in one round immediately reversed four promotion decisions, in both
 directions. The aggregate was correct, its input consistent, its subject matter
 understood and its label accurate — and **a proxy with no error bars gets reported as a
-measurement.**
+measurement.** Round 18 closes it a sixth time, at a shape neither instrument built in
+round 17 can see: two agents naming one mechanism through two different *predicates* -
+`firesCallback` from the page demonstrating a Timer firing, `hasHandler` from the page
+stating the entry-point list - mint two ids that share a prefix and share no substring,
+so `--variants` finds no punctuation match and `--forks` finds no cross-namespace
+signal. Four instances, one round, zero file overlap each time, caught only by reading
+the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
+discount apply"; nothing yet answers "are these the same term."**
 
-Twenty-seven limits of the method are now visible across multiple rounds, not just
+Twenty-nine limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -5528,3 +5806,32 @@ once, so worth treating as durable rather than one-off:
   documents API field names, so it is the only page in the corpus with a systematic
   incentive to state equivalences. **A rule that only ever gets used to reject has an
   evidence base nobody has counted**, and finding out how small it is takes a minute.
+
+- **A same-prefix synonym fork is a fourth failure mode, and no instrument watches
+  for it.** Bug #12 (cross-namespace fork) has `--forks`; an ordinary misspelling has
+  `--variants`. Round 18 found a third shape neither covers: two agents extracting
+  different pages about one mechanism — a reference/overview page and its own
+  worked-demonstration page — minted two ids sharing the `eventing:` prefix and no
+  substring (`eventing:timer-callback` vs. `eventing:timer-callback-handler`,
+  `eventing:lookupin-operation` vs. `eventing:lookupin-subdocument-operation`, and two
+  more). Four instances in one round, zero file overlap in every case, which is a
+  *good* sign about independence and a bad sign about detectability: nothing lexical
+  joins the two names, so nothing but reading the folded pair side by side would ever
+  find the fork. Filed as a named pattern to read for, not as a fifth script — the
+  same status "extraction record vs. registry" collisions had before round 12 gave
+  them one.
+
+- **A round's framing paragraph is a hypothesis with the coordinator's name on it,
+  and it is exactly as unverified as an extraction agent's claim until a page
+  confirms it.** Round 18's own dispatch briefing asserted that
+  `eventing-memory-quota.md` has no Capella twin because Capella manages Eventing
+  memory automatically — a plausible, unchecked inference from "no file with that
+  name exists in `cloud/eventing/`." One of the round's own batches, reading a
+  Capella page for background exactly as instructed, found `cloud/eventing/eventing-faq.md`
+  stating a user-configurable 256MB→512MB memory-quota knob in wording close to the
+  Server page's own. The premise was wrong, or at best incomplete, and the round
+  caught its own coordinator's error using the same read-the-page discipline every
+  extraction agent is held to. **The "before recommending, verify the memory names a
+  file that exists" rule this project's own memory-management guidance states applies
+  one level up too: before asserting a structural asymmetry in a briefing, check it
+  against the pages on both sides, not just the directory listing on one.**

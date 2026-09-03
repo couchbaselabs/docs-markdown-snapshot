@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-advanced-keyspace-accessors-orphaned-version-badges",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Capella's cloud/eventing/eventing-advanced-keyspace-accessors.md carries four 'Couchbase Server 7.6/7.6.2' version-since badges (touch, mutateIn, lookupIn, self_recursion) with zero matching mentions anywhere on the Server 8.0 twin. Round 18 found three more instances of the identical pattern on other pages in this batch (eventing-language-constructs.md, eventing-Terminologies.md, eventing-curl-spec.md), all missing the equivalent badge on the Server 8.0 page for content that is otherwise byte-identical. Suggests a version-since templating macro that renders on the Capella build but not on the current Server build, rather than four independent authoring omissions.",
+  "about": [
+    "cloud/eventing/eventing-advanced-keyspace-accessors",
+    "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+    "cloud/eventing/eventing-language-constructs",
+    "server/8.0/eventing/eventing-language-constructs",
+    "cloud/eventing/eventing-Terminologies",
+    "server/8.0/eventing/eventing-Terminologies"
+  ],
+  "foundDuring": "round 18",
+  "status": "open",
+  "severity": "needs-sme"
+}

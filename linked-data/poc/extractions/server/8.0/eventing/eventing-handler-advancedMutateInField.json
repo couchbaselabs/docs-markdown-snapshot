@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedMutateInField",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedMutateInField.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:mutatein-subdocument-operation",
+      "label": "Sub-Document MUTATEIN operation",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuinely new: couchbase.mutateIn() with MutateInSpec.insert/replace/remove is the CAS-free write-side sibling of eventing:lookupin-subdocument-operation (the read-side operation minted in round 8's Capella twin); no existing concept in the registry or in round 8's cloud/eventing extractions covers this write-side mechanism under this name - round 8's own twin for this page left concepts/relations empty, treating it as a recurrence of an 'already covered' mechanism, but the covering concept it pointed to (the eventing-advanced-keyspace-accessors.md doc page) was never itself minted as a concept id anywhere in the extraction pool that this batch's context surfaced"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:mutatein-subdocument-operation",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "// Version 7.6+"
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedMutateInField",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Sub-Document MUTATEIN operation , see [Sub-Document MUTATEIN Operation](eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-mutatein)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "'Demonstrates the CAS-free Sub-Document MUTATEIN operation on a document field' - the CAS-free framing pairs directly with eventing:cas-conditioned-delete/advancedReplaceOp's CAS-conditioned whole-document operations elsewhere in this batch: sub-document MUTATEIN and whole-document REPLACE/DELETE sit at opposite ends of the same CAS-optionality axis, but no existing predicate expresses 'lacks the CAS-conditioning that a sibling operation has', so this is recorded as a finding rather than a relation. Per the round context's instruction on sdk:subdocument-operations reuse: not linked here for the same reason as advancedLookupInOp.json - the page never mentions the SDK's own subdocument API, so there is no page evidence to support a relation to it."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

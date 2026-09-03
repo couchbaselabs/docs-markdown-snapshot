@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Seventeen rounds so far, thirteen of them deliberate escalations and
+automating it. Eighteen rounds so far, fourteen of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -219,6 +219,30 @@ four corrective passes over what they left behind:
     bucket-terminology discrepancy be folded *with a citation* after sixteen rounds;
     and 11 new docs-issues, headed by a documented "switch on" procedure that uses XOR
     on a bitmask and **disables the feature the reader was enabling**.
+18. **67 pages, the `eventing/` module, first contact paired against round 8's twin**
+    — `server/8.0/eventing/` + `server/8.0/eventing-rest-api/`, never extracted,
+    read against the already-extracted `cloud/eventing/` exactly as round 17
+    recommended. 400 relations, 0 evidence problems, 1.64× round 8's density — a
+    real gain, much smaller than round 17's 9.8×, because the module turns out to be
+    the corpus's **most heavily duplicated**: Server/Capella page pairs run
+    0.89–1.00 similarity, and `shared-source.py`'s below-the-bar count jumps from 38
+    to 89 in one round. The round's headline finding is exactly that split: **a
+    pairing strategy's payoff has two independent axes — defect-finding and
+    promotion-independence — and a good result on one does not transfer to the
+    other.** Defect-finding worked as prescribed (12 new docs-issues, headed by a
+    structural asymmetry: all nine Server worked-examples gate Function creation
+    behind Full Admin/Eventing Full Admin, absent from every Capella twin, because
+    Capella's access model is project-scope roles, not Server's cluster-wide
+    catalogue); promotion-independence mostly didn't, because there was little
+    independence in the module to buy. Also found: four Eventing entry points, not
+    two — `eventing:on-deploy-handler` and `eventing:timer-callback` join the
+    promoted OnUpdate/OnDelete pair under a new `eventing-handler-family` scheme —
+    and a **fourth fork species**: two agents naming one mechanism through two
+    different predicates mint two same-prefix ids with no shared substring, four
+    times in one round, invisible to both `--variants` and `--forks`. And a
+    self-caught error: this round's own dispatch briefing asserted Capella has no
+    Eventing memory-quota control, unchecked, and one of its own batches found
+    Capella's FAQ contradicting it.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -226,7 +250,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-593 pages total:
+660 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -322,6 +346,14 @@ time/cost projections and how they held up against the round-2 run's real number
   before the write-time gate existed and thin at a mean of 3.2 relations. Re-read
   under the gate: **35 relations → 343**. The page count is unchanged by this half of
   the round; the content is not.
+- **67 more, `server/8.0/eventing/` + `server/8.0/eventing-rest-api/`** — the whole
+  module, never extracted before round 18: the overview, lifecycle, RBAC, language
+  constructs, memory quota, timers, statistics, debugging, troubleshooting, FAQ,
+  curl spec, advanced keyspace accessors, buckets-to-collections, function export,
+  terminology glossary, the REST API reference, 9 worked-example pages and 41
+  individual JS handler code-sample pages. Paired against round 8's already-extracted
+  `cloud/eventing/` (67 pages, same feature) exactly as round 17 recommended. 400
+  relations, 0 evidence problems, 1.64× round 8's density.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -669,6 +701,45 @@ from "still in `extractions/`."
   closed 0–3 value set, attested once, and the best candidate for a later round),
   `index:index-storage-setting` (the top level of the storage stack is real; its *name*
   is not yet earned), and eight more.
+  Round 18 read `server/8.0/eventing/` and promoted **17**, most of them the product of
+  folding forks rather than minting fresh terms. `concepts/eventing-handler-family.json`
+  corrects a count sixteen rounds carried unquestioned: Eventing has **four** declared
+  entry points, not two. `eventing-Terminologies.md` — extracted since round 8 — states
+  "The Eventing Service calls the OnUpdate, OnDelete, and Timer Callback handlers" in
+  one sentence, and only the first two were ever filed; `eventing:on-deploy-handler`
+  was missed for a structural reason rather than an oversight — its own page frames it
+  as a *lifecycle step*, not a handler, so an agent reading only that page extracts it
+  under `createsOnAction` rather than `hasHandler`. Both new members were also each
+  independently minted **twice**, and the two misses are different species: `on-deploy-handler`
+  vs. `ondeploy-handler` is a hyphen-only variant that `recurrence.py --variants` catches
+  and `normalise-ids.py` rewrites (the same treatment round 8's own `onupdate-handler`
+  got); `timer-callback` (minted via `firesCallback`) vs. `timer-callback-handler`
+  (minted via `hasHandler`) shares a prefix and no substring, so **neither `--variants`
+  nor `--forks` catches it** — a fourth fork species, found only by reading the folded
+  pair side by side, with zero file overlap once merged (16 distinct files, the best
+  independence signal in the round). The identical shape recurred at smaller scale on
+  three Advanced Keyspace Accessor operations (`lookupin-operation`, `mutatein-operation`,
+  `touch-operation`, each folding an overview-page mint with a worked-example-page mint).
+  Function-configuration concepts: `eventing:eventing-storage` (13, the metadata keyspace
+  whose deletion undeploys every Function using it, a hazard stated only in a glossary
+  entry), `eventing:function-scope` (5, divergent, the RBAC-grouping bucket.scope pair),
+  `eventing:listen-to-location` (5, divergent, the DCP mutation source), `eventing:deployment-feed-boundary`
+  (2, exactly at the bar). `eventing:recursive-mutation` (4) corrects a round-8 misuse of
+  `shouldNotBeConfusedWith` — reserved for two things a reader might wrongly conflate,
+  not a hazard a Function can exhibit. `eventing:cas-conditioned-write` generalises
+  round 8's `eventing:cas-conditioned-delete` onto the near-identical REPLACE harness
+  round 8 had explicitly left unmodeled while flagging the asymmetry. `eventing:visual-debugger`
+  (3, no shared-source discount) corrects this round's *own* dispatch framing, which
+  treated the debugger as Server-only; Capella's own terminology glossary describes the
+  identical mechanism in one entry rather than a dedicated page. And `eventing:bucket-binding`
+  folded as an alias into the already-promoted `eventing:bucket-alias-binding` — the same
+  mechanism minted twice **within round 8 itself**, not across rounds.
+  The round's method finding is that its own recommended pairing strategy split on an
+  axis nobody had separated before: `server/8.0/eventing/`'s Capella twin is the corpus's
+  most heavily duplicated pairing (0.89–1.00 page-similarity, `shared-source.py`'s
+  below-the-bar count jumping from 38 to 89 in one round), so the pairing found real
+  defects (12 new docs-issues) while buying almost no independence for newly-minted
+  concepts — the two payoffs round 17's indexes module had delivered together came apart.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -840,8 +911,8 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **116
-  entries** as of round 17. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **128
+  entries** as of round 18. The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -917,6 +988,26 @@ from "still in `extractions/`."
   goes into the Paused mode on that node. Although the indexes remain in `Active`
   state" — two subjects holding simultaneously, so the two values cannot belong to one
   enum.
+  Round 18 added **12**, headed by `server-eventing-worked-examples-rbac-gate-missing-from-capella`:
+  all nine Server worked-example pages carry the identical Full Admin/Eventing Full Admin
+  gate sentence, absent from every Capella twin — round 8's own extraction had flagged
+  the absence without an explanation, and this round supplies one (Capella's access
+  model for Eventing is project-scope roles, a materially different shape). Second:
+  `server-eventing-memory-quota-premise-contradicted`, filed against this round's *own*
+  dispatch briefing, which asserted Capella auto-manages Eventing memory without checking
+  it — one of the round's own batches, reading a Capella page for background exactly as
+  instructed, found Capella's own FAQ stating a user-configurable memory-quota knob in
+  near-identical wording to the Server page. The rest: an LCB error code documented as
+  `272` on one page and `1` on its sibling for the identical error object, four
+  version-since badges present on Capella pages with zero counterpart on the otherwise
+  byte-identical Server twins (consistent with a rendering macro rather than four
+  independent omissions), a REST API reference using two different port/path schemes
+  for the same kind of setting, and five smaller concretely-diagnosed inconsistencies
+  (a copy-paste log message, an undocumented handler parameter, stale cleanup
+  instructions naming the wrong example, a goal description that doesn't match its
+  handler's behaviour, a role label drift). One correction rather than a new filing:
+  round 8 characterized a broken cross-reference as Capella-specific unadapted content;
+  round 18 confirms the identical break is on the Server 8.0 original too.
   Round 11 had 76 entries, having added 21 from just
   **9 pages** — by far the highest rate
   per page of any round, because conceptual prose makes claims that can
@@ -1142,11 +1233,13 @@ from "still in `extractions/`."
   `--kind` restricts which duplications count), and — the part that decides
   anything — `--check` asks whether a *specific* id's evidence rescues it: **a quote
   present on its own copy and absent from every sibling copy** is an independent
-  attestation regardless of how similar the pages are. Corpus-wide: **40 clusters over
-  85 extracted pages, 188 discounted ids** (`shared` 101, `divergent` 83, `unchecked`
-  4), **38 below the bar** once the discount is upheld — up from 5 before round 17,
+  attestation regardless of how similar the pages are. Corpus-wide: **91 clusters over
+  187 extracted pages, 272 discounted ids** (`shared` 166, `divergent` 100, `unchecked`
+  6), **89 below the bar** once the discount is upheld — up from 5 before round 17,
   because extracting a module that exists in three trees buys density and not
-  independence. Two rules are enforced in code rather than left to a reader.
+  independence, and round 18's `eventing:` module turned out to be the most heavily
+  duplicated pairing in the corpus (0.89–1.00 page-similarity, more than doubling the
+  cluster count in one round). Two rules are enforced in code rather than left to a reader.
   `effective()` makes **the verdict decide which count applies**: `divergent` rejects
   the discount and licenses the raw file count, `shared` upholds it, and `unchecked`
   settles nothing and is never marked below the bar. And the report says
@@ -1160,7 +1253,7 @@ from "still in `extractions/`."
 - **`verify-registry-ids.py`** — a **gate** (exits non-zero), written in round 13:
   every record's declared `id` must mirror its own file path, since round 14 no alias
   may be a mere punctuation variant of its own target, and since round 16 every
-  `docs-issues/<slug>` a record points at must have a file behind it. 586 records, 0
+  `docs-issues/<slug>` a record points at must have a file behind it. 615 records, 0
   problems. It exists because nine `concepts/version/` records had drifted
   (`server-6-5.json` declaring `.../version/server-6.5`) and the consequence was
   not cosmetic: the pipeline derives ids from **paths** while agents copy them from
@@ -2243,35 +2336,40 @@ document.
   now measured and worth queueing: `server/8.0/indexes/` has version twins in **7.6 and
   7.2** whose content demonstrably differs (the 5.5 MIN/MAX history was deleted between
   7.2 and 8.0; 8.0 grew a composite-predicate-pushdown section), and the whole of
-  `server/8.0/` is ~1,033 pages of which 88 have now been read.
-- **Decide whether re-extraction or first contact comes next on round 17's numbers
-  rather than on principle.** The round was run to answer exactly this, and it splits.
-  For **content**, first contact wins on volume: 400 relations from 11 unread pages
-  against 343 from 11 re-read ones, and the unread pages needed no reconciliation
-  against existing records. For **correctness**, re-extraction is where the changed
-  decisions were: the pre-gate records were not slightly thin but missing nine tenths
-  of their pages, and the vocabulary resting on them was wrong in both directions —
-  four promotions reversed. Against that, re-extracting a module that exists in three
-  trees **buys density and not independence**: the discounted-id set went from 91 to 188
-  and the below-the-bar set from 5 to 38 in one round, so a corpus grown this way gets
-  steadily harder to promote out of. The synthesis the pairing actually demonstrated:
-  **run first contact on a module whose twin is already extracted**, because each batch
-  is then the other's diff-gate, which is the shape that has found content problems at
-  the highest rate this project has measured — 11 docs-issues from 22 pages.
+  `server/8.0/` is ~1,033 pages of which 155 have now been read.
+- **The pairing strategy has two payoff axes, and round 18 is the case where they
+  split — read both, every time, rather than assuming one implies the other.**
+  Round 17's indexes module delivered on defect-finding (11 docs-issues) *and*
+  promotion-independence (a 9.8× recovery, four reversed decisions) together. Round
+  18's eventing module delivered on the first (12 docs-issues, the RBAC-gate
+  asymmetry) and barely on the second, because Server/Capella page-pairs in that
+  module run 0.89–1.00 similarity — closer to verbatim republication than the
+  indexes module's 0.16–1.00 spread — so `shared-source.py`'s below-the-bar count
+  jumped from 38 to 89 in one round while only a handful of newly-minted concepts
+  cleared the bar on real independent evidence. **Before recommending "pair with an
+  already-extracted twin" for the next module, check the twin's page-similarity
+  first** (`shared-source.py --clusters` on a small pilot batch, before committing
+  the whole module) — a module documented as near-identical prose on both trees is
+  still worth reading for defects, just not for promotion evidence.
 - **Continue the namespace coherence pass — wave 4.** Round 12's
   corrected metric exposed 276 unpromoted concepts at recurrence ≥ 2; rounds 12 and
   13 took it to 206, round 14's wave 1 (`vector-index:` and `version:`) took it
   to 163 — 27 of those retired by the metric fix rather than promoted, because
   they were documentation pages the widened metric had let back in — and round 15's
   wave 2 (`setting:`, dissolved) took it to 159, and round 16's wave 3 (`indexes:`,
-  retired) to **156**. Round 17 took it **up to 233**, and that is the expected
-  direction rather than a regression: 22 dense new pages mint far more candidates than
-  one module's promotions retire, and the backlog is a function of the corpus. Two
+  retired) to **156**. Round 17 took it **up to 233**, and round 18 (another
+  67-page content round, not a coherence pass) took it **up to 256** — the expected
+  direction, not a regression: dense new pages mint far more candidates than a
+  round's own promotions retire, and the backlog is a function of the corpus. Three
   numbers should be read beside it from now on, because a raw count of candidates at
-  ≥2 no longer means what it did: **188 of the corpus's ids rest partly on a shared
-  source and 38 fall below the bar once that is discounted** (`shared-source.py`), and
+  ≥2 no longer means what it did: **272 of the corpus's ids rest partly on a shared
+  source and 89 fall below the bar once that is discounted** (`shared-source.py`),
   **62 local names are forked across namespaces, 20 of which would cross the bar only
-  if merged** (`recurrence.py --forks`). Shadow prefixes, the other measure of the same debt, are at
+  if merged** (`recurrence.py --forks`), and — round 18's addition, with no instrument
+  yet — an unknown number of **same-prefix synonym forks**, where two agents name one
+  mechanism through two different predicates and mint two ids sharing a prefix and no
+  substring; four confirmed instances in round 18 alone, found only by reading records
+  side by side. Shadow prefixes, the other measure of the same debt, are at
   **55 holding 210 ids** — which is *up* from the 43 reported in rounds 14 and 15, with
   no change to the corpus: those two figures were measured with the census bug in
   place, and 55 is the first honest count. Treat it as the new baseline, not as a
@@ -2285,7 +2383,11 @@ document.
   `capella:`/`capellaiq:` (`capella-iq` is in both); `plan:`/`billing:`; `backup:`
   (`cluster-backup`/`bucket-backup` at 5 look like a *scope* axis crossing the
   promoted *type* axis — round 11's crossing shape);
-  `js-udf:` (6 members, none promoted); `eventing:` (22, the largest); then
+  `js-udf:` (6 members, none promoted); `eventing:` (round 18 grew this from 22 to
+  40+ promoted members and folded four same-prefix synonym forks as a side effect of
+  reading the module, but did not run a coherence pass over it — the ~10 individual
+  Advanced Keyspace Accessor operations still have inconsistent per-operation naming
+  beyond the three folded this round, and are the obvious next member to check); then
   `search:` and `n1ql:`, largest but also the two the metric fix most changed.
   Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-lcb-error-code-inconsistent",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The identical LCB_KEY_ENOENT error object (same name, same desc string) is documented with two different numeric `code` values on two sibling pages of the same batch: `\"code\": 272` on eventing-handler-advancedGetOp.md and `\"code\": 1` on eventing-handler-advancedGetOpWithCache.md. A reader who copies the code from one page and checks it against the other will conclude the check failed. The two pages otherwise document the same accessor with the cache option as the only stated difference.",
+  "about": [
+    "server/8.0/eventing/eventing-handler-advancedGetOp",
+    "server/8.0/eventing/eventing-handler-advancedGetOpWithCache",
+    "cloud/eventing/eventing-handler-advancedGetOp",
+    "cloud/eventing/eventing-handler-advancedGetOpWithCache"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

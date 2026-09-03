@@ -29,7 +29,7 @@
       "reused_or_minted": "reused"
     },
     {
-      "candidate_id": "eventing:ondeploy-handler",
+      "candidate_id": "eventing:on-deploy-handler",
       "label": "OnDeploy handler",
       "reused_or_minted": "reused"
     },

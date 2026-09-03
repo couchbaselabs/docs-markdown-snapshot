@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedReplaceOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedReplaceOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:lcb-key-eexists-error",
+      "label": "LCB_KEY_EEXISTS error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json); this page's CAS-mismatch flavor matches DeleteOp's, not InsertOp's duplicate-key flavor - see advancedInsertOp.json for that distinction"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.replace(src_col, new_meta, new_doc) and couchbase.get(src_col, ...)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-eexists-error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer (round 8's Capella advancedDeleteOp.json minted resultsInError; not yet promoted)",
+      "evidence": "\"desc\": \"The document key exists with a CAS value different than specified\""
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedReplaceOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced REPLACE Operation](eventing-advanced-keyspace-accessors.md#advanced-replace-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page states 'Has 3 modes of operation: `no_cas`, `bad_cas`, and `good_cas`' - the identical no_cas/bad_cas/good_cas test harness that this same batch's advancedDeleteOp.md documents (plus a 4th no_key mode). Round 8's Capella twin modeled DeleteOp's version of this harness as a distinct concept, eventing:cas-conditioned-delete, but left this REPLACE page's structurally identical harness unmodeled (empty concepts/relations, reasoning that it is 'standard Data Service optimistic-concurrency (CAS) behavior... not an Eventing-specific mechanism'). This record keeps that same call for consistency, but flags the asymmetry explicitly below (cross_component_finding) since the same reasoning, applied evenly, would either mint both or neither."
+  },
+  "cross_component_finding": "advancedReplaceOp.md and advancedDeleteOp.md document the same CAS-conditioned-write test harness (no_cas always succeeds / bad_cas always fails with LCB_KEY_EEXISTS,cas_mismatch:true / good_cas succeeds after reading the current CAS via couchbase.get) against two different Advanced Accessor operations (replace vs delete; delete additionally has a no_key mode). Only the DELETE version was modeled as a distinct concept in round 8 (eventing:cas-conditioned-delete) - the REPLACE version, despite being evidenced by nearly the same sentence ('Has 3 modes of operation: `no_cas`, `bad_cas`, and `good_cas`' here vs 'Has 4 modes of operation: ...' on DeleteOp), was left conceptually unmodeled. Worth reconciliation considering whether eventing:cas-conditioned-delete's scope should generalize to a shared eventing:cas-conditioned-write concept covering both REPLACE and DELETE, rather than being named for one operation only.",
+  "cross_product_finding": null
+}

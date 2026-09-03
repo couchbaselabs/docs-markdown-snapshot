@@ -1,0 +1,19 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-simpleTimer",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-simpleTimer.md",
+  "concepts": [
+    { "candidate_id": "eventing:on-update-handler", "label": "OnUpdate() handler", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:timer", "label": "Eventing Timer", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:timer-callback", "label": "Timer callback", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json, round 8)" }
+  ],
+  "relations": [
+    { "subject": "eventing:on-update-handler", "predicate": "createsOnAction", "object": "eventing:timer", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "The result of processing the mutation is a Timer that will be executed approximately 30 seconds in the future." },
+    { "subject": "eventing:timer", "predicate": "firesCallback", "object": "eventing:timer-callback", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "function TimerCallback(context) {\n    log('From TimerCallback: timer fired with context', context);" },
+    { "subject": "eventing:timer", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-timers", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more details on Timers refer to [Timers](eventing-timers.md)." },
+    { "subject": "eventing:timer", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-examples-recurring-timer", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For an example of a recurring Timer refer to: [Recurring Timer](eventing-examples-recurring-timer.md)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "n/a - this page is essentially code-identical to the Capella twin; no new fact found." },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

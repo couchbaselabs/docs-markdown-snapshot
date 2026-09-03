@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-basicBucketOps",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-basicBucketOps.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Needs a Binding of type Bucket Alias (as documented in the Scriptlet)."
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-basicBucketOps",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-language-constructs",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more detail refer to [Bucket Accessors](eventing-language-constructs.md#bucket%5Faccessors)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Pure code-sample page demonstrating the Basic Bucket Accessor SET/GET/DEL syntax (`dst_col[dst_key] = doc_to_wr`, `dst_col[dst_key]`, `delete dst_col[dst_key]`) - byte-identical mechanism to the Capella twin, which left concepts/relations empty for the same reason: no genuinely new mechanism beyond eventing:binding/eventing:bucket-alias-binding, already well-established in the registry. The page's version-comment ladder is worth naming once for the batch: the `Version 6.X` tier configures a whole-bucket 'Source Bucket'/'MetaData Bucket'/plain-bucket binding target, while the `Version 7.0+`/`7.1+` tiers configure a `bucket.scope.collection` binding target and a `Function Scope` - the same pre-7.0-vs-7.0+ scoping split recurs verbatim across nearly every page in this batch and is not re-described on each subsequent record."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-fixEmailDomains",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-fixEmailDomains.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a regex-based email-domain normalizer (e.g. jack.smith@mailhost.company.com -> jack.smith@company.com) run inside OnUpdate. The page's stated goal, \"Redact Sensitive Data prior to sharing\" (also its front-matter description), is broader than what the code actually does - it normalizes an email domain, it doesn't redact anything. This description/content mismatch is identical on the Capella twin; noting it again here since it's a documentation-accuracy issue independent of which product tree it appears in, but it doesn't rise to a mintable concept or relation."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

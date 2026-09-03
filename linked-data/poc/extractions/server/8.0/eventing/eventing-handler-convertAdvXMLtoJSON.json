@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-convertAdvXMLtoJSON",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-convertAdvXMLtoJSON.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-convertAdvXMLtoJSON",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-convertXMLtoJSON",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This function will handle items and constructs that **[convertXMLtoJSON](eventing-handler-convertXMLtoJSON.md)** will fail on 1) empty-element tags and 2) attributes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: a generic recursive XML-to-JSON parser handling attributes and empty-element tags (regex-based, with a 6.6.0/7.0.0 dual implementation), demonstrated inside an OnUpdate handler. Content is byte-identical to the Capella twin apart from front matter. The only Eventing-specific framing is the standard Function Scope/Listen to Location/Eventing Storage/Binding configuration comment block, already captured generically by eventing:function and eventing:binding - nothing new here. No disagreement with the Capella record found."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedDecrementOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedDecrementOp.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedDecrementOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced DECREMENT Operation](eventing-advanced-keyspace-accessors.md#advanced-decrement-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page demonstrating couchbase.decrement(), the mirror image of advancedIncrementOp.md. Same reasoning as that page's record applies: couchbase.increment/decrement/touch are not enumerated in eventing:advanced-keyspace-accessor's registry description (get/upsert/replace/delete/insert only), so this concept was not forced onto this page. Note also: this page's own output log block ('success adv. increment: result') is copy-pasted verbatim from advancedIncrementOp.md rather than reading 'success adv. decrement: result' - the log text does not match the couchbase.decrement() call the code actually makes. Worth a docs-issue, but not evidenced as a graph relation since no predicate captures a copy-paste log mismatch."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

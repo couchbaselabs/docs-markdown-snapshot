@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/deployment-feed-boundary",
+  "label": "Feed Boundary",
+  "type": "the Function setting deciding whether the DCP mutation feed a Function processes on deploy/resume includes documents that already existed (\"Everything\") or only mutations occurring from that point forward (\"From Now\"). Also acts as the checkpoint marker on resume from Paused.",
+  "promoted": true,
+  "recurrence": 2,
+  "recurrence_note": "4 files, shared-source discounted to 2 - exactly at the promotion bar.",
+  "evidence": [
+    "The Feed Boundary determines if the Eventing Function's activities need to include documents that already exist. When you set the Feed Boundary to Everything, the Function processes all mutations available in your cluster.",
+    "The Feed Boundary also works as a checkpoint for paused Functions. When you resume a paused Function, the Feed Boundary makes sure that no mutations are lost or processed again.",
+    "The Feed Boundary determines whether documents previously in existence need to be included in the Function's activities: the options are Everything and From now."
+  ],
+  "usesEnum": [
+    "Everything",
+    "From now"
+  ],
+  "documented_at": "cloud/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "On first deploy, does a Function see every existing document or only mutations from that moment on - and is that the same knob that governs a resume from Paused?"
+}

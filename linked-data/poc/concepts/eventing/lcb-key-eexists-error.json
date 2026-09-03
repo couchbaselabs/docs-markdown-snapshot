@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/lcb-key-eexists-error",
+  "label": "LCB_KEY_EEXISTS error",
+  "type": "the libcouchbase KV error surfaced to a handler when a write's CAS precondition fails against an existing document, OR when an INSERT targets a key that already exists - two distinct conditions sharing one error name, documented inconsistently (see docs-issues/server-eventing-lcb-error-code-inconsistent). Sibling of eventing:lcb-key-enoent-error.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "5 files, shared-source discounted to 3 independent.",
+  "evidence": [
+    "\"name\": \"LCB_KEY_EEXISTS\", \"desc\": \"The document key exists with a CAS value different than specified\", \"cas_mismatch\": true",
+    "\"error\": {\"code\": 272, \"name\": \"LCB_KEY_EEXISTS\", \"desc\": \"The document key already exists in the server.\", \"key_already_exists\": true}"
+  ],
+  "note": "OVERLOADED, and the overload is the finding: the same error name means 'CAS mismatch on a conditioned write' on the DELETE/REPLACE pages and 'key already exists' on the INSERT page - two conditions with no shared predicate in this registry, so `resultsInError` alone cannot distinguish them without reading the `cas_mismatch`/`key_already_exists` flag the error object itself carries.",
+  "documented_at": "server/8.0/eventing/eventing-handler-advancedDeleteOp",
+  "relates_to_competency_question": "What error does a conditioned write get when its precondition fails, and is that the same error an INSERT gets on a duplicate key?"
+}

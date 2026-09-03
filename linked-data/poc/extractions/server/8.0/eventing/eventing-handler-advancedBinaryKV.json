@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedBinaryKV",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedBinaryKV.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:binary-document-accessor",
+      "label": "Advanced Accessor binary-document support",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedBinaryKV.json, round 8's Capella twin, for the identical mechanism); the Server page states the identical fact verbatim"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page explicitly calls couchbase.upsert(dst_col,...) and couchbase.get(dst_col,...)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:binary-document-accessor",
+      "predicate": "usesEnum",
+      "object": "datatype: json|binary",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The return value of couchbase.upsert() on success will indicate either \"datatype\":\"json\" or \"datatype\":\"binary\""
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Server's sentence describing couchbase.upsert()'s datatype-tagged return value is byte-identical to the Capella twin's - the same mechanism, same wording, no drift found. The usual 6.6.2/7.0+/7.1+ version-comment ladder recurs (see basicBucketOps.json for the general note); not re-described here."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

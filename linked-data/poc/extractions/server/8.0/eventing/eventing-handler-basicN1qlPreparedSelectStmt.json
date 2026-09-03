@@ -1,0 +1,16 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-basicN1qlPreparedSelectStmt",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-basicN1qlPreparedSelectStmt.md",
+  "concepts": [
+    { "candidate_id": "eventing:n1ql-function-call", "label": "N1QL() Function Call", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:n1ql-result-iterator", "label": "N1QL Query Result Iterator", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt.json, round 8)" }
+  ],
+  "relations": [
+    { "subject": "eventing:n1ql-function-call", "predicate": "requiresExplicitClose", "object": "eventing:n1ql-result-iterator", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "results.close();              // End the query and free resources held" },
+    { "subject": "server/8.0/eventing/eventing-handler-basicN1qlPreparedSelectStmt", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-language-constructs", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For additional details refer to [SQL++ Statements](eventing-language-constructs.md#added-lang-features) and [The N1QL() function call](eventing-language-constructs.md#n1ql%5Fcall)" }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "None - this page follows the requiresExplicitClose obligation. See cross_component_finding." },
+  "cross_component_finding": "Second confirmation in this batch that the requiresExplicitClose rule is actually followed, not just documented: the N1QL() call's returned iterator is captured into `results`, streamed with a `for...of` loop, then explicitly closed via `results.close();              // End the query and free resources held`. The page also carries the same positional-vs-named-parameter distinction as the Capella twin ('We have just one positional parameter $1 for \"doc.iata\"... Note positional parameters are passed in an array' / 'Note named parameters are passed and an object') and the same note that the cluster typically skips re-preparing an already-prepared statement - recurrence, not a new fact.",
+  "cross_product_finding": ""
+}

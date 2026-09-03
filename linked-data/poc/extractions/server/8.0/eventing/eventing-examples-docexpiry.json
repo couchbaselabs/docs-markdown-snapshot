@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-docexpiry",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-docexpiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "data:expiration",
+      "label": "Expiration (TTL)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; used here in place of the Capella twin's extraction-layer capella:document-expiration"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "data:expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Only process for those documents that have a non-zero TTL"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/insert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For information on setting document expiration times via SQL++, refer to [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/java-sdk/hello-world/start-using-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For information on the Couchbase Java SDK, refer to [Start Using the Java SDK](../../../java-sdk/current/hello-world/start-using-sdk.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Like its Capella twin, this page offers four equally-weighted, platform-neutral ways to create a test document with an expiry (SQL++ UPSERT, cbc, Python SDK, Java SDK) with no Capella-specific or Server-specific framing distinguishing them - the only Server-specific detail is that the cbc paths given (/opt/couchbase/bin/cbc, the macOS .app bundle path, and C:\\Program Files\\Couchbase\\Server\\bin\\cbc) are directly usable on the machine running this documentation's own product, unlike on the Capella twin where they describe a different machine's filesystem entirely."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page cites the identical macOS defect and Jira ticket as its 'Delete v Expiry' sibling and the Capella twin: 'On macOS (or OS-X) if you get a 'dyld: Library not loaded' when running _cbc_ a solution is documented in [MB-37768](https://issues.couchbase.com/browse/MB-37768).' Combined with the classic-role requirement (Full Admin / Eventing Full Admin via Function Scope) that recurs on every worked-example page in this batch and is absent from every Capella twin, this reinforces that the prerequisite/setup sections of these paired pages are shared boilerplate lightly retitled per product, while the access-control framing is genuinely product-specific."
+}

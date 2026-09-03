@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-n1ql-result-not-closed-one-page",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Three of the four Eventing worked-example pages demonstrating an inline N1QL()/query call correctly call results.close() to free the streamed cursor (basicN1qlSelectStmt.md, basicN1qlPreparedSelectStmt.md, advancedSelfRecursion.md). eventing-handler-docControlledSelfExpiry.md calls N1QL(stmt) and never captures a return value or closes anything. Plausibly a legitimate exception - a bare UPDATE with no rows to iterate may not return a closeable cursor - but no page states this, and the page sits in the same batch as three siblings that do close it, so a reader has no way to tell an omission from a rule.",
+  "about": [
+    "server/8.0/eventing/eventing-handler-docControlledSelfExpiry",
+    "cloud/eventing/eventing-handler-docControlledSelfExpiry"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

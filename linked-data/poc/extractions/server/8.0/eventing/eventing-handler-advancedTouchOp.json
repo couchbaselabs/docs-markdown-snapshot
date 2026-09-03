@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedTouchOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedTouchOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-touch-operation",
+      "label": "Advanced TOUCH operation",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuinely new: couchbase.touch() resets a document's TTL/expiry without rewriting the document body or requiring a full round-trip write; not one of the get/upsert/replace/delete/insert operations eventing:advanced-keyspace-accessor's registry description enumerates, and round 8's Capella twin left this operation entirely unmodeled (empty concepts/relations)"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-touch-operation",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "// Version 7.6+"
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedTouchOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced TOUCH operation, see [Advanced TOUCH Operation](eventing-advanced-keyspace-accessors.md#advanced-touch-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport / n/a",
+    "finding": "'Does not require that you send the document back to the Data Service to update the TTL' is a documented contrast with the Basic/Advanced accessor write path (which does rewrite the whole document), but no existing predicate cleanly captures 'operation X, unlike sibling operations, does not require a full document write' - recorded here as a finding rather than forced into a relation. The availableSince claim above is a genuine addition over the Capella round: unlike the GET/INSERT/UPSERT/REPLACE/DELETE pages in this batch, which all cite a 3-tier 6.6.x/7.0+/7.1+ version ladder (implying those operations predate 7.0), this page cites only a single 'Version 7.6+' tier with no legacy fallback at all - the same single-tier signature this batch's advancedLookupInOp.md and advancedMutateInField.md/advancedMutateInArray.md use for their genuinely-new-in-7.6 sub-document operations, suggesting Advanced TOUCH is itself a 7.6-era addition to the Advanced Accessor family rather than a pre-7.0 operation, though the page doesn't state this outright - inferred from the version-comment pattern alone."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

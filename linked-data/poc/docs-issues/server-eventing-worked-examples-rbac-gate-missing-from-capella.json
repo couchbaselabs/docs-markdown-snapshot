@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-worked-examples-rbac-gate-missing-from-capella",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "All nine Server worked-example pages in server/8.0/eventing/ (every eventing-examples*.md page) carry the identical sentence 'assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\" ... refer to Eventing Role-Based Access Control' - completely absent from every one of their byte-similar Capella twins. Round 8's own extraction of those Capella pages had already flagged 'no privilege/capella-role gate anywhere' as a notable absence without knowing why. This round confirms it is structural rather than an extraction gap: Server gates Function creation through the classic cluster-wide role catalog (Full Admin / Eventing Full Admin) plus per-scope RBAC grouping; Capella's worked examples never state an equivalent gate, and Capella's own access model (project-scope Data Reader/Data Writer/Project Owner, per eventing-rbac.md) is a materially different shape. Not a defect exactly - a genuine, previously-unexplained product/access-model asymmetry, now explained.",
+  "about": [
+    "server/8.0/eventing/eventing-examples",
+    "cloud/eventing/eventing-examples",
+    "cloud/eventing/eventing-rbac"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

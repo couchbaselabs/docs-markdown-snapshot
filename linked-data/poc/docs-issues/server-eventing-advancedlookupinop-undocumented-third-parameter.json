@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-advancedlookupinop-undocumented-third-parameter",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-handler-advancedLookupInOp.md's OnUpdate signature is `OnUpdate(doc, meta, xattrs)` - a third parameter never used in the handler body and inconsistent with every other OnUpdate signature in the batch, which take exactly two arguments (doc, meta). Likely a copy-paste artifact from the nearby `{\"xattrs\": false}` binding option. Also inconsistent with the registry's own eventing:on-update-handler description, which documents a two-argument signature.",
+  "about": [
+    "server/8.0/eventing/eventing-handler-advancedLookupInOp",
+    "cloud/eventing/eventing-handler-advancedLookupInOp"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

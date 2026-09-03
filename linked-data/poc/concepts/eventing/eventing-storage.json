@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/eventing-storage",
+  "label": "Eventing Storage (Function metadata keyspace)",
+  "type": "the bucket/scope/collection a Function is configured to use as a scratchpad for its own runtime state (checkpoints, Timer store) - as distinct from eventing:listen-to-location (the mutation source it watches) and eventing:bucket-alias-binding (a data-plane access grant the handler code itself uses). A REQUIRED Function setting, not optional.",
+  "promoted": true,
+  "recurrence": 13,
+  "recurrence_note": "17 files, shared-source discounted to 13 independent (cross-product duplication upheld on part of the count; the bar is cleared either way).",
+  "evidence": [
+    "Eventing Storage | A bucket, scope, and collection currently defined on your cluster and where you want to store system data for your Eventing Function. This is the Function's metadata bucket.",
+    "Eventing Storage, or the Eventing metadata: a collection used as a scratchpad for the state of the Function.",
+    "If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped."
+  ],
+  "note": "THE LAST QUOTE IS THE ONE WORTH KEEPING: deleting a Function's metadata collection is destructive to every Function using it, cluster-wide, and nothing on the Function's own settings page warns of this - it surfaces only in the terminology glossary. A real operational hazard hiding behind a definitions page.",
+  "cascadesLifecycleChangeTo": "eventing:function",
+  "documented_at": "server/8.0/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "Where does a Function keep its own checkpoints and Timer state, and what happens if that storage is deleted?"
+}

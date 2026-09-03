@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedLookupInOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedLookupInOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:lookupin-subdocument-operation",
+      "label": "Sub-Document LOOKUPIN operation (advancedLookupInField)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedLookupInOp.json, round 8's Capella twin, for the identical couchbase.lookupIn + couchbase.LookupInSpec.get mechanism)"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:lookupin-subdocument-operation",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "// Version 7.6+"
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedLookupInOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Sub-Document LOOKUPIN operation, see [Sub-Document LOOKUPIN Operation](eventing-advanced-keyspace-accessors.md#advanced-subdoc-array-op-lookupin)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Per the round context's explicit instruction to decide, per page, whether reusing sdk:subdocument-operations is warranted: this record does NOT link eventing:lookupin-subdocument-operation to sdk:subdocument-operations, because this page gives no textual basis for asserting any relationship between them (it never mentions the SDK or its lookupIn API at all) - the evidence gate requires a real page quote to support any relation, and none exists here. They are analogous surfaces (both are path-level reads against a specific field inside a document) reached through completely different APIs (couchbase.lookupIn/couchbase.LookupInSpec.get inside a JS handler vs an SDK client method), and this record treats them as a described-but-unlinked analogy rather than forcing a graph edge.\n\nSeparately: this page's OnUpdate signature is `function OnUpdate(doc, meta, xattrs) {` - a third parameter, `xattrs`, that does not appear in any other OnUpdate signature in this batch (all others are `OnUpdate(doc, meta)`) and is never referenced in the function body (only `meta.id` is used). The registry's eventing:on-update-handler concept (recurrence 18) has no documented third parameter. This looks like a copy-paste artifact from the nearby `{\"xattrs\": false}` option literal on `LookupInSpec.get(...)`, not a real, documented handler-signature extension - worth a docs-issue rather than a concept, since minting a concept from an apparent typo would misrepresent the API."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

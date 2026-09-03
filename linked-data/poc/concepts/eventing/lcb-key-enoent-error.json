@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/lcb-key-enoent-error",
+  "label": "LCB_KEY_ENOENT error",
+  "type": "the libcouchbase KV error surfaced to a handler when an operation targets a document key that does not exist. Sibling of eventing:lcb-key-eexists-error. Its numeric `code` field is documented inconsistently across two sibling pages in the same batch - see docs-issues/server-eventing-lcb-error-code-inconsistent.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "5 files, shared-source discounted to 3 independent.",
+  "evidence": [
+    "\"name\": \"LCB_KEY_ENOENT\", \"desc\": \"The document key does not exist on the server\", \"key_not_found\": true"
+  ],
+  "documented_at": "server/8.0/eventing/eventing-handler-advancedDeleteOp",
+  "relates_to_competency_question": "What error does an operation get when its target key doesn't exist, and is the numeric code stable across the docs that cite it?"
+}

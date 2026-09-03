@@ -1,0 +1,105 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-high-risk",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-high-risk.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:function-lifecycle-state",
+      "label": "Eventing Function lifecycle state",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the Paused member of this skos:ConceptScheme"
+    },
+    {
+      "candidate_id": "eventing:checkpoint",
+      "label": "Checkpoint",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/manage-eventing-functions.json (sibling batch)"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping ,we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping ,we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasLifecycleState",
+      "object": "eventing:function-lifecycle-state",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "From the **Couchbase Web Console** \\> **Eventing** page, click **high\\_risk\\_txns** to expand the function, and then click **Pause**."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "createsOnAction",
+      "object": "eventing:checkpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The Eventing function is resumed from the check point created when you paused the function and will start running within a few seconds. The defined function is resumed form a checkpoint created when you paused the function."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the first binding, select \"bucket alias\", specify **register** as the \"alias name\" of the collection, select **bulk**, **data**, **register** as the associated keyspace, and select \"read only\" for the access mode."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For more details on bucket settings and screen images refer to [Bucket Settings](../manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "As in the Capella twin, this page's 'risk' is entirely a business-domain concept (credit-limit and foreign-currency flags), and it names no Eventing-specific execution-risk, unsafe-coding-pattern, or resource-limit concept anywhere. The one genuinely new structural fact this page adds beyond the Capella twin is a fully worked example of the Pause/Edit/Resume-from-checkpoint cycle: it pauses a deployed Function, edits one line of its JavaScript ('change the OnUpdate handler code from `var verbose = 0` to `var verbose = 3`'), and resumes it, observing that 'Until a mutation is triggered there will be no processing at all by our modified handler's JavaScript code' - confirming that resuming from checkpoint does not replay past mutations, only future ones."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page names the same undocumented third-party integration point as the Capella twin, with identical phrasing: '[OPTIONAL] Use of cURL directly from Eventing, use of a custom application written in various Couchbase SDKs, or use of third-party integrations like Kafka to read the items written to the 'review' collection (type='transaction') for further automated action.' This confirms the Kafka mention is authored once and shared verbatim across both product trees rather than being a Server-specific or Capella-specific integration claim. It is also the second page in this batch (after data-enrichment) to carry the classic Full Admin / Eventing Full Admin role requirement absent from the Capella twin, and additionally requires enabling a bucket-level 'Flush' toggle under Advanced bucket settings before the walkthrough's cleanup step - a bucket administration action gated by cluster-wide RBAC roles on Server that has no discussion of an equivalent permission gate on the Capella twin."
+}

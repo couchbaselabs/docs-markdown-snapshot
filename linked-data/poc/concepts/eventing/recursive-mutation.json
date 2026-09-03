@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/recursive-mutation",
+  "label": "Recursive mutation",
+  "type": "a handler's own write lands back in the same keyspace it listens to (or another handler's), so the write itself becomes a new triggering mutation. Distinct from eventing:self-recursion-option (the SPECIFIC, sanctioned self_recursion:true flag pattern for a bounded self-reinvocation loop) - this concept is the general hazard the flag exists to manage safely; it also covers the deliberate, useful case of direct self-recursion for document enrichment via a Read-Write binding on the source collection.",
+  "promoted": true,
+  "recurrence": 4,
+  "recurrence_note": "6 files, shared-source discounted to 4 independent.",
+  "evidence": [
+    "A potentially recursive mutation happens when a handler manipulates documents in a keyspace that also serves as the mutation source for this or another handler. The write originated by the handler causes a mutation to be processed by the same or another handler.",
+    "There is a special case of direct self-recursion, which is highly useful, when a Eventing Function chooses to create a Read-Write binding to its own source collection we can perform document enrichment operations."
+  ],
+  "note": "A ROUND-8 shouldNotBeConfusedWith MISUSE, CORRECTED HERE. That predicate is reserved for two DIFFERENT things a reader might wrongly conflate; round 8 used it for `eventing:function shouldNotBeConfusedWith eventing:recursive-mutation`, but a recursive mutation is not a different thing from a Function's normal operation to be told apart from it - it's a HAZARD a Function can exhibit. This record files it as createsOnAction instead, per this round's server/8.0/eventing-Terminologies.json extraction.",
+  "documented_at": "server/8.0/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "Can a handler's own write re-trigger itself or another handler, and is that ever intentional?"
+}

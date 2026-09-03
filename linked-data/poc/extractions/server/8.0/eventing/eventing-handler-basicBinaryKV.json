@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-basicBinaryKV",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-basicBinaryKV.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page with no outbound markdown links, matching the Capella twin's own empty concepts/relations call. Demonstrates that the Basic Bucket Accessor (`src_col[key] = value`) transparently marshals/unmarshals a binary (ArrayBuffer/Uint8Array) document, and that the resulting OnUpdate mutation on redeploy carries `\"datatype\":\"binary\"` in `meta`: '2021-04-10T15:14:06.581-07:00 [INFO] \"4. received binary mutation\" {} \"unmarshalled (1,0,2,3) meta:\"\n{\"cas\":\"1618092795477098496\",\"id\":\"bindoc_kvput\",\"expiration\":0,\"flags\":0,\"vb\":430,\"seq\":9,\"datatype\":\"binary\"}'. This is the existing Basic Bucket Accessor mechanism applied to a different document datatype, not a new mechanism - left concepts/relations empty per batch guidance rather than forcing a mint."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

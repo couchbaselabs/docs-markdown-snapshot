@@ -1,0 +1,19 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-cascadeKvDeleteWithDoc",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-cascadeKvDeleteWithDoc.md",
+  "concepts": [
+    { "candidate_id": "eventing:on-delete-handler", "label": "OnDelete() handler", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:on-update-handler", "label": "OnUpdate() handler", "registry_status": "promoted", "reused_or_minted": "reused - promoted; used here purely as the contrast point for the OnDelete finding below" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "eventing:on-delete-handler", "predicate": "omitsMutationBody", "object": "eventing:on-update-handler", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "A work around for the fact that the OnDelete() entry point does not supply the actual document being deleted." },
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs a Binding of type Bucket Alias (as documented in the Scriptlet)." },
+    { "subject": "server/8.0/eventing/eventing-handler-cascadeKvDeleteWithDoc", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-examples-cascade-delete", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "This Scriptlet uses just KV unlike the similar example [Cascade Delete](eventing-examples-cascade-delete.md) which uses SQL++." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "The twin's own extraction of omitsMutationBody covers only the missing document body; it does not mention that the OnDelete() signature also carries a second parameter, `options`, with a boolean `options.expired` field distinguishing an explicit delete from an expiry-triggered deletion: `log('A. OnDelete notified of '+options.expired ? 'delete' : 'expiry'+' of proxy', meta.id);`. This is a genuinely additional fact about OnDelete()'s real call signature beyond what the sibling omitsMutationBody relation captures, surfaced only by this Server page (or at least not captured in the Capella twin's extraction record)." },
+  "cross_component_finding": "The page's own contrast statement recurs unchanged from the twin: the same 'cascade delete' goal is solved here purely with KV/Data-Service operations, versus a sibling example page (eventing-examples-cascade-delete.md, not in this batch) that solves it with SQL++.",
+  "cross_product_finding": ""
+}

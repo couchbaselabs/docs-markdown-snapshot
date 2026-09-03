@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/touch-operation",
+  "label": "Touch (TTL reset) Advanced Accessor",
+  "type": "the Advanced Keyspace Accessor that resets a document's TTL/expiry without rewriting its body - not enumerated in eventing:advanced-keyspace-accessor's own summary description, and left unmodeled by round 8's Capella extraction entirely.",
+  "promoted": true,
+  "recurrence": 3,
+  "aliases": [
+    "eventing:advanced-touch-operation"
+  ],
+  "aliases_note": "Folds eventing:touch-operation (overview page, both trees) and eventing:advanced-touch-operation (this round's mint, from the advancedTouchOp.md demonstration page, server-only - round 8 left this page entirely unmodeled).",
+  "evidence": [
+    "couchbase.touch(binding, meta, options) - Resets the expiration (TTL) of a document without modifying its value."
+  ],
+  "documented_at": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+  "relates_to_competency_question": "Can a handler extend a document's TTL without touching its contents, and is that accessor documented anywhere as a named operation?"
+}

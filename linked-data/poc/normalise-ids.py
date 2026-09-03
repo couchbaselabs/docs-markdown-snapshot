@@ -101,6 +101,8 @@ ID_RENAMES = {
     # boundary falls after "on".
     "eventing:onupdate-handler": "eventing:on-update-handler",
     "eventing:ondelete-handler": "eventing:on-delete-handler",
+    # Round 18: same onX-handler kebab-boundary slip, on the third handler.
+    "eventing:ondeploy-handler": "eventing:on-deploy-handler",
     # --- Round 14. The vector-index: namespace named an axis it did not hold. ---
     # Five members belonged to axes the registry had already settled, and are
     # evacuated to them by exact match; the rest keep their local names and move

@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-simpleFlatten",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-simpleFlatten.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-simpleFlatten",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-genericFlatten",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Refer to [genericFlatten](eventing-handler-genericFlatten.md) for a generic implementation."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "omitsMutationBody",
+      "object": "eventing:on-update-handler",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Note since the document is not available during an OnDelete we will filter by KEY prefix starting with `\"tosync:\".*`. This is a hard coded implementation."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The Capella twin recorded this OnDelete/document-unavailability fact under behavesDifferentlyUnder (subject eventing:on-delete-handler, object eventing:on-update-handler). That predicate's registered definition is specifically about a clause's behavior changing under an edition or deployment variant (Enterprise/Community/Capella) - not about one handler entry point's call signature lacking a parameter the other has. The already-promoted omitsMutationBody predicate was minted for exactly this OnDelete-vs-OnUpdate signature asymmetry (see its registry note, citing this same batch's genericFlatten/genericRename pages), so this record uses omitsMutationBody instead as the more precise match. Content is otherwise byte-identical to the Capella twin apart from front matter."
+  },
+  "cross_component_finding": "OnDelete's lack of document-body access forces this handler to fall back to KEY-prefix filtering ('tosync:') instead of the doc.type filter used by every OnUpdate handler in this batch - now captured via omitsMutationBody rather than behavesDifferentlyUnder (see notable_absence).",
+  "cross_product_finding": "Recurrence of the destination-collection/XCDR hand-off note seen elsewhere in this batch (redactSharedData, genericFlatten, genericRename): \"The \\\"destination\\\" collection can be shared (or replicated via XCDR to a business partner) too the cloud (AWS, Azure or GCP).\" Same pattern, not a new finding."
+}

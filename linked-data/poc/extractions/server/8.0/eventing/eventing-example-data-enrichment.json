@@ -1,0 +1,135 @@
+{
+  "page_id": "server/8.0/eventing/eventing-example-data-enrichment",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-example-data-enrichment.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:function-scope",
+      "label": "Function Scope (RBAC grouping)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "minted - a Function-level setting (e.g. `bulk.data`) selected in the ADD FUNCTION dialog's Function Scope drop-down, which is the actual mechanism by which the classic role catalog (Full Admin / Eventing Full Admin / narrower scoped roles) gates who may create or edit a given Function; first occurrence in this batch"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage keyspace",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/add-eventing-functions.json (sibling batch)"
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the server/ tree's term where the Capella twin's extraction used capella:collection for the same 'Listen To Location' relation"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the `bulk.data`, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the `bulk.data`, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-rbac",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For standard or non-privileged users, refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresSetting",
+      "object": "eventing:function-scope",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (object concept is extraction-layer)",
+      "evidence": "For the **Function Scope** drop-down, select `bulk.data` as the RBAC grouping."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the first binding, select `bucket alias`, specify **src** as the `alias name` of the collection; select **bulk**, **data**, **source** as the associated keyspace, and select `read only` for the access mode."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-buckets-to-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "we loosely follow this [organization](eventing-buckets-to-collections.md#single-tenancy)"
+    },
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "prohibitsMutationWhileDeployed",
+      "object": "eventing:function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in cloud/eventing/eventing-example-data-enrichment.json (Capella twin); requoted fresh from this Server page rather than trusting the twin's own evidence string",
+      "evidence": "The Eventing Storage keyspace, in this case `rr100.eventing.metadata`, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition, do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "doesNotAffect",
+      "object": "server:keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "this new document is identical to the old, except that it has two new additional fields, which contain integers that correspond to the IP addresses. The original document, in the source collection, is not changed."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If you run a version of Couchbase prior to 7.0, you can create the buckets `source`, `target`, and `metadata` and run this example. Furthermore, if your cluster was subsequently upgraded from, say, 6.6.2 to 7.0, your data would be moved to `source._default._default`, `target._default._default`, and `metadata._default._default` and your Eventing Function would be seamlessly upgraded to use the new keyspaces and continue to run correctly."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The Server page's core worked-example structure (Case 1 create-in-target vs Case 2 update-in-source, distinguished only by binding permission and which alias the handler writes into) is identical to the Capella twin's - the same eventing:on-update-handler primitive, the same 'Eventing Service automatically suppresses the recursive mutation' behavior in Case 2. What differs is entirely prose style and prerequisite framing, not the underlying mechanism."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page names a classic, cluster-wide RBAC role requirement that has no counterpart anywhere in the Capella twin's text: 'For the Function Scope or RBAC grouping, we will use the bulk.data, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users, refer to [Eventing Role-Based Access Control](eventing-rbac.md).' The Capella twin's own extraction record flagged this exact absence ('names no privilege, capella-role, or credential type gate anywhere') as consistent with its sibling lifecycle pages - this Server page shows why: it isn't that both products omit an access-control story, it's that Server's story is told through the classic Full Admin / Eventing Full Admin role pair plus a Function Scope RBAC grouping, a structurally different and more granular mechanism than Capella's org/project-role model, which this worked example simply doesn't surface at all on the Capella side."
+}

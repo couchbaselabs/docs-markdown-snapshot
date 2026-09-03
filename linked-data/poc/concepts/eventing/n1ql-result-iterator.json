@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/n1ql-result-iterator",
+  "label": "N1QL() call result iterator",
+  "type": "the streamed cursor object returned by an inline SQL++ statement or an eventing:n1ql-function-call from inside a handler. Object of the already-promoted requiresExplicitClose - the handler must call .close() on it to free resources, since it is a streamed cursor and not a materialized array.",
+  "promoted": true,
+  "recurrence": 3,
+  "recurrence_note": "5 files, shared-source discounted to 3 independent.",
+  "evidence": [
+    "results.close();              // End the query and free resources held"
+  ],
+  "note": "NOT ALWAYS CLOSED IN THE DOCS' OWN EXAMPLES. basicN1qlSelectStmt/basicN1qlPreparedSelectStmt/advancedSelfRecursion all call .close() correctly; docControlledSelfExpiry.md calls N1QL(stmt) and never captures or closes a return value at all. Plausibly a legitimate fire-and-forget-DML exception (no rows to iterate on a bare UPDATE), but the docs never say so, and the page sits in the same batch as three pages that DO close it - flagged in docs-issues/server-eventing-n1ql-result-not-closed-one-page.",
+  "requiresExplicitClose": true,
+  "documented_at": "cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt",
+  "relates_to_competency_question": "Does an inline N1QL() call in a handler leak resources if the handler forgets to close it, and does every worked example actually close it?"
+}

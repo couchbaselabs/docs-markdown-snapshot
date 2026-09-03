@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedInsertOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedInsertOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:accessor-expiry-date-field",
+      "label": "Advanced Accessor expiry_date meta field",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advanced-docControlledSelfExpiry.json, round 8); here the same expiry_date meta field is passed to couchbase.insert instead"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-eexists-error",
+      "label": "LCB_KEY_EEXISTS error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json); same error name/code recurs here but for a different underlying condition - see notable_absence"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.insert(src_col, new_meta, new_doc)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-eexists-error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer (round 8's Capella advancedDeleteOp.json minted resultsInError; not yet promoted)",
+      "evidence": "\"desc\": \"The document key already exists in the server.\""
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedInsertOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced INSERT Operation](eventing-advanced-keyspace-accessors.md#advanced-insert-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "behavesDifferentlyUnder",
+    "finding": "Round 8's Capella twin for this page (cloud/eventing/eventing-handler-advancedInsertOp.json) was flagged by verify-evidence.py for an unquotable relation: `eventing:lcb-key-eexists-error behavesDifferentlyUnder eventing:cas-conditioned-delete`, evidenced only by the bare error-object JSON, which does not textually support a 'behaves differently under' claim. The Server page makes the analogous underlying claim (the same LCB_KEY_EEXISTS name/code overloaded across two distinct conditions), so this record deliberately does NOT reuse that flagged relation. Instead: this page's LCB_KEY_EEXISTS fires on a duplicate-key INSERT (`\"key_already_exists\": true`, desc 'The document key already exists in the server.'), while advancedReplaceOp.md/advancedDeleteOp.md's LCB_KEY_EEXISTS fires on a CAS mismatch (`\"cas_mismatch\": true`, desc 'The document key exists with a CAS value different than specified') - same error identifier, two genuinely different documented conditions, distinguished only by an extra boolean sub-flag and a different desc string. No existing predicate in the registry cleanly expresses 'one error code is overloaded for two distinct conditions', so this is recorded here as a finding rather than forced into a relation - worth a docs-issue and worth the coordinator's attention when reconciling eventing:lcb-key-eexists-error."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

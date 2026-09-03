@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/meta-keyspace-parameter",
+  "label": "meta.keyspace parameter",
+  "type": "the additional argument an Advanced Keyspace Accessor call must supply when its binding uses a wildcard (`*`) scope or collection, naming the specific bucket/scope/collection the operation actually targets.",
+  "promoted": true,
+  "recurrence": 2,
+  "recurrence_note": "4 files, shared-source discounted to 2 - exactly at the promotion bar; the family exception is not invoked, this clears the mechanical rule as-is.",
+  "evidence": [
+    "If the binding used by the Advanced Keyspace Accessor also contains a wildcard `*` for its scope or collection, you must use the additional `meta.keyspace` parameter.",
+    "meta.keyspace | Object | The keyspace of the document to be used for the operation. Must be in the JavaScript format \"keyspace\": { \"bucket_name\": string, \"scope_name\": string, \"collection_name\": string }.",
+    "Highlights the use of `meta.keyspace`"
+  ],
+  "requiresSetting": "eventing:advanced-keyspace-accessor",
+  "documented_at": "cloud/eventing/eventing-advanced-keyspace-accessors",
+  "relates_to_competency_question": "When a binding is wildcarded, how does an Advanced Accessor call know which specific collection to touch?"
+}

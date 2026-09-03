@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-recurring-timer-stale-cleanup-name",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-examples-recurring-timer.md's cleanup/teardown section instructs the reader to undeploy a Function named `cancel_overwrite_timer` - the name used on the SIBLING example page - rather than `recurring_timer`, the Function this page actually walks through. Present identically in both product trees; a reader following this page alone would be told to tear down a different example's Function.",
+  "about": [
+    "server/8.0/eventing/eventing-examples-recurring-timer",
+    "cloud/eventing/eventing-examples-recurring-timer"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

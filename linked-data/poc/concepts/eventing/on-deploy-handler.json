@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/on-deploy-handler",
+  "label": "OnDeploy() handler",
+  "type": "the third Eventing Function entry point: runs once when a Function is deployed or resumed, before any mutation is processed. A member of eventing-handler-family. NOT triggered by a document mutation like OnUpdate/OnDelete, and NOT re-run on every resume from a checkpoint - it runs once per deploy/resume event itself.",
+  "promoted": true,
+  "recurrence": 5,
+  "folded_spellings_note": "eventing:ondeploy-handler was round 8's independent minting of this exact concept (2 files, cloud only); this round's own eventing-lifecycle.md/eventing-Terminologies.md/eventing-language-constructs.md minted eventing:on-deploy-handler (3 files, server only) without seeing it. A pure hyphen-only difference is a punctuation variant of this record's own id, not a defensible alternative name, so verify-registry-ids.py correctly refused it as an alias - rewritten instead via normalise-ids.py's ID_RENAMES table (the same treatment already applied to onupdate-handler/ondelete-handler in round 8), which folded it here automatically once no corpus occurrence remained. Caught by recurrence.py --variants (a hyphen-only difference), unlike the timer-callback fork in the family record, which the same tool misses entirely because it isn't a spelling variant at all.",
+  "evidence": [
+    "The `OnDeploy` handler runs once when an Eventing function is deployed or resumed, before any mutations are processed.",
+    "The OnDeploy entry point must complete execution, from start to end, within the specified timeout period.",
+    "OnDeploy Timeout defines the maximum duration allowed for an Eventing Function to complete its initialization during deployment or resumption."
+  ],
+  "hasDefaultValue": "60 seconds (OnDeploy Timeout)",
+  "documented_at": "server/8.0/eventing/eventing-lifecycle",
+  "relates_to_competency_question": "Can a Function run setup logic exactly once, before it starts processing mutations?",
+  "folded_spellings": [
+    "eventing:ondeploy-handler"
+  ]
+}

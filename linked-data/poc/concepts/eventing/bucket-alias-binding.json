@@ -4,5 +4,7 @@
   "type": "sibling of eventing:binding - grants a function access to a specific bucket/scope/collection, including wildcard scope aliases",
   "promoted": true,
   "recurrence": 3,
+  "aliases": ["eventing:bucket-binding"],
+  "aliases_note": "Round 18 found `eventing:bucket-binding` ('a Function-scoped alias bound to a bucket/scope/collection, gated to Read Only or Read and Write') sitting unpromoted at 5 files in the extraction layer - a self-inflicted round-8 fork, minted independently of this record within the SAME round rather than across rounds. Same mechanism, no source sentence needed to license the fold since the two definitions are restatements of each other, not a merge across two genuinely distinct things.",
   "note": "A wildcard-scoped alias (e.g. source.myscope.*) can touch any collection in that scope unless the handler explicitly guards on meta.keyspace - a real safety nuance found reading the multi-collection Eventing example, not stated as a warning on the binding's own reference page."
 }

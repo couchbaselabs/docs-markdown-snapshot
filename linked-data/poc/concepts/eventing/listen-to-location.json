@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/listen-to-location",
+  "label": "Listen to Location (mutation source)",
+  "type": "the bucket/scope/collection whose mutations, streamed via DCP, trigger a Function's OnUpdate/OnDelete handlers. Distinct from eventing:eventing-storage (metadata keyspace) and from any eventing:bucket-alias-binding (a separate access grant for the handler's own reads/writes) - a Function's source is not itself a binding.",
+  "promoted": true,
+  "recurrence": 5,
+  "recurrence_note": "7 files, `divergent` - a real second author, discount rejected.",
+  "evidence": [
+    "Listen to Location | A bucket, scope, and collection currently defined on your cluster and where you want your Eventing Function to monitor document mutations.",
+    "Listen to Location, or the Eventing source: a collection that's the source of mutations sent to the Function through the Database Change Protocol (DCP)."
+  ],
+  "usesProtocol": "protocol:dcp",
+  "documented_at": "cloud/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "Which collection's mutations actually trigger a given Function, and is that the same thing as a binding?"
+}

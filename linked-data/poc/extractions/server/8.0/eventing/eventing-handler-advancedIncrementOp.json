@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedIncrementOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedIncrementOp.md",
+  "concepts": [],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedIncrementOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced INCREMENT Operation](eventing-advanced-keyspace-accessors.md#advanced-increment-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "concepts/relations generally",
+    "finding": "Pure code-sample page demonstrating couchbase.increment(), the mirror image of advancedDecrementOp.md in this same batch. Matches the Capella twin's own call not to mint: 'couchbase.increment/decrement/touch' are not enumerated in eventing:advanced-keyspace-accessor's registry description (which lists only get/upsert/replace/delete/insert), so this record does not force that concept onto this page. 'Counts the mutations subject to DCP deduplication' is standard Data Service/DCP behavior, not an Eventing-specific mechanism - left concepts empty rather than minting a thin per-page concept."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

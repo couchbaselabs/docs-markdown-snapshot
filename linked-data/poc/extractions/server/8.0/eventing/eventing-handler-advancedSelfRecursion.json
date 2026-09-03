@@ -1,0 +1,21 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedSelfRecursion",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedSelfRecursion.md",
+  "concepts": [
+    { "candidate_id": "eventing:self-recursion-option", "label": "self_recursion Option", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:inline-sqlpp-statement", "label": "Inline SQL++ Statement", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-basicN1qlSelectStmt.json, round 8); the workload being paginated here (`SELECT name FROM ... LIMIT 100 OFFSET $offset;`) is the same inline-statement invocation surface" },
+    { "candidate_id": "eventing:n1ql-result-iterator", "label": "N1QL Query Result Iterator", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt.json, round 8)" }
+  ],
+  "relations": [
+    { "subject": "eventing:self-recursion-option", "predicate": "triggersHandlerReinvocation", "object": "eventing:function", "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedSelfRecursion.json, round 8)", "evidence": "using self recursion results in a continuation of the query" },
+    { "subject": "eventing:inline-sqlpp-statement", "predicate": "requiresExplicitClose", "object": "eventing:n1ql-result-iterator", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "results.close();" },
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Requires a binding of type `bucket alias`" },
+    { "subject": "eventing:self-recursion-option", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information about the Advanced Self-Recursion parameter, see [Optional { \"self\\_recursion\": true }\\` Parameter](eventing-advanced-keyspace-accessors.md#optional-params-recursion)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "None to report - this is the third page in the batch to demonstrate results.close() actually being called (`results.close();` on the line immediately after the for-loop), and arguably the most important one to get right: it is a self-recursive, potentially many-invocation handler, exactly the case where a leaked cursor would compound across reinvocations rather than staying a one-off. It closes correctly." },
+  "cross_component_finding": "Confirms the twin's own point unchanged: self_recursion is passed as the 4th argument to couchbase.upsert (`couchbase.upsert(src_col, meta, doc, { \"self_recursion\": true });`), an Advanced Keyspace Accessor call taking the src_col bucket-alias binding explicitly - the self_recursion mechanism is a KV/upsert-option concern layered on top of the Advanced Keyspace Accessor family, not a N1QL-specific one, even though the workload it happens to paginate here is inline SQL++.",
+  "cross_product_finding": ""
+}

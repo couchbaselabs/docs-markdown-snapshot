@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-manage-scope-functions-role-label-drift",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-Terminologies.md labels a role 'Eventing / Manage Scope Function' (singular); learn/security/roles.md's own canonical table heading is 'Eventing Manage Scope Functions' (plural, internal name eventing_manage_functions). A minor spelling drift on the one page most likely to be a reader's only source for the role's name outside roles.md itself.",
+  "about": [
+    "server/8.0/eventing/eventing-Terminologies",
+    "server/current/learn/security/roles"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

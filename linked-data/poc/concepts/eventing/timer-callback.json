@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/timer-callback",
+  "label": "Timer callback",
+  "type": "the fourth Eventing Function entry point: the JavaScript function invoked when a createTimer() Timer matures/fires. A member of eventing-handler-family. Addressed by source pages under two different predicates depending on framing - firesCallback (eventing:timer -firesCallback-> this, from the Timer's own perspective) and hasHandler (eventing:function -hasHandler-> this, from the Function's declared-entry-points perspective) - both are kept, deliberately, rather than forcing one.",
+  "promoted": true,
+  "recurrence": 16,
+  "aliases": [
+    "eventing:timer-callback-handler"
+  ],
+  "aliases_note": "Folds two independently-minted, non-variant, same-prefix ids describing one mechanism: eventing:timer-callback (10 files, minted via firesCallback, from the worked-example/handler pages that demonstrate a Timer actually firing) and eventing:timer-callback-handler (6 files, minted via hasHandler, from eventing-Terminologies.md/eventing-language-constructs.md/eventing-timers.md, which state the entry-point list). Zero file overlap - 16 distinct files total, spanning both code-sample pages and reference/terminology pages, which is a genuinely stronger independence signal than a duplicate pair. Neither recurrence.py --variants nor --forks catches this kind of fork; see the family record's note.",
+  "evidence": [
+    "The Eventing Service calls the OnUpdate, OnDelete, and Timer Callback handlers on mutations and fired timers.",
+    "When a Timer created by the Eventing Function fires, the callback `DocTimerCallback` executes and writes a new document in the target collection.",
+    "Re-executes the timer ASAP to ensure the Timer keeps running in case errors or script timeouts happen in later \"recurring work\"."
+  ],
+  "documented_at": "server/8.0/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "What runs when a scheduled Timer fires, and is that a different kind of entry point from OnUpdate/OnDelete?"
+}

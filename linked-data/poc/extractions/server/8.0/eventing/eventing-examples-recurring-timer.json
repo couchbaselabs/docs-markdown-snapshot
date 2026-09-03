@@ -1,0 +1,117 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-recurring-timer",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-recurring-timer.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:recurring-timer-pattern",
+      "label": "Recurring Timer (self-rearming)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-recurring-timer.json (Capella twin)"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:timer-callback",
+      "predicate": "reschedulesSelf",
+      "object": "eventing:timer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in Capella twin; requoted fresh from this Server page rather than trusting the twin's own evidence string, per the round 18 context's flag on this exact file",
+      "evidence": "// rearm the timer ASAP, to ensure timer keeps running in the event\n      // of later  errors or script timeouts in later \"recurring work\"."
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:recurring-timer-pattern",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted; requoted fresh from this Server page rather than trusting the twin's own evidence string, per the round 18 context's flag on this exact file",
+      "evidence": "If \"active\" is true we will create a series of Timers that will fire approximately 30 seconds in the future.\n\n  * If \"active\" is false we will cancel the existing Timer if any."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the first binding, select \"bucket alias\", specify **src\\_col** as the \"alias name\" of the collection, select **bulk**, **data**, **source** as the associated keyspace, and select \"read and write\" for the access mode."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If you run a version of Couchbase prior to 7.0 you can just create the buckets **'source'** and **'metadata'** and run this example."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "As in the Capella twin, the rearm call happens at the top of the callback specifically so recurrence survives errors or timeouts in the callback's own later logic - there is no retry-count limit, backoff policy, or failure-alerting concept named anywhere on this page. This Server page's cleanup note reveals a naming inconsistency the Capella twin has no equivalent for: it instructs the reader to undeploy a Function named 'cancel_overwrite_timer' even though this page's actual example is named 'recurring_timer' throughout - 'Go to the Eventing portion of the UI and undeploy the Function **cancel\\_overwrite\\_timer**' - apparently copy-pasted cleanup boilerplate from the sibling cancel-overwrite-timer page that was never corrected to match this page's own Function name."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "Confirms the classic-role requirement (Full Admin / Eventing Full Admin via Function Scope) found on every other worked-example page in this batch, absent from the Capella twin. This is also the page the round 18 context specifically flagged as containing an unquotable behavesDifferentlyUnder relation in the Capella twin's own record (verify-evidence.py finding) - the Server page states the identical active/inactive branching fact with directly quotable, verbatim evidence, so the underlying fact is confirmed true and now properly evidenced rather than resting on the Capella extraction's word alone."
+}

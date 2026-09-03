@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-shippingNotifier",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-shippingNotifier.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Eventing Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json, not yet promoted)"
+    },
+    {
+      "candidate_id": "version:server-6-6",
+      "label": "Couchbase Server 6.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "createsOnAction",
+      "object": "eventing:timer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "createTimer(sendNotifySchedDelivCallback, fireAt, notifyId, context);"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "function sendNotifySchedDelivCallback(context) {"
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "supersedesTimerReference",
+      "object": "eventing:timer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer (minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json for a control-document pause/cancel/overwrite pattern; here it fires from the handler's own repeated createTimer calls on every mutation of the same shipping document instead - same reference-id-supersedes-pending-Timer behavior, different trigger)",
+      "evidence": "// We will always 'overwrite' this timer(s) notification by the Timer's\n            // reference_id (6.6.0+ required for this) on every mutation"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "availableSince",
+      "object": "version:server-6-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "// reference_id (6.6.0+ required for this) on every mutation"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "There are no try/catch blocks and only limited error checking in this handler, by the page's own admission ('There are no try catch blocks and only limited error checking to highlight the functionality') - no Eventing-specific error-handling primitive is documented or exercised here. Content is byte-identical to the Capella twin apart from front matter; no disagreement found - the timer-supersession-by-reference-id behavior and its 6.6.0 version gate hold identically on both product trees."
+  },
+  "cross_component_finding": "supersedesTimerReference (extraction-layer, minted for the control-document pause/cancel/overwrite pattern in cloud/eventing/eventing-examples-cancel-overwrite-timer.json) reappears here for a structurally different trigger - the handler itself repeatedly calling createTimer with the same notifyId on every mutation of the same shipping document - confirming this is a general Timer-identity behavior (same reference id supersedes the pending Timer), not tied to the control-document pattern specifically. This is the same finding the Capella twin recorded for this page; holds identically on Server.",
+  "cross_product_finding": "The \"notify\" collection is explicitly framed as an integration point with systems outside Eventing: \"The \\\"notify\\\"collection can be used to integrate with SDK or Kafka to send notifications.\" This names a third-party system (Kafka) and the Couchbase SDK as downstream consumers of Eventing's output via a staging collection, rather than describing a dedicated Eventing notification feature. Identical wording and finding on the Capella twin - the pattern is product-tree-agnostic."
+}

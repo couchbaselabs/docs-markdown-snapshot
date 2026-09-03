@@ -1,0 +1,71 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedDeleteOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedDeleteOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:cas-conditioned-delete",
+      "label": "CAS-conditioned Advanced DELETE",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json, round 8's Capella twin, for the identical 4-mode no_cas/bad_cas/good_cas/no_key harness)"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-eexists-error",
+      "label": "LCB_KEY_EEXISTS error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json)"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-enoent-error",
+      "label": "LCB_KEY_ENOENT error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json)"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.delete(src_col, new_meta) and couchbase.get(src_col, ...) to obtain the current CAS"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "eventing:advanced-keyspace-accessor",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted; requoted fresh for this page rather than reusing round 8's flagged stitched quote (see notable_absence)",
+      "evidence": "// Use the current CAS to read via couchbase.get(...)"
+    },
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-eexists-error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer (round 8's Capella advancedDeleteOp.json minted resultsInError; not yet promoted)",
+      "evidence": "\"desc\": \"The document key exists with a CAS value different than specified\""
+    },
+    {
+      "subject": "eventing:cas-conditioned-delete",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-enoent-error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer",
+      "evidence": "\"desc\": \"The document key does not exist on the server\""
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedDeleteOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced DELETE Operation](eventing-advanced-keyspace-accessors.md#advanced-delete-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf",
+    "finding": "Round 8's Capella twin for this page used a stitched evidence quote joining two separate comment lines with '...' ('Pass the matching or current CAS - it succeeds ... Use the current CAS to read via couchbase.get(...)'), which verify-evidence.py flagged as unquotable since it isn't a verbatim contiguous quote. The Server page contains the identical two comments in the identical good_cas branch; this record's requiresPriorExecutionOf relation above uses only the single standalone comment line ('// Use the current CAS to read via couchbase.get(...)') as evidence, which is a clean verbatim substring and fully supports the claim on its own."
+  },
+  "cross_component_finding": "See advancedReplaceOp.json: the identical no_cas/bad_cas/good_cas CAS-conditioning pattern recurs there for couchbase.replace() (3 modes, no no_key), but was left unmodeled as a concept in both the Capella round and this record, while this page's 4-mode version was modeled as eventing:cas-conditioned-delete. Flagging the asymmetry for reconciliation.",
+  "cross_product_finding": null
+}

@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-fasterToLocalString",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-fasterToLocalString.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS benchmark/code-sample page: a hand-rolled faster alternative to Date.prototype.toLocaleString, benchmarked at 708x (Couchbase 6.6.0) and 177x (Couchbase 7.0.0) faster than the built-in v8 runner inside an Eventing handler. Purely a generic JavaScript performance technique - no new Eventing-specific mechanism to mint."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This is the ONE page in the 13-page batch whose code sample is not byte-identical to its Capella twin (cloud/eventing/eventing-handler-fasterToLocalString.md; a plain-text diff of the two .md files shows every other difference is limited to front matter/editUrl/xref). The Server page's OnUpdate handler carries an extra code comment absent from Capella's otherwise-identical sample: \"// This crash a debug session refer to eventing-debugging-and-diagnosability.html\" followed by \"// however it always work in no-debug but is very slow.\" eventing-debugging-and-diagnosability.md is one of the two Server pages with no Capella twin at all (per round framing), and this is direct evidence of why: the Server page warns that running this exact loop-heavy benchmark handler under the Eventing debugger crashes the debug session, a caveat tied to a Server-only debugging/diagnosability feature that the identical Capella code sample carries no trace of. Worth surfacing at reconciliation as support for treating eventing-debugging-and-diagnosability.md as a structural Server-only feature difference rather than an incidental content gap."
+}

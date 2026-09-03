@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/visual-debugger",
+  "label": "Eventing visual/online debugger",
+  "type": "a live, real-time JavaScript debugger for a Function's handler code, integrating with the Chrome DevTools protocol, enabled per-Function or Service-wide via the `enable_debugger` setting. NOT Server-only despite server/8.0/eventing-debugging-and-diagnosability.md being the only full page on it - Capella's own eventing-Terminologies.md 'Debug' glossary entry describes the identical mechanism, just as one glossary entry rather than a dedicated page.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Couchbase Server, for its Eventing Service framework, includes a powerful full function online real-time JavaScript Debugger. Debug is a special flag on a Function. The Debug option integrates seamlessly with the Google Chrome Web Browser.",
+    "The default Eventing debug port is 9140.",
+    "Enables the Eventing service debugger. This setting is available globally or at the function scope level."
+  ],
+  "note": "CORRECTS THIS ROUND'S OWN FRAMING. The dispatch briefing treated eventing-debugging-and-diagnosability.md as one of two pages with 'no Capella twin' and reasoned from that toward a memory-management asymmetry (see docs-issues/server-eventing-memory-quota-premise-contradicted). The debugger itself is not the asymmetry - what's genuinely Server-only on that page is the node/OS-administration content (static_config editing, NAT workaround, log paths, cbcollect_info). A 'no twin' page can be no-twin for content reasons unrelated to the feature it's about.",
+  "usesPort": "port:9140",
+  "documented_at": "server/8.0/eventing/eventing-debugging-and-diagnosability",
+  "relates_to_competency_question": "Can a Function's handler code be debugged live, step by step, and is that a Server-only capability?"
+}

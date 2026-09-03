@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-fixemaildomains-goal-mismatches-code",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-handler-fixEmailDomains.md's stated goal is 'Redact Sensitive Data prior to sharing', but the handler code only normalizes email domain strings (e.g. rewriting a domain to a canonical form) - it performs no redaction of any field. Present identically in both product trees.",
+  "about": [
+    "server/8.0/eventing/eventing-handler-fixEmailDomains",
+    "cloud/eventing/eventing-handler-fixEmailDomains"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

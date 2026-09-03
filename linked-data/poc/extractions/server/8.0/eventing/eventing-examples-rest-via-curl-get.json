@@ -1,0 +1,131 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-rest-via-curl-get",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-rest-via-curl-get.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:recurring-timer-pattern",
+      "label": "Recurring Timer (self-rearming)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-recurring-timer.json (Capella sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella sibling batch)"
+    },
+    {
+      "candidate_id": "eventing:curl-function",
+      "label": "curl() function call (Eventing)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:url-alias-binding",
+      "label": "URL Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:url-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the second binding, select \"URL alias\", specify **exchangeRateApi** as the \"alias name\" of the URL, specify **<https://api.frankfurter.app/latest>** for the actual URL, and \"no auth\" and no \"cookies\"."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the first binding, select \"bucket alias\", specify **src\\_col** as the \"alias name\" of the collection, select **bulk**, **data**, **source** as the associated keyspace, and select \"read and write\" for the access mode."
+    },
+    {
+      "subject": "eventing:curl-function",
+      "predicate": "requiresSetting",
+      "object": "eventing:url-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "perform the cURL request using the URL alias form the settings"
+    },
+    {
+      "subject": "eventing:recurring-timer-pattern",
+      "predicate": "reschedulesSelf",
+      "object": "eventing:timer",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in Capella twin; requoted fresh from this Server page",
+      "evidence": "The initial timer is created just 30 seconds in the future, the next timers 2-N are created at the beginning of the next day."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For information on buckets, see [Create a Bucket](../manage/manage-buckets/create-bucket.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "As in the Capella twin, the fallback path (a self-hosted Python HTTP server on localhost:8001 for when the public exchange-rate APIs are offline) is described and its curl-test command shown, but the actual Function's URL Alias binding is only ever configured against the public frankfurter.app API - the fallback server's own binding configuration is never shown, only implied by 'use a real IP for instead of localhost if you are not on the Couchbase server'. That caveat is itself new relative to the Capella framing: on a self-managed cluster the Eventing node and the reader's own workstation can plausibly be the same machine (making localhost meaningful), a distinction that does not apply to a managed Capella cluster."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page carries the classic-role requirement found throughout this batch's Server pages (Full Admin / Eventing Full Admin via Function Scope), absent from the Capella twin. It is also the batch's clearest confirmation that eventing:curl-function and eventing:url-alias-binding are genuinely product-neutral: the binding configuration steps ('select \"URL alias\", specify **exchangeRateApi**... and \"no auth\" and no \"cookies\"') and the JavaScript curl() call form are identical in substance to the Capella twin's, differing only in the classic-role gate wrapped around who may configure them."
+}

@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-removeObjectStubs",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-removeObjectStubs.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server/8.0/eventing/eventing-handler-removeObjectStubs",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-removeNullsAndEmptys",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This function is a subset of the cleanup functionality found in the Scriptlet [removeNullsAndEmptys](eventing-handler-removeNullsAndEmptys.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The removeEmptyParts function's [doc, changed-flag] tuple return is a hand-written JS optimization (documented as improving performance on subsequent runs when the Feed Boundary is set to Everything over large document sets) rather than a platform-level primitive - no Eventing-specific 'change detection' concept is exposed by the API itself. Content is byte-identical to the Capella twin apart from front matter; no disagreement found."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

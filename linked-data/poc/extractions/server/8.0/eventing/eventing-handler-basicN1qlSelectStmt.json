@@ -1,0 +1,16 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-basicN1qlSelectStmt",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-basicN1qlSelectStmt.md",
+  "concepts": [
+    { "candidate_id": "eventing:inline-sqlpp-statement", "label": "Inline SQL++ Statement", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-basicN1qlSelectStmt.json, round 8); this Server page uses the identical construct - `var results = SELECT ... WHERE ... = $airline;` with $airline bound to a plain JS variable, no N1QL() call" },
+    { "candidate_id": "eventing:n1ql-result-iterator", "label": "N1QL Query Result Iterator", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-basicN1qlPreparedSelectStmt.json, round 8)" }
+  ],
+  "relations": [
+    { "subject": "eventing:inline-sqlpp-statement", "predicate": "requiresExplicitClose", "object": "eventing:n1ql-result-iterator", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "results.close();              // End the query and free resources held" },
+    { "subject": "server/8.0/eventing/eventing-handler-basicN1qlSelectStmt", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-language-constructs", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more detail refer to [SQL++ Statements](eventing-language-constructs.md#added-lang-features)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "None - this page follows the requiresExplicitClose obligation. See cross_component_finding." },
+  "cross_component_finding": "This page directly answers the round's check on the N1QL-from-handler examples: the handler captures the inline SQL++ statement's return value into `results`, iterates it with `for (var item of results)`, and then explicitly calls `results.close();              // End the query and free resources held` before returning. The best-practice example for this invocation style follows its own rule.",
+  "cross_product_finding": ""
+}

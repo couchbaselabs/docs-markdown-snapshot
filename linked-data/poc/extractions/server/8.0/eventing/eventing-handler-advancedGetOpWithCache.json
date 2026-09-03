@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedGetOpWithCache",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedGetOpWithCache.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-get-cache-option",
+      "label": "Advanced GET `{cache: true}` option",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedGetOpWithCache.json, round 8's Capella twin, for the identical mechanism)"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-enoent-error",
+      "label": "LCB_KEY_ENOENT error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json)"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.get(src_col, meta_ary[i], {\"cache\": true})"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-get-cache-option",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 7.0.2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted; object is a version literal, matching the Capella twin's own choice of a literal rather than a version: concept id",
+      "evidence": "Version 7.0.2+"
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedGetOpWithCache",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Optional { \"cache\": true } Parameter](eventing-advanced-keyspace-accessors.md#optional-cache-true-parameter)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Unlike advancedGetOp.md and every other CAS/error-showing page in this batch, this page's configuration comment omits the 6.6.x/7.0(non-.2) legacy tiers entirely and cites only 'Version 7.0.2+' - consistent with the Capella twin's own observation of the same variation."
+  },
+  "cross_component_finding": "This page's failure-path log for the missing-key GET shows `\"code\": 1` (`{\"error\": {\"code\": 1, \"name\": \"LCB_KEY_ENOENT\", \"desc\": \"The document key does not exist on the server\", \"key_not_found\": true}, \"success\": false}`), whereas the sibling advancedGetOp.md's failure log for the byte-identical error name and desc text ('The document key does not exist on the server') shows `\"code\": 272` - the same identical error (LCB_KEY_ENOENT / ENOENT / key_not_found:true) is documented under two different numeric codes on two sibling pages in the same handler family. This looks like a docs inconsistency (a stale or mistyped code) rather than a real semantic difference between the cached and uncached GET paths, and is worth a docs-issue.",
+  "cross_product_finding": null
+}

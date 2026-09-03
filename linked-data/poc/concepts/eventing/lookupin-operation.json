@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/lookupin-operation",
+  "label": "LookupIn (sub-document read) Advanced Accessor",
+  "type": "the Advanced Keyspace Accessor form of sub-document read - fetches one or more paths from a document without fetching the whole body. Analogous to sdk:subdocument-operations' lookupIn, but this is Eventing's own couchbase.lookupIn() accessor, a different API surface - not merged with the SDK concept for that reason.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "eventing:lookupin-subdocument-operation"
+  ],
+  "aliases_note": "Folds two independently-minted ids for the same operation, zero file overlap: eventing:lookupin-operation (from eventing-advanced-keyspace-accessors.md, the operation-list overview page) and eventing:lookupin-subdocument-operation (from eventing-handler-advancedLookupInOp.md, the worked demonstration page). Same genre-fork shape as the timer-callback fold above.",
+  "evidence": [
+    "couchbase.lookupIn(binding, meta, spec) - Retrieves specific paths from a document without fetching the entire document."
+  ],
+  "documented_at": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+  "relates_to_competency_question": "Can a handler read just one field of a document without fetching the whole thing, and what is that accessor called?"
+}

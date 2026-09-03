@@ -1,0 +1,17 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-keepLastN",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-keepLastN.md",
+  "concepts": [
+    { "candidate_id": "eventing:on-update-handler", "label": "OnUpdate() handler", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "\"bucket alias\", \"src_col\",       \"bulk.data.source\",        \"read and write\"" },
+    { "subject": "eventing:on-update-handler", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-handler-advanced-keepLastN", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "[advancedKeepLastN (true CAS)](eventing-handler-advanced-keepLastN.md)" }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "PAIR JUDGMENT (keepLastN vs advanced-keepLastN): this is a genuine elaboration, not a restatement. This page's userspace-CAS workaround emulates optimistic concurrency with a 'random' tag read back after every write and up to 16 retries ('this is a can be improved in version 6.6.1 as CAS operations are supported... we utilize a \"random\" tag in the document itself to emulate a CAS operation'), entirely inside the src_col map-alias accessor. eventing-handler-advanced-keepLastN.md instead uses the real Advanced Keyspace Accessor's CAS via couchbase.get/couchbase.replace in a while(res===null) loop - a structurally different mechanism, not the same code with a version badge swapped on. No CAS-retry concept is minted on this page; that belongs to the true-CAS variant." },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

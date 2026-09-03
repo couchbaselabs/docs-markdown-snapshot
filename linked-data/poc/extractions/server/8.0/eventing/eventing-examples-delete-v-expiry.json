@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-delete-v-expiry",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-delete-v-expiry.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:expired-flag",
+      "label": "`options.expired` field on OnDelete",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-delete-v-expiry.json (Capella twin)"
+    },
+    {
+      "candidate_id": "data:expiration",
+      "label": "Expiration (TTL)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; used here in place of the Capella twin's own extraction-layer capella:document-expiration for the identical lazily-reaped-TTL mechanism"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "distinguishesEventTypeViaField",
+      "object": "eventing:expired-flag",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in Capella twin; requoted fresh from this Server page",
+      "evidence": "Create a JavaScript Function that contains an **OnDelete** handler, which runs whenever a document is deleted or expired (or mutated). The Eventing Function merely logs whether the document was deleted or was expired from a collection. This function accesses the 'expired' field of the second optional argument to the handler."
+    },
+    {
+      "subject": "eventing:expired-flag",
+      "predicate": "requiresSetting",
+      "object": "data:expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "When its expiration time is reached, an item is deleted as soon as one of the following occurs:\n\n  * An attempt is made to access the item.\n  * The expiry pager is run (default every 60 minutes).\n  * Compaction is run."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/insert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For information on setting document expiration times via SQL++, refer to [Insert a document with expiration](../n1ql/n1ql-language-reference/insert.md#insert-document-with-expiration)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page cites the same historical macOS defect the Capella twin flagged as a durable dependency on an external, closeable Jira ticket: 'On macOS (or OS-X) if you get a 'dyld: Library not loaded' when running _cbc_ a solution is documented in [MB-37768](https://issues.couchbase.com/browse/MB-37768).' On the Server tree this is not a content-bleed risk the way it was on the Capella twin - cbc and its macOS/Linux/Windows install paths are entirely native, on-topic content for a self-managed product - but the same fragile external-ticket dependency risk still applies verbatim to this page."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "The Capella twin's own extraction flagged the cbc binary paths and Python/Java SDK prerequisite steps on this page as 'self-managed content bleed' into a Capella doc, citing the same Linux path (/opt/couchbase/bin/cbc) and Windows path (C:\\Program Files\\Couchbase\\Server\\bin\\cbc) verbatim. Reading the Server original confirms the hypothesis directly: this Server page contains the identical four-tab prerequisite (SQL++ UPSERT, cbc binary, Python SDK script, Java SDK program) with the same Linux/macOS/Windows cbc paths, word for word - meaning the Capella page's prerequisite section was very likely copied from this Server page rather than authored fresh for a managed-cluster audience where users have no shell access to a Couchbase Server bin directory at all."
+}

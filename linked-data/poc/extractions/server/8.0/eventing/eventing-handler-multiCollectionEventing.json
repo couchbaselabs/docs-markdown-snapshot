@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-multiCollectionEventing",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-multiCollectionEventing.md",
+  "concepts": [
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:on-update-handler", "label": "OnUpdate() handler", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted (twin's eventing:bucket-binding candidate has since been promoted under this name)" },
+    { "candidate_id": "eventing:advanced-keyspace-accessor", "label": "Advanced Keyspace Accessor", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page is a worked example of the couchbase.get/upsert/replace/delete/insert family taking an explicit keyspace argument" },
+    { "candidate_id": "eventing:meta-keyspace-parameter", "label": "meta.keyspace parameter", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-advanced-keyspace-accessors.json, round 8)" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; used in place of the twin's capella:scope, since this is the server/ tree" },
+    { "candidate_id": "server:keyspace", "label": "Keyspace", "registry_status": "promoted", "reused_or_minted": "reused - promoted; this page's own bullet list literally says 'keyspaces' (see cross_product_finding)" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Requires 2 bindings of type `bucket alias`" },
+    { "subject": "eventing:on-update-handler", "predicate": "requiresSetting", "object": "eventing:meta-keyspace-parameter", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Highlights the use of `meta.keyspace`" },
+    { "subject": "eventing:on-update-handler", "predicate": "usesEnum", "object": "server:scope", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "if (meta.keyspace.scope_name == \"myscope\") {" },
+    { "subject": "eventing:advanced-keyspace-accessor", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Eventing Functions that Listen to Multiple Collections](eventing-advanced-keyspace-accessors.md#multiple-collection-functions)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "Matches the twin's own finding: this worked example introduces no new primitive beyond wildcard bucket-alias bindings, meta.keyspace, and the Advanced Keyspace Accessor family. The same defensive-coding rationale recurs verbatim in the Server code comment: '// Protect against reading from something outside the alias' guards a wildcard-scoped alias from reading/writing outside its intended scope." },
+  "cross_component_finding": "n/a - see cross_product_finding for this page's real finding.",
+  "cross_product_finding": "The Server page's own bullet list describes its four required locations as 'keyspaces': 'Requires the following 4 keyspaces in two buckets, `rr100` and source:'. The Capella twin's extraction, by contrast, spoke only of buckets/scopes/collections and used a Capella `scope` concept. This is direct, page-level confirmation of the registry's already-noted split that 'keyspace' is the term the server/ tree uses where the Capella tree says 'collection' (see server:keyspace's registry note). The underlying mechanism - wildcard bucket-alias bindings plus a meta.keyspace guard - is otherwise identical to the Capella twin, code-for-code."
+}

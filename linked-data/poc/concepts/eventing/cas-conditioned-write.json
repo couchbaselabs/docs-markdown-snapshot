@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/cas-conditioned-write",
+  "label": "CAS-conditioned write (Advanced Accessor test harness)",
+  "type": "a three/four-mode CAS test pattern demonstrated identically for REPLACE (no_cas/bad_cas/good_cas) and DELETE (the same three plus no_key): no_cas always succeeds, bad_cas fails with eventing:lcb-key-eexists-error (cas_mismatch:true), good_cas succeeds after reading the current CAS via couchbase.get(). Generalizes round 8's eventing:cas-conditioned-delete, which named only the DELETE instance of one mechanism shared by two operations.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "eventing:cas-conditioned-delete"
+  ],
+  "aliases_note": "Round 8 minted eventing:cas-conditioned-delete for advancedDeleteOp.md's harness and left advancedReplaceOp.md's near-identical harness unmodeled, explicitly reasoning it was 'standard Data Service optimistic-concurrency behavior, not Eventing-specific'. This round's own extraction of advancedReplaceOp.md kept that same call for consistency but flagged the asymmetry: applied evenly, the reasoning should mint neither or both. Reconciliation generalizes rather than leaving it unmodeled, because the two pages document the identical three-mode harness almost verbatim ('Has 3 modes of operation: `no_cas`, `bad_cas`, and `good_cas`' vs 'Has 4 modes of operation: ...').",
+  "evidence": [
+    "Has 3 modes of operation: `no_cas`, `bad_cas`, and `good_cas`.",
+    "Has 4 modes of operation: `no_cas`, `bad_cas`, `good_cas`, and `no_key`."
+  ],
+  "resultsInError": "eventing:lcb-key-eexists-error (bad_cas)",
+  "documented_at": "server/8.0/eventing/eventing-handler-advancedReplaceOp",
+  "relates_to_competency_question": "Is the CAS-mismatch test pattern specific to DELETE, or is it a general Advanced Accessor idiom demonstrated on more than one operation?"
+}

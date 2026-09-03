@@ -1,0 +1,19 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-ConvertBucketToCollections",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-ConvertBucketToCollections.md",
+  "concepts": [
+    { "candidate_id": "eventing:bucket-to-collection-migration-pattern", "label": "Bucket-to-collection migration pattern (ConvertBucketToCollections)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-ConvertBucketToCollections.json, round 8); identical mechanism and identical DO_COPY/DO_DELETE Constant-alias flags" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:constant-alias-binding", "label": "Constant Alias Binding", "registry_status": "minted", "reused_or_minted": "minted - the registry's own eventing:binding entry already names 'constant-binding' as a sibling of bucket-alias/url-alias, but no promoted concept exists for it yet; this page's DO_COPY/DO_DELETE boolean flags are the concrete instance" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:constant-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object concept (eventing:constant-alias-binding) is freshly minted", "evidence": "Needs Bindings of type \"Constant alias\" (as documented in the Scriptlet)." },
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs Bindings of type \"bucket alias\" (as documented in the Scriptlet)." },
+    { "subject": "eventing:bucket-to-collection-migration-pattern", "predicate": "seeAlso", "object": "server/8.0/eventing/troubleshooting-best-practices", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "Refer to [Disabling infinite recursion checks](troubleshooting-best-practices.md#recursionchecks)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "The configuration comment block cites the same 3-tier server-version ladder ('Version 7.1+', 'Version 7.0+', 'Version 6.6.2 (not applicable)') as the rest of this batch - recurrence of the known anomaly, not new. No Enterprise/Community edition badge appears on this page." },
+  "cross_component_finding": "This Server page states concrete performance-benchmark numbers that the Capella twin's extraction record never captured: 'Test cluster is a symmetric 3 x AWS r5.2xlarge (64 GiB of memory, 8 vCPUs, 64-bit platform)', 'Will process 93K ops/sec in a steady state', '250M small documents: takes 44 minutes to reorganize a bucket with 80 types into a new bucket with 80 collections', and '1B small documents: takes 3 hours to reorganize a bucket with 80 types into a new bucket with 80 collections'. It is possible the Capella page also has this content and round 8 simply did not extract it, but as stated the twin's record carries no performance-benchmark fact for this mechanism at all.",
+  "cross_product_finding": ""
+}

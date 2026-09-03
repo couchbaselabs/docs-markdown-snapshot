@@ -1,0 +1,127 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:language-compatibility-setting",
+      "label": "Language compatibility setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "minted - a Function-level setting gating binary-document support in the OnUpdate(doc,meta) handler; the Capella twin's extraction referenced this same fact but never gave it its own concept entry, so this is the first time it is named as a concept rather than embedded only in a relation's evidence"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-example-data-enrichment",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Data Enrichment](eventing-example-data-enrichment.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-cascade-delete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Cascade Delete](eventing-examples-cascade-delete.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-docexpiry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Document Expiry](eventing-examples-docexpiry.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-delete-v-expiry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Delete v Expiry](eventing-examples-delete-v-expiry.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-docarchive",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Document Archival](eventing-examples-docarchive.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-cancel-overwrite-timer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Cancel or Overwrite Timer](eventing-examples-cancel-overwrite-timer.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-recurring-timer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Recurring Timer](eventing-examples-recurring-timer.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-rest-via-curl-get",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[External REST via cURL GET](eventing-examples-rest-via-curl-get.md)"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-high-risk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[Risk Assessment](eventing-examples-high-risk.md)"
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "eventing:language-compatibility-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted (object concept is extraction-layer)",
+      "evidence": "Your Eventing Function must have a language compatibility setting of Couchbase Server version 6.6.2 or above to pass binary documents in its `OnUpdate(doc,meta)` handler."
+    },
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-multiCollectionEventing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "[multiCollectionEventing](eventing-handler-multiCollectionEventing.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Like its Capella twin, this is a pure catalog/index page - four grouped tables of links to detailed examples plus five scriptlet-category tables (Basic Accessor, Basic SQL++, Generic Manipulation, Advanced Accessor, Binary Document Support, Performance). All five scriptlet-category tables and their contents are byte-for-byte identical to the Capella twin, including the Binary Document Support section's language-compatibility note and the Performance section's single fasterToLocalString entry - confirmed by diffing the two source files directly, not merely by re-reading the twin's extraction. Concepts/relations here are limited to what this page's own prose states; the ~30 linked scriptlet pages are out of this batch's scope."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "A direct diff of this page against its Capella twin (cloud/eventing/eventing-examples.md) shows the ONLY differences anywhere in the file are the four 'Detailed Examples' link labels themselves: Server's terse titles ('Data Enrichment', 'Cascade Delete', 'Document Expiry', 'Delete v Expiry', 'Document Archival', 'Cancel or Overwrite Timer', 'Recurring Timer', 'External REST via cURL GET', 'Risk Assessment') versus Capella's longer, more descriptive retitling of the identical links ('Improve Document Searchability', 'Cascade Delete Documents', 'Create Documents After Expiration', 'Differentiate between Expiration and Deletion', 'Archive Documents After Expiration', 'Cancel or Overwrite a Timer', 'Create a Recurring Timer', 'Create a Recurring Timer with a REST API', 'Generate Credit Card Transaction Alerts'). Every scriptlet-category table, every editorial sentence, and every href target are otherwise word-for-word identical between the two products' index pages - the divergence documented on the nine linked detail pages (see their individual records) is invisible at this index-page level."
+}

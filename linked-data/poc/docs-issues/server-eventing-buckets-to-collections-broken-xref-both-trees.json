@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-buckets-to-collections-broken-xref-both-trees",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-buckets-to-collections.md's link to the 'creating scopes and collections' topic is a broken AsciiDoc xref fragment. Round 8's extraction of the Capella copy characterized this as Capella-specific unadapted-content bleed; round 18 confirms the identical broken xref is present on the Server 8.0 original as well, so it is a pre-existing defect in the shared source, not something introduced by Capella's adaptation.",
+  "about": [
+    "server/8.0/eventing/eventing-buckets-to-collections",
+    "cloud/eventing/eventing-buckets-to-collections"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

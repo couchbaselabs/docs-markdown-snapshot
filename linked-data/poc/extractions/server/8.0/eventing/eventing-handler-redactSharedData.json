@@ -1,0 +1,13 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-redactSharedData",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-redactSharedData.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Pure JS code-sample page: writes a minimal 'safe' subset of a master_profile document (first_name, id, basic_profile, timezone) to a separate destination collection via a bucket alias, omitting sensitive fields (ssn, credit_card, address, phone). A generic field-allowlist redaction technique inside the standard OnUpdate/binding boilerplate. Unlike genericFlatten/genericRename/simpleFlatten in this same batch, this page has no OnDelete handler, so no omitsMutationBody fact applies here. Content is byte-identical to the Capella twin apart from front matter; no disagreement found."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "Recurrence of the destination-collection/XCDR hand-off note seen elsewhere in this batch (genericFlatten, genericRename, simpleFlatten): \"The \\\"destination\\\" collection can be shared (or replicated via XCDR to a business partner) too the cloud (AWS, Azure or GCP).\" Same pattern, not a new finding."
+}

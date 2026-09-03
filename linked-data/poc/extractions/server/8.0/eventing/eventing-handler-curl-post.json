@@ -1,0 +1,17 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-curl-post",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-curl-post.md",
+  "concepts": [
+    { "candidate_id": "eventing:curl-function", "label": "curl() function call (Eventing)", "registry_status": "promoted", "reused_or_minted": "reused - promoted; same mechanism as eventing-handler-curl-get.md, this time via POST with a request body" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:url-alias-binding", "label": "URL Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:url-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)." },
+    { "subject": "eventing:curl-function", "predicate": "requiresSetting", "object": "eventing:url-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Needs a Binding of type URL Alias (as documented in the Scriptlet)." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "Recurrence, not new: identical URL Alias binding gate as eventing-handler-curl-get.md, applied here to a POST instead of a GET. Confirms the URL Alias binding is curl()'s general access-control mechanism, not GET-specific." },
+  "cross_component_finding": "The response log includes a `user-agent` header value of `libcurl/7.66.0-DEV couchbase/evt-7.0.0-0000-ee (eventing)` echoed back by the postman-echo.com service - a concrete, quotable artifact showing the underlying curl() implementation identifies itself with an internal 'evt-' build tag, not visible on the Capella twin's extraction record.",
+  "cross_product_finding": ""
+}

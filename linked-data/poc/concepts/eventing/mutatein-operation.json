@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/mutatein-operation",
+  "label": "MutateIn (sub-document write) Advanced Accessor",
+  "type": "the Advanced Keyspace Accessor form of sub-document write (insert/replace/remove/arrayAppend on a specific path) without rewriting the whole document. CAS-free, unlike the whole-document write accessors. Sibling of eventing:lookupin-operation.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "eventing:mutatein-subdocument-operation"
+  ],
+  "aliases_note": "Same genre-fork fold as lookupin-operation: eventing:mutatein-operation (overview page) + eventing:mutatein-subdocument-operation (this round's mint, from the advancedMutateInField/advancedMutateInArray demonstration pages), zero file overlap.",
+  "evidence": [
+    "couchbase.mutateIn(binding, meta, spec) - Performs one or more sub-document mutations (insert, replace, remove, arrayAppend) on a document."
+  ],
+  "note": "arrayAppend is documented safe under 18 concurrent workers with no CAS coordination required - a concurrency-safety property this registry has no predicate for yet.",
+  "documented_at": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+  "relates_to_competency_question": "Can a handler append to an array field inside a document concurrently, without a CAS retry loop?"
+}

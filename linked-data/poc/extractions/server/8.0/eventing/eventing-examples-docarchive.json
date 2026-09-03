@@ -1,0 +1,117 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-docarchive",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-docarchive.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella sibling batch)"
+    },
+    {
+      "candidate_id": "data:expiration",
+      "label": "Expiration (TTL)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; used here in place of the Capella twin's extraction-layer capella:document-expiration"
+    },
+    {
+      "candidate_id": "data:max-ttl-setting",
+      "label": "Maximum TTL setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the page's 'Bucket Max Time-To-Live' of 600 seconds set on the source collection"
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the collection `bulk.data.source` that the Max TTL setting is applied to"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "server:keyspace",
+      "predicate": "requiresSetting",
+      "object": "data:max-ttl-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "The collection **'bulk.data.source'** will have a 'Bucket Max Time-To-Live' or TTL of 600 seconds. If this collection already exists drop the collection and recreate it with the needed TTL."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "requiresSetting",
+      "object": "data:expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Only process for those documents that have a non-zero TTL"
+    },
+    {
+      "subject": "eventing:timer",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Create a timer with a context to run in the future 120 before the expiry"
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-examples-docexpiry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This example, **Document Archival** is very similar to the **Document Expiry** example. However the goal here is to create a robust archiving function and as such this example has a few important differences."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page states two edge-case handling differences from Document Expiry that its Capella twin's extraction never surfaced as relations (they appear only in the twin's prose, unquoted as evidence): 'The edge case ignored for brevity in Document Expiry for receiving a mutation a document within the 120 second window prior to expiration is covered (in this case we don't need a timer)' and 'The edge case ignored for brevity in Document Expiry for a missing source document when we trigger our callback is now caught and it is logged as an error.' Both are quotable, page-specific facts about robustness differences between two worked examples that share the same underlying archive-before-expiry pattern; they were left out of this record's relations because they describe a comparison between two example pages' code quality rather than a durable platform fact, and are better captured here in a finding field than forced into a behavesDifferentlyUnder relation the round 18 context specifically warned was unquotable in the Capella twin."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page explicitly relies on a bucket/collection-level TTL setting rather than an SDK-set per-document expiry: 'We will not rely on a Couchbase SDK, but rather on an expiry set on the source collection where all documents will have an expiration of 10 minutes from the time of their first mutation or creation.' Combined with the classic-role requirement shared by every worked-example page in this batch (Full Admin / Eventing Full Admin via Function Scope, absent on the Capella twin), this confirms the round 18 framing's hypothesis was correct for the TTL-adjacent finding the verify-evidence.py check flagged in the Capella twin: the underlying data:max-ttl-setting / data:expiration mechanism is identical on both products, but this Server page states it with fresh, directly quotable evidence rather than needing to be trusted from the Capella record."
+}

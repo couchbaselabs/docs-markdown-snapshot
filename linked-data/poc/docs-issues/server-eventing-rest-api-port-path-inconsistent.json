@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-rest-api-port-path-inconsistent",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "server/8.0/eventing-rest-api/index.md's interbucket-recursion configuration examples use a different port and path (8091, /_p/event/...) than the same page's own primary Function/Service Config endpoint examples (8096, /api/v1/...). No stated reason for two addressing schemes on one REST reference page.",
+  "about": [
+    "server/8.0/eventing-rest-api/index"
+  ],
+  "foundDuring": "round 18",
+  "status": "open",
+  "severity": "needs-sme"
+}

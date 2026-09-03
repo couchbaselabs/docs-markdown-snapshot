@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing-handler-family",
+  "label": "Eventing Function entry points: four handlers, not two",
+  "type": "scheme. Round 8 promoted eventing:on-update-handler and eventing:on-delete-handler as THE handler pair. Round 18 found two more declared entry points on pages round 8 never read: OnDeploy (a one-time setup hook) and the Timer callback (fired when a createTimer() Timer matures). Members promoted separately; this record exists to hold the four together and correct the count.",
+  "promoted": true,
+  "members": [
+    "eventing:on-update-handler",
+    "eventing:on-delete-handler",
+    "eventing:on-deploy-handler",
+    "eventing:timer-callback"
+  ],
+  "note": "NOT A CLOSED SET BY DESIGN, BUT FOUR IS THE CURRENT COUNT AND SIXTEEN ROUNDS MISSED HALF OF IT. eventing-Terminologies.md states plainly: 'The Eventing Service calls the OnUpdate, OnDelete, and Timer Callback handlers on mutations and fired timers' - three explicit handlers on one sentence, on a page extracted in round 8, and only two of the three were promoted. OnDeploy is even easier to miss: it is declared via hasHandler exactly like the other three, but its own page (eventing-lifecycle.md) frames it as a LIFECYCLE step ('runs once when an Eventing function is deployed or resumed') rather than as a handler, so an agent reading only that page reasonably extracts it under createsOnAction/behavesDifferentlyUnder rather than hasHandler. It took eventing-Terminologies.md's glossary entry, on the OTHER page, to state it as a fourth entry point in the same breath as the first three.\nA NAMESPACE-FORK-ADJACENT BUG, DISTINCT FROM #12. Two of the four members were independently minted twice under NON-VARIANT, SAME-PREFIX names by different extraction rounds, neither catchable by an existing instrument: `eventing:on-deploy-handler` (round 18, from eventing-lifecycle.md/eventing-Terminologies.md/eventing-language-constructs.md) vs `eventing:ondeploy-handler` (round 8, from cloud/eventing-Terminologies.md/eventing-language-constructs.md) - caught by `recurrence.py --variants`, since the two spellings differ only by a hyphen. `eventing:timer-callback` (round 8+18, used with `firesCallback`) vs `eventing:timer-callback-handler` (round 8+18, used with `hasHandler`) - NOT caught by `--variants` (the strings share no common substring test that groups them) and NOT caught by `--forks` (both already carry the `eventing:` prefix, so there is no cross-namespace signal). Two agents reading the SAME mechanism through two different predicates minted two names for it, and no existing instrument watches for that. Sixteen files, zero file overlap between the two spellings, folded here.",
+  "relates_to_competency_question": "What are all the ways a JavaScript handler gets invoked by the Eventing service, and is 'the OnUpdate/OnDelete pair' the complete answer?"
+}

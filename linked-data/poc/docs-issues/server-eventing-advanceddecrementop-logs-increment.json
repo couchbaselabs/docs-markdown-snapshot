@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-advanceddecrementop-logs-increment",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "eventing-handler-advancedDecrementOp.md's sample log output reads \"success adv. increment: result\" even though the handler code calls couchbase.decrement(). A copy-paste artifact from the sibling advancedIncrementOp.md page, present identically in both the Server and Capella trees.",
+  "about": [
+    "server/8.0/eventing/eventing-handler-advancedDecrementOp",
+    "cloud/eventing/eventing-handler-advancedDecrementOp"
+  ],
+  "foundDuring": "round 18",
+  "status": "open"
+}

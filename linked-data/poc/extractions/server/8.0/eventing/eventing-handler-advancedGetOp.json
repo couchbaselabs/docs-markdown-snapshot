@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advancedGetOp",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advancedGetOp.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:advanced-keyspace-accessor",
+      "label": "Advanced Keyspace Accessor",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; page calls couchbase.get(src_col, meta_ary[i])"
+    },
+    {
+      "candidate_id": "eventing:lcb-key-enoent-error",
+      "label": "LCB_KEY_ENOENT error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advancedDeleteOp.json, round 8's Capella twin's own DELETE page; that record notes it recurs on the Capella GetOp twin too); the Server page shows the identical error object for a plain Advanced GET on a missing key"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:advanced-keyspace-accessor",
+      "predicate": "resultsInError",
+      "object": "eventing:lcb-key-enoent-error",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer (round 8's Capella advancedDeleteOp.json minted resultsInError; not yet promoted)",
+      "evidence": "\"desc\": \"The document key does not exist on the server\""
+    },
+    {
+      "subject": "server/8.0/eventing/eventing-handler-advancedGetOp",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-advanced-keyspace-accessors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about the Advanced Self-Recursion Parameter, see [Advanced GET Operation](eventing-advanced-keyspace-accessors.md#advanced-get-op)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The Server page's error object for the missing-key GET is `\"code\": 272`, matching advancedDeleteOp.md's LCB_KEY_ENOENT case exactly. This is the SAME error code/name/desc used elsewhere in this batch for the CAS-mismatch case of a different operation under a different name (LCB_KEY_EEXISTS) - see advancedInsertOp.json and advancedReplaceOp.json/advancedDeleteOp.json for that separate overloading. Contrast this page's `\"code\": 272` with the sibling advancedGetOpWithCache.md, whose otherwise-identical ENOENT error object cites `\"code\": 1` for the exact same error name/desc - flagged as a cross_component_finding on that page rather than duplicated here."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

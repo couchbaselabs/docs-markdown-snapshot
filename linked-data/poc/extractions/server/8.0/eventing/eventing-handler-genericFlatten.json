@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-genericFlatten",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-genericFlatten.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted - used here purely as the contrast point for the omitsMutationBody finding below"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "omitsMutationBody",
+      "object": "eventing:on-update-handler",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Note since the document is not available during an OnDelete we will filter by KEY prefix starting with \"my\\_data\\_to\\_flatten:\"."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Beyond the omitsMutationBody fact above, this is a generic recursive document-flattening utility (nested objects/arrays -> underscore-joined flat keys) writing to a separate destination collection, with a matching OnDelete to keep the two in sync. Generic JS/data-transform technique in the standard handler boilerplate - no further Eventing mechanism to mint. Content is byte-identical to the Capella twin apart from front matter; the Capella twin's record left concepts/relations fully empty for this page even though the twin's page carries the identical 'document not available during OnDelete' sentence - this record captures that fact via the already-promoted omitsMutationBody predicate instead, since it fits the predicate's documented purpose exactly."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "The destination collection this handler writes to is described as a hand-off point to other Couchbase/cloud infrastructure outside Eventing itself: \"The destination collection can be shared (or replicated via XCDR to a business partner - maybe to AWS, GCP, or Azure).\" This names XCDR and third-party cloud providers (AWS, GCP, Azure) as downstream consumers of Eventing output, but doesn't describe any Eventing-specific mechanism for that hand-off - a suggested pattern, not a documented feature. Identical wording recurs on the Capella twin and on the sibling genericRename/redactSharedData/simpleFlatten pages in this same batch."
+}

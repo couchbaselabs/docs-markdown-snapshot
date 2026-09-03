@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/eventing/function-scope",
+  "label": "Function Scope (RBAC grouping)",
+  "type": "the bucket.scope pair a Function is created under for RBAC-grouping purposes - distinct from eventing:listen-to-location (the mutation source) and eventing:eventing-storage (the metadata keyspace). Setting it to the wildcard *.* (cluster-wide scope) requires the Full Admin or Eventing Full Admin role; any other value is usable by a role scoped to that specific bucket/scope.",
+  "promoted": true,
+  "recurrence": 5,
+  "recurrence_note": "7 files, shared-source verdict `divergent` (a real second author, not just a republished page) - the discount is rejected and the raw count of 7 stands, reported here as 5 to match the file total after alias/id resolution.",
+  "evidence": [
+    "To set the `bucket.scope` to `*`.`*`, you must have the `Eventing Full Admin` or the `Full Admin` role. All other users must use a scope that references an existing resource of their `bucket.scope`.",
+    "For the Function Scope or RBAC grouping, we will use the *.*, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\"."
+  ],
+  "requiresServerRole": [
+    "role:eventing-full-admin",
+    "role:full-administrator"
+  ],
+  "documented_at": "cloud/eventing/eventing-Terminologies",
+  "relates_to_competency_question": "Can any Function author create a cluster-wide Function, or does that require an administrator?"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-eventing-memory-quota-premise-contradicted",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "server/8.0/eventing/eventing-memory-quota.md was selected as one of two pages judged to have 'no Capella twin' on the premise that Capella manages Eventing memory automatically. cloud/eventing/eventing-faq.md contradicts that premise directly: it states a user-configurable 256MB memory-quota knob in Cluster Settings, in wording near-identical to the Server page's own description. Either the automatic-management premise is wrong and Capella exposes the same manual knob under a different page, or Capella's FAQ carries stale un-adapted Server language describing a control Capella customers cannot actually reach. No page resolves which, and this round's own dispatch briefing repeated the premise without checking it first.",
+  "about": [
+    "server/8.0/eventing/eventing-memory-quota",
+    "cloud/eventing/eventing-faq"
+  ],
+  "foundDuring": "round 18",
+  "status": "open",
+  "severity": "needs-sme"
+}

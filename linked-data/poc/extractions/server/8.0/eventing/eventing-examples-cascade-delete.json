@@ -1,0 +1,113 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-cascade-delete",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-cascade-delete.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:embedded-sqlpp-statement",
+      "label": "Embedded SQL++ statement in a handler",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cascade-delete.json (Capella twin)"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "server:keyspace",
+      "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; used here for `bulk.data.transactions`, the earlier-release equivalent being the bare bucket `transactions`"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "embedsStatement",
+      "object": "eventing:embedded-sqlpp-statement",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in Capella twin; requoted fresh from this Server page",
+      "evidence": "DELETE FROM bulk.data.transactions WHERE user_id = $numeric_id;"
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "cascadesDeletionTo",
+      "object": "server:keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "When a user is deleted, Couchbase Functions provide a reliable method to delete all the associated documents related to the deleted user."
+    },
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "doesNotAffect",
+      "object": "server:keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Note, the transaction(s) associated with user\\_id **\"user\\_50\"** were kept as per our business logic."
+    },
+    {
+      "subject": "eventing:embedded-sqlpp-statement",
+      "predicate": "seeAlso",
+      "object": "server/8.0/eventing/eventing-handler-cascadeKvDeleteWithDoc",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "This Example uses SQL++ unlike the similar scriptlet [cascadeKvDeleteWithDoc](eventing-handler-cascadeKvDeleteWithDoc.md) which uses just KV or the Data Service."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the binding, select \"bucket alias\", specify **src\\_user** as the \"alias name\" of the collection, select **bulk**, **data**, **users** as the associated keyspace, and select \"read only\" for the access mode. **Note we will not be using this binding as we have no need of it because we will use SQL++.**"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "As in the Capella twin, no atomic or transactional cross-document consistency mechanism is claimed anywhere on this page - the cascade is implemented entirely by an OnDelete handler synchronously issuing an embedded SQL++ DELETE statement, filtered by a business condition (user_id >= 100) unrelated to any platform-level referential-integrity guarantee. The Server page adds one detail the Capella twin lacks any equivalent for: the binding it configures ('src_user', read-only) is explicitly declared unused - 'Note we will not be using this binding as we have no need of it because we will use SQL++' - showing the ADD FUNCTION dialog requires at least one binding to be configured even when the handler's actual data access goes entirely through an unbound SQL++ keyspace reference."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "This page carries the same classic-role requirement (Full Admin / Eventing Full Admin via Function Scope, linking to eventing-rbac.md) documented across this whole batch's Server pages and absent from every Capella twin. It also notes a keyspace-naming migration fact with no Capella analogue: 'Note, the SQL++ keyspace of **bulk.data.transactions** in earlier releases would be simply the bucket **transactions**' - an on-premise upgrade-history detail tied to Server's discrete version history that has no meaning for Capella's continuously-deployed model."
+}

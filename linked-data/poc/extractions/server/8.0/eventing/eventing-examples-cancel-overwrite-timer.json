@@ -1,0 +1,125 @@
+{
+  "page_id": "server/8.0/eventing/eventing-examples-cancel-overwrite-timer",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-examples-cancel-overwrite-timer.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer",
+      "label": "Timer",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:timer-callback",
+      "label": "Timer callback",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella twin)"
+    },
+    {
+      "candidate_id": "eventing:control-document",
+      "label": "Control document",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/eventing-examples-cancel-overwrite-timer.json (Capella twin)"
+    },
+    {
+      "candidate_id": "eventing:bucket-alias-binding",
+      "label": "Bucket Alias Binding",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:eventing-storage",
+      "label": "Eventing Storage keyspace",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/eventing/add-eventing-functions.json (sibling batch)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either \"Full Admin\" or \"Eventing Full Admin\". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md)."
+    },
+    {
+      "subject": "eventing:control-document",
+      "predicate": "firesCallback",
+      "object": "eventing:timer-callback",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "In the event a Timer created by this Function fires the callback **DocTimerCallback** executes and will write a new document with the same KEY (as the \"source\" collection) into the \"target\" collection."
+    },
+    {
+      "subject": "eventing:on-update-handler",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "eventing:control-document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If both \"cancel_timer\" and \"overwrite_timer\" are true it is considered an error and no action is taken."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "hasBindingType",
+      "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "For the first binding, select \"bucket alias\", specify **tgt\\_col** as the \"alias name\" of the collection, select **bulk**, **data**, **target** as the associated keyspace, and select \"read and write\" for the access mode."
+    },
+    {
+      "subject": "eventing:eventing-storage",
+      "predicate": "prohibitsMutationWhileDeployed",
+      "object": "eventing:function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - minted in Capella twin; requoted fresh from this Server page",
+      "evidence": "The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it."
+    },
+    {
+      "subject": "eventing:function",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "If you run a version of Couchbase prior to 7.0 you can just create the buckets **'source'**, **'target'**, and **'metadata'** and run this example."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The cleanup note gives a version-dependent document count for the same operation: 'this will remove the 1280 documents (2048 prior to 7.0.0) for the function from the 'rr100.eventing.metadata' collection'. This is a quantitative, version-gated implementation detail about Eventing's internal metadata footprint that has no analogue in the Capella twin's extraction (Capella has no discrete version number, so a 'prior to 7.0.0' comparison is meaningless there) - a Server-only, on-premise-upgrade-history artifact."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "As on the sibling data-enrichment page, this page requires the classic Full Admin / Eventing Full Admin cluster-wide role (or a narrower RBAC grouping via Function Scope) and links to eventing-rbac.md - a sentence entirely absent from the Capella twin, which instead lists Test 1/2/3 with no access-control framing at all."
+}

@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-genericRename",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-genericRename.md",
+  "concepts": [
+    {
+      "candidate_id": "eventing:on-delete-handler",
+      "label": "OnDelete() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "eventing:on-update-handler",
+      "label": "OnUpdate() handler",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted - used here purely as the contrast point for the omitsMutationBody finding below"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "eventing:on-delete-handler",
+      "predicate": "omitsMutationBody",
+      "object": "eventing:on-update-handler",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted",
+      "evidence": "Note since the document is not available during an OnDelete we will filter by KEY prefix starting with \"my\\_data\\_to\\_rename:\"."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "all",
+    "finding": "Beyond the omitsMutationBody fact above, this is a generic recursive key-renaming utility driven by a rename_map, writing to a separate destination collection with a matching OnDelete. Structurally a sibling of eventing-handler-genericFlatten.md in this same batch (same destination-collection pattern, same OnDelete-by-KEY-prefix filter, same omitsMutationBody fact). Content is byte-identical to the Capella twin apart from front matter; the Capella twin's record left concepts/relations fully empty here too."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "Recurrence of the same destination-collection/XCDR hand-off note as eventing-handler-genericFlatten.md in this batch, verbatim: \"The destination collection can be shared (or replicated via XCDR to a business partner - maybe to AWS, GCP, or Azure).\" Same pattern, not a new finding."
+}

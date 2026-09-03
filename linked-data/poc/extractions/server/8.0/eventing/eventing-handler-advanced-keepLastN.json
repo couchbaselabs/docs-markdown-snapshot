@@ -1,0 +1,19 @@
+{
+  "page_id": "server/8.0/eventing/eventing-handler-advanced-keepLastN",
+  "source_version": "8.0",
+  "source_path": "server/current/eventing/eventing-handler-advanced-keepLastN.md",
+  "concepts": [
+    { "candidate_id": "eventing:cas-retry-loop", "label": "CAS-based optimistic-concurrency retry loop", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in cloud/eventing/eventing-handler-advanced-keepLastN.json, round 8); identical get->modify->replace-with-CAS while(res===null) loop" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding", "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "version:server-6-6-1", "label": "Couchbase Server 6.6.1", "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "eventing:cas-retry-loop", "predicate": "availableSince", "object": "version:server-6-6-1", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "There are two variants of this function available: a [Couchbase Server version 6.6 that implements userspace CAS](eventing-handler-keepLastN.md), and a Couchbase Server version 6.6.1+/7.0.0+ that uses true CAS." },
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding", "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted", "evidence": "Requires a binding of type `bucket alias`" },
+    { "subject": "eventing:cas-retry-loop", "predicate": "seeAlso", "object": "server/8.0/eventing/eventing-handler-keepLastN", "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link", "evidence": "There are two variants of this function available: a [Couchbase Server version 6.6 that implements userspace CAS](eventing-handler-keepLastN.md), and a Couchbase Server version 6.6.1+/7.0.0+ that uses true CAS." }
+  ],
+  "notable_absence": { "predicate": "n/a", "finding": "No Enterprise/Community edition badge appears on this page; server-version-string citations ('Couchbase Server version 6.6', 'version 6.6.1+/7.0.0+', the 'Version 7.1+/7.0+' comment ladder) recur as in the rest of the batch - flagged as recurrence, not new." },
+  "cross_component_finding": "PAIR JUDGMENT (keepLastN vs advanced-keepLastN, stated once here for the pair): a genuine elaboration, not a restatement. eventing-handler-keepLastN.md's userspace-CAS workaround (a 'random' tag reread/rewrite retry loop, up to 16 tries) and this page's true-CAS loop (couchbase.get/couchbase.replace in a while(res===null) loop) are structurally different implementations of the same goal, not the same code re-badged with a version number - only this page's mechanism is registered as eventing:cas-retry-loop.",
+  "cross_product_finding": ""
+}
