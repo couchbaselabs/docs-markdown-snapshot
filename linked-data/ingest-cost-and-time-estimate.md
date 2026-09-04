@@ -411,6 +411,89 @@ deep history — the 153 pages that exist only in 7.2 remain the richest seam fo
 "what was removed", but removal of an out-of-support feature is rarely the
 question anyone actually asks.
 
+## The real running total (rounds 1-24): extraction was never the cost driver
+
+This document tracked real per-round cost meticulously through round 9 (~$11
+total across ~357 `cloud/` pages) and then stopped — rounds 10-24 read a
+further ~488 pages (`server/` waves 1 through the REST reference layer,
+`poc/reconciliation.md` rounds 10-24) with no matching entry here. That gap
+is itself the first finding: **this document's cost model only ever measured
+extraction**, and extraction is not what the real bill turned out to be
+dominated by.
+
+**Checked against the two cleanest rounds available (22 and 23, both
+stall-free, both cleanly logged): extraction cost held at the established
+rate, not blown out.** Round 22 (`search/`, 54 pages): 760,152 tokens total,
+~14,077 tokens/page. Round 23 (`fts/`, 45 pages): 671,673 tokens,
+~14,926 tokens/page. Both sit close to — slightly above, not multiples above
+— the ~11,000-13,500 tokens/page range rounds 5-9 established as the agentic
+extraction baseline. Extrapolating that same rate across the ~488 pages read
+in rounds 10-24, at this document's own blended-rate method (~$0.03-0.04 per
+page, per rounds 5-9's own real figures), extraction across that whole
+stretch comes to roughly **$15-25** — even generously doubled for retry/stall
+overhead (rounds 21 and 24 both lost batches to stalls and needed relaunches),
+call it **$30-50**. Nowhere near the reported $300+.
+
+**So the $300+ real spend is coming from something this document's model
+never counted at all: the coordinator session itself, not the extraction
+batches it dispatches.** Two components, neither driven by page count:
+
+- **Reconciliation-phase token usage, scaling with round count and running
+  session length, not pages read.** Every round after extraction returns, one
+  continuous coordinator session reads every batch's report, runs analysis
+  scripts, writes dozens of promoted concept/relation records with
+  evidence-backed notes, and writes a 100-200+ line `reconciliation.md`
+  section plus a matching `README.md` update — every round, inside one
+  session whose own conversation history keeps growing. Prompt caching offsets
+  some of this, but the *reasoning* work (reading extraction files, deciding
+  what crosses the promotion bar, drafting the write-up) is genuinely
+  proportional to round count and accumulated context, not to how many pages
+  that round happened to read. A round that reads 18 pages (round 24) but pays
+  down a 43-item cross-corpus backlog and writes docs-issues can cost more in
+  coordinator tokens than a round that reads 3x as many pages and finds little
+  to reconcile.
+- **Retry/stall overhead, which burns tokens for zero yield and is invisible
+  in any "tokens per page extracted" metric.** Round 21 lost two batches to
+  stalls, each needing a second attempt. Round 24 lost all five original
+  batches to a simultaneous infrastructure stall and needed full relaunches.
+  Every stalled attempt consumes tokens before failing; none of it shows up in
+  a metric measured only on the batches that eventually succeeded.
+
+**The practical framing for a business case: this $300+ figure describes how
+this POC was actually run — one long, exploratory, ever-growing coordinator
+session across 24 rounds — not a property of the extraction+reconciliation
+architecture at production scale.** A production run would not keep one
+continuous session accumulating context across dozens of rounds; it would
+scope reconciliation to a bounded unit of work (per wave, per product tree)
+and start each one fresh, the same way extraction already runs as isolated,
+stateless subagent batches rather than one long-running process. The
+$0.03-0.04/page extraction figure this document has tracked since round 5
+still holds and is still the right number for *that* line item — it just was
+never the whole bill, because this POC's reconciliation work was never priced
+as its own line item at all.
+
+**Also worth stating plainly, since it changes how the $133 "latest version
+only" projection should be read**: that figure prices 3,919 pages. This
+project has read 845 — about 22% of that scope — and reportedly already spent
+more than twice $133 getting there, almost entirely outside the thing the
+$133 figure prices. Comparing the two numbers directly, without this
+context, understates the real cost of running a project this way by a wide
+margin; comparing extraction-to-extraction, the two numbers are actually
+consistent.
+
+**Recommendation for future cost tracking: split "extraction cost" and
+"coordination/reconciliation cost" into two separate line items, and re-scope
+reconciliation sessions before pricing a production run.** Extraction is
+page-count-driven, small, and already well-modeled above. Reconciliation, as
+actually run in this POC, is round-count-and-session-length-driven and has
+never been priced at all — the single biggest open number in this whole
+document. If a future business case needs a defensible reconciliation-cost
+figure, the right next step is either (a) instrumenting per-round coordinator
+token usage going forward so it can be measured directly, the way extraction
+already is, or (b) re-running one wave's reconciliation in a fresh, bounded
+session and pricing that in isolation, rather than continuing to infer it
+from the difference between a running total and an extraction-only estimate.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation
@@ -421,3 +504,9 @@ question anyone actually asks.
   SME time beyond the review-time figures above).
 - The cost of the JSON-LD drafting step, or of building an actual publishing
   pipeline — both still open per `poc/README.md`.
+- **A priced figure for coordinator/reconciliation session cost.** The section
+  above names this as the dominant real cost observed so far and explains why
+  it isn't in any table in this document, but it stops at a rough bound
+  (~$250-280 of the reported $300+ Sonnet spend, by elimination), not a
+  measured number. Treat every dollar figure elsewhere in this document as an
+  extraction-only estimate until that gap is closed.
