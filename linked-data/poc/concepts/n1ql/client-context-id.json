@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/client-context-id",
+  "label": "Client Context ID",
+  "type": "an opaque, client-supplied request identifier used to correlate/filter completed-request logs. Has NO security guarantees - any client can set any value, unverified by the server, so it must not be relied on for security purposes (already stated in the corpus's own SQL++ auditing page).",
+  "promoted": true,
+  "recurrence": 3,
+  "doesNotSatisfy": "n1ql:sql-auditing",
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "Can a client-supplied request identifier be trusted for security or audit purposes?",
+  "evidence": [
+    "The opaque ID or context provided by the client. If specified, all completed requests with this client context ID are logged.",
+    "The client context ID has no security guarantees. The parameter can be set by any user in any request and is not verified in the server, so it should not be relied upon for security purposes."
+  ]
+}

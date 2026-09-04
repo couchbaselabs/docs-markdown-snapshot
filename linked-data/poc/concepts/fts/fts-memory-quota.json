@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/fts-memory-quota",
+  "label": "Search Service memory quota",
+  "type": "the memory quota for the whole Search Service, set via fts:manager-options-endpoint. Queries exceeding/approaching the quota are rejected, tracked in nsstats.",
+  "promoted": true,
+  "recurrence": 4,
+  "configuredVia": "fts:manager-options-endpoint",
+  "documented_at": "server/8.0/fts-rest-advanced",
+  "relates_to_competency_question": "What happens to a Search query when the Search Service's memory quota is exceeded, and is that tracked in the service's own statistics?",
+  "evidence": [
+    "Sets the memory quota for the Search Service.",
+    "The total number of queries rejected by the Search Service when the memory used approaches or exceeds the quota set for a query."
+  ]
+}

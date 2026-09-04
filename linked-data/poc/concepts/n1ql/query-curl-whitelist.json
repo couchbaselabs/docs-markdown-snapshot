@@ -3,8 +3,10 @@
   "label": "queryCurlWhitelist",
   "type": "the cluster-level setting carrying the CURL() access list as an Access object of all_access / allowed_urls / disallowed_urls",
   "promoted": true,
-  "recurrence": 1,
+  "recurrence": 2,
   "promoted_under_exception": "family",
+  "aliases": ["n1ql:curl-access-list"],
+  "aliases_note": "Folds a round-10 mint from the OLD n1ql/n1ql-rest-api/intro.json, which named the identical setting by its display name ('CURL Access List') rather than its wire-setting name (queryCurlWhitelist/curlWhitelist) - that record's own note flags the mismatch explicitly ('the feature has a name that no longer matches its own URI segment'). A defensible alternate name, not a punctuation variant - aliased per normalise-ids.py's doctrine, not rewritten.",
   "documented_at": "server/current/n1ql/n1ql-manage/query-settings.md",
   "note": "Recurrence 1, promoted under the family exception: it is the container the other three family members are properties of, so leaving it out would promote an access list with nowhere to live. Named for the only spelling the docs have - unlike n1ql:completed-limit and n1ql:completed-threshold there is no tier-neutral name available here, because query-settings.md lists it under 'Cluster-Level Only Settings' in Table 2, 'Single-Level Settings - Not Equivalent'. That placement is itself the fact: the CURL access list is a cluster-wide security control and cannot be set per node or per request, which is what you would want of it and is easy to assume rather than check. The 'whitelist' naming is the product's, retained because it is the identifier a reader must type; the properties inside it are named allowed_urls / disallowed_urls."
 }

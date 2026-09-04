@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-functions-rest-api",
+  "label": "Query Functions REST API",
+  "type": "the REST surface for creating/managing js-udf:udf-library-backed and inline SQL++ user-defined functions, as an alternative to CREATE FUNCTION/Query Workbench.",
+  "promoted": true,
+  "recurrence": 3,
+  "dependsOnService": "service:query-service",
+  "documented_at": "server/8.0/n1ql-rest-functions",
+  "relates_to_competency_question": "Can a UDF library be managed entirely via REST, without the Query Workbench or CREATE FUNCTION statements?",
+  "evidence": [
+    "You must create the external library and the external function code using the Query Workbench or the SQL++ Functions REST API.",
+    "The Query Functions REST API is a secondary API provided by the Query Service."
+  ]
+}

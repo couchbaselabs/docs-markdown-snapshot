@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/bloom-filter",
+  "label": "Bloom filter / Per-Page Bloom Filter (Index Service, Plasma)",
+  "type": "a memory-management enhancement for the Plasma storage engine, configurable via the Index REST settings API.",
+  "promoted": true,
+  "recurrence": 3,
+  "providesEnhancementFor": "storage-engine:plasma",
+  "configuredVia": "index:index-settings-rest-api",
+  "documented_at": "server/8.0/index-rest-settings",
+  "relates_to_competency_question": "Does the Plasma storage engine use a Bloom filter for memory efficiency, and can that be toggled via REST?",
+  "evidence": [
+    "If Bloom filters are enabled (which is the default), when a lookup occurs, and the correct Plasma page is located, the Bloom filter indicates either that the item is not on the page, or that it may be on the page.",
+    "By indicating that the item is not on disk, the filter prevents unnecessary on-disk searches."
+  ]
+}

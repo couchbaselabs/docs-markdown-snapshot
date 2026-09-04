@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/longerthan-parameter",
+  "label": "longerThan parameter",
+  "type": "filters fts:runtime-query-monitoring-api's results to queries running beyond a given duration.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/8.0/fts-rest-query",
+  "relates_to_competency_question": "How does an administrator find only the slow Search queries currently running?",
+  "evidence": [
+    "Filters the queries running beyond the given span of time. The duration string is a signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as 20s, -1.5h or 2h45m. Valid time units are ns, us (or µs), ms, s, m, h.",
+    "With this endpoint, the users can also use the longerThan argument to filter the queries running beyond the given span of time."
+  ]
+}

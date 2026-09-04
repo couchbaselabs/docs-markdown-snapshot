@@ -1,0 +1,325 @@
+{
+  "page_id": "server/8.0/analytics-rest-admin/index",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics-rest-admin/index.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:active-requests-api",
+      "label": "Active Requests API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - GET /analytics/admin/active_requests, first contact. Distinct from n1ql:query-request-status-enum (a different service's status vocabulary) and from analytics:query-service-rest-api (which SUBMITS a query rather than listing running ones)."
+    },
+    {
+      "candidate_id": "analytics:request-cancellation-api",
+      "label": "Request Cancellation API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - DELETE /analytics/admin/active_requests, first contact. A distinct HTTP method/operation on the same path as analytics:active-requests-api, cancelling a specific request by client_context_id rather than listing them."
+    },
+    {
+      "candidate_id": "analytics:completed-requests-api",
+      "label": "Completed Requests API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - GET /analytics/admin/completed_requests, first contact."
+    },
+    {
+      "candidate_id": "analytics:ingestion-status-api",
+      "label": "Ingestion Status API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - GET /analytics/status/ingestion, first contact. Reports per-collection DCP ingestion progress; the modern replacement for analytics:pending-mutations-api."
+    },
+    {
+      "candidate_id": "analytics:pending-mutations-api",
+      "label": "Pending Mutations API (Analytics, deprecated)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - GET /analytics/node/agg/stats/remaining, first contact. Explicitly deprecated on this page ('This operation is deprecated, and will be removed in a future release'; 'this endpoint has been deprecated, and you should use the Ingestion Status endpoint instead')."
+    },
+    {
+      "candidate_id": "analytics:cluster-status-api",
+      "label": "Cluster Status API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - GET /analytics/cluster, first contact. Returns node/partition/replica topology and cross-links to the other Analytics REST surfaces (config, restart, service) via URI fields in its response body. Not the same object as analytics:query-plan-object or analytics:analytics-metrics-object (round 21/this round's query-response schemas) - this is cluster/topology state, not a query result."
+    },
+    {
+      "candidate_id": "analytics:cluster-restart-api",
+      "label": "Analytics Cluster Restart API",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/config.json, analytics/rest-analytics.json), both of which only cross-referenced this page by seeAlso without ever reading it. This page is the actual first-hand definition: POST /analytics/cluster/restart, restarting every Analytics node in the cluster."
+    },
+    {
+      "candidate_id": "analytics:node-restart-api",
+      "label": "Analytics Node Restart API",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, same situation as analytics:cluster-restart-api: this page is the first-hand definition (POST /analytics/node/restart, restarting one specified node), previously only cross-referenced."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in all three of this page's security schemes."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, named in all three of this page's security schemes."
+    },
+    {
+      "candidate_id": "role:analytics-manager",
+      "label": "Analytics Manager (analytics_manager)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, named here in the 'Analytics Manage / Analytics Select' security scheme."
+    },
+    {
+      "candidate_id": "role:analytics-reader",
+      "label": "Analytics Reader",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - an existing unpromoted mint (attested on analytics-rest-service/index.json this same round), named here in the same scheme."
+    },
+    {
+      "candidate_id": "role:analytics-select",
+      "label": "Analytics Select",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted on analytics-rest-service/index.json this same round, named here again in the same scheme."
+    },
+    {
+      "candidate_id": "role:analytics-admin",
+      "label": "Analytics Admin (analytics_admin)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in all three of this page's security schemes."
+    },
+    {
+      "candidate_id": "role:ro-admin",
+      "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named as 'Read-Only Admin' in the 'Cluster Read / Pools Read' scheme gating Cluster Status."
+    },
+    {
+      "candidate_id": "port:8095",
+      "label": "Port 8095",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, this page's Host Information table and every curl example target this port."
+    },
+    {
+      "candidate_id": "port:18095",
+      "label": "Port 18095",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, named as the secure-access alternative in this page's Host Information table."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:pending-mutations-api",
+      "predicate": "mustUseInsteadWhen",
+      "object": "analytics:ingestion-status-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (mustUseInsteadWhen)",
+      "evidence": "This endpoint may not return meaningful results in Couchbase Server 7.0 and later. The reported number of mutations may be different to the actual number of mutations in the Analytics collection. For this reason, this endpoint has been deprecated, and you should use the [Ingestion Status](#ingestion%5Fstatus) endpoint instead."
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "usesPort",
+      "object": "port:8095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "usesPort",
+      "object": "port:18095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "usesPort",
+      "object": "port:8095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:cluster-restart-api",
+      "predicate": "usesPort",
+      "object": "port:8095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:node-restart-api",
+      "predicate": "usesPort",
+      "object": "port:8095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - representative subject for the shared 'Analytics Manage / Analytics Select' scheme also covering analytics:request-cancellation-api, analytics:completed-requests-api, analytics:ingestion-status-api, and analytics:pending-mutations-api (same six-role list, stated once here rather than repeated five times).",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-manager",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-reader",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-select",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:request-cancellation-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - one connecting relation per remaining group member; full six-role list is on analytics:active-requests-api above to avoid five near-identical repetitions of the same evidence block.",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:completed-requests-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - see note on analytics:request-cancellation-api's relation above.",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:ingestion-status-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - see note on analytics:request-cancellation-api's relation above.",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:pending-mutations-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - see note on analytics:request-cancellation-api's relation above.",
+      "evidence": "For the [Active Requests](#return%5Factive%5Frequests), [Request Cancellation](#cancel%5Frequest), [Completed Requests](#completed%5Frequests), [Ingestion Status](#ingestion%5Fstatus), and [Pending Mutations](#monitor%5Fnode) operations, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Manager\n* Analytics Reader\n* Analytics Select\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Status](#cluster%5Fstatus) operation, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Status](#cluster%5Fstatus) operation, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "requiresServerRole",
+      "object": "role:ro-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Status](#cluster%5Fstatus) operation, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-status-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Status](#cluster%5Fstatus) operation, users must have one of the following access roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-restart-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - first-hand attestation; previously this relation only existed by inference via seeAlso cross-reference from the config page.",
+      "evidence": "For the [Cluster Restart](#restart%5Fcluster) and [Node Restart](#restart%5Fnode) operations, users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-restart-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Restart](#restart%5Fcluster) and [Node Restart](#restart%5Fnode) operations, users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-restart-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "For the [Cluster Restart](#restart%5Fcluster) and [Node Restart](#restart%5Fnode) operations, users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:node-restart-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - node-restart shares the identical three-role list with cluster-restart, stated once above.",
+      "evidence": "For the [Cluster Restart](#restart%5Fcluster) and [Node Restart](#restart%5Fnode) operations, users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:cluster-restart-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/analytics/error-codes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "Unauthorized. The user name or password may be incorrect. Returns an object containing an error message. For more information, see [Error Codes](/server/8.0/analytics/error-codes.html)."
+    },
+    {
+      "subject": "analytics:active-requests-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "For more information, see [Roles](../learn/security/roles.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "deprecatedIn",
+    "finding": "The page states the Pending Mutations endpoint 'is deprecated, and will be removed in a future release' and separately that it 'may not return meaningful results in Couchbase Server 7.0 and later', but never states a specific version in which the endpoint itself was DECLARED deprecated - the two facts (behavior degrades since 7.0; deprecated as a policy) are stated adjacently but not explicitly tied to the same version number, so no deprecatedIn relation was minted rather than inferring one."
+  },
+  "cross_component_finding": "This page is the first-hand source for analytics:cluster-restart-api and analytics:node-restart-api, both of which round 21 and this round's analytics-rest-config page had already minted purely from seeAlso cross-references without ever reading this page directly - their descriptions (restart scope, response codes, security roles) are attested here for the first time rather than merely cross-linked.",
+  "cross_product_finding": "None found on this page - all monitoring/restart/cancellation operations are Analytics-Service-internal with no stated Capella or cross-product parallel."
+}

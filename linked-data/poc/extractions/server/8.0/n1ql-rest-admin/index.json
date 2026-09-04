@@ -1,0 +1,279 @@
+{
+  "page_id": "server/8.0/n1ql-rest-admin/index",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql-rest-admin/index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-admin-rest-api", "label": "Query Admin REST API (/admin/*, node-level administration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer. Minted in round 10's server/8.0/n1ql/n1ql-rest-api/intro.json purely from that page's outbound link table (\"| POST | /admin/settings | [Update Node-Level Query Settings](../../n1ql-rest-admin/index.md#post%5Fsettings) |\"), never previously given a full-page treatment. THIS is that treatment: this page is the SAME endpoint family intro.json pointed at, not a new one - the ONE REAL NEAR-MISS case the batch brief called out, resolved as reuse rather than a duplicate mint." },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "port:8093", "label": "Port 8093 (Query Service, plaintext)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json for this same API" },
+    { "candidate_id": "port:18093", "label": "Port 18093 (Query Service, TLS)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json for this same API" },
+    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level Query settings", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's \"Settings\" resource (GET/POST /admin/settings) IS this concept's REST surface" },
+    { "candidate_id": "n1ql:completed-limit", "label": "completed-limit node-level setting (default 4000)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; documented on this page as a node-level property of the Settings object" },
+    { "candidate_id": "n1ql:completed-threshold", "label": "completed-threshold", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:completed-stream-size", "label": "completed-stream-size", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page adds a version fact - see relations" },
+    { "candidate_id": "n1ql:system-completed-requests", "label": "system:completed_requests", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; /admin/completed_requests and /admin/indexes/completed_requests are the REST mirror of this system keyspace" },
+    { "candidate_id": "n1ql:system-active-requests", "label": "system:active_requests catalog", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (minted in monitoring-n1ql-query.json); /admin/active_requests is its REST mirror" },
+    { "candidate_id": "n1ql:system-prepareds", "label": "system:prepareds catalog", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; /admin/prepareds is its REST mirror" },
+    { "candidate_id": "n1ql:system-vitals", "label": "system:vitals catalog", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; /admin/vitals is its REST mirror" },
+    { "candidate_id": "n1ql:prepared-statement", "label": "prepared statement", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; the object /admin/prepareds operates on" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "cost-based optimizer (CBO)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; use-cbo is this page's node-level toggle for it" },
+    { "candidate_id": "n1ql:max-parallelism", "label": "max-parallelism", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; documented here as the node-level tier" },
+    { "candidate_id": "n1ql:scan-consistency", "label": "scan_consistency", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; surfaced here as the scanConsistency field of the admin Requests object" },
+    { "candidate_id": "n1ql:auto-prepare", "label": "auto-prepare (Query service-level setting)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in prepare.json" },
+    { "candidate_id": "n1ql:atrcollection", "label": "atrcollection (transaction setting)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted from the Capella/Server transactions.json pages" },
+    { "candidate_id": "n1ql:cleanupclientattempts", "label": "cleanupclientattempts node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json; independently evidenced on this page" },
+    { "candidate_id": "n1ql:cleanuplostattempts", "label": "cleanuplostattempts node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json; independently evidenced on this page" },
+    { "candidate_id": "n1ql:cleanupwindow", "label": "cleanupwindow node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json; mentioned on this page but its tie to active-transaction-record could not be re-evidenced cleanly here (embedded markdown link splits the sentence) - see notable_absence" },
+    { "candidate_id": "n1ql:numatrs", "label": "numatrs node-level setting (total number of active transaction records)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json; mentioned on this page but its defining sentence could not be re-evidenced cleanly here (embedded markdown link splits the sentence) - see notable_absence" },
+    { "candidate_id": "n1ql:active-transaction-record", "label": "Active transaction record (ATR)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json as the object atrcollection/numatrs/cleanupwindow all configure" },
+    { "candidate_id": "n1ql:txtimeout", "label": "txtimeout parameter/setting (transaction timeout)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this page documents its node-level form" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Transactions", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; the feature the cleanup/ATR/txtimeout settings all configure" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; named explicitly in the GC endpoints' 401 response" },
+    { "candidate_id": "n1ql:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings, cluster-level configuration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json; this page's See Also links to it for the cluster-level tier" },
+    { "candidate_id": "n1ql:query-engine-garbage-collector", "label": "Query engine garbage collector (GET/POST /admin/gc)", "registry_status": "minted", "reused_or_minted": "minted - genuinely new admin-only mechanism, absent from the old n1ql-rest-api intro/examples set and from every other page checked: a manual trigger for the query node's Go-runtime garbage collector, gated to full-admin users, that logs its own invocation and (via POST) attempts to return freed memory to the OS" },
+    { "candidate_id": "n1ql:completed-max-plan-size", "label": "completed-max-plan-size (plan-size cap for the completed requests catalog)", "registry_status": "minted", "reused_or_minted": "minted - a genuinely distinct mechanism from completed-limit/completed-threshold: it silently caps oversized plans out of the completed_requests catalog rather than bounding request count or duration, and the page names EXPLAIN/profiling as the required alternative for such queries. Not previously extracted anywhere in the corpus" },
+    { "candidate_id": "n1ql:completed-request-logging-parameters", "label": "Completed-request logging parameters (\"completed\" nested object: client/context/error/tag/threshold/user/statement/plan/errors)", "registry_status": "minted", "reused_or_minted": "minted - a fine-grained match-and-log filter distinct from the scalar completed-limit/completed-threshold settings; kept as ONE concept for the whole nested object rather than one per field, per the round's instruction not to force a concept out of every reference-table row" },
+    { "candidate_id": "n1ql:settings-distribute-flag", "label": "distribute field (POST /admin/settings, cascades node-level settings cluster-wide)", "registry_status": "minted", "reused_or_minted": "minted - a third, admin-only settings-propagation path distinct from both the cluster-level and node-level tiers already modelled: a POST-only flag that makes ONE node cascade its settings change to every other query node in the cluster" },
+    { "candidate_id": "n1ql:client-context-id", "label": "client_context_id parameter, captured as clientContextId in audit records", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; the completed-request logging filter can match on it" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Admin REST API is a secondary API provided by the Query Service."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "n1ql:node-level-query-settings",
+      "predicate": "createdVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Updates node-level query settings."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-settings-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For cluster-level settings, see the [Query Settings REST API](../n1ql-rest-settings/index.md#Settings)."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-active-requests",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For examples, see [Terminate an Active Request](../n1ql/n1ql-manage/monitoring-n1ql-query.md#sys-active-delete)."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-completed-requests",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For examples, see [Purge the Completed Requests](../n1ql/n1ql-manage/monitoring-n1ql-query.md#sys-completed-delete)."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-prepareds",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For examples, see [Delete Prepared Statements](../n1ql/n1ql-manage/monitoring-n1ql-query.md#sys-prepared-delete)."
+    },
+    {
+      "subject": "n1ql:query-admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:system-vitals",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For examples, see [Get System Vitals](../n1ql/n1ql-manage/monitoring-n1ql-query.md#vitals)."
+    },
+    {
+      "subject": "n1ql:cluster-level-query-settings",
+      "predicate": "overridesSetting",
+      "object": "n1ql:node-level-query-settings",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer, established in query-settings.json for this exact cluster/node relationship; independently evidenced here",
+      "evidence": "queryCompletedLimit setting specifies this property for the whole cluster. When you change the cluster-level setting, the node-level setting is over-written for all nodes in the cluster."
+    },
+    {
+      "subject": "n1ql:request-level-query-parameters",
+      "predicate": "boundedBySetting",
+      "object": "n1ql:node-level-query-settings",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer, established in query-settings.json",
+      "evidence": "If a request includes this parameter, it will be capped by the node-level memory-quota setting."
+    },
+    {
+      "subject": "n1ql:system-completed-requests",
+      "predicate": "requiresSetting",
+      "object": "n1ql:completed-limit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; same triple already established from monitoring-n1ql-query.json, independently evidenced here",
+      "evidence": "Sets the number of requests to be logged in the completed requests catalog."
+    },
+    {
+      "subject": "n1ql:system-completed-requests",
+      "predicate": "requiresSetting",
+      "object": "n1ql:completed-threshold",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "All completed queries lasting longer than this threshold are logged in the completed requests catalog."
+    },
+    {
+      "subject": "n1ql:system-completed-requests",
+      "predicate": "requiresSetting",
+      "object": "n1ql:completed-max-plan-size",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted setting",
+      "evidence": "Limits the size of query execution plans that can be logged in the completed requests catalog."
+    },
+    {
+      "subject": "n1ql:completed-max-plan-size",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:explain",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "You must obtain execution plans for such queries via profiling or using the EXPLAIN statement."
+    },
+    {
+      "subject": "n1ql:completed-stream-size",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; page states the precise sub-version 7.6.4, mapped to the nearest registry version concept",
+      "evidence": "Completed request streaming is available in Couchbase Server 7.6.4 and later."
+    },
+    {
+      "subject": "n1ql:system-completed-requests",
+      "predicate": "requiresSetting",
+      "object": "n1ql:completed-request-logging-parameters",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted nested object",
+      "evidence": "A nested object that sets the parameters for the completed requests catalog. All completed requests that match these parameters are tracked in the completed requests catalog."
+    },
+    {
+      "subject": "n1ql:completed-request-logging-parameters",
+      "predicate": "reliesOnMechanism",
+      "object": "n1ql:client-context-id",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The opaque ID or context provided by the client. If specified, all completed requests with this client context ID are logged."
+    },
+    {
+      "subject": "n1ql:node-level-query-settings",
+      "predicate": "configurableVia",
+      "object": "n1ql:settings-distribute-flag",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "When specified alongside other settings, this field instructs the node that's processing the request to cascade those settings to all other query nodes."
+    },
+    {
+      "subject": "n1ql:query-engine-garbage-collector",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "Error 10000: authentication failure. The invoking user is not a valid full-admin user."
+    },
+    {
+      "subject": "n1ql:scan-consistency",
+      "predicate": "monitoredVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The value of the query setting Scan Consistency used for the query."
+    },
+    {
+      "subject": "n1ql:prepared-statement",
+      "predicate": "monitoredVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Returns the specified prepared statement."
+    },
+    {
+      "subject": "n1ql:cost-based-optimizer",
+      "predicate": "configurableVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Specifies whether the cost-based optimizer is enabled."
+    },
+    {
+      "subject": "n1ql:max-parallelism",
+      "predicate": "configurableVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Specifies the maximum parallelism for queries on this node."
+    },
+    {
+      "subject": "n1ql:auto-prepare",
+      "predicate": "configurableVia",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Specifies whether the query engine should create a prepared statement every time a SQL++ request is submitted, whether the PREPARE statement is included or not."
+    },
+    {
+      "subject": "n1ql:atrcollection",
+      "predicate": "configuresLocationOf",
+      "object": "n1ql:active-transaction-record",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer, established in transactions.json; independently evidenced here",
+      "evidence": "The collection must be present."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:cleanupclientattempts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "When enabled, the Query Service preferentially aims to clean up just transactions that it has created, leaving transactions for the distributed cleanup process only when it's forced to."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:cleanuplostattempts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "When enabled, the Query Service takes part in the distributed cleanup process, and cleans up expired transactions created by any client."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:txtimeout",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Maximum time to spend on a transaction before timing out (ns)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / availableSince",
+    "finding": "Across roughly 30 documented node-level settings and 20+ admin endpoints, only ONE endpoint pair (GET/POST /admin/gc) names a specific Server RBAC role in its 401 response (\"the invoking user is not a valid full-admin user\") and only ONE setting (completed-stream-size) carries a version gate (\"available in Couchbase Server 7.6.4 and later\"). Every other endpoint's Security section just says \"The Admin API supports admin credentials\" without naming a role, and every other setting is undated. Several settings compound this by refusing to explain themselves at all: max-index-api (\"This setting is provided for technical support only\"), mutexprofile (\"Mutex profile. This setting is provided for technical support only\") - two properties in the Settings object schema with no behavioral description whatsoever, only a type and, for mutexprofile, a default. An AI agent or reader cannot determine what these settings do from this page, and the page does not point elsewhere for the answer either. A smaller, mechanical version of the same gap: numatrs and cleanupwindow both name 'active transaction records' as the object they configure, but do so with the term embedded inside a Markdown link to a different page's anchor - splitting what would otherwise be a clean, quotable defining sentence in two, which is why this record could evidence atrcollection's tie to n1ql:active-transaction-record but not numatrs's or cleanupwindow's despite the underlying fact being equally true of all three."
+  },
+  "cross_component_finding": "This page's own Requests, Statements (Prepared Statements) and Vitals object schemas are the strongest evidence yet for the reconciliation question round 10's intro.json raised but could not resolve on its own page: that /admin/active_requests, /admin/completed_requests, /admin/prepareds and /admin/vitals are REST mirrors of the system:active_requests, system:completed_requests, system:prepareds and system:vitals keyspaces, not separate resources. Concretely: the admin Requests object's clientContextID field cites 'the request-level client_context_id parameter' by name; its cpuTime field cites 'the total sum of execTime across all operators' from the query-plan reference; its scanConsistency field cites 'the query setting Scan Consistency'. These are the exact same fields the monitoring/system-keyspace pages already document for system:active_requests and system:completed_requests, described here from the REST side instead of the SQL++ side. I have again NOT asserted an identity relation (no sentence on this page states 'this endpoint returns the same data as system:X'), for the same reason round 10 gave: the fact is a strong structural inference, not a quoted claim, and the registry still has no predicate for 'same resource, alternate access surface' (round 10 proposed alsoExposedAs/hasAlternativeAccessSurface; neither exists in the current promoted predicate list). This is now evidenced from BOTH directions (the system-keyspace pages and this REST page), which should raise its priority at reconciliation.\n\nSeparately: the 'completed' nested Logging Parameters object (n1ql:completed-request-logging-parameters) generalizes far beyond the scalar completed-limit/completed-threshold settings already promoted - it can match on client IP, user name, error number, a LIKE pattern against the statement text, an error count floor, and an arbitrary field:value match against the QUERY PLAN itself ('{\"index\": \"ix1\", \"#operator\": \"IntersectScan\"}'). That last capability - conditioning what gets logged on the shape of the query PLAN, not just the query's runtime properties - is a real mechanism with no analogue anywhere else I have read in this corpus, and is worth a second look at reconciliation time independent of the settings-mirroring question above.",
+  "cross_product_finding": "Confirms and extends round 10's finding rather than contradicting it: the Query Admin REST API has NO Capella counterpart at all. cloud/n1ql/ contains no admin.md or equivalent, and every setting this page documents as node-level (auto-prepare, atrcollection, cleanupclientattempts/cleanuplostattempts/cleanupwindow, numatrs, max-parallelism, memory-quota, node-quota, pipeline-batch/cap, scan-cap, txtimeout, use-cbo, use-replica) exists on the Capella side ONLY as a request-level parameter on the query-execution page, never as a node- or cluster-configurable setting. Capella's control plane (capella:management-api, capella:cluster-manager) is the only place node/cluster configuration happens for that product, and it is a wholly separate API from anything modelled in this corpus's n1ql: namespace. The garbage-collector endpoint (n1ql:query-engine-garbage-collector) is the sharpest single illustration: it is a raw Go-runtime operational control exposed directly over HTTP with only a full-admin credential check, a shape of API surface Capella's docs never expose for any service."
+}

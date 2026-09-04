@@ -1,0 +1,217 @@
+{
+  "page_id": "server/8.0/fts-rest-stats/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-stats/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:nsstats-endpoint",
+      "label": "Search Statistics API (GET /api/nsstats, GET /api/nsstats/index/{INDEX_NAME})",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked fts:search-index-statistics (round 23's monitoring-page mint for the Dashboard/Search page UI charts) and fts:runtime-query-monitoring-api (round 23's /api/query family, already reused in this batch's fts-rest-query record) first; neither covers this endpoint. This is a third, distinct FTS REST surface: cluster/index-level counters via the Cluster Manager, not query-monitoring or UI charts - though see cross_component_finding for a strong quote-evidenced link to fts:search-index-statistics."
+    },
+    {
+      "candidate_id": "fts:search-index-statistics",
+      "label": "FTS index statistics (Dashboard/Search page charts)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from round 23's fts-monitor.md. That record deliberately did not mint one concept per named chart; this page's own field descriptions repeatedly state the literal REST field name behind several of those named charts (see cross_component_finding)"
+    },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "full-text index (artifact)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the artifact this endpoint reports statistics for"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the service this endpoint reports cluster-wide statistics for"
+    },
+    {
+      "candidate_id": "search:coordinator-node",
+      "label": "Coordinating node (Search)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this page re-defines the term verbatim in multiple field descriptions ('The coordinating node is the Search node that receives the Search request and scatters it to all other Search index partitions on other nodes')"
+    },
+    {
+      "candidate_id": "search:scatter-gather",
+      "label": "Scatter-gather (Search execution model)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this page states the mechanism repeatedly across gRPC-listener and internal-queries statistics"
+    },
+    {
+      "candidate_id": "fts:fts-memory-quota",
+      "label": "ftsMemoryQuota (Search Service per-node memory quota setting)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id; this page's herder-rejection statistics explicitly link to the ftsMemoryQuota setting page as the way to change the behavior these counters measure"
+    },
+    {
+      "candidate_id": "fts:bleve-max-result-window",
+      "label": "bleveMaxResultWindow setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this page's total_queries_max_result_window_exceeded_error field links directly to that setting's page"
+    },
+    {
+      "candidate_id": "search:ctl-object",
+      "label": "Ctl Object (query consistency and execution control)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this page's timeout/consistency/validate statistics all link back to that object's documentation"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - one of three roles alternatively accepted by this endpoint's Admin security tier"
+    },
+    {
+      "candidate_id": "role:cluster-administrator",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not previously in the registry; named alongside Full Admin/Bucket Admin as an alternative role accepted by this endpoint's Admin tier"
+    },
+    {
+      "candidate_id": "role:bucket-administrator",
+      "label": "Bucket Admin (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not previously in the registry; same tier as role:cluster-administrator above"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - required for this endpoint's separate Statistics security tier"
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "search:full-text-index",
+      "predicate": "monitoredVia",
+      "object": "fts:nsstats-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (monitoredVia) - already promoted",
+      "evidence": "Gets query, mutation, document, partition, and compaction statistics for the Search index specified in the endpoint URL."
+    },
+    {
+      "subject": "service:search-service",
+      "predicate": "monitoredVia",
+      "object": "fts:nsstats-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (monitoredVia) - already promoted",
+      "evidence": "Gets query, mutation, document, partition, and compaction statistics for the Search Service and any Search indexes."
+    },
+    {
+      "subject": "search:coordinator-node",
+      "predicate": "monitoredVia",
+      "object": "fts:nsstats-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (monitoredVia) - already promoted",
+      "evidence": "The coordinating node is the Search node that receives the Search request and scatters it to all other Search index partitions on other nodes."
+    },
+    {
+      "subject": "search:scatter-gather",
+      "predicate": "monitoredVia",
+      "object": "fts:nsstats-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (monitoredVia) - already promoted",
+      "evidence": "The total number of gRPC listeners opened. gRPC listeners handle incoming connection requests to the Search Service. The Search Service uses gRPC to manage scatter-gather operations across nodes when there are multiple nodes running the Search Service in a cluster."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "usesPort",
+      "object": "port:18094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - already promoted",
+      "evidence": "You must have the **Full Admin**, **Cluster Admin**, or **Bucket Admin** role, with FTS Read permissions on the required bucket."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - already promoted",
+      "evidence": "You must have the **Full Admin**, **Cluster Admin**, or **Bucket Admin** role, with FTS Read permissions on the required bucket."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:bucket-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - already promoted",
+      "evidence": "You must have the **Full Admin**, **Cluster Admin**, or **Bucket Admin** role, with FTS Read permissions on the required bucket."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - already promoted",
+      "evidence": "You must have the **Search Admin** role, with Stats Read permissions on the required bucket."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "configurableVia",
+      "object": "fts:fts-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia) - already promoted",
+      "evidence": "The total number of queries rejected by the Search Service when the memory used approaches or exceeds the quota set for a query. For more information about how to set the Search Service's memory quota, see [ftsMemoryQuota](https://docs.couchbase.com/server/8.0/fts/fts-advanced-settings-ftsMemoryQuota.html)."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "seeAlso",
+      "object": "fts:bleve-max-result-window",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "The total number of Search queries that exceeded the [bleveMaxResultWindow](https://docs.couchbase.com/server/8.0/fts/fts-advanced-settings-bleveMaxResultWindow.html) setting."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "seeAlso",
+      "object": "search:ctl-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "For more information about consistency in Search queries, see [Search Request JSON Properties](https://docs.couchbase.com/server/8.0/search/search-request-params.html#ctl)."
+    },
+    {
+      "subject": "fts:nsstats-endpoint",
+      "predicate": "seeAlso",
+      "object": "server/current/fts-rest-indexing/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link; target page not yet read/promoted in this round's other batches",
+      "evidence": "This endpoint returns statistics provided by the Cluster Manager. For additional statistics, including detailed partition information, see [Get Indexing and Data Metrics for All Indexes](../fts-rest-indexing/index.html#g-api-stats)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasOption",
+    "finding": "The total_queries_validation_error field states 'when the query request included a validate property in the ctl object' and links to 'https://docs.couchbase.com/server/8.0/search/search-request-params.html#validate' - naming a 'validate' property of the ctl object that round 22's own search-request-params.json extraction (search:ctl-object's origin record) does not mention anywhere in its concepts, relations, or notable_absence. Either that property was present on the page but not captured in round 22, or it lives at a separate anchor round 22's read did not surface in detail - left as a finding for reconciliation rather than guessed at, since this page alone is not authoritative for search-request-params.md's content."
+  },
+  "cross_component_finding": "This page's Cluster/Index Statistics field tables repeatedly state the exact Web-Console-dashboard chart name for a REST field, in the form 'This statistic appears on the Server Web Console dashboard as **X**' - directly confirming, with the literal underlying field name, several of the 18 chart names round 23's fts-monitor.md record deliberately left unminted as separate concepts. Verbatim pairs found on this page: avg_queries_latency = 'Search Query Latency', doc_count = 'Search Docs', num_bytes_used_disk = 'Search Disk Size', num_files_on_disk = 'Search Disk Files', num_root_memorysegments = 'Search Memory Segments', num_root_filesegments = 'Search Disk Segments', num_mutations_to_index = 'Search Mutations Remaining', num_pindexes_actual = 'Search Partitions', num_pindexes_target = 'Search Partitions Expected', num_recs_to_persist = 'Search Records to Persist', total_bytes_indexed = 'Search Index Rate', total_bytes_query_results = 'Search Result Rate', total_compaction_written_bytes = 'Search Compaction Rate', total_queries_error = 'Search Query Error Rate', total_queries_slow = 'Search Slow Queries', total_queries_timeout = 'Search Query Timeout Rate', total_term_searchers = 'Term Searchers Start Rate'. No relation was forced between fts:search-index-statistics and fts:nsstats-endpoint for this, since one is a UI-chart family and the other a REST field family - different shapes - but this is exactly the kind of same-underlying-metric-two-names finding round 23's own notable_absence anticipated a future round might supply.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page per this round's framing."
+}

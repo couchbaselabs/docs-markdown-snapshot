@@ -1,0 +1,113 @@
+{
+  "page_id": "server/8.0/fts-rest-query/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-query/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:runtime-query-monitoring-api",
+      "label": "FTS runtime query monitoring REST API (/api/query, /api/query/index/{indexName})",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from round 23's fts-monitor.md, which described this same REST surface from the monitoring-task angle ('FTS provides new REST endpoints to supervise the runtime queries'). This page is the full Swagger-generated reference for it, under the title 'Couchbase Search Active Queries REST API' - a genuine same-endpoint match, per this round's briefing about checking search/run-searches.md and search-request-params.md, though the actual matching prior record turned out to be fts-monitor.md rather than either of those two."
+    },
+    {
+      "candidate_id": "fts:cancel-active-query-endpoint",
+      "label": "Cancel Active Queries (POST /api/query/{queryID}/cancel)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuinely new operation not covered by round 23's fts-monitor.md record, which only extracted the two read/list endpoints (view active node queries, view active index queries) and did not mention a cancel operation at all"
+    },
+    {
+      "candidate_id": "fts:longerthan-parameter",
+      "label": "longerThan (runtime query monitoring filter argument)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from round 23's fts-monitor.md; this page documents the identical parameter on both its list-type endpoints, word-for-word matching the duration-string syntax rule already captured"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's Query Context object explicitly reuses that same JSON query schema by reference"
+    },
+    {
+      "candidate_id": "search:coordinator-node",
+      "label": "Coordinating node (Search)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the Cancellation Request's uuid parameter is explicitly described as identifying this concept"
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:runtime-query-monitoring-api",
+      "predicate": "hasParameter",
+      "object": "fts:longerthan-parameter",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - existing minted (unpromoted) predicate from fts-monitor.json",
+      "evidence": "Filters the queries running beyond the given span of time. The duration string is a signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as 20s, \\-1.5h or 2h45m. Valid time units are ns, us (or µs), ms, s, m, h."
+    },
+    {
+      "subject": "fts:runtime-query-monitoring-api",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "curl -XGET -H \"Content-Type: application/json\" \\\n  -u $USER:$PASSWORD \\\n  \"http://$HOST:8094/api/query\""
+    },
+    {
+      "subject": "fts:runtime-query-monitoring-api",
+      "predicate": "usesPort",
+      "object": "port:18094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:runtime-query-monitoring-api",
+      "predicate": "reliesOnMechanism",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (reliesOnMechanism) - already promoted",
+      "evidence": "An object containing the Search query. For more information, see [Search Request JSON Properties](../search/search-request-params.html)."
+    },
+    {
+      "subject": "fts:cancel-active-query-endpoint",
+      "predicate": "reliesOnMechanism",
+      "object": "fts:runtime-query-monitoring-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (reliesOnMechanism) - already promoted",
+      "evidence": "Use the View Active Index Queries API or the View Active Node Queries API to get the parameters `queryID` and `uuid`, which are used to identify and cancel the query."
+    },
+    {
+      "subject": "fts:cancel-active-query-endpoint",
+      "predicate": "targets",
+      "object": "search:coordinator-node",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - existing extraction-layer predicate",
+      "evidence": "Represents the active query's coordinator node's UUID, where the query will be canceled. This parameter allows the user to cancel a query anywhere in the system by specifying its coordinator node's UUID."
+    },
+    {
+      "subject": "fts:cancel-active-query-endpoint",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "curl -X POST -H \"Content-Type: application/json\" -u $USER:$PASSWORD \\\n  \"http://$HOST:8094/api/query/24/cancel\" -d \\\n  '{ \"uuid\": \"b91d75480470f979f65f04e8f20a1f7b\" }'"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The View Active Node/Index Queries responses key each active query by a hyphenated string combining a node UUID and an integer ID (e.g. 'b91d75480470f979f65f04e8f20a1f7b-17'), but the Cancel Active Queries endpoint's queryID path parameter is typed and exampled as a bare Integer ('24') with the node UUID supplied separately in the request body. The page never states how a caller is meant to split the hyphenated map key into these two separate values - a real gap between what the list endpoints return and what the cancel endpoint expects as input."
+  },
+  "cross_component_finding": "This page's Query Context object (query/size/from/timeout/index, 4-5 fields) is a visibly reduced echo of the full search:search-request-params schema (15+ properties) - the same pattern already flagged on fts-rest-advanced/index.json, where that page's Query Response was similarly thinner than the fully-modeled fts:search-response-object. Both REST reference pages in this batch expose partial/lightweight versions of richer schemas documented in full elsewhere, consistent with these being admin/operational surfaces rather than the primary query-submission path.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page per this round's framing."
+}

@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-three rounds so far, nineteen of them deliberate escalations and
+automating it. Twenty-four rounds so far, twenty of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -354,6 +354,27 @@ four corrective passes over what they left behind:
     independently minting the identical spelling (`fts:search-response-object`) for
     one real thing is corroboration, not a fork — confirmed with a five-second
     string check rather than treated as something to reconcile.
+24. **18 pages, the REST API reference layer** (`fts-rest-*`, `n1ql-rest-*`,
+    `analytics-rest-*`, `index-rest-*`) — surfaces earlier rounds had only reached
+    through `seeAlso` links from task/reference pages, never read first-hand. 276
+    relations, 0 evidence problems. All five original extraction batches stalled
+    simultaneously on an infrastructure issue mid-dispatch and were recovered per
+    the standing procedure (check disk state, relaunch only what's missing) —
+    stalling at once, on unrelated content, was itself the signal the cause wasn't
+    the pages. Two dispatch briefings were factually wrong (a near-miss pointer one
+    directory off; a promoted concept mis-declared extraction-layer) and both were
+    caught by the receiving agent's own registry check, not by the coordinator. The
+    round's biggest single find predates any page read this round:
+    `role:cluster-admin`, a core Server RBAC role, had sat unpromoted for 24 rounds
+    purely because no single round's own recurrence count ever crossed its own bar
+    — a third recurrence of the "whole-corpus recurrence, not round-scoped" lesson
+    rounds 10 and 12 already taught. A whole-corpus backlog sweep (43 candidates,
+    evidence pulled for each) promoted 33 concepts in total. Also promoted a
+    predicate, `alsoExposedAs`, with **zero** concrete instances — proposed once in
+    round 10 from one side of a REST/system-keyspace mirroring gap and again this
+    round from the other side, converging independently on the identical missing
+    name for a fact no page ever states as a sentence — a different, weaker kind of
+    promotion than the usual recurrence rule, and said so explicitly.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -361,7 +382,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-827 pages total:
+845 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -506,6 +527,14 @@ time/cost projections and how they held up against the round-2 run's real number
   Editor, scoring and sorting, the Search Response Object schema, and two more
   query-type pages. 14 pages have an exact-filename version twin in
   `server/7.2/fts/`; the rest is first contact.
+- **18 more, the REST API reference layer** — `server/8.0/{fts-rest-advanced,
+  fts-rest-manage,fts-rest-query,fts-rest-stats,fts-rest-indexing,fts-rest-nodes,
+  index-rest-settings,index-rest-stats,n1ql-rest-admin,n1ql-rest-functions,
+  n1ql-rest-query,n1ql-rest-settings,analytics-rest-admin,analytics-rest-config,
+  analytics-rest-library,analytics-rest-links,analytics-rest-service,
+  analytics-rest-settings}` — the REST reference surfaces for Search, Index,
+  Query, and Analytics that earlier rounds had only reached through `seeAlso`
+  links, never read first-hand.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1056,6 +1085,33 @@ from "still in `extractions/`."
   (`--variants` caught it; rewritten via `normalise-ids.py`, not aliased). Two
   batches independently minted the identical spelling, `fts:search-response-object`,
   for the same real thing — checked and confirmed as corroboration, not a fork.
+  Round 24 read the REST reference layer (18 pages, four services) and, rather
+  than promoting only fresh mints, ran a whole-corpus backlog sweep (every
+  "rest-"-pathed id at recurrence ≥2 across eight namespaces, 43 candidates) —
+  **33 promoted**. The headline is `role:cluster-admin`: a core Server RBAC role
+  that had accumulated attestations one file at a time since round 1 and never
+  crossed its own round's two-file bar until this round's density pushed it to
+  11, decisively promoting it and folding a same-round self-fork
+  (`role:cluster-administrator`, 3 files, three of this round's own batches
+  independently spelling the role catalogue's own name differently) in the same
+  motion — a third recurrence of the "whole-corpus, not round-scoped, recurrence"
+  lesson rounds 10 and 12 already taught. Also promoted: the Query service's
+  whole REST sub-API family (admin/functions/settings/service, several
+  round-10 stubs getting their first full-page treatment), transaction
+  mechanics (durability level, ATR, atrcollection, auto-prepare,
+  cleanupclientattempts, client-context-id), Search Service settings and
+  monitoring (memory quota, disable-file-transfer-rebalance, runtime query
+  monitoring), and `index:index-storage-setting` — on record since round 17 as
+  "the level is real, its name is not yet earned" at recurrence 1, now given
+  its second attestation. `n1ql:query-tmp-space-setting` was promoted at
+  recurrence 1 under the semantic-weight exception: the first setting found in
+  this corpus load-bearing for three services at once (Index, Query, and,
+  by a stated multiplier, Search). Two folded same-round forks from the
+  extraction layer (`js-udf:library`→`js-udf:udf-library`,
+  `n1ql:curl-access-list`→`n1ql:query-curl-whitelist`, both round-10 alternate
+  spellings predating or alongside the canonical concept's own promotion). A
+  dozen more candidates from the same sweep remain deliberately deferred,
+  evidence already gathered, as an explicit backlog for a future round.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1234,14 +1290,36 @@ from "still in `extractions/`."
   attestation — an alias fanning a query to several indexes and merging results);
   `relies-on-mechanism` (2 — a capability composing a named underlying mechanism,
   stated independently on two sibling pages for zero-downtime index upgrades).
+  Round 24 added **one**, `alsoExposedAs` — promoted with **zero** concrete
+  instances, a different and weaker kind of promotion than the recurrence rule
+  usually licenses, said so explicitly rather than blurred into it. Round 10
+  first proposed it from the REST side of a gap (do `/admin/active_requests` etc.
+  mirror the `system:active_requests` etc. keyspaces?) but couldn't confirm it
+  without reading the system-keyspace side; round 24 reads the REST side in full
+  and finds the identical field-by-field match independently — no page anywhere
+  states the identity as a sentence, so no instance can be minted without
+  breaking the evidence discipline, but two rounds converging on the identical
+  missing predicate from opposite sides of the gap, eight rounds apart, is
+  itself the evidence for the predicate. Also, `hasPrivilege`'s round-21
+  counter-example (one internal permission string, tied to one role, as a
+  diagnostic aside) sharpens to a pattern: `fts-rest-indexing.md` names four
+  concrete, bucket-scoped permission strings tied to named roles, systematically,
+  across five REST operations — still not an enumerable catalogue, but the
+  strongest concrete-privilege evidence found so far for any one service.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **158
-  entries** as of round 23. The filename convention is `<product>-<slug>`, and since
+  issueType, description, about, status}` — minted with no gatekeeping. **167
+  entries** as of round 24 (9 added this round: thin/placeholder-example Search
+  Plan Parameters fields, a Search RBAC tier asymmetry between querying and
+  reading an index, a Query Response schema independently thin on three REST
+  reference pages, a version-less Analytics deprecation, `ftsMemoryQuota`'s
+  missing unit/bounds, a queryID map-key format inconsistency, an uncaptured
+  `validate` ctl property, a 7.0.2 file-transfer-rebalance exception, and an
+  unstated role requirement on the Search manage endpoint). The filename convention is `<product>-<slug>`, and since
   round 16 a reference to a `docs-issues/` slug with no file behind it is a
   `verify-registry-ids.py` failure: two references written in earlier rounds pointed
   at the un-prefixed name and nothing noticed for four rounds, which fails in the
@@ -2803,6 +2881,29 @@ namespace left in the corpus):**
      the exact same spelling, is the opposite failure mode's absence. Confirming the
      string match before treating a same-round double-mint as a problem avoids
      inventing a fold where the two batches had already agreed.
+106. **Promotion debt invisible to any single round's own recurrence count keeps
+     accumulating until a dense-enough round crosses it in one pass.** `role:cluster-admin`,
+     a core Server RBAC role, sat unpromoted for 24 rounds not because it was rare
+     but because no single round's own extraction set had ever pushed it past its own
+     two-file bar - a third recurrence of the shape round 10 found in `query-context`
+     and round 12 found across the whole role/privilege catalog.
+107. **A dispatch briefing's own factual error is caught by the same reflex that
+     catches an unflagged near-miss, and both are the agent's discipline, not the
+     coordinator's foresight.** Two of round 24's own briefings were wrong (a
+     near-miss pointer one directory off; a promoted concept mis-declared
+     extraction-layer), and both agents caught it by running the prescribed check
+     rather than trusting the instruction that assigned it.
+108. **A predicate can be promoted on convergent need with zero licensable instances,
+     and that is a different, weaker promotion than the usual recurrence rule.**
+     `alsoExposedAs` exists because two rounds, eight apart, independently proposed
+     the identical missing name for a structural fact neither round's source pages
+     ever stated as a sentence - the predicate is promoted, no instance of it is, and
+     the record says so rather than manufacturing a paraphrase to fill the gap.
+109. **Simultaneous stalling across unrelated batches is itself a diagnostic
+     signal, distinct from one batch failing on its own content.** All five of
+     round 24's original extraction batches stalled at the same 600-second mark at
+     once, across four unrelated products - recognizable as an infrastructure cause
+     before any content-specific explanation was worth considering.
 
 ## What this is not
 
@@ -2978,7 +3079,13 @@ document.
   briefing; the obvious next coherence-pass target, now with a much larger and
   better-understood member set to sort, and with round 1's fts/search
   doc-generation question finally settled as background); then `n1ql:`, largest
-  and the one the metric fix most changed.
+  and the one the metric fix most changed. Round 24's REST-layer read promoted
+  another 33 members across `fts:`/`n1ql:`/`analytics:`/`index:`/`role:` (a
+  whole-corpus backlog sweep, not a dedicated coherence pass, same shape as
+  round 18's eventing side-effect promotions) and left roughly a dozen more
+  evidenced-but-unwritten candidates as an explicit backlog, including two
+  likely page-shaped `search:` ids flagged for skipping rather than promoting
+  when a `search:`/`fts:` coherence pass is eventually run.
   Five cautions from waves 1 to 3. Read the namespace's existing records *before*
   deciding it — `fts:`/`search:` looks like a one-member collision and is a documented,
   correct resolution of a five-way split, which a tidying pass would have destroyed.

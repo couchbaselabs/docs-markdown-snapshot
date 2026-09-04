@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/cluster-restart-api",
+  "label": "Analytics Cluster Restart API",
+  "type": "the REST endpoint restarting the whole Analytics cluster - required after certain configuration changes. Full Admin only (narrower than the sibling Node Restart's role set).",
+  "promoted": true,
+  "recurrence": 3,
+  "usesPort": "port:8095",
+  "requiresServerRole": "role:full-administrator",
+  "documented_at": "server/8.0/analytics-rest-admin",
+  "relates_to_competency_question": "Do all Analytics configuration changes take effect live, or does the whole cluster need restarting for some of them?"
+}

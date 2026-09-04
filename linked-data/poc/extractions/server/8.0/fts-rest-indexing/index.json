@@ -1,0 +1,499 @@
+{
+  "page_id": "server/8.0/fts-rest-indexing/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-indexing/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:index-management-rest-api",
+      "label": "Search Index Management and Monitoring API",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked fts:manager-options-endpoint (advanced-settings tuning surface) and fts:search-advanced-api (this round's sibling fts-rest-advanced/index.json, /api/pindex + /pools/default) first; this page's own umbrella surface - full index CRUD, ingest/freeze/query control, per-index stats, and index-scoped querying under /api/index and /api/bucket/{BUCKET}/scope/{SCOPE}/index - is a third, distinct REST surface with no existing id. Genuine first-contact mint for the page's overall subject."
+    },
+    {
+      "candidate_id": "fts:legacy-index-endpoint",
+      "label": "Legacy (unscoped) Search index REST endpoint",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page states, on seven separate endpoint pairs, that the unscoped /api/index/{INDEX_NAME} form is 'for legacy Search indexes and may be deprecated in a future release', requiring a fully-qualified index name. No existing id captures this addressing scheme."
+    },
+    {
+      "candidate_id": "fts:scoped-index-endpoint",
+      "label": "Scoped Search index REST endpoint (bucket/scope path)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the superseding endpoint family, addressed via /api/bucket/{BUCKET_NAME}/scope/{SCOPE_NAME}/index/{INDEX_NAME}, explicitly stated to not require a fully qualified index name."
+    },
+    {
+      "candidate_id": "fts:index-ingest-control-endpoint",
+      "label": "Search index ingestion control endpoint (pause/resume)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked fts:manage-index-lifecycle (Edit/Delete/Clone via the Web Console UI, round-earlier extraction) first; that page never covers pausing document ingestion, which is REST-only. No existing id."
+    },
+    {
+      "candidate_id": "fts:index-plan-freeze-endpoint",
+      "label": "Search index partition-plan freeze/unfreeze endpoint",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct control from ingest-control and query-control: freezing stops partition-to-node reassignment during rebalance/index updates specifically, not ingestion or querying. No UI-walkthrough page covers this; REST-only mechanism."
+    },
+    {
+      "candidate_id": "fts:index-query-control-endpoint",
+      "label": "Search index query-control endpoint (allow/disallow queries)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third distinct control, blocking queries against an index's partitions without affecting ingestion or partition placement. REST-only mechanism."
+    },
+    {
+      "candidate_id": "fts:document-analysis-endpoint",
+      "label": "Analyze Document endpoint (POST /api/index/{INDEX_NAME}/analyzeDoc)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a debugging capability with no UI-walkthrough counterpart in the search:/fts: batches from rounds 22-23: submits an arbitrary document and returns how the index's configured analyzers would tokenize it, term-by-term."
+    },
+    {
+      "candidate_id": "fts:index-partition-lookup-endpoint",
+      "label": "Look Up Index Partition for a Document endpoint (pindexLookup)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - given a document ID, returns which Search index partition stores it. Distinct from fts:pindex-query-endpoint (this round's sibling fts-rest-advanced page), which queries a partition directly by name rather than looking one up by document ID."
+    },
+    {
+      "candidate_id": "fts:query-consistency-timeout-model",
+      "label": "Search REST query consistency-and-timeout two-phase model",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own 'Consistency and Timeouts' section describes a two-phase wait (a consistency wait that can return HTTP 416, followed by a per-partition query timeout that returns HTTP 200 even on partition failure) not stated on any of the promoted search:ctl-object/fts:search-consistency-level pages from rounds 22-23."
+    },
+    {
+      "candidate_id": "fts:rest-security-type",
+      "label": "Search REST API security tiers (Read/Write/Manage/Statistics) with named internal permission strings",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page names four distinct HTTP-basic security tiers, each tied to a role AND a concrete internal permission string (cluster.bucket[$BUCKET_NAME].fts!manage / fts!write / fts!read / stats!read). No prior page in the corpus names a Server permission string this explicitly for the Search service."
+    },
+    {
+      "candidate_id": "fts:fts-rest-stats",
+      "label": "Get Query, Mutation, and Partition Statistics for the Search Service (REST API, sibling page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - stub only; this round's sibling fts-rest-stats/ page is not yet extracted (empty directory at the time of this write). Recorded as the seeAlso target this page's own links point to."
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "full-text index (artifact)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the artifact every endpoint on this page creates, reads, updates, deletes, or queries"
+    },
+    {
+      "candidate_id": "search:search-index-partition",
+      "label": "search-index partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id (server/8.0/learn/services-and-indexes/services/search-service.json, corroborated this round by fts-rest-advanced/index.json's pindex-query endpoint); this page's planPIndexes/pindexes objects and the pindexLookup endpoint's result are exactly this concept, exposed over REST"
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "search:planparams-object",
+      "label": "planParams Object (partitions/replicas settings)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (server/8.0/search/search-index-params.json); this page's 'Plan Parameters' schema is exactly this object"
+    },
+    {
+      "candidate_id": "search:index-partitions-param",
+      "label": "indexPartitions property (planParams)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "search:max-partitions-per-pindex-param",
+      "label": "maxPartitionsPerPIndex property (planParams)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "fts:index-replicas",
+      "label": "Search index replicas",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "fts:index-partitioning",
+      "label": "Search index partitioning",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "search:search-index-definition-json",
+      "label": "Search index definition (JSON)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the 'Index Definition' object this page's PUT/GET endpoints exchange"
+    },
+    {
+      "candidate_id": "search:store-object",
+      "label": "store Object (merge policy / file format settings)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; shown in this page's own example index definitions"
+    },
+    {
+      "candidate_id": "search:doc-config-object",
+      "label": "doc_config object (Search index JSON)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; shown in this page's example index definitions"
+    },
+    {
+      "candidate_id": "search:doc-config-mode-enum",
+      "label": "doc_config mode (type_field | docid_prefix | docid_regexp | custom)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this page's examples show the scope.collection.type_field mode value in use"
+    },
+    {
+      "candidate_id": "index-type:search-vector",
+      "label": "Search Vector Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this page's example index definitions include a vector field (dims/similarity/vector_index_optimized_for)"
+    },
+    {
+      "candidate_id": "search:field-mapping",
+      "label": "Field mapping / child field (Search)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the vector child-field example on this page is an instance of this concept"
+    },
+    {
+      "candidate_id": "search:search-index-params",
+      "label": "Search Index JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's PUT/GET index-definition body links there directly for the full property list"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's Query Request body links there directly for the full query JSON schema"
+    },
+    {
+      "candidate_id": "search:ctl-object",
+      "label": "Ctl Object (query consistency and execution control)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the Query Request's ctl property"
+    },
+    {
+      "candidate_id": "fts:search-consistency-level",
+      "label": "Search request consistency level (at_plus | not_bounded)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's ctl.consistency.level example shows the at_plus value"
+    },
+    {
+      "candidate_id": "search:sort-object",
+      "label": "Sort Object",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the Query Request's sort property"
+    },
+    {
+      "candidate_id": "fts:search-response-object",
+      "label": "Search Response Object (FTS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this page's own text ('The response object has a status section that must be checked for every request') describes exactly this envelope, though the formal QueryResponse schema table underspecifies it - see notable_absence/cross_component_finding"
+    },
+    {
+      "candidate_id": "search:analyzers",
+      "label": "Analyzer (Search)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the Analyze Document endpoint's own worked example names the keyword analyzer used for the test index"
+    },
+    {
+      "candidate_id": "search:token-filter",
+      "label": "Token filter (Search)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; the same worked example names an ngram token filter"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "vector-search:vector-search",
+      "label": "Vector Search (hybrid search with Search Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's Query a Search Index (Scoped) endpoint links there for its Hybrid Query example"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!manage` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Reader** or **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!read` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "reliesOnMechanism",
+      "object": "search:search-index-definition-json",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The full Search index definition. For a detailed list of all parameters for the request body, see [Search Index JSON Properties](../search/search-index-params.html)."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "reliesOnMechanism",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "For more information about how to create a Search query JSON object, see [Search Request JSON Properties](../search/search-request-params.html)."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "targets",
+      "object": "search:full-text-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate (fts-rest-advanced/index.json uses the same predicate this round for the sibling API's pindex-query endpoint)",
+      "evidence": "Deletes the Search index definition specified in the endpoint URL."
+    },
+    {
+      "subject": "fts:legacy-index-endpoint",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "fts:scoped-index-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Delete Index Definition (Scoped)](#d-api-scoped-index-name) instead."
+    },
+    {
+      "subject": "search:planparams-object",
+      "predicate": "hasInternalComponent",
+      "object": "search:index-partitions-param",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The number of partitions to split the Search index into, across the nodes you have available in your database with the Search Service enabled."
+    },
+    {
+      "subject": "search:planparams-object",
+      "predicate": "hasInternalComponent",
+      "object": "search:max-partitions-per-pindex-param",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This setting is deprecated. Use indexPartitions instead."
+    },
+    {
+      "subject": "search:max-partitions-per-pindex-param",
+      "predicate": "mustUseInsteadWhen",
+      "object": "search:index-partitions-param",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted relation (search-index-params.json), corroborated verbatim on this page",
+      "evidence": "This setting is deprecated. Use indexPartitions instead."
+    },
+    {
+      "subject": "fts:index-partitioning",
+      "predicate": "configuredVia",
+      "object": "search:index-partitions-param",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The number of partitions to split the Search index into, across the nodes you have available in your database with the Search Service enabled."
+    },
+    {
+      "subject": "search:planparams-object",
+      "predicate": "hasInternalComponent",
+      "object": "fts:index-replicas",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The number of replicas the Search Service creates for the Search index to ensure high availability."
+    },
+    {
+      "subject": "search:search-index-definition-json",
+      "predicate": "hasInternalComponent",
+      "object": "search:store-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "\"indexType\" : \"scorch\","
+    },
+    {
+      "subject": "search:search-index-definition-json",
+      "predicate": "hasInternalComponent",
+      "object": "search:doc-config-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "\"mode\" : \"scope.collection.type_field\","
+    },
+    {
+      "subject": "search:doc-config-object",
+      "predicate": "usesEnum",
+      "object": "search:doc-config-mode-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted, corroborated by this page's example value",
+      "evidence": "\"mode\" : \"scope.collection.type_field\","
+    },
+    {
+      "subject": "search:field-mapping",
+      "predicate": "appliesToIndexType",
+      "object": "index-type:search-vector",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted, corroborated by this page's example vector field",
+      "evidence": "\"vector_index_optimized_for\" : \"recall\""
+    },
+    {
+      "subject": "search:search-index-definition-json",
+      "predicate": "seeAlso",
+      "object": "search:search-index-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural link, always seeAlso",
+      "evidence": "For a detailed list of all parameters for the request body, see [Search Index JSON Properties](../search/search-index-params.html)."
+    },
+    {
+      "subject": "search:ctl-object",
+      "predicate": "usesEnum",
+      "object": "fts:search-consistency-level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted, corroborated by this page's example ctl.consistency.level value",
+      "evidence": "\"level\" : \"at_plus\","
+    },
+    {
+      "subject": "search:ctl-object",
+      "predicate": "reliesOnMechanism",
+      "object": "fts:query-consistency-timeout-model",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted predicate, applied to this newly-minted mechanism",
+      "evidence": "Logical first phase consistency wait — if timeout in this period, get 416 error with message saying request could not be satisfied."
+    },
+    {
+      "subject": "fts:query-consistency-timeout-model",
+      "predicate": "hasExecutionConstraint",
+      "object": "search:search-index-partition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted; the phase-2 timeout is evaluated per index partition, not per whole query",
+      "evidence": "In phase 2, you have the normal pindex timeout. This will start whenever the first phase completes. At this point, request will return 200 HTTP response code unless there is an internal server error."
+    },
+    {
+      "subject": "fts:index-ingest-control-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!manage` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:index-plan-freeze-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!manage` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:index-query-control-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!manage` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:document-analysis-endpoint",
+      "predicate": "reliesOnMechanism",
+      "object": "search:analyzers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "A `keyword` analyzer for the `title` field."
+    },
+    {
+      "subject": "fts:document-analysis-endpoint",
+      "predicate": "reliesOnMechanism",
+      "object": "search:token-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "An `ngram` token filter with a `min` of 2 and a `max` of 5 for the `name` field."
+    },
+    {
+      "subject": "fts:index-partition-lookup-endpoint",
+      "predicate": "targets",
+      "object": "search:search-index-partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate, same usage as fts-rest-advanced/index.json's pindex-query endpoint this round",
+      "evidence": "Send a document ID in the request body and return the Search index partition ID where the document is stored."
+    },
+    {
+      "subject": "fts:rest-security-type",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!write` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:rest-security-type",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Search Reader** or **Search Admin** role, with `cluster.bucket[$BUCKET_NAME].fts!read` permissions on the required bucket."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "seeAlso",
+      "object": "fts:fts-rest-stats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural link, always seeAlso",
+      "evidence": "This endpoint returns statistics provided by the Search service. For additional statistics, see [Get Query, Mutation, and Partition Statistics for the Search Service](../fts-rest-stats/index.html#g-api-nsstats)."
+    },
+    {
+      "subject": "fts:index-management-rest-api",
+      "predicate": "seeAlso",
+      "object": "vector-search:vector-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural link, always seeAlso",
+      "evidence": "For more information about vector searches, see [Vector Search Using Search Vector Indexes](../vector-search/vector-search.md)."
+    },
+    {
+      "subject": "fts:search-response-object",
+      "predicate": "hasExecutionConstraint",
+      "object": "search:search-index-partition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The response object has a status section that must be checked for every request. Under nearly all circumstances, the query response will be HTTP 200 even though individual index shards (partitions) may encounter a timeout or return an error."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The Plan Parameters schema documents indexPartitions, numReplicas, and the deprecated maxPartitionsPerPIndex with real descriptions, but two of its six fields carry no description at all beyond a type and nullability flag: 'hierarchyRules | **Nullable:** yes | String' and 'nodePlanParams | **Nullable:** yes | String'. Both fields appear populated with opaque string values in the example request bodies ('hierarchyRules' : 'hierarchyRules', 'nodePlanParams' : 'nodePlanParams' - literally the field name as a placeholder value, unlike every other field's realistic example), so the Swagger generator has never had real example data to draw from either. A reader cannot learn what either field does from this page."
+  },
+  "cross_component_finding": "Three findings worth flagging together. (1) A genuine security-tier asymmetry the page states but never explains: 'Query a Search Index' and 'Query a Search Index (Scoped)' both require the Manage security tier (`fts!manage`), not Read (`fts!read`) - the same tier required for creating, updating, and deleting the index definition itself - while 'Get Document Count for an Index' requires only the Statistics tier and 'Get Index Definition' requires only Read. Running a search query is therefore gated as a write-level operation on this REST surface, unlike the Read-gated equivalent on the Web Console/simple-search-rest-api task pages from earlier rounds (role:fts-admin OR role:fts-searcher, both Read-tier there). (2) This page's own formal 'Query Response' schema model declares only `{status: String, results: Object array}` - no hits/took/total_hits/max_score fields at all - while its own worked examples two sections earlier show the full envelope (`status` as an object with total/failed/successful, `hits` array, `total_hits`, `cost`, `max_score`, `took`). This independently reproduces, on a second page, the exact schema-thinness this round's sibling fts-rest-advanced/index.json already flagged for its own pindex-query endpoint's identically-shaped bare {status, results} response - suggesting the underlying cb-swagger spec's QueryResponse model definition is generated thin everywhere it is reused, not a one-off omission. (3) This page names four concrete internal permission strings tied to named roles (`cluster.bucket[$BUCKET_NAME].fts!manage`/`fts!write`/`fts!read`/`stats!read`, each mapped to Search Admin or Search Reader) - a second, sharper counter-example to the registry's `hasPrivilege` finding that 'Server's docs define a privilege tier... and then never name a member of it' (see role:fts-admin's collision note and round 21's appendix_5_python.md partial counter-example, which names only one permission string). This page names four, systematically, for one service - the strongest concrete-permission evidence found so far for Search specifically.",
+  "cross_product_finding": "Not applicable - per this round's framing, no Capella twin exists for any fts-rest-* page. This page's REST surface (index CRUD, ingest/freeze/query control, per-index stats, index-scoped querying) is also structurally distinct from the older server/7.2/search/create-search-index-rest-api.md task page (a curl walkthrough for a single PUT operation): that page never mentions ingestControl, planFreezeControl, queryControl, analyzeDoc, pindexLookup, or the scoped-vs-legacy endpoint split, so it is not treated as a twin - this page is a first-contact, comprehensive reference for a surface the task page only sampled one corner of."
+}

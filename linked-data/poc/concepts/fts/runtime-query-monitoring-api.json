@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/runtime-query-monitoring-api",
+  "label": "Search runtime query monitoring API",
+  "type": "the REST endpoint (GET /api/query) listing currently-running Search queries, filterable by fts:longerthan-parameter. First named in fts-monitor.md (round 23) via the Web Console UI equivalent; this round supplies the REST-first-hand definition.",
+  "promoted": true,
+  "recurrence": 2,
+  "usesPort": "port:8094",
+  "hasParameter": "fts:longerthan-parameter",
+  "documented_at": "server/8.0/fts-rest-query",
+  "relates_to_competency_question": "Can an administrator see which Search queries are currently running and filter to just the slow ones?",
+  "evidence": [
+    "Use the View Active Index Queries API or the View Active Node Queries API to get the parameters `queryID` and `uuid`, which are used to identify and cancel the query.",
+    "The Search Service REST port. Use 18094 for secure access."
+  ]
+}

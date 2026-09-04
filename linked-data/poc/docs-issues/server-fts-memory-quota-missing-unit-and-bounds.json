@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The Search advanced-settings REST API's Set Search Memory Quota endpoint documents its ftsMemoryQuota form parameter only as 'The memory quota for the Search service. Example: 56' - no unit is stated (presumably MB, by analogy with other memory-quota settings elsewhere in the docs, but this page never says so), and no default, minimum, or maximum value is given, nor what happens if the value is set too low.",
+  "about": [
+    "server/8.0/fts-rest-advanced"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-memory-quota-missing-unit-and-bounds"
+}

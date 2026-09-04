@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-service-get-endpoint",
+  "label": "GET /query/service (Query service REST)",
+  "type": "the GET form of the Query service REST endpoint - intended for situations where POST is restricted. Requires percent-escaping (n1ql:uri-percent-escaping) that the POST form's JSON body does not. Sibling of n1ql:query-service-post-endpoint.",
+  "promoted": true,
+  "recurrence": 3,
+  "shouldNotBeConfusedWith": "n1ql:query-service-post-endpoint",
+  "documented_at": "server/8.0/n1ql-rest-query",
+  "relates_to_competency_question": "Can a SQL++ statement be submitted via a plain GET request, and does that change how special characters in the statement must be encoded?",
+  "evidence": [
+    "This endpoint is intended for situations where use of the `POST` method is restricted.",
+    "| GET         | /query/service | [Read-Only Query Service](../../n1ql-rest-query/index.md#get%5Fservice) |"
+  ]
+}

@@ -5758,7 +5758,240 @@ to corroborate them yet.
   exact string before treating a same-round double-mint as a problem is a five-second
   grep that prevents inventing a fold where none is needed.
 
-## Cumulative verdict (all twenty-three rounds)
+## Round 24 — the REST API reference layer (18 pages) and a 24-round promotion backlog paid down in one pass
+
+**Scope.** 18 pages across `server/8.0/{fts-rest-advanced,fts-rest-manage,
+fts-rest-query,fts-rest-stats,fts-rest-indexing,fts-rest-nodes,index-rest-settings,
+index-rest-stats,n1ql-rest-admin,n1ql-rest-functions,n1ql-rest-query,
+n1ql-rest-settings,analytics-rest-admin,analytics-rest-config,analytics-rest-library,
+analytics-rest-links,analytics-rest-service,analytics-rest-settings}` - the REST
+reference layer for four services (Search, Index, Query, Analytics) that earlier
+rounds had only reached through `seeAlso` cross-links from task and reference pages,
+never read first-hand. 276 relations, 0 evidence problems (18 records clean against
+`verify-evidence.py`; whole-corpus check stayed at the unchanged 440-problem
+historical baseline, confirming zero new problems). Two records show a benign
+gate-driven relation-count drop between draft and final write
+(`n1ql-rest-admin` 31→29, `n1ql-rest-settings` 18→16) - correctly-dropped
+markdown-link-embedded evidence that couldn't be quoted verbatim, not a loss of
+real content.
+
+**Infrastructure interruption, twice, both recovered per the standing procedure.**
+An AWS-credential/session issue on the user's end caused all five original
+extraction batches to stall simultaneously
+("Agent stalled: no progress for 600s") partway through dispatch, and a second,
+unrelated interruption paused mid-reconciliation while filing round 22's leftover
+docs-issues. Disk state was checked before any relaunch in both cases: four of the
+five batches had zero files written and were relaunched fresh; the fifth (batch E,
+analytics) had 3 of 6 files already written and validated clean, so only the
+missing 3 were relaunched. All five retries succeeded, each told explicitly that it
+was a retry of a stalled-not-failed batch. Simultaneous stalling across unrelated
+batches, rather than one batch failing on its own content, is itself the signal
+that the cause is infrastructure rather than anything about the pages being read -
+worth stating because a future round hitting the same shape of failure should
+check that signal before assuming a batch-specific problem.
+
+**Two dispatch-briefing errors, both caught by the agents that received them, not
+by the coordinator that wrote them.** The batch A briefing pointed a near-miss
+check (`fts:manager-options-endpoint` against round 23's evidence) at
+`fts-rest-advanced/index.md`; the real match was one directory over, at
+`fts-rest-manage/index.md` ("Search Manager Options REST API"). The batch D
+briefing stated `analytics:local-link`/`analytics:remote-link` were
+extraction-layer; both had actually been promoted in round 21. Both agents ran
+`candidate-evidence.py` as instructed, found the briefing wrong, corrected their
+own records, and reported the correction back in full rather than silently
+following bad instructions or silently fixing them without saying so. Two rounds
+running now (see round 23's unflagged near-misses), the check that catches a
+briefing's own mistake is the same reflex that catches a briefing's blind spot -
+running the check is what matters, not who thought to ask for it.
+
+### A 24-round-old promotion sitting one file short of visible, until this round's density crossed it
+
+The round's single highest-value finding predates any page read this round:
+**`role:cluster-admin`**, one of Server RBAC's core roles (full administrative
+access to a service or component, excluding security/audit), had accumulated
+attestations one file at a time since round 1 without ever crossing the
+two-file bar in any single round's own recurrence count - the kind of debt that
+is invisible to a round-scoped count and only shows up when someone runs
+`recurrence.py` over the whole corpus (the same shape of miss round 10 found for
+`n1ql:query-context` at recurrence 22, and round 12 for the whole
+role/privilege confusion). This round's dense REST-reference batches pushed it to
+**11 files**, decisively promoted, and folded a same-round self-fork in the same
+motion: three of this round's own batches (fts-rest-nodes, fts-rest-stats,
+n1ql-language-reference) independently spelled the role "Cluster Administrator"
+rather than the role catalogue's own "Cluster Admin" - a same-prefix synonym fork
+(species 2 in the running catalogue: two spellings of one thing minted in the same
+round, not two different things). Folded as an alias onto the 11-file canonical
+spelling rather than treated as two candidates.
+
+### A backlog sweep, not just this round's own extractions
+
+Rather than promoting only what these 18 pages minted fresh, the round ran a
+whole-corpus query for every id appearing in a "rest-"-pathed extraction file
+across the `fts:`/`n1ql:`/`analytics:`/`index:`/`js-udf:`/`search:`/`role:`/
+`service:` namespaces at recurrence ≥2 - 43 candidates, evidence pulled for each
+before deciding. **33 concept records promoted** (11 in the RBAC/Analytics batch
+above, 21 in a second REST/settings-focused batch, plus `n1ql:query-tmp-space-setting`
+promoted separately below the usual bar), including:
+
+- **Two folded same-round self-forks in the extraction-layer vocabulary**,
+  resolved before promotion rather than promoted separately: `js-udf:library`
+  (1 file, round 10, an alternate name predating this concept's round-19
+  promotion) folded onto `js-udf:udf-library`; `n1ql:curl-access-list` (1 file,
+  round 10, a display-name spelling) folded onto `n1ql:query-curl-whitelist`.
+- **The Query service's REST sub-API family** - a scheme
+  (`n1ql-query-rest-api-family`) plus `n1ql:query-admin-rest-api` (4),
+  `n1ql:query-functions-rest-api` (3), `n1ql:query-settings-rest-api` (4),
+  and the GET/POST endpoint pair (`query-service-get-endpoint` 3,
+  `query-service-post-endpoint` 3) - round 10 had minted stub concepts for all
+  four sub-APIs purely from an outbound link table; this round's four dedicated
+  pages are each stub's first full-page treatment.
+- **Transaction mechanics**: `n1ql:durability-level` (5), `n1ql:atrcollection`
+  (4) and `n1ql:active-transaction-record` (3), `n1ql:auto-prepare` (2),
+  `n1ql:cleanupclientattempts` (3), `n1ql:client-context-id` (3, carrying
+  forward the existing `doesNotSatisfy n1ql:sql-auditing` finding that a
+  client-supplied id has no security guarantee), `n1ql:uri-percent-escaping` (2).
+- **Search Service settings and monitoring**: `fts:fts-memory-quota` (4),
+  `fts:disable-file-transfer-rebalance` (2), `fts:runtime-query-monitoring-api`
+  (2) with its `fts:longerthan-parameter` (2), and a second, unflagged near-miss
+  in the same shape round 23 kept finding - `fts:search-consistency-level` (2),
+  the identical `at_plus`/`not_bounded` pair already described by round 23's
+  response-object family, now independently corroborated by this round's REST
+  reference.
+- **Index storage, closing a round-17 gap**: `index:bloom-filter` (3) and
+  `index:index-storage-setting` (2) - the latter is `index-storage-stack`'s own
+  level-1 member, on record since round 17 as "the level is real, its name is
+  not yet earned" at recurrence 1; this round's REST settings page supplies the
+  second independent attestation the scheme had been waiting for, and its note
+  is updated to say so.
+- **`n1ql:alter-index-with-nodes`** (4) - ALTER INDEX's WITH-clause node
+  targeting, disabled under file-based index rebalancing, confirmed identically
+  by the REST settings reference and the ALTER INDEX statement page.
+- **`n1ql:query-tmp-space-setting`**, promoted at recurrence 1 under the
+  semantic-weight exception (stated explicitly, not smuggled in against the
+  usual bar): the Index Service's backfill path and the Query Service's spill
+  path share one setting, and the Search Service's own disk-space limit is
+  defined as an explicit multiple of it ("the limit for disk space use is three
+  times this setting") - the first setting found in this corpus load-bearing for
+  three services simultaneously.
+
+**A false lead, checked and rejected**: `n1ql:txtimeout` and
+`n1ql:query-tx-timeout` looked like a possible same-round fork on name similarity
+alone, but the evidence shows genuinely different tier-scoped settings
+(node/request-level vs. cluster-level), already correctly kept apart by an
+earlier round's `transactions.json` record. No fold - a reminder that name
+similarity is a reason to check, not a reason to fold.
+
+**Deliberately deferred, a backlog for a future round**: roughly a dozen more
+candidates from the same 43-item sweep remain unwritten, evidence already
+gathered but not yet turned into records - `search:search-index-partition` (5),
+`n1ql:query-profiling` (5), `search:search-request-params` (4),
+`search:planparams-object` (3), `n1ql:txtimeout`/`n1ql:query-tx-timeout`/
+`n1ql:request-error`/`n1ql:parameter-masking` (2 each), `search:store-object`
+(2). Two more (`search:search-index-params`, `search:create-search-index-rest-api`,
+both at 2) are very likely page-shaped ids by the discipline round 22 and 23
+established (named after the page, not the concept) and should probably be
+skipped rather than promoted when this backlog is next picked up.
+
+### A predicate proposed twice, eight rounds apart, promoted with zero concrete instances
+
+Round 10's `n1ql-rest-api/intro.json` first proposed a predicate for "same
+resource, alternate access surface" after noticing `/admin/active_requests`,
+`/admin/completed_requests`, `/admin/prepareds` and `/admin/vitals` looked like
+REST mirrors of the `system:active_requests`/`completed_requests`/`prepareds`/
+`vitals` keyspaces - but had only read the REST side and could not confirm it.
+This round's `n1ql-rest-admin/index.json` reads the REST side in full and finds
+the identical structural match independently, field by field (the admin
+Requests object's `clientContextID` cites the exact request-level parameter by
+name; `cpuTime` cites the exact `execTime`-sum definition; `scanConsistency`
+cites the exact "Scan Consistency" setting - the same fields the system-keyspace
+pages already document, described from the other side). No page anywhere states
+the identity as a sentence, so no concrete triple can be minted without violating
+the evidence discipline this whole project runs on - but two independent rounds,
+reading from opposite sides of the same gap, converging on needing the identical
+missing predicate is itself the evidence for the *predicate's* existence, even
+with no instance yet licensed. Promoted as `relations/also-exposed-as.json`
+under the semantic-weight exception, stated explicitly, with 0 concrete
+instances recorded honestly rather than papered over.
+
+### `hasPrivilege`'s counter-example sharpens from an aside to a pattern
+
+Round 21 found the first crack in round 12's headline finding (Server's RBAC
+privilege tier is asserted but has no enumerable members anywhere in the corpus):
+one page naming three internal permission strings in prose, one of them tied to
+a role, as a single diagnostic aside. This round's `fts-rest-indexing.md` names
+**four** concrete internal permission strings tied to roles, systematically,
+across five REST operations, all bucket-scoped
+(`cluster.bucket[$BUCKET_NAME].fts!manage`/`fts!read`/`fts!write`, mapped to
+Search Admin/Search Reader) - not an aside but a whole permission family for one
+service, and the first place in the corpus a concrete privilege vocabulary is
+bucket-scoped, a dimension the abstract two-tier model has nowhere to hold.
+`relations/has-privilege.json` updated a second time with this sharper
+counter-example; the underlying finding (no enumerable catalogue connects these
+strings back to `roles.md`) still stands.
+
+### New `docs-issues/` (9, taking the total to 167)
+
+- Two of the Search index-management Plan Parameters schema's six fields
+  (`hierarchyRules`, `nodePlanParams`) carry no description at all, and their
+  own worked examples use the literal field name as a placeholder value.
+- A Search RBAC asymmetry: running a query against an index requires the same
+  Manage tier as creating/deleting the index, while getting its document count
+  or definition requires only Statistics/Read - the opposite of what the
+  Web-Console-facing task pages state for the same operation.
+- The same thin `{status, results}` Query Response schema, independently found
+  on three separate REST reference pages this round, each with its own fuller
+  worked example contradicting its own formal schema - evidence the underlying
+  Swagger spec's model is generated thin everywhere it's reused.
+- The Analytics Pending Mutations endpoint's deprecation and its "may not
+  return meaningful results since 7.0" caveat are stated adjacently but never
+  tied to the same version number.
+- `ftsMemoryQuota`'s REST parameter is documented with an example value and
+  nothing else - no unit, default, minimum, or maximum.
+- The Search runtime query monitoring API's list endpoints key an active query
+  by a hyphenated node-UUID + integer string; the cancel endpoint's `queryID`
+  parameter is typed as a bare integer with the UUID supplied separately, and
+  the page never states how to split one into the other.
+- A `validate` property of the `ctl` object, named and linked by the Search
+  Stats REST API, that round 22's own origin record for that object never
+  captured.
+- A 7.0.2-specific exception for `disableFileTransferRebalance` (opt-in via
+  this same endpoint on 7.0.2, default-on only from 7.1) that round 23's own
+  record for the setting never quoted.
+- The Search manage REST API's Security section, unlike its sibling
+  fts-rest-advanced page in the same round, names no specific role at all for
+  a plainly admin-level endpoint.
+
+### What this round taught about the method
+
+- **Promotion debt invisible to any single round's own recurrence count keeps
+  accumulating quietly until a dense-enough round crosses it in one pass.**
+  `role:cluster-admin` sat unpromoted for 24 rounds not because it was rare, but
+  because no single round's own extraction set had ever pushed it past one file
+  on its own - the same shape of miss as round 10's `query-context` and round
+  12's role/privilege confusion, recurring a third time on a term nobody would
+  have guessed was still unpromoted.
+- **A briefing's own factual error is caught by the same reflex that catches an
+  unflagged near-miss, and both are the agent's discipline, not the
+  coordinator's foresight.** Two dispatch briefings this round were simply
+  wrong (a pointer one directory off; a promoted concept mis-declared as
+  extraction-layer) and both agents caught it by running the prescribed check
+  rather than trusting the instruction that assigned it.
+- **A predicate can be promoted on convergent need alone, with zero licensable
+  instances, and that is a different and weaker kind of promotion than usual -
+  worth naming as such rather than blurring into the ordinary recurrence rule.**
+  `alsoExposedAs` exists because two rounds, eight apart, independently needed
+  it; it cannot yet hold a single fact, because no page states the fact it
+  would encode. The registry now has a place ready to receive that fact the
+  day a page states it, which is a real and different value from what
+  recurrence-based promotion usually provides.
+- **Simultaneous stalling across unrelated batches is itself a diagnostic
+  signal, distinct from one batch failing on its own content.** All five
+  original batches stalling at once, on unrelated pages in unrelated products,
+  was recognizable as infrastructure rather than content before any retry was
+  attempted - worth checking for that shape explicitly before assuming a
+  batch-specific cause.
+
+## Cumulative verdict (all twenty-four rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -6072,6 +6305,25 @@ self-fork is two different names for one thing; two batches independently mintin
 the identical spelling for one thing is corroboration, checked with a five-second
 grep rather than assumed to need reconciling either way.
 
+Round 24 read the REST reference layer for four services and, in the same pass,
+paid down a promotion debt older than any single round's own visibility: 
+`role:cluster-admin` had been accumulating attestations one file at a time since
+round 1 and never crossed its own round's two-file bar until this round's density
+did it in one motion — a third recurrence of the shape round 10 found in
+`query-context` and round 12 found across the whole role/privilege catalog,
+confirming that whole-corpus recurrence, not round-scoped recurrence, is the only
+count this project can trust. It also promoted a predicate,
+`alsoExposedAs`, with zero licensable instances — proposed once in round 10 from
+one side of a gap and again in round 24 from the other side, converging
+independently on the identical missing name for a structural fact neither round's
+source pages ever stated as a sentence. That is a genuinely different shape of
+promotion from every other one in this project: not evidence for an instance, but
+convergent need for a slot to eventually hold one. And it found, twice, that a
+dispatch briefing's own factual error is caught by the exact same reflex that
+catches an unflagged near-miss — the discipline lives in the agent checking the
+registry before acting, not in the coordinator getting the briefing right the
+first time, which by round 24 it reliably no longer does.
+
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of
 the extraction schema requiring direct quotes. It isn't: **313** of 3,522
@@ -6122,7 +6374,7 @@ signal. Four instances, one round, zero file overlap each time, caught only by r
 the folded pair side by side. `divergent`/`shared`/`unchecked` answers "does the
 discount apply"; nothing yet answers "are these the same term."**
 
-Thirty-eight limits of the method are now visible across multiple rounds, not just
+Forty-two limits of the method are now visible across multiple rounds, not just
 once, so worth treating as durable rather than one-off:
 
 - **An invariant in a prompt is a hope; the same invariant in a script is a
@@ -6823,3 +7075,34 @@ once, so worth treating as durable rather than one-off:
   mechanism is the opposite failure mode's absence, not a new problem. Confirming the
   exact string match before treating a same-round double-mint as something to
   reconcile avoids inventing a fold where the two batches already agreed.
+- **Promotion debt invisible to any single round's own recurrence count keeps
+  accumulating quietly until a dense-enough round crosses it in one pass.** Round
+  24's `role:cluster-admin` sat unpromoted for 24 rounds not because it was rare,
+  but because no single round's own extraction set had ever pushed it past its own
+  two-file bar - a third recurrence of the shape round 10 found in `query-context`
+  and round 12 found across the whole role/privilege catalog. Whole-corpus
+  recurrence, run fresh every round rather than trusted from memory, is the only
+  count of the three that would have caught this earlier.
+- **A briefing's own factual error is caught by the same reflex that catches an
+  unflagged near-miss, and both are the agent's discipline, not the coordinator's
+  foresight.** Round 24 sent two wrong dispatch briefings - a near-miss pointer one
+  directory off, a promoted concept mis-declared as extraction-layer - and both
+  agents caught the error by running `candidate-evidence.py` as instructed, not by
+  independently doubting the coordinator. The check being run at all is what
+  matters; whether the coordinator got the briefing right the first time is not a
+  precondition for the method to work, and by round 24 it reliably no longer holds.
+- **A predicate can be promoted on convergent need with zero licensable instances,
+  and that is a different, weaker promotion than the usual recurrence rule - worth
+  naming as such rather than blurring the two together.** Round 24's `alsoExposedAs`
+  exists because two rounds, eight apart, independently needed the identical
+  missing name for a structural fact neither round's source pages ever stated as a
+  sentence. The predicate is promoted; no instance of it is, and the record says so
+  plainly rather than reaching for a paraphrase to manufacture one.
+- **Simultaneous stalling across unrelated batches, on unrelated content, is itself
+  a diagnostic signal distinct from one batch failing on its own material.** Round
+  24 lost all five original extraction batches to the same 600-second stall at
+  once, across four unrelated products - recognizable as an infrastructure cause
+  before any content-specific explanation was worth considering, and confirmed as
+  such once the underlying credential/session issue was identified. A single
+  batch's failure invites a content-specific look; every batch failing at once,
+  identically, invites a look at the infrastructure first.

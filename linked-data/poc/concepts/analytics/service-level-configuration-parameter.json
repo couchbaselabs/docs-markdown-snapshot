@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/service-level-configuration-parameter",
+  "label": "Analytics service-level configuration parameter",
+  "type": "a cluster-wide Analytics setting, requiring analytics:cluster-restart-api to take effect. Sibling of analytics:node-specific-configuration-parameter.",
+  "promoted": true,
+  "recurrence": 2,
+  "requiresPriorExecutionOf": "analytics:cluster-restart-api",
+  "documented_at": "server/8.0/analytics-rest-config",
+  "relates_to_competency_question": "Which Analytics settings apply cluster-wide, and what has to happen for them to take effect?"
+}

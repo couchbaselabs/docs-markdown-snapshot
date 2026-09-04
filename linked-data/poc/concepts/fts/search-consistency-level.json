@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/search-consistency-level",
+  "label": "Search consistency level (at_plus | not_bounded)",
+  "type": "the value set of search:ctl-object's level property - already described in round 23's fts-search-response.md, now independently corroborated by the REST index-management reference's own worked JSON example.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/8.0/fts-rest-indexing",
+  "relates_to_competency_question": "What consistency guarantees can a Search query request, and are they documented consistently across the REST reference and the response-schema page?",
+  "evidence": [
+    "The consistency level is a parameter that either takes an empty string indicating the unbounded (not_bounded) consistency or at_plus indicating the bounded consistency.",
+    "Executes the query immediately, without requiring any consistency for the query. No timestamp vector is used in the index scan.",
+    "Executes the query, requiring indexes first to be updated to the timestamp of the last update."
+  ]
+}

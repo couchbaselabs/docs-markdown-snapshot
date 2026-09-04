@@ -1,0 +1,114 @@
+{
+  "page_id": "server/8.0/n1ql-rest-functions/index",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql-rest-functions/index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-functions-rest-api", "label": "Query Functions REST API (/evaluator/v1/libraries, JavaScript library management)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer. Minted in round 10's intro.json purely from its outbound link table, and independently reused from javascript-functions-with-couchbase.json's 'SQL++ Functions REST API' link - never previously given a full-page treatment. THIS is that treatment: the SAME endpoint family, not a new one. The ONE REAL NEAR-MISS the batch brief called out, resolved as reuse." },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "port:8093", "label": "Port 8093 (Query Service, plaintext)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json for this same API" },
+    { "candidate_id": "port:18093", "label": "Port 18093 (Query Service, TLS)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json for this same API" },
+    { "candidate_id": "js-udf:udf-library", "label": "UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted. NOTE: round 10's intro.json separately minted an UNPROMOTED js-udf:library ('JavaScript library for SQL++ user-defined functions') purely from this same page's link-table row, without checking whether the registry already had the container object under a different name. It did - js-udf:udf-library is the promoted concept for exactly this object (this page's 'Library' definition: name/bucket/scope/code). I am using the promoted id and NOT reusing js-udf:library, which reads as a near-duplicate stub that should be folded into js-udf:udf-library at reconciliation - see cross_component_finding." },
+    { "candidate_id": "js-udf:global-udf-library", "label": "Global UDF library (no bucket/scope; addressed by name alone)", "registry_status": "minted", "reused_or_minted": "minted - the docs draw a real, behaviourally-consequential line between global and scoped libraries (different RBAC role, different addressing - name only vs name+bucket+scope, and the scoped role gets read-only access to global libraries but not vice versa), not just a naming variant. Kept concept-shaped rather than folding into a single flag on js-udf:udf-library because each variant has its own dedicated RBAC role" },
+    { "candidate_id": "js-udf:scoped-udf-library", "label": "Scoped UDF library (addressed by library name + bucket + scope)", "registry_status": "minted", "reused_or_minted": "minted - see js-udf:global-udf-library" },
+    { "candidate_id": "role:query-manage-global-external-functions", "label": "Manage Global External Functions (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (canonical id; alias role:manage-global-external-functions also resolves to it)" },
+    { "candidate_id": "role:query-manage-external-functions", "label": "Manage Scope External Functions (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (canonical id; alias role:manage-scope-external-functions also resolves to it)" },
+    { "candidate_id": "n1ql:drop-function", "label": "DROP FUNCTION statement", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page requires it be run before a library holding the function's JavaScript can be deleted" },
+    { "candidate_id": "js-udf:external-function", "label": "External (library-backed) JavaScript UDF", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; the SQL++-visible object backed by the functions this page's libraries contain" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-functions-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Functions REST API is a secondary API provided by the Query Service."
+    },
+    {
+      "subject": "n1ql:query-functions-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "n1ql:query-functions-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "createdVia",
+      "object": "n1ql:query-functions-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Creates the specified library and its associated functions. If the specified library exists, the existing library is overwritten."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "offersConfigurationChoice",
+      "object": "js-udf:global-udf-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted variant",
+      "evidence": "By default, this operation creates or updates a global library. For a scoped library, you must specify the bucket and scope."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "offersConfigurationChoice",
+      "object": "js-udf:scoped-udf-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted variant",
+      "evidence": "By default, this operation creates or updates a global library. For a scoped library, you must specify the bucket and scope."
+    },
+    {
+      "subject": "js-udf:global-udf-library",
+      "predicate": "requiresServerRole",
+      "object": "role:query-manage-global-external-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To manage global libraries, users must have the _Manage Global External Functions_ RBAC role."
+    },
+    {
+      "subject": "js-udf:scoped-udf-library",
+      "predicate": "requiresServerRole",
+      "object": "role:query-manage-external-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To manage scoped libraries, users must have the _Manage Scope External Functions_ RBAC role, with permissions on the specified bucket and scope."
+    },
+    {
+      "subject": "role:query-manage-external-functions",
+      "predicate": "grantsRole",
+      "object": "role:query-manage-global-external-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, matching the same partial-grant relationship already noted from createfunction.json ('additionally carries an implied read grant over global libraries'), independently evidenced here",
+      "evidence": "In addition, this role enables you to read any global library, but not to create, update, or delete them."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:drop-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Before you can delete a library, you must first drop all SQL++ external user-defined functions which point to any of the JavaScript functions within that library."
+    },
+    {
+      "subject": "js-udf:udf-library",
+      "predicate": "seeAlso",
+      "object": "n1ql:drop-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For more information, see [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter / offersConfigurationChoice",
+    "finding": "There is no add-function or remove-function endpoint, and no partial-update semantics anywhere in this API: POST /evaluator/v1/libraries/{library} always replaces the ENTIRE library body, and the page's own NOTE spells out the workaround three times over - 'To add a function to a library, update the library with all existing functions, plus the new function', 'To update a function, update the library with all existing functions, including the updated function definition', 'To delete a function from a library, update the library with all existing functions, without the deleted function.' Every one of the four curl examples (Add/Edit/Delete under Create or Update a Library) demonstrates this same read-modify-resend-the-whole-library pattern rather than a per-function operation. This is a real, load-bearing REST design fact - a client cannot safely add one function without first reading the current library contents - and it is not captured by any relation in this record because no predicate in the registry expresses 'lacks a finer-grained operation'; doesNotSupport is the closest promoted fit but its examples are all feature/edition boundaries, not API granularity, so I have left it as a finding rather than force the mapping."
+  },
+  "cross_component_finding": "js-udf:library (minted in round 10's server/8.0/n1ql/n1ql-rest-api/intro.json, unpromoted) and js-udf:udf-library (promoted, first minted in cloud/guides/create-javascript-library.json) both describe the exact same object - a named container of one or more JavaScript functions addressable at global or bucket.scope granularity - and neither record's author appears to have checked the other before minting. js-udf:library's own label ('JavaScript library for SQL++ user-defined functions') and js-udf:udf-library's label ('UDF library (container for 1 or more JavaScript functions, shareable across user-defined functions)') are different words for one thing, and this page confirms it structurally: its 'Library' definition (name/bucket/scope/code) is exactly what js-udf:udf-library's promoted description says it is. This record uses js-udf:udf-library throughout and does not reuse js-udf:library, so as not to keep propagating the fork forward; reconciliation should retire js-udf:library into js-udf:udf-library the same way earlier rounds folded requiresMinVersionFor into availableSince.\n\nSeparately, worth flagging for the admin-page's already-recorded finding that the Admin API 'mirrors the system keyspaces': this page shows the SAME shape one level up - GET /evaluator/v1/libraries (Read All Libraries) and the SQL++-side introspection of UDF libraries (documented elsewhere in the n1ql: language-reference pages, not read in this batch) are almost certainly two access surfaces onto one underlying store, following the identical pattern already flagged for /admin/*. Not asserted as a relation here for the same reason: no sentence on this page states the identity outright.",
+  "cross_product_finding": "No Capella counterpart directory exists for n1ql-rest-functions (cloud/n1ql/ has no equivalent REST page), consistent with round 10's finding that the whole n1ql-rest-api-style REST surface is Server-only. Capella's own JavaScript-UDF-library guides (cloud/guides/create-javascript-library.json, which is where js-udf:udf-library was first promoted) document library creation exclusively through the Capella UI / Query Workbench, never through a directly-addressed REST endpoint on a Query Service port - the same data-plane-shared-but-differently-reached split already recorded for the query-execution and admin REST surfaces. This page's global-vs-scoped library distinction and its two dedicated RBAC roles (Manage Global External Functions / Manage Scope External Functions) also have no stated Capella equivalent: Capella's UDF guides describe permissions in terms of Capella's own cluster-access-credential model, not these two Server RBAC roles."
+}

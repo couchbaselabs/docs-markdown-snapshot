@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/node-restart-api",
+  "label": "Analytics Node Restart API",
+  "type": "the REST endpoint restarting a single Analytics node - required after node-specific configuration changes. Broader role set than the Cluster Restart endpoint.",
+  "promoted": true,
+  "recurrence": 3,
+  "usesPort": "port:8095",
+  "requiresServerRole": "role:analytics-admin",
+  "documented_at": "server/8.0/analytics-rest-admin",
+  "relates_to_competency_question": "Can a single Analytics node be restarted to pick up a config change, without restarting the whole cluster?"
+}

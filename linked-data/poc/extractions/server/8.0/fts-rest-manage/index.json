@@ -1,0 +1,127 @@
+{
+  "page_id": "server/8.0/fts-rest-manage/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-manage/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:manager-options-endpoint",
+      "label": "/api/managerOptions (Search Service runtime configuration REST endpoint)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this page IS the formal Swagger-generated REST reference for this exact endpoint. The round's own briefing flagged checking this id before fts-rest-advanced/index.md (which turned out NOT to match - see that record's finding); the real match is here, one directory over, under a page title ('Search Manager Options REST API') that does not obviously say 'managerOptions' the way fts-rest-advanced's title suggested it might."
+    },
+    {
+      "candidate_id": "fts:disable-file-transfer-rebalance",
+      "label": "disableFileTransferRebalance (Search Service rebalance-mode setting)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from round 23's fts-advanced-settings-disable-file-transfer-rebalance.md, which documented this exact same setting from the task angle. This REST reference page states one literal fact that round 23's page did not: the setting's explicit default value (see relations)."
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - closed vocabulary term; this page states the file-transfer-rebalance mechanism is Enterprise-only"
+    },
+    {
+      "candidate_id": "version:server-7-1",
+      "label": "Couchbase Server 7.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not previously in the registry; this page names 7.1 as the version from which file-transfer rebalance became the default behavior underlying this setting"
+    },
+    {
+      "candidate_id": "server:rebalance",
+      "label": "rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - this endpoint configures a rebalance-time behavior, and the page's own See Also links to the general rebalance overview page"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the page's See Also links to the Search Service architecture page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:disable-file-transfer-rebalance",
+      "predicate": "configuredVia",
+      "object": "fts:manager-options-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia) - already promoted",
+      "evidence": "Sets Search manager options. Note that only one setting is available: `disableFileTransferRebalance`."
+    },
+    {
+      "subject": "fts:manager-options-endpoint",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "curl -X PUT http://$HOST:8094/api/managerOptions \\\n-u $USER:$PASSWORD \\\n-H \"Content-type:application/json\" \\\n-d '{\"disableFileTransferRebalance\": \"true\" }'"
+    },
+    {
+      "subject": "fts:disable-file-transfer-rebalance",
+      "predicate": "hasDefaultValue",
+      "object": "false",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasDefaultValue) - object is a literal, per the predicate's documented range",
+      "evidence": "If the value is false (the default), new Search Service partitions are created during rebalance by means of partition file transfer. If the value is true, partitions are created by means of partition build, from scratch, over DCP connections from the Data Service. **Default:** false"
+    },
+    {
+      "subject": "fts:disable-file-transfer-rebalance",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresEdition) - already promoted",
+      "evidence": "This is an Enterprise-only feature, which requires all Search Service nodes either to be running 7.1 or later; or to be running 7.0.2, with the feature explicitly switched on by means of this endpoint."
+    },
+    {
+      "subject": "fts:disable-file-transfer-rebalance",
+      "predicate": "availableSince",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - already promoted",
+      "evidence": "In 7.1+, by default, new partitions are created by the transfer of partition files from old nodes to new nodes: this significantly enhances performance."
+    },
+    {
+      "subject": "fts:manager-options-endpoint",
+      "predicate": "seeAlso",
+      "object": "server:rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "An overview of rebalance for all services is provided at [Rebalance](../learn/clusters-and-availability/rebalance.md)."
+    },
+    {
+      "subject": "fts:manager-options-endpoint",
+      "predicate": "seeAlso",
+      "object": "server/current/rest-api/rest-fts",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link; target is a page, not an existing concept id",
+      "evidence": "An overview of the REST API for the Search Service is provided at [Search API](../rest-api/rest-fts.md)."
+    },
+    {
+      "subject": "fts:manager-options-endpoint",
+      "predicate": "seeAlso",
+      "object": "service:search-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural Markdown link",
+      "evidence": "An architectural summary of the Search Service is provided at [Search Service Architecture](../learn/services-and-indexes/services/search-service.md#search-service-architecture)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike fts-rest-advanced/index.md (same round, same product), this page's Security section names only a generic 'Default' HTTP-basic tier with no specific role stated - just 'For more information, see Roles' - so no requiresServerRole relation can be captured here, even though this is plainly an admin-level cluster-configuration endpoint that would be expected to require role:fts-admin by analogy with the Manage-tier endpoints on the sibling API page."
+  },
+  "cross_component_finding": "This page also states a 7.0.2 exception not previously captured anywhere in the corpus: the file-transfer-rebalance behavior 'requires all Search Service nodes either to be running 7.1 or later; or to be running 7.0.2, with the feature explicitly switched on by means of this endpoint' - meaning on 7.0.2 specifically, file-transfer rebalance is opt-in via this same PUT /api/managerOptions call rather than the 7.1+ default-on behavior. No page in round 23's disableFileTransferRebalance record captured this version nuance since that page never quoted the 7.0.2 detail; recorded here as a finding rather than a third version-gated relation, to avoid overspecifying a detail the page itself treats as a passing caveat.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page per this round's framing."
+}

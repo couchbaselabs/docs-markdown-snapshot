@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/cluster-admin",
+  "label": "Cluster Admin (Server RBAC role)",
+  "type": "one of the 56 roles in learn/security/roles.md - full administrative access to a service or component EXCLUDING security/audit configuration. Sat unpromoted for 24 rounds, purely because recurrence accumulated one file at a time across many unrelated batches until this round's dense REST-reference content crossed the bar in one pass.",
+  "promoted": true,
+  "recurrence": 11,
+  "aliases": [
+    "role:cluster-administrator"
+  ],
+  "aliases_note": "Folds a same-round self-fork: this round's fts-rest-nodes/fts-rest-stats/n1ql-language-reference batches independently spelled the identical role 'Cluster Administrator' rather than the catalogue's own 'Cluster Admin' - 3 files, folded into the 11-file canonical spelling that includes learn/security/roles.md itself.",
+  "evidence": [
+    "For the Cluster Restart and Node Restart operations, users must have one of the following RBAC roles: Full Admin, Cluster Admin, ...",
+    "You must have the Full Admin or Cluster Admin role, with permission to manage the cluster."
+  ],
+  "documented_at": "server/current/learn/security/roles",
+  "relates_to_competency_question": "Which Server RBAC role grants full administrative access to a component without also granting security/audit control?"
+}

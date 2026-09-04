@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The Search Index Management REST API's 'Query a Search Index' and 'Query a Search Index (Scoped)' endpoints both require the Manage tier (cluster.bucket[$BUCKET].fts!manage) - the same tier required to create, update, and delete the index definition itself - while 'Get Document Count for an Index' requires only Statistics and 'Get Index Definition' requires only Read. Running a search query is therefore gated as a write-level operation on this REST surface, unlike the Read-gated equivalent stated on the Web Console / simple-search-rest-api task pages (role:fts-admin OR role:fts-searcher, both Read-tier there). Not asserted as a relation since it may be an intentional asymmetry (query execution costing cluster resources) rather than an error, but the two surfaces disagree on which tier gates 'run a query' and neither page cross-references the other's stance.",
+  "about": [
+    "server/8.0/fts-rest-indexing"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-search-rbac-query-gated-as-manage-tier"
+}

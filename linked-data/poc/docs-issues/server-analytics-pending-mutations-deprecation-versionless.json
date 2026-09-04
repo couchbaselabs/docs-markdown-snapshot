@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The Analytics Admin REST API states the Pending Mutations endpoint 'is deprecated, and will be removed in a future release' and separately that it 'may not return meaningful results in Couchbase Server 7.0 and later' - two facts stated adjacently but never tied to the same version number. It is unclear whether deprecation was declared at 7.0 (when the behavior started degrading) or at some other release, so no deprecatedIn relation could be minted from this page.",
+  "about": [
+    "server/8.0/analytics-rest-admin"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-analytics-pending-mutations-deprecation-versionless"
+}

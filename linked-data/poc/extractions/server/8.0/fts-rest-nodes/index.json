@@ -1,0 +1,233 @@
+{
+  "page_id": "server/8.0/fts-rest-nodes/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-nodes/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:node-configuration-rest-api",
+      "label": "Search Node Configuration REST API",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked fts:index-management-rest-api (this same round, fts-rest-indexing/index.json) and fts:search-advanced-api (sibling fts-rest-advanced/index.json) first; this page's surface is node-scoped (cluster config, diagnostics, GC, runtime stats) rather than index-scoped, with its own distinct security-role family (Full Admin/Cluster Admin, not Search Admin/Search Reader). Genuine first-contact mint."
+    },
+    {
+      "candidate_id": "fts:known-vs-wanted-node-definitions",
+      "label": "Known vs. Wanted node definitions (Search cbgt cluster-planning state)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's Get Cluster Configuration response distinguishes 'nodeDefsKnown' (nodes the cluster currently knows about) from 'nodeDefsWanted' (nodes the cluster wants running the service) as two separately-tracked, separately-CAS-versioned objects. No existing id captures this known/wanted distinction; checked search:search-index-partition and server:node first, neither of which states this."
+    },
+    {
+      "candidate_id": "fts:search-planner-janitor-mechanism",
+      "label": "Search Service planner/janitor mechanism",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Replan Resource Assignments endpoint names two internal processes not mentioned anywhere in the search:/fts: batches from rounds 22-23: 'the planner' (assigns index partitions to nodes) and 'the janitor' (reconciles a node's actual runtime state to match the plan). Checked fts:index-partitioning and search:search-index-partition first; neither page names either process."
+    },
+    {
+      "candidate_id": "fts:node-capabilities-endpoint",
+      "label": "Get Node Capabilities endpoint (GET /api/managerMeta)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a metadata-discovery endpoint stating its own purpose is to let 'management tools and web UIs... be more dynamically metadata driven' by exposing available indexing/storage options at runtime. No equivalent on any UI-walkthrough page checked."
+    },
+    {
+      "candidate_id": "fts:node-diagnostics-bundle-endpoint",
+      "label": "Get Diagnostics endpoint (GET /api/diag, union of all node REST diagnostics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page states this endpoint's response 'is the union of the responses from the node's other REST API diagnostic and monitoring endpoints', explicitly for one-step data capture when working with 'the Couchbase community, forums, technical support, and other engineers'. A distinct aggregation mechanism, not just one more monitoring endpoint."
+    },
+    {
+      "candidate_id": "fts:node-runtime-profiling",
+      "label": "Node runtime profiling capture (CPU/memory)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - two sibling endpoints (captureCpuProfile, captureMemoryProfile) that are the same mechanism (an on-demand local profiling capture) applied to two different resources; treated as one concept rather than two near-duplicate mints, per this round's discipline against minting once per table row."
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted"
+    },
+    {
+      "candidate_id": "server:node",
+      "label": "node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this entire page's REST surface is scoped to a single Search Service node, distinct from the index-scoped surface of the sibling fts-rest-indexing page"
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; every one of this page's four security tiers accepts this role"
+    },
+    {
+      "candidate_id": "role:cluster-administrator",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (minted this round on the sibling fts-rest-stats/index.json); every one of this page's four security tiers accepts this role as an alternative to Full Admin"
+    },
+    {
+      "candidate_id": "search:search-index-definition-json",
+      "label": "Search index definition (JSON)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted; this page's Get Cluster Configuration response embeds the same Index Definition model as the sibling fts-rest-indexing page"
+    },
+    {
+      "candidate_id": "search:planparams-object",
+      "label": "planParams Object (partitions/replicas settings)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; the same Plan Parameters schema (indexPartitions/numReplicas/maxPartitionsPerPIndex/planFrozen) recurs verbatim on this page's Index Definition model"
+    },
+    {
+      "candidate_id": "search:search-index-partition",
+      "label": "search-index partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; this page's planPIndexes objects (in both the Cluster Configuration response and the Plan Partitions model) are exactly this concept, and are the object the planner/janitor mechanism assigns"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Full Admin** or **Cluster Admin** role, with permissions to manage the cluster."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Full Admin** or **Cluster Admin** role, with permissions to manage the cluster."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "targets",
+      "object": "server:node",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate, same usage as this round's sibling fts-rest-advanced/index.json and fts-rest-indexing/index.json",
+      "evidence": "Returns the node's current view of the cluster's configuration as JSON."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "reliesOnMechanism",
+      "object": "fts:known-vs-wanted-node-definitions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted predicate, applied to this newly-minted mechanism",
+      "evidence": "An object containing known node definitions and related information."
+    },
+    {
+      "subject": "fts:known-vs-wanted-node-definitions",
+      "predicate": "targets",
+      "object": "server:node",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate",
+      "evidence": "An object containing the definitions of 1 or more nodes."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "reliesOnMechanism",
+      "object": "fts:search-planner-janitor-mechanism",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted predicate, applied to this newly-minted mechanism",
+      "evidence": "Forces the node to replan resource assignments, (by running the planner, if enabled) and update its runtime state to reflect the latest plan (by running the janitor, if enabled)."
+    },
+    {
+      "subject": "fts:search-planner-janitor-mechanism",
+      "predicate": "targets",
+      "object": "search:search-index-partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer predicate",
+      "evidence": "An object containing information about 1 or more Search index partitions."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "hasInternalComponent",
+      "object": "fts:node-capabilities-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Returns information on the node's capabilities, including available indexing and storage options as JSON. This operation is intended to help management tools and web UIs to be more dynamically metadata driven."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "hasInternalComponent",
+      "object": "fts:node-diagnostics-bundle-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Returns the full set of diagnostic information from the node as JSON. The response is the union of the responses from the node's other REST API diagnostic and monitoring endpoints."
+    },
+    {
+      "subject": "fts:node-diagnostics-bundle-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Full Admin** or **Cluster Admin** role, with permission to read cluster logs."
+    },
+    {
+      "subject": "fts:node-capabilities-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Full Admin** or **Cluster Admin** role, with permission to write cluster settings."
+    },
+    {
+      "subject": "fts:node-configuration-rest-api",
+      "predicate": "hasInternalComponent",
+      "object": "fts:node-runtime-profiling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Requests the node to capture local CPU usage profiling information."
+    },
+    {
+      "subject": "fts:node-runtime-profiling",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "You must have the **Full Admin** or **Cluster Admin** role, with permissions to manage the cluster."
+    },
+    {
+      "subject": "search:search-index-definition-json",
+      "predicate": "hasInternalComponent",
+      "object": "search:planparams-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The Search index's partitioning and replication settings. For more information, see [Plan Params Object](../search/search-index-params.html#planParams)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike the sibling fts-rest-indexing/index.json's four security tiers, every one of which names a concrete internal permission string (`cluster.bucket[$BUCKET_NAME].fts!manage`/`fts!write`/`fts!read`/`stats!read`), this page's four tiers (manageCluster/readClusterSettings/readClusterLogs/writeClusterSettings) are described only in plain prose - 'permissions to manage the cluster', 'permission to read cluster settings', 'permission to read cluster logs', 'permission to write cluster settings' - with no internal permission-string literal anywhere on the page, despite the two pages sharing the same cb-swagger-generated Security section layout and the same 'Search REST APIs support HTTP basic authentication' opening sentence verbatim. The concrete-permission-string pattern this round found for index-scoped operations does not extend to node-scoped ones."
+  },
+  "cross_component_finding": "This page's RBAC gate is a different role family from every other Search Service REST endpoint checked this round: node-level configuration, diagnostics, and monitoring require the generic cluster-wide **Full Admin** or **Cluster Admin** role, with no Search-specific role (role:fts-admin/role:fts-searcher) accepted anywhere on the page - a sharp contrast with fts-rest-indexing's per-bucket Search Admin/Search Reader gate and its explicit `fts!manage`/`fts!write`/`fts!read` permission strings. The practical implication, stated nowhere on either page but derivable from the two together: a user holding Search Admin on every bucket in the cluster still cannot call any endpoint on this page - profiling a node, forcing garbage collection, or even reading a node's own runtime logs requires cluster-wide administrative privilege, not Search-service privilege. This is a real, undocumented asymmetry between the index-management and node-management halves of the same REST API family (both generated from the same cb-swagger source, per each page's own `editUrl` front matter pointing at the same GitHub repo under different `docs/modules/` paths).",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page's endpoints, consistent with this round's framing for all fts-rest-* pages. No prior server/ or cloud/ extraction round names 'the planner' or 'the janitor' as Search Service internal processes, nor the known-vs-wanted node-definition distinction; these are first-contact mechanisms for the whole corpus, not just this batch."
+}

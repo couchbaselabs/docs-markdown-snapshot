@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/node-specific-configuration-parameter",
+  "label": "Analytics node-specific configuration parameter",
+  "type": "a per-node Analytics setting, requiring analytics:node-restart-api (or a node reboot) to take effect. Sibling of analytics:service-level-configuration-parameter.",
+  "promoted": true,
+  "recurrence": 2,
+  "requiresPriorExecutionOf": "analytics:node-restart-api",
+  "documented_at": "server/8.0/analytics-rest-config",
+  "relates_to_competency_question": "Which Analytics settings are per-node rather than cluster-wide?"
+}

@@ -1,0 +1,174 @@
+{
+  "page_id": "server/8.0/n1ql-rest-settings/index",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql-rest-settings/index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings, cluster-level configuration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer. Minted in round 10's intro.json from its link table, and reused as a seeAlso target from both n1ql-rest-admin/index.json and n1ql-rest-query/index.json read earlier in this same batch. THIS page is its first full-page treatment - the same endpoint family, not a new one. The last instance of the batch brief's ONE REAL NEAR-MISS, resolved as reuse across all four of this batch's pages." },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "port:8091", "label": "Port 8091 (Cluster Manager, plaintext)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json; this page adds an explicit contrast statement - see relations" },
+    { "candidate_id": "port:18091", "label": "Port 18091", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (unlike its sibling 8091/8093/18093, which remain extraction-layer only)" },
+    { "candidate_id": "n1ql:cluster-level-query-settings", "label": "Cluster-level Query settings", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's whole 'Settings' object IS this concept's own REST surface" },
+    { "candidate_id": "n1ql:query-curl-whitelist", "label": "queryCurlWhitelist cluster-level setting (Access object with all_access / allowed_urls / disallowed_urls)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's 'Access' object and its two dedicated endpoints ARE this concept's own REST surface. NOTE: round 10's intro.json separately minted an UNPROMOTED n1ql:curl-access-list ('CURL Access List (settings/querySettings/curlWhitelist)') for the same feature under the docs' own display name rather than its wire setting name - a near-duplicate fork of the same shape as js-udf:library/js-udf:udf-library flagged in this batch's n1ql-rest-functions record. I am using the promoted n1ql:query-curl-whitelist and not reusing n1ql:curl-access-list - see cross_component_finding." },
+    { "candidate_id": "n1ql:curl-all-access", "label": "all_access (CURL() access list property)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:curl-allowed-urls", "label": "allowed_urls (CURL() access list property)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:curl-disallowed-urls", "label": "disallowed_urls (CURL() access list property)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:curl-function", "label": "SQL++ CURL() function (URL access governed by an allow list)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; the consumer of the Access object this page's endpoints manage" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin (Server RBAC role)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer (the more heavily-reused of two near-duplicate unpromoted forks in the corpus, role:cluster-admin at 11 files vs role:cluster-administrator at 3; using the more established one rather than adding a third)" },
+    { "candidate_id": "n1ql:completed-limit", "label": "completed-limit node-level setting (default 4000)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's queryCompletedLimit is the cluster-level tier of the same setting, per the corpus's established one-id-per-setting-across-tiers pattern (e.g. n1ql:max-parallelism already covers max-parallelism/queryMaxParallelism)" },
+    { "candidate_id": "n1ql:completed-threshold", "label": "completed-threshold", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; queryCompletedThreshold is its cluster-level tier" },
+    { "candidate_id": "n1ql:completed-max-plan-size", "label": "completed-max-plan-size (plan-size cap for the completed requests catalog)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted earlier in this same round's n1ql-rest-admin/index.json; queryCompletedMaxPlanSize is its cluster-level tier, independently evidenced with the identical description text" },
+    { "candidate_id": "n1ql:max-parallelism", "label": "max-parallelism", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; queryMaxParallelism is its cluster-level tier" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "cost-based optimizer (CBO)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; queryUseCBO is its cluster-level tier" },
+    { "candidate_id": "n1ql:cleanupclientattempts", "label": "cleanupclientattempts node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; queryCleanupClientAttempts is its cluster-level tier" },
+    { "candidate_id": "n1ql:cleanuplostattempts", "label": "cleanuplostattempts node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; queryCleanupLostAttempts is its cluster-level tier" },
+    { "candidate_id": "n1ql:cleanupwindow", "label": "cleanupwindow node-level setting", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; queryCleanupWindow is its cluster-level tier. Mentioned here but, as on the n1ql-rest-admin page in this same batch, its defining sentence embeds a markdown link and could not be quoted cleanly - see notable_absence" },
+    { "candidate_id": "n1ql:numatrs", "label": "numatrs node-level setting (total number of active transaction records)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; queryNumAtrs is its cluster-level tier. Mentioned here but its defining sentence also embeds a markdown link and could not be quoted cleanly - see notable_absence" },
+    { "candidate_id": "n1ql:active-transaction-record", "label": "Active transaction record (ATR)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:query-tx-timeout", "label": "queryTxTimeout cluster-level setting (transaction timeout)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in transactions.json specifically for this cluster-level name, distinct from the node/request-level n1ql:txtimeout; this page is its first REST-reference treatment" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Transactions", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level Query settings", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:query-admin-rest-api", "label": "Query Admin REST API (/admin/*, node-level administration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "request-level query parameters", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "service:index-service", "label": "Index Service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "service:search-service", "label": "Search Service (FTS)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:query-tmp-space-setting", "label": "queryTmpSpaceDir / queryTmpSpaceSize (shared temp/spill/backfill space setting)", "registry_status": "minted", "reused_or_minted": "minted - a genuinely new, genuinely cross-service mechanism not previously extracted anywhere in this corpus: ONE cluster-level directory-and-size setting that the Index Service uses for temporary backfill files and the Query Service uses for spill files, with a stated 3x disk-space multiplier when Search (FTS) is also active on the same cluster. Kept as one concept for the directory+size pair rather than two, since the page documents them as a single co-located setting" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Settings REST API is provided by the Query Service."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Query REST APIs. **Values:** 8091, 18091"
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Query REST APIs. **Values:** 8091, 18091"
+    },
+    {
+      "subject": "n1ql:cluster-level-query-settings",
+      "predicate": "createdVia",
+      "object": "n1ql:query-settings-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Updates cluster-level query settings, including the curl access settings."
+    },
+    {
+      "subject": "n1ql:query-curl-whitelist",
+      "predicate": "createdVia",
+      "object": "n1ql:query-settings-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Updates the cluster-level curl access settings only."
+    },
+    {
+      "subject": "n1ql:curl-function",
+      "predicate": "reliesOnMechanism",
+      "object": "n1ql:query-curl-whitelist",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, independently evidenced here",
+      "evidence": "An object determining which URLs may be accessed by the CURL() function."
+    },
+    {
+      "subject": "n1ql:curl-disallowed-urls",
+      "predicate": "takesPrecedenceOver",
+      "object": "n1ql:curl-allowed-urls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, independently evidenced here",
+      "evidence": "If both allowed_urls and disallowed_urls fields are populated, the disallowed_urls field takes precedence over allowed_urls."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin"
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Cluster Admin"
+    },
+    {
+      "subject": "n1ql:query-tmp-space-setting",
+      "predicate": "servesService",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "The path to which the Index Service writes temporary backfill files, and the Query Service writes spill files, to store any transient data during query processing."
+    },
+    {
+      "subject": "n1ql:query-tmp-space-setting",
+      "predicate": "servesService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "The path to which the Index Service writes temporary backfill files, and the Query Service writes spill files, to store any transient data during query processing."
+    },
+    {
+      "subject": "n1ql:query-tmp-space-setting",
+      "predicate": "sharesOptionSetWith",
+      "object": "service:search-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism; 'shares' fits better than a dependency predicate since the multiplier is a stated CONSEQUENCE of co-deployment, not a configuration Search itself performs",
+      "evidence": "In a cluster with both secondary indexing and full text search, the limit for disk space use is three times this setting."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:query-tx-timeout",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Maximum time to spend on a transaction before timing out."
+    },
+    {
+      "subject": "n1ql:cluster-level-query-settings",
+      "predicate": "overridesSetting",
+      "object": "n1ql:node-level-query-settings",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer, established in query-settings.json; independently evidenced here",
+      "evidence": "When you change the cluster-level setting, the node-level setting is over-written for all nodes in the cluster."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For node-level settings, see the [Query Admin REST API](../n1ql-rest-admin/index.md#Settings)."
+    },
+    {
+      "subject": "n1ql:query-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-service-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For request-level parameters, see the [Query Service REST API](../n1ql-rest-query/index.md#Request)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / availableSince",
+    "finding": "This page's Security section is the most specific about roles anywhere in the batch's admin/settings/query trio - it names two concrete roles (Full Admin, Cluster Admin) rather than the generic 'admin credentials' language on n1ql-rest-admin and n1ql-rest-query. But it still carries none of this round's other version-gating signals: no availableSince anywhere, and queryN1QLFeatCtrl repeats the exact same unexplained 'provided for technical support only' pattern already flagged as a gap on n1ql-rest-admin, this time at the cluster tier. Two settings (queryCleanupWindow, queryNumAtrs) name 'active transaction records' as what they configure, but in both cases the term is embedded inside a Markdown link to a different page's anchor, splitting what would otherwise be a clean, quotable defining sentence - the identical defect already flagged on n1ql-rest-admin for the same two settings, now confirmed independently at the cluster tier rather than fixed."
+  },
+  "cross_component_finding": "This page is the cluster-level mirror of the near-duplicate-naming problem already flagged twice elsewhere in this batch (js-udf:library/js-udf:udf-library on n1ql-rest-functions): n1ql:curl-access-list (unpromoted, minted in round 10's intro.json purely from a link-table row reading '[Update CURL Access List](../../n1ql-rest-settings/index.md#post%5Faccess)') and n1ql:query-curl-whitelist (promoted, first minted from this feature's actual wire setting name queryCurlWhitelist) name the exact same Access object this page defines. The docs themselves use both names interchangeably in one page - the resource heading says 'curl Access List' (matching n1ql:curl-access-list's label) while the JSON wire format and the cluster-level settings table both say 'queryCurlWhitelist' / 'curlWhitelist' (matching n1ql:query-curl-whitelist's label) - so this is not an extraction error so much as the SOURCE material itself carrying two names for one thing, which the corpus then picked up as two separate ids. Reconciliation should fold n1ql:curl-access-list into n1ql:query-curl-whitelist, the same direction as the js-udf case.\n\nSeparately: n1ql:query-tmp-space-setting is this record's one first-contact mechanism, and it is the first place in the corpus (as far as this batch's checks could confirm) where a single setting is stated to be consumed by two DIFFERENT services (Index and Query) under two different names for the same kind of thing (backfill files vs spill files), with a THIRD service's mere co-deployment (Search/FTS) tripling the effective disk budget without Search itself configuring anything. This is a genuinely different shape from the settings-tier overrides (cluster/node/request) that dominate the rest of this batch: it is one resource shared by service co-deployment, not one setting expressed at multiple scopes.",
+  "cross_product_finding": "Consistent with the rest of this batch: no Capella equivalent exists for this page. Capella has no exposed /settings/querySettings surface and no Cluster-Admin-role-gated cluster-wide Query configuration; cloud/n1ql/ documents only request-level parameters. The CURL() access list (queryCurlWhitelist / n1ql:curl-all-access etc.) is the one setting on this page most likely to have a genuine Capella analogue worth checking at reconciliation, since CURL()'s external-network-access risk is exactly the kind of thing a managed cloud service would need to control somehow even without exposing this specific cluster-level REST surface - but no page read in this round states what that Capella-side control is, so this is left as an open question rather than an asserted relation."
+}

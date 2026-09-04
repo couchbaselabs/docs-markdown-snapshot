@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/auto-prepare",
+  "label": "auto-prepare setting",
+  "type": "a service-level setting causing the Query engine to create a n1ql:prepare-d statement for every SQL++ request automatically, whether or not PREPARE was used explicitly. Inactive by default.",
+  "promoted": true,
+  "recurrence": 2,
+  "hasDefaultValue": "false (inactive)",
+  "behavesDifferentlyUnder": "n1ql:prepare",
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "Does every SQL++ statement get implicitly prepared for reuse, or only ones the client explicitly prepares?",
+  "evidence": [
+    "Specifies whether the query engine should create a prepared statement every time a SQL++ request is submitted, whether the PREPARE statement is included or not.",
+    "The auto-prepare feature is inactive by default. You can turn the auto-prepare feature on or off using the `auto-prepare` service-level query setting.",
+    "Prepared statements created by the auto-prepare feature are not executed by the auto-execute feature."
+  ]
+}

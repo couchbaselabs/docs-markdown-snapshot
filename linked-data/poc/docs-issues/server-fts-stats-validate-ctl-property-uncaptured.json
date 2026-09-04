@@ -1,0 +1,12 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The Search Stats REST API's total_queries_validation_error field states 'when the query request included a validate property in the ctl object' and links to search-request-params.html#validate - naming a 'validate' property of the ctl object that round 22's own search-request-params extraction (the origin record for search:ctl-object) does not mention anywhere in its concepts, relations, or notable_absence. Either the property was present on that page but not captured in round 22, or it lives at a separate anchor round 22's read did not surface - left open for reconciliation to check against the live page rather than guessed at.",
+  "about": [
+    "server/8.0/fts-rest-stats",
+    "server/8.0/search/search-index-params"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-stats-validate-ctl-property-uncaptured"
+}

@@ -1,0 +1,165 @@
+{
+  "page_id": "server/8.0/analytics-rest-settings/index",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics-rest-settings/index.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:analytics-settings-rest-api",
+      "label": "Analytics Settings REST API",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuinely different endpoint (GET/POST /settings/analytics on the Cluster administration REST port, 8091/18091) from the other Analytics REST surfaces already extracted this round (config, library, service - all on port 8095/18095). The page itself states the port distinction: 'The port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs.' Checked against analytics:service-level-configuration-parameter/node-specific-configuration-parameter (round 21/this round's config page) - those are the /analytics/config/* Service and Node objects on 8095; this is the separate /settings/analytics cluster-level endpoint on 8091, so not a duplicate."
+    },
+    {
+      "candidate_id": "analytics:num-replicas-setting",
+      "label": "numReplicas (Analytics replica count setting)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked candidate-evidence.py for analytics:num-replicas, analytics:replica-count, analytics:analytics-replicas, analytics:replicas: no match, first contact. A single cluster-level setting, explicitly stated as the only one this API exposes ('Only one setting is available: numReplicas'), also settable via Web Console and CLI per this page's own cross-references."
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091 (Cluster administration REST port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21/this round (analytics/manage-links.json) as the cleartext mgmt port. Named here again as the Analytics Settings REST API's own host port."
+    },
+    {
+      "candidate_id": "port:18091",
+      "label": "Port 18091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named here as the secure-access alternative for this API."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in this page's 'Cluster Read / Pools Read' security scheme."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/5_ddl.json), named again in this page's security scheme."
+    },
+    {
+      "candidate_id": "role:ro-admin",
+      "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (aliased as role:read-only-admin), named here as 'Read-Only Admin' in the security scheme - this API is one of the few Analytics surfaces this round that a read-only role can access, since it is a read/pools-read gate rather than an Analytics-specific one."
+    },
+    {
+      "candidate_id": "role:analytics-admin",
+      "label": "Analytics Admin (analytics_admin)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in this page's security scheme."
+    },
+    {
+      "candidate_id": "server:rebalance",
+      "label": "Rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named as the operation required for a numReplicas change to take effect."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs. **Values:** 8091, 18091"
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs. **Values:** 8091, 18091"
+    },
+    {
+      "subject": "analytics:num-replicas-setting",
+      "predicate": "configuredVia",
+      "object": "analytics:analytics-settings-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia) - the setting's value is SET through this REST surface, distinct from configurableVia which would be for behaviour merely influenced by it.",
+      "evidence": "Sets cluster-level Analytics settings. Only one setting is available: `numReplicas`."
+    },
+    {
+      "subject": "analytics:num-replicas-setting",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "server:rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresPriorExecutionOf) - same 'takes effect only after an operation' shape used for the restart APIs on the sibling config REST page, here pointing at rebalance instead of restart.",
+      "evidence": "A rebalance is required for a new `numReplicas` value to take effect."
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:ro-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Read-Only Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "You can also retrieve the number of Analytic replicas using the [Couchbase Web Console](../manage/manage-settings/general-settings.md#analytics-replicas) or the [CLI](../manage/manage-settings/general-settings.md#analytics-settings-via-cli)."
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/rebalance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "For more information about Analytics replicas, see [Rebalance](../learn/clusters-and-availability/rebalance.md#rebalancing-the-analytics-service) and [Hard Failover](../learn/clusters-and-availability/hard-failover.md#hard-failover-and-the-analytics-service)."
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/hard-failover",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "For more information about Analytics replicas, see [Rebalance](../learn/clusters-and-availability/rebalance.md#rebalancing-the-analytics-service) and [Hard Failover](../learn/clusters-and-availability/hard-failover.md#hard-failover-and-the-analytics-service)."
+    },
+    {
+      "subject": "analytics:analytics-settings-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "For more information, see [Roles](../learn/security/roles.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf (restart)",
+    "finding": "Unlike the sibling analytics-rest-config page (where a service-level or node-specific PUT requires a subsequent Node/Cluster Restart API call to take effect), this Settings API's numReplicas change requires a rebalance instead - the page never mentions restart at all for this setting, only rebalance. The two 'takes effect after X' mechanisms are kept distinct rather than merged."
+  },
+  "cross_component_finding": "This is the only one of the four analytics-rest-* pages read this round (admin/library/service/settings) whose host port is 8091/18091 (the shared cluster-administration port that every Couchbase service exposes) rather than the Analytics-specific 8095/18095 - the page states this explicitly as a deliberate distinction ('The port numbers for this REST API are different to the port numbers used by the other Analytics REST APIs'), and its security model is correspondingly generic ('Cluster Read / Pools Read') rather than an Analytics-specific gate.",
+  "cross_product_finding": "None found on this page - it is a small, self-contained cluster-setting API with no Capella or other-product parallel stated."
+}

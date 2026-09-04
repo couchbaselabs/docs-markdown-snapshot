@@ -1,0 +1,173 @@
+{
+  "page_id": "server/8.0/n1ql-rest-query/index",
+  "source_version": "8.0",
+  "source_path": "server/current/n1ql-rest-query/index.md",
+  "concepts": [
+    { "candidate_id": "n1ql:query-service-rest-api", "label": "Query Service REST API", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (recurrence 12). This page IS that concept's own reference page (POST/GET /query/service) - the batch brief's ONE REAL NEAR-MISS resolved as a straightforward reuse, not a duplicate: this is the SAME endpoint round 10's n1ql-rest-api/intro.md and examplesrest.md already described from the outside, now documented in full from a reorganized reference." },
+    { "candidate_id": "n1ql:query-service-post-endpoint", "label": "POST /query/service (full query execution endpoint)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in round 10's intro.json from its link table and independently evidenced in exsuccessful.json; this page is its first full-page treatment ('Query Service' resource)" },
+    { "candidate_id": "n1ql:query-service-get-endpoint", "label": "GET /query/service (\"Read-Only Query Service\")", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in round 10's intro.json; this page's own 'GET-Only Query Service' resource is its first full-page treatment" },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "port:8093", "label": "Port 8093 (Query Service, plaintext)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json" },
+    { "candidate_id": "port:18093", "label": "Port 18093 (Query Service, TLS)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in intro.json" },
+    { "candidate_id": "n1ql:query-response-object", "label": "query response object", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's 'Response Body' definition is exactly this envelope" },
+    { "candidate_id": "n1ql:query-error-object", "label": "query error object", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's 'Conditions' object (code/msg/name/sev/temp) is this concept, doubling as both errors and warnings" },
+    { "candidate_id": "n1ql:query-request-status-enum", "label": "query request status (enumeration)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's Response Body 'status' property carries the enum" },
+    { "candidate_id": "n1ql:query-profiling", "label": "Query Profiling (off/phases/timings)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this page documents both the request-level profile parameter and the response-side Profile/Execution Timings/Statistics objects it produces" },
+    { "candidate_id": "n1ql:client-context-id", "label": "client_context_id parameter, captured as clientContextId in audit records", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this page adds a validation rule not previously recorded - see notable_absence" },
+    { "candidate_id": "n1ql:parameter-masking", "label": "Named parameter masking via leading/trailing underscore in the parameter name", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; independently evidenced on this page with the same 7.6.8 version fact" },
+    { "candidate_id": "n1ql:flex-index", "label": "Flex Index feature (run a SQL++ query as a full-text search query)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer; this page's use_fts parameter is the request-level control for it" },
+    { "candidate_id": "n1ql:durability-level", "label": "durability_level request-level parameter", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:preserve-expiry", "label": "preserve_expiry request-level query parameter", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:scan-consistency", "label": "scan_consistency", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; documented here as the request-level parameter itself" },
+    { "candidate_id": "n1ql:txid", "label": "txid (transaction ID query parameter)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:tximplicit", "label": "tximplicit (query parameter)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:query-context", "label": "query_context", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:max-parallelism", "label": "max-parallelism", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page documents the request-level tier" },
+    { "candidate_id": "n1ql:cost-based-optimizer", "label": "cost-based optimizer (CBO)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; use_cbo request-level parameter" },
+    { "candidate_id": "n1ql:request-level-query-parameters", "label": "request-level query parameters", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's whole 'Request Parameters' object is this concept's own reference" },
+    { "candidate_id": "n1ql:node-level-query-settings", "label": "Node-level Query settings", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:transactions", "label": "SQL++ Transactions", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:encoded-plan", "label": "encoded_plan", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page states the same 6.5-and-later no-op fact recorded elsewhere" },
+    { "candidate_id": "n1ql:prepared-statement", "label": "prepared statement", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; the 'prepared' request parameter names one" },
+    { "candidate_id": "n1ql:query-settings-rest-api", "label": "Query Settings REST API (/settings/querySettings, cluster-level configuration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "n1ql:query-admin-rest-api", "label": "Query Admin REST API (/admin/*, node-level administration)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer" },
+    { "candidate_id": "version:server-8-0", "label": "Couchbase Server 8.0", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "n1ql:natural-language-query", "label": "Natural-language query request (natural/natural_cred/natural_orgid/natural_context/natural_output parameters, Capella iQ-backed)", "registry_status": "minted", "reused_or_minted": "minted - genuinely new in Couchbase Server 8.0 and absent from the older n1ql-rest-api intro/examples set entirely: a request mode that sends an English-language prompt plus Capella credentials to the Query Service, which uses the Couchbase Capella iQ service as a backend to generate a SQL++ statement (or a CREATE FUNCTION/JS-UDF statement, or an FTS-flex-index-eligible statement), optionally auto-executing it if it is a SELECT. Kept as ONE concept for the whole 5-parameter mechanism plus its two response-side fields (generated_statement, naturalLanguageProcessingTime) rather than one concept per parameter" }
+  ],
+  "relations": [
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "dependsOnService",
+      "object": "service:query-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST API is provided by the Query Service."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "usesPort",
+      "object": "port:8093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "usesPort",
+      "object": "port:18093",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Query Service REST port. Use 18093 for secure access. **Values:** 8093, 18093"
+    },
+    {
+      "subject": "n1ql:query-service-get-endpoint",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "n1ql:query-service-post-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, already recorded from intro.json's link table; independently evidenced here from this page's own prose",
+      "evidence": "This endpoint is intended for situations where use of the `POST` method is restricted."
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "usesEnum",
+      "object": "n1ql:query-request-status-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The status of the request. **Values:** \"success\", \"running\", \"errors\", \"completed\", \"stopped\", \"timeout\", \"fatal\""
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:query-error-object",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "An array of 0 or more error objects. If an error occurred during processing of the request, it will be represented by an error object in this list."
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:query-profiling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "An object containing monitoring and profiling information about the request. Present only if profile was set to \"phases\" or \"timings\" in the request parameters."
+    },
+    {
+      "subject": "n1ql:parameter-masking",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; independently evidenced on this page",
+      "evidence": "Parameter masking is available in clusters running Couchbase Server 7.6.8 and later."
+    },
+    {
+      "subject": "n1ql:natural-language-query",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "This parameter is available in clusters running Couchbase Server 8.0 and later."
+    },
+    {
+      "subject": "n1ql:query-response-object",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:natural-language-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted mechanism",
+      "evidence": "The generated statement, if the request was a natural language prompt."
+    },
+    {
+      "subject": "n1ql:transactions",
+      "predicate": "configurableVia",
+      "object": "n1ql:durability-level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "If the request contains a BEGIN TRANSACTION statement, or a DML statement with the tximplicit parameter set to true, the durability level is specified for all mutations within that transaction."
+    },
+    {
+      "subject": "n1ql:request-level-query-parameters",
+      "predicate": "boundedBySetting",
+      "object": "n1ql:node-level-query-settings",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - extraction-layer, established in query-settings.json; independently evidenced here",
+      "evidence": "The request-level parameter overrides the node-level setting, but only if it is lower than the node-level setting."
+    },
+    {
+      "subject": "n1ql:encoded-plan",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "n1ql:prepared-statement",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "In clusters running Couchbase Server 6.5 and later, this parameter is ignored and has no effect. It's included for compatibility with previous versions of Couchbase Server."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-settings-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For cluster-level settings, see the [Query Settings REST API](../n1ql-rest-settings/index.md#Settings)."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For node-level settings, see the [Admin REST API](../n1ql-rest-admin/index.md#Settings)."
+    },
+    {
+      "subject": "n1ql:query-service-rest-api",
+      "predicate": "seeAlso",
+      "object": "n1ql:query-service-post-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - seeAlso is a mapping record, always promoted",
+      "evidence": "For more examples, see [Examples](../n1ql/n1ql-rest-api/examplesrest.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This is the page the old n1ql-rest-api/intro.json record predicted would carry the credential-precedence rule ('If a request contains both HTTP basic authentication header and a creds parameter, the creds parameter is ignored and only the HTTP basic authentication header is used for authenticating') - and it does, confirming that finding. But the RBAC side stays generic here too: 'Users must have the relevant Administrative or Query & Index RBAC roles, depending on the types of query they intend to run' names no specific role, unlike n1ql-rest-functions/index.md's two named roles (Manage Global/Scope External Functions) read earlier in this same batch. The client_context_id parameter also carries a validation rule with no relation recorded for it, because no predicate in the registry models input-length/format validation: 'Maximum allowed size is 64 characters; all others will be cut. If it contains an escape character / or quote \", it will be rejected as error code 1110.'"
+  },
+  "cross_component_finding": "The natural-language query mechanism is the clearest cross-component dependency in this whole batch: a Server-side Query Service REST parameter that requires a Couchbase Capella account and credentials to function at all ('Natural language requests use the Couchbase Capella iQ service as a backend. To make a natural language request, you must have a Couchbase Capella user account.'), stated four times over (once per natural_* parameter). This means an on-premises Couchbase Server cluster's query REST API has a feature that is unusable without reaching a Capella-hosted service - the inverse of every other cross-product finding in this batch, where Server and Capella were two independent implementations of similar capabilities. No existing predicate models 'depends on a different product's cloud service to function'; dependsOnService's own registry note restricts it to service-to-service dependency within one product's architecture. I have used availableSince to record the version gate and left the Capella-iQ dependency as prose here rather than force a relation.\n\nSecondly, the Response Body's own note - 'Additional elements not listed here might also be present. Clients and consumers of the REST API or the logs must accommodate any additional elements' - appears three times (Response Body, Controls, Metrics) and is a stated forward-compatibility contract that the schema is deliberately non-exhaustive. This directly supports the n1ql-rest-admin record's cross_component_finding that the REST envelope and the system:active_requests/completed_requests keyspaces are the same underlying data through two surfaces: if the REST schema is explicitly open-ended, a keyspace column appearing in one place and not the other is expected, not evidence against the identity.",
+  "cross_product_finding": "Confirms round 10's finding that this whole REST family is Server-only, but with one asterisk: natural-language querying is the one capability on this page that is NOT Server-only in practice, because it requires a Capella account to reach the Capella iQ backend even when the query itself runs against an on-premises Server cluster. Every other request-level parameter on this page (durability_level, use_replica, use_fts, use_cbo, atrcollection, and the whole scan_consistency/scan_vector family) has a documented Capella equivalent as a request-level parameter only, per the pattern round 10 and the n1ql-rest-admin record in this batch both established: Capella exposes the same option set at the request level, with no node- or cluster-level tier. This page is where that pattern is most completely visible in one place, because unlike n1ql-rest-admin or n1ql-rest-settings, EVERY setting this page documents already has a request-level form - there is nothing here that exists at only one tier."
+}

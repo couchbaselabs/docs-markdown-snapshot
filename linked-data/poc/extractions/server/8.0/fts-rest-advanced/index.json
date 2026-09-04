@@ -1,0 +1,145 @@
+{
+  "page_id": "server/8.0/fts-rest-advanced/index",
+  "source_version": "8.0",
+  "source_path": "server/current/fts-rest-advanced/index.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:search-advanced-api",
+      "label": "Couchbase Search Advanced API",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked fts:manager-options-endpoint (round 23's promoted /api/managerOptions surface) first per this round's briefing, but this page's actual content is a DIFFERENT REST surface entirely: /api/pindex (partition definition/query) and POST /pools/default (memory quota) - not one mention of /api/managerOptions or any advanced-settings tuning parameter anywhere on the page, despite the shared 'Advanced' title wording. Genuine first-contact mint for the umbrella API this page describes."
+    },
+    {
+      "candidate_id": "fts:pindex-query-endpoint",
+      "label": "Query Index Partition (POST /api/pindex/{pindexName}/query)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct operation from this API's read-only partition-info endpoints: it executes a query directly against one named partition rather than the whole index"
+    },
+    {
+      "candidate_id": "fts:search-memory-quota-endpoint",
+      "label": "Set Search Memory Quota (POST /pools/default)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a REST configuration surface for fts:fts-memory-quota that round 23's dedicated ftsMemoryQuota page did not find any evidence of ('no REST/curl example at all' - every other setting in that batch used fts:manager-options-endpoint, and this one page said Web-Console-only). This page's own Quota section proves a REST path exists after all."
+    },
+    {
+      "candidate_id": "search:full-text-index",
+      "label": "full-text index (artifact)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - the artifact whose partitions this API's Definition/Query operations expose"
+    },
+    {
+      "candidate_id": "search:search-index-partition",
+      "label": "search-index partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id (server/8.0/learn/services-and-indexes/services/search-service.json); this page's pindex objects are exactly this concept, exposed over REST"
+    },
+    {
+      "candidate_id": "search:search-request-params",
+      "label": "Search Request JSON Properties",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing extraction-layer id; the Query Request body of fts:pindex-query-endpoint explicitly reuses this same JSON object schema (query/knn/ctl/sort/facets/etc. properties are identical field names), and the page's own text links there directly"
+    },
+    {
+      "candidate_id": "fts:fts-memory-quota",
+      "label": "ftsMemoryQuota (Search Service per-node memory quota setting)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from round 23; this page's Quota section configures exactly this setting"
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - required for this API's Manage and Write security tiers"
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - required (or Search Admin) for this API's Read security tier"
+    },
+    {
+      "candidate_id": "port:8094",
+      "label": "Port 8094 (fts_http_port / fts_grpc_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    },
+    {
+      "candidate_id": "port:18094",
+      "label": "Port 18094 (fts_ssl_port / fts_grpc_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - existing minted (unpromoted) id from fts-architecture-ports-used.json"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:search-advanced-api",
+      "predicate": "usesPort",
+      "object": "port:8094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "The host name or IP address of a node running the Search Service. **Example:** localhost |\n| **port**   | The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094       |"
+    },
+    {
+      "subject": "fts:search-advanced-api",
+      "predicate": "usesPort",
+      "object": "port:18094",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort) - already promoted",
+      "evidence": "The Search Service REST port. Use 18094 for secure access. **Values:** 8094, 18094"
+    },
+    {
+      "subject": "fts:pindex-query-endpoint",
+      "predicate": "targets",
+      "object": "search:search-index-partition",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused (targets)",
+      "evidence": "Execute a query against a specific Search index partition by name."
+    },
+    {
+      "subject": "fts:pindex-query-endpoint",
+      "predicate": "reliesOnMechanism",
+      "object": "search:search-request-params",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (reliesOnMechanism) - already promoted",
+      "evidence": "A JSON object to define the settings for your Search query. For more information about how to create a Search query JSON object, see [Search Request JSON Properties](../search/search-request-params.html)."
+    },
+    {
+      "subject": "fts:fts-memory-quota",
+      "predicate": "configuredVia",
+      "object": "fts:search-memory-quota-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia) - already promoted",
+      "evidence": "Sets the memory quota for the Search Service."
+    },
+    {
+      "subject": "fts:search-memory-quota-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "You must have the **Search Admin** role, with FTS Manage permissions on the required bucket."
+    },
+    {
+      "subject": "fts:pindex-query-endpoint",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "You must have the **Search Admin** role, with FTS Write permissions on the required bucket."
+    },
+    {
+      "subject": "fts:search-advanced-api",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "You must have the **Search Reader** or **Search Admin** role, with FTS Read permissions on the required bucket."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The Set Search Memory Quota endpoint's ftsMemoryQuota form parameter is documented only as 'The memory quota for the Search service. Example: 56' - the page never states the unit (presumably MB, by analogy with other memory-quota settings elsewhere in the docs, but this page does not say so), nor a default, minimum, or maximum value, nor what happens if the value is set too low."
+  },
+  "cross_component_finding": "This page's Query Response schema for POST /api/pindex/{pindexName}/query is a bare {status, results} object where results is typed only as 'Object array' with no further schema - much thinner than the fully-modeled fts:search-response-object (status/hits/errors/took) used elsewhere in the Search docs for the main query-service response. The page does not state whether this is a deliberately reduced admin/debug response shape for single-partition queries or simply an underspecified Swagger-generated definition; left as a finding rather than asserted as a relation since no page states which.",
+  "cross_product_finding": "Not applicable - no Capella twin exists for this page's endpoints per this round's framing."
+}

@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "missing-privilege-documentation",
+  "description": "Unlike its sibling fts-rest-advanced page (same round, same product area), the Search manage REST API's Security section names only a generic 'Default' HTTP-basic tier with no specific role stated - just 'For more information, see Roles' - even though this is plainly an admin-level cluster-configuration endpoint that would be expected to require the Search Admin role by analogy with the Manage-tier endpoints documented on the sibling page.",
+  "about": [
+    "server/8.0/fts-rest-manage"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-manage-endpoint-role-unstated"
+}

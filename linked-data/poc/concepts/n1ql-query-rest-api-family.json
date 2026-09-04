@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql-query-rest-api-family",
+  "label": "Query service REST API family: service/admin/functions/settings",
+  "type": "scheme. round 10 minted stub concepts for these four sub-APIs purely from the old n1ql-rest-api/intro.md's own outbound link table; this round's four dedicated pages are each that stub's first full-page treatment, not a new endpoint. All four sit on the Query service (dependsOnService service:query-service) and, per round-10's promoted n1ql:query-service-rest-api, share the same underlying HTTP interface as the Analytics service's own REST API.",
+  "promoted": true,
+  "members": [
+    "n1ql:query-service-rest-api",
+    "n1ql:query-admin-rest-api",
+    "n1ql:query-functions-rest-api",
+    "n1ql:query-settings-rest-api"
+  ],
+  "relates_to_competency_question": "How many distinct REST sub-APIs does the Query service expose, and where did each one first get a full treatment rather than a bare link?"
+}

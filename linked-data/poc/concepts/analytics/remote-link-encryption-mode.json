@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/remote-link-encryption-mode",
+  "label": "Remote link encryption mode (none | half | full)",
+  "type": "the encryption enum for an analytics:remote-link, confirmed identically by the REST reference and round 21's manage-links.md UI task page.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/8.0/analytics-rest-links",
+  "relates_to_competency_question": "What encryption choices does a remote Analytics link offer, and are the REST and UI surfaces consistent about it?"
+}

@@ -11,7 +11,7 @@
       "members": [
         "index:index-storage-setting"
       ],
-      "note": "The cluster-wide choice an administrator makes. `index:index-storage-setting` is attested on ONE page and is NOT promoted - the level is real, its name is not yet earned. The page's own term is 'index storage setting', never 'storage mode'."
+      "note": "The cluster-wide choice an administrator makes. ROUND 24: promoted. `index:index-storage-setting` sat at recurrence 1 (one page, storage-modes.md) from round 17 through round 23; round 24's index-rest-settings.md REST reference gives it a second, independent attestation, crossing the bar. The page's own term is 'index storage setting', never 'storage mode'."
     },
     {
       "level": 2,

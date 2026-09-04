@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-admin-rest-api",
+  "label": "Query Admin REST API",
+  "type": "the Query service's administrative REST surface: garbage collection, request/prepared-statement management, transaction cleanup settings. A secondary API alongside n1ql:query-service-rest-api.",
+  "promoted": true,
+  "recurrence": 4,
+  "usesPort": "port:8093",
+  "dependsOnService": "service:query-service",
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "Is there a dedicated administrative REST surface for the Query service, separate from the query-submission endpoint itself?",
+  "evidence": [
+    "The Query Admin REST API is a secondary API provided by the Query Service.",
+    "The Query Service REST port. Use 18093 for secure access."
+  ]
+}

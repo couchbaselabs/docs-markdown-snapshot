@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-settings-rest-api",
+  "label": "Query Settings REST API",
+  "type": "the REST surface for cluster-level Query service settings (as against node-level settings on the Admin API).",
+  "promoted": true,
+  "recurrence": 4,
+  "dependsOnService": "service:query-service",
+  "documented_at": "server/8.0/n1ql-rest-settings",
+  "relates_to_competency_question": "Are cluster-level and node-level Query service settings exposed through the same REST endpoint, or two different ones?",
+  "evidence": [
+    "For cluster-level settings, see the Query Settings REST API.",
+    "The Query Settings REST API is provided by the Query Service."
+  ]
+}

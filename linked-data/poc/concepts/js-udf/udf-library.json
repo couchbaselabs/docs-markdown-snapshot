@@ -5,6 +5,8 @@
   "promoted": true,
   "recurrence": 4,
   "recurrence_note": "6 files, `divergent` - discount rejected, raw count stands.",
+  "aliases": ["js-udf:library"],
+  "aliases_note": "Folds a round-10 mint from the OLD n1ql/n1ql-rest-api/intro.json - minted before this concept was promoted (round 19), under a shorter spelling for the same container object, restated verbatim by this round's n1ql-rest-functions/index.json. A defensible alternate name, not a punctuation variant.",
   "evidence": [
     "A JavaScript library can be global or scoped.",
     "Before you can delete a library, you must first drop all SQL++ user-defined functions which point to any of the JavaScript functions within that library."

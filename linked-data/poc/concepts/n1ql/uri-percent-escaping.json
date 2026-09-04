@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/uri-percent-escaping",
+  "label": "URI percent-escaping (Query REST GET requests)",
+  "type": "the requirement to percent-encode special characters (e.g. % itself, as %25) in a SQL++ statement submitted via n1ql:query-service-get-endpoint's URI, since % is the URI escape character.",
+  "promoted": true,
+  "recurrence": 2,
+  "mustUseInsteadWhen": "n1ql:dollar-prefixed-named-placeholder",
+  "documented_at": "server/8.0/n1ql/n1ql-rest-api/exnamed",
+  "relates_to_competency_question": "Does a wildcard % in a SQL++ statement submitted via GET need special handling?",
+  "evidence": [
+    "The **%** symbol is the escape character in URIs, so when using **%** as a wildcard in a query, we need to escape that by replacing it with its corresponding ASCII code **%25**."
+  ]
+}

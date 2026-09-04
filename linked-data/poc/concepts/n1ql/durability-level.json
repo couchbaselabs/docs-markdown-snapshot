@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/durability-level",
+  "label": "Transaction durability level",
+  "type": "the durability requirement for a SQL++ transaction's mutations, set at BEGIN TRANSACTION or implicitly for a single DML statement (tximplicit). COMMIT TRANSACTION can only succeed if this requirement can be met.",
+  "promoted": true,
+  "recurrence": 5,
+  "requiresSetting": "for n1ql:commit-transaction to succeed",
+  "documented_at": "server/8.0/n1ql-rest-query",
+  "relates_to_competency_question": "What durability guarantee does a SQL++ transaction's writes have, and can a transaction fail to commit purely because that guarantee can't be met?",
+  "evidence": [
+    "The transaction can only be committed if the transactional durability requirements can be met. The transaction durability level is set by the request-level durability_level parameter.",
+    "If the request contains a BEGIN TRANSACTION statement, or a DML statement with the tximplicit parameter set to true, the durability level is specified for all mutations within that transaction."
+  ]
+}

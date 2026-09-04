@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/index/index-storage-setting",
+  "label": "Index storage mode setting (REST)",
+  "type": "the REST-exposed form of the storage-mode choice (round 17's index-storage-stack level 1) - offersConfigurationChoice standard-storage (Plasma, default) or memory-optimized-storage. Round 17 left this level unpromoted for lack of a name; this round's REST reference finally gives it real evidence beyond the setting's existence.",
+  "promoted": true,
+  "recurrence": 2,
+  "offersConfigurationChoice": [
+    "index:standard-storage",
+    "index:memory-optimized-storage"
+  ],
+  "documented_at": "server/8.0/index-rest-settings",
+  "relates_to_competency_question": "Is the choice between Plasma and memory-optimized index storage exposed via REST, and which is the default?",
+  "evidence": [
+    "plasma (the default) — Sets the index storage mode to use the Plasma storage engine, which can utilize both memory and persistent storage for index maintenance and index scans.",
+    "memory_optimized — Sets the index storage mode to use memory optimized Global Secondary Indexes, which can perform index maintenance and index scan faster at in-memory speeds.",
+    "This setting can only be changed while there are no index nodes in the cluster. To change from standard GSI to memory optimized GSI or vice versa, you need to remove all the Index Service nodes in the cluster."
+  ]
+}

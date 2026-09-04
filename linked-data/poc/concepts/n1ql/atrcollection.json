@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/atrcollection",
+  "label": "atrcollection setting",
+  "type": "configures where n1ql:active-transaction-record and client records are stored - the collection must already exist.",
+  "promoted": true,
+  "recurrence": 4,
+  "configuresLocationOf": "n1ql:active-transaction-record",
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "Where does the Query service physically store the bookkeeping records for an in-flight transaction, and can that location be changed?",
+  "evidence": [
+    "Specifies the collection where the active transaction records (ATRs) and client records are stored.",
+    "The collection must be present."
+  ]
+}

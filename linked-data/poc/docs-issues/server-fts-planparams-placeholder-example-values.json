@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The Search Index Management REST API's Plan Parameters schema documents indexPartitions, numReplicas, and the deprecated maxPartitionsPerPIndex with real descriptions, but two of its six fields (hierarchyRules, nodePlanParams) carry no description beyond a type and nullability flag. Both fields' example request bodies use the literal field name as a placeholder value ('hierarchyRules': 'hierarchyRules', 'nodePlanParams': 'nodePlanParams') rather than a realistic example - unlike every other field on the page - suggesting the underlying Swagger generator has never had real example data for either field. A reader cannot learn what either field does from this page.",
+  "about": [
+    "server/8.0/fts-rest-indexing"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-planparams-placeholder-example-values"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/analytics-manager",
+  "label": "Analytics Manager (Server RBAC role)",
+  "type": "one of the Analytics service's own RBAC roles, gating the Analytics REST admin surface (active/completed requests, cancellation, ingestion status) alongside Analytics Reader/Select/Admin and the generic Cluster Admin.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "For the Active Requests, Request Cancellation, Completed Requests, Ingestion Status ... operations, users must have one of the following RBAC roles: ... Analytics Manager ..."
+  ],
+  "documented_at": "server/8.0/analytics-rest-admin",
+  "relates_to_competency_question": "What is the Analytics service's own RBAC role tier, distinct from generic cluster roles?"
+}

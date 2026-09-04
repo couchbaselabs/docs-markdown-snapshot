@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-tmp-space-setting",
+  "label": "queryTmpSpaceDir / queryTmpSpaceLimit (shared temp-space setting)",
+  "type": "the path and size limit for temporary backfill/spill files, written to by BOTH the Index Service (backfill) and Query Service (spill files) during query processing. Promoted below the usual recurrence bar (1 file) because of what it evidences: the Search Service's disk-space limit is defined as a multiple of this SAME setting ('the limit for disk space use is three times this setting'), making it the first setting found in this corpus shared by three services at once, two by direct use and one by derived multiplier.",
+  "promoted": true,
+  "recurrence": 1,
+  "promoted_under_exception": "semantic-weight - said explicitly per reconciliation discipline",
+  "servesService": [
+    "service:index-service",
+    "service:query-service"
+  ],
+  "sharesOptionSetWith": "service:search-service",
+  "documented_at": "server/8.0/n1ql-rest-settings",
+  "evidence": [
+    "The path to which the Index Service writes temporary backfill files, and the Query Service writes spill files, to store any transient data during query processing.",
+    "In a cluster with both secondary indexing and full text search, the limit for disk space use is three times this setting."
+  ],
+  "relates_to_competency_question": "Is there any single setting whose value affects the disk-space behavior of three different services at once?"
+}

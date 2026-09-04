@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-service-post-endpoint",
+  "label": "POST /query/service (Query service REST)",
+  "type": "the POST form of the Query service REST endpoint - the primary form, taking a JSON request body. Sibling of n1ql:query-service-get-endpoint.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/8.0/n1ql-rest-query",
+  "relates_to_competency_question": "What is the primary way a SQL++ statement is submitted via REST?",
+  "evidence": [
+    "This endpoint is intended for situations where use of the `POST` method is restricted.",
+    "For more examples, see Examples."
+  ]
+}

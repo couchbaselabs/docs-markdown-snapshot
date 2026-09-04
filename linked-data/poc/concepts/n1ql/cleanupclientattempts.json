@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/cleanupclientattempts",
+  "label": "cleanupclientattempts setting (node-level)",
+  "type": "when enabled, the Query service preferentially cleans up only the transactions IT created, leaving others to the distributed cleanup process. Node-level; has a cluster-level sibling, queryCleanupClientAttempts.",
+  "promoted": true,
+  "recurrence": 3,
+  "hasScopeVariant": "cluster-level queryCleanupClientAttempts",
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "Does a Query node clean up every abandoned transaction cluster-wide, or only the ones it itself started?",
+  "evidence": [
+    "When enabled, the Query Service preferentially aims to clean up just transactions that it has created, leaving transactions for the distributed cleanup process only when it's forced to.",
+    "cleanupclientattempts node-level setting / queryCleanupClientAttempts cluster-level setting"
+  ]
+}

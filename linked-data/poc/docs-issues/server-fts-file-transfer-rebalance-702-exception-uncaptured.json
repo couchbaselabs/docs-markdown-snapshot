@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The Search manage REST API states a 7.0.2 exception for disableFileTransferRebalance not previously captured anywhere in the corpus: file-transfer rebalance 'requires all Search Service nodes either to be running 7.1 or later; or to be running 7.0.2, with the feature explicitly switched on by means of this endpoint' - meaning on 7.0.2 specifically the behavior is opt-in via this same PUT /api/managerOptions call, rather than the 7.1+ default-on behavior. Round 23's disableFileTransferRebalance record never quoted this version nuance since its source page didn't state it.",
+  "about": [
+    "server/8.0/fts-rest-manage"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-file-transfer-rebalance-702-exception-uncaptured"
+}

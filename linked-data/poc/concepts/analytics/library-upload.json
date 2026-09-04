@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/library-upload",
+  "label": "Analytics library upload/update/delete",
+  "type": "creating, updating or deleting an Analytics UDF library via REST - Full Admin only, independently confirmed by the REST reference and round 21's Python UDF appendix (which named the same restriction via the underlying permission string cluster.admin.diag!write).",
+  "promoted": true,
+  "recurrence": 2,
+  "requiresServerRole": "role:full-administrator",
+  "documented_at": "server/8.0/analytics-rest-library",
+  "relates_to_competency_question": "Who can upload or replace the code behind an Analytics UDF library?"
+}

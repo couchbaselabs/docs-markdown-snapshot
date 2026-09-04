@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/alter-index-with-nodes",
+  "label": "ALTER INDEX ... WITH {\"nodes\": ...}",
+  "type": "specifying which node(s) should host an index via ALTER INDEX's WITH clause - disabled when index:file-based-index-rebalancing is enabled, confirmed identically by the REST settings reference and the ALTER INDEX statement page.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/8.0/n1ql/n1ql-language-reference/alterindex",
+  "relates_to_competency_question": "Can an administrator pin an index to specific nodes via ALTER INDEX, and does that always work regardless of other rebalancing settings?",
+  "evidence": [
+    "If set to true, when you create an index, you can use the WITH clause to specify which node should contain the index. However, when you alter an index, you cannot use the WITH clause to specify which node should contain the index.",
+    "You cannot use this property if you have enabled file-based index rebalancing."
+  ]
+}

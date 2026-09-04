@@ -1,0 +1,303 @@
+{
+  "page_id": "server/8.0/analytics-rest-links/index",
+  "source_version": "8.0",
+  "source_path": "server/current/analytics-rest-links/index.md",
+  "concepts": [
+    {
+      "candidate_id": "analytics:query-link-api",
+      "label": "Query Link API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - covers all three GET read variants this page documents at different filter granularities against the identical Links response schema: GET /analytics/link (all scopes), GET /analytics/link/{scope} (one scope), GET /analytics/link/{scope}/{name} (one link). Kept as one concept rather than three near-duplicates per this round's 'let a reference table be a reference table' guidance - they are the same read operation, not three distinct mechanisms."
+    },
+    {
+      "candidate_id": "analytics:create-link-api",
+      "label": "Create Link API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - POST /analytics/link/{scope}/{name}, first contact. Checked against analytics:create-analytics-scope/create-analytics-collection/create-analytics-synonym/create-analytics-index (round 21's 5_ddl.md CREATE statement family) and against candidate-evidence.py for analytics:create-link-statement (no match) - Analytics has no SQL++ CREATE LINK DDL statement at all; link creation is REST/UI/CLI-only, genuinely distinct from the CONNECT LINK/DISCONNECT LINK DDL statements which toggle an EXISTING link's ingestion state rather than defining a new one."
+    },
+    {
+      "candidate_id": "analytics:edit-link-api",
+      "label": "Edit Link API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - PUT /analytics/link/{scope}/{name}, first contact. Cannot change the link's name, type, or scope - only its connection/credential parameters."
+    },
+    {
+      "candidate_id": "analytics:delete-link-api",
+      "label": "Delete Link API (Analytics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - DELETE /analytics/link/{scope}/{name}, first contact. Fails if any Analytics collection or other entity still uses the link."
+    },
+    {
+      "candidate_id": "analytics:legacy-link-api",
+      "label": "Legacy Link API (Analytics, deprecated)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the three deprecated flat-path operations (DELETE/POST/PUT /analytics/link, using a dataverse+name form/query parameter pair instead of a /{scope}/{name} path) grouped as one concept since the page itself groups them under one 'Legacy Methods' heading and states the identical deprecation/backward-compatibility rationale for all three."
+    },
+    {
+      "candidate_id": "analytics:link-type-enum",
+      "label": "Analytics link type enum (couchbase/s3/azureblob/gcs)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - checked candidate-evidence.py, no existing analytics:link-type-enum. The closed choice of remote-data-source kind a link can be created as; 'couchbase' maps to the already-promoted analytics:remote-link, and 's3'/'azureblob'/'gcs' each map to analytics:external-link's three documented external-source variants. Notably has no 'local' value at all - Local links cannot be created, edited, or (per the Query All Links default) even listed through this enum, a third independent confirmation of round 21's 'uniquely uneditable and undeletable' finding for the promoted analytics:local-link."
+    },
+    {
+      "candidate_id": "analytics:remote-link",
+      "label": "Remote link (Analytics)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. This page is the REST reference for creating/editing/deleting/querying remote links (type=couchbase), and is the first-hand source for facts manage-links.json had only cross-referenced by seeAlso."
+    },
+    {
+      "candidate_id": "analytics:external-link",
+      "label": "External link (Analytics)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/5_ddl.json, analytics/manage-datasets.json). This page's s3/azureblob/gcs link types and their credential parameter sets are the REST-level detail for the same concept."
+    },
+    {
+      "candidate_id": "analytics:local-link",
+      "label": "Local link (Analytics)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted. Named here only negatively, as the type this REST API's operations exclude."
+    },
+    {
+      "candidate_id": "analytics:remote-link-encryption-mode",
+      "label": "Analytics remote-link encryption mode",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/manage-links.json) as a 5-value UI dropdown choice. This page attests the same setting at the REST level as a 3-value string enum (none/half/full), with the two 'full' sub-variants (client-cert vs credentials) distinguished by which optional form parameters (username/password vs clientCertificate/clientKey) are supplied rather than by a fourth/fifth enum value - a genuinely new, REST-specific detail about how the UI's 5-way choice collapses onto the wire."
+    },
+    {
+      "candidate_id": "analytics:analytics-scope",
+      "label": "Analytics scope (dataverse)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/5_ddl.json). This page's scope path parameter (one or two identifiers) versus the Legacy Methods' dataverse form parameter (single identifier only) is fresh REST-level evidence for the same old-name/new-name distinction primer-beer.json already recorded via renamedFrom."
+    },
+    {
+      "candidate_id": "port:8095",
+      "label": "Port 8095",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, this page's Host Information table and every curl example target this port."
+    },
+    {
+      "candidate_id": "port:18095",
+      "label": "Port 18095",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, named as the secure-access alternative in this page's Host Information table."
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091 (mgmt / rest_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/manage-links.json) with IDENTICAL wording to this page's Create Link description, confirming this REST page as the first-hand source manage-links.json's port facts ultimately trace back to."
+    },
+    {
+      "candidate_id": "port:18091",
+      "label": "Port 18091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named again here with the identical 'mgmtSSL (ssl_rest_port, default 18091)' wording found in manage-links.json."
+    },
+    {
+      "candidate_id": "port:11210",
+      "label": "Port 11210 (kv / memcached_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/manage-links.json), identical wording confirmed on this REST page."
+    },
+    {
+      "candidate_id": "port:11207",
+      "label": "Port 11207 (kvSSL / memcached_ssl_port)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21 (analytics/manage-links.json), identical wording confirmed on this REST page."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in this page's single 'Analytics Manage' security scheme, which gates every operation on this page."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 21, named in the same security scheme."
+    },
+    {
+      "candidate_id": "role:analytics-admin",
+      "label": "Analytics Admin (analytics_admin)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted, named in the same security scheme."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesEnum",
+      "object": "analytics:link-type-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "The type of the link. couchbase: A link to a remote Couchbase cluster. s3: A link to the Amazon S3 service. azureblob: A link to Azure Blob Storage. gcs: A link to Google Cloud Storage. **Values:** \"couchbase\", \"s3\", \"azureblob\", \"gcs\""
+    },
+    {
+      "subject": "analytics:query-link-api",
+      "predicate": "doesNotSupport",
+      "object": "analytics:local-link",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "The type of the link. If this parameter is omitted, all link types are retrieved, excluding the Local link."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesEnum",
+      "object": "analytics:remote-link-encryption-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "For Couchbase links only. The type of encryption used by the link. For details, see [encryption](#encryption). **Values:** \"none\", \"half\", \"full\""
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "At least one node in the remote cluster must expose the `mgmt` port (`rest_port`, default 8091) or the `mgmtSSL` port (`ssl_rest_port`, default 18091)."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:18091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "At least one node in the remote cluster must expose the `mgmt` port (`rest_port`, default 8091) or the `mgmtSSL` port (`ssl_rest_port`, default 18091)."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:11210",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "Furthermore, **all** data nodes in the remote cluster must expose the `kv` port (`memcached_port`, default 11210) or the `kvSSL` port (`memcached_ssl_port`, default 11207)."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:11207",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "Furthermore, **all** data nodes in the remote cluster must expose the `kv` port (`memcached_port`, default 11210) or the `kvSSL` port (`memcached_ssl_port`, default 11207)."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:8095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "usesPort",
+      "object": "port:18095",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort)",
+      "evidence": "The Analytics Service REST port. Use 18095 for secure access. **Values:** 8095, 18095"
+    },
+    {
+      "subject": "analytics:legacy-link-api",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "analytics:delete-link-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (retainedForLegacyCompatibility)",
+      "evidence": "An alternative endpoint for [deleting a link](#delete%5Flink), provided for backward compatibility."
+    },
+    {
+      "subject": "analytics:legacy-link-api",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "analytics:create-link-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (retainedForLegacyCompatibility)",
+      "evidence": "An alternative endpoint for [creating a link](#post%5Flink), provided for backward compatibility."
+    },
+    {
+      "subject": "analytics:legacy-link-api",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "analytics:edit-link-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (retainedForLegacyCompatibility)",
+      "evidence": "An alternative endpoint for [editing a link](#put%5Flink), provided for backward compatibility. The link name, type, and scope name cannot be modified."
+    },
+    {
+      "subject": "analytics:analytics-scope",
+      "predicate": "renamedFrom",
+      "object": "dataverse",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (renamedFrom) - a second, independent REST-level attestation of the same fact primer-beer.json recorded in prose: the Legacy Methods' form parameter is still literally named 'dataverse' (single-identifier only), while the modern path parameter used everywhere else on this page is named 'scope' (one-or-two-identifier).",
+      "evidence": "**dataverse**required | The name of the Analytics scope containing the link. With this parameter, the scope name may only contain a single identifier."
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - representative subject; every operation on this page (query/create/edit/delete/legacy) shares this identical single security scheme, stated once here rather than repeated for each.",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:edit-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - connecting relation; full role list stated once on analytics:create-link-api above.",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:delete-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - connecting relation; full role list stated once on analytics:create-link-api above.",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:query-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - connecting relation; full role list stated once on analytics:create-link-api above.",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:legacy-link-api",
+      "predicate": "requiresServerRole",
+      "object": "role:analytics-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - connecting relation; full role list stated once on analytics:create-link-api above.",
+      "evidence": "Users must have one of the following RBAC roles:\n\n* Full Admin\n* Cluster Admin\n* Analytics Admin"
+    },
+    {
+      "subject": "analytics:create-link-api",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (seeAlso) - structural markdown link, always reused",
+      "evidence": "For more information, see [Roles](../learn/security/roles.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf / hasEquivalentEffectAs",
+    "finding": "This page's create/edit/delete/query operations manage a link's DEFINITION (credentials, type, host) but never mention CONNECT LINK or DISCONNECT LINK at all - the DDL statements (round 21, analytics:connect-link-statement/disconnect-link-statement) that start/stop a link's ingestion state have no REST equivalent documented on this page, and this page has no equivalent of those two statements either. The two REST/DDL surfaces are complementary (define-the-link vs toggle-its-ingestion), never overlapping, and no page anywhere in the corpus states an equivalence between them - confirmed absent rather than assumed."
+  },
+  "cross_component_finding": "This page is the first-hand REST source for facts round 21's manage-links.json (a UI task page) had recorded with IDENTICAL wording but only reached via seeAlso cross-reference: the mgmt/mgmtSSL/kv/kvSSL port requirements for remote links, and the encryption-mode choice. It also independently confirms, at a third point in the corpus (UI, DDL, and now REST), that a Local link is uniquely excluded from every general-purpose link-management surface: it has no type-enum value here, and the Query All Links endpoint explicitly excludes it by default.",
+  "cross_product_finding": "None found on this page - all link management is Analytics-Service-internal REST with no stated Capella or cross-product parallel, though the S3/Azure Blob/GCS external-link credential parameter families (accessKeyId/secretAccessKey, accountKey/sharedAccessSignature, jsonCredentials/applicationDefaultCredentials) closely mirror generic cloud-provider auth patterns documented elsewhere in the corpus for backup/restore cloud targets - no page states an explicit equivalence, so this is an observation, not a minted relation."
+}

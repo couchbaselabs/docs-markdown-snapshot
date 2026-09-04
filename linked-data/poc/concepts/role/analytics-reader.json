@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/analytics-reader",
+  "label": "Analytics Reader (Server RBAC role)",
+  "type": "an Analytics RBAC role, sibling of role:analytics-manager/analytics-select.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "Users must have one of the following RBAC roles: Full Admin, Cluster Admin, Analytics Manager, Analytics Reader, Analytics Select, Analytics Admin"
+  ],
+  "documented_at": "server/8.0/analytics-rest-service",
+  "relates_to_competency_question": "What is the Analytics service's own RBAC role tier, distinct from generic cluster roles?"
+}

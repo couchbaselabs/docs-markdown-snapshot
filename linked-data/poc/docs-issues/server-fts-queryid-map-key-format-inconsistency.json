@@ -1,0 +1,11 @@
+{
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The Search runtime query monitoring API's View Active Node/Index Queries responses key each active query by a hyphenated string combining a node UUID and an integer ID (e.g. 'b91d75480470f979f65f04e8f20a1f7b-17'), but the Cancel Active Queries endpoint's queryID path parameter is typed and exampled as a bare Integer ('24'), with the node UUID supplied separately in the request body. The page never states how a caller is meant to split the hyphenated map key returned by the list endpoints into the two separate values the cancel endpoint expects.",
+  "about": [
+    "server/8.0/fts-rest-query"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-queryid-map-key-format-inconsistency"
+}

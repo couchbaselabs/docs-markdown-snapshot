@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/active-transaction-record",
+  "label": "Active Transaction Record (ATR)",
+  "type": "the bookkeeping record for an in-flight SQL++ transaction, stored in the collection n1ql:atrcollection configures.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/8.0/n1ql-rest-admin",
+  "relates_to_competency_question": "What object tracks an in-flight SQL++ transaction's state?",
+  "evidence": [
+    "Specify where the active transaction record is stored.",
+    "Specify how frequently active transaction records are checked for cleanup."
+  ]
+}

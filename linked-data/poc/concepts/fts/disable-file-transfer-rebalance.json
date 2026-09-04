@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/disable-file-transfer-rebalance",
+  "label": "disableFileTransferRebalance setting",
+  "type": "controls whether new Search partitions during rebalance are built via partition file transfer (default) or another method when set true.",
+  "promoted": true,
+  "recurrence": 2,
+  "hasDefaultValue": "false",
+  "configuredVia": "fts:manager-options-endpoint",
+  "documented_at": "server/8.0/fts-rest-manage",
+  "relates_to_competency_question": "How does a Search partition get built on a new node during rebalance, and can that mechanism be changed?",
+  "evidence": [
+    "Sets Search manager options. Note that only one setting is available: `disableFileTransferRebalance`.",
+    "If the value is false (the default), new Search Service partitions are created during rebalance by means of partition file transfer. If the value is true, partitions are created by means of partition build, from scratch, over DCP connections from the Data Service. **Default:** false",
+    "This is an Enterprise-only feature, which requires all Search Service nodes either to be running 7.1 or later; or to be running 7.0.2, with the feature explicitly switched on by means of this endpoint."
+  ]
+}

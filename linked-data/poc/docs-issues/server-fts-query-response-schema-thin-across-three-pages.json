@@ -1,0 +1,13 @@
+{
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Three separate REST reference pages in round 24 each document their own 'Query Response' schema as a bare {status: String, results: Object array} object with no hits/took/total_hits/max_score fields - fts-rest-advanced's POST /api/pindex/{pindexName}/query, fts-rest-indexing's index-scoped query endpoints, and fts-rest-query's Query Context object (a reduced echo of the full search:search-request-params schema). Each page's own worked examples show the full response envelope (status as an object with total/failed/successful, hits array, total_hits, cost, max_score, took) - so the formal schema definition is thinner than the page's own examples, independently, in three places. This is consistent with the underlying cb-swagger spec's QueryResponse model definition being generated thin everywhere it is reused, not a one-off omission on a single page.",
+  "about": [
+    "server/8.0/fts-rest-advanced",
+    "server/8.0/fts-rest-indexing",
+    "server/8.0/fts-rest-query"
+  ],
+  "foundDuring": "round 24",
+  "status": "open",
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-fts-query-response-schema-thin-across-three-pages"
+}

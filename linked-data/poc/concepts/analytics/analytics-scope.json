@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/analytics-scope",
+  "label": "Analytics scope",
+  "type": "the container for Analytics collections/links/synonyms - renamedFrom 'dataverse' (the pre-8.0 term, still accepted in some REST parameters where a scope name may only contain a single identifier, unlike the current two-identifier form).",
+  "promoted": true,
+  "recurrence": 4,
+  "renamedFrom": "dataverse",
+  "documented_at": "server/8.0/analytics-rest-library",
+  "relates_to_competency_question": "Is 'dataverse' still a valid term for an Analytics scope, or fully retired?"
+}
