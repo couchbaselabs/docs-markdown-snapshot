@@ -32,6 +32,35 @@ the ontology this process has produced.
 - Batch size: ~10-15 pages per agent keeps prompts and output manageable. Group
   pages by theme (same component, same statement family) so one agent's report
   is coherent, not scattered across unrelated topics.
+- **Vary batch size by expected content density, not just page count - and
+  size down specifically for judgment-call-heavy content.** Round 26 pulled
+  real per-turn usage logs for all 6 of its batches (not just the coarse
+  `subagent_tokens` figure each batch self-reports, which undercounts the real
+  bill by ~100x - see `linked-data/ingest-cost-and-time-estimate.md`'s round-26
+  section) and found `cache_read` tokens scale roughly with the *square* of an
+  agent's tool-call count (`cache_read / tool_uses²` held in a 4,500-6,800 band
+  across all 6 batches; `cache_read / tool_uses` alone varied 2x more) - because
+  every tool-use turn re-reads that agent's entire accumulated conversation
+  from cache, the same mechanism round 25 found for a long-running coordinator
+  session, just discovered here to also apply *inside* a single nominally
+  "stateless" batch. That means splitting one batch's pages across more,
+  smaller parallel agents genuinely reduces this cost, roughly in proportion
+  to how many pieces the work is split into - but only where the split
+  actually shrinks the number of tool calls needed, which the same round found
+  tracks *content complexity*, not page count: the 10-page certs/TLS batch
+  (dense cross-page evidence citations, evidence-gate retries, a deferred
+  merge judgment call) ran 80 tool calls and cost $0.93/page, the most
+  expensive batch in the round, while a 15-page mechanical CLI/REST-procedure
+  batch ran 46 tool calls and cost $0.27/page, the cheapest. Splitting the
+  second kind of batch further would mostly just re-pay the fixed per-agent
+  startup cost (the registry excerpt + schema + rules block, repeated in full
+  in every prompt) without much real work to shrink. Use the same
+  pre-dispatch judgment already applied to similarity-checking (round 18) to
+  decide batch size adaptively: reference/procedure-heavy scope -> keep the
+  10-15 page default; access-control/security-surface or otherwise
+  judgment-call-heavy scope (the recurring area where this project's biggest
+  findings have come from) -> size down to 5-8 pages per agent specifically
+  because that is where the quadratic cost actually bites.
 
 ## 2. Build the current registry fresh - do not reuse a memorized or previously-written table
 

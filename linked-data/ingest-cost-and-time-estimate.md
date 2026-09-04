@@ -528,6 +528,135 @@ brings the cache-read component back down to something proportional to that
 round's own size. See `poc/reconciliation.md`'s round 25 section for the
 result once it lands.
 
+## Round 26: the first per-round cost broken out by cache-accounted usage logs (2026-09-04)
+
+Round 25 diagnosed the mechanism (a long-running coordinator session re-reads
+its whole history from cache on every turn) but only had a single whole-session
+number to show for it — no per-round split, because the panel prices a session,
+not a round. Round 26 (`server/8.0/manage/`, 83 pages, 6 extraction batches plus
+one fresh-session reconciliation agent, all dispatched from a coordinator
+session opened *for this round specifically*) is the first round with a clean
+per-component split, because each dispatched agent's own transcript is a
+separate file on disk (`~/.claude/projects/<project>/<session>/subagents/agent-<id>.jsonl`)
+that can be summed for exact `input`/`output`/`cache_read`/`cache_creation`
+token counts, rather than relying on the coarse `subagent_tokens` figure each
+agent self-reports in its completion notification.
+
+**That self-reported figure turned out to undercount the real bill by roughly
+two orders of magnitude, and the reason is the same mechanism round 25 found,
+one level down.** Batch E's own completion notice reported `subagent_tokens:
+336101`; its actual transcript sums to 39.1M tokens (116x higher), because a
+single extraction batch is itself a long multi-turn tool-use loop (46-92 tool
+calls this round — reading the source page, checking the registry, running
+`registry-digest.py`/`candidate-evidence.py`, writing and re-writing past the
+evidence gate), and every one of those turns re-reads its own growing
+conversation from cache. `subagent_tokens` is closer to a single-turn proxy;
+it was never wrong about what it counted, it just wasn't counting the thing
+that turns out to dominate the bill — precisely the same category error round
+25 diagnosed in the old $0.03-0.04/page figure, just discovered here to apply
+*inside* a nominally "stateless" batch, not only across a long-running
+coordinator.
+
+Real breakdown, summed from every dispatched agent's own transcript, at
+Bedrock Sonnet 5 rates ($2/$10/1M in/out, $2.50/1M cache write (5m), $0.20/1M
+cache read):
+
+| Component | Input | Output | Cache read | Cache write | Cost |
+|---|---|---|---|---|---|
+| 6 extraction batches (83 pages) | 1,414 | 515,351 | 127,568,491 | 3,747,318 | **~$40.04** |
+| Reconciliation (1 fresh agent) | 730 | 161,107 | 31,810,596 | 1,197,465 | **~$10.97** |
+| Coordinator (dispatch + monitor, this session) | 208 | 371,526 | 10,721,537 | 1,533,279 | **~$9.69** |
+| **Total** | | | | | **~$60.70** |
+
+This lines up closely with the $56.88 read directly off the `/usage` panel for
+the same session (~7% apart — plausibly a snapshot-timing or cache-duration
+rounding difference, not a methodology gap) and cross-validates the approach:
+summing real per-turn usage from each agent's own transcript is a workable way
+to get a genuine per-round split, which round 25 could not do with only a
+whole-session panel reading.
+
+**Headline number: real, cache-accounted extraction cost this round was
+~$0.48/page — 12-15x the $0.03-0.04/page figure this document quoted from
+round 5 onward.** That old figure was measured honestly against what it
+counted (a simple total-tokens-times-blended-rate estimate); it just never
+counted cache turnover, because nobody had pulled a raw per-turn transcript
+before this round. Some of the gap may also be real drift, not just
+measurement correction — round 26's batches ran materially more tool calls
+per page than rounds 5-9's simpler read-then-write batches, because the
+registry they're checking against has grown from a few dozen concepts to 579,
+and the evidence-gate/near-miss-checking discipline the project has
+accumulated (run `registry-digest.py`, check a near-miss's relations, not
+just its label) costs real tool calls. This document can't cleanly separate
+"the old number was always wrong" from "batches got more thorough as the
+registry grew" without a directly comparable transcript from an early round,
+which no longer exists to check. Treat $0.48/page as the number to plan
+against going forward, and expect it to trend flat-to-up, not down, as the
+registry keeps growing.
+
+**The reconciliation-in-a-fresh-session fix holds up at a much larger scale
+than round 25 tested it at.** Round 25 was 22 pages; round 26 is 83, with a
+denser reconciliation load (70 concepts + 6 relations promoted, 10 new
+docs-issues, 5 cross-batch collisions resolved) — and still cost only $10.97
+in a session with no memory of rounds 1-25. That is nowhere near proportional
+to round 25's $361-for-24-rounds whole-session figure; it's proportional to
+*this round's own size*, which is exactly what the fix was for.
+
+## Updated projection for the remaining corpus (post-round-26, Sonnet 5)
+
+Recomputed directly from disk on 2026-09-04, rather than carried forward from
+the original projections:
+
+- **950 pages extracted so far**, across 26 rounds:
+  `server/8.0` 445, `cloud/` 407 (version-less), `couchbase-lite/current` 12,
+  `sync-gateway/current` 13, `java-sdk/current` 15 — all five of those trees are
+  genuinely "latest version." A further 58 (`server/7.2`, rounds 1-2) are on a
+  superseded tree and don't count toward a latest-version-only scope; call the
+  latest-version-only total extracted so far **892 pages**.
+- **The "latest version only, every product" scope re-measured at ~3,890
+  pages** (walking every top-level product directory, taking `current` or the
+  newest version directory where one exists, the whole directory where a
+  product has no version split) — confirming the original 3,919 estimate
+  still holds; this document's scope table doesn't need revising.
+- **Remaining for that scope: ~3,000 pages.** The overwhelming majority of it
+  is first contact on product families this project has never touched at real
+  scale — round 3's 37-page trial (Couchbase Lite/Sync Gateway/Java SDK) is
+  still the only cross-product test run, and it covered a small fraction of
+  three products out of the ~40 remaining (12+ language SDKs, half a dozen
+  connectors, the mobile stack's other pieces, `operator`, `cmos`,
+  `cbmultimanager`, `app-services`, and more).
+
+Projected cost for those ~3,000 pages, using round 26's real measured rates
+rather than the superseded $0.03-0.04/page figure:
+
+| Component | Basis | Projected cost |
+|---|---|---|
+| Extraction | 3,000 pages x ~$0.48/page | **~$1,450** |
+| Reconciliation | ~38 waves (at rounds 5-9's ~80-page average) x ~$11/wave, fresh session each time | **~$400-450** |
+| Coordinator dispatch/monitoring | ~38 wave-equivalents x ~$9-10/wave, fresh session each time | **~$350-400** |
+| **Total, disciplined (fresh sessions)** | | **~$2,200-2,300** |
+
+That range assumes the round 25/26 discipline holds: reconciliation and
+coordination both run in sessions scoped to a small number of rounds, not one
+continuous session accumulating history across all ~38 remaining waves. **If
+that discipline lapses — one long-running coordinator session across the rest
+of the corpus, the way rounds 1-24 were actually run — the cost does not just
+add a fixed overhead, it compounds.** Round 25's $361 whole-session figure for
+24 rounds/845 pages worked out to roughly $0.43/page in cache mechanics *alone*,
+comparable in size to the entire extraction line item above, and that ratio
+gets worse the longer the session runs, not better. The real recommendation
+this round adds isn't a number — it's that **which of these two shapes the
+remaining work is run in changes the total by a factor of 2x or more**, and
+that's now a measured claim, not a projection.
+
+Time: at the ~80-pages/wave pace rounds 5-9 demonstrated (when running against
+already-familiar territory) plus round 3's caution about first-contact waves on
+a new product needing to start smaller, ~38 waves is a reasonable planning
+number, with the caveat that a genuinely new product family (a new SDK
+language, `operator`, mobile's remaining pieces) likely wants its own
+deliberately-small first-contact wave before scaling up — the same lesson round
+3 and round 18's "measure similarity before dispatching a full module" both
+taught, just applied ~40 more times.
+
 ## What this document does not cover
 
 - The one-time cost of designing the extraction schema, the reconciliation
@@ -538,13 +667,11 @@ result once it lands.
   SME time beyond the review-time figures above).
 - The cost of the JSON-LD drafting step, or of building an actual publishing
   pipeline — both still open per `poc/README.md`.
-- **A per-round breakdown of coordinator/reconciliation session cost.** The
-  section above now has a measured whole-session figure (~$361.09 Sonnet,
-  84% cache mechanics) and a confirmed mechanism, but not a per-round split -
-  there's no record of what round 12 cost versus round 20. Round 25's
-  fresh-session reconciliation experiment is a step toward that; a full
-  per-round breakdown would need usage-panel snapshots taken at each round
-  boundary, which this project didn't do until now. Treat every dollar figure
-  in the scope-option tables above as an extraction-only estimate - the
-  session-total figure is the only one that currently prices reconciliation
-  at all.
+- **A per-round breakdown of coordinator/reconciliation session cost for
+  rounds 1-25.** Round 26 closes this gap for itself (see above) by summing
+  each dispatched agent's own transcript directly, but that method wasn't
+  applied retroactively to rounds 1-25 — there's still no record of what round
+  12 cost versus round 20, and the subagent transcripts for most of those
+  rounds are one long-running session's worth of files with no per-round
+  boundary marked in them. Treat the round 26 figures as the first real
+  per-round baseline, not as validated back over the whole project's history.
