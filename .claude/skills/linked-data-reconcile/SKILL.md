@@ -11,6 +11,52 @@ tracked docs-issue log, without reading every extraction file individually -
 reconciling by aggregating recurrence, the same discipline phase 1 asks agents
 to extract with.
 
+## 0. Run this in a fresh session, and read `reconciliation.md`/`README.md` by anchor, not in full
+
+Round 25 tested this directly and it's now the standing instruction, not an
+experiment: **do not run reconciliation inline in the same long-running
+coordinator session that has accumulated rounds of history.** A session's
+own usage panel, checked at round 24, showed cache-read tokens (re-sending
+the entire prior conversation on every turn) at 61% of its total cost -
+purely a function of session length, not of how much genuinely new work any
+given round did. Dispatch reconciliation to a fresh agent (or fresh session)
+with no memory of prior rounds instead. Everything it needs is on disk:
+`registry-digest.py`, `recurrence.py`, `candidate-evidence.py`, the
+extraction files themselves, and the tail of `reconciliation.md`/`README.md`
+for format. Round 25's fresh-session reconciliation reported depth and
+tool-call volume comparable to prior in-session rounds, at a cost
+comparable to a single extraction batch - the coordinator dispatching it can
+stay a long-running session (someone has to track the project across
+rounds), but the actual reconciliation *work* shouldn't happen inside it.
+
+This matters because `reconciliation.md` (~121K tokens at round 25) and
+`README.md` (~66K tokens) are themselves growing every round, and are the
+next thing that looks like the same problem - but isn't, if read correctly.
+A conversation's history must be re-sent in full on every turn; a *file* can
+be read selectively. Never read either file end to end. Use `grep -n` to
+find the anchor you need (the previous round's own paragraph in the
+cumulative verdict, the last numbered entry in a list, the tail of the
+`## Round N` sections) and `Read` with a narrow `offset`/`limit` around it.
+Round 25's reconciliation agent never opened `reconciliation.md` at all
+until the moment it wrote its own new section, and found every insertion
+point by grepping for the previous round's exact anchor text. Do the same;
+if a round's write-up seems to require understanding the whole document to
+place correctly, that is a sign the document itself needs restructuring
+(see step 6), not a reason to read all of it every round.
+
+The one file that genuinely has no anchor to grep for is the registry
+digest (`registry-digest.py`, ~46K tokens in full) - a near-duplicate
+concept could be anywhere in it, so there's no "just the relevant lines"
+shortcut the way there is for a log file. When a round has a clear
+namespace focus, scope the digest to the relevant prefixes before handing
+it to an extraction agent (grep the concepts section for the namespaces in
+play, keep the full relations/predicates section, since predicates are
+reused across domains and aren't namespace-scoped) rather than passing the
+whole thing - round 25 did this for its two extraction batches, cutting the
+excerpt by roughly 40% with no loss, since an agent can still run
+`candidate-evidence.py`/`registry-digest.py` itself for anything the excerpt
+left out.
+
 ## 1. Aggregate, don't eyeball
 
 Once past a handful of pages, read no more extraction files individually than
@@ -634,3 +680,10 @@ which report produced it.
   method** - it's a genuine, separate kind of value this process produces
   alongside the ontology itself. Don't try to make the extraction schema "fix"
   what a human needs to look at; route it to `docs-issues/` and move on.
+- **Session length is its own cost driver, independent of how much a round
+  reads or how much it reconciles.** A conversation re-sends its entire prior
+  history on every turn; a file on disk does not have to be read that way.
+  Keep the coordinator's own reconciliation *work* in fresh, bounded sessions
+  (step 0) and keep every read of `reconciliation.md`/`README.md` anchored
+  and partial, no matter how natural it feels to "just read the file" once
+  it's already open.

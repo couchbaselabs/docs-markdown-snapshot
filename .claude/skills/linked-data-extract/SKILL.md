@@ -43,11 +43,35 @@ was independently re-minted by a later round after being consolidated into
 were only given the promoted predicate *names*, not the full design history).
 
 ```bash
-find linked-data/poc/concepts -name '*.json' -print -exec cat {} \;
-find linked-data/poc/relations -name '*.json' -print -exec cat {} \;
+python3 linked-data/poc/registry-digest.py
 ```
 
-From that output, build two short tables for the agent prompts:
+This prints every promoted concept and relation, generated fresh from disk
+each time, so it can't be stale the way a hand-maintained table would be.
+It's also large and growing (~46K tokens in full at round 25) - the registry
+only grows, and unlike `reconciliation.md`/`README.md` there's no anchor to
+grep for, since a near-duplicate concept could be anywhere in it. When a
+batch has a clear namespace focus (most do - a round dispatched at a
+product/service tends to mint mostly within a handful of namespaces), scope
+the concepts section to those namespaces before pasting it into an agent
+prompt (keep the full relations/predicates section regardless - predicates
+are reused across domains, not namespace-scoped, so there's no safe way to
+trim that list):
+
+```bash
+python3 linked-data/poc/registry-digest.py > /tmp/digest.txt
+grep -E '^`(namespace1|namespace2|...):' /tmp/digest.txt   # scoped concepts excerpt
+```
+
+Round 25 did this for two extraction batches and cut the excerpt by roughly
+40% with no loss - an agent that hits something outside the excerpt can
+always run `registry-digest.py`/`candidate-evidence.py` itself. Tell agents
+this explicitly rather than silently handing them a partial table, so they
+know to check rather than assume the excerpt is exhaustive.
+
+From the (possibly scoped) concepts section and the full relations section,
+build two short tables for the agent prompts, or point agents at the commands
+above and let them run their own:
 
 - **Concepts**: shorthand and real IRI, label, one-line meaning, and any note
   about what it must NOT be confused with or reused for (the registry has
