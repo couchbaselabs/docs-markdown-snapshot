@@ -436,7 +436,30 @@ call it **$30-50**. Nowhere near the reported $300+.
 
 **So the $300+ real spend is coming from something this document's model
 never counted at all: the coordinator session itself, not the extraction
-batches it dispatches.** Two components, neither driven by page count:
+batches it dispatches.** Confirmed directly from the session's own usage
+panel (checked 2026-09-04, mid-round-25): Claude Sonnet 5 usage for the whole
+session stands at **$361.09** — 2.9M input tokens, 5.2M output tokens,
+1.1 **billion** cache-read tokens, 32.9M cache-write tokens. Broken down by
+component, at Sonnet 5's published per-token rates:
+
+| Component | Tokens | Rate | Cost |
+|---|---|---|---|
+| Fresh input | 2.9M | $2/1M | ~$5.80 |
+| Output | 5.2M | $10/1M | ~$52.00 |
+| Cache write (5m) | 32.9M | $2.50/1M | ~$82.25 |
+| Cache read | 1,100M | $0.20/1M | ~$220.00 |
+| **Total** | | | **~$360**, matches $361.09 reported |
+
+**Cache read alone is 61% of the entire bill. Cache read plus cache write
+together are 84%. Fresh generation — the model actually doing new
+reasoning — is only 16%, about $58.** This is a mechanism, not just a
+category: a single continuous session re-reads its *entire* accumulated
+history, from cache, on every turn. Cache reads are cheap per token
+($0.20/1M), but a session kept open across 24+ rounds (7 days 22 hours of
+wall-clock time, per the same panel) racks up over a billion of them simply
+by existing that long — independent of how much genuinely new reasoning any
+single turn does. Two things this POC did compound that mechanism, neither
+driven by page count:
 
 - **Reconciliation-phase token usage, scaling with round count and running
   session length, not pages read.** Every round after extraction returns, one
@@ -444,20 +467,26 @@ batches it dispatches.** Two components, neither driven by page count:
   scripts, writes dozens of promoted concept/relation records with
   evidence-backed notes, and writes a 100-200+ line `reconciliation.md`
   section plus a matching `README.md` update — every round, inside one
-  session whose own conversation history keeps growing. Prompt caching offsets
-  some of this, but the *reasoning* work (reading extraction files, deciding
-  what crosses the promotion bar, drafting the write-up) is genuinely
-  proportional to round count and accumulated context, not to how many pages
-  that round happened to read. A round that reads 18 pages (round 24) but pays
-  down a 43-item cross-corpus backlog and writes docs-issues can cost more in
-  coordinator tokens than a round that reads 3x as many pages and finds little
-  to reconcile.
+  session whose own conversation history keeps growing, so every one of those
+  writes is preceded by a cache-read of everything before it. A round that
+  reads 18 pages (round 24) but pays down a 43-item cross-corpus backlog and
+  writes docs-issues can cost more in coordinator tokens than a round that
+  reads 3x as many pages and finds little to reconcile, and the later a round
+  falls in the session, the more expensive its own cache-read floor is before
+  it does any new work at all.
 - **Retry/stall overhead, which burns tokens for zero yield and is invisible
   in any "tokens per page extracted" metric.** Round 21 lost two batches to
   stalls, each needing a second attempt. Round 24 lost all five original
   batches to a simultaneous infrastructure stall and needed full relaunches.
   Every stalled attempt consumes tokens before failing; none of it shows up in
   a metric measured only on the batches that eventually succeeded.
+
+One honest caveat: the usage panel reports for the whole CLI session, not
+filtered to this project specifically. Given the session's duration and
+history, this is almost certainly close to entirely the linked-data work, but
+it isn't a hard per-project isolation the way the extraction figures above
+are (each of those comes from a stateless subagent batch with nothing else
+in its context).
 
 **The practical framing for a business case: this $300+ figure describes how
 this POC was actually run — one long, exploratory, ever-growing coordinator
@@ -474,25 +503,30 @@ as its own line item at all.
 
 **Also worth stating plainly, since it changes how the $133 "latest version
 only" projection should be read**: that figure prices 3,919 pages. This
-project has read 845 — about 22% of that scope — and reportedly already spent
-more than twice $133 getting there, almost entirely outside the thing the
-$133 figure prices. Comparing the two numbers directly, without this
-context, understates the real cost of running a project this way by a wide
-margin; comparing extraction-to-extraction, the two numbers are actually
-consistent.
+project has read 845 — about 22% of that scope — and spent $361.09 (Sonnet)
+getting there, **2.7x** the $133 figure, almost entirely outside the thing
+that figure prices (84% of it is cache mechanics on a long-running session,
+per the breakdown above, not extraction). Comparing the two numbers directly,
+without this context, understates the real cost of running a project this
+way by a wide margin; comparing extraction-to-extraction, the two numbers are
+actually consistent.
 
 **Recommendation for future cost tracking: split "extraction cost" and
 "coordination/reconciliation cost" into two separate line items, and re-scope
 reconciliation sessions before pricing a production run.** Extraction is
 page-count-driven, small, and already well-modeled above. Reconciliation, as
-actually run in this POC, is round-count-and-session-length-driven and has
-never been priced at all — the single biggest open number in this whole
-document. If a future business case needs a defensible reconciliation-cost
-figure, the right next step is either (a) instrumenting per-round coordinator
-token usage going forward so it can be measured directly, the way extraction
-already is, or (b) re-running one wave's reconciliation in a fresh, bounded
-session and pricing that in isolation, rather than continuing to infer it
-from the difference between a running total and an extraction-only estimate.
+actually run in this POC, is round-count-and-session-length-driven, and the
+usage-panel breakdown above gives a real number for the whole session
+(~$361) even without a per-round split — the mechanism (cache-read volume
+compounding with session length, not page count) is now measured, not
+inferred. Round 25 is a direct test of the fix this finding implies:
+extraction runs exactly as before (stateless, parallel, per-batch), but
+reconciliation is handed to a single fresh agent with no memory of rounds
+1-24 - starting from the registry state on disk rather than from an
+ever-growing conversation - specifically to check whether a bounded session
+brings the cache-read component back down to something proportional to that
+round's own size. See `poc/reconciliation.md`'s round 25 section for the
+result once it lands.
 
 ## What this document does not cover
 
@@ -504,9 +538,13 @@ from the difference between a running total and an extraction-only estimate.
   SME time beyond the review-time figures above).
 - The cost of the JSON-LD drafting step, or of building an actual publishing
   pipeline — both still open per `poc/README.md`.
-- **A priced figure for coordinator/reconciliation session cost.** The section
-  above names this as the dominant real cost observed so far and explains why
-  it isn't in any table in this document, but it stops at a rough bound
-  (~$250-280 of the reported $300+ Sonnet spend, by elimination), not a
-  measured number. Treat every dollar figure elsewhere in this document as an
-  extraction-only estimate until that gap is closed.
+- **A per-round breakdown of coordinator/reconciliation session cost.** The
+  section above now has a measured whole-session figure (~$361.09 Sonnet,
+  84% cache mechanics) and a confirmed mechanism, but not a per-round split -
+  there's no record of what round 12 cost versus round 20. Round 25's
+  fresh-session reconciliation experiment is a step toward that; a full
+  per-round breakdown would need usage-panel snapshots taken at each round
+  boundary, which this project didn't do until now. Treat every dollar figure
+  in the scope-option tables above as an extraction-only estimate - the
+  session-total figure is the only one that currently prices reconciliation
+  at all.
