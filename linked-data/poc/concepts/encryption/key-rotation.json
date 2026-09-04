@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/encryption/key-rotation",
+  "label": "encryption key rotation",
+  "type": "replacing an encryption key with a new one on a schedule. Asymmetric by default: Couchbase Server rotates DEKs automatically but does NOT rotate the encryption-at-rest keys themselves unless that is explicitly enabled - and keys held in an external KMS cannot be rotated by Couchbase Server at all.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/native-encryption-at-rest-overview.md",
+  "evidence": [
+    "By default, Couchbase Server automatically rotates DEKs but not the encryption keys it uses to encrypt them.",
+    "To rotate an encryption-at-rest key managed by an external KMS, you must use the KMS's tools.",
+    "Rotation of an externally managed encryption key is handled by the KMS that manage it."
+  ],
+  "note": "Filed with encryption:drop-deks-rest-action because the documentation goes out of its way to distinguish them - 'Dropping DEKs is not the same as rotating DEKs' - which is the `shouldNotBeConfusedWith` predicate earning its keep. The KMS asymmetry is the operationally important part: enabling an external KMS silently moves a rotation responsibility outside Couchbase Server."
+}

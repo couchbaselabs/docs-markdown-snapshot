@@ -1,0 +1,87 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-certificates",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-certificates.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "A conceptual and architectural overview of Couchbase Server's support of X.509 certificates is provided in [Certificates](../../learn/security/certificates.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Configure Server Certificates](configure-server-certificates.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Configure Client Certificates](configure-client-certificates.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Full instructions for accomplishing this with the UI, the CLI, and the REST API are provided: see [Enable Client-Certificate Handling](enable-client-certificate-handling.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/rotate-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Additionally, procedures are provided for [Certificate Rotation](rotate-server-certificates.md), to ensure optimal security; and [Certificate Error Handling](handle-certificate-errors.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/handle-certificate-errors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Additionally, procedures are provided for [Certificate Rotation](rotate-server-certificates.md), to ensure optimal security; and [Certificate Error Handling](handle-certificate-errors.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is a pure landing/navigation page (one overview paragraph plus a bulleted list of links) with no procedural or conceptual content of its own beyond what its five sibling pages already state in full. Correctly extracted with zero minted concepts and zero minted predicates - the second, milder instance in this batch of the round's mirror-image hypothesis (a page that wraps already-documented material and should decline to mint, not force new distinctions to justify itself)."
+  },
+  "cross_component_finding": "n/a - this page's only function is to route to the other nine pages in this batch, all already extracted or about to be.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

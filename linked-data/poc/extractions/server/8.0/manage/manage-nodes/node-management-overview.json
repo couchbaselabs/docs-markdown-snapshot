@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/node-management-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/node-management-overview.md",
+  "concepts": [
+    { "candidate_id": "server:node", "label": "node",
+      "registry_status": "promoted", "reused_or_minted": "reused - this is the umbrella overview page for the whole node-management section this batch extracts" },
+    { "candidate_id": "edition:community", "label": "Community Edition",
+      "registry_status": "promoted", "reused_or_minted": "reused - page states Community Edition's cluster-size restriction" },
+    { "candidate_id": "version:server-7-0", "label": "Couchbase Server 7.0",
+      "registry_status": "promoted", "reused_or_minted": "reused - the version at which the Community Edition license restriction was introduced" }
+  ],
+  "relations": [
+    { "subject": "server:node", "predicate": "behavesDifferentlyUnder", "object": "edition:community",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, generalized to a cluster-size constraint rather than a statement clause; a judgment call since behavesDifferentlyUnder's usual subject is a clause/option, not a node-count ceiling",
+      "evidence": "Couchbase has modified the license restrictions to its Community Edition package for Couchbase Server Version 7.0 and higher. In consequence, the size of an individual cluster running Community Edition is restricted to 5 nodes." },
+    { "subject": "server/8.0/manage/manage-nodes/node-management-overview", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/nodes",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "A conceptual overview is provided in [Nodes](../../learn/clusters-and-availability/nodes.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/node-management-overview", "predicate": "seeAlso", "object": "server/8.0/install/install-intro",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "For links to all per platform installation-instructions, see [Install](../../install/install-intro.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/node-management-overview", "predicate": "seeAlso", "object": "server/8.0/install/startup-shutdown",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "For information on starting and stopping Couchbase Server on different platforms, see [Startup and Shutdown](../../install/startup-shutdown.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresCapability",
+    "finding": "This overview page enumerates the whole node-management task list (initialize, provision, add/remove, failover, rebalance, recover, modify-services, node-to-node encryption, address family) in one bullet list but states no RBAC role requirement anywhere on the page itself - each individual task page (read separately in this batch) turns out to carry its own, page-local role/edition/version gating instead. The overview is a pure table-of-contents page with almost no independent ontological content of its own."
+  },
+  "cross_component_finding": "This page is the batch's front door and explicitly frames 'rebalancing the cluster' as occurring 'after a node has been removed for scheduled or otherwise planned maintenance' - i.e. the overview's own mental model already treats rebalance as a single recurring consequence of several different antecedent admin operations (add, remove, modify-services), not as several different kinds of rebalance. This framing is confirmed by every other page in the batch: see the cross_component_finding on add-node-and-rebalance and modify-services-and-rebalance for the detailed evidence.",
+  "cross_product_finding": ""
+}

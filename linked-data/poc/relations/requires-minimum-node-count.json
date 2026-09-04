@@ -1,8 +1,12 @@
 {
   "id": "https://docs.couchbase.com/ld/relations/requires-minimum-node-count",
   "label": "requires minimum node count",
-  "recurrence": 2,
-  "type": "DATATYPE PROPERTY: the subject service must run on at least N nodes of a cluster. Object is an integer literal, not a concept id.",
+  "recurrence": 6,
+  "type": "DATATYPE PROPERTY: the subject service, feature or cluster behaviour requires at least N nodes. Object is an integer literal, not a concept id.",
+  "aliases": [
+    "hasMinimumNodeCount"
+  ],
+  "aliases_note": "Round 26's general-settings.md extraction used BOTH spellings on the same page for the same thing - `requiresMinimumNodeCount` for auto-failover's three-node minimum and `hasMinimumNodeCount` elsewhere on the same form. A synonym fork that --variants cannot see, because the two names share no spelling to be a variant of: `requires`/`has` is a different WORD, not different punctuation. Folded here; the surviving name is the one already promoted. Union is 6 files, not 7 - the folded spelling's only file is one the surviving spelling already covers, which is the same-page evidence stated as a number. The subject scope is widened in the type field to match the evidence - auto-failover is a cluster behaviour, not a service - which is a correction to round 11's wording, not a new claim.",
   "note": "One of round 11's first datatype properties - see has-internal-service-identifier for why that distinction matters and was previously impossible to express.",
   "relates_to_competency_question": "How many nodes must run this service?",
   "kind": "relation (schema-level)",

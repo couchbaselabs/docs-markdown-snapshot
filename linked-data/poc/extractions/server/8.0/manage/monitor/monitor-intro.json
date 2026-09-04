@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/manage/monitor/monitor-intro",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/monitor/monitor-intro.md",
+  "concepts": [
+    { "candidate_id": "ui:dashboard", "label": "Dashboard (Couchbase Web Console)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - first minted in this batch's manage-statistics.json; this page restates the identical 'Full Admin or Bucket Admin' access sentence verbatim." },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - first minted in this batch's manage-statistics.json." },
+    { "candidate_id": "stats:metrics-rest-api", "label": "Getting Cluster Statistics REST API (metric/function/label query surface)",
+      "registry_status": "minted", "reused_or_minted": "minted - the Prometheus-backed REST API queried by metric/function/label, distinct from stats:cluster-statistics (this batch's mint for the older, unrelated /pools/default REST surface documented on manage-statistics.md). Server's own statistics/monitoring vocabulary genuinely does not fit the promoted, Capella-specific monitoring: family (activity log/alerts/health-advisor/event severity enums) - this is a different, metrics-and-Prometheus-shaped surface entirely, so kept in the new stats: namespace rather than forced into monitoring:." },
+    { "candidate_id": "prometheus:per-node-instance", "label": "Prometheus instance (per node)",
+      "registry_status": "minted", "reused_or_minted": "minted - 'An instance of Prometheus runs on each node of the cluster, and the metrics for each node are duly stored in that node's instance of Prometheus.' No promoted concept names Couchbase Server's per-node Prometheus integration; this is genuinely new territory as the round's hypothesis anticipated." },
+    { "candidate_id": "service:query-service", "label": "Query service",
+      "registry_status": "promoted", "reused_or_minted": "reused - subject of the Query-monitoring cross-reference." }
+  ],
+  "relations": [
+    { "subject": "ui:dashboard", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Users with the **Full Admin** or **Bucket Admin** role can assemble statistics as _groups_ of _charts_, on the **Dashboard** of Couchbase Web Console." },
+    { "subject": "ui:dashboard", "predicate": "hasDefaultValue", "object": "30 days",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note that the UI returns the last 30 days of statistics." },
+    { "subject": "stats:metrics-rest-api", "predicate": "reliesOnMechanism", "object": "prometheus:per-node-instance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "An instance of _Prometheus_ runs on each node of the cluster, and the metrics for each node are duly stored in that node's instance of Prometheus." },
+    { "subject": "stats:metrics-rest-api", "predicate": "seeAlso", "object": "server/8.0/metrics-reference/metrics-reference",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For a complete list of metrics, see the [Metrics Reference](../../metrics-reference/metrics-reference.md)." },
+    { "subject": "ui:dashboard", "predicate": "seeAlso", "object": "server/8.0/manage/manage-statistics/manage-statistics",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For step-by-step instructions, see [Manage Statistics](../manage-statistics/manage-statistics.md)." },
+    { "subject": "service:query-service", "predicate": "seeAlso", "object": "server/8.0/n1ql/n1ql-manage/monitoring-n1ql-query",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The monitoring of statistics related to the Query Service is described in [Manage and Monitor Queries](../../n1ql/n1ql-manage/monitoring-n1ql-query.md)." },
+    { "subject": "stats:metrics-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/monitor/set-up-prometheus-for-monitoring",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can find an introduction on how to do this in [Configure Prometheus to Collect Couchbase Metrics](set-up-prometheus-for-monitoring.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This intro page never cross-links back to manage-statistics.md's own REST section (/pools/default, /buckets/<name>/stats) even though both pages document Server statistics REST surfaces - a reader following only this page's 'Monitoring with the REST API' section would never learn the older /pools/default endpoint exists at all, and vice versa from manage-statistics.md."
+  },
+  "cross_component_finding": "This page is the first point in the batch where Server's OWN statistics/monitoring vocabulary (metric/function/label, per-node Prometheus instance) is stated as genuinely distinct from the /pools/default REST surface manage-statistics.md documents - two parallel statistics REST APIs for the same underlying data, one older ('Getting Bucket Statistics'/'Retrieving Cluster Information') and one Prometheus-backed ('Getting Cluster Statistics'), confirming the round's hypothesis that Server's own monitoring vocabulary needed new, non-Capella concepts rather than reuse of monitoring:.",
+  "cross_product_finding": ""
+}

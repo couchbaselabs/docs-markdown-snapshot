@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/vbucket-count-128",
+  "label": "128-vBucket configuration (Magma)",
+  "type": "the smaller of Magma's two vBucket configurations, with a minimum memory quota of 100 MiB per node - the default for new Magma buckets in Enterprise Edition, and available only in clusters that have fully migrated to Couchbase Server 8.0.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/storage-engines.md",
+  "evidence": [
+    "Magma supports two vBucket configurations: 128 or 1024",
+    "It has a minimum memory quota of 100 MiB per node.",
+    "Magma buckets with 128 vBuckets are only available in clusters that have fully migrated to Couchbase Server 8.0 or later.",
+    "The 128 vBucket configuration is the default for new buckets in Couchbase Server Enterprise Edition."
+  ],
+  "note": "An 8.0 feature that changes the smallest deployable bucket by an order of magnitude (100 MiB against 1 GiB), and the round's clearest example of a REFERENCE fact whose consequences are only visible in procedures: create-bucket.md offers the choice, edit-bucket.md allows changing it, and migrate-bucket.md states two hard constraints - storage-backend migration cannot cross vBucket counts, and migrating to Magma always produces 1024. The id repeats its namespace (`vbucket:vbucket-count-128`); kept as minted, following the existing `index:index` precedent, because 7 relations already resolve to it and a rename would buy nothing."
+}

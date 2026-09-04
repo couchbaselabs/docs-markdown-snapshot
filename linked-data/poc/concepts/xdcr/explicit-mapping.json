@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/explicit-mapping",
+  "label": "explicit keyspace mapping",
+  "type": "an administrator-specified mapping from a source scope or collection to a differently-named target one, required whenever names differ - and required by collection filtering, which cannot be expressed without it.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-xdcr/replicate-using-scopes-and-collections.md",
+  "evidence": [
+    "An _explicit_ mapping between collections is one established by an administrator, so as to allow replication between differently-named keyspaces.",
+    "This also requires an _explicit mapping_ to be specified, as follows:"
+  ],
+  "note": "The filtering dependency is the fact worth having in the registry: filter-xdcr-replication.md needs an explicit mapping in order to filter at collection granularity, which means a reader who only learns about mappings from the mapping page will not know that choosing to filter forces the choice of mapping mode."
+}

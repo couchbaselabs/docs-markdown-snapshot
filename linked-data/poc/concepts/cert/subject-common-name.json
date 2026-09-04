@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/subject-common-name",
+  "label": "Subject Common Name (CN)",
+  "type": "the legacy X.509 Subject field that can carry the username for client-certificate authentication - `subject.cn` is the default source in the Web Console's client-certificate handling. Deprecated by the IETF (RFC 6125 section 6.4.4) but retained by Couchbase Server for compatibility.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "evidence": [
+    "The Internet Engineering Task Force (IETF) has deprecated the Subject Common Name as described in [section 6.4.4 of RFC 6125].",
+    "The _Common Name_ provided as `Subject` for the certificate is specified as `clientuser`, which is the name of an existing user.",
+    "Note that the default option is **subject.cn**, which indicates that the _Subject Common Name_ within the certificate is used."
+  ],
+  "note": "The point worth filing is the contradiction between the two statements, which no single page draws: the field is documented as deprecated AND as the DEFAULT choice in the Web Console. Both are true and the reader is left to reconcile them. Filed with the `retainedForLegacyCompatibility` predicate that already exists for exactly this shape."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/loopback-interface",
+  "label": "loopback interface (encryption exemption)",
+  "type": "the local interface whose traffic remains exempt from encryption even when the cluster encryption level is `strict` - communication that occurs entirely within one node is not required to be encrypted.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "evidence": [
+    "Note, however, that after `strict` has been specified, communication that occurs entirely on a single node using the _loopback interface_ is still permitted to be unencrypted.",
+    "`strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients."
+  ],
+  "note": "Filed because it is a documented hole in a setting whose name says otherwise, stated on both the reference and the procedure page - and because a security audit asking 'is all traffic encrypted under strict?' needs the answer to be discoverable, which requires the exemption to be a thing in the registry and not a clause. The predicate is round 26's `exemptFromEncryptionUnder`, which stays below the promotion bar at 1 file."
+}

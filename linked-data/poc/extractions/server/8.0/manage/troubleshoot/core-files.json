@@ -1,0 +1,16 @@
+{
+  "page_id": "server/8.0/manage/troubleshoot/core-files",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/troubleshoot/core-files.md",
+  "concepts": [
+    { "candidate_id": "troubleshoot:core-file", "label": "Core file",
+      "registry_status": "minted", "reused_or_minted": "minted - the OS-level dump artifact created when a Couchbase Server process panics; 'Couchbase Server honors these core file settings' rather than managing them itself, so this is genuinely OS configuration rather than a Couchbase Server mechanism, and no promoted concept covers it." }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page has zero cross-references to any other page in the corpus - no link to cbcollect_info (which would presumably collect core files as diagnostic information), no link to manage-logging.md (the sibling page for the OTHER main diagnostic artifact, log files), and no link to common-errors.md or troubleshoot.md despite living in the same troubleshoot/ directory as both. It is an entirely self-contained, per-OS configuration checklist (Linux/Ubuntu/RHEL/Mac OS X) with no stated connection to how Couchbase Server actually uses core files once they exist."
+  },
+  "cross_component_finding": "core-files.md, common-errors.md, and troubleshoot.md are three separate pages in the same troubleshoot/ directory with no links between any of them - each names log files, `cbcollect_info`, or crash artifacts in isolation (this page: core dumps; common-errors.md: log-derived error messages; troubleshoot.md: log files and `cbcollect_info` generally) without ever assembling 'here is everything you should collect together for a Couchbase Support case' into one place. manage-logging.md's own 'Collect Logs' section, which DOES describe `cbcollect_info` in detail, is likewise never linked from any of the three troubleshoot/ pages.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/list-cluster-nodes",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/list-cluster-nodes.md",
+  "concepts": [
+    { "candidate_id": "server:node", "label": "node", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "server/8.0/manage/manage-nodes/list-cluster-nodes", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/groups",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "**group**: The _Group_ occupied by the node. For information, see [Server Group Awareness](../../learn/clusters-and-availability/groups.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/list-cluster-nodes", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/services",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "**services**: The _services_ running on the node. For information, see [Services](../../learn/services-and-indexes/services/services.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/list-cluster-nodes", "predicate": "seeAlso", "object": "server/8.0/learn/buckets-memory-and-storage/vbuckets",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "**items**: The number of _active_ and _replica_ items currently on the node, in thousands. If the figure is `15.2 K/15.8 K`, this indicates that 15.2 K items are in active vBuckets on the node, and 15.8 in replica. For information on vBuckets, see [vBuckets](../../learn/buckets-memory-and-storage/vbuckets.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/list-cluster-nodes", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/remove-node-and-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "Now that you have built a cluster and examined the nodes it contains, learn details on how to [Remove a Node and Rebalance](remove-node-and-rebalance.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "This page is functionally a monitoring/inventory surface for server:node (UI Servers screen, `server-list`/`host-list` CLI commands, `/pools/default` REST) but is filed under manage/manage-nodes rather than under monitor/ - the same content (CPU/RAM/swap/disk/items per node) that a monitoring-focused extraction round would likely tag with monitoredVia relations is presented here purely as a management task. No monitoredVia relation is recorded because none of this batch's monitoring-relevant object concepts (e.g. a dedicated 'node health metrics' concept) exist yet in the registry to relate it to - flagged rather than forced."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

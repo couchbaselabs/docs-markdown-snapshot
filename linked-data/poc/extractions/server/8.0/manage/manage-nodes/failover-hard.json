@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/failover-hard",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/failover-hard.md",
+  "concepts": [
+    { "candidate_id": "server:hard-failover", "label": "Hard failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch); this page is its dedicated task page" },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in apply-node-to-node-encryption.json, defined in fail-nodes-over.json (this batch)" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:unsafe-hard-failover", "label": "Unsafe hard failover",
+      "registry_status": "minted", "reused_or_minted": "minted - hard failover forced past Couchbase Server's own default safety refusal via an explicit --force (CLI) or allowUnsafe=true (REST) override, used when a normal hard failover would otherwise be refused. A distinct, named admin escape-hatch, not simply 'hard failover that succeeded'." },
+    { "candidate_id": "server:node-recovery", "label": "Node recovery",
+      "registry_status": "minted", "reused_or_minted": "minted - first named on this page's Next Steps as what happens to a failed-over node afterward; its own dedicated task page (recover-nodes.json) supplies the full definition and reuses this id" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "This indicates that hard failover has successfully completed, but a rebalance is required to complete the reduction of the two-node cluster to one node." },
+    { "subject": "server:hard-failover", "predicate": "cascadesDeletionTo", "object": "server:vbucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Performing a hard failover on a node containing vBuckets that have no replicas on other nodes results in data loss." },
+    { "subject": "server:unsafe-hard-failover", "predicate": "isSubtypeOf", "object": "server:hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "If hard failover must nevertheless be performed, the `failover` CLI expression should be re-entered: this time, with the `--force` flag used, in addition to the `--hard` flag. This produces an _unsafe_ hard failover." },
+    { "subject": "server:hard-failover", "predicate": "doesNotSupport", "object": "server:unsafe-hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call capturing that normal (safe-mode) hard failover refuses in certain circumstances and only the unsafe variant proceeds",
+      "evidence": "In certain circumstances, an attempted hard failover will not be executed by Couchbase Server: for information, see [Hard Failover in Default and Unsafe Modes](../../learn/clusters-and-availability/hard-failover.md#default-and-unsafe). Such an attempt therefore fails, with an `ERROR: Received unexpected status 504` notification." },
+    { "subject": "server:node-recovery", "predicate": "requiresPriorExecutionOf", "object": "server:hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "A node that has been failed over can be recovered and reintegrated into the cluster. See [Recover a Node](recover-nodes.md)." },
+    { "subject": "server:hard-failover", "predicate": "cascadesTo", "object": "server:auto-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call, object stands in for the auto-failover retry-quota counter reset by a manual rebalance",
+      "evidence": "Note that a rebalance, which can be started by left-clicking on the **Rebalance** button, also resets this count to zero, on successful completion." },
+    { "subject": "server:hard-failover", "predicate": "doesNotSupport", "object": "server:node",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call standing in for 'the total number of nodes failed over exceeding a bucket's replica count', since the registry has no dedicated concept for that multi-node data-loss threshold",
+      "evidence": "For hard failover of multiple nodes, each Couchbase bucket must have at least as many replicas as the total number of nodes failed over or you WILL lose data." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role requirement is stated for hard failover either, matching the pattern across every failover-family page in this batch. Also notable: the CLI and REST surfaces disagree on the ERROR SIGNAL for a refused hard failover - the CLI page states 'ERROR: Received unexpected status 504' while the REST section of this SAME page states 'Cannot safely perform a failover at the moment' for what appears to be the identical refused-failover condition. Flagged as a possible docs-issue (inconsistent error reporting across two surfaces of the same operation on one page) rather than modeled as two different conditions, since nothing on the page states they differ."
+  },
+  "cross_component_finding": "Hard failover surfaces a real structural fork the round's hypothesis anticipated: a SAFE mode (default, refuses under risk) and an UNSAFE mode (explicit override, proceeds anyway) are not just a flag on the same call - the unsafe path is reached only after the safe path has already failed, is invoked with materially different parameters (--force/--hard vs. allowUnsafe=true on the rebalance call itself, not on failover), and multiple-node hard failover has its own dedicated UI surface (the FAILOVER tab) not shared with single-node hard failover's row-level button. 'Hard failover' is therefore itself closer to a small family (single-node / multiple-node / unsafe) than one uniform operation, mirroring this round's central question about rebalance but one level up the call stack.",
+  "cross_product_finding": ""
+}

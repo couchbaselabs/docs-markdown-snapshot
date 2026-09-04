@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/manage/manage-groups/manage-groups",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-groups/manage-groups.md",
+  "concepts": [
+    { "candidate_id": "manage:server-group", "label": "Server Group (Couchbase Server node grouping for rack/AZ awareness)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted twice (server/8.0/fts/fts-high-availability-for-search.json, server/8.0/fts/fts-high-availability-for-search-high-availability-indexes.json); this page is the dedicated management page for the concept those two Search-Service pages only referenced" },
+    { "candidate_id": "server:node", "label": "node", "registry_status": "promoted", "reused_or_minted": "reused - the unit assigned to a server group" },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "promoted", "reused_or_minted": "reused - server-group membership determines replica distribution for vBuckets" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused - required after moving a server between groups, or removing a server from one" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "manage:server-group", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Server groups and the Server Group Awareness feature are only available in Couchbase Server Enterprise Edition." },
+    { "subject": "manage:server-group", "predicate": "hasInternalComponent", "object": "server:node",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Server _groups_ can be administrator-defined to contain a number of the nodes within a Couchbase Cluster, and thereby protect the cluster against large-scale infrastructure failure." },
+    { "subject": "manage:server-group", "predicate": "createsOnAction", "object": "manage:server-group",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - the first node of a new cluster is placed into an automatically-created default group",
+      "evidence": "when you initialize a new Couchbase Server cluster, the first node is automatically placed in a server group named Group 1." },
+    { "subject": "manage:server-group", "predicate": "requiresExplicitCleanupOnFailure", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - moving a server between groups leaves the cluster in an unbalanced state requiring a rebalance to complete",
+      "evidence": "The second warning indicates that a rebalance should now be performed, on the **Servers** screen." },
+    { "subject": "server/8.0/manage/manage-groups/manage-groups", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/groups",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "An explanation of _Server Group Awareness_, and the effect it has on the distribution of vBucket replicas throughout a cluster, is provided in [Server Group Awareness](../../learn/clusters-and-availability/groups.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page never names a required RBAC role for any server-group operation (create, delete, move-server, assign-group) - a genuine gap, since every other procedural page in this batch (create/edit/delete/flush a bucket) states its required role(s) explicitly in a Prerequisites section or inline sentence. A candidate relation (manage:server-group requiresServerRole role:full-administrator) was considered and DROPPED rather than asserted: the only textual support found elsewhere in the corpus (roles.md's generic statement that the Full Admin role exists) never states that it specifically gates server-group management, so asserting it here would have been reconstruction, not extraction.",
+    "finding_2": "THE ROUND BRIEF'S NAMED HYPOTHESIS FOR THIS PAGE DID NOT HOLD. The dispatch briefing flagged this page as possibly overlapping with batch B's manage-users-and-roles.md ('RBAC groups'), but manage-groups/manage-groups.md is entirely about SERVER groups - administrator-defined groupings of cluster NODES for rack/availability-zone-style infrastructure-failure protection (Server Group Awareness) - and never once mentions RBAC groups, user groups, or role assignment. There is no overlap with manage-users-and-roles.md at all; the word 'group' names two completely unrelated Couchbase Server constructs (a node-placement construct here, a named set of users elsewhere), which is itself worth recording as a same-word-different-thing collision alongside the registry's existing four-way 'role' writeup. server:user-group (already promoted, the RBAC construct) and manage:server-group (this page's construct) share no relationship whatsoever."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

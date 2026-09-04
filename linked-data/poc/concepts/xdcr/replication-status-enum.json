@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/replication-status-enum",
+  "label": "XDCR replication status (three divergent vocabularies)",
+  "type": "ENUM WITH NO SINGLE VALUE SET. The lifecycle status a replication reports, spelled three different ways on three surfaces: the Capella Web UI lists Creating / Active / Pausing / Paused / Deleting / Create Error / Delete Error; the Server Web Console's XDCR screen shows `replicating` and `paused`; and the Server REST API's cluster-tasks array reports an XDCR task as `\"status\": \"running\"` with pause carried by a SEPARATE `pauseRequested` boolean rather than by any status value at all. No page in the corpus reconciles the three.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "cloud/clusters/xdcr/manage-xdcr-replications.md",
+  "evidence": [
+    "The **Replications** page lists replications with their current status. Replication status can be 1 of the following:",
+    "This shows the single replication that is in progress. Note that the **status** column displays a status of `replicating`.",
+    "This features information on a single, currently defined replication. In the `status` column, this replication is shown as `paused`.",
+    "\"status\": \"running\",",
+    "\"pauseRequested\": false,"
+  ],
+  "note": "Promoted deliberately as a DIVERGENCE RECORD rather than as an enumeration, which is the only honest option: three files use this id and each documents a different value set, and a check of the REST surface for this write-up found the third surface is not merely differently spelled but differently SHAPED - it has no paused state, only a pause-requested flag, so filing a value list would assert an agreement that does not exist. The divergence itself is filed as a docs-issue (server-xdcr-replication-status-three-vocabularies). Also the round's one `--audit` finding: this record's original round-7 evidence string elides a Markdown table with '...' and so is not literally quotable from its page. Re-read of cloud/clusters/xdcr/manage-xdcr-replications.md lines 341-352 confirms all seven Capella statuses are genuinely there in table form - the flag was an elision artefact, not fabrication, and the evidence above is trimmed to what the page literally says.",
+  "relates_to_competency_question": "What states can an XDCR replication be in - and does the answer depend on which surface you ask?"
+}

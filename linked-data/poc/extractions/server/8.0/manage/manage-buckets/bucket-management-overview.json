@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/manage/manage-buckets/bucket-management-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-buckets/bucket-management-overview.md",
+  "concepts": [
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket",
+      "registry_status": "promoted", "reused_or_minted": "reused - implied as the storage-engine-backed bucket type this page's storage-engine sentence describes" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore",
+      "registry_status": "promoted", "reused_or_minted": "reused - named directly as one of the two storage engines" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma",
+      "registry_status": "promoted", "reused_or_minted": "reused - named directly as one of the two storage engines" }
+  ],
+  "relations": [
+    { "subject": "bucket:couchbase-bucket", "predicate": "offersConfigurationChoice", "object": "storage-engine:couchstore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase offers two different storage engines for storing the underlying data in buckets: `Couchstore` and `Magma`." },
+    { "subject": "bucket:couchbase-bucket", "predicate": "offersConfigurationChoice", "object": "storage-engine:magma",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase offers two different storage engines for storing the underlying data in buckets: `Couchstore` and `Magma`." },
+    { "subject": "server/8.0/manage/manage-buckets/bucket-management-overview", "predicate": "seeAlso", "object": "server/8.0/learn/buckets-memory-and-storage/buckets",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For a complete conceptual and architectural overview of Couchbase buckets, see [Buckets](../../learn/buckets-memory-and-storage/buckets.md)." },
+    { "subject": "server/8.0/manage/manage-buckets/bucket-management-overview", "predicate": "seeAlso", "object": "server/8.0/learn/buckets-memory-and-storage/storage-engines",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For an overview of the backend storage mechanisms, see [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "This overview page names only Couchbase buckets' storage-engine choice and never mentions Ephemeral buckets or the bucket-type axis at all, even though the very next pages in this batch (create-bucket.md, edit-bucket.md) are built entirely around the Couchbase/Ephemeral distinction. A reader landing on this page alone would not learn a second bucket type exists."
+  },
+  "cross_component_finding": "The page states a hard cluster-wide cap - 'A maximum of 30 buckets can be created per cluster' - repeated verbatim as a Prerequisite on create-bucket.md ('Your cluster must have less than 30 buckets'), so the same numeric limit is corroborated across two pages in this batch rather than appearing once.",
+  "cross_product_finding": "N/A"
+}

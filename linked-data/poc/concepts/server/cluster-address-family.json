@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/cluster-address-family",
+  "label": "cluster address family",
+  "type": "the cluster-wide choice of IP address family (IPv4 or IPv6), Enterprise Edition only, changed by a changeover procedure with four preconditions: every node must be in dual-stack mode, every node must be named by a fully qualified domain name, auto-failover must be disabled, and node-to-node encryption must be disabled.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-nodes/manage-address-families.md",
+  "evidence": [
+    "Couchbase Server Enterprise Edition supports the IPv4 and IPv6 address families.",
+    "Each cluster-node must be operating in _dual stack_ mode, thereby supporting both IPv4 and IPv6 addressing.",
+    "The address family can only be changed if each cluster-node is named with a fully qualified domain-name (such as `nodename.clustername.com`).",
+    "On each node, when the address-family change occurs, all Couchbase Services hosted on that node _other than_ the Data Service are restarted."
+  ],
+  "note": "The highest-precondition operation in the entire 83-page scope, and the clearest single vindication of extracting administration procedures: a cluster-wide setting with four independent preconditions, a partial service restart as a side effect, and an interaction with two other features (auto-failover, node-to-node encryption) that neither of those features' own pages mentions. None of this is derivable from a reference description of 'address family'."
+}

@@ -1,0 +1,83 @@
+{
+  "page_id": "server/8.0/manage/manage-security/rotate-server-certificates",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/rotate-server-certificates.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - implicitly, as the certificate chain that must be rotated alongside the root"
+    },
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own term for what must be rotated whenever the server-side root is"
+    },
+    {
+      "candidate_id": "tls:node-to-node-encryption",
+      "label": "Node-to-node encryption",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's central version-gated finding concerns this feature's interaction with certificate management"
+    },
+    {
+      "candidate_id": "cert:certificate-rotation",
+      "label": "Certificate Rotation",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own named task (the replacement of an existing certificate and its private key with an entirely new pair), triggered by expiry, CA substitution, changed constraints, or a security breach. Distinct from encryption:key-rotation (a different namespace, rotating encryption-at-rest keys rather than X.509 certificates) - kept apart per the no-silent-merge rule even though both are called 'rotation'."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "cert:certificate-rotation",
+      "predicate": "cascadesTo",
+      "object": "cert:client-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rotating a server-side root certificate and its chains cascades into a mandatory client-side rotation",
+      "evidence": "Certificate-rotation on the server-side does not require that either the cluster or any of its nodes be restarted. However, following rotation of a server-side's root certificate and chains, all corresponding client-chains must also be rotated accordingly."
+    },
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "doesNotSupport",
+      "object": "cert:certificate-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - a stated, bounded constraint on how rotation may be performed: an issuing certificate may never sign a certificate with a longer validity than its own",
+      "evidence": "No root or intermediate certificate should ever be used to issue certificates with an expiration date later than that of the issuing certificate itself."
+    },
+    {
+      "subject": "tls:node-to-node-encryption",
+      "predicate": "doesNotSupport",
+      "object": "cert:certificate-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the pre-7.1 restriction: node-to-node encryption had to be disabled before root/intermediate certificate management of any kind, rotation included, could be performed at all",
+      "evidence": "Note that prior to Couchbase Server Version 7.1, node-to-node encryption, which is managed by means of the Couchbase CLI, needed to be _disabled_ before management of either _root_ or _intermediate_ certificates could be performed."
+    },
+    {
+      "subject": "tls:node-to-node-encryption",
+      "predicate": "availableSince",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the LIFTING of the restriction above is itself dated to 7.1, corroborating configure-client-certificates.json's independent 7.1 dating of the related multiple-root-certificates capability",
+      "evidence": "This restriction is lifted in version 7.1: therefore, root and intermediate certificates _can_ now be managed while node-to-node encryption is enabled."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - no rotation procedure on this page itself",
+    "finding": "This page states WHEN rotation is needed and WHAT constraints govern it, but contains no actual rotation procedure (no CLI/REST/UI steps) - it is purely conceptual/planning guidance, with the real how-to split across configure-server-certificates.md and configure-client-certificates.md (neither of which this page links back to). A reader following only this page's own content cannot perform a rotation from it."
+  },
+  "cross_component_finding": "The page's own vocabulary ('Certificate Rotation', triggered by expiry/CA-change/constraint-change/breach) is structurally identical in shape to encryption:key-rotation (triggered by schedule or suspected compromise) documented elsewhere in this same batch (manage-native-encryption-at-rest.md) - both are periodic-replacement mechanisms for a security-critical artifact, named 'rotation' in the docs' own words, gated by version/role differently, and living in disjoint namespaces (cert: vs encryption:) because they rotate different kinds of artifact (X.509 certificates vs symmetric encryption keys). No page states these two rotations are the same mechanism, so they are kept as two concepts per the standing no-silent-merge rule - but the shared vocabulary is worth flagging as a same-word, different-mechanism pattern consistent with several other name collisions already on record in this registry.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

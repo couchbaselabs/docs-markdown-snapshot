@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-edit-bucket-durability-levels-not-bucket-type-qualified",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "create-bucket.md correctly restricts the Minimum Durability Level choices by bucket type: its Couchbase Bucket Advanced Settings section offers none, majority, majorityAndPersistActive and persistToMajority, and its Ephemeral Bucket Settings section offers only none and majority. learn/data/durability.md gives the reason - 'You can choose this level only for Couchbase buckets.' edit-bucket.md, which documents editing EITHER type of bucket, lists all four with no qualification: 'The options are **none**, **majority**, **majorityAndPersistActive**, and **persistToMajority**.' The omission is conspicuous because the same page qualifies its neighbours by bucket type where it matters - Ejection Method says 'You can only change this setting for Couchbase buckets', and Database Fragmentation says 'Only settable on Couchbase buckets'. So a reader editing an Ephemeral bucket is told about two durability levels the product will not give them, on a page that is otherwise careful about exactly this distinction.",
+  "about": [
+    "server/8.0/manage/manage-buckets/edit-bucket",
+    "server/8.0/manage/manage-buckets/create-bucket",
+    "server/8.0/learn/data/durability"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open"
+}

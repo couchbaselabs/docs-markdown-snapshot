@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/deletion-filter",
+  "label": "XDCR deletion filter",
+  "type": "the XDCR replication settings that control whether deletions, expirations and TTLs propagate to the target - separate from document filtering, which does NOT suppress them by default, and which must be configured before a collection-migration replication if the migration is not to carry deletions across.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-xdcr/filter-xdcr-replication.md",
+  "evidence": [
+    "Note that the replication of deletions, expirations, and/or TTLs is _not_ prevented by the specifying of a filter expression.",
+    "**Remove TTL from replicated items**. If checked, this means that the TTL that a document bears at source is removed from the replicated version.",
+    "Note that prior to attempting migration, appropriate settings for _deletion filters_ should be established."
+  ],
+  "note": "A default whose surprise value is the reason to file it: a filter that selects which documents replicate does NOT stop deletions of unselected documents from replicating. The registry already had xdcr:replication-filter and xdcr:filtering-expression from the reference tree; neither carries this, because it is a statement about what the filter does not do."
+}

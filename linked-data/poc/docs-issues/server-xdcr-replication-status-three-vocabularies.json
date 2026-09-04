@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-xdcr-replication-status-three-vocabularies",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "An XDCR replication's status is documented with three different value sets on three surfaces, and no page reconciles them. (1) Capella's Web UI, in cloud/clusters/xdcr/manage-xdcr-replications.md, lists seven: 'Replication status can be 1 of the following' - Creating, Active, Pausing, Paused, Deleting, Create Error, Delete Error. (2) The Server Web Console's XDCR screen shows two, in server/8.0/manage/manage-xdcr/pause-xdcr-replication.md and resume-xdcr-replication.md: 'the **status** column displays a status of `replicating`' and 'this replication is shown as `paused`'. (3) The Server REST API's cluster-tasks array, in server/8.0/rest-api/rest-xdcr-adv-settings.md, reports an XDCR task as `\"status\": \"running\"` and does not model pause as a status value at all - it carries a separate `\"pauseRequested\": false` boolean alongside it. So the same lifecycle is 'Active' in one place, `replicating` in another and `running` in a third; pause is a status on two surfaces and a request flag on the third; and only Capella documents error states. A reader or a tool moving between the Capella UI, the Server UI and the REST API has no mapping to work from, and nothing tells them one is needed.",
+  "about": [
+    "cloud/clusters/xdcr/manage-xdcr-replications",
+    "server/8.0/manage/manage-xdcr/pause-xdcr-replication",
+    "server/8.0/manage/manage-xdcr/resume-xdcr-replication",
+    "server/8.0/rest-api/rest-xdcr-adv-settings"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "Filed rather than modelled. The registry holds xdcr:replication-status-enum as an explicit DIVERGENCE record - three files use the id, each documenting a different value set - and promoting a value list would assert an agreement that does not exist. This is also the round's one candidate-evidence.py --audit finding: the id's original round-7 evidence string elided the Capella table with '...' and so was not literally quotable from its page. Re-reading cloud/clusters/xdcr/manage-xdcr-replications.md lines 341-352 confirmed the seven statuses are genuinely there in table form, so the flag was an elision artefact rather than fabrication - but checking it is what turned up the REST surface's different SHAPE, which nobody had noticed."
+}

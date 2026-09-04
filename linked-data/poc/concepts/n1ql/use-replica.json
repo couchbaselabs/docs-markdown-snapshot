@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/use-replica",
+  "label": "use_replica (read from replica)",
+  "type": "the query setting permitting a query to read from replica vBuckets when actives are unavailable, requiring Couchbase Server 7.6.0 or later - and not applicable to sequential (KV range) scans, which cannot start on a replica vBucket.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "Reading from replica is only possible if the cluster uses Couchbase Server 7.6.0 or later.",
+    "Note that KV range scans cannot currently be started on a replica vBucket. If a query uses sequential scan, it will not be able to read from a replica."
+  ],
+  "note": "The sequential-scan exclusion is stated only on the cluster settings page, not on the query-settings reference that documents the setting - so an administrator enabling replica reads cluster-wide learns of the exception and a developer setting it per request does not."
+}

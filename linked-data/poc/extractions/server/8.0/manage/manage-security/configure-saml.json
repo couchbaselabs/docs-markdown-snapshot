@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-saml",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-saml.md",
+  "concepts": [
+    { "candidate_id": "idp:saml", "label": "SAML identity provider",
+      "registry_status": "promoted", "reused_or_minted": "reused - this whole page is SAML's own configuration procedure" },
+    { "candidate_id": "server:user-group", "label": "Couchbase Server user group",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'create Couchbase Server users in the external authentication realm. Assign these users the groups and roles they need.'" },
+    { "candidate_id": "rbac-model:role", "label": "Role (Server RBAC model term)",
+      "registry_status": "promoted", "reused_or_minted": "reused - abstract, no specific role named: 'Roles attribute...Select if you want the IdP to manage user roles.'" },
+    { "candidate_id": "auth-domain:external", "label": "External authentication domain",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'create Couchbase Server users in the external authentication realm'" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'You need a key and certificate for your Couchbase cluster to use when signing messages to the IdP.'" }
+  ],
+  "relations": [
+    { "subject": "idp:saml", "predicate": "mapsToRole", "object": "rbac-model:role",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused from this batch's own configure-ldap.json record - same shape (an external IdP's attribute/group data resolving onto Server's own role catalogue), object left at the abstract rbac-model:role rather than a specific role: instance because no specific role is named on this page for the SAML case",
+      "evidence": "If you choose to manage groups and roles in the IdP, create SAML attributes that you'll map to Couchbase Server groups and roles." },
+    { "subject": "idp:saml", "predicate": "offersConfigurationChoice", "object": "server:user-group",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Decide whether you'll manage group and role membership in Couchbase Server or in the IdP. If you decide to manage groups and roles in Couchbase Server, create Couchbase Server users in the external authentication realm. Assign these users the groups and roles they need." },
+    { "subject": "idp:saml", "predicate": "requiresSetting", "object": "cert:client-certificate",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You need a key and certificate for your Couchbase cluster to use when signing messages to the IdP." },
+    { "subject": "idp:saml", "predicate": "seeAlso", "object": "server/8.0/learn/security/authentication-domains",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural Markdown link",
+      "evidence": "To learn more about SAML, see [SAML Authentication](../../learn/security/authentication-domains.md#saml-authentication)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "'Roles attribute — Select if you want the IdP to manage user roles. Works the same way the Groups attribute works.' explicitly offers a mechanism that BYPASSES Server's own user-group indirection entirely: unlike configure-ldap.md's mandatory group-mapping chain (LDAP group -> Server user-group -> role), SAML can assign roles DIRECTLY from an IdP attribute with no Server-side group object required at all. This is a real, page-stated structural difference between idp:ldap's and idp:saml's mapping mechanisms that this round's brief did not anticipate (it only flagged the LDAP-vs-Capella-SSO distinction) - flagging it for reconciliation as a second, intra-Server axis of variation worth its own note on idp:saml, separate from the idp:ldap-vs-sso:group-mapping distinction."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "Confirms and extends the idp:ldap note (see configure-ldap.json's cross_product_finding): SAML's 'Roles attribute' mechanism, like LDAP's group mapping, resolves onto Server's own local role/group catalogue rather than Capella's management-plane capella-role:* catalogue - the same control-plane distinction idp:saml's existing promoted description already draws. Notably, SAML's own mapping is even MORE direct than LDAP's (no mandatory intermediate Server user-group object is required), making it, if anything, structurally closer to a naive reading of Capella's sso:group-mapping than LDAP's own three-hop mechanism is - despite both SAML and LDAP integrations resolving onto the SAME (Server-local) catalogue, unlike Capella's SSO. This is worth flagging precisely because it shows product-mechanism similarity (direct attribute-to-role assignment) does NOT imply catalogue/control-plane similarity - the two axes vary independently."
+}

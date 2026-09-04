@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/manage-data-service-and-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/manage-data-service-and-rebalance.md",
+  "concepts": [
+    { "candidate_id": "service:data-service", "label": "Data service", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:node-removal", "label": "Node removal",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch)" },
+    { "candidate_id": "server:node-addition", "label": "Node addition",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in add-node-and-rebalance.json (this batch)" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:data-service-reconfiguration", "label": "Data Service reconfiguration (via remove-and-add)",
+      "registry_status": "minted", "reused_or_minted": "minted - the specific, named pattern for changing the Data Service on an existing node: since kv cannot be dynamically added/removed on a live node (unlike every other service), the only documented route is a full node-removal followed by a full node-addition of the same physical node with the Data Service toggled. A distinct, page-titled procedure, not simply a restatement of remove+add." }
+  ],
+  "relations": [
+    { "subject": "service:data-service", "predicate": "doesNotSupport", "object": "server:data-service-reconfiguration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; captures that the Data Service specifically lacks the dynamic add/remove path every other service has",
+      "evidence": "Unlike other services, you cannot dynamically add or remove the Data Service on an existing node of a cluster." },
+    { "subject": "server:data-service-reconfiguration", "predicate": "reliesOnMechanism", "object": "server:node-removal",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To add the Data Service on an existing node of a cluster: 1. Remove the node that you want to add the Data Service to using [Remove a Node and Rebalance](remove-node-and-rebalance.md)." },
+    { "subject": "server:data-service-reconfiguration", "predicate": "reliesOnMechanism", "object": "server:node-addition",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Then [add the node](#manage:manage-nodes/add-node-and-rebalance.html) back to the cluster after enabling the Data Service." },
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:data-service-reconfiguration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "To complete the process of adding or removing a node, the rebalance operation must be run." },
+    { "subject": "server/8.0/manage/manage-nodes/manage-data-service-and-rebalance", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/modify-services-and-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "For more information about modifying non-Data Services on existing nodes, see [Modify Services and Rebalance](modify-services-and-rebalance.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability",
+    "finding": "The page's own note warns that other services co-resident on a node being removed for Data-Service reconfiguration purposes may need to be temporarily relocated first ('you may need to add those services to another node temporarily') - a real operational constraint of this pattern that has no clean target concept to attach to in the current registry (it is about co-located services in general, not any one named service), so it is recorded here as text rather than forced into a relation."
+  },
+  "cross_component_finding": "This page is the sharpest confirmation in the batch that 'rebalance' fractures at the TRIGGER level, not at the rebalance-mechanism level: it explicitly titles itself as covering the Data Service specifically BECAUSE the Data Service is the one service that cannot go through the same dynamic add/remove path documented on modify-services-and-rebalance.json for every other service (index/n1ql/fts/cbas/eventing/backup). The page's only route for a live Data-Service change is to fall all the way back to the generic node-removal/node-addition procedures - i.e. the SAME rebalance-triggering primitives already used for whole-node topology changes, repurposed here for a single-service change. This directly answers this round's central question for the Data Service specifically: there is no 'data-service-specific rebalance' as a distinct mechanism; there is only the ABSENCE of a dynamic path other services have, forcing reuse of the node-level one.",
+  "cross_product_finding": ""
+}

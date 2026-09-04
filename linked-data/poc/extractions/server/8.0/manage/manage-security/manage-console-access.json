@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-console-access",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-console-access.md",
+  "concepts": [
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Encrypted network access is only available in Couchbase Server Enterprise Edition.'" }
+  ],
+  "relations": [
+    { "subject": "edition:enterprise", "predicate": "requiredForApiAccess", "object": "server/8.0/manage/manage-security/manage-console-access",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused, loosely - this page's own encrypted-console-access path is EE-only",
+      "evidence": "Note that Encrypted network access is only available in Couchbase Server Enterprise Edition." },
+    { "subject": "edition:enterprise", "predicate": "seeAlso", "object": "server/8.0/rest-api/rest-setting-security",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural Markdown link",
+      "evidence": "Access to Couchbase Web Console can also be disabled for _https_ access. For details, see [Manage Encryption Settings](../../rest-api/rest-setting-security.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is purely a network/TLS console-access toggle (port 8091 vs 18091, disableUIOverHttp) with no RBAC, role, privilege, or auth-domain content at all - it sits at the boundary between this batch's authn/authz/audit/session remit and the on-the-wire-encryption territory this round's instructions assign to a sibling batch (security:encryption). Concepts/relations kept minimal accordingly, per the schema's explicit allowance for thin/reference pages."
+  },
+  "cross_component_finding": "The requiredForApiAccess relation above is a loose fit (its declared shape is 'a credential/config item is a prerequisite for reaching a named API surface', and the object here is a whole page rather than a credential) - flagging this as a judgment call for reconciliation rather than forcing a cleaner-but-unsupported predicate.",
+  "cross_product_finding": "n/a"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/active-active-with-app-services",
+  "label": "bi-directional XDCR with App Services",
+  "type": "active-active (bi-directional) XDCR between clusters that also run App Services / Sync Gateway, enabled by the `mobile=Active` replication option. Requires Couchbase Server 7.6.6+, App Services 4.0+, and the target bucket's `enableCrossClusterVersioning` property; using it with App Services older than 4.0 can corrupt data.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-xdcr/create-xdcr-replication.md",
+  "evidence": [
+    "Create or update a XDCR replication with `mobile=Active` option from the UI, starting from Server 7.6.6 version onwards.",
+    "The pre-requisite to use `mobile=Active` is to set the bucket property `enableCrossClusterVersioning`.",
+    "Bi-directional XDCR with App Services versions earlier than 4.0 can cause data corruption. Only use bi-directional replication with App Services 4.0+.",
+    "Couchbase Server 7.6.6 and App Services 4.0+ support bi-directional (active-active) XDCR replications between clusters that have App Services enabled."
+  ],
+  "note": "A three-product version constraint (Server, App Services, bucket property) with a data-corruption consequence, assembled from a Server procedure page and two Capella pages - no single page states all three legs. This is the round's strongest cross-product finding and the reason it is promoted at 3 files rather than left as a note: the corruption warning appears on the Capella side and the enabling option on the Server side."
+}

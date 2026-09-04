@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-ldap",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-ldap.md",
+  "concepts": [
+    { "candidate_id": "idp:ldap", "label": "LDAP identity provider",
+      "registry_status": "promoted", "reused_or_minted": "reused - this whole page is Native LDAP's own configuration procedure" },
+    { "candidate_id": "idp:ldap-group", "label": "LDAP group",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'to map the LDAP _groups_ of which a user is a member to roles defined on Couchbase Server'" },
+    { "candidate_id": "idp:saslauthd", "label": "saslauthd",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record - 'LDAP Support Based on `saslauthd`... maintained for support of legacy LDAP authentication'" },
+    { "candidate_id": "server:user-group", "label": "Couchbase Server user group",
+      "registry_status": "promoted", "reused_or_minted": "reused - the join object every LDAP-group mapping is created against" },
+    { "candidate_id": "server:user", "label": "Couchbase Server user",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Couchbase-Server users can be specified as _externally authenticated_'" },
+    { "candidate_id": "auth-domain:external", "label": "External authentication domain",
+      "registry_status": "promoted", "reused_or_minted": "reused - externally authenticated users configured via this page's procedures" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'assigns the `Full Admin` role to it' / 'each of whose members is granted the `admin` (the `Full Administrator`) role'" },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "X.509 certificate authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Client Certificate. This option, which allows...Couchbase Server to authenticate with LDAP by means of a client certificate'" }
+  ],
+  "relations": [
+    { "subject": "idp:ldap-group", "predicate": "mapsToRole", "object": "role:full-administrator",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate for group-to-role mapping via LDAP; checked the registry's own worked example for this exact shape before minting, and confirmed no predicate of this shape already exists",
+      "evidence": "This establishes a Couchbase Server group named `admins`, each of whose members is granted the `admin` (the `Full Administrator`) role. It maps the `admins` group to the LDAP group `uid=cbadmins,ou=groups,dc=example,dc=com`: from this point, LDAP-authenticated external users who are in the LDAP `uid=cbadmins,ou=groups,dc=example,dc=com` group are placed in the Couchbase Server `admins` group, and thereby are granted the `admin` role." },
+    { "subject": "server:user-group", "predicate": "grantsRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This creates a group named `Admins`, and assigns the `Full Admin` role to it, specifying as its LDAP-group mapping `uid=cbadmins,ou=groups,dc=example,dc=com`." },
+    { "subject": "idp:ldap", "predicate": "mutuallyExclusiveWith", "object": "idp:saslauthd",
+      "registry_status": "minted", "reused_or_minted_predicate": "reused from this batch's own configure-saslauthd.json record",
+      "evidence": "Note that _either_ Native LDAP Support _or_ `saslauthd` must be selected for the cluster. The two cannot be used simultaneously." },
+    { "subject": "idp:ldap", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/configure-saslauthd",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural Markdown link",
+      "evidence": "For information on configuring `saslauthd`, see [Configure saslauthd](configure-saslauthd.md)." },
+    { "subject": "idp:ldap-group", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural Markdown link",
+      "evidence": "Step-by-step instructions on adding externally authenticated users are provided in [Adding an Externally Authenticated User](manage-users-and-roles.md#adding-an-externally-authenticated-user)." },
+    { "subject": "auth-mechanism:x509-certificate", "predicate": "configurableVia", "object": "idp:ldap",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This option, which allows allows Couchbase Server to authenticate with LDAP by means of a client certificate, should be used only with an LDAP server that _does not_ expect the `SASL EXTERNAL` bind command to be sent, once a TLS connection has been established." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "'Note that each Couchbase-Server user-group can be associated with at most _one_ LDAP group — although if that LDAP group itself incorporates multiple additional LDAP groups by means of _LDAP-group nesting_, an _indirect_ association with those LDAP groups occurs.' is a precise, one-to-one-with-nesting cardinality constraint on the mapsToRole mechanism that has no clean way to be expressed as a second relation without a dedicated cardinality predicate - recorded here in full rather than forced into an approximate relation."
+  },
+  "cross_component_finding": "'Note that if the **Delete Group** button is left-clicked on, the group is deleted. This means that all mappings between LDAP groups and the roles that were assigned to this group are also deleted.' is a direct, page-stated cascade fact (deleting a server:user-group cascades to delete its LDAP-group mapping AND the role grants that flowed through it) - a clean fit for the already-promoted cascadesTo predicate, but omitted here because a specific role/mapping object concept isn't independently named on this page; flagging for reconciliation rather than modeling with a mismatched object.",
+  "cross_product_finding": "This page gives the clearest, most concrete confirmation yet of the already-recorded idp:ldap note distinguishing Server's LDAP integration from Capella's SSO group-mapping: the full mechanism here is a THREE-HOP chain (LDAP group -> Couchbase-Server user-group -> Server role), entirely internal to Server's own catalogue and REST surface (`/settings/rbac/groups/<group-name>` with `ldap_group_ref`), with no organization/project layering and no management-plane API involved anywhere. Capella's sso:group-mapping, by contrast, maps an IdP's groups directly onto Capella's own management-plane role/team catalogue (capella-role:*) via the Capella control plane, with no equivalent 'create a local group object, then map it' indirection step. The two mechanisms share the word 'group mapping' but differ in (a) how many hops the mapping takes, (b) which catalogue the roles land in, and (c) which control plane (Server's own REST API vs Capella's management API) performs the mapping - a genuinely different mechanism, not two names for the same thing, consistent with idp:ldap's standing note."
+}

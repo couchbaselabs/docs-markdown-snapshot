@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/collection",
+  "label": "collection (Couchbase Server)",
+  "type": "a data container defined within a bucket whose type is Couchbase or Ephemeral; the leaf level of the bucket > scope > collection hierarchy and the unit that documents actually live in. Up to 1000 per cluster.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "evidence": [
+    "A _collection_ is a data container, defined on Couchbase Server, within a bucket whose type is either _Couchbase_ or _Ephemeral_.",
+    "Up to 1000 collections can be created per cluster.",
+    "Easier migration from relational databases to Couchbase Server, since collections can be designed to correspond to pre-existing relational tables."
+  ],
+  "note": "A gap this obvious surviving 25 rounds is worth recording: server:scope, server:bucket, server:keyspace and capella:collection were all promoted earlier, and the Server-side collection was not. Two things are deliberately NOT done here. (1) capella:collection (recurrence 14) is left as its own record, following the registry's standing practice for Capella/Server twins (capella:bucket, capella:scope) rather than folded - the same practice that this round's capella:system-scope fold departs from, and the difference is that the Capella system-scope page explicitly attributes `_system` to Couchbase Server 7.6 whereas capella:collection's page does not attribute the construct to Server at all. (2) The relationship to server:keyspace is left open, not merged: capella:collection's own note already observes that 'the server/ tree calls the same thing a keyspace', but no page in the corpus states the identity, and a keyspace is an addressing form (`bucket.scope.collection`) while a collection is a container. Recorded in reconciliation.md as an open question for an SME.",
+  "relates_to_competency_question": "What is the container a Couchbase Server document lives in, and how many can a cluster have?"
+}

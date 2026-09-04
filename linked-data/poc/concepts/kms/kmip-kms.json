@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/kms/kmip-kms",
+  "label": "KMIP-compatible KMS (external key manager)",
+  "type": "any key manager implementing the OASIS KMIP standard, used as an external holder of encryption-at-rest keys. Rotation follows the KMS's own scheme and may have to be done by hand.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/native-encryption-at-rest-overview.md",
+  "evidence": [
+    "Couchbase Server can work with any KMS that implements this standard.",
+    "KMIP compatible KMSs have their own rotation schemes and may require you to manually rotate keys.",
+    "If you're creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encrypted by** set to **Node Secret Manager** if you want Couchbase Server to store the key locally."
+  ],
+  "note": "NAMESPACE COHERENCE: `kms:` is new in round 26 and is the only new prefix this round that passes the closed-axis test. Couchbase Server documents exactly three places an encryption key can live - AWS KMS, a KMIP-compatible KMS, or local management by the node secret manager - the pages enumerate them as a choice, and a fourth member would be news rather than routine growth. Both members sit at recurrence 2, so no promotion debt is created by opening the axis. The local third option is NOT filed here: it belongs to the already-promoted encryption:master-password / secrets: territory, and putting it under `kms:` would make the axis about key location rather than external key managers."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/level-majority-and-persist-active",
+  "label": "durability level majorityAndPersistActive",
+  "type": "the durability level requiring a mutation to be replicated to a majority of nodes AND persisted to disk on the active node. Selectable only for Couchbase buckets, never Ephemeral ones, and offered as a bucket-level Minimum Durability Level.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/durability.md",
+  "evidence": [
+    "You can choose this level only for Couchbase buckets.",
+    "In the **Minimum Durability Level** list, select a durability level for the bucket:"
+  ],
+  "note": "Completes the durability: level family (durability:level, level-majority, level-persist-to-majority were already promoted) - and round 26 found the reason the last member was missing is that it is the one with a bucket-type restriction, so it appears in the procedures rather than the level reference. The round also filed a docs-issue here: create-bucket.md and edit-bucket.md do not agree on the Minimum Durability Level options they offer."
+}

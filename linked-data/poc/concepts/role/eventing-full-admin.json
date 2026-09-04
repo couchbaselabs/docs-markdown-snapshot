@@ -3,6 +3,12 @@
   "label": "Eventing Full Admin",
   "type": "a classic, cluster-wide Couchbase RBAC role, introduced at Server 7.0.0 as a deliberately narrower carve-out of Full Admin (removes user-creation/privilege-escalation) - a FIFTH structurally distinct thing called 'role' in this ontology",
   "promoted": true,
-  "recurrence": 3,
+  "recurrence": 24,
+  "recurrence_note": "Recomputed for round 26 at 24 distinct files (relation-slot metric 23, census 24), against the 3 stored at last write. The rise is corpus growth across the eventing rounds, not the fold below - the folded spelling contributes exactly one file.",
+  "internal_name": "eventing_admin",
+  "aliases": [
+    "role:eventing-admin"
+  ],
+  "aliases_note": "Round 26's manage-auditing.md extraction found `eventing_admin` as a bare token in the audit `trackedRoles` parameter, minted `role:eventing-admin` as a SEPARATE concept rather than silently aliasing it here, and flagged in its own notable_absence that it could not tell from that page alone whether the two are one role - asking reconciliation to check the catalogue. That is the no-silent-merge rule working as intended, and roles.md settles it in one line: \"Role: Eventing Full Admin (eventing_admin)\". `eventing-admin` is the INTERNAL name, `Eventing Full Admin` the display label; folded here, 1 file added to 23, zero overlap. One deliberate convention deviation: the registry files roles under the internal name, which would put this record at concepts/role/eventing-admin.json, but it is left at the display-label filename because 23 files of relations already resolve here and the rename buys nothing the internal_name field does not already state. Forward-only - new role records are filed under the internal name, existing ones are not migrated. Recorded so the next reconciler does not re-open this as an error.",
   "note": "Sibling of role:full-administrator/role:local-user-security-administrator (round 5), part of the same classic-cluster-RBAC family, distinct from capella-role:*/rbac-role:role/sgw:role. Found on troubleshooting-best-practices.md, unrelated to the Capella management-plane privilege/role model this round otherwise confirmed everything slots into - another data point that the classic-RBAC 'role:' family and the Capella-native 'capella-role:' family coexist without merging."
 }

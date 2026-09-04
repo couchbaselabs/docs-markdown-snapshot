@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/fully-secure-replication",
+  "label": "fully secure XDCR replication",
+  "type": "the XDCR security level that puts both authentication and data transfer over TLS. Configured on the reference, in one of two credential shapes: username, password and the target's root certificate; or root certificate plus client certificate and client private key (client-certificate authentication).",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-xdcr/enable-full-secure-replication.md",
+  "evidence": [
+    "A _fully_ secure replication handles both authentication and data-transfer via TLS.",
+    "This procedure requires access to the root certificate for the destination cluster.",
+    "The source cluster can authenticate with the target by means _either_ of a username and password _or_ of its own client certificate.",
+    "This root certificate (or _CA_) must be included in the _trust store_ of the target cluster."
+  ],
+  "note": "Promoted with xdcr:half-secure-replication as the two named levels of the same setting. The dependency that only the administration tree states: the cluster encryption level `strict` REQUIRES all XDCR replications to be fully secure first - a precondition on a cluster-wide TLS setting owned by a per-reference XDCR setting, stated on manage-tls.md and nowhere in the XDCR reference tree."
+}

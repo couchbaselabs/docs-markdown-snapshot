@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-pam",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-pam.md",
+  "concepts": [
+    { "candidate_id": "idp:pam", "label": "PAM (Pluggable Authentication Modules)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record; this page is PAM's own dedicated configuration procedure" },
+    { "candidate_id": "idp:saslauthd", "label": "saslauthd",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record - see cross_component_finding: this page shows PAM authentication is actually IMPLEMENTED on top of saslauthd (MECH=pam), not a peer alternative to it" },
+    { "candidate_id": "auth-domain:external", "label": "External authentication domain",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Administrator-accounts defined on Linux systems, in the `/etc/shadow` directory, can be accessed for authentication-purposes by Couchbase Server.'" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'specify a suitable role, such as **Cluster Admin**.'" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_.'" }
+  ],
+  "relations": [
+    { "subject": "idp:pam", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM's _Linux password-module_." },
+    { "subject": "idp:pam", "predicate": "reliesOnMechanism", "object": "idp:saslauthd",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "verify that `saslauthd` is set up to use PAM" },
+    { "subject": "server:user", "predicate": "grantsRole", "object": "role:cluster-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Next, specify a suitable role, such as **Cluster Admin**." },
+    { "subject": "auth-domain:external", "predicate": "authenticatesVia", "object": "idp:pam",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Administrator-accounts defined on Linux systems, in the `/etc/shadow` directory, can be accessed for authentication-purposes by Couchbase Server." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Version floor is stated precisely ('requires all cluster-nodes to be Linux-based, running the Enterprise Edition of Couchbase Server, version 4.6 or above. Additionally, the `saslauthd` library version must be 2.1.x or above.') but the registry has no version: concept granularity to attach this to beyond the edition:enterprise relation already recorded - left unmodeled rather than mint single-use version: concepts of low reuse value."
+  },
+  "cross_component_finding": "This page reveals that idp:pam and idp:saslauthd are NOT cleanly separable the way configure-saslauthd.md's 'either Native LDAP or saslauthd' framing might suggest at a glance: PAM authentication is actually implemented AS one of saslauthd's pluggable back-end mechanisms (the procedure installs saslauthd, then sets `MECH=pam` in its config, then restarts saslauthd itself before restarting Couchbase Server). So the real three-way relationship is: Native LDAP (idp:ldap) stands alone as the modern path; saslauthd (idp:saslauthd) is the legacy daemon, which itself can be configured to authenticate against either LDAP or PAM as its backend. This nuance should inform how reconciliation models the idp:pam / idp:saslauthd boundary - PAM is a saslauthd backend, not a peer of it.",
+  "cross_product_finding": "n/a"
+}

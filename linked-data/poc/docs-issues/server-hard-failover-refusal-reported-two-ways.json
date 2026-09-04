@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-hard-failover-refusal-reported-two-ways",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "failover-hard.md documents the same safety guard twice, with two entirely different error signals and no statement that they are the same condition. The CLI section says an attempted hard failover that Couchbase Server declines 'fails, with an `ERROR: Received unexpected status 504` notification'. The REST section, describing the identical circumstance and linking to the identical explanation, says it fails with a `Cannot safely perform a failover at the moment` notification. Only the second is a diagnosis; the first is a bare HTTP gateway-timeout status surfaced as a CLI error, which reads like a network or timeout problem rather than a deliberate refusal - and 504 is exactly the code an administrator would investigate as a connectivity fault. The two overrides also differ (`--force` with `--hard` for the CLI, `-d allowUnsafe=true` for REST), which is expected, but nothing tells a reader that the 504 and the 'cannot safely perform' message mean the same thing and take the same remedy.",
+  "about": [
+    "server/8.0/manage/manage-nodes/failover-hard",
+    "server/8.0/learn/clusters-and-availability/hard-failover"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "If the CLI really does surface a 504 here, the defect is arguably in the product rather than the docs - but the documentation is the only place the two signals appear side by side, and it is the place that could say they are one guard."
+}

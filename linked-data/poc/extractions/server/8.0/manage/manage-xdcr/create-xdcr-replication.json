@@ -1,0 +1,148 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/create-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/create-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this is the concept's own defining page. 'An XDCR replication allows data to be replicated continuously from a specified bucket on the source cluster to a specified bucket on the target.' First contact anywhere in the corpus - see xdcr-management-overview.json's own notable_absence for why: neither the reference tree (settings/filtering mechanisms) nor Capella's xdcr.json (topology/conflict-handling vocabulary) ever needed to name the created-object level itself."
+    },
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted this batch on create-xdcr-reference.md; every replication requires one already-registered reference as its target"
+    },
+    {
+      "candidate_id": "xdcr:implicit-mapping",
+      "label": "XDCR implicit mapping (keyspace-to-keyspace)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - XDCR's default behavior of replicating between identically-named keyspaces (scope.collection) without an administrator specifying a mapping. 'XDCR's default behavior is always to replicate data between corresponding keyspaces...This is known as replication by _implicit mapping_.' First contact; the fuller definition is on replicate-using-scopes-and-collections.md, this same batch."
+    },
+    {
+      "candidate_id": "xdcr:cross-cluster-versioning",
+      "label": "Cross Cluster Versioning (CCV)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "xdcr:conflict-logging",
+      "label": "XDCR Conflict Logging",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/clusters/xdcr/xdcr.json (round 7). This page's UI settings ('Enable Conflict Logging', 'Default Conflict Log Collection', 'Customise Conflict Logging at scope/collection level') are the Server Web Console's own configuration surface for the same mechanism Capella's page describes conceptually."
+    },
+    {
+      "candidate_id": "xdcr:advanced-settings",
+      "label": "XDCR Advanced Settings",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-1",
+      "label": "Couchbase Server 7.1",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "minted - no version:server-7-1 concept file was confirmed in the registry at extraction time (closest neighbors are server-7-0 and server-7-2, per this batch's own registry note on xdcr-security-and-networking.json); flagged as a possible near-duplicate for reconciliation rather than silently rounded to a neighbor."
+    },
+    {
+      "candidate_id": "version:server-7-6-6",
+      "label": "Couchbase Server 7.6.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - matches cloud/clusters/xdcr/xdcr.json's own version-gate citation for the same mobile=Active / Active-Active-with-App-Services feature"
+    },
+    {
+      "candidate_id": "xdcr:active-active-with-app-services",
+      "label": "Active-Active XDCR with App Services (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cloud/clusters/xdcr/xdcr.json. This page's `mobile=Active` replication option is the Server-side name for the same feature Capella's page describes from the cloud side."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication",
+      "predicate": "dependsOnService",
+      "object": "xdcr:reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService)",
+      "evidence": "Each replication uses a single _reference_, which has already been created."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:implicit-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum) - loose fit: the default behavior is a mode the replication operates in, not a literal enum, matching this project's precedent of loose predicate reuse",
+      "evidence": "XDCR's default behavior is always to replicate data between corresponding keyspaces: for example, data in `inventory.airline` on the source is replicated to `inventory.airline` on the target."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "requiresSetting",
+      "object": "xdcr:cross-cluster-versioning",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresSetting)",
+      "evidence": "To configure and enable XDCR Conflict Logging, you must enable the bucket property `enableCrossClusterVersioning` on all buckets of the XDCR topology."
+    },
+    {
+      "subject": "xdcr:cross-cluster-versioning",
+      "predicate": "doesNotSupport",
+      "object": "disabling once enabled",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport) - object is a described state-transition, not a concept id, since nothing else in the corpus names 'disabling CCV' as its own concept",
+      "evidence": "This bucket property cannot be disabled once it is enabled."
+    },
+    {
+      "subject": "xdcr:cross-cluster-versioning",
+      "predicate": "dependsOnService",
+      "object": "xdcr:active-active-with-app-services",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose dependency: mobile=Active requires CCV as a precondition",
+      "evidence": "The pre-requisite to use `mobile=Active` is to set the bucket property `enableCrossClusterVersioning`."
+    },
+    {
+      "subject": "xdcr:active-active-with-app-services",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - matches cloud/clusters/xdcr/xdcr.json's own citation of the same version gate, confirming the fact from the Server side of the product line",
+      "evidence": "Create or update a XDCR replication with `mobile=Active` option from the UI, starting from Server 7.6.6 version."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "requiresCapability",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit; marks the version at which the PeerToPeer status message described here was introduced",
+      "evidence": "Note that in this window, in Couchbase-Server versions 7.1 and later, a message such as the following may appear: `Performing PeerToPeer communication with the following VBs:[…]`."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "configurableVia",
+      "object": "xdcr:advanced-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "Other _Advanced Replication Settings_, which can be used to optimize replication-performance."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/incoming-xdcr-replications",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For information about incoming replications, see [Incoming Replications](incoming-xdcr-replications.md)."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/pause-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Once a replication has been defined and is therefore running, you can opt to _pause_ it, in order to perform system maintenance. See [Pause a Replication](pause-xdcr-replication.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike create-xdcr-reference.md (this same batch), this page names no role at all for who may create a replication - it silently assumes the Full/Cluster/XDCR Administrator gate already established on the reference-creation page extends to replication creation, but never restates it."
+  },
+  "cross_component_finding": "ONLY ONE REPLICATION PER TARGET-BUCKET COMBINATION IS A CONSTRAINT NEVER STATED ON THE REFERENCE TREE OR ON CAPELLA'S PAGES. This page's own text ('Note that multiple _replications_...can be created using a single _reference_') implies the constraint is per-reference, not per-bucket-pair, but replicate-using-scopes-and-collections.md (this same batch) later states the sharper rule explicitly: 'XDCR only permits one replication to be defined, for a given target-bucket.' Recorded on that page instead, since this page's own text does not state the restriction, only the multiplicity it does NOT restrict."
+}

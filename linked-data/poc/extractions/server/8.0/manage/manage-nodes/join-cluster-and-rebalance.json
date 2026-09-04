@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/join-cluster-and-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/join-cluster-and-rebalance.md",
+  "concepts": [
+    { "candidate_id": "server:node", "label": "node", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:node-join", "label": "Node join",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in add-node-and-rebalance.json (this batch); this page is its dedicated task page" },
+    { "candidate_id": "server:node-addition", "label": "Node addition",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in add-node-and-rebalance.json (this batch)" },
+    { "candidate_id": "server:node-provisioning", "label": "Node provisioning",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in initialize-node.json (this batch)" },
+    { "candidate_id": "server:arbiter-node", "label": "Arbiter node",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in create-cluster.json (this batch)" },
+    { "candidate_id": "cert:node-certificate", "label": "Node certificate", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "version:server-7-1-1", "label": "Couchbase Server 7.1.1",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in add-node-and-rebalance.json (this batch); this page states the identical node-naming-convention restriction for joining rather than adding" }
+  ],
+  "relations": [
+    { "subject": "server:node-join", "predicate": "doesNotSupport", "object": "server:node-provisioning",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a provisioned node cannot use the join path at all, unlike node-addition, which merely wipes provisioning rather than refusing it outright - a real asymmetry between the two 'equivalent' operations",
+      "evidence": "Note also, however, that a node _cannot_ join itself to a cluster if the node has already been provisioned (that is, has had Full Administrator username and password defined, and may also have had services and memory quotas defined). If the node has been provisioned, the cluster must _add_ the node." },
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:node-join",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Following node-addition, _rebalance_ is required, to make the new node and active member of the cluster." },
+    { "subject": "server:arbiter-node", "predicate": "createdVia", "object": "server:node-join",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "If you do not specify any services, the node joins the cluster as an [arbiter node](../../learn/clusters-and-availability/nodes.md#adding-arbiter-nodes)." },
+    { "subject": "server:node-join", "predicate": "availableSince", "object": "version:server-7-1-1",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; dates the node-naming-convention restriction specifically",
+      "evidence": "To ensure cluster-security, in Couchbase Server 7.1.1 and later versions, restrictions can be placed on joining, based on the establishment of _node-naming conventions_." },
+    { "subject": "server:node-join", "predicate": "doesNotSupport", "object": "server/8.0/cli/cbcli/couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object is a page reference rather than a concept id, since the registry has no single 'the CLI' concept - a judgment call kept because the asymmetry itself (UI/REST yes, CLI no) is real and otherwise undocumented anywhere in this ontology",
+      "evidence": "Node-join is not supported by the CLI." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike add-node-and-rebalance.md, this page never names 'Full' or 'Cluster' administrators explicitly as the actors who can perform the join - it only says the join dialog 'requires the username and password of the Cluster Admin (although the credentials of the Full Admin for the cluster are equally implied)'. This is weaker, parenthetical phrasing for what is functionally the same RBAC requirement as node-addition's, so no requiresServerRole relation is recorded here to avoid overclaiming a role gate the page itself only implies rather than states."
+  },
+  "cross_component_finding": "The 'same operation, inverted' framing from add-node-and-rebalance.md holds up structurally (both converge on the identical /controller/rebalance and knownNodes REST call) but is NOT perfectly symmetric: node-join refuses outright on an already-provisioned node, where node-addition instead destructively wipes provisioning and proceeds anyway. This is exactly the kind of near-miss the round's method exists to catch - the two pages' own language ('essentially the same operation') would license a naive merge of server:node-join into server:node-addition, but the doesNotSupport relation above is a real, stated behavioral divergence, so the two stay separate concepts.",
+  "cross_product_finding": ""
+}

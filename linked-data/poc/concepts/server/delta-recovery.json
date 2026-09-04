@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/delta-recovery",
+  "label": "delta recovery",
+  "type": "the node-recovery mode that keeps the recovered node's existing data and transfers only the delta accumulated while it was out of the cluster.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/manage/manage-nodes/recover-nodes.md",
+  "evidence": "There are two options for recovery, which are _full_ and _delta_.",
+  "note": "Family-exception sibling of server:full-recovery - see that record for the justification. Worth noting what the procedure page does NOT say: it gives no rule for when delta recovery is unavailable or falls back to full, which is a real operational question the whole 83-page scope leaves unanswered."
+}

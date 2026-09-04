@@ -1,0 +1,253 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-native-encryption-at-rest",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-native-encryption-at-rest.md",
+  "concepts": [
+    {
+      "candidate_id": "encryption:native-encryption-at-rest",
+      "label": "Native Encryption at Rest",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page is its full administration procedure"
+    },
+    {
+      "candidate_id": "encryption:encryption-at-rest-key",
+      "label": "Encryption-at-Rest Key",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:master-password",
+      "label": "Master Password",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the documented alternative to an encryption-at-rest key for audit/configuration/log data only"
+    },
+    {
+      "candidate_id": "encryption:data-encryption-key",
+      "label": "Data Encryption Key (DEK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json; this page is the DEK's administration-side treatment (rotate, drop, view status)"
+    },
+    {
+      "candidate_id": "encryption:key-encryption-key",
+      "label": "Key Encryption Key (KEK) role",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json"
+    },
+    {
+      "candidate_id": "encryption:kms",
+      "label": "Key Management Service (KMS)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json; this page gives the full three-way KMS choice its administration detail"
+    },
+    {
+      "candidate_id": "kms:aws-kms",
+      "label": "AWS Key Management Service",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json"
+    },
+    {
+      "candidate_id": "kms:kmip-kms",
+      "label": "KMIP-compliant KMS",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json"
+    },
+    {
+      "candidate_id": "kms:couchbase-server-secret-management",
+      "label": "Couchbase Server Secret Management (self-managed KMS)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json; this page's 'Auto-Generated' key-type option is this KMS choice"
+    },
+    {
+      "candidate_id": "encryption:key-rotation",
+      "label": "Encryption Key Rotation",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json; this page gives the manual/automatic and per-KMS-type rotation procedures in full"
+    },
+    {
+      "candidate_id": "encryption:drop-deks-rest-action",
+      "label": "Drop DEKs and Re-encrypt Data (REST action)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/native-encryption-at-rest-overview.json; this page names and procedurally documents the action in full"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:eventing-full-admin",
+      "label": "Eventing Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:backup-admin",
+      "label": "Backup Full Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Backup Full Admin' is a promoted alias of role:backup-admin"
+    },
+    {
+      "candidate_id": "role:security-admin",
+      "label": "Security Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/roles.json, not yet promoted"
+    },
+    {
+      "candidate_id": "role:bucket-admin",
+      "label": "Bucket Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/roles.json, not yet promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "encryption:master-password",
+      "predicate": "offersConfigurationChoice",
+      "object": "encryption:encryption-at-rest-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - for audit/configuration/log data specifically, an administrator chooses between the master password and an encryption-at-rest key; bucket data has no such choice - see doesNotSupport note below",
+      "evidence": "You must use an encryption-at-rest key to encrypt bucket data. You can choose to use the [master password](manage-system-secrets.md#setting-the-master-password) instead of an encryption-at-rest key to encrypt audit, configuration, and log data."
+    },
+    {
+      "subject": "encryption:native-encryption-at-rest",
+      "predicate": "doesNotSupport",
+      "object": "encryption:master-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - bucket-data encryption specifically has no master-password path, unlike audit/configuration/log data (see offersConfigurationChoice relation above)",
+      "evidence": "Couchbase Server only supports encrypting bucket data using an encryption at rest key."
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "encryptsKeysFor",
+      "object": "encryption:data-encryption-key",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - predicate minted in learn/security/native-encryption-at-rest-overview.json for the identical relation; this page corroborates it from the rotation procedure",
+      "evidence": "When you rotate an encryption-at-rest key, Couchbase Server creates a new key and uses it to re-encrypt all DEKs that were encrypted with the previous version of the key. This process does not re-encrypt data, as the DEKs do not change."
+    },
+    {
+      "subject": "kms:aws-kms",
+      "predicate": "doesNotSupport",
+      "object": "encryption:key-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - AWS-managed keys cannot be rotated through Couchbase Server's own rotation action at all, only through AWS's own tools, after which Couchbase Server must be told to re-encrypt DEKs separately",
+      "evidence": "To rotate an encryption-at-rest key managed by an external KMS, you must use the KMS's tools to rotate the key, then have Couchbase Server re-encrypt DEKs with the new key."
+    },
+    {
+      "subject": "encryption:drop-deks-rest-action",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "encryption:key-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the page states this disambiguation explicitly and by name, the strongest kind of licence this predicate requires",
+      "evidence": "Dropping DEKs is not the same as rotating DEKs. When Couchbase Server automatically rotates a DEK, it makes it inactive, creates a new active DEK, and then uses that for newly written data. It does not re-encrypt data, nor does it immediately remove the old DEKs."
+    },
+    {
+      "subject": "encryption:drop-deks-rest-action",
+      "predicate": "cascadesTo",
+      "object": "encryption:data-encryption-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - dropping DEKs for a bucket/data-type replaces every DEK for it and re-encrypts all affected data, then deletes the old DEKs",
+      "evidence": "When you drop the DEKs for a bucket or type of data, Couchbase Server creates a new replacement DEK and uses it to re-encrypt all of the data in the bucket or of that type. Then it removes the old DEKs."
+    },
+    {
+      "subject": "kms:kmip-kms",
+      "predicate": "doesNotSupport",
+      "object": "encryption:native-encryption-at-rest",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - a KMIP- or AWS-managed key cannot directly encrypt data at all; it may only be configured as a Key Encryption Key protecting a Couchbase-Server-managed key, which is what actually does the data encryption",
+      "evidence": "If you're creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encryption Key (KEK)** selected. Then use the key to encrypt an encryption key managed by Couchbase Server. Do not assign an encryption key managed by a remote KMS to directly encrypt data."
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Full Admin](../../learn/security/roles.md#admin)"
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:security-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate promoted; object concept role:security-admin is itself still extraction-layer (see concepts[] above)",
+      "evidence": "* [Security Admin](../../learn/security/roles.md#security-admin)"
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:backup-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - for keys that can encrypt any bucket in the cluster",
+      "evidence": "* [Backup Full Admin](../../learn/security/roles.md#admin)"
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Cluster Admin](../../learn/security/roles.md#cluster-admin)"
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:eventing-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Eventing Full Admin](../../learn/security/roles.md#eventing-full-admin)"
+    },
+    {
+      "subject": "encryption:encryption-at-rest-key",
+      "predicate": "requiresServerRole",
+      "object": "role:bucket-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate promoted; object concept role:bucket-admin is itself still extraction-layer. For keys scoped to one or more specific buckets only",
+      "evidence": "* [Bucket Admin](../../learn/security/roles.md#backup-full-admin) that has privileges on the bucket to be encrypted."
+    },
+    {
+      "subject": "encryption:native-encryption-at-rest",
+      "predicate": "requiresServerRole",
+      "object": "role:bucket-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate promoted; object concept still extraction-layer. Separately from key CREATION (above), enabling encryption on an already-created bucket is gated by this role or Cluster Admin",
+      "evidence": "Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that's allowed to encrypt the bucket."
+    },
+    {
+      "subject": "encryption:native-encryption-at-rest",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same fact as above, second role",
+      "evidence": "Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that's allowed to encrypt the bucket."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-native-encryption-at-rest",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/native-encryption-at-rest-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an overview of native encryption at rest, see [Native Encryption at Rest](../../learn/security/native-encryption-at-rest-overview.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-native-encryption-at-rest",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-system-secrets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "You must set the master password on each node before using it for encryption at rest. By default, the nodes do not have a master password. See [Setting the Master Password](manage-system-secrets.md#setting-the-master-password) for more information."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - inconsistent role-anchor links",
+    "finding": "Within this single page, the same role is linked to roles.md under at least two different anchor spellings, and one role's anchor points at the WRONG role's section entirely. 'Full Admin' links to `roles.md#admin` three times (lines 63, 68->71, 80) but to `roles.md#full-admin` once (line 255) - two different anchors for one role on one page. More seriously, 'Bucket Admin' links to `roles.md#backup-full-admin` in the key-creation role list (line 77) but to the correct `roles.md#bucket-admin` in the bucket-encryption-enablement section (line 204) - the first of those two is a genuine wrong-target link, not just an inconsistent-but-valid spelling variant, since '#backup-full-admin' is Backup Full Admin's own anchor and 'Backup Full Admin' appears as ITS OWN separate bullet two lines above the mislinked Bucket Admin bullet. This is a concrete, fixable docs bug the extraction surfaces mechanically by simply keeping the exact anchor string as part of each requiresServerRole relation's evidence."
+  },
+  "cross_component_finding": "This page's three role-requirement groups (create a KEK-capable/audit-config-log key; create a key that can encrypt any bucket; create a key scoped to specific buckets) form a strict superset relationship - group 2 is group 1 plus Backup Full Admin/Cluster Admin/Eventing Full Admin, and group 3 is group 2 plus Bucket Admin - that the page states only through three separately-repeated bullet lists, never as an explicit hierarchy statement. The registry's role: family already carries several 'N structurally distinct roles' collision writeups; this page adds a data point for role:bucket-admin and role:security-admin specifically, both still sitting at the extraction layer despite recurring across several rounds now (learn/security/roles.md, this page), which is worth a look at promotion time.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content on this page. Note, however, that the KMIP/AWS KMS integration warning ('these files must exist on every node in the cluster, including any nodes added during a rebalance operation... Couchbase Server does not create these files automatically') is a genuinely new admin-only, multi-node operational constraint with no equivalent statement anywhere else in the batch - worth flagging even though it does not fit cleanly into a two-concept relation: it is a precondition on cluster topology changes (rebalance) rather than on any single certificate or key object."
+}

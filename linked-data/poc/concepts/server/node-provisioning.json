@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/node-provisioning",
+  "label": "node provisioning",
+  "type": "the step that turns an initialized-but-standalone Couchbase Server node into a cluster member (a one-node cluster, or a node added to an existing one): setting administrator credentials, services and memory quotas. Distinct from and subsequent to node initialization, which only sets disk paths.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/manage/manage-nodes/initialize-node.md",
+  "evidence": [
+    "When the node is subsequently provisioned, these are preserved (unless, as is possible with UI-based provisioning, they are optionally overwritten, and the node is thus re-initialized).",
+    "Note that disk-paths cannot be changed after a node has been _provisioned_, and has thus either become a cluster of one node, or has been added to a cluster of other nodes.",
+    "If initialization is not explicitly performed, it will occur as part of the eventual provisioning process, and default disk-path values will be applied."
+  ],
+  "note": "The initialize/provision distinction is a genuine ordering constraint with an irreversibility attached (disk paths cannot be changed after provisioning) and it exists nowhere in the reference tree - it is a property of the ADMIN WORKFLOW, not of any object. It also explains an otherwise puzzling fact stated by add-node-and-rebalance.md: adding a node ELIMINATES all its prior provisioning, buckets, services and settings. That is only coherent once provisioning is understood as cluster membership rather than as machine setup.",
+  "relates_to_competency_question": "What is the difference between initializing a node and provisioning it, and which decisions become irreversible?"
+}

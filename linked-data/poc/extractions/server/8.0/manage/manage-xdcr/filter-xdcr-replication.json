@@ -1,0 +1,108 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/filter-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/filter-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication-filter",
+      "label": "XDCR Advanced Filtering",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this is the Web Console procedure guide's own step-by-step page for the promoted concept"
+    },
+    {
+      "candidate_id": "xdcr:filtering-expression",
+      "label": "XDCR Filtering Expression",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "xdcr:deletion-filter",
+      "label": "XDCR deletion filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a family of three checkboxes ('Do not replicate document expirations', 'Do not replicate DELETE operations', 'Remove TTL from replicated items') controlling whether a source-side deletion/expiration/TTL propagates to the replicated copy, independent of and orthogonal to the regular-expression/SQL++ filtering-expression mechanism. First contact anywhere in the corpus - the reference tree's xdcr-filtering-reference-intro.md/xdcr-filtering-expressions.md (round 20) document only the match-expression side of filtering and never mention deletion propagation at all, a genuinely UI-procedure-only mechanism this batch's brief predicted."
+    },
+    {
+      "candidate_id": "xdcr:explicit-mapping",
+      "label": "XDCR explicit mapping (collection-to-collection)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - an administrator-specified rule remapping a source keyspace to a differently-named target keyspace, as against the default xdcr:implicit-mapping (minted on create-xdcr-replication.json, this same batch). First genuine use on this page's CLI example ('This also requires an _explicit mapping_ to be specified'); the concept's fuller defining prose is on replicate-using-scopes-and-collections.md, this same batch, reused there."
+    },
+    {
+      "candidate_id": "data:expiration",
+      "label": "Expiration (TTL)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "restrictedToContext",
+      "object": "250-byte UI-entered expression length",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (restrictedToContext) - a length restriction that applies only via the UI access surface, not the CLI or REST API",
+      "evidence": "Note that when entered by means of the [UI](#filter-an-xdcr-replication-with-the-ui), the expression can be a maximum of 250 bytes (characters) in length: this restriction does _not_ apply to expressions entered by means of the [CLI](#filter-an-xdcr-replication-with-the-cli) or the [REST API](#filter-an-xdcr-replication-with-the-rest-api)."
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "doesNotSupport",
+      "object": "more than one filter per replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport) - object is a described restriction, not a concept id",
+      "evidence": "Only one filter can be applied to a single replication: thus, once defined, the filter is applied to _all_ mappings."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "doesNotSupport",
+      "object": "more than one replication per target bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport)",
+      "evidence": "Note also that only _one_ replication can be established between a given source bucket and a given target bucket."
+    },
+    {
+      "subject": "xdcr:deletion-filter",
+      "predicate": "doesNotAffect",
+      "object": "xdcr:replication-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotAffect) - the two filtering mechanisms operate independently of each other",
+      "evidence": "Note that the replication of deletions, expirations, and/or TTLs is _not_ prevented by the specifying of a filter that is formed with regular and other filtering expressions: to ensure that document-deletions, expirations, and/or TTLs are _not_ replicated, the appropriate deletion-filter checkboxes must be checked."
+    },
+    {
+      "subject": "xdcr:deletion-filter",
+      "predicate": "configurableVia",
+      "object": "data:expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "**Remove TTL from replicated items**. If checked, this means that the TTL that a document bears at source is _not_ made part of the replicated copy of the document: instead, the TTL of the replicated copy is set to 0."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:explicit-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum) - loose fit, same convention already used for xdcr:implicit-mapping on create-xdcr-replication.json",
+      "evidence": "This also requires an _explicit mapping_ to be specified, as follows:"
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "successful filter test",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresPriorExecutionOf) - object is a described action, not a concept id",
+      "evidence": "Note that an expression _must_ be tested successfully, before it can be included as part of the replication: if an expression is specified and attemptedly saved without having been tested, the expression is ignored when saving occurs; and the replication is thus started in unfiltered form."
+    },
+    {
+      "subject": "xdcr:replication-filter",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-7-1-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "minted concept reused loosely: no version:server-7-1-5 concept file was confirmed at extraction time (see this batch's own version:server-7-1 note on create-xdcr-replication.json for the same near-miss); flagged for reconciliation rather than silently rounded",
+      "evidence": "The behavior is identical to that of Couchbase-Server versions prior to 7.1.5, where the option did not exist."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role named on this page for who may configure filtering, in contrast with the reference tree's own xdcr-filtering-reference-intro.md (round 20), which DOES name the Full/Cluster/XDCR Administrator triple for this exact capability. A genuine content gap between the reference page and its own Web Console procedure twin: the how-to page never restates the access-control fact its reference-manual sibling states."
+  },
+  "cross_component_finding": "DELETION FILTERS ARE UI-PROCEDURE-ONLY VOCABULARY THE REFERENCE TREE NEVER NAMED, exactly the shape this batch's brief predicted for xdcr-differ but found here instead, one page earlier. xdcr-filtering-reference-intro.md and its sibling reference pages (round 20) describe only the match-expression half of filtering (SQL++ subset, regex, collation/data-type comparison) and never mention document-deletion, expiration or TTL propagation at all - the entire deletion-filter mechanism, including its interaction with migration (see replicate-using-scopes-and-collections.json, this same batch, where deletion filters carry a stated data-loss risk), exists only in the Web Console procedure guide and its own learn/ conceptual companion page (xdcr-filtering.md, out of this batch)."
+}

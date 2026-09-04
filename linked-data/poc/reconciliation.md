@@ -6189,7 +6189,376 @@ would otherwise use.
   the concrete tool-call and read-volume accounting the coordinator asked for -
   this is the round the experiment was designed to produce a number for.
 
-## Cumulative verdict (all twenty-five rounds)
+## Round 26 — `server/8.0/manage/` (83 pages), the mirror question to a decade of reference extraction, and five namespaces that turn out to be subject areas
+
+**Scope.** 83 pages, first contact, the whole of Couchbase Server 8.0's Web Console
+cluster-administration guide (`manage-nodes/`, `manage-buckets/`, `manage-security/`,
+`manage-xdcr/`, `manage-groups/`, `manage-ui/`, `manage-settings/`,
+`manage-backup-and-restore/`, `manage-logging/`, `manage-statistics/`), split across
+six parallel batches A-F. 567 relations, mean 6.83 per page, 0 problems from
+`verify-evidence.py`. The round was dispatched to ask the mirror of the question
+rounds 5-7 and 12 answered from the reference side: the registry's `role:`,
+`privilege:`, `rbac-model:`, `auth-*`, `security:`, `tls:`, `cert:` and `xdcr:`
+families were built almost entirely from **reference** material - role catalogues,
+privilege tables, REST endpoint listings. Does that vocabulary survive being read
+against the full administration procedures that use it, and do procedural pages
+mostly reuse existing vocabulary (round 9's `guides/`, round 19's `javascript-udfs/`)
+or expose genuinely new admin-only mechanism (round 11's conceptual pages)?
+
+### The framing hypothesis: both answers, cleanly separated by layer
+
+The answer splits along a line the hypothesis did not anticipate, and the line is
+the round's main result. **The access-control vocabulary survived intact.** Not one
+`role:`, `privilege:`, `rbac-model:` or `auth-mechanism:` record needed correcting,
+widening or splitting; the 83 pages named roles the catalogue already held, in the
+same two-tier shape round 12 established, and the round's six new `role:` records are
+all *catalogue members the reference rounds had already attested and never promoted*
+(`role:bucket-admin` at 7 files, `role:security-admin` at 4, `role:replication-admin`
+at 4) rather than anything the procedures revealed. Round 12's correction has held
+for fourteen rounds against the surface most likely to break it.
+
+**The state-transition vocabulary was almost entirely missing.** Failover, node
+addition, node join, node removal, and node recovery - the operations that *are*
+cluster administration - had between them no promoted concept before this round,
+because reference documentation describes endpoints and flags and conceptual
+documentation describes architecture, and neither describes a lifecycle you walk a
+node through. Twelve records fill that gap (`server:failover` and its
+graceful/hard/auto trio, `server:node-addition`, `server:node-join`,
+`server:node-removal`, `server:node-recovery` and its full/delta pair,
+`server:node-provisioning`, `server:arbiter-node`). This is round 11's DCP finding
+in a second location: **the layer that is invisible to reference extraction is not a
+random subset of the domain, it is specifically the procedural/temporal layer**, and
+it stays invisible no matter how much reference material accumulates.
+
+### The five flagged cross-batch items
+
+1. **`role:security-admin` / `role:read-only-security-admin`, minted by both batch B
+   and batch F.** Byte-identical spellings, plus an earlier mint in
+   `learn/security/roles.json`: three independent arrivals at one id, which round 23
+   already ruled is **corroboration, not a fork**, and the five-second string check
+   settled it as such. Promoted at recurrence 4 and 2 respectively; the read-only one
+   filed as `role:ro-security-admin` per the internal-name convention, with the
+   display label in `aliases`.
+2. **`role:eventing-admin` against the promoted `role:eventing-full-admin`.**
+   `manage-auditing.md` carries `eventing_admin` as a bare token in the audit
+   `trackedRoles` parameter; the extraction minted it separately **and flagged in its
+   own `notable_absence` that it could not tell from that page whether the two are one
+   role**, asking reconciliation to check the catalogue. `roles.md` settles it in one
+   line - "Role: Eventing Full Admin (eventing_admin)" - so the fold is licensed by a
+   source sentence, not by surface similarity. Folded (1 file onto 23, zero overlap),
+   `internal_name` added. This is the no-silent-merge rule producing exactly the
+   handoff it was designed to produce: the extraction refused the merge it suspected
+   was right, and reconciliation had the catalogue to license it.
+3. **`manage:server-group`.** Crossed the bar at 3 files in this round plus
+   `capella:server-group` at 1. Promoted - but **not** under that id. A `manage:`
+   prefix names the directory the pages live in, which is the exact defect round 16
+   named as "an id names its subject, not its location"; filed as
+   `server:server-group` with both spellings aliased, the Capella leg licensed by its
+   own page's "across defined server groups" and recorded as the weaker of the two.
+4. **`secrets:*` against native-encryption-at-rest's DEK/KEK hierarchy.** Both read;
+   kept separate. All five `secrets:` members sit at recurrence 1, so nothing crossed
+   the bar and no promotion was forced either way. The new evidence is sharper than a
+   merge would have been: this round's `encryptsKeysFor` predicate is licensed
+   independently by **both** hierarchies (`secrets:master-key` -> `secrets:data-key` ->
+   `secrets:system-secret`, and encryption-at-rest key -> DEK), which shows they are
+   the same *kind of construction* - a two-level key-wrapping hierarchy - and not the
+   same keys. Whether Couchbase Server has one key hierarchy documented twice or two
+   genuinely separate ones is recorded as an open SME question in the predicate record
+   rather than guessed at.
+5. **The XDCR replication-status three-way split.** Filed as a docs-issue, as the
+   briefing predicted - and the verification changed what the issue says. The first
+   draft claimed the Server REST API returns `running`/`notRunning`/`paused`; reading
+   `rest-xdcr-adv-settings.md` showed `notRunning` belongs to a **rebalance** task,
+   and the XDCR task reports `"status": "running"` alongside a separate
+   `"pauseRequested"` boolean with no paused status at all. So the three surfaces
+   differ in **shape**, not merely in spelling: seven UI statuses in Capella, two in
+   the Server Web Console, and a status-plus-flag pair in the REST API.
+   `xdcr:replication-status-enum` is promoted deliberately as an explicit
+   **divergence record** - a concept whose content is "these three do not agree" -
+   which is a use of the registry this project has not made before.
+
+### Namespace coherence: five asked about, five subject areas, one closed axis
+
+The dispatch asked whether `stats:`, `prometheus:`, `ui:`, `log:` and `secrets:` are
+genuinely closed axes or subject areas, and said to confirm rather than assume. All
+five **fail** the closed-axis test - for none of them could a new member be described
+as news, which is the operative test since round 14's `vector-index:` finding - so all
+five are subject areas with open membership. The cheap part of that verdict: every
+member of `stats:`, `prometheus:` and `secrets:` sits at recurrence 1, so the
+promotion rule declines all of them and the classification incurs no work.
+
+The round's one **closed axis** is new: `kms:`, whose membership is enumerable from
+the page that defines it (AWS KMS, KMIP, and the local node secret manager), with two
+members at recurrence 2. It is also the round's only new namespace besides `log:` and
+`ui:`.
+
+Two collisions, both resolved forward-only:
+
+- **`ui:` against `tool:query-workbench`.** The Query Workbench is a Web Console
+  panel filed in the namespace this project otherwise uses for CLI binaries
+  (`tool:cbstats`, `tool:cbbackupmgr`). The rule from here is that console surfaces
+  go in `ui:` and shipped binaries go in `tool:`; the existing record is left where it
+  is, as a recorded legacy exception, because 
+  renaming buys nothing that writing the rule down does not.
+- **`data-service:` refused outright** as a namespace for
+  `data-service:reader-io-thread-kind`, because `service:data-service` already names
+  that subject and a namespace whose name duplicates an existing concept is a fork
+  waiting to happen. Filed as `data:reader-io-thread-kind` with the rejected spelling
+  aliased.
+
+Noted, not acted on: `prometheus:` names a third-party tool while `tool:`,
+`monitoring:` and `stats:` all exist, and `stats:` overlaps `monitoring:` in
+territory. Neither has a member above recurrence 1, so neither is worth a decision
+yet - but a future monitoring round will have to make one.
+
+### Thinning and density: the shortfall is like-with-like, and the gate can thin
+
+Round 26's gate-log slice is 107 write events, 17 denied - a **16% denial rate**,
+spread across 17 distinct paths, each denied exactly once and every one repaired to
+an `allow`. Only **three** paths ended with fewer relations than their denied attempt,
+one relation each, and the breakdown is the finding:
+
+- `manage-groups/manage-groups.json` lost one relation after a denial for **two
+  unquotable claims**. That is the gate working: an omission is the correct outcome.
+- `manage-buckets/edit-bucket.json` and `manage-nodes/initialize-node.json` each lost
+  one relation after denials that were **purely `registry_status` bookkeeping**
+  (`"minted"` where the registry already promotes the predicate). Nothing about the
+  evidence was in question, and a relation still vanished on the rewrite. **A gate
+  denial is not relation-preserving**: the agent re-authors the whole record, and
+  content can be lost to a rejection that had no complaint about it. This is a small
+  effect - two relations in 567 - but it is a mechanism, not noise, and no control
+  looks for it.
+
+Mean 6.83 relations per page falls well short of round 10's 13.4 reference-tree
+baseline, and that comparison is the wrong one. Against the other procedural scopes in
+the corpus - `cloud/guides` at 4.6, `server/8.0/eventing` at 5.7 - this is the
+**highest density any procedural scope has reached**. Round 17's 9.8× recovery
+established that thinness is worth chasing; this round adds the boundary condition
+that the baseline has to be genre-matched, or a healthy procedural extraction reads as
+a 49% shortfall.
+
+### Registry-fact findings (recorded here, not in `docs-issues/`)
+
+- **A stale promoted record.** `role:local-user-security-administrator` names a role
+  Server 8.0 no longer has; `roles.md` says so in its own prose ("This role replaced
+  the Local User Security Admin role available in Couchbase Server prior to..."). Its
+  successor is promoted this round as `role:user-admin-local`. The old record is left
+  standing rather than deleted, and the supersession noted, because nothing in this
+  project has yet decided what a superseded concept looks like. It is the **only**
+  such record: the pre-8.0 External User Security Admin was never promoted, so its
+  8.0 successor `role:user-admin-external` arrives with no predecessor to supersede,
+  and the asymmetry is an accident of which roles earlier rounds happened to reach
+  rather than a distinction the docs draw.
+- **The internal-name role convention has a limit nobody had hit.**
+  `role:eventing-full-admin` should, by the convention, live at
+  `concepts/role/eventing-admin.json`. It is left at the display-label filename, with
+  `internal_name` carrying the fact, because 23 files of relations already resolve to
+  the current id. Forward-only: new role records are filed under the internal name,
+  existing ones are not migrated. Written into the record's own `aliases_note` so the
+  next reconciler does not re-open it as an error.
+- **A synonym fork `--variants` structurally cannot see.**
+  `manage-settings/general-settings.json` uses `requiresMinimumNodeCount` and
+  `hasMinimumNodeCount` **on the same page for the same thing**. `--variants` matches
+  punctuation differences; `requires` versus `has` is a different word. Folded onto
+  the promoted spelling, union 6 files rather than 7 because the folded spelling's only
+  file is one the survivor already covers - which is the same-page evidence stated as
+  a number. This is round 18's cross-predicate blind spot recurring one layer down, in
+  the *verb* rather than the object.
+- **A third `--variants` cluster, and it is a filename convention colliding with
+  itself.** `--variants` reported 3 clusters where the two known survivors are both
+  literals-in-an-object-slot (`1`/`1%`, `#sequentialscan`/`sequentialscan`). The new
+  one is neither: `concepts/fts-search-response-object.json` (a `skos:ConceptScheme`,
+  filed at the `concepts/` root per the same convention as `concepts/index-state.json`)
+  clusters against `concepts/fts/search-response-object.json` (the concept itself),
+  because the scheme's local name **begins with the prefix of the concept it groups**,
+  so variant-key normalisation cannot tell `fts-search-response-object` from
+  `fts:search-response-object`. Both records are correct and neither is a spelling of
+  the other. Round 23 filed them. The forward-only rule: a root-level scheme's local
+  name must not start with a registry prefix - name it for the axis it enumerates
+  rather than for its first member. Left in place
+  rather than renamed mid-round, because the id is served and nothing else in the
+  registry references it.
+- **`--audit` cannot audit a record filed under a name the extractions never used.**
+  66 of this round's 70 promoted ids matched the check. The four that did not are
+  exactly the four that were **renamed on filing** - `server:server-group` (from
+  `manage:server-group`), `data:reader-io-thread-kind` (from
+  `data-service:reader-io-thread-kind`), `role:user-admin-local` and
+  `role:user-admin-external` (from the display-label spellings). The check resolves
+  aliases in the extraction direction but looks up evidence by the promoted id, so a
+  reconciliation decision to file under a better name silently removes the record from
+  the one control that verifies its quotes. Every one of these four is a decision this
+  project's own conventions *require*, which makes this a systematic blind spot rather
+  than an edge case: the more correctly reconciliation files a record, the less the
+  audit can see it.
+- **A malformed record.** `extractions/server/8.0/learn/security/auditing.json` line
+  34 holds a prose sentence in an id slot - a whole clause where a `ns:name` belongs.
+  Pre-gate, and invisible to `--variants` because it is not a spelling of anything.
+- **The largest remaining promotion debt is `port:`.** `port:8094` sits at 17 files
+  unpromoted; 8093, 8095, 18093 and 18094 at 5 each; 18095 at 4; 9102, 8096, 19102 and
+  11207 at 2. Only `port:11210` was promoted this round, on this round's own evidence.
+  The block is a namespace-shaped job of the kind round 14 established is the right
+  unit of work, and it is now the clearest one outstanding. Capella's `security:`
+  family is the second (`vpc-peering` 3, `customer-managed-encryption-keys` 3,
+  `private-endpoints` 2).
+
+### The `--audit` result: one finding, and it was the instrument's
+
+`candidate-evidence.py --audit` flagged exactly one id, `xdcr:replication-status-enum`,
+for an evidence quote not literally on the page it cites. Re-reading
+`cloud/clusters/xdcr/manage-xdcr-replications.md` lines 341-352 showed the seven
+statuses are real and the quote is a faithful summary of a table the extraction elided
+with "...". An **elision artefact, not a fabrication** - and worth recording as such,
+because round 15 built this check precisely to catch paraphrase-presented-as-quotation
+inside promoted records, and its first hit in this round is the benign case. A check
+whose only finding is a false positive is still doing its job; what would be wrong is
+to loosen it. The more interesting result is what the run did **not** cover: 4 of the
+70 ids were invisible to it, and they are precisely the four reconciliation renamed on
+filing - see the registry-fact findings above.
+
+### Promotions
+
+**70 concepts promoted**, taking `concepts/` to 579. The state-transition family
+described above (12 records, including three family exceptions:
+`server:full-recovery` and `server:delta-recovery` at recurrence 1 each, promoted
+because `server:node-recovery` cannot state what recovery *is* without naming both
+kinds, and `role:user-admin-local` at 1 because its sibling
+`role:user-admin-external` at 2 is defined against it). The scope/collection layer
+(`server:collection` 5, `server:default-scope` 2, `server:default-collection` 2,
+`server:system-scope` 4). Certificates and TLS (`cert:subject-alternative-name` 4,
+`cert:subject-common-name` 3, `cert:pkcs12-certificate` 2,
+`cert:certificate-rotation` 2, `cert:inbox-directory` 2,
+`tls:cluster-encryption-level` 4, `tls:loopback-interface` 2,
+`tls:legacy-tls-versions` 2). Encryption at rest (`encryption:data-encryption-key` 2,
+`encryption:key-rotation` 2, `encryption:drop-deks-rest-action` 2, plus `kms:aws-kms`
+and `kms:kmip-kms`). Identity (`idp:saslauthd` 5, `idp:pam` 4,
+`auth-mechanism:scram` 2, `security:session-management` 3). XDCR's procedural layer
+(`xdcr:replication` 14, `xdcr:reference` 7, `xdcr:fully-secure-replication` 3,
+`xdcr:half-secure-replication` 2, `xdcr:implicit-mapping` 2,
+`xdcr:explicit-mapping` 2, `xdcr:deletion-filter` 2,
+`xdcr:alternate-address-target` 2, `xdcr:active-active-with-app-services` 3,
+`xdcr:replication-status-enum` 3). Four `version:` records, two `vbucket:` counts
+(128 and 1024, the Magma configurations), `storage:auto-compaction` 7,
+`storage:filesystem-free-space-limit` 2, `bucket:storage-backend-migration` 2, two
+`durability:` records, `data:reader-io-thread-kind` 2, `log:log-file` 2, two `n1ql:`
+records, `port:11210` 3, `tool:cbstats` 3, `ui:couchbase-web-console` 3 and
+`ui:dashboard` 2.
+
+**6 relations promoted**, taking `relations/` to 114. `mutuallyExclusiveWith` (4) is
+the first **symmetric** predicate in the registry - every predicate promoted in
+twenty-five prior rounds has had a distinguishable subject and object - which is a
+schema-shape first, not just a new name. `signsCertificateFor` (3),
+`identifiesUserVia` (3), `encryptsKeysFor` (3, the one doing double duty across both
+key hierarchies), `mapsToRole` (2), `hasMinimumMemoryQuota` (3).
+
+**Folds, each licensed by a quoted source sentence**, recorded in the receiving
+record's `aliases` with the sentence in `aliases_note`: `tls:cluster-encryption-level`
+<- `server:cluster-encryption-level` (4); `server:auto-failover` <-
+`clusters:auto-failover` (6, the `clusters:` mint having come from a Server page);
+`server:system-scope` <- `capella:system-scope` (4, the Capella page itself
+attributing `_system` to Server 7.6); `xdcr:replication` <- `clusters:replication`
+plus `xdcr:outgoing-replication` plus `xdcr:incoming-replication` (14, the last two
+licensed by an `isSynonymOf` sentence); `storage:auto-compaction` <-
+`data:auto-compaction` (7); `role:eventing-full-admin` <- `role:eventing-admin`;
+`requiresMinimumNodeCount` <- `hasMinimumNodeCount`.
+
+**Refused folds**, each with the refusal recorded: `capella:collection` against
+`server:collection` (different tiers, no page equates them); `server:keyspace`
+against `server:collection` (left as an open question - a keyspace is addressed like
+a collection and is not obviously the same thing); `log:log-rotation` against
+`audit:log-rotation`; `cbl:replication` against `xdcr:replication` (round 19's
+`js-udf:`/`eventing:` discipline - two products sharing a word); `role:data-writer`
+against `capella-role:data-writer` (round 6's two-catalogue finding).
+
+**Two corrections made to this round's own drafts before filing**, both caught by
+re-reading the cited page rather than by any script: an unquoted "https and port
+18091" claim in `server:node-addition` where the page only says `http://` and that
+8091 cannot be used, and the REST leg of `xdcr:replication-status-enum` described
+above.
+
+### New `docs-issues/` (10, taking the total to 194)
+
+- The XDCR replication-status three-vocabulary split (above), the round's central
+  documentation finding.
+- `edit-bucket.md` offering all four Minimum Durability Levels unqualified by bucket
+  type, where `create-bucket.md` correctly restricts Ephemeral buckets to `none` and
+  `majority` and `learn/data/durability.md` gives the reason.
+- `manage-native-encryption-at-rest.md`'s role prerequisites linking to the wrong
+  `roles.md` anchors in three distinct ways inside twenty lines - including a "Bucket
+  Admin" link pointing at `#backup-full-admin`.
+- No certificate **revocation** mechanism documented anywhere in Couchbase Server's
+  certificate material, across three `learn/security/` pages and five `manage/`
+  procedures that otherwise cover generating, signing, uploading, loading, rotating
+  and troubleshooting - including no-downtime CA rotation.
+- 17 unresolved Antora xref macros across 9 files in the `manage/` tree, leaked into
+  the Markdown as `](#component:module/page.adoc)` - each rendering as a live in-page
+  anchor that resolves to nothing, so a reader gets a link that silently does nothing.
+- `manage-backup-and-restore.md` giving the secure REST port as **18901**, a digit
+  transposition of 18091.
+- The same page stating the Backup Service prerequisite as Full Admin only, where
+  `roles.md` documents `backup_admin` (Backup Full Admin) as existing precisely for
+  that purpose.
+- `failover-hard.md` documenting one safety guard with two entirely different error
+  signals (`ERROR: Received unexpected status 504` from the CLI, "Cannot safely
+  perform a failover at the moment" from REST) and never saying they are the same
+  condition.
+- `security-management-overview.md` listing PAM as a peer of Native LDAP and
+  saslauthd, while `configure-pam.md`'s own prerequisites instruct the administrator
+  to verify saslauthd is set up to use PAM - i.e. PAM reached *through* saslauthd, not
+  beside it.
+- `roles.md`'s 8.0 role headings carrying the anchors of the roles they replaced
+  (`Local User Admin` at `#local-user-security-admin`), with the page's own prose
+  saying those names no longer denote these roles - and the page linking to itself
+  using them.
+
+### What this round taught about the method
+
+- **The layer reference extraction cannot see is specifically the procedural one, and
+  it does not fill in with more reference coverage.** Round 11 found this once, with
+  DCP, and read it as a fact about protocols being below the documentation's abstraction
+  floor. Round 26 finds the same hole in a completely different place - failover and node
+  lifecycle, which are neither low-level nor undocumented - and the common factor is not
+  abstraction level but **genre**: state transitions live in procedures, and 25 rounds
+  had extracted procedures only incidentally. A coverage plan organised by product area
+  will keep missing this; one organised by genre would not.
+- **And this round then broke round 12's ordering rule, in the exact domain the rule
+  names as its next instance.** Round 12 turned "read the authoritative conceptual
+  page first" from a preference into an ordering rule, because the reference genre is
+  louder and earlier and its category errors accumulate evidence before the
+  correcting page is ever read - that being how eleven roles spent ten rounds filed as
+  privileges. `README.md` has named `learn/clusters-and-availability/` as the concrete
+  next instance ever since. It is still **unextracted**, and it contains `failover.md`,
+  `graceful-failover.md`, `hard-failover.md`, `automatic-failover.md`, `recovery.md`,
+  `removal.md`, `nodes.md` and `groups.md` - the authoritative page for every single
+  term in this round's headline promotion family. The promotions are well-evidenced
+  and were correct on the evidence available, which is exactly the failure mode: so
+  was the privilege error. The lesson is not "be more careful" but that **an ordering
+  rule living in a next-steps list is not a control**: a round is dispatched against a
+  directory, and nothing in the dispatch asks whether that directory's authoritative
+  conceptual pages have been read yet. That check is cheap and does not exist.
+- **A gate denial rewrites the whole record, so a bookkeeping rejection can cost
+  content.** Two of this round's three net relation losses followed denials that had no
+  complaint about evidence at all. The gate is a write-time check on a document the agent
+  re-authors in full, which makes every denial an opportunity for unrelated loss. Nothing
+  in the pipeline compares a denied record against its eventual accepted version.
+- **A density shortfall is only interpretable against a genre-matched baseline.**
+  6.83 against 13.4 reads as a 49% shortfall and as the corpus's best procedural
+  result, depending entirely on which number you put beside it. Round 17 taught this
+  project to chase thinness; this round adds that the chase needs a control group, or
+  every procedural scope will look thin forever.
+- **The registry can hold a concept whose content is a disagreement.**
+  `xdcr:replication-status-enum` does not enumerate the statuses of a replication -
+  no such enumeration exists to promote. It records that three surfaces publish three
+  incompatible ones. That is a use of a concept record this project arrived at only
+  because the alternative (pick one, or promote nothing) would have destroyed the
+  finding, and it is worth having as a named option.
+- **The no-silent-merge rule's real payoff is the handoff, not the refusal.** The
+  `eventing_admin` case is the cleanest instance in 26 rounds: an extraction agent
+  suspected a merge, refused it, wrote down *what would settle it*, and reconciliation
+  settled it from the catalogue in one line. The rule's value is not that it prevents
+  bad merges; it is that it converts a guess an extraction agent cannot make into a
+  lookup a reconciliation agent can.
+
+## Cumulative verdict (all twenty-six rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -6550,6 +6919,32 @@ continuous coordinator reached, at a fraction of the per-round token cost the
 continuous session's own usage panel had been reporting. Whether that holds up
 across a round with less self-contained a briefing is the open question it leaves
 behind.
+
+Round 26 asked the mirror of the question rounds 5-7 and 12 answered, and got two
+answers that a single verdict would have blurred. The access-control vocabulary -
+built almost entirely from reference catalogues, corrected wholesale in round 12,
+and never since tested against the procedures that consume it - **survived 83 pages
+of full administration guide without a single correction**, which is the strongest
+confirmation round 12's ruling has received. And the same 83 pages showed that the
+registry had, after twenty-five rounds, essentially no vocabulary for failover, node
+addition, node join, node removal or node recovery: the operations that *are* cluster
+administration. Round 11 found one hole of that kind and read it as an abstraction-floor
+effect - DCP being below what documentation describes. Two sightings make a different
+generalisation available and it is the more actionable one: **the layer reference
+extraction cannot see is the procedural layer, and the gap is a property of genre
+rather than of depth.** Reference pages describe endpoints and flags; conceptual pages
+describe architecture; neither describes a lifecycle you walk a node through, and no
+quantity of either will start to. Every coverage plan in this project has been organised
+by product area. One organised by genre would have found this twenty rounds earlier. The
+round also added a small mechanical finding with no precedent in the twenty-five before
+it: two of its three net relation losses followed gate denials that raised **no
+complaint about evidence at all** - a `registry_status` bookkeeping rejection, after
+which the agent re-authored the record and a relation silently did not come back. The
+write-time gate is a check on a document its subject rewrites in full, which makes every
+denial, however trivial its cause, an opportunity for unrelated loss. Rounds 13-17
+established that a control's coverage is an unchecked claim; this adds that **a
+control's side effects are unchecked too**, and that nothing compares a denied record
+against the version eventually accepted in its place.
 
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of

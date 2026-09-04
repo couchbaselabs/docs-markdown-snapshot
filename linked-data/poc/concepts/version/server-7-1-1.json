@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-1-1",
+  "label": "Couchbase Server 7.1.1",
+  "type": "the Couchbase Server maintenance release from which restrictions can be placed on node addition and node join based on the establishment of trust.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-nodes/add-node-and-rebalance.md",
+  "evidence": [
+    "To ensure cluster-security, in Couchbase Server 7.1.1 and later versions, restrictions can be placed on addition, based on the establishment of trust.",
+    "To ensure cluster-security, in Couchbase Server 7.1.1 and later versions, restrictions can be placed on joining, based on the establishment of trust."
+  ],
+  "note": "Both files are round 26's, and they are the add/join pair stating the same gate from their two sides - which is exactly the recurrence the promotion rule is meant to catch and not the kind a single page can fake."
+}

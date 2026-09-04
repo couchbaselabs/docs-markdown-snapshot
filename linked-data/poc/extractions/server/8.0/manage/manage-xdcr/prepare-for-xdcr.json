@@ -1,0 +1,92 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/prepare-for-xdcr",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/prepare-for-xdcr.md",
+  "concepts": [
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:xdcr-admin",
+      "label": "XDCR Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/learn/security/roles.json. This page's own phrasing ('the role of _Full_, _Cluster_, or _XDCR Administrator_') is the third independent attestation of the same three-role disjunction already seen on xdcr-filtering-reference-intro.md (round 20), which named only role:full-administrator as resolving cleanly and left Cluster/XDCR Administrator unresolved. roles.json (this same round) supplies exactly the two missing ids."
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "If you possess the role of _Full_, _Cluster_, or _XDCR Administrator_, you can create, edit, and delete cluster references and replications."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - this is the disjunctive triple's second, previously-unresolved leg, now resolvable against this round's own role:cluster-admin promotion",
+      "evidence": "If you possess the role of _Full_, _Cluster_, or _XDCR Administrator_, you can create, edit, and delete cluster references and replications."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresServerRole",
+      "object": "role:xdcr-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - this is the disjunctive triple's third, previously-unresolved leg; the OBJECT (role:xdcr-admin) is itself still extraction-layer, only the predicate is promoted",
+      "evidence": "If you possess the role of _Full_, _Cluster_, or _XDCR Administrator_, you can create, edit, and delete cluster references and replications."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresCapability",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - object approximated to a bare port literal since no port:8091 concept file was confirmed at extraction time; flagged rather than silently dropped",
+      "evidence": "Couchbase Server uses TCP/IP port `8091` to exchange cluster configuration information."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - marks the version at which the vBucket-count-mismatch restriction described here was relaxed, not when XDCR itself was introduced",
+      "evidence": "Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/create-xdcr-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Once your source and target clusters have been prepared, to start XDCR management, [Create a Reference](create-xdcr-reference.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "This page's Role-Based Access Control section defines the abstract chain (privileges have a fixed association with roles, which are assigned to users) but, exactly like round 12's finding on the abstract RBAC model elsewhere in the corpus, never names a concrete privilege - only the three role names. See the registry's own hasPrivilege writeup ('PROMOTED FOR WHAT IT DOES NOT CONTAIN')."
+  },
+  "cross_component_finding": "RESOLVES A PRIOR ROUND'S OPEN QUESTION. Round 20's xdcr-filtering-reference-intro.json flagged 'Cluster Administrator' and 'XDCR Administrator' as named-but-unresolved against the registry ('only Full Administrator resolves to an existing registry role'). This round's server/8.0/learn/security/roles.json batch (extracted concurrently) minted role:cluster-admin (now promoted) and role:xdcr-admin (extraction-layer) independently - and this page is the THIRD sibling page in the corpus stating the identical Full/Cluster/XDCR Administrator disjunction verbatim (after xdcr-filtering-reference-intro.md and create-xdcr-reference.md, this same batch), meaning the same access-control fact was written near-identically on three separate pages across two extraction rounds before any single record could resolve all three role names at once."
+}

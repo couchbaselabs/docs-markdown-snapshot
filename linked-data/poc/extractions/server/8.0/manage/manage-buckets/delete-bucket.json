@@ -1,0 +1,44 @@
+{
+  "page_id": "server/8.0/manage/manage-buckets/delete-bucket",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-buckets/delete-bucket.md",
+  "concepts": [
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused - dropping a bucket cascades to its scopes" },
+    { "candidate_id": "server:collection", "label": "Collection (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted twice (server/8.0/indexes/index-lifecycle.json, server/8.0/learn/data/scopes-and-collections.json); dropping a bucket cascades to its collections" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:bucket-admin", "label": "Bucket Administrator", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once" },
+    { "candidate_id": "bucket:drop-bucket-operation", "label": "Drop a Bucket (management operation)",
+      "registry_status": "minted", "reused_or_minted": "minted - the UI/CLI/REST management operation deleting a bucket and cascading to its data, scopes, and collections. Deliberately NOT merged with the extraction-layer n1ql:drop-bucket (a different thing: that id names a SQL++ DDL-style statement, this one a Web-Console/CLI/REST administrative action) per the standing no-silent-merge rule; flagged here as a same-verb-different-surface case worth a future coherence pass." }
+  ],
+  "relations": [
+    { "subject": "bucket:drop-bucket-operation", "predicate": "cascadesTo", "object": "server:scope",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "a bucket means deleting the bucket, all its documents, and all the scopes and collections into which the documents were organized." },
+    { "subject": "bucket:drop-bucket-operation", "predicate": "cascadesTo", "object": "server:collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "a bucket means deleting the bucket, all its documents, and all the scopes and collections into which the documents were organized." },
+    { "subject": "bucket:drop-bucket-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Full, Cluster, and Bucket Administrators can drop a bucket." },
+    { "subject": "bucket:drop-bucket-operation", "predicate": "requiresServerRole", "object": "role:cluster-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Full, Cluster, and Bucket Administrators can drop a bucket." },
+    { "subject": "bucket:drop-bucket-operation", "predicate": "requiresServerRole", "object": "role:bucket-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Full, Cluster, and Bucket Administrators can drop a bucket." },
+    { "subject": "bucket:drop-bucket-operation", "predicate": "cascadesTo", "object": "rbac-model:privilege",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - a bucket-scoped role-assignment is a privilege grant on that resource, and it is deleted along with the resource",
+      "evidence": "roles assigned to users may contain privileges for accessing specfic buckets by name. If such a bucket is deleted, all role-assignments to that resource are deleted from the cluster." },
+    { "subject": "server/8.0/manage/manage-buckets/delete-bucket", "predicate": "seeAlso", "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Authorization](../../learn/security/authorization-overview.md) for details." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "The page describes a self-lockout hazard that no other bucket-management page in this batch mentions: 'If a user whose sole permission is Bucket Admin on a single bucket uses Couchbase Web Console to delete that bucket, the user is logged out of the console on bucket-deletion, and cannot log back in.' This is a real, stated consequence of the RBAC cascade above (the user's only privilege grant is destroyed along with the bucket it named), but no promoted or extraction-layer predicate captures 'this action can revoke the acting user's own access' - recorded here in prose rather than forced into cascadesTo, which is about the deleted resource's contents, not the ACTOR's own standing. Note also the source page's own typo, preserved verbatim in the evidence field above ('specfic' for 'specific')."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

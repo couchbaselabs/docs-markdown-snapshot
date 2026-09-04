@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/enable-half-secure-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/enable-half-secure-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:half-secure-replication",
+      "label": "Half-secure XDCR replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on secure-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-reference.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "configuredVia",
+      "object": "xdcr:reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia) - the security level is a property of the reference, propagating to every replication built on it",
+      "evidence": "Note that replication-security is established _per reference_: this means that the security level assigned to the reference (which specifies a remote cluster) is automatically assigned to all replications based on that reference."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "cascadesTo",
+      "object": "xdcr:replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (cascadesTo) - editing the reference's security level propagates the change to existing and future replications built on it, without deleting anything",
+      "evidence": "From this point, any existing replication based on the edited reference is continued in half-secure form. All new replications based on the edited reference will be started in half-secure form."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "configuredVia",
+      "object": "pools/default/remoteClusters REST endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia)",
+      "evidence": "The `secureType` field indicates that the new reference is `half` secure."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role named on this page either, consistent with the rest of this batch's security pages."
+  },
+  "cross_component_finding": "SECURITY IS A PER-REFERENCE PROPERTY, NOT A PER-REPLICATION ONE - a structural fact stated explicitly here ('replication-security is established _per reference_') that has no equivalent statement anywhere in round 20's reference tree or in Capella's own XDCR pages, both of which discuss security/certificates as if configuring a single connection rather than a reusable, propagating setting. This is the sharpest example in this batch of a fact that only a full creation-and-editing procedure page - as against a settings reference page - has occasion to state."
+}

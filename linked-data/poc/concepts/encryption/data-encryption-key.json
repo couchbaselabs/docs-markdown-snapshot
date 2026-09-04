@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/encryption/data-encryption-key",
+  "label": "Data Encryption Key (DEK)",
+  "type": "the key that actually encrypts data at rest. DEKs are themselves encrypted by an encryption-at-rest key (the KEK), are rotated automatically by default on a configurable schedule, and can be forcibly replaced by 'dropping' them via REST - which also decrypts and re-encrypts the affected data.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/native-encryption-at-rest-overview.md",
+  "evidence": [
+    "Couchbase Server uses the keys you create directly to encrypt Data Encryption Keys (DEKs) which in turn encrypt your data.",
+    "When you drop the DEKs for a bucket or type of data, Couchbase Server creates a new replacement DEK.",
+    "You choose how frequently Couchbase Server rotates DEKs and (if you enable it) the encryption keys themselves."
+  ],
+  "note": "The bottom of the native encryption-at-rest key hierarchy, whose top (encryption:encryption-at-rest-key, encryption:master-password) was already promoted. Round 26 deliberately did NOT merge this hierarchy with the system-secrets hierarchy (secrets:master-key -> secrets:data-key -> secrets:system-secret), even though both are two-level key-wrapping schemes rooted in the same master password and both use round 26's `encryptsKeysFor` predicate. No page in the corpus states a relationship between them, the things protected are different (cluster data versus on-disk configuration secrets), and all five secrets: members sit at recurrence 1 so the promotion rule declines them anyway. Recorded in reconciliation.md as an open question for an SME rather than resolved by resemblance.",
+  "relates_to_competency_question": "Which key encrypts data at rest, and what encrypts that key?"
+}

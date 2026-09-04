@@ -1,0 +1,121 @@
+{
+  "page_id": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/enable-client-certificate-handling.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Hybrid and Mandatory modes both name mTLS explicitly for inter-node communication"
+    },
+    {
+      "candidate_id": "tls:node-to-node-encryption",
+      "label": "Node-to-node encryption",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the clusterEncryptionLevel prerequisite for Hybrid/Mandatory modes is this concept's own setting"
+    },
+    {
+      "candidate_id": "tls:console-access-setting",
+      "label": "Web Console access setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page recommends disabling non-secure console access alongside Mandatory mode"
+    },
+    {
+      "candidate_id": "cert:subject-common-name",
+      "label": "Subject Common Name",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; this page's UI names it as the default username-carrying field (subject.cn)"
+    },
+    {
+      "candidate_id": "cert:client-cert-auth-mode",
+      "label": "Require Client Certificate setting (Disable | Enable | Hybrid | Mandatory)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the closed four-valued scheme this page defines in full (UI panel, CLI `state` field, REST `state` field all use the identical four literals). Genuinely new admin-only mechanism: no reference page in the corpus's cert:/auth-mechanism: namespaces enumerates this scheme - learn/security/certificates.md discusses client certificates as artifacts but never the cluster-wide policy switch controlling whether/how they are required. Modeled as a flat scheme, following the project's index-state precedent, rather than one concept per literal, since no page addresses an individual value in isolation from the other three."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "cert:client-cert-auth-mode",
+      "predicate": "cascadesTo",
+      "object": "tls:mutual-tls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - selecting Hybrid or Mandatory cascades into requiring mTLS for all inter-node communication, not merely client-facing auth",
+      "evidence": "**Hybrid**: Enables the client to authenticate using either a certificate, or a username and password. Enforces that all nodes must authenticate only through mutual TLS (mTLS) for inter-node communication. The prerequisite is that the `clusterEncryptionLevel` setting is configured to `all` or `strict`."
+    },
+    {
+      "subject": "cert:client-cert-auth-mode",
+      "predicate": "requiresSetting",
+      "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "**Mandatory**: Enables and enforces that the clients must authenticate using certificates only. Enables and enforces that all nodes must authenticate through certificates only when communicating with each other. The prerequisite is that the `clusterEncryptionLevel` setting is configured to `all` or `strict`."
+    },
+    {
+      "subject": "cert:client-cert-auth-mode",
+      "predicate": "cascadesTo",
+      "object": "tls:console-access-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - a documented, though non-mandatory ('may require'), operational consequence of the strictest mode",
+      "evidence": "Imposing this level of security may require the additional measure of disabling non-secure console access. See [Manage Console Access](manage-console-access.md)."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-common-name",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - corroborates the same relation from configure-client-certificates.json, this time from the UI's own default-setting side",
+      "evidence": "Note that the default option is **subject.cn**, which indicates that the _Subject Common Name_ within the certificate will be considered a username."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-ssl-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "To use the Couchbase CLI to enable and configure client-certificate handling, use the [ssl-manage](../../cli/cbcli/couchbase-cli-ssl-manage.md) command."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-console-access",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Imposing this level of security may require the additional measure of disabling non-secure console access. See [Manage Console Access](manage-console-access.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "and practical examples of their use are provided in [Configure Client Certificates](configure-client-certificates.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/clusters-and-availability/node-to-node-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Node-to-Node Encryption](../../learn/clusters-and-availability/node-to-node-encryption.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - per-mode audit or logging behavior",
+    "finding": "The page states the CLI/REST enablement state is versioned across upgrades ('the cluster will continue to return client-certificate authentication-settings in the format of the earlier version until the cluster is completely upgraded') but never states whether a change to this cluster-wide, security-critical setting is itself an audited action. security:auditing is promoted elsewhere in the registry from a conceptual overview page; this administration page, which is exactly the kind of page whose own actions that facility would want to capture, never cross-references it."
+  },
+  "cross_component_finding": "The scheme cert:client-cert-auth-mode is documented identically (same four literal values, same semantics) across three completely separate configuration surfaces on this one page - the Web Console UI panel, the `ssl-manage --set-client-auth` CLI JSON document, and the `POST/GET /settings/clientCertAuth` REST endpoint - a triple-surface pattern the registry has seen before (e.g. tls: on-the-wire settings) but not yet for this specific mechanism. Also notable: Hybrid and Mandatory both gate on the SAME underlying setting (`clusterEncryptionLevel` = `all` or `strict`), which belongs to tls:node-to-node-encryption/manage-tls.md rather than to this page's own topic - client-certificate policy and node-to-node wire encryption are two nominally separate facilities (per security:encryption's four-facility framing) that turn out to share a single hard gate at the Hybrid/Mandatory tier.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content on this page."
+}

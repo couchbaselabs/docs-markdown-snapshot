@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/bucket/storage-backend-migration",
+  "label": "bucket storage-backend migration",
+  "type": "changing an existing Couchbase bucket's storage engine between Couchstore and Magma (Enterprise Edition), which rewrites every document on disk. Only two operations trigger the rewrite - a swap rebalance, or a graceful failover followed by full recovery - and while migration is in progress only the bucket's ramQuota may be edited. Cannot cross vBucket counts.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-buckets/migrate-bucket.md",
+  "evidence": [
+    "The two ways to trigger this rewrite are to perform a swap rebalance or a graceful failover followed by a full recovery.",
+    "The backend migration described in this section does not support migrating between buckets with different number of vBuckets.",
+    "When migrating a bucket between storage backends, you can edit only the bucket's [ramQuota]",
+    "After you change the ejection policy while migrating the storage backend, the policy does not take effect until migration completes."
+  ],
+  "note": "The single most constraint-dense operation in the round after the address-family changeover, and the one that most clearly needs the vocabulary of three other subtrees at once: it is a BUCKET operation whose only triggers are NODE operations (swap rebalance, graceful failover plus full recovery) and whose constraints are STORAGE-engine facts. Round 26 promoted server:graceful-failover and server:full-recovery in the same pass, so this record can now state its triggers in terms the registry actually holds - which it could not have done before this round.",
+  "relates_to_competency_question": "How does an administrator move a bucket from Couchstore to Magma, and what may be changed while that runs?"
+}

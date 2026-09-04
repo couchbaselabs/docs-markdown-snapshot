@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/auto-failover",
+  "label": "automatic failover",
+  "type": "cluster-configured automatic initiation of HARD failover after a node is unreachable for a configured timeout (default 120s, range 5-3600). Requires three or more nodes; Enterprise Edition extends it to sustained disk read/write failures. Must be disabled before an address-family change or a node-to-node-encryption change.",
+  "promoted": true,
+  "recurrence": 6,
+  "aliases": [
+    "clusters:auto-failover"
+  ],
+  "aliases_note": "`clusters:auto-failover` was minted from fts-high-availability-for-search.md - a Couchbase SERVER page, despite the `clusters:` prefix, which in this registry is otherwise Capella territory. Its second file is general-settings.md, also Server. So the fork was never a Server/Capella distinction at all: it is one term minted twice under two prefixes, and the licensing is that both spellings' pages describe the same configurable cluster behaviour with the same three-node minimum and the same enable/disable control. Folded, 4 + 2 files, zero overlap.",
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "The automatic initiation of hard failover is known as _automatic_ failover, and is configured by means of the [General](../manage-settings/general-settings.md) settings screen.",
+    "Couchbase Server only performs an auto-failover in clusters containing three or more nodes.",
+    "The default duration is 120 seconds. You can change it to any value from 5 to 3600.",
+    "Auto-failover must be disabled prior to the changeover (and can be re-enabled _after_ the changeover)."
+  ],
+  "note": "Auto-failover is where round 26 found the corpus's densest cluster of PRECONDITION relations: two unrelated procedures (manage-address-families, apply-node-to-node-encryption) both require it to be turned off first, and neither the auto-failover reference nor the settings page mentions the other procedure. This is the shape of finding that only an administration-procedure sweep produces - a cross-cutting operational constraint stated only from the side of the operation that trips over it.",
+  "relates_to_competency_question": "When does a cluster fail a node over by itself, and which operations require it to be disabled first?"
+}

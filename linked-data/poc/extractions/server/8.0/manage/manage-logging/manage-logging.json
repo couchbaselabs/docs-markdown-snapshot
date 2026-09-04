@@ -1,0 +1,53 @@
+{
+  "page_id": "server/8.0/manage/manage-logging/manage-logging",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/manage-logging/manage-logging.md",
+  "concepts": [
+    { "candidate_id": "log:log-file", "label": "Log file (Couchbase Server)",
+      "registry_status": "minted", "reused_or_minted": "minted - the per-node, per-component log file family (audit, memcached, indexer, query, fts, goxdcr, etc.) this page catalogues; no promoted concept covers Server's own logging vocabulary." },
+    { "candidate_id": "log:static-config-file", "label": "static_config configuration file",
+      "registry_status": "minted", "reused_or_minted": "minted - the per-node Erlang config file controlling log location, rotation settings, and component log levels ('loglevel_' entries); node-scoped, not cluster-propagated." },
+    { "candidate_id": "log:log-rotation", "label": "Log file rotation",
+      "registry_status": "minted", "reused_or_minted": "minted - the size/count-bounded mechanism that deletes the oldest log file once a retention limit is reached; 8.0 changes this specifically for the Memcached log (aggregate-size-based rather than fixed-file-count)." },
+    { "candidate_id": "log:log-redaction", "label": "Log redaction",
+      "registry_status": "minted", "reused_or_minted": "minted - the mechanism that replaces sensitive log content (marked with <ud></ud> tags, or recognized by content in files that don't use the tags) with a SHA-1 hash during log collection." },
+    { "candidate_id": "tool:mcctl", "label": "mcctl",
+      "registry_status": "minted", "reused_or_minted": "minted - the per-node CLI tool for getting/setting the Memcached slow-operation logging threshold (MCBP SLA configuration); not in the promoted tool: family." },
+    { "candidate_id": "tool:cblogredaction", "label": "cblogredaction",
+      "registry_status": "minted", "reused_or_minted": "minted - the standalone CLI tool for redacting plain-text log files created outside the Couchbase cluster (by cbbackupmgr, SDKs, connectors, Mobile); not in the promoted tool: family." },
+    { "candidate_id": "tool:cbcollect-info", "label": "cbcollect_info",
+      "registry_status": "promoted", "reused_or_minted": "reused - the log-collection utility this page's 'Collect Logs' section documents both via CLI and via the Web Console's Collect Information tab." },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - one of the two roles that can collect logs via Web Console." },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - one of the two roles that can collect logs via Web Console." },
+    { "candidate_id": "security:auditing", "label": "Auditing (Server security facility)",
+      "registry_status": "promoted", "reused_or_minted": "reused - this page explicitly distinguishes the audit log's own settings from general logging ('Couchbase Server auditing has its own log settings.')." }
+  ],
+  "relations": [
+    { "subject": "log:log-rotation", "predicate": "configuredVia", "object": "log:static-config-file",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You can change log rotation settings by editing the `static_config` configuration file." },
+    { "subject": "log:log-file", "predicate": "configuredVia", "object": "log:static-config-file",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "It's possible to change the location where Couchbase Server saves log files. However, Couchbase only supports the default log location. Changing the log location requires manually editing a configuration file named `static_config`." },
+    { "subject": "log:log-rotation", "predicate": "availableSince", "object": "version:server-8-0",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "In Couchbase Server 8.0 and later, Memcached log retention is based on total disk usage (aggregated size) rather than a fixed number of rotated files." },
+    { "subject": "tool:cblogredaction", "predicate": "doesNotAffect", "object": "tool:cbcollect-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Some Couchbase features, such as `cbbackupmgr`, the SDK, connectors, and Mobile, create log files saved outside the Couchbase cluster. You can redact these files using the `cblogredaction` command-line tool." },
+    { "subject": "tool:cbcollect-info", "predicate": "createsOnAction", "object": "log:log-file",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server saves the collected log files as zip files in a temporary location on each node." },
+    { "subject": "log:log-file", "predicate": "seeAlso", "object": "server/8.0/rest-api/logs-rest-api",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To retrieve log information, use the `/diag` and `/sasl_logs` [REST endpoints](../../rest-api/logs-rest-api.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The page states threshold changes made with mcctl are 'non-persistent. When the node restarts, thresholds reset to their default values' but never states what RBAC role, if any, is required to run mcctl - unlike log collection, which explicitly names Full Admin/Cluster Admin. This leaves mcctl's own authorization model completely undocumented on this page."
+  },
+  "cross_component_finding": "Nine REST-configurable logging levels/settings are listed in a table (FTS enableVerboseLogging/setSlowQueryLogTimeout, Index Service indexer.settings.log_level/statsLogDumpInterval/projector.settings.log_level, Query Service loglevel) alongside the static_config-file path for components with NO REST setting - the same two-tier configuration-surface split (REST/UI vs config-file-only) already seen for the Backup Service (REST+UI vs no-CLI-equivalent) and for Index Service settings (REST vs CLI) elsewhere in this batch. mcctl is a THIRD configuration surface (neither REST nor static_config) for a single specific setting (Memcached slow-operation threshold), reinforcing that Couchbase Server's administrative surface is fragmented across REST, Web Console, static_config, and small dedicated CLI tools with no single authoritative configuration path.",
+  "cross_product_finding": ""
+}

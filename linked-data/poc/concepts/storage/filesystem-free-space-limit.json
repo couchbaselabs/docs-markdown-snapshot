@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage/filesystem-free-space-limit",
+  "label": "filesystem free-space write limit",
+  "type": "an off-by-default cluster setting that makes Couchbase Server refuse writes to buckets once the filesystem falls below a configured free-space threshold; set through Advanced Data Settings in the Web Console or the corresponding REST endpoint.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "This option is off by default. When selected, Couchbase Server prevents writes to buckets when the filesystem free space falls below the limit.",
+    "This limit is set through the Advanced Data Settings in the Couchbase Server Web Console."
+  ],
+  "note": "A protection that is off by default, and one an operator would reasonably assume is on. Round 26 promoted three settings of this shape (with security:session-management and durability:preserve-durable-writes-setting); the general-settings.md page is the densest single source of them in the corpus, and none of them exist in the reference tree at all."
+}

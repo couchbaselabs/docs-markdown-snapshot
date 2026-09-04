@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/pkcs12-certificate",
+  "label": "PKCS #12 certificate bundle",
+  "type": "a single password-protected file bundling a node's certificate chain and private key, which Couchbase Server accepts in place of separate PEM files - but only for NODES, and only when placed in the node's inbox directory as `couchbase.p12`.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-security/configure-server-certificates.md",
+  "evidence": [
+    "Couchbase Server requires that the PKCS #12 file be in the node's `inbox` directory with the filename `couchbase.p12`.",
+    "Couchbase Server only supports this format for nodes.",
+    "It does not support using them for other purposes, such as client or root certificates."
+  ],
+  "note": "Two negative constraints and one exact filename - the kind of fact that exists only in a procedure. Note that both of this record's files are the reference page and the procedure page for the same feature, which is the minimum honest recurrence: two files, two different documents, not two mentions on one."
+}

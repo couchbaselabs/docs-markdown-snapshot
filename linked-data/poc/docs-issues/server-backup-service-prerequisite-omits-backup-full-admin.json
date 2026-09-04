@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-prerequisite-omits-backup-full-admin",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "manage-backup-and-restore.md states the Backup Service's role prerequisite as Full Admin only: 'For use of the Backup Service, the Full Admin role must have been assigned. For use of `cbbackupmgr`, the Full Admin or the Data Backup & Restore role must have been assigned.' roles.md documents a role that exists for this purpose - 'The Backup Full Admin role lets the user administer backup-related tasks as well as other aspects of Couchbase Server' (`backup_admin`) - whose permission table grants **Backup: All**. Either the Backup Service genuinely requires Full Admin and Backup Full Admin cannot use it despite holding all Backup permissions, in which case that restriction is worth stating explicitly because it is surprising; or the prerequisite is incomplete and administrators are being told to hand out the most privileged role in the product for a task a narrower one covers. The page gives the two-role alternative for `cbbackupmgr` in the very next sentence, so the omission reads as an oversight rather than a deliberate restriction.",
+  "about": [
+    "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "Round 25 promoted role:backup-admin from the Backup Service REST API scope, where the same role appears as a legitimate Backup Service principal - so the registry now holds evidence from a third page that pulls against this one's prerequisite. That is what made the gap visible: neither page alone looks wrong."
+}

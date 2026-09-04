@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/system-scope",
+  "label": "_system scope",
+  "type": "a scope created and maintained automatically in each user-created or sample bucket since Couchbase Server 7.6, holding collections that Couchbase SERVICES use for their own service-specific data. Neither the scope nor its collections can be dropped, and they are not for administrator or application use.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "capella:system-scope"
+  ],
+  "aliases_note": "Folded rather than kept as a Capella twin - the departure from the registry's capella:bucket/capella:scope practice is licensed by the Capella page itself, which attributes the construct to Couchbase Server rather than describing a Capella-native one: \"The `_system` scope is part of all clusters using Couchbase Server 7.6 or later.\" 2 + 2 files, zero overlap.",
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "evidence": [
+    "In Couchbase Server 7.6 and later versions, in each user-created or sample bucket, a `_system` scope is created and maintained by default.",
+    "This scope contains collections used by Couchbase services, for service-specific data.",
+    "The scope and its collections _cannot_ be dropped.",
+    "This scope, and its collections, are also created by default: however, they are _not_ for the use of administrators or applications."
+  ],
+  "note": "A rare case where the management procedure adds a PROHIBITION the reference page does not state: scopes-and-collections.md (learn) says what the scope is and that it cannot be dropped; the manage page adds that it is not for administrator or application use at all. Both statements are needed to answer 'can I put my own collection in _system?' and only the second one answers it."
+}

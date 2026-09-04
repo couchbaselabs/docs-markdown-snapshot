@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/implicit-mapping",
+  "label": "implicit keyspace mapping",
+  "type": "XDCR's default behaviour of replicating between IDENTICALLY named keyspaces on source and target - available whenever the same scope and collection exist on both sides, with no mapping to configure.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-xdcr/replicate-using-scopes-and-collections.md",
+  "evidence": [
+    "An _implicit_ mapping is one supported by XDCR whenever the same _keyspace_ exists within both the source and the target buckets.",
+    "XDCR's default behavior is always to replicate data between corresponding keyspaces."
+  ],
+  "note": "Promoted as a pair with xdcr:explicit-mapping - the two mapping modes are the axis on which every scope-and-collection replication decision turns, and both are named as such on the same page and used on others."
+}

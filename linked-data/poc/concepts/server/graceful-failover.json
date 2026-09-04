@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/graceful-failover",
+  "label": "graceful failover",
+  "type": "manually initiated failover performed while the cluster is healthy and all active and replica vBuckets are available, so that no data is lost. Completes only after a subsequent rebalance.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-nodes/failover-graceful.md",
+  "evidence": [
+    "It is manually initiated when the entire cluster is in a healthy state, and all active and replica vBuckets on all nodes are available.",
+    "There are two basic types: _graceful_ and _hard_.",
+    "This indicates the graceful failover has successfully completed, but an additional rebalance is required to complete the reduction of the cluster to one node."
+  ],
+  "note": "Promoted with server:hard-failover as a two-member enumeration under server:failover; both cross the bar on their own recurrence, so no family exception was needed."
+}

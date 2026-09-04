@@ -1,0 +1,32 @@
+{
+  "page_id": "server/8.0/manage/manage-documents/manage-documents",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/manage-documents/manage-documents.md",
+  "concepts": [
+    { "candidate_id": "ui:documents-workbench", "label": "Documents workbench (Couchbase Web Console)",
+      "registry_status": "minted", "reused_or_minted": "minted - the Web Console panel for retrieving, viewing, editing, copying, creating and deleting documents; no promoted concept covers it." },
+    { "candidate_id": "data:document", "label": "Document",
+      "registry_status": "promoted", "reused_or_minted": "reused - the object this workbench retrieves/edits/creates/deletes." },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - one of the three Keyspace drop-downs ('The _default scope is the default.')." },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - the top-level container the Keyspace control selects from." }
+  ],
+  "relations": [
+    { "subject": "ui:documents-workbench", "predicate": "seeAlso", "object": "server/8.0/manage/import-documents/import-documents",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To import a set of JSON documents or a CSV file, see [Import Documents with the Couchbase Web Console](../import-documents/import-documents.md)." },
+    { "subject": "ui:documents-workbench", "predicate": "seeAlso", "object": "server/8.0/learn/data/data",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "(Optional) Click **Metadata** to view the [document metadata](../../learn/data/data.md#metadata)." },
+    { "subject": "ui:documents-workbench", "predicate": "requiresRequestParameter", "object": "server:scope",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A drop-down menu that displays the name of the scope whose documents are shown. The `_default` scope is the default." }
+  ],
+  "notable_absence": {
+    "predicate": "cascadesTo",
+    "finding": "'It's not possible to edit a document's metadata. Couchbase Server generates metadata when the document is saved.' The workbench exposes metadata for viewing only, with no documented way to set or override any metadata field (e.g. expiration/CAS) directly through this UI - contrast with the Backup Service's restore dialog in this same batch, which DOES expose an explicit TTL-override control (Replace TTL) for restored documents."
+  },
+  "cross_component_finding": "The **N1QL WHERE** retrieval filter ('Accepts a SQL++ query — specifically, a WHERE clause which determines the subset of documents to show') is the only place on this page SQL++ appears, and it is a bare WHERE-clause fragment rather than a full SELECT statement - a third, UI-specific SQL++ entry point alongside the Query Workbench (full statements) and Eventing's inline-statement/N1QL() call forms documented elsewhere in the registry.",
+  "cross_product_finding": ""
+}

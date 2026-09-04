@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-encryption-at-rest-role-links-point-at-wrong-anchors",
+  "type": "docs-issue",
+  "issueType": "broken-cross-reference",
+  "description": "manage-native-encryption-at-rest.md's role prerequisite lists link to the wrong role entries in roles.md, in three distinct ways, all within about twenty lines. (1) 'Bucket Admin' links to `roles.md#backup-full-admin` - a link labelled with one role and pointing at a different one. (2) 'Backup Full Admin' links to `roles.md#admin`, the Full Admin anchor, twice - so two different roles in the same bulleted list resolve to the same entry. (3) Full Admin is linked as `roles.md#admin` in five places on this page and as `roles.md#full-admin` in a sixth, so the page is not even internally consistent about the anchor for the role it names most often. Because roles.md's own headings carry explicit anchors, each of these silently lands the reader on a real but wrong role, which is worse than a broken link: nothing signals the error. The Bucket Admin case is the material one, since this page is where an administrator goes to find out who can encrypt a bucket, and the correct anchor (`#bucket-admin`) is used correctly further down the same page.",
+  "about": [
+    "server/8.0/manage/manage-security/manage-native-encryption-at-rest",
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "relatedIssues": [
+    "https://docs.couchbase.com/ld/docs-issues/server-role-label-does-not-match-internal-name"
+  ]
+}

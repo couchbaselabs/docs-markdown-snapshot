@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/encrypts-keys-for",
+  "label": "encrypts keys for",
+  "recurrence": 3,
+  "type": "subject = a key; object = the key or secret that the subject key encrypts. One hop of a key-wrapping hierarchy.",
+  "note": "Filed once and used by TWO key hierarchies that round 26 deliberately did not merge: native encryption at rest (encryption-at-rest key -> DEK -> data) and system secrets (master key -> data key -> on-disk secrets). That the same predicate fits both is evidence they are the same KIND of construction, and is not evidence they are the same keys - the things protected differ and no page relates them. Recording the shared predicate while keeping the concept hierarchies separate is the honest position, and it is what lets a future SME answer the question in one place instead of re-deriving it.",
+  "relates_to_competency_question": "What encrypts a given key, and what does that key encrypt in turn?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

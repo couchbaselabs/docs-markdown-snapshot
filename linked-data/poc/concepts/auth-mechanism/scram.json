@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth-mechanism/scram",
+  "label": "SCRAM-SHA",
+  "type": "the salted challenge-response authentication mechanism family Couchbase Server offers as the alternative to PLAIN, so that a password is never sent in the clear. Requires PBKDF2 password hashing to be available, and is what half-secure XDCR uses to protect the target cluster's password when the target runs Enterprise Server 5.5 or later.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/authentication-overview.md",
+  "evidence": [
+    "This is either PLAIN or one of the revisions of SCRAM-SHA challenge-response mechanisms for authentication.",
+    "_PBKDF2_ is another powerful password hashing function; and is required to allow SCRAM-SHA capability.",
+    "By hashing with SCRAM-SHA, when the destination cluster is running Couchbase Enterprise Server 5.5 or later."
+  ],
+  "note": "Reaches the bar only because an XDCR procedure page names it: the security reference introduces it, and the operational consequence - that a half-secure replication's password protection depends on SCRAM-SHA and therefore on the TARGET cluster's version - appears in manage-xdcr/. A version dependency that lives on the far side of a replication is not something the mechanism's own reference page would state."
+}

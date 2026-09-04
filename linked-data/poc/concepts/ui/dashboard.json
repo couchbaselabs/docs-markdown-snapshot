@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/ui/dashboard",
+  "label": "Web Console Dashboard",
+  "type": "the Couchbase Web Console screen where statistics are assembled as user-defined groups of charts. Assembling them requires Full Admin or Bucket Admin; merely displaying charts for all buckets is available to Full Admin, Cluster Admin, Read Only Admin, Security Admin and Read-Only Security Admin. Retains the last 30 days of statistics.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-statistics/manage-statistics.md",
+  "evidence": [
+    "Users with the **Full Admin** or **Bucket Admin** role can assemble statistics as _groups_ of _charts_, on the **Dashboard** of Couchbase Web Console.",
+    "users with the Full Admin, Cluster Admin, Read Only Admin, Security Admin, or Read-Only Security Admin roles can display the charts for all buckets in the cluster.",
+    "Note that the UI returns the last 30 days of statistics."
+  ],
+  "note": "The two role lists are the point: a five-role list for VIEWING and a two-role list for CONFIGURING, on one screen. That distinction is invisible from the role catalogue, which files one entry per role and cannot say that a single screen enforces two different permission sets - and it is why round 26 could promote role:security-admin and role:ro-security-admin from procedural evidence at all."
+}

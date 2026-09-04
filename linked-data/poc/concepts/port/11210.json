@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/11210",
+  "label": "port 11210 (KV / memcached)",
+  "type": "the Data Service's unencrypted KV port (`memcached_port`), which must be reachable for direct bucket-level statistics collection and which every data node of a remote cluster must expose for Analytics remote links (or its TLS counterpart `kvSSL`).",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-statistics/manage-statistics.md",
+  "evidence": [
+    "Port 11210 must be specified.",
+    "Furthermore, **all** data nodes in the remote cluster must expose the `kv` port (`memcached_port`, default 11210) or the `kvSSL` port."
+  ],
+  "note": "Promoted as the fourth member of the `port:` closed axis (8091, 8097, 18091 were already filed). `port:` is the corpus's largest single block of promotion debt - round 26's recount finds `port:8094` at 17 distinct files, 8093/8095/18093/18094 at 5, 18095 at 4, and 9102/8096/19102/11207 at 2, none of them promoted - and that debt is recorded in reconciliation.md as a standing item rather than paid down here, because it belongs to the REST/Search scopes that generated it and not to this round's evidence. Round 26's own `port:8092` sits at 1 file and is correctly refused."
+}

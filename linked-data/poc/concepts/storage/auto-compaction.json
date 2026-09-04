@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage/auto-compaction",
+  "label": "auto-compaction",
+  "type": "the background process that reclaims disk space by rewriting on-disk data files and index files, configured cluster-wide or per bucket. Applies only to on-disk data: not to Ephemeral buckets, and not to memory-optimized indexes in Enterprise Edition. The Couchstore-only settings do not appear for Magma buckets.",
+  "promoted": true,
+  "recurrence": 7,
+  "aliases": [
+    "data:auto-compaction"
+  ],
+  "aliases_note": "`data:auto-compaction` was minted from learn/data/expiration.md, which links to the same auto-compaction procedure page that `storage:auto-compaction`'s files describe - one process, two prefixes, and the licensing is the link itself: \"The [auto-compaction](../../manage/manage-settings/configure-compact-settings.md) process runs.\" 6 + 1 files, zero overlap.",
+  "documented_at": "server/current/manage/manage-settings/configure-compact-settings.md",
+  "evidence": [
+    "Auto-compaction settings affect on-disk data, and therefore do not apply to Ephemeral buckets.",
+    "In Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage.",
+    "This setting only appears for buckets using the Couchstore storage engine. It does not appear for buckets that use the Magma storage engine.",
+    "Users with the Full or Cluster administrator roles can configure compaction settings."
+  ],
+  "note": "Three independent exclusions, all stated as negatives, plus a UI fact of a kind that only a procedure can carry: a setting that DISAPPEARS from the form depending on the bucket's storage engine. An extraction that reads only reference material can learn that auto-compaction exists but cannot learn that its own configuration screen changes shape."
+}

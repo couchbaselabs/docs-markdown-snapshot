@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/reference",
+  "label": "XDCR remote cluster reference",
+  "type": "a registered, named pointer from the local cluster to a remote one - credentials, address and security level - created before any replication and reusable by many. Security is set PER REFERENCE, so changing a reference's security level changes every replication already based on it.",
+  "promoted": true,
+  "recurrence": 7,
+  "documented_at": "server/current/manage/manage-xdcr/create-xdcr-reference.md",
+  "evidence": [
+    "Once a reference has been registered on the local cluster, it can be specified as the target for a _replication_.",
+    "Each replication uses a single _reference_, which has already been created.",
+    "Note that replication-security is established _per reference_: this means that the security level assigned applies to all replications based on it.",
+    "The source cluster heartbeats are sent as soon as the target remote cluster reference is created on the source cluster."
+  ],
+  "note": "The reference/replication split is the whole architecture of XDCR administration and the registry had neither half. What makes the reference worth a record of its own rather than a field on the replication is the per-reference security scope: it is the unit that security applies to, which means a single edit can silently change the security posture of every replication built on it. That sentence appears once, in a procedure, and is the round's best example of a fact whose owner is the OBJECT rather than the operation.",
+  "relates_to_competency_question": "What has to exist before an XDCR replication can be created, and what does changing it affect?"
+}

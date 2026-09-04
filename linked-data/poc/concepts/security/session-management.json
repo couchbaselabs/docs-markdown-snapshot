@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/security/session-management",
+  "label": "Web Console session management",
+  "type": "the cluster security setting controlling how long an idle Couchbase Web Console session lasts, set as `uiSessionTimeout` in seconds via `/settings/security`, where the default 0 means no timeout is applied at all.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-security/manage-sessions.md",
+  "evidence": [
+    "Use the `/settings/security` URI, with the `uiSessionTimeout` flag specifying the number of _seconds_ that a session is permitted to last.",
+    "Note that 0 seconds, which is the default, specifies that no timeout is applied.",
+    "This is described in [Manage Sessions](manage-sessions.md)."
+  ],
+  "note": "An insecure-by-default setting stated plainly - console sessions never expire unless an administrator configures it - which is exactly the class of fact a security review needs and which no reference page in the corpus carries. Recurs at 3 because two overview pages route to the procedure, which is the ordinary shape of recurrence in an administration tree: one page does the work, several point at it."
+}

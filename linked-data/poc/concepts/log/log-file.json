@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/log/log-file",
+  "label": "Couchbase Server log file",
+  "type": "the per-node log files Couchbase Server writes, whose directory can be relocated (with limits on which locations are supported), which cbcollect-info gathers into per-node zip files, and which are also reachable through the `/diag` and `/sasl_logs` REST endpoints.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-logging/manage-logging.md",
+  "evidence": [
+    "It's possible to change the location where Couchbase Server saves log files. However, Couchbase only supports certain locations.",
+    "Couchbase Server saves the collected log files as zip files in a temporary location on each node.",
+    "Couchbase _log files_ should be used when determining key events that have occurred on Couchbase Server.",
+    "To retrieve log information, use the `/diag` and `/sasl_logs` [REST endpoints](../../rest-api/logs-rest-api.md)"
+  ],
+  "note": "NAMESPACE COHERENCE: `log:` is new in round 26 and is a SUBJECT AREA, not a closed axis - its other candidate members (log rotation, the static config file) are open-ended and nothing in the documentation enumerates 'the kinds of log thing'. It is kept separate from the promoted audit: family deliberately: `audit:log-rotation` and this scope's `log:log-rotation` (1 file, not promoted) rotate different files under different settings, and no page states a relationship. The id repeats its namespace for the same reason vbucket:vbucket-count-128 does - it is what the extraction minted, and `log:file` would read as a filesystem concept rather than a Couchbase one."
+}

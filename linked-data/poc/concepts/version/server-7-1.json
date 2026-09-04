@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-1",
+  "label": "Couchbase Server 7.1",
+  "type": "the Couchbase Server release that lifted the single-root-certificate limit (multiple CAs per cluster) and consequently made no-downtime CA rotation possible; also the release from which node addition must use a secure connection.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/security/using-multiple-cas.md",
+  "evidence": [
+    "Prior to Couchbase Server Version 7.1, a Couchbase-Server cluster could maintain at most _one_ root certificate.",
+    "Note that in Couchbase Server Version 7.1 and later, multiple root certificates can be uploaded.",
+    "This restriction is lifted in version 7.1: therefore, root and intermediate certificates _can_ now be used."
+  ],
+  "note": "Promoted because it is the pivot the whole certificate-management story turns on: three separate security pages date their central capability to it."
+}

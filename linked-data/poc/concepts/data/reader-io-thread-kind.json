@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/data/reader-io-thread-kind",
+  "label": "reader I/O thread kind (Data Service scheduler)",
+  "type": "one of the kinds of thread in the Data Service's scheduler thread pool, tunable separately for reader work - the setting Couchbase recommends adjusting for Magma buckets under specific load conditions.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "data-service:reader-io-thread-kind"
+  ],
+  "aliases_note": "The extraction spelling opened a `data-service:` namespace, which is refused: the registry already has service:data-service as a promoted concept, and a namespace whose name duplicates an existing concept in another namespace makes every id ambiguous about whether the prefix is a subject area or a thing. Filed in the existing `data:` subject area instead.",
+  "documented_at": "server/current/learn/services-and-indexes/services/data-service.md",
+  "evidence": [
+    "**Scheduler**: A pool of threads mainly used for handling I/O. The threads are divided into different kinds.",
+    "For buckets using the Magma storage engine, consider using this setting for the following conditions"
+  ],
+  "note": "Promoted mainly to record the namespace refusal above; the concept itself is at the bar with the reference page and the settings procedure. Its type text is deliberately vague because the documentation is: the reference names the thread kinds, the procedure names the tuning conditions, and nothing states how the tuning value maps onto the pool."
+}

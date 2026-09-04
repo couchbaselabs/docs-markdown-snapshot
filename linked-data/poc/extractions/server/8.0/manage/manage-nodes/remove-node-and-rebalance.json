@@ -1,0 +1,36 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/remove-node-and-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/remove-node-and-rebalance.md",
+  "concepts": [
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:node-removal", "label": "Node removal",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch); this page is its dedicated task page" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:hard-failover", "label": "Hard failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch); this page's Next Steps section links failover as the alternative for unhealthy nodes" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:node-removal",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Nodes can also be rebalanced following removal: this is demonstrated in the current section." },
+    { "subject": "server:node-removal", "predicate": "doesNotAffect", "object": "vbucket:replica-vbucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; independent corroboration, on its own dedicated page, of the same distinction first stated on fail-nodes-over.md",
+      "evidence": "When a node is flagged for _removal_ (as opposed to _failover_), new replica vBuckets will be created on the remaining nodes, as node-removal occurs. This has the effect of reducing available memory for the specified number of replicas." },
+    { "subject": "server:node-removal", "predicate": "doesNotSupport", "object": "server:hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call capturing that removal has no failover precondition at all, unlike recovery",
+      "evidence": "A node can be removed from the cluster by means of the CLI. Note that the node does not have to be _failed over_ prior to removal." },
+    { "subject": "server/8.0/manage/manage-nodes/remove-node-and-rebalance", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/removal",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "This page provides the steps to be taken for node-removal and rebalance. For a conceptual explanation of removal, see [Removal](../../learn/clusters-and-availability/removal.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/remove-node-and-rebalance", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/fail-nodes-over",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "Nodes can be _failed over_, so that an unhealthy or unresponsive node can be removed from the cluster without application-access being affected. See [Fail Nodes Over](fail-nodes-over.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role requirement is stated for node removal, consistent with every other operation in this batch except node-addition and node-join (which name Full/Cluster Admin) and modify-services (which names Full Administrator explicitly in its Prerequisites). Removal, arguably as consequential as addition, is left unstated."
+  },
+  "cross_component_finding": "This page's own framing sentence is the single cleanest statement in the whole batch of the 'one rebalance, many triggers' finding: 'The _rebalance_ operation distributes active and replica vBuckets across available cluster nodes in optimal fashion... Examples of using rebalance after node-addition have already been provided... Nodes can also be rebalanced following removal.' The mechanism is stated once, generically, and then simply invoked again for a different trigger - textual evidence that the docs themselves model rebalance as one operation, not a family.",
+  "cross_product_finding": ""
+}

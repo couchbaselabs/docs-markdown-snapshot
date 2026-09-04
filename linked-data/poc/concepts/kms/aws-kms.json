@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/kms/aws-kms",
+  "label": "AWS KMS (external key manager)",
+  "type": "AWS's Key Management Service used as an external holder of Couchbase Server's encryption-at-rest keys, so that key material never sits on the Couchbase node. Rotation becomes AWS's responsibility, and heavy per-key traffic can introduce latency.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/native-encryption-at-rest-overview.md",
+  "evidence": [
+    "This method enhances security by keeping the encryption keys stored in AWS rather than on the Couchbase Server node.",
+    "Using AWS KMS can also cause latency issues if Couchbase Server relies on it for many encryption and decryption operations.",
+    "Do not assign encryption keys managed by AWS KMS or a KMIP KMS to encrypt Couchbase Server data at rest without considering the performance implications."
+  ],
+  "note": "See kms:kmip-kms for why `kms:` is filed as a genuinely CLOSED axis - the one closed axis round 26 found - rather than a subject area."
+}

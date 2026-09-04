@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/manage/manage-settings/configure-alerts",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-settings/configure-alerts.md",
+  "concepts": [
+    { "candidate_id": "monitoring:server-email-alert", "label": "Email Alerts (Couchbase Server cluster-wide alerting)",
+      "registry_status": "minted", "reused_or_minted": "minted - the Couchbase Server mechanism dispatching a fixed catalogue of ~24 named cluster-health alerts by email and/or Web-Console pop-up. Checked against the promoted monitoring:alert (Capella's own triggered-notification concept, object of triggersAlert) before minting: no page states the two are the same mechanism - Capella's monitoring:alert is triggered by monitoring:event with a severity enum, while this page's alerts are a closed, named catalogue configured directly through setting-alert/settings/alerts with no separate 'event' object - so kept apart per the no-silent-merge rule rather than reused. Filed under monitoring: (the subject-area namespace for the mechanism), not a new setting: namespace, per this round's standing instruction." },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tls:mutual-tls", "label": "Mutual TLS (mTLS)", "registry_status": "promoted", "reused_or_minted": "reused - judgement call, NOT used; TLS-to-SMTP encryption is a client-authenticates-server case (Require encryption checkbox), not the mutual, both-sides case mTLS names. Flagged in notable_absence instead of forced into this concept." },
+    { "candidate_id": "cert:trust-store", "label": "Trust store", "registry_status": "promoted", "reused_or_minted": "reused - the Certificate expired/expires-soon alerts concern certificates a trust store would validate" },
+    { "candidate_id": "storage:filesystem-free-space-limit", "label": "Filesystem free-space usage limit (Data Service)",
+      "registry_status": "minted", "reused_or_minted": "minted - the disk_guardrail alert's underlying limit, configured through Advanced Data Settings or /settings/resourceManagement; this page's own table cross-references it, and no existing concept names the guardrail itself" },
+    { "candidate_id": "version:server-7-2-4", "label": "Couchbase Server 7.2.4", "registry_status": "minted", "reused_or_minted": "minted - sibling of the already-promoted version:server-7-6-2/7-6-4/7-6-6 patch-release concepts; the memcached_connections alert is gated to this version and above" }
+  ],
+  "relations": [
+    { "subject": "monitoring:server-email-alert", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Only Full Administrators and Cluster Administrators can configure email alerts." },
+    { "subject": "monitoring:server-email-alert", "predicate": "requiresServerRole", "object": "role:cluster-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Only Full Administrators and Cluster Administrators can configure email alerts." },
+    { "subject": "monitoring:server-email-alert", "predicate": "availableSince", "object": "version:server-7-2-4",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - specific to the memcached_connections alert, not the mechanism as a whole",
+      "evidence": "The `memcached_connections` alert is only available on nodes running Couchbase Server 7.2.4 and above. The alert is disabled for nodes running versions below 7.2.4." },
+    { "subject": "storage:filesystem-free-space-limit", "predicate": "configuredVia", "object": "monitoring:server-email-alert",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - the disk_guardrail alert fires off this limit, set through a different surface than the alert configuration itself",
+      "evidence": "This limit is set through the Advanced Data Settings in the Couchbase Server Web Console, or by using the /settings/resourceManagement REST API endpoint." },
+    { "subject": "server/8.0/manage/manage-settings/configure-alerts", "predicate": "seeAlso", "object": "server/8.0/learn/buckets-memory-and-storage/storage-settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Filesystem Free Space and Usage Limits](../../learn/buckets-memory-and-storage/storage-settings.md#filesystem-free-space-and-usage-limits) for more information." },
+    { "subject": "server/8.0/manage/manage-settings/configure-alerts", "predicate": "seeAlso", "object": "server/8.0/rest-api/rest-cluster-email-notifications",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For more information on configuring alerts by means of the REST API, see [Setting Alerts](../../rest-api/rest-cluster-email-notifications.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "This page's Available Alerts table is a substantial (~24-row) closed catalogue with a stable REST API Name for every entry (auto_failover_node, disk, memory_threshold, indexer_ram_max_usage, etc.), analogous in shape to the 56-role RBAC catalogue or the 28-privilege Capella catalogue that this project has promoted as schemes elsewhere. It was NOT promoted to individual per-alert concepts in this record because no other page in this batch names an individual alert by its REST name, so recurrence for any one row is 1 and the round's own registry-check discipline counsels against minting a whole scheme on a single page's evidence alone (see index-storage-stack's 'recurrence 0 by the only measure the promotion machinery consults' lesson) - flagged here as a strong future-promotion candidate rather than acted on."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

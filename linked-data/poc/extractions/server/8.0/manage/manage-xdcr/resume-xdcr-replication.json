@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/resume-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/resume-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:replication-status-enum",
+      "label": "XDCR Replication status enum",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - see pause-xdcr-replication.json, this same batch, for the three-vocabulary status finding. This page's REST layer uses the `pauseRequested` boolean flag (true/false) as a fourth, even coarser representation of the same pause/resume state - not a status word at all, a boolean."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:replication-status-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "This features information on a single, currently defined replication. In the `status` column, this replication is shown to be `paused`, and a **Run** button is displayed."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "configuredVia",
+      "object": "settings/replications REST endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia) - resuming is expressed as re-setting the same pauseRequested flag pause-xdcr-replication.json used to pause",
+      "evidence": "curl -X POST -u Administrator:password \\\nhttp://10.142.180.101:8091/settings/replications/570d0ca2db3b1e128e2fafd362a1bfd4%2Ftravel-sample%2Ftravel-sample \\\n-d pauseRequested=false"
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/delete-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Once a replication is no longer needed, you can _delete_ it. See [Delete a Replication](delete-xdcr-replication.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role is named on this page for who may resume a replication, matching the same silent deferral pattern already found on pause-xdcr-replication.json."
+  },
+  "cross_component_finding": "This page's own text states the UI toggling behavior explicitly - 'The word `paused` changes to `replicating`...the **Run** button is again displayed as a **Pause** button' - which is the clearest single-sentence evidence in this batch that the Web Console models pause/resume as one two-state toggle on the underlying `pauseRequested` boolean, rather than as the seven-value Creating/Active/Pausing/Paused/Deleting/Create Error/Delete Error state machine Capella's UI exposes for the conceptually identical operation. See pause-xdcr-replication.json for the fuller vocabulary comparison."
+}

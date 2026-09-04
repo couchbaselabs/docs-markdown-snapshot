@@ -1,0 +1,53 @@
+{
+  "page_id": "server/8.0/manage/manage-buckets/change-ejection-policy",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-buckets/change-ejection-policy.md",
+  "concepts": [
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "promoted", "reused_or_minted": "reused - this page states the single sharpest operational asymmetry between the two types found in this batch: changing an ephemeral bucket's ejection policy needs no restart at all, while changing a Couchbase bucket's does by default" },
+    { "candidate_id": "memory:ejection-policy", "label": "Ejection policy", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "memory:value-only-ejection", "label": "Value-only ejection", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "memory:full-ejection", "label": "Full ejection", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "memory:no-ejection", "label": "No ejection", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "memory:eject-when-full", "label": "Eject when full", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma", "registry_status": "promoted", "reused_or_minted": "reused - full ejection is the recommended pairing when migrating to this engine" },
+    { "candidate_id": "bucket:storage-backend-migration", "label": "Bucket storage-backend migration",
+      "registry_status": "minted", "reused_or_minted": "minted - the multi-step process (change storageBackend, then force a vBucket rewrite via swap rebalance or graceful-failover-plus-recovery) documented in full on the sibling page migrate-bucket.md; introduced here because this page's own noRestart/change-during-migration mechanics only make sense in that context" }
+  ],
+  "relations": [
+    { "subject": "bucket:couchbase-bucket", "predicate": "offersConfigurationChoice", "object": "memory:value-only-ejection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "**Value-only**: Couchbase Server removes a document's data, but keeps its keys and metadata in memory." },
+    { "subject": "bucket:couchbase-bucket", "predicate": "offersConfigurationChoice", "object": "memory:full-ejection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "**Full**: Couchbase Server removes the entire document from memory." },
+    { "subject": "bucket:ephemeral-bucket", "predicate": "offersConfigurationChoice", "object": "memory:no-ejection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "**No ejection**: If the bucket reaches its memory quota, the Data Service does not eject data. Instead, it refuses to load any new data until memory becomes available." },
+    { "subject": "bucket:ephemeral-bucket", "predicate": "offersConfigurationChoice", "object": "memory:eject-when-full",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "**Eject data when RAM is full**: If the bucket approaches its memory quota, the Data Service ejects the least-recently used documents to make space for new data." },
+    { "subject": "bucket:couchbase-bucket", "predicate": "requiresExplicitCleanupOnFailure", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - changing the ejection policy of a Couchbase bucket via the Web Console triggers a bucket restart by default; the noRestart REST alternative instead requires a swap rebalance or graceful-failover-plus-recovery to complete the change",
+      "evidence": "When you change the ejection policy of a Couchbase bucket using the Couchbase Server Web Console, Couchbase Server automatically restarts the bucket." },
+    { "subject": "bucket:ephemeral-bucket", "predicate": "doesNotSupport", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - ephemeral-bucket ejection-policy changes need no restart or follow-on rebalance/failover step at all, unlike Couchbase buckets",
+      "evidence": "Changing the ejection policy of an ephemeral bucket does not require a bucket restart or other additional steps. The new setting takes effect immediately." },
+    { "subject": "storage-engine:magma", "predicate": "configurableVia", "object": "memory:full-ejection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "you should consider changing the bucket's ejection policy to Full Ejection. This policy works well for Magma buckets that have a low memory to storage ratio." },
+    { "subject": "bucket:storage-backend-migration", "predicate": "requiresPriorExecutionOf", "object": "memory:ejection-policy",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - inverted framing: an ejection-policy change made DURING a migration does not take effect until the migration completes",
+      "evidence": "After you change the ejection policy while migrating the storage backend, the policy does not take effect until you complete the migration." },
+    { "subject": "server/8.0/manage/manage-buckets/change-ejection-policy", "predicate": "seeAlso", "object": "server/8.0/manage/manage-buckets/migrate-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Migrate a Bucket's Storage Backend](migrate-bucket.md) for information about migrating a bucket's storage backend and complete steps to change the ejection policy while performing a migration." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "The REST section states 'The noRestart parameter has no effect when changing the ejection policy of an ephemeral bucket' - a THIRD independent confirmation in this batch (after create-bucket.md's durability-level list and general-settings.md's auto-reprovisioning settings) that ephemeral buckets follow simpler, disk-persistence-free operational rules than Couchbase buckets. The page never states WHY noRestart is a no-op for ephemeral buckets, but the reason is inferable from bucket:ephemeral-bucket's own promoted description (no disk persistence): a Couchbase-bucket restart exists to let a persisted, disk-backed ejection setting take effect safely, and an ephemeral bucket has nothing on disk to make safe."
+  },
+  "cross_component_finding": "This page and migrate-bucket.md describe the SAME noRestart REST parameter and the SAME two remediation procedures (swap rebalance; graceful failover + recovery + rebalance) for two conceptually different operations (an ejection-policy change vs. a storage-backend migration) that can nonetheless be triggered TOGETHER in one REST call. This is a genuine mechanism-sharing finding: 'You can change both the storage backend and the ejection policy at the same time' (migrate-bucket.md, cross-referenced from this page's own introduction) - the two settings are independently documented on separate pages but share one underlying apply-and-rewrite mechanism.",
+  "cross_product_finding": "N/A"
+}

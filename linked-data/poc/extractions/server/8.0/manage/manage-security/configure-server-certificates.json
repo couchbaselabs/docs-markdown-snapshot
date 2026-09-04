@@ -1,0 +1,215 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-server-certificates",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-server-certificates.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's central procedure"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - used to sign node certificates without exposing the cluster's own private key"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - root/intermediate certificates are 'loaded' into it via REST"
+    },
+    {
+      "candidate_id": "cert:pkcs12-certificate",
+      "label": "PKCS #12 Certificate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; this page gives its full node-deployment procedure"
+    },
+    {
+      "candidate_id": "cert:subject-alternative-name",
+      "label": "Subject Alternative Name (SAN)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; this page is the source of the requirement, not just a consumer of it"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the whole page is scoped to Enterprise Edition by its own subtitle"
+    },
+    {
+      "candidate_id": "tls:node-to-node-encryption",
+      "label": "Node-to-node encryption",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own subtitle names 'encrypting data between the nodes in the cluster' as the other half of what these certificates are for, alongside authentication"
+    },
+    {
+      "candidate_id": "cert:inbox-directory",
+      "label": "inbox directory",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fixed, node-local filesystem directory (with a CA/ subdirectory) that Couchbase Server reads certificate and private-key files from at load/reload time. Genuinely new admin-only mechanism: no reference page in the corpus's cert: namespace (learn/security/certificates.md) names this directory at all - it treats certificate upload as an abstract REST operation, never describing the filesystem staging step this administration page makes mandatory and central (specific required filenames chain.pem/pkey.key/couchbase.p12, required ownership/permissions, a CA/ subdirectory specifically for root certs)."
+    },
+    {
+      "candidate_id": "cert:load-trusted-cas-rest-action",
+      "label": "loadTrustedCAs REST action",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the REST controller action (`POST /node/controller/loadTrustedCAs`) that reads root/intermediate CA files from the inbox/CA directory into the cluster's trust store. Not previously extracted anywhere in the corpus (checked: no extraction record mentions loadTrustedCAs)."
+    },
+    {
+      "candidate_id": "cert:reload-certificate-rest-action",
+      "label": "reloadCertificate REST action",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the REST controller action (`POST /node/controller/reloadCertificate`) that activates a node certificate and private key staged in the inbox directory. Not previously extracted anywhere in the corpus."
+    },
+    {
+      "candidate_id": "cert:regenerate-certificates-rest-action",
+      "label": "Regenerate All Certificates REST action",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the REST action that has Couchbase Server generate a brand-new self-signed root certificate and re-issue every node certificate from it, overwriting the existing ones. Not previously extracted anywhere in the corpus."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:node-certificate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - predicate minted this batch in learn/security/certificates.json",
+      "evidence": "It then demonstrates using that certificate to sign a node certificate."
+    },
+    {
+      "subject": "cert:intermediate-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:node-certificate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - same predicate, second use in this record",
+      "evidence": "The second shows creating an intermediate certificate from the root certificate and using that to sign the node's certificate."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "requiresSetting",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Enterprise Server requires that the node's certificate identifies the node in a Subject Alternative Name extension. Without this identification, Couchbase Server reports an error when you upload the certificate to the node or when you try to add the node to the cluster."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The inbox directory is where Couchbase Server looks for certificate, key, and related files."
+    },
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, second use; the root certificate goes in a dedicated CA subdirectory of the same inbox",
+      "evidence": "Couchbase Server expects to find the root certificate in a subdirectory named `CA` in the `inbox` directory."
+    },
+    {
+      "subject": "cert:pkcs12-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, third use",
+      "evidence": "Couchbase Server requires that the PKCS #12 file be in the node's `inbox` directory with the filename `couchbase.p12`."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "configuredVia",
+      "object": "cert:load-trusted-cas-rest-action",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredVia's shape (a setting's value is SET through a named REST surface) fits the trust store's contents being populated by this REST call",
+      "evidence": "Call the REST API to have Couchbase Server load the root certificate for the cluster:"
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "configuredVia",
+      "object": "cert:reload-certificate-rest-action",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, second use",
+      "evidence": "Load the node certificate and its private key by calling the [reloadCertificate](../../rest-api/upload-retrieve-node-cert.md) REST API:"
+    },
+    {
+      "subject": "cert:regenerate-certificates-rest-action",
+      "predicate": "cascadesTo",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - regenerating the root certificate cascades into overwriting every node certificate",
+      "evidence": "This call has Couchbase Server generate a new self-signed root certificate and add it to its trust store. It then creates new node certificates signed by the new root certificate, overwriting existing node certificates."
+    },
+    {
+      "subject": "cert:regenerate-certificates-rest-action",
+      "predicate": "cascadesTo",
+      "object": "cert:trust-store",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, second use; the new root certificate is also added to the trust store as part of the same action",
+      "evidence": "This call has Couchbase Server generate a new self-signed root certificate and add it to its trust store."
+    },
+    {
+      "subject": "cert:pkcs12-certificate",
+      "predicate": "doesNotSupport",
+      "object": "cert:client-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - corroborates the same relation already asserted from learn/security/certificates.json this batch, from the administration-procedure side rather than the conceptual-overview side",
+      "evidence": "It does not support using them for other purposes, such as client or root certificates."
+    },
+    {
+      "subject": "tls:node-to-node-encryption",
+      "predicate": "reliesOnMechanism",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server Enterprise Edition supports using X.509 and PKCS #12 certificates for authenticating and encrypting data between the nodes in the cluster."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-server-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an overview of how Couchbase Server uses certificates, see [Certificates](../../learn/security/certificates.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-server-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Client connections secured by client certificate must be enabled on the cluster. See [Enable Client-Certificate Handling](enable-client-certificate-handling.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-server-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For steps to prepare a client certificate to support connections between Couchbase Server databases, see [Client Access: Intermediate-Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-server-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an example of using node and [client certificates](configure-client-certificates.md) to secure XDCR replication between clusters, see [Specify Root and Client Certificates, and Client Private Key](../manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - certificate revocation / CRL / OCSP",
+    "finding": "The 'Regenerating Default Certificates' section documents an operator's only two ways found anywhere in this batch to stop a certificate chain being trusted before its own expiry: (1) regenerate everything (a new self-signed root, cascading to all node certificates), or (2) delete an old root CA from the trust store once no node certificate in use still depends on it. Neither is a per-certificate revocation - the deletion path is explicitly blocked while ANY dependent node certificate remains in use ('You cannot delete a certificate if it has signed one or more node certificates that are in use in the cluster.'). A third occurrence of the same batch-wide gap this round keeps finding: the corpus has no concept anywhere for revoking a single compromised certificate without regenerating or deleting its whole issuing chain."
+  },
+  "cross_component_finding": "This page is the clearest instance in the batch of the round's hypothesized finding: three REST admin actions central to certificate lifecycle management on Couchbase Server - loadTrustedCAs, reloadCertificate, and the regenerate-all-certificates endpoint - are named and used repeatedly here (curl examples for each) but appear in NO other extraction record in the corpus, including learn/security/certificates.md, this same batch's own conceptual-overview page for certificates. The reference/conceptual layer describes certificates as things with properties and relationships (root signs node, node presents itself, trust store validates); it never describes the operational act of getting a certificate file from a workstation onto a running cluster node. That whole staging-and-activation mechanism - the inbox directory, its required filenames and permissions, and the load/reload REST calls that consume it - exists only on this administration-procedure page.",
+  "cross_product_finding": "n/a - no cross-product (Capella/Mobile/SDK) content on this page beyond the single Java-client cross-reference already covered in the sibling configure-client-certificates.json record."
+}

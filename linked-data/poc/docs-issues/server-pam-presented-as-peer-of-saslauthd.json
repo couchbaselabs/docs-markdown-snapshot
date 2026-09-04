@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-pam-presented-as-peer-of-saslauthd",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Two pages give incompatible accounts of how PAM authentication reaches Couchbase Server. security-management-overview.md lists three peer mechanisms: 'authentication-mechanisms based on _Native LDAP_, _saslauthd_, and _PAM_ can be used'. configure-pam.md's own procedure contradicts the peer framing in its prerequisites, instructing the administrator to 'verify that `saslauthd` is set up to use PAM' - so PAM is reached THROUGH saslauthd, not alongside it. authentication-domains.md states the dependency in a parenthesis: '(Note that `saslauthd` also provides support of legacy PAM-based authentication.)' This matters more than a wording preference, because the same page states that Native LDAP and saslauthd are mutually exclusive - 'The two cannot be used simultaneously' - and if PAM requires saslauthd then choosing Native LDAP silently rules PAM out too. Under the three-peer framing that consequence is invisible, and it is the question an administrator planning external authentication actually needs answered.",
+  "about": [
+    "server/8.0/manage/manage-security/security-management-overview",
+    "server/8.0/manage/manage-security/configure-pam",
+    "server/8.0/learn/security/authentication-domains"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "The registry records the dependency rather than the peer framing: idp:pam's type field says PAM is 'delivered through saslauthd rather than natively', on the strength of configure-pam.md's own prerequisite. If an SME confirms PAM can be used without saslauthd on some path, the registry record is the thing to correct, not just the docs."
+}

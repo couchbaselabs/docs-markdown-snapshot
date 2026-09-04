@@ -1,0 +1,39 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/apply-node-to-node-encryption",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/apply-node-to-node-encryption.md",
+  "concepts": [
+    { "candidate_id": "tls:node-to-node-encryption", "label": "Node-to-node encryption", "registry_status": "promoted",
+      "reused_or_minted": "reused - this page is the dedicated task page for the already-promoted concept; supplies its first procedural/CLI evidence" },
+    { "candidate_id": "server:cluster-encryption-level", "label": "Cluster encryption level (control / all / strict)",
+      "registry_status": "minted", "reused_or_minted": "minted - the three-value enum (`clusterEncryptionLevel`) governing HOW MUCH inter-node (and, at strict, client-to-node) traffic must be encrypted, set independently of whether node-to-node encryption itself is on or off. Distinct from tls:node-to-node-encryption: the encryption feature can be enabled with the level left at its default, and the level's own value (specifically whether it is 'control' or 'all') gates whether the feature can later be disabled at all - see the relation below." },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own worked example requires auto-failover to be turned off before node-to-node encryption is enabled and back on afterward, giving the first hard evidence in this batch that these two admin mechanisms interact; full definition minted properly on fail-nodes-over.json" },
+    { "candidate_id": "eventing:function-lifecycle-state", "label": "Eventing Function lifecycle state", "registry_status": "promoted",
+      "reused_or_minted": "reused - the worked example pauses/resumes deployed Eventing functions around the encryption change" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted",
+      "reused_or_minted": "reused - the worked example's cluster runs Enterprise Edition; kept as a page-assumption, not a stated requiresEdition gate (see notable_absence)" }
+  ],
+  "relations": [
+    { "subject": "tls:node-to-node-encryption", "predicate": "requiresSetting", "object": "server:cluster-encryption-level",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Establish an appropriate encryption-level for the cluster. This is achieved by the `setting-security` CLI command, specifying the `--cluster-encryption-level` parameter." },
+    { "subject": "tls:node-to-node-encryption", "predicate": "requiresPriorExecutionOf", "object": "server:auto-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object is a judgment call standing in for 'auto-failover disabled', since the schema has no way to mark a required state rather than a required prior action",
+      "evidence": "Turn off auto-failover. Use the `setting-autofailover` CLI command" },
+    { "subject": "tls:node-to-node-encryption", "predicate": "hasDefaultValue", "object": "server:cluster-encryption-level",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object should properly be the literal 'control', kept against the closest concept in lieu of a literal-value field",
+      "evidence": "The `--enable` flag enables node-to-node encryption for the cluster, at the default level of `control`." },
+    { "subject": "server:cluster-encryption-level", "predicate": "takesPrecedenceOver", "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call: the level's own value gates whether the encryption feature can be turned off, evidenced on the sibling manage-address-families.json page rather than restated in full here",
+      "evidence_source": "server/current/manage/manage-nodes/manage-address-families.md",
+      "evidence_provenance": "This page never itself states the control/all precondition for disabling encryption; that constraint is stated on manage-address-families.md, which reuses this same node-to-node-encryption mechanism mid-procedure. Cited off-page per the schema's evidence_source/evidence_provenance escape rather than fabricated or dropped.",
+      "evidence": "If node-to-node encryption needs to be disabled, ensure that the `clusterEncryptionLevel` for the cluster is set to `control`, rather than all — otherwise node-to-node encryption cannot be disabled." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "This page's worked example runs on 'the latest version of Couchbase Server Enterprise Edition' but never states node-to-node encryption itself is an Enterprise-only feature - that is an assumption baked into the example's setup bullet points, not an asserted gate, so no requiresEdition relation is recorded for it here (contrast with server:cluster-address-family on manage-address-families.md, which IS explicitly gated: 'Couchbase Server Enterprise Edition supports the IPv4 and IPv6 address families')."
+  },
+  "cross_component_finding": "This page and manage-address-families.md are mutually entangled in a way neither states completely on its own: enabling/disabling node-to-node encryption requires a specific clusterEncryptionLevel value, and changing the cluster's address family requires node-to-node encryption to be OFF first (evidenced on manage-address-families.json). The full precondition chain - address-family change requires encryption off, encryption off requires clusterEncryptionLevel=control - only becomes visible by reading both pages together; each page alone documents only its own half.",
+  "cross_product_finding": ""
+}

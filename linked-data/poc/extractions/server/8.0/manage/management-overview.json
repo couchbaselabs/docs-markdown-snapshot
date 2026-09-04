@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/manage/management-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/management-overview.md",
+  "concepts": [
+    { "candidate_id": "server:node", "label": "node", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:xdcr", "label": "XDCR (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "rbac-model:role", "label": "Role (Server RBAC model term)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "rbac-model:privilege", "label": "Privilege (Server RBAC model term)", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "server:node", "predicate": "hasInternalComponent", "object": "server:bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - loose framing: buckets are defined on the cluster once nodes are added, not literally contained inside a node, but this is the closest existing part-whole predicate and the page states the ordering directly",
+      "evidence": "The nodes are _added_ to the cluster, one by one. From this point, _buckets_ can be defined on the cluster, to store data items." },
+    { "subject": "rbac-model:role", "predicate": "hasPrivilege", "object": "rbac-model:privilege",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - restates the abstract two-tier model with no concrete role/privilege pair named, consistent with round 12's finding that this relation's only instances in the corpus are abstract",
+      "evidence": "Couchbase Server enforces _Role-Based Access Control_ (RBAC), whereby all users are assigned _roles_ that correspond to _privileges_ on system-resources." },
+    { "subject": "server/8.0/manage/management-overview", "predicate": "seeAlso", "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Roles](../learn/security/roles.md) for detailed information." },
+    { "subject": "server/8.0/manage/management-overview", "predicate": "seeAlso", "object": "server/8.0/manage/manage-ui/manage-ui",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For an introduction to Couchbase Web Console, see [Couchbase Web Console](manage-ui/manage-ui.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "accessibleVia",
+    "finding": "The page states 'Couchbase Web Console and CLI are themselves based on the REST API' - a stated implementation hierarchy (REST API underlies both the CLI and the Web Console) that recurs as an implicit structural pattern across every other page in this batch (each one documents the same operation three times: UI, CLI, REST) but is never itself modeled as a relation anywhere in the registry. accessibleVia exists for 'reachable through a client interface' claims, but not for one interface being IMPLEMENTED BY another - a finding worth a future predicate if more pages state it this explicitly."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

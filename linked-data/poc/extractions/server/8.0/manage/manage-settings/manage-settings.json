@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/manage/manage-settings/manage-settings",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-settings/manage-settings.md",
+  "concepts": [
+    { "candidate_id": "n1ql:cluster-level-query-settings", "label": "cluster-level Query settings", "registry_status": "promoted", "reused_or_minted": "reused - this page's General tab is the UI surface described in that concept's own note ('applied cluster-wide through the Cluster Manager's /settings endpoint')" },
+    { "candidate_id": "storage:auto-compaction", "label": "Auto-Compaction", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted" },
+    { "candidate_id": "index:index-storage-setting", "label": "Index storage mode setting (REST)", "registry_status": "promoted", "reused_or_minted": "reused - this page's General tab includes 'storage modes' among its configurable options" }
+  ],
+  "relations": [
+    { "subject": "server/8.0/manage/manage-settings/manage-settings", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "These are described in [General](general-settings.md)." },
+    { "subject": "server/8.0/manage/manage-settings/manage-settings", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/configure-compact-settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "These are described in [Auto-Compaction](configure-compact-settings.md)." },
+    { "subject": "server/8.0/manage/manage-settings/manage-settings", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/configure-alerts",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "These are described in [Alerts](configure-alerts.md)." },
+    { "subject": "server/8.0/manage/manage-settings/manage-settings", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/install-sample-buckets",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "These are described in [Sample Buckets](install-sample-buckets.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "This is a thin navigational overview page (4 bullet points, one sentence each) whose only content is a list of the four settings-category tabs and links to their dedicated pages; it names no roles, no REST endpoints, and no bucket-type or edition gating anywhere. All of its ontological content is inherited from the four pages it points to."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

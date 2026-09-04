@@ -1,0 +1,44 @@
+{
+  "page_id": "server/8.0/manage/monitor/xdcr-monitor-timestamp-conflict-resolution",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/monitor/xdcr-monitor-timestamp-conflict-resolution.md",
+  "concepts": [
+    { "candidate_id": "xdcr:clock-drift", "label": "Clock drift (XDCR / intra-cluster replication)",
+      "registry_status": "minted", "reused_or_minted": "minted - the progressive desynchronization of a node's clock from its NTP reference, measured as a hybrid-logical-clock delta between an active and replica/target vBucket; sits in the existing xdcr: namespace since it fits (a replication-consistency concern) rather than needing a new one." },
+    { "candidate_id": "xdcr:clock-drift-alert", "label": "Clock drift alert (>5000ms)",
+      "registry_status": "minted", "reused_or_minted": "minted - the specific threshold-triggered alert this page names, distinct from the Capella-specific monitoring:alert (which is triggered by monitoring:event, a management-plane construct with severity/tag enums this page's alert has neither of)." },
+    { "candidate_id": "server:xdcr", "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - the replication mechanism whose drift this page monitors." },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused - the unit that calculates and accumulates drift." },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused - the source of the updates a replica/target vBucket measures drift against." },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused - calculates drift during Intra-Cluster Replication." },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - first minted in this batch's manage-statistics.json; this page names its vbucket-details and all sub-commands specifically for drift statistics." }
+  ],
+  "relations": [
+    { "subject": "xdcr:clock-drift", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Drift can be monitored by means of the [cbstats](#cli:cbstats/cbstats-intro.adoc) tool, using the `vbucket-details` and `all` commands; as described below." },
+    { "subject": "xdcr:clock-drift", "predicate": "triggersAlert", "object": "xdcr:clock-drift-alert",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If drift is greater than 5 seconds (5000 milliseconds), an alert is raised on the destination cluster; with the following message: \"`[<DATE>] - Remote or replica mutation received for bucket \"<BUCKET>\" on node \"<IP>\" with timestamp more than 5000 milliseconds ahead of local clock. Please ensure that NTP is set up correctly on all nodes across the replication topology and clocks are synchronized.`\"" },
+    { "subject": "server:xdcr", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/xdcr-overview",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "During [XDCR](../../learn/clusters-and-availability/xdcr-overview.md), each active vBucket on the target cluster calculates drift; when it receives updates from its corresponding active vBucket, located on the source cluster." },
+    { "subject": "tool:cbstats", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-vbucket-details",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "### [](#cbstats-vbucket-details)[cbstats vbucket-details](../../cli/cbstats/cbstats-vbucket-details.md)" },
+    { "subject": "tool:cbstats", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-all",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "### [](#cbstats-all)[cbstats all](../../cli/cbstats/cbstats-all.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page names both Intra-Cluster Replication and XDCR as the two drift-producing mechanisms, but the `cbstats vbucket-details` field list it gives (max_cas, total_abs_drift, drift_ahead_threshold, etc.) is presented as one undifferentiated set - the page never states whether any of these fields distinguish Intra-Cluster-Replication-caused drift from XDCR-caused drift on the same node, leaving that distinction (if one exists) undocumented."
+  },
+  "cross_component_finding": "This page's title and content is exclusively about clock drift, yet the page name from disk is 'xdcr-monitor-timestamp-conflict-resolution.md' - a filename referencing XDCR's timestamp-based conflict resolution (server RBAC's xdcr:conflict-resolution-method concept family), a topic the page's actual body never discusses at all. The mismatch between filename/URL and the page's H1 ('Monitor Clock Drift') and content suggests this page was retitled after being authored under a different, conflict-resolution-focused scope.",
+  "cross_product_finding": ""
+}

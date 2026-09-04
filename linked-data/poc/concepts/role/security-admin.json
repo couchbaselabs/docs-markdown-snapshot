@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/security-admin",
+  "label": "Security Admin (Server RBAC role)",
+  "type": "a Server RBAC role introduced in Couchbase Server 8.0, holding the security-administration privileges that were split off from the pre-8.0 Local User Security Admin and External User Security Admin roles. Can configure auditing and manage encryption-at-rest keys; cannot manage local or external users, which moved to role:user-admin-local and role:user-admin-external.",
+  "promoted": true,
+  "recurrence": 4,
+  "internal_name": "security_admin",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: Security Admin (security_admin)",
+    "This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role.",
+    "Users with the Full Admin or Security Admin roles can configure Auditing."
+  ],
+  "note": "Minted independently by two of round 26's six batches (B, from manage-security/; F, from manage-statistics/) in BYTE-IDENTICAL spelling, and already present from an earlier extraction of learn/security/roles.md - so three independent arrivals at one id, which is corroboration, not a namespace fork. Worth recording because the round's cross-batch review flagged it as a suspected duplicate mint: the check that settled it took one grep. Two batches spelling a term the same way is the cheapest evidence a vocabulary is real; only a DIFFERENT spelling is a fork.",
+  "relates_to_competency_question": "Which 8.0 role configures auditing and encryption keys without being able to manage users?"
+}

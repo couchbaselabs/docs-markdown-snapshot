@@ -1,0 +1,78 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/enable-full-secure-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:fully-secure-replication",
+      "label": "Fully secure XDCR replication",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/xdcr-reference/xdcr-security-and-networking.json (round 20)"
+    },
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's 'client certificate and client private key' authentication path is the Web Console procedure for the same mTLS mechanism xdcr-security-and-networking.json (round 20) describes conceptually via dependsOnService"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "offersConfigurationChoice",
+      "object": "credentials-vs-client-certificate authentication path",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice) - object is a described choice, not a concept id, since no other page names these two paths as their own concepts",
+      "evidence": "A _fully_ secure replication handles both authentication and data-transfer via TLS. This can be accomplished in either of the following ways:\n\n* Specifying username, password, and root certificate.\n* Specifying root and client certificates, and client private key."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "requiresCapability",
+      "object": "cert:root-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability)",
+      "evidence": "This procedure requires access to the root certificate for the destination cluster."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "dependsOnService",
+      "object": "tls:mutual-tls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - the client-certificate authentication path is the mTLS case",
+      "evidence": "Check the **Use Client Certificate Authentication** checkbox."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "dependsOnService",
+      "object": "cert:root-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose composition relationship: the client certificate must be traceable to the same root, directly or via intermediates",
+      "evidence": "Note that if the client certificate has been generated using the root certificate, the client certificate itself must be specified. Alternatively, if the client certificate has been generated using intermediate certificates, the entire certificate chain — including the client certificate and all intermediate certificates — must be specified."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/replicate-using-scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "XDCR supports replication between _scopes_ and _collections_. See [Replicate Using Scopes and Collections](replicate-using-scopes-and-collections.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role named on this page, matching this batch's other security pages."
+  },
+  "cross_component_finding": "CONFIRMS THE CAPELLA-TRUSTED-CA FINDING FROM secure-xdcr-replication.json (this same batch) FROM THE PROCEDURE SIDE. That page states the CONCEPTUAL rule (Capella CAs auto-trusted from Server 7.2+); this page states the matching PROCEDURAL consequence - the interactive CA-specifying pane can be left blank in the UI, while the CLI's `--xdcr-certificate` flag must still be supplied even to a Capella target. The two pages together show the same underlying exemption implemented inconsistently across access surfaces (UI/REST skip it, CLI does not), a genuine surface-level asymmetry neither page states as deliberate."
+}

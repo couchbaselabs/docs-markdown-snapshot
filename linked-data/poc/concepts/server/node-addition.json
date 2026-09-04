@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/node-addition",
+  "label": "node addition",
+  "type": "the cluster-initiated way to grow a cluster: an existing cluster adds a named node to itself over a secure connection (since 7.1 the `http://` scheme and port 8091 cannot be used), after which a rebalance is required. Erases all prior provisioning on the added node - buckets, services and settings.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-nodes/add-node-and-rebalance.md",
+  "evidence": [
+    "Following node-addition, _rebalance_ is required, to make the new node an active member of the cluster.",
+    "The scheme `http://` cannot be used, nor can the port `8091`: since in 7.1 and later versions, addition must occur over a secure connection.",
+    "All aspects of _provisioning_ that may previously have occurred on the new node are eliminated: this includes buckets, services, and settings."
+  ],
+  "note": "Promoted as the counterpart of server:node-join; the two are documented as having equivalent effect from opposite directions, and the distinction is which side initiates."
+}

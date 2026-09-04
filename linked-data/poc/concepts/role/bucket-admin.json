@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/bucket-admin",
+  "label": "Bucket Admin (Server RBAC role)",
+  "type": "a Server RBAC role scoped to one or more named buckets, granting management of those buckets and of the scopes and collections inside them. The highest-recurrence unpromoted Server role in the corpus when round 26 ran, and the only one whose grants are bucket-scoped rather than cluster-wide.",
+  "promoted": true,
+  "recurrence": 7,
+  "internal_name": "bucket_admin",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: Bucket Admin (bucket_admin)",
+    "Full, Cluster, and Bucket Administrators can edit some settings of an existing bucket.",
+    "Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that's allowed to encrypt the bucket."
+  ],
+  "note": "Promoted from round 26's server/8.0/manage/ pass, where it recurs across 5 admin procedures (edit-bucket, delete-bucket, flush-bucket, manage-statistics, manage-native-encryption-at-rest) plus 2 search pages from earlier rounds. Round 26's framing question was whether the registry's role: family - built almost entirely from REFERENCE material - survives being read against full administration procedures. This record is the clearest yes: every procedural page reaches for the SAME three-role ladder (Full / Cluster / Bucket administrator) and no procedure invented a role the catalogue does not have. What the procedures add that the catalogue cannot is the ladder itself: 'Full, Cluster, and Bucket Administrators can edit some settings' is a statement about relative scope that only appears where an operation is being described, never in a per-role reference entry.",
+  "relates_to_competency_question": "Which role can an administrator be given to manage one bucket without cluster-wide rights?"
+}

@@ -1,0 +1,114 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/secure-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/secure-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:half-secure-replication",
+      "label": "Half-secure XDCR replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the security level securing only the administrator password sent to the remote cluster, not the replicated data itself, via SCRAM-SHA or (for pre-5.5 targets) TLS. Sibling of the extraction-layer xdcr:fully-secure-replication (minted round 20, xdcr-security-and-networking.json, from the reference tree's certificate-chain discussion). This page is the first in the corpus to name BOTH security levels as a closed, named two-member choice ('The following security-levels are supported: _Half-secure_... _Fully_ secure...') - the reference tree only ever discussed the fully-secure/TLS mechanics in isolation, never the half/full choice as a scheme."
+    },
+    {
+      "candidate_id": "xdcr:fully-secure-replication",
+      "label": "Fully secure XDCR replication",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/xdcr-reference/xdcr-security-and-networking.json (round 20). This page restates the same definition in the Web Console procedure guide's own words."
+    },
+    {
+      "candidate_id": "auth-mechanism:scram",
+      "label": "SCRAM (Salted Challenge Response Authentication Mechanism)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/learn/security/authentication-overview.json. This page's own 'SCRAM-SHA' password-hashing mechanism for half-secure replication is the same family concept applied specifically to XDCR."
+    },
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-5-5",
+      "label": "Couchbase Server 5.5",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-2",
+      "label": "Couchbase Server 7.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:reference",
+      "predicate": "offersConfigurationChoice",
+      "object": "xdcr:half-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "The following security-levels are supported: \n\n* _Half-secure_: Secures the specified password only: it does not secure data."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "offersConfigurationChoice",
+      "object": "xdcr:fully-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (offersConfigurationChoice)",
+      "evidence": "_Fully_ secure: Handles both authentication and data-transfer via TLS."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "usesEnum",
+      "object": "auth-mechanism:scram",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "By hashing with SCRAM-SHA, when the destination cluster is running Couchbase Enterprise Server 5.5 or later."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "availableSince",
+      "object": "version:server-5-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - marks the version at which SCRAM-SHA became the password-securing mechanism, with TLS as the pre-5.5 fallback",
+      "evidence": "By hashing with SCRAM-SHA, when the destination cluster is running Couchbase Enterprise Server 5.5 or later."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "requiresCapability",
+      "object": "cert:root-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - only required for the pre-5.5 TLS fallback path, not the SCRAM-SHA path",
+      "evidence": "The root certificate of the destination cluster must be provided, for a successful TLS connection to be achieved."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "requiresCapability",
+      "object": "version:server-7-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit; the minimum source-side version required for Capella's CA to be auto-trusted",
+      "evidence": "CAs used by the Couchbase cloud data-platform, _Capella_, are automatically trusted, when _fully secure_ XDCR connections are made to Capella databases from Couchbase Enterprise Server 7.2 or later versions, using Couchbase Web Console or the REST API."
+    },
+    {
+      "subject": "xdcr:half-secure-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-half-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For step-by-step instructions, see [Enable Half-Secure Replications](enable-half-secure-replication.md)."
+    },
+    {
+      "subject": "xdcr:fully-secure-replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For step-by-step instructions, see [Enable Fully Secure Replications](enable-full-secure-replication.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role is named on this security-configuration page - consistent with round 20's own finding on xdcr-security-and-networking.json that XDCR 'security' throughout the corpus means network/transport/certificate mechanics, never RBAC."
+  },
+  "cross_component_finding": "SUPPLIES THE MISSING HALF OF ROUND 20'S SECURITY-LEVEL VOCABULARY. xdcr-security-and-networking.json minted xdcr:fully-secure-replication from the reference tree's certificate-chain discussion but had no occasion to name a half-secure counterpart, since that reference page's own scope was TLS/mTLS mechanics only. This Web Console procedure page is where the half/full CHOICE itself - the thing an administrator actually picks in the Add/Edit Remote Cluster dialog - is named and defined, exactly the kind of admin-procedure-only vocabulary this batch's brief predicted for the security pages specifically."
+}

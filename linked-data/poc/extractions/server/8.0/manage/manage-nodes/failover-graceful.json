@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/failover-graceful",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/failover-graceful.md",
+  "concepts": [
+    { "candidate_id": "server:graceful-failover", "label": "Graceful failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch); this page is its dedicated task page" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)", "registry_status": "promoted",
+      "reused_or_minted": "reused - judgment call: only used as the example credential, never stated as a required gate (see notable_absence)" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:graceful-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "This indicates the graceful failover has successfully completed, but an additional rebalance is required to complete the reduction of the cluster to one node." },
+    { "subject": "server:graceful-failover", "predicate": "requiresCapability", "object": "server:vbucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call standing in for 'all active and replica vBuckets on all nodes must be available', since the registry has no single concept naming that cluster-health precondition",
+      "evidence": "It is manually initiated when the entire cluster is in a healthy state, and all active and replica vBuckets on all nodes are available." },
+    { "subject": "server/8.0/manage/manage-nodes/failover-graceful", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/failover-hard",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "A _hard_ failover can be used when a node is unresponsive. See [Hard Failover](failover-hard.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Like the overview page, this dedicated task page never states which role is authorized to trigger graceful failover - the UI/CLI/REST examples all use the 'Full Administrator username of Administrator', but that is the page's own worked-example setup assumption, not an asserted RBAC gate, so requiresServerRole is deliberately not recorded here."
+  },
+  "cross_component_finding": "Graceful failover's UI flow independently confirms the two-step 'failover completes, then a SEPARATE rebalance is still required' shape already seen for node-addition and node-join: 'Graceful failover is now initiated, and a rebalance occurs as part of the procedure' followed later by 'an additional rebalance is required to complete the reduction of the cluster to one node' - i.e. one rebalance runs automatically as part of the failover call itself, and a second, manually-triggered rebalance is still needed afterward to actually eject the node. This is a finer-grained wrinkle than add-node-and-rebalance's single completes relation captures, and is worth reconciliation attention: rebalance may be invoked automatically AND manually within the same procedure, not just once per operation.",
+  "cross_product_finding": ""
+}

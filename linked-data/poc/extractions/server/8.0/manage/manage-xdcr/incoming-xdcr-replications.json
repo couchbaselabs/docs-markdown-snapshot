@@ -1,0 +1,70 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/incoming-xdcr-replications",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/incoming-xdcr-replications.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:outgoing-replication",
+      "label": "Outgoing replication (source-cluster view)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the same replication object, viewed and labelled from the SOURCE cluster's side. First contact for the named view itself (the 'Outgoing Replications' UI panel appears earlier, on create-xdcr-replication.md, but this page is the first to state the source/target naming convention as a rule rather than just a panel title)."
+    },
+    {
+      "candidate_id": "xdcr:incoming-replication",
+      "label": "Incoming replication (target-cluster view)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the same replication object, viewed and labelled from the TARGET cluster's side. This page is the concept's own defining page; genuinely UI-procedure-only vocabulary with no reference-tree or Capella twin, since neither of those trees documents the target-side monitoring view of a replication it did not itself create."
+    },
+    {
+      "candidate_id": "xdcr:source-cluster-heartbeat",
+      "label": "Source cluster (target awareness) heartbeat",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the periodic signal a source cluster sends to a target cluster once a reference is created there, independent of whether any replication yet exists, which drives the Incoming Replications view's refresh rate. First contact anywhere in the corpus; genuinely new UI/monitoring-only vocabulary the reference tree and Capella's own pages never needed, since Capella's manage-xdcr-replications.json describes only the outgoing/creating side of XDCR management."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:outgoing-replication",
+      "predicate": "isSynonymOf",
+      "object": "xdcr:incoming-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (isSynonymOf) - range already widened in round 16 from statement pairs to concept pairs; licensed here by an explicit 'the same X' statement, the exact kind of phrasing that widening was built for. NOT folded into one id despite the explicit identity claim: both surface terms remain in independent UI/documentation use (distinct panel names, distinct REST endpoints per cli/rest-api pages out of this batch) and a reader searching either term should land somewhere - same reasoning the registry already applies to index-type:secondary-index/index-type:gsi.",
+      "evidence": "When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "requiresCapability",
+      "object": "xdcr:source-cluster-heartbeat",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit: the target-side incoming-replication view depends on heartbeats it does not itself generate",
+      "evidence": "Incoming replications information relies on heartbeats sent from the source cluster to the target cluster."
+    },
+    {
+      "subject": "xdcr:source-cluster-heartbeat",
+      "predicate": "createsOnAction",
+      "object": "xdcr:reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (createsOnAction) - loose fit: heartbeats begin as a side effect of reference creation on the source, before any replication exists",
+      "evidence": "The source cluster heartbeats are sent as soon as the target remote cluster reference is created on the source, even if no replications exist yet."
+    },
+    {
+      "subject": "xdcr:source-cluster-heartbeat",
+      "predicate": "doesNotAffect",
+      "object": "xdcr:incoming-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotAffect) - the intra-cluster (same source and target) case is a stated exception where the mechanism is deliberately skipped",
+      "evidence": "If the source and target clusters are the same, target awareness heartbeats are not sent, and incoming replication information for that cluster does not appear."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page names no role for who may VIEW incoming replications - a read-only monitoring surface with no access-control gate stated anywhere on the page, unlike the create/delete pages in this batch which all defer to the Full/Cluster/XDCR Administrator triple."
+  },
+  "cross_component_finding": "STATUS VOCABULARY DIVERGES FROM CAPELLA'S OWN REPLICATION-STATUS ENUM, A WITHIN-BATCH FINDING. cloud/clusters/xdcr/manage-xdcr-replications.json (round 7) promotes xdcr:replication-status-enum with the values Creating/Active/Pausing/Paused/Deleting/Create Error/Delete Error. This batch's own pause-xdcr-replication.md and resume-xdcr-replication.md instead show the Server Web Console using lowercase 'replicating'/'paused' and the CLI/REST layer using 'running'/'notRunning'/'paused' - none of which is 'Active', and none of the Capella enum's five other values appears anywhere in this batch. Recorded on pause-xdcr-replication.json (this same batch) with the fuller status-word inventory; noted here because this page's own 'incoming replication' status count (a bare integer per remote cluster, not a status word at all) is a THIRD, even coarser status representation of the same underlying object."
+}

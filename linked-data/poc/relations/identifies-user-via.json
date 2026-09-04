@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/identifies-user-via",
+  "label": "identifies user via",
+  "recurrence": 3,
+  "type": "subject = a credential or authentication configuration; object = the field or mechanism from which the Couchbase username is taken (a certificate's Subject Common Name, a SAN entry, an email address in a SAN).",
+  "note": "The predicate that makes client-certificate authentication expressible. It is not verifiesIdentityOf: that answers 'who vouched for this certificate', this answers 'which part of the certificate IS the username' - and the second question is the one every client-certificate procedure in the corpus is actually about, since a valid certificate that names no known user authenticates nobody. Its three files are the certificates reference plus two configuration procedures, and each names a different source field, which is why the object slot is a concept rather than a literal.",
+  "relates_to_competency_question": "Where does Couchbase Server get the username from when a client presents a certificate?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

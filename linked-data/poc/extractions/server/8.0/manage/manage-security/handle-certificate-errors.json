@@ -1,0 +1,113 @@
+{
+  "page_id": "server/8.0/manage/manage-security/handle-certificate-errors",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/handle-certificate-errors.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root Certificate / CA certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - most root-certificate errors on this page are trust-store membership failures"
+    },
+    {
+      "candidate_id": "cert:private-key",
+      "label": "Private Key",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; several node-certificate error rows are private-key file/format/permission failures"
+    },
+    {
+      "candidate_id": "cert:subject-alternative-name",
+      "label": "Subject Alternative Name (SAN)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; two of the node-certificate error rows are missing/mismatched IP SAN failures"
+    },
+    {
+      "candidate_id": "cert:inbox-directory",
+      "label": "inbox directory",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in configure-server-certificates.json; this page's suggested remedies for both root- and node-certificate errors route through the inbox/CA and inbox directories"
+    },
+    {
+      "candidate_id": "cert:certificate-chain-file",
+      "label": "chain.pem certificate chain file",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the concatenated-PEM artifact (node certificate followed by any intermediate certificates, in signing order) Couchbase Server expects as a node's `chain.pem`. Named as a distinct 'Incorrectly configured certificate chain' error class on this page; genuinely new because prior pages in this batch used the filename `chain.pem` operationally (concatenating files) without this page's explicit statement of its required internal structure and ordering."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "cert:trust-store",
+      "predicate": "verifiesIdentityOf",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the page's own top error row is exactly this check failing",
+      "evidence": "The CA certificate used to sign the node certificate is not in the cluster's trust store."
+    },
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - corroborates the same relation from configure-server-certificates.json, from the error-remediation side",
+      "evidence": "Copy the CA into the inbox/CA directory, then load all trusted CAs."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, second use in this record; the private key's required location is the same inbox",
+      "evidence": "Ensure that the private key for the node certificate has been copied to the inbox folder of the current node."
+    },
+    {
+      "subject": "cert:node-certificate",
+      "predicate": "requiresSetting",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - corroborates the same relation from configure-server-certificates.json/learn/security/certificates.json, from the error-message side",
+      "evidence": "Cannot validate certificate for _<ip-address>_ because it doesn't contain any IP SANs"
+    },
+    {
+      "subject": "cert:certificate-chain-file",
+      "predicate": "hasInternalComponent",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent's part-whole shape fits the chain file's required contents",
+      "evidence": "The chain file should contain a sequence of PEM (base64) encoded X.509 certificates, starting from the node certificate, and including all intermediate certificates that exist, in the order of signing."
+    },
+    {
+      "subject": "cert:certificate-chain-file",
+      "predicate": "hasInternalComponent",
+      "object": "cert:intermediate-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - same predicate, second use in this record",
+      "evidence": "The chain file should contain a sequence of PEM (base64) encoded X.509 certificates, starting from the node certificate, and including all intermediate certificates that exist, in the order of signing."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/handle-certificate-errors",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For examples of using the `openssl` command to generate and inspect certificates, see [Configure Server Certificates](configure-server-certificates.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - error remediation depth",
+    "finding": "Every remediation in both tables is either 'copy the missing file to the right place' or 'inspect with openssl and recreate if necessary' - the page never distinguishes an error an administrator can fix without regenerating any certificate (e.g. a permissions fix) from one that forces a full chain regeneration (e.g. an expired root). Coupled with the two sibling pages' finding that this corpus has no per-certificate revocation mechanism at all, this page shows the practical consequence: several of its own listed errors ('Certificate is not valid at this time', SAN mismatches) have 'create a new certificate' as their only offered remedy, with no lighter-weight alternative documented anywhere in the batch."
+  },
+  "cross_component_finding": "This page is purely a troubleshooting reference (two tables, no procedures of its own) built entirely from vocabulary defined on the other nine pages in this batch - it mints only one new concept (the chain file's internal structure) and otherwise exists to corroborate cert:trust-store, cert:inbox-directory, cert:subject-alternative-name and cert:private-key relations already asserted elsewhere. This is the round's clearest instance of the hypothesis's second watch-item: a page that mostly reuses rather than mints, and the correct extraction outcome is to say so plainly rather than force new distinctions the page's own content (two flat error tables) does not support.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

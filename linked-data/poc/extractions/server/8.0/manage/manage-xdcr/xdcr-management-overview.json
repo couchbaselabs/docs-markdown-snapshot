@@ -1,0 +1,114 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/xdcr-management-overview",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/xdcr-management-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this is the Web Console procedure-guide's own top-level overview of the promoted server:xdcr concept."
+    },
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the registration, on the local cluster, of a remote target cluster for XDCR. Named here only in passing ('Reference management: Remote clusters must be registered as targets for XDCR'); the full definition is minted on create-xdcr-reference.md, this batch's own defining page for the concept. First contact anywhere in the corpus - the xdcr-reference/ reference tree (round 20) never needed to name this object, since it documents filtering/settings mechanisms rather than the reference-registration step itself."
+    },
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the continuously-running replication object created between a source and target bucket. Named here only in passing ('Replication management: Once a reference has been registered...it can be specified as the target for a replication'); the full definition is minted on create-xdcr-replication.md. First contact anywhere in the corpus - Capella's own xdcr.json/manage-xdcr-replications.json (round 7) used the umbrella capella:xdcr concept plus xdcr:replication-filter/xdcr:replication-status-enum, but never minted a concept for the replication object itself."
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "data:vbucket",
+      "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted (aliases to concepts/server/vbucket.json). This page uses vBucket count equality as an XDCR precondition."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresEdition)",
+      "evidence": "Couchbase has modified the license restrictions to its Couchbase Server Community Edition package, for version 7.0 and higher: in consequence, XDCR is promoted to a commercial-only feature of Enterprise Edition."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (availableSince) - marks when the Enterprise-only gate took effect, not when XDCR itself was introduced",
+      "evidence": "Couchbase has modified the license restrictions to its Couchbase Server Community Edition package, for version 7.0 and higher: in consequence, XDCR is promoted to a commercial-only feature of Enterprise Edition."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "requiresCapability",
+      "object": "data:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - loose fit: object is an equal-count precondition on a structural artifact, not a bucket/storage/edition capability, matching this project's precedent of loose predicate reuse over minting a near-duplicate",
+      "evidence": "Note that XDCR can only be established between clusters whose numbers of vBuckets are equal: all supported platforms have _1024_ vBuckets except _MacOS_, which has _64_."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "dependsOnService",
+      "object": "xdcr:reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (dependsOnService) - loose structural dependency, same convention already recorded on capella:xdcr's own relations",
+      "evidence": "Once a reference has been registered on the local cluster, it can be specified as the target for a _replication_."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/prepare-for-xdcr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "[Prepare for XDCR](prepare-for-xdcr.md)"
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/create-xdcr-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Information on establishing references is provided in [Create a Reference](create-xdcr-reference.md)"
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/create-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Information on establishing replications is provided in [Create a Replication](create-xdcr-replication.md)"
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/recover-data-with-xdcr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Information is provided in [Recover Data with XDCR](recover-data-with-xdcr.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This overview page tells the reader to 'make sure that you have appropriate permissions for managing XDCR' but names no specific role - it defers entirely to prepare-for-xdcr.md, this batch's own next page, for the Full/Cluster/XDCR Administrator triple."
+  },
+  "cross_component_finding": "CONFIRMS THIS BATCH'S REUSE-DENSITY HYPOTHESIS AT THE TOP LEVEL: the overview page's own task list (Preparation, Reference management, Replication management, Pausing/Resuming, Recovering Data) maps one-to-one onto this batch's 16 page titles, and every substantive XDCR mechanism it gestures at (filtering, advanced settings, scopes/collections) already has a promoted or extraction-layer xdcr:* id from round 7 (Capella) or round 20 (server/8.0/xdcr-reference/). The two genuinely new ids this page's own text forces into existence - xdcr:reference and xdcr:replication - are structural/procedural nouns for the objects these UI actions create, not new XDCR mechanisms; the reference tree and Capella's overview page both talked ABOUT replication filtering/settings without ever needing to name the reference-registration or replication-object level themselves, because neither of those trees is a step-by-step creation procedure."
+}

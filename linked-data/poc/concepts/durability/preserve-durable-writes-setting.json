@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/durability/preserve-durable-writes-setting",
+  "label": "preserve durable writes setting",
+  "type": "an Enterprise-Edition-only cluster setting that suppresses automatic failover of a node when failing it over could lose durably-written data - trading availability for the durability guarantee.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "If you enable this setting, Couchbase Server does not auto-fail over a node if it could result in the loss of durably written data.",
+    "Preserve durable writes [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)",
+    "the setting to preserve durable writes is not available"
+  ],
+  "note": "The resolution of a contradiction the registry already contained implicitly: durability.md says 'Both manual and automatic failovers can cause the loss of durably written data', and this setting is the documented way to stop the automatic half from doing so. Filed under the tier-neutral kebab name with the `-setting` suffix the registry already uses for eleven other records."
+}

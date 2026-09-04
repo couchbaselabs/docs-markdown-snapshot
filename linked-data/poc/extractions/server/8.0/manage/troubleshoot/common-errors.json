@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/manage/troubleshoot/common-errors",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/troubleshoot/common-errors.md",
+  "concepts": [
+    { "candidate_id": "troubleshoot:cluster-compatibility-mode", "label": "Cluster compatibility mode",
+      "registry_status": "minted", "reused_or_minted": "minted - the cluster-wide minimum-version gate that must be met by every node before certain features (client-server SSL, secure XDCR) can be enabled; named directly on this page but with no promoted concept covering it." }
+  ],
+  "relations": [
+    { "subject": "troubleshoot:cluster-compatibility-mode", "predicate": "seeAlso", "object": "server/8.0/install/tcp_mem_settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See [Linux Kernel TCP/IP Memory Settings](../../install/tcp%5Fmem%5Fsettings.md) for more information." },
+    { "subject": "troubleshoot:cluster-compatibility-mode", "predicate": "seeAlso", "object": "server/8.0/install/install-splitlock-mitigation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information about how to resolve issues with split lock mitigation, see [How to mitigate Split Lock Issues](../../install/install-splitlock-mitigation.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The 'Cluster Version Compatibility Mismatch' error states that 'to enable certain features like client-server SSL, or secure XDCR; all the nodes of the cluster to be at a required compatibility level or higher that supports the feature' - a cluster-wide minimum-version gate distinct from a single feature's own availableSince (which names when a feature was introduced, not when every node in a mixed-version cluster must catch up before it can be used). No promoted predicate in the registry currently expresses this 'every node must be at or above a compatibility version' shape, so no relation was minted for it here rather than forcing an ill-fitting one.\n\nSeparately: the 'Blocked View Indexing' section is a single unexplained sentence - 'You have defined a view with a `_stats` reduce function.' - with no resolution step at all, unlike every other section on this page (each of which gives at least one concrete fix). It sits directly above 'You See Constant Empty Results In Your Queries to the view', which DOES walk through a `_stats`-reduce-function example in detail, suggesting the two sections were meant to be read together but were never explicitly cross-linked."
+  },
+  "cross_component_finding": "Every OS/kernel-level tuning issue on this page (file descriptor/core limits, Transparent Huge Pages, swappiness, tcp_mem, split-lock mitigation) routes the reader to install/ pages for the actual fix rather than documenting the fix on this page itself - common-errors.md functions as a symptom-to-destination index rather than a self-contained troubleshooting reference. The Views/mapreduce error examples (stale=false/stale=update_after/stale=ok semantics, mapreduce_errors.# log file) are the only content on this page that is genuinely self-contained, and they concern the deprecated Views engine (index-type:view) rather than any GSI/Query Service mechanism this corpus otherwise focuses on.",
+  "cross_product_finding": ""
+}

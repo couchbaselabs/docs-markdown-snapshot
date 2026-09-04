@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/maps-to-role",
+  "label": "maps to role",
+  "recurrence": 2,
+  "type": "subject = an EXTERNAL identity construct (an LDAP group, a SAML attribute); object = the Couchbase Server group or RBAC role its members acquire. The federation boundary crossing.",
+  "note": "Distinct from the promoted Capella data-plane family (grantsRole, assignsRole, groupMembersInheritRole), all of which have a Couchbase-side subject: this one's subject is defined in a system Couchbase does not control, which is exactly the property that makes external-identity configuration hard to reason about. Two files, LDAP and SAML, arriving at the same shape independently - and both of them route through a Couchbase GROUP rather than granting a role directly, which is the part of the mechanism the role catalogue cannot show.",
+  "relates_to_competency_question": "How does membership of an external directory group become a Couchbase role?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/default-scope",
+  "label": "default scope",
+  "type": "the `_default` scope automatically created in every new bucket. Cannot be dropped.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "evidence": [
+    "Every created bucket is automatically given a _default scope_, and within it, a _default collection_.",
+    "The default scope cannot be dropped."
+  ],
+  "note": "Promoted with server:default-collection and server:system-scope as the three automatically-created members of a bucket's namespace, all three carrying deletion constraints that differ in a way no single page contrasts: the default scope cannot be dropped at all, the default collection CAN be dropped but cannot then be recreated, and the _system scope and its collections cannot be dropped."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/server-group",
+  "label": "server group",
+  "type": "an administrator-defined grouping of cluster nodes (Enterprise Edition only) that makes replica placement rack- or availability-zone-aware, so that a whole group failing does not take both an active and its replica. The first node of a new cluster is placed automatically in a group named `Group 1`.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "manage:server-group",
+    "capella:server-group"
+  ],
+  "aliases_note": "`manage:server-group` is filed away from because a `manage:` prefix names a DIRECTORY in the docs tree, not a subject - an id must name its subject, not its location. `capella:server-group` is folded on the strength of its own page's wording, which names no Capella-specific construct: \"The distribution pattern is based on a projection of optimal index availability, given the number and disposition of Index Service nodes across defined server groups.\" 3 + 1 files, zero overlap. The Capella leg is the weaker of the two and is recorded as such.",
+  "documented_at": "server/current/manage/manage-groups/manage-groups.md",
+  "evidence": [
+    "Server _groups_ can be administrator-defined to contain a number of the nodes within a Couchbase Cluster, and thereby protect the cluster against large-scale infrastructure failure.",
+    "Server groups and the Server Group Awareness feature are only available in Couchbase Server Enterprise Edition.",
+    "when you initialize a new Couchbase Server cluster, the first node is automatically placed in a server group named Group 1.",
+    "Starting with Couchbase Server release 7.0.2, the Search service supports Server Groups/Rack zone aware replica placement."
+  ],
+  "note": "Crossed the bar only once the third file was found by query rather than by reading the round's own new pages - the two Search-service files predate round 26 and the manage-groups page is new. That is the promotion rule's whole point: recurrence is a question asked of the corpus, and a term minted under a directory-shaped prefix in one round is invisible to the next round unless someone asks.",
+  "relates_to_competency_question": "How does an administrator make replica placement rack-aware?"
+}

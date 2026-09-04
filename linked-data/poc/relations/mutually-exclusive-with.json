@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/mutually-exclusive-with",
+  "label": "mutually exclusive with",
+  "recurrence": 4,
+  "type": "SYMMETRIC: subject and object cannot both be selected, enabled or in progress at the same time. Both slots are concepts of the same kind; the direction carries no meaning.",
+  "note": "Round 26's most-used new predicate and the first genuinely SYMMETRIC one in the registry - every other relation here has a directed reading, and this one does not, which matters because a consumer that walks the graph in one direction only will miss half of these. Its four files split into two unrelated families: cluster authentication (Native LDAP versus saslauthd - 'The two cannot be used simultaneously') and Eventing (function lifecycle operations versus the Eventing rebalance operation, stated on both the Server and Capella copies of eventing-lifecycle). Two independent subject areas reaching for the same relation is the evidence that it is a schema-level primitive rather than a security detail. Distinct from mustUseInsteadWhen (a directed substitution rule) and from doesNotSupport (a capability absence, not a conflict between two present things).",
+  "relates_to_competency_question": "Which pairs of features cannot be enabled at the same time?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

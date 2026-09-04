@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/arbiter-node",
+  "label": "arbiter node",
+  "type": "a cluster node running NO services, added since Couchbase Server 7.6 to provide quorum arbitration and fast failover without hosting data or indexes. Created implicitly: a node added or joined with no services selected becomes one.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/manage/manage-nodes/create-cluster.md",
+  "evidence": [
+    "An arbiter node does not run any services.",
+    "In Couchbase Server 7.6 and later versions, you can deploy one or more arbiter nodes.",
+    "If you do not select any **Services**, Couchbase Server adds the node as an [arbiter node](../../learn/clusters-and-availability/nodes.md#adding-arbiter-nodes)."
+  ],
+  "note": "The strongest single answer to round 26's framing question - does administration-procedure material expose mechanism the reference tree cannot? The reference page (services.md) says arbiter nodes exist and what they are for. Only the procedures say how you get one, and the answer is a NEGATIVE UI action: you select no services. Three separate procedures (create-cluster, add-node-and-rebalance, join-cluster-and-rebalance) each state it independently, which is why it recurs at 4. A feature whose activation condition is the absence of an input is invisible to any extraction that only reads reference prose, because reference prose describes what things are, not what happens when you leave a form blank.",
+  "relates_to_competency_question": "How does an administrator create a node that runs no services?"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/signs-certificate-for",
+  "label": "signs certificate for",
+  "recurrence": 3,
+  "type": "subject = a certificate (root or intermediate) acting as issuer; object = the certificate kind it issues. Expresses one hop of a certificate chain.",
+  "note": "Completes the certificate family's shape. verifiesIdentityOf (already promoted) points from a trust store to the party it validates - the RUNTIME check; this points from an issuer to what it issues - the ISSUANCE structure. Both were needed and only the first existed, which is why the registry could describe certificate validation but not certificate hierarchy: it had no way to say that an intermediate certificate signs node, client and further intermediate certificates, which is the fact every rotation procedure depends on.",
+  "relates_to_competency_question": "What can each kind of certificate in the chain issue?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

@@ -1,0 +1,72 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/xdcr-differ",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/xdcr-differ.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:xdcrdiffer",
+      "label": "xdcrDiffer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a diagnostic/verification utility, included in the Server installation package, that acts as its own DCP consumer against BOTH the source and target clusters of an XDCR replication and reports missing or mismatched documents. First contact anywhere in the corpus, and the clearest confirmation in this batch of the brief's own prediction: this is genuinely new UI/tool-only vocabulary with no reference-page twin. Round 20's xdcr-reference/ tree documents filtering, settings, and security/networking - never verification or diffing - and Capella's own XDCR pages (round 7) have no equivalent tool at all, since Capella exposes no comparable node-level diagnostic-binary surface."
+    },
+    {
+      "candidate_id": "protocol:dcp",
+      "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:xdcrdiffer",
+      "predicate": "usesProtocol",
+      "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesProtocol)",
+      "evidence": "`xdcrDiffer` acts as a Database Change Protocol (DCP) consumer and creates DCP streams from the Data nodes."
+    },
+    {
+      "subject": "tool:xdcrdiffer",
+      "predicate": "requiresCapability",
+      "object": "xdcr:replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability) - only meaningful when comparing two already-XDCR-linked clusters",
+      "evidence": "The `xdcrDiffer` utility helps you verify data consistency between XDCR clusters by comparing document metadata and values, and reporting missing or mismatched documents."
+    },
+    {
+      "subject": "tool:xdcrdiffer",
+      "predicate": "requiresDedicatedNode",
+      "object": "a node not serving Data service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresDedicatedNode) - loose fit: a strong recommendation rather than a hard placement requirement, but the same 'run elsewhere so as not to compete with production services' shape",
+      "evidence": "Run the xdcrDiffer utility on a cluster node that does not serve Data service, as the utility can consume significant resources. You can also run it on an arbiter node, which does not run any services."
+    },
+    {
+      "subject": "tool:xdcrdiffer",
+      "predicate": "hasDefaultValue",
+      "object": "SHA-512 digest per document value",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasDefaultValue) - loose fit: describes the fixed comparison mechanism rather than a configurable setting's default",
+      "evidence": "`xdcrDiffer` collects each document's metadata and generates a SHA-512 digest of its value."
+    },
+    {
+      "subject": "tool:xdcrdiffer",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "the xdcrDiffer GitHub repository build-from-source workflow",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (retainedForLegacyCompatibility) - loose fit: describes a superseded distribution mechanism rather than a superseded syntax/option, but matches the predicate's shape of 'the object is the modern construct that supersedes the subject'",
+      "evidence": "`xdcrDiffer` is a diagnostic utility included in the Server installation package for convenient access. Previously, you'd build this utility from source using the xdcrDiffer GitHub repository."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / requiresEdition",
+    "finding": "No role, privilege, or edition badge appears anywhere on this page - the utility is presented as available to whoever has command-line access to a cluster node and the credentials for both clusters, with no Server-RBAC gate stated at all."
+  },
+  "cross_component_finding": "THIS IS THE BATCH'S CLEANEST ANSWER TO THE DISPATCH BRIEFING'S OWN NAMED QUESTION ABOUT xdcr-differ.md. It DOES introduce genuinely new UI-only (more precisely, tool-only) vocabulary: tool:xdcrdiffer has no reference-page twin anywhere in the corpus, unlike almost everything else in this batch, which reuses the xdcr:* family built from round 7 (Capella) and round 20 (server/8.0/xdcr-reference/). The mechanism it exercises (DCP consumption, protocol:dcp) is itself already promoted from unrelated architecture pages, so even this page's one genuinely new concept still composes out of an old primitive rather than requiring a second new one."
+}

@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/recover-nodes",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/recover-nodes.md",
+  "concepts": [
+    { "candidate_id": "server:node-recovery", "label": "Node recovery",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in failover-hard.json (this batch); this page is its dedicated task page and supplies the full definition" },
+    { "candidate_id": "server:graceful-failover", "label": "Graceful failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in fail-nodes-over.json (this batch); this page's own worked examples use graceful, not hard, failover as the recovery precondition" },
+    { "candidate_id": "server:rebalance", "label": "rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:full-recovery", "label": "Full recovery",
+      "registry_status": "minted", "reused_or_minted": "minted - one of the two recovery-type values (recoveryType=full); page defers the full/delta distinction itself to a conceptual page (learn/clusters-and-availability/recovery.md) not read in this batch, so only the enum membership fact is captured here, not the mechanism difference" },
+    { "candidate_id": "server:delta-recovery", "label": "Delta recovery",
+      "registry_status": "minted", "reused_or_minted": "minted - sibling of server:full-recovery (recoveryType=delta)" }
+  ],
+  "relations": [
+    { "subject": "server:node-recovery", "predicate": "requiresPriorExecutionOf", "object": "server:graceful-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "After failover has occurred, before the failed over node has been rebalanced out of the cluster, the node can be _recovered_, and thereby reintegrated into the cluster." },
+    { "subject": "server:full-recovery", "predicate": "isSubtypeOf", "object": "server:node-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "There are two options for recovery, which are _full_ and _delta_." },
+    { "subject": "server:delta-recovery", "predicate": "isSubtypeOf", "object": "server:node-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "There are two options for recovery, which are _full_ and _delta_." },
+    { "subject": "server:rebalance", "predicate": "completes", "object": "server:node-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The row specifies `REBALANCE to finish full recovery`: therefore, left-click the **Rebalance** button to apply full recovery." },
+    { "subject": "server:node-recovery", "predicate": "doesNotSupport", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call: recovery can be cancelled only up until the completing rebalance runs, captured here as recovery not supporting a cancellation path once rebalance has run",
+      "evidence": "Recovery can be aborted, by left-clicking on the **CANCEL ADD BACK** button." },
+    { "subject": "server/8.0/manage/manage-nodes/recover-nodes", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "There are two options for recovery, which are _full_ and _delta_. These are explained in [Recovery](../../learn/clusters-and-availability/recovery.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "isVariantOf / differsFrom",
+    "finding": "This page names full and delta recovery as a closed pair and shows the API surface for choosing between them (recoveryType=full|delta) but never explains the actual mechanism difference itself - that is entirely deferred to learn/clusters-and-availability/recovery.md, which round 11-12's conceptual sweep may or may not have already covered (not verified in this batch, since that page is out of scope). This procedural page is therefore evidence that a real full/delta distinction exists and is REST/CLI-addressable, without itself being evidence of what the distinction consists of."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

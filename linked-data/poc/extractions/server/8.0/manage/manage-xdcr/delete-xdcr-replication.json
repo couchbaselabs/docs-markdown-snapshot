@@ -1,0 +1,34 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/delete-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/delete-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-reference.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/delete-xdcr-reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Once a replication has been deleted, you may also wish to delete the _reference_ on which it was based. See [Delete a Reference](delete-xdcr-reference.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / cascadesDeletionTo",
+    "finding": "This page is almost entirely a thin click-through/CLI/REST procedure (delete, confirm, done) with no new access-control or structural fact of its own. It does not restate create-xdcr-reference.json's own constraint that a reference cannot be deleted while a replication depends on it - the constraint appears only on the reference side, never as a mirrored statement here on the replication side ('you must delete replications before the reference', for example, is implied by the Next Steps ordering but never asserted in prose)."
+  },
+  "cross_component_finding": "This page's REST example ('If the call is successful, no output is displayed') is a small but real contrast with delete-xdcr-reference.md's own REST example (this same batch), which DOES return a body (`\"ok\"`) on success - two sibling delete endpoints in the same feature area with different, undocumented response-body conventions. Not modeled as a relation since no page states the asymmetry is deliberate; recorded here as a documentation-consistency observation."
+}

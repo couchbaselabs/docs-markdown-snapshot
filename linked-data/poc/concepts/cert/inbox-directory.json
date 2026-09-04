@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/inbox-directory",
+  "label": "inbox directory",
+  "type": "the per-node filesystem directory Couchbase Server reads certificates, private keys and related files from, with a `CA` subdirectory for trusted root certificates. The delivery mechanism for every server-side certificate operation: files are copied in, then loaded via the UI, CLI or REST.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-security/configure-server-certificates.md",
+  "evidence": [
+    "The inbox directory is where Couchbase Server looks for certificate, key, and related files.",
+    "Couchbase Server expects to find the root certificate in a subdirectory named `CA` in the `inbox` directory.",
+    "Copy the CA into the inbox/CA directory, then load all trusted CAs.",
+    "Ensure that the private key for the node certificate has been copied to the inbox folder of the current node."
+  ],
+  "note": "A filesystem convention that every certificate procedure depends on and that no reference page in the corpus names. It is also the only place in the round's scope where the administrative interface is 'put a file in a directory' rather than an API - which is why the certificate procedures all have a manual step that cannot be done through the Web Console at all.",
+  "relates_to_competency_question": "Where does a certificate file have to be placed before Couchbase Server will load it?"
+}

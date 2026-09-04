@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-0-2",
+  "label": "Couchbase Server 7.0.2",
+  "type": "a Couchbase Server maintenance release that several features are gated on: IPv4-only/IPv6-only cluster options, additional UI-based node-initialization options, standard index storage for Ephemeral buckets, and Search-service server-group-aware replica placement.",
+  "promoted": true,
+  "recurrence": 7,
+  "documented_at": "server/current/manage/manage-nodes/create-cluster.md",
+  "evidence": [
+    "(Note that the **IPv4-only** and **IPv6-only** options are available only with Couchbase Server Version 7.0.2 and later.)",
+    "Note that in Couchbase Server Version 7.0.2 and later, UI-based initialization provides _additional options_.",
+    "Starting with Couchbase Server release 7.0.2, the Search service supports Server Groups/Rack zone aware replica placement."
+  ],
+  "note": "The highest-recurrence unpromoted version: id in the corpus at round 26 (7 files), and a maintenance release rather than a minor - which is why nobody promoted it: version records get filed when a round is ABOUT a release. Four of its seven files are round 26's own, because a maintenance release is where operational gating actually lands."
+}

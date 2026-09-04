@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/manage/troubleshoot/troubleshoot",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/troubleshoot/troubleshoot.md",
+  "concepts": [
+    { "candidate_id": "log:log-file", "label": "Log file (Couchbase Server)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - first minted in this batch's manage-logging.json." },
+    { "candidate_id": "tool:cbcollect-info", "label": "cbcollect_info",
+      "registry_status": "promoted", "reused_or_minted": "reused - named directly as the CLI way to generate a diagnostic report for Couchbase Support." }
+  ],
+  "relations": [
+    { "subject": "log:log-file", "predicate": "seeAlso", "object": "server/8.0/manage/manage-logging/manage-logging",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Couchbase _log files_ should be used when determining key events that have occurred on Couchbase Server. A complete explanation is provided in [Manage Logging](../manage-logging/manage-logging.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This overview page names two ways to generate a diagnostic report ('Click the Collect info tab on the Log page' or 'Run cbcollect_info on each node') but links to neither manage-logging.md's own 'Collect Logs' section (which documents the exact same Collect Information UI tab in full) nor core-files.md (the sibling troubleshoot/ page on core dumps, mentioned nowhere on this page despite the page's own description promising 'how you can... handle core files')."
+  },
+  "cross_component_finding": "The page's own frontmatter description reads 'Common errors, general tips, and an account of how to handle core files' and the body text promises the reader will 'learn some general tips to keep in mind when troubleshooting your cluster, the various log files you might want to look into when troubleshooting an issue, and how you can report an issue to the Couchbase support' - but the actual body contains none of the promised 'core files' content (that lives entirely on the separate core-files.md page, never linked from here) and no per-log-file guidance (that lives on manage-logging.md, linked only once in passing). The page's promised scope and its actual content diverge, with the real content split across common-errors.md and core-files.md instead.",
+  "cross_product_finding": ""
+}

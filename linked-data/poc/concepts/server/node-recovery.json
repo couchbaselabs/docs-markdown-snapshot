@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/node-recovery",
+  "label": "node recovery",
+  "type": "reintegrating a failed-over node into the cluster BEFORE it has been rebalanced out, in one of two modes - full or delta. Can be aborted before the rebalance that applies it.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-nodes/recover-nodes.md",
+  "evidence": [
+    "After failover has occurred, before the failed over node has been rebalanced out of the cluster, the node can be _recovered_, and thereby reintegrated into the cluster.",
+    "There are two options for recovery, which are _full_ and _delta_.",
+    "Recovery can be aborted, by left-clicking on the **CANCEL ADD BACK** button."
+  ],
+  "note": "The 'before it has been rebalanced out' window is the operative fact and is a workflow property, not a property of the node. Its two modes are promoted with it under the family exception - see server:full-recovery.",
+  "relates_to_competency_question": "After a failover, in what window can the node be brought back, and in what modes?"
+}

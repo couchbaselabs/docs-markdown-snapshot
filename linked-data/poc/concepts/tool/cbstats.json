@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbstats",
+  "label": "cbstats",
+  "type": "the per-node CLI statistics tool, reached over the KV port, used for stats the Web Console does not surface - collection change-history status (`collections-details`), vBucket details, and the clock-drift counters that timestamp-based conflict resolution depends on.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/monitor/xdcr-monitor-timestamp-conflict-resolution.md",
+  "evidence": [
+    "The change-history status of each collection can be returned by means of the `cbstats` tool, with the arguments `collections-details`.",
+    "Drift can be monitored by means of the [cbstats](#cli:cbstats/cbstats-intro.adoc) tool",
+    "On the command-line, statistics can be managed with the [cbstats](../../cli/cbstats-intro.md) tool."
+  ],
+  "note": "Joins the promoted CLI-tool family (cbbackupmgr, cbcollect-info, cbexport, cbimport, cbq-shell, cbsqlitedump). Its second evidence quote carries an unresolved Antora cross-reference - `#cli:cbstats/cbstats-intro.adoc` leaked into the Markdown snapshot as literal link text - which is one of two such leaks round 26 found and filed as docs-issues."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/n1ql/query-memory-quota",
+  "label": "queryMemoryQuota",
+  "type": "the cluster-level Query Service setting that caps memory per request, where 0 - the default - means no soft memory limit at all.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "When set to `0` (the default), there is no soft memory limit.",
+    "* To set a memory quota with the REST API, see the cluster-level [queryMemoryQuota]"
+  ],
+  "note": "Filed under the parameter's own name because that is what both the Web Console settings screen and the REST API call it; there is no separate prose term to be tier-neutral about. An unbounded-by-default resource limit, the same shape of finding as storage:filesystem-free-space-limit and security:session-management - three protections in one round that are off or unlimited until an administrator intervenes."
+}

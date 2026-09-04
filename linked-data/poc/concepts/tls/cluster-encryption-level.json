@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/cluster-encryption-level",
+  "label": "cluster encryption level",
+  "type": "the level of encryption imposed on inter-node communication, settable only after node-to-node encryption is enabled: `control` (the default when enabling), `all`, or `strict` - where `strict` additionally forbids unencrypted client connections. Loopback traffic within a single node stays exempt even under `strict`.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "server:cluster-encryption-level"
+  ],
+  "aliases_note": "Two spellings for one setting, licensed by the procedure page that uses both wordings for the same control: \"Establish an appropriate encryption-level for the cluster\" alongside the `clusterEncryptionLevel` REST/CLI parameter it is set with. Filed under the tier-neutral kebab name in the tls: subject area rather than under the parameter spelling. 2 + 2 files, zero overlap.",
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "evidence": [
+    "The cluster encryption-level can only be configured after cluster encryption itself has been _enabled_.",
+    "The `--enable` flag enables node-to-node encryption for the cluster, at the default level of `control`.",
+    "`strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients.",
+    "If node-to-node encryption needs to be disabled, ensure that the `clusterEncryptionLevel` for the cluster is set to `control` first."
+  ],
+  "note": "The disable path is the interesting half and appears only in the procedures: you cannot simply turn node-to-node encryption off, you must first step the level back down to `control`. That is an ordering constraint on a teardown, the category of fact a reference page has no reason to carry, and round 26 found it stated on two different node-management pages and on neither security reference page."
+}

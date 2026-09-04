@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/subject-alternative-name",
+  "label": "Subject Alternative Name (SAN)",
+  "type": "the X.509 certificate extension Couchbase Server requires a node certificate to use to identify its node (`subjectAltName = DNS:node2.cb.com`), and one of the places a CLIENT certificate can carry the username Couchbase authenticates as. The IETF-sanctioned replacement for the Subject Common Name.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/learn/security/certificates.md",
+  "evidence": [
+    "The node certificate for each server in the cluster must specify its node name as a Subject Alternative Name.",
+    "The `DNS` name, provided as a Subject Alternative Name for the certificate.",
+    "The following `subjectAltName` statement allows an email address to be specified as the basis for the username.",
+    "Cannot validate certificate for _<ip-address>_ because it doesn't contain any IP SANs"
+  ],
+  "note": "Recurs across the reference page, two configuration procedures and a troubleshooting page - and it is the troubleshooting page that earns it a record, because the error text 'doesn't contain any IP SANs' is the form in which an administrator actually meets this concept. Round 26's cert: additions are the strongest counter-example to the round's own hypothesis that the security vocabulary was already complete: the tls:/cert: families were built from reference material and were missing both certificate fields that node and client identity are actually keyed on.",
+  "relates_to_competency_question": "What must a node's certificate contain for the cluster to accept it?"
+}

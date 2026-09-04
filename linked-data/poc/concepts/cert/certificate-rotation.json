@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cert/certificate-rotation",
+  "label": "certificate rotation",
+  "type": "replacing a cluster's certificates without downtime - node certificates one at a time under a newly uploaded CA, with the old CA removed last. Requires no restart of the cluster or of any node since 7.1.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-security/rotate-server-certificates.md",
+  "evidence": [
+    "This may be used during CA certificate rotation: a new CA is uploaded, node certificates are changed one by one, and finally, the old CA is removed.",
+    "Certificate-rotation on the server-side does not require that either the cluster or any of its nodes be restarted.",
+    "No root or intermediate certificate should ever be used to issue certificates with an expiration date later than that of the issuer itself."
+  ],
+  "note": "The multiple-CA capability added in 7.1 exists in order to make this procedure possible - the reference page (using-multiple-cas.md) states the capability, the procedure states the ordering that uses it, and neither alone tells an administrator how to rotate a CA safely. Round 26 also recorded what all three certificate pages omit: no revocation mechanism (CRL or OCSP) is documented anywhere in the scope, which is filed as a docs-issue."
+}

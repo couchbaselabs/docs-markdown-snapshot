@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/pause-xdcr-replication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/pause-xdcr-replication.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:replication-status-enum",
+      "label": "XDCR Replication status enum",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused, WITH A THIRD-VOCABULARY FINDING - minted in cloud/clusters/xdcr/manage-xdcr-replications.json with values Creating/Active/Pausing/Paused/Deleting/Create Error/Delete Error. This page's own status words are 'replicating' (Web Console UI, lowercase), 'paused' (CLI --list output), and 'running'/'notRunning' (REST /pools/default/tasks). None of 'replicating', 'running', or 'notRunning' appears in the Capella enum at all, and Capella's 'Active' never appears here - a same-mechanism, three-vocabulary split (Capella UI-label case / Server UI-label case / Server REST-layer case) discovered exactly by the side-by-side reading this batch's brief calls for. Deliberately NOT related via renamedFrom: that predicate is for a naming-history fact over time, and this is a simultaneous cross-layer/cross-product spelling difference with no page stating either supersedes the other - recorded here in prose rather than forced onto an ill-fitting predicate."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:replication-status-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "This shows the single replication that is in progress. Note that the **status** column displays a status of `replicating`."
+    },
+    {
+      "subject": "xdcr:advanced-settings",
+      "predicate": "configuredVia",
+      "object": "settings/replications REST endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configuredVia)",
+      "evidence": "Secondly, use the `settings/replications` URI with the `pauseRequested` flag set to `true`, to pause the replication:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role is named on this page for who may pause a replication - the pause/resume action is presented as available to whoever is already viewing the XDCR Replications screen, deferring silently to prepare-for-xdcr.md's Full/Cluster/XDCR Administrator gate."
+  },
+  "cross_component_finding": "THE THREE-VOCABULARY STATUS SPLIT IS THIS BATCH'S CLEAREST ANALOGUE TO ROUND 20'S xdcr:conflict-resolution-method NAMING-INCONSISTENCY FINDING. Round 20 found the SAME enum named two ways across two reference pages; this batch finds the SAME lifecycle state (replication is currently running/replicating/not-paused) named THREE ways across Capella's UI ('Active'), Server's UI ('replicating'), and Server's own REST layer ('running'/'notRunning') - none of them sharing a spelling, and no page in the corpus reconciling any two of the three. The registry's xdcr:replication-status-enum concept as it stands only documents the Capella vocabulary; this record supplies the missing Server-side value set for reconciliation to fold in or keep separate."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/replication",
+  "label": "XDCR replication",
+  "type": "a configured, running data flow from a source bucket/keyspace to a target one, addressed through a single remote-cluster reference. Pausable and resumable (`pauseRequested`), deletable, filterable, and mapped either implicitly (same keyspace on both sides) or explicitly. The same replication is called outgoing on the source cluster and incoming on the target.",
+  "promoted": true,
+  "recurrence": 14,
+  "aliases": [
+    "clusters:replication",
+    "xdcr:outgoing-replication",
+    "xdcr:incoming-replication"
+  ],
+  "aliases_note": "Three folds, each separately licensed. `xdcr:outgoing-replication` and `xdcr:incoming-replication` are folded on the page that mints them, which says outright that they are one object seen from two ends: \"When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication.\" That is a synonymy statement about a single replication, not two constructs, and the extraction correctly recorded it with `isSynonymOf`. `clusters:replication` is folded because its own Capella page routes the reader to XDCR for the definition - \"For more information about XDCR, see [Cross Data Center Replication (XDCR)](xdcr/xdcr.md)\" - so it is the same construct under a Capella-side prefix. 12 + 2 + 1 + 1 files, 14 in union.",
+  "documented_at": "server/current/manage/manage-xdcr/xdcr-management-overview.md",
+  "evidence": [
+    "Once a reference has been registered on the local cluster, it can be specified as the target for a _replication_.",
+    "Each replication uses a single _reference_, which has already been created.",
+    "When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication.",
+    "Replications will be deleted. Replications are deleted for both source _and_ target clusters."
+  ],
+  "note": "The highest-recurrence concept round 26 promoted, and one that had gone unfiled for 25 rounds because it was minted under four different names in four different scopes. Every one of the four spellings is defensible in isolation; together they are the round's best illustration of why recurrence must be recomputed over the WHOLE corpus rather than tracked as state - none of the four batches that used a spelling could see that the other three existed.",
+  "relates_to_competency_question": "What is an XDCR replication, and is an incoming replication a different thing from an outgoing one?"
+}

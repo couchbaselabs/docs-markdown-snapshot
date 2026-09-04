@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/node-join",
+  "label": "node join",
+  "type": "the node-initiated way to grow a cluster: an unprovisioned node joins itself to a named cluster. Has the same effect as node addition, requires a rebalance, and is NOT supported by the CLI - UI and REST only.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-nodes/join-cluster-and-rebalance.md",
+  "evidence": [
+    "As well as supporting a cluster's adding a node to itself, Couchbase Server also supports a node's joining itself to a cluster.",
+    "Note also, however, that a node _cannot_ join itself to a cluster if the node has already been provisioned.",
+    "Node-join is not supported by the CLI."
+  ],
+  "note": "The `hasEquivalentEffectAs` pair (addition/join) plus one asymmetry the reference tree does not carry: join has no CLI. Round 26 found surface-availability asymmetries like this repeatedly - the same operation offered by a different subset of UI/CLI/REST - and they are only ever stated on the procedure page, because a concept has no surface."
+}

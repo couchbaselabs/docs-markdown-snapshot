@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-role-anchors-preserve-pre-8-0-names",
+  "type": "docs-issue",
+  "issueType": "naming-inconsistency",
+  "description": "roles.md's 8.0 role headings carry anchors named after the roles they REPLACED. The heading 'Local User Admin' has the anchor `#local-user-security-admin`, and 'External User Admin' has `#external-user-security-admin` - both the pre-8.0 names, which the page's own prose says no longer denote these roles: 'This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role.' Every cross-reference in the corpus therefore points at the right place with the wrong name, e.g. '[Local User Admin](#local-user-security-admin)' in the Backup Full Admin note on the same page. Nothing is broken, so nothing will surface this - but the anchors are the stable, linkable identifiers for these roles, they are now the only place in the 8.0 docs where the retired names still appear as if current, and anyone searching the page source or an inbound link for `security-admin` will match two roles that are deliberately distinct after the split.",
+  "about": [
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "relatedIssues": [
+    "https://docs.couchbase.com/ld/docs-issues/server-role-label-does-not-match-internal-name"
+  ]
+}

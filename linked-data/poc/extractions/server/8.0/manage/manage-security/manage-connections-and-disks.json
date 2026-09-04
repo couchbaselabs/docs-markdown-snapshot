@@ -1,0 +1,89 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-connections-and-disks",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-connections-and-disks.md",
+  "concepts": [
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "port:8092",
+      "label": "Port 8092",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - named alongside port:8091 as one of 'the Couchbase Server administrative ports' to be firewall-restricted. Not previously extracted anywhere in the corpus; the page gives no further detail on what specifically it serves."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Administrator",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:master-password",
+      "label": "Master Password",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named here as one of the secrets whose confidentiality must be protected by network/file security measures"
+    },
+    {
+      "candidate_id": "encryption:third-party-disk-encryption",
+      "label": "Transparent data encryption (3rd-party, on-disk)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own named mechanism: full-disk or file-level encryption provided by a 3rd-party vendor (LUKS, Thales CipherTrust, Protegrity) beneath Couchbase Server, protecting data/index/config/password files at rest at the OS/filesystem layer. Genuinely distinct from the promoted encryption:native-encryption-at-rest, which is Couchbase Server's OWN built-in encryption of the same broad data classes (bucket data, logs, configuration, audit data) at the application layer - see cross_component_finding for the notable absence of any cross-reference between the two."
+    },
+    {
+      "candidate_id": "tool:luks",
+      "label": "Linux Unified Key Setup (LUKS)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific 3rd-party disk-encryption tool this page gives a full worked procedure for (partition format/unlock/mount/persist across reboot via fstab and crypttab)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "encryption:master-password",
+      "predicate": "requiredForApiAccess",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - a stretch of requiredForApiAccess's usual shape (a credential prerequisite for reaching an API surface) applied here to a broader network-security prerequisite; flagged as a judgment call since the page's own framing is a recommendation ('ensure confidentiality of') rather than a hard technical gate",
+      "evidence": "Ensure the confidentiality of passwords defined by the Full Administrator at cluster-initiallization; of all others used for the **Admin** and **Cluster Admin** roles; and of the _master password_."
+    },
+    {
+      "subject": "tool:luks",
+      "predicate": "operatesOnFormat",
+      "object": "encryption:third-party-disk-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - LUKS is one implementation of the general transparent-data-encryption mechanism this page names",
+      "evidence": "encrypt all important data and index storage-locations, using _transparent data encryption_, provided by 3rd party on-disk encryption software-vendors; which denies data-access to anyone who either does not possess an appropriate encryption-key, or is otherwise non-compliant with the configured security policy."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-connections-and-disks",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-system-secrets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "See [Manage System Secrets](manage-system-secrets.md) for details on how to define and use the master password."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-connections-and-disks",
+      "predicate": "seeAlso",
+      "object": "server/8.0/install/install-ports",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For a complete list of ports, see [Couchbase Server Ports](../../install/install-ports.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - no cross-reference to native encryption at rest",
+    "finding": "This page's entire 'Securing On-Disk Data: Encryption at Rest' section recommends ONLY 3rd-party, OS/filesystem-level transparent data encryption (LUKS, CipherTrust, Protegrity) for data, index, configuration, and password files - the exact same data classes (data/index/config/password) that manage-native-encryption-at-rest.md, this batch's own sibling page, documents Couchbase Server encrypting natively at the application layer. Neither page names, links to, or even acknowledges the other's existence anywhere in either page's text. A reader landing on this page (titled 'Manage Connections and Disks', filed as a security-recommendations page) would reasonably conclude that 3rd-party disk encryption is the ONLY way to protect data at rest on Couchbase Server, since native encryption at rest is never mentioned as an alternative or complement. This is the clearest concrete instance in the batch of the round's hypothesis-1 pattern (a genuinely separate, undocumented-as-related mechanism) turned inside out: two fully-documented, overlapping mechanisms for the same stated goal (protecting on-disk data) exist in the same directory of the same doc tree, and nothing connects them."
+  },
+  "cross_component_finding": "'Turn on the OS-level auditing facility' (recommended for jump-server access logging) is a DIFFERENT mechanism from the promoted security:auditing concept (Couchbase Server's own per-node audit_event log, covered elsewhere in this batch's registry excerpt) - this page's auditing is OS-level (e.g. auditd), external to Couchbase Server entirely, and the page does not connect the two. Not modeled as a relation to avoid a mis-objected triple (the promoted concept's own definition explicitly warns against confusing it with unrelated audit/logging facilities); recorded here as a finding instead, per the round's own guidance not to force a relation the page's content does not actually support.",
+  "cross_product_finding": "n/a - no cross-product content on this page."
+}

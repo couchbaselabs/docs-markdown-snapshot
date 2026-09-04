@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/manage/import-documents/import-documents",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/import-documents/import-documents.md",
+  "concepts": [
+    { "candidate_id": "ui:import-documents-panel", "label": "Import Documents panel (Couchbase Web Console)",
+      "registry_status": "minted", "reused_or_minted": "minted - the Web Console panel for importing JSON/CSV/TSV files, part of the Documents screen; no promoted concept covers it." },
+    { "candidate_id": "tool:cbimport", "label": "cbimport",
+      "registry_status": "promoted", "reused_or_minted": "reused - named directly as the CLI alternative ('cbimport json', 'cbimport csv')." },
+    { "candidate_id": "import:supported-file-format", "label": "Import Documents supported file formats: JSON List, JSON Lines, CSV, TSV",
+      "registry_status": "minted", "reused_or_minted": "minted - scheme. The four file formats the Import panel's 'Parse File As' menu recognizes; minted as a coarse scheme in the same pattern the registry already uses for closed value sets (e.g. index-state, search:doc-config-mode-enum) since no individual format is yet referenced elsewhere on its own." },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - one of the three Keyspace drop-downs on the Import panel." },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - the required destination for any import." },
+    { "candidate_id": "data:document", "label": "Document",
+      "registry_status": "promoted", "reused_or_minted": "reused - the artifact the import panel parses each file's records into." },
+    { "candidate_id": "service:query-service", "label": "Query service",
+      "registry_status": "promoted", "reused_or_minted": "reused - stated as a hard prerequisite for the Web Console import path specifically." }
+  ],
+  "relations": [
+    { "subject": "ui:import-documents-panel", "predicate": "mustUseInsteadWhen", "object": "tool:cbimport",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The **cbimport json** and **cbimport csv** command-line utilities should be used in preference to Couchbase Web Console whenever high-performance importing is required; and especially when the data-set to be imported is greater in size than 100 MB." },
+    { "subject": "ui:import-documents-panel", "predicate": "reliesOnMechanism", "object": "service:query-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Before attempting to import data with Couchbase Web Console, ensure that the **Query Service** has been deployed on the cluster: data-import with Couchbase Web Console depends on this service." },
+    { "subject": "ui:import-documents-panel", "predicate": "createsOnAction", "object": "data:document",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server will parse the data within the file, thereby creating one or more JSON documents; which will be stored in the [Destination Bucket](#destination-bucket)." },
+    { "subject": "ui:import-documents-panel", "predicate": "implicitlySetsParameter", "object": "server:scope",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "In the previous example, the bucket **testBucket** was selected, but no change was made to the default scope and collection settings; which were both **\\_default**." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page never states which RBAC role is required to use the Import Documents panel, unlike the Backup UI (Full Admin) and the statistics Dashboard (Full Admin/Bucket Admin/etc.) elsewhere in this batch. Since importing writes data into a bucket, the omission is a real gap - a reader has no way to know from this page alone whether Bucket Admin-level access suffices."
+  },
+  "cross_component_finding": "The 'Value of Field' document-ID option describes upsert-like behavior in prose without ever naming it as such: 'when the selected field contains a value that is not unique across the bucket, the document will be imported into the bucket as an _update_ to a document that is already resident within the bucket, and shares the id specified by the value' - functionally the same replace-if-exists semantics as the promoted n1ql:upsert (UPSERT), but the page draws no connection between the two and uses the word 'update' rather than 'upsert'.",
+  "cross_product_finding": ""
+}

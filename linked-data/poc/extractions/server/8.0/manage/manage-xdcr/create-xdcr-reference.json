@@ -1,0 +1,128 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/create-xdcr-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/create-xdcr-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this is the concept's own defining page. 'A _reference_ is the registration, on the local cluster, of details that identify a target cluster for XDCR replication.' First contact anywhere in the corpus for the reference-registration object itself, as opposed to the settings/filtering mechanisms the xdcr-reference/ tree (round 20) documents. Genuinely UI-procedure-only vocabulary: the reference tree never needed to name the act of registering a target cluster, because it assumes one already exists."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - as the source-side administrator role required to set up the reference"
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:xdcr-admin",
+      "label": "XDCR Admin",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/learn/security/roles.json"
+    },
+    {
+      "candidate_id": "role:xdcr-inbound",
+      "label": "XDCR Inbound (target-cluster receiving role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a target-side role, granted to the credential a reference authenticates with, that permits one or more buckets to RECEIVE documents from an incoming XDCR replication. Structurally distinct from the source-side Full/Cluster/XDCR Administrator roles that gate MANAGING XDCR: this one gates being a valid replication destination. server/8.0/learn/security/roles.json's own notable_absence explicitly lists 'XDCR Inbound' among roles deliberately NOT extracted from roles.md in that batch ('per the brief's explicit instruction to extract selectively rather than mechanically') - so this is this role's first full extraction anywhere in the corpus, discovered exactly where the brief predicted admin-procedure-only vocabulary would surface."
+    },
+    {
+      "candidate_id": "xdcr:alternate-address-target",
+      "label": "XDCR alternate-address target",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/xdcr-reference/xdcr-security-and-networking.json. This page's UI 'Network Type' control (Auto / Force alternate address / Force internal address) is the Web Console's own configuration surface for the same mechanism that reference page's 'network_type=external' REST parameter configures."
+    },
+    {
+      "candidate_id": "auth-mechanism:username-password",
+      "label": "Username and password authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the default, non-secure credential a reference is created with on this page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:reference",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - the source-cluster administrator setting up the reference must hold one of these three roles",
+      "evidence": "Note that the administrator setting up XDCR must have the _Full Admin_, _Cluster Admin_ or _XDCR Admin_ role, on the source cluster."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Note that the administrator setting up XDCR must have the _Full Admin_, _Cluster Admin_ or _XDCR Admin_ role, on the source cluster."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "requiresServerRole",
+      "object": "role:xdcr-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole)",
+      "evidence": "Note that the administrator setting up XDCR must have the _Full Admin_, _Cluster Admin_ or _XDCR Admin_ role, on the source cluster."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "requiresServerRole",
+      "object": "role:xdcr-inbound",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresServerRole) - the TARGET-side credential the reference authenticates with must hold this role (or Full), the mirror image of the source-side triple above",
+      "evidence": "The possible roles are _Full_, and _XDCR Inbound_ (either for the individual bucket that will later be specified as the target bucket for the replication, or for all buckets on the target cluster)."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (authenticatesVia)",
+      "evidence": "A username and password, associated on the target cluster with a role that allows one or more buckets to receive documents from an XDCR replication."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "configurableVia",
+      "object": "xdcr:alternate-address-target",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (configurableVia)",
+      "evidence": "You can use either an alternate or internal network address of the target cluster for data replication; or let XDCR decide based on the provided IP or hostname:"
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "cascadesTo",
+      "object": "xdcr:replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (cascadesTo) - loose fit: an edit to the reference's security settings propagates forward to every replication built on it, rather than a deletion propagating",
+      "evidence": "However, you _can_ change the registered name of the target cluster, and you can change the security settings for the replication."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/create-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Once a reference to a target cluster has been defined, you can [Create a Replication](create-xdcr-replication.md)."
+    },
+    {
+      "subject": "xdcr:reference",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/secure-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Securing a connection is described in detail in [Secure a Replication](secure-xdcr-replication.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "cannotBeDeletedWhileInUse (no exact predicate fit)",
+    "finding": "The page states a genuine integrity constraint - 'if a reference is already associated with a replication, you cannot delete the reference; nor can you modify its target IP address' - that this registry has no clean predicate for: cascadesTo/cascadesDeletionTo describe deletion PROPAGATING, not being BLOCKED. Rather than force this onto an ill-fitting predicate or mint a new one for a single occurrence, the fact is recorded here in prose and as a cascadesTo relation on the weaker (edit-propagation) half of the same sentence, which does fit cleanly."
+  },
+  "cross_component_finding": "THE 'XDCR INBOUND' ROLE IS A CLEAN CONFIRMATION OF THIS BATCH'S SIDE-BY-SIDE-READING INSTRUCTION. server/8.0/learn/security/roles.json (a sibling round-26 batch, not round 20's reference tree) explicitly listed 'XDCR Inbound' among roles it deliberately did NOT extract, naming it by name in its own notable_absence field. This page is the first in the corpus to actually put that named-but-unextracted role into a real access-control relation - the kind of gap only visible by reading roles.json's own margin notes against this batch's procedure pages."
+}

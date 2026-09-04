@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-2-1",
+  "label": "Couchbase Server 7.2.1",
+  "type": "the Couchbase Server maintenance release from which Bloom filters for plasma back indexes are enabled by default.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-settings/general-settings.md",
+  "evidence": [
+    "From release 7.2.1 onward, Bloom filters for plasma back indexes are enabled by default.",
+    "During an upgrade, mixed mode clusters may have differing behaviour."
+  ],
+  "note": "A default-value change pinned to a maintenance release, stated identically on the settings procedure and the index storage-modes reference. Filed for the same reason as the other three version records this round: a version id is the join key between 'what the docs say now' and 'what an operator's cluster actually does', and the corpus states default changes by version far more often than by feature."
+}

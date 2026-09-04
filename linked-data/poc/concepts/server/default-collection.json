@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/default-collection",
+  "label": "default collection",
+  "type": "the `_default` collection automatically created inside every new bucket's default scope. Can be dropped, but once dropped cannot be recreated.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/data/scopes-and-collections.md",
+  "evidence": [
+    "Every created bucket is automatically given a _default scope_, and within it, a _default collection_.",
+    "Once dropped, the default collection cannot be recreated."
+  ],
+  "note": "The irreversibility is the reason this is a concept rather than a detail: it is the only drop operation in the round's scope that is documented as unrepeatable, and it is stated once, in one sentence, on a reference page - the management procedure for scopes and collections does not repeat the warning."
+}

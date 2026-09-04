@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/ui/couchbase-web-console",
+  "label": "Couchbase Web Console",
+  "type": "the cluster's browser administration interface, served on port 8091 by default (a different port where secure console access is configured), whose visible feature range is determined by the authenticated user's RBAC role - Full Administrator sees everything, other roles see less.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-ui/manage-ui.md",
+  "evidence": [
+    "Couchbase Web Console is typically accessible at port _8091_, of the host system, although the port number may be different if _secure_ console-access has been established.",
+    "If the user has been assigned the _Full Administrator_ role, they have complete access to all features.",
+    "Other roles limit the feature-range.",
+    "You cannot set a query setting for an individual node using the Couchbase Web Console or the command line."
+  ],
+  "note": "NAMESPACE COHERENCE: `ui:` is new in round 26 and is a SUBJECT AREA - Web Console surfaces, open membership. It COLLIDES with existing territory: tool:query-workbench is a Web Console panel filed in the CLI-binary namespace. The collision is resolved forward-only rather than by migration - from now on, console surfaces are filed under `ui:` and command-line binaries under `tool:`, and tool:query-workbench is left where it is as a recorded legacy exception (see reconciliation.md). Dissolving a member is per-member work whose destination is not a function of the id; stating the prefix rule is a one-line control that makes the right thing happen from here on.\n\nThe substantive finding this record carries is that the Web Console is ROLE-SHAPED: what an administrator can see is a function of RBAC, which means every UI-based procedure in the corpus is implicitly conditional on a role, and only some of them say so.",
+  "relates_to_competency_question": "What determines which parts of the Web Console an administrator can see?"
+}

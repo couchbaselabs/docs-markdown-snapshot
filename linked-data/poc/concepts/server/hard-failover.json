@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/hard-failover",
+  "label": "hard failover",
+  "type": "failover performed without waiting for vBucket availability - the fast, potentially lossy kind, and the kind automatic failover initiates. On a node whose vBuckets have no replicas it causes data loss; Couchbase Server refuses some attempts, which can be overridden with the CLI's `--force` flag alongside `--hard`.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-nodes/failover-hard.md",
+  "evidence": [
+    "Performing a hard failover on a node containing vBuckets that have no replicas on other nodes results in data loss.",
+    "The automatic initiation of hard failover is known as _automatic_ failover.",
+    "If hard failover must nevertheless be performed, the `failover` CLI expression should be re-entered: this time, with the `--force` flag used, in addition to the `--hard` flag."
+  ],
+  "note": "Its sub-threshold sibling server:unsafe-hard-failover (1 file) is deliberately NOT promoted: this record states the override mechanism directly from its own page's evidence and does not need to name the unsafe mode to say what it is. Round 26 also filed a docs-issue here - the refusal is reported as a CLI exit-504 in one place and as a Web Console message in another, with no statement that they are the same guard."
+}

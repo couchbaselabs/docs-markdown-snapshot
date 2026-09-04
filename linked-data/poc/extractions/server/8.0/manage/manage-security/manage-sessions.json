@@ -1,0 +1,23 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-sessions",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-sessions.md",
+  "concepts": [
+    { "candidate_id": "security:session-management", "label": "Sessions (Server security facility)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record - this whole page is the procedural detail behind that facility" }
+  ],
+  "relations": [
+    { "subject": "security:session-management", "predicate": "hasDefaultValue", "object": "0 seconds (no timeout)",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - datatype property, object is a literal per hasDefaultValue's declared shape",
+      "evidence": "Note that 0 seconds, which is the default, specifies that no timeout is applied." },
+    { "subject": "security:session-management", "predicate": "configuredVia", "object": "/settings/security (uiSessionTimeout)",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - REST surface used to SET the value",
+      "evidence": "Use the `/settings/security` URI, with the `uiSessionTimeout` flag specifying the number of _seconds_ to elapse" }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "'Sessions cannot be managed with the CLI' is stated explicitly ('The examples on this page indicate how to manage sessions by means of the UI and REST API respectively. Sessions cannot be managed with the CLI.') - a rare, explicit CLI-coverage gap worth recording since every other page in this batch offers UI/CLI/REST parity."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

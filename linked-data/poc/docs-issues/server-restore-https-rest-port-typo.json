@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-restore-https-rest-port-typo",
+  "type": "docs-issue",
+  "issueType": "factually-incorrect-content",
+  "description": "manage-backup-and-restore.md's restore procedure gives the secure REST API port as 18901: 'Include the REST API port - by default, 8091 for unencrypted HTTP and 18901 for secure HTTPS connections.' The secure counterpart of 8091 is 18091, which is what the rest of the documentation uses and what the registry holds as port:18091. 18901 is a digit transposition and belongs to no documented Couchbase service. An administrator following this instruction literally will fail to connect, with no clue that the port is the problem.",
+  "about": [
+    "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open"
+}

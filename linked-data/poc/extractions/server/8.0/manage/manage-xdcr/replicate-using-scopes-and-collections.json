@@ -1,0 +1,108 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/replicate-using-scopes-and-collections",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/replicate-using-scopes-and-collections.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:implicit-mapping",
+      "label": "XDCR implicit mapping (keyspace-to-keyspace)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch. This page is the concept's own fuller defining page: 'An _implicit_ mapping is one supported by XDCR whenever the same _keyspace_ exists within both the source and the target buckets.'"
+    },
+    {
+      "candidate_id": "xdcr:explicit-mapping",
+      "label": "XDCR explicit mapping (collection-to-collection)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on filter-xdcr-replication.json, this same batch. This page is the concept's own fuller defining page: 'An _explicit_ mapping between collections is one established by an administrator, so as to allow replication to occur between different keyspaces.'"
+    },
+    {
+      "candidate_id": "xdcr:collection-migration",
+      "label": "XDCR collection migration",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third, distinct mapping mode alongside implicit and explicit mapping: migrating a subset of documents (selected by a regular expression, not a keyspace match) from a single, undifferentiated `_default` collection into a purpose-created target collection. Structurally different from explicit mapping - explicit mapping remaps keyspace names, migration filters and redistributes documents FROM one keyspace INTO several, based on document content rather than location. First contact anywhere in the corpus; genuinely UI-procedure-only, since neither the reference tree nor Capella's pages describe a data-redistribution workflow, only filtering and keyspace-to-keyspace mapping."
+    },
+    {
+      "candidate_id": "xdcr:deletion-filter",
+      "label": "XDCR deletion filter",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on filter-xdcr-replication.json, this same batch"
+    },
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:implicit-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "An _implicit_ mapping is one supported by XDCR whenever the same _keyspace_ exists within both the source and the target buckets."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:explicit-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "An _explicit_ mapping between collections is one established by an administrator, so as to allow replication to occur between different keyspaces."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "usesEnum",
+      "object": "xdcr:collection-migration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesEnum)",
+      "evidence": "By specifying a scope and collection within a target bucket, XDCR can be used to replicate data selectively from the `_default` collection within one bucket to the purpose-created collection within another."
+    },
+    {
+      "subject": "xdcr:replication",
+      "predicate": "doesNotSupport",
+      "object": "more than one replication per target bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotSupport) - the sharper, explicit statement of the restriction implied but not stated on create-xdcr-replication.json",
+      "evidence": "Delete the existing replication: this is because we now intend to create another replication to the same bucket, `ts`; and XDCR only permits one replication to be defined, for a given target-bucket."
+    },
+    {
+      "subject": "xdcr:collection-migration",
+      "predicate": "requiresCapability",
+      "object": "xdcr:filtering-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability)",
+      "evidence": "**Replication Filter for Source** allows a _regular expression_ to be specified, whereby only a subset of documents within `travel-sample` are replicated."
+    },
+    {
+      "subject": "xdcr:collection-migration",
+      "predicate": "requiresSetting",
+      "object": "xdcr:deletion-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresSetting)",
+      "evidence": "Note that prior to attempting migration, appropriate settings for _deletion filters_ should be determined. These are individually described in [Deletion Filters](filter-xdcr-replication.md#deletion-filters)."
+    },
+    {
+      "subject": "xdcr:collection-migration",
+      "predicate": "requiresExplicitCleanupOnFailure",
+      "object": "xdcr:deletion-filter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresExplicitCleanupOnFailure) - loose fit: an operator must sequence deletion of the migration definition before deleting source data, or default deletion-filter settings can cause unintended data loss",
+      "evidence": "Note that in cases where, following migration, source data is to be deleted, it is essential to delete the migration _prior_ to deletion of the source data, if all data is intended to continue to exist on the targets, and _deletion filters_ have been left at their default values."
+    },
+    {
+      "subject": "xdcr:collection-migration",
+      "predicate": "hasExecutionConstraint",
+      "object": "no more than 2 simultaneous migration-rule-based replications per source cluster",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (hasExecutionConstraint) - object is a described numeric limit, not a concept id",
+      "evidence": "Therefore, the total number of simultaneous migration-rule-based replications per source cluster should be no greater than 2."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role named on this page, matching the pattern already seen on filter-xdcr-replication.json - the how-to layer of this batch never restates the Full/Cluster/XDCR Administrator gate the prepare-for-xdcr.md and reference-tree pages state."
+  },
+  "cross_component_finding": "MIGRATION IS A THIRD MAPPING MODE THE REGISTRY'S EXISTING xdcr:replication-filter DESCRIPTION DOES NOT COVER. Round 20's xdcr:replication-filter concept describes filtering as restricting WHICH documents replicate; this page shows filtering additionally used to REDISTRIBUTE documents across multiple target collections based on content (city='San Francisco' -> California.SanFrancisco, then a second rule for SanJose, etc.), a data-modeling operation rather than a simple inclusion/exclusion gate. The CPU-intensiveness warning and the 2-simultaneous-migration-replication cap are both stated only here; no reference or Capella page discusses migration's performance cost at all."
+}

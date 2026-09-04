@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/full-recovery",
+  "label": "full recovery",
+  "type": "the node-recovery mode that discards the recovered node's existing data and refills it entirely from the cluster.",
+  "promoted": true,
+  "recurrence": 1,
+  "documented_at": "server/current/manage/manage-nodes/recover-nodes.md",
+  "evidence": [
+    "There are two options for recovery, which are _full_ and _delta_.",
+    "The row specifies `REBALANCE to finish full recovery`: therefore, left-click the **Rebalance** button to apply full recovery."
+  ],
+  "note": "PROMOTED BELOW THE BAR under the family exception, with server:delta-recovery. server:node-recovery cannot state what it is without naming both modes - 'there are two options for recovery, which are full and delta' is its defining sentence - and a two-member closed enumeration with one member filed would be worse than either filing both or filing neither. The exception refuses on the same page: server:rebalance-retry and server:unsafe-hard-failover are also at 1 file in this scope and get no record, because nothing promoted needs them in order to define itself."
+}

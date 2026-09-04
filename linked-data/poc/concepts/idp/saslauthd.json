@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/idp/saslauthd",
+  "label": "saslauthd",
+  "type": "the legacy LDAP/PAM authentication daemon Couchbase Server supports for compatibility with pre-6.5 configurations. Mutually exclusive with Native LDAP - a cluster selects one or the other, never both - and lacks LDAP Group Support, which is the documented reason to migrate off it.",
+  "promoted": true,
+  "recurrence": 5,
+  "documented_at": "server/current/learn/security/authentication-domains.md",
+  "evidence": [
+    "Note that _either_ Native LDAP Support _or_ `saslauthd` must be selected for the cluster. The two cannot be used simultaneously.",
+    "`saslauthd` is maintained for support of legacy LDAP authentication, as established on pre-6.5 versions of Couchbase Server.",
+    "If you have been using `saslauthd` with previous versions of Couchbase Server, you are strongly recommended to migrate.",
+    "(Note that `saslauthd` also provides support of legacy PAM-based authentication.)"
+  ],
+  "note": "The highest-recurrence new security concept in the round, and the origin of round 26's `mutuallyExclusiveWith` predicate. Its relationship to idp:pam is the subtle part and only one parenthesis in the corpus states it: saslauthd is BOTH an alternative to Native LDAP and the mechanism through which PAM authentication is delivered, so the two-way exclusivity is with LDAP only, not with PAM.",
+  "relates_to_competency_question": "Which external authentication mechanisms can a cluster use at the same time?"
+}

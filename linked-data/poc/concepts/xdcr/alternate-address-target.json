@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/alternate-address-target",
+  "label": "XDCR alternate-address targeting",
+  "type": "targeting a remote cluster through externally-visible (alternate) addresses rather than its internal ones - the NAT/port-forwarding case. Chosen per reference, or forced by the REST `network_type` parameter set to `external`.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/xdcr-reference/xdcr-security-and-networking.md",
+  "evidence": [
+    "Note that the REST API provides a `network_type` parameter, which can be set to `external`, so as to enforce use of alternate addresses.",
+    "You can use either an alternate or internal network address of the target cluster for data replication; or let Couchbase Server choose.",
+    "This involves, on the target, _port forwarding_."
+  ],
+  "note": "The UI offers a third option the REST parameter does not name - 'let Couchbase Server choose' - which is the automatic mode, and no page in the scope says what the automatic choice actually does. Recorded as an unanswered question rather than a docs-issue, because no page contradicts another; the whole scope is simply silent."
+}

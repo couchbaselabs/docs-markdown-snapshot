@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/idp/pam",
+  "label": "PAM (Pluggable Authentication Modules)",
+  "type": "Linux PAM used to authenticate Couchbase administrator accounts against local system accounts in `/etc/shadow`. Enterprise Edition on Linux only, and delivered through saslauthd rather than natively.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/current/manage/manage-security/configure-pam.md",
+  "evidence": [
+    "The _Enterprise Edition_ of Couchbase Server, running on Linux, supports administrator-authentication through PAM.",
+    "verify that `saslauthd` is set up to use PAM",
+    "Administrator-accounts defined on Linux systems, in the `/etc/shadow` directory, can be accessed for authentication purposes.",
+    "authentication-mechanisms based on _Native LDAP_, _saslauthd_, and _PAM_ can be used"
+  ],
+  "note": "Round 26's evidence exposes a real tension in how the docs present this. security-management-overview.md lists 'Native LDAP, saslauthd, and PAM' as three peer mechanisms; configure-pam.md's own prerequisite is that saslauthd be configured to use PAM. Those cannot both be the whole truth, and the three-peer framing is the one an administrator will meet first. Filed as a docs-issue (server-pam-presented-as-peer-of-saslauthd)."
+}

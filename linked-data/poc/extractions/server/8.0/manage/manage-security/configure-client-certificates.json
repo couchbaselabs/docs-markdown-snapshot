@@ -1,0 +1,173 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-client-certificates",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-client-certificates.md",
+  "concepts": [
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this entire page is the procedure for creating one"
+    },
+    {
+      "candidate_id": "cert:root-certificate",
+      "label": "Root Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the authority a client certificate can be signed by"
+    },
+    {
+      "candidate_id": "cert:intermediate-certificate",
+      "label": "Intermediate Certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the alternative authority a client certificate can be signed by"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - a client's CA must be uploaded into the cluster's trust store to be recognized"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Couchbase clients can authenticate by means of X.509 certificates' is this mechanism stated directly"
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names a client certificate's use case for securing Cross Data Center Replication between a source and destination cluster"
+    },
+    {
+      "candidate_id": "cert:subject-common-name",
+      "label": "Subject Common Name",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; this page's procedure sets it as the default username-bearing field"
+    },
+    {
+      "candidate_id": "cert:subject-alternative-name",
+      "label": "Subject Alternative Name (SAN)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted this batch in learn/security/certificates.json; this page's procedure shows adding an email-address SAN as an alternative username carrier"
+    },
+    {
+      "candidate_id": "cert:java-keystore",
+      "label": "Java keystore",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own term for the client-side artifact (created and populated with `keytool`) that a Java SDK application uses to hold its client certificate, root certificate, and private key for TLS authentication with Couchbase Server. Genuinely new: no reference page in the registry's cert:/auth-mechanism: namespaces names a client-side certificate container, only the certificates themselves."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "cert:root-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:client-certificate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - predicate minted this batch in learn/security/certificates.json for the same certificate-signing shape",
+      "evidence": "shows how to create a client certificate that is authorized by a cluster's root certificate."
+    },
+    {
+      "subject": "cert:intermediate-certificate",
+      "predicate": "signsCertificateFor",
+      "object": "cert:client-certificate",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - same predicate, second use in this record",
+      "evidence": "shows how to create a client certificate that is authorized by an _intermediate_ certificate; which derives its own authority from a root certificate; and which is used instead of the root for the signing of the client certificate."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-common-name",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - predicate minted this batch in learn/security/certificates.json",
+      "evidence": "The _Common Name_ provided as `Subject` for the certificate is specified as `clientuser`, which is the name of the server-defined user to be authenticated by the client."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - same predicate, second use in this record",
+      "evidence": "The following `subjectAltName` statement allows an email address to be specified as the basis for the username."
+    },
+    {
+      "subject": "server:xdcr",
+      "predicate": "reliesOnMechanism",
+      "object": "cert:client-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - XDCR's secure-replication capability depends on the client certificate mechanism documented on this page",
+      "evidence": "This certificate might be used by a _source_ cluster that wishes to perform _Cross Data Center Replication_ securely, to a _destination_ cluster."
+    },
+    {
+      "subject": "cert:client-certificate",
+      "predicate": "storesDataIn",
+      "object": "cert:java-keystore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - storesDataIn's shape (a configuration/policy object writing its data into a named storage location) fits a certificate being held inside a keystore file",
+      "evidence": "A Java application based on the Couchbase SDK can obtain its client certificate from a Java _keystore_, and so authenticate with Couchbase Server securely."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "availableSince",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that in Couchbase Server Version 7.1 and later, multiple root certificates can be uploaded into the cluster, some potentially to be used for client authentication only; and therefore not to be used for the signing of node certificates."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/using-multiple-cas",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For an overview, see [Using Multiple Root Certificaes](../../learn/security/using-multiple-cas.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Examples of using the certificates and keys created on this page above and in [Configure Server Certificates](configure-server-certificates.md) can be found in the documentation provided for securing _Cross Data Center Replication_, in [Specify Root and Client Certificates, and Client Private Key](../manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Examples of using the certificates and keys created on this page above and in [Configure Server Certificates](configure-server-certificates.md) can be found in the documentation provided for securing _Cross Data Center Replication_, in [Specify Root and Client Certificates, and Client Private Key](../manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "java-sdk/current/howtos/sdk-authentication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link, cross-product (server/ to java-sdk/)",
+      "evidence": "A sample Java program, which accesses a keystore from a local filesystem, is provided in [Authenticating a Java Client by Certificate](../../../../java-sdk/current/howtos/sdk-authentication.md#authenticating-the-java-client-by-certificate)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-security-settings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "this can be accessed from the Couchbase Web Console, as described in [Root Certificate](manage-security-settings.md#root-certificate-security-screen-display)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/configure-client-certificates",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/enable-client-certificate-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Has client-certificate handling configured as either _enabled_ or _hybrid_ or _mandatory_. For details, see [Enable Client-Certificate Handling](enable-client-certificate-handling.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a - certificate revocation",
+    "finding": "Like learn/security/certificates.md (round-batch sibling), this procedural page has no mention of certificate revocation, CRLs, or OCSP anywhere across two full client-certificate-creation walkthroughs (root-signed and intermediate-signed) plus the Java-client keystore walkthrough. The only way a page in this batch describes to stop trusting an already-issued client certificate before its expiry is removing the signing CA from the cluster's trust store entirely (documented on configure-server-certificates.md, this same batch) - which revokes every certificate that CA ever signed, not the one compromised certificate. This corroborates, from the administration-procedure side, the same first-order PKI-lifecycle gap the reference layer already showed."
+  },
+  "cross_component_finding": "The page's Java-client section is a genuinely separate procedure surface from the OpenSSL-based Couchbase Server/CDCR client-certificate procedures above it: it uses `keytool` and a keystore file, not `openssl` and PEM files, to hold the identical root+client certificate pair generated by the same upstream openssl commands. No other product in the corpus's cert:/tls: namespaces has a client-side certificate CONTAINER concept (a keystore) modeled at all - every other client-certificate relation in the registry (e.g. cert:client-certificate verifiesIdentityOf) treats the certificate as a bare artifact, not something itself held inside a further, distinct storage construct. This is the round's clearest new admin-facing mechanism in this page: cert:java-keystore.",
+  "cross_product_finding": "The XDCR use case (source cluster securely replicating to a destination cluster using a client certificate) is stated here only as a one-sentence aside with a forward link to manage-xdcr/enable-full-secure-replication.md; this page itself never explains how XDCR consumes the certificate (e.g. whether the destination cluster's Couchbase Server instance treats the source cluster as just another authenticating 'client' for RBAC purposes). That relationship - XDCR-as-a-client-of-the-remote-cluster's-RBAC - is asserted by reliesOnMechanism above but is otherwise undocumented on this page; a docs-issue candidate for whichever round covers manage-xdcr in depth."
+}

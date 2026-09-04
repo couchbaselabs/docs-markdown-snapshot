@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/manage/manage-expiration",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-expiration.md",
+  "concepts": [
+    { "candidate_id": "data:expiration", "label": "Expiration (TTL)", "registry_status": "promoted", "reused_or_minted": "reused - the page's whole subject" },
+    { "candidate_id": "data:max-ttl-setting", "label": "Maximum TTL setting", "registry_status": "promoted", "reused_or_minted": "reused - the bucket- and collection-level maxTTL ceiling this page documents in depth" },
+    { "candidate_id": "n1ql:update", "label": "UPDATE", "registry_status": "promoted", "reused_or_minted": "reused - shown setting meta().expiration directly" },
+    { "candidate_id": "server:collection", "label": "Collection (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted" },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "data:expiration", "predicate": "configuredVia", "object": "n1ql:update",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You can change the document's expiration by setting its expiration value during a mutation." },
+    { "subject": "n1ql:update", "predicate": "implicitlySetsParameter", "object": "data:expiration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - a mutation that does not explicitly set expiration silently clears any existing expiration to 0, unless a non-zero maxTTL is in force",
+      "evidence": "By default, if you mutate a document without setting its expiration, Couchbase Server automatically sets the value to 0." },
+    { "subject": "n1ql:update", "predicate": "requiresRequestParameter", "object": "data:expiration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - the preserve_expiry request-level parameter is the documented workaround for the auto-clear behavior above",
+      "evidence": "You can prevent Couchbase Server from clearing the expiration value by using the [preserve\\_expiry](../n1ql/n1ql-manage/query-settings.md#preserve%5Fexpiry) request-level parameter." },
+    { "subject": "data:max-ttl-setting", "predicate": "takesPrecedenceOver", "object": "data:expiration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You cannot explicitly set a document's expiration to be longer than the `maxTTL` setting. If you try to set the expiration to a value larger than the collection or bucket's `maxTTL` setting, Couchbase Server uses the `maxTTL` value instead." },
+    { "subject": "server:collection", "predicate": "takesPrecedenceOver", "object": "server:bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - a collection-level maxTTL of 0 falls back to the bucket's own maxTTL setting; genuinely not stated on THIS page, which only ever discusses collection-or-bucket maxTTL jointly",
+      "evidence": "The `maxTTL` for the collection is `0`, which means documents use the `maxTTL` setting from the bucket.",
+      "evidence_source": "server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.md",
+      "evidence_provenance": "cross-page: manage-expiration.md states maxTTL applies jointly to 'the collection or bucket' but never states which one wins when both are set; the fallback direction (collection maxTTL of 0 defers to the bucket's) is stated only on the sibling manage-scopes-and-collections.md page in this same batch." },
+    { "subject": "server/8.0/manage/manage-expiration", "predicate": "seeAlso", "object": "server/8.0/learn/data/expiration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Expiration](../learn/data/expiration.md) for an overview of this feature." },
+    { "subject": "server/8.0/manage/manage-expiration", "predicate": "seeAlso", "object": "server/8.0/rest-api/creating-a-collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Creating and Editing a Collection](../rest-api/creating-a-collection.md) for more information about creating collections via the REST-API." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "The page opens with 'You can have documents in your Couchbase Server Enterprise Edition automatically expire after a period of time' - implying automatic (maxTTL-driven) expiration is an Enterprise-only capability. But the rest of the page never repeats or qualifies this restriction, and the per-document expiration examples (SQL++ INSERT/UPDATE, SDK insert) are not marked Enterprise-only elsewhere in the corpus. This reads as either an overclaim in the introduction or an underspecified one everywhere else on the page - flagged rather than resolved, since no other sentence on this page confirms or narrows the edition scope."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

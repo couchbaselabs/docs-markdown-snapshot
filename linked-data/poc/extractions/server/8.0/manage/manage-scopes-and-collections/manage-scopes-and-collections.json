@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/manage/manage-scopes-and-collections/manage-scopes-and-collections",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.md",
+  "concepts": [
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:collection", "label": "Collection (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted twice; this page defines it directly as 'a data container, defined on Couchbase Server, within a bucket whose type is either Couchbase or Ephemeral'" },
+    { "candidate_id": "server:default-scope", "label": "_default scope (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once (server/8.0/learn/data/scopes-and-collections.json)" },
+    { "candidate_id": "server:default-collection", "label": "_default collection (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once" },
+    { "candidate_id": "server:system-scope", "label": "_system scope (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once; this page states explicitly that it and its collections are administrator-off-limits" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "promoted", "reused_or_minted": "reused - this page states collections are defined 'within a bucket whose type is either Couchbase or Ephemeral', so the closed two-member set applies unchanged one level down the hierarchy" },
+    { "candidate_id": "data:max-ttl-setting", "label": "Maximum TTL setting", "registry_status": "promoted", "reused_or_minted": "reused - the Collection Max Time-To-Live field" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once (server/8.0/rest-api or cli reference); used here to inspect per-collection and per-vBucket statistics" },
+    { "candidate_id": "cli:couchbase-cli-collection-manage", "label": "collection-manage (couchbase-cli)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once" },
+    { "candidate_id": "storage:tombstone", "label": "Tombstone", "registry_status": "promoted", "reused_or_minted": "reused - the cbstats history/mutation-history field this page surfaces is adjacent to, though not identical to, tombstone retention; recorded as a judgement call rather than forced" }
+  ],
+  "relations": [
+    { "subject": "server:scope", "predicate": "hasInternalComponent", "object": "server:collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A _scope_ is a mechanism for the grouping of multiple collections." },
+    { "subject": "server:collection", "predicate": "requiresCapability", "object": "bucket:couchbase-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - phrased disjunctively in the source (Couchbase OR Ephemeral); recorded once per bucket type since requiresCapability's declared shape is a single capability requirement, not a disjunction",
+      "evidence": "A _collection_ is a data container, defined on Couchbase Server, within a bucket whose type is either _Couchbase_ or _Ephemeral_." },
+    { "subject": "server:collection", "predicate": "requiresCapability", "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A _collection_ is a data container, defined on Couchbase Server, within a bucket whose type is either _Couchbase_ or _Ephemeral_." },
+    { "subject": "server:default-scope", "predicate": "createsOnAction", "object": "server:default-collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This indicates that the **\\_default** scope contains a single collection, which is the **\\_default** collection. As its name indicates, this collection is created by default, within the **\\_default** scope, for each new bucket." },
+    { "subject": "server:system-scope", "predicate": "excludesFromCapture", "object": "server:collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - loose fit: the page states the _system scope and its collections are off-limits to administrators, not that a capture/recording mechanism excludes them; flagged as a judgement call",
+      "evidence": "This scope, and its collections, are also created by default: however, they are _not_ for the use of administrators; and should _not_ be accessed in any way by users or user-created applications." },
+    { "subject": "data:max-ttl-setting", "predicate": "hasDefaultValue", "object": "0 (uses the bucket's maxTTL setting)",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Leave the **Collection Max Time-To-Live** field at its default value of `0`. This value means that new documents in the collection use the `maxTTL` value from the bucket (if set)." },
+    { "subject": "server/8.0/manage/manage-scopes-and-collections/manage-scopes-and-collections", "predicate": "seeAlso", "object": "server/8.0/learn/data/scopes-and-collections",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "A complete overview is provided in [Scopes and Collections](../../learn/data/scopes-and-collections.md)." },
+    { "subject": "server/8.0/manage/manage-scopes-and-collections/manage-scopes-and-collections", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For information on assigning roles that permit access to scopes and collections, see [Manage Users, Groups, and Roles](../manage-security/manage-users-and-roles.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "The CLI section states an operational hazard specific to the asynchronous nature of scope/collection creation: 'the create bucket, scope, and collection commands are asynchronous by default. If you create a collection right after creating a scope, or create an index right after creating a collection, it is possible that you may encounter a failure if the cluster is still being updated.' No promoted or extraction-layer predicate captures 'operation X may race with operation Y because both are asynchronous' - recorded here in prose since forcing it into hasExecutionConstraint (a placement/topology constraint) or requiresPriorExecutionOf (a strict ordering precondition, not a racing hazard) would misrepresent the nature of the warning."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

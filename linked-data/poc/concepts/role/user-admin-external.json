@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/user-admin-external",
+  "label": "External User Admin (Server RBAC role)",
+  "type": "a Server RBAC role introduced in Couchbase Server 8.0 that manages users in the EXTERNAL authentication domain (LDAP/SAML/PAM-authenticated users). One of the two halves of the pre-8.0 External User Security Admin role, the other half being role:security-admin.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "role:external-user-admin"
+  ],
+  "internal_name": "user_admin_external",
+  "aliases_note": "Filed under the internal name; `role:external-user-admin` is the display-label spelling round 26's backup batch minted from manage-backup-and-restore.md.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: External User Admin (user_admin_external)",
+    "You must have a Full Admin, a Local User Admin, and an External User Admin role to be able to backup users and user groups.",
+    "For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role."
+  ],
+  "note": "Note what the second and third evidence quotes do together: the catalogue page and the backup procedure independently state the same three-role requirement, and the catalogue's own cross-links to it are `#local-user-security-admin` and `#external-user-security-admin` - the PRE-8.0 anchors, under post-8.0 headings. The anchors are the residue of the rename and are filed as a docs-issue (server-role-anchors-preserve-pre-8-0-names). This registry already holds role:external-user-security-administrator as a promoted record describing the pre-8.0 role as current; that record is now stale and is recorded as registry debt in reconciliation.md, not folded here - the two roles are genuinely different privilege sets, so this is a supersession, not a synonym.",
+  "relates_to_competency_question": "Which roles must be held together to back up users and groups?"
+}

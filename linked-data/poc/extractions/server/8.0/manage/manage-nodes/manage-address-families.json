@@ -1,0 +1,53 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/manage-address-families",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/manage-address-families.md",
+  "concepts": [
+    { "candidate_id": "server:cluster-address-family", "label": "Cluster address family (IPv4/IPv6 preference)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in create-cluster.json (this batch); this page is its dedicated post-creation management task page" },
+    { "candidate_id": "tls:node-to-node-encryption", "label": "Node-to-node encryption", "registry_status": "promoted",
+      "reused_or_minted": "reused - must be disabled before an address-family changeover" },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in apply-node-to-node-encryption.json (this batch); must also be disabled before the changeover" },
+    { "candidate_id": "server:cluster-encryption-level", "label": "Cluster encryption level (control / all / strict)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in apply-node-to-node-encryption.json (this batch)" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "version:server-7-0-2", "label": "Couchbase Server 7.0.2",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in initialize-node.json (this batch); this page's IPv4-only/IPv6-only restriction is the same version gate" }
+  ],
+  "relations": [
+    { "subject": "server:cluster-address-family", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Couchbase Server Enterprise Edition supports the IPv4 and IPv6 address families." },
+    { "subject": "server:cluster-address-family", "predicate": "requiresPriorExecutionOf", "object": "server:auto-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object stands in for 'auto-failover disabled'",
+      "evidence": "Auto-failover must be disabled prior to the changeover (and can be re-enabled _after_ the changeover)." },
+    { "subject": "server:cluster-address-family", "predicate": "requiresPriorExecutionOf", "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object stands in for 'node-to-node encryption disabled'",
+      "evidence": "Node-to-node encryption must be disabled prior to the changeover (and can be re-enabled _after_ the changeover)." },
+    { "subject": "server:cluster-encryption-level", "predicate": "takesPrecedenceOver", "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; the level's own value gates whether the encryption feature can be turned off at all",
+      "evidence": "If node-to-node encryption needs to be disabled, ensure that the `clusterEncryptionLevel` for the cluster is set to `control`, rather than all — otherwise node-to-node encryption cannot be disabled." },
+    { "subject": "server:cluster-address-family", "predicate": "availableSince", "object": "version:server-7-0-2",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "`Cluster using ipv4only`: Every node in the cluster is using IPv4, and may _not_ use IPv6\\. (This message is generated only by Couchbase Server Version 7.0.2 and later.)" },
+    { "subject": "server:cluster-address-family", "predicate": "requiresCapability", "object": "server:node",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call standing in for the dual-stack networking capability each node must have, since the registry has no dedicated 'dual-stack networking' concept",
+      "evidence": "Each cluster-node must be operating in _dual stack_ mode, thereby supporting both IPv4 and IPv6 addressing." },
+    { "subject": "server:cluster-address-family", "predicate": "doesNotSupport", "object": "server:node",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call standing in for 'nodes named by raw IP address', since the registry has no dedicated node-naming-scheme concept",
+      "evidence": "The address family can only be changed if each cluster-node is named with a fully qualified domain-name (such as `nodename.clustername.com`). Raw IP addresses _can_ be used to name cluster-nodes, but the cluster must be _created_ with them, and the address family cannot subsequently be changed." },
+    { "subject": "server:cluster-address-family", "predicate": "cascadesTo", "object": "service:index-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call, object stands in for 'every non-Data service', since the affected set is a whole class rather than one named service",
+      "evidence": "On each node, when the address-family change occurs, all Couchbase Services hosted on that node _other than_ the Data Service are restarted." },
+    { "subject": "server:cluster-address-family", "predicate": "doesNotAffect", "object": "service:data-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, the explicit negation partner to the cascadesTo relation immediately above",
+      "evidence": "On each node, when the address-family change occurs, all Couchbase Services hosted on that node _other than_ the Data Service are restarted." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role requirement is stated anywhere on this page for the ip-family CLI command sequence, unlike node-addition and modify-services, both of which name Full/Cluster Admin explicitly. This is a real, checkable gap rather than a deliberate omission: changing a whole cluster's address family is at least as consequential as adding a node, yet the docs are silent on who is authorized to do it."
+  },
+  "cross_component_finding": "This page provides the missing half of the precondition chain flagged in apply-node-to-node-encryption.json's cross_component_finding: an address-family changeover requires BOTH auto-failover and node-to-node encryption to be off first, and disabling node-to-node encryption itself requires clusterEncryptionLevel=control. Three distinct minted/reused mechanisms (server:cluster-address-family, server:auto-failover, tls:node-to-node-encryption, server:cluster-encryption-level) form a single stated dependency chain that no individual page states in full - each page only names its own immediate precondition.",
+  "cross_product_finding": ""
+}

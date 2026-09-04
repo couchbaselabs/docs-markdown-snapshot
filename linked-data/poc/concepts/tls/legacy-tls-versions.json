@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tls/legacy-tls-versions",
+  "label": "TLS 1.0 and 1.1 (unsupported)",
+  "type": "the TLS protocol versions Couchbase Server no longer supports: `tlsv1` and `tlsv1.1` were deprecated in 7.2 and removed in 7.6 and later. The minimum negotiable version is now a cluster security setting.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/learn/security/on-the-wire-security.md",
+  "evidence": [
+    "Couchbase Server 7.6 and later do not support TLS versions 1 and 1.1\\.",
+    "Support for these earlier versions was deprecated in Couchbase Server 7.2\\.",
+    "The values `tlsv1` and `tlsv1.1` were deprecated in Couchbase Server 7.2, and are no longer supported by Couchbase Server 7.6 and later versions."
+  ],
+  "note": "A deprecate-then-remove pair with both versions named on both pages - the cleanest `deprecatedIn` + `doesNotSupport` evidence in the round. Filed as one concept rather than two because the documentation never treats the versions separately: every statement names both."
+}

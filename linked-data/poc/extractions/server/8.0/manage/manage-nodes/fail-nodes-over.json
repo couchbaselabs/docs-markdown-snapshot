@@ -1,0 +1,44 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/fail-nodes-over",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/fail-nodes-over.md",
+  "concepts": [
+    { "candidate_id": "service:data-service", "label": "Data service", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket", "label": "vBucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:node-removal", "label": "Node removal",
+      "registry_status": "minted", "reused_or_minted": "minted - flagging a node for REMOVAL (as against failover) so that new replica vBuckets are created on the remaining nodes rather than lost. This page explicitly contrasts removal with failover as two different flags with opposite effects on replica vBuckets - a genuinely new admin-only distinction no conceptual page names." },
+    { "candidate_id": "server:failover", "label": "Failover (Couchbase Server node failover, umbrella)",
+      "registry_status": "minted", "reused_or_minted": "minted - the umbrella concept for the two named variants (graceful/hard) this page introduces. Admin-only in shape: it is defined entirely by what it does to a node's membership and its vBuckets, not by any data-model artifact." },
+    { "candidate_id": "server:graceful-failover", "label": "Graceful failover",
+      "registry_status": "minted", "reused_or_minted": "minted - proactive, manually-initiated removal of a healthy Data Service node" },
+    { "candidate_id": "server:hard-failover", "label": "Hard failover",
+      "registry_status": "minted", "reused_or_minted": "minted - reactive removal of an unavailable/unstable node, manually or automatically initiated" },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - first named in apply-node-to-node-encryption.json (this batch) as a precondition to disable; this page gives its proper definition as hard failover's automatic-initiation mode"
+    }
+  ],
+  "relations": [
+    { "subject": "server:graceful-failover", "predicate": "isSubtypeOf", "object": "server:failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "There are two basic types: _graceful_ and _hard_." },
+    { "subject": "server:hard-failover", "predicate": "isSubtypeOf", "object": "server:failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "There are two basic types: _graceful_ and _hard_." },
+    { "subject": "server:auto-failover", "predicate": "isSubtypeOf", "object": "server:hard-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; auto-failover is defined as a specific triggering mode of hard failover, not a third sibling type",
+      "evidence": "The automatic initiation of hard failover is known as _automatic_ failover, and is configured by means of the [General](../manage-settings/general-settings.md) settings screen, in the **Settings** area of Couchbase Web Console; or by means of equivalent CLI and REST API commands." },
+    { "subject": "server:failover", "predicate": "cascadesDeletionTo", "object": "vbucket:replica-vbucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Note that when a node is flagged for _failover_ (as opposed to _removal_), replica vBuckets are lost when rebalance occurs, following node-removal." },
+    { "subject": "server:node-removal", "predicate": "doesNotAffect", "object": "vbucket:replica-vbucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; a judgment call - removal does not literally leave existing replica vBuckets untouched, it CREATES NEW ones to replace what would otherwise be lost, but the net effect (replicas are not lost) is the direct negation of the failover relation above, which is exactly what doesNotAffect is defined to capture in contrast to cascadesTo",
+      "evidence": "By contrast, _removal_ creates new copies of replica vBuckets that would otherwise be lost (thereby creating greater competition for the memory resources of the remaining nodes)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This overview page states no role requirement for initiating failover at all, manual or automatic - it only says automatic failover is configured 'by means of the General settings screen' with no named role, deferring RBAC specifics entirely to the two dedicated procedure pages (failover-graceful.json, failover-hard.json), neither of which states one either (see their own notable_absence fields)."
+  },
+  "cross_component_finding": "One relation was deliberately NOT recorded despite a quotable sentence: 'If applied to an available node running the Data Service, ongoing writes and replications may be interrupted' is a conditional hedge ('may be interrupted'), not a stated fact of effect, so neither cascadesTo nor its negation doesNotAffect is a fair reading of it - forcing either would be exactly the 'quotable but mis-objected' defect class the evidence gate cannot itself catch. Noted here rather than silently dropped or silently forced.",
+  "cross_product_finding": ""
+}

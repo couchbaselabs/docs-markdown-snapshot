@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/encryption/drop-deks-rest-action",
+  "label": "drop DEKs (REST action)",
+  "type": "a REST-only operation that forces every DEK for a bucket or data type to be replaced, and with it forces the affected data to be re-encrypted - or, where encryption has been turned off, forces the decryption to actually happen rather than waiting for background re-write. Explicitly not the same as rotating DEKs.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-security/manage-native-encryption-at-rest.md",
+  "evidence": [
+    "You can force the decryption of data by calling the REST API to drop the DEKs for a bucket or type of data.",
+    "Dropping DEKs is not the same as rotating DEKs.",
+    "When you drop the DEKs for a bucket or type of data, Couchbase Server creates a new replacement DEK."
+  ],
+  "note": "An id naming an ACTION available on only one surface. Filed because the fact that matters is exactly the surface restriction: disabling encryption at rest does not decrypt anything promptly, and the only documented way to make it do so is a REST call with no UI or CLI equivalent. Three cert: REST actions found in the same scope (load-trusted-cas, reload-certificate, regenerate-certificates) all sit at recurrence 1 and are refused, so the pattern is not being promoted wholesale."
+}

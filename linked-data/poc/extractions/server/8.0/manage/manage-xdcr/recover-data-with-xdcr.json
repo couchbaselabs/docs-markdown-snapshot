@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/recover-data-with-xdcr",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/recover-data-with-xdcr.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbrecovery",
+      "label": "cbrecovery",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the command-line tool that retrieves data lost from a local cluster (following multi-node failure) back FROM a remote XDCR-replicated bucket, reversing the normal source-to-target flow. First contact anywhere in the corpus. Sibling of the promoted tool:cbbackupmgr family, but structurally different: cbrecovery reads from a live, remote XDCR target rather than from a backup archive, and is meaningful only in the presence of a pre-existing XDCR replication."
+    },
+    {
+      "candidate_id": "xdcr:replication",
+      "label": "XDCR Replication",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-replication.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "requiresCapability",
+      "object": "xdcr:replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (requiresCapability)",
+      "evidence": "In such cases, provided that a bucket affected by such failure has already been established as a source bucket for XDCR, the lost data may be retrieved from the bucket defined on the remote cluster as the corresponding replication-target."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "doesNotAffect",
+      "object": "design docs and index metadata",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (doesNotAffect) - object is a described exclusion, not a concept id",
+      "evidence": "transfer data only. bucket design docs and index meta will be skipped."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "seeAlso",
+      "object": "cli/cbtools/cbrecovery",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "This retrieval is achieved from the command-line, by means of the Couchbase [cbrecovery](../../cli/cbtools/cbrecovery.md) tool."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf / hasExecutionConstraint (ordering, not found to fit cleanly)",
+    "finding": "The page states a real and important ordering constraint - rebalance must NOT be run before cbrecovery, because rebalancing affects local vBucket data and would prevent recovery ('_Do not_ at this point rebalance the cluster...Rebalance will be performed _after_ the lost data has been recovered') - but every existing ordering predicate in the registry (requiresPriorExecutionOf) is phrased as 'X depends on Y having already run', the opposite direction from 'Y must NOT run until X has'. Rather than force this onto requiresPriorExecutionOf backwards or mint a new predicate for a single occurrence, the constraint is recorded here in prose only."
+  },
+  "cross_component_finding": "cbrecovery IS THE ONLY TOOL IN THIS BATCH THAT READS AGAINST THE REPLICATION DIRECTION RATHER THAN WITH IT. Every other mechanism in this batch (create/pause/resume/filter/scopes-and-collections) operates source-to-target, the direction XDCR itself replicates in; cbrecovery is invoked on the SOURCE cluster but pulls data FROM the target, deliberately reversing the flow to recover from local data loss. No reference-tree or Capella page describes this reversed-flow use of an existing replication at all - Capella's own disaster-recovery story (out of this batch) is presumably backup/restore-based rather than XDCR-based, since Capella clusters do not expose a CLI-tool surface comparable to cbrecovery."
+}

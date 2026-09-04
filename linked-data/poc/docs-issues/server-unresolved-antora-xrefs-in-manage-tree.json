@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-unresolved-antora-xrefs-in-manage-tree",
+  "type": "docs-issue",
+  "issueType": "broken-link",
+  "description": "The manage/ tree contains 17 links, across 9 files, whose targets are unconverted Antora xref macros that leaked into the Markdown as literal fragments - `](#component:module/page.adoc)` rather than a relative path. They are not broken links in the ordinary sense: each renders as a live in-page anchor that resolves to nothing, so a reader gets a link that silently does nothing rather than an error. Examples spanning the tree: manage/monitor/xdcr-monitor-timestamp-conflict-resolution.md links cbstats as `(#cli:cbstats/cbstats-intro.adoc)`; manage/manage-ui/manage-ui.md sends the reader to Search with `(#fts:fts-searching-from-the-ui.adoc)`; manage/manage-security/manage-native-encryption-at-rest.md carries four, including two with mangled prefixes (`#:learn:security/...`) and one with a typo inside the component name (`#learn:secrutiy/...`) plus a stray character in a page name (`create-bucket.adocl`); manage/manage-buckets/edit-bucket.md has `[change-ejection-policy.adoc](#change-ejection-policy.adoc)`, where the unresolved macro is also the visible link TEXT; manage/manage-logging/manage-logging.md embeds an Antora text-fragment selector. Three of them are the only route the page offers to the information it is pointing at.",
+  "about": [
+    "server/8.0/manage/monitor/xdcr-monitor-timestamp-conflict-resolution",
+    "server/8.0/manage/manage-ui/manage-ui",
+    "server/8.0/manage/manage-security/manage-native-encryption-at-rest",
+    "server/8.0/manage/manage-buckets/edit-bucket",
+    "server/8.0/manage/manage-xdcr/recover-data-with-xdcr",
+    "server/8.0/manage/manage-xdcr/enable-half-secure-replication",
+    "server/8.0/manage/manage-logging/manage-logging"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "Counted mechanically over server/current/manage/ rather than estimated from the extraction records, because the extractions only surfaced the four that happened to be quoted as evidence. Whether this is a docs defect or a snapshot-conversion artefact of this repository is worth an SME's judgement - but the mangled prefixes and the in-name typos are in the source text either way, since a converter that failed to resolve `#learn:secrutiy/...` failed because the component name is misspelled."
+}

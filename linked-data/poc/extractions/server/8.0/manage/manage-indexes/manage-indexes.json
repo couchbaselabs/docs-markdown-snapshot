@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/manage/manage-indexes/manage-indexes",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/manage-indexes/manage-indexes.md",
+  "concepts": [
+    { "candidate_id": "indexer-node-state", "label": "Indexer node operational state",
+      "registry_status": "promoted", "reused_or_minted": "reused - this page's status column ('ready, pause, warmup, or n mutations remaining') restates the same enum previously promoted from the 7.2 tree's near-identical sentence." },
+    { "candidate_id": "index:index-storage-setting", "label": "Index storage mode setting (REST)",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Storage Mode. The storage mode used by the Index Service on the node on which this index is stored.'" },
+    { "candidate_id": "tool:query-workbench", "label": "Query Workbench",
+      "registry_status": "promoted", "reused_or_minted": "reused - the 'Open in Workbench' action opens an index's definition in the Query Workbench." },
+    { "candidate_id": "n1ql:drop-index", "label": "DROP INDEX",
+      "registry_status": "promoted", "reused_or_minted": "reused - named as the SQL++ alternative to the UI's Drop button." },
+    { "candidate_id": "n1ql:drop-primary-index", "label": "DROP PRIMARY INDEX",
+      "registry_status": "promoted", "reused_or_minted": "reused - named alongside DROP INDEX as the SQL++ alternative to the UI's Drop button." },
+    { "candidate_id": "index:index", "label": "Index (coarse supertype)",
+      "registry_status": "promoted", "reused_or_minted": "reused - the generic 'an index' this whole page manages regardless of type." },
+    { "candidate_id": "index-type:primary-index", "label": "Primary Index",
+      "registry_status": "promoted", "reused_or_minted": "reused - DROP PRIMARY INDEX is named as a UI-equivalent action." },
+    { "candidate_id": "service:index-service", "label": "Index service",
+      "registry_status": "promoted", "reused_or_minted": "reused - the service whose indexes this screen manages." },
+    { "candidate_id": "service:query-service", "label": "Query service",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Indexes provided by the Index Service facilitate and enhance use of the Query Service'." },
+    { "candidate_id": "service:data-service", "label": "Data service",
+      "registry_status": "promoted", "reused_or_minted": "reused - documents indexed originate from the Data Service." }
+  ],
+  "relations": [
+    { "subject": "index:index", "predicate": "hasEquivalentEffectAs", "object": "n1ql:drop-index",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note that you can also drop an index by means of the SQL++ [DROP INDEX](../../n1ql/n1ql-language-reference/dropindex.md) and [DROP PRIMARY INDEX](../../n1ql/n1ql-language-reference/dropprimaryindex.md) commands." },
+    { "subject": "service:query-service", "predicate": "dependsOnService", "object": "service:index-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Indexes provided by the _Index Service_ facilitate and enhance use of the _Query Service_; which reads information from and writes information to _documents_, provided by the _Data Service_." },
+    { "subject": "service:query-service", "predicate": "dependsOnService", "object": "service:data-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Indexes provided by the _Index Service_ facilitate and enhance use of the _Query Service_; which reads information from and writes information to _documents_, provided by the _Data Service_." },
+    { "subject": "index:index-storage-setting", "predicate": "seeAlso", "object": "server/8.0/manage/manage-settings/general-settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See [Index Storage Mode](../manage-settings/general-settings.md#index-storage-mode)." },
+    { "subject": "indexer-node-state", "predicate": "seeAlso", "object": "server/8.0/manage/monitor/monitoring-indexes",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information on these charts, see [Index Statistics](../monitor/monitoring-indexes.md#index-stats)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "'Note that there is no CLI support for the administration of specific indexes.' and separately 'Note that there is no REST API support for the administration of specific indexes.' Both the CLI and REST API sections of this page explicitly disclaim management of individual indexes (as against Index-Service-wide settings, which both surfaces do support) - the Web Console UI's Drop/Open-in-Workbench actions and SQL++ DDL are the only two ways to act on one specific index by name."
+  },
+  "cross_component_finding": "Opening an index in the Query Workbench 'cannot change the definition of the existing index, but you can create a new index with the modified definition' - there is no in-place ALTER-by-redefinition path from the UI at all; the only way to change what an index does is to create a differently-defined index and (implicitly) drop the old one.",
+  "cross_product_finding": ""
+}

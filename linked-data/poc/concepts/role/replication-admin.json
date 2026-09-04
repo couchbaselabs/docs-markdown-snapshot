@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/replication-admin",
+  "label": "XDCR Admin (Server RBAC role)",
+  "type": "a Server RBAC role permitting creation, editing and deletion of XDCR cluster references and replications on the SOURCE cluster. Distinct from XDCR Inbound (`replication_target`), which is what the TARGET cluster's credentials need.",
+  "promoted": true,
+  "recurrence": 4,
+  "aliases": [
+    "role:xdcr-admin"
+  ],
+  "internal_name": "replication_admin",
+  "aliases_note": "Both spellings are round-26 mints, from two different batches that never saw each other's work, and each got half the answer. manage-auditing.md's batch found `replication_admin` bare in the audit `trackedRoles` parameter and minted `role:replication-admin` - the internal name, with no idea what the role does, and said so: 'Thin evidence (a bare token in a comma-separated REST parameter) - flagged in notable_absence for reconciliation to verify against learn/security/roles.md.' The XDCR batch found the role in prose and minted `role:xdcr-admin` - the display name, with the semantics but not the token. roles.md joins them: \"Role: XDCR Admin (replication_admin)\". Filed under the internal name per convention, 1 + 3 files, zero overlap. This is the round's clearest case of a role whose internal and display names name different things - `replication_admin` says nothing about cross-datacentre, and a reader given only the internal token would not connect it to XDCR at all.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: XDCR Admin (replication_admin)",
+    "Note that the administrator setting up XDCR must have the _Full Admin_, _Cluster Admin_ or _XDCR Admin_ role, on the source cluster.",
+    "If you possess the role of _Full_, _Cluster_, or _XDCR Administrator_, you can create, edit, and delete cluster references and replications."
+  ],
+  "note": "The 'on the source cluster' qualifier is the whole point of this record and appears only on the procedural page. XDCR is the one feature in the corpus where a single operation requires DIFFERENT roles on two different clusters, and a reference catalogue that files one entry per role has nowhere to say so. Its sibling role:xdcr-inbound (`replication_target`) sits at recurrence 1 and is deliberately NOT promoted: this record can state what it is by contrast without the sibling having its own file, so the family exception does not apply.",
+  "relates_to_competency_question": "Which role creates an XDCR replication, and on which of the two clusters must it be held?"
+}

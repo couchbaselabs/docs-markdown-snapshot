@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/manage/manage-nodes/initialize-node",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-nodes/initialize-node.md",
+  "concepts": [
+    { "candidate_id": "server:node", "label": "node",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:node-initialization", "label": "Node initialization",
+      "registry_status": "minted", "reused_or_minted": "minted - the distinct, optional, prior step of establishing a node's disk-paths (data/index/analytics/eventing) and name, before provisioning. No conceptual page in the registry names this step; it was invisible to prior extraction because it is purely an admin-procedure concept - it has no data-model shape, only a CLI/REST surface (node-init / POST /nodes/self/controller/settings)." },
+    { "candidate_id": "server:node-provisioning", "label": "Node provisioning",
+      "registry_status": "minted", "reused_or_minted": "minted - the step that establishes Full Administrator credentials, service-assignments and memory-quota allocations, turning a node into a one-node cluster. Distinct from server:node-initialization: disk-paths set by initialization are preserved through provisioning, but provisioning covers everything else." },
+    { "candidate_id": "version:server-7-0-2", "label": "Couchbase Server 7.0.2",
+      "registry_status": "minted", "reused_or_minted": "minted - not previously in the registry; this page dates the IPv4-only/IPv6-only restriction option to this release" }
+  ],
+  "relations": [
+    { "subject": "server:node-provisioning", "predicate": "doesNotAffect", "object": "server:node-initialization",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; provisioning preserves initialization's disk-path settings rather than overwriting them",
+      "evidence": "When the node is subsequently provisioned, these are preserved (unless, as is possible with UI-based provisioning, they are optionally overwritten, and the node is thus re-initialized)." },
+    { "subject": "server:node-initialization", "predicate": "cascadesTo", "object": "server:node-provisioning",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; if initialization is skipped, provisioning performs it implicitly with defaults",
+      "evidence": "If initialization is not explicitly performed, it will occur as part of the eventual provisioning process, and default disk-path values will be applied." },
+    { "subject": "server:node-provisioning", "predicate": "doesNotSupport", "object": "server:node-initialization",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; disk-paths become fixed once a node has been provisioned and joined/created a cluster",
+      "evidence": "Note that disk-paths cannot be changed after a node has been _provisioned_, and has thus either become a cluster of one node, or has been added to a cluster of other nodes." },
+    { "subject": "server:node-initialization", "predicate": "availableSince", "object": "version:server-7-0-2",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; the UI-based restrict-to-one-address-family option is dated to this release",
+      "evidence": "Note that in Couchbase Server Version 7.0.2 and later, UI-based initialization provides _additional options_ for establishing the _address family_ for the cluster: if you wish to _restrict_ (rather than merely _require_) your cluster to use either IPv4 or IPv6, initialize by means of the UI, as described in [Create a Cluster](create-cluster.md)." },
+    { "subject": "server/8.0/manage/manage-nodes/initialize-node", "predicate": "seeAlso", "object": "server/8.0/manage/manage-nodes/manage-address-families",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link on the page",
+      "evidence": "Information on managing address families for the cluster _after_ the cluster has been established are provided in [Manage Address Families](manage-address-families.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Neither node-init (CLI) nor POST /nodes/self/controller/settings (REST) states an RBAC role requirement anywhere on this page - both are demonstrated with a 'placeholdername'/'placeholderpwd' precisely because the node has not yet been provisioned with any credentials at all. This is a real, structural pre-authentication gap in the admin lifecycle rather than a missing docs sentence: initialization is the one node-management operation in this batch that happens before any RBAC model exists on the node."
+  },
+  "cross_component_finding": "server:node-initialization and server:node-provisioning are a clean two-step lifecycle the docs state explicitly and consistently (initialization's disk-paths survive into provisioning; provisioning locks them). Neither step is 'rebalance', but both precede it in the overall node lifecycle this batch traces end-to-end: initialize -> provision -> add/join -> rebalance.",
+  "cross_product_finding": ""
+}

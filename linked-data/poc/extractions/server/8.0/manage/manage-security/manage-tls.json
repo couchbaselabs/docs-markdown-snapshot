@@ -1,0 +1,187 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-tls",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-tls.md",
+  "concepts": [
+    {
+      "candidate_id": "tls:node-to-node-encryption",
+      "label": "Node-to-node encryption",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "tls:console-access-setting",
+      "label": "Web Console access setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - disableUIOverHttp/disableUIOverHttps are this setting's two directions"
+    },
+    {
+      "candidate_id": "tls:cluster-encryption-level",
+      "label": "Cluster Encryption-Level (control / all / strict)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json (this batch's reference-layer sibling); this page gives its full administration procedure and, distinctively, the strict-mode operational checklist that page does not carry"
+    },
+    {
+      "candidate_id": "tls:min-tls-version-setting",
+      "label": "Minimum TLS Version setting (tlsMinVersion)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json"
+    },
+    {
+      "candidate_id": "tls:cipher-suite-preference",
+      "label": "Cipher-Suite Preference (server vs. client, honorCipherOrder)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json"
+    },
+    {
+      "candidate_id": "tls:cipher-suite-list",
+      "label": "Cipher-Suite List (pre-configured / custom / global)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json"
+    },
+    {
+      "candidate_id": "tls:hsts",
+      "label": "HTTP Strict Transport Security (HSTS) header",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json"
+    },
+    {
+      "candidate_id": "tls:legacy-tls-versions",
+      "label": "TLS 1.0 and 1.1 (legacy, unsupported from 7.6)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json"
+    },
+    {
+      "candidate_id": "tls:loopback-interface",
+      "label": "Loopback interface (::1 / 127.0.0.1)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json; this page's strict-mode exception restates it"
+    },
+    {
+      "candidate_id": "tls:node-addition-naming-convention",
+      "label": "Node-Addition Naming Convention restriction",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in learn/security/on-the-wire-security.json; this page states the 6.0.x-cluster consequence of strict mode that concept covers"
+    },
+    {
+      "candidate_id": "tls:disable-www-authenticate-setting",
+      "label": "disableWWWAuthenticate setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuinely new: not present in learn/security/on-the-wire-security.json (this batch's own reference-layer sibling for the rest of this page's global settings), despite being documented in the identical bullet-list style as disableUIOverHttp/disableUIOverHttps, which that page DOES cover. A real vocabulary gap the reference page left, that this administration page fills."
+    },
+    {
+      "candidate_id": "eventing:visual-debugger",
+      "label": "Eventing visual/online debugger",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - its dedicated port becomes unavailable once strict mode is applied cluster-wide"
+    },
+    {
+      "candidate_id": "eventing:function",
+      "label": "Eventing Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - functions must be paused before strict mode is applied"
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - all XDCR replications must be fully secure before strict mode is applied"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "cascadesTo",
+      "object": "eventing:visual-debugger",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - applying strict mode disables the debugger's dedicated port because that port is non-TLS only",
+      "evidence": "The Eventing Service debugger port (9140) is not available (since non-TLS only)."
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "eventing:function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf's ordering-precondition shape fits: strict mode must not be applied while any Eventing function is still running",
+      "evidence": "Pause all Eventing functions on the cluster. (Resume them only after changes to node-to-node encryption and encryption-level been applied.)"
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "requiresSetting",
+      "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Ensure node-to-node encryption is enabled (see [Manage Node-to-Node Encryption](../manage-nodes/apply-node-to-node-encryption.md))."
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "requiresSetting",
+      "object": "server:xdcr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Ensure all XDCR replications are configured as fully secure (see [Enable Fully Secure Replications](../manage-xdcr/enable-full-secure-replication.md))."
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "doesNotSupport",
+      "object": "tls:loopback-interface",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the one documented exception to strict mode's own rule; loopback traffic stays permitted unencrypted even under strict",
+      "evidence": "`strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients. Note, however, that after `strict` has been specified, communication that occurs entirely on a single node using the _loopback_ interface (whereby the machine is identified as either `::1` or `127.0.0.1`) is still permitted in non-encrypted form."
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "cascadesTo",
+      "object": "tls:node-addition-naming-convention",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The node cannot be added to a Version 6.0.x cluster."
+    },
+    {
+      "subject": "tls:legacy-tls-versions",
+      "predicate": "deprecatedIn",
+      "object": "version:server-7-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - corroborates learn/security/on-the-wire-security.json from the settings-reference side, and additionally dates full removal to 7.6",
+      "evidence": "The values `tlsv1` and `tlsv1.1` were deprecated in Couchbase Server 7.2, and are no longer supported by Couchbase Server 7.6 and later."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-tls",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/on-the-wire-security",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "These areas are described in detail in [On-the-Wire Security](../../learn/security/on-the-wire-security.md), which should be read before the examples provided below are attempted."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-tls",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-nodes/apply-node-to-node-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "This can only be set after cluster encryption has been enabled: see [Manage Node-to-Node Encryption](../manage-nodes/apply-node-to-node-encryption.md)."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-tls",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/enable-full-secure-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Ensure all XDCR replications are configured as fully secure (see [Enable Fully Secure Replications](../manage-xdcr/enable-full-secure-replication.md))."
+    },
+    {
+      "subject": "server/8.0/manage/manage-security/manage-tls",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-eventing-function-setup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Pause all Eventing functions on the cluster. (Resume them only after changes to node-to-node encryption and encryption-level been applied.) See [eventing-function-setup](../../cli/cbcli/couchbase-cli-eventing-function-setup.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "n/a for this page - see cross_component_finding instead, which is the substantive result."
+  },
+  "cross_component_finding": "This page is this round's cleanest confirmation that the existing tls: vocabulary - built almost entirely from a single reference page (learn/security/on-the-wire-security.md, this same batch) - survives being read against the full administration procedure: eight of nine reused tls: concepts (cluster-encryption-level, min-tls-version-setting, cipher-suite-preference, cipher-suite-list, hsts, legacy-tls-versions, loopback-interface, node-addition-naming-convention) map cleanly onto this page's CLI/REST worked examples with no forced-fit or contradiction. Only one gap surfaced: disableWWWAuthenticate, documented in the identical style as the already-covered disableUIOverHttp/disableUIOverHttps, but never named on the reference page - a genuine miss rather than a different mechanism. The strict-mode operational checklist (pause Eventing functions, secure XDCR first, node-to-node encryption first) is this page's own distinctive content with no equivalent on the conceptual-overview page: it is the only place in the corpus that ties tls:cluster-encryption-level to eventing:function and server:xdcr as hard operational preconditions, and to eventing:visual-debugger as a documented casualty (the debugger's port stops working once strict mode is live, since it is non-TLS only).",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content on this page."
+}

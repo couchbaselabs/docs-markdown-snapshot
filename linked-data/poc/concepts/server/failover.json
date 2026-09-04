@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/failover",
+  "label": "failover",
+  "type": "removing an unavailable or failing node's active vBuckets from service by promoting replicas, in one of two kinds - graceful or hard. Distinct from node removal: a failed-over node's replica vBuckets are LOST at the next rebalance, where a removed node's are recreated elsewhere first.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/manage/manage-nodes/fail-nodes-over.md",
+  "evidence": [
+    "There are two basic types: _graceful_ and _hard_.",
+    "Note that when a node is flagged for _failover_ (as opposed to _removal_), replica vBuckets are lost when rebalance occurs, following node-removal.",
+    "Both manual and automatic failovers can cause the loss of durably written data."
+  ],
+  "note": "Parent of the graceful/hard pair and the term the whole manage-nodes/ subtree turns on. The failover-versus-removal contrast is the single most consequential sentence in round 26's scope and it is stated twice, on fail-nodes-over.md and remove-node-and-rebalance.md, from opposite sides - each page explains itself by reference to the other operation. Neither statement exists in learn/clusters-and-availability/.",
+  "relates_to_competency_question": "What are the kinds of failover, and how does failing a node over differ from removing it?"
+}

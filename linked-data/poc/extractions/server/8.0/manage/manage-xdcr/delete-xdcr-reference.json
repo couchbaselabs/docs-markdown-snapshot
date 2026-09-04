@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/manage/manage-xdcr/delete-xdcr-reference",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-xdcr/delete-xdcr-reference.md",
+  "concepts": [
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR Reference (registered target cluster)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - minted on create-xdcr-reference.json, this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "xdcr:reference",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-xdcr/secure-xdcr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "A replication can be configured securely. See [Secure a Replication](secure-xdcr-replication.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "cascadesDeletionTo / requiresServerRole",
+    "finding": "A thin click-through/CLI/REST procedure page with no new fact of its own - it neither restates nor exercises create-xdcr-reference.json's stated constraint that a reference in use by a replication cannot be deleted (the worked example here assumes the replication was already deleted first, per delete-xdcr-replication.md's own Next Steps link into this page)."
+  },
+  "cross_component_finding": "See delete-xdcr-replication.json (this same batch) for the response-body asymmetry between this endpoint (returns `\"ok\"`) and the replication-delete endpoint (returns nothing)."
+}

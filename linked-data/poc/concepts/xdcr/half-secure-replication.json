@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/xdcr/half-secure-replication",
+  "label": "half-secure XDCR replication",
+  "type": "the XDCR security level that protects the target cluster's PASSWORD only and leaves replicated data unencrypted (`secureType: half`), hashing the password with SCRAM-SHA where the target runs Enterprise Server 5.5 or later. Still requires the target's root certificate.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "server/current/manage/manage-xdcr/secure-xdcr-replication.md",
+  "evidence": [
+    "_Half-secure_: Secures the specified password only: it does not secure data.",
+    "The `secureType` field indicates that the new reference is `half` secure.",
+    "From this point, any existing replication based on the edited reference is continued in half-secure form.",
+    "The root certificate of the destination cluster must be provided, for a successful TLS connection to be established."
+  ],
+  "note": "'Any EXISTING replication based on the edited reference is continued in half-secure form' is the per-reference security scope of xdcr:reference observed from the other direction, and it is the security-relevant reading: editing a reference downgrades live replications in flight."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-certificate-revocation-not-documented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Nothing in the Couchbase Server documentation's certificate material documents a revocation mechanism. learn/security/certificates.md, learn/security/using-multiple-cas.md and the five certificate procedures under manage/manage-security/ between them cover generating, signing, uploading, loading, rotating and troubleshooting certificates - including no-downtime CA rotation, which is the operation an administrator reaches for when a key is compromised. Revocation appears only twice in the whole scope and neither is a mechanism: configure-server-certificates.md cites RFC 5280 by its full title, which happens to contain the words 'Certificate Revocation List', and explains that `keyUsage = cRLSign` controls whether a public key can verify CRL signatures. Neither CRL distribution points nor OCSP is mentioned as something Couchbase Server checks, ignores, or can be configured to check. Since the product accepts client certificates as an authentication credential, whether a revoked client certificate is still accepted is a first-order security question, and the documentation does not answer it either way.",
+  "about": [
+    "server/8.0/learn/security/certificates",
+    "server/8.0/learn/security/using-multiple-cas",
+    "server/8.0/manage/manage-security/configure-client-certificates",
+    "server/8.0/manage/manage-security/rotate-server-certificates",
+    "server/8.0/manage/manage-security/handle-certificate-errors"
+  ],
+  "foundDuring": "round-26-server-8.0-manage-web-console-administration",
+  "status": "open",
+  "note": "Three of round 26's six batches independently recorded this absence in their extraction records' notable_absence fields, from three different pages, without seeing each other's work. A gap noticed three times over is filed as a gap rather than as an extraction artefact. Note the honest limit of the claim: the absence is from the certificate and security-management material examined, and an SME may know of revocation handling documented elsewhere or deliberately not implemented - either answer would be worth a sentence on certificates.md."
+}

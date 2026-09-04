@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/manage/manage-buckets/flush-bucket",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-buckets/flush-bucket.md",
+  "concepts": [
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:xdcr", "label": "XDCR (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused - flushing is blocked while the bucket is an outgoing XDCR replication source" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:bucket-admin", "label": "Bucket Administrator", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted once" },
+    { "candidate_id": "bucket:flush-operation", "label": "Flush a Bucket (management operation)",
+      "registry_status": "minted", "reused_or_minted": "minted - the operation that deletes every object a bucket contains while keeping the bucket itself, its configuration, and (per this page) any XDCR/scope/collection structure intact. Checked against the extraction-layer clusters:bucket-flush and capella:bucket-flush stubs (both minted from the Capella tree, cloud/clusters/modify-database.json and cloud/eventing/eventing-examples-high-risk.json) before minting: neither page states the Capella and Server mechanisms are the same, so kept apart per the no-silent-merge rule rather than reused." }
+  ],
+  "relations": [
+    { "subject": "bucket:flush-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "To flush a bucket, an administrator must have one of the the following roles:\n\n* Full administrator\n* Cluster administrator\n* Bucket administrator" },
+    { "subject": "bucket:flush-operation", "predicate": "requiresServerRole", "object": "role:cluster-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "To flush a bucket, an administrator must have one of the the following roles:\n\n* Full administrator\n* Cluster administrator\n* Bucket administrator" },
+    { "subject": "bucket:flush-operation", "predicate": "requiresServerRole", "object": "role:bucket-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "To flush a bucket, an administrator must have one of the the following roles:\n\n* Full administrator\n* Cluster administrator\n* Bucket administrator" },
+    { "subject": "bucket:flush-operation", "predicate": "doesNotSupport", "object": "server:xdcr",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - flushing cannot be performed while the bucket is an outgoing XDCR replication source",
+      "evidence": "Note that flushing _cannot_ be performed while the bucket is the source for an outgoing _XDCR_ replication." },
+    { "subject": "server/8.0/manage/manage-buckets/flush-bucket", "predicate": "seeAlso", "object": "server/8.0/manage/manage-buckets/create-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "Note that flushing can also be enabled during bucket-creation. See [Create a Bucket](create-bucket.md) for details." },
+    { "subject": "server/8.0/manage/manage-buckets/flush-bucket", "predicate": "seeAlso", "object": "server/8.0/learn/clusters-and-availability/xdcr-overview",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For an introduction to XDCR, see [Cross Data Center Replication (XDCR)](../../learn/clusters-and-availability/xdcr-overview.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability",
+    "finding": "Unlike almost every other advanced setting in this batch (Storage Backend, Ejection Method/Policy, Encryption At Rest, Auto-Compaction), Flush is explicitly stated to apply uniformly to both bucket types: 'This setting enables or disables the Flush command for the current bucket. It can be changed at any time for all types of buckets' (edit-bucket.md, cross-referenced from this page's own Enable Flushing section). This is worth recording precisely because it is a NEGATIVE case for the round's type-gating hypothesis: not every bucket-level capability is gated by bucket type, and Flush is the clearest counter-example found in this batch."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

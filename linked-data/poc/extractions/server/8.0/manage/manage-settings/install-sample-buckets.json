@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/manage/manage-settings/install-sample-buckets",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-settings/install-sample-buckets.md",
+  "concepts": [
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused - the travel-sample bucket's six additional named scopes" },
+    { "candidate_id": "server:default-scope", "label": "_default scope (Couchbase Server)", "registry_status": "extraction-layer", "reused_or_minted": "reused - already minted; travel-sample duplicates all of its other scopes' data into this one for backward compatibility" },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:full-administrator", "label": "Full Administrator", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "role:cluster-admin", "label": "Cluster Admin", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "version:server-7-0", "label": "Couchbase Server 7.0", "registry_status": "promoted", "reused_or_minted": "reused - the release that introduced scopes and collections, which the travel-sample duplication accommodates pre-7.0 compatibility for" }
+  ],
+  "relations": [
+    { "subject": "server:bucket", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Full and Cluster administrators can install sample buckets using the [Couchbase Server Web Console](#install-sample-buckets-with-the-ui) and the [REST API](#install-sample-buckets-with-the-rest-api)." },
+    { "subject": "server:bucket", "predicate": "requiresServerRole", "object": "role:cluster-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Full and Cluster administrators can install sample buckets using the [Couchbase Server Web Console](#install-sample-buckets-with-the-ui) and the [REST API](#install-sample-buckets-with-the-rest-api)." },
+    { "subject": "server/8.0/manage/manage-settings/install-sample-buckets", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "See [Manage Users and Roles](../manage-security/manage-users-and-roles.md) to learn how to assign roles to users to grant access to the sample buckets." },
+    { "subject": "server/8.0/manage/manage-settings/install-sample-buckets", "predicate": "seeAlso", "object": "server/8.0/manage/manage-buckets/bucket-management-overview",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural Markdown link",
+      "evidence": "For information about managing (including deleting) buckets, see [Manage Buckets](../manage-buckets/bucket-management-overview.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "N/A",
+    "finding": "The page states 'The `_default` scope of the `travel_sample` bucket duplicates all of the data stored in the `inventory` and `tenant_agent_00` through `tenant_agent_04` scopes' for backward-compatibility reasons ('makes the bucket compatible with scripts and applications written for versions of Couchbase Server earlier than 7.0 that did not support scopes and collections'). No relation was minted for this: the registry has no predicate for 'these two scopes hold duplicate copies of the same data, maintained for backward-compatibility reasons', and forcing it into cascadesDeletionTo, isSynonymOf, or aliases would misrepresent the fact - none of those model two live, independently-addressable copies of the same rows kept in sync for compatibility. Omitted rather than mis-predicated, per the evidence-gate's own guidance."
+  },
+  "cross_component_finding": "N/A",
+  "cross_product_finding": "N/A"
+}

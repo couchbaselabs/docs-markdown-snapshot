@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/manage/manage-security/manage-authentication",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/manage-authentication.md",
+  "concepts": [
+    { "candidate_id": "security:authentication", "label": "Authentication (Server security facility)",
+      "registry_status": "promoted", "reused_or_minted": "reused - page is titled and framed entirely around this facility" },
+    { "candidate_id": "auth-mechanism:username-password", "label": "Username and password authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'administrators authenticate by means of a username and password'" },
+    { "candidate_id": "idp:ldap", "label": "LDAP identity provider",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Lightweight Directory Access Protocol (LDAP)'" },
+    { "candidate_id": "idp:pam", "label": "PAM (Pluggable Authentication Modules)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record - 'Pluggable Authentication Modules (PAM) authentication-framework'" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition",
+      "registry_status": "promoted", "reused_or_minted": "reused - LDAP/PAM validation gated to 'the Enterprise Edition of Couchbase Server for Linux'" }
+  ],
+  "relations": [
+    { "subject": "security:authentication", "predicate": "reliesOnMechanism", "object": "auth-mechanism:username-password",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "To access Couchbase Server, administrators authenticate by means of a username and password." },
+    { "subject": "security:authentication", "predicate": "authenticatesVia", "object": "idp:ldap",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "validation can be performed either on a network-accessible directory-server, by means of the _Lightweight Directory Access Protocol_ (LDAP); or by means of the _Pluggable Authentication Modules_ (PAM) authentication-framework." },
+    { "subject": "security:authentication", "predicate": "authenticatesVia", "object": "idp:pam",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "validation can be performed either on a network-accessible directory-server, by means of the _Lightweight Directory Access Protocol_ (LDAP); or by means of the _Pluggable Authentication Modules_ (PAM) authentication-framework." },
+    { "subject": "idp:ldap", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "alternatively if the Enterprise Edition of Couchbase Server for Linux is used, validation can be performed either on a network-accessible directory-server, by means of the _Lightweight Directory Access Protocol_ (LDAP); or by means of the _Pluggable Authentication Modules_ (PAM) authentication-framework." },
+    { "subject": "idp:pam", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "alternatively if the Enterprise Edition of Couchbase Server for Linux is used, validation can be performed either on a network-accessible directory-server, by means of the _Lightweight Directory Access Protocol_ (LDAP); or by means of the _Pluggable Authentication Modules_ (PAM) authentication-framework." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This 21-line page is the whole-tree's canonical 'Authentication' landing page, yet it never names a single concrete role or privilege - it stays entirely at the mechanism level (credentials, LDAP, PAM). Consistent with the round's expectation that thin overview pages can carry sparse concept/relation sets."
+  },
+  "cross_component_finding": "This page states the EE-gating for LDAP/PAM-backed validation as a single alternative clause ('alternatively if the Enterprise Edition... is used'), without separately EE-gating SAML - worth checking against configure-saml.md's own prerequisites, which state no edition restriction at all.",
+  "cross_product_finding": "n/a"
+}

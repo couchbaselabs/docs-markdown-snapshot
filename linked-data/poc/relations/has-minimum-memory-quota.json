@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/has-minimum-memory-quota",
+  "label": "has minimum memory quota",
+  "recurrence": 3,
+  "type": "DATATYPE PROPERTY: the subject bucket or vBucket configuration cannot be created below this per-node memory quota. Object is a literal quantity (100 MiB, 1 GiB), not a concept id.",
+  "note": "Sibling of hasMinimumMemoryToDataRatio and inherits its stated reservation: the object is a literal, so this shares hasDefaultValue's literal-versus-concept problem. Kept anyway because the numbers are the whole content - the 128-vBucket Magma configuration's 100 MiB against 1024's 1 GiB is a tenfold difference in the smallest deployable bucket, and there is no way to express it by pointing at a concept. Distinct from the promoted requiresMemoryQuota, whose subject is a SERVICE claiming a configured quota rather than a bucket configuration imposing a floor.",
+  "relates_to_competency_question": "What is the smallest per-node memory quota this bucket configuration can be created with?",
+  "kind": "relation (schema-level)",
+  "promoted": true
+}

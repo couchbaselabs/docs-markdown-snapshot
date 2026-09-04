@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/manage/monitor/monitoring-indexes",
+  "source_version": "Couchbase Server 8.0",
+  "source_path": "server/current/manage/monitor/monitoring-indexes.md",
+  "concepts": [
+    { "candidate_id": "index:per-index-statistics", "label": "Per-index statistics (Index Stats panel)",
+      "registry_status": "minted", "reused_or_minted": "minted - the fifteen named charts (Mutations Remaining, Drain Rate, Resident Percent, RAM Used, Indexed Items, Data Size, Disk Size, Item Size, Scan Latency, Request Rate, Scan Items, Scan Bytes, Fragmentation, Cache Miss Ratio, Write Queue) for ONE specific index; kept in the index: namespace (which already exists and fits) rather than forced into the Capella-specific monitoring: family." },
+    { "candidate_id": "index:index-service-statistics", "label": "Index-Service statistics (footer, all nodes)",
+      "registry_status": "minted", "reused_or_minted": "minted - the Indexes screen footer's cluster-wide-across-all-nodes statistics (RAM Quota, RAM Used/Remaining, RAM Percent, Total Scan Rate, Fragmentation, Data Size, Disk Size), distinct from index:per-index-statistics which is scoped to one index." },
+    { "candidate_id": "service:index-service", "label": "Index service",
+      "registry_status": "promoted", "reused_or_minted": "reused - the service both statistic families report on." },
+    { "candidate_id": "tool:couchbase-cli-server-info", "label": "couchbase-cli server-info",
+      "registry_status": "minted", "reused_or_minted": "minted - the CLI command this page names for monitoring some Index-Service statistics; not in the promoted tool: family." }
+  ],
+  "relations": [
+    { "subject": "service:index-service", "predicate": "monitoredVia", "object": "index:per-index-statistics",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The Indexes screen in Couchbase Web Console enables you to see statistics for a specific primary index or global secondary index." },
+    { "subject": "service:index-service", "predicate": "monitoredVia", "object": "index:index-service-statistics",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The footer of the Indexes screen displays general statistics for the Index Service. These show resource usage for the Index Service across all nodes." },
+    { "subject": "index:index-service-statistics", "predicate": "seeAlso", "object": "server/8.0/index-rest-stats/index",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can monitor all Index-Service statistics, and statistics for a specific index, using the REST API. Refer to [Index Statistics REST API](../../index-rest-stats/index.md)." },
+    { "subject": "tool:couchbase-cli-server-info", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-server-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can monitor some Index-Service statistics using the CLI. Refer to [server-info](../../cli/cbcli/couchbase-cli-server-info.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "'Note that there is no CLI support for statistics for a specific index.' The CLI (server-info) covers only Index-Service-wide statistics, while the REST API covers both the whole service AND a specific index - the same UI-only-for-single-item-detail gap already noted for manage-indexes.md's CLI/REST sections in this batch (no CLI or REST support for administering a specific index by name), now shown to extend to monitoring a specific index as well."
+  },
+  "cross_component_finding": "Every per-index chart on this page (e.g. 'Index Mutations Remaining. The number of documents pending to be indexed.') is the same information manage-indexes.md's index-list 'mutations remaining' status column surfaces as a live badge on the index row - the two pages describe the identical underlying counter from two different UI locations (the Indexes list row vs. the expanded Index Stats panel) without cross-referencing each other on that specific point.",
+  "cross_product_finding": ""
+}

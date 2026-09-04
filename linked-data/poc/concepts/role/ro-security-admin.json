@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/ro-security-admin",
+  "label": "Read-Only Security Admin (Server RBAC role)",
+  "type": "a Server RBAC role granting read-only visibility of security configuration - it can view the audit configuration and display per-bucket statistics, but change nothing. The read-only counterpart of role:security-admin, and part of the same 8.0 split.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "role:read-only-security-admin"
+  ],
+  "internal_name": "ro_security_admin",
+  "aliases_note": "Filed under the internal name per the registry's role convention (see role:ro-admin, role:backup-admin); `role:read-only-security-admin` is the display-label spelling both round-26 batches minted and is retained as an alias so their relations resolve.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: Read-Only Security Admin (ro_security_admin)",
+    "Users with the Full Admin, Security Admin, or Read-Only Security Admin roles can view the audit configuration."
+  ],
+  "note": "role:ro-admin's own record already predicted this role's existence from the other side: 'Split in 8.0: the security-settings half moved to Read-Only Security Admin.' Round 26 is the round that filed the thing that prediction named, and from procedural pages rather than the catalogue - manage-auditing.md and manage-statistics.md both list it in a can-view enumeration. That is the pattern of the whole round: the reference tree says what a role IS, the procedures say which operations enumerate it, and only the second kind of page distinguishes view-only from configure.",
+  "relates_to_competency_question": "Who can read the audit configuration without being able to change it?"
+}

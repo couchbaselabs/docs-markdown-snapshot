@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/vbucket-count-1024",
+  "label": "1024-vBucket configuration",
+  "type": "the larger Magma vBucket configuration and the count every non-Magma Couchbase bucket uses, with a minimum memory quota of 1 GiB per node. Migrating a bucket's storage backend to Magma always produces this count regardless of the source bucket's.",
+  "promoted": true,
+  "recurrence": 3,
+  "documented_at": "server/current/learn/buckets-memory-and-storage/storage-engines.md",
+  "evidence": [
+    "Magma supports two vBucket configurations: 128 or 1024",
+    "Magma using 1024 vBuckets has a minimum memory quota of 1 GiB per node.",
+    "Migrating to a Magma bucket always results in a bucket with 1024 vBuckets, regardless of the number of vBuckets in the source bucket.",
+    "| Magma (1024 vBuckets) | 1 GiB                |"
+  ],
+  "note": "Sibling of vbucket:vbucket-count-128; both cross the bar independently, so no family exception was needed. The migration asymmetry is the operationally sharp fact: an administrator can CREATE a 128-vBucket Magma bucket but cannot MIGRATE into one."
+}

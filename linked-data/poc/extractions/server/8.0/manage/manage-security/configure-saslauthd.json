@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/manage/manage-security/configure-saslauthd",
+  "source_version": "8.0",
+  "source_path": "server/current/manage/manage-security/configure-saslauthd.md",
+  "concepts": [
+    { "candidate_id": "idp:saslauthd", "label": "saslauthd",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record; this is saslauthd's own dedicated configuration/migration page" },
+    { "candidate_id": "idp:ldap", "label": "LDAP identity provider",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Couchbase Server provides _Native LDAP_ support.'" },
+    { "candidate_id": "idp:pam", "label": "PAM (Pluggable Authentication Modules)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused from this batch's own security-management-overview.json record - 'The saslauthd process can still be used to support authentication on LDAP or other servers if required'" },
+    { "candidate_id": "auth-mechanism:username-password", "label": "Username and password authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'both _Native LDAP Support_ and `saslauthd` require clients to use the PLAIN authentication mechanism' (SASL PLAIN mechanism = username+password credentials)" }
+  ],
+  "relations": [
+    { "subject": "idp:saslauthd", "predicate": "mutuallyExclusiveWith", "object": "idp:ldap",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captures a hard, stated 'cannot both be active' constraint between two configuration mechanisms; mustUseInsteadWhen is directional/preference-based and doesn't fit a genuine hard exclusivity constraint, so this is a distinct shape worth its own predicate",
+      "evidence": "Note that _either_ Native LDAP Support _or_ `saslauthd` must be selected for the cluster. The two cannot be used simultaneously." },
+    { "subject": "idp:saslauthd", "predicate": "mustUseInsteadWhen", "object": "idp:ldap",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If you have been using `saslauthd` with previous versions of Couchbase Server, you are strongly recommended to migrate to _Native LDAP_." },
+    { "subject": "idp:saslauthd", "predicate": "reliesOnMechanism", "object": "auth-mechanism:username-password",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note also that _both_ Native LDAP Support _and_ `saslauthd` require clients to use the PLAIN authentication mechanism, ideally with TLS." },
+    { "subject": "idp:ldap", "predicate": "reliesOnMechanism", "object": "auth-mechanism:username-password",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note also that _both_ Native LDAP Support _and_ `saslauthd` require clients to use the PLAIN authentication mechanism, ideally with TLS." },
+    { "subject": "idp:saslauthd", "predicate": "seeAlso", "object": "server/8.0/manage/manage-security/configure-ldap",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural Markdown link",
+      "evidence": "For details on using this recommended procedure, see [Configure LDAP](configure-ldap.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The migration procedure explicitly notes that only 'Enable LDAP user authentication' is mandatory to complete a saslauthd-to-LDAP migration, while 'Enable LDAP group authorization & sync' is optional and can be deferred - a fine-grained, two-stage adoption path for idp:ldap that this page states more precisely than configure-ldap.md itself does; worth reconciliation cross-checking whether configure-ldap.json's own relations capture this staging."
+  },
+  "cross_component_finding": "n/a",
+  "cross_product_finding": "n/a"
+}

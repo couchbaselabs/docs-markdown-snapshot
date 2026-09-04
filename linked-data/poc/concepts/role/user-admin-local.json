@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/user-admin-local",
+  "label": "Local User Admin (Server RBAC role)",
+  "type": "a Server RBAC role introduced in Couchbase Server 8.0 that manages users in the LOCAL authentication domain. One of the two halves of the pre-8.0 Local User Security Admin role, the other half being role:security-admin.",
+  "promoted": true,
+  "recurrence": 1,
+  "aliases": [
+    "role:local-user-admin"
+  ],
+  "internal_name": "user_admin_local",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": [
+    "Role: Local User Admin (user_admin_local)",
+    "This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role."
+  ],
+  "note": "PROMOTED BELOW THE BAR under the family exception, at 1 file. role:user-admin-external cannot state what it is without naming this role: the 8.0 split produced a matched local/external pair, backup-and-restore requires BOTH together to back up users, and a registry holding only the external half would misrepresent the split as asymmetric. The exception is doing real work rather than waving through everything on the page: `role:external-stats-reader` and `role:xdcr-inbound` also sit at 1 on roles.md and are both refused, because no promoted record needs to name them in order to say what it is.",
+  "relates_to_competency_question": "After 8.0, which role manages locally-defined users?"
+}
