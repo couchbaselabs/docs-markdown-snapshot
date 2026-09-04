@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/rest-api/backup-get-expired-backups",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-get-expired-backups.md",
+  "concepts": [
+    { "candidate_id": "backup:get-expired-backups-operation", "label": "Get Expired Backup Information (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/expiredBackups operation" },
+    { "candidate_id": "backup:expired-backup", "label": "Expired backup", "registry_status": "minted", "reused_or_minted": "minted - a backup whose retention period has elapsed and which is therefore eligible for pruning, but not yet removed. Distinct from backup:pruning (the deletion activity itself, extraction-layer) and backup:retention-period (the configured window) - this is the STATE a backup enters once that window has passed" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:retention-period", "label": "Retention period", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:backup-service-rest-api", "label": "Backup Service REST API", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-create-repository.json, this batch" },
+    { "candidate_id": "port:8097", "label": "Port 8097 (Backup Service, default)", "registry_status": "minted", "reused_or_minted": "minted - the Backup Service's own REST port, distinct from the already-extraction-layer port:8091/port:18091 (cleartext/TLS Cluster Manager REST ports) that other services' REST APIs proxy through. No port:8097 concept previously existed despite :8097 appearing in curl examples across every one of this batch's other pages - this is the first page in the batch's read order to name it explicitly as 'the Backup Service port' rather than just using it in a curl URL" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin (Server RBAC role)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-get-cluster-info.json (this batch) under the spelling 'Backup Admin'; THIS page uses the fuller spelling 'Backup Full Admin', matching two other pages later in this batch. Same id, different observed label - see backup-get-cluster-info.json's notable_absence for the discrepancy" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:expired-backup", "predicate": "appliesAfter", "object": "backup:retention-period",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer predicate, minted in backup-service.json for backup:pruning; applied here to the state a backup enters, not the activity performed on it",
+      "evidence": "You can also set the Backup Service to prune backups that have exceeded the retention period.",
+      "evidence_source": "server/current/learn/services-and-indexes/services/backup-service.md",
+      "evidence_provenance": "cross-page: this page returns an 'expired_backups' array and describes it only as 'expiry information' - it never states WHY a backup counts as expired. The retention-period linkage is stated only on the Backup Service overview page." },
+
+    { "subject": "backup:backup-service-rest-api", "predicate": "usesPort", "object": "port:8097",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted port",
+      "evidence": "These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service." },
+
+    { "subject": "backup:get-expired-backups-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-expired-backups-operation", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-expired-backups-operation", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+
+    { "subject": "backup:get-expired-backups-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For a an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:get-expired-backups-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For a step-by-step guide to configure and use the Backup Service using the Couchbase Server Web Console, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "backup:expired-backup dependency semantics",
+    "finding": "The example response on this page returns TWO distinct arrays: `expired_backups` and `expired_backups_with_non_expired_dependents`. The field name strongly implies the Backup Service tracks, and treats differently, expired backups that still have non-expired incremental backups depending on them - directly paralleling backup-delete-backups.json's disable_safe_remove_check dependency guard and this batch's confirmed backup:full-backup/backup:incremental-backup dependency chain. But the page supplies only the field name and one example value, with no prose explaining what happens differently to a backup in that second category (is it excluded from automatic pruning? does it require disable_safe_remove_check to prune?). No sentence exists to quote for a relation, so none is asserted - named here instead, per the instruction not to silently drop an interesting but unquotable structural signal."
+  },
+  "cross_component_finding": "port:8097 being introduced only NOW, on this batch's 8th of 11 files despite the number 8097 appearing in literally every preceding page's curl examples, is itself a small methodological finding: an extraction agent reading pages in isolation could easily have minted port:8097 on file 1 from a bare URL number with much weaker evidence, or never minted it at all if no page stated the port's purpose in prose. This page's explicit framing sentence - 'These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service' - is the ONLY sentence in this batch that names the port as a first-class fact rather than an incidental part of an example URL, which is why it is the mint point chosen here."
+}

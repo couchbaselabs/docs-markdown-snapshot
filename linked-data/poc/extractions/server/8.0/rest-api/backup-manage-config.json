@@ -1,0 +1,54 @@
+{
+  "page_id": "server/8.0/rest-api/backup-manage-config",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-manage-config.md",
+  "concepts": [
+    { "candidate_id": "backup:manage-config-rest-api", "label": "Manage Backup Configuration (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso/table target in backup-rest-api.json, this batch)." },
+    { "candidate_id": "backup:history-rotation-size-setting", "label": "Backup history rotation size (history_rotation_size)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a global Backup Service setting distinct from backup:retention-period (which governs individual backups/repositories) and backup:thread-count-setting (per-node); no existing concept covers 'how much task-history the service itself retains before rotating it out'." },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin (backup_admin)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id, though this page names it 'Backup Admin' rather than 'Backup Full Admin' - see notable_absence" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:history-rotation-size-setting", "predicate": "configuredVia", "object": "backup:manage-config-rest-api",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - configuredVia",
+      "evidence": "This method lets you get and set the rotation size for Backup Service history." },
+
+    { "subject": "backup:history-rotation-size-setting", "predicate": "hasDefaultValue", "object": "50",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue. Object is a literal, per the registry's own noted limitation for this predicate ('the object is frequently a LITERAL, not a concept')",
+      "evidence": "If successful, the call returns `200 OK`, and the following object:\n\n{\"history\\_rotation\\_size\":50}" },
+
+    { "subject": "backup:manage-config-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "To call this method via GET: Full Amin, Backup Admin, or Read-Only Admin." },
+    { "subject": "backup:manage-config-rest-api", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole (predicate promoted; object role:backup-full-admin is extraction-layer)",
+      "evidence": "To call this method via GET: Full Amin, Backup Admin, or Read-Only Admin." },
+    { "subject": "backup:manage-config-rest-api", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "To call this method via GET: Full Amin, Backup Admin, or Read-Only Admin." },
+
+    { "subject": "backup:manage-config-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:manage-config-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (per-method) / PUT",
+    "finding": "TWO separate docs issues on one short page. (1) Role-naming drift: this page's Required Permissions section says 'Full Amin, Backup Admin, or Read-Only Admin' - 'Full Amin' is a typo for 'Full Admin', and 'Backup Admin' is a THIRD spelling of the role the overview page's tables imply and backup-get-task-info.md / backup-node-threads.md both call 'Backup Full Admin'. roles.md's own catalogue names it 'Backup Full Admin (backup_admin)' - so 'Backup Admin' here is neither the display label nor the internal name, it's a third, unofficial shorthand. Resolved to the same role:backup-full-admin id since the internal name backup_admin is unambiguous, but the inconsistency is worth a docs ticket. (2) The parent backup-rest-api.md's Configuration table lists THREE methods for /api/v1/config - GET, POST, and PUT - but this page, whose whole job is to document that endpoint, only ever mentions GET and POST. PUT is never shown in an HTTP Methods and URIs section, a curl example, or a Required Permissions line anywhere on this page. Either the overview table is wrong, or this page is missing a third of its own subject matter."
+  },
+  "cross_component_finding": "This page has no relationship to cbbackupmgr at all - history_rotation_size is a Backup-Service-only setting (how much of the SERVICE's own task-history log to retain) with no CLI equivalent found in any cbbackupmgr reference page extracted so far, unlike backup:retention-period and backup:pruning which this batch's backup-retention.md and backup-trigger-prune.md show are genuinely shared REST/CLI-adjacent concepts. This is useful negative evidence for the round's central question: not every Backup-Service REST concept maps onto something cbbackupmgr already has a name for. The service's own operational housekeeping (its history log, its thread count) is Backup-Service-specific; the data it manages (repositories, backups, plans) is the shared layer with cbbackupmgr.",
+  "cross_product_finding": ""
+}

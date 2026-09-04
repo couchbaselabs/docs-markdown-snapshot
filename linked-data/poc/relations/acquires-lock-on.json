@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/acquires-lock-on",
+  "label": "acquires lock on",
+  "kind": "relation (schema-level)",
+  "type": "a concurrency-control primitive: the subject tool/process takes an exclusive lock on the named object before operating on it, so a second concurrent instance is prevented from writing to the same object.",
+  "promoted": true,
+  "recurrence": 1,
+  "recurrence_note": "Promoted below the ordinary >=2-files bar for the same registry-consistency reason as relations/stores-data-in.json (see its note): concepts/backup/repository.json's promoted `type` field has, since round 19, cited 'cbbackupmgr acquiresLockOn one, per round 11's own already-promoted relation' as settled fact, but no relations/acquires-lock-on.json file existed until this round. This round's own extraction batches independently found the SAME lockfile mechanism from the other direction: backup:archive-locking (also promoted this round) is cbbackupmgr's own file-lock guard on a backup:archive, evidenced on cbbackupmgr-network-filesystems.md/cbbackupmgr-cloud.md - a second, related but not identical, single-file relation instance rather than a second file for this exact triple.",
+  "evidence": [
+    "The `cbbackupmgr` tool takes a lock on the repository to which it's backing up data."
+  ],
+  "note": "Distinct from backup:archive-locking's own requiredForApiAccess relation (backup:archive-locking -requiredForApiAccess-> backup:archive): that record is the NAMED mechanism (a lockfile) as a concept in its own right; this predicate is the schema-level ACT of acquiring a lock, usable wherever a tool/process takes an exclusive hold on a resource, not only in the backup domain."
+}

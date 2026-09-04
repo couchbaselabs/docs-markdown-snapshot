@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/backup-admin",
+  "label": "Backup Full Admin (backup_admin)",
+  "type": "a Server RBAC role gating administrative access to the Backup Service's own REST API (as against role:data-backup, which gates bucket-level backup/restore via cbbackupmgr). Filed under its internal name `backup_admin` per this project's role-naming convention (display label in aliases).",
+  "promoted": true,
+  "recurrence": 7,
+  "internal_name": "backup_admin",
+  "aliases": [
+    "role:backup-full-admin"
+  ],
+  "aliases_note": "Extraction records across this round's own 22 files and the Server RBAC catalogue (learn/security/roles.json) all used the display-label id `role:backup-full-admin`, so that spelling is the one resolved via alias rather than rewritten - filed here under the internal name `backup_admin` per the established convention (see role:data-backup for the prior instance of the same pattern). A THIRD, unofficial spelling - 'Backup Admin' (no 'Full') - appears on two pages (backup-get-cluster-info.md and backup-manage-config.md, the latter alongside a bare typo 'Full Amin' for Full Admin) and is neither the display label nor the internal name; logged as docs-issues/server-backup-rest-api-role-name-drift rather than treated as a fourth id.",
+  "evidence": [
+    "Full Admin, Backup Full Admin, or Read-Only Admin roles.",
+    "This role does not grant the ability to back up or restore users.",
+    "For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role."
+  ],
+  "documented_at": "server/8.0/learn/security/roles",
+  "note": "The classic Server RBAC role gating the Backup Service REST API's GET/list/info endpoints (alongside role:full-administrator and role:ro-admin) - a sixth structurally distinct thing called 'role' in this ontology's running count, and NOT the same as role:data-backup, which governs cbbackupmgr's bucket-level access with no cluster-level administrative reach. Does not grant the ability to back up or restore users - that needs role:local-user-security-administrator and an external-user-admin role in addition.",
+  "relates_to_competency_question": "What role gates administrative access to the Backup Service's own REST API, and is it the same role that gates cbbackupmgr?"
+}

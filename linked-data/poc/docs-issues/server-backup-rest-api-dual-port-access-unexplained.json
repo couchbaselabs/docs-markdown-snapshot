@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-rest-api-dual-port-access-unexplained",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "backup-get-expired-backups.md and backup-get-repository-info.md both state explicitly that their URIs are 'only available from the Backup Service port (8097 by default) on nodes running the Backup Service.' Yet backup-get-plan-info.md's own second worked example reaches the same kind of endpoint (plan info) through port 8091 via a `_p/backup/` proxy prefix instead of port 8097, and backup-get-repository-info.md's own third example does the identical thing for repository-info. Both access paths to the same endpoints are attested twice each within this one batch, raising confidence this is a real, intentional dual-homing (matching the fan-out pattern already documented for Analytics/Query/Eventing REST APIs through port 8091) rather than a one-off typo - but no page reconciles this with the 'only available from... 8097' framing sentence, or states which access path is canonical.",
+  "about": [
+    "server/8.0/rest-api/backup-get-expired-backups",
+    "server/8.0/rest-api/backup-get-plan-info",
+    "server/8.0/rest-api/backup-get-repository-info"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

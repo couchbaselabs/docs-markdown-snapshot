@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-four rounds so far, twenty of them deliberate escalations and
+automating it. Twenty-five rounds so far, twenty-one of them deliberate escalations and
 four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -375,6 +375,33 @@ four corrective passes over what they left behind:
     round from the other side, converging independently on the identical missing
     name for a fact no page ever states as a sentence — a different, weaker kind of
     promotion than the usual recurrence rule, and said so explicitly.
+25. **22 pages, the Backup Service REST API** (`server/current/rest-api/backup-*`)
+    — dispatched as two parallel batches specifically to test round 11's finding
+    that `backup:repository` is "the SAME construct whether written to by
+    cbbackupmgr directly or by the Backup Service's own plan mechanism." It held
+    up under three independent lines of REST evidence (storage, addressing,
+    lifecycle) and was scoped more precisely than round 11 could have known to
+    scope it: the storage object is shared, but the Backup Service's scheduling
+    layer (`plan`, and its BACKUP/MERGE/PRUNE task-type family) has no cbbackupmgr
+    equivalent at all. A second finding was left open on purpose rather than
+    resolved by inference: `backup-restore-data.md` states its restore operation
+    "need not be... a cluster running the Backup Service," directly contradicting
+    an earlier promoted-adjacent claim that the service operates only on its own
+    cluster — recorded as a genuine, unresolved contradiction. Also closed a
+    six-round-old registry defect: `backup:repository`'s own promoted record had
+    cited two relations, `storesDataIn` and `acquiresLockOn`, as "already-promoted"
+    since round 19, but neither had a file in `relations/` until this round —
+    "narrated as promoted, never actually filed" recurring for the tenth time,
+    this time inside a promoted record's own defining text rather than in
+    reconciliation prose. 19 concepts and 4 relations promoted, plus a
+    whole-corpus recount that closed out `port:8091` at recurrence 11 (a fifth
+    product area's worth of debt, sibling of the already-promoted `port:18091`).
+    Reconciliation itself was the round's second experiment: run by a fresh agent
+    with no memory of rounds 1-24, working entirely from `registry-digest.py`,
+    `recurrence.py` and `candidate-evidence.py` against the live registry, as a
+    direct test of whether a continuous coordinator session's accumulated
+    cache-read costs (61% of its own bill by round 24) could be avoided without
+    losing reconciliation quality.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -382,7 +409,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-845 pages total:
+867 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -535,6 +562,12 @@ time/cost projections and how they held up against the round-2 run's real number
   analytics-rest-settings}` — the REST reference surfaces for Search, Index,
   Query, and Analytics that earlier rounds had only reached through `seeAlso`
   links, never read first-hand.
+- **22 more, `server/8.0/rest-api/backup-*`** — the full REST reference for the
+  Backup Service, dispatched as two parallel 11-page batches specifically to
+  test round 11's "same construct" finding about `backup:repository` against a
+  second access surface. Confirmed and scoped more precisely than round 11 could
+  have known to scope it - see the round 25 headline finding in
+  `reconciliation.md`.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1112,6 +1145,38 @@ from "still in `extractions/`."
   spellings predating or alongside the canonical concept's own promotion). A
   dozen more candidates from the same sweep remain deliberately deferred,
   evidence already gathered, as an explicit backlog for a future round.
+  Round 25 read the Backup Service's 22-page REST reference, dispatched
+  specifically to re-test round 11's "same construct" finding for
+  `backup:repository` against a second access surface — confirmed at the
+  storage/addressing/lifecycle layer and scoped more precisely than round 11
+  could have known to: the Backup Service's scheduling/policy object
+  (`backup:plan`) and its BACKUP/MERGE/PRUNE task-type family
+  (`backup:backup-task`, `backup:merge-task`, `backup:prune-task` — the last
+  promoted at recurrence 1 as an explicit family exception, since the enum's
+  third member cannot be described without naming the other two) have no
+  cbbackupmgr equivalent at all. **19 concepts promoted**: the plan/policy
+  layer above, repository lifecycle (`backup:archived-repository`, and
+  `backup:imported-repository` — a genuinely new third repository state,
+  promoted at strict recurrence 1 under the significance exception since it
+  is attested as a coordinate enum value across five files despite sitting in
+  an explicit relation slot in only one), the REST/CLI shared layer
+  (`backup:collection-string`, this round's sharpest field-level evidence;
+  round-19 debt `backup:archive-locking` and `backup:safe-remove-check`, only
+  crossing the bar once a whole-corpus recount was run), Backup-Service-only
+  settings (`backup:thread-count-setting` and its endpoint, renamed from a
+  bare one-member `rest:` namespace into `backup:nodes-threads-map-endpoint`),
+  the umbrella `backup:backup-service-rest-api`, two `port:` concepts
+  (`port:8097`, and `port:8091` at recurrence 11 — a fifth product area's
+  worth of debt, sibling of the already-promoted `port:18091`), and
+  `role:backup-admin` (filed under its internal name per this project's role
+  convention, alias `role:backup-full-admin`). Also closed a six-round-old
+  registry defect: `backup:repository`'s own promoted record had cited
+  `storesDataIn` and `acquiresLockOn` as "already-promoted" since round 19,
+  but neither had a file in `relations/` until this round. And left one
+  contradiction open on purpose rather than resolving it by inference —
+  `backup-restore-data.md` states its restore operation "need not be... a
+  cluster running the Backup Service," directly against an earlier
+  promoted-adjacent claim that the service operates only on its own cluster.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1306,14 +1371,47 @@ from "still in `extractions/`."
   concrete, bucket-scoped permission strings tied to named roles, systematically,
   across five REST operations — still not an enumerable catalogue, but the
   strongest concrete-privilege evidence found so far for any one service.
+  Round 25 added **four**. `triggersImmediateExecutionOf` (3) covers all three
+  of the Backup Service's "run now" endpoints (backup/merge/prune) cleanly.
+  `supportsCrossClusterOperation` (1) is promoted under the significance
+  exception specifically to carry the round's headline contradiction: a
+  Backup-Service REST restore endpoint stating its operation "need not be...
+  a cluster running the Backup Service," against an earlier promoted-adjacent
+  claim that the service operates only on its own cluster. `storesDataIn` and
+  `acquiresLockOn` (1 each) close a six-round-old registry defect rather than
+  reflect fresh evidence: `backup:repository`'s own promoted record has cited
+  both, since round 19, as "round 11's own already-promoted relation," but
+  neither had a file here until this round — "narrated as promoted, never
+  actually filed" recurring for the tenth time, this time inside a promoted
+  record's own defining text.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **167
-  entries** as of round 24 (9 added this round: thin/placeholder-example Search
+  issueType, description, about, status}` — minted with no gatekeeping. **184
+  entries** as of round 25 (17 added this round, all about the Backup Service
+  REST reference: role-naming drift across four pages plus a bare-permission-string
+  register on a fifth; two literal doc bugs — a DELETE endpoint's error message
+  reading "update", a doubled `api/v1/api/v1` path in a worked example; a
+  permission-doc structural split between GET/list-shaped and write-shaped
+  endpoints that `examine-data` inconsistently follows the wrong side of; no
+  stated Enterprise Edition gate for REST-triggered merges or cloud-repository
+  creation despite both being EE-only on the cbbackupmgr side; AWS/S3-first
+  illustrative detail on otherwise provider-agnostic cloud parameters; a
+  plan-level vs. immediate-trigger field-name mismatch for the same day-range
+  concept; an advertised-but-undocumented PUT method; a stale field name in an
+  import endpoint's own error message; a response-table description copy-pasted
+  from a different endpoint; an undocumented `full_backup` parameter used in two
+  endpoints' own worked examples; a transposed 404-as-200-example response row; an
+  unexplained array-vs-object response-shape asymmetry between three structurally
+  identical endpoints; an unexplained dependent-backup distinction in an expired-backups
+  response; an unreconciled dual-port access pattern; an overview page's
+  role requirement narrower than every child page's own; and the round's
+  headline cross-cluster-restore contradiction between two Backup-Service-authored
+  pages, filed `needs-sme`). 167 entries as of round 24 (9 added that round:
+  thin/placeholder-example Search
   Plan Parameters fields, a Search RBAC tier asymmetry between querying and
   reading an index, a Query Response schema independently thin on three REST
   reference pages, a version-less Analytics deprecation, `ftsMemoryQuota`'s
@@ -2905,6 +3003,55 @@ namespace left in the corpus):**
      once, across four unrelated products - recognizable as an infrastructure cause
      before any content-specific explanation was worth considering.
 
+**Round 25 (22 pages, the Backup Service REST API - a re-test of round 11's "same
+construct" finding against a second access surface):**
+
+110. **A promoted finding can be confirmed AND scoped more precisely than the round
+     that first stated it could have known to scope it.** Round 11's `backup:repository`
+     - "the SAME construct whether written to by cbbackupmgr directly or by the
+     Backup Service's own plan mechanism" - held up under three independent lines of
+     REST-surface evidence (storage-location semantics, document addressing, and
+     repository-lifecycle behavior). But the Backup Service's scheduling/policy
+     object (`backup:plan`) and its BACKUP/MERGE/PRUNE task-type family have no
+     cbbackupmgr equivalent at all - a scope round 11 had no REST evidence to state.
+     Filed as a `round_25_addendum` on the original record rather than a rewrite.
+111. **A direct, plainly-stated contradiction between two Backup-Service-authored
+     pages, left open rather than resolved by inference.** `backup-restore-data.md`
+     states its restore operation "need not be... a cluster running the Backup
+     Service"; an earlier promoted-adjacent claim (round 19) states the Backup
+     Service operates "only on the cluster it runs on." A reconciling reading exists
+     (repository reads are cluster-local; the restore target is a separate,
+     remote-capable parameter) but no page states it - recording the tension plainly,
+     including a new predicate (`supportsCrossClusterOperation`) minted to carry it,
+     was judged more honest than picking a side.
+112. **"Narrated as promoted, never actually filed" recurs in a tenth location, this
+     time inside a promoted record's own defining text.** `backup:repository.json`'s
+     own `type` field cited `storesDataIn` and `acquiresLockOn` as "round 11's own
+     already-promoted relation" since round 19; neither had a file in `relations/`
+     until this round found the gap while re-verifying the record's central claim -
+     a location no existing control (`verify-promotions.py` included) reads.
+113. **A genuinely new repository lifecycle state, promoted below the ordinary
+     recurrence bar on significance rather than count.** `backup:imported-repository`
+     - a repository deleted from the Backup Service's bookkeeping but still on disk,
+     later re-registered - sits in an explicit relation slot in only one file, but is
+     attested as a coordinate enum value (alongside active/archived) in five, and
+     `backup-get-cluster-info.md`'s own response schema treats it as a first-class
+     peer state. Promoted as an explicit exception, recurrence noted honestly at 1.
+114. **A batch's own flagged pairing can resolve only partially, and only opening
+     both records shows which part.** Batch A flagged that `backup:imported-repository`'s
+     origin story lived in a named sibling page; that sibling's own extraction
+     record turned out never to use the id, reusing a broader one instead - the
+     underlying connection is real, the id-level convergence the flag implied did
+     not fully happen.
+115. **This round doubled as a methodology experiment: can a fresh, memory-less
+     agent reconcile a batch from registry queries alone, at lower cost than a
+     24-round-deep continuous session?** Every promotion, namespace-hygiene
+     decision, and whole-corpus debt sweep in this round was made from
+     `registry-digest.py`, `recurrence.py`, and `candidate-evidence.py` output plus
+     the round's own 22 extraction files, without reading `reconciliation.md`'s
+     prior 24 rounds at all. See the round's own closing report for the concrete
+     tool-call/token accounting the coordinator requested.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -3292,7 +3439,23 @@ document.
   reconciliation cost by registry surface touched, not page count.
 - The next product-scale target after that, if continuing at this granularity,
   is a product outside `cloud/`/`server/` not yet touched at all (other SDKs,
-  Analytics/Columnar, Backup, the Autonomous Operator).
+  Analytics/Columnar, the Autonomous Operator). Backup is no longer in this
+  category: rounds 19 and 25 between them have read the whole cbbackupmgr CLI
+  reference and the whole Backup Service REST reference.
+- **Get a subject-matter answer on the cross-cluster restore contradiction round
+  25 left open.** `docs-issues/server-backup-service-restore-cross-cluster-contradiction`
+  (filed `needs-sme`) is a real, plainly-stated disagreement between two
+  Backup-Service-authored pages about whether restore is confined to the host
+  cluster - the kind of question this project's evidence discipline can surface
+  but not resolve on its own.
+- **Decide whether the REST-surface EE-gate silences round 25 found
+  (`docs-issues/server-backup-rest-api-missing-ee-gate`) are real product gaps or
+  documentation gaps.** cbbackupmgr's merge command and native cloud integration
+  are both promoted as Enterprise-Edition-only; their REST-surface equivalents
+  state no edition gate anywhere. Someone with product knowledge, not more
+  extraction, is what would settle it - the same shape of question round 12's
+  "needs a subject-matter expert" note turned out to have a one-line answer for,
+  so it is worth checking the authoritative page first before escalating.
 - If this looks worth pursuing past a POC: eleven axes of stress test have now
   been run (cross-component, cross-deployment-model, cross-product-family,
   round 4's within-one-product-across-features, round 5/6/7's three-in-a-row

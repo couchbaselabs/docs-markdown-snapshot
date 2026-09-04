@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-rest-api-permission-doc-structure-inconsistency",
+  "type": "docs-issue",
+  "issueType": "structural-documentation-inconsistency",
+  "description": "The 22-page Backup Service REST reference splits cleanly into two undeclared documentation templates for stating required permissions. GET/list/info-shaped endpoints (backup-get-cluster-info, backup-get-expired-backups, backup-get-plan-info, backup-get-repository-info, backup-get-task-info, backup-manage-config, backup-node-threads) get a dedicated 'Required Permissions' section naming a disjunction of three roles (Full Admin / Backup Full Admin / Read-Only Admin). Write-shaped endpoints (archive, create, delete-backup, delete-plan, delete-repository, pause-and-resume, trigger-backup, trigger-merge, trigger-prune) state only a single Full-Admin-only sentence buried in the curl-syntax prose, no dedicated section, no broader role disjunction. backup-examine-data.md breaks the pattern in the wrong direction: it is a read-only operation (its own description says it only 'retrieves' data) but follows the STRICTER write-shaped pattern (Full Admin only, no dedicated section) rather than the broader read-shaped one. A reader cannot infer which permission tier an endpoint needs from its HTTP verb or its read/write semantics alone.",
+  "about": [
+    "server/8.0/rest-api/backup-examine-data",
+    "server/8.0/rest-api/backup-archive-a-repository",
+    "server/8.0/rest-api/backup-create-repository",
+    "server/8.0/rest-api/backup-delete-backups",
+    "server/8.0/rest-api/backup-delete-plan",
+    "server/8.0/rest-api/backup-delete-repository",
+    "server/8.0/rest-api/backup-pause-and-resume-tasks",
+    "server/8.0/rest-api/backup-trigger-backup",
+    "server/8.0/rest-api/backup-trigger-merge",
+    "server/8.0/rest-api/backup-trigger-prune"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

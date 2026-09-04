@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/keyspace-mapping",
+  "label": "Restore keyspace mapping",
+  "type": "the option, on restore, to write backed-up data into a keyspace other than the one it was backed up from (rather than only being able to restore to the original bucket/scope/collection).",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "You can restore data to its original keyspace or apply a mapping to restore it to a different keyspace.",
+    "Optionally, whether data that resides in one bucket (on the repository) is to be restored onto another (on the cluster). The default is for data to be restored to the same bucket."
+  ],
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Round 19's own extraction flagged its configurableVia relation (object: backup:plan) as its weakest, inferred because backup-service.md never states WHERE the mapping is configured. This round's backup-restore-data.md resolves that open question directly: the mapping is not a plan-level setting at all, it is the restore-specification's own `map_data` field on the REST restore endpoint (configuredVia backup:restore-data-rest-api) - filed here as a correction of the earlier record's inferred object without deleting or rewriting round 19's original relation instance.",
+  "relates_to_competency_question": "Where is the option to restore data to a different keyspace actually configured?"
+}

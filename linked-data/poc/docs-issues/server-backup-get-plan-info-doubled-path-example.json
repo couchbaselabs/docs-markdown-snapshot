@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-get-plan-info-doubled-path-example",
+  "type": "docs-issue",
+  "issueType": "example-error",
+  "description": "backup-get-plan-info.md uses three different path stylings for what its own HTTP Methods and URIs section calls a single, consistent 'GET /plan' operation. The syntax section gives the bare `http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/plan`; the first worked example gives `http://127.0.0.1:8097/api/v1/api/v1/plan` - a literal doubled `api/v1/api/v1` path segment, read as a copy-paste bug rather than a documented alternate form; the second worked example reaches the same operation via `http://127.0.0.1:8091/_p/backup/api/v1/plan/PlanBackupMergePrune` instead. No page explains the relationship between the direct-port and proxied-through-8091 access paths, or states which is canonical - see the related docs-issue on the dual-port access pattern.",
+  "about": [
+    "server/8.0/rest-api/backup-get-plan-info"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

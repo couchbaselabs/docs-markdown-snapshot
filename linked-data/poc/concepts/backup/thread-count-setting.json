@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/thread-count-setting",
+  "label": "Backup Service thread count",
+  "type": "the per-node thread count the Backup Service uses, defaulted from CPU core count (max(1, cpu_cores x 0.75)) and overridable via backup:nodes-threads-map-endpoint. Trades off against memory/resource use elsewhere on the node. Backup-Service-specific setting with no cbbackupmgr CLI equivalent - thread-count tuning is REST-surface-only.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "The default number of threads the Backup Service uses is based on the number of CPU cores in the node.",
+    "Reducing the number of threads the Backup Service uses increases the time it takes to backup data.",
+    "You change this setting using the `nodesThreadsMap` REST API endpoint."
+  ],
+  "configurableVia": "backup:nodes-threads-map-endpoint",
+  "tradesOffAgainst": "server:service-memory-quota",
+  "availableSince": "version:server-7-6-2",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19, crosses the bar this round via backup-node-threads.md's reuse in a relation slot. That page's PATCH-vs-POST distinction (PATCH merges into the existing nodes_threads_map, POST replaces it wholesale) is a REST-surface-only semantic with no CLI-side counterpart at all - recorded as method observation rather than a new relation, since no registry predicate currently distinguishes verb-level partial-merge-vs-replace semantics.",
+  "relates_to_competency_question": "What controls how many threads the Backup Service uses per node, and can that be tuned per node?"
+}

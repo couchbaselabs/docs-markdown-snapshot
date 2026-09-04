@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/rest-api/backup-delete-backups",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-delete-backups.md",
+  "concepts": [
+    { "candidate_id": "backup:delete-backup-operation", "label": "Delete a Backup (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the DELETE /cluster/self/repository/active/<repository-id>/backups/<backup-id> operation" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:incremental-backup", "label": "Incremental backup", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:safe-remove-check", "label": "disable_safe_remove_check parameter", "registry_status": "minted", "reused_or_minted": "minted - a dependency-safety guard on backup deletion, checking whether the targeted backup has dependent incremental backups before allowing removal. No existing concept covers a delete-time dependency check; closest is backup:cbbackupmgr-merge-command's own dependency logic, but that is a distinct CLI mechanism with no stated tie to this REST parameter" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:delete-backup-operation", "predicate": "configurableVia", "object": "backup:safe-remove-check",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `disable_safe_remove_check` parameter is optional. It allows you to delete a backup that has incremental backups depending on it." },
+
+    { "subject": "backup:safe-remove-check", "predicate": "hasDefaultValue", "object": "false",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; object is a boolean literal, not a concept id, per the registry's own note that hasDefaultValue's object is frequently a literal",
+      "evidence": "The default value is `false`." },
+
+    { "subject": "backup:delete-backup-operation", "predicate": "invalidates", "object": "backup:incremental-backup",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - invalidates. When disable_safe_remove_check is set to true, the operation does not delete the dependent incremental backups - it deletes only the targeted backup - but leaves the dependents present and unusable. Neither cascadesTo (which propagates deletion) nor doesNotAffect (which is a deliberate no-op) fits an object that is left in place but broken; this predicate names that specific outcome",
+      "evidence": "Setting `disable_safe_remove_check` to `true` can break backup cycles and make dependent backups invalid." },
+
+    { "subject": "backup:delete-backup-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:delete-backup-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information about deleting backups from the UI, see [Delete Backups](../manage/manage-backup-and-restore/manage-backup-and-restore.md#delete-backups)." },
+
+    { "subject": "backup:delete-backup-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (dedicated section)",
+    "finding": "Like archive/create/delete-plan, this is a write operation and states its Full Admin requirement only inline in curl-syntax prose, not in a dedicated Required Permissions section - continuing the pattern flagged in backup-archive-a-repository.json."
+  },
+  "cross_component_finding": "backup:safe-remove-check's dependency logic (a backup cannot normally be deleted if incremental backups depend on it, unless a safety check is explicitly disabled) is conceptually adjacent to, but structurally distinct from, cbbackupmgr's own merge mechanism, which resolves the SAME kind of full/incremental dependency by consolidation rather than by a guarded deletion override. No page states these two are related, so they are kept as separate concepts - but both are evidence that the full-backup/incremental-backup dependency chain (backup:full-backup, backup:incremental-backup, both already promoted) is a load-bearing constraint the Backup Service enforces independently of, and by a different mechanism than, cbbackupmgr's merge command."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-trigger-full-backup-parameter-undocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Both backup-trigger-backup.md and backup-trigger-prune.md use a `full_backup` request-body field in their worked examples (`{\"full_backup\": false}` and `{\"full_backup\": true}` respectively), but neither page documents it in prose, in a parameters table, or in the syntax block above the example - both pages' own HTTP Methods and URIs / Description / Curl Syntax sections describe the endpoint as taking no body at all. A reader following only the documented syntax would not know this parameter exists. For the PRUNE endpoint specifically, a full-vs-incremental flag has no obvious purpose for a prune operation and the page gives no explanation, raising the possibility it is a copy-paste artifact from the trigger-backup example rather than a real prune parameter.",
+  "about": [
+    "server/8.0/rest-api/backup-trigger-backup",
+    "server/8.0/rest-api/backup-trigger-prune"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

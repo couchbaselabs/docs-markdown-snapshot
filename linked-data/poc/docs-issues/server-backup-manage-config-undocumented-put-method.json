@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-manage-config-undocumented-put-method",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "The parent backup-rest-api.md's Configuration category table lists THREE HTTP methods for `/api/v1/config` - GET, POST, and PUT. backup-manage-config.md, whose entire job is to document that endpoint, only ever mentions GET and POST: PUT never appears in an HTTP Methods and URIs section, a curl example, or a Required Permissions line anywhere on the page. Either the overview table is wrong (PUT does not exist), or backup-manage-config.md is missing a third of its own subject matter.",
+  "about": [
+    "server/8.0/rest-api/backup-rest-api",
+    "server/8.0/rest-api/backup-manage-config"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

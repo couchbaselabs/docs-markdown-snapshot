@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-delete-plan-error-message-mismatch",
+  "type": "docs-issue",
+  "issueType": "incorrect-error-message",
+  "description": "The documented 400 error body for a blocked DELETE /plan/<plan-id> call reads `{\"status\":400,\"msg\":\"cannot update plan as it is in use by repository: hourlyBackupRepo\"}` - the word 'update' in an error raised by a DELETE operation. Either this is a copy-paste artifact from the PUT (edit) code path documented on backup-create-and-edit-plans.md, which shares the same in-use guard, or the underlying API genuinely returns a misleading message for this specific failure. Quoted verbatim in the extraction record rather than silently corrected.",
+  "about": [
+    "server/8.0/rest-api/backup-delete-plan"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

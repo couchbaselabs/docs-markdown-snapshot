@@ -1,0 +1,56 @@
+{
+  "page_id": "server/8.0/rest-api/backup-create-and-edit-plans",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-create-and-edit-plans.md",
+  "concepts": [
+    { "candidate_id": "backup:create-plan-operation", "label": "Create and Edit Plans (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the POST /plan/<new-plan-id> (create) and PUT /plan/<existing-plan-id> (edit) operations, covered together on one page since they share one JSON payload shape" },
+    { "candidate_id": "backup:plan", "label": "Plan (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json ('the Backup Service's schedule-and-policy object'); this page is the REST operation that creates/edits it" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:backup-task", "label": "Backup task (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json; this page defines its task_type enum member BACKUP explicitly" },
+    { "candidate_id": "backup:merge-task", "label": "Merge task (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json; this page states the filesystem-only constraint (see relations) and defines its merge_offset options in full" },
+    { "candidate_id": "backup:prune-task", "label": "Prune task (Backup Service)", "registry_status": "minted", "reused_or_minted": "minted - the third task_type enum member (BACKUP / MERGE / PRUNE) alongside the already-extraction-layer backup:backup-task and backup:merge-task. backup:pruning already exists in the extraction layer (backup-service.json, 'the deletion of backups past the retention period') as the general ACTIVITY; this concept is the distinct PLAN TASK TYPE that performs it on a schedule, named explicitly by this page as its own task_type value - not previously minted anywhere in the corpus" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:create-plan-operation", "predicate": "createsOnAction", "object": "backup:plan",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "A _plan_, once defined, is used in the creation of a _repository_; thereby allowing data from the cluster to be regularly backed up and, if appropriate, allowing existing backups to be periodically merged." },
+
+    { "subject": "backup:plan", "predicate": "requiresPriorExecutionOf", "object": "backup:create-plan-operation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate. Inverted framing of the same ordering fact stated on backup-create-repository.md: a repository's creation call must name an already-defined plan",
+      "evidence": "A _plan_, once defined, is used in the creation of a _repository_; thereby allowing data from the cluster to be regularly backed up and, if appropriate, allowing existing backups to be periodically merged." },
+
+    { "subject": "backup:merge-task", "predicate": "requiresCapability", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, used here for a storage-topology precondition rather than an edition/engine one: a merge task can only be scheduled against a filesystem-based repository, not a cloud-based one",
+      "evidence": "Note that merges are supported for filesystem-based repositories, but are _not_ supported for cloud-based repositories. If a merge is scheduled for a cloud-based repository, the Backup Service skips the task." },
+
+    { "subject": "backup:prune-task", "predicate": "appliesAfter", "object": "backup:retention-period",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer, established in backup-service.json for backup:pruning (the general activity); independently re-evidenced here for backup:prune-task (the plan's scheduled task type that performs it)",
+      "evidence": "When a pruning task is run, all backups older than the specified retention period are deleted. The backups that are either within the retention period or do not have a retention period, are not deleted." },
+
+    { "subject": "backup:create-plan-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must be those of a user with the `Full Admin` role." },
+
+    { "subject": "backup:create-plan-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:create-plan-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:create-plan-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "Information on using the Backup Service REST API to include a defined plan in a repository-definition is provided in [Create a Repository](backup-create-repository.md)." },
+
+    { "subject": "backup:create-plan-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-delete-plan",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information on deleting plans, see [Delete a Plan](backup-delete-plan.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "backup:cbbackupmgr-merge-command is already promoted in the registry as 'An Enterprise Edition command'. This page's REST equivalent - the plan's MERGE task_type - never states an edition gate anywhere; the only stated constraint on merge tasks is filesystem-vs-cloud repository type (see relations). If the REST-triggered merge really is EE-only like its CLI counterpart, that fact is missing from the one page a REST API consumer would read; if it genuinely is not EE-gated, that would itself be a notable divergence between the two surfaces for the exact same operation. Recorded rather than assumed either way."
+  },
+  "cross_component_finding": "MERGE AND PRUNE AS PLAN TASK TYPES VERSUS AS cbbackupmgr SUBCOMMANDS: A GENUINE STRUCTURAL DIFFERENCE, NOT JUST A NEW ACCESS SURFACE. cbbackupmgr exposes merge as an explicit, one-shot CLI subcommand (backup:cbbackupmgr-merge-command, 'the sub-command that converts two or more backups... into a single full backup') that an operator invokes directly. This page's plan-description schema instead makes MERGE (and PRUNE) a first-class, disjunctive value of task_type alongside BACKUP, scheduled recurrently with the same job_type/period/frequency/time machinery as a backup task, and configured via offset_start/offset_end day-ranges rather than by naming specific backups. No sentence on this page equates the two, and I have NOT merged backup:merge-task with backup:cbbackupmgr-merge-command as a result - but functionally, both consolidate backups in a repository into fewer files, so the round's core question (is the REST surface the same underlying mechanism as the CLI, or a genuinely separate thing) gets a SPLIT answer depending which object you ask about: backup:repository (round 11's finding) holds up cleanly - this page's plan-description literally names 'a repository' as what the plan is used to create, no new wrinkle. But backup:plan's own MERGE/PRUNE task types have no CLI-side counterpart concept at all: cbbackupmgr has no 'plan' object, no schedule, and no PRUNE subcommand (pruning is documented via the --remove-backup style single-backup deletion, not a scheduled sweep). So: same repository, same archive semantics, but the Backup Service layers a scheduling/policy object (plan) on top that the CLI simply does not have. Round 11's finding is confirmed for the storage object and needs refinement for the operational model built on top of it - see backup-create-repository.json for the repository-level confirmation in full."
+}

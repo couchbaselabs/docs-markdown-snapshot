@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/rest-api/backup-import-repository",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-import-repository.md",
+  "concepts": [
+    { "candidate_id": "backup:import-repository-rest-api", "label": "Import a Repository (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso target in backup-rest-api.json, this batch, and backup-archive-a-repository.md's/backup-delete-repository.md's link graph, both batch A)." },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:archive", "label": "Backup archive",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:native-cloud-integration", "label": "Native cloud integration (cbbackupmgr)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted. This page's Cloud-Specific Parameters section (cloud_credential_name, cloud_staging_dir, cloud_credentials_id/key, cloud_region, cloud_endpoint, cloud_force_path_style) names the identical parameter family cbbackupmgr's own cloud-integration reference documents, reached here through the Backup Service's REST surface instead of the CLI." }
+  ],
+  "relations": [
+    { "subject": "backup:import-repository-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must be those of a user with the `Full Admin` role." },
+
+    { "subject": "backup:import-repository-rest-api", "predicate": "createsOnAction", "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - createsOnAction, already used elsewhere in the backup: namespace for tool:cbbackupmgr's config sub-command creating a repository; here the REST import endpoint re-registers one that already exists on disk, which is a close enough fit to the 'creates on action' shape (creates the Backup Service's in-memory/managed record of the repository, not the on-disk directory itself)",
+      "evidence": "Imports into the Backup Service of the host cluster a repository that was previously deleted, but which has continued to exist on disk, in a location accessible by the cluster's Backup-Service nodes." },
+
+    { "subject": "backup:repository", "predicate": "hasInternalComponent", "object": "backup:archive",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasInternalComponent (inverse direction already used for backup:archive/backup:repository elsewhere; recorded here as it is stated again independently, this time via the repository-specification's own field)",
+      "evidence": "The location of the repository. For example, `/Users/user/Documents/archives/quarterHourRepo`." },
+
+    { "subject": "backup:import-repository-rest-api", "predicate": "configurableVia", "object": "backup:native-cloud-integration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - configurableVia",
+      "evidence": "The following, additional parameters are provided, for defining a repository that uses cloud-based storage:" },
+
+    { "subject": "backup:import-repository-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:import-repository-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:import-repository-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-archive-a-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "For information on archiving a repository, see [Archive a Repository](backup-archive-a-repository.md)." },
+    { "subject": "backup:import-repository-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-delete-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "For information on deleting a repository from the Backup Service, see [Delete a Repository](backup-delete-repository.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The import endpoint's own error example is internally informative but the page never states a required-fields list as prose - it only lists the three fields as bullets and then repeats them in a JSON skeleton. The 400 response's own message, `{\"status\":400,\"msg\":\"both archive and repository are required\"}`, actually contradicts the bulleted list: the bullets describe three required fields (id, repo, archive) but the error message names only two (archive and repository) - and 'repository' does not match any of the three field names given (id/repo/archive) anywhere on the page. This looks like a stale error string from a prior parameter name. Flagged as a docs/product inconsistency rather than resolved silently."
+  },
+  "cross_component_finding": "REPOSITORY IMPORT IS DIRECT EVIDENCE FOR THE ROUND'S CENTRAL QUESTION. This endpoint's entire premise - 'A repository that continues to exist on disk, but has been deleted from the Backup Service, can be imported back into the Backup Service' - only makes sense if a backup:repository is a filesystem-durable object independent of the Backup Service's own bookkeeping, exactly the SAME construct cbbackupmgr's config sub-command creates and that round 11 already promoted this way ('the SAME construct whether it is written to by the cbbackupmgr CLI directly or by the Backup Service's own plan mechanism'). Deleting a repository from the Backup Service does not touch the disk; importing does not create new backup data, only re-registers a pointer to something that was already there. This confirms round 11's finding holds up under this batch's evidence and does not need refinement: the Backup Service's own 'delete' is a deregistration, not a destruction, which is the strongest possible statement that REST-surface state and CLI-surface state share the same underlying repository object rather than maintaining separate shadow copies.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-rest-api-missing-ee-gate",
+  "type": "docs-issue",
+  "issueType": "unclear-edition-gating",
+  "description": "Two REST-surface features have promoted, already-Enterprise-Edition-gated equivalents on the cbbackupmgr side, but the REST reference documents neither with an edition statement. (1) backup:cbbackupmgr-merge-command is promoted as 'An Enterprise Edition command'; backup-create-and-edit-plans.md's REST-equivalent MERGE task_type never states an edition gate anywhere - the only stated constraint on merge tasks is filesystem-vs-cloud repository type. (2) backup:native-cloud-integration is promoted as 'An Enterprise Edition feature... introduced in Couchbase Server 6.6.0'; backup-create-repository.md documents the identical capability (cloud_credential_name, cloud_staging_dir, cloud_credentials_id/key, cloud_region, cloud_endpoint, cloud_force_path_style) with no Enterprise Edition statement anywhere on the page. If the gates are real and simply undocumented on the REST reference, that is a content gap; if the REST surface genuinely lifts either restriction, that would itself be a notable, undocumented divergence between the two surfaces for the exact same operation. Recorded rather than assumed either way. Separately, the overview page backup-rest-api.md's only Enterprise Edition statement ('Each URI, in Couchbase Server Enterprise Edition Version 7.0, must be prefixed with /api/v1') is a historical URI-prefixing convention at version 7.0, not a present-tense statement that the Backup Service itself is Enterprise-only - it narrows, but does not resolve, round 19's open question of whether the whole service is EE-gated.",
+  "about": [
+    "server/8.0/rest-api/backup-create-and-edit-plans",
+    "server/8.0/rest-api/backup-create-repository",
+    "server/8.0/rest-api/backup-import-repository",
+    "server/8.0/rest-api/backup-trigger-merge",
+    "server/8.0/rest-api/backup-rest-api"
+  ],
+  "foundDuring": "round 25",
+  "status": "open",
+  "severity": "needs-sme"
+}

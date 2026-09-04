@@ -1,0 +1,60 @@
+{
+  "page_id": "server/8.0/rest-api/backup-delete-repository",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-delete-repository.md",
+  "concepts": [
+    { "candidate_id": "backup:delete-repository-operation", "label": "Delete a Repository (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the DELETE /cluster/self/repository/archived/<repository-id> operation, with an optional remove_repository=true query-parameter variant" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's use of the bare term denotes the ACTIVE lifecycle stage, per backup-create-repository.md's own statement that a just-created repository 'is referred to as an active repository' - so no separate backup:active-repository concept is minted, deliberately, paralleling how backup:archived-repository and the newly-minted backup:imported-repository ARE given their own ids for the two lifecycle stages that get distinct page-level treatment" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:imported-repository", "label": "Imported repository", "registry_status": "minted", "reused_or_minted": "minted - a THIRD repository lifecycle state, alongside the already-extraction-layer backup:archived-repository and the unqualified backup:repository (active). Not previously named anywhere in the corpus: grepping the registry digest for 'imported' returns nothing. This page states plainly that an imported repository is neither active nor archived and cannot be deleted through this interface at all - filling a genuine gap in backup:repository's state model that round 19's cbbackupmgr extraction and this round's backup-service.json extraction both missed" },
+    { "candidate_id": "backup:archive-repository-operation", "label": "Archive a Repository (Backup Service REST operation)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-archive-a-repository.json, this batch" },
+    { "candidate_id": "backup:remove-repository-flag", "label": "remove_repository query-parameter", "registry_status": "minted", "reused_or_minted": "minted - the boolean query-parameter controlling whether a deleted repository's on-disk data is removed along with its Backup Service record" },
+    { "candidate_id": "backup:archive", "label": "Backup archive", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:delete-repository-operation", "predicate": "requiresPriorExecutionOf", "object": "backup:archive-repository-operation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "No other interfaces for repository-deletion are provided: therefore, in order to be deleted, a repository must first be archived." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "doesNotSupport", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, applied to the active (unqualified) state",
+      "evidence": "They cannot be used on a repository that is either _active_ or _imported_." },
+    { "subject": "backup:delete-repository-operation", "predicate": "doesNotSupport", "object": "backup:imported-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted imported state",
+      "evidence": "They cannot be used on a repository that is either _active_ or _imported_." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "configurableVia", "object": "backup:remove-repository-flag",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "If `repository-id` is specified with the `remove_repository=true` query-parameter, the repository data is removed from disk, as well as being removed from the Backup Service." },
+
+    { "subject": "backup:remove-repository-flag", "predicate": "cascadesDeletionTo", "object": "backup:archive",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; without the flag, deletion is scoped to the Backup Service's own record and the repository's on-disk data inside its archive survives",
+      "evidence": "Success returns `200 OK`, and the archived repository is deleted from the Backup Service. However, since the query-parameter has _not_ been specified, the repository and its data survive on disk." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-archive-a-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information on archiving a repository, see [Archive a Repository](backup-archive-a-repository.md)." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:delete-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "To create a repository with the REST API, see [Create a Repository](backup-create-repository.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "backup:imported-repository provenance",
+    "finding": "This page (and backup-get-cluster-info.json, backup-examine-data.json, backup-get-repository-info.json, backup-get-expired-backups.json below) all use 'imported' as one of a repository's three possible states, but none of the eleven pages in this batch explains HOW a repository gets imported in the first place - that operation (evidently backup-import-repository.md, per the source directory listing) is in the sibling batch B, not this one. So backup:imported-repository is minted here from its EFFECTS (what you cannot do to it) rather than from its own defining page, which this batch does not include. Flagged so reconciliation knows to check batch B's backup-import-repository.json for the concept's proper origin story before finalizing it."
+  },
+  "cross_component_finding": "See backup-create-repository.json for the round's main cross_component_finding on the REST-vs-CLI question. This page's specific contribution is the THIRD repository state: cbbackupmgr's own promoted description of backup:repository names no lifecycle states at all beyond implicitly 'created' and (via backup-service.json) 'archived'; 'imported' appears to be a REST/Backup-Service-only concept with no stated cbbackupmgr equivalent on any page read so far in this corpus. Cbbackupmgr's own restore/examine commands operate directly against a backup archive path without a registration step, so there may be no CLI-side need for an 'imported' state at all - the REST API needs one because the Backup Service must track repositories it did not itself create in order to serve their info/examine/restore endpoints, which is a genuine architectural difference in how the two surfaces manage the boundary between 'a backup exists on disk' and 'the Backup Service knows about it'."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-service-restore-cross-cluster-contradiction",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Two Backup-Service-authored pages disagree about whether the Backup Service's restore operation is confined to its own cluster. Round 19's backup-service.json (learn/services-and-indexes/services/backup-service.md) states: 'The Backup Service backs up, restores, and archives buckets only on the cluster it runs on. You can use `cbbackupmgr` to backup, restore, and archive buckets on either the local or a remote cluster.' - explicitly contrasting the SERVICE (cluster-local) against the CLI TOOL (remote-capable). Round 25's backup-restore-data.md, which documents the Backup Service's OWN REST restore endpoint (not cbbackupmgr), states the opposite for restore specifically: 'Note that this need not be the host cluster, and need not be a cluster running the Backup Service.' It also requires a SEPARATE Full Admin credential pair explicitly for 'the target cluster,' which only makes sense if the target genuinely can be a different cluster with its own administrators. A plausible reconciling reading is that 'the cluster it runs on' governs where data is READ FROM (the repository, always local to the Backup Service instance that owns it) while the restore TARGET is a separate, always-remote-capable parameter that pushes data outward - but no page states this distinction; it would be inference, not extraction, and the plain grammatical reading of 'restores... buckets only on the cluster it runs on' is that the destination is that cluster. Recorded as an open, plainly-stated contradiction rather than resolved unilaterally. Modeled at the relation layer via the newly-promoted supportsCrossClusterOperation predicate (backup:restore-data-rest-api supportsCrossClusterOperation service:backup-service), which exists specifically to carry this contradiction rather than silently reconcile it.",
+  "about": [
+    "server/8.0/learn/services-and-indexes/services/backup-service",
+    "server/8.0/rest-api/backup-restore-data"
+  ],
+  "foundDuring": "round 25",
+  "status": "open",
+  "severity": "needs-sme"
+}

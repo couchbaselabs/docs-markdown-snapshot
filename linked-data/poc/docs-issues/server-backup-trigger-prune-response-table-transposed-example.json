@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-trigger-prune-response-table-transposed-example",
+  "type": "docs-issue",
+  "issueType": "example-error",
+  "description": "backup-trigger-prune.md's Responses table shows `{\"status\":404,\"msg\":\"repository \\`res4tRepo does not exist\\`\"}` - a 404 error body - as the EXAMPLE value for the 200 OK success row, clearly transposed from the 400/404 rows beneath it. Read as a likely authoring error rather than a documented behavior.",
+  "about": [
+    "server/8.0/rest-api/backup-trigger-prune"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

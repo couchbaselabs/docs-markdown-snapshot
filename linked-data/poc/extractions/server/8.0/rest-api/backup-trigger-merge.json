@@ -1,0 +1,58 @@
+{
+  "page_id": "server/8.0/rest-api/backup-trigger-merge",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-trigger-merge.md",
+  "concepts": [
+    { "candidate_id": "backup:trigger-merge-rest-api", "label": "Perform an Immediate Merge (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso/table target in backup-rest-api.json, this batch)." },
+    { "candidate_id": "backup:merge-task", "label": "Merge task (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:merge-offset", "label": "Merge offsets (merge_offset_start / merge_offset_end)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json. This page's own field names, offset_start/offset_end, are a SHORTER spelling of round 19's merge_offset_start/merge_offset_end - see notable_absence." },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:native-cloud-integration", "label": "Native cloud integration (cbbackupmgr)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:cbbackupmgr-merge-command", "label": "cbbackupmgr merge command",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted (aliases backup:merge-operation)" }
+  ],
+  "relations": [
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "triggersImmediateExecutionOf", "object": "backup:merge-task",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - triggersImmediateExecutionOf, same predicate minted in backup-trigger-backup.json (this batch), reused here for the identical shape",
+      "evidence": "Triggers an immediate merge for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required." },
+
+    { "subject": "backup:merge-task", "predicate": "doesNotSupport", "object": "backup:native-cloud-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotSupport. Directly corroborated by an independent, on-page quote elsewhere in the corpus: cbbackupmgr-cloud.md (round 19) states 'merging incremental backups stored in the cloud is not supported' for the SAME reason (disk space) - identical restriction found independently on the REST reference and the CLI reference. See cross_component_finding",
+      "evidence": "Note that merges are supported for filesystem-based repositories only: they are _not_ supported for cloud-based repositories. Therefore, an immediate merge cannot be triggered for a cloud-based repository." },
+
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "requiresRequestParameter", "object": "backup:merge-offset",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresRequestParameter",
+      "evidence": "The `merge-period-specification` must be a JSON document, containing the following:" },
+
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:trigger-merge-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "For information on scheduling merges by means of plans, see [Create and Edit Plans](backup-create-and-edit-plans.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "isSynonymOf / hasEquivalentEffectAs",
+    "finding": "This page's day-offset fields are named `offset_start`/`offset_end`; round 19's backup-service.json (describing the same schedulable merge concept at the plan level) names them `merge_offset_start`/`merge_offset_end`. Both describe the identical semantics ('a lower integer representing a more recent day, 0 = today'), but no page states these are the same fields under two names, and this page never links or mentions merge_offset_start/end at all. Not merged into one concept id (kept as backup:merge-offset covering both spellings per the extraction-layer id already in place) but flagged as a real naming inconsistency between the plan-level scheduling field and the immediate-trigger field for what is otherwise the same day-range concept."
+  },
+  "cross_component_finding": "STRONGEST SINGLE PIECE OF EVIDENCE IN THIS BATCH FOR THE ROUND'S CENTRAL QUESTION. The REST merge endpoint's cloud restriction - 'merges are supported for filesystem-based repositories only... not supported for cloud-based repositories' - is not merely similar to cbbackupmgr's own restriction, it is evidenced independently, on two completely different pages in two different reference trees, in near-identical language: cbbackupmgr-cloud.md (round 19) states 'For this reason merging incremental backups stored in the cloud is not supported.' Two independently-authored docs pages describing what look like two different products (a REST API vs. a CLI tool) hit the exact same limitation for the exact same underlying reason (disk-space economics of the merge algorithm). This is not the kind of coincidence that happens if the Backup Service's merge and cbbackupmgr's merge are separate implementations - it is exactly what you'd expect if the REST endpoint IS cbbackupmgr's merge command running under Backup Service orchestration (consistent with round 19's service:backup-service delegatesImplementationTo tool:cbbackupmgr, which states outright 'The Backup Service uses the cbbackupmgr command-line tool to perform backups'). Round 11's already-promoted finding on backup:repository ('the SAME construct whether written to by cbbackupmgr directly or by the Backup Service's own plan mechanism') is corroborated and, on this page's evidence, should be read as extending beyond just the repository object to the merge OPERATION itself: same shared limitation, same underlying mechanism, two access surfaces. No refinement needed to the round 11 finding; if anything it understates how deep the sharing goes.",
+  "cross_product_finding": ""
+}

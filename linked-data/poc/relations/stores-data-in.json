@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/stores-data-in",
+  "label": "stores data in",
+  "kind": "relation (schema-level)",
+  "type": "the subject configuration/policy object writes its data into the named storage location - e.g. a backup:plan stores its backup data in a backup:repository.",
+  "promoted": true,
+  "recurrence": 1,
+  "recurrence_note": "Promoted below the ordinary >=2-files bar as a registry-consistency fix rather than a fresh judgment call: concepts/backup/repository.json's own promoted `type` field has, since round 19, described this predicate as 'round 11's own already-promoted relation' ('a plan storesDataIn a repository... per round 11's own already-promoted relation'). No relations/stores-data-in.json file existed until this round - the claim was false when repository.json was written and stayed false for six rounds because nothing re-checks a promoted record's own cross-references to relations it names as settled. Promoting it now makes that claim true rather than rewriting the sentence that asserted it; the underlying single-file relation instance (backup:plan storesDataIn backup:repository, minted in round 11's backup-service.json) has not gained a second file this round.",
+  "evidence": [
+    "You associate a plan with a repository where it stored backup data (see the next section)."
+  ],
+  "note": "Evidence sentence contains a grammatical error in the source ('a repository where it stored backup data') - quoted verbatim per the evidence-discipline rule; already logged as a docs-issue (server-backup-service-grammar-errors) since round 11."
+}

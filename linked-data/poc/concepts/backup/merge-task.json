@@ -1,0 +1,20 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/merge-task",
+  "label": "Merge task",
+  "type": "the Backup Service's task_type value that consolidates previous backups in a repository into fewer files, scheduled recurrently via the same job_type/period/frequency machinery as backup:backup-task. Distinct in SHAPE from backup:cbbackupmgr-merge-command (an explicit, one-shot CLI subcommand an operator invokes directly) even though both consolidate backups for the same underlying reason (disk-space economics) and share the identical filesystem-only, not-cloud-repository restriction, stated independently on both surfaces in near-identical language.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "The Backup Service runs only a single task at a time.",
+    "You set this time range by specifying two offsets, each representing a number of days.",
+    "Note that merges are supported for filesystem-based repositories, but are _not_ supported for cloud-based repositories.",
+    "Triggers an immediate merge for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required.",
+    "For this reason merging incremental backups stored in the cloud is not supported."
+  ],
+  "configurableVia": "backup:merge-offset",
+  "requiresCapability": "backup:repository",
+  "doesNotSupport": "backup:native-cloud-integration",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Round 11's already-promoted finding on backup:repository ('the SAME construct whether written to by cbbackupmgr directly or by the Backup Service's own plan mechanism') is corroborated here and, on this round's evidence, should be read as extending beyond just the repository object to the merge OPERATION itself: cbbackupmgr-cloud.md (round 19) states 'For this reason merging incremental backups stored in the cloud is not supported' and backup-trigger-merge.md (this round) states the identical restriction independently. Two independently-authored pages hitting the exact same limitation for the exact same reason is consistent with service:backup-service delegatesImplementationTo tool:cbbackupmgr (round 19: 'The Backup Service uses the cbbackupmgr command-line tool to perform backups') - i.e. the REST endpoint plausibly runs cbbackupmgr's own merge command under Backup Service orchestration, rather than a separate reimplementation. No merge with backup:cbbackupmgr-merge-command is asserted (no page states the two ARE the same operation, only that they behave identically), per the no-silent-merge rule - but the shape difference (scheduled task_type vs one-shot subcommand) is real and is exactly what round 25 was asked to check.",
+  "relates_to_competency_question": "Is the Backup Service's scheduled MERGE task the same underlying mechanism as cbbackupmgr's merge subcommand, or a separate implementation that merely behaves the same?"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-rest-api-overview-role-requirement-too-narrow",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "backup-rest-api.md, the overview/index page for the entire Backup Service REST surface, asserts one blanket role requirement for the whole API: 'All calls require the Full Admin role.' Every individual endpoint page in the batch that documents a GET/list/info-shaped operation (backup-get-cluster-info, backup-get-expired-backups, backup-get-plan-info, backup-get-repository-info, backup-get-task-info, backup-manage-config, backup-node-threads) instead documents a per-method breakdown that ALSO admits Backup Full Admin and/or Read-Only Admin roles for read operations - a strictly looser rule than the overview states. The overview is either out of date relative to its own child pages, or is a deliberate simplification that misleads a reader who consults only the overview.",
+  "about": [
+    "server/8.0/rest-api/backup-rest-api",
+    "server/8.0/rest-api/backup-get-cluster-info",
+    "server/8.0/rest-api/backup-get-task-info",
+    "server/8.0/rest-api/backup-manage-config"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

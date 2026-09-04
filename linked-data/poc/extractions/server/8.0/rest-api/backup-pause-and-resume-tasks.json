@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/rest-api/backup-pause-and-resume-tasks",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-pause-and-resume-tasks.md",
+  "concepts": [
+    { "candidate_id": "backup:pause-and-resume-tasks-rest-api", "label": "Pause and Resume Tasks (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso/table target in backup-rest-api.json, this batch)." },
+    { "candidate_id": "backup:backup-task", "label": "Backup task (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "requiresRequestParameter", "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRequestParameter (path-parameter shape, as used elsewhere in this batch)",
+      "evidence": "The `repository-id` must be the name of an active repository on the cluster." },
+
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "doesNotAffect", "object": "backup:backup-task",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect. Idempotent-call guarantee: calling pause on an already-paused (or resume on an already-running) task is a documented no-op, not an error",
+      "evidence": "Note that neither resuming already running tasks nor pausing already paused tasks has any effect: both return `200 OK`." },
+
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "Information on using the Backup Service REST API to create a plan (and in so doing, define one or more tasks) is provided in [Create and Edit Plans](backup-create-and-edit-plans.md)." },
+    { "subject": "backup:pause-and-resume-tasks-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-get-task-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (this batch)",
+      "evidence": "To get information on currently defined tasks, see [Get Backup Task History](backup-get-task-info.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (structured Required Permissions section)",
+    "finding": "Unlike backup-get-task-info.md, backup-manage-config.md, and backup-node-threads.md (this same batch), this page has no dedicated 'Required Permissions' heading at all - the Full Admin requirement is stated only once, in prose, inside the Curl Syntax section. backup-trigger-backup.md, backup-trigger-merge.md, and backup-trigger-prune.md (also this batch) follow the identical thinner pattern. The batch splits cleanly into two documentation templates: GET-oriented/informational endpoints get a structured, role-enumerated Required Permissions table; POST-action endpoints (pause/resume/backup/merge/prune) get a single Full-Admin-only sentence buried in the curl example. No page states this is deliberate."
+  },
+  "cross_component_finding": "Pause/resume is Backup-Service-only vocabulary: no cbbackupmgr CLI reference page in the corpus documents pausing or resuming a running backup operation (cbbackupmgr's own docs describe operations running to completion or being interrupted/retried, not held in a paused state). This is a genuine capability the Backup Service's scheduler adds on top of the shared repository/task substrate, not merely a different access surface for something cbbackupmgr already does - a data point on the 'separate thing' side of the round's central question, narrower in scope than the repository/plan/backup-data layer which this batch's other pages show is shared.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/archived-repository",
+  "label": "Archived repository",
+  "type": "a backup:repository that remains readable but can no longer be written to by scheduled or manually-triggered backup tasks. One of three lifecycle states a repository can be in (active / archived / imported); this state transition is stated as one-way (cannotRevertTo backup:repository).",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "You can still read the backed-up data in an archived repository. However, the Backup Service cannot perform further backups to the repository.",
+    "Note that a repository that has been archived _cannot_ be returned to active state.",
+    "This means that no further scheduled or manually triggered tasks can be run on the repository; with the exception of those that _retrieve information_, _restore data_, and _examine data_."
+  ],
+  "doesNotSupport": "backup:backup-task",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19 (backup-service.json); crosses the promotion bar this round via backup-archive-a-repository.md, backup-delete-repository.md, backup-examine-data.md and backup-get-task-info.md, all of which reuse the id in an actual relation slot (not just a bare concepts[] mention). Read/restore/examine remain valid against an archived repository - only new backup tasks are blocked - which the round's evidence (backup-archive-a-repository.md's own exception list) states explicitly.",
+  "relates_to_competency_question": "What can and cannot still be done to a backup repository once it has been archived?"
+}

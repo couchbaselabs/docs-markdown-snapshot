@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/prune-task",
+  "label": "Prune task",
+  "type": "the third task_type enum member (BACKUP/MERGE/PRUNE), sibling of backup:backup-task and backup:merge-task - the scheduled deletion of backups past backup:retention-period. cbbackupmgr has no scheduled-sweep equivalent; its own pruning-shaped operation is a single-backup `--remove-backup` deletion (see backup:safe-remove-check), not a recurring policy object.",
+  "promoted": true,
+  "recurrence": 1,
+  "recurrence_note": "Promoted below the ordinary >=2-files bar as an explicit family exception: backup:backup-task and backup:merge-task are promoted this round as the other two members of the SAME closed task_type enum (BACKUP/MERGE/PRUNE), and this record cannot state what it IS without naming both siblings - the test the promotion rule requires for a family promotion. Its own extraction record is exactly this: 'the third task_type enum member (BACKUP / MERGE / PRUNE) alongside the already-extraction-layer backup:backup-task and backup:merge-task.' Corroborated independently by backup-trigger-prune.md's triggersImmediateExecutionOf relation and backup-retention.md's requiresPriorExecutionOf relation, both this round, though neither uses this exact id in a way recurrence.py's mechanical count credits as a second file.",
+  "evidence": [
+    "When a pruning task is run, all backups older than the specified retention period are deleted. The backups that are either within the retention period, or which have not exceeded the number of allowed backups, are not deleted."
+  ],
+  "appliesAfter": "backup:retention-period",
+  "documented_at": "server/8.0/rest-api/backup-create-and-edit-plans",
+  "relates_to_competency_question": "What are the Backup Service's task types, and does each have a CLI-side equivalent?"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/pruning",
+  "label": "Pruning",
+  "type": "the deletion of backups past backup:retention-period, automatic (scheduled) or manual (triggered on demand). Distinct from backup:prune-task, which is the specific task_type enum value a backup:plan schedules to perform this operation - pruning is the process/mechanism, prune-task is its scheduled-execution unit.",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "You can also set the Backup Service to prune backups that have exceeded the retention period.",
+    "When the retention period is reached, the Backup Service automatically deletes the backup through Prune tasks.",
+    "Triggers an immediate pruning of backups for the specified active repository. As a result, the need to wait for a scheduled pruning can be skipped when required."
+  ],
+  "appliesAfter": "backup:retention-period",
+  "requiresPriorExecutionOf": "backup:retention-period",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19; crosses the promotion bar this round via backup-retention.md and backup-trigger-prune.md, both of which reuse it in a relation slot alongside the newly-promoted sibling backup:prune-task.",
+  "relates_to_competency_question": "What triggers the deletion of an expired backup, and can it be run on demand?"
+}

@@ -1,0 +1,51 @@
+{
+  "page_id": "server/8.0/rest-api/backup-trigger-prune",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-trigger-prune.md",
+  "concepts": [
+    { "candidate_id": "backup:trigger-prune-rest-api", "label": "Perform an Immediate Prune (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously seeAlso-linked from round 19's backup-service.json, and this batch's own backup-rest-api.json)." },
+    { "candidate_id": "backup:pruning", "label": "Pruning (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:retention-period", "label": "Retention period",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "triggersImmediateExecutionOf", "object": "backup:pruning",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - triggersImmediateExecutionOf, same predicate minted in backup-trigger-backup.json and backup-trigger-merge.json (this batch), reused here for the identical shape",
+      "evidence": "Triggers an immediate pruning of backups for the specified active repository. As a result, the need to wait for a scheduled pruning can be skipped when necessary." },
+
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "requiresRequestParameter", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresRequestParameter (path-parameter shape)",
+      "evidence": "The `repository-id` must be the name of an active repository on the cluster." },
+
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (second, more specific anchor on the same page)",
+      "evidence": "For information on scheduling pruning tasks, see [Schedule Pruning](../manage/manage-backup-and-restore/manage-backup-and-restore.md#schedule-backup-pruning)." },
+    { "subject": "backup:trigger-prune-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-retention",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (this batch)",
+      "evidence": "For information on backup retention, see [Retain Backups](../manage/manage-backup-and-restore/manage-backup-and-restore.md#backup-retention)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter (full_backup) / Responses table accuracy",
+    "finding": "Two issues, mirroring backup-trigger-backup.md's pattern in this same batch. (1) The example uses a `full_backup` body parameter (`-d '{\"full_backup\": true}'`) exactly like backup-trigger-backup.md's example, but a prune operation deleting expired backups has no obvious reason to take a full-vs-incremental flag, and the page gives no explanation of what this parameter means for a PRUNE task specifically - it may be a copy-paste artifact from the backup-triggering example rather than a real prune parameter. (2) The Responses table's 200 OK row example value is `{\"status\":404,\"msg\":\"repository \\`res4tRepo does not exist\\`\"}` - a 404 error body shown as the EXAMPLE for the 200 OK success row, clearly transposed from the 400/404 rows beneath it. Both flagged as likely authoring errors rather than corrected silently."
+  },
+  "cross_component_finding": "This page's success-response shape - a JSON ARRAY containing one object (`[{\"task_name\": \"PRUNE-...\"}]`) - differs from backup-trigger-backup.md and backup-trigger-merge.md (this same batch), both of which return a single bare OBJECT (`{\"task_name\": \"BACKUP-...\"}` / `{\"task_name\": \"MERGE-...\"}`) for the structurally identical action. All three are 'trigger an immediate task now' endpoints with the same request shape (repository-id path parameter, Full Admin role, 200 OK plus a task_name), yet prune alone wraps its response in an array. Possibly because a single prune call can retroactively affect multiple expired backups and therefore may spawn more than one task, but the page never states that explanation - the asymmetry is simply there in the two worked examples, unexplained.",
+  "cross_product_finding": ""
+}

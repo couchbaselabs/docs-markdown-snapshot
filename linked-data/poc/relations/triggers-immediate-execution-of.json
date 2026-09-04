@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/triggers-immediate-execution-of",
+  "label": "triggers immediate execution of",
+  "kind": "relation (schema-level)",
+  "type": "the subject REST operation runs the named scheduled task type immediately, bypassing its normal schedule - 'run now'. Distinct from scheduledBy (which names what determines a task's normal recurring schedule) and from createsOnAction (which is about creating a new persistent object, not re-running an existing one).",
+  "promoted": true,
+  "recurrence": 3,
+  "evidence": [
+    "Triggers an immediate backup for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required.",
+    "Triggers an immediate merge for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required.",
+    "Triggers an immediate pruning of backups for the specified active repository. As a result, the need to wait for a scheduled pruning can be skipped when required."
+  ],
+  "note": "Minted and reused across all three of the Backup Service's 'perform an immediate X' REST endpoints (backup-trigger-backup.md, backup-trigger-merge.md, backup-trigger-prune.md) with near-identical wording each time - a clean case of one predicate covering one well-evidenced mechanism (run-now vs scheduled) across all three task types in the BACKUP/MERGE/PRUNE family."
+}

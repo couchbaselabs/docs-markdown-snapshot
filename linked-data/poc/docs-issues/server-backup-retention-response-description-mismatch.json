@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-retention-response-description-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "backup-retention.md's Responses table describes its 200 OK success response as '200 OK and JSON array containing the expired backups and their details'. Neither of the page's own two curl examples returns or discusses an array of expired backups - both describe setting a retention period and state only that 'the retention settings are applied'. This reads as a copy-pasted response description from a different endpoint, plausibly backup-get-expired-backups.md, a similarly-named page in the sibling batch.",
+  "about": [
+    "server/8.0/rest-api/backup-retention",
+    "server/8.0/rest-api/backup-get-expired-backups"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-import-repository-error-field-name-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "backup-import-repository.md documents three required fields as bullets (id, repo, archive) and repeats them in a JSON skeleton. Its own 400 error example, `{\"status\":400,\"msg\":\"both archive and repository are required\"}`, names only two fields - 'archive' and 'repository' - and 'repository' does not match any of the three documented field names (id/repo/archive) anywhere on the page. This reads as a stale error string from a prior parameter name, left undocumented.",
+  "about": [
+    "server/8.0/rest-api/backup-import-repository"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

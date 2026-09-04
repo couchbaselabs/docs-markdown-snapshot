@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/rest-api/backup-archive-a-repository",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-archive-a-repository.md",
+  "concepts": [
+    { "candidate_id": "backup:archive-repository-operation", "label": "Archive a Repository (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the POST /repository/active/<repository-id>/archive operation. One of eleven operations this round documents under the Backup Service's own REST API (see backup-create-repository.json for the umbrella backup:backup-service-rest-api concept, minted there)." },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (concepts/backup/repository.json), aliased backup:cbbackupmgr-repository" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in server/8.0/learn/services-and-indexes/services/backup-service.json ('a repository that remains readable but can no longer be written to'); this page is the REST operation that PRODUCES that state" },
+    { "candidate_id": "backup:backup-task", "label": "Backup task (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page names it as 'Full Admin role' in the curl-syntax prose rather than in a dedicated Required Permissions section (see notable_absence)" }
+  ],
+  "relations": [
+    { "subject": "backup:archive-repository-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:archived-repository", "predicate": "doesNotSupport", "object": "backup:backup-task",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; same triple already established in backup-service.json ('the Backup Service cannot perform further backups to the repository'), independently re-evidenced here from the REST operation's own page with a wider exception list (retrieve information, restore data, examine data - all still permitted)",
+      "evidence": "This means that no further scheduled or manually triggered tasks can be run on the repository; with the exception of those that _retrieve information_, _restore data_, and _examine data_." },
+
+    { "subject": "backup:archived-repository", "predicate": "cannotRevertTo", "object": "backup:repository",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - cannotRevertTo. The registry's negation predicates (doesNotSupport, doesNotAffect) describe a bounded incompatibility or a deliberately-untouched dependent, not a ONE-WAY lifecycle transition. This page states the archive operation is irreversible as a flat fact, independent of any specific follow-on action, which is a distinct shape worth its own predicate rather than stretching doesNotSupport to cover it.",
+      "evidence": "Note that a repository that has been archived _cannot_ be returned to active state." },
+
+    { "subject": "backup:archive-repository-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:archive-repository-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:archive-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-get-repository-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "Information on getting information from an archived repository is provided in [Get Backup Repository Information](backup-get-repository-info.md)." },
+
+    { "subject": "backup:archive-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-restore-data",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link. Target page (backup-restore-data.md) is in the sibling batch B, not this batch - seeAlso is always reused regardless of which batch extracted the target",
+      "evidence": "Information on restoring data from an archived repository is provided in [Restore Data](backup-restore-data.md)." },
+
+    { "subject": "backup:archive-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-examine-data",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "Information on examining data within an archived repository is provided in [Examine Backed-Up Data](backup-examine-data.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole / usesPort",
+    "finding": "This page states the Full Admin requirement only inline in the curl-syntax prose ('The username and password must identify an administrator with the Full Admin role'), unlike backup-get-cluster-info.md, backup-get-expired-backups.md, backup-get-plan-info.md and backup-get-repository-info.md, which each carry a dedicated '## Required Permissions' section header naming a disjunction of THREE roles (Full Admin / Backup [Full] Admin / Read-Only Admin). Every write-shaped operation in this batch (archive, create, delete, examine) follows this page's pattern - one role, no dedicated section - while every read/list-shaped operation follows the other. The port number 8097 appears repeatedly in this page's own curl examples (e.g. ':8097/api/v1/cluster/self/') but is never named as 'the Backup Service port' the way backup-get-expired-backups.md and backup-get-repository-info.md do explicitly ('These URIs are only available from the Backup Service port (8097 by default)') - so the port concept is minted on those pages, not here, even though the number appears here first in this batch's read order."
+  },
+  "cross_component_finding": "This page's own exception list for an archived repository - 'the exception of those that _retrieve information_, _restore data_, and _examine data_' - names, by function, exactly the three REST operations covered by backup-get-repository-info.md, backup-restore-data.md (batch B) and backup-examine-data.md (this batch, file 7 below): the page's prose and the REST API's own endpoint catalogue independently agree on what 'read-only against an archived repository' means. See backup-create-repository.json for this round's fuller treatment of the core question posed for this round (whether the Backup Service REST API's repository/plan objects are the SAME construct as cbbackupmgr's, per round 11's already-promoted finding)."
+}

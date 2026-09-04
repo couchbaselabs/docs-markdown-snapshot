@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/collection-string",
+  "label": "Collection string",
+  "type": "the dot-separated bucket.scope.collection addressing convention used to locate data inside a backup repository - cbbackupmgr's `--collection-string` flag and the Backup Service REST API's `data_path` field are two differently-named carriers for the IDENTICAL addressing format, down to the same example style (e.g. `travel-sample._default._default`).",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "A dot separated collection string representing the bucket/scope/collection to get info for.",
+    "The bucket, scope, and collection within which the document resides. The names must be specified in order of containment, period-separated: for example, `travel-sample._default._default`."
+  ],
+  "restrictedToContext": "backup:repository",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-info",
+  "note": "This is the round's single strongest piece of field-level evidence for round 11's 'SAME construct' finding: a REST JSON field (`data_path`) and a CLI flag (`--collection-string`) are simply renamed carriers for one shared internal addressing model, confirmed independently of the archive/repository containment evidence (backup:archive) and the REST transport-architecture evidence (dual-porting via port:8097/port:8091).",
+  "relates_to_competency_question": "Do the REST API and cbbackupmgr address data inside a repository the same way, or differently?"
+}

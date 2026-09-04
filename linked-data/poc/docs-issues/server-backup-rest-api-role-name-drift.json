@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-rest-api-role-name-drift",
+  "type": "docs-issue",
+  "issueType": "inconsistent-terminology",
+  "description": "The Backup Service REST API's own reference pages spell the same RBAC role three different ways, and one page adds a fourth register on top. roles.md's own catalogue names it 'Backup Full Admin (backup_admin)'. backup-get-expired-backups.md, backup-get-plan-info.md, backup-get-repository-info.md and backup-get-task-info.md all use the full display label 'Backup Full Admin'. backup-get-cluster-info.md instead reads 'Full Admin, Backup Admin, or Read-Only Admin role' - dropping 'Full'. backup-manage-config.md compounds this with a second, unrelated typo in the same sentence ('Full Amin, Backup Admin, or Read-Only Admin'). Separately, backup-node-threads.md's 403 Forbidden error example names the SAME permission via its bare internal string `ro_admin`, a third naming register (neither the display label 'Read-Only Admin' nor a spelled-out internal name) that a reader has to already know maps to Read-Only Admin. Three of four pages agree with each other and one does not, and no page cross-references any other's spelling.",
+  "about": [
+    "server/8.0/rest-api/backup-get-cluster-info",
+    "server/8.0/rest-api/backup-get-expired-backups",
+    "server/8.0/rest-api/backup-get-plan-info",
+    "server/8.0/rest-api/backup-get-repository-info",
+    "server/8.0/rest-api/backup-get-task-info",
+    "server/8.0/rest-api/backup-manage-config",
+    "server/8.0/rest-api/backup-node-threads",
+    "server/8.0/learn/security/roles"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

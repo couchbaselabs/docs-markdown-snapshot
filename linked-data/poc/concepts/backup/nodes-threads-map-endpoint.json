@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/nodes-threads-map-endpoint",
+  "label": "nodesThreadsMap REST API endpoint",
+  "type": "the REST endpoint that overrides backup:thread-count-setting on a per-node basis.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": ["rest:nodes-threads-map"],
+  "aliases_note": "Minted in round 19 (backup-service.json) under a bare `rest:` namespace - a namespace with no other member anywhere in the registry or corpus, and one that names a part of speech ('a REST endpoint') rather than a subject area, the same defect shape as the retired `setting:` namespace (round 14/15). Renamed into `backup:` on filing, since the endpoint is Backup-Service-specific and the corpus has no second `rest:`-prefixed concept to justify keeping the namespace open. The extraction records keep their original id; `rest:nodes-threads-map` is recorded here as an alias so the write-time gate resolves it correctly.",
+  "evidence": [
+    "You change this setting using the `nodesThreadsMap` REST API endpoint.",
+    "The `nodesThreadMap` endpoint lets you change the number of threads the Backup Service uses on a node."
+  ],
+  "hasExecutionConstraint": "backup:repository",
+  "documented_at": "server/8.0/rest-api/backup-node-threads",
+  "note": "Note the source's own spelling drift between `nodesThreadsMap` (plural 'Threads', backup-service.md and the endpoint path itself) and `nodesThreadMap` (singular, backup-node-threads.md's own prose) - not logged as a separate docs-issue, since it is a single-letter, low-impact prose slip rather than a structural inconsistency, but recorded here for anyone reusing this id.",
+  "relates_to_competency_question": "Which REST endpoint controls the Backup Service's per-node thread count?"
+}

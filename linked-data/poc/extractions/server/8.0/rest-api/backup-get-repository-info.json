@@ -1,0 +1,59 @@
+{
+  "page_id": "server/8.0/rest-api/backup-get-repository-info",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-get-repository-info.md",
+  "concepts": [
+    { "candidate_id": "backup:get-repository-info-operation", "label": "Get Backup Repository Information (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the three GET /api/v1/cluster/self/repository/{REPO_STATUS}[/{REPO_NAME}[/info]] operations (list, overview, detail), covered together on one page" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:backup-service-rest-api", "label": "Backup Service REST API", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-create-repository.json, this batch" },
+    { "candidate_id": "port:8097", "label": "Port 8097 (Backup Service, default)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-get-expired-backups.json, this batch, using the identical framing sentence this page also carries" },
+    { "candidate_id": "port:8091", "label": "Port 8091 (cleartext Cluster Manager REST port)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already on disk; this page's third example corroborates the '_p/backup/' proxy pattern first noted in backup-get-plan-info.json, this batch" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin (Server RBAC role)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-get-cluster-info.json, this batch" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:repository", "predicate": "monitoredVia", "object": "backup:get-repository-info-operation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate. The /info variant returns backup-level and collection-level mutation/tombstone counts - a monitoring surface with no other stated access path in this corpus",
+      "evidence": "Get detailed information about a specific backup repository including backup names and dates, buckets, items, and mutations:" },
+
+    { "subject": "backup:backup-service-rest-api", "predicate": "usesPort", "object": "port:8097",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; same relation minted in backup-get-expired-backups.json, independently re-evidenced here since this page carries the identical framing sentence",
+      "evidence": "These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service." },
+
+    { "subject": "backup:backup-service-rest-api", "predicate": "usesPort", "object": "port:8091",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; corroborates backup-get-plan-info.json's finding of a second, proxied access path through the Cluster Manager port",
+      "evidence": "http://127.0.0.1:8091/_p/backup/api/v1/cluster/self/repository/active/repoDaily" },
+
+    { "subject": "backup:get-repository-info-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-repository-info-operation", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-repository-info-operation", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+
+    { "subject": "backup:get-repository-info-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:get-repository-info-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:get-repository-info-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For Information about using the Backup Service REST API to create a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md)." },
+
+    { "subject": "backup:get-repository-info-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information about using the Backup Service REST API to create a repository, see [Create a Repository](backup-create-repository.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "belongsToService / collection-level granularity",
+    "finding": "The /info example response's collection-level breakdown (per-scope, per-collection mutation and tombstone counts inside an imported repository's backup list) is the single most granular data-shape in this entire batch, yet no page anywhere in this batch's read set links it to the Data Service's own collection/scope model as a monitoring source - it is presented purely as an artifact of the backup archive's own internal bookkeeping. Not asserted as a relation for lack of a fitting predicate beyond the monitoredVia relation already recorded above."
+  },
+  "cross_component_finding": "Closes out this batch's port-architecture thread (see backup-get-plan-info.json for where it was first raised): both dedicated-port (8097) and proxied-through-cluster-manager (8091, via '_p/backup/') access to the same repository-info data are now attested TWICE each within this eleven-page batch, which raises confidence this is a real, intentional dual-homing rather than a one-off typo in either example. Combined with backup-create-repository.json's and backup-examine-data.json's field-level confirmations (archive/repository containment; the collection-string/data_path addressing match), this batch's overall verdict on the round's core question is: round 11's 'SAME construct' finding for backup:repository holds up strongly and is now confirmed from three independent angles (storage-location semantics, document addressing, and now REST transport architecture) - but the Backup Service layers scheduling (backup:plan), a broader task-type set (BACKUP/MERGE/PRUNE), and lifecycle states with no CLI equivalent (backup:imported-repository) on top of that shared construct, so 'same repository, different surface' is accurate at the storage layer and incomplete as a description of the two surfaces' full capability sets."
+}

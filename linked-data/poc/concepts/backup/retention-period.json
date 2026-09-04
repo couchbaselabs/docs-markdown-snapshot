@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/retention-period",
+  "label": "Retention period",
+  "type": "the period after which a backup becomes eligible for deletion via backup:pruning. Scoped three ways per this round's evidence: set at repository-CREATION time, EDITED later at repository level, or overridden for an INDIVIDUAL backup within the repository - each with its own URI and a `retroactive` flag controlling whether a repository-level change reaches backups that already exist. None of this three-way scoping is described on backup-service.md, which only ever says the period is 'specified in the plan' - the REST reference (backup-retention.md) is materially more detailed than the conceptual overview page for this specific mechanism.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "The Backup Service retains backups for a period of time you specify in the plan using the retention period.",
+    "Configure the Backup Service to retain backups in a repository by setting a retention period.",
+    "You can set a retention period for a repository when creating it or editing it later. After creating a repository, you can set a custom retention period for individual backups."
+  ],
+  "configurableVia": "backup:plan",
+  "restrictedToContext": "backup:repository",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19; crosses the promotion bar this round via backup-create-and-edit-plans.md, backup-get-expired-backups.md and backup-retention.md, all reusing it in a relation slot. See docs-issues/server-backup-retention-response-description-mismatch and docs-issues/server-backup-merge-offset-field-name-mismatch for two documentation-quality findings surfaced alongside this concept.",
+  "relates_to_competency_question": "How long are backups kept, and at what granularity can that period be configured?"
+}

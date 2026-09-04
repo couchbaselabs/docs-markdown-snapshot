@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-create-repository-aws-first-cloud-params",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "backup:native-cloud-integration is documented, on the cbbackupmgr side, as covering four providers (AWS S3, Azure Blob Storage, GCP Storage, Azure Data Lake Storage Gen2). backup-create-repository.md's REST-equivalent parameter descriptions read as narrower or AWS-first in their illustrative detail: `cloud_credentials_id` is glossed 'For AWS, this is the _access key id_', `cloud_credentials_key` 'For AWS, this is the _AWS secret access key_', and `cloud_force_path_style` is scoped explicitly to 'S3 or S3 compatible storages'. Azure and GCP are never named on this page at all, even though the parameter names themselves (cloud_credential_name, cloud_region) read as provider-agnostic. Not concluded to be AWS/S3-only from this alone, but the asymmetry in which provider gets the illustrative detail is real and worth a documentation pass to confirm parity across all four providers cbbackupmgr itself supports.",
+  "about": [
+    "server/8.0/rest-api/backup-create-repository"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

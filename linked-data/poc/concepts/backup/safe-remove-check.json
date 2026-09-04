@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/safe-remove-check",
+  "label": "Safe remove check",
+  "type": "a default-on dependency guard that refuses to delete a backup:full-backup or backup:incremental-backup whose removal would break a later incremental backup's dependency chain, unless explicitly disabled. Present on both surfaces: cbbackupmgr's remove command (default behavior) and the REST API's DELETE-a-backup endpoint (`disable_safe_remove_check` request parameter, default `false`).",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "By default, the remove command will not delete backups which would cause dependencies to be broken i.e. a backup cannot be deleted if an incremental backup depends upon it.",
+    "The `disable_safe_remove_check` parameter is optional. It allows you to delete a backup that has incremental backups depending on it.",
+    "The default value is `false`.",
+    "Setting `disable_safe_remove_check` to `true` can break backup cycles and make dependent backups invalid."
+  ],
+  "hasDefaultValue": false,
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-remove",
+  "note": "Structurally distinct from cbbackupmgr's merge command, which resolves the same full/incremental dependency by consolidation rather than a guarded deletion override - no page states the two are related, kept separate. Evidence that the full-backup/incremental-backup dependency chain (both already promoted) is a load-bearing constraint enforced independently, and identically, on both the CLI (round 19, cbbackupmgr-remove.md) and the REST surface (this round, backup-delete-backups.md).",
+  "relates_to_competency_question": "What stops an administrator from deleting a backup that other backups still depend on, and can that protection be overridden?"
+}

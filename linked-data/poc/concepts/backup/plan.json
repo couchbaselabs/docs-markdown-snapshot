@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/plan",
+  "label": "Plan",
+  "type": "the Backup Service's schedule-and-policy object: tells the service what to back up, how often, and which repository to write into. This is the layer the round's central question found the CLI has NO equivalent for at all - cbbackupmgr has no 'plan' object, no schedule, and no PRUNE subcommand. NOT the same namespace as the pre-existing plan:* namespace (Capella COMMITTED/CUSTOM pricing plans) - a name collision, unrelated products, kept apart per the no-silent-merge rule.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "To automate backups using the Backup Service, you must create a plan that tells the service what you want it to do.",
+    "You associate a plan with a repository where it stored backup data (see the next section).",
+    "A _plan_, once defined, is used in the creation of a _repository_; thereby allowing data from the cluster to be regularly backed up and, if appropriate, restored."
+  ],
+  "storesDataIn": "backup:repository",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19 (backup-service.json), reused this round in backup-create-and-edit-plans.md, backup-create-repository.md, backup-delete-plan.md, backup-get-plan-info.md and backup-trigger-backup.md, but only backup-service.json and backup-create-and-edit-plans.md actually place the id in a relation slot - the promotion metric's recurrence is 2, at the ordinary bar rather than above it, despite 5 files mentioning the concept. This is the object the round's own repository.json note names as already-promoted ('a plan storesDataIn a repository... per round 11's own already-promoted relation') - that claim was not actually true until this round: storesDataIn itself is promoted here for the first time (see relations/stores-data-in.json).",
+  "relates_to_competency_question": "Does cbbackupmgr have anything equivalent to the Backup Service's scheduling/policy object?"
+}

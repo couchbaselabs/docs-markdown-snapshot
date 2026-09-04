@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-trigger-prune-response-shape-asymmetry",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "backup-trigger-prune.md's success-response shape is a JSON ARRAY containing one object (`[{\"task_name\": \"PRUNE-...\"}]`). backup-trigger-backup.md and backup-trigger-merge.md, structurally identical 'trigger an immediate task now' endpoints with the same request shape (repository-id path parameter, Full Admin role, 200 OK plus a task_name), both return a single bare OBJECT instead (`{\"task_name\": \"BACKUP-...\"}` / `{\"task_name\": \"MERGE-...\"}`). Possibly because a single prune call can retroactively affect multiple expired backups and therefore may spawn more than one task, but no page states that explanation - the asymmetry is simply present, unexplained, across the three otherwise-parallel endpoints.",
+  "about": [
+    "server/8.0/rest-api/backup-trigger-backup",
+    "server/8.0/rest-api/backup-trigger-merge",
+    "server/8.0/rest-api/backup-trigger-prune"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/8097",
+  "label": "Port 8097",
+  "type": "the Backup Service's own dedicated REST port (default). Distinct from port:8091/port:18091 (cleartext/TLS Cluster Manager REST ports), through which the same Backup Service REST API is ALSO reachable via a `_p/backup/` proxy prefix - the Backup Service REST API is dual-homed, not exclusively on 8097 despite one framing sentence stating otherwise (see note).",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service.",
+    "All calls require the Full Admin role, and use port `8097`."
+  ],
+  "documented_at": "server/8.0/rest-api/backup-rest-api",
+  "note": "First `port:` concept minted for the Backup Service; the second promoted member of the `port:` namespace after port:18091, and the occasion for also promoting the much higher-recurrence port:8091 (see concepts/port/8091.json) which had sat as unpromoted debt across analytics/eventing/n1ql/backup batches for several rounds. The 'only available from... 8097' framing sentence (backup-get-expired-backups.md, backup-get-repository-info.md) is contradicted by backup-get-plan-info.md's and backup-get-repository-info.md's own worked examples, which reach the identical plan-info/repository-info endpoints through port 8091 via a `/_p/backup/` proxy prefix instead - logged as docs-issues/server-backup-rest-api-dual-port-access-unexplained rather than silently resolved.",
+  "relates_to_competency_question": "What port does the Backup Service's REST API use, and is that its only access path?"
+}

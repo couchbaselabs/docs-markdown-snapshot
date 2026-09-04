@@ -1,0 +1,47 @@
+{
+  "page_id": "server/8.0/rest-api/backup-get-cluster-info",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-get-cluster-info.md",
+  "concepts": [
+    { "candidate_id": "backup:get-cluster-info-operation", "label": "Get Information on the Cluster (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the GET /api/v1/cluster/self operation" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:imported-repository", "label": "Imported repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-delete-repository.json, this batch" },
+    { "candidate_id": "server:couchbase-server", "label": "Couchbase Server (the product)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in services.json" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (concepts/role/ro-admin.json), aliased role:read-only-admin" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Admin (Backup Service RBAC role)", "registry_status": "minted", "reused_or_minted": "minted - a Backup-Service-specific administrative role, named on THIS page as 'Backup Admin' but named 'Backup Full Admin' on three other pages in this same batch (backup-get-expired-backups.json, backup-get-plan-info.json, backup-get-repository-info.json) - see notable_absence. Not previously in the registry's role: family (role:data-backup is a different, bucket-level role for cbbackupmgr; role:analytics-admin is a different cluster-level-data role). Minted here, first in this batch's read order, under the spelling THIS page actually uses" }
+  ],
+  "relations": [
+    { "subject": "backup:get-cluster-info-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Admin, or Read-Only Admin role." },
+    { "subject": "backup:get-cluster-info-operation", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, applied to the newly-minted role",
+      "evidence": "Full Admin, Backup Admin, or Read-Only Admin role." },
+    { "subject": "backup:get-cluster-info-operation", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Admin, or Read-Only Admin role." },
+
+    { "subject": "backup:get-cluster-info-operation", "predicate": "hasExecutionConstraint", "object": "server:couchbase-server",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate, applied to a cross-cluster scope restriction rather than a topology/placement one: the endpoint can query only the local cluster it runs against, never a remote one",
+      "evidence": "Only the host cluster (`self`) can be queried." },
+
+    { "subject": "backup:get-cluster-info-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:get-cluster-info-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:get-cluster-info-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information about using the Backup Service REST API to create a repository, see [Create a Repository](backup-create-repository.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (naming consistency)",
+    "finding": "THIS PAGE SPELLS THE ROLE DIFFERENTLY FROM ITS THREE SIBLINGS. This page's Required Permissions line reads 'Full Admin, Backup Admin, or Read-Only Admin role.' - but backup-get-expired-backups.md, backup-get-plan-info.md and backup-get-repository-info.md, covering the same tier of GET/list/info endpoints in the same REST API, all read 'Full Admin, Backup Full Admin, or Read-Only Admin roles.' 'Backup Admin' versus 'Backup Full Admin' is a real naming inconsistency within a single, internally-consistent-looking API reference set - three of four pages agree with each other and one does not. I have minted role:backup-full-admin under THIS page's own spelling ('Backup Admin') since that is what this page's own evidence licenses, and reused the same id (not a second concept) on the other three pages where the fuller name appears - the registry's aliasing mechanism, or reconciliation, should settle on one label, but the discrepancy itself is exactly the kind of docs inconsistency this project's evidence discipline is built to surface rather than silently paper over."
+  },
+  "cross_component_finding": "This page's three-subdocument cluster response shape (active / imported / archived, each keyed by repository id) is the clearest single piece of evidence that 'imported' is a first-class, load-bearing repository state and not an edge case - it sits as a coordinate peer of active and archived in the very top-level JSON schema the Backup Service returns for 'give me everything you know'. See backup-delete-repository.json for where backup:imported-repository was first minted and cross_component_finding there for why it appears to have no cbbackupmgr-side equivalent."
+}

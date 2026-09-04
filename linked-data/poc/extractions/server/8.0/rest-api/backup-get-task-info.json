@@ -1,0 +1,67 @@
+{
+  "page_id": "server/8.0/rest-api/backup-get-task-info",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-get-task-info.md",
+  "concepts": [
+    { "candidate_id": "backup:get-task-info-rest-api", "label": "Get Backup Task History (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the endpoint's own page-level concept; first extraction of this page (previously only a seeAlso/table target in backup-service.json and backup-pause-and-resume-tasks.md)." },
+    { "candidate_id": "backup:backup-task", "label": "Backup task (Backup Service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json ('the scheduled unit of execution')" },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "port:8097", "label": "Port 8097 (Backup Service REST API port)",
+      "registry_status": "minted", "reused_or_minted": "reused - minted earlier in this same batch (backup-rest-api.json)" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin (backup_admin)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id from server/8.0/learn/security/roles.json (internal name backup_admin)" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:get-task-info-rest-api", "predicate": "usesPort", "object": "port:8097",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - usesPort",
+      "evidence": "These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service." },
+
+    { "subject": "backup:get-task-info-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-task-info-rest-api", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole (predicate promoted; object role:backup-full-admin is itself extraction-layer only)",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-task-info-rest-api", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+
+    { "subject": "backup:get-task-info-rest-api", "predicate": "requiresRequestParameter", "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresRequestParameter, stretched slightly: the object here is the repository the path parameter identifies, not a query-string parameter, but the shape ('this construct only works when X is supplied') is the same",
+      "evidence": "This HTTP method and URI return an array containing the entire task history for the repository specified by the `REPO_NAME` path-parameter." },
+
+    { "subject": "backup:archived-repository", "predicate": "doesNotAffect", "object": "backup:get-task-info-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect, i.e. an archived repository does not lose its task history: the endpoint remains callable against archived (and imported) repositories, not just active ones",
+      "evidence": "REPO\\_STATUS | The status of the backup repository. | Must be one of: active imported archived" },
+
+    { "subject": "backup:get-task-info-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For a an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:get-task-info-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For a step-by-step guide to configure and use the Backup Service using the Couchbase Server Web Console, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:get-task-info-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "For information about using the Backup Service REST API to create a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page's JSON example task objects (type: MERGE, BACKUP, PRUNE) are the clearest on-page evidence in this whole batch that a 'task' is a shared runtime concept spanning backup, merge, and prune operations - yet the page never links backup-trigger-merge.md or backup-trigger-prune.md (this same batch), only backup-create-and-edit-plans.md. The task-type taxonomy is demonstrated in data but not cross-referenced in prose."
+  },
+  "cross_component_finding": "Confirms round 19's finding that a repository's status (active/archived/imported) is a first-class, queryable state, not an incidental label: this endpoint's REPO_STATUS path parameter takes the identical three-way enum used elsewhere in this batch (backup-import-repository.md's repository-specification, backup-restore-data.md's restore path). A task's history persists and remains readable after a repository is archived or imported, per the enum covering all three - direct evidence that archiving/importing a repository is a status change on the SAME object, not a migration to a different kind of thing.",
+  "cross_product_finding": ""
+}

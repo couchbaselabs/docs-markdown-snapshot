@@ -1,0 +1,48 @@
+{
+  "page_id": "server/8.0/rest-api/backup-node-threads",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-node-threads.md",
+  "concepts": [
+    { "candidate_id": "backup:node-threads-rest-api", "label": "Manage Backup Service Threads (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso target in backup-rest-api.json and backup-service.json's own see-also list, round 19)." },
+    { "candidate_id": "rest:nodes-threads-map", "label": "nodesThreadsMap REST API endpoint",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id already minted in round 19's backup-service.json ('the endpoint that overrides the thread count'); this page is that endpoint's own full reference documentation." },
+    { "candidate_id": "backup:thread-count-setting", "label": "Backup Service thread count",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" }
+  ],
+  "relations": [
+    { "subject": "backup:thread-count-setting", "predicate": "configuredVia", "object": "rest:nodes-threads-map",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - configuredVia (same predicate round 19 used for this exact pair; new evidence, this page's own text)",
+      "evidence": "The `nodesThreadMap` endpoint lets you change the number of threads the Backup Service uses on a node." },
+
+    { "subject": "backup:thread-count-setting", "predicate": "hasDefaultValue", "object": "max(1, cpu_cores x 0.75)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasDefaultValue. Object is a literal formula, matching the registry's documented pattern for this predicate",
+      "evidence": "The default number of threads the Backup Service uses is based on the number of CPU cores in the node: \\\\(\\\\max(1, cpu\\\\_cores \\\\times 0.75)\\\\)." },
+
+    { "subject": "rest:nodes-threads-map", "predicate": "hasExecutionConstraint", "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - hasExecutionConstraint, for the stated relationship between thread count and connection count: each thread is a connection used to pull data FROM cluster nodes, which is the mechanism thread count actually governs",
+      "evidence": "The number of threads also sets the number of concurrent client connections the service uses to retrieve data from nodes in the cluster. Each thread creates one connection." },
+
+    { "subject": "backup:node-threads-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "See [Thread Usage](../learn/services-and-indexes/services/backup-service.md#threads) for more information about how the number of threads affects the Backup Service." },
+    { "subject": "backup:node-threads-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For a step-by-step guide to configure and use the Backup Service using the Couchbase Server Web Console, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:node-threads-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/rest-node-get-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (predicate promoted). Not previously seen in this project's Backup Service extractions; links out to the general node-info REST reference for obtaining node UUIDs",
+      "evidence": "You can get this value from the /pools/nodes REST API. See [Getting Information on Nodes](rest-node-get-info.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (page-body statement)",
+    "finding": "The Required Permissions section ('GET: Full Admin, Backup Full Admin, Read-Only Admin' / 'POST and PATCH: Full Admin, Backup Full Admin') is the only place on this page role names appear in full - the 403 Forbidden example response instead names the permission as the bare string `ro_admin`, a third naming register (internal permission string, distinct from both the display label 'Read-Only Admin' and the roles.md internal role name). Not extracted as a separate role-name variant since ro_admin plainly maps to role:ro-admin, but flagged as the same kind of naming-surface proliferation seen on backup-manage-config.md ('Backup Admin' vs 'Backup Full Admin')."
+  },
+  "cross_component_finding": "PATCH VS POST IS A NEW SEMANTIC DISTINCTION THIS ROUND HASN'T SEEN ELSEWHERE IN THE BACKUP: NAMESPACE. 'When you use the PATCH method, the changes only apply to the nodes in the map. Any existing settings that are not in the map remain in effect. Calling POST, removes any existing overrides.' This is a full-replace-vs-partial-merge distinction on the exact same resource (nodes_threads_map), expressed purely through HTTP verb choice rather than through any parameter. No cbbackupmgr CLI equivalent exists for this because thread-count tuning is Backup-Service-specific (see backup-manage-config.json's cross_component_finding, same conclusion for a different setting) - this is REST-surface-only behavior with nothing to compare against on the CLI side.",
+  "cross_product_finding": ""
+}

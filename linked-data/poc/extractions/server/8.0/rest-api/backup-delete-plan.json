@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/rest-api/backup-delete-plan",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-delete-plan.md",
+  "concepts": [
+    { "candidate_id": "backup:delete-plan-operation", "label": "Delete a Plan (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the DELETE /plan/<plan-id> operation" },
+    { "candidate_id": "backup:plan", "label": "Plan (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:delete-plan-operation", "predicate": "blockedWhileInUseBy", "object": "backup:repository",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - blockedWhileInUseBy. No registry predicate captures 'this delete operation is refused while a dependent still references the subject'; doesNotSupport is for a bounded feature incompatibility, not a live-reference guard, and cascadesTo/cascadesDeletionTo describe the opposite direction (deletion propagating, not being blocked)",
+      "evidence": "If the specified plan is currently in use by one or more repositories, `400 Bad Request` is returned, with a message such as the following: `{\"status\":400,\"msg\":\"cannot update plan as it is in use by repository: hourlyBackupRepo\"}`." },
+
+    { "subject": "backup:delete-plan-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:delete-plan-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:delete-plan-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:delete-plan-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information on creating plans, see [Create and Edit Plans](backup-create-and-edit-plans.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "(docs defect, not an absence)",
+    "finding": "The 400 error body for a blocked DELETE /plan/<plan-id> call reads {\"status\":400,\"msg\":\"cannot update plan as it is in use by repository: hourlyBackupRepo\"} - the word 'update' in an error raised by a DELETE operation. Either this is a copy-paste artifact from the PUT (edit) code path documented on backup-create-and-edit-plans.md sharing the same in-use guard, or the underlying API genuinely returns a misleading message for this specific failure. Quoted verbatim rather than corrected, per the evidence-discipline rule against silently smoothing over what the source actually says."
+  },
+  "cross_component_finding": "The in-use guard on plan deletion (blockedWhileInUseBy backup:repository) is the plan-side mirror of backup-delete-repository.json's own precondition that a repository must first be archived before it can be deleted. Together the two pages show the Backup Service enforcing a consistent dependency-ordering rule across both of its core objects: a repository cannot be deleted while active, and a plan cannot be deleted while in use by any repository - neither object can be removed while it is still load-bearing for the other."
+}

@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/rest-api/backup-examine-data",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-examine-data.md",
+  "concepts": [
+    { "candidate_id": "backup:examine-data-operation", "label": "Examine Backed-Up Data (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the POST /cluster/self/repository/<active|imported|archived>/<repository-id>/examine operation" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json; this operation is the one this batch has directly confirmed as one of archived repositories' stated read-only exceptions (see backup-archive-a-repository.json)" },
+    { "candidate_id": "backup:imported-repository", "label": "Imported repository", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-delete-repository.json, this batch" },
+    { "candidate_id": "backup:collection-string", "label": "Collection string", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in cbbackupmgr-info.json ('A dot separated collection string representing the bucket/scope/collection to get info for'). This page's `data_path` field is the SAME addressing convention under a different field name - see cross_component_finding" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:examine-data-operation", "predicate": "reliesOnMechanism", "object": "backup:collection-string",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate. The examine operation's `data_path` field ('The bucket, scope, and collection within which the document resides... period-separated') is the identical addressing mechanism cbbackupmgr's info command calls a collection string, under a different field name",
+      "evidence": "A _data path_. The bucket, scope, and collection within which the document resides. The names must be specified in order of containment, period-separated: for example, `travel-sample._default._default`." },
+
+    { "subject": "backup:examine-data-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:examine-data-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:examine-data-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole (dedicated section) / mutation semantics",
+    "finding": "Examine is a read-only operation (it retrieves document instances, changes nothing) but is implemented as a POST with no dedicated Required Permissions section, gated to Full Admin only - the SAME restrictive pattern as the write operations (archive, create, delete), not the broader Full Admin/Backup Full Admin/Read-Only Admin pattern used by the four genuine GET list/info endpoints (backup-get-cluster-info.md, backup-get-expired-backups.md, backup-get-plan-info.md, backup-get-repository-info.md). A reader cannot tell from HTTP verb alone which permission tier an endpoint needs; examine-data is the clearest case of the mismatch, since its own description states it only 'retrieves' data."
+  },
+  "cross_component_finding": "STRONGEST SINGLE PIECE OF EVIDENCE IN THIS BATCH FOR ROUND 11's 'SAME CONSTRUCT' FINDING. This page's `data_path` field description - 'The bucket, scope, and collection within which the document resides. The names must be specified in order of containment, period-separated: for example, `travel-sample._default._default`' - is not merely analogous to cbbackupmgr's collection-string mechanism (backup:collection-string, extraction-layer from cbbackupmgr-info.json), it is IDENTICAL in shape down to the same example-style dot-separated bucket.scope.collection format. The REST API's own JSON field is simply a renamed carrier (`data_path` vs cbbackupmgr's `--collection-string` flag) for the exact same addressing convention the CLI uses to locate data inside a repository. This is independent confirmation, from a completely different endpoint family (data retrieval, not repository/plan management) than backup-create-repository.json's archive/bucket_name evidence, that the Backup Service REST API and cbbackupmgr are built on one shared internal data model, accessed through two differently-shaped but semantically identical surfaces - reinforcing rather than merely repeating round 11's finding."
+}

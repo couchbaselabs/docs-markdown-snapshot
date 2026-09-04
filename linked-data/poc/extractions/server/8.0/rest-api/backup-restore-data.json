@@ -1,0 +1,61 @@
+{
+  "page_id": "server/8.0/rest-api/backup-restore-data",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-restore-data.md",
+  "concepts": [
+    { "candidate_id": "backup:restore-data-rest-api", "label": "Restore Data (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso/table target in backup-rest-api.json, this batch, and backup-service.json's keyspace-mapping seeAlso, round 19)." },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:archived-repository", "label": "Archived repository",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:keyspace-mapping", "label": "Restore keyspace mapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json ('the option to restore into a keyspace other than the original'); round 19 flagged its own configurableVia relation as its weakest, not knowing where the mapping was configured - this page answers that: the map_data field of the restore-specification, i.e. this same REST endpoint." },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:restore-data-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:keyspace-mapping", "predicate": "configuredVia", "object": "backup:restore-data-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredVia. Resolves round 19's own flagged weak point (its configurableVia relation for this same concept named backup:plan as the object, guessed because 'the page does not say where the mapping is configured'). It is not the plan - it's the restore-specification's map_data field on this endpoint",
+      "evidence": "Optionally, whether data that resides in one bucket (on the repository) is to be restored onto another (on the cluster). The default is for data to be restored to the same bucket." },
+
+    { "subject": "backup:restore-data-rest-api", "predicate": "supportsCrossClusterOperation", "object": "service:backup-service",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - supportsCrossClusterOperation. No existing predicate captures 'this operation may target a cluster other than its own host cluster.' Minted specifically because this fact directly contradicts a promoted-adjacent, already-quoted relation from round 19's backup-service.json (service:backup-service hasExecutionConstraint backup:repository, evidence: 'The Backup Service backs up, restores, and archives buckets only on the cluster it runs on.') - see cross_component_finding for the full writeup and both verbatim quotes.",
+      "evidence": "Note that this need not be the host cluster, and need not be a cluster running the Backup Service." },
+
+    { "subject": "backup:restore-data-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresServerRole, second occurrence: the TARGET cluster's credentials are separately gated by the same role requirement as the source call",
+      "evidence": "The username and password of an administrator for the target cluster who has the Full Admin role." },
+
+    { "subject": "backup:archived-repository", "predicate": "doesNotAffect", "object": "backup:restore-data-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - doesNotAffect: archiving (or importing) a repository does not disable restoring from it - restore remains valid against all three repository statuses",
+      "evidence": "POST /cluster/self/repository/< \"active\" | \"imported\" | \"archived\" >/<repository-id>/restore" },
+
+    { "subject": "backup:restore-data-rest-api", "predicate": "seeAlso", "object": "server/8.0/backup-restore/cbbackupmgr-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link. Direct textual bridge from the REST restore page to a cbbackupmgr CLI reference page, for restoration-stage sequencing when Vector Indexes are involved",
+      "evidence": "The sequence of stages in the restoration process is the same as that of the [backup](../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process." },
+    { "subject": "backup:restore-data-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:restore-data-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / requiresIndex",
+    "finding": "The Vector Index restoration NOTE ('you must run the BUILD INDEX command only after the Key-Value Data restoration is complete... re-training the codebook after the build has started is not supported') describes a hard, stateful ordering constraint with real failure consequences ('training failure or an inaccurate codebook'), but the page never names a requiresPriorExecutionOf-shaped relation explicitly - it is prose guidance in a NOTE callout, not a structured requirement. Extracted as a finding rather than a relation because the source is advisory prose ('Couchbase recommends waiting...') rather than a stated hard constraint the API itself enforces; forcing requiresPriorExecutionOf here would overstate what the page actually commits to."
+  },
+  "cross_component_finding": "A DIRECT CONTRADICTION BETWEEN TWO PROMOTED-ADJACENT SOURCES, WORTH FLAGGING EXPLICITLY RATHER THAN SILENTLY RECONCILING. Round 19's backup-service.json states, with its own verbatim evidence: 'The Backup Service backs up, restores, and archives buckets only on the cluster it runs on. You can use `cbbackupmgr` to backup, restore, and archive buckets on either the local or a remote cluster.' (evidence for service:backup-service hasExecutionConstraint backup:repository). This page - which documents the Backup Service's OWN REST restore endpoint, not cbbackupmgr - states the opposite for restore specifically: 'Note that this need not be the host cluster, and need not be a cluster running the Backup Service.' Read together, these two Backup-Service-authored pages disagree about whether the Backup Service's restore operation is confined to its own cluster. A plausible reconciling reading is that 'the cluster it runs on' governs where DATA IS READ FROM (the repository, always local to the Backup Service that owns it) while the restore TARGET is a separate, always-remote-capable parameter - but no page states that distinction; it would be inference, not extraction. Recorded as an open contradiction for reconciliation rather than resolved unilaterally. This bears directly on the round's central question: if the REST surface can do something (cross-cluster restore) that the docs elsewhere say the Backup Service categorically cannot do, that is evidence the REST API and the Backup Service's own self-description are not perfectly consistent artifacts, independent of the REST-vs-cbbackupmgr question.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-get-expired-backups-dependent-backups-unexplained",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "backup-get-expired-backups.md's example response returns two distinct arrays: `expired_backups` and `expired_backups_with_non_expired_dependents`. The field name strongly implies the Backup Service tracks, and treats differently, expired backups that still have non-expired incremental backups depending on them - directly paralleling backup-delete-backups.md's disable_safe_remove_check dependency guard (backup:safe-remove-check) and the confirmed full-backup/incremental-backup dependency chain. But the page supplies only the field name and one example value, with no prose explaining what happens differently to a backup in that second category (is it excluded from automatic pruning? does it require disable_safe_remove_check to prune?).",
+  "about": [
+    "server/8.0/rest-api/backup-get-expired-backups"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

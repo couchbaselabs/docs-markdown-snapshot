@@ -1,0 +1,19 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/backup-service-rest-api",
+  "label": "Backup Service REST API",
+  "type": "the umbrella REST surface for the Backup Service - Cluster/Configuration/Repository/Plan/Task/Data endpoint categories - as distinct from service:backup-service (the SERVICE itself) and from tool:cbbackupmgr (the CLI). Not a parallel ontology: every endpoint documented under this API operates on the same repository/plan/task/archive vocabulary the CLI reference uses.",
+  "promoted": true,
+  "recurrence": 5,
+  "evidence": [
+    "Each URI, in Couchbase Server Enterprise Edition Version 7.0, must be prefixed with `/api/v1`.",
+    "All calls require the Full Admin role, and use port `8097`.",
+    "These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service."
+  ],
+  "usesPort": ["port:8097", "port:8091"],
+  "requiresServerRole": "role:full-administrator",
+  "requiresEdition": "edition:enterprise",
+  "availableSince": "version:server-7-0",
+  "documented_at": "server/8.0/rest-api/backup-rest-api",
+  "note": "Promoted as the round's own anchor concept for 22 rest-api/backup-*.md pages. The overview page (backup-rest-api.md) states a URI-prefixing convention tied to Enterprise Edition at version 7.0 ('Each URI... must be prefixed with /api/v1') - narrower than a present-tense Enterprise-only gate on the whole API, so requiresEdition/availableSince here should be read with that qualification; the open question of whether the Backup Service itself is EE-only remains unresolved (see docs-issues/server-backup-rest-api-missing-ee-gate). Also dual-homed: reachable directly on port:8097 AND proxied through the cluster-wide port:8091 via a `_p/backup/` prefix (see backup-get-plan-info.json and backup-get-repository-info.json), the same fan-out pattern already seen for Analytics/Query/Eventing REST APIs.",
+  "relates_to_competency_question": "Is the Backup Service's REST surface a separate ontology from cbbackupmgr's CLI reference, or a second access surface onto the same underlying objects?"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/backup-task",
+  "label": "Backup task",
+  "type": "the scheduled unit of execution a backup:plan produces - one of three task_type enum members (BACKUP/MERGE/PRUNE, siblings backup:merge-task and backup:prune-task) - as against cbbackupmgr, which has no 'task' object at all: an operator invokes a subcommand directly and it runs to completion, rather than being scheduled, paused or resumed as a persistent task.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "To automate backups using the Backup Service, you must create a plan that tells the service what you want it to do.",
+    "You can still read the backed-up data in an archived repository. However, the Backup Service cannot perform further backups to the repository.",
+    "Note that neither resuming already running tasks nor pausing already paused tasks has any effect: both return `200 OK`.",
+    "Triggers an immediate backup for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required."
+  ],
+  "scheduledBy": "backup:plan",
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Extraction-layer since round 19; crosses the promotion bar this round (backup-archive-a-repository.md, backup-create-and-edit-plans.md, backup-get-task-info.md, backup-pause-and-resume-tasks.md, backup-trigger-backup.md all reuse it in a relation slot). Pause/resume is Backup-Service-only vocabulary with no cbbackupmgr equivalent - a genuine capability the scheduler adds on top of the shared repository/task substrate, one of the strongest 'separate thing' data points this round found for the round's central CLI-vs-REST question.",
+  "relates_to_competency_question": "What is the unit of scheduled execution in the Backup Service, and does cbbackupmgr have anything analogous?"
+}

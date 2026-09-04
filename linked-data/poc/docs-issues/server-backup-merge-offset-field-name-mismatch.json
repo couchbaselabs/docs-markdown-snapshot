@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-merge-offset-field-name-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "backup-trigger-merge.md's day-offset request fields are named `offset_start`/`offset_end`. Round 19's backup-service.json, describing the identical schedulable-merge concept at the plan level, names the same semantics `merge_offset_start`/`merge_offset_end` ('a lower integer representing a more recent day, 0 = today' in both places). No page states these are the same fields under two names, and backup-trigger-merge.md never mentions the `merge_offset_start`/`merge_offset_end` spelling at all. Modeled as one registry concept (backup:merge-offset) covering both spellings, but the naming inconsistency between the plan-level scheduling field and the immediate-trigger field, for what is otherwise the same day-range concept, is worth a documentation pass to confirm whether the two are genuinely the same field under two names or a real API difference.",
+  "about": [
+    "server/8.0/rest-api/backup-trigger-merge",
+    "server/8.0/learn/services-and-indexes/services/backup-service"
+  ],
+  "foundDuring": "round 25",
+  "status": "open"
+}

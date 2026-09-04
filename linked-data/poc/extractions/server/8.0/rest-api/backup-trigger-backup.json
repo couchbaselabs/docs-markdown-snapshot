@@ -1,0 +1,55 @@
+{
+  "page_id": "server/8.0/rest-api/backup-trigger-backup",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-trigger-backup.md",
+  "concepts": [
+    { "candidate_id": "backup:trigger-backup-rest-api", "label": "Perform an Immediate Backup (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso/table target in backup-rest-api.json, this batch)." },
+    { "candidate_id": "backup:backup-task", "label": "Backup task (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:plan", "label": "Plan (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "backup:full-backup", "label": "Full backup",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "triggersImmediateExecutionOf", "object": "backup:backup-task",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - triggersImmediateExecutionOf. No existing predicate captures 'runs a scheduled-type operation right now, outside its schedule.' scheduledBy (extraction-layer, round 19) describes the normal path (backup:backup-task scheduledBy backup:plan); this is the documented escape hatch from that schedule. Same shape reused identically for backup-trigger-merge.md and backup-trigger-prune.md, this batch",
+      "evidence": "Triggers an immediate backup for the specified active repository: thus, the need to wait for a scheduled backup can be eliminated as required." },
+
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "requiresRequestParameter", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresRequestParameter (path-parameter shape)",
+      "evidence": "The `repository-id` must be the name of an active repository on the cluster." },
+
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "configurableVia", "object": "backup:full-backup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configurableVia, for the request body's full_backup boolean choosing between a full and (implicitly) incremental immediate backup",
+      "evidence": "curl -v -X POST http://127.0.0.1:8097/api/v1/cluster/self/\\\nrepository/active/restRepo/backup \\\n-u Administrator:password \\\n-d '{\"full_backup\": false}'" },
+
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+    { "subject": "backup:trigger-backup-rest-api", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link (batch A page)",
+      "evidence": "For information on scheduling backups by means of plans, see [Create and Edit Plans](backup-create-and-edit-plans.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter (full_backup)",
+    "finding": "The `full_backup` request-body field is used in the worked example (`{\"full_backup\": false}`) but never once documented in prose, in a parameters table, or in the syntax block above it - the page's own HTTP Methods and URIs / Description / Curl Syntax sections describe the endpoint as taking no body at all. A reader following only the documented syntax would not know this parameter exists; it is only discoverable from the example. Recorded as configurableVia on the strength of the example rather than a documented parameter, and flagged here as a gap rather than treated as if it were formally specified."
+  },
+  "cross_component_finding": "The 500 error example on this page ('failed bucket check for bucket 'travel-sample': bucket UUIDs don't match...') is byte-for-byte identical to the one on backup-trigger-prune.md (this same batch) - both pages share not just the error shape but the exact bucket name and UUID pair in their worked examples, suggesting both were authored from the same underlying test run/fixture rather than independently. Minor, but useful corroboration that 'backup' and 'prune' tasks in the Backup Service go through the same bucket-validation code path, reinforcing that they are siblings of one task family (backup:backup-task) rather than differently-implemented features.",
+  "cross_product_finding": ""
+}

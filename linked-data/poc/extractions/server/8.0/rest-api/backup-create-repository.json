@@ -1,0 +1,69 @@
+{
+  "page_id": "server/8.0/rest-api/backup-create-repository",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-create-repository.md",
+  "concepts": [
+    { "candidate_id": "backup:backup-service-rest-api", "label": "Backup Service REST API", "registry_status": "minted", "reused_or_minted": "minted - the umbrella REST surface these eleven pages document. Not previously minted: service:backup-service (promoted) is the SERVICE; backup:repository and backup:plan (its objects) are promoted/extraction-layer; but no concept named the REST API itself as a distinct access surface, the way n1ql:query-service-rest-api and analytics:query-service-rest-api already do for their own services. Named parallel to those two." },
+    { "candidate_id": "backup:create-repository-operation", "label": "Create a Repository (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the POST /cluster/self/repository/active/<new-repository-name> operation" },
+    { "candidate_id": "backup:repository", "label": "Backup repository", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:archive", "label": "Backup archive", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "backup:plan", "label": "Plan (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:native-cloud-integration", "label": "Native cloud integration (cbbackupmgr)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted (concepts/backup/native-cloud-integration.json), for cbbackupmgr's ability to write an archive directly to cloud object storage. This page's cloud_credential_name/cloud_staging_dir/cloud_credentials_id/cloud_credentials_key/cloud_region/cloud_endpoint/cloud_force_path_style parameters expose the SAME capability through the Backup Service's REST API - see cross_component_finding for why this is reused rather than merged into a separate REST-only concept" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:create-repository-operation", "predicate": "createsOnAction", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; same triple already established from tool:cbbackupmgr's config sub-command (backup-service.json/cbbackupmgr-config.json) and cbbackupmgr-tutorial.json, now independently corroborated for the REST surface",
+      "evidence": "The `POST` http method and `/cluster/self/repository/active/<new-repository-name>` create a new repository." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "requiresPriorExecutionOf", "object": "backup:create-plan-operation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The call must specify a _plan_, as a JSON payload: for information on defining a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md)." },
+
+    { "subject": "backup:archive", "predicate": "hasInternalComponent", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate; same triple already established (cbbackupmgr-info.json, cbbackupmgr-tutorial.json), independently corroborated from the REST side: the REST repository-definition's own `archive` field is the location argument, matching the CLI's identical concept exactly",
+      "evidence": "`archive`. A defined _archive_. This must be a location on a filesystem, or on a cloud, that is not used for any other repository." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "offersConfigurationChoice", "object": "backup:native-cloud-integration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate. The repository-definition's `archive` field is a closed choice between a filesystem location and a cloud location; the cloud branch is documented as a dedicated 'Cloud-Specific Parameters' sub-section",
+      "evidence": "The following, additional parameters are provided, for defining a repository that uses cloud-based storage:" },
+
+    { "subject": "backup:create-repository-operation", "predicate": "supportsBucketType", "object": "bucket:couchbase-bucket",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer predicate, minted in backup-service.json for service:backup-service ('It supports backing up both Couchbase and Ephemeral buckets.'), independently corroborated here at the individual-repository level",
+      "evidence": "The bucket can be either a _Couchbase_ or an _Ephemeral_ bucket." },
+    { "subject": "backup:create-repository-operation", "predicate": "supportsBucketType", "object": "bucket:ephemeral-bucket",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused - extraction-layer predicate",
+      "evidence": "The bucket can be either a _Couchbase_ or an _Ephemeral_ bucket." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The `username` and `password` must be those of a user with the Full Admin role." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "seeAlso", "object": "server/8.0/install/non-root",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "see [Non-Root Install and Upgrade](../install/non-root.md), for more information." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "Information on using the Backup Service REST API to create a plan is provided in [Create and Edit Plans](backup-create-and-edit-plans.md)." },
+
+    { "subject": "backup:create-repository-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-get-repository-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "Information on using the Backup Service REST API to return information on either all active repositories, or on a specified active repository, is provided in [Get Information on Active Repositories](backup-get-repository-info.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "backup:native-cloud-integration is promoted as 'An Enterprise Edition feature'. This page documents the identical capability (cloud_credential_name, cloud_staging_dir, cloud_credentials_id/key, cloud_region, cloud_endpoint, cloud_force_path_style) with no Enterprise Edition statement anywhere on the page. Same open question as backup-create-and-edit-plans.json's MERGE-task finding: either the edition gate is real and undocumented on the REST reference, or the REST surface genuinely lifts the restriction, and the page does not let a reader tell which."
+  },
+  "cross_component_finding": "ROUND 11's FINDING HOLDS UP, AND THIS PAGE IS THE CLEANEST CONFIRMATION YET. The question this round was asked to check: is backup:repository 'the SAME construct whether it is written to by the cbbackupmgr CLI directly or by the Backup Service's own plan mechanism'? This page's repository-definition schema settles it at the field level, not just the label level. Its `archive` parameter is defined as 'a location on a filesystem, or on a cloud, that is not used for any other repository' - the exact same archive/repository containment relationship (backup:archive hasInternalComponent backup:repository) already promoted from cbbackupmgr's own config sub-command and tutorial pages, right down to the same filesystem-permission caveat: this page tells a non-root installer to 'use the `chgrp` command to set the group ID of the folder to `couchbase`', which is the identical instruction pattern cbbackupmgr's own docs give for the same archive directory. The `bucket_name` restriction ('If the bucket-name is provided, only data for this bucket is backed up... If no bucket-name is provided, data for all buckets on the cluster is backed up') matches cbbackupmgr's own --include-data bucket scoping semantics in shape, though this page does not use that flag name. SECOND, EXTENDING THE FINDING RATHER THAN JUST CONFIRMING IT: the round's prompt asked specifically about the cloud angle, and this page is where that shows up - its Cloud-Specific Parameters sub-section (cloud_credential_name, cloud_staging_dir, cloud_credentials_id, cloud_credentials_key, cloud_region, cloud_endpoint, cloud_force_path_style) is the REST expression of backup:native-cloud-integration, previously known only from the CLI side. Reused rather than forked into a REST-specific concept, on the same logic as backup:repository itself. THIRD, A NARROWING WORTH FLAGGING RATHER THAN SMOOTHING OVER: cbbackupmgr's native-cloud-integration is documented as covering FOUR providers (object-store:aws-s3/azure-blob-storage/gcp-storage/azure-data-lake-storage-gen2). This page's own parameter descriptions read as narrower or at least AWS-first in their illustrative detail - `cloud_credentials_id` is glossed 'For AWS, this is the _access key id_', `cloud_credentials_key` 'For AWS, this is the _AWS secret access key_', and `cloud_force_path_style` is scoped explicitly to 'S3 or S3 compatible storages'. Azure and GCP are never named on this page at all. I have not concluded the REST surface is AWS/S3-only from this alone (the parameter names themselves - cloud_credential_name, cloud_region - read as provider-agnostic), but the asymmetry in which provider gets the illustrative detail is real and worth a follow-up read of the sibling batch's backup-manage-config.md or backup-node-threads.md if either touches cloud credentials again."
+}

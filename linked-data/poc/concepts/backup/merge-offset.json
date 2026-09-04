@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/merge-offset",
+  "label": "Merge offset",
+  "type": "the two-integer day-range pair defining the time window a scheduled or immediate backup:merge-task covers, where a lower integer represents a more recent day (0 = today). Documented under TWO different field-name spellings for what is otherwise the identical concept: `merge_offset_start`/`merge_offset_end` at plan level (backup-service.md) versus `offset_start`/`offset_end` on the immediate-trigger endpoint (backup-trigger-merge.md) - see docs-issues/server-backup-merge-offset-field-name-mismatch.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "You set this time range by specifying two offsets, each representing a number of days. The `merge_offset_start` integer indicates the beginning of the range and the `merge_offset_end` integer the end.",
+    "The `merge-period-specification` must be a JSON document, containing the following: ... `offset_start` ... `offset_end`."
+  ],
+  "documented_at": "server/8.0/learn/services-and-indexes/services/backup-service",
+  "note": "Kept as one concept covering both spellings (per the extraction-layer id already in place from round 19) rather than split into two ids, since no page disputes the semantics are identical - only the field name differs by surface. The naming inconsistency itself is logged as a docs-issue, not modeled as an ontology fact.",
+  "relates_to_competency_question": "Is the merge day-range specified the same way at plan-schedule level as it is for an immediate/on-demand merge?"
+}

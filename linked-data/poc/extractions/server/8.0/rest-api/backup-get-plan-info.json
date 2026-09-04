@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/rest-api/backup-get-plan-info",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-get-plan-info.md",
+  "concepts": [
+    { "candidate_id": "backup:get-plan-info-operation", "label": "Get Backup Plan Information (Backup Service REST operation)", "registry_status": "minted", "reused_or_minted": "minted - the GET /plan (list) and GET /plan/{PLAN_NAME} (detail) operations, covered together on one page" },
+    { "candidate_id": "backup:plan", "label": "Plan (Backup Service)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-service.json" },
+    { "candidate_id": "backup:backup-service-rest-api", "label": "Backup Service REST API", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-create-repository.json, this batch" },
+    { "candidate_id": "port:8091", "label": "Port 8091 (cleartext Cluster Manager REST port)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id already on disk (analytics/manage-links.json and others, this and prior rounds); this page's second example is the first sighting in this batch of the Backup Service REST API being reachable THROUGH this port via a '_p/backup/' proxy path, rather than directly on port 8097 - see cross_component_finding" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "role:backup-full-admin", "label": "Backup Full Admin (Server RBAC role)", "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer, minted in backup-get-cluster-info.json, this batch" },
+    { "candidate_id": "role:ro-admin", "label": "Read-Only Admin (Server RBAC role)", "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:backup-service-rest-api", "predicate": "usesPort", "object": "port:8091",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate. Second, DIFFERENT access path for the same API from the one minted in backup-get-expired-backups.json: this example reaches the Backup Service's plan endpoint via the main Cluster Manager port with a '_p/backup/' proxy prefix, not via the dedicated port 8097",
+      "evidence": "http://127.0.0.1:8091/_p/backup/api/v1/plan/PlanBackupMergePrune" },
+
+    { "subject": "backup:get-plan-info-operation", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-plan-info-operation", "predicate": "requiresServerRole", "object": "role:backup-full-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+    { "subject": "backup:get-plan-info-operation", "predicate": "requiresServerRole", "object": "role:ro-admin",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Full Admin, Backup Full Admin, or Read-Only Admin roles." },
+
+    { "subject": "backup:get-plan-info-operation", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." },
+
+    { "subject": "backup:get-plan-info-operation", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md)." },
+
+    { "subject": "backup:get-plan-info-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-create-and-edit-plans",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For Information about using the Backup Service REST API to create a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md)." },
+
+    { "subject": "backup:get-plan-info-operation", "predicate": "seeAlso", "object": "server/8.0/rest-api/backup-delete-plan",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural markdown link",
+      "evidence": "For information about deleting plans, see [Delete a Plan](backup-delete-plan.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "(docs defect, path inconsistency)",
+    "finding": "This page's own two worked examples use THREE different path stylings for what the HTTP Methods and URIs section calls a single, consistent 'GET /plan' operation: (1) the syntax section's bare `http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/plan`; (2) the first example's `http://127.0.0.1:8097/api/v1/api/v1/plan` - note the DOUBLED `api/v1/api/v1`, which reads as a literal copy-paste bug rather than a documented alternate path, quoted verbatim rather than corrected; and (3) the second example's `http://127.0.0.1:8091/_p/backup/api/v1/plan/PlanBackupMergePrune`, reaching the same operation through the main Cluster Manager port instead of the dedicated Backup Service port. No page in this batch explains the relationship between the direct-port and proxied-through-8091 access paths, or states which is canonical."
+  },
+  "cross_component_finding": "TWO ACCESS PATHS TO ONE REST API, ONLY ONE OF WHICH THIS BATCH DOCUMENTS ON PURPOSE. backup-get-expired-backups.json and backup-get-repository-info.md both state explicitly that their URIs are 'only available from the Backup Service port (8097 by default) on nodes running the Backup Service' - a direct-port framing. Yet this page's own second example reaches the SAME kind of endpoint (plan info) through port 8091 (already extraction-layer from the analytics/n1ql REST batches) via a `_p/backup/` proxy prefix - the same pattern by which Couchbase Server's main REST port fans out to multiple services' sub-APIs. Read together with backup-get-repository-info.json (file 11, which shows the identical `_p/backup/` pattern for a repository-info call), this is good evidence that the Backup Service REST API is dual-homed: reachable directly on 8097/18091-style dedicated ports AND proxied through the cluster-wide 8091/18091 management port, the same architecture already seen for the Analytics and Query services' REST APIs in earlier rounds (port:8091's own extraction-layer note already lists it serving several such sub-APIs). The 'only available from... 8097' sentence on the other two pages is therefore either an overstatement, or the two access paths differ in what they expose - this batch's own pages do not say which, and I have not resolved it further than recording both facts."
+}

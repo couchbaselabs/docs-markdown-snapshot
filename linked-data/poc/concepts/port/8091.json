@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/8091",
+  "label": "Port 8091",
+  "type": "the cleartext Couchbase Web Console / Cluster Manager REST port (default). The cleartext counterpart of the already-promoted port:18091 (TLS). Multiple services' own sub-APIs are reachable through this single cluster-wide port via a service-specific proxy prefix (e.g. `_p/backup/`, `_p/event/`), the same fan-out pattern the Analytics, Query, Eventing and Backup Service REST references all independently describe.",
+  "promoted": true,
+  "recurrence": 11,
+  "evidence": [
+    "The Cluster administration REST port. Use 18091 for secure access. The port numbers for this REST API are different to the port numbers used by the other Couchbase Server REST APIs.",
+    "At least one node in the remote cluster must expose the `mgmt` port (`rest_port`, default 8091) or the `mgmtSSL` port (`ssl_rest_port`, default 18091).",
+    "http://127.0.0.1:8091/_p/backup/api/v1/plan/PlanBackupMergePrune"
+  ],
+  "documented_at": "server/8.0/analytics/manage-links",
+  "note": "Promoted alongside port:8097 as an explicit case of this project's standing lesson on promotion debt: a single round's own 22 files never crossed the bar for this id, but recomputing recurrence over the whole extractions/ tree found it sitting unpromoted at 11 distinct files - analytics-rest-links, analytics-rest-settings, analytics/manage-links, analytics/rest-analytics, analytics/run-query, eventing-rest-api, eventing-debugging-and-diagnosability, troubleshooting-best-practices, n1ql-rest-settings, n1ql-rest-api/intro, and this round's own backup-get-plan-info.md/backup-get-repository-info.md - spanning at least five product areas across many rounds, while its TLS sibling port:18091 was promoted back at recurrence 2. The two should have been promoted together; this round closes that gap.",
+  "relates_to_competency_question": "What port serves the main Couchbase Server Cluster Manager REST API, and do individual services' own REST APIs share it?"
+}

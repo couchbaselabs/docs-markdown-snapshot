@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/supports-cross-cluster-operation",
+  "label": "supports cross-cluster operation",
+  "kind": "relation (schema-level)",
+  "type": "the subject operation may target a cluster other than the one it is invoked on/that hosts the acting service - a positive statement that the operation is NOT confined to its own host cluster.",
+  "promoted": true,
+  "recurrence": 1,
+  "recurrence_note": "Promoted below the ordinary >=2-files bar as an explicit significance exception, on the same footing as round 24's `alsoExposedAs` (promoted with zero concrete instances because two rounds converged on needing it). This predicate exists to carry the round's single sharpest piece of evidence for its own headline finding: `backup:restore-data-rest-api supportsCrossClusterOperation service:backup-service`, quoting backup-restore-data.md's 'Note that this need not be the host cluster, and need not be a cluster running the Backup Service.' This DIRECTLY contradicts round 19's already-promoted-adjacent evidence for `service:backup-service hasExecutionConstraint backup:repository` ('The Backup Service backs up, restores, and archives buckets only on the cluster it runs on.'). See reconciliation.md round 25 and docs-issues/server-backup-service-restore-cross-cluster-contradiction for the full writeup; recorded as an open, plainly-stated tension between two promoted-adjacent sources rather than resolved unilaterally in either direction.",
+  "evidence": [
+    "Note that this need not be the host cluster, and need not be a cluster running the Backup Service.",
+    "The username and password of an administrator for the target cluster who has the Full Admin role."
+  ],
+  "note": "The second evidence quote (a SEPARATE Full Admin credential pair explicitly for 'the target cluster') is corroborating: it only makes sense to require if the target can genuinely be a different cluster with its own administrators. Range is deliberately loose (a REST operation, not a fixed type) since this is currently a single-instance predicate minted to carry one contradiction; widen its use only with a fresh quote, not by analogy."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/archive-locking",
+  "label": "Archive locking",
+  "type": "cbbackupmgr's own file-based locking mechanism ensuring only one instance of the tool accesses a backup:archive at a time - used in place of SQLite's own file locking because network filesystems often do not implement it.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "It's important that only one instance of cbbackupmgr has access to the archive at a time; this is enforced using a lockfile meaning most of the time you shouldn't have to worry about accidentally corrupting your backup.",
+    "Care should be taken to ensure that programs other than cbbackupmgr do not access the archive files whilst cbbackupmgr is running to avoid corruption."
+  ],
+  "requiredForApiAccess": "backup:archive",
+  "documented_at": "server/8.0/backup-restore/cbbackupmgr-network-filesystems",
+  "note": "Round 19 extraction-layer debt (cbbackupmgr-cloud.md, cbbackupmgr-network-filesystems.md) crossing the promotion bar only once this round's aggregation was re-run over the whole corpus rather than round 25's own 22 files alone - an instance of the standing lesson that promotion debt accumulates silently across rounds.",
+  "relates_to_competency_question": "How does cbbackupmgr prevent concurrent access to the same backup archive?"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/backup/imported-repository",
+  "label": "Imported repository",
+  "type": "a THIRD backup:repository lifecycle state (alongside active and backup:archived-repository): a repository that continues to exist on disk but was deleted from the Backup Service's own bookkeeping and later re-registered via the import endpoint. Not previously named anywhere in the corpus before this round; has no stated cbbackupmgr-side equivalent - cbbackupmgr's restore/examine commands operate directly against an archive path with no registration step, so there is no CLI-side need for this state at all.",
+  "promoted": true,
+  "recurrence": 1,
+  "recurrence_note": "Promoted as an explicit exception to the ordinary >=2-distinct-files rule, on semantic significance rather than count: computed via recurrence.py's 'either relation slot' promotion metric, this id appears in an actual relation slot in only ONE file (backup-delete-repository.json: backup:delete-repository-operation doesNotSupport backup:imported-repository). But it is named as a bare concepts[] entry, or as a coordinate value in an enum, in FIVE files this round (backup-delete-repository.json, backup-examine-data.json, backup-get-cluster-info.json, backup-get-task-info.json, backup-restore-data.json), and backup-get-cluster-info.json's own /cluster/self response schema treats active/imported/archived as three coordinate peer keys in one JSON object - the clearest evidence available that this is a first-class, load-bearing state rather than an edge case invented by one page. A dedicated origin-story page (backup-import-repository.md, sibling batch) documents the IMPORT operation itself but never actually uses this id in its own relations - it reuses backup:repository as the object of createsOnAction instead - so the two extraction records did not converge on the id as tightly as hoped; this gap is noted rather than silently patched by rewriting either record.",
+  "evidence": [
+    "A repository that continues to exist on disk, but has been deleted from the Backup Service, can be imported back into the Backup Service.",
+    "They cannot be used on a repository that is either _active_ or _imported_.",
+    "REPO\\_STATUS | The status of the backup repository. | Must be one of: active imported archived"
+  ],
+  "documented_at": "server/8.0/rest-api/backup-delete-repository",
+  "note": "Deleting a repository from the Backup Service is a deregistration, not a destruction of data - importing re-registers a pointer to something that was already there. This is itself evidence for the round's central question (see backup:repository's own note): REST-surface 'delete' and disk-level existence are visibly two different things, which only makes sense if the underlying repository is a filesystem-durable object independent of either surface's own bookkeeping.",
+  "relates_to_competency_question": "What are all the lifecycle states a backup repository can be in, and does cbbackupmgr have an equivalent for each one?"
+}

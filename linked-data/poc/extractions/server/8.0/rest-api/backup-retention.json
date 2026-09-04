@@ -1,0 +1,51 @@
+{
+  "page_id": "server/8.0/rest-api/backup-retention",
+  "source_version": "8.0",
+  "source_path": "server/current/rest-api/backup-retention.md",
+  "concepts": [
+    { "candidate_id": "backup:retention-rest-api", "label": "Retain a Backup (REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first extraction of this page (previously only a seeAlso target in backup-service.json, round 19)." },
+    { "candidate_id": "backup:retention-period", "label": "Retention period",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:pruning", "label": "Pruning (Backup Service)",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused - extraction-layer id from round 19's backup-service.json" },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused - promoted" }
+  ],
+  "relations": [
+    { "subject": "backup:retention-period", "predicate": "configuredVia", "object": "backup:retention-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - configuredVia. Round 19's backup-service.json already had configurableVia (backup:retention-period -> backup:plan); this page adds the REST mechanism itself, and further shows the period can be set on an individual backup, not only at repository/plan level - see cross_component_finding",
+      "evidence": "Configure the Backup Service to retain backups in a repository by setting a retention period." },
+
+    { "subject": "backup:retention-period", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - requiresServerRole",
+      "evidence": "The `username` and `password` must identify an administrator with the Full Admin role." },
+
+    { "subject": "backup:pruning", "predicate": "requiresPriorExecutionOf", "object": "backup:retention-period",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - requiresPriorExecutionOf, though this is a temporal-eligibility trigger rather than a strict statement-ordering one; round 19 minted appliesAfter for the same shape but did not get it promoted (extraction-layer only), so this record uses the closest PROMOTED fit instead of re-minting appliesAfter a second time. Flagged rather than silently substituted: appliesAfter is arguably the more accurate predicate and reconciliation should decide between them",
+      "evidence": "When the retention period is reached, the Backup Service automatically deletes the backup through Prune tasks." },
+
+    { "subject": "backup:retention-period", "predicate": "restrictedToContext", "object": "backup:repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restrictedToContext, for the two-level scoping this page introduces: a retention period can be set at repository level (applies to all its backups) or overridden per individual backup within that repository",
+      "evidence": "You can set a retention period for a repository when creating it or editing it later. After creating a repository, you can set a custom retention period for its individual backups." },
+
+    { "subject": "backup:retention-rest-api", "predicate": "seeAlso", "object": "server/8.0/manage/manage-backup-and-restore/manage-backup-and-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For setting a retention period for a backup from the UI, see [Set Retention Period for a Specific Backup](../manage/manage-backup-and-restore/manage-backup-and-restore.md#set-retention-period-for-a-backup)." },
+    { "subject": "backup:retention-rest-api", "predicate": "seeAlso", "object": "server/8.0/learn/services-and-indexes/services/backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural link",
+      "evidence": "For more information on the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The Responses table's success description ('200 OK and JSON array containing the expired backups and their details') does not match either curl example on the page, both of which describe setting a retention period and both say 'the retention settings are applied' with no mention of an array of expired backups being returned. This looks like a copy-pasted response description from a different endpoint (very plausibly backup-get-expired-backups.md, a batch A page with an almost identical-sounding name) rather than this one. Flagged as a likely docs copy-paste error rather than silently corrected."
+  },
+  "cross_component_finding": "RETENTION IS SCOPED THREE WAYS, AND THIS PAGE IS THE FIRST TO SHOW ALL THREE TOGETHER. Round 19's backup-service.json only established repository/plan-level retention (backup:retention-period configurableVia backup:plan). This page adds: (1) setting retention when CREATING a repository, (2) EDITING it later at repository level, and (3) overriding it for an INDIVIDUAL backup within the repository - each with its own URI (retentionSettings vs retentionSettings/<backup-name>) and its own `retroactive` flag controlling whether a repository-level change reaches backups that already exist. None of this three-way scoping is described on backup-service.md, which only ever says the period is 'specified in the plan.' The REST reference here is materially more detailed than the conceptual overview page, consistent with this round's ongoing observation (also made in round 19's own cross_component_finding about backup-service.md itself) that the reference-versus-conceptual split does not track directory placement, and here it does not track the batch/round split either: the REST layer keeps turning out to be the more complete source of truth for exactly how a Backup-Service mechanism actually works.",
+  "cross_product_finding": ""
+}
