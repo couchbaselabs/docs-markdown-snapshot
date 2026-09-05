@@ -2,7 +2,7 @@
 title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-05T04:29:08.075Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
@@ -60,10 +60,10 @@ Now that you are familiar with the general theme of the migration, the next sect
 
 ## [](#installation-and-configuration)Installation and Configuration
 
-The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.9.3:
+The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.9.6:
 
-* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.9.3`
-* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.9.3>
+* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.9.6`
+* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.9.6>
 * (Not officially supported) By cloning and building the source code directly on [github](https://github.com/couchbase/couchbase-net-client/tree/master)
 
 Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
