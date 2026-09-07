@@ -1,0 +1,44 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-autofailover",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-autofailover.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:failover", "label": "Failover", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "edition:community", "label": "Community Edition", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "promoted", "reused_or_minted": "reused - --allow-failover-for-ephemeral-without-replica flag" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:auto-failover", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - scoped to the disk-issue failover capability specifically, not the whole feature",
+      "evidence": "In Couchbase Server Enterprise Edition nodes can also be automatically failed over when the Data Service reports sustained disk I/O failures." },
+    { "subject": "server:auto-failover", "predicate": "behavesDifferentlyUnder", "object": "edition:community",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The minimum auto-failover timeout is 30 seconds in Couchbase Community Edition and 5 seconds in Couchbase Enterprise Edition." },
+    { "subject": "server:auto-failover", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - --max-failovers, --enable-failover-on-data-disk-issues, --enable-failover-on-data-disk-non-responsive, --can-abort-rebalance and --allow-failover-for-ephemeral-without-replica are each separately marked Enterprise-only",
+      "evidence": "This feature is only available in Couchbase Enterprise Edition." },
+    { "subject": "server:auto-failover", "predicate": "doesNotSatisfy", "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - stretched to cover the stated risk that auto-failover of ephemeral buckets without replicas causes data loss",
+      "evidence": "Enables auto-failover when ephemeral buckets do not have replicas. If this happens then data loss can occur." },
+    { "subject": "server:auto-failover", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli setting-autofailover_ [--cluster <url>] [--username <user>] [--password <password>]" },
+    { "subject": "server:auto-failover", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[failover](couchbase-cli-failover.md), [recovery](couchbase-cli-recovery.md), [setting-alert](couchbase-cli-setting-alert.md)" },
+    { "subject": "server:auto-failover", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[failover](couchbase-cli-failover.md), [recovery](couchbase-cli-recovery.md), [setting-alert](couchbase-cli-setting-alert.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The promoted registry's server:auto-failover concept states a default timeout of 120 seconds, but this CLI reference page never states any default value for --auto-failover-timeout at all - it only states the minimum allowed value per edition (30s Community, 5s Enterprise). A reader relying solely on this page would not learn what happens if --auto-failover-timeout is omitted from --set, which is a real documentation gap on the CLI's own reference page for the setting."
+  },
+  "cross_component_finding": "The promoted registry's server:auto-failover description compresses the timeout constraint to a single uniform 'range 5-3600 seconds,' but this page's actual text draws an edition-specific minimum distinction the registry's summary elides: 30 seconds is the floor in Community Edition, 5 seconds in Enterprise. This is a real precision gap between the condensed registry description and the CLI page's own edition-scoped detail - exactly the kind of terminology/precision drift this round is watching for, though here it's a registry-vs-source gap rather than a CLI-vs-REST/UI one. Otherwise 'automatic failover' / 'auto-failover' usage is consistent with the promoted term.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, which manages failover automatically with no exposed auto-failover CLI configuration surface for customers."
+}

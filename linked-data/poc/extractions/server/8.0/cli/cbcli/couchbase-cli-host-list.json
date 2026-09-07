@@ -1,0 +1,31 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-host-list",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-host-list.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-host-list", "label": "host-list",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-server-info", "label": "server-info",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-list", "label": "server-list",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO; also this page's near-identical sibling, see cross_component_finding" },
+    { "candidate_id": "port:8091", "label": "Port 8091", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-host-list", "predicate": "hasDefaultValue", "object": "port:8091",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If the port number is not a part of the hostname, then the port number is assumed to be 8091." },
+    { "subject": "tool:couchbase-cli-host-list", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[server-info](couchbase-cli-server-info.md), [server-list](couchbase-cli-server-list.md)" },
+    { "subject": "tool:couchbase-cli-host-list", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-list",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[server-info](couchbase-cli-server-info.md), [server-list](couchbase-cli-server-list.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "host-list.md never uses the word 'server' at all, and its near-duplicate sibling server-list.md (this same batch) never uses the word 'host' - despite the two commands sharing an identical SYNOPSIS shape, identical HOST FORMATS / CERTIFICATE AUTHENTICATION / ENVIRONMENT AND CONFIGURATION VARIABLES boilerplate, and each linking to the other in SEE ALSO. Neither page glosses why two separate, identically-shaped commands exist for what reads as the same underlying cluster-membership list, or whether 'host' and 'server' denote the same list at all. This is the twin-command redundancy sitting exactly at the seam this round predicted: near-identical siblings plus lighter review equals an unreconciled small inconsistency neither side's page acknowledges."
+  },
+  "cross_component_finding": "See notable_absence - the host-list/server-list pairing is a clean, concrete instance of copy-pasted-boilerplate siblings with no cross-page reconciliation of their naming difference.",
+  "cross_product_finding": "Plainly none - the page is too thin to carry any product-comparison signal."
+}

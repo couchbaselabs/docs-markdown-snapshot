@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-user-manage-roles-catalogue-stale",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-cli-user-manage.md's ROLES section reads as written pre-8.0 and never fully updated. Confirmed by direct grep against the page: it omits every 8.0-introduced role (ro_security_admin, user_admin_local, user_admin_external, external_stats_reader all absent) and all six Sync-Gateway fine-grained roles added in Server 7.0.2 Developer Preview (sync_gateway_configurator, sync_gateway_app, sync_gateway_app_ro, sync_gateway_replicator, sync_gateway_dev_ops all absent; only the older mobile_sync_gateway role is present). Separately, analytics_admin is described as 'Allows the user to manage dataverses, links and datasets' - 'dataverses' is the pre-8.0 term for what concepts/analytics/analytics-scope.json (promoted, renamedFrom dataverse) documents as the current 'scope' terminology, so this one role description also uses stale vocabulary. The page functions correctly as CLI flag syntax but should not be relied on as a current roster of available roles.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-user-manage",
+    "server/current/learn/security/roles"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

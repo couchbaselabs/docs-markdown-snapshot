@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-dispatcher-job",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-dispatcher-job.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-thread-pool",
+      "label": "ep-engine worker thread pool (reader/writer/auxio/nonio)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this page's dispatcher subcommand reports one entry per named worker thread (auxio_worker_N, nonio_worker_N, reader_worker_N, writer_worker_N); the pool of these four thread kinds, each executing one job/task at a time, is a mechanism with no existing single concept in the reused-namespace excerpt"
+    },
+    {
+      "candidate_id": "data:reader-io-thread-kind",
+      "label": "reader I/O thread kind (Data Service scheduler)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "hasInternalComponent",
+      "object": "data:reader-io-thread-kind",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The command provides the stats from AUX dispatcher and non-IO dispatcher, and from all the reader and writer threads running for the specific bucket."
+    },
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Along with the stats, the job logs for each of the dispatchers and worker threads is also made available."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's own title and prose call the schedulable unit of work a 'job' ('job logs for each of the dispatchers and worker threads') with fields cur_time/runtime/state/task/waketime, while cbstats-tasks.md and cbstats-scheduler.md call the equivalent unit a 'task'. No page in this batch (or, as far as this extraction can tell, elsewhere) states that 'job' (dispatcher-job) and 'task' (tasks/scheduler/runtimes) name the same kind of ep-engine internal entity. This is exactly the kind of unreconciled internal naming split prior rounds have flagged for Server's own user-facing enum vocabularies (e.g. index-state vs indexer-node-state), but here it occurs entirely within engine-diagnostics output that has never been in scope before this round."
+  },
+  "cross_component_finding": "The Type/thread-kind categories visible here (reader, writer, auxio/AuxIO, nonio/NonIO) are the same four categories cbstats-tasks.md's summary table header uses (Writer Reader AuxIO NonIO Total) and cbstats-workload.md's ep_workload:num_readers/num_writers/num_auxio/num_nonio counters use - one thread-pool mechanism, monitored via three different cbstats subcommands with consistent naming this time (unlike the task/job split noted above).",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

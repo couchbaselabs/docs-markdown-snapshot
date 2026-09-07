@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-recovery",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-recovery.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:node-recovery", "label": "Node recovery", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:delta-recovery", "label": "Delta recovery", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:full-recovery", "label": "Full recovery", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:node-recovery", "predicate": "offersConfigurationChoice", "object": "server:delta-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The recovery command also allows a server to have it's data removed before being added back to the cluster (full recovery) or having the server resume from where it last left off (delta recovery)." },
+    { "subject": "server:node-recovery", "predicate": "offersConfigurationChoice", "object": "server:full-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The recovery command also allows a server to have it's data removed before being added back to the cluster (full recovery) or having the server resume from where it last left off (delta recovery)." },
+    { "subject": "server:delta-recovery", "predicate": "tradesOffAgainst", "object": "server:full-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Delta recovery will always take the least amount of time and is the recommended recovery mode." },
+    { "subject": "server:full-recovery", "predicate": "hasDefaultValue", "object": "full",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "To specify full recovery set this option to \"full\". For delta recovery set this option to \"delta\". The default value for this option is \"full\"." },
+    { "subject": "server:rebalance", "predicate": "requiresPriorExecutionOf", "object": "server:node-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note that after the recovery subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information on rebalancing a cluster." },
+    { "subject": "server:node-recovery", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli recovery_ [--cluster <url>] [--username <username>] [--password <password>]" },
+    { "subject": "server:node-recovery", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [server-add](couchbase-cli-server-add.md)" },
+    { "subject": "server:node-recovery", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-server-add",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [server-add](couchbase-cli-server-add.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole / requiresPrivilege",
+    "finding": "As with every other file in this batch, no specific RBAC role or privilege is named for the recovery subcommand - only the generic 'unauthorized error' boilerplate."
+  },
+  "cross_component_finding": "A genuine internal inconsistency: the DESCRIPTION states 'Delta recovery will always take the least amount of time and is the recommended recovery mode,' yet the --recovery-type OPTIONS text states the flag's default is 'full' ('The default value for this option is \"full\".'). The CLI's own default contradicts its own stated recommendation - a reader who omits --recovery-type gets the mode the page itself calls non-recommended. This is exactly the kind of docs-issue-shaped inconsistency the round's authorship-provenance hypothesis predicts from lighter TW review (an engineer wrote the accurate default-value fact and the recommendation-framing sentence in the same page without reconciling them). Otherwise terminology ('delta recovery', 'full recovery') matches the promoted registry cleanly.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, which manages node recovery internally with no customer-facing CLI equivalent to full/delta recovery mode selection."
+}

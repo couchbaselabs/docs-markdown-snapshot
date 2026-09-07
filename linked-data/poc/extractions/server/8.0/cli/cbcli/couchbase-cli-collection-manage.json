@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-collection-manage",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-collection-manage.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:scope",
+      "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "data:max-ttl-setting",
+      "label": "Maximum TTL setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:document-history-retention",
+      "label": "Document history retention",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted; here shown to be per-collection settable/editable, overriding the bucket-level default"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "createsOnAction",
+      "object": "server:scope",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Makes a scope in the bucket with the name provided."
+    },
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "createsOnAction",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Makes the collection in the scope. The option takes a path in dot format (scope.collection), specifying the scope in which the collection and the name to be created."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "configuresProperty",
+      "object": "data:max-ttl-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the maximum TTL (time-to-live) for all documents in the collection, in seconds. If enabled and a document is mutated with no TTL or a TTL greater than than the maximum, its TTL will be set to the maximum TTL. Setting this option to 0 will make the collection use the bucket TTL."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "configuresProperty",
+      "object": "server:document-history-retention",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies whether or not the document history retention should be enabled for the collection. To enable the document history retention, set this option to \"1\". To disable the document history retention, set this option to \"0\". This setting can be edited after a collection has been created."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "restrictedToContext",
+      "object": "bucket:couchbase-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only Couchbase and Ephemeral bucket has Collection support."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "restrictedToContext",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only Couchbase and Ephemeral bucket has Collection support."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The EXAMPLES section shows the invoking command for --list-scopes and --list-collections but never shows sample output for either - contrast with couchbase-cli-bucket-list.md in this same batch, which fully illustrates its stdout format field-by-field. A reader of this page has no idea what a scope or collection listing actually looks like on screen."
+  },
+  "cross_component_finding": "Two concrete quotable findings for this round's authorship hypothesis. (1) A grammar/agreement error: 'Only Couchbase and Ephemeral bucket has Collection support' (should be 'buckets have'). (2) The --max-ttl description repeats, verbatim, the same duplicated-word typo already flagged in bucket-create.json and bucket-edit.json: 'a TTL greater than than the maximum' - now confirmed present on a THIRD page in this batch, which rules out a one-off slip and confirms the flag description was copy-pasted across all three commands without being re-read. Separately, the --create-collection/--edit-collection/--drop-collection descriptions are near-identical templated sentences differing only by verb ('Makes'/'Edits'/'Removes') and each restates the dot-format (scope.collection) explanation almost word for word - the same copy-paste-across-similar-flags pattern this round is watching for, just within one page instead of across sibling pages.",
+  "cross_product_finding": "None found in this batch."
+}

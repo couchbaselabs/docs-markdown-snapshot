@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbepctl/set-checkpoint_param",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbepctl/set-checkpoint_param.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbepctl",
+      "label": "cbepctl",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer, despite cbepctl-intro.md and a large family of cbepctl subcommand pages existing in the source tree; none had apparently crossed the recurrence bar before this round. The ep-engine/memcached control tool this 'set checkpoint_param' subcommand belongs to."
+    },
+    {
+      "candidate_id": "vbucket:checkpoint",
+      "label": "vBucket checkpoint",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted elsewhere as the per-vBucket data structure cbstats exposes; this page is the configuration-side counterpart, letting an administrator tune checkpoint sizing and destruction via cbepctl rather than merely reading checkpoint state via cbstats."
+    },
+    {
+      "candidate_id": "memory:bucket-memory-quota",
+      "label": "Bucket memory quota",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted elsewhere; this page's checkpoint_memory_ratio parameter caps checkpoint memory as a fraction of this quota."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "configuresProperty",
+      "object": "vbucket:checkpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command changes checkpoint configuration parameters."
+    },
+    {
+      "subject": "vbucket:checkpoint",
+      "predicate": "requiresMemoryQuota",
+      "object": "memory:bucket-memory-quota",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "checkpoint\\_memory\\_ratio                 | Maximum portion of the bucket quota that the system can allocate to checkpoints."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page's Syntax line - 'cbepctl [host]:11210 -b [bucket-name] set checkpoint_param [parameter] [value]' - shows no -u/-p credential flags at all, and the page never names an RBAC role. Its sibling page in this same batch, set-flush_param.md, DOES show '-u [administrator-name] -p [administrator-password]' explicitly in its own Syntax line for the same tool. That is a real, page-to-page inconsistency within one cbepctl subcommand family, not merely an absence - either this page omits credentials cbepctl actually requires, or the two subcommands genuinely differ in what they need, and neither possibility is explained. A clean example of the lighter, per-subcommand-page authorship this round is watching for."
+  },
+  "cross_component_finding": "This is the first page in the corpus to configure vbucket:checkpoint rather than merely read it (cbstats exposes checkpoint state; cbepctl's set checkpoint_param subcommand changes it). The registry's own vbucket:checkpoint note already anticipates a page like this one, explicitly distinguishing the ep-engine/KV checkpoint documented here from xdcr:checkpoint-document's unrelated, XDCR-replication-specific checkpoint mechanism - this page confirms that distinction holds: nothing here concerns XDCR at all, despite the shared word 'checkpoint'.",
+  "cross_product_finding": "No Capella content; cbepctl is a low-level ep-engine control tool operating directly against a node's memcached port (11210), a level of access Capella does not expose to customers."
+}

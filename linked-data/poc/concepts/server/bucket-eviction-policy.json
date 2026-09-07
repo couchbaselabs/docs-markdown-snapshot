@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/bucket-eviction-policy",
+  "label": "Bucket eviction policy",
+  "type": "the memory-cache eviction strategy a bucket uses when it fills up. Configurable for Couchbase buckets; ephemeral buckets are stated to NOT support changing it via couchbase-cli bucket-edit, despite bucket-create describing it as available for both bucket types.",
+  "promoted": true,
+  "recurrence": 2,
+  "configuresProperty": true,
+  "evidence": [
+    "The memory-cache eviction policy for this bucket. This option is valid for Couchbase and Ephemeral buckets only.",
+    "The memory-cache eviction policy for this bucket. This option is valid for Couchbase buckets only; the eviction policy for ephemeral buckets..."
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-bucket-create.md",
+  "note": "The create-time vs. edit-time wording genuinely differs (create: valid for Couchbase AND Ephemeral; edit: valid for Couchbase only) - filed as docs-issues/server-bucket-eviction-policy-create-edit-scope-mismatch rather than resolved by inference, since both readings are plausible (ephemeral eviction policy fixed at creation and uneditable thereafter, or a genuine doc gap).",
+  "relates_to_competency_question": "Can an ephemeral bucket's eviction policy be changed after creation?"
+}

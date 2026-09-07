@@ -1,0 +1,307 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-create.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage-engine:couchstore",
+      "label": "Couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage-engine:magma",
+      "label": "Magma",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "durability:level",
+      "label": "Durability level",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "xdcr:conflict-resolution-method",
+      "label": "XDCR conflict resolution method",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage:auto-compaction",
+      "label": "auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "vbucket:vbucket-count-128",
+      "label": "128-vBucket configuration (Magma)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "vbucket:vbucket-count-1024",
+      "label": "1024-vBucket configuration",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:data-encryption-key",
+      "label": "Data Encryption Key (DEK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:encryption-at-rest-key",
+      "label": "Encryption-at-rest key",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "data:max-ttl-setting",
+      "label": "Maximum TTL setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:bucket-eviction-policy",
+      "label": "Bucket eviction policy",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the memory-cache eviction policy (valueOnly/fullEviction for Couchbase buckets; noEviction/nruEviction for Ephemeral buckets) has no concept in the registry despite storage-engine/bucket-type concepts existing around it"
+    },
+    {
+      "candidate_id": "server:bucket-background-task-priority",
+      "label": "Bucket background-task priority",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the high/low priority setting for a bucket's background tasks (disk I/O, DCP stream-processing, item-paging) has no existing concept"
+    },
+    {
+      "candidate_id": "server:bucket-compression-mode",
+      "label": "Bucket compression mode",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the off/passive/active document-compression setting has no existing concept (distinct from the already-promoted compression:data-compression, which describes the general mechanism rather than this specific three-value CLI setting)"
+    },
+    {
+      "candidate_id": "server:bucket-rank",
+      "label": "Bucket rank",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-bucket priority value used to order failover/rebalance across buckets has no existing concept"
+    },
+    {
+      "candidate_id": "server:document-history-retention",
+      "label": "Document history retention",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Magma-only setting retaining document mutation history on disk (bucket-level default, later shown to be per-collection overridable in collection-manage) has no existing concept"
+    },
+    {
+      "candidate_id": "server:invalid-hlc-strategy",
+      "label": "Invalid HLC strategy",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the error/ignore/replace strategy for handling invalid CAS values arising from Hybrid Logical Clock drift, plus its paired drift-threshold setting, has no existing concept. Not merged with xdcr:cross-cluster-versioning: no sentence on this page ties HLC handling to CCV, so the connection (both surely relate to the HLV mechanism the registry already documents for XDCR/Sync Gateway) is left unasserted rather than inferred."
+    },
+    {
+      "candidate_id": "server:view-index-replication",
+      "label": "View index replication",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the setting enabling a single replica of a bucket's view indexes has no existing concept"
+    },
+    {
+      "candidate_id": "server:bucket-flush",
+      "label": "Bucket flush",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-flush.json extraction, never promoted; referenced here via the --enable-flush property that gates it"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "createsOnAction",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Creates a new bucket. Allows creation of Couchbase and Ephemeral buckets, and supports the various configuration parameters for these buckets."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "offersConfigurationChoice",
+      "object": "bucket:couchbase-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The type of bucket to create. Accepted bucket types are \"couchbase\" and \"ephemeral\"."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "offersConfigurationChoice",
+      "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The type of storage to use with the bucket. This is only specified for \"couchbase\" buckets. Accepted values are \"couchstore\" or \"magma\"."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "durability:level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The minimum durability level for the bucket. Accepted values for \"ephemeral\" buckets are \"none\" or \"majority\". Accepted values for \"couchbase\" buckets are \"none\", \"majority\", \"majorityAndPersistActive\", or \"persistToMajority\"."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "xdcr:conflict-resolution-method",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies this bucket's conflict resolution mechanism; which is to be used if a conflict occurs during Cross Data-Center Replication (XDCR). Sequence-based and timestamp-based mechanisms are supported."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "data:max-ttl-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the maximum TTL (time-to-live) for all documents in bucket in seconds. If enabled and a document is mutated with no TTL or a TTL greater than than the maximum, its TTL will be set to the maximum TTL."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:bucket-compression-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the compression-mode of the bucket. There are three options; off, passive and active."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:bucket-eviction-policy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The memory-cache eviction policy for this bucket. This option is valid for Couchbase and Ephemeral buckets only."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:bucket-background-task-priority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the priority of this bucket's background tasks. This option is valid for Couchbase and Ephemeral buckets only."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:bucket-rank",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the rank of this bucket in case of failover/rebalance. Buckets with larger ranks are prioritized over buckets with smaller priorities e.g. a bucket with rank \"1\" will failover/rebalance before a bucket with rank \"0\". The default rank for a bucket is 0."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "offersConfigurationChoice",
+      "object": "vbucket:vbucket-count-128",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the number of vBuckets. Can only be used if the storage engine is Magma."
+    },
+    {
+      "subject": "vbucket:vbucket-count-128",
+      "predicate": "restrictedToContext",
+      "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the number of vBuckets. Can only be used if the storage engine is Magma."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:document-history-retention",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies how many bytes of document history the bucket should aim to retain on disk. This option is valid for Couchbase buckets with Magma storage backend only."
+    },
+    {
+      "subject": "server:document-history-retention",
+      "predicate": "restrictedToContext",
+      "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This option is valid for Couchbase buckets with Magma storage backend only. By default, history retention in bytes is set to 0, which means that no history is retained and all stale data is removed during compaction."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "encryption:encryption-at-rest-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The key that should be used to encrypt the bucket."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "encryption:data-encryption-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The number of days after which the DEK (Data Encryption Key) should be rotated."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:invalid-hlc-strategy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the invalid HLC strategy, used to handle invalid CAS values. (Can be error, ignore or replace)"
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:view-index-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Enables view index replication for the current bucket. This option is valid for Couchbase buckets only."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "server:bucket-flush",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies whether or not the flush operation is allowed for this bucket. To enable flushing, set this option to \"1\". To disable flushing, set this option to \"0\". By default, flushing is disabled."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "storage:auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the database fragmentation trigger threshold as a percentage. Can be set to values between 2 and 100."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "As with bucket-compact, no RBAC role is named anywhere on this page - only the generic 'unauthorized error' boilerplate under --username/--password. For a command with this many bucket-shaping side effects (encryption keys, storage backend, vBucket count, cross-cluster versioning implications) the absence of a stated required role is notable and, again, consistent with this round's lighter-review hypothesis for cli/."
+  },
+  "cross_component_finding": "Three findings worth flagging together. (1) The full CLIENT/CLUSTER/HOST-FORMATS/CERTIFICATE-AUTHENTICATION/ENV-VARS boilerplate is identical to bucket-compact's, again. (2) A literal typo, 'a TTL greater than than the maximum' (duplicated word), appears in this page's --max-ttl description and is copy-pasted verbatim into bucket-edit.md and collection-manage.md's own --max-ttl descriptions in this same batch - the error propagated across at least three near-identical sibling pages, which is strong direct evidence of copy-paste flag descriptions rather than independently reviewed prose, exactly this round's hypothesis. (3) The --compression-mode description includes the aside 'Please note it is expected that compression in most use cases will improve performance' - an informal, hedging register ('Please note') unusual for a finished reference page, again reading like lightly-edited engineer prose rather than TW-shaped copy.",
+  "cross_product_finding": "--bucket-type accepts the literal strings 'couchbase' and 'ephemeral' here at creation time, but bucket-list.md's own EXAMPLES/DISCUSSION (read later in this same batch) reports the underlying value as bucketType 'membase' for the identical Couchbase bucket - two different vocabularies for the same bucket type within the same CLI suite. See couchbase-cli-bucket-list.json for the direct quote and relation."
+}

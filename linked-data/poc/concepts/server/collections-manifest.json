@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/collections-manifest",
+  "label": "Collections manifest",
+  "type": "the cluster-node-tracked version counter (manifest_uid) recording the current state of a bucket's scopes and collections, incremented whenever a collections-related change is made. Monitored via cbstats, not couchbase-cli.",
+  "promoted": true,
+  "recurrence": 4,
+  "monitoredVia": "tool:cbstats",
+  "evidence": "The manifest_uid value is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.",
+  "documented_at": "server/8.0/cli/cbstats/cbstats-collections.md",
+  "note": "Identical explanatory sentence duplicated verbatim across all four cbstats collections/scopes (base and -details) pages - the round's authorship-provenance watch flagged this as copy-paste, but the underlying fact (one manifest_uid per node/bucket, cluster-wide) is real and consistently stated, not contradicted.",
+  "relates_to_competency_question": "How does an administrator tell whether a bucket's scope/collection topology has changed since it was last inspected?"
+}

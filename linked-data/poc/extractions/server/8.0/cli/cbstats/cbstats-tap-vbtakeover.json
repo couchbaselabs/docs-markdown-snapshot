@@ -1,0 +1,45 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-tap-vbtakeover",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-tap-vbtakeover.md",
+  "concepts": [
+    { "candidate_id": "protocol:tap", "label": "TAP (legacy internal replication protocol)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the internal protocol that streamed data changes between cluster nodes before DCP. Placed in the protocol: namespace alongside the already-promoted protocol:dcp, since the page describes TAP with the same 'internal protocol that streams information about data changes between cluster nodes' phrasing the registry uses for DCP - genuinely the same kind of thing, and its predecessor. Not previously in the registry (checked registry-digest.py; no tap: or protocol:tap entry exists)." },
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:cluster-manager", "label": "Cluster Manager (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:vbucket-takeover", "label": "vBucket takeover",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch on cbstats-dcp.json; not yet promoted, so reused here as extraction-layer." },
+    { "candidate_id": "version:server-5-0", "label": "Couchbase Server 5.0",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "protocol:dcp", "predicate": "supersedes", "object": "protocol:tap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "It was replaced by DCP and removed from Couchbase Server in version 5.0." },
+    { "subject": "protocol:tap", "predicate": "removedIn", "object": "version:server-5-0",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - fills a predicate slot the registry digest explicitly reserves but had never filed: the promoted `deprecatedIn` record states 'Reserve removedIn as a term but do not file it until a page actually dates a removal' because until now every corpus sighting only said a feature 'will be removed in a future release' with no version attached. This page is the first to date an actual removal with a version: 'removed from Couchbase Server in version 5.0'. Deliberately not folded into deprecatedIn, since deprecatedIn means 'documented as no longer recommended, while remaining present' and TAP is stated as gone, not merely discouraged.",
+      "evidence": "It was replaced by DCP and removed from Couchbase Server in version 5.0." },
+    { "subject": "tool:cbstats", "predicate": "retainedForLegacyCompatibility", "object": "protocol:tap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command enables you to retrieve statistics from clusters running legacy versions of Couchbase Server." },
+    { "subject": "server:cluster-manager", "predicate": "reliesOnMechanism", "object": "protocol:tap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used by cluster manager (ns_server) to track the progress of rebalance using TAP." }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The page dates TAP's removal ('version 5.0') but never dates when DCP itself became available or when vBucket takeover moved from TAP-based to DCP-based - a reader cannot tell whether there was any overlap window where both protocols supported takeover, or a hard cutover at 5.0."
+  },
+  "cross_component_finding": "This page and cbstats-dcp-vbtakeover.md document two successive protocol implementations of the identical internal need - cluster manager (ns_server) tracking vBucket takeover progress during rebalance - and cbstats retains a diagnostic surface for both the current (DCP) and the removed (TAP) mechanism, explicitly for operators of legacy clusters. The 'For internal use only' + named-caller pattern ('used by cluster manager (ns_server)') is identical on both pages, making this the batch's second attestation of the authorship-provenance signal noted on cbstats-dcp-vbtakeover.md: naming ns_server as the actual consumer, not the administrator running cbstats.",
+  "cross_product_finding": "Not applicable - TAP was a Couchbase Server-internal replication protocol, superseded before Sync Gateway's or Capella's current architecture; no cross-product vocabulary applies."
+}

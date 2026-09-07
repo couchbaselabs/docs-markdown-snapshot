@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/mcstat",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/mcstat.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:mcstat",
+      "label": "mcstat",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. First-contact tool connecting directly to the KV/memcached port to retrieve node-, bucket-, or cluster-wide statistics."
+    },
+    {
+      "candidate_id": "port:11210",
+      "label": "port 11210 (KV / memcached)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - mcstat's default connection port when none is specified."
+    },
+    {
+      "candidate_id": "server:user-impersonation",
+      "label": "User impersonation (Server diagnostic CLI)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for this capability anywhere in the registry or extraction layer. mcstat's -I/--impersonate option lets the connecting administrator run a stats request as if it were a different named user."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:mcstat",
+      "predicate": "usesPort",
+      "object": "port:11210",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If no port number is specified, either a number specified with the \\-p option, is used, or the default 11210 is used."
+    },
+    {
+      "subject": "tool:mcstat",
+      "predicate": "reliesOnMechanism",
+      "object": "server:user-impersonation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\\-I or \\--impersonate <username>                                                      | Try to impersonate the specified user."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "mcstat's own -h[=statkey] flag is documented as able to output, per statkey, 'descriptions and indications of the stat's scope and required privileges' - meaning the tool itself is aware of a privilege model for individual stats - but the reference page never names a single privilege string or ties any specific statkey to the RBAC/privilege catalogue used elsewhere in this corpus's REST reference pages. The entire privilege surface is deferred to the tool's own --help output at runtime rather than documented in prose. Consistent with this round's authorship-provenance hypothesis: the sentence reads like a feature description written by the engineer who built the --help flag, not a TW who then went and filled in the actual privilege names in a table."
+  },
+  "cross_component_finding": "mcstat's -b/-a bucket-scoping and -j/-J JSON-output options closely mirror the already-promoted tool:cbstats's own interface (both connect over port 11210, both take -b/-a and -u/-P/-I-style credential flags), yet neither this page nor cbstats-intro.md cross-references the other. A missed xref opportunity, and the kind of gap expected from tool-owner-authored pages that were never run through a unifying cross-linking review pass.",
+  "cross_product_finding": "mcstat connects directly to the raw KV/memcached port on a specific node (11210 by default) - a connectivity model Capella does not expose to customers, who cannot reach individual data nodes' memcached ports directly. This entire mc* tool family (mcstat, mctestauth, mctimings) is implicitly Server (self-managed)-only, though no page in the batch states that restriction outright."
+}

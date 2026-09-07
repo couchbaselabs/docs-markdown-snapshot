@@ -1,0 +1,16 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-uuid",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-uuid.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "documentsPurpose",
+    "finding": "The page states only that the command 'provides the UUID for a bucket' - it never explains what the UUID identifies, why it might change (e.g. bucket recreation), or what consumes it (e.g. XDCR, rebalance bookkeeping). This is the thinnest page in the batch alongside diskinfo: one field, one required option, no mechanism explanation at all."
+  },
+  "cross_component_finding": "The single value this command isolates (uuid: 027ea0ff4684d631c491ecfbb812ac6a) is the exact same field cbstats-config.md and cbstats-all.md report as ep_uuid within their much larger output (e.g. cbstats-config.md's 'ep_uuid: a989a6fa0da5fa5e51c07f0dcf3ad357') - uuid is a narrow, purpose-built view onto data already available from two other subcommands in this batch, the same relationship diskinfo has to all.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

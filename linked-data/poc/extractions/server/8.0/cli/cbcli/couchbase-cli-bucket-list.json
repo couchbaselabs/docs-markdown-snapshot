@@ -1,0 +1,63 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-list",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-list.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:native-encryption-at-rest",
+      "label": "Native encryption at rest",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "bucket:couchbase-bucket",
+      "predicate": "isSynonymOf",
+      "object": "membase (bucketType value)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - isSynonymOf is the registered predicate for 'pairs the docs explicitly declare to be the same thing under two names', which is a closer fit than alsoExposedAs (reserved for alternate ACCESS SURFACES like a REST endpoint mirroring a SQL++ keyspace, not a bare vocabulary/serialization difference for one field value)",
+      "evidence": "In the output, RAM figures are in bytes. The \"membase\" bucketType signifies a Couchbase bucket."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "monitoredVia",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Lists all buckets in the cluster. For each bucket, the following are printed to stdout: `bucketType`, `numReplicas`, `ramQuota`, `ramUsed`."
+    },
+    {
+      "subject": "encryption:native-encryption-at-rest",
+      "predicate": "monitoredVia",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If the bucket is encrypted then `encryptionAtRestStatus` is also printed."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "The EXAMPLES output shows 'encryptionAtRestStatus: partiallyEncrypted' but neither the DESCRIPTION nor the DISCUSSION section enumerates the possible values of encryptionAtRestStatus (e.g. what distinguishes 'partiallyEncrypted' from a fully- or un-encrypted state) - a reader sees one example value with no reference table or value list."
+  },
+  "cross_component_finding": "The clearest example in this whole batch of the round's flagged terminology-drift risk: this page's DISCUSSION section states outright that the REST/internal bucketType value 'membase' 'signifies a Couchbase bucket' - i.e. the CLI's own bucket-create/bucket-edit pages (read in this same batch) use the term 'couchbase' as the --bucket-type value a user types in, while bucket-list's stdout/REST-facing vocabulary for the identical bucket type is 'membase'. This is not a cross-product or CLI-vs-REST mismatch alone - it is two different vocabularies for the same concept inside one CLI subcommand family, stated as a fact the reader must be told to decode rather than something self-evident from the field name. It is exactly the kind of terminology drift this round's authorship hypothesis predicted, just surfacing within a single tool rather than across tools.",
+  "cross_product_finding": "None found in this batch - no Capella or Sync Gateway page was cross-referenced for bucket-listing vocabulary."
+}

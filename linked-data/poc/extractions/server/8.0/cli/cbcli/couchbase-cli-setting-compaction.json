@@ -1,0 +1,93 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-compaction",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-compaction.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-compaction",
+      "label": "setting-compaction (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this command sets cluster-wide compaction settings for the data service, per its own DESCRIPTION"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the --gsi-compaction-mode/--compaction-gsi-* family of flags configures GSI (Index service) compaction"
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --metadata-purge-interval's rationale explicitly names intra-cluster replication as well as XDCR as the reason deletes are persisted before being purged"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "configuresProperty",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command sets cluster-wide compaction settings for the views and data service."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "configuresProperty",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the strategy for compaction in GSI Indexes. This option may be set to either append or circular."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "usesEnum",
+      "object": "gsi-compaction-mode",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The append compaction strategy works by creating a new index file, moving the active data to the new index file, and then removing the old index file. This strategy will cause increased disk usage during compaction, but will cause the new index file to be smaller than the old one and as a result will free up disk space. The circular compaction strategy will append data at first until the index is 65% fragmented."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "hasDefaultValue",
+      "object": "7 days",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "By default the purge interval is set to 7 days."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-compaction",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli-bucket-compact",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[bucket-compact](couchbase-cli-bucket-compact.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The EXAMPLES section uses the flag `--meta-data-purge-interval 2` ('If we want our compaction to run when the fragmentation is 30% or 1GB and we want to change the metadata purge interval to 2 days then we would run the following command. $ couchbase-cli setting-compaction ... --meta-data-purge-interval 2') but the SYNOPSIS and OPTIONS sections both spell the same flag without the extra hyphen, as `--metadata-purge-interval <num>`. This is a literal flag-name typo surviving in a worked example on a published reference page - exactly the terse/unreviewed-example failure mode this round's authorship-provenance hypothesis predicts, and a stronger signal than the SYNOPSIS-omits-a-flag pattern found on sibling pages because a reader who copy-pastes this example's command will get an unrecognized-flag error."
+  },
+  "cross_component_finding": "This is the second flag-name-typo/drift finding in the batch after setting-encryption's SYNOPSIS ('setting-enable') and setting-notification's --enable-notification/--enable-notifications mismatch - three of the eight pages in this batch each carry one literal, distinct spelling inconsistency between SYNOPSIS/OPTIONS and EXAMPLES/DESCRIPTION, which is a materially higher defect density than typically found in TW-reviewed reference pages and directly supports the round's authorship-provenance hypothesis of lighter review on this tool's own doc tree.",
+  "cross_product_finding": "The --gsi-compaction-mode enum (append | circular) and its associated --compaction-gsi-* flags are documented purely in CLI/index-storage terms with no reference to how the same append/circular tradeoff, if any, is surfaced through the REST settings/indexes endpoint or the Web Console's index compaction settings UI - no direct comparison is possible from this page alone."
+}

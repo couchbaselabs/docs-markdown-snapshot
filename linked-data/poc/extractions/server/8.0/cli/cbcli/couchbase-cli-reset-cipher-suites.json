@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-reset-cipher-suites",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-reset-cipher-suites.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-reset-cipher-suites",
+      "label": "reset-cipher-suites (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-security",
+      "label": "setting-security (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted here as the object of a mustUseInsteadWhen relation; also the subject of its own extraction record couchbase-cli-setting-security.json in this same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-reset-cipher-suites",
+      "predicate": "mustUseInsteadWhen",
+      "object": "tool:couchbase-cli-setting-security",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to reset the cipher suites to the default for Couchbase Server. This command should only be used when the cipher have been configured in a way that breaks remote access. The cipher suit can be managed using the [setting-security](couchbase-cli-setting-security.md) command."
+    },
+    {
+      "subject": "tool:couchbase-cli-reset-cipher-suites",
+      "predicate": "requiresCapability",
+      "object": "tool:couchbase-cli-reset-cipher-suites",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`reset-cipher-suites` uses the local authentication token as a result the user that execute the command needs to have read access to the local Couchbase Server configuration files."
+    },
+    {
+      "subject": "tool:couchbase-cli-reset-cipher-suites",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-setting-security",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[setting-security](couchbase-cli-setting-security.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "A third page in this batch (with master-password and reset-admin-password) whose authorization model is stated purely in terms of local node access ('uses the local authentication token', 'needs to have read access to the local Couchbase Server configuration files') rather than any role:/privilege: concept. None of these three break-glass/local-recovery commands cite Server RBAC at all - a consistent pattern, not a one-off omission, and plausibly a deliberate design (local-token recovery paths exist precisely so a locked-out administrator does not need a still-working RBAC session)."
+  },
+  "cross_component_finding": "This page is one of the most grammatically rough in the batch, consistent with this round's lighter-TW-review hypothesis: 'This command should only be used when the cipher have been configured in a way that breaks remote access' (subject-verb disagreement, 'cipher' for 'ciphers'), 'It reset the cipher suites without asking for confirmation' (missing 's' on 'resets', under --force), and 'the cluster and ciphers suits could be configured in a way that disables remote access... the user that execute the command needs to have read access' (further subject-verb disagreements and a second 'ciphers suits' typo, doubling the same misspelling seen in the DESCRIPTION). Three distinct grammar slips in a single, six-sentence page reads like unreviewed engineer prose rather than TW-edited reference documentation.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content; cipher-suite reset is a Server-only, node-local recovery operation."
+}

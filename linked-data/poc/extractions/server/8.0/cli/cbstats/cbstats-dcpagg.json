@@ -1,0 +1,29 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-dcpagg",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-dcpagg.md",
+  "concepts": [
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "xdcr:replication", "label": "XDCR replication",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "protocol:dcp", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command retrieves statistics that are logically grouped and aggregated together by prefixes." },
+    { "subject": "xdcr:replication", "predicate": "reliesOnMechanism", "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "if all your DCP connections started with the string `xdcr:` or `replication:`, you could use the command `cbstats dcpagg` to request statistics grouped by everything before the first colon character, giving you a set for `xdcr:` statistics and a set for `replication:` statistics." }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "The page uses `xdcr:` and `replication:` as its two example prefixes without ever stating whether `replication:` denotes intra-cluster (DCP producer/consumer, e.g. rebalance-driven replica streams) connections, XDCR-driven connections, or both - the reader cannot tell from this page alone which DCP connections would actually be aggregated under which prefix in a real cluster."
+  },
+  "cross_component_finding": "The worked example ('if all your DCP connections started with the string xdcr: or replication:') is direct, quotable confirmation that XDCR replication is implemented as a set of prefixed DCP connections - the same DCP protocol cbstats-dcp.md's connection-type table describes - and that cbstats exposes both intra-cluster and cross-datacenter DCP traffic through the same aggregation command. This is a load-bearing tie between this batch's DCP-protocol-adjacent cbstats commands and the xdcr:replication concept (recurrence 14, the most heavily promoted XDCR concept in the registry).",
+  "cross_product_finding": "Not applicable - this page's DCP/XDCR connection-prefix aggregation is Couchbase Server-internal plumbing with no stated Sync Gateway or Capella surface."
+}

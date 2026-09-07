@@ -1,0 +1,35 @@
+{
+  "page_id": "server/8.0/cli/cbmigrate-tool",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbmigrate-tool.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbmigrate",
+      "label": "cbmigrate",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. Standalone command-line tool, distributed from a separate couchbaselabs GitHub repository (not the couchbase-cli tree cbrecovery/cbtransfer/cbworkloadgen ship from), that migrates data from MongoDB, DynamoDB or Hugging Face datasets into Couchbase Server."
+    },
+    {
+      "candidate_id": "tool:cbimport-key-generator-expression",
+      "label": "Key generator expression (--generate-key)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in cbimport-csv.json/cbimport-json.json for cbimport's --generate-key mini-language (%field% substitution plus #GENERATOR# functions like #UUID#). cbmigrate's --cb-generate-key flag documents the identical substitution syntax on a wholly different, unrelated CLI tool - reused here to record the structural resemblance rather than minting a near-duplicate; see cross_component_finding for why this is flagged as a finding rather than asserted as a stated equivalence."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbmigrate",
+      "predicate": "sharesOptionSetWith",
+      "object": "tool:cbimport-key-generator-expression",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies a key expression used for generating a unique key for each imported document. It allows for the creation of document keys by combining static text, field values (denoted by %fieldname%), and custom generators (like #UUID#)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cbmigrate takes --cb-username/--cb-password for the target Couchbase cluster but never states what RBAC role or privilege those credentials need - in sharp contrast to cbrecovery.md in this same batch, which explicitly names 'Full Administrator, Cluster Administrator, or XDCR Administrator'. cbmigrate's GitHub home is couchbaselabs/cbmigrate (a labs/community repository, distinct from the core couchbase-cli tree cbrecovery, cbtransfer and cbworkloadgen ship from), which plausibly explains the lighter RBAC documentation. A second, sharper data point for this round's authorship-provenance hypothesis: different upstream ownership, not just different individual authors, correlating with different documentation completeness."
+  },
+  "cross_component_finding": "cbmigrate's --cb-generate-key option describes a document-key-generation mini-language (static text + %fieldname% substitution + #GENERATOR# functions like #UUID#) that is structurally identical to tool:cbimport-key-generator-expression, already extraction-layer from cbimport-csv.md/cbimport-json.md earlier in this corpus. No page anywhere states the two tools share an implementation or a spec, so this is recorded as a resemblance finding (via sharesOptionSetWith) rather than an identity claim - but it is worth flagging for reconciliation, since it is exactly the kind of independently-reinvented syntax a single cross-tool key-generation reference page could unify. cbmigrate is also a fourth distinct bulk-load path into Couchbase (alongside capella:data-api, tool:cbimport/server:cbimport, and sdk:bulk-import-workflow noted in this round's registry excerpt as 'a THIRD bulk-load path') - but is oriented at migrating FROM other databases (MongoDB, DynamoDB) or dataset sources (Hugging Face) rather than importing flat CSV/JSON/JSONL files, so it is not merged with any of the three.",
+  "cross_product_finding": "No Capella-specific flags or gating language anywhere on the page; --cb-cluster takes a generic connection URL and the tool appears to target Server and Capella identically, though this is inferred from absence rather than stated."
+}

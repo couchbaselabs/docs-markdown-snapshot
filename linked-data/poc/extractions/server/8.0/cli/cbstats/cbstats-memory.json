@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-memory",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-memory.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "memory:magma-memory-split", "label": "Magma primary/secondary memory-usage split",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a mechanism, not a stat field: on a magma bucket, ep_mem_used_primary and ep_mem_used_secondary jointly partition total memory usage into 'excluding magma' and 'magma storage layer' halves; on any other bucket type the pair collapses to 'total used' plus an always-zero placeholder. The pairing and its conditional meaning is what's worth naming, not either field alone." }
+  ],
+  "relations": [
+    { "subject": "memory:magma-memory-split", "predicate": "behavesDifferentlyUnder", "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If this is a magma bucket, this statistic represents the memory usage of the bucket excluding magma. Otherwise, this statistic represents total memory used, in bytes." },
+    { "subject": "memory:magma-memory-split", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command returns a number of memory-related statistics, some of which are for internal use only." }
+  ],
+  "notable_absence": {
+    "predicate": "definesTerm",
+    "finding": "The page never defines the ep_arena / ep_arena_global stat family shown in the worked example (ep_arena:allocated, ep_arena:fragmentation_size, ep_arena:mapped, ep_arena:resident, ep_arena:retained, etc.) even though it dominates the response line count - the Stat/Description table only covers bytes, ep_kv_size, ep_value_size, ep_overhead, ep_mem_used_primary/secondary, ep_max_size, the two water marks, and the two oom-error counters. Every ep_arena* field in the actual response is left completely unexplained on this page."
+  },
+  "cross_component_finding": "The magma-vs-non-magma split for ep_mem_used_primary/ep_mem_used_secondary is the clearest storage-engine-conditional field-meaning stated anywhere in this batch: the identical field name means 'memory usage excluding magma' on a magma bucket and 'total memory used' otherwise, with the secondary field silently unused (always zero) outside magma - the same underlying couchstore-vs-magma engine boundary already promoted elsewhere in the registry, here surfacing as a semantics change on a single stat name rather than a separate field or table.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

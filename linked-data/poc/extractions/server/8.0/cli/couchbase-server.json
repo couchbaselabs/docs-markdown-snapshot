@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/couchbase-server",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/couchbase-server.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-server", "label": "couchbase-server (daemon-control binary)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the daemon start/stop/status binary this page documents; no tool: entry exists for it. Distinct from the couchbase-server DAEMON PROCESS/service itself, which this tool merely controls" },
+    { "candidate_id": "install:non-root-installation", "label": "Non-root install (Couchbase Server)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new install: namespace; the specific installation mode this tool exclusively controls, as opposed to the standard package-based install" },
+    { "candidate_id": "install:package-based-installation", "label": "Standard package-based install (Couchbase Server)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the standard install mode this tool is explicitly stated NOT to control" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-server", "predicate": "requiresPriorExecutionOf", "object": "install:non-root-installation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The `couchbase-server` command is used to control aspects of a Couchbase Server that has been installed, on a supported Linux platform, by means of the _non-root_ procedure; as described in [Non-Root Install and Upgrade](../install/non-root.md)." },
+    { "subject": "tool:couchbase-server", "predicate": "doesNotSupport", "object": "install:package-based-installation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command _cannot_ be used to control a Couchbase Server installed by the standard, package-based install procedure." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No Couchbase RBAC role or privilege is mentioned anywhere on this page - only OS-level context (which Linux user installed the server). That is arguably correct here since the tool operates below the RBAC layer entirely (it starts/stops a daemon, before any cluster credentials apply), but it is worth flagging alongside cbepctl-intro.md and cbstats-intro.md's identical silence, since together all three raise the same absence across this batch. Separately: the '--version' example output is 'Couchbase Server 6.6.0-7853 (EE)' - a stale, pre-7.0 example version left unchanged in the 8.0 tree, consistent with this round's authorship-provenance hypothesis of lighter editorial refresh on cli/ pages."
+  },
+  "cross_component_finding": "The page links out to two install-tree pages (Install Couchbase Server on Linux, Non-Root Install and Upgrade) for the two install modes it distinguishes, but neither install-tree page is in this batch, so the install: concepts minted here are unverified beyond this single page's own framing.",
+  "cross_product_finding": ""
+}

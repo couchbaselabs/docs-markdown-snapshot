@@ -1,0 +1,159 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-edit",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-edit.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "durability:level",
+      "label": "Durability level",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "xdcr:cross-cluster-versioning",
+      "label": "Cross Cluster Versioning (CCV)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "data:max-ttl-setting",
+      "label": "Maximum TTL setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:data-encryption-key",
+      "label": "Data Encryption Key (DEK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage:auto-compaction",
+      "label": "auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:bucket-eviction-policy",
+      "label": "Bucket eviction policy",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket-background-task-priority",
+      "label": "Bucket background-task priority",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket-compression-mode",
+      "label": "Bucket compression mode",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket-rank",
+      "label": "Bucket rank",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:document-history-retention",
+      "label": "Document history retention",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:invalid-hlc-strategy",
+      "label": "Invalid HLC strategy",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-create.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket-flush",
+      "label": "Bucket flush",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-flush.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:deprecated-bucket-port",
+      "label": "Deprecated bucket port (dedicated port / server-side moxi)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the legacy per-bucket dedicated port setting, paired with the deprecated server-side moxi feature, blocks cluster upgrade if left set on a bucket. No existing concept covers this legacy, upgrade-blocking artifact."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "xdcr:cross-cluster-versioning",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Turn on cross-cluster versioning for this bucket. This setting cannot be turned off."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "server:bucket-eviction-policy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The memory-cache eviction policy for this bucket. This option is valid for Couchbase buckets only; the eviction policy for ephemeral buckets can't be changed."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "data:max-ttl-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the maximum TTL (time-to-live) for all documents in bucket in seconds. If enabled and a document is mutated with no TTL or a TTL greater than than the maximum, its TTL will be set to the maximum TTL."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "encryption:data-encryption-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The number of days after which the DEK (Data Encryption Key) should be rotated."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "hasExecutionConstraint",
+      "object": "server:deprecated-bucket-port",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In later versions of Couchbase Server a cluster will not be able to upgrade if a bucket has the dedicated port set. This option allows removal of that setting by setting it to 1."
+    },
+    {
+      "subject": "server:bucket",
+      "predicate": "configuresProperty",
+      "object": "storage:auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the frequency of the tombstone (metadata) purge interval. The default value is three days."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "Two flags are documented under OPTIONS but never appear in the SYNOPSIS bracket list at the top of the page: --bucket-port ('Sets the port on which the bucket listens. This parameter is deprecated, and therefore not recommended for use.') and --force ('Skip any prompts asking you whether to continue.'). Both are fully described in OPTIONS with no corresponding synopsis entry - a concrete, checkable documentation gap rather than a vocabulary judgement call, and consistent with this round's lighter-review hypothesis."
+  },
+  "cross_component_finding": "Three things worth flagging. (1) --remove-bucket-port's own description contains a grammar error: 'The bucket-port also knows as the dedicated port and server side moxi has been deprecated' (should read 'also known as') - a literal, quotable slip. (2) bucket-eviction-policy's rule genuinely differs between create-time and edit-time, not just duplicated boilerplate: bucket-create.md states the option 'is valid for Couchbase and Ephemeral buckets only' (settable for both at creation), while this page states it 'is valid for Couchbase buckets only; the eviction policy for ephemeral buckets can't be changed' (fixed after creation). Both statements can be true simultaneously (ephemeral eviction is chosen once at creation and frozen thereafter) but neither page says so explicitly - a reader comparing the two pages in isolation would see a contradiction rather than a lifecycle rule. (3) --enable-cross-cluster-versioning is a one-way switch stated in the flattest possible terms - 'This setting cannot be turned off' - with no surrounding warning register, confirmation-prompt requirement, or cross-reference to what irreversibility implies operationally; it sits in the same terse OPTIONS list as ordinary reversible settings with no typographic or textual distinction, again consistent with unreviewed engineer prose.",
+  "cross_product_finding": "None specific to this page found in this batch."
+}

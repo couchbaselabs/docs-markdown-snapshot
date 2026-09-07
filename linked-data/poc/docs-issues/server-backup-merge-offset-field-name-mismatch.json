@@ -2,11 +2,12 @@
   "id": "https://docs.couchbase.com/ld/docs-issues/server-backup-merge-offset-field-name-mismatch",
   "type": "docs-issue",
   "issueType": "possible-content-inconsistency",
-  "description": "backup-trigger-merge.md's day-offset request fields are named `offset_start`/`offset_end`. Round 19's backup-service.json, describing the identical schedulable-merge concept at the plan level, names the same semantics `merge_offset_start`/`merge_offset_end` ('a lower integer representing a more recent day, 0 = today' in both places). No page states these are the same fields under two names, and backup-trigger-merge.md never mentions the `merge_offset_start`/`merge_offset_end` spelling at all. Modeled as one registry concept (backup:merge-offset) covering both spellings, but the naming inconsistency between the plan-level scheduling field and the immediate-trigger field, for what is otherwise the same day-range concept, is worth a documentation pass to confirm whether the two are genuinely the same field under two names or a real API difference.",
+  "description": "backup-trigger-merge.md's day-offset request fields are named `offset_start`/`offset_end`. Round 19's backup-service.json, describing the identical schedulable-merge concept at the plan level, names the same semantics `merge_offset_start`/`merge_offset_end` ('a lower integer representing a more recent day, 0 = today' in both places). No page states these are the same fields under two names, and backup-trigger-merge.md never mentions the `merge_offset_start`/`merge_offset_end` spelling at all. Modeled as one registry concept (backup:merge-offset) covering both spellings, but the naming inconsistency between the plan-level scheduling field and the immediate-trigger field, for what is otherwise the same day-range concept, is worth a documentation pass to confirm whether the two are genuinely the same field under two names or a real API difference. Round 29 found a THIRD spelling: couchbase-cli-backup-service-plan.md's --task JSON schema nests the same fields as `merge_options.offset_start`/`merge_options.offset_end` (confirmed verbatim at the page's task-object schema listing) - matching neither the plan-level `merge_offset_start`/`merge_offset_end` spelling nor the top-level `offset_start`/`offset_end` spelling exactly, since here the two integers sit inside a `merge_options` sub-object rather than at either the top level or with a `merge_` prefix.",
   "about": [
     "server/8.0/rest-api/backup-trigger-merge",
-    "server/8.0/learn/services-and-indexes/services/backup-service"
+    "server/8.0/learn/services-and-indexes/services/backup-service",
+    "server/8.0/cli/cbcli/couchbase-cli-backup-service-plan"
   ],
-  "foundDuring": "round 25",
+  "foundDuring": "round 25, updated round 29",
   "status": "open"
 }

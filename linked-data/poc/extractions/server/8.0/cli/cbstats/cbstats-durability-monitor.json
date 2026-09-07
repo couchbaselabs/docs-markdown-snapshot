@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-durability-monitor",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-durability-monitor.md",
+  "concepts": [
+    { "candidate_id": "durability:durability-monitor", "label": "Durability Monitor",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-vBucket mechanism tracking prepared, committed, aborted and tracked sequence numbers for durable writes, and per-node replication-chain acknowledgement progress. Placed in the durability: namespace alongside the already-promoted durability:durable-write and durability:level, since it is the monitoring mechanism those concepts' write-acknowledgement path depends on - a mechanism-level concept, not a per-stat-field one, per this round's warning against minting a concept per table row." },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "durability:durable-write", "label": "Durable write",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "durability:durability-monitor", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command provides durability statistics for the specified vBucket." },
+    { "subject": "durability:durability-monitor", "predicate": "reliesOnMechanism", "object": "durability:durable-write",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_Prepared_ durable writes are those in progress, and therefore not yet committed or aborted." },
+    { "subject": "durability:durability-monitor", "predicate": "restrictedToContext", "object": "vbucket:replica-vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Provided for replica vBuckets only." },
+    { "subject": "durability:durability-monitor", "predicate": "restrictedToContext", "object": "vbucket:active-vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Provided for active vBuckets only." }
+  ],
+  "notable_absence": {
+    "predicate": "reliesOnMechanism",
+    "finding": "The replication_chain_First/replication_chain_Second statistics track per-node acknowledgement of prepared writes ('The sequence number of the last prepared durable write that the stated node has acknowledged to the active node'), but the page never names the underlying replication transport (DCP) that carries those writes between active and replica nodes - a reader cannot tell from this page alone what mechanism actually delivers the write being acknowledged."
+  },
+  "cross_component_finding": "The active/replica-only statistic split (four stats 'Provided for active vBuckets only', one 'Provided for replica vBuckets only', two provided for both) directly exercises the already-promoted vbucket:active-vbucket / vbucket:replica-vbucket distinction with concrete, per-statistic evidence of how monitoring behavior differs by vBucket role - reinforcing that distinction rather than introducing a new one.",
+  "cross_product_finding": "Not applicable - durability levels and the durability monitor are Couchbase Server bucket-level mechanisms; no Sync Gateway or Capella vocabulary from prior rounds is referenced here."
+}

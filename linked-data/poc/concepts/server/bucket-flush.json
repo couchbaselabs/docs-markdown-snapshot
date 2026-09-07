@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/bucket-flush",
+  "label": "Bucket flush",
+  "type": "deleting all data from a bucket while leaving the bucket itself, its indexes and its configuration unchanged. Must be explicitly enabled per-bucket before couchbase-cli bucket-flush will act on it (a two-step confirm: enable the capability, then invoke it).",
+  "promoted": true,
+  "recurrence": 2,
+  "doesNotAffect": "index:index",
+  "evidence": [
+    "Specifies whether or not the flush operation is allowed for this bucket. To enable flushing, set this option to \"1\". To disable flushing...",
+    "Deletes all data from a bucket. The bucket itself is not deleted; and all its indexes and configuration-details remain unchanged."
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-bucket-flush.md",
+  "relates_to_competency_question": "Does flushing a bucket also delete its indexes, and can it be done without first enabling the capability?"
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/cli/cbft-bleve-scorch",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbft-bleve-scorch.md",
+  "concepts": [
+    { "candidate_id": "fts:scorch-storage", "label": "Scorch (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - same id as minted in cbft-bleve.json, this batch's own page for the top-level dispatcher; kept consistent within this batch" },
+    { "candidate_id": "fts:snapshot-epoch", "label": "Snapshot epoch (Scorch index)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the fts: namespace for the Scorch-only rollback/versioning mechanism this page introduces, with no Moss equivalent" }
+  ],
+  "relations": [
+    { "subject": "fts:scorch-storage", "predicate": "hasInternalComponent", "object": "fts:snapshot-epoch",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Each _Scorch_ index contains a number of _snapshots_, each of which represents the state of all indexed data at a particular point in time: this supports _high-performance rollbacks_ of the index." }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page states 'By default, three snapshots are simultaneously available' but stops short of saying what happens to older data once the default of three is exceeded, or what the performance/disk-space tradeoff of raising numSnapshotsToKeep is - an operationally relevant gap for a setting a reader would tune."
+  },
+  "cross_component_finding": "This page repeats the same shared-command/platform-restriction sentence found in cbft-bleve.md and cbft-bleve-moss.md almost verbatim ('The top-level Syntax for cbft-bleve permits the following to be specified as values for the principal command, and to be used alike on _Moss_ index partitions (on all Couchbase-Server supported platforms) and on _Scorch_ index partitions (on all platforms except _Red Hat-based distributions_ and _Ubuntu_)') - a third independent restatement of the identical fact, reinforcing the finding (recorded on cbft-bleve.json) that this is duplicated boilerplate rather than a single cross-referenced statement. By contrast, everything from 'Understanding Snapshots' onward (snapshot epochs, ascii/deleted/info/internal subcommands) is genuinely Scorch-specific content with no Moss counterpart - confirming Scorch and Moss are distinct storage formats, not a thin rename of the same one.",
+  "cross_product_finding": ""
+}

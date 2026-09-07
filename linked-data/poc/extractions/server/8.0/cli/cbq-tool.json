@@ -1,0 +1,20 @@
+{
+  "page_id": "server/8.0/cli/cbq-tool",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbq-tool.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbq-shell",
+      "label": "cbq (command-line shell for SQL++)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this cli/ reference page, titled 'cbq' and describing 'The `cbq` tool enables you to run SQL++ queries from the command line', is the identical binary already promoted as tool:cbq-shell (folded from n1ql:cbq, 13 files). The page mints nothing of its own: it gives one paragraph and two example statements, then redirects entirely to the canonical page this concept was originally extracted from."
+    }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "This page carries essentially zero independent technical content - no options table, no flags, no authentication parameters, no syntax beyond two generic SQL++ statements ('cbq> create primary index on `beer-sample`;' / 'cbq> select * from `beer-sample` limit 1;'). Every other page in this batch (cbcat, cbmigrate, mcstat, mctestauth, mctimings, cbepctl's two subcommands) documents at least a syntax line and an options table. cbq-tool.md instead defers everything to 'cbq: The Command Line Shell for SQL++' in the n1ql/ tree. That asymmetry - a cli/ reference page that is a near-empty pointer rather than a reference - is itself a data point for this round's authorship-provenance watch: the tool's own maintainers apparently saw no need to duplicate content that already lives elsewhere, and nobody normalized the cli/ page up to the reference-page template the rest of this batch follows."
+  },
+  "cross_component_finding": "Direct answer to this round's naming question: cbq-tool is NOT a different or renamed tool from the already-promoted tool:cbq-shell - it is the exact same cbq binary. The page states this by redirection rather than by assertion: 'For detailed information, see [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md).' That target page is the very one tool:cbq-shell was folded from (aliased n1ql:cbq, 13 files, recurrence 18). No shouldNotBeConfusedWith or renamedFrom relation is warranted here, because the page asserts identity by pointing straight back to the canonical description rather than offering a competing or partial one - there is nothing to reconcile, and minting a second cbq-tool concept would have been the exact kind of unchecked near-duplicate this round's naming instructions warn against.",
+  "cross_product_finding": "No Capella or other-product signal on this stub page - it neither mentions Capella nor cbsh (Couchbase Shell), the other tool tool:cbq-shell's own registry note is careful to distinguish itself from."
+}

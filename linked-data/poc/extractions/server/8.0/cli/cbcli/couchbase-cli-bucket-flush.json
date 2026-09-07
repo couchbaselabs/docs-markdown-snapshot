@@ -1,0 +1,59 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-flush",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-flush.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index (coarse supertype)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "server:bucket-flush",
+      "label": "Bucket flush",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the operation of deleting all data from a bucket while leaving the bucket, its indexes and configuration unchanged has no existing concept. This is the page that fully describes the operation; bucket-create.json and bucket-edit.json reuse this id for their --enable-flush property (extraction-layer)."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:bucket-flush",
+      "predicate": "doesNotAffect",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Deletes all data from a bucket. The bucket itself is not deleted; and all its indexes and configuration-details remain unchanged. Applies to Couchbase and Ephemeral buckets."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Same absence as the rest of the batch: no RBAC role named for a destructive, cluster-wide data-deleting operation - only the generic unauthorized-error boilerplate."
+  },
+  "cross_component_finding": "This page's DESCRIPTION is the clean converse of bucket-delete.md's: bucket-delete cascades deletion to every index on the bucket ('all indexes on the bucket are also deleted'), while bucket-flush explicitly does not ('all its indexes and configuration-details remain unchanged'). Unlike some other cross-references in this batch, the two pages DO link each other correctly in their SEE ALSO lists, so this is a clean complementary-fact pair rather than a docs gap. The DESCRIPTION also states the operation 'Applies to Couchbase and Ephemeral buckets' with no differentiation between the two bucket types - unlike bucket-compact (Ephemeral unsupported) and bucket-edit's eviction-policy option (Ephemeral frozen after creation), flush is one of the few operations in this batch that genuinely behaves identically across both bucket types, and the page states that plainly rather than needing inference.",
+  "cross_product_finding": "None found in this batch."
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/cli/cbft-bleve-moss",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbft-bleve-moss.md",
+  "concepts": [
+    { "candidate_id": "fts:moss-storage", "label": "Moss (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - same id as minted in cbft-bleve.json, this batch's own page for the top-level dispatcher; kept consistent within this batch" },
+    { "candidate_id": "fts:scorch-storage", "label": "Scorch (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - same id as minted in cbft-bleve.json" }
+  ],
+  "relations": [
+    { "subject": "fts:moss-storage", "predicate": "hasEquivalentEffectAs", "object": "fts:scorch-storage",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - scoped narrowly to the seven shared commands this sentence names, not to the formats generally",
+      "evidence": "Note that the `check`, `count`, `dictionary`, `fields`, `mapping`, `query`, and `registry` command-values can also be used to return information on _Scorch_ index partitions — other than on _Red Hat-based distributions_ and _Ubuntu_: the syntax and required path-format is in each case identical to that demonstrated for _Moss_ index partitions on this page." }
+  ],
+  "notable_absence": {
+    "predicate": "supersedes",
+    "finding": "Same absence as cbft-bleve.json: this page too never states whether Moss is legacy or current, despite being titled specifically 'cbft-bleve for Moss Indexes' and thus the most natural place to say so."
+  },
+  "cross_component_finding": "This page's entire seven-command syntax and example set (check, count, dictionary, dump, fields, mapping, query, registry) is explicitly reused wholesale for Scorch indexes per its own opening note - meaning six of its seven commands (all but dump, which is Moss-only) are genuinely duplicated boilerplate between the Moss and Scorch storage formats, while the Scorch-only 'scorch' subcommand (snapshots, epochs, internal kv dumps - see cbft-bleve-scorch.json) and the Zap-file commands (see cbft-bleve-zap.json) are where the two formats' documentation is genuinely distinct. So the family is a mix: substantial shared boilerplate for the common query/inspection surface, but real, non-duplicated content for each format's own internals.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/cli/cbft-bleve-zap",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbft-bleve-zap.md",
+  "concepts": [
+    { "candidate_id": "fts:zap-file-format", "label": "Zap file (Search index on-disk file format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the fts: namespace for the on-disk file format nested specifically within a Scorch index partition's store subdirectory" },
+    { "candidate_id": "fts:scorch-storage", "label": "Scorch (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - same id as minted in cbft-bleve.json" }
+  ],
+  "relations": [
+    { "subject": "fts:zap-file-format", "predicate": "belongsToIndexClass", "object": "fts:scorch-storage",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Each _Scorch_\\-index partition is represented by a _Zap_ file, which is located in the `store` sub-directory for the partition" }
+  ],
+  "notable_absence": {
+    "predicate": "isVariantOf",
+    "finding": "The page never states whether Zap is itself a version-numbered format (the footer command's output includes a 'Version: 11' field in the worked example, implying Zap files carry their own internal format version) or how many Zap-format versions Server 8.0 has shipped - a detail an engineer author would consider obvious from working with the format daily but which a reader inspecting an old Zap file might need."
+  },
+  "cross_component_finding": "Six of this page's seven commands (dict, docvalues, stored, explore, fields, footer) are genuinely Zap-specific with no equivalent on the Moss or Scorch pages - operating at a lower level (raw dictionary offsets, vellum byte dumps, doc-value chunk counts) than any Moss/Scorch command. This confirms Zap is a distinct, lower-level on-disk format nested inside Scorch rather than a renaming of Scorch itself - the three cbft-bleve child pages (Moss, Scorch, Zap) each have substantial unique content once the one shared boilerplate paragraph (flagged in the sibling records) is set aside.",
+  "cross_product_finding": ""
+}

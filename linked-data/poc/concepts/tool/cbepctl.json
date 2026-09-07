@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbepctl",
+  "label": "cbepctl",
+  "type": "a per-node, per-bucket diagnostic tool that changes live ep-engine (KV storage engine) runtime parameters - checkpoint configuration, flusher/pager thresholds - without persisting the change over a cluster restart. Distinct from cbstats (read-only) and from couchbase-cli setting-* commands (persisted, cluster-wide).",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "server/8.0/cli/cbepctl-intro.md",
+  "evidence": [
+    "This tool is a per-node, per-bucket operation. That means that the IP address of a node in the cluster and a named bucket must be specified.",
+    "Changes to the cluster configuration using cbepctl are not persisted over a cluster restart.",
+    "This command changes checkpoint configuration parameters."
+  ],
+  "usesPort": "port:11210",
+  "note": "CONCURRENT-MINT COLLISION, caught and folded per the reconcile skill's own worked example: two of this round's parallel extraction batches independently minted tool:cbepctl from two different files (cbepctl-intro.json and cbepctl/set-checkpoint_param.json), plus a third file (cbstats-intro.json) and a fourth (cbepctl/set-flush_param.json) also reference it - one promoted record now reflects all four, not two separate silent duplicates.",
+  "relates_to_competency_question": "Which tool lets an administrator change ep-engine runtime parameters live, without persisting the change?"
+}

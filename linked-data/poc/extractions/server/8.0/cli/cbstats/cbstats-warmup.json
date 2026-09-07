@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-warmup",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-warmup.md",
+  "concepts": [
+    { "candidate_id": "server:warmup", "label": "Warmup (node data load on restart)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the process by which a restarted node with existing data on disk reads it back into memory before serving data, distinct from server:node-recovery's full/delta recovery (which is about reintegrating a failed-over node into cluster membership, not about loading a single node's own on-disk data on restart). Placed in server: since it is a node-lifecycle mechanism, not a vBucket-, durability- or XDCR-scoped one, and no closer namespace fits. Kept as one mechanism-level concept rather than one per statistic (ep_warmup_key_count, ep_warmup_oom, etc.), per this round's warning against minting a concept per table row." },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "server:warmup", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Shows statistics related to the node warmup." },
+    { "subject": "server:warmup", "predicate": "usesEnum", "object": "warmup phase: loading keys | loading access log | done",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This describes which phase of warmup is currently running. Look for values: loading keys, loading access log, and done." }
+  ],
+  "notable_absence": {
+    "predicate": "hasNoRelationshipTo",
+    "finding": "The page describes warmup purely as a consequence of a node reboot or service restart finding existing data on disk, and never states whether a node undergoing server:node-recovery (full or delta recovery, already promoted) also warms up, or whether these are alternative code paths for populating memory - a reader cannot tell if the two mechanisms compose or are mutually exclusive."
+  },
+  "cross_component_finding": "Warmup's phase machine (loading keys -> loading access log -> done) shares no vocabulary with any other mechanism in this batch - no mention of DCP, checkpoints, failover logs or durability tracking - despite this round's framing centering on DCP-protocol-adjacent mechanisms. That silence is itself a finding: a node-restart data-load path exists in cbstats that is entirely orthogonal to the DCP/checkpoint/durability/failover cluster this batch otherwise covers.",
+  "cross_product_finding": "Not applicable - node warmup on restart is Couchbase Server-internal KV Engine behavior with no stated Sync Gateway or Capella surface in this batch."
+}

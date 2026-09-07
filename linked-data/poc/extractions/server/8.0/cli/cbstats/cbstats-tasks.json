@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-tasks",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-tasks.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-background-task",
+      "label": "ep-engine background task class",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-runtimes.json; reused here since the Name column (AccessScanner, ActiveStreamCheckpointProcessorTask, ClosedUnrefCheckpointRemoverTask, ConnManager, DefragmenterTask, ExpiredItemPager, FlusherTask, HashtableResizerTask, ItemCompressorTask, ItemFreqDecayerTask, ItemPager, MultiBGFetcherTask, StatSnap, WorkLoadMonitor) is the same class of internally-scheduled job, this time shown as live running/queued instances rather than aggregate histograms"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-thread-pool",
+      "label": "ep-engine worker thread pool (reader/writer/auxio/nonio)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-dispatcher-job.json; reused here since the Tasks summary table breaks running/total counts down by Writer/Reader/AuxIO/NonIO, and the Type column assigns each individual task to one of those same four thread kinds"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "monitoring:ep-engine-background-task",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command gives details on any running background tasks."
+    },
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "hasInternalComponent",
+      "object": "monitoring:ep-engine-background-task",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "TID  Pri  St  Bucket           SleepFor  Runtime  TotalRun   #Runs  Type    Name                                 Addr                Descr."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The Pri (priority) and St (state) columns imply a per-task scheduling priority and lifecycle state (e.g. S for sleeping, seen as 'S' throughout the example) with no corresponding concept anywhere in the registry excerpt - Server's existing state-vocabulary concepts (e.g. indexer-node-state) describe index-service node states, not ep-engine task states, and no page connects the two. Left as evidence/prose rather than minted, per the round's per-row-minting warning, since St/Pri are per-task-instance fields, not a new mechanism."
+  },
+  "cross_component_finding": "AccessScanner, ItemPager, ExpiredItemPager, FlusherTask, DefragmenterTask, HashtableResizerTask and ConnManager task names here match the task names already seen in cbstats-runtimes.md and (in _tasks-suffixed form) cbstats-scheduler.md - the same mechanism observed through a third cbstats subcommand, confirming the runtimes/tasks/scheduler naming split noted in this batch's other records is consistent across all three rather than coincidental. Additionally, ActiveStreamCheckpointProcessorTask's Descr. field names a DCP producer stream directly ('Process checkpoint(s) for DCP producer eq_dcpq:secidx:proj-beer-sample-...'), tying this internal task mechanism to the already-promoted protocol:dcp concept.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

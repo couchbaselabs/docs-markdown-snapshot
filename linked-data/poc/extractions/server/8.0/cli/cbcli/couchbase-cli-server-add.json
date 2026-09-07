@@ -1,0 +1,50 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-server-add",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-server-add.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-server-add", "label": "server-add",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-rebalance", "label": "rebalance",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-info", "label": "server-info",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-list", "label": "server-list",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-readd", "label": "server-readd",
+      "registry_status": "minted", "reused_or_minted": "minted - discussed in cross_component_finding as the sibling with the conflicting flag name, not linked from this page itself" },
+    { "candidate_id": "server:node-addition", "label": "node addition", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:server-group", "label": "server group", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:arbiter-node", "label": "arbiter node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - discussed only in cross_component_finding; no relation minted, see note there" },
+    { "candidate_id": "version:server-7-1", "label": "Couchbase Server 7.1", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "index:standard-storage", "label": "standard index storage", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "configuresProperty", "object": "server:node-addition",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The server-add subcommand is used to add one or more servers to a cluster." },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "documentedForVersion", "object": "version:server-7-1",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note that the server to be added can not be specified using the http scheme since, in 7.1+, addition must occur over a secure connection." },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "configuresProperty", "object": "server:server-group",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The name of the group to add the server to. If this option is not specified then the server is added to the default group." },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "offersConfigurationChoice", "object": "index:standard-storage",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You may specify \"default\" for disk based indexes or `memopt` for memory optimized indexes." },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "seeAlso", "object": "tool:couchbase-cli-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [server-info](couchbase-cli-server-info.md), [server-list](couchbase-cli-server-list.md)" },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [server-info](couchbase-cli-server-info.md), [server-list](couchbase-cli-server-list.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "server-add.md lets an operator add nodes and change cluster topology - a materially privileged operation - yet states no RBAC role or permission requirement anywhere, matching the same absence already flagged on couchbase-cli.md's own landing page and on cluster-edit.md in this batch. The page does gate the ADDED server's own credentials (--server-add-username/--server-add-password) but never states what role the person RUNNING server-add must hold on the existing cluster."
+  },
+  "cross_component_finding": "Multiple concrete, checkable authorship-provenance artifacts on this single page. (1) The second EXAMPLE block uses flag names that do not exist anywhere in this command's own SYNOPSIS or OPTIONS: '--server-username Administrator --server-password password' instead of the documented '--server-add-username'/'--server-add-password'. (2) That same example also writes '--group-name --index-storage-setting memopt', i.e. --group-name with no value immediately followed by another flag - a broken, unexecutable example as printed. (3) The wrong flag names in (1) are not random - they are exactly the flag names its near-identical sibling couchbase-cli-server-readd.md uses for the semantically identical parameter (the credentials of the user with permission to modify the topology of the node being added). server-readd's own OPTIONS read: '--server-username <username> ... This flag specifies the username for a user who has the ability to modify the cluster topology of the node being added back' - i.e. server-add's broken example looks like it was copy-pasted from server-readd.md without updating the flag names to match server-add's own, differently-named options. This is precisely the failure mode this round's hypothesis predicted for near-identical siblings under lighter TW review. Separately: server-add.md's --services option documents an explicit 'manager-only' service value ('No other service can be used alongside the \"manager-only\" service because the server with this service specified will only act as a cluster manager and will not run any of the other functional services') that, in the CLI's own words, describes exactly the same resulting node shape the already-promoted server:arbiter-node concept describes ('a cluster node running NO services... Created implicitly: a node added or joined with no services selected becomes one'). No page states these are the same mechanism - server-add.md never uses the word 'arbiter', and frames it as an explicit service selection rather than an implicit consequence of selecting none - so per the no-silent-merge rule this is flagged as a finding rather than forced into a relation, but it reads like the CLI's own, differently-framed and differently-named documentation of the identical underlying feature.",
+  "cross_product_finding": "Plainly none stated or implied on this page - server-add is a self-managed Server cluster-topology operation; Capella customers do not add nodes through this CLI surface."
+}

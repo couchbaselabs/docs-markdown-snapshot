@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/collection-change-history",
+  "label": "Collection change history",
+  "type": "a per-collection flag (cbstats `history` field) recording whether change-history retention is active for that collection. Can only be true when Magma is the bucket's storage engine - a hard reliesOnMechanism constraint, not a soft recommendation. Distinct from server:document-history-retention (the byte-quota setting that configures how MUCH history is kept, once enabled).",
+  "promoted": true,
+  "recurrence": 2,
+  "reliesOnMechanism": "storage-engine:magma",
+  "monitoredVia": "tool:cbstats",
+  "evidence": [
+    "The collection's history line indicates whether a change history is made for the collection: true indicates that a change history is being made, and false indicates that it is not. (Note that the value can only be true when Magma has been configured as the storage engine for the bucket...)"
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-collections-details.md",
+  "relates_to_competency_question": "Can a collection have change history without Magma as the bucket's storage engine?"
+}

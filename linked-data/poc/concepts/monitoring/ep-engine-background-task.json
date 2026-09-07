@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/ep-engine-background-task",
+  "label": "ep-engine background task",
+  "type": "an asynchronous, scheduler-managed unit of work run inside the KV storage engine (warmup steps, compaction, checkpoint removal, etc.), visible via cbstats runtimes/scheduler/tasks. hasInternalComponent of monitoring:ep-engine-thread-pool - a task runs ON a thread from the pool, not independently of it.",
+  "promoted": true,
+  "recurrence": 3,
+  "monitoredVia": "tool:cbstats",
+  "reliesOnMechanism": "monitoring:cbstats-histogram",
+  "evidence": [
+    "This command provides various information about runtime statistics.",
+    "This command provides scheduler task statistics.",
+    "This command gives details on any running background tasks."
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-runtimes.md",
+  "note": "Promoted as a pair with monitoring:ep-engine-thread-pool per the family test: cbstats-tasks.json's own hasInternalComponent relation states the thread-pool/task containment directly, so neither concept can be fully defined without the other.",
+  "relates_to_competency_question": "What is a single scheduled unit of KV-engine work called, and how does an administrator inspect running ones?"
+}

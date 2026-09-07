@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/analytics/analytics-link",
+  "label": "Analytics link",
+  "type": "the supertype of the three Analytics link kinds (analytics:local-link, analytics:remote-link, and an external-link kind never itself promoted) - a connection from an Analytics scope to a data source. Created/edited/listed via couchbase-cli analytics-link-setup or enterprise-analytics-link-setup.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "In Analytics, a link represents a connection to a data source.",
+    "Creates a new link."
+  ],
+  "documented_at": "server/8.0/analytics/5_ddl.md",
+  "note": "\"NARRATED AS PROMOTED, NEVER ACTUALLY FILED\" - the recurring defect this project keeps re-discovering, found again here: analytics:remote-link and analytics:local-link have BOTH carried isSubtypeOf: analytics:analytics-link since round 21, and this round's two couchbase-cli link-setup pages added two more references, for a real whole-corpus recurrence of 4 - but no concepts/analytics/analytics-link.json file existed until now.",
+  "relates_to_competency_question": "What is the common supertype of local, remote and external Analytics links?"
+}

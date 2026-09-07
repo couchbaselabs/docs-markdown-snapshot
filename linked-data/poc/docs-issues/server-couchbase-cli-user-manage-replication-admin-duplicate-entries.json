@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-user-manage-replication-admin-duplicate-entries",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "couchbase-cli-user-manage.md's ROLES section documents replication_admin TWICE, under two different headings, with two non-overlapping descriptions. Under 'Cluster-Wide Roles': 'Allows the user to configure XDCR topology and manage XDCR replications.' Under 'XDCR roles' (a separate heading further down the same page): 'Allows the user to administer XDCR features, create cluster references and replication streams of the cluster. This user can access the console and read some data.' Only the second mentions console access and data read; neither states the two entries describe the same role. This is a same-page structural defect, not the already-tracked internal-name-vs-display-name split covered by concepts/role/replication-admin.json (aliases role:xdcr-admin).",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-user-manage"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

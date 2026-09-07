@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-backup-service-settings",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-backup-service-settings.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-backup-service-settings", "label": "couchbase-cli backup-service settings",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - follows the tool:couchbase-cli-<subcommand> naming convention; gets/sets Backup Service-wide history rotation settings" },
+    { "candidate_id": "tool:couchbase-cli-backup-service", "label": "couchbase-cli backup-service",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's couchbase-cli-backup-service.json" },
+    { "candidate_id": "service:backup-service", "label": "Backup Service",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "backup:history-rotation-setting", "label": "Backup Service history rotation setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - --history-rotation-size (MiB, 5-200) and --history-rotation-period (days, 1-365) govern rotation of the Backup Service's own history/log, a mechanism not covered by any existing backup: concept (distinct from backup:retention-period, which governs backup DATA eligibility for pruning, not the service's own operational history log)" },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "x.509 client-certificate authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-backup-service-settings", "predicate": "isSubtypeOf", "object": "tool:couchbase-cli-backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite" },
+    { "subject": "tool:couchbase-cli-backup-service-settings", "predicate": "configuresProperty", "object": "backup:history-rotation-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - predicate is promoted; the object concept backup:history-rotation-setting is newly minted in this record",
+      "evidence": "\\--history-rotation-size <mebibytes>\n\nThe history size in mebibytes at which it should be rotated. Valid values are between 5 and 200." },
+    { "subject": "backup:history-rotation-setting", "predicate": "hasExecutionConstraint", "object": "history-rotation-period must be between 1 and 365 days",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "\\--history-rotation-period <days>\n\nThe period in days at which the history should be rotated. Valid values are between 1 and 365." },
+    { "subject": "backup:history-rotation-setting", "predicate": "doesNotAffect", "object": "backup:retention-period",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - predicate is promoted; applied here as the extraction agent's own scoping judgment (see reused_or_minted note on backup:history-rotation-setting) that the service's own history/log rotation and backup-data retention/pruning are two different mechanisms, since the page never contrasts the two directly",
+      "evidence": "-- Backup service configuration --\nHistory rotation size: 70 MiB\nHistory rotation period: 28 days" },
+    { "subject": "tool:couchbase-cli-backup-service-settings", "predicate": "seeAlso", "object": "couchbase-cli-backup-service.md",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[backup-service](couchbase-cli-backup-service.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No RBAC role named for --set, which changes a Backup-Service-wide setting cluster-wide. This is the shortest, plainest page in the batch - description, four flags, two examples, no EXAMPLES-vs-OPTIONS drift like its sibling repository page - suggesting authorship-provenance effects are uneven even within one lightly-reviewed doc set: some sibling pages (repository, nodes-threads-map) show concrete slips, this one does not, consistent with slips tracking each page's own edit history rather than a uniform house-wide quality level."
+  },
+  "cross_component_finding": "The 'history' this settings object rotates is never defined ON this page - it names a size/period pair with no description of what content the history actually holds (task run history? audit trail? something else?). No sibling page in this batch defines it either. Flagging as an open concept gap: backup:history-rotation-setting is minted here purely from its own two flags with no clear tie to backup:backup-task/backup:merge-task history the REST/conceptual layer may already describe under a different name - reconciliation should check whether an existing extraction-layer or promoted concept already covers 'backup task run history' before treating this as a wholly new mechanism.",
+  "cross_product_finding": "Not applicable to this page."
+}

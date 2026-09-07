@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/cli/mctimings",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/mctimings.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:mctimings",
+      "label": "mctimings",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. Displays timing histograms/totals for Data-Service (memcached-binary-protocol) operations, sampled since the last stats reset or Data Service restart."
+    },
+    {
+      "candidate_id": "protocol:memcached-binary-protocol",
+      "label": "Memcached binary protocol",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for the raw memcached wire protocol anywhere in the registry or extraction layer, despite the corpus already having a protocol: namespace (protocol:dcp, protocol:grpc). This page is the first to name it directly and link to its external spec, listing GET/SET/ADD/REPLACE/INCREMENT/DECREMENT as example operation names defined by it."
+    },
+    {
+      "candidate_id": "port:11210",
+      "label": "port 11210 (KV / memcached)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the non-secure connection port mctimings uses by default."
+    },
+    {
+      "candidate_id": "port:11207",
+      "label": "port 11207 (KV TLS)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer candidate elsewhere in the corpus; this page states it directly as the TLS counterpart of port 11210 for secure mctimings connections."
+    },
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page explicitly contrasts mctimings' timings with cbstats timings, stating the latter is less comprehensive."
+    },
+    {
+      "candidate_id": "tool:cbstats-reset-command",
+      "label": "cbstats-reset",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already an extraction-layer candidate elsewhere; this page names it as one of the two events that starts a new mctimings sampling period."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:mctimings",
+      "predicate": "usesProtocol",
+      "object": "protocol:memcached-binary-protocol",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Operations that can be explicitly specified include `GET` `SET`, `ADD`, `REPLACE`, `INCREMENT`, and `DECREMENT`. A comprehensive list can be found in the [memcached binary protocol reference](https://github.com/couchbase/memcached/blob/v4.5.1/docs/BinaryProtocol.md):"
+    },
+    {
+      "subject": "tool:mctimings",
+      "predicate": "usesPort",
+      "object": "port:11210",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For a non-secure connection, the port must be the memcached port, which is 11210."
+    },
+    {
+      "subject": "tool:mctimings",
+      "predicate": "usesPort",
+      "object": "port:11207",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If a secure connection is to be made, the port must be specified as the TLS port, which is 11207; and the \\--tls option must also be specified."
+    },
+    {
+      "subject": "tool:mctimings",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that timings taken by `mctimings` are more comprehensive than those taken by [cbstats timings](cbstats/cbstats-timing.md); which, unlike `mctimings`, only measures the time spent on a request by a front-end worker thread; and does not include time spent fetching items from disk."
+    },
+    {
+      "subject": "tool:mctimings",
+      "predicate": "reliesOnMechanism",
+      "object": "tool:cbstats-reset-command",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The sampling period, during which timings are taken, starts at whichever of the following points in time is the more recent:\n\n* The last reset of Data-Service statistics by means of [cbstats-reset](#cli/cbstats/cbstats-reset.adoc)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "mctimings requires -u/-P administrator credentials but never names a role or privilege - the same pattern seen across most of this batch's tools (cbtransfer, cbworkloadgen, cbsummary, cbmigrate) apart from cbrecovery's explicit three-role citation. Notably, mctimings' -P option description is unusually detailed about password INPUT mechanics (CB_PASSWORD environment variable, stdin prompting via -S) while saying nothing about AUTHORIZATION - a page that is precise about one security dimension (how you supply a credential) and silent about another (what that credential must be able to do)."
+  },
+  "cross_component_finding": "mctimings is the first page in the corpus to name the memcached binary protocol directly and link to its spec - a genuinely new piece of vocabulary this round's protocol: namespace (previously only protocol:dcp and protocol:grpc) had no occasion to name. It also draws a precise, stated contrast with the already-promoted tool:cbstats ('more comprehensive... does not include time spent fetching items from disk'), and depends on the already-extraction-layer tool:cbstats-reset-command for defining its own sampling window - tying this newly-discovered protocol vocabulary directly into the existing KV-statistics tool family (mcstat, cbstats) rather than leaving it isolated.",
+  "cross_product_finding": "Like mcstat and mctestauth, mctimings connects directly to a node's raw KV/memcached port (11210 or the TLS port 11207) - connectivity Capella does not expose to customers. This is a Server (self-managed)-only diagnostic tool family; no page states the restriction outright, but the install-path table and direct-node-port model make it implicit across all three mc* pages in this batch."
+}

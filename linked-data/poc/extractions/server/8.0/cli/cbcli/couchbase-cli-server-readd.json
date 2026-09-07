@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-server-readd",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-server-readd.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-server-readd", "label": "server-readd",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-recovery", "label": "recovery",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced replacement command" },
+    { "candidate_id": "tool:couchbase-cli-rebalance", "label": "rebalance",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in DISCUSSION/SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-add", "label": "server-add",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO; also this page's near-identical sibling, see cross_component_finding" },
+    { "candidate_id": "server:delta-recovery", "label": "delta recovery", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:server-group", "label": "server group", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-recovery", "predicate": "supersedes", "object": "tool:couchbase-cli-server-readd",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "DEPRECATED: This command was deprecated in 5.0.0 and will be removed in future releases. Please use the [recovery](couchbase-cli-recovery.md) subcommand which provides similar functionality to this command." },
+    { "subject": "server:delta-recovery", "predicate": "configuredVia", "object": "tool:couchbase-cli-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This is called delta recovery and is available from the [recovery](couchbase-cli-recovery.md) subcommand." },
+    { "subject": "tool:couchbase-cli-server-readd", "predicate": "configuresProperty", "object": "server:server-group",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The name of the group to add the node to." },
+    { "subject": "tool:couchbase-cli-server-readd", "predicate": "requiresPriorExecutionOf", "object": "tool:couchbase-cli-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - direction loosely applied: the source states rebalance must follow server-readd, not precede it; reconciliation may prefer a different predicate or direction",
+      "evidence": "Note that after the server-readd subcommand is run you must rebalance the cluster." },
+    { "subject": "tool:couchbase-cli-server-readd", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-add",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [recovery](couchbase-cli-recovery.md), [server-add](couchbase-cli-server-add.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Like server-add.md, server-readd.md gates the credentials of the node being ADDED BACK (--server-username/--server-password) but never states what role the operator RUNNING the command must hold on the existing cluster - despite this being a deprecated, cluster-topology-altering operation the page itself frames around recovering from failure/maintenance scenarios. Unlike node-reset.md (this same batch), which at least states 'requires full admin permissions' informally for a comparably consequential operation, server-readd states no role requirement of any kind."
+  },
+  "cross_component_finding": "server-readd.md's OPTIONS define the credentials of the node being added back as --server-username/--server-password ('This flag specifies the username for a user who has the ability to modify the cluster topology of the node being added back'). Its near-identical sibling couchbase-cli-server-add.md defines the semantically identical parameter - credentials for the node being added, described in almost the same words - as --server-add-username/--server-add-password instead. The two commands disagree on the flag name for the same concept, and (per server-add.json's own finding in this batch) server-add's own broken second EXAMPLE actually uses server-readd's naming by mistake. Separately, server-readd's SYNOPSIS omits --services and --index-storage-setting entirely (a re-added node keeps whatever services/storage mode it had before failover, unlike a freshly-added node via server-add) - a coherent design choice, but this page never explains WHY the flag set differs from server-add's, leaving the asymmetry unglossed.",
+  "cross_product_finding": "Plainly none - server-readd is a self-managed Server failover-recovery operation with no Capella analog stated or implied on this page."
+}

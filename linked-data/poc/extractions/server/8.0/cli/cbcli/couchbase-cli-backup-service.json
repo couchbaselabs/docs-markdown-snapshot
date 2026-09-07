@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-backup-service",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-backup-service.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-backup-service", "label": "couchbase-cli backup-service",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - follows the tool:couchbase-cli-<subcommand> naming convention; the umbrella couchbase-cli subcommand fronting settings/repository/plan sub-subcommands for the Backup Service" },
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli",
+      "registry_status": "extraction-layer", "reused_or_minted": "reused" },
+    { "candidate_id": "service:backup-service", "label": "Backup Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - description 'Manages the Couchbase backup service'" },
+    { "candidate_id": "backup:plan", "label": "Plan",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - SEE ALSO SUBCOMMANDS lists 'Manage backup plans.' This is the FIRST confirmation in this batch that a couchbase-cli subcommand does address backup:plan directly - see cross_component_finding." },
+    { "candidate_id": "backup:repository", "label": "Backup repository",
+      "registry_status": "promoted", "reused_or_minted": "reused - 'Manage backup repositories.'" },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "x.509 client-certificate authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-backup-service", "predicate": "isSubtypeOf", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite" },
+    { "subject": "tool:couchbase-cli-backup-service", "predicate": "servesService", "object": "service:backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Manage the backup service" },
+    { "subject": "tool:couchbase-cli-backup-service", "predicate": "hasInternalComponent", "object": "backup:plan",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[backup-service-plan](couchbase-cli-backup-service-plan.md)\n\nManage backup plans." },
+    { "subject": "tool:couchbase-cli-backup-service", "predicate": "hasInternalComponent", "object": "backup:repository",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[backup-service-repository](couchbase-cli-backup-service-repository.md)\n\nManage backup repositories." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The umbrella page names no RBAC role for backup-service administration at all - not even a pointer to role:backup-admin, which the promoted registry already associates with Backup Service REST API access. Also notable: this page's SUBCOMMANDS list omits nodes-threads-map entirely (only settings, repository, and plan are listed), even though couchbase-cli-backup-service-nodes-threads-map.md exists as a sibling reference page in this same batch - an incomplete subcommand index, consistent with lighter TW review on this tree (a docs-issue-shaped gap: the umbrella page's own table of contents is stale relative to its sibling pages)."
+  },
+  "cross_component_finding": "This is the central finding for this batch. Prior rounds established that cbbackupmgr (the standalone backup/restore binary) has NO plan object, no schedule, and no PRUNE subcommand - it only exposes direct one-shot subcommand invocations (backup, restore, merge, remove). This page confirms that finding is scoped correctly to cbbackupmgr specifically: it is couchbase-cli - a DIFFERENT tool, the general cluster-admin CLI - that exposes 'plan' as a first-class manageable object, via the backup-service-plan sub-subcommand ('[backup-service-plan](couchbase-cli-backup-service-plan.md)\\n\\nManage backup plans.'). So the correct statement is not 'no CLI has a plan concept' but 'the CLI that wraps the Backup Service REST API (couchbase-cli backup-service) has a plan object; the CLI that wraps cbbackupmgr's own archive-native operations does not.' This complicates rather than contradicts the prior finding: couchbase-cli backup-service plan/repository read as thin REST wrappers (see couchbase-cli-backup-service-plan.json for the JSON task schema, which matches backup:backup-task's BACKUP/MERGE task_type enum verbatim), while cbbackupmgr remains a wholly separate, plan-less, archive-native tool. Both CLIs are couchbase-cli's siblings/cousins in the corpus but operate on structurally different backends.",
+  "cross_product_finding": "Not applicable to this page."
+}

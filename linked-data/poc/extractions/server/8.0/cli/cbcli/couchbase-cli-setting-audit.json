@@ -1,0 +1,129 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-audit",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-audit.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-audit",
+      "label": "setting-audit (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "security:auditing",
+      "label": "Auditing (Server security facility)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "log:log-file",
+      "label": "Couchbase Server log file",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --audit-log-path targets the same per-node relocatable log directory concept"
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --disabled-users' '/external' postfix names this domain directly"
+    },
+    {
+      "candidate_id": "auth-domain:local",
+      "label": "Local authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --disabled-users' '/local' postfix names this domain directly"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page title/description marks the whole subcommand '(EE only)'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Modifies audit log settings (EE only)"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "configuresProperty",
+      "object": "security:auditing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The setting-audit command can be used to enable and disable auditing, set the auditing log path, and change the auditing log rotation interval; in Couchbase Server 6.5.1 and later, the command can also be used to retrieve the current auditing configuration, retrieve the auditable events and descriptions, and disable auditing for certain users and events."
+    },
+    {
+      "subject": "security:auditing",
+      "predicate": "hasDefaultValue",
+      "object": "disabled",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "By default auditing is disabled in Couchbase."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "storesDataIn",
+      "object": "log:log-file",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the auditing log path. This should be a path to a folder where the auditing log is kept. The folder must exist on all servers in the cluster."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "identifiesUserVia",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Local RBAC usernames should be postfixed with `/local`, external LDAP users should be postfixed with `/external`."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "identifiesUserVia",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Local RBAC usernames should be postfixed with `/local`, external LDAP users should be postfixed with `/external`."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Some of these options are only available in Couchbase Server 6.5.1 and later. Refer to [OPTIONS](#options) for details."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-audit",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli-user-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[admin-role-manage](couchbase-cli-user-manage.md), [ssl-manage](couchbase-cli-ssl-manage.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "setting-audit is one of the more security-sensitive subcommands in this batch (it turns cluster-wide auditing on/off and can silently exclude named users and event IDs from being audited at all), yet the page never states which RBAC role is required to run it - only the generic 'unauthorized error' boilerplate shared with every other subcommand. It also never cross-references security:auditing's sibling facilities (Authentication/Authorization/Encryption) even though disabling audit coverage for specific users is a security-relevant interaction with authorization; the page treats --disabled-users purely as a filtering mechanic with no discussion of the security tradeoff."
+  },
+  "cross_component_finding": "The SEE ALSO line links '[admin-role-manage](couchbase-cli-user-manage.md)' - the anchor text names a DIFFERENT subcommand (admin-role-manage, 'Manage LDAP user roles' per the couchbase-cli.md overview page) than the file it actually points to (couchbase-cli-user-manage.md, the user-manage/'Manage RBAC users' subcommand). This same mismatched-anchor-vs-target pattern appears identically in couchbase-cli.md's own COMMANDS list, where the literal entry is '[admin-role-manage](couchbase-cli-user-manage.md)' - i.e. this is not a one-off typo on this page but a link that was propagated as-is from the landing page, consistent with lighter TW review across this tool's own doc tree.",
+  "cross_product_finding": "The --disabled-users user-postfix convention ('/local', '/external') is CLI-specific surface syntax for auth-domain:local / auth-domain:external that has no stated Web-Console-UI or REST-API equivalent on this page; whether other rounds documented the same local/external distinction using a different surface syntax at the REST or UI layer for audit-user exclusion is not verifiable from this page alone."
+}

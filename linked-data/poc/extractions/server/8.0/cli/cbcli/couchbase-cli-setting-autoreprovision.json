@@ -1,0 +1,34 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-autoreprovision",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-autoreprovision.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:auto-reprovision", "label": "Auto-reprovisioning", "registry_status": "minted", "reused_or_minted": "minted - no existing concept for this ephemeral-bucket-specific failure-recovery mechanism (promoting a crashed-and-restarted node's replica vBuckets to active without a full failover/rebalance cycle)" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket", "registry_status": "promoted", "reused_or_minted": "reused - stated as NOT needing this mechanism" },
+    { "candidate_id": "server:auto-failover", "label": "Automatic failover", "registry_status": "promoted", "reused_or_minted": "reused - the --enabled flag description mistakenly describes this setting in terms of autofailover, see cross_component_finding" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:auto-reprovision", "predicate": "doesNotAffect", "object": "bucket:couchbase-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This mechanism is not needed for Couchbase buckets because a Couchbase buckets data is persisted to disk and can be loaded back into memory after a node restarts." },
+    { "subject": "server:auto-reprovision", "predicate": "requiresCapability", "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If ephemeral buckets are not in use this setting has no effect on the cluster." },
+    { "subject": "server:auto-reprovision", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli setting-autoreprovision_ [--cluster <url>] [--username <user>] [--password <password>]" },
+    { "subject": "server:auto-reprovision", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-setting-autofailover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[setting-autofailover](couchbase-cli-setting-autofailover.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "Unlike setting-autofailover.md, which gates nearly every advanced flag to Enterprise Edition, this page never once states whether auto-reprovisioning itself is Community or Enterprise only - a real silence given how heavily the sibling settings page uses that exact disclosure pattern. No default value is stated for --enabled or --max-nodes either."
+  },
+  "cross_component_finding": "A direct, textual copy-paste bug: the --enabled flag on THIS page (setting-autoreprovision) is described as 'Specifies whether or not auto-reprovisioning is enabled. Set this option to \"1\" to enable autofailover or \"0\" to disable autofailover.' - the flag help text names the wrong feature ('autofailover' instead of 'auto-reprovisioning'), almost certainly copy-pasted from setting-autofailover.md's --enable-auto-failover flag description ('Set this option to \"1\" to enable autofailover or \"0\" to disable autofailover.') without updating the feature name. This is direct, page-level evidence for this round's authorship-provenance hypothesis: a CLI-internal terminology drift caused by literal copy-paste across sibling subcommand pages, not merely boilerplate reuse of shared sections.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, which manages ephemeral-bucket node-crash recovery internally with no customer-facing CLI equivalent to --max-nodes tuning."
+}

@@ -1,0 +1,75 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-admin-manage",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-admin-manage.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-admin-manage",
+      "label": "admin-manage (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "server:built-in-administrator-account",
+      "label": "Built-in Administrator account",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - same concept independently required by this page's sibling, couchbase-cli-reset-admin-password.json in this batch, which shares near-verbatim description text with this page; this record mints it standalone since extraction records must not reconcile against sibling records, but the two pages describe the identical entity"
+    },
+    {
+      "candidate_id": "server:user",
+      "label": "Couchbase Server user",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'External and internal Administrator accounts can be managed using the user-manage command'"
+    },
+    {
+      "candidate_id": "auth-domain:local",
+      "label": "Local authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'internal ... Administrator users'"
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'external Administrator users'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:built-in-administrator-account",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "server:user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to manage the built-in Couchbase Server Administrator user. There is only one built-in Administrator account, which is managed separately from the internal and external Administrator users. External and internal Administrator accounts can be managed using the [user-manage](couchbase-cli-user-manage.md) command."
+    },
+    {
+      "subject": "tool:couchbase-cli-admin-manage",
+      "predicate": "requiresCapability",
+      "object": "server:built-in-administrator-account",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - closest existing predicate for the stated local-token authorization fact; see notable_absence",
+      "evidence": "The `admin-manage` command must be run locally on a node that is part of the cluster (i.e. must connect to the host the command is run on). This is required, as `admin-manage` relies on a local authentication token, which is used to authenticate with the server and perform actions such as locking the user. As a result, the command does not require credentials to be passed."
+    },
+    {
+      "subject": "tool:couchbase-cli-admin-manage",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-user-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[user-manage](couchbase-cli-user-manage.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "A fourth page in this batch (with master-password, reset-admin-password, reset-cipher-suites) whose authorization model is stated purely as local-node/local-token access, with no role:/privilege: concept cited at all. Locking or unlocking the single most powerful account in the cluster is gated by 'the command does not require credentials to be passed' rather than by any Server RBAC role - the same deliberate-looking break-glass pattern seen across all of this batch's local-recovery commands."
+  },
+  "cross_component_finding": "This page and couchbase-cli-reset-admin-password.json (also in this batch) share a near-verbatim paragraph: 'There is only one built-in Administrator account, which is managed separately from the internal and external Administrator users. External and internal Administrator accounts can be managed using the [user-manage] command' - identical almost word for word on both pages - and a second shared paragraph describing the local-authentication-token mechanism, differing only in the specific verb ('change the password' on reset-admin-password.md vs 'perform actions such as locking the user' here). Textbook flag-description-copy-pasted-across-near-identical-siblings, exactly as this round's framing predicted: the two pages plainly share a source template, most likely because both commands manage the same underlying built-in account object and were documented together.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content on this page; the built-in Administrator account and its lock/unlock mechanism are Server-only, with no stated Capella management-plane equivalent."
+}

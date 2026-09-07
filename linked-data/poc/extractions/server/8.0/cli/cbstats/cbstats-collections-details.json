@@ -1,0 +1,45 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-collections-details",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-collections-details.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:collection", "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's whole point is per-vBucket collection detail" },
+    { "candidate_id": "server:collections-manifest", "label": "Collections manifest (manifest_uid)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cbstats-collections.json earlier in this same batch, not yet promoted" },
+    { "candidate_id": "server:collection-change-history", "label": "Collection change history",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cbstats-collections.json earlier in this same batch, not yet promoted" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "server:collections-manifest", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `manifest_uid` value is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made." },
+    { "subject": "server:collection-change-history", "predicate": "reliesOnMechanism", "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket" },
+    { "subject": "server:collection", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command is used to provide low-level details on collections, for a specified bucket. This includes details identifying the existing collections; and vBucket-specific details, which include sequence numbers and item counts." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "As with cbstats-collections.md, no privilege or role is ever named for running this command - only demonstrated by example ('-u Administrator -p password')."
+  },
+  "cross_component_finding": "Two things stand out for authorship provenance on this specific page. First, the manifest_uid explanatory sentence and the Magma-gated history sentence are BOTH reproduced here word-for-word (bar 'The' vs 'The collection's' at the start of the history sentence) from cbstats-collections.md - confirming the copy-paste hypothesis in the surrounding prose. Second, the example response block contains what reads as an unedited raw-terminal-dump artifact: two lines run stat names together with no separating whitespace or line break - `vb_8:manifest:uidvb_8:default_mvs:` and `vb_8:manifest:uidvb_8:default_mvsvb_8:default_legacy_max_dcp_seqno:` - evidence the sample output was pasted directly from a tool's stdout and never proofread for line-wrapping errors, distinct from and additional to the prose-level copy-paste. The underlying STATS THEMSELVES, however, are genuinely deeper here than on cbstats-collections.md (per-vBucket disk_size/high_seqno/persisted_high_seqno/start_seqno breakdowns, absent from the base page) - so the base/-details pair is copy-pasted in its explanatory prose but not redundant in its actual data.",
+  "cross_product_finding": "No Capella analog for this level of per-vBucket-per-collection detail; Capella's collection surface has no manifest_uid or change-history equivalent."
+}

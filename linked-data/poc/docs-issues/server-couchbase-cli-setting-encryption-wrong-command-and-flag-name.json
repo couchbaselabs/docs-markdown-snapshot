@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-setting-encryption-wrong-command-and-flag-name",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-cli-setting-encryption.md's own SYNOPSIS line begins '_couchbase-cli setting-enable_ ...' - naming a different command (setting-enable) than the page's own title and every EXAMPLE (setting-encryption). Separately, SYNOPSIS and EXAMPLES both use --rotate-key <keyid> for key rotation, but OPTIONS defines the flag as '--rotate <keyid>' (confirmed: grep of the page shows both '--rotate-key' at lines 23/57/309 and '--rotate <keyid>' at line 246, never reconciled to one spelling).",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-setting-encryption"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

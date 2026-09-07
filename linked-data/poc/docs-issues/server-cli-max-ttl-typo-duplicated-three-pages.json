@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cli-max-ttl-typo-duplicated-three-pages",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "The duplicated-word typo 'TTL greater than than the maximum' appears verbatim on three separate couchbase-cli reference pages describing the max-TTL option: couchbase-cli-bucket-create.md, couchbase-cli-bucket-edit.md, and couchbase-cli-collection-manage.md (confirmed by direct grep of all three). Direct evidence of the same explanatory sentence being copy-pasted across at least three command pages rather than independently authored, consistent with this round's broader authorship-provenance finding about cli/.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+    "server/8.0/cli/cbcli/couchbase-cli-bucket-edit",
+    "server/8.0/cli/cbcli/couchbase-cli-collection-manage"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

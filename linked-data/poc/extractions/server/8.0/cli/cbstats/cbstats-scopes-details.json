@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-scopes-details",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-scopes-details.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:collection", "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this page's per-vBucket item-count breakdown is keyed to it" },
+    { "candidate_id": "server:collections-manifest", "label": "Collections manifest (manifest_uid)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cbstats-collections.json earlier in this same batch, not yet promoted; the same manifest_uid mechanism recurs here for a fourth time" }
+  ],
+  "relations": [
+    { "subject": "server:collections-manifest", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `manifest_uid` value (here, `7`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made." },
+    { "subject": "server:scope", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command is used to provide low-level details on scopes, for a specified bucket. This includes details identifying the existing scopes; and vBucket-specific details, which include sequence numbers and item counts." }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "Unlike cbstats-collections.md and cbstats-collections-details.md, neither this page nor cbstats-scopes.md ever mentions a 'metered' field or a change-history/Magma-gated 'history' field at all. It is left completely unaddressed whether scopes have their own change-history status, only inherit it from their collections, or the concept simply does not apply at scope granularity - an asymmetry in the family's own documented depth."
+  },
+  "cross_component_finding": "The manifest_uid sentence is now attested, word-for-word or near word-for-word, on all FOUR sibling pages in this batch (cbstats-collections.md, cbstats-collections-details.md, cbstats-scopes.md, and this page) - the clearest single piece of copy-paste evidence found in this round: one explanatory paragraph, written once, propagated unedited across an entire family of reference pages spanning two different stat domains (collections and scopes). The underlying DATA these four pages return, however, genuinely differs by granularity (aggregate scope/collection totals vs. per-vBucket breakdowns) - so the redundancy is confined to the connective prose, not the stats themselves.",
+  "cross_product_finding": "No Capella analog: capella:scope has no manifest_uid or vBucket-level detail surface documented anywhere in the corpus."
+}

@@ -1,0 +1,22 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-kvstore",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-kvstore.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:couchstore", "label": "Couchstore",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "storage-engine:couchstore", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "ro_0:backend_type:  couchstore" }
+  ],
+  "notable_absence": {
+    "predicate": "definesTerm",
+    "finding": "The page never explains the ro_N / rw_N prefixes that every stat name in the example response carries (ro_0, ro_1, ro_2, ro_3, rw_0, rw_1, rw_2, rw_3) - a reader has to already know that cbstats groups Couchstore engine stats per read-only and per read-write KVStore shard instance; the table documents only the suffix field names (backend_type, close, failure_get, failure_open, failure_set, failure_vbset, lastCommDocs, numLoadedVb, open), never the prefix scheme itself."
+  },
+  "cross_component_finding": "The response table is explicitly captioned 'Couchstore database engine stats' with no equivalent table, callout, or field variant for Magma, even though 'kvstore' is a generic-sounding command name that gives no indication its documented field set is engine-specific - readers on a Magma-backed bucket get no guidance on what backend_type/close/failure_* actually look like for their engine from this page alone."
+}

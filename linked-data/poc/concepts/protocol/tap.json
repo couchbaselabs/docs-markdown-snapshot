@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/protocol/tap",
+  "label": "TAP",
+  "type": "an internal protocol that streamed data-change information between cluster nodes, predating DCP. Removed from Couchbase Server in version 5.0. Not to be confused with the unrelated Linux TAP network-interface concept.",
+  "promoted": true,
+  "recurrence": 1,
+  "removedIn": "version:server-5-0",
+  "evidence": "TAP is an internal protocol that streams information about data changes between cluster nodes. It was replaced by DCP and removed from Couchbase Server in version 5.0.",
+  "documented_at": "server/8.0/cli/cbstats/cbstats-tap-vbtakeover.md",
+  "note": "SIGNIFICANCE EXCEPTION at recurrence 1, promoted as a pair with relations/removed-in.json: this record exists specifically to be the object of the removedIn relation, and removedIn cannot be filed without a concept to point it at. cbstats tap-vbtakeover is a legacy-compatibility command (retainedForLegacyCompatibility, reused) that reads stats from clusters still running TAP; protocol:dcp supersedes protocol:tap (supersedes, reused - a clean cross-round confirmation of round 28's mint).",
+  "relates_to_competency_question": "Which protocol did DCP replace, and when was it actually removed from the product (not just deprecated)?"
+}

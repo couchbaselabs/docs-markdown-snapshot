@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-checkpoint",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-checkpoint.md",
+  "concepts": [
+    { "candidate_id": "vbucket:checkpoint", "label": "vBucket checkpoint",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-vBucket data structure cbstats exposes tracking open/closed checkpoint state, persistence cursor position and snapshot boundaries. Placed in the vbucket: namespace (alongside vbucket:active-vbucket, vbucket:replica-vbucket) since it is a per-vBucket structure, not a per-replication one. Deliberately NOT merged with the already-promoted xdcr:advanced-settings's mention of 'the mechanism that creates xdcr:checkpoint-document entries during replication' - that is a different, XDCR-specific checkpoint document created per replication; no page in the corpus states the two 'checkpoint' mechanisms are the same thing, so they stay apart per the standing no-silent-merge rule." },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "hasInternalComponent", "object": "vbucket:checkpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket, on a specified node. The same statistics are returned for each vBucket, each statistic beginning with `vb_`, followed by the vBucket's ID and a colon." },
+    { "subject": "vbucket:checkpoint", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket, on a specified node." }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "The page names its subject 'the checkpoint data structure' with no disambiguation from XDCR's own checkpoint-document mechanism (xdcr:advanced-settings, already promoted) - both use the bare word 'checkpoint' for a persistence/cursor bookkeeping structure, and a reader moving between this page and the XDCR reference pages has no signal that these are two different mechanisms rather than one described twice."
+  },
+  "cross_component_finding": "The example output's `snap_start`/`snap_end` and `persistence:cursor_seqno` fields use the identical 'snapshot' and cursor vocabulary that cbstats-dcp.md's producer-stream stats use (`cur_snapshot_start`/`cur_snapshot_end`, `snap_start_seqno`/`snap_end_seqno`), suggesting the vBucket checkpoint structure and DCP's stream snapshot boundaries are views onto the same underlying sequence-number bookkeeping from two different cbstats commands - though no page states this explicitly, so it is recorded as a finding rather than a relation. Also note the page's own performance warning ('Note that running this command impacts performance') has no counterpart on any other page in this batch.",
+  "cross_product_finding": "Not applicable - a Server-internal KV persistence structure with no stated Sync Gateway or Capella surface in this batch."
+}

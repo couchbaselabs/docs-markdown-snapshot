@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/cli/cbanalyze-core-tool",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbanalyze-core-tool.md",
+  "concepts": [
+    { "candidate_id": "tool:cbanalyze-core", "label": "cbanalyze-core",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - helper script for parsing core dumps; no tool: entry exists for it" },
+    { "candidate_id": "core-dump:minidump", "label": "Minidump core file",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new core-dump: namespace; the specific core-dump format this tool explicitly cannot analyze" }
+  ],
+  "relations": [
+    { "subject": "tool:cbanalyze-core", "predicate": "doesNotSupport", "object": "core-dump:minidump",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The `cbanalyze-core` tool cannot analyze minidump core files and should only be used when directed by Couchbase Support." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike cbcollect-info-tool.md, this page never states that root/administrator privileges are needed, even though it is functionally the same kind of Couchbase-Support-directed diagnostic tool operating on the same class of low-level system artifact (a core dump vs. a log bundle). No RBAC or OS-privilege statement of any kind appears. Also absent: any description of the report file's format or contents - the -f flag is documented only as 'Use the specified file for output', with no schema, unlike cbcollect_info's detailed Table 2."
+  },
+  "cross_component_finding": "This is one of three standalone, non-subcommand-structured diagnostic tools in this batch (with cbcollect-info-tool.md and finderr.md) - each a single-purpose executable with a two-line syntax and no command tree, in contrast to the cbstats/cbepctl/cbft-bleve families which each anchor a multi-page subcommand structure. This supports the round's framing that couchbase-server, cbcollect-info, cbanalyze-core and finderr sit outside the CLI-subcommand pattern entirely.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,145 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-ssl-manage",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-ssl-manage.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-ssl-manage",
+      "label": "ssl-manage (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "cert:node-certificate",
+      "label": "Node certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --node-cert-info, --set-node-certificate"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-ca-info/--cluster-ca-load/--cluster-ca-delete manage the trust store's CA entries"
+    },
+    {
+      "candidate_id": "cert:certificate-rotation",
+      "label": "certificate rotation",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --regenerate-cert and --upload-cluster-ca"
+    },
+    {
+      "candidate_id": "cert:inbox-directory",
+      "label": "inbox directory",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - './inbox/CA'"
+    },
+    {
+      "candidate_id": "cert:subject-common-name",
+      "label": "Subject Common Name (CN)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - subject.cn path"
+    },
+    {
+      "candidate_id": "cert:subject-alternative-name",
+      "label": "Subject Alternative Name (SAN)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - san.uri/san.email/san.dnsname paths"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --set-client-auth's mandatory/hybrid/enable states"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "version:server-7-1",
+      "label": "Couchbase Server 7.1",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "configuresProperty",
+      "object": "cert:node-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the node certificate. Before running this command you must copy the node certificate into your installation. When this command is invoked the cluster will read the node certificate from the node specified and set it as the node certificate for that node."
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "configuresProperty",
+      "object": "cert:trust-store",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Tries to the certificate authority on every node in the cluster. Before running this command the certificate authority has to be copy to the install location at './inbox/CA' on a node in the cluster."
+    },
+    {
+      "subject": "cert:trust-store",
+      "predicate": "configuredVia",
+      "object": "cert:inbox-directory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Before running this command the certificate authority has to be copy to the install location at './inbox/CA' on a node in the cluster."
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-common-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "path: The field which will be used to extract the username from the certificate. Currently only `subject.cn`, `san.uri`, `san.email` and `san.dnsname` are allowed"
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "identifiesUserVia",
+      "object": "cert:subject-alternative-name",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "path: The field which will be used to extract the username from the certificate. Currently only `subject.cn`, `san.uri`, `san.email` and `san.dnsname` are allowed"
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "requiresFlagToEnable",
+      "object": "tls:mutual-tls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "mandatory: the client has to present valid SSL certificate in order to access successfully authorize the connection."
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "deprecatedIn",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For security reasons, this method has been deprecated in Couchbase Server 7.1 and later."
+    },
+    {
+      "subject": "tool:couchbase-cli-ssl-manage",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "cert:certificate-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that the command above should never be run if you are using X.509 certificates because using the --regenerate-cert command will generate an unsigned certificate for the cluster to use."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page manages the cluster's own certificate/trust-store material - one of the most security-sensitive operations documented in the batch - yet cites no role:/privilege: concept anywhere, only the shared generic 'unauthorized error' boilerplate. Compare cert:certificate-rotation's own registry description, which frames rotation as a no-downtime security operation: this page never says who is authorized to rotate or upload a cluster certificate."
+  },
+  "cross_component_finding": "This is the roughest prose in the batch, consistent with the round's lighter-TW-review hypothesis for CLI content: '--client-key <path]' in the SYNOPSIS has a mismatched bracket ('<path]' instead of '<path>'); '--upload-cluster-ca <path> `**(deprecated)**`' leaks raw, unrendered Markdown emphasis syntax directly into the SYNOPSIS code block rather than rendering as bold text or being described in prose; 'Tries to the certificate authority on every node' under --cluster-ca-load is missing a verb ('install'/'load' presumably dropped); 'the certificate authority has to be copy to the install location' has a subject-verb agreement error; and 'the client has to present valid SSL certificate in order to access successfully authorize the connection' under the 'mandatory' client-auth state is a garbled sentence mixing 'access' and 'authorize' with no clear meaning. Five distinct textual defects on one page is the single densest concentration of unreviewed-looking prose found in this batch, on the page that is arguably the most security-critical (certificate management) - a notable pairing of high stakes and low apparent review.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content; couchbase-cli's certificate management is Server-only. auth-mechanism:x509-certificate and tls:mutual-tls both map cleanly onto this page's --client-auth states with no new terminology, echoing couchbase-cli.json's own finding that authentication-mechanism vocabulary is the one area of this tool that stays consistent with the rest of the corpus."
+}

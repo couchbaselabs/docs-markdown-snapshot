@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-dcp-vbtakeover",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-dcp-vbtakeover.md",
+  "concepts": [
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:cluster-manager", "label": "Cluster Manager (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:vbucket-takeover", "label": "vBucket takeover",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch on cbstats-dcp.json; not yet promoted (no file under linked-data/poc/concepts/), so this record correctly reuses it as extraction-layer rather than promoted." }
+  ],
+  "relations": [
+    { "subject": "server:cluster-manager", "predicate": "reliesOnMechanism", "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP." },
+    { "subject": "vbucket:vbucket-takeover", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP." },
+    { "subject": "server:rebalance", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP." }
+  ],
+  "notable_absence": {
+    "predicate": "hasInternalComponent",
+    "finding": "The page names the internal caller (cluster manager / ns_server) and the mechanism (DCP) but never states which DCP stream state(s) from cbstats-dcp.md's enum (takeover-send, takeover-wait) this command's vb/name pair actually reads - the 'For internal use only' framing and the options table (just vb and name) give a reader no way to connect this command's output to the stream lifecycle documented on the sibling page."
+  },
+  "cross_component_finding": "This page is one of exactly two commands in the batch (with cbstats-tap-vbtakeover.md) that explicitly names its internal caller - 'This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP' - rather than leaving the consumer of its statistics unstated, as cbstats-dcp.md, cbstats-dcpagg.md, cbstats-checkpoint.md, cbstats-durability-monitor.md, cbstats-failovers.md and cbstats-warmup.md all do. This is the batch's clearest authorship-provenance signal: cbstats is mostly an administrator-facing diagnostic surface with no stated consumer, but for vBucket takeover specifically the docs name ns_server as the actual internal owner of the mechanism, with cbstats merely exposing its progress.",
+  "cross_product_finding": "Not applicable - internal rebalance orchestration (ns_server) is Couchbase Server-specific machinery with no stated Capella or Sync Gateway analog on this page."
+}

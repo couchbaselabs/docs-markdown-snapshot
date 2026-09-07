@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-backup-service-nodes-threads-map",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-backup-service-nodes-threads-map.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-backup-service-nodes-threads-map", "label": "couchbase-cli backup-service nodes-threads",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - follows the tool:couchbase-cli-<subcommand> naming convention; note the page title says 'nodes-threads-map' but the actual invoked sub-subcommand token in SYNOPSIS/EXAMPLES is 'nodes-threads' (no '-map') - see notable_absence" },
+    { "candidate_id": "tool:couchbase-cli-backup-service", "label": "couchbase-cli backup-service",
+      "registry_status": "minted", "reused_or_minted": "reused - minted in this batch's couchbase-cli-backup-service.json" },
+    { "candidate_id": "backup:nodes-threads-map-endpoint", "label": "nodesThreadsMap REST API endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this CLI sub-subcommand is a wrapper around the same per-node thread override the REST endpoint exposes" },
+    { "candidate_id": "backup:thread-count-setting", "label": "Backup Service thread count",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --node/--threads set exactly this per-node override" },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "x.509 client-certificate authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-backup-service-nodes-threads-map", "predicate": "isSubtypeOf", "object": "tool:couchbase-cli-backup-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite" },
+    { "subject": "tool:couchbase-cli-backup-service-nodes-threads-map", "predicate": "alsoExposedAs", "object": "backup:nodes-threads-map-endpoint",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This will overwrite the map in the backup service with the number of threads allocated to the backup service node with UUID `23ec390488495fec2074119a61d2eb91` to 3." },
+    { "subject": "tool:couchbase-cli-backup-service-nodes-threads-map", "predicate": "configuresProperty", "object": "backup:thread-count-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This will add a new entry to the backup service's nodes threads map, allocating 4 threads to the backup service node with UUID `76dc6557ed98ac7e78e70cf0d28921f3`." },
+    { "subject": "tool:couchbase-cli-backup-service-nodes-threads-map", "predicate": "seeAlso", "object": "couchbase-cli-backup-service.md",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[backup-service](couchbase-cli-backup-service.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No RBAC role stated for --set/--add, which overwrite or extend a cluster-wide per-node resource allocation. Separately, a genuine terminology drift within the page itself: the page's own title and H1 are 'backup-service-nodes-threads-map' (with '-map'), but the SYNOPSIS token and every EXAMPLES invocation use 'nodes-threads' (without '-map') as the literal sub-subcommand name - 'nodes-threads --get', 'nodes-threads --set ...', 'nodes-threads --add ...'. A reader following the page title literally would type the wrong command. This is a textbook symptom of the round's authorship-provenance hypothesis: a docs filename/title drifting from the actual CLI token, uncaught by review."
+  },
+  "cross_component_finding": "Confirms backup:nodes-threads-map-endpoint's registry note that this setting is 'REST-surface-only, NO cbbackupmgr CLI equivalent' in the sense that cbbackupmgr indeed has nothing like it - but this page shows couchbase-cli (the OTHER CLI) does wrap it, via backup-service nodes-threads. So 'no CLI equivalent' should be read as 'no cbbackupmgr equivalent' specifically; couchbase-cli's wrapper is a thin pass-through with no additional semantics beyond the REST fields (node UUID, thread count) - it does not, for instance, expose the CPU-core-based default formula that the REST/conceptual pages describe.",
+  "cross_product_finding": "Not applicable to this page."
+}

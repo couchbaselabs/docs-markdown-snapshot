@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/storage/key-consistency-verification",
+  "label": "Key consistency verification",
+  "type": "cbstats' per-key or per-vBucket check that a document's in-memory state and on-disk (persisted) state agree, reported as a key_valid value. Monitored via cbstats key/vkey subcommands.",
+  "promoted": true,
+  "recurrence": 2,
+  "monitoredVia": "tool:cbstats",
+  "evidence": [
+    "Note that key_valid can have any of the following values:",
+    "verification for key airline_10"
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-key.md",
+  "relates_to_competency_question": "How does an administrator check whether a specific document's disk copy matches its in-memory copy?"
+}

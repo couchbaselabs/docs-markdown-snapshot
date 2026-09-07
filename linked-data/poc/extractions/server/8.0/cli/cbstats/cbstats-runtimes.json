@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-runtimes",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-runtimes.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:cbstats-histogram",
+      "label": "cbstats histogram-format latency stat",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-timing.json; reused here since the runtimes command's response uses the identical bucketed-range/percentage/count/Avg format"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-background-task",
+      "label": "ep-engine background task class",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the runtimes response names discrete internally-scheduled job classes (WarmupInitialize, FlusherTask, DefragmenterTask, ItemPager, ConnManager, HashtableResizerVisitorTask, etc.). Per the round's mechanical warning against minting a concept per table row, this single mechanism-level concept covers the whole class rather than each named task individually"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "monitoring:ep-engine-background-task",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command provides various information about runtime statistics."
+    },
+    {
+      "subject": "monitoring:ep-engine-background-task",
+      "predicate": "reliesOnMechanism",
+      "object": "monitoring:cbstats-histogram",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "WarmupInitialize (1 total)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "None of the ~16 task-class names in this page's example (WarmupInitialize, ClosedUnrefCheckpointRemoverTask, HashtableResizerVisitorTask, ConnNotifierCallback, WorkLoadMonitor, StatSnap, WarmupLoadingData, WarmupEstimateDatabaseItemCount, DefragmenterTask, ConnManager, WarmupKeyDump, WarmupCreateVBuckets, HashtableResizerTask, WarmupCompletion, FlusherTask, WarmupCheckforAccessLog, MultiBGFetcherTask, ItemPager) appear anywhere in the reused-namespace excerpt. This is the clearest sign of the round's predicted low-overlap outcome: an entire class of ep-engine internal job types with zero prior documentation footprint in the registry, deliberately left as evidence/prose under monitoring:ep-engine-background-task rather than minted per-name."
+  },
+  "cross_component_finding": "Several task names here (ItemPager, DefragmenterTask, FlusherTask, HashtableResizerTask/Visitor, WarmupCreateVBuckets) recur almost verbatim in cbstats-scheduler.md's _tasks histogram names (item_pager_tasks, flusher_tasks, hashtable_resize_tasks) and in cbstats-tasks.md's Name column (ItemPager, DefragmenterTask, FlusherTask, HashtableResizerTask) - the same internal task-class vocabulary is exposed through three different cbstats subcommands (runtimes, scheduler, tasks) with slightly different name spellings (e.g. HashtableResizerVisitorTask vs hashtable_resize_tasks) and no page states the three sets of names are the same underlying classes.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

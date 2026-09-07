@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/auth-mechanism/sasl-plain",
+  "label": "SASL PLAIN",
+  "type": "the plaintext-credential authentication mechanism offered by the SASL framework's four Data Service mechanisms, the one auth-mechanism:scram exists as a more secure alternative to. isSubtypeOf protocol:sasl.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "When an application authenticates to the Data Service, one of four mechanisms provided by the Simple Authentication and Security Layer (SASL) framework...",
+    "Data services use the Simple Authentication and Security Layer (SASL)..."
+  ],
+  "documented_at": "server/8.0/learn/security/authentication-overview.md",
+  "note": "protocol:sasl itself stays unpromoted at recurrence 1 (only mctestauth.json mints it) - a new protocol: namespace member deferred pending a second independent sighting, per round 29's own check. protocol:memcached-binary-protocol (mctimings.json) likewise stays at recurrence 1.",
+  "relates_to_competency_question": "What is the less-secure of the two named SASL authentication mechanisms Couchbase documents?"
+}

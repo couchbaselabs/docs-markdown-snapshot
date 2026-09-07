@@ -1,0 +1,63 @@
+{
+  "page_id": "server/8.0/cli/cbtools/cbworkloadgen",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbtools/cbworkloadgen.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbworkloadgen",
+      "label": "cbworkloadgen",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. Generates random test data and read/write load against a Couchbase cluster or bucket."
+    },
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own worked example uses cbstats to look up a collection ID before it can be passed to cbworkloadgen's -c flag."
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the -c/--collection option scopes generated documents to a specific collection ID."
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the -n/--node option's default target address."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbworkloadgen",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To generate documents into the collection `my_collection` you first must find the collection ID. This can be done by using the command below: $ cbstats -u Administrator -p Password -b my-bucket 10.5.2.45:11210 collections | grep \":name:.*my_collection\""
+    },
+    {
+      "subject": "tool:cbworkloadgen",
+      "predicate": "scopedToKeyspace",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The collection ID to perform the operations on. A collection with the given ID must exist. The ID is expected to be a number in hex format for example '0x16'."
+    },
+    {
+      "subject": "tool:cbworkloadgen",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Target node address in the form `ip:port` or `hostname:port` for example `-n 127.0.0.1:8091`. If non provided it will default to `127.0.0.1:8091`."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Like cbtransfer.md in this same batch, cbworkloadgen's -u/-p descriptions use the identical generic sentence 'If you do not have a user account with permission to execute the command then it will fail with an unauthorized error' with no role or privilege named - the third tool in the cbtools/ subdirectory in this batch to omit a specific RBAC citation, against cbrecovery being the one exception that names three roles. The wording match with cbtransfer's -u/-p options (verbatim, not just similar) suggests these two pages were copy-templated from each other and neither was subsequently filled in with real role names - a concrete, mechanically-detectable symptom of the lighter TW review this round is watching for in cli/."
+  },
+  "cross_component_finding": "cbworkloadgen's own worked example depends on tool:cbstats (a promoted concept) to resolve a collection name to a hex collection ID before cbworkloadgen can target it - a genuine, stated cross-tool dependency within the CLI suite, expressed nowhere else in the corpus for either tool. Neither page cross-references the other via a markdown link, though; the dependency is demonstrated in a worked example, not stated as a prerequisite in prose.",
+  "cross_product_finding": "No Capella-specific content; cbworkloadgen targets a node:port address directly and is a load/test-data-generation tool for self-managed Server deployments."
+}

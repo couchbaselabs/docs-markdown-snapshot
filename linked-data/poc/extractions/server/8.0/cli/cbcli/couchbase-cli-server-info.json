@@ -1,0 +1,27 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-server-info",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-server-info.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-server-info", "label": "server-info",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-host-list", "label": "host-list",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-list", "label": "server-list",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-server-info", "predicate": "seeAlso", "object": "tool:couchbase-cli-host-list",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[host-list](couchbase-cli-host-list.md), [server-list](couchbase-cli-server-list.md)" },
+    { "subject": "tool:couchbase-cli-server-info", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-list",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[host-list](couchbase-cli-host-list.md), [server-list](couchbase-cli-server-list.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This is the thinnest page in the batch: its front-matter description promises 'Displays information and statistics about the Couchbase Server specified' but the DESCRIPTION body only restates 'This command prints information about the Couchbase Server specified' - dropping the word 'statistics' the page's own title uses. There is no field list, no description of what information is actually returned, and - unlike server-list.md, host-list.md and enable-developer-preview.md in this same batch, all of which show literal sample output in their EXAMPLES section - this page's EXAMPLES section shows only the invocation, never the output it produces. A reader cannot learn from this reference page what 'information and statistics' actually means."
+  },
+  "cross_component_finding": "The page's own two description strings (the front-matter 'description' attribute and the DESCRIPTION section body) are not consistent with each other - the front-matter promises 'statistics', the body promises only 'information' - a small internal inconsistency within a single, very short page, consistent with this round's terse/lightly-reviewed-prose hypothesis.",
+  "cross_product_finding": "Plainly none - the page is too thin to carry any product-comparison signal."
+}

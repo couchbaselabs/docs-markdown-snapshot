@@ -6973,7 +6973,267 @@ relation retargeted from `xdcr:active-active-with-app-services` to
   uncaught: nothing short of reading the cited concept's own promoted `type` field
   side-by-side with the page would have caught it.
 
-## Cumulative verdict (all twenty-eight rounds)
+## Round 29 — the whole `cli/` directory (127 pages): couchbase-cli, cbstats, and a
+grab-bag of standalone diagnostic/memcached-protocol tools, first contact, run as
+13 parallel batches under an explicit authorship-provenance stress test
+
+**Scope.** `server/current/cli/` in full: `couchbase-cli` (the umbrella cluster-admin
+CLI, ~90 subcommand pages), `cbstats` (the per-node KV diagnostic tool, ~30
+subcommand pages), `cbepctl`, and a grab-bag of standalone tools (cbcollect-info,
+cbq-tool, mcstat/mctestauth/mctimings, cbft-bleve-*, cbqueryreportgen,
+cbriftdump/cbsqlitedump siblings, couchbase-server). 127 records, 575 relations,
+0 evidence problems on `verify-evidence.py` scoped to the batch - re-confirmed, not
+re-litigated. Genuinely first-contact: no prior round had touched `cli/` at all.
+This round's own framing added a 12th stress-test axis to the eleven already run:
+**authorship provenance** - `cli/` pages are written by the engineers who own each
+tool, in the tool's own repo, with lighter TW review than the rest of the Server
+tree - and the batches were asked to watch for it explicitly. They did: this round's
+finding fields are unusually rich in concrete copy-paste evidence (verbatim
+boilerplate, wrong flag names, stale version strings) rather than pure ontology
+content, which is exactly what a docs-issues:concepts ratio skewed toward
+docs-issues should look like, and is treated that way here rather than forced into
+extra promotions the evidence doesn't support.
+
+### Headline finding: the CLI's `security_admin` role description contradicts the
+already-promoted 8.0 `role:security-admin` record
+
+`couchbase-cli-user-manage.md`'s ROLES catalogue describes `security_admin` as
+giving a user permission to "manage user roles... but cannot grant Full Admin or
+Security Admin roles to other users" - read directly against
+`concepts/role/security-admin.json` (filed in round 26 from `roles.md`), which
+states the opposite for the same internal name: the 8.0 Security Admin role
+*cannot manage users at all*, because that capability was split off into
+`role:user-admin-local`/`role:user-admin-external` when the pre-8.0 combined role
+was narrowed. Same internal name, two Server 8.0 documentation pages, directly
+contradictory descriptions of what the role can do. Filed as
+`docs-issues/server-couchbase-cli-user-manage-security-admin-contradicts-8-0-role`
+rather than resolved by inference - this is exactly the shape round 25's discipline
+calls for (two pages disagreeing is not license to silently pick the more
+convenient reading). Reading the rest of the same page's ROLES section directly
+(not from the extraction record's own summary) turned up three more defects on the
+same page, each filed separately since each is a different shape: `replication_admin`
+documented twice, under two headings, with two non-overlapping descriptions
+(`docs-issues/server-couchbase-cli-user-manage-replication-admin-duplicate-entries`);
+`analytics_admin` described via "dataverses", the pre-8.0 term
+`concepts/analytics/analytics-scope.json` already records as renamed; and the whole
+catalogue omitting every 8.0-introduced role (`ro_security_admin`,
+`user_admin_local`, `user_admin_external`, `external_stats_reader`) and all six
+Sync-Gateway fine-grained roles from round 28 - both folded into one content-gap
+issue, `docs-issues/server-couchbase-cli-user-manage-roles-catalogue-stale`, since
+both are symptoms of the same stale-catalogue cause rather than separate defects.
+`bucket_full_access`'s presence with no deprecation warning is the same
+contradiction round 12 already logged
+(`docs-issues/server-authorization-overview-lists-deprecated-role-as-live-ce-role`)
+appearing a third time - added to that issue's `about` list rather than filed as a
+fresh duplicate.
+
+### Confirmed copy-paste bugs, each verified against the raw source page before
+filing (not taken on the extraction agents' word)
+
+Every copy-paste finding the round's own batches flagged was opened and checked
+directly. All nine confirmed exactly as reported, each filed as its own
+`docs-issues/` entry (granularity matches round 25's Backup Service precedent - one
+file per distinct defect shape, not one catch-all): `couchbase-cli-server-add.md`'s
+second EXAMPLE using `--server-username`/`--server-password` (nonexistent on this
+command; the correct names are `--server-add-username`/`--server-add-password`,
+and the wrong pair is exactly `couchbase-cli-server-readd.md`'s own flag names);
+`couchbase-cli-setting-autoreprovision.md`'s `--enabled` description naming
+"autofailover" instead of auto-reprovisioning, verbatim from
+`setting-autofailover.md`; `cbstats-kvtimings.md`'s Description and entire options
+table being byte-identical to `cbstats-kvstore.md` (confirmed by direct diff) while
+its own EXAMPLE shows real, different content - a latency-histogram sample, not
+Couchstore counters; `couchbase-cli-setting-rebalance.md`'s EXAMPLES using an
+undefined `--retries` flag where OPTIONS defines `--max-attempts`, and a
+"cancel a pending retry" example actually invoking `--pending-info` rather than
+`--cancel`; `couchbase-cli-setting-encryption.md`'s own SYNOPSIS naming the wrong
+command (`setting-enable`) and mixing `--rotate-key`/`--rotate` for the same flag;
+the "TTL greater than than the maximum" duplicated-word typo verbatim on three
+pages (`bucket-create`, `bucket-edit`, `collection-manage`); `cbstats-vbucket-details.md`'s
+`vb_relica_sync_write_aborted_count` typo; the stale "not used in Couchbase Server
+Version 7.6" sentence duplicated on two 8.0 pages
+(`cbstats-collections.md`/`cbstats-collections-details.md`); a garbled raw-terminal-paste
+artifact in `cbstats-collections-details.md`'s example output (`vb_8:manifest:uidvb_8:default_mvs:`,
+a stat name run into the next key with no line break); and `couchbase-server.md`'s
+own `--version` example showing the stale string `6.6.0-7853`, six major versions
+behind the page it appears on. Nine `docs-issues/` entries, one per bug.
+
+### `couchbase-cli`'s own umbrella tool concept was the round's largest whole-corpus
+promotion-debt catch
+
+`tool:couchbase-cli` - the subject every one of couchbase-cli's ~130 subcommand
+pages implicitly assumes - had never itself been promoted, despite 35 of this
+round's own 127 files (52 files whole-corpus) using it as a relation subject or
+object. Promoted, joining the existing CLI-tool family (cbbackupmgr, cbcollect-info,
+cbexport, cbimport, cbq-shell, cbsqlitedump, cbstats) as its highest-recurrence
+member - the same shape as round 24's `role:cluster-admin`, round 27's
+`sgw:sync-function`, and round 28's `cbl:replication`: real recurrence, invisible
+to any single round's own scope until whole-corpus aggregation runs.
+
+### A namespace-hygiene finding this round's own batches created, at scale: CLI
+subcommands are not tools
+
+Reading the raw `candidate_id` values across the batch (not any one batch's own
+summary) found ~40 single-page extraction agents each independently minting
+`tool:couchbase-cli-<subcommand>` for their own page's subject - 51 distinct ids
+in total, five of them (`couchbase-cli-backup-service` and its four
+`-plan`/`-repository`/`-settings`/`-nodes-threads-map` children) forming what
+reads like a command GROUP rather than 51 unrelated tools. The established `tool:`
+convention (`concepts/tool/` currently: cbbackupmgr, cbcollect-info, cbexport,
+cbimport, cbq-shell, cbsqlitedump, cbstats, one member per BINARY) does not extend
+to subcommands, and the same pattern repeats at smaller scale for `cbstats`
+(`tool:cbstats-reset-command`, one file's own subcommand mis-modeled as a second
+tool). This is the CLI-subcommand version of round 26's `manage:server-group` -
+`server:server-group` finding: an id naming the page it came from, not the kind of
+thing its subject is. **None of the 51 `tool:couchbase-cli-<subcommand>` ids (nor
+`tool:cbstats-reset-command`) are promoted this round.** They remain correctly
+labelled at the extraction layer - the write-time gate has no complaint about an
+honest `minted`/`extraction-layer` declaration for a genuinely new subject - and
+are flagged here as a namespace-hygiene debt for a future round to resolve, most
+likely by introducing a `command:`-shaped namespace (or a `hasSubcommand`-style
+relation off `tool:couchbase-cli` with the subcommand kept as a string) rather than
+promoting each into `tool:`. Read as a method finding rather than a documentation
+defect: extraction agents correctly modelled their own page's subject in isolation;
+only reading the whole directory's mints together made the mismatch with the
+namespace's own convention visible - round 21's "the corpus is not the
+documentation" lesson's namespace-layer twin.
+
+### Smaller findings, each checked against the source page or the whole corpus
+before acting
+
+- **`removedIn` filled for the first time**, three rounds after the slot was cut and
+  deliberately left empty: `cbstats-tap-vbtakeover.md` states directly that TAP
+  "was replaced by DCP and removed from Couchbase Server in version 5.0" - the first
+  page in the whole corpus to date an actual removal rather than say a feature
+  "will be removed in a future release". Promoted `relations/removed-in.json` as a
+  significance exception at recurrence 1, paired with a new `protocol:tap` concept
+  (recurrence 1, promoted for the same reason - the relation needs a concept to
+  point at). The same file's `protocol:dcp supersedes protocol:tap` relation is a
+  clean reuse of round 28's `supersedes` mint, confirming it generalises past Sync
+  Gateway.
+- **`protocol:sasl` and `protocol:memcached-binary-protocol` checked and correctly
+  left unpromoted.** Each is minted by exactly one file (`mctestauth.json` and
+  `mctimings.json` respectively) with no second sighting anywhere in the corpus -
+  recurrence 1, below the bar, no significance case made for either. `auth-mechanism:sasl-plain`,
+  by contrast, reaches recurrence 2 cleanly (`mctestauth.json` plus round 12's
+  `authentication-overview.json`) and is promoted into the existing closed-axis
+  `auth-mechanism:` namespace alongside `scram`/`username-password`/`x509-certificate`.
+- **`tool:cbepctl`'s concurrent-mint collision, folded into one record.** Two of
+  this round's parallel batches independently minted `tool:cbepctl` from different
+  files (`cbepctl-intro.json` and `cbepctl/set-checkpoint_param.json`); a third and
+  fourth file (`cbstats-intro.json`, `cbepctl/set-flush_param.json`) also reference
+  it. One promoted record now reflects all four files, not two silent duplicates -
+  the exact shape the reconcile skill's own worked example describes.
+- **`cbq-tool.md` verified NOT a duplicate mint.** The page redirects entirely to
+  the already-promoted `tool:cbq-shell`'s own canonical source
+  (`n1ql-intro/cbq.md`) by direct link rather than re-describing the tool, and the
+  extraction record correctly reused `tool:cbq-shell` rather than minting a second
+  id. Nothing to fold; confirmed and moved on.
+- **`analytics-link-setup` vs. `enterprise-analytics-link-setup`: confirmed
+  architecturally different, relationship confirmed undocumented.** Direct
+  comparison: 51 flags across the former's per-link-type options vs. 15 flags
+  (effectively one `--link-details`/`--link-details-path` JSON blob) on the latter.
+  No page anywhere states a rename, supersession or compatibility relationship
+  between "Analytics" and "Enterprise Analytics" despite the naming reading like a
+  rebrand - and a release-notes sighting ("Enterprise Analytics 2.1.0", versioned
+  independently of "Couchbase Server versions 7.2.7 through 8.1.0" in the same
+  sentence) argues against a simple rebrand reading. Minted
+  `service:enterprise-analytics-service` (recurrence 2, genuinely new - no service
+  of that name existed anywhere in 662 prior concepts) rather than merging it with
+  `service:analytics-service`, and filed the open relationship as
+  `docs-issues/server-enterprise-analytics-vs-analytics-relationship-undocumented`
+  per the "do not merge without a source page stating it" rule.
+- **`backup:merge-offset` gets a third logged spelling.**
+  `couchbase-cli-backup-service-plan.md`'s `--task` JSON schema nests the same
+  two-integer day-range as `merge_options.offset_start`/`merge_options.offset_end` -
+  matching neither of the two spellings the round-25 docs-issue already tracks
+  (`merge_offset_start`/`merge_offset_end` at plan level, bare `offset_start`/`offset_end`
+  on the immediate-trigger endpoint). Updated the existing concept record and
+  docs-issue in place (recurrence 2 to 3) rather than filing a fresh duplicate, per
+  the round brief's own instruction. The same page's
+  `alsoExposedAs backup:backup-service-rest-api` relation is a clean reuse
+  confirming, not contradicting, round 19's "cbbackupmgr and couchbase-cli are
+  different binaries with no shared plan-object vocabulary" finding - couchbase-cli's
+  backup-service subcommands are a thin CLI wrapper over the REST plan object,
+  which is precisely why they mis-mint as one more `tool:couchbase-cli-<subcommand>`
+  id rather than genuine new backup-domain vocabulary.
+- **`analytics:analytics-link` was "narrated as promoted, never actually filed" for
+  a fourth+ time**, this project's own recurring defect shape (rounds 14, 25, 27,
+  28) found again: `concepts/analytics/remote-link.json` and
+  `concepts/analytics/local-link.json` have both carried
+  `isSubtypeOf: analytics:analytics-link` since round 21, and this round's two
+  `*-link-setup.md` pages add two more references, for a real whole-corpus
+  recurrence of 4 - but no `concepts/analytics/analytics-link.json` file existed
+  until now.
+- **`monitoring:cbstats-histogram` and `storage:latency-histogram-format` folded**:
+  a same-round self-fork caught by comparing evidence rather than ids. Two batches
+  independently named the identical bucketed-percentage histogram rendering
+  convention cbstats uses across unrelated subcommands (`runtimes`/`timing` vs.
+  `kvtimings`/`raw`) - one under `monitoring:`, correctly, since the shared thing is
+  a CLI display convention, not a storage-engine property; the other under
+  `storage:`, which mis-scoped a rendering format as a property of the underlying
+  (and in fact different, per subcommand) subsystem it happened to be presenting.
+  Folded into `monitoring:cbstats-histogram` (the earlier, higher-recurrence, and
+  correctly-scoped spelling), `storage:latency-histogram-format` recorded as an
+  alias with both defining quotes side by side in the surviving record.
+- **Two pages added back into the batch after being found missing from the
+  original plan** (`couchbase-cli-admin-manage.md`, and the `cbstats-intro.md`/
+  `cbepctl-intro.md` pair) needed no special handling - both were real,
+  substantive pages, and `admin-manage.md` in particular supplied the round's only
+  `server:built-in-administrator-account` evidence.
+
+### Promotions
+
+**21 concepts promoted**, taking `concepts/` to 683: `tool:couchbase-cli`,
+`tool:cbepctl`, `tool:cbqueryreportgen`, `tool:mctimings`, `protocol:tap`,
+`auth-mechanism:sasl-plain`, `fts:scorch-storage`, `fts:moss-storage`,
+`server:collections-manifest`, `server:log-collection-task`,
+`server:bucket-eviction-policy`, `server:bucket-flush`,
+`server:built-in-administrator-account`, `server:collection-change-history`,
+`server:document-history-retention`, `service:enterprise-analytics-service`,
+`storage:key-consistency-verification`, `analytics:analytics-link`,
+`vbucket:checkpoint`, `vbucket:vbucket-takeover`,
+`monitoring:ep-engine-background-task`, `monitoring:ep-engine-thread-pool`, and
+`monitoring:cbstats-histogram` (folding `storage:latency-histogram-format` as an
+alias) - 23 records counting the fold, 21 genuinely new ids surviving.
+
+**1 relation promoted**, taking `relations/` to 120: `removed-in` (recurrence 1,
+significance exception - a reserved slot finally filled).
+
+**15 new `docs-issues/` filed**, taking the total to 217, plus 2 existing entries
+updated with a new occurrence each (`server-authorization-overview-lists-deprecated-role-as-live-ce-role`,
+`server-backup-merge-offset-field-name-mismatch`) rather than duplicated.
+
+**Not promoted, on purpose**: the 51 `tool:couchbase-cli-<subcommand>` ids and
+`tool:cbstats-reset-command` (namespace-hygiene finding above);
+`protocol:sasl`/`protocol:memcached-binary-protocol` (recurrence 1, no significance
+case); `monitoring:ep-engine-priority-task-queue`/`data:reader-io-thread-kind`
+(recurrence 1, family test does not pull them in - `monitoring:ep-engine-thread-pool`
+can state what it is without naming either).
+
+### What this round taught about the method
+
+- **A docs-issues:concepts ratio can be a deliberate, correct outcome of the scope
+  chosen, not a sign extraction under-delivered.** This round's own framing
+  predicted a skew toward documentation findings over ontology content because of
+  who writes `cli/` pages and under what review; the 15:21 ratio (plus two updates)
+  is that prediction landing, not a shortfall to explain away.
+- **A namespace-hygiene defect can be produced by 40 individually-correct
+  decisions in one round, not accumulated debt from many rounds.** Every prior
+  namespace finding this project logged (`vector-index:`, `setting:`,
+  `rest:nodes-threads-map`) built up gradually, one page at a time, across
+  multiple rounds before anyone read the namespace whole. This round's
+  `tool:couchbase-cli-<subcommand>` case shows the same defect can appear
+  fully-formed inside a SINGLE round's own 13 parallel batches, simply because
+  each batch read only its own slice of one very large, very uniform directory.
+  The check that catches it (read the raw ids across the whole batch before
+  promoting) is the same one; the timescale it operates on is not fixed.
+- **Two agents naming one mechanism through two different namespace prefixes is
+  the same fork shape round 18 found through two different predicates** -
+  `monitoring:cbstats-histogram`/`storage:latency-histogram-format` share no
+  substring, so neither `--variants` nor `--forks` would surface it unprompted;
+  only reading the evidence quotes side by side does.
+
+## Cumulative verdict (all twenty-nine rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -8226,3 +8486,17 @@ once, so worth treating as durable rather than one-off:
   the RBAC-role-family version of round 17's "the corpus is not the documentation"
   lesson - not a missing directory this time, but a namespace whose members were
   scattered across pages read four rounds apart.
+- **A directory's own authorship provenance predicts its docs-issues:concepts
+  ratio, and the prediction can be tested in the same round it's made.** Round 29
+  named `cli/`'s engineer-authored, lightly-TW-reviewed provenance as a stress-test
+  axis in advance and got a 15-docs-issue, 21-concept round exactly matching that
+  shape - nine of the fifteen confirmed copy-paste bugs, verified against the raw
+  source page one at a time rather than taken on the extraction batches' word.
+  It also found that a namespace-hygiene defect does not need multiple rounds to
+  accumulate: ~40 single-page agents in ONE round's 13 parallel batches each
+  correctly modelled their own page's subject as `tool:couchbase-cli-<subcommand>`,
+  and only reading all 51 resulting ids together - not any one batch's own summary -
+  showed that a CLI subcommand is not a tool by this project's own established
+  convention. Both findings came from doing exactly what the method always does
+  (read the raw ids, open the actual page) at the scale one very large, very
+  uniform directory made necessary for the first time.

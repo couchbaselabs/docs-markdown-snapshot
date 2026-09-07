@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-rebalance.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:automatic-rebalance-retry", "label": "Automatic rebalance retry", "registry_status": "minted", "reused_or_minted": "minted - no existing concept for this cluster setting (automatically retrying a failed rebalance, with wait-for/max-attempts/moves-per-node tuning and cancel/pending-info introspection); distinct from server:rebalance itself" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:automatic-rebalance-retry", "predicate": "reliesOnMechanism", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command allows configuring and retrieving automatic rebalance retry settings as well as canceling and retrieving information of pending rebalance retries." },
+    { "subject": "server:automatic-rebalance-retry", "predicate": "hasDefaultValue", "object": "disabled",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "By default, automatic rebalance retry is disabled." },
+    { "subject": "server:automatic-rebalance-retry", "predicate": "hasDefaultValue", "object": "300 seconds (--wait-for)",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "By default, the wait time is 300 seconds." },
+    { "subject": "server:automatic-rebalance-retry", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli setting-rebalance [--cluster <url>] [--username <user>] [--password <password>]" },
+    { "subject": "server:automatic-rebalance-retry", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [rebalance-status](couchbase-cli-rebalance-status.md)" },
+    { "subject": "server:automatic-rebalance-retry", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-rebalance-status",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [rebalance-status](couchbase-cli-rebalance-status.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "Unlike setting-autofailover.md (which gates most of its advanced flags to Enterprise Edition), this page never states any edition restriction for automatic rebalance retry at all - it's silent on whether this feature is Community or Enterprise only. Also, --moves-per-node documents a real performance tradeoff ('A higher setting may improve rebalance performance, at the cost of higher resource consumption... in terms of CPU, memory, disk, and bandwidth... may degrade the performance of other systems, including the Data Service') with no concept modeling that tradeoff anywhere in the registry."
+  },
+  "cross_component_finding": "Two internal, self-contradicting bugs point directly at this round's authorship-provenance hypothesis (lighter TW review, closer to raw engineer output): (1) the OPTIONS section defines --max-attempts as the retry-count flag, but the EXAMPLES section's command uses a flag that is never defined anywhere on the page: 'couchbase-cli setting-rebalance -c 127.0.0.1:8091 -u Administrator -p password --set --enable 1 --wait-for 60 --retries 2' - the surrounding prose even calls it 'the maximum number of retries to 2,' but the actual OPTIONS-documented flag name is --max-attempts, not --retries. (2) The example described as canceling a pending retry ('To cancel a pending rebalance retry run the command bellow...') actually shows the --pending-info flag, not --cancel: 'couchbase-cli setting-rebalance -c 127.0.0.1:8091 -u Administrator -p password --pending-info --rebalance-id 4198f4b1564a800223271af76edd4f98' - the correct flag per this page's own OPTIONS section is --cancel (used together with --rebalance-id), not --pending-info. Both are copy/paste-style example errors, not documented flags. The word 'bellow' (for 'below') is also misspelled twice in this page's EXAMPLES section headings, reinforcing the terse/unreviewed-prose signal.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, which manages rebalance retry behavior internally with no customer-facing CLI equivalent."
+}

@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-xdcr",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-xdcr.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-setting-xdcr", "label": "couchbase-cli setting-xdcr",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - follows the tool:couchbase-cli-<subcommand> naming convention; sets GLOBAL default settings for all XDCR replications on a cluster, as against tool:couchbase-cli-xdcr-replicate's --settings flag which sets settings for one replication" },
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "xdcr:advanced-settings", "label": "XDCR Advanced Settings",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the checkpoint-interval/worker-batch-size/doc-batch-size/nozzle/bandwidth/compression/optimistic-replication-threshold option group, here applied cluster-wide as defaults rather than per-replication" },
+    { "candidate_id": "xdcr:replication", "label": "XDCR replication",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "auth-mechanism:x509-certificate", "label": "x.509 client-certificate authentication",
+      "registry_status": "promoted", "reused_or_minted": "reused - CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-setting-xdcr", "predicate": "isSubtypeOf", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite" },
+    { "subject": "tool:couchbase-cli-setting-xdcr", "predicate": "configuresProperty", "object": "xdcr:advanced-settings",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command sets global default settings for all XDCR replications." },
+    { "subject": "tool:couchbase-cli-xdcr-replicate", "predicate": "mustUseInsteadWhen", "object": "changing settings for a single XDCR replication rather than the global default",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If you only want to change the settings for a single XDCR replication see the [xdcr-replicate](couchbase-cli-xdcr-replicate.md) command." },
+    { "subject": "xdcr:advanced-settings", "predicate": "hasDefaultValue", "object": "max-processes not documented with a stated default",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "\\--max-processes <num>\n\nSpecify the number of processes allocated to XDCR." },
+    { "subject": "tool:couchbase-cli-setting-xdcr", "predicate": "seeAlso", "object": "couchbase-cli-xdcr-replicate.md",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[xdcr-replicate](couchbase-cli-xdcr-replicate.md), [xdcr-setup](couchbase-cli-xdcr-setup.md)" },
+    { "subject": "tool:couchbase-cli-setting-xdcr", "predicate": "seeAlso", "object": "couchbase-cli-xdcr-setup.md",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "[xdcr-replicate](couchbase-cli-xdcr-replicate.md), [xdcr-setup](couchbase-cli-xdcr-setup.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This subcommand changes GLOBAL defaults for every XDCR replication on a cluster - arguably the highest-blast-radius XDCR CLI action in this batch - yet, like its siblings, states no RBAC role requirement anywhere on the page. Also notably absent: --max-processes has no stated valid range or default, unlike every sibling numeric flag on this same page (checkpoint-interval: 60-14,400; worker-batch-size: 500-10,000; doc-batch-size: 10-100,000; failure-restart-interval: 1-300; nozzle counts: 1-10) - a flag-description asymmetry consistent with the round's flag-description-copy-paste-across-siblings watch item, except here it is a gap rather than a false copy: --max-processes was evidently added later or by a different author and never got the same range treatment as its neighbours."
+  },
+  "cross_component_finding": "setting-xdcr's option list is near-identical to xdcr-replicate's per-replication --settings option list (same flag names: checkpoint-interval, worker-batch-size, doc-batch-size, failure-restart-interval, source/target-nozzle-per-node, bandwidth-usage-limit, enable-compression, stats-interval, optimistic-replication-threshold, log-level), confirming these are genuinely the same xdcr:advanced-settings group exposed at two scopes (global default vs per-replication override) rather than two different settings groups that happen to share names - the page explicitly cross-references this scope distinction rather than leaving it implicit.",
+  "cross_product_finding": "Not applicable to this page."
+}

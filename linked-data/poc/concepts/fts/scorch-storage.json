@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/scorch-storage",
+  "label": "Scorch (FTS index storage format)",
+  "type": "one of two on-disk storage formats a Bleve-based FTS index partition can use, made up of Zap-file snapshots. Mutually exclusive with fts:moss-storage for a given index (the format is chosen per index, not mixed). Platform-restricted: usable on Linux only outside Red Hat-based distributions and Ubuntu.",
+  "promoted": true,
+  "recurrence": 4,
+  "evidence": [
+    "Each Scorch index contains a number of snapshots, each of which represents the state of all indexed data at a particular point in time.",
+    "Each Scorch-index partition is represented by a Zap file, which is located in the store sub-directory for the partition.",
+    "Can be used on a Scorch index partition, but only on platforms other than Red Hat-based distributions and Ubuntu Linux."
+  ],
+  "documented_at": "server/8.0/cli/cbtools/cbft-bleve-scorch.md",
+  "note": "hasInternalComponent fts:snapshot-epoch; belongsToIndexClass fts:zap-file-format. First contact with the cbft-bleve-* diagnostic-tool family's own storage-internals vocabulary, distinct from the already-promoted search/fts REST and UI index-management vocabulary.",
+  "relates_to_competency_question": "What are the two on-disk storage formats an FTS index partition can use, and are they interchangeable?"
+}

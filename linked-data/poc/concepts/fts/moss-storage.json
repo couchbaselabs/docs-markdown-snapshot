@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/fts/moss-storage",
+  "label": "Moss (FTS index storage format)",
+  "type": "the other of two on-disk storage formats a Bleve-based FTS index partition can use. Mutually exclusive with fts:scorch-storage for a given index; hasEquivalentEffectAs it for the diagnostic commands both support (check/count/dictionary/fields/mapping/query/registry).",
+  "promoted": true,
+  "recurrence": 2,
+  "mutuallyExclusiveWith": "fts:scorch-storage",
+  "evidence": [
+    "The name of each (whether it is a Moss or a Scorch index) is formed from the user-defined index-name, the uuid of the user-defined index...",
+    "Note that the check, count, dictionary, fields, mapping, query, and registry command-values can also be used to return information about a Scorch index."
+  ],
+  "documented_at": "server/8.0/cli/cbtools/cbft-bleve-moss.md",
+  "note": "Promoted as a pair with fts:scorch-storage per the family test: neither record can state what it IS without naming the other as its mutually-exclusive sibling.",
+  "relates_to_competency_question": "What are the two on-disk storage formats an FTS index partition can use, and are they interchangeable?"
+}

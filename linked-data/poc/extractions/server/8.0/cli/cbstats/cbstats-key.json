@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-key",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-key.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage:key-consistency-verification", "label": "In-memory vs on-disk key consistency verification",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism behind the key_valid enum (this_is_a_bug/dirty/length_mismatch/data_mismatch/flags_mismatch/valid/ram_but_not_disk/item_deleted): comparing a key's in-memory copy against its on-disk copy. Minted once at the mechanism level rather than once per enum member, per this round's rule against per-row minting; the enum members themselves stay as evidence/prose." }
+  ],
+  "relations": [
+    { "subject": "storage:key-consistency-verification", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that `key_valid` can have any of the following values:" },
+    { "subject": "server/8.0/cli/cbstats/cbstats-key", "predicate": "seeAlso", "object": "server/8.0/learn/data/scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md)." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-key", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use `cbstats` to provide information on collections, see the reference page for the `cbstats` [collections](cbstats-collections.md) command." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-key", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-vkey",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For information on providing verification of keys, see the reference page for the `cbstats` [vkey](cbstats-vkey.md) command." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-key", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For common `cbstats` options, see the [cbstats](../cbstats-intro.md) reference page." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsOwnOutput",
+    "finding": "The Responses table lists key_valid as a possible response field ('See the description below.') and enumerates its eight possible values, but every single worked example under the `key` command in this page's own Examples sections omits key_valid entirely from the shown response (only key_cas, key_exptime, key_flags, key_is_dirty, key_is_resident, key_vb_state appear). Every worked example on the sibling cbstats-vkey.md page, by contrast, does show key_valid. The table for `key` appears to describe a field that only `vkey` actually returns in practice on this page's own evidence."
+  },
+  "cross_component_finding": "key_vb_state:    active in every worked example ties this page's output directly to the already-promoted vbucket:active-vbucket concept - every key looked up in this page's examples happens to live in an active vBucket, so the page never demonstrates key_vb_state for a replica or pending vBucket.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

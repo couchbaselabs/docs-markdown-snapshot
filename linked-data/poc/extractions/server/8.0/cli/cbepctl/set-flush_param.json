@@ -1,0 +1,106 @@
+{
+  "page_id": "server/8.0/cli/cbepctl/set-flush_param",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbepctl/set-flush_param.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbepctl",
+      "label": "cbepctl",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this batch on set-checkpoint_param.json, cbepctl's other subcommand page in this same directory."
+    },
+    {
+      "candidate_id": "memory:memory-high-watermark",
+      "label": "memoryHighWatermark",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted on memory.json (server/8.0/learn/buckets-memory-and-storage/memory.json), whose own note states it was 'renamed from the cbepctl-era mem_low_wat setting per this page's own note' for its sibling memory:memory-low-watermark - this page (or one identically worded) is very likely that cited source."
+    },
+    {
+      "candidate_id": "memory:memory-low-watermark",
+      "label": "memoryLowWatermark",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted on memory.json; see memory:memory-high-watermark's note above - this page states the exact rename this round's memory.json extraction had already recorded from elsewhere."
+    },
+    {
+      "candidate_id": "memory:warmup-behavior",
+      "label": "warmupBehavior (background/blocking/none)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted on memory.json, likewise noted there as 'renamed from the cbepctl-era' settings this page names directly (warmup_min_items_threshold, warmup_min_memory_threshold)."
+    },
+    {
+      "candidate_id": "memory:expiry-pager",
+      "label": "Expiry Pager",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted on memory.json, noted there as 'renamed from the cbepctl-era exp_pager_stime setting' - this page names exp_pager_stime directly among the settings removed from cbepctl."
+    },
+    {
+      "candidate_id": "memory:access-scanner",
+      "label": "access scanner",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted elsewhere as the periodic process that writes frequently-used keys to an access log for warmup; this page's alog_sleep_time/alog_task_time parameters configure it directly via cbepctl."
+    },
+    {
+      "candidate_id": "memory:warmup-process",
+      "label": "warmup process",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted elsewhere as the sequential disk-to-memory reload on node restart; this page states the access scanner exists specifically to speed up this process."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "doesNotSupport",
+      "object": "memory:memory-high-watermark",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The settings `warmup_min_items_threshold`, `warmup_min_memory_threshold`, `exp_pager_stime`, `mem_high_wat`, and `mem_low_wat` are removed, and no longer supported through `cbepctl`."
+    },
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "doesNotSupport",
+      "object": "memory:memory-low-watermark",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The settings `warmup_min_items_threshold`, `warmup_min_memory_threshold`, `exp_pager_stime`, `mem_high_wat`, and `mem_low_wat` are removed, and no longer supported through `cbepctl`."
+    },
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "doesNotSupport",
+      "object": "memory:warmup-behavior",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "These settings are replaced by new settings `expiryPagerSleepTime`, `warmupBehavior`, `memoryLowWatermark`, and `memoryHighWatermark`, which can be configured using REST APIs. See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md)."
+    },
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "doesNotSupport",
+      "object": "memory:expiry-pager",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "These settings are replaced by new settings `expiryPagerSleepTime`, `warmupBehavior`, `memoryLowWatermark`, and `memoryHighWatermark`, which can be configured using REST APIs. See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md)."
+    },
+    {
+      "subject": "tool:cbepctl",
+      "predicate": "configuresProperty",
+      "object": "memory:access-scanner",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `cbepctl flush_param` command is used to change the initial time and the interval for the access scanner."
+    },
+    {
+      "subject": "memory:access-scanner",
+      "predicate": "reliesOnMechanism",
+      "object": "memory:warmup-process",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "An _access scanner_ is periodically run, to determine which keys have been the most frequently used: typically, the scanner writes these key to an _access log_, which can be accessed by Couchbase Server at warmup, so that the corresponding documents can be loaded first."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cbepctl's syntax here does show -u [administrator-name] -p [administrator-password], unlike its sibling set-checkpoint_param.md in this same batch which shows none - but even here, no RBAC role or privilege is ever named for what that administrator account must be authorized to do. Continues the batch-wide pattern of crediential-flag-without-role-name documentation."
+  },
+  "cross_component_finding": "This page is very likely the primary evidentiary source for four extraction-layer notes already sitting in memory.json (memory:memory-high-watermark, memory:memory-low-watermark, memory:warmup-behavior, memory:expiry-pager), each of which cites 'the cbepctl-era' setting name being renamed - this page is where those cbepctl-era names (mem_high_wat, mem_low_wat, warmup_min_items_threshold/warmup_min_memory_threshold, exp_pager_stime) are actually defined and their removal explicitly stated, with the exact same four REST replacement names memory.json records. The fact and its objects are now confirmed from two independent source files rather than resting on one. It also newly connects memory:access-scanner to memory:warmup-process with a direct mechanism relation neither prior record had made explicit."
+  ,
+  "cross_product_finding": "The REST APIs cbepctl's removed settings are 'replaced by' (Creating and Editing Buckets) are Couchbase Server's own bucket-settings REST endpoints, not any Capella-specific surface - this is an entirely Server-side (self-managed) configuration migration from CLI to REST, with no stated Capella equivalent."
+}

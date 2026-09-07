@@ -1,0 +1,17 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-failovers",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-failovers.md",
+  "concepts": [
+    { "candidate_id": "vbucket:failover-log", "label": "vBucket failover log",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-vBucket log of {id, seq} entries this command exposes, one mechanism-level concept for the whole page rather than a concept per field (id/seq/num_entries), per this round's explicit warning against minting a concept per table row on a table-shaped dump. Placed in vbucket: alongside vbucket:checkpoint (also minted this batch) since it is per-vBucket state, distinct from the server:failover action itself." }
+  ],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "reliesOnMechanism",
+    "finding": "This is the thinnest page in the batch: description is 'This command provides information about entries such as IDs, sequence, and number' and the example gives only raw field:value pairs (vb_N:0:id, vb_N:0:seq, vb_N:num_entries) with zero prose explaining what an 'entry' represents (e.g. a vBucket-UUID/high-seqno pair recorded at each failover event) or which other mechanism - DCP stream negotiation, server:failover itself - reads this log. No quotable sentence supports any relation, so none is asserted rather than reconstructed."
+  },
+  "cross_component_finding": "No relation is quotable from this page alone, but its field vocabulary (per-vBucket id/seq pairs) parallels the vb_uuid field cbstats-dcp.md's stream tables use for DCP stream creation - consistent with a failover log being what DCP consults to negotiate a resuming stream after a topology change - though the page itself states no such connection, so this is recorded as a finding only, not a relation.",
+  "cross_product_finding": "Not applicable - no cross-product vocabulary is stated or implied on this page."
+}

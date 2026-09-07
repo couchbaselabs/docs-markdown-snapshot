@@ -1,0 +1,43 @@
+{
+  "page_id": "server/8.0/cli/cbsummary",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbsummary.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbsummary",
+      "label": "cbsummary",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. Connects to a set of Couchbase clusters listed in a JSON config file and generates a RAM/core utilization summary report, primarily for license-compliance checking."
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the config-file example addresses cluster nodes on this port."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbsummary",
+      "predicate": "usesPort",
+      "object": "port:8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "{\"login\": \"Administrator\", \"pass\": \"password1\", \"nodes\": [\"http://192.168.1.1:8091\"]}"
+    },
+    {
+      "subject": "tool:cbsummary",
+      "predicate": "offersConfigurationChoice",
+      "object": "tool:cbsummary",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused predicate; self-referential object used deliberately - the choice is between two output modes of this same tool, and no finer-grained 'report format' concept exists yet to hold the two sides of the choice",
+      "evidence": "If you specify `--csv`, then the report is generated in CSV instead of JSON. If, instead, you specify `--full`, then a much more detailed report is generated."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cbsummary's config-file example stores cluster credentials as plaintext JSON ('\"login\": \"Administrator\", \"pass\": \"password1\"') with no mention of any encryption, keystore, or masking option for this file - a sharp contrast with cbcat's keystore-based credential handling documented elsewhere in this same batch. The page also never names an RBAC role for the Administrator account it expects in the config file. Given cbsummary's purpose (aggregating RAM/core data across potentially many clusters for license audits), a plaintext multi-cluster credential file is a real security-review-worthy gap, and one a TW-reviewed reference page would likely have flagged or at least caveated."
+  },
+  "cross_component_finding": "No other tool in this batch stores credentials in a file rather than passing them on the command line or prompting interactively - cbsummary's config-file model is architecturally distinct from cbrecovery/cbtransfer/cbworkloadgen/mcstat/mctestauth/mctimings, all of which take -u/-p per invocation. Worth flagging for reconciliation as a genuinely different credential-handling pattern within the same tool family, not merely a documentation gap.",
+  "cross_product_finding": "The tool aggregates 'RAM and core utilization across each specified cluster, since that information is useful in determining compliance with Couchbase licenses' - a Server-edition licensing concern (edition:enterprise/edition:community are core-count and node-count gated) that has no direct Capella analogue, since Capella customers don't license by core count. No page states this distinction; noted here as inferred from the tool's stated purpose."
+}

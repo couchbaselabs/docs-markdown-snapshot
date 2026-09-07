@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-bucket-eviction-policy-create-edit-scope-mismatch",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "couchbase-cli-bucket-create.md describes the eviction-policy option as 'valid for Couchbase and Ephemeral buckets only'. couchbase-cli-bucket-edit.md describes the same-named option as 'valid for Couchbase buckets only; the eviction policy for ephemeral buckets...' (trailing off into a different clause). Either an ephemeral bucket's eviction policy can be set at creation but never changed afterward (a real, statable constraint the edit page fails to say directly), or one of the two pages is simply wrong about which bucket types the option applies to. Needs an SME.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-bucket-create",
+    "server/8.0/cli/cbcli/couchbase-cli-bucket-edit"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/built-in-administrator-account",
+  "label": "Built-in Administrator account",
+  "type": "the single, per-node Couchbase Server Administrator account created at cluster setup, managed separately from local/external RBAC server:user accounts (shouldNotBeConfusedWith them). Managed by couchbase-cli admin-manage and reset-admin-password, both of which must be run locally on the node they act on.",
+  "promoted": true,
+  "recurrence": 2,
+  "shouldNotBeConfusedWith": "server:user",
+  "requiresCapability": "must be run locally on a node that is part of the cluster",
+  "evidence": [
+    "This command is used to manage the built-in Couchbase Server Administrator user. There is only one built-in Administrator account, which is managed separately from the internal and external Administrator users.",
+    "The admin-manage command must be run locally on a node that is part of the cluster (i.e. must connect to the host the command is run on).",
+    "The reset-admin-password command must be run locally on a node that is part of the cluster."
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-admin-manage.md",
+  "note": "couchbase-cli-admin-manage.md is one of two pages added back into this round's batch after being found missing from the original plan document (the other being the cbstats-intro/cbepctl-intro pair) - both were real, substantive pages, not stubs.",
+  "relates_to_competency_question": "Is there more than one built-in Administrator account per node, and can it be reset remotely?"
+}

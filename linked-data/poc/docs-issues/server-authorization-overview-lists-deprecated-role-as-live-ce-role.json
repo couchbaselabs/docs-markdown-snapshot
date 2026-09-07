@@ -2,10 +2,11 @@
   "id": "https://docs.couchbase.com/ld/docs-issues/server-authorization-overview-lists-deprecated-role-as-live-ce-role",
   "type": "docs-issue",
   "issueType": "possible-content-inconsistency",
-  "description": "authorization-overview.md presents Bucket Full Access (bucket_full_access) as one of Community Edition's three live fixed roles, with no deprecation notice. roles.md marks the same internal name deprecated and says outright 'Do not grant this role to users', noting 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access'. Either authorization-overview.md is stale, or Community Edition genuinely still depends on the deprecated role as one of only three options and roles.md's blanket warning does not apply to it - which would itself need stating. A CE administrator is currently told both to use this role and never to use it. Needs an SME.",
+  "description": "authorization-overview.md presents Bucket Full Access (bucket_full_access) as one of Community Edition's three live fixed roles, with no deprecation notice. roles.md marks the same internal name deprecated and says outright 'Do not grant this role to users', noting 'Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access'. Either authorization-overview.md is stale, or Community Edition genuinely still depends on the deprecated role as one of only three options and roles.md's blanket warning does not apply to it - which would itself need stating. A CE administrator is currently told both to use this role and never to use it. Needs an SME. Round 29 found a THIRD page presenting the same role with no deprecation warning: couchbase-cli-user-manage.md's ROLES catalogue lists bucket_full_access[...] plainly ('Gives the user full access to bucket data...') alongside every other role, with no annotation distinguishing it as deprecated - consistent with that page's roles catalogue being generally stale (see docs-issues/server-couchbase-cli-user-manage-roles-catalogue-stale) rather than a new, independent instance of the contradiction.",
   "about": [
     "server/8.0/learn/security/authorization-overview",
-    "server/8.0/learn/security/roles"
+    "server/8.0/learn/security/roles",
+    "server/8.0/cli/cbcli/couchbase-cli-user-manage"
   ],
   "foundDuring": "round-12-server-8.0-learn-data-buckets-security",
   "status": "open"

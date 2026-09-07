@@ -1,0 +1,52 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-rebalance",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-rebalance.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused - minted in a prior round's couchbase-cli-bucket-compact.json extraction, never promoted" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:swap-rebalance", "label": "Swap rebalance", "registry_status": "minted", "reused_or_minted": "minted - no existing concept for this specific rebalance variant; the term 'swap rebalance' also appears in the already-promoted bucket:storage-backend-migration's description (as one of two triggers for a storage-engine migration) but was never given its own id there - reconciliation should link the two" },
+    { "candidate_id": "service:search-service", "label": "Search service", "registry_status": "promoted", "reused_or_minted": "reused - --fts-add/--fts-remove flags" },
+    { "candidate_id": "service:index-service", "label": "Index service", "registry_status": "promoted", "reused_or_minted": "reused - --index-add/--index-remove flags" },
+    { "candidate_id": "service:query-service", "label": "Query service", "registry_status": "promoted", "reused_or_minted": "reused - --query-add/--query-remove flags" },
+    { "candidate_id": "service:backup-service", "label": "Backup Service", "registry_status": "promoted", "reused_or_minted": "reused - --backup-add/--backup-remove flags" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics service", "registry_status": "promoted", "reused_or_minted": "reused - --analytics-add/--analytics-remove flags" },
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "registry_status": "promoted", "reused_or_minted": "reused - --eventing-add/--eventing-remove flags" },
+    { "candidate_id": "server:node-addition", "label": "Node addition", "registry_status": "promoted", "reused_or_minted": "reused - minted for couchbase-cli-server-add.json, cited here as the prerequisite step before rebalance" },
+    { "candidate_id": "server:failover", "label": "Failover", "registry_status": "promoted", "reused_or_minted": "reused - cited as a prerequisite step before rebalance" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli rebalance_ [--cluster <url>] [--username <user>] [--password <password>]" },
+    { "subject": "server:rebalance", "predicate": "requiresPriorExecutionOf", "object": "server:node-addition",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "After running the [server-add](couchbase-cli-server-add.md) or [failover](couchbase-cli-failover.md)subcommands ensure that you run the rebalance command to balance data and indexes across the cluster." },
+    { "subject": "server:rebalance", "predicate": "requiresPriorExecutionOf", "object": "server:failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "After running the [server-add](couchbase-cli-server-add.md) or [failover](couchbase-cli-failover.md)subcommands ensure that you run the rebalance command to balance data and indexes across the cluster." },
+    { "subject": "server:swap-rebalance", "predicate": "isVariantOf", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If you add one node to the cluster and remove a node during the same rebalance, Couchbase Server will do a \"swap rebalance\". This means data and indexes from the node being removed are moved to the one being added." },
+    { "subject": "service:search-service", "predicate": "configurableVia", "object": "server:rebalance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A comma separated list of nodes to add the Search Service to." },
+    { "subject": "server:rebalance", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-failover",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[failover](couchbase-cli-failover.md), [recovery](couchbase-cli-recovery.md), [server-add](couchbase-cli-server-add.md)" },
+    { "subject": "server:rebalance", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-recovery",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[failover](couchbase-cli-failover.md), [recovery](couchbase-cli-recovery.md), [server-add](couchbase-cli-server-add.md)" },
+    { "subject": "server:rebalance", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-server-add",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[failover](couchbase-cli-failover.md), [recovery](couchbase-cli-recovery.md), [server-add](couchbase-cli-server-add.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole / requiresPrivilege",
+    "finding": "Rebalance is a cluster-wide, potentially long-running and disruptive operation (it can add/remove services from nodes and trigger a full swap rebalance), yet no specific RBAC role or privilege is ever named as required to invoke it - only the generic 'unauthorized error' boilerplate shared by every couchbase-cli subcommand appears. This is consistent across the whole batch."
+  },
+  "cross_component_finding": "The six --<service>-add/--<service>-remove flag pairs (fts/index/query/backup/analytics/eventing) each describe adding or removing 'the Search Service' / 'the Index Service' etc. in near-identical one-line prose, differing only in the service name - a templated pattern rather than independently composed descriptions, consistent with this round's lighter-TW-review authorship hypothesis. The --fts-add/--fts-remove flag names spell the service 'fts' while the prose calls it 'the Search Service' - the same CLI-flag-vs-service-name split already documented in the registry's promoted service:search-service note (from couchbase-cli-cluster-init.json's --cluster-fts-ramsize flag), reinforcing rather than introducing that terminology-drift finding. The entire HOST FORMATS, CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION), and ENVIRONMENT AND CONFIGURATION VARIABLES sections are reproduced verbatim - the same boilerplate seen on essentially every other couchbase-cli page in this and prior rounds.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella is made. Rebalance on Capella is a fully managed background operation with no customer-facing CLI equivalent, so this entire page's flag surface (manual service placement per node, swap rebalance, --no-wait/--no-progress-bar) has no Capella analogue to compare against."
+}

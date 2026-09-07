@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-raw",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-raw.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage:latency-histogram-format", "label": "cbstats latency/count histogram format",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - same mechanism minted from cbstats-kvtimings.md in this batch; raw's 'timings' example uses the identical bucketed-range histogram shape for unrelated scheduler/command counters (access_scanner, checkpoint_remover, store_cmd)." }
+  ],
+  "relations": [
+    { "subject": "storage:latency-histogram-format", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "checkpoint_remover_16384,32768:                                     9" },
+    { "subject": "server/8.0/cli/cbstats/cbstats-raw", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For common `cbstats` options, see [cbstats](../cbstats-intro.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsPurpose",
+    "finding": "The page states 'For internal use only' but never says what makes the command internal-only, which internal component or diagnostic workflow actually consumes 'raw', or what other arguments besides 'timings' are valid - the single Options row just says 'argument | The subcommand to pass through to the raw command,' with no enumeration of what those subcommands are."
+  },
+  "cross_component_finding": "The access_scanner_* and checkpoint_remover_* histogram families surfaced here name the same subsystems whose enabled/interval settings appear as plain config values on cbstats-config.md (ep_access_scanner_enabled, ep_chk_remover_stime) in this same batch - 'raw timings' is effectively the latency-distribution view of mechanisms that 'config' only reports the on/off and interval settings for.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

@@ -1,0 +1,123 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-cluster",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-cluster.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-cluster",
+      "label": "setting-cluster (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "server:service-memory-quota",
+      "label": "service memory quota",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the --cluster-ramsize/--cluster-fts-ramsize/--cluster-index-ramsize/--cluster-eventing-ramsize/--cluster-analytics-ramsize/--cluster-query-ramsize flags each set a per-service memory quota"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-ramsize sets the data services memory quota"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-fts-ramsize sets the full-text (Search) service memory quota"
+    },
+    {
+      "candidate_id": "service:index-service",
+      "label": "Index service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-index-ramsize sets the index service memory quota"
+    },
+    {
+      "candidate_id": "service:eventing-service",
+      "label": "Eventing Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-eventing-ramsize sets the Eventing service memory quota"
+    },
+    {
+      "candidate_id": "service:analytics-service",
+      "label": "Analytics service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-analytics-ramsize sets the Analytics service memory quota"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-query-ramsize sets the Query service memory quota"
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-port changes the Cluster Manager REST/UI port from its 8091 default"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-cluster",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-cluster",
+      "predicate": "requiresMemoryQuota",
+      "object": "service:data-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the data services memory quota. This quota will be assigned to all future nodes added to the cluster with the data service."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-cluster",
+      "predicate": "requiresMemoryQuota",
+      "object": "service:search-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the full-text service memory quota. This parameter is required if the full-text service is specified in the --services option."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-cluster",
+      "predicate": "requiresMemoryQuota",
+      "object": "service:index-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the index service memory quota. This parameter is required if the index service is specified in the --services option."
+    },
+    {
+      "subject": "port:8091",
+      "predicate": "hasDefaultValue",
+      "object": "8091",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the port for the Couchbase Administration Console. Defaults to port 8091."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-cluster",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli-cluster-init",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The SYNOPSIS lists --cluster-query-ramsize nowhere at all (the flag list stops at --cluster-analytics-ramsize), yet OPTIONS documents it in full ('Sets the Query service memory quota (in MiB). This parameter is required if the Query service is specified in the --services option.') - the identical SYNOPSIS-omits-a-documented-flag pattern found on setting-alert (--alert-communication-issue) and setting-notification (--enable-notification vs --enable-notifications), suggesting this is a systemic authoring habit across the couchbase-cli doc tree rather than an isolated slip on one page."
+  },
+  "cross_component_finding": "OPTIONS documents --cluster-username and --cluster-password as changing 'the Couchbase root username and password' / 'the new username/password for the Couchbase administrator user' with no mention of the separate admin-manage subcommand (couchbase-cli.md: 'Manages the built-in administrator') that the couchbase-cli.md landing page lists as its own, distinct command. Two subcommands both appear to touch the same 'Couchbase administrator user' identity (setting-cluster's --cluster-username/--cluster-password and admin-manage) with no cross-reference or disambiguation between them on either page as read in this batch - a candidate docs-issue for reconciliation to examine once admin-manage's own page is extracted.",
+  "cross_product_finding": "The six per-service --cluster-*-ramsize flags mirror the memory-quota model server:service-memory-quota already generalizes across products/surfaces; nothing on this CLI page states these flags are equivalent to a specific REST field or Web Console form field, so no direct terminology-drift claim is made here, only that the coverage (six services enumerated, all with the same 'quota... assigned to all future nodes added... with the X service' phrasing) is internally consistent."
+}

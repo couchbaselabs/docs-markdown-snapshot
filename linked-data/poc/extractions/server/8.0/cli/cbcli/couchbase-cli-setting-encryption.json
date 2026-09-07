@@ -1,0 +1,125 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-encryption",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-encryption.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-encryption",
+      "label": "setting-encryption (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "encryption:native-encryption-at-rest",
+      "label": "Native encryption at rest",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "encryption:data-encryption-key",
+      "label": "Data Encryption Key (DEK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --dek-rotate-every/--dek-lifetime directly configure the DEK"
+    },
+    {
+      "candidate_id": "encryption:key-rotation",
+      "label": "encryption key rotation",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --rotate-key/--auto-rotate-every/--dek-rotate-every are all key-rotation controls"
+    },
+    {
+      "candidate_id": "encryption:master-password",
+      "label": "Master password",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --encrypt-with-master-password names this exact mechanism"
+    },
+    {
+      "candidate_id": "security:auditing",
+      "label": "Auditing (Server security facility)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --audit-usage/--target audit configure encryption of the audit log this facility writes"
+    },
+    {
+      "candidate_id": "log:log-file",
+      "label": "Couchbase Server log file",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --log-usage/--target log configure encryption of this log"
+    },
+    {
+      "candidate_id": "cloud-provider:aws",
+      "label": "AWS (as a Capella deployment substrate)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cloud-key-arn/--cloud-region and the AWS KMS example are this same provider, here as a Server (not Capella) KMS integration; reused across the deployment-substrate axis rather than merged with a Capella-only meaning"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-encryption",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-encryption",
+      "predicate": "configuresProperty",
+      "object": "encryption:native-encryption-at-rest",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Allows managing encryption at-rest settings, including create/editing/rotating/deleting keys and choosing what encryption to use for config, logs and audit logs."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-encryption",
+      "predicate": "configuresProperty",
+      "object": "encryption:key-rotation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "How often to rotate the DEK."
+    },
+    {
+      "subject": "encryption:data-encryption-key",
+      "predicate": "encryptsKeysFor",
+      "object": "security:auditing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\\--audit-usage\n\nAllow the key to be used to encrypt the audit logs."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-encryption",
+      "predicate": "offersConfigurationChoice",
+      "object": "master-password-or-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The type of encryption to use. Can be `disabled`, `key` or `master-password`."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-encryption",
+      "predicate": "mutuallyExclusiveWith",
+      "object": "all-bucket-usage-vs-bucket-usage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Allow the key to be used to encrypt any bucket. Cannot be used with `--bucket-usage`."
+    },
+    {
+      "subject": "encryption:data-encryption-key",
+      "predicate": "encryptsKeysFor",
+      "object": "cloud-provider:aws",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - AWS here is the KMS holding the KEK, not a deployment substrate, but no more specific promoted concept exists for 'AWS as external KMS'",
+      "evidence": "For AWS keys: `--cloud-key-arn <arn>`, `--cloud-region <region>`, `--cloud-auth-by-instance-metadata`, `--cloud-creds-path <path>`, `--cloud-config-path <path>`, `--cloud-profile-path <path>`"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The SYNOPSIS line names the WRONG subcommand outright: '_couchbase-cli setting-enable_ [--cluster <url>] ...' - every other page in this batch, and this page's own title, description, OPTIONS and EXAMPLES, consistently say `setting-encryption`, but the SYNOPSIS's italicized command name is the literal string `setting-enable`. This is the single most direct piece of authorship-provenance evidence found in this batch: a copy-paste artifact (most likely from an earlier or sibling subcommand's SYNOPSIS template) that a TW review pass would very likely have caught, left uncorrected in a published reference page. Separately, OPTIONS defines the rotate flag as '\\--rotate <keyid>\\n\\nRotate the given key.' at the very end of the OPTIONS list, but the SYNOPSIS, DESCRIPTION's mutually-exclusive-argument list, and every EXAMPLES invocation ('--rotate-key 2') all use the longer name `--rotate-key` - so the OPTIONS entry for this flag is itself inconsistently named relative to the rest of its own page, a second, smaller instance of the same drift."
+  },
+  "cross_component_finding": "The 'setting-enable' SYNOPSIS typo, taken together with setting-compaction's '--meta-data-purge-interval' EXAMPLES typo and setting-notification's --enable-notification/--enable-notifications singular/plural mismatch, means 3 of the 8 pages read in this batch carry a literal command-name-or-flag-name inconsistency between their own SYNOPSIS/OPTIONS and their own EXAMPLES/DESCRIPTION - never a factual error about behavior, always a spelling/naming slip, which is precisely the terse-prose-and-light-review signature this round's framing predicted for cli/ as opposed to the rest of the Server docs tree.",
+  "cross_product_finding": "Encryption-at-rest key management here (add-key/edit-key/rotate-key/delete-key, KEK vs DEK, KMIP and AWS KMS integration, auto-rotation with an ISO 8601 start date) is described as a purely Server/on-prem CLI-and-cluster-local feature with no reference to Capella's own at-rest encryption model or to whether Capella exposes an equivalent key-management surface at all - consistent with encryption:native-encryption-at-rest's registry note that it is an Enterprise Edition Server feature, but this page gives no signal either way about Capella parity, so no cross-product claim beyond 'silent on Capella' can be made."
+}

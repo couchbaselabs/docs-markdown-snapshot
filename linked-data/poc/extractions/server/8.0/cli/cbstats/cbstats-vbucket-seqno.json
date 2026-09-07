@@ -1,0 +1,25 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-vbucket-seqno",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-vbucket-seqno.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; subject of every seqno stat this command reports" }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command provides details connected to the sequence number (seqno) for the specified vBucket, or for each vBucket if none is specified." }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page and cbstats-vbucket-details.md both independently define a high_seqno stat and a purge_seqno stat ('The last seqno assigned by this vBucket.' / 'The last seqno purged by the compactor.' - identical wording on both pages), but neither page cross-references the other. The same two stat names are documented twice, with no seeAlso link tying the two reference pages together, even though vbucket-details' own table 1 repeats both fields verbatim."
+  },
+  "cross_component_finding": "high_seqno's own one-line definition on this page already forks by vBucket type within a single field: 'The last seqno assigned by this vBucket, or in case of replica, the last closed checkpoint's end seqno.' The active/replica distinction that vbucket:active-vbucket and vbucket:replica-vbucket exist to capture recurs here as a behavioral branch inside one stat's description, not just as a vBucket-type label.",
+  "cross_product_finding": "No Capella analog: per-vBucket sequence-number introspection is Server-CLI-only."
+}

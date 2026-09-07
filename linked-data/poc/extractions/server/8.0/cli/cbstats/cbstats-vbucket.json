@@ -1,0 +1,37 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-vbucket",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-vbucket.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this is the generic vBucket concept this page's whole output is a listing of" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; one of the four states this command reports" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; one of the four states this command reports" },
+    { "candidate_id": "vbucket:pending-vbucket", "label": "Pending vBucket",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page names 'pending' as one of exactly four vBucket types (active, replica, pending, dead) alongside the two already-promoted siblings vbucket:active-vbucket and vbucket:replica-vbucket; filling out the same closed enum, not a new per-row stat concept" },
+    { "candidate_id": "vbucket:dead-vbucket", "label": "Dead vBucket",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fourth member of the same closed vBucket-type enum named on this page" }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command lists all available vBuckets and provides information about their type: active, replica, pending or dead." }
+  ],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "The page asserts four possible vBucket types (active, replica, pending, dead) but the example response only ever shows 'active' and 'replica' values ('vb_100: active', 'vb_0: replica', etc.) - 'pending' and 'dead' are named in prose but never demonstrated in the sample output, so a reader has no worked example of what those two states look like in practice."
+  },
+  "cross_component_finding": "This page and cbstats-prev-vbucket.md (the very next file in this batch) are structurally near-identical: same Syntax/Description/Options/Example section order, same 'There are no options for this command' Options text, and near-identical one-sentence Description prose ('This command lists all available vBuckets and provides information about their type...' vs 'This command lists the previous state of each vBucket.') differing only in the current-vs-previous framing. That is a strong authorship-provenance signal for this round: both pages read as written in one authoring pass by the same hand, not as two independently-drafted commands that happened to converge.",
+  "cross_product_finding": "cbstats is a Server-only, per-node KV-port CLI tool; Capella exposes no equivalent low-level vBucket-state inspection surface (its bucket/scope/collection concepts - capella:bucket, capella:scope, capella:collection - are documented purely through UI/REST, with no vBucket-granularity CLI at all). No cross-product concept applies here."
+}

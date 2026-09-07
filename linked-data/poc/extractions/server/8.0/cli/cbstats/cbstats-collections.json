@@ -1,0 +1,52 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-collections",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-collections.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; the tool:cbstats registry note itself names 'collection change-history status (collections-details)' as one of the three things this tool surfaces that the Web Console does not" },
+    { "candidate_id": "server:collection", "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:default-collection", "label": "default collection",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; the page's example output identifies the first collection returned by name as '_default'" },
+    { "candidate_id": "server:collections-manifest", "label": "Collections manifest (manifest_uid)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a real, page-stated versioning mechanism ('the manifest_uid value is associated with the current state of collections on the node') distinct from any individual stat field; nothing in the registry currently names this mechanism" },
+    { "candidate_id": "server:collection-change-history", "label": "Collection change history",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism-level feature behind the collection's history stat field (true/false, Magma-gated); mint at the feature level, not the field level, per this round's canonical-table warning" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "server:scope", "predicate": "hasInternalComponent", "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `scope_name` line identifies the scope within which this collection resides: in this case, the scope is the `_default` scope." },
+    { "subject": "server:collection-change-history", "predicate": "reliesOnMechanism", "object": "storage-engine:magma",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket" },
+    { "subject": "server:collection-change-history", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `history` line indicates whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not." },
+    { "subject": "server:collections-manifest", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `manifest_uid` value is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Every example on the page runs with '-u Administrator -p password', but the page never states which specific privilege or RBAC role is actually required to run `cbstats collections` - credential requirements are shown by example only, never stated as a rule, unlike many other Server reference pages that name a specific role."
+  },
+  "cross_component_finding": "The `metered` line's description - 'The metered line is not used in Couchbase Server Version 7.6, and always has the value 0' - is a stale, version-pinned sentence (name-checking 7.6 specifically) that recurs verbatim on the sibling cbstats-collections-details.md page as well, despite both pages being served here as 8.0 reference material. This is prose-level copy-paste evidence between the base/-details pair, even though the underlying stat data each page returns (collection-level totals here vs. per-vBucket breakdowns on -details) is genuinely different in depth, not redundant.",
+  "cross_product_finding": "capella:collection and capella:scope (documented extensively elsewhere in the corpus) have no analog for server:collections-manifest or server:collection-change-history: Capella exposes scopes/collections purely through UI/REST, with no manifest-versioning or Magma-gated change-history concept ever described on that surface."
+}

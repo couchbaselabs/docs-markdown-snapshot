@@ -1,0 +1,111 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry (checked via registry-digest.py); this is the tool's own overview/landing page, per this round's naming instruction the natural home for tool:couchbase-cli's own content"
+    },
+    {
+      "candidate_id": "auth-mechanism:username-password",
+      "label": "Username and password authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - CB_REST_USERNAME/CB_REST_PASSWORD are this mechanism's env-var carriers"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - CB_CLIENT_CERT/CB_CLIENT_KEY are this mechanism's env-var carriers"
+    },
+    {
+      "candidate_id": "cert:pkcs12-certificate",
+      "label": "PKCS #12 certificate bundle",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - CB_CLIENT_CERT_PASSWORD is documented as implying PKCS#12 format"
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - HOST FORMATS names 8091 as the default admin port"
+    },
+    {
+      "candidate_id": "port:18091",
+      "label": "Port 18091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - HOST FORMATS names 18091 as the default TLS admin port"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-user-manage",
+      "label": "user-manage (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-admin-manage",
+      "label": "admin-manage (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "providesService",
+      "object": "server:cluster-manager",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The couchbase-cli script is the main command line interface for Couchbase cluster management."
+    },
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the username to use when executing the command. This environment variable allows you to specify a default argument for the -u/--username argument on the command line."
+    },
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The path to a client certificate used to authenticate when connecting to a cluster. May be supplied with `CB_CLIENT_KEY` as an alternative to the `CB_USERNAME` and `CB_PASSWORD` variables."
+    },
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "configuredVia",
+      "object": "CB_REST_PASSWORD",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "It also allows the user to ensure that their password are not cached in their command line history."
+    },
+    {
+      "subject": "tool:couchbase-cli-user-manage",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[user-manage](couchbase-cli-user-manage.md)\n\nManage RBAC users."
+    },
+    {
+      "subject": "tool:couchbase-cli-admin-manage",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[admin-manage](couchbase-cli-admin-manage.md)\n\nManages the built-in administrator."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This landing page's OPTIONS section lists only `--version` and `-h`/`--help` as the couchbase-cli TOOL's own options - it never documents `--cluster`/`--username`/`--password`/`--client-cert`/`--client-key` etc. as global/inherited flags here, even though every one of the ~50 subcommands (all 6 read in this batch included) repeats the identical --cluster/--username/--password/--client-cert-family SYNOPSIS block verbatim on its own page. The tool's own top-level self-description never states that this connection/auth flag set is common infrastructure shared by every subcommand; a reader only discovers that by noticing the same boilerplate repeated dozens of times. Separately, the ENVIRONMENT AND CONFIGURATION VARIABLES section says of CB_CLIENT_CERT: 'May be supplied with `CB_CLIENT_KEY` as an alternative to the `CB_USERNAME` and `CB_PASSWORD` variables' - but no environment variable named `CB_USERNAME` or `CB_PASSWORD` is defined anywhere on this page (or, per this batch's other pages, anywhere else); the actual defined names are `CB_REST_USERNAME` and `CB_REST_PASSWORD`. This is an internal terminology slip on the tool's own canonical description of its authentication model - the cross-reference names variables that do not exist under those names. Additionally, this same ENVIRONMENT VARIABLES section says 'See the CERTIFICATE AUTHENTICATION section for more information' for CB_CLIENT_CERT/CB_CLIENT_CERT_PASSWORD/CB_CLIENT_KEY/CB_CLIENT_KEY_PASSWORD, but this page has NO 'CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION)' section at all - that section only exists on the individual subcommand pages (confirmed present on all six setting-* pages read in this batch) - so the landing page's own forward reference points to a section that is absent from the landing page itself."
+  },
+  "cross_component_finding": "The COMMANDS table entry '[admin-role-manage](couchbase-cli-user-manage.md)' - labelled 'Manage LDAP user roles.' - links to `couchbase-cli-user-manage.md`, the SAME target file as the separately listed '[user-manage](couchbase-cli-user-manage.md)' entry ('Manage RBAC users.') three sections later. Either admin-role-manage is not really a distinct subcommand from user-manage (in which case the landing page duplicates one command under two names with two different one-line descriptions, one calling it LDAP-specific and one calling it RBAC-general), or the link target for admin-role-manage is simply wrong and should point to a couchbase-cli-admin-role-manage.md page that was never linked. This mismatch is the root of the identical anchor-vs-target mismatch also found in this batch's setting-audit.json SEE ALSO line, confirming it originates on this landing page and is propagated by copy-paste into subcommand pages' own SEE ALSO sections rather than being independently introduced on each page.",
+  "cross_product_finding": "The tool's own scope self-description ('The couchbase-cli script is the main command line interface for Couchbase cluster management.') and its two-mechanism authentication model (username/password via CB_REST_USERNAME/CB_REST_PASSWORD or mTLS via CB_CLIENT_CERT/CB_CLIENT_KEY, optionally PKCS#12/PKCS#8-protected) are consistent in SHAPE with the promoted auth-mechanism:username-password / auth-mechanism:x509-certificate pair that other rounds have already extracted from Server's own security-overview framing - no contradiction found. However, the CLI's own description is silent on LDAP/SAML/PAM external-authentication-domain support: nowhere on this landing page (or on any of the six setting-* subcommand pages in this batch) is there any statement of whether a --username/--password pair authenticated against Server's external auth domain (idp:ldap/idp:saml/idp:pam, all already promoted from other rounds' REST/UI coverage) is honored by couchbase-cli, or whether the CLI is local-auth-domain-only. This is a real scope gap in the tool's own self-description relative to how thoroughly other rounds have documented the equivalent REST API / Web Console login surface's support for both authentication domains."
+}

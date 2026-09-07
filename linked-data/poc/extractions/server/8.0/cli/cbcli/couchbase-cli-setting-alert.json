@@ -1,0 +1,99 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-alert",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-alert.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the couchbase-cli tool itself is not yet in the promoted registry (checked via registry-digest.py); this round's naming guidance directs reuse of tool:couchbase-cli as the anchor concept for the whole CLI suite"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-alert",
+      "label": "setting-alert (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction to name a distinct subcommand tool:couchbase-cli-<subcommand>"
+    },
+    {
+      "candidate_id": "auth-mechanism:username-password",
+      "label": "Username and password authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "cert:pkcs12-certificate",
+      "label": "PKCS #12 certificate bundle",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the --client-cert-password flag's PKCS#12 certificate/key bundle is the same construct as the promoted concept"
+    },
+    {
+      "candidate_id": "monitoring:email-alert",
+      "label": "Couchbase Server email alert facility",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - registry only has monitoring:alert labeled '(Capella)', a Capella UI/webhook triggered notification; this page's mechanism is Server's own SMTP-based email alerting configured via couchbase-cli, a materially different delivery mechanism with no page stating the two are the same thing, so kept apart per the no-silent-merge rule"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "configuresProperty",
+      "object": "monitoring:email-alert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to set up email alerts on a cluster."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the username of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "authenticatesVia",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication)."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "reliesOnMechanism",
+      "object": "cert:pkcs12-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "An encrypted PKCS#12 certificate/key may be provided using: - `--client-cert <path>`\\- `--client-cert-password <password>`"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alert",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli-setting-notification",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[setting-notification](couchbase-cli-setting-notification.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "The DESCRIPTION and OPTIONS list a specific, closed set of --alert-* flags (auto-failover node/max/node-down/cluster-small/disable, ip-changed, disk-space, meta-overhead, meta-oom, write-failed, audit-msg-dropped, indexer-max-ram, timestamp-drift-exceeded, node-time, disk-analyzer, memory-threshold, bucket-history-size, indexer-low-resident-percentage, memcached-connections) but this is never modeled as a formal enum anywhere on the page - each is its own boolean flag with its own prose sentence, several near-duplicates of each other in phrasing ('Specifies that an email alert should be sent when...'). More telling for this round's authorship-provenance angle: --alert-communication-issue is documented in full under OPTIONS ('Specifies that an email alert should be sent when nodes are experiencing communication issues.') but is completely absent from the SYNOPSIS flag list at the top of the page - a flag whose OPTIONS entry exists but whose SYNOPSIS entry was never added or was dropped, exactly the kind of terse, unreviewed drift the round's provenance hypothesis predicts for engineer-maintained CLI pages."
+  },
+  "cross_component_finding": "Every permission-gated flag on this page (username/password auth) is covered only by the generic boilerplate sentence 'If you do not have a user account with permission to execute the command then it will fail with an unauthorized error' - the page never names a specific role or privilege (no role:administrator, no cluster.settings!write style privilege string). This boilerplate recurs verbatim across the whole batch of setting-* subcommand pages read for this round, and stands in contrast to how other rounds have found the REST API and RBAC reference pages naming concrete roles/privileges for equivalent settings endpoints - the CLI reference never bridges from 'unauthorized error' down to the actual role:/privilege: catalogue.",
+  "cross_product_finding": "Not directly evidenced on this page; see the couchbase-cli.md overview record for the batch-level finding on the CLI's own self-described authentication model versus how other rounds have documented the equivalent REST API / Web Console surface."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbstats-kvtimings-wrong-content-copied-from-kvstore",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "cbstats-kvtimings.md's Description ('This command is useful to understand various states of the storage system') and its entire 'Table 1. Couchstore database engine stats' options table are byte-identical to cbstats-kvstore.md - confirmed by direct diff of both pages. But kvtimings' own EXAMPLE section shows real, distinct content that has nothing to do with the copied Couchstore-counters table: a 'Sample histogram' of per-operation latency buckets (e.g. 'rw_3:commit (50457 total)' followed by millisecond-range rows). kvtimings actually returns latency histograms, not the kvstore counters its own Description and Table 1 claim to describe.",
+  "about": [
+    "server/8.0/cli/cbstats/cbstats-kvtimings",
+    "server/8.0/cli/cbstats/cbstats-kvstore"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-scheduler",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-scheduler.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:cbstats-histogram",
+      "label": "cbstats histogram-format latency stat",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-timing.json; reused here since the scheduler command's response uses the identical bucketed-range/percentage/count/Avg format, this time keyed by task class rather than by front-end operation"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-background-task",
+      "label": "ep-engine background task class",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-runtimes.json; reused here since compactor_tasks, statsnap_tasks, checkpoint_remover_tasks, flusher_tasks etc. are the same class of internally-scheduled job named with a `_tasks` suffix"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "monitoring:ep-engine-background-task",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command provides scheduler task statistics."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's own histogram-total counts reveal an internal-scheduler mechanism this ontology has never had occasion to name: a per-task-class SCHEDULING QUEUE whose backlog can be enormous and highly skewed - checkpoint_remover_tasks shows 499385125 total runs and flusher_tasks 623149835, versus vbucket_persist_high_tasks' 4, all reported through the same per-task-class histogram. No concept anywhere in the registry represents 'a named ep-engine scheduler queue/task-class, sampled by histogram of run-time distribution' as a first-class mechanism distinct from the task itself; this page is purely that mechanism and nothing else, which is why it is the single clearest example in this batch of the round's predicted near-zero vocabulary overlap. A future round revisiting Data Service internals more broadly (e.g. a memcached/ep-engine architecture overview page, if one exists) should check whether a dedicated 'scheduler queue' or 'task priority class' concept belongs in the registry rather than being represented only as evidence text here."
+  },
+  "cross_component_finding": "The `_tasks` suffix names here (compactor_tasks, statsnap_tasks, conn_notification_tasks, access_scanner_tasks, warmup_tasks, vbucket_persist_low_tasks, hashtable_resize_tasks, workload_monitor_tasks, checkpoint_remover_tasks, flusher_tasks, vbucket_persist_high_tasks, bg_fetcher_tasks, conn_manager_tasks, item_pager_tasks) are the same task-class vocabulary that appears, spelled as CamelCase class names rather than snake_case histogram keys, in cbstats-runtimes.md (e.g. ClosedUnrefCheckpointRemoverVisitorTask for checkpoint_remover_tasks) and cbstats-tasks.md's Name column - three cbstats subcommands describing what is evidently the same underlying set of internal task classes through three different naming conventions, with no page reconciling them.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

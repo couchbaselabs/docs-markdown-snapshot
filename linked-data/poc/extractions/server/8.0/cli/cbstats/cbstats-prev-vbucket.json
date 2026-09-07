@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-prev-vbucket",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-prev-vbucket.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; the only state value the page's own example response actually shows" }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command lists the previous state of each vBucket." }
+  ],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "The page never states WHEN 'previous' is captured - e.g. before the last rebalance, before the last topology change, or before the last node restart. The trigger point that defines what counts as the 'previous' state is left completely undefined, unlike cbstats-vbucket.md's own state enum (active/replica/pending/dead), which at least names all four values even if it does not demonstrate them all."
+  },
+  "cross_component_finding": "This page is the closest structural twin in the batch to cbstats-vbucket.md: identical section order, identical 'There are no options for this command' Options text, and a one-sentence Description that differs from vbucket.md's by only a few words ('lists the previous state of each vBucket' vs 'lists all available vBuckets and provides information about their type'). Read together, the two pages look like a single authoring pass that produced a 'current' and a 'previous' variant of one command description, rather than two independently-written reference pages - direct evidence for this round's authorship-provenance axis.",
+  "cross_product_finding": "No Capella analog: previous-vs-current vBucket topology inspection is Server-CLI-only."
+}

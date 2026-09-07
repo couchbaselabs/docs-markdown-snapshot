@@ -1,0 +1,61 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-compact",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-compact.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no concept anchors the couchbase-cli binary/tool itself in the registry; every cli/ page so far describes one subcommand, but the tool that hosts all of them (bucket-compact is explicitly 'Part of the couchbase-cli suite') has no id. Minted here as the first file in this batch; reused across the other six."
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:couchbase-bucket",
+      "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "bucket:ephemeral-bucket",
+      "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "storage:auto-compaction",
+      "label": "auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli",
+      "predicate": "triggersImmediateExecutionOf",
+      "object": "storage:auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Starts compaction of view index and data files for a specified bucket."
+    },
+    {
+      "subject": "bucket:ephemeral-bucket",
+      "predicate": "doesNotSupport",
+      "object": "storage:auto-compaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Only Couchbase buckets can be compacted: Ephemeral and Memcached buckets cannot be compacted."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Nowhere does this page name an RBAC role required to run bucket-compact - the only access-control statement is the generic boilerplate 'If you do not have a user account with permission to execute the command then it will fail with an unauthorized error', repeated under --username and --password. No role from Server's 56-role catalogue (e.g. Bucket Admin) is ever named, not even by pointer. Consistent with this round's framing hypothesis: this reads like an engineer-maintained CLI reference that was never cross-checked against the RBAC catalogue, not a page a technical writer reconciled against learn/security/roles.md."
+  },
+  "cross_component_finding": "The entire OPTIONS block for --cluster/--username/--password/--client-cert*/--client-key*, the whole HOST FORMATS section, the whole CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION) section (all three sub-cases verbatim: PEM, encrypted PKCS#8, PKCS#12), and the whole ENVIRONMENT AND CONFIGURATION VARIABLES section are reproduced word-for-word on this page and (as read in this same batch) on bucket-create, bucket-delete, bucket-edit, bucket-flush, bucket-list and collection-manage. This is boilerplate generated once and pasted into every couchbase-cli subcommand page, not independently written per-command prose - direct, mechanical evidence for this round's authorship hypothesis (lighter TW-specific review, closer to templated API-doc output). The DESCRIPTION itself is terse and literal ('Starts compaction of view index and data files for a specified bucket... Only Couchbase buckets can be compacted') with no surrounding concept explanation of why or when to compact - consistent with engineer-authored reference prose rather than TW-shaped content.",
+  "cross_product_finding": "None specific to this page found in this batch - bucket-compact has no cross-referenced Sync Gateway or Capella analogue among the pages read here, and the REST compaction endpoint's vocabulary is out of scope for this batch."
+}

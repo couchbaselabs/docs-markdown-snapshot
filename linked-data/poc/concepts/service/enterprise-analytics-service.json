@@ -1,0 +1,14 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/service/enterprise-analytics-service",
+  "label": "Enterprise Analytics Service",
+  "type": "the service backing 'Enterprise Analytics' links (external dataset and remote-cluster capabilities), managed via couchbase-cli enterprise-analytics-link-setup and setting-enterprise-analytics. Not confirmed to be the same service as service:analytics-service - see docs-issues/server-enterprise-analytics-vs-analytics-relationship-undocumented.",
+  "promoted": true,
+  "recurrence": 2,
+  "evidence": [
+    "This command is used to manage links used by the external dataset and remote cluster capabilities of the Enterprise Analytics Service.",
+    "Manage Enterprise Analytics service settings"
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-enterprise-analytics-link-setup.md",
+  "note": "Deliberately NOT merged with or renamedFrom service:analytics-service despite the name overlap and the structural similarity of their link-setup commands - no page states a relationship, and a release-notes sighting ('Enterprise Analytics 2.1.0', versioned independently of Couchbase Server 7.2.7-8.1.0) suggests it may be a genuinely separate product, not a rebrand. See the docs-issue for the open question and the round-29 structural-comparison evidence (couchbase-cli-analytics-link-setup.md's ~30 discrete flags vs. couchbase-cli-enterprise-analytics-link-setup.md's single --link-details JSON blob).",
+  "relates_to_competency_question": "Is 'Enterprise Analytics' a rebrand of Couchbase Server's Analytics service, or a distinct product?"
+}

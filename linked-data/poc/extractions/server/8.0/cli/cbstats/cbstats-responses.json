@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-responses",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-responses.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "protocol:memcached-status-code",
+      "label": "memcached binary protocol status code",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fixed enumeration of response/status codes (SUCCESS, KEY_ENOENT, EINVAL, NOT_MY_VBUCKET, the SUBDOC_* family, etc.) that every KV operation returns; reuses the protocol: namespace already used for protocol:dcp, since this is the sibling wire-protocol vocabulary rather than an ep-engine-internals mechanism"
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "protocol:memcached-status-code",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command summarizes the response codes that the specified bucket has returned, or the default bucket if none is specified."
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "reliesOnMechanism",
+      "object": "protocol:memcached-status-code",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "SUBDOC_PATH_ENOENT"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The `all` option's full 40-code enumeration (AUTH_CONTINUE, AUTH_ERROR, DELTA_BADVAL, E2BIG, EACCESS, EBUSY, ... UNKNOWN_COLLECTION, UNKNOWN_COMMAND, XATTR_EINVAL) is a canonical-table-shaped dump of exactly the kind this round's mechanical warning targets. Per that warning, none of the 40 individual codes are minted as concepts; they are represented once, collectively, as protocol:memcached-status-code, with only the two codes actually returned in Example 1 (KEY_ENOENT, EINVAL) and the SUBDOC_* family quoted as evidence."
+  },
+  "cross_component_finding": "The SUBDOC_* codes (SUBDOC_PATH_ENOENT, SUBDOC_PATH_MISMATCH, SUBDOC_DOC_NOTJSON, SUBDOC_MULTI_PATH_FAILURE, etc.) are status codes specifically for the already-promoted sdk:subdocument-operations concept - a genuine, if narrow, overlap between this cbstats-internals page and existing SDK-facing vocabulary, distinct from the near-total isolation of the rest of this batch's task/thread/scheduler mechanisms.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

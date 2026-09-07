@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/removed-in",
+  "label": "removed in",
+  "kind": "relation (schema-level)",
+  "type": "the subject feature/protocol/mechanism was removed from the product entirely as of the object version, as directly and specifically dated by the source page - not merely deprecated or scheduled for future removal. Range: a version: concept. Kept strictly separate from deprecatedIn (still present, no longer recommended) and from retainedForLegacyCompatibility (kept around for compatibility) - a subject can carry the latter two without ever carrying this one, and this one implies the subject no longer exists in current releases.",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "SIGNIFICANCE EXCEPTION at recurrence 1. This term was reserved but deliberately unfiled since the round-10-era deprecatedIn record: 'Reserve removedIn as a term but do not file it until a page actually dates a removal' - every prior corpus sighting only said a feature 'will be removed in a future release', with no version attached, which is a deprecatedIn shape, not this one. cbstats-tap-vbtakeover.md is the first page in nineteen rounds of reference extraction to state an actual dated removal: 'It was replaced by DCP and removed from Couchbase Server in version 5.0.' Filed now because the registry explicitly named the exact evidence shape it was waiting for, and this page supplies it - the record this predicate exists to eventually hold, arriving three rounds later than the slot was cut for it.",
+  "relates_to_competency_question": "Was this feature merely deprecated, or actually removed from the product - and as of which version?"
+}

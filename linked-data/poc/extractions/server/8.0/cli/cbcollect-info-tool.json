@@ -1,0 +1,33 @@
+{
+  "page_id": "server/8.0/cli/cbcollect-info-tool",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcollect-info-tool.md",
+  "concepts": [
+    { "candidate_id": "tool:cbcollect-info", "label": "cbcollect_info",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "log:log-file", "label": "Couchbase Server log file",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's entire Table 2 is the enumeration of these files" },
+    { "candidate_id": "log:redaction-level", "label": "Log redaction level (cbcollect_info)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the log: namespace for a new, tool-specific setting (none/partial) governing whether collected logs are redacted" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "tool:cbcollect-info", "predicate": "collectsArtifact", "object": "log:log-file",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no existing predicate captures 'this tool gathers this artifact into its output archive'; excludesFromCapture is the closest existing predicate but is the negative case, already used elsewhere for this tool's stated non-collection of audit/Eventing-application logs, which this page does not restate",
+      "evidence": "The tool creates the following log files in the output archive:" },
+    { "subject": "tool:cbcollect-info", "predicate": "triggersImmediateExecutionOf", "object": "tool:cbstats",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Contains output from various [cbstats](cbstats-intro.md) commands. Generated at collection-time." },
+    { "subject": "tool:cbcollect-info", "predicate": "offersConfigurationChoice", "object": "log:redaction-level",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the redaction level for the logs collected. The level can be either none (the default) or partial." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The page states 'A root account is required to run this command and collect all the server information' - an OS-level privilege requirement - but never mentions any Couchbase RBAC role, even though the tool's output can include sensitive data (hence the --log-redaction-level and --bypass-sensitive-data flags). No statement connects the OS-root requirement to, or distinguishes it from, any Server RBAC role a user might also need to authenticate to the cluster itself. This is the clearest instance in the batch of the round's authorship-provenance axis: a page an engineer would write exactly this way (root access is the only permission model that matters to the tool's own implementation) but a TW doing a security-conscious pass might add an RBAC cross-reference."
+  },
+  "cross_component_finding": "The tool's log table spans every Couchbase service (ns_server.analytics*.log, ns_server.eventing.log, ns_server.fts.log, ns_server.query.log, ns_server.goxdcr.log/ns_server.xdcr*.log, ns_server.indexer.log) plus the Backup Service (backup_service.log) and cbstats output (stats.log) - cbcollect_info is a single tool whose scope crosses all seven Couchbase services, unlike almost anything else in this batch which is scoped to one tool or one service.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,36 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-all",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-all.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:replica-vbucket", "label": "Replica vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:pending-vbucket", "label": "Pending vBucket",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third vBucket lifecycle state (alongside the already-promoted vbucket:active-vbucket and vbucket:replica-vbucket) holding items while a vBucket is mid-transfer, e.g. during rebalance. Minted once at the state level, not once per one of its ~19 mirrored stat fields (vb_pending_num, vb_pending_curr_items, vb_pending_queue_*, etc.), which stay as prose/evidence detail." }
+  ],
+  "relations": [
+    { "subject": "vbucket:pending-vbucket", "predicate": "isAnalogousTo", "object": "vbucket:active-vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Number of pending vBuckets." },
+    { "subject": "vbucket:pending-vbucket", "predicate": "isAnalogousTo", "object": "vbucket:replica-vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Number of replica vBuckets." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-all", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For a complete list of `common options`, see the table provided on the introductory page for [cbstats](../cbstats-intro.md#common-options)." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsEditionScope",
+    "finding": "Unlike cbstats-config.md, which explicitly notes '(Note that the `ep_magma` statistics are returned on Couchbase Server Enterprise Edition only.)', this page's own worked example returns numerous ep_magma_* fields (ep_magma_wal_buffer_size, ep_magma_num_flushers, ep_magma_commit_point_interval, ep_magma_max_write_cache, etc.) with zero mention anywhere on this page that they are Enterprise-Edition-specific - an inconsistency in caveat coverage between two sibling pages that report overlapping fields."
+  },
+  "cross_component_finding": "This page is the only one in the batch that explains the 'ep' prefix at all: 'Note that `ep` stands for _eventual persistence_, and simply refers to the Data Service.' Every other cbstats page in this batch (memory, config, diskinfo, kvstore, reset) uses ep_-prefixed stat names extensively but never defines the prefix themselves - a reader who lands on any of those sibling pages without also having read this one has no on-page way to learn what 'ep' means.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

@@ -1,0 +1,21 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-diskinfo",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-diskinfo.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:cbstats", "predicate": "usesPort", "object": "port:11210",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "cbstats [host]:11210 diskinfo" }
+  ],
+  "notable_absence": {
+    "predicate": "hasOption",
+    "finding": "The page states 'Options: None' and gives only one description sentence beyond the tagline - it is the thinnest page in this batch, exposing just two fields (ep_db_data_size, ep_db_file_size) with no per-field description table at all, unlike every sibling cbstats page in this batch."
+  },
+  "cross_component_finding": "Both ep_db_data_size and ep_db_file_size reappear, unexplained, inside cbstats-all's giant example dump in this same batch ('ep_db_data_size:  11372640' / 'ep_db_file_size:  26326528') - diskinfo functions purely as a narrow, named view onto a subset of what 'all' already exposes, the same relationship uuid has to config/all in this batch.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

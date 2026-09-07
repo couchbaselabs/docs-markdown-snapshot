@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-server-eshell",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-server-eshell.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-server-eshell", "label": "server-eshell",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "server:cluster-manager", "label": "Cluster Manager (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:babysitter-process", "label": "babysitter process",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the monitor process that restarts the cluster manager on crash; not previously named as a concept anywhere else in the corpus, only surfaced here via this hidden command's --vm option" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-server-eshell", "predicate": "accessibleVia", "object": "server:cluster-manager",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The couchdb vm runs the views service on each data node and the ns\\_server vm corresponds to the cluster manager. By default the vm option is set to ns\\_server." },
+    { "subject": "server:cluster-manager", "predicate": "monitoredVia", "object": "server:babysitter-process",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The babysitter vm is a monitor that ensures the cluster manager is always running and is restarted in the event of a crash or error." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This is the single most dangerous command in the entire batch by its own admission - 'This is a hidden command and is not intended for typical production use... improper use can lead to the cluster being placed in an unusable state' - yet it states no RBAC role or permission requirement whatsoever, only a prose warning to 'Check with the Couchbase Support team before running this command.' Every other page in this batch that touches a comparably consequential operation (node-reset.md) at least names a role informally; this page, guarding direct unsupported access to the cluster manager's internals, names none at all."
+  },
+  "cross_component_finding": "This page is the only place in the corpus that names the babysitter process and describes the three-VM internal architecture (babysitter / couchdb / ns_server) of a running Couchbase Server node - genuinely new, substantive architectural vocabulary, surfaced only because this hidden debugging command happens to expose it as a --vm enum. It is also terser and more literal than the equivalent explanations found on concept pages elsewhere in the corpus: the couchdb vm is dismissed in one clause ('runs the views service on each data node') with no cross-reference to the already-deprecated Views engine concept, and no page anywhere else in the corpus mentions 'babysitter' at all - a piece of real product architecture that exists in exactly one, lightly-reviewed, explicitly-unsupported reference page.",
+  "cross_product_finding": "Plainly none - this command connects to a local Erlang process on a self-managed Server node; it has no meaning in Capella's managed deployment model, and the page states as much implicitly by restricting itself to 'localhost' only."
+}

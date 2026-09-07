@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-workload",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-workload.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-thread-pool",
+      "label": "ep-engine worker thread pool (reader/writer/auxio/nonio)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch on cbstats-dispatcher-job.json; reused here since ep_workload:num_readers/num_writers/num_auxio/num_nonio/num_shards/num_sleepers/ready_tasks describe the same four-way thread pool's current sizing and load"
+    },
+    {
+      "candidate_id": "monitoring:ep-engine-priority-task-queue",
+      "label": "ep-engine per-thread-kind priority task queue",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the LowPrioQ_AuxIO/LowPrioQ_NonIO/LowPrioQ_Reader/LowPrioQ_Writer InQsize/OutQsize pairs describe a distinct mechanism from the thread pool itself: a per-thread-kind input/output queue holding tasks waiting to run or having completed. No existing concept represents a scheduler-side task queue; kept at this single mechanism level rather than minting one concept per queue name"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "hasInternalComponent",
+      "object": "monitoring:ep-engine-priority-task-queue",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "ep_workload:LowPrioQ_AuxIO:InQsize:   5"
+    },
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "reliesOnMechanism",
+      "object": "server:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The vBucket map for the bucket is grouped into multiple vBuckets, where one read worker accesses one of the vBuckets."
+    },
+    {
+      "subject": "monitoring:ep-engine-thread-pool",
+      "predicate": "monitoredVia",
+      "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to check how many threads of various types are currently running."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "ep_workload:num_shards and the reader-to-vBucket-group mapping describe a sharding mechanism (each reader owns a group of vBuckets) that has no dedicated concept anywhere in the registry excerpt beyond the already-promoted server:vbucket itself - there is no concept for the SHARD (the group of vBuckets one worker owns) as distinct from the vBucket. Left as evidence/prose in the reliesOnMechanism relation above rather than minted, since one page's one sentence is too thin a basis to name a new mechanism-level concept for it."
+  },
+  "cross_component_finding": "This is the one page in the batch where the ep-engine-internals vocabulary genuinely does connect to an already-promoted, non-internals concept: num_readers/num_writers/num_auxio/num_nonio directly correspond to the reader/writer/auxio/nonio categories in cbstats-dispatcher-job.md and cbstats-tasks.md, and the reader-worker-to-vBucket sharding sentence ties the thread pool directly to server:vbucket - a real overlap point, contradicting a literal reading of 'least vocabulary overlap of any batch' for this specific page even though the batch as a whole still shows unusually little overlap.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

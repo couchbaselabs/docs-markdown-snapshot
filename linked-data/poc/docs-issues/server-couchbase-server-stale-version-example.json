@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-server-stale-version-example",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-server.md's own '--version' example output reads 'Couchbase Server 6.6.0-7853 (EE)' - a stale version string, six major versions behind the 8.0 documentation it appears in.",
+  "about": [
+    "server/8.0/cli/couchbase-server"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

@@ -1,0 +1,26 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-enable-developer-preview",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-enable-developer-preview.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-enable-developer-preview", "label": "enable-developer-preview",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "server:developer-preview-mode", "label": "Developer Preview mode",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing server: id for the cluster-wide, irreversible, non-upgradeable feature-flag state itself; the registry only has role:sync-gateway-app-family's passing historical mention that Server 7.0.2 Developer Preview once shipped now-permanent SGW RBAC roles, not a concept for the mode as a thing an operator toggles" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-enable-developer-preview", "predicate": "configuresProperty", "object": "server:developer-preview-mode",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command enables developer preview in the target cluster." },
+    { "subject": "tool:couchbase-cli-enable-developer-preview", "predicate": "hasExecutionConstraint", "object": "server:developer-preview-mode",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Once enabled it can not be disabled and the cluster will not be able to upgrade." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Enabling Developer Preview is explicitly, permanently irreversible and blocks all future upgrades ('Once enabled it can not be disabled... you will not be able to upgrade... DO NOT USE IN PRODUCTION') - about as consequential and one-way an operation as exists in this batch - yet the page states no RBAC role or permission requirement at all, only an interactive y/n confirmation prompt. Contrast node-reset.md (this same batch), a comparably irreversible, data-destroying operation, which at least states informally that 'The command requires full admin permissions.' This page relies purely on a confirmation prompt, not a permission gate, to guard an unrecoverable cluster-wide state change."
+  },
+  "cross_component_finding": "The two EXAMPLES use inconsistent, unexplained example endpoints: the first uses '192.168.1.5:8091' (the convention used consistently across every other page in this batch), while the second abruptly switches to 'localhost:9000' - port 9000 is not a documented default anywhere in this corpus and is never explained. It reads like an engineer's actual local test port leaking into a reference example verbatim, rather than a deliberately chosen illustrative value - a small, concrete authorship-provenance artifact consistent with this round's hypothesis.",
+  "cross_product_finding": "Plainly none - Developer Preview mode is a self-managed Server cluster-wide toggle with no Capella analog stated or implied on this page; Capella has no customer-facing equivalent of an irreversible, non-upgradeable preview state."
+}

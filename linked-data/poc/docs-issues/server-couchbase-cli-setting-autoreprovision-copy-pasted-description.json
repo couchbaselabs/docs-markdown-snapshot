@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-setting-autoreprovision-copy-pasted-description",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "couchbase-cli-setting-autoreprovision.md's --enabled flag description reads: 'Specifies whether or not auto-reprovisioning is enabled. Set this option to \"1\" to enable autofailover or \"0\" to disable autofailover.' The flag and command are about auto-REPROVISIONING; the second sentence names auto-FAILOVER instead, verbatim-matching the equivalent sentence's subject in couchbase-cli-setting-autofailover.md - direct copy-paste from the sibling command's page, left uncorrected.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-setting-autoreprovision",
+    "server/8.0/cli/cbcli/couchbase-cli-setting-autofailover"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

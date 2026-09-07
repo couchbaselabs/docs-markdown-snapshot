@@ -1,0 +1,24 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-kvtimings",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-kvtimings.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage:latency-histogram-format", "label": "cbstats latency/count histogram format",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism-level reporting format cbstats uses for per-operation timing distributions: a named operation (e.g. 'commit') broken into exponential time-range buckets, each carrying a cumulative percentage and a raw count. This is the actual shape of kvtimings' own output and is worth naming once at this level rather than per-bucket-row; the same format recurs verbatim in cbstats-raw's histograms in this same batch." }
+  ],
+  "relations": [
+    { "subject": "storage:latency-histogram-format", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "rw_3:commit (50457 total)" }
+  ],
+  "notable_absence": {
+    "predicate": "documentsOwnOutput",
+    "finding": "This page's Description section and 'Table 1. Couchstore database engine stats' (backend_type, close, failure_get, failure_open, failure_set, failure_vbset, lastCommDocs, numLoadedVb, open) are copy-pasted verbatim, word for word, from cbstats-kvstore.md - but kvtimings' own worked example returns a latency histogram for the operation 'commit' with millisecond-bucketed percentiles ('rw_3:commit (50457 total)' ... '4ms - 8ms : ( 67.06%) 28528'), not any of the fields the table describes. The documented table describes the wrong command's output entirely - direct, quotable evidence of the copy-paste-across-subcommands pattern this round's framing hypothesis was watching for."
+  },
+  "cross_component_finding": "The same bucketed time-range histogram shape ('Xms - Yms : (P%) count') reappears in cbstats-raw's 'raw timings' example in this batch (access_scanner_*, checkpoint_remover_*, store_cmd_*), suggesting a single shared histogram-rendering mechanism inside cbstats used across several unrelated subcommands rather than something specific to kvtimings.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

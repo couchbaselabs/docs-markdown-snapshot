@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/checkpoint",
+  "label": "vBucket checkpoint",
+  "type": "an internal per-vBucket data structure the KV engine uses to batch mutations for replication/persistence, hasInternalComponent of server:vbucket. Configurable via cbepctl set checkpoint_param; monitored via cbstats checkpoint.",
+  "promoted": true,
+  "recurrence": 2,
+  "monitoredVia": "tool:cbstats",
+  "requiresMemoryQuota": "memory:bucket-memory-quota",
+  "evidence": [
+    "This command changes checkpoint configuration parameters.",
+    "The checkpoint command, used by cbstats, provides information on the checkpoint data structure for a specified bucket, on a specified node."
+  ],
+  "documented_at": "server/8.0/cli/cbepctl/set-checkpoint_param.md",
+  "relates_to_competency_question": "What internal structure batches mutations for a vBucket, and how is its memory allocation bounded?"
+}

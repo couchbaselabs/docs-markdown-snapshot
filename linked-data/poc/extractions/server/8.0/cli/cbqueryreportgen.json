@@ -1,0 +1,63 @@
+{
+  "page_id": "server/8.0/cli/cbqueryreportgen",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbqueryreportgen.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbqueryreportgen",
+      "label": "cbqueryreportgen (AWR report generation CLI tool)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in query-awr.json (server/8.0/n1ql/n1ql-manage/query-awr.json) with the identical label; this is the tool's own dedicated reference page, giving it a second, independent source file."
+    },
+    {
+      "candidate_id": "n1ql:automatic-workload-repository",
+      "label": "Automatic Workload Repository (AWR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the Query service's built-in workload recording mechanism this tool reports on; the page's own See Also link points at the AWR page and its description invokes AWR statistics directly."
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index (coarse supertype)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page requires an index over the AWR repository keyspace before the tool can query it; no more specific index type is named."
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states the tool's minimum version directly."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This tool is only available in Couchbase Server 8.0 and later."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "reliesOnMechanism",
+      "object": "n1ql:automatic-workload-repository",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `cbqueryreportgen` command connects to a Couchbase cluster and generates performance reports based on the Query Service's AWR statistics."
+    },
+    {
+      "subject": "tool:cbqueryreportgen",
+      "predicate": "requiresIndex",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "It's assumed that you have already specified this as the AWR repository, and created an index on the document key in the configured AWR location."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "cbqueryreportgen requires -u/--username and -p/--password to connect to the cluster, but the page never states which RBAC role or privilege the connecting user needs to read the AWR keyspace. The registry's own n1ql:automatic-workload-repository note (from query-awr.json) records that the underlying AWR mechanism is gated by the query_manage_system_catalog privilege - a fact this cli/ page, evidently written by the tool's own engineering owner rather than run through the same review as the n1ql/ reference tree, simply omits. Consistent with this round's authorship-provenance hypothesis: lighter RBAC citation discipline in cli/ than in the rest of the Query Service documentation for the exact same feature."
+  },
+  "cross_component_finding": "This page corroborates and extends the extraction-layer tool:cbqueryreportgen record first seen on query-awr.json - same tool, described this time from its own dedicated cli/ reference page rather than as an aside on the AWR feature page. The two pages are complementary rather than duplicative: query-awr.json documents the AWR mechanism itself, this page documents the CLI surface for consuming it.",
+  "cross_product_finding": "query-awr.json's own extraction record notes that 'the Capella record did not mint one [a tool concept] because its link to the tool is broken' - this cli/ page gives no indication cbqueryreportgen exists on Capella at all, and its own install-location table (Linux /opt/couchbase/bin/, Windows Program Files, Mac OS X app bundle) ties it to a filesystem Capella customers don't have direct access to. Consistent with cbqueryreportgen being a self-managed-Server-only tool, though no page states that restriction outright."
+}

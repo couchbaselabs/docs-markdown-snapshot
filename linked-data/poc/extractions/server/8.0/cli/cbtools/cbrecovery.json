@@ -1,0 +1,91 @@
+{
+  "page_id": "server/8.0/cli/cbtools/cbrecovery",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbtools/cbrecovery.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbrecovery",
+      "label": "cbrecovery",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in recover-data-with-xdcr.json (server/8.0/manage/manage-xdcr/recover-data-with-xdcr.json) with the identical label; this is the tool's own dedicated cli/ reference page, a second independent source."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - one of the three named roles this page permits for both source and destination cluster credentials."
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - one of the three named roles this page permits; the page's own spelling 'Cluster Administrator' matches this concept's registered alias role:cluster-administrator."
+    },
+    {
+      "candidate_id": "role:replication-admin",
+      "label": "XDCR Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - one of the three named roles this page permits; see notable_absence for the naming-drift between this page's 'XDCR Administrator' and the registered alias role:xdcr-admin."
+    },
+    {
+      "candidate_id": "xdcr:reference",
+      "label": "XDCR remote cluster reference",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's recovery model depends on a bucket already established as an XDCR source/target pair between the two clusters."
+    },
+    {
+      "candidate_id": "server:vbucket",
+      "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the tool's stated purpose is recovering missing vBuckets, and its -i/--id option scopes a run to a single vBucket ID."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The username for the Full Administrator, Cluster Administrator, or XDCR Administrator for the cluster from which the data is recovered."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "requiresServerRole",
+      "object": "role:cluster-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The username for the Full Administrator, Cluster Administrator, or XDCR Administrator for the cluster from which the data is recovered."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "requiresServerRole",
+      "object": "role:replication-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The username for the Full Administrator, Cluster Administrator, or XDCR Administrator for the cluster from which the data is recovered."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "reliesOnMechanism",
+      "object": "xdcr:reference",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In such cases, provided that a bucket affected by such failure has already been established as a source bucket for XDCR, the lost data may be retrieved from the bucket defined on the remote server as the corresponding replication-target."
+    },
+    {
+      "subject": "tool:cbrecovery",
+      "predicate": "reliesOnMechanism",
+      "object": "server:vbucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `cbrecovery` tool allows recovering missing vBuckets from a remote cluster."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cbrecovery.md names the required roles as 'Full Administrator, Cluster Administrator, or XDCR Administrator' - the registry's role:cluster-admin and role:replication-admin entries (folded from Server's own 56-role catalogue at learn/security/roles.md) carry the aliases 'role:cluster-administrator' and 'role:xdcr-admin' respectively, i.e. the catalogue's own short forms are 'Cluster Admin' and 'XDCR Admin', not '...Administrator'. This page consistently spells out the longer '-istrator' form where the catalogue and REST/UI surfaces abbreviate. A minor but real, mechanically observable terminology drift, consistent with this round's authorship-provenance hypothesis: cbtools/ pages appear to have been written independently of the RBAC glossary's own preferred short names."
+  },
+  "cross_component_finding": "This page reinforces rather than duplicates the extraction-layer tool:cbrecovery record first seen on recover-data-with-xdcr.json - the same binary, now documented from its own dedicated cli/ reference page with a full options/flags table the task page didn't need. It also newly ties cbrecovery directly to the promoted server:vbucket and xdcr:reference concepts with fresh, page-specific evidence, strengthening both records' cross-tree recurrence.",
+  "cross_product_finding": "cbrecovery is tied to a specific filesystem install path per platform and takes bare cluster URLs as positional arguments - no Capella-specific flag, gating language, or mention. XDCR recovery via this local binary against a live remote cluster is a Server (self-managed) operational pattern; no equivalent is stated for Capella."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/cbstats-histogram",
+  "label": "cbstats histogram output format",
+  "type": "the bucketed-percentage rendering convention cbstats uses across several unrelated subcommands (runtimes, timing, kvtimings, raw) to present a distribution of durations or counts: a '<name> (<count> total)' header line followed by bucketed rows each showing a range, a cumulative percentage and a raw count. A display CONVENTION of the CLI tool, not a property of the underlying storage engine or of any single subsystem it happens to be used to report on.",
+  "promoted": true,
+  "recurrence": 5,
+  "monitoredVia": "tool:cbstats",
+  "aliases": ["storage:latency-histogram-format"],
+  "evidence": [
+    "The timing stats provide histogram data from high-resolution timers over various operations within the system.",
+    "WarmupInitialize (1 total)",
+    "rw_3:commit (50457 total)\n1ms - 2ms : ( 0.34%) 173"
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-timing.md",
+  "note": "FOLD, licensed by direct comparison rather than by any one page's own statement: cbstats-runtimes.json/cbstats-timing.json minted this under monitoring:cbstats-histogram (ep-engine task-duration histograms - 'WarmupInitialize (1 total)'), while cbstats-kvtimings.json/cbstats-raw.json independently minted the structurally IDENTICAL bucketed-percentage rendering under storage:latency-histogram-format ('rw_3:commit (50457 total)' followed by ms-bucketed rows). Both describe the same CLI-side display convention, not the same storage mechanism - kvstore latency and ep-engine task duration are different subsystems, but cbstats renders both with one shared histogram template. The storage: namespace mis-scoped the concept as a storage-engine property when it is actually a monitoring/output-format one; folded under the monitoring: spelling, which is also the earlier and higher-recurrence mint (3 files vs. 2).",
+  "relates_to_competency_question": "What is the common rendering format cbstats uses whenever it presents a distribution of durations or counts, and does it vary by subcommand?"
+}

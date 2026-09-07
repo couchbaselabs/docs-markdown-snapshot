@@ -1,0 +1,38 @@
+{
+  "page_id": "server/8.0/cli/finderr",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/finderr.md",
+  "concepts": [
+    { "candidate_id": "tool:finderr", "label": "finderr",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the CLI error-lookup tool; no tool: entry exists for it" },
+    { "candidate_id": "n1ql:misc-utility-functions", "label": "Miscellaneous Utility Functions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; this family explicitly includes the SQL++ FINDERR() function that this page's See Also section links to" },
+    { "candidate_id": "n1ql:error-applies-to-enum", "label": "Error APPLIES TO value (cbq-shell | Server)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the two-member enum finderr's own output uses to classify an error's origin; no existing enum concept covers it" },
+    { "candidate_id": "n1ql:error-codes-reference", "label": "SQL++ Error Codes (reference page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the linked reference page enumerating all Query-service/cbq-shell error codes that finderr looks up" },
+    { "candidate_id": "tool:cbq-shell", "label": "cbq (command-line shell for SQL++)",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "tool:finderr", "predicate": "isAnalogousTo", "object": "n1ql:misc-utility-functions",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The SQL++ [FINDERR()](../n1ql/n1ql-language-reference/metafun.md#finderr) function" },
+    { "subject": "tool:finderr", "predicate": "seeAlso", "object": "n1ql:error-codes-reference",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[SQL++ Error Codes](../n1ql/n1ql-language-reference/n1ql-error-codes.md)" },
+    { "subject": "tool:finderr", "predicate": "usesEnum", "object": "n1ql:error-applies-to-enum",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "One of the following: cbq-shell: The error applies to the cbq shell. Server: The error applies to the server." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No access-control statement of any kind - finderr is a purely local, offline lookup tool against a bundled error catalogue, so this is likely a genuine non-finding rather than a gap. More interesting: the page documents an internal-only 'SYMBOL' field ('This field is for internal use only, and is not shown in the output. However, the tool does search this field when the find argument is a string or a regular expression') - an implementation detail unlikely to survive a heavier editorial pass, and a good example of this round's authorship-provenance axis showing up as unusual transparency rather than terseness."
+  },
+  "cross_component_finding": "CLI-vs-terminology-drift finding: the APPLIES TO field's enum literally prints the lowercase, hyphenated value 'cbq-shell' alongside the capitalized 'Server' - an inconsistent-case pair baked into the tool's own output and reproduced verbatim in the docs, with no normalization or explanation of why one value names a tool by its CLI name and the other names an entire component generically. Neither value is ever mapped to a specific Couchbase service (e.g. Query vs Index vs Analytics) - 'Server' is used for every non-cbq-shell error regardless of which service actually raised it, a much coarser granularity than the service: concepts already in the registry.",
+  "cross_product_finding": ""
+}

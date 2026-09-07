@@ -1,0 +1,32 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-group-manage",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-group-manage.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-group-manage", "label": "group-manage",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-rebalance", "label": "rebalance",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in DESCRIPTION/SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-add", "label": "server-add",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "server:server-group", "label": "server group", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-group-manage", "predicate": "configuresProperty", "object": "server:server-group",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to manage server groups in a Couchbase cluster." },
+    { "subject": "tool:couchbase-cli-group-manage", "predicate": "requiresSubsequentExecutionOf", "object": "tool:couchbase-cli-rebalance",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - the registry has requiresPriorExecutionOf for a 'must have already run' dependency, but nothing for the mirror-image 'must be followed by' dependency this page states; camelCase verb phrase minted per this round's instruction",
+      "evidence": "You should always run [rebalance](couchbase-cli-rebalance.md) after running this command." },
+    { "subject": "tool:couchbase-cli-group-manage", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-add",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [server-add](couchbase-cli-server-add.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Moving servers between groups changes replica placement/failure-domain topology cluster-wide, yet group-manage.md states no RBAC role or permission requirement at all - the same CLI-tree-wide absence pattern already seen on cluster-edit.md, server-add.md and server-readd.md in this batch."
+  },
+  "cross_component_finding": "Two small, concrete copyediting/spec artifacts on this page, consistent with lighter TW review. (1) A grammar slip in the --to-group description: 'This group must already exists.' (subject-verb disagreement - should read 'must already exist'). (2) A SYNOPSIS/OPTIONS mismatch: the SYNOPSIS lists --move-servers as a bare flag with no value placeholder ('[--move-servers]'), but the OPTIONS section describes it as '--move-servers <server_list>' - a flag that clearly takes a required argument. A reader relying on the SYNOPSIS alone would not know --move-servers needs a value.",
+  "cross_product_finding": "Plainly none - server groups (rack/availability-zone-aware replica placement) are a self-managed Server, Enterprise-Edition-only concept per the already-promoted server:server-group record; this page gives no indication of any Capella equivalent."
+}

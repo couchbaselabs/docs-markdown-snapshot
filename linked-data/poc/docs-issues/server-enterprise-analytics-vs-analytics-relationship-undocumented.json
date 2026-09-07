@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-enterprise-analytics-vs-analytics-relationship-undocumented",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-cli-analytics-link-setup.md and couchbase-cli-enterprise-analytics-link-setup.md are architecturally different, not a renamed twin: the former exposes roughly 30 discrete per-link-type flags (confirmed: 51 total flag definitions across all its link types), the latter collapses link configuration to one JSON blob passed via --link-details/--link-details-path (confirmed: 15 flags total, with --link-details<json>/--link-details-path<path> as the actual per-link configuration mechanism). No page anywhere states a rename, supersession, or compatibility relationship between 'Analytics' and 'Enterprise Analytics', despite the naming reading like a rebrand. A release-notes sighting complicates a simple rebrand reading: 'Enterprise Analytics 2.1.0' is versioned independently of 'Couchbase Server versions 7.2.7 through 8.1.0' in the same sentence, suggesting Enterprise Analytics may be tracked as a separate product/release train rather than a Couchbase Server service. This needs an SME or product documentation to resolve; filed here rather than inferred.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-analytics-link-setup",
+    "server/8.0/cli/cbcli/couchbase-cli-enterprise-analytics-link-setup",
+    "server/current/release-notes/relnotes"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

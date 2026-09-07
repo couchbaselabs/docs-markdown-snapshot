@@ -1,0 +1,31 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-server-list",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-server-list.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-server-list", "label": "server-list",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-host-list", "label": "host-list",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-info", "label": "server-info",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "port:8091", "label": "Port 8091", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-server-list", "predicate": "hasDefaultValue", "object": "port:8091",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If no port number is specified for the server then the port number is 8091." },
+    { "subject": "tool:couchbase-cli-server-list", "predicate": "seeAlso", "object": "tool:couchbase-cli-host-list",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[host-list](couchbase-cli-host-list.md), [server-info](couchbase-cli-server-info.md)" },
+    { "subject": "tool:couchbase-cli-server-list", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-info",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[host-list](couchbase-cli-host-list.md), [server-info](couchbase-cli-server-info.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "server-list.md and host-list.md (this same batch) are functionally near-identical: same SYNOPSIS shape, identical HOST FORMATS / CERTIFICATE AUTHENTICATION / ENVIRONMENT AND CONFIGURATION VARIABLES boilerplate, and near-identical single-sentence DESCRIPTION prose ('Returns a new line separated list of all servers in the cluster' vs 'Displays a list of hostnames corresponding to each node in the cluster'). Each links to the other in SEE ALSO, but neither page ever states whether the value each returns ('server', a hostname-or-IP-address) is the identical list under a different name, or a materially different one. A reader is left to guess whether 'server' and 'host' denote the same underlying cluster-membership list."
+  },
+  "cross_component_finding": "See notable_absence: this is a clean instance of the round's 'near-identical siblings, unreconciled small inconsistencies' pattern - two commands with copy-pasted boilerplate and no page settling whether they are the same list under two names.",
+  "cross_product_finding": "Plainly none - the page is too thin to carry any product-comparison signal."
+}

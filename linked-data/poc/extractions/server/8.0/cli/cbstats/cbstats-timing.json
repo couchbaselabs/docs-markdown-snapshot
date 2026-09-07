@@ -1,0 +1,57 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-timing",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-timing.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbstats",
+      "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "monitoring:cbstats-histogram",
+      "label": "cbstats histogram-format latency stat",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the bucketed-range/percentage/count/Avg histogram output format is shared by cbstats timings, runtimes and scheduler subcommands; no existing concept in the reused-namespace excerpt names this output mechanism, only the tool itself (tool:cbstats)"
+    },
+    {
+      "candidate_id": "tool:mctimings",
+      "label": "mctimings",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, named CLI tool the page explicitly links to and recommends instead of cbstats timings for more accurate timing data; not present in the reused-namespace excerpt's tool: entries"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbstats",
+      "predicate": "reliesOnMechanism",
+      "object": "monitoring:cbstats-histogram",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The timing stats provide histogram data from high-resolution timers over various operations within the system."
+    },
+    {
+      "subject": "tool:cbstats",
+      "predicate": "mustUseInsteadWhen",
+      "object": "tool:mctimings",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To retrieve more accurate timing statistics, use [mctimings](../mctimings.md) instead of `timings`."
+    },
+    {
+      "subject": "monitoring:cbstats-histogram",
+      "predicate": "hasExecutionConstraint",
+      "object": "measures only front-end-thread time, not time spent fetching from disk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This only measures the time spent in the front-end thread for each operation, meaning that the timings may not be representative if items have to be fetched from disk as part of the operation."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page names over 30 distinct timing categories (bg_load, disk_commit, sync_write_commit_majority, persistence_cursor_get_all_items, etc.) entirely at the ep-engine storage/replication-internals level. None of these appear anywhere else in the reused-namespace excerpt (monitoring:, log:). Per the round's mechanical warning, these are left as evidence/prose inside monitoring:cbstats-histogram rather than minted individually - this is the table-shaped-dump trap this round explicitly calls out."
+  },
+  "cross_component_finding": "The two sync_write_commit_* timing categories (sync_write_commit_majority, sync_write_commit_majority_and_persist_on_master, sync_write_commit_persist_to_majority) name durability levels by their internal replication/persistence mechanics rather than by the durability-level vocabulary used elsewhere in the docs - same underlying durability concept, described from the storage-engine's internal-timing perspective rather than the user-facing configuration perspective, with no page connecting the two vocabularies.",
+  "cross_product_finding": "None - this page is Couchbase Server CLI-only with no Capella-facing surface."
+}

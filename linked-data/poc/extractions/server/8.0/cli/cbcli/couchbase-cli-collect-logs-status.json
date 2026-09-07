@@ -1,0 +1,31 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-status",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-collect-logs-status.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:log-collection-task", "label": "Log collection task", "registry_status": "minted", "reused_or_minted": "reused within this batch - minted in couchbase-cli-collect-logs-start.json" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:log-collection-task", "predicate": "hasLifecycleState", "object": "running | cancelled | completed",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Status: <running | cancelled | completed>" },
+    { "subject": "server:log-collection-task", "predicate": "monitoredVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to check the status of the log collection task that is either currently running or last completed." },
+    { "subject": "server:log-collection-task", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-start",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[collect-logs-start](couchbase-cli-collect-logs-start.md), [collect-logs-stop](couchbase-cli-collect-logs-stop.md)" },
+    { "subject": "server:log-collection-task", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-stop",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[collect-logs-start](couchbase-cli-collect-logs-start.md), [collect-logs-stop](couchbase-cli-collect-logs-stop.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasLifecycleState",
+    "finding": "This page documents two DIFFERENT status enums at two different granularities that are never reconciled with each other: the task-level Status is <running | cancelled | completed>, but the per-node Details Status is <started | collected> - a two-value enum with no 'cancelled' counterpart at all. It's never stated what a node's Status line reads if the overall task is cancelled mid-collection on that node - a genuine gap in an otherwise precisely-specified output format (the page even gives a full worked example of the exact output text)."
+  },
+  "cross_component_finding": "This page is unusually precise for the batch - it reproduces the literal CLI output format verbatim (the 'No log collection tasks were found' / 'Status: ... Details: ...' block) rather than only prose-describing it, and its EXAMPLES section shows real sample output including a node name and collectinfo zip path. This is the opposite of the terse, thin-DESCRIPTION pattern seen on rebalance-status.md/rebalance-stop.md - useful negative signal that not every 'status' sibling in this corpus is equally terse; this one earns its detail because the output format itself needs specifying. No CLI-vs-REST/UI terminology drift is visible from this page's evidence.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, where log collection status is not exposed to customers via CLI."
+}

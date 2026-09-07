@@ -1,0 +1,107 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-alternate-address",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-alternate-address.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-alternate-address",
+      "label": "setting-alternate-address (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "server:node",
+      "label": "node",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the --node/--hostname/--ports flags configure the alternate address of a single node"
+    },
+    {
+      "candidate_id": "port:8091",
+      "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the mgmt/mgmtSSL alternate port row is this same Cluster Manager REST/UI port, here shown as a remappable alternate rather than the fixed default"
+    },
+    {
+      "candidate_id": "service:data-service",
+      "label": "Data service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the kv/kvSSL alternate port row is explicitly attributed to the Data Service"
+    },
+    {
+      "candidate_id": "service:query-service",
+      "label": "Query service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the n1ql/n1qlSSL alternate port row is explicitly attributed to the Query service"
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the fts/ftsSSL alternate port row is explicitly attributed to the Search service"
+    },
+    {
+      "candidate_id": "service:analytics-service",
+      "label": "Analytics service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the cbas/cbasSSL alternate port row is explicitly attributed to the Analytic(s) service"
+    },
+    {
+      "candidate_id": "service:eventing-service",
+      "label": "Eventing Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the eventingAdminPort/eventingSSL and eventingDebug alternate port rows are explicitly attributed to the Eventing Service"
+    },
+    {
+      "candidate_id": "service:backup-service",
+      "label": "Backup Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the backupAPI/backupAPIHTTPS and backupGRPC alternate port rows are explicitly attributed to the Backup service"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-alternate-address",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alternate-address",
+      "predicate": "configuredPerNode",
+      "object": "server:node",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is used to set the alternate address for a node. This alternate address allows the node to be connected by a different address, this is useful when an external agent tries to connect via a NAT'd environment such as the cloud or kubernetes."
+    },
+    {
+      "subject": "port:8091",
+      "predicate": "servesService",
+      "object": "server:cluster-manager",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| mgmt              | mgmtSSL             | Cluster Manager | The UI and REST API for managing the Cluster                                     |"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-alternate-address",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli-cluster-init",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The Alternate Ports table names every service by product-facing name (Cluster Manager, Data, View Engine, Query, Search, Analytics, Eventing, Backup) and both the plaintext and TLS port for each, but nowhere on the page is there any statement of which RBAC role or privilege is required to run --set/--remove versus --list - the only permission language anywhere on the page is the generic boilerplate 'If you do not have a user account with permission to execute the command then it will fail with an unauthorized error', shared verbatim with every other setting-* page in this batch. Given that alternate-address reconfiguration is a cluster-topology-affecting operation (it changes how external agents reach a node), the complete absence of a named role citation is a sharper gap here than on lower-stakes settings pages."
+  },
+  "cross_component_finding": "The Alternate Ports table's Description column uses UI-facing service names ('Cluster Manager', 'View Engine', 'Search') interchangeably with the port-name-only style used elsewhere on the same table row (e.g. 'kv', 'cbas', 'eventingAdminPort'), and with terse fragments like 'Used by the SDKs and XDCR' and 'Used by the SDKs to query data' repeated almost verbatim for different services (kv/capi both say 'Used by the SDKs and XDCR to transfer data' / 'Used by the SDKs and XDCR' with only the object of the sentence changing) - a flag-description-copy-paste-across-siblings pattern consistent with this round's authorship-provenance hypothesis, here inside a single table rather than across sibling pages.",
+  "cross_product_finding": "N/A on this page directly; the alternate-address mechanism (NAT'd/Kubernetes external connectivity) has no Capella analogue evidenced here since Capella manages its own network topology - no cross-product claim is made."
+}

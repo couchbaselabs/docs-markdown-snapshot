@@ -1,0 +1,42 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-vkey",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-vkey.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:active-vbucket", "label": "Active vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage:key-consistency-verification", "label": "In-memory vs on-disk key consistency verification",
+      "registry_status": "minted",
+      "reused_or_minted": "minted (same page-independent extraction as cbstats-key.md in this batch) - vkey's actual output header literally says 'verification for key', making this page the clearer of the two evidence sources for the mechanism." }
+  ],
+  "relations": [
+    { "subject": "storage:key-consistency-verification", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "verification for key airline_10" },
+    { "subject": "server/8.0/cli/cbstats/cbstats-vkey", "predicate": "seeAlso", "object": "server/8.0/learn/data/scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md)." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-vkey", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To use `cbstats` to provide information on collections, see the reference page for the `cbstats` [collections](cbstats-collections.md) command." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-vkey", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats/cbstats-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For information on providing information on keys, see the reference page for the `cbstats` [key](cbstats-key.md) command." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-vkey", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For common `cbstats` options, see the [cbstats](../cbstats-intro.md) reference page." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsOwnOutput",
+    "finding": "The Responses table's description of key_is_dirty/key_is_resident is reworded from cbstats-key.md's ('If the value is not yet persisted' -> 'Whether the value is not yet persisted') but every other sentence, every example command, every example key (airline_10, newTestDoc), and the entire 'Find vBucket IDs' section are otherwise word-for-word identical between cbstats-key.md and cbstats-vkey.md - only the command name and the key_valid output line actually differ. This is the clearest single instance in the batch of one cbstats page being built by copying a sibling page and touching only the minimum needed to describe the different command."
+  },
+  "cross_component_finding": "key_vb_state: active recurs in every worked example here too, tying this page to vbucket:active-vbucket exactly as cbstats-key.md does - neither sibling page ever demonstrates a replica- or pending-vBucket lookup.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

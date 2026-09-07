@@ -1,0 +1,41 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-bucket-delete",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-bucket-delete.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in this round's couchbase-cli-bucket-compact.json extraction, never promoted"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "index:index",
+      "label": "Index (coarse supertype)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:bucket",
+      "predicate": "cascadesDeletionTo",
+      "object": "index:index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Deletes a bucket in the cluster. When the bucket is deleted, all indexes on the bucket are also deleted."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Same pattern as the rest of this batch: no RBAC role is named for a destructive, cascading operation (bucket deletion cascades to every index on the bucket) - only the generic unauthorized-error boilerplate under --username/--password. Notably this is the single most destructive command in the batch (irreversible bucket + index removal) and it gets the least access-control framing of any page here - just one sentence of DESCRIPTION total."
+  },
+  "cross_component_finding": "This is the thinnest page in the batch: the entire DESCRIPTION is one sentence, and every other section (OPTIONS beyond --bucket, HOST FORMATS, CERTIFICATE AUTHENTICATION, ENVIRONMENT VARIABLES) is the same boilerplate already flagged in couchbase-cli-bucket-compact.json. No new copy-paste duplication beyond what that finding already covers, but the extreme terseness of the one substantive sentence ('Deletes a bucket in the cluster. When the bucket is deleted, all indexes on the bucket are also deleted.') is itself a data point for the authorship-provenance hypothesis: no caveat, no confirmation-prompt mention, no warning register at all for an irreversible destructive action.",
+  "cross_product_finding": "None found - this page does not reference REST, UI or another product's bucket-deletion vocabulary."
+}

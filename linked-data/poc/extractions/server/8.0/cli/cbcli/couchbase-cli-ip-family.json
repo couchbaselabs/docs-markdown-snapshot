@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-ip-family",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-ip-family.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-ip-family", "label": "ip-family",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-node-to-node-encryption", "label": "node-to-node-encryption",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO; also this page's near-identical sibling, see notable_absence" },
+    { "candidate_id": "server:cluster-address-family", "label": "cluster address family",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-ip-family", "predicate": "configuresProperty", "object": "server:cluster-address-family",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command changes the IP family used for inter-cluster communication." },
+    { "subject": "tool:couchbase-cli-ip-family", "predicate": "hasExecutionConstraint", "object": "server:cluster-address-family",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The clusters names must be FQDN and not IP addresses." },
+    { "subject": "tool:couchbase-cli-ip-family", "predicate": "seeAlso", "object": "tool:couchbase-cli-node-to-node-encryption",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[setting-security](couchbase-cli-setting-security.md) [ssl-manage](couchbase-cli-ssl-manage.md) [node-to-node-encryption](couchbase-cli-node-to-node-encryption.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasExecutionConstraint",
+    "finding": "ip-family.md states only one of the several preconditions the already-promoted server:cluster-address-family concept itself documents elsewhere in the corpus (every node must be in dual-stack mode, every node must be named by an FQDN, auto-failover must be disabled, node-to-node encryption must be disabled) - it names only the FQDN requirement ('The clusters names must be FQDN and not IP addresses'). Its own cross-referenced sibling, couchbase-cli-node-to-node-encryption.md (this same batch), states NONE of the relevant preconditions at all despite the two settings being mutually gating on each other per the concept's own description. Between the two pages that between them configure this coupled pair of settings, only one precondition out of several is disclosed, and only on one of the two pages."
+  },
+  "cross_component_finding": "This command's own SYNOPSIS contains a literal typo: '[-username <username>]' with a single dash, where every other flag on the same line (and this command's own OPTIONS section two lines later, correctly showing '--username <username>') uses the standard double-dash long-option form. This is a concrete, checkable, uncaught defect in the generated reference syntax itself - exactly the kind of artifact proofreading would normally catch, and a direct data point for this round's lighter-review hypothesis.",
+  "cross_product_finding": "Plainly none - IP family (IPv4/IPv6) configuration is a self-managed Server, Enterprise-Edition-only cluster setting per server:cluster-address-family's own registry record; this page gives no indication of a Capella equivalent."
+}

@@ -1,0 +1,53 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-cluster-edit",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-cluster-edit.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-cluster-edit", "label": "cluster-edit",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a CLI subcommand is a new instance of the already-typed tool: namespace, per this round's naming instruction; no promoted id exists yet for this specific subcommand" },
+    { "candidate_id": "tool:couchbase-cli-setting-cluster", "label": "setting-cluster",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the command this deprecated page is being replaced by; not yet promoted" },
+    { "candidate_id": "tool:couchbase-cli-cluster-init", "label": "cluster-init",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - SEE ALSO sibling, referenced but not the subject of this page" },
+    { "candidate_id": "port:8091", "label": "Port 8091",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:data-service", "label": "Data service",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:index-service", "label": "Index service",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:search-service", "label": "Search service",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-setting-cluster", "predicate": "supersedes", "object": "tool:couchbase-cli-cluster-edit",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "DEPRECATED: Please use the [setting-cluster](couchbase-cli-setting-cluster.md) command which provides the same functionality as this command." },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "configuresProperty", "object": "port:8091",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the port for the Couchbase Server Administration Console. Defaults to port 8091." },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "configuresProperty", "object": "service:data-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the data service memory quota (in MiB). This quota will be assigned to all future nodes added to the cluster with the data service." },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "configuresProperty", "object": "service:index-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the index service memory quota (in MiB). This parameter is required if the index service is specified in the --services option." },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "configuresProperty", "object": "service:search-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sets the full-text service memory quota (in MiB). This parameter is required if the full-text service is specified in the --services option." },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "seeAlso", "object": "tool:couchbase-cli-cluster-init",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md), [setting-cluster](couchbase-cli-setting-cluster.md)" },
+    { "subject": "tool:couchbase-cli-cluster-edit", "predicate": "seeAlso", "object": "tool:couchbase-cli-setting-cluster",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md), [setting-cluster](couchbase-cli-setting-cluster.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cluster-edit.md lets an operator change the built-in administrator username and password, the cluster-manager listen port, and three service memory quotas - a highly privileged set of operations - yet the page states no RBAC role or permission requirement anywhere, not even a generic pointer to a permissions overview. This matches the same absence already flagged on the couchbase-cli.md landing page: the CLI tree as a whole does not signpost which role a given subcommand needs, even for subcommands (like this one) that alter cluster-wide administrator credentials."
+  },
+  "cross_component_finding": "cluster-edit.md's own OPTIONS section is a near-verbatim copy of cluster-init.md's OPTIONS text for --cluster-fts-ramsize and --cluster-index-ramsize, down to the identical sentence 'This parameter is required if the full-text/index service is specified in the --services option' - but cluster-edit's own SYNOPSIS has no --services flag at all (cluster-init's does). The dangling reference to a flag the command doesn't have is a direct, checkable copy-paste artifact from one sibling subcommand's reference page to another, exactly the failure mode this round's authorship-provenance hypothesis predicted for lighter-reviewed, engineer-authored CLI pages.",
+  "cross_product_finding": "No cross-product signal on this page - it documents a self-managed Couchbase Server CLI operation (editing cluster-manager credentials/port/quotas) with no stated or implied Capella analog; Capella clusters are not administered through this CLI. Absence noted plainly rather than forced."
+}

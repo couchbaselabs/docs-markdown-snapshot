@@ -1,0 +1,87 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-notification",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-notification.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet in the promoted registry; reused across this batch as the CLI suite anchor concept"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli-setting-notification",
+      "label": "setting-notification (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per this round's naming instruction for a distinct subcommand"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page title/description marks the whole subcommand '(EE only)'"
+    },
+    {
+      "candidate_id": "monitoring:update-notification-telemetry",
+      "label": "Web Console update-notification telemetry",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct telemetry-collection mechanism (product usage/performance/browser data collected on every admin UI interaction, explicitly NOT cluster data) not covered by any promoted monitoring:* concept, all of which are Capella-specific (Activity Log/Alert/Event); no page states this Server telemetry feature is the same mechanism as any Capella one"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-notification",
+      "predicate": "isSubtypeOf",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Part of the [couchbase-cli](couchbase-cli.md) suite"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-notification",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Modifies notification settings (EE only)"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-notification",
+      "predicate": "configuresProperty",
+      "object": "monitoring:update-notification-telemetry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Enabling notifications allows the Couchbase Administration Console to notify users about newer versions of Couchbase Server. This system also collects information about use and experience with the product every time an administrator interacts with the administrator user interface."
+    },
+    {
+      "subject": "monitoring:update-notification-telemetry",
+      "predicate": "excludesFromCapture",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This does not allow Couchbase to track your specific interactions or usage of the Couchbase Server. It never accesses or collects any data stored within Couchbase Server."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-notification",
+      "predicate": "hasExecutionConstraint",
+      "object": "cluster-wide-not-per-node",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This setting is a global parameter and applies to all nodes in a cluster."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-notification",
+      "predicate": "seeAlso",
+      "object": "tool:couchbase-cli",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[couchbase-cli](couchbase-cli.md), [cluster-init](couchbase-cli-cluster-init.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter",
+    "finding": "The SYNOPSIS names the flag `--enable-notifications <int>` (plural), but the OPTIONS heading and every EXAMPLES invocation use the singular `--enable-notification <int>` / `--enable-notification 1` / `--enable-notification 0`. This is a third distinct spelling-drift instance in the batch (alongside setting-encryption's 'setting-enable' SYNOPSIS command-name typo and setting-compaction's '--meta-data-purge-interval' EXAMPLES typo) - here a singular/plural fork rather than a hyphenation fork, but the same underlying failure mode of a SYNOPSIS line that was not kept in sync with the rest of its own page."
+  },
+  "cross_component_finding": "This is the fourth page in the batch (after setting-alert, setting-compaction, setting-encryption) to carry an internal SYNOPSIS-vs-OPTIONS/EXAMPLES naming inconsistency - across 8 pages that is a 50% hit rate for at least one literal spelling defect, all clustered in the exact section (SYNOPSIS) that a TW copyedit pass would normally reconcile against OPTIONS line by line. Taken together this is a strong, page-count-backed confirmation of the round's authorship-provenance hypothesis for cli/, distinct from and additional to the terse-prose/copy-pasted-description signal looked for elsewhere.",
+  "cross_product_finding": "The DISCUSSION section's explicit privacy carve-out ('This does not allow Couchbase to track your specific interactions or usage... It never accesses or collects any data stored within Couchbase Server') is the CLI's own self-description of update-notification telemetry scope; nothing on this page compares it to Capella's own telemetry/usage-collection practices (if any), so whether the two products draw this boundary consistently is not verifiable from this page alone."
+}

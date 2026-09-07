@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-user-manage-security-admin-contradicts-8-0-role",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "couchbase-cli-user-manage.md's ROLES section describes security_admin as: 'Gives the user permission to view all cluster statistics and manage user roles, but cannot grant Full Admin or Security Admin roles to other users or alter their own role.' This is the PRE-8.0 combined Security Admin behavior. The already-promoted concepts/role/security-admin.json (filed from learn/security/roles.md) states the 8.0 role of the same internal name explicitly CANNOT manage users at all - user-management privileges were split off into role:user-admin-local and role:user-admin-external when Security Admin was narrowed in 8.0: 'This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0. The Local User Security Admin role had additional administration privileges that were split off.' Two Couchbase Server 8.0 documentation pages describe the current security_admin role's capabilities in direct contradiction: one says it manages user roles, the other says user management moved elsewhere. Needs an SME to determine which is stale.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-user-manage",
+    "server/current/learn/security/roles"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

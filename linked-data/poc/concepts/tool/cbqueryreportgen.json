@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/cbqueryreportgen",
+  "label": "cbqueryreportgen",
+  "type": "a Couchbase Server 8.0+ CLI tool that connects to a cluster and generates performance reports from the Query Service's Automatic Workload Repository (AWR) statistics. Requires an existing AWR repository and an index on the AWR document key.",
+  "promoted": true,
+  "recurrence": 2,
+  "availableSince": "version:server-8-0",
+  "evidence": [
+    "This tool is only available in Couchbase Server 8.0 and later.",
+    "The cbqueryreportgen command connects to a Couchbase cluster and generates performance reports based on the Query Service's AWR statistics.",
+    "It's assumed that you have already specified this as the AWR repository, and created an index on the document key in the configured AWR location."
+  ],
+  "documented_at": "server/8.0/cli/cbqueryreportgen.md",
+  "note": "Joins the promoted CLI-tool family. reliesOnMechanism n1ql:automatic-workload-repository - the first CLI-layer concept to depend on that mechanism.",
+  "relates_to_competency_question": "What tool turns AWR statistics into a human-readable performance report, and which Server version introduced it?"
+}

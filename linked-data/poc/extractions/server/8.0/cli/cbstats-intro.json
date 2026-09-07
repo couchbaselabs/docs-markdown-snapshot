@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbstats-intro",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats-intro.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "port:11210", "label": "port 11210 (KV / memcached)",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "service:data-service", "label": "Data service",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "tool:cbepctl", "label": "cbepctl",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - referenced here for the cross-tool comparison below; the concept is minted (and given fuller treatment) in this same batch's cbepctl-intro.json, not yet promoted" }
+  ],
+  "relations": [
+    { "subject": "tool:cbstats", "predicate": "usesPort", "object": "port:11210",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The `host` must be the hostname or IP address of a node within the cluster. The port must be `11210`." },
+    { "subject": "service:data-service", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The `cbstats` tool provides Data Service statistics, for an individual, specified node." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The common-options table documents -u/-p/-S (username, password, read-password-from-stdin) but never states which Couchbase RBAC role or privilege those credentials must carry to retrieve Data Service stats - despite this tool exposing per-bucket, per-vBucket internals the Web Console does not surface (per the tool's own registry description). This is the third page in this batch (with cbcollect-info-tool.md and cbepctl-intro.md) to accept authentication credentials without ever naming a required role, a consistent pattern across this round's diagnostic-tool pages."
+  },
+  "cross_component_finding": "cbstats and cbepctl (this batch's other per-node/per-bucket control tool - see cbepctl-intro.json) both connect over the identical port:11210 and share nearly the same common-option flag set (-a, -b, -u, -p, -S), despite documenting entirely separate operations (read-only stats retrieval vs. persistence/vBucket-state control). Neither page cross-references the other or acknowledges the shared connection mechanism, suggesting both are thin CLI wrappers over the same underlying memcached-binary-protocol client library - a fact neither page states.",
+  "cross_product_finding": "The page is unambiguously Server-only (a raw KV-port tool with no REST/UI equivalent mentioned); Capella does not expose port 11210 to customers for this kind of direct per-node stats access, though the page gives no such caveat since it has no Capella-facing counterpart to distinguish itself from."
+}

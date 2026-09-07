@@ -1,0 +1,25 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-rebalance-status",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-rebalance-status.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "monitoredVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Gets rebalance status information for the cluster. Currently the status either reports \"running\" or \"not running\"." },
+    { "subject": "server:rebalance", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-rebalance-stop",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [rebalance-stop](couchbase-cli-rebalance-stop.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasLifecycleState / percentage progress",
+    "finding": "This command exposes only a binary 'running' or 'not running' status - literally stated: 'Currently the status either reports \"running\" or \"not running\".' No percentage-complete, ETA, or per-service/per-bucket breakdown is exposed, despite the rebalance subcommand's own --no-progress-bar / --no-wait flags implying a richer progress-tracking concept exists elsewhere (e.g. the Web Console's progress bar). This CLI status command doesn't surface that granularity at all - a real capability/documentation gap between what the CLI can report and what the product visibly tracks."
+  },
+  "cross_component_finding": "This page's DESCRIPTION is a single terse sentence and its OPTIONS/HOST FORMATS/CERTIFICATE AUTHENTICATION/ENVIRONMENT AND CONFIGURATION VARIABLES sections are the exact same universal boilerplate already documented across essentially every other couchbase-cli page in this and prior batches (word-for-word, down to the six base flags). No content on this page is specific to rebalance-status beyond its one-sentence DESCRIPTION, its single EXAMPLES command, and its SEE ALSO list - consistent with terse, lightly-reviewed engineer-authored reference prose. No cbcli-vs-REST/UI terminology drift is visible on this page specifically, since it introduces almost no unique vocabulary of its own to drift.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, where rebalance is managed automatically and this kind of manual status polling has no customer-facing equivalent."
+}

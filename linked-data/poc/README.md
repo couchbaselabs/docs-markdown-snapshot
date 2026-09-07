@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-eight rounds so far, twenty-four of them deliberate escalations
+automating it. Twenty-nine rounds so far, twenty-five of them deliberate escalations
 and four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -455,6 +455,28 @@ and four corrective passes over what they left behind:
     across two records, one from this round and one from round 27, both corrected
     with the original reasoning quoted rather than silently rewritten. 19
     concepts, 1 relation promoted; 1 new `docs-issues/`.
+29. **127 pages, the whole `cli/` directory** — Couchbase Server's `couchbase-cli`
+    admin tool, `cbstats` diagnostic tool, `cbepctl`, and a grab-bag of standalone
+    diagnostic/memcached-protocol tools (cbcollect-info, cbq-tool, mcstat,
+    cbft-bleve-*, cbqueryreportgen, couchbase-server, and more), run as 13
+    parallel batches under an explicit authorship-provenance stress test
+    (engineer-written, lightly-TW-reviewed pages, predicted in advance to skew
+    toward documentation findings over ontology content). Genuine first contact —
+    no prior round had read `cli/` at all. Confirmed nine distinct copy-paste bugs
+    against the raw source pages (wrong flag names copied between sibling
+    commands, a whole options table copied to the wrong subcommand, undefined
+    flags in worked examples, a duplicated-word typo on three pages, a stale
+    version string). The headline finding: `couchbase-cli-user-manage.md`'s
+    `security_admin` role description directly contradicts the already-promoted
+    8.0 `role:security-admin` record. Paid down the round's largest whole-corpus
+    promotion-debt catch (`tool:couchbase-cli`, the umbrella tool: 35/127 of this
+    round's own files, 52 whole-corpus) and found a namespace-hygiene defect
+    produced within this single round: ~40 single-page agents each independently
+    minted their own page's subcommand as `tool:couchbase-cli-<subcommand>`, 51
+    ids that do not fit the `tool:` namespace's one-member-per-binary convention,
+    left deliberately unpromoted. 21 concepts, 1 relation promoted (`removedIn`, a
+    slot reserved since round 10 and finally filled); 15 new `docs-issues/`, 2
+    existing ones updated with a new occurrence.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -462,7 +484,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-1,034 pages total:
+1,161 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -658,6 +680,17 @@ time/cost projections and how they held up against the round-2 run's real number
   seven parallel batches. **Sync Gateway is now fully covered** — this closes
   out what round 27 left, everything the product's docs tree contains. See
   round 28 in `reconciliation.md`.
+- **127 more, the whole `server/8.0/cli/` directory** — `couchbase-cli` (the
+  umbrella cluster-admin CLI, ~90 subcommand pages under `cbcli/`), `cbstats`
+  (the per-node KV diagnostic tool, ~30 subcommand pages under `cbstats/`),
+  `cbepctl`, and the remaining standalone diagnostic/migration/memcached-protocol
+  tools (cbcollect-info, cbq-tool, mcstat/mctestauth/mctimings, cbft-bleve-*,
+  cbqueryreportgen, cbriftdump, cbsqlitedump, couchbase-server). Genuine first
+  contact — no prior round had read `cli/` at all. Dispatched as 13 parallel
+  batches, explicitly briefed to watch for the directory's own authorship
+  provenance (engineer-written, in each tool's own repo, lighter TW review than
+  the rest of the Server tree) as a 12th stress-test axis on top of the eleven
+  already run. See round 29 in `reconciliation.md`.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1355,6 +1388,39 @@ from "still in `extractions/`."
   `has-no-relationship-to` relation, each got a qualifying/corrective note this
   round rather than a silent edit — see round 28 in `reconciliation.md` for all
   three.
+  Round 29 promoted 21, taking the directory to **683 records**: the round's
+  largest whole-corpus promotion-debt catch, `tool:couchbase-cli` (the umbrella
+  couchbase-cli binary, referenced by 35 of the round's own 127 files and 52
+  whole-corpus, never itself promoted despite ~130 subcommand pages assuming
+  it); three more whole-binary CLI tools joining the existing family
+  (`tool:cbepctl` — folding a same-round concurrent mint across two batches,
+  `tool:cbqueryreportgen`, `tool:mctimings`); a `protocol:tap`/`removedIn`
+  significance-exception pair (see `relations/` below); `auth-mechanism:sasl-plain`
+  (recurrence 2, joining the closed `auth-mechanism:` axis); an FTS storage-format
+  pair (`fts:scorch-storage`/`fts:moss-storage`, mutually exclusive, promoted
+  together per the family test); five `server:*`/`storage:*` bucket-and-KV-engine
+  concepts from `cbcli`/`cbstats` pages (`collections-manifest`,
+  `log-collection-task`, `bucket-eviction-policy`, `bucket-flush`,
+  `built-in-administrator-account`, `collection-change-history`,
+  `document-history-retention`, `key-consistency-verification`); a `monitoring:*`
+  pair for the ep-engine's own task/thread-pool model
+  (`ep-engine-background-task`/`ep-engine-thread-pool`) plus
+  `monitoring:cbstats-histogram` (folding a same-round `storage:latency-histogram-format`
+  mint - two batches independently naming one cbstats display convention under
+  two different namespace prefixes, caught by comparing evidence, not ids);
+  `service:enterprise-analytics-service` (genuinely new - no service of that name
+  existed in 662 prior concepts, deliberately not merged with
+  `service:analytics-service`); `analytics:analytics-link` (a fourth-plus
+  instance of this project's "narrated as promoted, never actually filed" defect
+  - two existing promoted records had carried `isSubtypeOf: analytics:analytics-link`
+  since round 21 with no file behind the id); and a `vbucket:*` pair
+  (`checkpoint`, `vbucket-takeover`). **Deliberately not promoted**: 51
+  `tool:couchbase-cli-<subcommand>` ids (plus `tool:cbstats-reset-command`) that
+  ~40 single-page agents independently minted this round, each correctly
+  describing its own page's subject but none fitting the `tool:` namespace's
+  one-member-per-binary convention - a namespace-hygiene defect this project has
+  previously only seen accumulate across multiple rounds, found here fully-formed
+  inside one round's own parallel batches. See round 29 in `reconciliation.md`.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1604,13 +1670,40 @@ from "still in `extractions/`."
   setting/value overriding a sibling setting/value, confirmed by checking all
   ~30 of its prior corpus uses, none of which named a whole feature/mechanism
   as the object the way this one did.
+  Round 29 added **one**, taking the directory to **120 records**: `removedIn`
+  (recurrence 1, significance exception), the predicate the round-10-era
+  `deprecatedIn` record reserved but explicitly deferred ("do not file it until
+  a page actually dates a removal") - `cbstats-tap-vbtakeover.md` is the first
+  page in the whole corpus to state an actual dated removal ("removed from
+  Couchbase Server in version 5.0") rather than an undated "will be removed in
+  a future release," so the slot cut three rounds earlier finally got filled.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **202
+  issueType, description, about, status}` — minted with no gatekeeping. **217
+  entries** as of round 29 (15 added that round, all from `cli/`, plus 2 existing
+  entries updated with a new occurrence rather than duplicated: nine confirmed
+  copy-paste bugs verified against the raw source page one at a time
+  (`couchbase-cli-server-add.md`'s wrong flag names copied from
+  `couchbase-cli-server-readd.md`; `setting-autoreprovision.md`'s "autofailover"
+  text copied from `setting-autofailover.md`; `cbstats-kvtimings.md`'s whole
+  options table copied from `cbstats-kvstore.md`; `setting-rebalance.md`'s
+  undefined `--retries` flag and a cancel example that doesn't cancel;
+  `setting-encryption.md`'s wrong SYNOPSIS command name and `--rotate`/`--rotate-key`
+  mismatch; the "TTL greater than than" typo duplicated on three pages;
+  `cbstats-vbucket-details.md`'s `vb_relica` typo; a stale "Version 7.6" sentence
+  on two 8.0 pages; a garbled raw-terminal-paste artifact in
+  `cbstats-collections-details.md`'s example output; `couchbase-server.md`'s
+  stale `6.6.0-7853` version-string example); three RBAC-catalogue findings on
+  `couchbase-cli-user-manage.md` (the headline `security_admin`
+  contradiction against the promoted `role:security-admin` record, a
+  `replication_admin` same-page duplicate entry, and a stale roles catalogue
+  missing every 8.0-introduced and Sync-Gateway role); the undocumented
+  Analytics/Enterprise-Analytics relationship; and a bucket-eviction-policy
+  create/edit scope mismatch. 202
   entries** as of round 28 (1 added that round: `get-started-verify-install.md`,
   Sync Gateway's stale 4.0-era Start Here page, superseded by
   `get-started-configure.md`/`get-started-explore.md` but never removed —
@@ -3492,6 +3585,41 @@ resumed pass after an interrupted run):**
      same "corpus is not the documentation" shape round 17 first found for a
      missing directory, recurring here for a namespace scattered across pages
      instead.
+133. **The CLI's `security_admin` role description contradicts the
+     already-promoted 8.0 `role:security-admin` record** (round 29's headline
+     finding). `couchbase-cli-user-manage.md` says the role "manage[s] user
+     roles" and cannot grant Full Admin or Security Admin - the PRE-8.0
+     combined-role behavior. `concepts/role/security-admin.json`, filed from
+     `roles.md`, states the 8.0 role *cannot* manage users at all, that
+     capability having split off into `role:user-admin-local`/
+     `role:user-admin-external`. Two Server 8.0 pages, same internal role name,
+     directly contradictory capability descriptions - filed as a docs-issue
+     rather than resolved by inference.
+134. **A namespace-hygiene defect can be produced by ~40 individually-correct
+     decisions inside one round's own parallel batches, not just accumulated
+     across many rounds.** Every prior namespace finding this project logged
+     built up gradually over multiple rounds before anyone read the namespace
+     whole. Round 29's `tool:couchbase-cli-<subcommand>` case - 51 ids, each a
+     single-page agent correctly describing its own page's subject, none
+     fitting the `tool:` namespace's one-member-per-binary convention - shows
+     the same defect shape can appear fully-formed in a single round, simply
+     because 13 parallel batches each read only their own slice of one very
+     large, very uniform directory.
+135. **Two batches naming one mechanism through two different namespace
+     prefixes is the same fork shape round 18 found through two different
+     predicates.** `monitoring:cbstats-histogram` and
+     `storage:latency-histogram-format` share no substring, so neither
+     `--variants` nor `--forks` would surface the fork unprompted - both name
+     the identical bucketed-percentage histogram rendering convention cbstats
+     uses across unrelated subcommands, caught only by reading the evidence
+     quotes side by side.
+136. **A directory's own authorship provenance predicts its docs-issues:concepts
+     ratio, and the prediction can be tested in the same round it's made.**
+     Round 29 named `cli/`'s engineer-authored, lightly-TW-reviewed provenance
+     as a stress-test axis in advance and got a 15-docs-issue, 21-concept round
+     matching that shape - nine of the fifteen were copy-paste bugs, each
+     verified against the raw source page rather than taken on the extraction
+     batches' word.
 
 ## What this is not
 
@@ -3505,6 +3633,21 @@ document.
 
 ## Suggested next steps
 
+- **Resolve the `tool:couchbase-cli-<subcommand>` namespace-hygiene finding.**
+  Round 29 left 51 ids (plus `tool:cbstats-reset-command`) deliberately
+  unpromoted rather than filed into `concepts/tool/`, because a CLI subcommand
+  is not a tool by that namespace's own one-member-per-binary convention. The
+  likely fix is a `command:`-shaped namespace (or a `hasSubcommand`/similar
+  relation off `tool:couchbase-cli`, with the subcommand kept as a string
+  rather than promoted as its own concept) - a namespace-shaped decision of
+  exactly the kind round 14 established as the right unit of work, and cheap
+  relative to reading a new directory since all 51 ids already exist at the
+  extraction layer.
+- **`server/8.0/n1ql/`'s remaining ~113 pages and the general `rest-api/`'s
+  remaining ~142 pages are round-30-or-later candidates, not urgent.** Both were
+  flagged by the plan that produced round 29 as the next natural scale-up once
+  `cli/` closed out, but neither is blocking anything - noted here so the next
+  round doesn't have to re-derive the observation.
 - **Reorganise the remaining coverage plan by GENRE, and read the rest of the
   procedural surface next.** This is round 26's direct consequence and it supersedes
   the "include conceptual directories on purpose" bullet further down by

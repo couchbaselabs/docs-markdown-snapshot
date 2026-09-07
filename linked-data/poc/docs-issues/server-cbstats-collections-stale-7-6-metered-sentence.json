@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbstats-collections-stale-7-6-metered-sentence",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Both cbstats-collections.md and cbstats-collections-details.md state, verbatim: 'The metered line is not used in Couchbase Server Version 7.6, and always has the value 0.' This is server/8.0/ documentation (Couchbase Server 8.0), yet the sentence still names Version 7.6 - either stale wording carried forward unedited across at least two major versions, or the sentence needs to state whether the 'not used' condition still holds in 8.0. Confirmed duplicated verbatim on both pages, consistent with this round's copy-paste findings.",
+  "about": [
+    "server/8.0/cli/cbstats/cbstats-collections",
+    "server/8.0/cli/cbstats/cbstats-collections-details"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

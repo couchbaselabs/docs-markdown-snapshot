@@ -1,0 +1,25 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-rebalance-stop",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-rebalance-stop.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:rebalance", "label": "Rebalance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:rebalance", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli rebalance-stop_ [--cluster <url>] [--username <user>] [--password <password>] [--client-cert <path>]" },
+    { "subject": "server:rebalance", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-rebalance-status",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[rebalance](couchbase-cli-rebalance.md), [rebalance-status](couchbase-cli-rebalance-status.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole / requiresPrivilege",
+    "finding": "As with every other file in this batch, stopping a running rebalance names no specific RBAC role or privilege - only the generic 'unauthorized error' boilerplate. Also absent: any statement of what state the cluster is left in after a stopped rebalance (partially moved data/indexes?) - the DESCRIPTION is a single sentence: 'Stops the currently running rebalance.'"
+  },
+  "cross_component_finding": "rebalance-status.md and rebalance-stop.md are near-identical twins: both have a single-sentence DESCRIPTION, the exact same six-flag OPTIONS block, the same HOST FORMATS/CERTIFICATE AUTHENTICATION/ENVIRONMENT AND CONFIGURATION VARIABLES boilerplate, and a single bare EXAMPLES command differing only in the subcommand name. This IS the sibling-set copy-paste pattern the round's authorship-provenance hypothesis predicts, but it's important to be precise about scope: the duplication is the same universal base-option boilerplate already found on nearly every couchbase-cli subcommand page in this and prior batches (bucket-compact, node-reset, etc.), not something extra or unique to this rebalance/rebalance-status/rebalance-stop trio specifically. Where the trio IS distinctive is terseness: rebalance.md (the full/complex sibling) has a multi-paragraph DESCRIPTION, several unique flags, and five EXAMPLES; its two thinner siblings status/stop each collapse to one sentence of DESCRIPTION and one EXAMPLES command, with literally zero unique flags beyond the shared base six. No CLI-vs-REST/UI terminology drift is verifiable from this page's evidence alone - it introduces no vocabulary of its own to compare.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella is made."
+}

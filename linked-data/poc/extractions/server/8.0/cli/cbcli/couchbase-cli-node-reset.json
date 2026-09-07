@@ -1,0 +1,34 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-node-reset",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-node-reset.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-node-reset", "label": "node-reset",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-node-init", "label": "node-init",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-cluster-init", "label": "cluster-init",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-add", "label": "server-add",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "role:full-administrator", "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-node-reset", "predicate": "requiresServerRole", "object": "role:full-administrator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The command requires full admin permissions." },
+    { "subject": "tool:couchbase-cli-node-reset", "predicate": "seeAlso", "object": "tool:couchbase-cli-node-init",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[node-init](couchbase-cli-node-init.md), [cluster-init](couchbase-cli-cluster-init.md), [server-add](couchbase-cli-server-add.md)" },
+    { "subject": "tool:couchbase-cli-node-reset", "predicate": "seeAlso", "object": "tool:couchbase-cli-server-add",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[node-init](couchbase-cli-node-init.md), [cluster-init](couchbase-cli-cluster-init.md), [server-add](couchbase-cli-server-add.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "node-reset.md's own DESCRIPTION frames the command's purpose entirely around a failover scenario ('This is designed to be used on nodes that have gone through unsafe failover, allowing them to be readded to the cluster'), but its SEE ALSO section links only to node-init, cluster-init and server-add - generic node-onboarding commands - never to the failover or recovery family (couchbase-cli-failover.md, couchbase-cli-recovery.md, couchbase-cli-server-readd.md) that the command's own stated use case actually depends on. A reader following the documented cross-reference trail from this page would never be pointed at how to fail the node over in the first place."
+  },
+  "cross_component_finding": "The role gate is stated only as informal prose - 'The command requires full admin permissions' - using lower-case 'full admin' rather than the promoted role catalogue's own display name 'Full Admin / Full Administrator' (internal name `admin`, documented formally in learn/security/roles.md). Every other place in the corpus that names this role either uses its catalogue display label or its internal name; this CLI page is the only observed instance that instead paraphrases it as a generic capability description with no role name, capitalization, or cross-reference to the roles catalogue at all - a small but real terminology-casualness data point consistent with lighter TW review of cli/ pages.",
+  "cross_product_finding": "Plainly none - node-reset is a self-managed Server maintenance operation (wiping a node's data after unsafe failover) with no Capella analog stated or implied; Capella customers do not run direct node-level CLI maintenance."
+}

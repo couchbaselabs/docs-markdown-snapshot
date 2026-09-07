@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/log-collection-task",
+  "label": "Log collection task",
+  "type": "a cluster-wide, at-most-one-at-a-time asynchronous job that gathers Couchbase Server log files from one or more nodes, optionally redacting and/or uploading them for support. Started/monitored/stopped via couchbase-cli collect-logs-start/-status/-stop.",
+  "promoted": true,
+  "recurrence": 3,
+  "accessibleVia": "tool:couchbase-cli",
+  "storesDataIn": "log:log-file",
+  "hasExecutionConstraint": "only one log collection task may run at a time in the cluster",
+  "evidence": [
+    "This command collects all Couchbase Server log files from one or more nodes in the cluster.",
+    "Note that only one log collection task may be running at any given time in the cluster.",
+    "The upload flag is intended for Couchbase Server Enterprise Edition users who need to upload logs to the Couchbase Support Team to aid in diagnosis."
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-start.md",
+  "note": "The upload capability requiresEdition edition:enterprise; the task itself is not edition-gated.",
+  "relates_to_competency_question": "Can two administrators collect logs from the same cluster at the same time, and how would a script check?"
+}

@@ -1,0 +1,39 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-vbucket-details",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-vbucket-details.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; the subject of every one of the ~50 stats in this page's two tables" },
+    { "candidate_id": "vbucket:bloom-filter", "label": "vBucket bloom filter (KV engine)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - deliberately NOT reusing the already-promoted index:bloom-filter, which is explicitly scoped 'Index Service, Plasma' and is a memory-management enhancement for the PLASMA index storage engine, configurable via the Index REST settings API. This page's bloom_filter/bloom_filter_size/bloom_filter_key_count stats are a per-vBucket structure inside the KV/ep-engine data path, not the index-service one - same word, textually unrelated subsystem, no page connects them, so kept apart per the no-silent-merge rule rather than reused" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted; Table 2 on this page is explicitly scoped to ephemeral buckets only (the seqlist_* stats, which only exist because Ephemeral buckets keep an in-memory sequence list instead of writing to disk)" }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "This command provides details for the specified vBucket, or for each vBucket if none is specified." },
+    { "subject": "vbucket:bloom-filter", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Status of the vBucket's bloom filter." },
+    { "subject": "bucket:ephemeral-bucket", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Additional vBucket statistics for ephemeral buckets" }
+  ],
+  "notable_absence": {
+    "predicate": "correctSpellingOf",
+    "finding": "The page's own text contains an uncorrected typo in a stat name: 'Note also that the cbstats all option provides summary statistics... The names of these summary statistics are vb_active_sync_write_aborted_count, vb_relica_sync_write_aborted_count, and so forth' - 'vb_relica_...' should read 'vb_replica_...'. This is a direct authorship-provenance fingerprint: a hand-typed error in one specific paragraph that was never proofread or corrected, distinct from the table rows above it (which are clean), suggesting this closing paragraph was added or edited separately from the main table."
+  },
+  "cross_component_finding": "The vb_x:bloom_filter statistic documented here names the exact same English word ('bloom filter') as the already-promoted index:bloom-filter concept, but the two are unrelated mechanisms from different subsystems: this page's bloom filter is a per-vBucket KV/ep-engine structure (used to avoid disk look-ups for keys that likely do not exist), while index:bloom-filter is a Plasma index-storage-engine memory-management feature configured through the Index REST settings API. No page in the corpus connects the two. Minted as vbucket:bloom-filter rather than reusing index:bloom-filter, per the standing no-silent-merge rule - a same-name, different-component collision exactly of the kind this round's cbstats corpus was flagged to watch for.",
+  "cross_product_finding": "No Capella analog: this level of KV-engine internal detail (bloom filters, hybrid-logical-clock drift counters, synchronous-write accept/commit/abort counts) is Server-CLI-only and has no documented Capella surface."
+}

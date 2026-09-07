@@ -1,0 +1,28 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-reset",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-reset.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tool:cbstats-reset-command", "label": "cbstats reset command (counter/histogram zeroing)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism of zeroing a large, named set of counter and histogram statistics in one non-atomic operation. Minted once at this level rather than once per listed stat name (34 reset stats + 22 reset-histogram stats are named on this page and deliberately NOT minted individually, per this round's rule)." }
+  ],
+  "relations": [
+    { "subject": "tool:cbstats-reset-command", "predicate": "authenticatesVia", "object": "auth-mechanism:username-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`cbstats` requires a username (`-u`) and a password (`-p`) to execute." },
+    { "subject": "server/8.0/cli/cbstats/cbstats-reset", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For common `cbstats` options, see [cbstats](../cbstats-intro.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsRisk",
+    "finding": "The page states the non-atomicity risk in prose ('threads may keep updating some stats while the reset operation is causing others to be cleared. This can cause overflows for calculated values...') but never says which specific stats are safe to reset together versus which combinations are known to produce the overflow it warns about - the warning is general, not tied to any specific pair of listed stats."
+  },
+  "cross_component_finding": "Several reset-histogram stat names still use 'tap' terminology (bg_tap_load, bg_tap_wait, tap_mutation, tap_vb_reset, tap_vb_set) and the reset-stats table has ep_tap_bg_load_avg, ep_tap_bg_max_load, ep_tap_bg_max_wait, ep_tap_bg_min_load, ep_tap_bg_min_wait, ep_tap_bg_wait_avg, ep_tap_throttled, ep_tap_total_fetched sitting alongside modern disk/checkpoint counters (disk_insert, disk_commit, ep_items_rm_from_checkpoints) - concrete, on-page evidence that this reference table was authored/extended across multiple product eras (TAP-replication-era naming coexisting with current DCP-era stats) without ever being pruned, supporting this round's authorship-provenance hypothesis about reference tables accreting rather than being rewritten.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

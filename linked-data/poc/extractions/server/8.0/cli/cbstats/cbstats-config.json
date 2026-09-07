@@ -1,0 +1,34 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-config",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-config.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage-engine:magma", "label": "Magma",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "storage:bucket-bloom-filter", "label": "Bucket-level (Data Service) bloom filter",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the ep_bfilter_* family (ep_bfilter_enabled, ep_bfilter_fp_prob, ep_bfilter_key_count, ep_bfilter_residency_threshold) names a bloom filter mechanism at the Data-Service bucket/KVStore level, used to skip unnecessary disk reads for keys that don't exist. Minted as one mechanism rather than four field-level concepts. Kept deliberately separate from the already-promoted index:bloom-filter (Index Service / Plasma) - this page never states the two are related or distinct, so no relation was minted between them; flagged only as a cross_component_finding to avoid fabricating an unstated claim." }
+  ],
+  "relations": [
+    { "subject": "storage-engine:magma", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that the `ep_magma` statistics are returned on Couchbase Server Enterprise Edition only." },
+    { "subject": "storage:bucket-bloom-filter", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "ep_bfilter_enabled:                                    true" },
+    { "subject": "server/8.0/cli/cbstats/cbstats-config", "predicate": "seeAlso", "object": "server/8.0/cli/cbstats-intro",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For a complete list of `common options`, see the table provided on the introductory page for [cbstats](../cbstats-intro.md#common-options)." }
+  ],
+  "notable_absence": {
+    "predicate": "definesEnum",
+    "finding": "ep_conflict_resolution_type: seqno is returned with no enumeration of the other value(s) this setting can take, and no link to conflict-resolution documentation - notable because tool:cbstats's own promoted registry description already credits cbstats with exposing 'the clock-drift counters that timestamp-based conflict resolution depends on,' yet this specific config page, which reports the conflict-resolution TYPE itself, makes no connection to that mechanism at all."
+  },
+  "cross_component_finding": "ep_bfilter_enabled/ep_bfilter_fp_prob/ep_bfilter_key_count/ep_bfilter_residency_threshold name a bucket-level (Data Service / KVStore) bloom filter that is mechanically distinct from the already-promoted index:bloom-filter (Index Service, Plasma memory-management enhancement) - same generic term 'bloom filter', two different components in two different services. This page gives no indication a reader might confuse the two, which is itself worth flagging: nothing on this page (or, so far, on the Index Service bloom-filter pages) disambiguates the shared name across components.",
+  "cross_product_finding": "Not applicable - the EE/CE split here (ep_magma stats requiring Enterprise Edition) is Server's own edition licensing, not a Capella-vs-Server distinction; no Capella content is present on this page."
+}

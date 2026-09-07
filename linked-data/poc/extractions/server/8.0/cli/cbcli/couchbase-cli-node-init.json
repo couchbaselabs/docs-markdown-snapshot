@@ -1,0 +1,51 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-node-init",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-node-init.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-node-init", "label": "node-init",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-cluster-init", "label": "cluster-init",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-server-add", "label": "server-add",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tool:couchbase-cli-node-reset", "label": "node-reset",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "server:node-provisioning", "label": "node provisioning",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:cluster-address-family", "label": "cluster address family",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:index-service", "label": "Index service", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:analytics-service", "label": "Analytics service", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "service:eventing-service", "label": "Eventing Service", "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-node-init", "predicate": "configuresProperty", "object": "server:cluster-address-family",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Switch the node to use ipv4 for node to node communication" },
+    { "subject": "tool:couchbase-cli-cluster-init", "predicate": "requiresPriorExecutionOf", "object": "tool:couchbase-cli-node-init",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "These settings must be set prior to initializing the cluster or adding the node to an existing cluster as they cannot be changed later." },
+    { "subject": "tool:couchbase-cli-server-add", "predicate": "requiresPriorExecutionOf", "object": "tool:couchbase-cli-node-init",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "These settings must be set prior to initializing the cluster or adding the node to an existing cluster as they cannot be changed later." },
+    { "subject": "tool:couchbase-cli-node-init", "predicate": "configuresProperty", "object": "service:index-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The path to store files create by the Couchbase index service. This flag can only be specified against a node that is not yet part of a cluster." },
+    { "subject": "tool:couchbase-cli-node-init", "predicate": "configuresProperty", "object": "service:analytics-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The path to store files create by the Couchbase Analytics service. This flag can only be specified against a node that is not yet part of a cluster. Multiple paths can be specified by setting this option multiple times." },
+    { "subject": "tool:couchbase-cli-node-init", "predicate": "seeAlso", "object": "tool:couchbase-cli-cluster-init",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md), [server-add](couchbase-cli-server-add.md), [node-reset](couchbase-cli-node-reset.md)" },
+    { "subject": "tool:couchbase-cli-node-init", "predicate": "seeAlso", "object": "tool:couchbase-cli-node-reset",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[cluster-init](couchbase-cli-cluster-init.md), [server-add](couchbase-cli-server-add.md), [node-reset](couchbase-cli-node-reset.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "node-init.md is the page that actually performs the step the already-promoted server:node-provisioning concept describes itself as being 'distinct from and subsequent to' - yet node-init.md never uses the word 'provisioning' or otherwise signposts that a further, separate step (setting administrator credentials, services, memory quotas, via cluster-init or server-add) still lies ahead before this node is a real cluster member. The two-step bootstrap sequence is legible from the provisioning-side concept's own description, but not from this, the earlier step's, own page - a reader arriving at node-init.md cold would not learn the step has a name or a defined successor."
+  },
+  "cross_component_finding": "This exact batch documents the cluster/node IP-family setting through three different flag shapes across three sibling pages: node-init.md exposes it as four independent boolean switches (--ipv4, --ipv6, --ipv4only, --ipv6only, no hyphen before 'only'); cluster-init.md exposes it as a single valued flag (--ip-family <ipv4|ipv6|ipv4-only|ipv6-only>, WITH a hyphen before 'only' in the enum values); and ip-family.md (this same batch) exposes it as --get/--set plus --ipv4/--ipv4only/--ipv6/--ipv6only (matching node-init's no-hyphen shape, not cluster-init's hyphenated enum). All three configure the same already-promoted server:cluster-address-family concept, but no page cross-references the other two flag shapes or explains why the value spelling differs between 'ipv4-only' and 'ipv4only' depending on which subcommand you're using - a concrete, checkable terminology/shape-drift instance across near-identical siblings, exactly this round's framing hypothesis.",
+  "cross_product_finding": "Plainly none - node-init is a self-managed Server bootstrap step (disk paths, hostname, IP family for node-to-node communication) with no Capella analog stated or implied on this page."
+}

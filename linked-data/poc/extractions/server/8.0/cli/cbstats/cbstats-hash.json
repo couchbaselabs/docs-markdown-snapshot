@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-hash",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-hash.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket", "label": "vBucket",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:vbucket-hash-table", "label": "vBucket hash table",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-vBucket in-memory hash table that 'hash' and 'hash detail' report aggregate/per-vBucket depth and size statistics for. This is the mechanism the whole command exists to expose, not any one of avg_count/max_depth/size/etc individually - those stay as prose/evidence detail rather than becoming their own concepts, per this round's tightened rule." }
+  ],
+  "relations": [
+    { "subject": "server:vbucket", "predicate": "hasInternalComponent", "object": "server:vbucket-hash-table",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Provides information about the vBucket hash tables." },
+    { "subject": "server:vbucket-hash-table", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "It is also possible to get more detailed hash tables stats by using 'hash detail'. This prints per-vbucket stats." }
+  ],
+  "notable_absence": {
+    "predicate": "documentsPerformanceImpact",
+    "finding": "The page states the cost directly - 'Requesting these stats does affect performance, so don't do it too regularly' - but gives no quantification or guidance on what 'too regularly' means: no suggested polling interval, no numeric threshold, unlike the explicit numeric thresholds cbstats-config reports for other subsystems (e.g. bloom-filter residency thresholds)."
+  },
+  "cross_component_finding": "The page draws a direct causal line from a structural stat to end-user-visible performance - 'if your hash table is tuned to have too few buckets for the data load within it, the max_depth will be too large, and performance will suffer' - the closest thing in this batch to an explanation of WHY a stat group matters rather than just what each field means, and the only page in this batch that states a stat's practical failure mode in prose rather than leaving it to the reader to infer from a bare description column.",
+  "cross_product_finding": "Not applicable - no cross-product content on this page."
+}

@@ -1,0 +1,97 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-ldap",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-ldap.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-setting-ldap",
+      "label": "setting-ldap (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "idp:ldap",
+      "label": "LDAP identity provider",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "idp:ldap-group",
+      "label": "LDAP group",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - LDAP is the identity provider behind the external authentication domain"
+    },
+    {
+      "candidate_id": "tls:mutual-tls",
+      "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the --ldap-client-cert/--ldap-client-key pair used to bind against the LDAP server, distinct from the --client-cert/--client-key pair used to authenticate against Couchbase Server itself"
+    },
+    {
+      "candidate_id": "cert:trust-store",
+      "label": "Trust store",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --ldap-cacert is the CA certificate Couchbase Server validates the LDAP server's own certificate against"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-ldap",
+      "predicate": "configuresProperty",
+      "object": "idp:ldap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command allows administrators to configure and connect LDAP servers."
+    },
+    {
+      "subject": "idp:ldap",
+      "predicate": "reliesOnMechanism",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "\\--authorization-enabled <1|0>\n\nEnables using LDAP to give users authorization"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-ldap",
+      "predicate": "configuresProperty",
+      "object": "idp:ldap-group",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "LDAP query, to get the users' groups by username in RFC4516 format. The %u and %D placeholders can be used, for username and user's DN respectively."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-ldap",
+      "predicate": "requiresRequestParameter",
+      "object": "cert:trust-store",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "CA certificate to be used for server's certificate validation, required if certificate validation is not disabled"
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-ldap",
+      "predicate": "seeAlso",
+      "object": "server/8.0/cli/cbcli/couchbase-cli-user-manage",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[user-manage](couchbase-cli-user-manage.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "No role:/privilege: concept is cited anywhere on this page for who may RUN setting-ldap - only the generic 'unauthorized error' boilerplate shared by every subcommand in this batch. Given that configuring LDAP touches the external authentication domain and, per idp:ldap's own registry description, resolves to Server's local role/group catalogue, the absence of an explicit role citation here (contrast with, say, a Security Admin or User Admin role) is a real gap, not just boilerplate thinness - this is exactly the kind of security-settings command the round's RBAC-citation-consistency hypothesis is watching for, and here the finding is total absence rather than a wrong citation."
+  },
+  "cross_component_finding": "The SYNOPSIS spells the depth-limiting flag `--nested-group-max-depth`, but the OPTIONS section documents it as `--nested-groups-max-depth` (extra 's' on 'groups') - a literal spelling drift between the two sections of the same page, on the same page that also defines the sibling flag `--enable-nested-groups` (correctly pluralised) immediately above it. A reader copying the flag name from SYNOPSIS would get an option the OPTIONS section never defines under that spelling. This is a second, independent instance (after setting-master-password.md's --rotate-password/--rotate-data-key mismatch) of exactly the SYNOPSIS-vs-OPTIONS drift this round's hypothesis predicts for lightly-reviewed CLI reference content.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content; idp:ldap's own registry note already states Server's LDAP integration resolves to its own local role/group catalogue, not Capella's sso:realm family, and nothing on this page contradicts or adds to that."
+}

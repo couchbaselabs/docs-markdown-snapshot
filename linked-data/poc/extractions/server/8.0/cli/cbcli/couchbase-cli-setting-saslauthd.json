@@ -1,0 +1,83 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-saslauthd",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-saslauthd.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-setting-saslauthd",
+      "label": "setting-saslauthd (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "idp:saslauthd",
+      "label": "saslauthd",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's '--admins' flag grants 'administrator privileges', which this project's registry files under the internal name `admin`/display 'Full Admin / Full Administrator'; see cross_component_finding for why this citation is imprecise rather than a clean match"
+    },
+    {
+      "candidate_id": "role:ro-admin",
+      "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's '--roadmins' flag grants 'read-only administrator privileges', filed under the registry's role:ro-admin (internal name ro_admin); see cross_component_finding"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-saslauthd",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command is only available for clusters running Enterprise Edition on GNU/Linux."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-saslauthd",
+      "predicate": "configuresProperty",
+      "object": "idp:saslauthd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This command allows users to enable SASL on their cluster as well as add administrator and read-only administrator SASL users to their cluster."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-saslauthd",
+      "predicate": "assignsRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A list of SASL users who should have administrator privileges on this cluster. This list should be comma separated if multiple users are being added."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-saslauthd",
+      "predicate": "assignsRole",
+      "object": "role:ro-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "A list of SASL users who should have read-only administrator privileges on this cluster. This list should be comma separated if multiple users are being added."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The --default option's own three-value enum is internally inconsistent with its own OPTIONS text: the option's accepted values are documented as '\"admins\", \"ro_admins\", or \"none\"', but two sentences later the same paragraph says 'If this option is set to \"roadmins\" then all SASL users...' - switching from the value ro_admins to roadmins (matching the --roadmins FLAG name, not the --default value it just declared). A reader following the stated enum literally and passing --default ro_admins would, per the page's own inconsistent wording, be unclear whether that is even the documented value. This is a same-page internal contradiction, not just a drift from an external catalogue."
+  },
+  "cross_component_finding": "This page's RBAC framing is exactly the terminology drift this round is watching for: it grants 'administrator privileges' and 'read-only administrator privileges' to SASL users via --admins/--roadmins, but never once uses the registry's own internal role names (`admin`, `ro_admin`) or roles.md's exact display labels ('Full Admin'/'Full Administrator', 'Read-Only Admin') - the phrasing is generic prose, not a role citation tied to the 56-role catalogue. Separately, the SEE ALSO section links to '[admin-role-manage](couchbase-cli-user-manage.md)' - the link TEXT names a command called 'admin-role-manage', which does not exist anywhere in this batch or the couchbase-cli suite; the link TARGET is user-manage.md. This is either a stale/renamed command reference or a copy-paste error in the link label, and it sits directly beside a second, correctly-labelled '[user-manage](couchbase-cli-user-manage.md)' link pointing at the exact same target - meaning the SEE ALSO section has a working duplicate link and a mislabelled duplicate link to the same page, with no way for a reader to tell whether 'admin-role-manage' was meant to be a real, different subcommand.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content; saslauthd/PAM-backed SASL authentication is Enterprise-Server-on-Linux-only per the page's own DESCRIPTION, with no stated Capella surface."
+}

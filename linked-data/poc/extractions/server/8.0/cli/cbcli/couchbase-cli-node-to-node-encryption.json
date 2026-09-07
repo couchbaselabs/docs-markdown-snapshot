@@ -1,0 +1,30 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-node-to-node-encryption",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-node-to-node-encryption.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli-node-to-node-encryption", "label": "node-to-node-encryption",
+      "registry_status": "minted", "reused_or_minted": "minted - this page's own subcommand; no promoted tool: id exists for it yet" },
+    { "candidate_id": "tool:couchbase-cli-ip-family", "label": "ip-family",
+      "registry_status": "minted", "reused_or_minted": "minted - referenced in SEE ALSO" },
+    { "candidate_id": "tls:node-to-node-encryption", "label": "Node-to-node encryption",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:auto-failover", "label": "automatic failover",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - referenced only in notable_absence, as evidence of a precondition this page never states" }
+  ],
+  "relations": [
+    { "subject": "tool:couchbase-cli-node-to-node-encryption", "predicate": "configuresProperty", "object": "tls:node-to-node-encryption",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command allows the enabling and disabling of node-to-node encryption this means data transferred between nodes in a cluster will be encrypted." },
+    { "subject": "tool:couchbase-cli-node-to-node-encryption", "predicate": "seeAlso", "object": "tool:couchbase-cli-ip-family",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (structural markdown link)",
+      "evidence": "[setting-security](couchbase-cli-setting-security.md) [ssl-manage](couchbase-cli-ssl-manage.md) [ip-family](couchbase-cli-ip-family.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasExecutionConstraint",
+    "finding": "This page states no precondition or incompatibility for toggling node-to-node encryption at all - it describes the operation as if it were a simple, always-available switch ('The command will execute a series of instructions in each node in the cluster to switch them from sending and receiving over a non-encrypted connection to an encrypted one or vice-versa'). But the already-promoted server:auto-failover concept states elsewhere in the corpus that auto-failover 'Must be disabled before an address-family change or a node-to-node-encryption change.' This page - the dedicated reference for making exactly that change - never mentions auto-failover, never tells the operator to disable it first, and gives no warning about what happens if it is left enabled. A genuine, checkable gap between what this CLI reference tells an operator and what the corpus elsewhere requires for the same operation to succeed safely."
+  },
+  "cross_component_finding": "This command's flag shape (--get/--enable/--disable, three mutually exclusive boolean switches) differs from its own explicitly cross-referenced sibling ip-family.md's shape (--get/--set plus separate --ipv4/--ipv4only/--ipv6/--ipv6only value flags) for what is, per server:cluster-address-family's own registry note, a tightly coupled pair of settings (an address-family change requires node-to-node encryption to be disabled first, and vice versa). Neither page explains the flag-shape asymmetry between the two commands it names as its own closest sibling.",
+  "cross_product_finding": "Plainly none - node-to-node encryption is a self-managed Server cluster-topology setting with no Capella analog stated or implied on this page."
+}

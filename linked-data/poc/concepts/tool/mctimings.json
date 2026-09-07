@@ -1,0 +1,17 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/mctimings",
+  "label": "mctimings",
+  "type": "a standalone diagnostic tool that queries a node directly over the memcached binary protocol for comprehensive operation-timing histograms, more comprehensive than cbstats timings because it is not restricted to front-end-thread time. Distinct from cbstats (which reads engine-level stats over the same port but a different protocol layer) and from mcstat/mctestauth (siblings that query the same protocol for different purposes).",
+  "promoted": true,
+  "recurrence": 2,
+  "usesProtocol": "protocol:memcached-binary-protocol",
+  "usesPort": ["port:11210", "port:11207"],
+  "evidence": [
+    "Note that timings taken by mctimings are more comprehensive than those taken by cbstats timings; which, unlike mctimings, only measures the time spent in the front-end thread for each operation.",
+    "For a non-secure connection, the port must be the memcached port, which is 11210.",
+    "If a secure connection is to be made, the port must be specified as the TLS port, which is 11207."
+  ],
+  "documented_at": "server/8.0/cli/mctimings.md",
+  "note": "Joins the promoted CLI-tool family - the first member reached over the raw memcached binary protocol rather than couchbase-cli's REST-backed HTTP layer or cbstats' own port-11210 text protocol. shouldNotBeConfusedWith tool:cbstats (explicit, source-stated). reliesOnMechanism tool:cbstats-reset-command is a same-round finding worth reading with caution: 'cbstats-reset-command' is one of this round's own subcommand-as-tool namespace-hygiene cases (see reconciliation.md round 29) and is deliberately left unpromoted, not a second tool.",
+  "relates_to_competency_question": "Which tool gives comprehensive (not just front-end-thread) operation-timing histograms, and over which protocol/port does it connect?"
+}

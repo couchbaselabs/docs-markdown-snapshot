@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbstats-vbucket-details-vb-relica-typo",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cbstats-vbucket-details.md lists summary statistic names 'vb_active_sync_write_aborted_count, vb_relica_sync_write_aborted_count, and so forth' - the second name is a typo for vb_replica_sync_write_aborted_count (confirmed verbatim at the point where the page names all-active/all-replica summary stat names together). An uncorrected typo in a literal stat name a reader might search log output or scripts for.",
+  "about": [
+    "server/8.0/cli/cbstats/cbstats-vbucket-details"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

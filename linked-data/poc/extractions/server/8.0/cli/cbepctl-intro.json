@@ -1,0 +1,39 @@
+{
+  "page_id": "server/8.0/cli/cbepctl-intro",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbepctl-intro.md",
+  "concepts": [
+    { "candidate_id": "tool:cbepctl", "label": "cbepctl",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-node/per-bucket persistence and vBucket-state control tool; no tool: entry exists for it" },
+    { "candidate_id": "port:11210", "label": "port 11210 (KV / memcached)",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:node", "label": "node",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:persisted-configuration", "label": "Persisted cluster configuration (survives restart)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the server: namespace for the specific 'survives a cluster restart' state that cbepctl's changes explicitly do not reach" }
+  ],
+  "relations": [
+    { "subject": "tool:cbepctl", "predicate": "usesPort", "object": "port:11210",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "For this command, `host` is the IP address for the Couchbase Server cluster or node in the cluster. The port is always the standard port used for cluster-wide stats and is at `11210`." },
+    { "subject": "tool:cbepctl", "predicate": "doesNotAffect", "object": "server:persisted-configuration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Changes to the cluster configuration using `cbepctl` are not persisted over a cluster restart." },
+    { "subject": "tool:cbepctl", "predicate": "configuredPerNode", "object": "server:node",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This tool is a per-node, per-bucket operation. That means that the IP address of a node in the cluster and a named bucket must be specified." },
+    { "subject": "tool:cbepctl", "predicate": "requiresRequestParameter", "object": "server:bucket",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This tool is a per-node, per-bucket operation. That means that the IP address of a node in the cluster and a named bucket must be specified." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Same absence pattern as cbstats-intro.md and cbcollect-info-tool.md: -u/-p/-S credential flags are documented with no stated Couchbase RBAC role requirement, despite cbepctl being able to stop/start persistence and change checkpoint/flush parameters cluster-wide - a materially more impactful operation than cbstats' read-only queries, which makes the absence of any role citation more notable here than on the read-only tool."
+  },
+  "cross_component_finding": "See cbstats-intro.json for the shared-port/shared-option-set finding comparing this tool to cbstats. Additionally, the IMPORTANT admonition that cbepctl's changes 'are not persisted over a cluster restart' is a significant operational caveat stated once, in a single sentence, with no cross-reference to how or where the equivalent persistent settings ARE configured (e.g. via the Web Console or REST API) for an administrator who wants the change to survive a restart - a gap consistent with terse, engineer-authored prose that assumes the reader already knows the alternative persistent configuration path.",
+  "cross_product_finding": "Server-only tool operating on internal per-node persistence internals with no Capella surface; consistent with the rest of this batch, the page gives no explicit Server-only caveat since it was authored with no Capella-facing counterpart in view."
+}

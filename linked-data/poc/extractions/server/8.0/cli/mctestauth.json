@@ -1,0 +1,69 @@
+{
+  "page_id": "server/8.0/cli/mctestauth",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/mctestauth.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:mctestauth",
+      "label": "mctestauth",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept anywhere in the registry or extraction layer. Troubleshooting tool that tries each SASL authentication mechanism a data-service connection supports and reports which succeed."
+    },
+    {
+      "candidate_id": "protocol:sasl",
+      "label": "SASL (Simple Authentication and Security Layer) framework",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for the generic SASL framework itself. Deliberately NOT the same as idp:saslauthd (the legacy LDAP/PAM authentication DAEMON for cluster-administrator accounts) - this is the wire-level authentication framework the Data Service uses for bucket/KV connections, a structurally different mechanism despite the shared 'sasl' root word. No page states the two are related."
+    },
+    {
+      "candidate_id": "auth-mechanism:scram",
+      "label": "SCRAM-SHA",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's example output exercises SCRAM-SHA512/256/1 explicitly as SASL mechanisms."
+    },
+    {
+      "candidate_id": "auth-mechanism:sasl-plain",
+      "label": "SASL PLAIN authentication",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted elsewhere; this page's example output exercises PLAIN explicitly as one of the mechanisms tested."
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's second example distinguishes an LDAP-defined (external-domain) user's authentication results from a locally-defined user's."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "auth-mechanism:scram",
+      "predicate": "isSubtypeOf",
+      "object": "protocol:sasl",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data services use the [Simple Authentication and Security Layer](https://en.wikipedia.org/wiki/Simple%5FAuthentication%5Fand%5FSecurity%5FLayer) (SASL) framework for authentication and provide you access to use the underlying mechanisms. For example, SCRAM-SHA512 or PLAIN."
+    },
+    {
+      "subject": "auth-mechanism:sasl-plain",
+      "predicate": "isSubtypeOf",
+      "object": "protocol:sasl",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data services use the [Simple Authentication and Security Layer](https://en.wikipedia.org/wiki/Simple%5FAuthentication%5Fand%5FSecurity%5FLayer) (SASL) framework for authentication and provide you access to use the underlying mechanisms. For example, SCRAM-SHA512 or PLAIN."
+    },
+    {
+      "subject": "auth-mechanism:scram",
+      "predicate": "doesNotSupport",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If `jones` was defined as an external user in LDAP, the output is as follows:\n\n    SCRAM-SHA512: FAILED\n    SCRAM-SHA256: FAILED\n    SCRAM-SHA1: FAILED\n    PLAIN: OK"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesPort",
+    "finding": "mctestauth's --host option description omits any default port number ('The name of the host (with an optional port) to connect to') - unlike its sibling tools mcstat and mctimings in this same batch, which both explicitly state 'the default 11210 is used' for an unqualified host. All three pages share a near-identical options-table structure, so this is a real, mechanically-detectable inconsistency across three tools that otherwise look like they were written from the same template - consistent with per-tool-owner authorship rather than a single unifying TW pass over the whole mc* family."
+  },
+  "cross_component_finding": "mctestauth's example output shows that an LDAP-defined (external-domain) user authenticates successfully ONLY via PLAIN, with every SCRAM-SHA variant failing - a concrete, previously undocumented-in-this-registry behavioral link between auth-domain:external and auth-mechanism:scram's limits. This directly connects a genuinely-new piece of memcached-wire-protocol vocabulary (SASL mechanism negotiation) to the corpus's existing, already-promoted external/local authentication-domain model, rather than leaving it as an island.",
+  "cross_product_finding": "mctestauth, like mcstat and mctimings, authenticates directly against the raw KV/memcached port on a specific node rather than through any cluster-level or Capella-facing API - a connectivity model Capella does not expose to customers. This is a Server (self-managed)-only diagnostic tool, though no page states that restriction outright."
+}

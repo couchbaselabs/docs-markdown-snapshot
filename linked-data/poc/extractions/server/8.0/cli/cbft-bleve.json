@@ -1,0 +1,40 @@
+{
+  "page_id": "server/8.0/cli/cbft-bleve",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbft-bleve.md",
+  "concepts": [
+    { "candidate_id": "tool:cbft-bleve", "label": "cbft-bleve",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the diagnostic tool for inspecting Search index partitions and Zap files; no tool: entry exists for it" },
+    { "candidate_id": "fts:moss-storage", "label": "Moss (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the fts: namespace (already holding index-partitioning/index-replicas) for the Moss on-disk storage format this tool's commands operate on" },
+    { "candidate_id": "fts:scorch-storage", "label": "Scorch (Search index storage format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reusing the fts: namespace for the Scorch on-disk storage format, the alternative to Moss" },
+    { "candidate_id": "platform:linux-redhat-ubuntu", "label": "Red Hat-based distributions and Ubuntu Linux",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new platform: namespace; the specific OS-family carve-out this page repeatedly excludes from Scorch support for the shared command subset" },
+    { "candidate_id": "fts:index-partitioning", "label": "Search index partitioning",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "search:full-text-index", "label": "full-text index (artifact)",
+      "registry_status": "promoted", "reused_or_minted": "reused - already promoted; this page's 'Index Partitions' section is a division of this artifact" }
+  ],
+  "relations": [
+    { "subject": "fts:moss-storage", "predicate": "mutuallyExclusiveWith", "object": "fts:scorch-storage",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The name of each (whether it is a _Moss_ or a _Scorch_ index) is formed from the _user-defined index-name_, the _uuid_ of the user-defined index, and the _partition id_" },
+    { "subject": "fts:scorch-storage", "predicate": "behavesDifferentlyUnder", "object": "platform:linux-redhat-ubuntu",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Can be used on a _Scorch_ index partition, but only on platforms other than _Red Hat-based distributions_ and _Ubuntu_ Linux. Cannot be used on a _Zap_ file." },
+    { "subject": "fts:index-partitioning", "predicate": "hasDefaultValue", "object": "six partitions per index",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The _Search_ Service divides each _Full Text Index_ into _partitions_. The default number of partitions per index is six." }
+  ],
+  "notable_absence": {
+    "predicate": "supersedes",
+    "finding": "The page describes Moss and Scorch as two parallel, named storage formats and gives detailed platform restrictions for Scorch, but never states which is the default for newly created indexes in Server 8.0, nor whether Scorch has superseded Moss (a fact that would normally be expected on a concept-style intro but is entirely absent from this reference-style page). A reader is left to infer from the RHEL/Ubuntu carve-out (framed as a restriction on Scorch, the presumably-newer format) which format is current."
+  },
+  "cross_component_finding": "This top-level dispatcher page's platform-restriction sentence for the shared command subset (check/count/dictionary/fields/mapping/query/registry) is repeated near-verbatim across all three of its child pages (cbft-bleve-moss.md, cbft-bleve-scorch.md) - see those records' own findings. Three intro-style sentences for one fact is consistent with engineer authorship generating each subordinate page independently rather than a single TW consolidating shared boilerplate into one cross-referenced statement.",
+  "cross_product_finding": ""
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-cbstats-collections-details-garbled-example-output",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "cbstats-collections-details.md's example output contains two garbled lines where a stat name has been run together with the next key rather than separated: 'vb_8:manifest:uidvb_8:default_mvs:  0' and 'vb_8:manifest:uidvb_8:default_mvsvb_8:default_legacy_max_dcp_seqno:  0' (confirmed verbatim at the tail of the sample output block, immediately after a correctly-formatted 'vb_8:manifest:uid:  3' line). Reads as an unedited raw-terminal-paste artifact - a real key name (vb_8:manifest:uid) concatenated with the following key rather than each occupying its own line.",
+  "about": [
+    "server/8.0/cli/cbstats/cbstats-collections-details"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

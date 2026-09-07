@@ -1,0 +1,105 @@
+{
+  "page_id": "server/8.0/cli/cbtools/cbtransfer",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbtools/cbtransfer.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:cbtransfer",
+      "label": "cbtransfer",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for cbtransfer itself, though its two dependents (tool:cbbackup, tool:cbrestore) and its deprecation successor (tool:cbdatarecovery) were already extraction-layer. Deprecated generic ETL tool for transferring data between Couchbase clusters, backup directories, CSV files and Couchstore files."
+    },
+    {
+      "candidate_id": "tool:cbbackup",
+      "label": "cbbackup (legacy, superseded backup tool)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in compression.json and enterprise-backup-restore.json; this page reveals cbbackup is built on top of cbtransfer, information neither prior extraction had."
+    },
+    {
+      "candidate_id": "tool:cbrestore",
+      "label": "cbrestore",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in compression.json; this page reveals cbrestore is likewise built on top of cbtransfer."
+    },
+    {
+      "candidate_id": "tool:cbdatarecovery",
+      "label": "cbdatarecovery",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in cbdatarecovery.json (server/8.0/tools/cbdatarecovery.md); this page states cbtransfer's own deprecation warning naming cbdatarecovery as its replacement."
+    },
+    {
+      "candidate_id": "tool:cbbackupmgr",
+      "label": "cbbackupmgr",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names it as the Enterprise-only, compression-capable alternative for creating backups."
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - closed-vocabulary term; the page gates cbbackupmgr's compression capability to this edition."
+    },
+    {
+      "candidate_id": "storage-engine:couchstore",
+      "label": "Couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Couchstore files are one of cbtransfer's documented supported sources and sinks."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:cbbackup",
+      "predicate": "hasInternalComponent",
+      "object": "tool:cbtransfer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Both `cbbackup` and `cbrestore`are built upon this tool. The `cbbackup` tool is a transfer from a Couchbase Server source to a backup directory sink, and `cbrestore` is the opposite."
+    },
+    {
+      "subject": "tool:cbrestore",
+      "predicate": "hasInternalComponent",
+      "object": "tool:cbtransfer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Both `cbbackup` and `cbrestore`are built upon this tool. The `cbbackup` tool is a transfer from a Couchbase Server source to a backup directory sink, and `cbrestore` is the opposite."
+    },
+    {
+      "subject": "tool:cbdatarecovery",
+      "predicate": "supersedes",
+      "object": "tool:cbtransfer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "DEPRECATION WARNING: This tool has been deprecated please use cbdatarecovery instead."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "mustUseInsteadWhen",
+      "object": "tool:cbtransfer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This option is unsupported. To create backups with compression, use cbbackupmgr, which is available for Couchbase Server Enterprise Edition only."
+    },
+    {
+      "subject": "tool:cbbackupmgr",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To create backups with compression, use cbbackupmgr, which is available for Couchbase Server Enterprise Edition only."
+    },
+    {
+      "subject": "tool:cbtransfer",
+      "predicate": "operatesOnFormat",
+      "object": "storage-engine:couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchstore files"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "cbtransfer requires -u/-p but only warns generically that 'If you do not have a user account with permission to execute the command then it will fail with an unauthorized error' - no role or privilege is named, unlike cbrecovery.md (this batch's other cbtools/ page) which explicitly lists 'Full Administrator, Cluster Administrator, or XDCR Administrator'. The two pages' -u/-p option descriptions are otherwise near-identical in structure, which suggests cbrecovery's specific role list is the exception (XDCR credentials genuinely differ per cluster) rather than cbtransfer/cbworkloadgen's vague boilerplate being the exception - a templated sentence that was apparently never filled in with real role names on two of the three cbtools/ pages in this batch."
+  },
+  "cross_component_finding": "This page is the first in the corpus to state explicitly that cbbackup and cbrestore - both already extraction-layer tool: concepts, with cbbackup's own record already carrying the note 'legacy, superseded backup tool' - are literally built on top of cbtransfer, not siblings of it. It also connects cbtransfer forward to its own deprecation successor, tool:cbdatarecovery (already extraction-layer from a page in the sibling tools/ directory, not cli/cbtools/). Together this resolves what those two records left open: cbbackup, cbrestore, cbtransfer and cbdatarecovery form one architectural lineage - cbtransfer as the shared ETL engine underneath the first two, all three now deprecated in favor of cbdatarecovery - rather than four independent, disconnected tools.",
+  "cross_product_finding": "No Capella-specific content; cbtransfer is explicitly deprecated and tied to local filesystem install paths and Couchstore file formats, none of which have a Capella surface."
+}

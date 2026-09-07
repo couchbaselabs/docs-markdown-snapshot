@@ -1,0 +1,18 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/monitoring/ep-engine-thread-pool",
+  "label": "ep-engine thread pool",
+  "type": "the set of reader/writer/AUX-dispatcher/non-IO-dispatcher worker threads the KV storage engine runs monitoring:ep-engine-background-task instances on, one read worker per vBucket group. Visible via cbstats workload/dispatcher/tasks.",
+  "promoted": true,
+  "recurrence": 3,
+  "monitoredVia": "tool:cbstats",
+  "hasInternalComponent": ["monitoring:ep-engine-background-task", "monitoring:ep-engine-priority-task-queue"],
+  "reliesOnMechanism": "server:vbucket",
+  "evidence": [
+    "This command is used to check how many threads of various types are currently running.",
+    "The command provides the stats from AUX dispatcher and non-IO dispatcher, and from all the reader and writer threads running for the specified bucket.",
+    "The vBucket map for the bucket is grouped into multiple vBuckets, where one read worker accesses one of the vBuckets."
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-workload.md",
+  "note": "Promoted as a pair with monitoring:ep-engine-background-task - see that record. monitoring:ep-engine-priority-task-queue itself stays unpromoted at recurrence 1: this record can state what it is (the pool's own priority queue for pending tasks) without the queue needing its own file, so the family exception stops here rather than pulling in a third member.",
+  "relates_to_competency_question": "What thread pool runs the KV engine's background tasks, and how is work distributed across vBuckets?"
+}

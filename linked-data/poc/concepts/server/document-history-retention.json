@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/server/document-history-retention",
+  "label": "Document history retention",
+  "type": "the byte-quota setting controlling how much document-change history a bucket or collection aims to retain on disk, restricted to Couchbase buckets/collections on the Magma storage backend. Distinct from server:collection-change-history (the boolean flag stating whether retention is active at all).",
+  "promoted": true,
+  "recurrence": 2,
+  "restrictedToContext": "storage-engine:magma",
+  "evidence": [
+    "Specifies how many bytes of document history the bucket should aim to retain on disk. This option is valid for Couchbase buckets with Magma storage backend only.",
+    "Specifies whether or not the document history retention should be enabled for the collection."
+  ],
+  "documented_at": "server/8.0/cli/cbcli/couchbase-cli-bucket-create.md",
+  "note": "Settable at both bucket level (bucket-create/-edit, a byte quota) and collection level (collection-manage, a boolean toggle) - a tier split of the kind this project's filing convention normally resolves under one tier-neutral id; kept as one record covering both tiers.",
+  "relates_to_competency_question": "Is document history retention configured the same way at bucket level as at collection level?"
+}

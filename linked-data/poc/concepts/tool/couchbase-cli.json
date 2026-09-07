@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/couchbase-cli",
+  "label": "couchbase-cli",
+  "type": "the umbrella cluster-administration CLI binary shipped with Couchbase Server, whose ~130 subcommands (bucket-create, server-add, setting-cluster, user-manage, xdcr-setup, backup-service, ...) cover most of the same ground as the Web Console and REST API. Distinct from cbstats/cbepctl/mctimings/mctestauth (per-node diagnostic and protocol tools, not cluster administration) and from cbbackupmgr (a separate binary with no couchbase-cli equivalent).",
+  "promoted": true,
+  "recurrence": 35,
+  "documented_at": "server/8.0/cli/cbcli/",
+  "evidence": [
+    "couchbase-cli is a command line tool that can be used to manage Couchbase Server from the command line rather than the graphical interface (Web console).",
+    "authenticatesVia auth-mechanism:username-password / auth-mechanism:x509-certificate (couchbase-cli.md CERTIFICATE AUTHENTICATION section)",
+    "configuredVia CB_REST_PASSWORD (environment-variable override for -p/--password)"
+  ],
+  "note": "PAID-DOWN WHOLE-CORPUS PROMOTION DEBT, the round's largest: 35 of this round's own 127 files use tool:couchbase-cli as a relation subject or object (52 files any-mention), and the whole umbrella tool - the subject every one of its ~130 reference pages implicitly assumes - had never itself been promoted, across every prior round that touched a couchbase-cli subcommand page. Joins the promoted CLI-tool family (cbbackupmgr, cbcollect-info, cbexport, cbimport, cbq-shell, cbsqlitedump, cbstats) as the family's highest-recurrence member. See reconciliation.md round 29 for the companion finding: couchbase-cli's own ~51 individual subcommand ids, minted independently by ~40 single-page extraction agents as tool:couchbase-cli-<subcommand>, are NOT promoted alongside it - a subcommand is not a tool, and this namespace's established convention (one member per binary) is deliberately not extended to cover them.",
+  "relates_to_competency_question": "What is the umbrella CLI tool that most couchbase-cli-*.md reference pages are describing one subcommand of?"
+}

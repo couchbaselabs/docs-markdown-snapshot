@@ -1,0 +1,83 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-setting-security",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-setting-security.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:couchbase-cli-setting-security",
+      "label": "setting-security (couchbase-cli subcommand)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct subcommand, per this round's tool:couchbase-cli-<subcommand> convention"
+    },
+    {
+      "candidate_id": "tool:couchbase-cli",
+      "label": "couchbase-cli",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this round by couchbase-cli.json, not yet promoted"
+    },
+    {
+      "candidate_id": "tls:console-access-setting",
+      "label": "Web Console access setting",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --disable-http-ui"
+    },
+    {
+      "candidate_id": "tls:cluster-encryption-level",
+      "label": "cluster encryption level",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --cluster-encryption-level"
+    },
+    {
+      "candidate_id": "tls:legacy-tls-versions",
+      "label": "TLS 1.0 and 1.1 (unsupported)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - --tls-min-version's own accepted values (tlsv1.2|tlsv1.3) confirm 1.0/1.1 are no longer selectable"
+    },
+    {
+      "candidate_id": "security:session-management",
+      "label": "Web Console session management",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's --disable-www-authenticate option is a sibling Web Console security setting managed by this same subcommand"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:couchbase-cli-setting-security",
+      "predicate": "configuresProperty",
+      "object": "tls:console-access-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies whether the Couchbase Web Console can be accessible over http. To disable access set this option to \"1\". To enable access set this option to \"0\"."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-security",
+      "predicate": "configuresProperty",
+      "object": "tls:cluster-encryption-level",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies the cluster encryption level. The level is used when cluster encryption is turned on."
+    },
+    {
+      "subject": "tls:cluster-encryption-level",
+      "predicate": "takesPrecedenceOver",
+      "object": "tls:console-access-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If your goal is to disable non-local http access completely, you should use the `--cluster-encryption-level`flag and set its value to \"strict\"."
+    },
+    {
+      "subject": "tool:couchbase-cli-setting-security",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "tool:couchbase-cli-setting-security",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Before setting the level to \"strict\" you will need to perform a number of important actions, see [Enforcing TLS](https://docs.couchbase.com/server/current/manage/manage-security/manage-tls.html#enforcing-tls)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page manages cluster-wide security policy (HTTP/HTTPS access, cluster encryption level, TLS minimum version, cipher suites, HSTS headers) yet cites no role:/privilege: concept at all - only the generic shared 'unauthorized error' boilerplate. Given the registry's 8.0 role split introduced role:security-admin specifically to hold 'security-administration privileges' including encryption configuration, the absence of any reference to that role (or its read-only counterpart role:ro-security-admin) on the CLI's own security-settings command is a striking gap for exactly the security-settings batch this round singled out as most likely to show RBAC drift."
+  },
+  "cross_component_finding": "The SYNOPSIS contains a literal typo: `[---cipher-suites <ciphers>]` uses a TRIPLE dash, where every other flag in the same SYNOPSIS line (and the OPTIONS section's own `--cipher-suites <cipher>`) uses a standard double dash. A reader copy-pasting from the SYNOPSIS block would pass an invalid argument to the shell. This is a small, purely mechanical error of exactly the kind expected from unreviewed, generated-looking SYNOPSIS blocks - and it sits in the same SYNOPSIS line as `[--hsts-max-age <seconds]`, which is missing its closing angle bracket ('<seconds' rather than '<seconds>'), a second bracket-matching slip in the same line.",
+  "cross_product_finding": "n/a - no Capella/Mobile/SDK content; cluster-wide TLS/HTTP security settings via couchbase-cli are Server-only, with Capella exposing no equivalent CLI surface for these settings per this batch's evidence."
+}

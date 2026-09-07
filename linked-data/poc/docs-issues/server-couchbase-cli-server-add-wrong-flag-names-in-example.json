@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-server-add-wrong-flag-names-in-example",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-cli-server-add.md's SYNOPSIS and OPTIONS correctly document --server-add-username/--server-add-password. Its second EXAMPLE, however, uses --server-username/--server-password, flags that do not exist on this command at all (confirmed: grep of the whole page shows only one EXAMPLE using the correct --server-add-username/--server-add-password; the other uses the incorrect pair). Those wrong names are exactly couchbase-cli-server-readd.md's own flag names for the equivalent parameter - direct copy-paste-across-siblings, not a typo unique to this page.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-server-add",
+    "server/8.0/cli/cbcli/couchbase-cli-server-readd"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

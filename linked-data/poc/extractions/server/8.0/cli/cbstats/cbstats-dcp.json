@@ -1,0 +1,34 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-dcp",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-dcp.md",
+  "concepts": [
+    { "candidate_id": "protocol:dcp", "label": "DCP (Database Change Protocol)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "vbucket:vbucket-takeover", "label": "vBucket takeover",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism by which a vBucket's DCP/TAP stream ownership moves from source to destination node during rebalance. Placed in the vbucket: namespace (alongside the already-promoted vbucket:active-vbucket and vbucket:replica-vbucket) rather than server:, per this round's naming guidance to reuse existing namespaces. Introduced here because this page's producer/notifier stream-state enum includes takeover-send and takeover-wait, and the same mechanism is the whole topic of cbstats-dcp-vbtakeover.md and cbstats-tap-vbtakeover.md, also in this batch." }
+  ],
+  "relations": [
+    { "subject": "protocol:dcp", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Shows statistics for Database Change Protocol (DCP)." },
+    { "subject": "protocol:dcp", "predicate": "usesEnum", "object": "connection type: consumer | producer | notifier",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "DCP provides statistics for consumer, producer, and notifier connection types." },
+    { "subject": "vbucket:vbucket-takeover", "predicate": "reliesOnMechanism", "object": "protocol:dcp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "state | The stream state (pending, backfilling, in-memory, takeover-send, takeover-wait, or dead)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasInternalComponent",
+    "finding": "The stream-state enum lists takeover-send and takeover-wait as ordinary DCP producer states but never explains what 'takeover' means, or that it corresponds to a distinct cbstats subcommand (dcp-vbtakeover) elsewhere in this same directory - a reader of this page alone has no way to connect the two."
+  },
+  "cross_component_finding": "The producer/notifier stream-state enum ('pending, backfilling, in-memory, takeover-send, takeover-wait, or dead') shows that vBucket takeover during rebalance is implemented as a distinguished DCP stream state rather than a separate protocol, directly tying this page to cbstats-dcp-vbtakeover.md and cbstats-tap-vbtakeover.md in this same batch. AUTHORSHIP-PROVENANCE CONTRAST: unlike those two commands, which state explicitly 'This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP/TAP', this page never names who consumes DCP connection statistics - administrator, cluster manager, and XDCR are all plausible callers of the ep_dcpq:* stats it exposes, but the page attributes ownership to none of them. cbstats-dcp.md is anonymous about its consumer; cbstats-dcp-vbtakeover.md and cbstats-tap-vbtakeover.md are explicit.",
+  "cross_product_finding": "Not applicable - this page's DCP is purely Couchbase Server's intra-cluster streaming protocol; the Sync-Gateway-adjacent replication vocabulary from rounds 27-28 (ISGR, sgw:bidirectional-xdcr) is a different mechanism on a different product and is not referenced or implied here."
+}

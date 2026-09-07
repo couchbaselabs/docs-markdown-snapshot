@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/server-couchbase-cli-setting-rebalance-examples-wrong-flags",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "couchbase-cli-setting-rebalance.md's OPTIONS defines --max-attempts <num> for the maximum retry count; its EXAMPLES section instead shows '--retries 2' in the enable-retry example, a flag never defined anywhere on the page (confirmed: SYNOPSIS/OPTIONS list only --set/--get/--cancel/--pending-info/--enable/--wait-for/--moves-per-node/--max-attempts/--rebalance-id, no --retries). Separately, the EXAMPLES text 'To cancel a pending rebalance retry run the command below' is followed by a command using --pending-info --rebalance-id, not --cancel - the example shown retrieves pending-retry info rather than cancelling it, despite the surrounding prose describing a cancel operation.",
+  "about": [
+    "server/8.0/cli/cbcli/couchbase-cli-setting-rebalance"
+  ],
+  "foundDuring": "round-29-server-8.0-cli",
+  "status": "open"
+}

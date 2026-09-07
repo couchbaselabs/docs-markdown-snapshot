@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/vbucket/vbucket-takeover",
+  "label": "vBucket takeover",
+  "type": "the rebalance-time handoff of a vBucket's active role from one node to another, tracked over DCP (current) or TAP (legacy, pre-5.0). Monitored via cbstats dcp-vbtakeover/tap-vbtakeover, used internally by the cluster manager (ns_server).",
+  "promoted": true,
+  "recurrence": 2,
+  "monitoredVia": "tool:cbstats",
+  "reliesOnMechanism": "protocol:dcp",
+  "evidence": [
+    "This command is used by cluster manager (ns_server) to track the progress of rebalance using DCP.",
+    "state | The stream state (pending, backfilling, in-memory, takeover-send, takeover-wait, or dead)"
+  ],
+  "documented_at": "server/8.0/cli/cbstats/cbstats-dcp-vbtakeover.md",
+  "note": "cbstats tap-vbtakeover is the legacy path for the same handoff concept over the now-removed TAP protocol (see protocol:tap, retainedForLegacyCompatibility).",
+  "relates_to_competency_question": "How does an administrator track a vBucket's active-role handoff during rebalance?"
+}

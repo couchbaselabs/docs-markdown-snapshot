@@ -1,0 +1,49 @@
+{
+  "page_id": "server/8.0/cli/cbstats/cbstats-scopes",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbstats/cbstats-scopes.md",
+  "concepts": [
+    { "candidate_id": "tool:cbstats", "label": "cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:collection", "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "server:collections-manifest", "label": "Collections manifest (manifest_uid)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in cbstats-collections.json earlier in this same batch, not yet promoted; the same manifest_uid mechanism recurs on this page" },
+    { "candidate_id": "bucket:couchbase-bucket", "label": "Couchbase bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" },
+    { "candidate_id": "bucket:ephemeral-bucket", "label": "Ephemeral bucket",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted" }
+  ],
+  "relations": [
+    { "subject": "server:scope", "predicate": "hasInternalComponent", "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Within the output, each group of lines presents information on one of the scopes for the specified bucket, on the specified node. This includes information on each of the collections the scope contains." },
+    { "subject": "server:collections-manifest", "predicate": "monitoredVia", "object": "tool:cbstats",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "The `manifest_uid` value (here, `7`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made." },
+    { "subject": "bucket:couchbase-bucket", "predicate": "hasInternalComponent", "object": "server:scope",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Note that the `_default` collection is indeed provided by default, within the `_default` scope, for every Couchbase or Ephemeral bucket." },
+    { "subject": "bucket:ephemeral-bucket", "predicate": "hasInternalComponent", "object": "server:scope",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - already promoted",
+      "evidence": "Note that the `_default` collection is indeed provided by default, within the `_default` scope, for every Couchbase or Ephemeral bucket." }
+  ],
+  "notable_absence": {
+    "predicate": "hasMinimumMemoryToDataRatio",
+    "finding": "server:collection's own promoted registry note states a hard limit ('Up to 1000 per cluster'), but this page never states any equivalent maximum number of scopes per bucket or per cluster, despite showing scope IDs as small hex values that could imply a bounded range."
+  },
+  "cross_component_finding": "The manifest_uid explanatory sentence recurs here for a THIRD time in this batch, near word-for-word identical to its appearance on both cbstats-collections.md and cbstats-collections-details.md - the same versioning mechanism explained three separate times in copy-pasted prose rather than defined once and cross-referenced.",
+  "cross_product_finding": "No Capella analog: capella:scope has no manifest_uid or equivalent low-level versioning mechanism documented anywhere in the corpus."
+}

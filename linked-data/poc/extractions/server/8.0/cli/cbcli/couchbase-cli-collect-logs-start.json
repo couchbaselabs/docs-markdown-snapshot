@@ -1,0 +1,46 @@
+{
+  "page_id": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-start",
+  "source_version": "8.0",
+  "source_path": "server/current/cli/cbcli/couchbase-cli-collect-logs-start.md",
+  "concepts": [
+    { "candidate_id": "tool:couchbase-cli", "label": "couchbase-cli", "registry_status": "extraction-layer", "reused_or_minted": "reused within this batch - minted in couchbase-cli-bucket-compact.json in a prior round" },
+    { "candidate_id": "server:log-collection-task", "label": "Log collection task", "registry_status": "minted", "reused_or_minted": "minted - the singleton cluster-wide diagnostic-log-gathering task this subcommand family (collect-logs-start/status/stop) creates, monitors and cancels. Not merged with the promoted tool:cbcollect-info - see cross_component_finding for why." },
+    { "candidate_id": "log:log-file", "label": "Couchbase Server log file", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "log:log-redaction", "label": "Log redaction level", "registry_status": "minted", "reused_or_minted": "minted - the --redaction-level setting (none/partial) controlling whether usernames, keys and values are scrubbed from collected logs; no existing concept in the log: namespace covers redaction" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition", "registry_status": "promoted", "reused_or_minted": "reused - --upload flag scoped to EE support-ticket workflow" },
+    { "candidate_id": "cert:client-certificate", "label": "Client certificate", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert flag / mTLS authentication section" },
+    { "candidate_id": "cert:pkcs12-certificate", "label": "PKCS #12 certificate bundle", "registry_status": "promoted", "reused_or_minted": "reused - --client-cert-password flag documented as PKCS#12 format" }
+  ],
+  "relations": [
+    { "subject": "server:log-collection-task", "predicate": "storesDataIn", "object": "log:log-file",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This command collects all Couchbase Server log files from one or more nodes in the cluster." },
+    { "subject": "log:log-redaction", "predicate": "configurableVia", "object": "server:log-collection-task",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Specifies what level the logs should be redacted too. This option has two levels \"none\" and \"partial\". If partial is set then data such as usernames, keys and values will be redacted from the logs." },
+    { "subject": "log:log-redaction", "predicate": "requiresSetting", "object": "--salt (only usable when --redaction-level is \"partial\")",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This option can only be used when --redaction-level is set to \"partial\"." },
+    { "subject": "server:log-collection-task", "predicate": "hasExecutionConstraint", "object": "only one log collection task may run at a time in the cluster",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Note that only one log collection task may be running at any given time in the cluster." },
+    { "subject": "server:log-collection-task", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - scoped to the --upload flag, not the whole subcommand",
+      "evidence": "The upload flag is intended for Couchbase Server Enterprise Edition users who need to upload logs to the Couchbase Support Team to aid in diagnosing support tickets that they have filed." },
+    { "subject": "server:log-collection-task", "predicate": "accessibleVia", "object": "tool:couchbase-cli",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "_couchbase-cli collect-logs-start_ [--cluster <url>] [--username <user>]" },
+    { "subject": "server:log-collection-task", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-status",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[collect-logs-status](couchbase-cli-collect-logs-status.md), [collect-logs-stop](couchbase-cli-collect-logs-stop.md)" },
+    { "subject": "server:log-collection-task", "predicate": "seeAlso", "object": "server/8.0/cli/cbcli/couchbase-cli-collect-logs-stop",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "[collect-logs-status](couchbase-cli-collect-logs-status.md), [collect-logs-stop](couchbase-cli-collect-logs-stop.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "No default is stated for --redaction-level (none vs partial) - a reader who omits the flag cannot tell from this page whether usernames/keys/values are redacted by default or not, which matters a great deal for a diagnostic bundle that may be uploaded to a third party via --upload. Also absent: any statement of what 'does NOT collect' for this command, in contrast to the promoted registry's tool:cbcollect-info concept, which explicitly states bounded exclusions ('does NOT collect audit logs or Eventing Application logs') - see cross_component_finding."
+  },
+  "cross_component_finding": "This page never once names 'cbcollect_info' / 'cbcollect-info', even though collect-logs-start is very plausibly the couchbase-cli front-end for exactly that utility - the promoted registry's tool:cbcollect-info concept describes the identical job ('the cluster-wide diagnostic log-collection utility') and even ties log:log-file's own promoted description to it ('gathered by cbcollect-info into per-node zip files'). No sentence on this page connects the two names. This is a real CLI-vs-tool-ecosystem terminology gap: either collect-logs-start wraps cbcollect_info and the CLI reference should say so, or it is a distinct, undocumented collection path with unknown scope - and this page's total silence on exclusions (no 'does NOT collect X' statement, unlike cbcollect_info's own documented audit-log/Eventing-log exclusions) makes it impossible to tell which from this page alone.",
+  "cross_product_finding": "Not addressed on this page - no comparison to Capella, where log collection for support purposes is handled by Couchbase directly rather than via a customer-run CLI command."
+}
