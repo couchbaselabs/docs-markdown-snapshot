@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/4985",
+  "label": "Port 4985 (Sync Gateway Admin REST API)",
+  "type": "the standard Sync Gateway Admin REST API port - internal HTTP port for unrestricted access to the database and administrative tasks, reachable only from localhost by default.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "sync-gateway/current/rest-api/rest-api-access.md",
+  "evidence": "Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks. The Admin REST API is used to administer user...",
+  "note": "Sibling of round 27's port:4984 (Public REST API) and port:4986 (Metrics REST API), completing the three standard Sync Gateway REST ports. Recurrence 4 across deploy/command-line-options.json (api.admin_interface default), start-here/get-started-install-docker.json ('Do not expose port 4985 to external traffic'), start-here/get-started-prepare.json ('the Admin REST API is reachable only from localhost') and rest-api/rest-api-access.json."
+}

@@ -1,0 +1,51 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-eventing",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-eventing.md",
+  "concepts": [
+    { "candidate_id": "version:server-7-6-3", "label": "Couchbase Server 7.6.3",
+      "registry_status": "minted", "reused_or_minted": "minted - the stated minimum Server version for Sync Gateway/Eventing interoperability, not yet in the registry" },
+    { "candidate_id": "version:sgw-3-2-0", "label": "Sync Gateway 3.2.0",
+      "registry_status": "minted", "reused_or_minted": "minted - the Eventing-interoperability threshold on this page; also independently attested by compatibility.json's unsupported-CBL-4.0-combination warning and release-notes.json's CBG-4939 fixed issue in this same batch (recurrence 3 across the batch)" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:binding", "label": "Eventing Binding",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:bucket-alias-binding", "label": "Bucket Alias Binding",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:persistent-configuration", "label": "Persistent (centralized modular) configuration (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 configuration (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config setting (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:import-mutation-aware-flag", "label": "import_mutation_aware flag (Eventing, Sync Gateway interop)",
+      "registry_status": "minted", "reused_or_minted": "minted - a specific opt-in boolean flag preventing duplicate mutations when Eventing and Sync Gateway share a bucket, with a stated performance tradeoff; not previously in the registry" }
+  ],
+  "relations": [
+    { "subject": "eventing:function", "predicate": "availableSince", "object": "version:server-7-6-3",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway 3.2.0 and later supports interoperability with Eventing from Couchbase Server version 7.6.3+." },
+    { "subject": "eventing:function", "predicate": "requiresCapability", "object": "sgw:persistent-configuration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway must be running with [Configuration Overview](../configuration/configuration-overview.md) enabled to support compatibility with Eventing." },
+    { "subject": "sgw:legacy-pre-3-config", "predicate": "disablesFeatureFor", "object": "eventing:function",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Databases created via file-based configuration (when running with `-disable_persistent_config`) are not recorded in the Couchbase Server registry." },
+    { "subject": "eventing:function", "predicate": "hasBindingType", "object": "eventing:bucket-alias-binding",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You can now create Eventing functions with read-write bindings with the source bucket associated with a Sync Gateway database." },
+    { "subject": "eventing:import-mutation-aware-flag", "predicate": "tradesOffAgainst", "object": "eventing:function",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "If the `import_mutation_aware` flag is set to `true`, the performance of the Eventing function drops." },
+    { "subject": "eventing:function", "predicate": "requiresPriorExecutionOf", "object": "eventing-function-pause",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "On Couchbase Server, [pause the function](../../../server/current/eventing-rest-api/index.md#basic%5Fpause)." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The pre-7.6.3 procedure describes Eventing functions needing to be hand-written idempotent, using a crc64() call to distinguish Sync-Gateway-metadata-only mutations from body mutations - a workaround pattern with no first-class name on the page (just described in prose). No concept was minted for this pattern since the page itself never names it, unlike import_mutation_aware which IS a named, documented flag."
+  },
+  "cross_component_finding": "This page's warning that mixed-version Sync Gateway clusters (some nodes pre-3.2, some 3.2+) deployed with Eventing can cause 'infinite recursions and duplicate mutations' during upgrade is the exact failure mode that release-notes.json's new sgw:cluster-compatibility-version / sgw:non-disruptive-rolling-upgrade feature (4.1) appears designed to make safer to reason about - though this eventing-compatibility page does not itself reference cluster compatibility version, since it predates 4.1's rolling-upgrade feature in its own framing.",
+  "cross_product_finding": ""
+}

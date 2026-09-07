@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-4-1",
+  "label": "Sync Gateway 4.1",
+  "type": "Sync Gateway's own independent version family - kept separate from version:server-* per the same convention as version:sgw-3-0. The current release this entire extraction round's own source pages are pinned to.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "sync-gateway/current/product-notes/release-notes.md",
+  "evidence": "Version 4.1 of Sync Gateway delivers the following features and enhancements.",
+  "note": "Recurrence 4 across configuration/configuration-schema-database.json (sgw:store-legacy-revtree-data retainedForLegacyCompatibility), product-notes/supported-environments.json (Debian 11.x Bullseye deprecatedIn), and two release-notes.json relations (sgw:non-disruptive-rolling-upgrade, sgw:metadata-migration-to-system-collection, both availableSince). Sibling of version:sgw-4-0, promoted together as this round's own version-family debt catch."
+}

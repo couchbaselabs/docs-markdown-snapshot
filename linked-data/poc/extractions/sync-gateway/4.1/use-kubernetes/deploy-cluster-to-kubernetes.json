@@ -1,0 +1,47 @@
+{
+  "page_id": "sync-gateway/4.1/use-kubernetes/deploy-cluster-to-kubernetes",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/use-kubernetes/deploy-cluster-to-kubernetes.md",
+  "concepts": [
+    { "candidate_id": "sgw:kubernetes-deployment", "label": "Sync Gateway on Kubernetes (deployment topology)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - FIRST Sync-Gateway-specific Kubernetes content read in this project. The page's whole subject is connecting a Kubernetes-deployed Sync Gateway to a Couchbase Server cluster; the mechanism detail itself (Operator CRDs, Helm/manifest specifics) lives entirely in the cross-referenced operator/ tutorial, out of this round's scope, so this concept is deliberately thin - it names the topology this page and its cross-references are about, not a fully modeled deployment mechanism. Kept under sgw: rather than a new k8s: namespace per this round's naming instructions, since the content here is narrowly about Sync Gateway's own connection behaviour (TLS mode, RBAC user), not general Kubernetes material." },
+    { "candidate_id": "deployment:couchbase-autonomous-operator", "label": "Couchbase Autonomous Operator (CAO)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Kubernetes operator that deploys and manages the Couchbase SERVER cluster this page's Sync Gateway connects to. Filed under deployment: rather than sgw: because CAO itself is not a Sync-Gateway-specific mechanism - it is the same operator server/ and other product trees would reference - and the page's own deviations apply specifically to CAO version 1.2.x, not to Sync Gateway generally. Judgment call flagged per instructions: no operator:/cao: namespace exists yet in the registry, and this single page gives too little evidence to justify minting one." },
+    { "candidate_id": "tls:mutual-tls", "label": "Mutual TLS (mTLS)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states Sync Gateway cannot use mTLS to connect to a CAO-1.2-deployed Couchbase Server cluster" },
+    { "candidate_id": "role:sync-gateway", "label": "sync_gateway (Server RBAC role, for Sync Gateway's own Couchbase Server access)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused within this batch - minted in get-started-prepare.json (same round); this page cross-references the exact same RBAC-user-creation step for the Kubernetes deployment case" }
+  ],
+  "relations": [
+    { "subject": "sgw:kubernetes-deployment", "predicate": "dependsOnService", "object": "deployment:couchbase-autonomous-operator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted dependsOnService) - the Sync Gateway Kubernetes deployment this page describes connects to a Couchbase Server cluster that CAO deployed and manages",
+      "evidence": "**If the Couchbase Server was deployed using Couchbase Autonomous Operater 1.2**, then the following deviations from those instructions apply:" },
+    { "subject": "sgw:kubernetes-deployment", "predicate": "incompatibleWithCredentialType", "object": "tls:mutual-tls",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted incompatibleWithCredentialType) - scoped specifically to connecting to a CAO-1.2-deployed Server cluster, not a general Sync Gateway limitation",
+      "evidence": "You cannot configure Mutual TLS (mTLS, or two-way TLS) to connect to the Couchbase Server, although you _can_ use one-way TLS" },
+    { "subject": "sgw:kubernetes-deployment", "predicate": "authenticatesVia", "object": "role:sync-gateway",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted authenticatesVia), same shape as get-started-prepare.json's tool:sync-gateway/role:sync-gateway relation",
+      "evidence": "If you are using RBAC users to connect, you need to create the sync gateway user as shown in [Create an RBAC User](../start-here/get-started-prepare.md#step-2create-rbac-user)." },
+    { "subject": "sync-gateway/4.1/use-kubernetes/deploy-cluster-to-kubernetes", "predicate": "seeAlso", "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (structural markdown link -> seeAlso, per rule)",
+      "evidence": "[Inter Cluster Replication](../sync/sync-inter-syncgateway-run.md)" },
+    { "subject": "sync-gateway/4.1/use-kubernetes/deploy-cluster-to-kubernetes", "predicate": "seeAlso", "object": "sgw:legacy-pre-3-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (structural markdown link -> seeAlso, per rule)",
+      "evidence": "[Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRequestParameter / configuresProperty (deployment-manifest-level detail)",
+    "finding": "The page names no Kubernetes-native object at all - no CustomResourceDefinition, StatefulSet, Helm chart, Service, or Operator CRD field is mentioned anywhere on this page. Every actual deployment mechanism is deferred to the operator/ tutorial ('Follow the instructions in this tutorial to connect Sync Gateway deployed on Kubernetes to a Couchbase Server cluster'), which is outside this round's file list. This page itself contributes only three facts: the CAO-1.2 mTLS limitation, the RBAC-user cross-reference, and a one-line framing of the topology - confirming the round-context hypothesis that install/deploy procedural content, including this first-contact Kubernetes page, would need relatively little new minting once the actual mechanism detail is out of scope."
+  },
+  "cross_component_finding": "This page is explicitly framed as a deviations list layered on top of a Couchbase Operator (Kubernetes) tutorial page (operator/current/tutorial-sync-gateway.md) rather than a self-contained procedure - every substantive instruction ('Deploying Sync Gateway', 'Configuring RBAC User for Sync Gateway', 'Enabling TLS Connectivity to Couchbase Server') is a named section anchor on that other page, not content here. Sync Gateway's own Kubernetes deployment story is therefore split across two different documentation module trees (sync-gateway/use-kubernetes/ and operator/), with this page acting purely as a thin, product-scoped index into the Operator tree's generic instructions plus two Sync-Gateway/CAO-version-specific caveats.",
+  "cross_product_finding": "The page's only citation of a specific product version pairing is 'Couchbase Autonomous Operator 1.2' as the gating condition for the mTLS limitation - a Sync-Gateway-to-(Server-via-Operator) compatibility fact analogous in shape to get-started-prepare.md's Sync-Gateway-to-Couchbase-Server and Sync-Gateway-to-Couchbase-Lite version matrices (same batch), but expressed as a single prose deviation rather than a matrix."
+}

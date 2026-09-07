@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/mobile-sync-gateway",
+  "label": "Sync Gateway (Server RBAC role)",
+  "type": "a Couchbase Server RBAC role, bucket/collection-scoped, granting the connecting user full data access to the buckets holding mobile data plus index management and limited cluster-info read - the role assigned to the identity a Sync Gateway INSTANCE authenticates as when it connects to Couchbase Server. This is the SIXTH structurally distinct thing this ontology calls 'role' (after capella-role:role, rbac-role:role, sgw:role, role:full-administrator's classic-RBAC family, and rbac-model:role's abstract glossary entry) - see sgw:role's own note for the full collision list. Do not confuse with sgw:role (Sync Gateway's own ad hoc, admin-created channel-grant bundle used inside the sync function, on Sync Gateway's own users) - no page states any relationship between them.",
+  "promoted": true,
+  "recurrence": 5,
+  "internal_name": "mobile_sync_gateway",
+  "aliases": [
+    "role:sync-gateway",
+    "role:sync-gateway-role"
+  ],
+  "aliases_note": "Three same-referent spellings converged from three unrelated sources. `role:sync-gateway` was minted in round 12/26's server/8.0/learn/security/roles.json (roles.md itself: 'Role: Sync Gateway (mobile_sync_gateway)') and never promoted despite that record's own note calling it the sharpest naming-collision data point in the batch. Round 28 independently reused that same spelling (unqualified, matching the display label) in start-here/get-started-prepare.json and use-kubernetes/deploy-cluster-to-kubernetes.json - both incorrectly self-declaring `registry_status: promoted` (the id was not, in fact, promoted until now; corrected by this promotion). A third, same-round A1 batch (rest-api/rest-api-access.json, rest-api/rest-api-access-rbac-roles.json) independently minted `role:sync-gateway-role` for the identical role, reading it off the cross-reference table's 'Sync Gateway Role'/'Sync-Gateway Role' column header rather than roles.md's own dedicated section - a same-round self-fork, not a second role. Filed under the internal name per the Server-RBAC-role filing convention (roles.md's label does not reliably key to the internal name); both display-label spellings folded here as aliases.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway (mobile_sync_gateway) ... The Sync Gateway role gives the user full access to the data Sync Gateway's data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server.",
+  "note": "Round 28 promotion-debt catch: recurrence 5 across two rounds and five files (round 12/26's roles.json plus round 28's rest-api-access.json, rest-api-access-rbac-roles.json, get-started-prepare.json and deploy-cluster-to-kubernetes.json), invisible to any single round's own scope. Also appears, unpromoted, on the rest-api-access-rbac-roles.md cross-reference table as one of the four 'All Versions' legacy roles ('Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin') that satisfy pre-7.0.2-Developer-Preview endpoints before the fine-grained role catalogue below was introduced."
+}

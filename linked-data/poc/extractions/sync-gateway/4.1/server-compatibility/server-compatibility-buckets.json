@@ -1,0 +1,44 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-buckets",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-buckets.md",
+  "concepts": [
+    { "candidate_id": "sgw:sync-gateway-instance", "label": "Sync Gateway instance",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:bucket", "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "durability:durable-write", "label": "Durable write",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "data:expiration", "label": "Expiration (TTL)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "data:max-ttl-setting", "label": "Maximum TTL setting",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "edition:enterprise", "label": "Enterprise Edition",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:sync-function", "label": "Sync Function",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:sync-gateway-instance", "predicate": "doesNotSupport", "object": "durability:durable-write",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway does not support non-default durability settings at the bucket level for [durable writes](../../../server/current/learn/data/durability.md)." },
+    { "subject": "sgw:sync-gateway-instance", "predicate": "doesNotAffect", "object": "durability:durable-write",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You can still use high durability settings when set on the client side." },
+    { "subject": "data:max-ttl-setting", "predicate": "requiresEdition", "object": "edition:enterprise",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Document TTL is an Enterprise Edition only feature." },
+    { "subject": "sgw:sync-gateway-instance", "predicate": "doesNotSupport", "object": "data:max-ttl-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway does not support Bucket-level TTL, make sure your buckets have their `maxTTL` setting set to `0`." },
+    { "subject": "sgw:sync-function", "predicate": "mustUseInsteadWhen", "object": "data:max-ttl-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You can use per-collection sync functions to set expiry on all documents within a collection when you need TTL-like behavior at the collection level, while preserving Sync Gateway's system documents." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page states that Sync Gateway RETURNS AN ERROR if a bucket's maxTTL is left non-zero ('Sync Gateway returns an error prompting you to set the value to 0 in the Couchbase Server Admin UI') - a specific runtime enforcement behaviour beyond simple non-support, which the doesNotSupport relation above only partially captures. No predicate distinguishes 'silently doesn't work' from 'actively errors out' as behaviours."
+  },
+  "cross_component_finding": "Collection-level TTL is called out as actively dangerous rather than merely unsupported: 'If these system documents expire due to collection-level TTL, Sync Gateway may malfunction or fail to operate properly' - a stronger and more specific warning than the bucket-level TTL prohibition on the same page, naming a concrete failure mode (loss of `_sync`-prefixed system documents) rather than just a configuration constraint.",
+  "cross_product_finding": ""
+}

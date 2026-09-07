@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/public-rest-api",
+  "label": "Public REST API (Sync Gateway)",
+  "type": "the external, unauthenticated-by-Server-RBAC HTTP surface used for client replication (Couchbase Lite and other applications), bound to port:4984. Distinct from sgw:admin-rest-api (internal, Server-RBAC-gated, port:4985) and sgw:metrics-rest-api (port:4986).",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/rest-api/rest-api-access.md",
+  "evidence": "Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet. The Public REST API is used for client replication. The default port for the Public REST API is 4984.",
+  "note": "Referenced throughout prior rounds via sgw:sync-gateway-instance, sgw:user, sgw:changes-feed etc. but never itself a first-class concept until this round. Recurrence 2 on the promotion metric (round 3's access-control/users.json: 'Sync Gateway user credentials can be used to authenticate access to the Public API; RBAC users are required for access to other API' - requiredForApiAccess with sgw:user; round 28's rest-api-access.json: usesPort port:4984). rest-api.json's own three mentions are seeAlso links only and do not count toward the promotion metric."
+}

@@ -1,0 +1,27 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-backups",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-backups.md",
+  "concepts": [
+    { "candidate_id": "sgw:sync-gateway-instance", "label": "Sync Gateway instance",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "backup:partial-backup-restore", "label": "Partial backup/restore",
+      "registry_status": "minted", "reused_or_minted": "minted - the page's own IMPORTANT-box heading and topic; distinct from the already-promoted backup:incremental-backup (a TIME-based subset of a full backup) since 'partial' here means a KEYSPACE-based subset - the source gives no further detail on the distinction, but the two are clearly different axes and are kept apart per the no-silent-merge rule" },
+    { "candidate_id": "backup:full-backup", "label": "full backup",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:sync-gateway-instance", "predicate": "doesNotSupport", "object": "backup:partial-backup-restore",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway does not support partial backups/restores." },
+    { "subject": "sgw:sync-gateway-instance", "predicate": "requiresCapability", "object": "backup:full-backup",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Make sure that you perform full backups if you're planning to use them in conjunction with Sync Gateway" }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This is the shortest page in the batch (one IMPORTANT box, no prose beyond it) and confirms the round's hypothesis exactly: a compatibility page can be almost entirely a single version-independent constraint statement with nothing further to extract. No version-gating, no matrix, no further structure."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

@@ -6743,7 +6743,237 @@ eight times in running prose on `scopes-and-collections-config.md`.
   link between them - rather than about any one agent's diligence, since a careful
   interrupted agent produces the identical gap to a careless uninterrupted one.
 
-## Cumulative verdict (all twenty-seven rounds)
+## Round 28 — Sync Gateway's REST API reference layer, `product-notes/`+`server-compatibility/`, `sync/`, and `start-here/`+`use-kubernetes/`, finishing Sync Gateway as a product
+
+**Scope.** 35 pages across seven parallel batches (A1/A2/A3/B1/B2/C/D), 259 relations: the REST API
+reference layer (8 pages, split three ways because two files are 13,286-line and
+3,281-line auto-generated OpenAPI dumps), `product-notes/`+`server-compatibility/`
+(11 pages), `sync/` (9 pages, an ISGR-family sub-batch plus a remainder sub-batch),
+and `start-here/`+`use-kubernetes/` (7 pages). This closes out Sync Gateway - round 27
+covered `access-control/`, `security/`, `configuration/`, `deploy/`, `manage/`; this
+round covers everything else. `verify-evidence.py` reports 0 problems across the
+round's 35 records (84 records / 563 relations when checked together with round 27's
+still-adjacent 49, since both share the `sync-gateway/4.1/` tree).
+
+The seven batches ran in parallel with zero visibility into each other's work, so this
+round was treated as a normal same-round self-fork case, not pre-vetted - and one of
+the five items the batches themselves flagged is exactly that: three RBAC-adjacent
+batches independently minted overlapping role spellings.
+
+### Item 1: the RBAC role-naming collision was a same-round self-fork, not new roles
+
+Batches A1 (`rest-api-access.md`, `rest-api-access-rbac-roles.md`), A2
+(`rest_api_admin.md`) and A3 (`rest_api_public.md`, `rest_api_metric.md`) all read
+RBAC-adjacent content concurrently. Reading the raw `candidate_id` values across all
+five files directly (not trusting each batch's own report) found: A1 spelled five
+roles `sync-gateway-architect`/`-application`/`-application-read-only`/`-replicator`/
+`-dev-ops`; A2 independently spelled the same five `sgw-architect`/`-application`/
+`-application-read-only`/`-replicator`/`-dev-ops`; A3 minted no `role:` ids at all
+(the Public/Metrics API pages carry no RBAC-role tables). A1 also minted
+`role:sync-gateway-role` from a cross-reference table's "Sync Gateway Role" column
+header, independently of round 12/26's already-unpromoted `role:sync-gateway`
+(from `roles.md`'s own dedicated section) - a third spelling of the same role, not a
+new one. `role:external-stats-reader` is the one case of genuine convergence, not a
+fork: both A1 and A2 spelled it identically, and it matches a round-26 mint from an
+unrelated page (`server/8.0/manage/monitor/set-up-prometheus-for-monitoring.json`,
+Prometheus scrape authentication) exactly.
+
+Cross-checked against `server/current/learn/security/roles.md` directly (not
+inferred): all six roles are genuine Couchbase Server 7.0.2 Developer Preview
+additions, each with both a display label and an internal name that does NOT always
+match a naive kebab-case of the label -
+`mobile_sync_gateway` (label "Sync Gateway"), `sync_gateway_configurator` (label
+"Sync Gateway Architect"), `sync_gateway_app`/`sync_gateway_app_ro` (labels "Sync
+Gateway Application"/"...Read Only"), and, matching the label-derived spelling
+exactly by coincidence, `sync_gateway_replicator` and `sync_gateway_dev_ops`. Filed
+under the internal-name convention (`role:mobile-sync-gateway`,
+`role:sync-gateway-configurator`, `role:sync-gateway-app`, `role:sync-gateway-app-ro`,
+plus `role:sync-gateway-replicator`/`role:sync-gateway-dev-ops`, which happen to equal
+their label-derived spellings), with every display-label and A2 spelling folded in as
+an alias with the reasoning quoted in each record. `role:mobile-sync-gateway` reaches
+recurrence 5 once the round-12/26 `roles.json` mint and both round-28 spellings are
+resolved to one id - the highest-recurrence item this round's own RBAC confusion was
+hiding. `role:bucket-application-access` (A1's flagged fourth spelling for what may be
+the same role as the already-aliased `role:bucket-full-access`/`role:application-access`)
+was NOT force-merged - no page states the equivalence, and A1's own record already
+declined to guess - left unpromoted, single-file, as an open question for an SME or a
+future round with more evidence.
+
+### Item 2: `hasNoRelationshipTo` qualified, not retracted
+
+Round 27's `sgw:user hasNoRelationshipTo sgw:rbac-user` states the two identity
+systems share no login - directly quoted from the docs' own disclaimer. This round's
+`rest_api_admin.json` (A2) found the Admin REST API's `POST /{db}/_session` ("Create
+a new user session") mints a Public-API session cookie on behalf of a named
+`sgw:user`, gated by holding `role:sync-gateway-configurator` or `role:sync-gateway-app`
+via the Admin API - and that creating/administering `sgw:role`/`sgw:user` objects is
+gated the same way. Read directly against the round-27 claim: AUTHENTICATION never
+overlaps (confirmed, unchanged), but ADMINISTRATION is asymmetric - a Server-RBAC
+holder can create, edit and impersonate the channel-based system's principals, with
+no stated path the other direction. Recorded as a `qualifying_note_round_28` field on
+`relations/has-no-relationship-to.json` rather than editing the original quote-licensed
+claim.
+
+### Item 3: ISGR vs. XDCR - three signals reconciled, one predicate mismatch fixed
+
+Read directly (not from batch summaries): `sync-inter-syncgateway-overview.md` is the
+**one** page in the whole corpus - out of this round's five dedicated ISGR pages plus
+`sync-with-couchbase-server.md` - that draws an explicit XDCR comparison (three
+mentions), including the specific, narrower claim that ISGR's collection-remapping
+mechanism "adapts the mapping concept from XDCR" (filed as `sgw:collection-mapping
+isAnalogousTo xdcr:explicit-mapping`, and `sgw:inter-sync-gateway-replication
+isAnalogousTo server:xdcr` for the broader parallel). The other four ISGR pages
+independently confirm round 27's original silence, each explicitly checked. Both
+`isAnalogousTo` relations were already correctly, narrowly licensed - kept as-is.
+
+Separately, `server-compatibility-xdcr.md` states Sync Gateway 4.0's native
+`sgw:bidirectional-xdcr` provides "a simpler and more efficient alternative to
+Inter-Sync Gateway Replication." The extraction record had filed this under the
+already-promoted `takesPrecedenceOver` - a predicate-range mismatch caught by
+reading its type definition directly: `takesPrecedenceOver` is scoped to a setting/
+value overriding a sibling setting/value on the same object (confirmed by checking
+every one of its ~30 existing corpus uses, all setting-conflict cases), not to one
+whole feature replacing another. Minted `relations/supersedes.json` instead - a
+significance exception at recurrence 1, following round 24's `alsoExposedAs`
+precedent, since the fact is central to this round's own coordinator question -
+and retargeted the relation. `sgw:inter-sync-gateway-replication`'s own promoted
+record gets a `qualifying_note_round_28` explaining both refinements without
+retracting its original claim: ISGR remains fully documented as a live feature
+across all five round-28 ISGR pages, none of which point forward to bi-directional
+XDCR, so `supersedes` here means "positioned as the newer alternative," not
+"deprecated."
+
+Checking the `sgw:bidirectional-xdcr`/`xdcr:active-active-with-app-services` pairing
+directly surfaced a real extraction-time error, not just a coordinator judgment call:
+two records (`sync/sync-with-couchbase-server.json` this round, and round 27's
+`deploy/setting-up-dr-cluster.json`) filed their "bi-directional XDCR requires Sync
+Gateway 4.0+" evidence against `xdcr:active-active-with-app-services` (Capella App
+Services' distinct feature, gated at Server 7.6.6+/App Services 4.0+) even though
+neither source page mentions App Services or Capella anywhere, and the quoted
+requirement text is near-verbatim identical to `sgw:bidirectional-xdcr`'s own
+evidence (gated at Server 7.6.5+, one version point lower - a real, not just
+terminological, distinction that made the misattribution checkable). Both records
+corrected, with the original reasoning quoted in a `reconciliation_note` rather than
+silently rewritten - the round-27 record's own `reused_or_minted` field had argued
+(incorrectly, but in good faith) that it was "independently confirming" the App
+Services concept "from the Sync Gateway side."
+
+### Item 4: `sgw:conflict-resolution-type-setting`'s enum was wrong, corrected with the quote
+
+The promoted record described the setting's values as "Sequence Number, Timestamp, or
+custom" - XDCR-flavored vocabulary. `sync-inter-syncgateway-run.md`'s own Table 1
+property reference (the setting's canonical source), read directly at line 102 of the
+raw page, states unambiguously: `**Values:** "default", "remoteWins", "localWins",
+"custom"`. No "Sequence Number" or "Timestamp" value appears anywhere on that page or
+on `conflict-resolution.md` (same batch). Corrected in place with the verified quote
+cited in a `correction_round_28` field, rather than silently edited; the source of the
+original wrong description was not re-identified.
+
+### Item 5: `get-started-verify-install.md` confirmed stale, filed as a docs-issue
+
+Independently verified against the raw page (not just the extraction record's
+finding): front matter dates it 2026-03-27 against `release/4.0`, versus
+`get-started-configure.md`/`get-started-explore.md`'s 2026-08-17 against
+`release/4.1`. It and `get-started-explore.md` both self-describe as "Step 4" of the
+same sequence, and its own in-page step nav still lists `[Verify]` alongside
+Introduction/Prepare/Install rather than the current five-step flow. Its Example 3/4
+JSON bodies use unresolved placeholder text that is not valid JSON (`"collection_name"
+{` - missing colon, missing opening quote before `admin_channels`), confirmed verbatim
+at lines 156-157 and 184-185. Filed as
+`docs-issues/sgw-get-started-verify-install-stale-4-0-duplicate.json`
+(`possible-content-duplication`).
+
+### One real gate-log thinning case, caught via the deny/allow-count check
+
+Running the round's own 35-path gate-log slice through the deny/allow relation-count
+comparison found one real case: `rest-api/rest-api-admin.json` shows `deny(7) ->
+allow(6)` - the first attempt's evidence was correctly denied, but the rewrite
+dropped one relation rather than re-quoting it. Reading the record found the exact
+fingerprint round 27 established this check exists to find: `concepts[]` declared
+`sgw:require-access-cmd` and `sgw:require-role-cmd` with no matching relation for
+either, while a sibling concept (`sgw:require-user-cmd`) on the identical page had
+one. The source page's own NOTE callout names all three commands together in one
+sentence ("Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops,
+and will always appear successful"), already filed once for `sgw:require-user-cmd` -
+recovered for the other two on the same quote. The other ten deny-then-allow pairs in
+this round's slice all show the expected `deny(N) -> allow(N)` "found the quote"
+pattern.
+
+### Completeness: whole-corpus recurrence catches a version-family and five more concepts
+
+Round 27's README explicitly noted that no Sync Gateway version mention had crossed
+the recurrence-2 bar as of that round's own scope. Re-running the aggregation over
+the whole corpus (not just this round's 35 files) after this round's own additions
+lands finds it now does: `version:sgw-4-0` (recurrence 4, spanning this round and
+the corrected round-27 `setting-up-dr-cluster.json`) and `version:sgw-4-1`
+(recurrence 4) both promoted, alongside `version:server-7-6-5` and `version:cbl-4-0`
+(recurrence 2 each) filling gaps in the existing maintenance-release and
+Couchbase-Lite-version families. `cbl:replication` - minted in round 3, reused three
+rounds later by this round's `sync-inter-syncgateway-conflict-resolution.json` to
+draw a Couchbase-Lite conflict-handling parallel - is the same whole-corpus-debt shape
+round 24's `role:cluster-admin` and round 27's `sgw:sync-function` established: real
+recurrence invisible to any single round's own extraction scope. Five more `sgw:`
+concepts cleared the bar on this round's own evidence:
+`sgw:public-rest-api` (referenced via `sgw:sync-gateway-instance`/`sgw:user`/
+`sgw:changes-feed` etc. since round 3 but never itself a first-class concept),
+`sgw:sg-replicate-legacy` (the pre-2.8 HTTP-based ISGR predecessor), `sgw:keyspace`
+(Sync Gateway's own dot-separated REST addressing string, filed `isVariantOf`
+`server:keyspace` on the two Public/Admin API batches' identical independent
+definitions), `sgw:import-process`, and `sgw:attachment`.
+
+### Promotions
+
+**19 concepts promoted**, taking `concepts/` to 662: seven Server RBAC roles
+(`role:mobile-sync-gateway`, `role:sync-gateway-configurator`, `role:sync-gateway-app`,
+`role:sync-gateway-app-ro`, `role:sync-gateway-replicator`, `role:sync-gateway-dev-ops`,
+`role:external-stats-reader`), `sgw:bidirectional-xdcr`, `port:4985`, four `version:*`
+family members (`sgw-4-0`, `sgw-4-1`, `server-7-6-5`, `cbl-4-0`), five more `sgw:`
+concepts (`sg-replicate-legacy`, `public-rest-api`, `keyspace`, `import-process`,
+`attachment`) and `cbl:replication`.
+
+**1 relation promoted**, taking `relations/` to 119: `supersedes` (recurrence 1,
+significance exception - see item 3).
+
+**1 `docs-issues/` filed**, taking the total to 202: the stale `get-started-verify-install.md`
+page (item 5).
+
+**Registry corrections** (not new promotions - see items 2-4 above and the
+misattribution fix): `relations/has-no-relationship-to.json` and
+`concepts/sgw/inter-sync-gateway-replication.json` each got a `qualifying_note_round_28`;
+`concepts/sgw/conflict-resolution-type-setting.json`'s `type` field corrected with the
+verified quote; `concepts/sgw/import-docs-setting.json`'s `type` field updated to name
+both concepts that require it; two extraction records (`sync/sync-with-couchbase-server.json`
+this round, round 27's `deploy/setting-up-dr-cluster.json`) had a misattributed
+relation retargeted from `xdcr:active-active-with-app-services` to
+`sgw:bidirectional-xdcr`, each with the original reasoning quoted before correction.
+
+### What this round taught about the method
+
+- **A same-round self-fork across three concurrent batches is still catchable by
+  reading the raw ids, and the fix is the same internal-name convention as every
+  prior Server-RBAC-role naming case.** Three batches reading overlapping RBAC content
+  produced two independent kebab-spellings of five roles plus a third spelling of a
+  sixth (already-unpromoted) role - none of it visible from any single batch's own
+  report, all of it visible from `grep`ping the five files' raw `candidate_id` values
+  directly, exactly as the round's own dispatch briefing asked.
+- **A predicate-range mismatch is catchable the same way a namespace defect is: by
+  reading every existing use of the predicate before reusing it for a new fact
+  shape.** `takesPrecedenceOver`'s own type was never violated by its ~30 prior
+  uses (all settings/values); the round's own `sgw:bidirectional-xdcr`/
+  `sgw:inter-sync-gateway-replication` triple was the first to name a whole
+  mechanism as the object, and checking that against the predicate's documented
+  range - not just against its label - is what caught it.
+- **An extraction record's own stated reasoning for reusing a concept can be
+  the error, not just the id it names.** Round 27's `setting-up-dr-cluster.json`
+  didn't misspell `xdcr:active-active-with-app-services` or miscopy evidence - it
+  explicitly, plausibly argued the page "independently confirms, from the Sync
+  Gateway side" a concept that turned out to be a different, App-Services-specific
+  feature the page never mentions. The error was in the *argument*, fully
+  evidence-gated and internally consistent, which is why it survived one round
+  uncaught: nothing short of reading the cited concept's own promoted `type` field
+  side-by-side with the page would have caught it.
+
+## Cumulative verdict (all twenty-eight rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -7984,3 +8214,15 @@ once, so worth treating as durable rather than one-off:
   the whole reconciliation task, not just to the recurrence count specifically -
   nothing this round did required remembering rounds 1-24, only knowing how to
   ask the registry.
+- **Finishing a product's coverage is when a name collision minted across its own
+  history finally becomes visible in one place.** Sync Gateway's REST API reference
+  layer - the last unread piece of the product - is exactly where three concurrent
+  round-28 batches minted overlapping Server-RBAC-role spellings for the same six
+  roles, and where a fourth-round-old unpromoted mint (`role:sync-gateway`, from
+  round 12's `roles.json`) turned out to be a third spelling of one of them. None of
+  this was visible while the product was only partly read: a role table's roles are
+  named piecemeal, page by page, and only reading the whole reference surface at once
+  puts every spelling of "the same role" in front of one reconciliation pass. This is
+  the RBAC-role-family version of round 17's "the corpus is not the documentation"
+  lesson - not a missing directory this time, but a namespace whose members were
+  scattered across pages read four rounds apart.

@@ -1,8 +1,9 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/sgw/conflict-resolution-type-setting",
   "label": "conflict_resolution_type setting (Sync Gateway ISGR/database replication)",
-  "type": "the per-replication setting choosing how Sync Gateway resolves a write conflict (Sequence Number, Timestamp, or 'custom' - which requires sgw:custom-conflict-resolver to be set). Changing it is an Enterprise-Edition-only operation.",
+  "type": "the per-replication setting choosing how Sync Gateway resolves a write conflict. Values: \"default\", \"remoteWins\", \"localWins\", or \"custom\" (which requires custom_conflict_resolver to be set). Changing it is an Enterprise-Edition-only operation.",
   "promoted": true,
   "recurrence": 2,
-  "note": "Field-for-field identical across configuration-schema-database.md's embedded replications object and configuration-schema-isgr.md's standalone schema - see sgw:inter-sync-gateway-replication's own note for the shared-schema finding this comes from."
+  "note": "Field-for-field identical across configuration-schema-database.md's embedded replications object and configuration-schema-isgr.md's standalone schema - see sgw:inter-sync-gateway-replication's own note for the shared-schema finding this comes from.",
+  "correction_round_28": "The `type` field above previously read 'Sequence Number, Timestamp, or custom' - XDCR-flavored vocabulary that does not match this setting's actual documented enum. Corrected on round 28 evidence: sync-inter-syncgateway-run.md's own Table 1 property reference (the canonical source for conflict_resolution_type) states unambiguously '**Values:** \"default\", \"remoteWins\", \"localWins\", \"custom\"' - independently verified against the raw page (sync-gateway/current/sync/sync-inter-syncgateway-run.md line 102) during this reconciliation pass. No 'Sequence Number' or 'Timestamp' value appears on that page or on conflict-resolution.md (same batch, the dedicated conflict-resolution reference), which uses only default/localWins/remoteWins/custom throughout its worked examples. The original description was evidently built from a different, XDCR-adjacent source rather than this setting's own schema reference; that source was not re-identified during this pass. Corrected here rather than silently - see reconciliation.md round 28 for the full note."
 }

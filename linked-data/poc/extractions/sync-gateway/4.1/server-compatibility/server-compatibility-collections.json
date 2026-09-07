@@ -1,0 +1,26 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-collections",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-collections.md",
+  "concepts": [
+    { "candidate_id": "sgw:custom-scope", "label": "Custom scope (Sync Gateway database config)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:custom-collection", "label": "Custom collection (Sync Gateway database config)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:collection", "label": "collection (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "server:scope", "label": "Scope (Couchbase Server)",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:custom-scope", "predicate": "hasEquivalentEffectAs", "object": "server:collection",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway targets the same ceiling for a database's custom scope: up to 1000 custom collections." }
+  ],
+  "notable_absence": {
+    "predicate": "hasMaximumCount",
+    "finding": "The predicate list has no way to state a numeric ceiling on how many of a concept can exist (e.g. 'up to 1000 scopes and up to 1000 collections per cluster', 'Sync Gateway targets... up to 1000 custom collections'). requiresMinimumNodeCount exists for MINIMUM node counts as a datatype property, but there is no symmetric MAXIMUM-count predicate for other object types (collections, scopes). This page's entire content is two such ceiling statements, so the gap is total for this record - the hasEquivalentEffectAs relation above only captures that the two ceilings match, not either ceiling's actual value."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

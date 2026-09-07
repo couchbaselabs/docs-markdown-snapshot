@@ -5,16 +5,16 @@
   "concepts": [
     { "candidate_id": "server:xdcr", "label": "XDCR (Couchbase Server)", "registry_status": "promoted",
       "reused_or_minted": "reused (promoted server:xdcr) - this page's introduction names Couchbase Server XDCR explicitly as the replication mechanism underlying all three DR deployment models" },
-    { "candidate_id": "xdcr:active-active-with-app-services", "label": "bi-directional XDCR with App Services", "registry_status": "promoted",
-      "reused_or_minted": "reused (promoted xdcr:active-active-with-app-services) - this page independently confirms, from the Sync Gateway side, the identical Sync Gateway 4.0+ version requirement this concept was already promoted with from a Couchbase Server procedural page; strengthens the existing cross-product evidence chain rather than adding a new one" },
+    { "candidate_id": "sgw:bidirectional-xdcr", "label": "Bi-directional XDCR between mobile clusters (Sync Gateway 4.0+)", "registry_status": "promoted",
+      "reused_or_minted": "reconciliation correction (round 28): this page's concepts[] originally cited xdcr:active-active-with-app-services, reasoning that this page 'independently confirms, from the Sync Gateway side, the identical Sync Gateway 4.0+ version requirement' - but the page never mentions App Services/Capella anywhere, and the quote it cites matches sgw:bidirectional-xdcr's own requiredForApiAccess evidence in server-compatibility-xdcr.json almost verbatim ('This requires running Sync Gateway 4.0+ on both sides of the active-active XDCR setup'). Retargeted to sgw:bidirectional-xdcr, promoted this round for the identical Sync-Gateway-native feature; see that concept's own note." },
     { "candidate_id": "sgw:disaster-recovery-cluster", "label": "Disaster Recovery (DR) cluster", "registry_status": "minted",
       "reused_or_minted": "minted - the standby Sync Gateway/Couchbase Server cluster pairing set up to take over from a Primary cluster" },
     { "candidate_id": "sgw:primary-cluster", "label": "Primary cluster", "registry_status": "minted",
       "reused_or_minted": "minted - the active cluster pairing normally serving traffic, paired with sgw:disaster-recovery-cluster" },
     { "candidate_id": "sgw:database-offline-mode", "label": "Database offline mode (offline: true)", "registry_status": "minted",
       "reused_or_minted": "minted - the per-database configuration flag used to pre-build Sync Gateway indexes on a DR cluster without serving live traffic" },
-    { "candidate_id": "sgw:import-docs-setting", "label": "import_docs setting", "registry_status": "minted",
-      "reused_or_minted": "minted - the per-database setting required on both sides of an active-active DR setup; reused in this batch's deployment.json for the designated import-node role" },
+    { "candidate_id": "sgw:import-docs-setting", "label": "import_docs setting", "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted) - corrected during round 28 reconciliation, this record originally marked it 'minted' though the id was already promoted; the per-database setting required on both sides of an active-active DR setup, reused in this batch's deployment.json for the designated import-node role" },
     { "candidate_id": "version:sgw-4-0", "label": "Sync Gateway 4.0", "registry_status": "minted",
       "reused_or_minted": "minted - new version: family member, the minimum version required on both sides of the active-active DR model" }
   ],
@@ -22,11 +22,11 @@
     { "subject": "sgw:disaster-recovery-cluster", "predicate": "reliesOnMechanism", "object": "server:xdcr",
       "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted reliesOnMechanism)",
       "evidence": "(XDCR) replicates data between two or more autonomous Couchbase Server clusters. It plays an important role in supporting Disaster Recovery (DR) and Data Migration, even where Sync Gateway is the normal replicator of choice for mobile data." },
-    { "subject": "xdcr:active-active-with-app-services", "predicate": "availableSince", "object": "version:sgw-4-0",
-      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted availableSince)",
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "availableSince", "object": "version:sgw-4-0",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reconciliation correction (round 28) - see concepts[] note above; was xdcr:active-active-with-app-services",
       "evidence": "This model provides zero-downtime disaster recovery using bi-directional XDCR between two active mobile clusters. This requires running Sync Gateway 4.0+ on both sides of the active-active XDCR setup." },
-    { "subject": "xdcr:active-active-with-app-services", "predicate": "requiresSetting", "object": "sgw:import-docs-setting",
-      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "requiresSetting", "object": "sgw:import-docs-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reconciliation correction (round 28) - see concepts[] note above; was xdcr:active-active-with-app-services",
       "evidence": "You must configure both clusters with `import_docs=true`." },
     { "subject": "sgw:disaster-recovery-cluster", "predicate": "requiresPriorExecutionOf", "object": "sgw:database-offline-mode",
       "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted requiresPriorExecutionOf) - the optional index pre-initialization step must happen, if used at all, before unidirectional XDCR begins",
@@ -40,5 +40,5 @@
     "finding": "For the two non-active-active DR models ('Clusters in Same Region' and 'Clusters in Different Regions'), activation involves the SAME role swap stated in near-identical language twice: 'Make the Disaster Recovery cluster the new Primary cluster, and make the old Primary cluster the new Disaster Recovery.' Unlike the active-active model's automatic swap (captured above via renamedFrom), this swap is a MANUAL administrative step in both other models - the same underlying fact (roles relabel, no data moves) recurs three times on this page under three different amounts of automation, and no page distinguishes 'automatic relabeling' from 'manual relabeling' as a named axis."
   },
   "cross_component_finding": "All three DR models in this page rely on the SAME optional optimization (pre-initializing/pre-building Sync Gateway's own GSI indexes on the DR cluster before failover) to avoid the exact index-rebuild latency problem this batch's indexing.md and index-partitions.md describe from the configuration side - a concrete example of index-partitions.json's Zero-Downtime migration guidance and this page's DR activation guidance solving the same underlying problem (avoiding an index rebuild on a live-traffic switch) in two different operational contexts.",
-  "cross_product_finding": "The reused xdcr:active-active-with-app-services concept was originally promoted from a Couchbase Server procedural page (server/current/manage/manage-xdcr/create-xdcr-replication.md) plus two Capella pages, with the note that it is 'assembled from a Server procedure page and two Capella pages - no single page states all three legs.' This Sync-Gateway-side page adds a fourth, independent leg: it restates the same Sync Gateway 4.0+ / bi-directional XDCR requirement from the mobile-deployment side, entirely without reference to the Server or Capella pages that originally established the concept."
+  "cross_product_finding": "Corrected during round 28 reconciliation (see concepts[] note above): this page's active-active DR model is Sync Gateway's own native sgw:bidirectional-xdcr, not xdcr:active-active-with-app-services (Capella App Services' distinct feature, gated at Server 7.6.6+/App Services 4.0+ with no Sync Gateway version dependency stated anywhere). The page names no App Services/Capella concept at all; the original 'fourth independent leg confirming the same concept from the mobile side' framing was itself the misattribution, not a genuine fourth corroborating source."
 }

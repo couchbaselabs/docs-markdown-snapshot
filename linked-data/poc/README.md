@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-seven rounds so far, twenty-three of them deliberate escalations
+automating it. Twenty-eight rounds so far, twenty-four of them deliberate escalations
 and four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -438,6 +438,23 @@ and four corrective passes over what they left behind:
     promotion-debt catches (`sgw:sync-function` at recurrence 14,
     `sgw:channel-access-revocation` at 5) that 24 prior rounds' reuse had never
     promoted. 64 concepts, 4 relations promoted; 7 new `docs-issues/`.
+28. **35 pages finishing Sync Gateway as a product** — the REST API reference
+    layer (8 pages, including two auto-generated OpenAPI dumps), `product-notes/`
+    + `server-compatibility/` (11), `sync/` (9, an ISGR-family sub-batch plus a
+    remainder), and `start-here/` + `use-kubernetes/` (7), run as seven parallel
+    batches. One of the round's own flagged items was a same-round self-fork:
+    three RBAC-adjacent batches independently minted two spellings each of six
+    Couchbase Server 7.0.2-Developer-Preview roles (`sync-gateway-*` vs. `sgw-*`),
+    resolved to the internal-name convention with every display-label spelling
+    folded as an alias — the highest-recurrence catch, `role:mobile-sync-gateway`,
+    turned out to also fold a round-12 mint four rounds old. A predicate-range
+    mismatch (a whole-feature supersession filed under the settings-scoped
+    `takesPrecedenceOver`) was caught by checking the predicate's ~30 prior uses
+    against its own declared type, and fixed by minting `supersedes`. Reading the
+    same evidence surfaced a genuine extraction-time misattribution repeated
+    across two records, one from this round and one from round 27, both corrected
+    with the original reasoning quoted rather than silently rewritten. 19
+    concepts, 1 relation promoted; 1 new `docs-issues/`.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -445,7 +462,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-999 pages total:
+1,034 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -626,6 +643,21 @@ time/cost projections and how they held up against the round-2 run's real number
   killed mid-task by an API rate limit — the first round this project verified
   an already-completed analysis phase rather than performing one fresh. See
   round 27 in `reconciliation.md`.
+- **35 more, finishing Sync Gateway** — the REST API reference layer
+  (`rest-api.md`, `rest-api-access.md`, `rest-api-access-rbac-roles.md`,
+  `rest-api-admin.md`, `rest-api-metrics.md`, `rest_api_admin.md`,
+  `rest_api_public.md`, `rest_api_metric.md`; two of these are auto-generated
+  OpenAPI dumps at 13,286 and 3,281 lines), `product-notes/` +
+  `server-compatibility/` (compatibility, release notes, supported
+  environments, and the backups/buckets/collections/eventing/transactions/
+  XDCR/XDCR-mobile compatibility matrices), `sync/` (delta sync, import
+  processing, sync-with-Couchbase-Server, sync-using-app, and the five-page
+  Inter-Sync-Gateway-Replication family: overview, conflict resolution,
+  manage, monitor, run), and `start-here/` + `use-kubernetes/` (the six-page
+  Get Started sequence plus the Kubernetes deployment guide). Dispatched as
+  seven parallel batches. **Sync Gateway is now fully covered** — this closes
+  out what round 27 left, everything the product's docs tree contains. See
+  round 28 in `reconciliation.md`.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1296,6 +1328,33 @@ from "still in `extractions/`."
   configuration mechanisms, operational commands, monitoring formats and
   security — Sync Gateway's whole feature surface, a subject area like
   `eventing:` or `capella:`, not an axis.
+  Round 28 promoted 19, finishing Sync Gateway: seven Server RBAC roles
+  (`role:mobile-sync-gateway`, `role:sync-gateway-configurator`,
+  `role:sync-gateway-app`, `role:sync-gateway-app-ro`,
+  `role:sync-gateway-replicator`, `role:sync-gateway-dev-ops`,
+  `role:external-stats-reader`) resolving a same-round self-fork across three
+  concurrent RBAC-adjacent batches (two independent kebab-spellings each for
+  six roles, filed under the internal-name convention with every display-label
+  and alternate spelling folded as an alias — `role:mobile-sync-gateway`
+  reaches recurrence 5 once round 12's four-round-old `role:sync-gateway` mint
+  is resolved into it), `sgw:bidirectional-xdcr` (Sync Gateway 4.0's native
+  mobile-to-mobile bi-directional XDCR, positioned in the docs as superseding
+  `sgw:inter-sync-gateway-replication` — see `relations/supersedes.json`),
+  `port:4985` (the Admin REST API port, completing the three standard Sync
+  Gateway ports alongside round 27's 4984/4986), four `version:*` family
+  members (`sgw-4-0`, `sgw-4-1`, `server-7-6-5`, `cbl-4-0` — the first Sync
+  Gateway version concepts to clear the recurrence bar, confirming round 27's
+  README note that none had as of that round's own scope), five more `sgw:`
+  concepts referenced since round 3 but never promoted (`sg-replicate-legacy`,
+  `public-rest-api`, `keyspace`, `import-process`, `attachment`), and
+  `cbl:replication` (minted round 3, reused three rounds later for an ISGR/
+  Couchbase-Lite conflict-handling parallel — the same whole-corpus-debt shape
+  as round 24's `role:cluster-admin` and round 27's `sgw:sync-function`).
+  `sgw:`'s existing `inter-sync-gateway-replication` and
+  `conflict-resolution-type-setting` records, and the promoted
+  `has-no-relationship-to` relation, each got a qualifying/corrective note this
+  round rather than a silent edit — see round 28 in `reconciliation.md` for all
+  three.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1536,14 +1595,29 @@ from "still in `extractions/`."
   `hasEquivalentEffectAs` into `tool:cbcollect-info` — both licensed by real
   page text and back-filled into their extraction records, this time traced to
   an interrupted run rather than an ordinary oversight.
+  Round 28 added **one**, taking the directory to **119 records**: `supersedes`
+  (recurrence 1, a significance exception following round 24's
+  `alsoExposedAs` precedent), minted after finding that an extraction record's
+  own use of the already-promoted `takesPrecedenceOver` for
+  `sgw:bidirectional-xdcr supersedes sgw:inter-sync-gateway-replication` was a
+  predicate-range mismatch — `takesPrecedenceOver`'s type is scoped to a
+  setting/value overriding a sibling setting/value, confirmed by checking all
+  ~30 of its prior corpus uses, none of which named a whole feature/mechanism
+  as the object the way this one did.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **201
-  entries** as of round 27 (7 added that round, all from Sync Gateway's
+  issueType, description, about, status}` — minted with no gatekeeping. **202
+  entries** as of round 28 (1 added that round: `get-started-verify-install.md`,
+  Sync Gateway's stale 4.0-era Start Here page, superseded by
+  `get-started-configure.md`/`get-started-explore.md` but never removed —
+  confirmed by mismatched front-matter dates and edit-branch, a duplicate
+  "Step 4" claim against `get-started-explore.md`, and malformed placeholder
+  JSON in its own worked examples). 201
+  entries as of round 27 (7 added that round, all from Sync Gateway's
   `access-control/`, `configuration/` and `security/` trees: a redirect-stub
   access-control schema reference page; a malformed AsciiDoc xref build artifact
   appearing verbatim on two pages; the custom-collection cap stated as both a
@@ -3380,6 +3454,45 @@ resumed pass after an interrupted run):**
      minted in round 3 and never promoted since, invisible to any single round's
      own visibility exactly as round 24's `role:cluster-admin` finding predicted.
 
+**Round 28 (35 pages finishing Sync Gateway - the REST API reference layer,
+`product-notes/`+`server-compatibility/`, `sync/`, `start-here/`+`use-kubernetes/`):**
+
+129. **A same-round self-fork across three concurrent RBAC-adjacent batches is
+     catchable by reading the raw ids directly, and reveals a fourth-round-old
+     mint hiding under a third spelling of the same role.** Two batches
+     independently minted `sync-gateway-*` and `sgw-*` spellings for the same
+     six Couchbase Server 7.0.2-Developer-Preview roles; a third batch
+     independently minted `role:sync-gateway-role` for a role round 12 had
+     already minted as `role:sync-gateway`, unpromoted for four rounds.
+     Resolving all three to the internal-name convention (`role:mobile-sync-gateway`)
+     brought the true recurrence to 5 - visible only once the fork was resolved,
+     not before.
+130. **A predicate's declared range is checkable against its own prior uses,
+     and doing so caught a real misfit this round's own evidence would
+     otherwise have licensed.** `sgw:bidirectional-xdcr`'s supersession of
+     `sgw:inter-sync-gateway-replication` was filed under the already-promoted
+     `takesPrecedenceOver` - a plausible reuse that turned out to violate every
+     one of that predicate's ~30 prior corpus uses (all settings/values
+     overriding each other, never a whole feature). Minted `supersedes`
+     instead, as a significance exception at recurrence 1.
+131. **An extraction record's own well-argued reasoning for a concept reuse
+     can itself be the defect, surviving one full round before being caught.**
+     Round 27's `deploy/setting-up-dr-cluster.json` explicitly reasoned that
+     its page "independently confirms, from the Sync Gateway side" a Capella
+     App Services concept the page never actually names - internally
+     consistent, evidence-gated, and wrong. Caught only by reading the cited
+     concept's own promoted `type` field against the page directly, not by any
+     mechanical check.
+132. **Finishing a product's coverage is when a name collision minted across
+     its own history finally becomes visible in one place.** The RBAC-role
+     self-fork above was invisible while Sync Gateway was only partly read -
+     a role table's members get named piecemeal, page by page, across rounds
+     four apart. Only reading the whole reference surface at once put every
+     spelling of "the same role" in front of one reconciliation pass, the
+     same "corpus is not the documentation" shape round 17 first found for a
+     missing directory, recurring here for a namespace scattered across pages
+     instead.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -3449,19 +3562,23 @@ document.
   commit, written pre-gate, 3 of them with unquotable evidence, and wave 1 promoted
   **22 concepts out of them**. Both defects found there were in a single record;
   nobody has checked the other six against their pages.
-- **Finish reading Sync Gateway.** Round 27 closed out `access-control/` +
-  `security/` (the conceptual and access-control surface) and made first
-  contact with `configuration/`, `deploy/` and `manage/` (the operational
-  core). What is left, unread by any round: `rest-api/` (8 pages),
-  `product-notes/` (3), `server-compatibility/` (8), `start-here/` (6),
-  `sync/` (9) and `use-kubernetes/` (1) — 35 pages in total — plus the whole
-  of Couchbase Lite and the Java SDK beyond what round 3 sampled (12 and 12
-  pages respectively, out of products this project has otherwise only
-  touched once). `rest-api/` is the highest-value next piece on round 26's
-  genre argument: this round's `configuration/`+`deploy/`+`manage/` batch was
-  procedural, and a REST reference layer for the same product, read next,
-  would be the same reference-vs-procedure pairing round 17 and round 26 both
-  found informative elsewhere.
+- **Read the rest of Couchbase Lite and the Java SDK.** Sync Gateway is now
+  fully covered (rounds 3 and 27-28) — the next largest touched-but-not-finished
+  product territory is Couchbase Lite and the Java SDK beyond what round 3's
+  original 37-page cross-product sample reached (12 pages each, out of products
+  this project has otherwise only touched once). Round 28's own `cbl:replication`
+  promotion-debt catch (minted round 3, first reused three rounds later) is a
+  small preview of what a dedicated Couchbase Lite pass would likely surface at
+  scale — round 3's pre-gate CBL batch is also still on the re-extraction
+  backlog below, so a fresh CBL round would need to decide whether to re-read
+  those 12 pages under the gate or extend past them first.
+- **Work the `role:sync-gateway-*` filing convention's remaining open question.**
+  `role:bucket-application-access` (round 28, `rest-api-access-rbac-roles.md`)
+  may be a fourth spelling of the already-aliased `role:bucket-full-access`/
+  `role:application-access` pair, but no page states the equivalence directly -
+  left unpromoted and unmerged per the no-silent-merge rule. Worth a targeted
+  `candidate-evidence.py --ns role:` read if a future round adds more
+  Sync-Gateway-adjacent Server-RBAC-role pages.
 - **Build an admission test for reference-table instances.** `query-settings.md`
   documents `node-quota`, `prepared-limit`, `loglevel`, `controls`,
   `functions-limit`, `keep-alive-length`, `max-index-api` and

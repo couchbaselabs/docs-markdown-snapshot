@@ -1,8 +1,9 @@
 {
   "id": "https://docs.couchbase.com/ld/concepts/sgw/import-docs-setting",
   "label": "import_docs setting (Sync Gateway)",
-  "type": "the per-database boolean enabling Sync Gateway's import of Couchbase-Server-side document mutations. Must be true on both clusters for xdcr:active-active-with-app-services. Operator discipline (not a platform-enforced limit) is the only guard against running import on more than one Sync Gateway node in a cluster.",
+  "type": "the per-database boolean enabling Sync Gateway's import of Couchbase-Server-side document mutations. Must be true on both clusters for active-active XDCR setups (both sgw:bidirectional-xdcr and, separately, xdcr:active-active-with-app-services). Operator discipline (not a platform-enforced limit) is the only guard against running import on more than one Sync Gateway node in a cluster.",
   "promoted": true,
   "recurrence": 2,
-  "note": "Second instance in this batch of the same 'hazard managed by prose discouragement, not an enforced guardrail' pattern also seen on sgw:index-partitioning's partitioning settings."
+  "note": "Second instance in this batch of the same 'hazard managed by prose discouragement, not an enforced guardrail' pattern also seen on sgw:index-partitioning's partitioning settings.",
+  "correction_round_28": "`type` field updated to name both concepts that require it. deploy/setting-up-dr-cluster.json (round 27) originally filed its import_docs=true requirement against xdcr:active-active-with-app-services; round 28 reconciliation retargeted that relation to sgw:bidirectional-xdcr (the correct, Sync-Gateway-native referent of that page's evidence). Both concepts genuinely require the setting, from different pages, so this record now names both rather than only the corrected one."
 }

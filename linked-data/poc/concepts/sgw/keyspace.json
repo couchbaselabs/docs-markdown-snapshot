@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/keyspace",
+  "label": "Keyspace (Sync Gateway REST API addressing)",
+  "type": "the dot-separated addressing string ({db}, {db}.{collection}, or {db}.{scope}.{collection}) used by every Document and Document-Attachment endpoint on Sync Gateway's REST APIs. Filed as isVariantOf server:keyspace (SQL++'s own bucket.scope.collection addressable unit) - a genuine naming/shape parallel the docs state directly, not a merge: Sync Gateway's keyspace is a URL-path syntax over a database/scope/collection, not literally the same SQL++ construct.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/rest-api/rest_api_public.md",
+  "evidence": "A keyspace is a dot-separated string, comprised of a database name, and optionally a named scope and collection.",
+  "note": "Independently minted, identically defined, by two parallel round-28 batches reading the Public and Admin REST API references (rest_api_public.json, rest_api_admin.json) - genuine convergence on one spelling for one concept, not a self-fork. rest_api_admin.json also filed the isVariantOf relation to server:keyspace on this exact evidence."
+}

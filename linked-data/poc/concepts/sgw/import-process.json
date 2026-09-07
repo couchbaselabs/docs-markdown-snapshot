@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/import-process",
+  "label": "Import Process (Sync Gateway)",
+  "type": "the mechanism that picks up non-Sync-Gateway document mutations (writes made directly to Couchbase Server, e.g. via SDK/SQL++) and runs them through the sync function to compute read security and channel routing, enabling mobile convergence. Gated by sgw:import-docs-setting. Distinct from that setting: the setting is the boolean that enables it, this concept is the mechanism itself.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/sync/import-processing.md",
+  "evidence": "The import process is a key part of mobile convergence.",
+  "note": "Minted on its own dedicated page (import-processing.json) and reused, near-verbatim, on sync-with-couchbase-server.json - the same content appearing on two pages under two different anchors, flagged by the latter record as an extraction-layer duplication observation. Processes the document with an admin user context in the sync function (triggersPermissionModeChange), meaning requireAccess/requireUser/requireRole calls become no-ops during import - the sync function's write-time authorization gate does not apply to server-side writes."
+}

@@ -1,0 +1,50 @@
+{
+  "page_id": "sync-gateway/4.1/start-here/get-started-configure",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/start-here/get-started-configure.md",
+  "concepts": [
+    { "candidate_id": "sgw:bootstrap-configuration", "label": "Bootstrap configuration (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's whole procedure is editing and restarting Sync Gateway against exactly this config surface (bootstrap.server/username/password/server_tls_skip_verify/use_tls_server)" },
+    { "candidate_id": "tool:sync-gateway", "label": "Sync Gateway (the product/binary)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the binary being started via `bin/sync_gateway -<options> sgwconfig.json`" },
+    { "candidate_id": "sgw:sync-gateway-restart", "label": "Sync Gateway restart",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's step 4 ('Restart/Load your Sync Gateway to pick-up the changed configuration') is a direct instance of this concept" },
+    { "candidate_id": "port:4984", "label": "Port 4984 (Sync Gateway public REST API)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page has the reader browse to port 4984 to verify the connection" },
+    { "candidate_id": "sgw:load-balancer", "label": "Load balancer / reverse proxy (Sync Gateway deployment)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - referenced in a tip about websockets configuration when Sync Gateway sits behind one" }
+  ],
+  "relations": [
+    { "subject": "tool:sync-gateway", "predicate": "configuredVia", "object": "sgw:bootstrap-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia) - the page's core instruction is editing this config file and restarting",
+      "evidence": "You'll need to edit the configuration file used in the [Install](get-started-install.md) step to point to a bucket on your Couchbase Server — see [Bootstrap Sync Gateway](#lbl-config)." },
+    { "subject": "sgw:bootstrap-configuration", "predicate": "triggersImmediateExecutionOf", "object": "sgw:sync-gateway-restart",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted triggersImmediateExecutionOf) - closest existing predicate for 'this config surface change requires a restart to take effect'; used loosely for a required-follow-up-step relationship rather than a literal automatic trigger",
+      "evidence": "Restart/Load your Sync Gateway to pick-up the changed configuration" },
+    { "subject": "tool:sync-gateway", "predicate": "usesPort", "object": "port:4984",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesPort)",
+      "evidence": "point your browser to the Sync Gateway url, typically on port 4984, but this can be changed" },
+    { "subject": "sgw:load-balancer", "predicate": "hasExecutionConstraint", "object": "sgw:sync-gateway-instance",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasExecutionConstraint) - the tip ties correct load-balancer websocket configuration to a working Sync Gateway connection",
+      "evidence": "If Sync Gateway is behind a load balancer, check the websockets configuration — see [Load Balancer](../deploy/load-balancer.md)." },
+    { "subject": "sync-gateway/4.1/start-here/get-started-configure", "predicate": "seeAlso", "object": "sync-gateway/4.1/configuration/configuration-schema-bootstrap",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (structural markdown link -> seeAlso, per rule)",
+      "evidence": "Learn more about Sync Gateway's [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "The page has the reader create an RBAC user in the earlier Prepare step and use its credentials in the bootstrap config's username/password fields, but never names or discusses the RBAC role itself (e.g. the 'sync_gateway' server role) on this page - the role vocabulary lives entirely in get-started-prepare.md, cross-referenced rather than restated."
+  },
+  "cross_component_finding": "This page is a near-duplicate, word-for-word in most sections, of get-started-verify-install.md (also in this batch) - same bootstrap config example, same 'Connect to Sync Gateway' section, same tips about console logs and load-balancer websockets. The two pages differ mainly in framing (Step 3 'Configure' vs. Step 4 'Verify' of two apparently divergent versions of the Getting Started sequence) and in one config detail: this page's Example 1 sets use_tls_server: true with couchbases://localhost, matching its own step order, while the CRUD/database-creation content that appears here is absent from get-started-verify-install.md's corresponding section (that content appears only in get-started-explore.md). This suggests get-started-verify-install.md is a supersede/legacy sibling of the split between get-started-configure.md and get-started-explore.md, worth flagging as a docs-issue candidate for round 29's reconciliation (not resolved here per the no-reconciliation-across-batches rule).",
+  "cross_product_finding": "None found on this page specifically - it stays entirely within Sync Gateway/Couchbase Server scope."
+}

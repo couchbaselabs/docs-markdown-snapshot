@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/sync-gateway-app",
+  "label": "Sync Gateway Application (Server RBAC role)",
+  "type": "one of six fine-grained Server RBAC roles Couchbase Server 7.0.2 Developer Preview added specifically for Sync Gateway's Admin REST API. Lets the user manage Sync Gateway users/roles and read/write application data through Sync Gateway. Do not confuse with sgw:role or sgw:user (Sync Gateway's own channel-grant/identity objects that this Server role is used to administer, not a member of).",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "sync_gateway_app",
+  "aliases": [
+    "role:sync-gateway-application",
+    "role:sgw-application"
+  ],
+  "aliases_note": "Same same-round self-fork shape as role:sync-gateway-configurator: A1 minted `role:sync-gateway-application` (display-label form), A2 independently minted `role:sgw-application`. Filed under the internal name; both folded as aliases.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway Application (sync_gateway_app) ... The Sync Gateway Application role lets the user manage Sync Gateway users, roles, and data. It also allows the user to read and write application data through the Sync Gateway.",
+  "note": "Round 28 first contact with the 7.0.2+ fine-grained Sync-Gateway-RBAC catalogue extension. Per rest_api_admin.json's own finding, this role (or Architect) gates 'Create a new user session' (POST /{db}/_session) - minting a Public-API session cookie on behalf of a named sgw:user - which is the finding that qualifies (without retracting) round 27's sgw:user hasNoRelationshipTo sgw:rbac-user: the two identity systems share no login, but a Server-RBAC holder in this role can administer and act on behalf of the channel-based one. See the qualifying note on relations/has-no-relationship-to.json."
+}

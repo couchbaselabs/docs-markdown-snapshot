@@ -1,0 +1,97 @@
+{
+  "page_id": "sync-gateway/4.1/sync/sync-inter-syncgateway-run",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/sync/sync-inter-syncgateway-run.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page is its Replication Definition / properties reference"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, one of two ways to submit a replication definition"
+    },
+    {
+      "candidate_id": "sgw:custom-conflict-resolver",
+      "label": "Custom Conflict Resolver (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:conflict-resolution-type-setting",
+      "label": "conflict_resolution_type setting (Sync Gateway ISGR/database replication)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; see finding about a values-vocabulary discrepancy against the existing registry description"
+    },
+    {
+      "candidate_id": "sgw:delta-sync",
+      "label": "Delta Sync (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; the purge_on_removal property is this page's configuration surface for it"
+    },
+    {
+      "candidate_id": "sgw:sg-replicate-legacy",
+      "label": "SG Replicate (pre-2.8 inter-Sync Gateway replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from sync-inter-syncgateway-overview.json, same batch - this page adds the detail that it can coexist on the same node as 2.8+ ISGR"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:conflict-resolution-type-setting",
+      "predicate": "usesEnum",
+      "object": "default | remoteWins | localWins | custom",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesEnum) - SIGNIFICANT FINDING, see notable_absence: this enum does not match the registry's existing description of this exact concept",
+      "evidence": "This defines what conflict resolution policy Sync Gateway should use to apply when resolving conflicting revisions. Changing this is an Enterprise Edition only feature. **Values:** \"default\", \"remoteWins\", \"localWins\", \"custom\""
+    },
+    {
+      "subject": "sgw:conflict-resolution-type-setting",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition)",
+      "evidence": "This defines what conflict resolution policy Sync Gateway should use to apply when resolving conflicting revisions. Changing this is an Enterprise Edition only feature."
+    },
+    {
+      "subject": "sgw:channel-access-revocation",
+      "predicate": "configurableVia",
+      "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configurableVia) - the purge_on_removal replication-definition property",
+      "evidence": "Specifies whether to purge a document if the remote user loses access to all of the channels on the document when attempting to pull it from the remote. If false, documents will not be replicated and not be purged when the user loses access."
+    },
+    {
+      "subject": "sgw:sg-replicate-legacy",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted retainedForLegacyCompatibility) - complicates overview.json's renamedFrom relation: the two can run concurrently, not just be a clean historical rename",
+      "evidence": "inter-Sync Gateway replications introduced in Sync Gateway 2.8 as well as SG-Replicate can run on the same node, but you must ensure that they each have a different `replication_id`."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "configurableVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configurableVia)",
+      "evidence": "A 'JSON' configuration file (`sync-gateway-config.json`) * The Admin REST API, using a utility such as `curl`, or an application such as _Postman_."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "The registry's existing sgw:conflict-resolution-type-setting entry describes the setting's values as 'Sequence Number, Timestamp, or custom' - explicitly XDCR-flavored vocabulary (matching xdcr:conflict-resolution-method's own Sequence Number / Timestamp enum). But this page's own Table 1 property reference - the canonical source for this exact setting - states unambiguously: '**Values:** \"default\", \"remoteWins\", \"localWins\", \"custom\"'. There is no 'Sequence Number' or 'Timestamp' value anywhere on this page, or on conflict-resolution.md (same batch, the dedicated conflict-resolution page, which uses only default/localWins/remoteWins/custom throughout its examples). This is a real discrepancy worth reconciling: either the existing registry description was built from a different page (e.g. a database-level replications schema reference not read in this batch) using looser paraphrase, or 'conflict_resolution_type' genuinely means something different in ISGR context than the Sequence-Number/Timestamp vocabulary implies. Flagging rather than silently correcting the registry description."
+  },
+  "cross_component_finding": "conflict_resolution_type changes being gated to Enterprise Edition on Sync Gateway is structurally similar to xdcr:conflict-resolution-method being 'bucket-level, fixed-at-creation' on Couchbase Server - both products treat conflict-resolution choice as a constrained, deliberately non-casual setting, though via different mechanisms (an edition gate that can be changed later here, vs. XDCR's immutable-at-creation bucket property). No page states this parallel directly; it is an extraction-layer observation, not a source quote, and is not proposed as a merge.",
+  "cross_product_finding": "This page states 'purge_on_removal' as the property name (a replication-definition field, per Table 1), while sync-inter-syncgateway-manage.json (same batch, sibling page) documents a differently-named 'enable_auto_purge' option controlling what reads as very similar auto-purge behavior on the active/local side of a pull replication, explicitly calling it 'consistent with' purge_on_removal without ever formally equating the two names. See manage.json's notable_absence for the full quote and finding."
+}

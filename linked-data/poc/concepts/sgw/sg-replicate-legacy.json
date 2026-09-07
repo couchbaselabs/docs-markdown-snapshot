@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/sg-replicate-legacy",
+  "label": "SG Replicate (pre-2.8 inter-Sync Gateway replication)",
+  "type": "the HTTP-based predecessor mechanism to sgw:inter-sync-gateway-replication (ISGR), which is websocket-based and was introduced in Sync Gateway 2.8. Can coexist with 2.8+ ISGR on the same node, with an explicit precedence/coexistence caveat.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/sync/sync-inter-syncgateway-overview.md",
+  "evidence": "This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication, see SG-Replicate.",
+  "note": "Minted in overview.json, reused in run.json ('inter-Sync Gateway replications introduced in Sync Gateway 2.8 as well as SG-Replicate can run on the same node, but you must ensure that...'). Distinct from the ISGR/XDCR question this round's coordinator decision addresses - this is an internal Sync Gateway generational split (HTTP-based predecessor to websocket-based ISGR), not a cross-product comparison."
+}

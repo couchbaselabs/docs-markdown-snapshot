@@ -1,0 +1,49 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-xdcr",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-xdcr.md",
+  "concepts": [
+    { "candidate_id": "sgw:bidirectional-xdcr", "label": "Bi-directional XDCR between mobile clusters (Sync Gateway 4.0+)",
+      "registry_status": "promoted", "reused_or_minted": "reused within batch; promoted during round 28 reconciliation" },
+    { "candidate_id": "xdcr:replication", "label": "XDCR replication",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:inter-sync-gateway-replication", "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:import-docs-setting", "label": "import_docs setting (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:tombstone", "label": "Tombstone (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "availableSince", "object": "version:sgw-4-0",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway 4.0 introduces support for bi-directional XDCR between active mobile clusters through an architectural change from revision trees to version vectors." },
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "supersedes", "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reconciliation correction (round 28): originally filed as takesPrecedenceOver, whose promoted type is scoped to a setting/value overriding a sibling setting/value on the same object - a mismatch, since the object here is a whole alternative replication mechanism, not a setting. Retargeted to the newly-minted supersedes (relations/supersedes.json), promoted as a significance exception on this exact evidence.",
+      "evidence": "Sync Gateway 4.0 introduces native bi-directional XDCR support for active-active mobile clusters, providing a simpler and more efficient alternative to Inter-Sync Gateway Replication." },
+    { "subject": "xdcr:replication", "predicate": "mustUseInsteadWhen", "object": "read-only Sync Gateway mode",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway deploys at both ends but operates in **read-only** mode at the target end to prevent write conflicts" },
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "requiresSetting", "object": "import_docs=true",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "You must configure both clusters with `import_docs=true`." },
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "requiredForApiAccess", "object": "sgw:sync-gateway-instance active mode on both clusters",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This requires running Sync Gateway 4.0+ on both sides of the active-active XDCR setup." },
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "doesNotAffect", "object": "sgw:user and role configuration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "XDCR replicates documents and attachments, but you must configure users, roles, and databases separately on each cluster." },
+    { "subject": "sgw:inter-sync-gateway-replication", "predicate": "shouldNotBeConfusedWith", "object": "xdcr:replication",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "For Sync Gateway versions prior to 4.0, Inter-Sync Gateway Replication was the primary solution for active-active mobile cluster deployments." },
+    { "subject": "sgw:inter-sync-gateway-replication", "predicate": "usesEnum", "object": "consistent Revision Id",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "All clusters use a consistent Revision Id, allowing clients to identify a revision regardless of cluster location" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf",
+    "finding": "The four Disaster Recovery procedures (Traditional, Zero-Downtime Active-Active, Clusters in Same Region, Clusters in Different Regions) are each multi-step numbered SET UP / ACTIVATION procedures with a strict step order (e.g. 'Stop the replication (XDCR)... Reconfigure the Sync Gateway cluster... Make the Disaster Recovery cluster the new Primary... Flush all replicated buckets... Reverse the XDCR...'). requiresPriorExecutionOf could in principle model step-to-step ordering, but doing so for four separate 3-7-step procedures would produce a large number of narrow, procedure-specific relations of little reuse value outside this one page - judged out of proportion to a compatibility-matrix batch, so only the single most load-bearing ordering fact (import_docs=true as a prerequisite setting, captured above via requiresSetting) was extracted."
+  },
+  "cross_component_finding": "The four Disaster Recovery topologies (Traditional / Zero-Downtime Active-Active / Same-Region / Different-Region) are distinguished entirely by WHICH of Sync Gateway's XDCR-related settings apply where (unidirectional vs bidirectional XDCR, offline-mode index pre-warming, read-only mode) rather than by any new mechanism - every DR pattern on this page is a recombination of concepts already covered elsewhere in this batch (sgw:bidirectional-xdcr, xdcr:replication, database offline mode), confirming the round's hypothesis that this reference/procedural content mostly recombines rather than mints.",
+  "cross_product_finding": "This page frames Inter-Sync Gateway Replication (ISGR) as now largely superseded ('a simpler and more efficient alternative to Inter-Sync Gateway Replication') by bi-directional XDCR. Resolved during round 28 reconciliation: a supersedes relation is now on file (see above), and sgw:inter-sync-gateway-replication's own promoted record carries a qualifying note pointing to it - without retracting round 27's original 'no relationship to XDCR, confirmed by absence' call, which was drawn from a different page (configuration-schema-isgr.md) and still holds for that page. See reconciliation.md round 28 for the full coordinator decision, including why 4 of this round's other 5 ISGR-dedicated pages remain silent on XDCR even as this page and sync-inter-syncgateway-overview.md draw the comparison explicitly."
+}

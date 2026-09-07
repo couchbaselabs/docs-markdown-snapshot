@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/cbl/replication",
+  "label": "Replication (Couchbase Lite <-> Sync Gateway)",
+  "type": "Couchbase Lite's bi-directional sync mechanism, mediated entirely through Sync Gateway rather than a direct Couchbase Server RBAC session - the closest thing Couchbase Lite has to a 'connecting to a cluster' concept.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "couchbase-lite/android/replication.md",
+  "evidence": "the replicator's bi-directional sync mechanism",
+  "note": "Minted in round 3's couchbase-lite/android/replication.json and independently reused, three rounds later, by round 28's sync-inter-syncgateway-conflict-resolution.json to draw an explicit cross-product parallel: ISGR's push/pull conflict-resolution asymmetry mirrors Couchbase Lite's own, 'since in both instances Couchbase Lite is acting like the active node in an inter-sync gateway exchange' - filed as sgw:inter-sync-gateway-replication isAnalogousTo cbl:replication, structurally the same shape as the ISGR/XDCR isAnalogousTo relations this round but pointing at Couchbase Lite instead. A genuine whole-corpus recurrence catch, invisible to round 3's own scope."
+}

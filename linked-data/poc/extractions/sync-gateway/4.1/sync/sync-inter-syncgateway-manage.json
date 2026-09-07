@@ -1,0 +1,91 @@
+{
+  "page_id": "sync-gateway/4.1/sync/sync-inter-syncgateway-manage",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/sync/sync-inter-syncgateway-manage.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page is its admin start/stop/reset/remove lifecycle reference"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; the _replication and _replicationStatus endpoints"
+    },
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page's 'Handling Channel Access Revocation' section corroborates the registry's existing 'opposite of Couchbase Lite default' finding with fresh, more explicit evidence"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; cited as the mechanism whose enforcement is bypassed on the ISGR active side by default"
+    },
+    {
+      "candidate_id": "sgw:enable-auto-purge-setting",
+      "label": "enable_auto_purge setting (Inter-Sync Gateway Replication, active side)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a configuration option this page names only in prose (not in run.md's Table 1 property reference), controlling auto-purge on the active/local Sync Gateway node when a remote user loses channel access"
+    },
+    {
+      "candidate_id": "sgw:replication-checkpoint",
+      "label": "Replication Checkpoint (Inter-Sync Gateway Replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the persisted synchronization-progress marker deleted, along with the replication definition and status data, when a replication is removed"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:enable-auto-purge-setting",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "sgw:channel-access-revocation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasEquivalentEffectAs) - SIGNIFICANT FINDING (naming, not merge): the page explicitly equates its behavior to purge_on_removal without ever using the same property name",
+      "evidence": "This is consistent with _Sync Gateway_'s handling of document access revocation using the `purge-on-removal` option"
+    },
+    {
+      "subject": "sgw:channel-access-revocation",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted behavesDifferentlyUnder) - corroborates the registry's existing 'opposite of Couchbase Lite default' claim with a direct, unambiguous quote from a dedicated ISGR page",
+      "evidence": "The behavior of the config flag is the **reverse** of what is done on Couchbase Lite."
+    },
+    {
+      "subject": "sgw:channel-access-revocation",
+      "predicate": "hasDefaultValue",
+      "object": "off (not auto-purged) on the ISGR active side",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "By default, documents are **not** auto purged on the active sync gateway even if the user on the passive sync gateway loses channel access."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "reliesOnMechanism",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted reliesOnMechanism) - ties the established admin-bypass behavior of sgw:admin-rest-api (which makes sync-function requireUser/requireRole/requireAccess checks into no-ops) to a NEW context: it happens automatically for the active side of an ISGR pull replication run as the admin user, not just for explicit Admin REST API calls",
+      "evidence": "In ISGR, by default, access control policies are only enforced at remote cluster. The `_sync` function on an active node is by default run in context of admin user and as such there is no enforcement of access policies on the active side."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "cascadesDeletionTo",
+      "object": "sgw:replication-checkpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted cascadesDeletionTo)",
+      "evidence": "All [checkpoints![glossary icon](../_images/icons/glossaryIconImage2.png)](../glossary.md#checkpoint) associated with the replication"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "configurableVia",
+    "finding": "`enable_auto_purge` is never listed in run.md's Table 1 'Summary of Parameters' - the canonical, exhaustive-looking property reference for a replication definition, which does list `purge_on_removal`. enable_auto_purge appears only in this page's prose, under 'Handling Channel Access Revocation', describing active-side (not remote-pull) auto-purge behavior. Either the two settings are genuinely distinct (one governs the active node's own auto-purge of documents it can no longer see, the other governs purge-on-pull from the remote) and the properties table is simply incomplete, or they are the same underlying flag described inconsistently across two sibling pages in the same batch. Flagging for reconciliation rather than assuming either."
+  },
+  "cross_component_finding": "No XDCR mention anywhere on this page - the third of five ISGR-dedicated pages in this batch to be silent on XDCR (alongside run.md and monitor.md), against overview.json's three explicit mentions. This page's own comparison target throughout is Couchbase Lite, not XDCR (see cross_product_finding).",
+  "cross_product_finding": "manage.md explicitly states the ISGR active-side auto-purge default is 'the reverse of what is done on Couchbase Lite' - direct textual corroboration, sourced to a dedicated ISGR page rather than inferred, of the registry's existing sgw:channel-access-revocation description ('OPPOSITE default for sgw:inter-sync-gateway-replication'). This is a Sync-Gateway/Couchbase-Lite cross-product finding, structurally unrelated to the ISGR/XDCR question raised in overview.json."
+}

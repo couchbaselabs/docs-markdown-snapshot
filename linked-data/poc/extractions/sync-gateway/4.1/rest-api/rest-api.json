@@ -1,0 +1,45 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest-api",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest-api.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:public-rest-api",
+      "label": "Public REST API (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Public REST API is referenced throughout prior rounds (via sgw:sync-gateway-instance, sgw:user, sgw:changes-feed etc.) but had no concept of its own for the API surface as a whole, distinct from sgw:admin-rest-api and sgw:metrics-rest-api which are both already promoted concepts"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:public-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/rest-api/rest_api_public",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The [API reference](rest%5Fapi%5Fpublic.md) groups all the endpoints by functionality."
+    },
+    {
+      "subject": "sgw:public-rest-api",
+      "predicate": "seeAlso",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Related _REST API_ topics: [Admin REST API](rest-api-admin.md) | [Metrics REST API](rest-api-metrics.md)"
+    },
+    {
+      "subject": "sgw:public-rest-api",
+      "predicate": "seeAlso",
+      "object": "sgw:metrics-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Related _REST API_ topics: [Admin REST API](rest-api-admin.md) | [Metrics REST API](rest-api-metrics.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "This landing page is a thin stub: one sentence of body text plus a link to the generated rest_api_public.md reference and a stock 'Related Content' footer block. It carries no access-control content of its own - unlike rest-api-admin.md, it makes no mention of RBAC, authentication, or the fact that the Public REST API's own access model (channels, sgw:user) is entirely different from the Admin/Metrics APIs' reused Server-RBAC model. A reader landing here first would get no signal that three REST APIs on this product use two structurally unrelated authorization systems."
+  },
+  "cross_component_finding": "None on this page - it is pure navigation scaffolding.",
+  "cross_product_finding": "None on this page."
+}

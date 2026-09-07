@@ -1,0 +1,35 @@
+{
+  "page_id": "sync-gateway/4.1/sync/sync-using-app",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/sync/sync-using-app.md",
+  "concepts": [
+    { "candidate_id": "cbl:replicator", "label": "Replicator (Couchbase Lite)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's central subject: 'Couchbase Lite client applications use a Replicator process to synchronize their local database, through a Sync Gateway database, to a remote Couchbase Server database'; no existing registry concept names the CBL-side replication process itself" },
+    { "candidate_id": "cbl:pull-replication", "label": "Pull Replication (Couchbase Lite)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - page defines it as a distinct, named process under the Replicator" },
+    { "candidate_id": "cbl:push-replication", "label": "Push Replication (Couchbase Lite)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - page defines it as a distinct, named process under the Replicator" },
+    { "candidate_id": "sgw:database", "label": "Database (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "cbl:replicator", "predicate": "dependsOnService", "object": "sgw:database",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Lite client applications use a Replicator process to synchronize their local database, through a Sync Gateway database, to a remote Couchbase Server database (server- or cloud-based)" },
+    { "subject": "cbl:pull-replication", "predicate": "isSubtypeOf", "object": "cbl:replicator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Pull Replication\n\nThis is the process by which clients running Couchbase Lite download database changes from the remote (server) source database to the local target database" },
+    { "subject": "cbl:push-replication", "predicate": "isSubtypeOf", "object": "cbl:replicator",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Push Replication\n\nThis is the process by which clients running Couchbase Lite upload database changes from the local source database to the remote (server) target database" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability / usesProtocol",
+    "finding": "This short (68-line) page is purely a definitional/navigational page: it names the Replicator, Pull Replication and Push Replication, shows one architecture figure, and otherwise only links out to the per-language Couchbase Lite replication pages (Android/C/C#/Java/Objective-C/Swift). It states no protocol, port, authentication, or configuration detail of its own - all of that is deferred to the per-language CBL pages, which are out of scope for this Sync Gateway batch."
+  },
+  "cross_component_finding": "This page is the cleanest single statement in the batch of Sync Gateway's mediating role between Couchbase Lite and Couchbase Server: 'through a Sync Gateway database, to a remote Couchbase Server database.' No new sgw: mechanics are introduced beyond the already-promoted sgw:database concept.",
+  "cross_product_finding": "The page is explicitly Couchbase-Lite-facing and mints three cbl: concepts (Replicator, Pull Replication, Push Replication) that had no prior registry presence despite being fundamental CBL vocabulary - most prior Sync Gateway batches approached sync from the Sync-Gateway or Server side, not the client-app side. The six per-language 'Related Couchbase Lite content' links (Android, C, C#, Java, Objective-C, Swift) were treated as boilerplate navigation and not captured as individual seeAlso relations."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/attachment",
+  "label": "Attachment/Blob (Sync Gateway)",
+  "type": "binary data (e.g. images, files) associated with a Sync Gateway document, managed exclusively through Sync Gateway's own REST API endpoints rather than through Couchbase Server SDKs directly. Excluded from sgw:delta-sync's delta computation and from replica-database delta sync entirely.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/sync/delta-sync.md",
+  "evidence": "You should note that delta sync does not apply to attachment contents and that it is disabled for Couchbase Lite database replicas.",
+  "note": "Minted in delta-sync.json (the exclusion-from-delta-computation fact) and reused in sync-with-couchbase-server.json ('Use Sync Gateway's REST API's /{db}/{docid}/{attachment} endpoints to manage attachments and blob data; you cannot use Couchbase Server SDKs to do this directly' - filed as mustUseInsteadWhen). No existing registry concept for Couchbase Mobile attachments/blobs before this round."
+}

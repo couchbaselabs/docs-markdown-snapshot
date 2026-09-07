@@ -1,0 +1,123 @@
+{
+  "page_id": "sync-gateway/4.1/sync/sync-inter-syncgateway-overview",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/sync/sync-inter-syncgateway-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this is its dedicated overview page"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, cited as the access-control enforcement point for replicated documents"
+    },
+    {
+      "candidate_id": "sgw:delta-sync",
+      "label": "Delta Sync (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:custom-conflict-resolver",
+      "label": "Custom Conflict Resolver (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, cited as one of the two ways to submit a replication definition"
+    },
+    {
+      "candidate_id": "server:xdcr",
+      "label": "XDCR (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page explicitly names and links to it (see relations below)"
+    },
+    {
+      "candidate_id": "xdcr:explicit-mapping",
+      "label": "explicit keyspace mapping",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page states ISGR's collection mapping adapts XDCR's mapping concept"
+    },
+    {
+      "candidate_id": "sgw:collection-mapping",
+      "label": "Collection Mapping (Inter-Sync Gateway Replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the collections_local/collections_remote positional-array mechanism for remapping local collections to differently-named remote ones during ISGR; the page states this 'adapts the mapping concept from XDCR'"
+    },
+    {
+      "candidate_id": "sgw:isgr-node-distribution",
+      "label": "ISGR Node Distribution (High Availability mechanism)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Enterprise-Edition automatic mechanism that keeps a running replication on exactly one node at a time and redistributes it across surviving nodes on failure"
+    },
+    {
+      "candidate_id": "sgw:sg-replicate-legacy",
+      "label": "SG Replicate (pre-2.8 inter-Sync Gateway replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the HTTP-based predecessor mechanism this page repeatedly distinguishes ISGR (2.8+, websocket-based) from"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "isAnalogousTo",
+      "object": "server:xdcr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isAnalogousTo) - SIGNIFICANT FINDING, see report: the page draws the comparison itself but immediately qualifies it with a distinctness claim",
+      "evidence": "Couchbase Server uses the Cross Data Center Replication API ([XDCR](../../../server/current/manage/manage-xdcr/xdcr-management-overview.md)) similarly to replicate between Couchbase Server clusters. **However, inter-Sync Gateway replication feature is specifically designed for Sync Gateway deployments and must be used for replication between mobile clusters.**"
+    },
+    {
+      "subject": "sgw:collection-mapping",
+      "predicate": "isAnalogousTo",
+      "object": "xdcr:explicit-mapping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isAnalogousTo) - SIGNIFICANT FINDING, see report: an unambiguous statement that ISGR borrowed a specific mechanism (not just the broad concept) from XDCR",
+      "evidence": "This collection mapping capability adapts the mapping concept from XDCR for Sync Gateway deployments."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "requiresSetting",
+      "object": "sgw:delta-sync",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - restates the already-registered gating relationship with fresh page evidence",
+      "evidence": "Setting `\"delta-sync\": { \"enabled\": true}` on both databases in their respective _database definitions_."
+    },
+    {
+      "subject": "sgw:isgr-node-distribution",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition)",
+      "evidence": "Inter-Sync Gateway Replication provides built-in High Availability (HA) support. It uses _node distribution_ to ensure all running replications are uniformly distributed across all available nodes, regardless of their originating node."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "usesProtocol",
+      "object": "websocket protocol (shared with Couchbase Lite 2.x replication)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesProtocol) - a cross-product (not cross-component) parallel: same protocol as Couchbase Lite replication, not XDCR",
+      "evidence": "Inter-Sync Gateway replications are based on websockets. This is the exact same protocol that is used for replication with Couchbase Lite 2.x clients."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "renamedFrom",
+      "object": "sgw:sg-replicate-legacy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted renamedFrom) - though see finding: run.md (sibling page, same batch) complicates this with evidence the two can coexist rather than being a clean rename",
+      "evidence": "This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith / hasNoRelationshipTo",
+    "finding": "Despite raising the ISGR/XDCR comparison three separate times (architecture-level 'similarly...However', the collection-mapping adaptation, and the footnote about combining one-directional XDCR with Sync Gateway), the page never uses a clean, formal disambiguation predicate like shouldNotBeConfusedWith or hasNoRelationshipTo to settle the question either way. Each mention stops short of asserting identity OR asserting total independence - it argues for shared lineage/adapted mechanism while insisting on operational distinctness. This is exactly the kind of source text the no-silent-merge rule anticipates: a human reconciliation call is needed, not an extraction-layer inference."
+  },
+  "cross_component_finding": "This is the strongest ISGR/XDCR evidence surfaced anywhere in the corpus so far, and it directly stress-tests round 27's near-miss call. Three distinct statements on one page: (1) 'Couchbase Server uses the Cross Data Center Replication API (XDCR) similarly to replicate between Couchbase Server clusters. However, inter-Sync Gateway replication feature is specifically designed for Sync Gateway deployments and must be used for replication between mobile clusters.' - draws the parallel and then immediately fences it off; (2) 'This collection mapping capability adapts the mapping concept from XDCR for Sync Gateway deployments.' - a concrete, mechanism-level borrowing claim, the clearest ISGR-to-XDCR statement found in this project to date; (3) footnote 2: 'If one-directional XDCR is used alongside Sync Gateway, then Sync Gateway cluster must be in read-only mode.' - an operational coexistence constraint implying the two mechanisms can be run against the same data simultaneously, with XDCR write access taking precedence. None of these three statements say ISGR and XDCR are the same mechanism or should share a concept id - if anything, statement (1) argues explicitly for keeping them apart at the product level. But statement (2) is a genuine, source-stated relationship (an isAnalogousTo edge between sgw:collection-mapping and xdcr:explicit-mapping) that the registry did not previously have, and reconciliation should decide how much weight it carries, especially set against round 27's absence-based argument from configuration-schema-isgr.md and this same batch's other four pages, which never mention XDCR at all (see conflict-resolution.json's notable_absence for the sharpest contrast: the ISGR page about conflict resolution - the one topic where XDCR's own Sequence-Number/Timestamp vocabulary would be most natural to invoke - says nothing about XDCR).",
+  "cross_product_finding": "sgw:inter-sync-gateway-replication usesProtocol the same websocket protocol as Couchbase Lite 2.x replication - a genuine cross-product (Sync Gateway / Couchbase Lite) technical identity, distinct from and unrelated to the XDCR question above. Also, footnote 1 (ship-to-shore / hub-and-spoke architecture) reuses networking topology vocabulary without further product comparison, not flagged as a finding."
+}

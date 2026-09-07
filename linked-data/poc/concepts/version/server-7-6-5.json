@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/server-7-6-5",
+  "label": "Couchbase Server 7.6.5",
+  "type": "a Server maintenance release",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Fills a gap in the version:server-7-6-* maintenance-release family alongside the already-promoted server-7-6-2/-4/-6 siblings. Two files: product-notes/compatibility.json ('Active-Active XDCR requires CBS 7.6.5+', the minimum for sgw:bidirectional-xdcr - one version point below xdcr:active-active-with-app-services's separate 7.6.6+ requirement, itself the reason the two concepts are kept apart) and cloud/clusters/restore-cloud-snapshot.json (a cross-cluster-restore behavioral note from round 25)."
+}

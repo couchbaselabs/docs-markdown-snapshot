@@ -1,0 +1,109 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest-api-admin",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest-api-admin.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page is the Admin REST API's own landing/introduction page, the clearest single-page statement yet of the concept's already-promoted definition"
+    },
+    {
+      "candidate_id": "sgw:rbac-user",
+      "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:require-user-cmd",
+      "label": "requireUser()",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:require-access-cmd",
+      "label": "requireAccess()",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:require-role-cmd",
+      "label": "requireRole()",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "restrictedToContext",
+      "object": "administrator use only - not accessible from clients directly",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Admin REST API is for administrator use only, and hence is **not** accessible from the clients directly."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "authenticatesVia",
+      "object": "sgw:rbac-user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To allow users to access the Admin API up you need to create a Couchbase Server-based RBAC-user for them — see: [REST API Access](rest-api-access.md)."
+    },
+    {
+      "subject": "sgw:require-user-cmd",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "a no-op that always appears successful, when the triggering request arrived via the Admin REST API",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops, and will always appear successful."
+    },
+    {
+      "subject": "sgw:require-access-cmd",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "a no-op that always appears successful, when the triggering request arrived via the Admin REST API",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "recovered during round 28 reconciliation via the gate-log deny(7)->allow(6) thinning check: the gate-log shows this path lost one relation on rewrite, and this concept (declared in concepts[] since the record was first written) had no matching relation. The single source sentence names all three require*() commands together; recovered on the same quote already filed for sgw:require-user-cmd.",
+      "evidence": "Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops, and will always appear successful."
+    },
+    {
+      "subject": "sgw:require-role-cmd",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "a no-op that always appears successful, when the triggering request arrived via the Admin REST API",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "recovered during round 28 reconciliation - see sgw:require-access-cmd's identical note above; the same single source sentence covers all three require*() commands.",
+      "evidence": "Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops, and will always appear successful."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "doesNotSupport",
+      "object": "CORS (Cross-Origin Resource Sharing)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase recommends that you do not expose the Sync Gateway admin interface to the internet. Due to this, features such as CORS are not supported on the admin interface."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/rest-api/rest-api-access-rbac-roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Each endpoint description specifies its RBAC role requirements, but see [RBAC Roles](rest-api-access-rbac-roles.md)and the Couchbase Server documentation here [Couchbase Server Authorization Roles](../../../server/current/learn/security/roles.md)if further information is required."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/rest-api/rest_api_admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The [API reference](rest%5Fapi%5Fadmin.md) groups all the endpoints by functionality."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "This page states in its own NOTE callout, unambiguously, exactly the mechanism round 27 inferred from elsewhere: for document changes sent through the Admin REST API, 'the Sync Function executes with admin privileges. Calls to requireUser, requireAccess and requireRole will be no-ops, and will always appear successful.' This is the single clearest first-party statement of that mechanism found so far in one place - most other pages state it per require*() command (each command's own reference page) rather than once, generally, at the API level."
+  },
+  "cross_component_finding": "This page is the strongest confirmation yet that Sync Gateway's Admin REST API sits at the seam between its two disjoint access-control systems: paragraph 2 sends the reader to create a 'Couchbase Server-based RBAC-user' (sgw:rbac-user, the reused Server RBAC system) merely to be ALLOWED to call the API at all, while the NOTE callout describes what that same API does to the OTHER system (sgw:user/channel/require*() checks) once a call is authenticated - collapsing both halves of the two-layer model onto one page for the first time.",
+  "cross_product_finding": "The page links out to Couchbase Server's own RBAC role catalogue (../../../server/current/learn/security/roles.md) as the authority for 'RBAC role requirements' on Sync Gateway Admin REST API endpoints - confirming Sync Gateway does not define its own privilege catalogue for this surface at all, it borrows Server's whole-cloth (consistent with role:* concepts already in the registry from server/)."
+}

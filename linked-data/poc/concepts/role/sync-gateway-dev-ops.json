@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/sync-gateway-dev-ops",
+  "label": "Sync Gateway Dev Ops (Server RBAC role)",
+  "type": "one of six fine-grained Server RBAC roles Couchbase Server 7.0.2 Developer Preview added specifically for Sync Gateway's Admin REST API. Manages Sync Gateway's node-level configuration and read access to its /metrics endpoint (the role Prometheus-adjacent tooling and the port:4985 Admin API surface's node-scoped endpoints reach for); does not grant Web Console login.",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "sync_gateway_dev_ops",
+  "aliases": [
+    "role:sgw-dev-ops"
+  ],
+  "aliases_note": "A1 (rest-api-access.json, rest-api-access-rbac-roles.json) minted this role already spelled to match its internal name; A2 (rest_api_admin.json) independently minted the shorter `role:sgw-dev-ops` for the identical role - folded as an alias.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway Dev Ops (sync_gateway_dev_ops) ... The Sync Gateway Dev Ops role lets the user manage the Sync Gateway's node-level configuration. It also grants access to Sync Gateway's `/metrics` endpoint for Prometheus integration. This role does not let the user log into Couchbase Server Web Console.",
+  "note": "Round 28 first contact with the 7.0.2+ fine-grained Sync-Gateway-RBAC catalogue extension. Named on rest-api-access-rbac-roles.md's cross-reference table as the sole 7.0.2-Developer-Preview role satisfying every cluster-scoped diagnostic/config endpoint (the {cluster}/_config, _debug/*, _logging, _sgcollect_info family) that pre-7.0.2 required Cluster Admin/Full Admin/Read Only Admin for."
+}

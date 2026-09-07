@@ -1,0 +1,231 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest-api-access-rbac-roles",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest-api-access-rbac-roles.md",
+  "concepts": [
+    {
+      "candidate_id": "role:external-stats-reader",
+      "label": "External Stats Reader (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a 7.0.2+ Server RBAC role gating GET on {cluster}/_expvar, {cluster}/_stats and {cluster}/metrics; not in the role: excerpt of the 56-member generic catalogue, and narrower than role:ro-admin (Read Only Admin), which it appears to supersede specifically for the stats/metrics surface"
+    },
+    {
+      "candidate_id": "role:cluster-admin",
+      "label": "Cluster Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - appears throughout Table 1 as 'Cluster Admin Role'"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - appears throughout as 'Full Admin Role'/'Full Admin'"
+    },
+    {
+      "candidate_id": "role:ro-admin",
+      "label": "Read-Only Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - appears as 'Read Only Admin'"
+    },
+    {
+      "candidate_id": "role:bucket-admin",
+      "label": "Bucket Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:bucket-application-access",
+      "label": "Bucket Application Access (Server RBAC role, as labeled on this page)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this page labels a role 'Bucket Application Access' distinct from 'Bucket Admin' in the same cell list ('Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin'), but rest-api-access.md's Table 1 uses 'Application Access' for what the registry's role:bucket-full-access already treats as an alias of 'Bucket Full Access' - kept as its own minted concept rather than force-merged, per this batch's instruction to flag rather than guess on naming collisions; see notable_absence"
+    },
+    {
+      "candidate_id": "role:sync-gateway-role",
+      "label": "Sync Gateway Role (Server RBAC role, pre-7.0/6.1 legacy)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted here independently of rest-api-access.json in this same batch (which minted the hyphenated 'Sync-Gateway Role' spelling) - same underlying role, spelling variance flagged rather than silently normalized"
+    },
+    {
+      "candidate_id": "role:sync-gateway-architect",
+      "label": "Sync Gateway Architect (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api-access.json in this same batch"
+    },
+    {
+      "candidate_id": "role:sync-gateway-application",
+      "label": "Sync Gateway Application (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api-access.json in this same batch"
+    },
+    {
+      "candidate_id": "role:sync-gateway-application-read-only",
+      "label": "Sync Gateway Application Read Only (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api-access.json in this same batch"
+    },
+    {
+      "candidate_id": "role:sync-gateway-replicator",
+      "label": "Sync Gateway Replicator (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api-access.json in this same batch"
+    },
+    {
+      "candidate_id": "role:sync-gateway-dev-ops",
+      "label": "Sync Gateway Dev Ops (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api-access.json in this same batch"
+    },
+    {
+      "candidate_id": "sgw:user",
+      "label": "User (Sync Gateway, Public API identity)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Metrics REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:import-filter",
+      "label": "Import Filter (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:compact-operation",
+      "label": "Compact operation (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:resync-operation",
+      "label": "Resync operation (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:database",
+      "label": "Database (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:user",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_user/                             | GET / HEAD             | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect, Sync Gateway Application, Sync Gateway Application Read Only |"
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_user/                             | GET / HEAD             | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect, Sync Gateway Application, Sync Gateway Application Read Only |"
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_role/                             | GET / HEAD             | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect, Sync Gateway Application, Sync Gateway Application Read Only |"
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-replicator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_replication/                      | GET / HEAD             | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Replicator                                                              |"
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:external-stats-reader",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {cluster}/metrics | GET                      | Cluster Admin Role, Full Admin Role, Read Only Admin | Sync Gateway Dev Ops, External Stats Reader |"
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-dev-ops",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {cluster}/metrics | GET                      | Cluster Admin Role, Full Admin Role, Read Only Admin | Sync Gateway Dev Ops, External Stats Reader |"
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {keyspace}/\\_config/import\\_filter       | PUT                    | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect                                                               |"
+    },
+    {
+      "subject": "sgw:compact-operation",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {keyspace}/\\_compact                     | POST                   | Sync Gateway Role. Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect                                                               |"
+    },
+    {
+      "subject": "sgw:resync-operation",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_resync                            | GET                    | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect                                                               |"
+    },
+    {
+      "subject": "sgw:database",
+      "predicate": "requiresServerRole",
+      "object": "role:sync-gateway-architect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "| {db}/\\_offline                           | POST                   | Sync Gateway Role, Bucket Admin, Bucket Application Access, Full Admin | Sync Gateway Architect                                                               |"
+    },
+    {
+      "subject": "role:sync-gateway-architect",
+      "predicate": "availableSince",
+      "object": "Couchbase Server 7.0.2 Developer Preview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "**Couchbase Server 7.0.2 Developer Preview** introduces new roles offering fine-grained access control; existing roles will remain available."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "server/current/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more on RBAC roles, see the Couchbase Server documentation: [Couchbase Server Authorization Roles](../../../server/current/learn/security/roles.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "This page's own intro states its scope precisely: 'This table identifies the RBAC roles required by Sync Gateway to execute endpoint actions.' Every one of Table 1's ~50 endpoint rows, Table 2's ~19 common-endpoint rows, and Table 3's single metrics row names an explicit Couchbase Server RBAC role (or role set) as the gate - there is no row anywhere on this page, and no endpoint in either reference cross-index, gated by anything other than a named role: concept. Given this batch's central hypothesis (whether the REST API surface itself would show a Server/Capella-style RBAC check contradicting round 27's channel-based, no-requiresPrivilege sync-function model), the finding is: YES, a Server-RBAC-role gate exists here, but it does not contradict round 27 - it operates one layer up, on the Admin/Metrics REST API's own request authorization (already captured generally by the promoted sgw:rbac-user concept and requiresServerRole predicate), never on the document-level channel-based read/write model round 27 examined. This page is simply the first with the endpoint-by-endpoint granularity to state that outer layer's role requirements exhaustively rather than as a general assertion."
+  },
+  "cross_component_finding": "This page did not extract every one of its ~70 endpoint-role rows individually (would be excessive relative to the marginal ontology value - all rows draw from the same small, now-fully-minted role vocabulary of role:cluster-admin/role:full-administrator/role:ro-admin/role:bucket-admin/role:bucket-application-access/role:sync-gateway-role/role:sync-gateway-architect/role:sync-gateway-application/role:sync-gateway-application-read-only/role:sync-gateway-replicator/role:sync-gateway-dev-ops/role:external-stats-reader); a representative sample tied to already-registered sgw: operation/entity concepts (user, role, database, import-filter, compact, resync, ISGR, metrics) was extracted instead. A coordinator wanting full endpoint-level coverage would need a dedicated pass over this table rather than treating it as ordinary extraction content.",
+  "cross_product_finding": "The pre-7.0.2 column of every table on this page uses ONLY generic Server roles (Cluster Admin, Full Admin, Read Only Admin, Sync Gateway Role, Bucket Admin, Bucket Application Access) while the 7.0.2+ column swaps in Sync-Gateway-specific roles (Architect/Application/Application Read Only/Replicator/Dev Ops/External Stats Reader) for nearly every endpoint - a clean product-level illustration of Couchbase Server's RBAC catalogue being extended specifically to give Sync Gateway administration finer-grained roles, the same general pattern (a product driving new entries into Server's shared role catalogue) already seen for the Backup Service (role:backup-admin) and Eventing (role:eventing-full-admin)."
+}

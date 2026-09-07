@@ -1,0 +1,53 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest_api_metric",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest_api_metric.md",
+  "concepts": [
+    { "candidate_id": "sgw:metrics-rest-api", "label": "Metrics REST API (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:json-metrics-format", "label": "JSON metrics format (Sync Gateway _expvar endpoint)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:prometheus-metrics-format", "label": "Prometheus metrics format (Sync Gateway /metrics endpoint)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "port:4986", "label": "Port 4986 (Sync Gateway Metrics REST API)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "prometheus:metrics-endpoint", "label": "Prometheus /metrics endpoint", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:rbac-user", "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:revision-cache", "label": "Revision cache (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:inter-sync-gateway-replication", "label": "Inter-Sync Gateway Replication (ISGR)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:sync-gateway-instance", "label": "Sync Gateway instance", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:change-cache", "label": "Change cache (Sync Gateway, syncGateway_changeCache)", "registry_status": "minted",
+      "reused_or_minted": "minted - the internal component named by the syncGateway_changeCache JSON-metrics group (maxPending, lag-tap/-queue/-total, outOfOrder, view_queries), which feeds the sgw:changes-feed; distinct from the already-promoted sgw:channel-cache (channel-to-document routing cache) - no promoted concept currently covers the change-tracking cache itself" }
+  ],
+  "relations": [
+    { "subject": "sgw:metrics-rest-api", "predicate": "usesPort", "object": "port:4986",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "{protocol}://{hostname}:4986/metrics" },
+    { "subject": "sgw:metrics-rest-api", "predicate": "requiresRole", "object": "sgw:rbac-user",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Required Sync Gateway RBAC roles:" },
+    { "subject": "sgw:metrics-rest-api", "predicate": "operatesOnFormat", "object": "sgw:prometheus-metrics-format",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The Sync Gateway Metrics REST API returns Sync Gateway metrics, in JSON or Prometheus-compatible formats, for performance monitoring and diagnostic purposes." },
+    { "subject": "sgw:metrics-rest-api", "predicate": "operatesOnFormat", "object": "sgw:json-metrics-format",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The Sync Gateway Metrics REST API returns Sync Gateway metrics, in JSON or Prometheus-compatible formats, for performance monitoring and diagnostic purposes." },
+    { "subject": "sgw:prometheus-metrics-format", "predicate": "seeAlso", "object": "manage/stats-monitoring-prometheus.html",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "For detailed metrics descriptions, see [Prometheus Metrics](../manage/stats-monitoring-prometheus.html)." },
+    { "subject": "sgw:json-metrics-format", "predicate": "seeAlso", "object": "manage/stats-monitoring-json.html",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "For details, see [JSON Metrics](../manage/stats-monitoring-json.html)." },
+    { "subject": "sgw:revision-cache", "predicate": "monitoredVia", "object": "sgw:json-metrics-format",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "\"revisionCache_adds\": { }" },
+    { "subject": "sgw:inter-sync-gateway-replication", "predicate": "monitoredVia", "object": "sgw:json-metrics-format",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "\"sgr_active\": true" },
+    { "subject": "sgw:change-cache", "predicate": "monitoredVia", "object": "sgw:json-metrics-format",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "\"syncGateway_changeCache\": {" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "Unlike rest_api_public.md (this round's sibling file), where an RBAC-role requirement appears exactly once across ~40 endpoints and only on a deprecated/non-functional stub, BOTH Metrics REST API endpoints here (Prometheus /metrics and JSON /_expvar) consistently and identically declare 'Required Sync Gateway RBAC roles: Sync Gateway Architect / Sync Gateway Dev Ops / External Stats Reader'. This is real, repeated corroboration - not a stray artifact - of sgw:metrics-rest-api's promoted description ('gated through the same Server-RBAC-reused identity system as the Admin REST API'), and it names three specific Couchbase-Server-RBAC role labels not seen elsewhere in this batch: Sync Gateway Architect, Sync Gateway Dev Ops, and External Stats Reader - finer-grained than the generic sgw:rbac-user concept currently models, a candidate refinement for a future round if per-role Admin/Metrics RBAC roles are found named again elsewhere. The /_ping endpoint under the Server tag, by contrast, declares no role requirement at all, mirroring its identical Public-API counterpart."
+  },
+  "cross_component_finding": "The JSON metrics sample's syncGateway_db group directly names several already-promoted internal mechanisms by their metric-key form - revisionCache_adds/hits/misses (sgw:revision-cache), and the per_replication group's sgr_active/sgr_docs_checked_sent/sgr_num_docs_pushed fields (sgw:inter-sync-gateway-replication) - giving concrete, quotable confirmation that those internal components are directly observable through this API. The syncGateway_changeCache group (maxPending, lag-tap-0000ms, lag-queue-0000ms, lag-total-0000ms, outOfOrder, view_queries) names a distinct internal cache with no existing promoted concept - not to be confused with the already-promoted sgw:channel-cache (an Enterprise-Edition-tunable channel-to-document routing cache with a stated tombstone-ejection quirk); the change cache tracked here appears to be the feed-lag/pending-sequence tracking structure behind sgw:changes-feed instead, corroborating the Public API's own 'roundtrip' query parameter description ('Block until document has been received by change cache') from this round's sibling file.",
+  "cross_product_finding": "sgw:prometheus-metrics-format's own registry description already states it follows 'the same pattern documented for the rest of the Couchbase product line' - this page's Prometheus sample output (go_gc_duration_seconds, go_gc_gogc_percent, etc.) is generic Go-runtime Prometheus Exposition Format, identical in shape to what any other Couchbase Go-based service would expose via prometheus:metrics-endpoint, reinforcing that Sync Gateway's Prometheus surface is a standard client-library output rather than a bespoke format - the product-line-wide convention this batch was asked to confirm."
+}

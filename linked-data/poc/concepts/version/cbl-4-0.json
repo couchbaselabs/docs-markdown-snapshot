@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/cbl-4-0",
+  "label": "Couchbase Lite 4.0",
+  "type": "Couchbase Lite's own independent version family, sibling of version:cbl-3-3-0.",
+  "promoted": true,
+  "recurrence": 2,
+  "documented_at": "sync-gateway/current/product-notes/compatibility.md",
+  "evidence": "Couchbase Lite 4.x is only compatible with Sync Gateway 4.0 and later. Connecting Couchbase Lite 4.x to Sync Gateway versions before 4.0 is not supported.",
+  "note": "First contact with the client-version half of the CBL/SGW compatibility matrix (round 3's CBL sampling never reached version-specific pages). Two relations in product-notes/compatibility.json (availableSince version:sgw-4-0; doesNotSupport against version:sgw-3-3-0) plus a third in server-compatibility/server-compatibility-xdcr-mobile.json (requiresCapability sgw:bidirectional-xdcr, the only CBL version stated to support cluster-switching without consistency issues)."
+}

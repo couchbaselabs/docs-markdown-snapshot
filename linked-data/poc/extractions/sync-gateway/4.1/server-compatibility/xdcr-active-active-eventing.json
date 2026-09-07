@@ -1,0 +1,38 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/xdcr-active-active-eventing",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/xdcr-active-active-eventing.md",
+  "concepts": [
+    { "candidate_id": "sgw:bidirectional-xdcr", "label": "Bi-directional XDCR between mobile clusters (Sync Gateway 4.0+)",
+      "registry_status": "minted", "reused_or_minted": "reused within batch" },
+    { "candidate_id": "eventing:function", "label": "Eventing Function",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:on-update-handler", "label": "OnUpdate() handler",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "eventing:replication-loop", "label": "Eventing/XDCR replication loop",
+      "registry_status": "minted", "reused_or_minted": "minted - the specific failure mode this whole page is about (an Eventing function's own write re-triggers itself via active-active XDCR, never terminating); no existing concept names this pattern, though eventing:recursive-mutation is a related-but-distinct SINGLE-cluster hazard (a function's own write landing back in the same keyspace it listens to) rather than this page's cross-cluster, XDCR-mediated version" }
+  ],
+  "relations": [
+    { "subject": "eventing:replication-loop", "predicate": "isVariantOf", "object": "eventing:recursive-mutation",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Eventing functions deployed on both ends of this replication topology must avoid reprocessing updated documents in a way that causes XDCR to ping-pong and never stop replicating." },
+    { "subject": "eventing:replication-loop", "predicate": "requiresPriorExecutionOf", "object": "field presence check",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "One way to avoid loops is to check whether the document has already been enriched." },
+    { "subject": "eventing:on-update-handler", "predicate": "mustUseInsteadWhen", "object": "cluster identifier check",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A better solution introduces a per-cluster ID (e.g., `DC1`, `DC2`) to conditionally apply transformations." },
+    { "subject": "sgw:bidirectional-xdcr", "predicate": "hasExecutionConstraint", "object": "eventing:replication-loop",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Without proper logic, Eventing functions in active-active XDCR environments may create infinite loops that consume excessive resources and destabilize the system." },
+    { "subject": "eventing:replication-loop", "predicate": "availableSince", "object": "version:sgw-4-0",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "These issues apply to all Couchbase versions with Eventing and XDCR support, and are now relevant with Sync Gateway 4.0 support for Bidirectional XDCR." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page's closing recommendation list (State Checks, location-based rules, Single-Cluster Deployment, Dedicated Buckets, External Transformations) names five distinct mitigation STRATEGIES for the same hazard, but only the two demonstrated in worked code examples (field-presence check, cluster-identifier check) were extracted as relations - the other three (Single-Cluster Deployment, Dedicated Buckets, External Transformations) are one-line bullet mentions with no example or further detail to quote a load-bearing evidence sentence from beyond the bullet itself."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": "This page is Eventing documentation (case_2_enrich_ips, based on server/current/eventing/eventing-example-data-enrichment.md) reused wholesale as a Sync-Gateway-server-compatibility page purely because the hazard it describes becomes newly relevant once Sync Gateway 4.0 makes active-active XDCR available to mobile deployments - the underlying Eventing mechanism (eventing:recursive-mutation, eventing:on-update-handler) is unchanged from server/'s own documentation of it; only the framing and the closing paragraph's cross-reference to Sync Gateway 4.0 are new content specific to this batch."
+}

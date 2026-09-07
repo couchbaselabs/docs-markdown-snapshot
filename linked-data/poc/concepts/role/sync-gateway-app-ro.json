@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/sync-gateway-app-ro",
+  "label": "Sync Gateway Application Read Only (Server RBAC role)",
+  "type": "one of six fine-grained Server RBAC roles Couchbase Server 7.0.2 Developer Preview added specifically for Sync Gateway's Admin REST API. Read-only counterpart of role:sync-gateway-app: can read Sync Gateway users/roles and application data, cannot write either.",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "sync_gateway_app_ro",
+  "aliases": [
+    "role:sync-gateway-application-read-only",
+    "role:sgw-application-read-only"
+  ],
+  "aliases_note": "Same same-round self-fork shape as its siblings: A1 minted `role:sync-gateway-application-read-only`, A2 independently minted `role:sgw-application-read-only`. Filed under the internal name; both folded as aliases.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway Application Read Only (sync_gateway_app_ro) ... Can read Sync Gateway users and roles ... Cannot add, drop, or edit users or roles.",
+  "note": "Round 28 first contact with the 7.0.2+ fine-grained Sync-Gateway-RBAC catalogue extension, sibling of role:sync-gateway-app and role:sync-gateway-configurator."
+}

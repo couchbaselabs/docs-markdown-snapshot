@@ -1,0 +1,109 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest-api-metrics",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest-api-metrics.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Metrics REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:prometheus-metrics-format",
+      "label": "Prometheus metrics format (Sync Gateway /metrics endpoint)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:json-metrics-format",
+      "label": "JSON metrics format (Sync Gateway _expvar endpoint)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:rbac-user",
+      "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "port:4986",
+      "label": "Port 4986 (Sync Gateway Metrics REST API)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "usesPort",
+      "object": "port:4986",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This API, separate from both the Public and Admin REST APIs, is available by default on port `4986` — see [Configuration](#lbl-act) for how to change this, if needed."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "providesService",
+      "object": "sgw:prometheus-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `metrics` endpoint returns Sync Gateway statistics in [Prometheus![glossary icon](../_images/icons/glossaryIconImage2.png)](../glossary.md#prometheus) format."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "providesService",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The `_expvar` endpoint returns Sync Gateway statistics in JSON format."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "authenticatesVia",
+      "object": "sgw:rbac-user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To allow users to access the Metrics API up you need to create a Couchbase Server-based RBAC-user for them — see: [REST API Access](rest-api-access.md)."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "configuresProperty",
+      "object": "api.metricsInterface",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To change this you need to edit the `api.metricsInterface` setting in your [bootstrap configuration file](../configuration/configuration-schema-bootstrap.md) and define the Sync Gateway URL and the port you want the API served on (for example: 4986) — see: [Example 1](#ex-activate)."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "metricsInterface setting in the 2.x sync-gateway-config.json file",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you are using 2.x file-based configuration then edit the `metricsInterface` setting in the `sync-gateway-config.json` configuration file — see: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md)"
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/manage/stats-monitoring",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For more information, refer to [View Statistics and Metrics](../manage/stats-monitoring.md)."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/deploy/stats-prometheus",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For information on integration with Prometheus — see [Prometheus Integration](../deploy/stats-prometheus.md) and our blog entry [Monitoring Couchbase Sync Gateway with Prometheus and Grafana](https://blog.couchbase.com/monitoring-sync-gateway-prometheus-grafana/)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "Like rest-api-admin.md, this page states the RBAC-user requirement plainly ('you need to create a Couchbase Server-based RBAC-user for them') but says nothing at all about which specific Server RBAC roles are needed for the Metrics API - that detail lives entirely on rest-api-access-rbac-roles.md (Table 3, gating GET {cluster}/metrics on Cluster Admin/Full Admin/Read Only Admin pre-7.0.2, or Sync Gateway Dev Ops/External Stats Reader at 7.0.2+). The two pages are only linked one-directionally in this batch (rest-api-access.md points forward to the cross-reference; this page does not)."
+  },
+  "cross_component_finding": "The '_expvar' and 'metrics' endpoints returning identical underlying stats data in two different formats (JSON vs Prometheus) from the same port is a small but concrete instance of the same dual-format pattern documented across the rest of the Couchbase product line for observability surfaces.",
+  "cross_product_finding": "None beyond the general Prometheus-format convention shared with 'the rest of the Couchbase service line' (stated on the already-promoted sgw:prometheus-metrics-format concept, not directly quoted on this page)."
+}

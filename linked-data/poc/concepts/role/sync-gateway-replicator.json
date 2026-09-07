@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/sync-gateway-replicator",
+  "label": "Sync Gateway Replicator (Server RBAC role)",
+  "type": "one of six fine-grained Server RBAC roles Couchbase Server 7.0.2 Developer Preview added specifically for Sync Gateway's Admin REST API. Lets the user manage Sync Gateway (ISGR/inter-sync-gateway) replications; does not grant Web Console login.",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "sync_gateway_replicator",
+  "aliases": [
+    "role:sgw-replicator"
+  ],
+  "aliases_note": "A1 (rest-api-access.json, rest-api-access-rbac-roles.json) minted this role already spelled to match its internal name; A2 (rest_api_admin.json) independently minted the shorter `role:sgw-replicator` for the identical role - folded as an alias rather than treated as the canonical spelling, since the internal name is the filing convention.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway Replicator (sync_gateway_replicator) ... The Sync Gateway Replicator role lets the user manage Sync Gateway replications. This role does not let the user log into Couchbase Server Web Console.",
+  "note": "Round 28 first contact with the 7.0.2+ fine-grained Sync-Gateway-RBAC catalogue extension. Gates the ISGR (inter-sync-gateway replication) management endpoints per rest-api-access-rbac-roles.md's own cross-reference table."
+}

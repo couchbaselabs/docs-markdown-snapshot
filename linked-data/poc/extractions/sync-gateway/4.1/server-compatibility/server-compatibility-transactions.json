@@ -1,0 +1,27 @@
+{
+  "page_id": "sync-gateway/4.1/server-compatibility/server-compatibility-transactions",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/server-compatibility/server-compatibility-transactions.md",
+  "concepts": [
+    { "candidate_id": "server:transactions", "label": "Couchbase Transactions (Couchbase Server)",
+      "registry_status": "minted", "reused_or_minted": "minted - the general server-side local-transaction feature this page describes and links to (server/current/learn/data/transactions.md); distinct from the n1ql: family (n1ql:begin-transaction, n1ql:active-transaction-record etc.), which models the SQL++ statement surface for distributed transactions specifically, whereas this page's own framing is 'local transactions... either to the Couchbase Server or to the Couchbase Lite database' - a broader, less statement-specific notion. Kept apart per the no-silent-merge rule" },
+    { "candidate_id": "sgw:sync-gateway-instance", "label": "Sync Gateway instance",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:import-docs-setting", "label": "import_docs setting (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:sync-gateway-instance", "predicate": "requiresPriorExecutionOf", "object": "server:transactions",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Changes made on the server within a transaction block are guaranteed to be imported by the Sync Gateway only after all the changes in a transaction are committed." },
+    { "subject": "server:transactions", "predicate": "hasNoRelationshipTo", "object": "sgw:sync-gateway-instance",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "There is no guarantee that a series of updates made within a transaction block, on either the Couchbase Server or Couchbase Lite client side, will be ACID compliant when they sync to the other end." }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page states Couchbase Lite also 'supports transactions that are local to the Couchbase Lite database' via Database.inBatch(), a Couchbase-Lite-side concept entirely outside this extraction's scope (sync-gateway/ only) - no relation was extracted for the Couchbase Lite half of this page's comparison since it names no Sync-Gateway-side mechanism, only a cross-reference to CBL's own API docs."
+  },
+  "cross_component_finding": "This is the only page in the batch that explicitly denies an ACID guarantee across the Sync Gateway/Couchbase Lite/Couchbase Server boundary - every other compatibility page in this batch describes what IS supported or version-gated; this one's central point is a limit on what replication can promise at all, regardless of version.",
+  "cross_product_finding": ""
+}

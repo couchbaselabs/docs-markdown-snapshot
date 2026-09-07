@@ -1,0 +1,63 @@
+{
+  "page_id": "sync-gateway/4.1/sync/sync-inter-syncgateway-monitor",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/sync/sync-inter-syncgateway-monitor.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page is its monitoring/statistics reference"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:json-metrics-format",
+      "label": "JSON metrics format (Sync Gateway _expvar endpoint)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page points to the _expvar endpoint for replication-specific statistics"
+    },
+    {
+      "candidate_id": "sgw:replication-status-endpoint",
+      "label": "_replicationStatus endpoint (Inter-Sync Gateway Replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Admin REST API endpoint returning per-replication runtime status (docs_read, docs_written, doc_write_failures, status, rejected_by_remote/local, last_seq_pull/push), filterable by activeOnly/localOnly/includeError/includeConfig"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "monitoredVia",
+      "object": "sgw:replication-status-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted monitoredVia)",
+      "evidence": "Sync Gateway provides a replication status Admin REST API endpoint to enable effective monitoring of replications."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "monitoredVia",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted monitoredVia) - the statistics-schema path, distinct from the status-endpoint path above",
+      "evidence": "Access to this data is provided through the Admin REST API endpoint `/_expvar`."
+    },
+    {
+      "subject": "sgw:replication-status-endpoint",
+      "predicate": "accessibleVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted accessibleVia)",
+      "evidence": "Sync Gateway provides easy access to replication status data through the Admin REST API."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's entire 'Retrieving Replication Status Data' section (endpoints, curl requests, and both JSON response examples) is near-verbatim identical to sync-inter-syncgateway-manage.json's 'Getting Replication Status Data' section - same endpoint, same example replication IDs (db1-rep-id2, db1-rep-id1-pull, db2-rep-id1), same query-string filters, same response bodies. The only content genuinely unique to this page is the pointer to the `/_expvar` statistics endpoint and a cross-reference to manage/stats-monitoring.md. A reader following 'Monitor' expecting a distinct monitoring-specific view instead gets a duplicate of the Manage page's status section. No XDCR mention anywhere on this page either - the fourth of five ISGR-dedicated pages in this batch silent on XDCR."
+  },
+  "cross_component_finding": "No comparison to XDCR's own monitoring surface (e.g. XDCR's replication-status enum, already flagged elsewhere in the registry as xdcr:replication-status-enum with three divergent vocabularies across Capella/Web-Console/REST) appears anywhere on this page, even though it would be a natural point of comparison for a monitoring-focused page. Extraction-layer observation only, not a source statement.",
+  "cross_product_finding": "n/a - no cross-product comparison found on this page."
+}

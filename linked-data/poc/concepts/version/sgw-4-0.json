@@ -1,0 +1,10 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/version/sgw-4-0",
+  "label": "Sync Gateway 4.0",
+  "type": "Sync Gateway's own independent version family - kept separate from version:server-* per the same convention as version:sgw-3-0.",
+  "promoted": true,
+  "recurrence": 4,
+  "documented_at": "sync-gateway/current/server-compatibility/server-compatibility-xdcr.md",
+  "evidence": "Sync Gateway 4.0 introduces support for bi-directional XDCR between active mobile clusters through an architectural change from revision trees to version vectors.",
+  "note": "Whole-corpus promotion-debt catch this round's own recurrence recount surfaced: minted independently across five files (product-notes/compatibility.json, server-compatibility/server-compatibility-xdcr.json, server-compatibility/xdcr-active-active-eventing.json, sync/sync-with-couchbase-server.json, and round 27's deploy/setting-up-dr-cluster.json, corrected this round to cite sgw:bidirectional-xdcr rather than xdcr:active-active-with-app-services), none of which minted the version itself as a first-class concept before now. Confirms round 27's README note that no Sync Gateway version mention had crossed the recurrence-2 bar was correct as of that round's own scope - round 28 is what pushes it over, exactly the whole-corpus-recurrence-catches-what-a-single-round-cannot pattern round 24's role:cluster-admin and round 27's sgw:sync-function both already established."
+}

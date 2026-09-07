@@ -1,0 +1,13 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sgw-get-started-verify-install-stale-4-0-duplicate",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "start-here/get-started-verify-install.md is a stale, 4.0-era page superseded by the 4.1 docs' get-started-configure.md and get-started-explore.md, left in place rather than removed or redirected. Independently confirmed during round 28 reconciliation: (1) front matter dates it 2026-03-27 with editUrl pointing at release/4.0, versus get-started-configure.md and get-started-explore.md both dated 2026-08-17 against release/4.1; (2) this page and get-started-explore.md both self-describe as 'Step 4' of the same four/five-step 'Start Here!' sequence, and this page's own in-page step nav still lists itself as '[Verify]' alongside Introduction/Prepare/Install rather than the current Introduction/Prepare/Install/Configure/Explore flow; (3) its bootstrap-config example and 'Connect to Sync Gateway' section substantially duplicate get-started-configure.md, and its CRUD-cycle walkthrough duplicates get-started-explore.md's, but with malformed JSON: Example 3 and Example 4 use unresolved placeholder text for scope/collection names that is not even syntactically valid JSON ('\"collection_name\" {' - missing colon, missing opening quote before 'admin_channels'), confirmed verbatim against the raw source at sync-gateway/current/start-here/get-started-verify-install.md lines 156-157 and 184-185. A reader following the current Start Here sequence has no reason to land on this page at all, and a reader who does gets a CRUD-cycle example that will not parse.",
+  "about": [
+    "sync-gateway/4.1/start-here/get-started-verify-install",
+    "sync-gateway/4.1/start-here/get-started-configure",
+    "sync-gateway/4.1/start-here/get-started-explore"
+  ],
+  "foundDuring": "round-28-sync-gateway-rest-api-product-notes-server-compatibility-start-here-sync-use-kubernetes",
+  "status": "open"
+}

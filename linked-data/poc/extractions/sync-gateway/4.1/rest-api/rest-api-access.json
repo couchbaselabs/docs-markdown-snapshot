@@ -1,0 +1,263 @@
+{
+  "page_id": "sync-gateway/4.1/rest-api/rest-api-access",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/rest-api/rest-api-access.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:secure-administration",
+      "label": "Secure Administration (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the named, on-by-default umbrella feature (TLS + Couchbase Server RBAC authorization/authentication for the Admin and Metrics REST APIs) this page introduces under its own heading '#lbl-secure-users'; sgw:rbac-user and sgw:admin-rest-api/sgw:metrics-rest-api already capture the identity system and API surfaces, but nothing yet named the feature that turns RBAC checking on for them by default"
+    },
+    {
+      "candidate_id": "sgw:rbac-user",
+      "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Metrics REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "sgw:public-rest-api",
+      "label": "Public REST API (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - see rest-api.json in this same batch; this page is the first to give it a port and to name it as the third, unauthenticated-by-RBAC leg of the three-API split"
+    },
+    {
+      "candidate_id": "port:4984",
+      "label": "Port 4984 (Sync Gateway public REST API)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "port:4985",
+      "label": "Port 4985 (Sync Gateway Admin REST API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Admin REST API's own default port, analogous to the already-promoted port:4984 (public) and port:4986 (metrics), which had no concept of its own until this page's Table 2 stated it explicitly"
+    },
+    {
+      "candidate_id": "port:4986",
+      "label": "Port 4986 (Sync Gateway Metrics REST API)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    },
+    {
+      "candidate_id": "role:bucket-full-access",
+      "label": "Application Access (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's Table 1 uses both of the registry's two aliased labels, 'Application Access' and 'Bucket Full Access', as two SEPARATE rows in the same table (6.1-7.0 column), which looks like the source of the old-name/new-name pair the registry entry already documents rather than two distinct roles"
+    },
+    {
+      "candidate_id": "role:sync-gateway-architect",
+      "label": "Sync Gateway Architect (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a Sync-Gateway-specific Server RBAC role (7.1.0+/7.0.2 DP) not covered by the role: excerpt of the 56-member generic catalogue; manages Sync Gateway databases/users and the metrics endpoint but explicitly cannot read application data"
+    },
+    {
+      "candidate_id": "role:sync-gateway-application",
+      "label": "Sync Gateway Application (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync-Gateway-specific Server RBAC role; manages Sync Gateway users/roles and reads/writes application data through Sync Gateway"
+    },
+    {
+      "candidate_id": "role:sync-gateway-application-read-only",
+      "label": "Sync Gateway Application Read Only (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - read-only sibling of role:sync-gateway-application"
+    },
+    {
+      "candidate_id": "role:sync-gateway-replicator",
+      "label": "Sync Gateway Replicator (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync-Gateway-specific Server RBAC role scoped to managing Inter-Sync Gateway Replications; explicitly cannot read application data"
+    },
+    {
+      "candidate_id": "role:sync-gateway-dev-ops",
+      "label": "Sync Gateway Dev Ops (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync-Gateway-specific Server RBAC role scoped to node-level configuration and the /metrics endpoint for Prometheus integration"
+    },
+    {
+      "candidate_id": "role:sync-gateway-role",
+      "label": "Sync-Gateway Role (Server RBAC role, pre-7.0/6.1 legacy)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the legacy (6.1-7.0) Sync-Gateway-specific Server RBAC role, superseded by the finer-grained 7.1.0+ role set (Architect/Application/Application Read Only/Replicator/Dev Ops) this same table documents"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:secure-administration",
+      "predicate": "availableSince",
+      "object": "Sync Gateway 4.1.0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway 4.1.0 brings additional optional but default layers of security through [enforcing TLS encryption](../security/secure-sgw-access.md) for all API traffic and Couchbase Server Role-Based Access Control (RBAC) authorization and authentication for all [Admin and Metrics API users](#lbl-secure-users)."
+    },
+    {
+      "subject": "sgw:secure-administration",
+      "predicate": "hasDefaultValue",
+      "object": "on",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Secure Administration is **on** by default."
+    },
+    {
+      "subject": "sgw:secure-administration",
+      "predicate": "reliesOnMechanism",
+      "object": "sgw:rbac-user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "RBAC user authentication enables [Secure Administration](#lbl-secure-users) of Sync Gateway clusters."
+    },
+    {
+      "subject": "sgw:secure-administration",
+      "predicate": "configuredVia",
+      "object": "api.admin_interface_authentication and api.metrics_interface_authentication bootstrap settings, or -admin_interface_authentication=false / -metrics_interface_authentication=false CLI flags",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You can choose to disable Secure Administration by using these bootstrap configuration settings or CLI flags:"
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "usesPort",
+      "object": "port:4985",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks. The Admin REST API is used to administer user accounts and roles. It can also be used to look at the contents of databases in superuser mode. The default port for the Admin REST API is 4985\\."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "hasDefaultValue",
+      "object": "bound to 127.0.0.1 (loopback interface), unreachable from any other host",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "As a useful special case, the IP address 127.0.0.1 binds to the loopback interface, making the port unreachable from any other host. This is the default setting for the admin interface."
+    },
+    {
+      "subject": "sgw:public-rest-api",
+      "predicate": "usesPort",
+      "object": "port:4984",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet. The Public REST API is used for client replication. The default port for the Public REST API is 4984."
+    },
+    {
+      "subject": "role:full-administrator",
+      "predicate": "hasPrivilege",
+      "object": "Can access all operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can access all operations"
+    },
+    {
+      "subject": "role:full-administrator",
+      "predicate": "requiresEdition",
+      "object": "Community Edition (only role available to community-edition users)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that the only role available for community-edition users is the **Full Admin** role."
+    },
+    {
+      "subject": "role:bucket-full-access",
+      "predicate": "hasPrivilege",
+      "object": "Can access DB / bucket scoped operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can access DB / bucket scoped operations"
+    },
+    {
+      "subject": "role:sync-gateway-architect",
+      "predicate": "hasPrivilege",
+      "object": "Can manage Sync Gateway databases and users, and access Sync Gateway's metrics endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can manage Sync Gateway databases and users, and access Sync Gateway's metrics endpoint. This user cannot read application data."
+    },
+    {
+      "subject": "role:sync-gateway-architect",
+      "predicate": "doesNotSupport",
+      "object": "reading application data",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This user cannot read application data."
+    },
+    {
+      "subject": "role:sync-gateway-application",
+      "predicate": "hasPrivilege",
+      "object": "Can manage Sync Gateway users and roles, and read and write application data through Sync Gateway",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can manage Sync Gateway users and roles, and read and write application data through Sync Gateway."
+    },
+    {
+      "subject": "role:sync-gateway-application-read-only",
+      "predicate": "hasPrivilege",
+      "object": "Can read Sync Gateway users and roles, and read application data through Sync Gateway",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can read Sync Gateway users and roles, and read application data through Sync Gateway."
+    },
+    {
+      "subject": "role:sync-gateway-replicator",
+      "predicate": "hasPrivilege",
+      "object": "Can manage Inter-Sync Gateway Replications",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can manage Inter-Sync Gateway Replications.This user cannot read application data."
+    },
+    {
+      "subject": "role:sync-gateway-dev-ops",
+      "predicate": "hasPrivilege",
+      "object": "Can manage Sync Gateway node-level configuration, and access Sync Gateway's /metrics endpoint for Prometheus integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can manage Sync Gateway node-level configuration, and access Sync Gateway's /metrics endpoint for Prometheus integration."
+    },
+    {
+      "subject": "role:sync-gateway-role",
+      "predicate": "hasPrivilege",
+      "object": "Can access DB / bucket scoped operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Can access DB / bucket scoped operations"
+    },
+    {
+      "subject": "sgw:rbac-user",
+      "predicate": "authenticatesVia",
+      "object": "LDAP (external authentication domain, via Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Authentication against an external system such as LDAP is possible through Couchbase Server."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/rest-api/rest-api-access-rbac-roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When referencing the [Admin REST API](rest-api-admin.md) you will see that each endpoint states the role (or roles) able to use it — you can find a cross-reference of endpoints and required roles in [RBAC Role - Endpoint Cross-Reference](rest-api-access-rbac-roles.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "none",
+    "finding": "Table 1's 6.1-7.0 column and Table 2's endpoint-role names (in rest-api-access-rbac-roles.md) use inconsistent labels for what appear to be the same handful of legacy roles: this page has 'Application Access' AND 'Bucket Full Access' as two separate rows (matching the registry's already-recorded old-name/new-name pair for role:bucket-full-access), while 'Sync-Gateway Role' here (hyphenated) becomes 'Sync Gateway Role' (no hyphen) in rest-api-access-rbac-roles.md, and that page additionally uses a fourth label, 'Bucket Application Access', not seen on this page at all and not confidently mergeable with either 'Application Access' or 'Bucket Admin' without more evidence - flagged rather than force-merged per this round's instructions."
+  },
+  "cross_component_finding": "This page names the actual Server RBAC role catalogue Sync Gateway introduces for its own Admin/Metrics API use (Sync Gateway Architect/Application/Application Read Only/Replicator/Dev Ops, plus the legacy Sync-Gateway Role) - none of which are in the generic 56-role Server catalogue excerpt this batch was given, confirming these are Sync-Gateway-specific additions to Couchbase Server's RBAC system rather than reuses of pre-existing generic roles (aside from Full Admin / Application Access / Bucket Full Access, which clearly are the generic roles).",
+  "cross_product_finding": "The explicit 'This user cannot read application data' carve-outs on both Sync Gateway Architect and Sync Gateway Replicator show Couchbase deliberately keeping the Admin-API's Server-RBAC layer separate in EFFECT, not just in identity, from the channel-based read access sgw:read-access-control governs - an operations/administration role on the Admin REST API side grants no implicit visibility into application documents, which still requires a channel grant in the entirely separate sgw:user/sgw:channel system. This is a concrete instance of round 27's 'no relationship' finding actually holding at the level of what each system's roles/grants let you SEE, not just at the level of stated intent."
+}

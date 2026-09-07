@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/external-stats-reader",
+  "label": "External Stats Reader (Server RBAC role)",
+  "type": "a Server RBAC role granting only the ability to call the /metrics and /prometheus_sd_config REST API endpoints - the role assigned to the connection user that Prometheus authenticates as when scraping Couchbase Server, and, per this round's evidence, also the sole 7.0.2+ role that satisfies Sync Gateway's own {cluster}/_expvar endpoint.",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "external_stats_reader",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: External Stats Reader (external_stats_reader) ... The External Stats Reader role grants only allows the user to call the `/metrics` and `/prometheus_sd_config` REST API endpoints. Assign this role to the user Prometheus uses when authenticating with Couchbase Server.",
+  "note": "Promotion-debt catch spanning two rounds and products: minted in round 26's server/8.0/manage/monitor/set-up-prometheus-for-monitoring.json (Prometheus scrape authentication) and independently reused, correctly spelled to match the internal name both times, by round 28's A1 (rest-api-access-rbac-roles.json) and A2 (rest_api_admin.json) Sync Gateway batches - genuine convergence on one spelling for one role, not a self-fork (contrast the role:sync-gateway-* family's near-misses filed alongside this one). Sync Gateway's own metrics/monitoring surface (port:4986, prometheus:metrics-endpoint) reuses the same Server-wide role rather than minting a Sync-Gateway-specific stats-reader role."
+}

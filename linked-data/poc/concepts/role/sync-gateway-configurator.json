@@ -1,0 +1,16 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/role/sync-gateway-configurator",
+  "label": "Sync Gateway Architect (Server RBAC role)",
+  "type": "one of six fine-grained Server RBAC roles Couchbase Server 7.0.2 Developer Preview added specifically for Sync Gateway's Admin REST API. Lets the user manage Sync Gateway databases, users and roles, and grants access to Sync Gateway's own /metrics REST endpoint. Do not confuse with sgw:role (Sync Gateway's own ad hoc channel-grant bundle) or with role:mobile-sync-gateway (the older, coarser Sync Gateway connection role this family supplements, not replaces).",
+  "promoted": true,
+  "recurrence": 3,
+  "internal_name": "sync_gateway_configurator",
+  "aliases": [
+    "role:sync-gateway-architect",
+    "role:sgw-architect"
+  ],
+  "aliases_note": "Same-round self-fork across three parallel batches reading overlapping RBAC-adjacent content: A1 (rest-api-access.json, rest-api-access-rbac-roles.json) minted `role:sync-gateway-architect` from the display label; A2 (rest_api_admin.json) independently minted `role:sgw-architect`, a third spelling neither matching the display label nor the internal name. Filed under the internal name per convention; both folded as aliases.",
+  "documented_at": "server/current/learn/security/roles.md",
+  "evidence": "Role: Sync Gateway Architect (sync_gateway_configurator) ... The Sync Gateway Architect role lets the user manage Sync Gateway databases, users, and roles. ... This role also grants access to the Sync Gateway's metrics via the `/metrics` REST API endpoint.",
+  "note": "Round 28 first contact with the 7.0.2+ fine-grained Sync-Gateway-RBAC catalogue extension, reused across rest_api_admin.json's own findings as one of the two roles gating creation/administration of sgw:role and sgw:user objects via the Admin API (requiresServerRole, already filed in that record) and as one of two roles that can mint a Public-API user session on another user's behalf (POST /{db}/_session) - see the qualifying note added to relations/has-no-relationship-to.json this round."
+}

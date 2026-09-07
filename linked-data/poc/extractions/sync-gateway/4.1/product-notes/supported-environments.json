@@ -1,0 +1,25 @@
+{
+  "page_id": "sync-gateway/4.1/product-notes/supported-environments",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/product-notes/supported-environments.md",
+  "concepts": [
+    { "candidate_id": "sgw:sync-gateway-instance", "label": "Sync Gateway instance",
+      "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "version:sgw-4-1", "label": "Sync Gateway 4.1.0",
+      "registry_status": "minted", "reused_or_minted": "reused within batch - the Debian 11.x (Bullseye) deprecation is dated to this release" }
+  ],
+  "relations": [
+    { "subject": "sgw:sync-gateway-instance", "predicate": "hasExecutionConstraint", "object": "single operating system per cluster",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Sync Gateway clusters on mixed platforms are not supported. Nodes in a Sync Gateway cluster should all be running on the same OS, and every effort should be made to apply the same OS patches across the entire cluster." },
+    { "subject": "Debian 11.x (Bullseye)", "predicate": "deprecatedIn", "object": "version:sgw-4-1",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Debian           | 11.x (Bullseye)      | 4.1" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability",
+    "finding": "No predicate in the registry captures a plain 'runs on operating system X' fact (as against a version-gated capability requirement) - Tables 1-3 are a large matrix of Sync-Gateway-to-OS/cloud-platform support (RHEL, Alma, Rocky, Ubuntu, Debian, Windows Server, AWS/Azure/Google Cloud, macOS, Windows Desktop) that this extraction did not turn into a relation per cell, since minting a concept per OS/cloud-platform-version combination (dozens of rows) would be exactly the 'a canonical reference table mints its rows at recurrence 1 by construction' pattern flagged in this round's hypothesis, with no existing OS/platform vocabulary in the registry to anchor against. Recorded here as prose rather than as dozens of low-value minted concepts."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

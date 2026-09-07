@@ -1,0 +1,46 @@
+{
+  "page_id": "sync-gateway/4.1/start-here/get-started-install-docker",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/start-here/get-started-install-docker.md",
+  "concepts": [
+    { "candidate_id": "tool:sync-gateway", "label": "Sync Gateway (the product/binary)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the `couchbase/sync-gateway` container image runs this same binary" },
+    { "candidate_id": "sgw:bootstrap-configuration", "label": "Bootstrap configuration (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - `sync-gateway-config.json`, mounted into the container, is the same bootstrap config schema used by the non-Docker Install/Configure path" },
+    { "candidate_id": "port:4984", "label": "Port 4984 (Sync Gateway public REST API)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - published from the container and used to verify the connection" },
+    { "candidate_id": "port:4985", "label": "Port 4985 (Sync Gateway Admin REST API)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted (unpromoted) in this same round's rest-api-access.json and command-line-options.json extraction records; this page adds the explicit warning that, unlike 4984, it must not be exposed outside the container in production" },
+    { "candidate_id": "port:8091", "label": "Port 8091",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the Couchbase Server Admin UI port, published from the `cb-server` container" }
+  ],
+  "relations": [
+    { "subject": "tool:sync-gateway", "predicate": "configuredVia", "object": "sgw:bootstrap-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia)",
+      "evidence": "Run Sync Gateway in a Docker container, mounting the configuration file you created." },
+    { "subject": "tool:sync-gateway", "predicate": "usesPort", "object": "port:4984",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesPort)",
+      "evidence": "Point your browser to the Sync Gateway public port:" },
+    { "subject": "tool:sync-gateway", "predicate": "usesPort", "object": "port:4985",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (usesPort is a promoted predicate; the object port:4985 itself stays extraction-layer, matching this round's sibling pages)",
+      "evidence": "Port 4985 is the Sync Gateway Admin port. By default it is only accessible from within the container. Do not expose port 4985 to external traffic in production environments." },
+    { "subject": "sync-gateway/4.1/start-here/get-started-install-docker", "predicate": "seeAlso", "object": "sync-gateway/4.1/start-here/get-started-explore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (structural markdown link -> seeAlso, per rule)",
+      "evidence": "continue to [Explore](get-started-explore.md) to add a database configuration, create users, and run a CRUD cycle to confirm sync is working end-to-end" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "The page tells the reader to create 'an RBAC user for Sync Gateway' during the Couchbase Server setup step, but never names the required role (e.g. the 'sync_gateway' role used in get-started-prepare.md) - it defers entirely to the non-Docker Prepare page rather than restating the role name."
+  },
+  "cross_component_finding": "This page's Docker bootstrap config example sets `use_tls_server: false` with a plain `couchbase://cb-server` connection string ('TLS is disabled for local development. For production deployments, enable TLS and use couchbases://cb-server instead'), whereas get-started-configure.json's bare-metal equivalent (also in this batch) defaults its example to `use_tls_server: true` with `couchbases://localhost`. The same sgw:bootstrap-configuration schema is reused across both install paths, but the two get-started pages model opposite TLS defaults for their respective 'quick local setup' examples - a genuine divergence in what 'default/example config' means depending on install method, not a contradiction, but worth noting since both are framed as the reader's first working config.",
+  "cross_product_finding": "None found on this page specifically - it stays entirely within Sync Gateway/Couchbase Server scope; Docker itself is treated as generic infrastructure tooling, not a Couchbase product."
+}
