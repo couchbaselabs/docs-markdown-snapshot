@@ -1,0 +1,79 @@
+{
+  "page_id": "sync-gateway/4.1/manage/managing-tombstones",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/managing-tombstones.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:tombstone",
+      "label": "Tombstone (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mobile-notification-purpose artifact ('the means by which mobile clients are notified that a document has been deleted'), structurally a bare document revision (doc id + rev id + deleted:true). Kept as its own concept rather than folding directly into the promoted storage:tombstone: this page states the two BECOME the same on-disk object under one specific configuration (shared bucket access), which is a stated identity in one direction, not an unconditional identity - see the isVariantOf relation below."
+    },
+    {
+      "candidate_id": "storage:tombstone",
+      "label": "Tombstone (Couchbase Server storage engine)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept from server/current/learn/buckets-memory-and-storage/storage-engines.md, unchanged"
+    },
+    {
+      "candidate_id": "sgw:channel-cache",
+      "label": "Channel Cache (Sync Gateway, in-memory)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's in-memory per-channel cache, distinct from the revision cache described in revisions.md; new in this batch, recurs heavily in the stats-monitoring pages later in this same batch (chan_cache_* stats) where it will be reused as extraction-layer"
+    },
+    {
+      "candidate_id": "storage:metadata-purge-interval",
+      "label": "Metadata Purge Interval (tombstone purge interval, Couchbase Server)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in server/8.0/manage/manage-settings/configure-compact-settings.json extraction; this page is the first to state that a MOBILE deployment's tuning of this Server-side setting is governed by mobile client replication frequency rather than by Server-side storage concerns alone"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:tombstone",
+      "predicate": "isVariantOf",
+      "object": "storage:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused (promoted). A genuine explicit-statement case, unlike the sgcollect_info/cbcollect_info near-miss elsewhere in this batch: the page directly states the two become the same object under a stated condition, licensing the relation rather than a silent separate minting.",
+      "evidence": "When mobile tombstones sync with a Couchbase Server (that is, when `enable_shared_bucket_access: true`) they become server tombstones. The document body is deleted, and only the mobile sync metadata required to replicate the tombstone is retained in the mobile extended attribute."
+    },
+    {
+      "subject": "sgw:tombstone",
+      "predicate": "requiresSetting",
+      "object": "storage:metadata-purge-interval",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer",
+      "evidence": "The server's `metadata purge interval` becomes an important consideration for sync'd mobile deployments. Because, when the server purges a tombstone (based on the `metadata purge interval`), that tombstone is no longer replicated to mobile clients."
+    },
+    {
+      "subject": "storage:metadata-purge-interval",
+      "predicate": "cascadesTo",
+      "object": "sgw:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted; distinct from the requiresSetting relation above by direction - this states the causal effect of the purge running, that one states the dependency",
+      "evidence": "The default `metadata purge interval` is set to 3 days which can potentially result in tombstones being purged before all clients have had a chance to be notified."
+    },
+    {
+      "subject": "sgw:tombstone",
+      "predicate": "cascadesTo",
+      "object": "sgw:channel-cache",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted",
+      "evidence": "Running the [/{db}/\\_compact](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Fcompact) endpoint will remove purged tombstones from the channel cache"
+    },
+    {
+      "subject": "sgw:channel-cache",
+      "predicate": "doesNotAffect",
+      "object": "sgw:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted; the explicit negation that motivates the whole 'Cache Ejection' section - restarting/compacting is required precisely because the cache does NOT self-clean",
+      "evidence": "Deleted/expired tombstones aren't automatically ejected from Sync Gateway's in-memory channel caches."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresExplicitCleanupOnFailure",
+    "finding": "No failure-then-cleanup shape on this page - purging and cache ejection are both routine maintenance operations described with no failure mode at all, unlike round 26's Server node-recovery operations which explicitly described what to do when a step fails."
+  },
+  "cross_component_finding": "This page cites Couchbase Server's own bucket-settings pages (Auto Compaction with UI, Creating and Editing Buckets) for HOW to tune metadata purge interval, but frames WHY entirely in mobile-replication terms - 'set the server's metadata purge interval based on their expected client replication frequency, to ensure that clients are notified of the tombstone prior to that tombstone being purged.' This is a genuinely new piece of cross-product tuning guidance that neither the Server storage docs nor round 3's SG access-control docs state: a Server-side setting's correct value depends on a Sync-Gateway-side deployment fact (client replication frequency), which only this manage/ page connects.",
+  "cross_product_finding": "The isVariantOf relation above (sgw:tombstone isVariantOf storage:tombstone) is the strongest same-shape-different-product finding in this batch, and it goes the OPPOSITE direction from the sgcollect_info/cbcollect_info near-miss: there, two products' same-shaped tools are kept separate because no page states a relationship; here, the page explicitly states the objects literally become one another under a named condition (enable_shared_bucket_access), licensing the merge-adjacent relation rather than a silent separate minting. Table 1 and Table 2 on this page describe, cell by cell, exactly how the SAME logical delete operation produces different physical artifacts (document-body-retained vs xattr-only) depending on which product performed the delete (Sync Gateway vs Couchbase Server) and which access mode is configured - a level of cross-product mechanical detail with no precedent in round 3's access-control extraction, which never touched the storage layer at all."
+}

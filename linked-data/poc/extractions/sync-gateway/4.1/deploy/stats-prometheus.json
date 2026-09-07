@@ -1,0 +1,52 @@
+{
+  "page_id": "sync-gateway/4.1/deploy/stats-prometheus",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/deploy/stats-prometheus.md",
+  "concepts": [
+    { "candidate_id": "sgw:metrics-rest-api", "label": "Metrics REST API (Sync Gateway)", "registry_status": "minted",
+      "reused_or_minted": "minted - the dedicated REST surface exposing Sync Gateway stats in Prometheus-compatible and JSON formats, distinct from the Public and Admin REST APIs" },
+    { "candidate_id": "sgw:metrics-interface-setting", "label": "api.metricsInterface / metricsInterface setting", "registry_status": "minted",
+      "reused_or_minted": "minted - the bootstrap (3.x) / legacy (2.x) setting binding the Metrics REST API to a network interface and port" },
+    { "candidate_id": "port:4986", "label": "port 4986 (Sync Gateway metrics API)", "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch (command-line-options.json); reused here as the Metrics REST API's own default port" },
+    { "candidate_id": "prometheus:scrape-config", "label": "Prometheus scrape configuration (Sync Gateway integration)", "registry_status": "minted",
+      "reused_or_minted": "minted - new prometheus: namespace member per this round's open, non-enumerable-axis convention; the prometheus.yml file Sync Gateway ships defining scrape targets/interval" },
+    { "candidate_id": "prometheus:recording-rule", "label": "Prometheus recording rule (Sync Gateway rule set)", "registry_status": "minted",
+      "reused_or_minted": "minted - new prometheus: namespace member; a rule that precomputes and saves an expensive expression's result" },
+    { "candidate_id": "prometheus:alert-rule", "label": "Prometheus alerting rule (Sync Gateway rule set)", "registry_status": "minted",
+      "reused_or_minted": "minted rather than reusing the promoted monitoring:alert (a Capella management-plane concept with its own severity enum and alerting behaviour) - deliberately NOT merged, since no page states a self-hosted Prometheus alerting rule and a Capella-native Alert are the same mechanism; flagged for reconciliation as a plausible-but-unstated parallel, per the standing no-silent-merge rule" },
+    { "candidate_id": "prometheus:alert-notification", "label": "Prometheus alert notification (fired)", "registry_status": "minted",
+      "reused_or_minted": "minted - the notification an alert rule sends once its expression is satisfied; kept as the object side of the triggersAlert triple, separate from the rule definition itself (prometheus:alert-rule)" },
+    { "candidate_id": "sgw:stats-monitoring-page", "label": "Monitor (Sync Gateway stats-monitoring guide)", "registry_status": "minted",
+      "reused_or_minted": "minted - lightweight placeholder for manage/stats-monitoring.md, the sibling manage/-tree page this page links out to rather than restating" }
+  ],
+  "relations": [
+    { "subject": "tool:sync-gateway", "predicate": "servesService", "object": "sgw:metrics-rest-api",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted servesService)",
+      "evidence": "Sync Gateway's Metrics REST API exposes stats in a" },
+    { "subject": "sgw:metrics-rest-api", "predicate": "configuredVia", "object": "sgw:metrics-interface-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted configuredVia)",
+      "evidence": "to edit the `api.metricsInterface` setting in your" },
+    { "subject": "sgw:metrics-interface-setting", "predicate": "hasDefaultValue", "object": "port:4986",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "The Metrics REST API is enabled by default on port 4986" },
+    { "subject": "prometheus:scrape-config", "predicate": "requiresSetting", "object": "sgw:metrics-interface-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted requiresSetting) - the scrape config's targets entry must point at the same interface the Sync Gateway setting exposes",
+      "evidence": "In this instance it defines Sync Gateway's `metricsInterface` as being accessible on `sync_gateway:4986/metrics`." },
+    { "subject": "prometheus:alert-rule", "predicate": "triggersAlert", "object": "prometheus:alert-notification",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted triggersAlert) - subject is the threshold condition, object is the resulting notification",
+      "evidence": "Alerting rules allow you to define alert conditions based on an expression and to send notifications when the expression is satisfied" },
+    { "subject": "prometheus:recording-rule", "predicate": "shouldNotBeConfusedWith", "object": "prometheus:alert-rule",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted shouldNotBeConfusedWith) - the page defines the two rule kinds side by side in the same example with visibly different purposes (precompute-and-save vs. condition-and-notify)",
+      "evidence": "Recording rules allow you to compute and save the results of frequently used (or computationally expensive) expressions." },
+    { "subject": "sgw:metrics-rest-api", "predicate": "seeAlso", "object": "sgw:stats-monitoring-page",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted seeAlso, structural markdown link)",
+      "evidence": "Related _Statistics_ topics: [Metrics REST API](../rest-api/rest-api-metrics.md) | [Monitor](../manage/stats-monitoring.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "No authentication or authorization requirement is stated anywhere on this page for reaching the Metrics REST API/port 4986 - contrast with api.metrics_interface_authentication appearing as a bare, undescribed row in command-line-options.md's Table 1 (also this batch). This page neither names that setting nor states whether the metrics endpoint is open or gated by default."
+  },
+  "cross_component_finding": "I read this page (deploy/stats-prometheus.md) in full rather than assuming it duplicates the sibling manage/ batch's similarly-named manage/stats-monitoring-prometheus.md. This page is entirely about the DEPLOYMENT/INTEGRATION mechanics - the two shipped files (prometheus.yml, sync-gateway.rules.yml), where to copy them, and their content - with a 'Related _Statistics_ topics' link out to a separate manage/stats-monitoring.md page for the monitoring/analysis side. The two pages appear to be a deliberate split between 'how to wire Prometheus up' (this page) and 'what to do with the stats once wired' (the manage/ page), not a duplicate.",
+  "cross_product_finding": "The shipped alerting rule set names real internal Sync Gateway metric identifiers directly in its expressions (sgw_security_auth_failed_count, sgw_cache_rev_cache_misses, sgw_delta_sync_delta_sync_miss, sgw_replication_sgr_num_docs_failed_to_pull/push, sgw_database_warn_xattr_size_count) - a rare case in the corpus of internal metric-name vocabulary appearing verbatim in a shipped, user-facing config artifact rather than only in a REST API reference table. None of these individual metric names is minted as its own concept here since the page presents them only as inline example content within one rules file, not as a documented reference list; flagged in case a metrics-reference page elsewhere in the corpus documents them formally."
+}

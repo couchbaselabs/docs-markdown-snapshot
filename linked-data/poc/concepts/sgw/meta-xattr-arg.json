@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/meta-xattr-arg",
+  "label": "meta.xattrs.<name> sync-function argument",
+  "type": "the sync-function argument exposing a document's Couchbase Server extended attribute (XATTR) content, used as an alternative DATA SOURCE for access()/channel()/role() calls instead of a document-body property. Written via a Couchbase Server Key-Value SDK sub-document call (LookupIn/MutateIn with isXattr:true) - a write surface entirely outside any of Sync Gateway's own Admin REST API, config-file, or sync-function surfaces.",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Resolves the round's flagged question: XATTRs are NOT a fourth/fifth access-grant mechanism alongside admin_channels/access()/role()/legacy-config - the grant mechanism is unchanged (still channel()/access()/role() executing in the sync function); only where the argument value is sourced FROM changes. The genuinely new fact is the write path: provisioning this data requires a third product surface (the Couchbase Server SDK operating on the underlying bucket) that Sync Gateway itself has no write access to."
+}

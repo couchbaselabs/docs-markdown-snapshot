@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/throw-cmd",
+  "label": "throw()",
+  "type": "the general-purpose JavaScript exception primitive underlying every sync-function rejection path - require*()'s shared 'signals rejection by throwing an exception' language and channel()/access()'s own rollback-on-rejection behaviour are all instances of this one mechanism. Preferred usage is throw({forbidden: \"...\"}), which becomes an HTTP 403 response's message.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "The primitive the four require*() commands are documented as convenience wrappers around, per this batch's own cross-page comparison (see reconciliation.md round 27)."
+}

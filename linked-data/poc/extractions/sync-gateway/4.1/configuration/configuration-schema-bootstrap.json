@@ -1,0 +1,355 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-bootstrap",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-bootstrap.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:bootstrap-configuration",
+      "label": "Bootstrap Configuration (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-overview.json, same batch - this page is its full schema reference"
+    },
+    {
+      "candidate_id": "sgw:api-admin-interface",
+      "label": "api.admin_interface setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - network interface the Admin API binds to, localhost-only by default"
+    },
+    {
+      "candidate_id": "sgw:api-admin-interface-authentication",
+      "label": "api.admin_interface_authentication setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "sgw:api-metrics-interface",
+      "label": "api.metrics_interface setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - network interface the Metrics API binds to, localhost-only by default; sibling of sgw:metrics-rest-api (the API itself, from secure-sgw-access.json)"
+    },
+    {
+      "candidate_id": "sgw:api-enable-advanced-auth-dp",
+      "label": "api.enable_advanced_auth_dp setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the DP permissions check feature of admin auth, edition-gated"
+    },
+    {
+      "candidate_id": "sgw:api-https-tls-minimum-version",
+      "label": "api.https.tls_minimum_version setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of the already-minted sgw:api-https-tls-cert-path/tls-key-path (secure-sgw-access.json), completing the client-facing TLS leg's settings"
+    },
+    {
+      "candidate_id": "sgw:api-https-tls-cert-path",
+      "label": "api.https.tls_cert_path setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:api-https-tls-key-path",
+      "label": "api.https.tls_key_path setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-ca-cert-path",
+      "label": "bootstrap.ca_cert_path setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-use-tls-server",
+      "label": "bootstrap.use_tls_server setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-server-tls-skip-verify",
+      "label": "bootstrap.server_tls_skip_verify setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-x509-cert-path",
+      "label": "bootstrap.x509_cert_path setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-x509-key-path",
+      "label": "bootstrap.x509_key_path setting",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-config-update-frequency",
+      "label": "bootstrap.config_update_frequency setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - how often a node polls Couchbase Server for new config changes"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-node-heartbeat-expiry",
+      "label": "bootstrap.node_heartbeat_expiry setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - constrained relative to config_update_frequency (must be at least 2x it)"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-group-id",
+      "label": "bootstrap.group_id setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the setting distinct from sgw:config-group (the entity it assigns a node to), which was minted on configuration-overview.json"
+    },
+    {
+      "candidate_id": "sgw:config-group",
+      "label": "Sync Gateway Config Group",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-overview.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-server-connection-string",
+      "label": "bootstrap.server setting (connection string)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Couchbase Server connection string, with its own DNS SRV / alternate-address / port-default rules"
+    },
+    {
+      "candidate_id": "sgw:bucket-credentials",
+      "label": "bucket_credentials map",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per-bucket credential override, alternative to the bootstrap-wide username/password"
+    },
+    {
+      "candidate_id": "sgw:database-credentials",
+      "label": "database_credentials map",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - per-database credential override, sibling of sgw:bucket-credentials with the identical override relationship to bootstrap-wide credentials"
+    },
+    {
+      "candidate_id": "sgw:heap-profile-collection-threshold",
+      "label": "heap_profile_collection_threshold setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "sgw:max-file-descriptors",
+      "label": "max_file_descriptors setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - RLIMIT_NOFILE cap"
+    },
+    {
+      "candidate_id": "sgw:replicator-max-concurrent-changes-batches",
+      "label": "replicator.max_concurrent_changes_batches setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - node-wide replicator concurrency tuning, distinct from any single replication's own settings (configuration-schema-isgr.md, same batch)"
+    },
+    {
+      "candidate_id": "sgw:replicator-max-concurrent-revs",
+      "label": "replicator.max_concurrent_revs setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted"
+    },
+    {
+      "candidate_id": "sgw:unsupported-allow-dbconfig-env-vars",
+      "label": "unsupported.allow_dbconfig_env_vars setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the node-wide kill switch for sgw:environment-variable-substitution's use specifically within database configs"
+    },
+    {
+      "candidate_id": "sgw:environment-variable-substitution",
+      "label": "Environment Variable Substitution (Sync Gateway configuration)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-environment-variables.json, same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:api-admin-interface",
+      "predicate": "hasDefaultValue",
+      "object": "127.0.0.1:4985",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Network interface to bind admin API to."
+    },
+    {
+      "subject": "sgw:api-admin-interface",
+      "predicate": "restrictedToContext",
+      "object": "localhost",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted restrictedToContext)",
+      "evidence": "By default, this will only be accessible to the localhost."
+    },
+    {
+      "subject": "sgw:api-admin-interface-authentication",
+      "predicate": "hasDefaultValue",
+      "object": "true",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Whether the admin API requires authentication"
+    },
+    {
+      "subject": "sgw:api-metrics-interface",
+      "predicate": "hasDefaultValue",
+      "object": "127.0.0.1:4986",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Network interface to bind metrics API to."
+    },
+    {
+      "subject": "sgw:api-metrics-interface",
+      "predicate": "restrictedToContext",
+      "object": "localhost",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted restrictedToContext) - identical wording to api.admin_interface's own restriction",
+      "evidence": "By default, this will only be accessible to the localhost."
+    },
+    {
+      "subject": "sgw:api-enable-advanced-auth-dp",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition) - the DEFAULT value itself is edition-gated, not merely the feature's availability",
+      "evidence": "Defaults to `true` if using Enterprise Edition or `false` if using Community Edition."
+    },
+    {
+      "subject": "sgw:api-https-tls-minimum-version",
+      "predicate": "hasDefaultValue",
+      "object": "tlsv1.2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "The minimum allowable TLS version for the REST APIs"
+    },
+    {
+      "subject": "sgw:bootstrap-config-update-frequency",
+      "predicate": "hasDefaultValue",
+      "object": "10s",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "How often to poll Couchbase Server for new config changes."
+    },
+    {
+      "subject": "sgw:bootstrap-node-heartbeat-expiry",
+      "predicate": "hasDefaultValue",
+      "object": "60s",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "How long since a node's last heartbeat before its cluster compat registry entry is pruned. Minimum is 2x the configured `config_update_frequency`."
+    },
+    {
+      "subject": "sgw:bootstrap-node-heartbeat-expiry",
+      "predicate": "requiresSetting",
+      "object": "sgw:bootstrap-config-update-frequency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - a numeric-ratio constraint between two settings, not merely both existing",
+      "evidence": "Minimum is 2x the configured `config_update_frequency`."
+    },
+    {
+      "subject": "sgw:bootstrap-group-id",
+      "predicate": "hasDefaultValue",
+      "object": "default",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "The config group ID to use when discovering databases. Allows for non-homogenous configuration."
+    },
+    {
+      "subject": "sgw:config-group",
+      "predicate": "configuredVia",
+      "object": "sgw:bootstrap-group-id",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia)",
+      "evidence": "The config group ID to use when discovering databases. Allows for non-homogenous configuration."
+    },
+    {
+      "subject": "sgw:bootstrap-server-connection-string",
+      "predicate": "restrictedToContext",
+      "object": "Data (KV) service nodes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted restrictedToContext)",
+      "evidence": "For reliable operation, all the nodes listed in the [bootstrap.server](#bootstrap-server) connection string must be data (KV) nodes."
+    },
+    {
+      "subject": "sgw:bootstrap-server-connection-string",
+      "predicate": "usesPort",
+      "object": "11210",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesPort)",
+      "evidence": "When using the couchbase:// or couchbases:// schemes, the port is not required as Sync Gateway will use the default Couchbase Server client-to-node ports (11210 for couchbase:// and 11207 for couchbases://)."
+    },
+    {
+      "subject": "sgw:bootstrap-server-connection-string",
+      "predicate": "usesPort",
+      "object": "11207",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesPort)",
+      "evidence": "When using the couchbase:// or couchbases:// schemes, the port is not required as Sync Gateway will use the default Couchbase Server client-to-node ports (11210 for couchbase:// and 11207 for couchbases://)."
+    },
+    {
+      "subject": "sgw:bucket-credentials",
+      "predicate": "takesPrecedenceOver",
+      "object": "sgw:bootstrap-server-connection-string",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted takesPrecedenceOver) - a per-bucket credential override that supersedes the bootstrap-wide username/password on the same connection",
+      "evidence": "A map of bucket names to credentials, that can be used instead of the bootstrap ones."
+    },
+    {
+      "subject": "sgw:database-credentials",
+      "predicate": "takesPrecedenceOver",
+      "object": "sgw:bootstrap-server-connection-string",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted takesPrecedenceOver) - sibling override, keyed by database name rather than bucket name",
+      "evidence": "A map of database name to credentials, that can be used instead of the bootstrap ones."
+    },
+    {
+      "subject": "sgw:heap-profile-collection-threshold",
+      "predicate": "hasDefaultValue",
+      "object": "85% of the lesser of cgroup or system memory",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Threshold in bytes for automatic collection of heap profiles. If not specified, defaults to 85% of the lesser of cgroup or system memory."
+    },
+    {
+      "subject": "sgw:max-file-descriptors",
+      "predicate": "hasDefaultValue",
+      "object": "5000",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Max of open file descriptors (RLIMIT\\_NOFILE)"
+    },
+    {
+      "subject": "sgw:replicator-max-concurrent-changes-batches",
+      "predicate": "hasDefaultValue",
+      "object": "2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Maximum number of changes batches to process concurrently per replication (1-5)\""
+    },
+    {
+      "subject": "sgw:replicator-max-concurrent-revs",
+      "predicate": "hasDefaultValue",
+      "object": "5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Maximum number of revs to process concurrently per replication (5-200)"
+    },
+    {
+      "subject": "sgw:unsupported-allow-dbconfig-env-vars",
+      "predicate": "hasDefaultValue",
+      "object": "true",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Can be set to false to skip environment variable expansion in database configs"
+    },
+    {
+      "subject": "sgw:environment-variable-substitution",
+      "predicate": "requiresSetting",
+      "object": "sgw:unsupported-allow-dbconfig-env-vars",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - a node-wide flag that can disable substitution specifically within database configs, a scope narrower than the general mechanism documented on configuration-environment-variables.json",
+      "evidence": "Can be set to false to skip environment variable expansion in database configs"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The schema block at the top of the page (the bracketed JSON skeleton under 'Bootstrap Configuration Schema') lists roughly 90 leaf properties across api/auth/bootstrap/bucket_credentials/database_credentials/logging/replicator/unsupported, but only a fraction have real behavioural constraints (defaults, edition gates, cross-setting minimums) worth modeling as relations - the remainder (most of the logging.* rotation sub-tree: collation_buffer_size, color_enabled, max_age, max_size, rotated_logs_size_limit, rotation_interval, repeated near-identically six times for audit/console/debug/error/info/stats/trace/warn) is a mechanical repeat of the same rotation-policy shape with only the numeric defaults differing. Modeling all six-to-eight repetitions as separate concepts would inflate the registry with near-duplicate 'rotation policy' entries for no ontological gain, so only the settings with a genuinely distinct constraint were extracted; the repeated rotation sub-schema itself is noted here rather than forced into relations."
+  },
+  "cross_component_finding": "This page's `bootstrap.group_id` setting is the concrete configuration surface behind the abstract sgw:config-group entity introduced on configuration-overview.json - the two pages describe the same mechanism from two directions (overview: what a config group IS and does; this page: the literal field and its default). Similarly, `unsupported.allow_dbconfig_env_vars` directly narrows the scope of configuration-environment-variables.json's sgw:environment-variable-substitution mechanism specifically to database configs, a node-wide kill switch not mentioned on that page at all - this is the clearest example in the batch of a field on one schema page silently gating a mechanism fully documented on a different page, discoverable only by reading both.",
+  "cross_product_finding": "sgw:bootstrap-server-connection-string's port defaults (11210/11207) and DNS SRV support explicitly reference Couchbase Server's own SDK connection conventions ('Sync Gateway supports the ability to resolve DNS SRV records for alternate hostnames... See the Couchbase Go SDK documentation'), and its alternate-address / NAT handling ('network=external') is structurally identical in shape to xdcr:alternate-address-target (XDCR's own alternate-address targeting for NAT/port-forwarded clusters) - both are a client resolving 'real' vs. 'externally visible' addresses for a remote Couchbase Server cluster. No page in this batch states a relationship between the two, and the underlying products/topologies differ (Sync Gateway-to-Server client connection vs. Server-to-Server XDCR), so they are kept separate, but the mechanism-level echo is worth flagging."
+}

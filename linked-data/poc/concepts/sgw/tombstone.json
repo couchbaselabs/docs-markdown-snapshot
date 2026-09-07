@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/tombstone",
+  "label": "Tombstone (Sync Gateway)",
+  "type": "the metadata record Sync Gateway leaves behind for a deleted document, so the deletion can propagate to replicating Couchbase Lite/ISGR peers before being purged.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Resolves the round's flagged near-miss, and the licensing quote is load-bearing: 'When mobile tombstones sync with a Couchbase Server (that is, when enable_shared_bucket_access: true) they become server tombstones. The document body is deleted, and only the mobile sync metadata required to replicate the deletion is retained' (managing-tombstones.md). Filed with isVariantOf storage:tombstone (already-promoted predicate) rather than merged outright, because the two are stated to become one another only under a named condition (shared bucket access), not unconditionally identical - the opposite resolution from the sgcollect_info/cbcollect_info near-miss below, where no page states any relationship at all and the two tools are kept fully separate. Also requiresSetting storage:metadata-purge-interval: a Server-side setting's correct value depends on a Sync-Gateway-side deployment fact (expected client replication frequency) that only this manage/ page connects.",
+  "isVariantOf_note": "licensed relation, see note"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-broken-star-channel-xref",
+  "type": "docs-issue",
+  "issueType": "broken-cross-reference",
+  "description": "A malformed AsciiDoc xref build artifact - '[Star Channel](#2.7@sync-gateway-channels.adoc#star-channel)' - appears verbatim on at least two pages in the sync-gateway/4.1 Markdown snapshot: auto-purge-channel-access-revocation.md and sync-function/sync-function-api.md (in a duplicated 'Default Sync Function Examples' section). The '#2.7@...' fragment is not a valid link target in this snapshot, unlike the clean relative-path links used everywhere else in the same batch (e.g. '(sync-function-api-access-cmd.md)'). Appearing byte-for-byte identical on two structurally unrelated pages confirms this is a repeated, reused AsciiDoc include fragment left over from a doc-conversion/site-generation pass, not an isolated typo. A reader or an AI agent following either link fails to resolve it; round 3's own access-control-concepts.md used the equivalent, working label 'All Documents / Star Channel' for the same underlying concept, so the ontology tie is intact even though these two pages' own links are broken.",
+  "about": [
+    "sync-gateway/4.1/access-control/auto-purge-channel-access-revocation",
+    "sync-gateway/4.1/access-control/sync-function/sync-function-api"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

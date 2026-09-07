@@ -1,0 +1,38 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-role-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-role-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:role-cmd", "label": "role()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:user", "label": "User (Sync Gateway, Public API identity)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "'role:' string-prefix convention (Sync Gateway sync function)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:access-cmd", "label": "access()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - this page states role()'s use is similar to access()'s" }
+  ],
+  "relations": [
+    { "subject": "sgw:role-cmd", "predicate": "assignsRole", "object": "sgw:role",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Use the `role()` function to add a role to a user. This indirectly gives them access to any channels assigned to that role." },
+    { "subject": "sgw:role-cmd", "predicate": "appliesToRoleWhenPrefixed", "object": "sgw:role-name-prefix-convention",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Role names must always be prefixed with role:; an exception is thrown if a role name doesn't conform with this rule.." },
+    { "subject": "sgw:role-cmd", "predicate": "hasEquivalentEffectAs", "object": "sgw:access-cmd",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "This function affects the user's ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to `access`." }
+  ],
+  "notable_absence": {
+    "predicate": "createdVia",
+    "finding": "The page states 'Roles, like users, have to be explicitly created by an administrator' - the same fact already captured elsewhere in the registry as sgw:role createdVia sgw:admin-rest-api - but this page never names the Admin REST API specifically, only 'an administrator', so this record does not re-assert createdVia with this page's weaker wording as evidence. Also notable and NOT modeled as a relation: 'Nonexistent roles don't cause an error, but have no effect on the user's access privileges' and 'You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect' - a forward-reference/lazy-binding tolerance with no equivalent stated for access()'s username argument or requireRole()'s rolename argument anywhere in this batch. No promoted predicate captures 'silently tolerates a forward reference to a not-yet-existing object', so this is recorded as a finding only."
+  },
+  "cross_component_finding": "role()'s rolename argument uses the SAME 'role:' prefix requirement as requireRole()'s (round 3, already promoted as appliesToRoleWhenPrefixed) - both throw if the prefix is missing. This is a MANDATORY convention (throws if absent) applied to a dedicated rolename argument, in contrast to access()'s OPTIONAL use of the same prefix on its polymorphic username argument (where the prefix, if present, redirects the grant from a user to a role, but its absence is not an error - it just means 'this is a user'). The convention is therefore one lexical rule serving two different roles in the API: a disambiguator on access()'s single overloaded argument, versus a mandatory validity constraint on role()'s and requireRole()'s dedicated rolename argument. Both are modeled with the same promoted predicate (appliesToRoleWhenPrefixed) since the underlying convention is identical, but the optional-vs-mandatory distinction is worth flagging for reconciliation in case a future round wants two predicates instead of one."
+}

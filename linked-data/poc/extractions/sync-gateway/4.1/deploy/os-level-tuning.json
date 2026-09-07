@@ -1,0 +1,43 @@
+{
+  "page_id": "sync-gateway/4.1/deploy/os-level-tuning",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/deploy/os-level-tuning.md",
+  "concepts": [
+    { "candidate_id": "sgw:max-file-descriptors-setting", "label": "max_file_descriptors setting", "registry_status": "minted",
+      "reused_or_minted": "minted earlier in this batch (command-line-options.json); reused here where its default (5000) and its relationship to the OS/container ceiling are actually documented" },
+    { "candidate_id": "sgw:os-file-descriptor-limit", "label": "OS-level file descriptor limit (ulimit/nofile)", "registry_status": "minted",
+      "reused_or_minted": "minted - the host or container runtime's own ceiling on open file descriptors, distinct from Sync Gateway's own max_file_descriptors setting" },
+    { "candidate_id": "sgw:systemd-service-file-descriptor-limit", "label": "systemd LimitNOFILE (sync_gateway.service)", "registry_status": "minted",
+      "reused_or_minted": "minted - the hardcoded systemd unit-file ceiling (65535), a third distinct limit layer alongside the OS-wide and Sync-Gateway-own settings" },
+    { "candidate_id": "sgw:tcp-keepalive-tuning", "label": "TCP Keepalive tuning (Sync Gateway)", "registry_status": "minted",
+      "reused_or_minted": "minted - kernel-level tcp_keepalive_time/intvl/probes tuning used to detect abruptly-disconnected mobile clients faster" },
+    { "candidate_id": "sgw:network-traffic-overhead", "label": "Network traffic overhead (from aggressive keepalive)", "registry_status": "minted",
+      "reused_or_minted": "minted - the stated downside of tuning TCP keepalive more aggressively" }
+  ],
+  "relations": [
+    { "subject": "sgw:max-file-descriptors-setting", "predicate": "hasDefaultValue", "object": "5000",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Default = 5000\\." },
+    { "subject": "sgw:max-file-descriptors-setting", "predicate": "hasExecutionConstraint", "object": "sgw:os-file-descriptor-limit",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted hasExecutionConstraint)",
+      "evidence": "Setting max\\_file\\_descriptors higher than the OS or container nofile limit has no effect" },
+    { "subject": "sgw:os-file-descriptor-limit", "predicate": "configuredPerNode", "object": "tool:sync-gateway",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted configuredPerNode) - directly the predicate the coordinator flagged as relevant to this page",
+      "evidence": "each container gets its own `ulimit` set by the container runtime at startup" },
+    { "subject": "sgw:systemd-service-file-descriptor-limit", "predicate": "takesPrecedenceOver", "object": "sgw:max-file-descriptors-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted takesPrecedenceOver) - the hardcoded systemd ceiling caps effective file descriptors regardless of what max_file_descriptors is set to, unless the unit file is itself edited",
+      "evidence": "The `/usr/lib/systemd/system/sync_gateway.service` has a hardcoded limit specified by `LimitNOFILE=65535`." },
+    { "subject": "sgw:tcp-keepalive-tuning", "predicate": "tradesOffAgainst", "object": "sgw:network-traffic-overhead",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted tradesOffAgainst, SYMMETRIC)",
+      "evidence": "Tuning the TCP Keepalive settings is not without its downsides — it will increase the amount of overall network traffic on your system" },
+    { "subject": "sgw:tcp-keepalive-tuning", "predicate": "eliminatesFetchFrom", "object": "sgw:os-file-descriptor-limit",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted eliminatesFetchFrom) - reclaiming file descriptors from dead peer connections faster reduces pressure on the same OS-level limit",
+      "evidence": "these connections will hang around for approximately 7200 seconds (2 hours) before they are detected to be dead and cleaned up by the tcp/ip stack" }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page recommends a starting nofile value of 250000 but explicitly declines to give a fixed minimum: 'There is no single fixed minimum, but the default OS limit of `1024` is insufficient for any production deployment.' This is a rare case of the documentation stating outright that it CANNOT give a firm default/minimum for a production-critical setting, rather than simply omitting one."
+  },
+  "cross_component_finding": "This page names THREE separate, independently-configured file-descriptor ceiling layers that all apply simultaneously to the same running Sync Gateway process - the OS-wide fs.file-max, the per-process/per-container ulimit (nofile), Sync Gateway's own max_file_descriptors setting, and (for systemd deployments specifically) systemd's hardcoded LimitNOFILE=65535 - and states plainly that raising the Sync-Gateway-level setting has zero effect unless the OS/container/systemd ceiling is raised too. command-line-options.md (this batch) documents only the innermost of these four layers with no default value at all; this page is where the full stack and the actual default (5000) are documented.",
+  "cross_product_finding": "The container-vs-host distinction this page draws ('For container environments... see Container Environments... The host-level instructions below are geared towards CentOS deployments') and its explicit ownership hand-off ('This means your Infra or Platform team, rather than the application team, typically owns this configuration') is OS/infrastructure-layer guidance with no Couchbase-Server-side analogue referenced anywhere in this batch - Sync Gateway's own OS tuning guide stands alone rather than pointing at a parallel Couchbase Server OS-tuning page, unlike deployment.md's swappiness recommendation (same batch), which DOES cross-reference a Couchbase Server install guide for the identical kind of OS-level advice."
+}

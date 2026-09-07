@@ -1,0 +1,29 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-throw-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-throw-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:throw-cmd", "label": "throw()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:http-403-response", "label": "HTTP 403 Forbidden (sync function rejection response)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific HTTP status code this page states throw() produces; no existing concept names an HTTP status code anywhere in the sgw: namespace" }
+  ],
+  "relations": [
+    { "subject": "sgw:throw-cmd", "predicate": "preventsDocumentPersistence", "object": "sgw:document",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3)",
+      "evidence": "Use `throw()` to prevent a document from persisting or syncing to any other users." },
+    { "subject": "sgw:throw-cmd", "predicate": "abortsWith", "object": "sgw:http-403-response",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no promoted or extraction-layer predicate ties a rejection mechanism to a specific HTTP status code; named per this round's own suggested precedent",
+      "evidence": "The document update will be rejected with an HTTP 403 \"Forbidden\" error code, with the value of the forbidden: property being the HTTP status message.This is the preferred way to reject an update." }
+  ],
+  "notable_absence": {
+    "predicate": "signalsRejectionByThrowing (not a registry predicate)",
+    "finding": "This page is the primitive underneath requireAccess()/requireUser()/requireRole()'s shared 'signals rejection by throwing an exception' language elsewhere in this batch (see those pages' own findings): throw() IS the generic JS exception mechanism, and this page states its own preferred usage pattern is throw({forbidden: \"...\"}) specifically - a structured argument that becomes the HTTP 403 response's message, distinct from a require*() call's bare, no-payload throw. The page never states whether require*()'s internal throw also produces an HTTP 403, or a different code (e.g. 401) - so while the shared mechanism (JS throw) is confirmed, the shared RESPONSE CODE across all five rejection-capable calls (throw/requireAccess/requireUser/requireRole/requireAdmin) is not stated anywhere in this batch and is left an open question for reconciliation rather than assumed."
+  },
+  "cross_component_finding": "The Context section frames throw() as the general-purpose validation/rejection primitive ('You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they're not met'), with the require*() family - documented on the other seven pages in this batch - as convenience wrappers that check one specific, common condition (a channel grant, a role, a specific user, or the Admin API surface) and throw on the caller's behalf. The page also recommends against relying on server-side validation as the primary safeguard ('The server-side sync function validation should be seen as a fail-safe and a guard against malicious access'), and introduces the oldDoc/doc distinction (also emphasized independently on requireUser()'s own page in this batch) as the mechanism for comparing a new revision against the prior one to detect illegal state changes."
+}

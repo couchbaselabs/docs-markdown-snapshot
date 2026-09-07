@@ -1,0 +1,119 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-isgr",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-isgr.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch, minted there - this page is its dedicated Admin REST API reference. Checked explicitly against the registry's xdcr:* family (xdcr:reference, xdcr:replication, xdcr:replication-filter, etc. - Couchbase SERVER's cluster-to-cluster replication mechanism, a different product and topology). This page never mentions XDCR, Couchbase Server-side replication, or any cross-cluster mechanism at all - it is entirely self-contained to Sync Gateway node-to-node replication. No source page in this batch states a relationship between ISGR and XDCR, so sgw:inter-sync-gateway-replication is kept fully separate from every xdcr:* concept per the standing no-silent-merge rule."
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:custom-conflict-resolver",
+      "label": "Custom Conflict Resolver (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-javascript-functions.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:conflict-resolution-type-setting",
+      "label": "conflict_resolution_type setting",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch - identical field, same constraint restated verbatim on this page"
+    },
+    {
+      "candidate_id": "sgw:delta-sync",
+      "label": "delta_sync setting (database-level)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch - the per-replication enable_delta_sync flag documented on this page requires it"
+    },
+    {
+      "candidate_id": "sgw:isgr-ca-certificate-pool",
+      "label": "System Certificate Pool (ISGR CA certificates)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's own OS-level trusted-certificate pool (SSL_CERT_FILE/SSL_CERT_DIR on Linux, the system root store on Windows) that must carry the CA certificate for an ISGR peer's TLS connection. Deliberately NOT reused as cert:trust-store (Couchbase Server's own node-level trust store concept, defined as 'the store of trusted CA certificates a Couchbase node consults') per the round's explicit instruction to check wording before assuming a Server-side TLS/cert concept transfers - this page describes a Go-runtime/OS certificate pool mechanism with its own distinct configuration surface (environment variables or OS certificate store), not Couchbase Server's inbox-directory/UI-driven certificate mechanism at all"
+    },
+    {
+      "candidate_id": "sgw:run-as-setting",
+      "label": "run_as setting (ISGR replication)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - lets a replication execute with a named Sync Gateway user's own channel-scoped access rather than the node's own unrestricted internal access"
+    },
+    {
+      "candidate_id": "version:sgw-2-8",
+      "label": "Sync Gateway 2.8",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first mention of this specific version anywhere in the registry; referenced twice on this page as the boundary before which two different replication defaults applied"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:inter-sync-gateway-replication",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3) - same predicate/pattern as sgw:admin-rest-api configuresProperty sgw:admin-channels-property",
+      "evidence": "Sync Gateway 3.0 and later uses the Admin REST API to provision persistent configuration changes."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "requiresSetting",
+      "object": "sgw:isgr-ca-certificate-pool",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+      "evidence": "You must add required CA certificates to the system certificate pool."
+    },
+    {
+      "subject": "sgw:custom-conflict-resolver",
+      "predicate": "requiresSetting",
+      "object": "sgw:conflict-resolution-type-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - same fact re-stated verbatim on this page, confirming the field is genuinely shared between the database-embedded and standalone ISGR schemas",
+      "evidence": "This **must** be used when `conflict_resolution_type=custom`. This property will be ignored when `conflict_resolution_type` is not `custom`."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "requiresSetting",
+      "object": "sgw:delta-sync",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - same fact re-stated verbatim on this page",
+      "evidence": "In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true."
+    },
+    {
+      "subject": "sgw:run-as-setting",
+      "predicate": "restrictedToContext",
+      "object": "channels the specified user has access to",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted restrictedToContext)",
+      "evidence": "This is used if you want to specify a user to run the replication as. This means that the replication will only be able to replicate what the user access to what the user has access to."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "hasDefaultValue",
+      "object": "running",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Replications prior to Sync Gateway 2.8 will run in the default state `running`."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "documentedForVersion",
+      "object": "version:sgw-2-8",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted documentedForVersion)",
+      "evidence": "Note: this defaults to 5 minutes for replications created prior to Sync Gateway 2.8."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Confirming the round's specific near-miss watch: this page never uses the word 'XDCR', never mentions Couchbase Server-side cross-cluster replication, and never draws any comparison between ISGR and any Server mechanism. The only replication concept on the page is Sync Gateway's own node-to-node ISGR. This absence is itself the evidence for the near-miss resolution recorded on sgw:inter-sync-gateway-replication's own concept note: with nothing on this page (or any other page read in this batch) stating a relationship, the correct move per the standing no-silent-merge rule is to keep sgw:inter-sync-gateway-replication and the xdcr:* family entirely separate, not to fold or alias them."
+  },
+  "cross_component_finding": "This page's schema block is field-for-field identical to configuration-schema-database.json's `replications.replication_id` sub-schema (see that record's cross_component_finding for the full comparison) - same 19 fields, same defaults, same descriptions, in the same order. Two settings (conflict_resolution_type/custom_conflict_resolver's dependency, and enable_delta_sync's dependency on database-level delta_sync.enabled) are stated in identical prose on both pages, which is why they are recorded on both records rather than only once - both pages independently make the claim verbatim.",
+  "cross_product_finding": "sgw:isgr-ca-certificate-pool is a genuinely SGW-specific certificate mechanism (an OS/runtime-level trust pool configured via environment variables or the OS certificate store) with no equivalent surface among the registry's cert:* family, all of which describe Couchbase Server's own inbox-directory/UI/REST-driven certificate management. This was checked deliberately (per the round's explicit instruction on this exact page) and no reuse was made - the two are structurally different delivery mechanisms for conceptually similar CA-trust needs, kept separate because no page states they are the same thing."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/role-cmd",
+  "label": "role()",
+  "type": "the sync-function helper that assigns a role to a user (an alternative to doing so via the Admin REST API). Tolerates forward references: assigning a not-yet-created role is not an error, and once the role is later created, prior document revisions' role() calls retroactively take effect.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Uses the same 'role:'-prefix convention as requireRole()'s rolename argument (sgw:role-name-prefix-convention) - mandatory here (throws if absent), versus access()'s optional use of the identical prefix on its polymorphic username argument."
+}

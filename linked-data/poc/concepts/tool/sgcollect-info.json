@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/sgcollect-info",
+  "label": "sgcollect_info",
+  "type": "Sync Gateway's own diagnostic log-collection utility - a table enumerating what it DOES collect (logs, configuration, expvars, OS stats, Golang profiles), with no stated exclusion list.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases": [
+    "sgw:sgcollect-info"
+  ],
+  "aliases_note": "round 27's dedicated reference page (manage/sgcollect-info.json) minted tool:sgcollect-info, matching the tool: convention already used for tool:cbcollect-info; security/audit-logging.json independently referenced the identical tool as sgw:sgcollect-info via a real relation (excludesFromCapture). Same referent, filed under the convention-matching id with the sgw:-prefixed spelling aliased. Recurrence corrected during reconciliation from a first-draft claim of 3 to the actual promotion-metric count of 2: security/audit-log-events.json also names sgw:sgcollect-info, but only via a bare concepts[] listing and a seeAlso relation, neither of which counts toward the promotion metric (seeAlso objects are pages, not concepts, per the skill's own exclusion rule) - a real instance of the 'any-mention vs. promotion-metric' distinction the skill warns to keep straight, caught here rather than propagated.",
+  "note": "Resolves the round's flagged near-miss. hasEquivalentEffectAs tool:cbcollect-info (already-promoted predicate), scoped narrowly to the redaction-hashing scheme only: 'tagged contents in the redacted [output] should be hashed in the same way as cbcollect_info' - not a full-identity claim. This is the one explicit textual link between the two tools; everywhere else the two are documented in different registers (cbcollect_info's docs state explicit bounded-non-support facts - 'does NOT collect audit logs or Eventing Application logs' - sgcollect_info's docs never state any exclusion at all), and both tools independently, coincidentally exclude audit-log data from what they capture with no page connecting the two beyond the hashing-scheme sentence. The hasEquivalentEffectAs relation itself was back-filled into manage/sgcollect-info.json during reconciliation - the interrupted round's note described it as filed but the extraction record did not yet contain it."
+}

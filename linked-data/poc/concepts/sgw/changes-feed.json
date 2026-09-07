@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/changes-feed",
+  "label": "Changes feed (Sync Gateway)",
+  "type": "the REST/WebSocket API surface streaming document changes to replicating clients, via one of four connection methods (polling, longpoll, continuous - all based on the historical CouchDB _changes API - and Sync Gateway's own websocket addition). Trades off against sgw:webhook as the two mechanisms for reacting to document changes.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Never states or alludes to DCP anywhere on its own page - the round's flagged open question (does sgw:changes-feed relate to Couchbase's DCP protocol) is left unresolved rather than guessed at; no usesProtocol relation to protocol:dcp is recorded."
+}

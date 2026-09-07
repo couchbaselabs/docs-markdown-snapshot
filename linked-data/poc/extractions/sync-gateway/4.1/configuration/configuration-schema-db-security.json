@@ -1,0 +1,99 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-db-security",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-db-security.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page provides its persistent-config field schema"
+    },
+    {
+      "candidate_id": "sgw:user",
+      "label": "User (Sync Gateway, Public API identity)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page provides its persistent-config field schema"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:admin-channels-property",
+      "label": "admin_channels property (collection_access)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3) - checked before reuse per the round's explicit near-miss watch; this page documents the exact same field, on both the Role and the User schema"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:allow-empty-password",
+      "label": "allow_empty_password setting (database-level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the database-level flag that makes sgw:user's own password field optional"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:role",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3) - same predicate/pattern as sgw:admin-rest-api configuresProperty sgw:admin-channels-property",
+      "evidence": "Use the Admin REST API `_user` and `_role` endpoints to provision and manage Sync Gateway users through persistent configuration changes."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:user",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3), same evidence sentence names both endpoints",
+      "evidence": "Use the Admin REST API `_user` and `_role` endpoints to provision and manage Sync Gateway users through persistent configuration changes."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess) - this page's own field description, confirming access-control-concepts.json's round-3 statement of the same fact with this page's own schema-level evidence",
+      "evidence": "A list of channels to explicitly grant to the role for the default collection. See `collection_access` for channels in named collections."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess)",
+      "evidence": "A list of channels to explicitly grant to the user for the default collection. See `collection_access` for channels in named collections."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "assignsRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted assignsRole) - the admin_roles field is this schema's persistent-config surface for the same grant access-control-concepts.json described generically",
+      "evidence": "A list of roles to explicitly grant to the user."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "requiresSetting",
+      "object": "sgw:allow-empty-password",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - the password field's mandatoriness is conditional on this database-level flag",
+      "evidence": "Mandatory. unless `allow_empty_password` is `true` in the database configs."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's Role and User schema blocks are near-verbatim duplicates of the users/roles sub-schemas already documented on configuration-schema-database.md (same field names, same descriptions word-for-word in most cases: admin_channels, admin_roles, all_channels, collection_access, jwt_channels, jwt_last_updated, jwt_roles, name, password, roles). The only content genuinely unique to this page is the two curl/HTTP upsert examples (PUT /{db}/_role/{name} and PUT /{db}/_user/{name}) and its framing as 'Database Security' rather than as a sub-object of the database config. No new fields were found here beyond what configuration-schema-database.json already extracted."
+  },
+  "cross_component_finding": "This page directly confirms the round's predicted near-miss check: it re-documents the SAME admin_channels/collection_access mechanism already modeled in round 3's access-control-concepts.json (sgw:admin-channels-property) rather than introducing a parallel field. Candidate-evidence.py was consulted before writing this record, confirming sgw:admin-channels-property already exists at the extraction layer with 5 prior files; this page is now its 6th.",
+  "cross_product_finding": "None beyond what is already established for sgw:role/sgw:user/sgw:admin-rest-api elsewhere in the batch."
+}

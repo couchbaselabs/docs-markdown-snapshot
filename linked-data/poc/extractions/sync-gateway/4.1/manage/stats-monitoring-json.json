@@ -1,0 +1,83 @@
+{
+  "page_id": "sync-gateway/4.1/manage/stats-monitoring-json",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/stats-monitoring-json.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:json-metrics-format",
+      "label": "JSON Metrics Format (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (stats-monitoring.json)"
+    },
+    {
+      "candidate_id": "sgw:expvar-endpoint",
+      "label": "_expvar Endpoint (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the concrete REST endpoint serving sgw:json-metrics-format; distinct concept from the format itself since the endpoint has its own port/path identity"
+    },
+    {
+      "candidate_id": "sgw:channel-cache",
+      "label": "Channel Cache (Sync Gateway, in-memory)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (managing-tombstones.json); this page's cache/* stats are the metrics that monitor it"
+    },
+    {
+      "candidate_id": "sgw:revision-cache",
+      "label": "Revision Cache (Sync Gateway, rev_cache)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (revisions.json); this page's rev_cache_hits/rev_cache_misses/rev_cache_bypass stats monitor it"
+    },
+    {
+      "candidate_id": "sgw:compact-operation",
+      "label": "Compaction Operation (Sync Gateway, /{db}/_compact)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (revisions.json); this page's compaction_tombstone_start_time and compaction_attachment_start_time stats correspond directly to its two named modes"
+    },
+    {
+      "candidate_id": "sgw:resync-operation",
+      "label": "Resync Operation (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (resync.json); listed here as one of the named GSI query types this page's gsi_views stats monitor"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:json-metrics-format",
+      "predicate": "accessibleVia",
+      "object": "sgw:expvar-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "Use the `_expvar` endpoint to request these metrics:"
+    },
+    {
+      "subject": "sgw:channel-cache",
+      "predicate": "monitoredVia",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object reused extraction-layer",
+      "evidence": "This metric acts as a reminder that tombstones and removals must be considered when tuning the channel cache size and also helps users understand whether they should be tuning tombstone retention policy (metadata purge interval), and running compact."
+    },
+    {
+      "subject": "sgw:compact-operation",
+      "predicate": "monitoredVia",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object reused extraction-layer; compaction_attachment_start_time and compaction_tombstone_start_time are the timestamps of the operation's two named modes",
+      "evidence": "The compaction\\_tombstone\\_start\\_time."
+    },
+    {
+      "subject": "sgw:resync-operation",
+      "predicate": "monitoredVia",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object reused extraction-layer; resync is one of the enumerated Valid Query Names whose GSI-query stats this format reports",
+      "evidence": "* access\n* roleAccess\n* channels\n* channelsStar\n* sequences\n* principals\n* sessions\n* tombstones\n* resync\n* allDocs"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "excludesFromCapture",
+    "finding": "This page states the statistics schema resets on every node restart ('The statistics detailed in this schema are reset at each node restart — they are not persisted') but never states any stat category it deliberately omits from collection - unlike tool:cbcollect-info's own explicit non-support statements. This is consistent with the sgcollect-info.json finding: Sync Gateway's own diagnostic surfaces (both the collection tool and this metrics format) are documented as bounded-positive inventories, never as bounded-negative exclusions, in contrast to cbcollect_info's documented exclusions on the Server side."
+  },
+  "cross_component_finding": "This page's per-database `gsi_views` GSI Valid Query Names list ('resync', 'tombstones', 'sequences', 'principals', 'channels', ...) is effectively a name-indexed cross-reference into this whole batch's own vocabulary: 'resync' names sgw:resync-operation (resync.json), 'tombstones' names sgw:tombstone (managing-tombstones.json) and 'channels' names sgw:channel (promoted). This is a case where a reference-style page (this one) independently confirms, through its own enumerated query-name list, that the procedural concepts minted elsewhere in this batch correspond to real internal query/monitoring surfaces rather than being purely documentation artifacts.",
+  "cross_product_finding": "None stated on this page - entirely Sync-Gateway-internal metrics enumeration, with an explicit link to https://golang.org/pkg/runtime/#MemStats for the Go-runtime-level memory stats, but no comparison to Couchbase Server's own stats surfaces."
+}

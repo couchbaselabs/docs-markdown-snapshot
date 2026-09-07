@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/require-user-cmd",
+  "label": "requireUser()",
+  "type": "the sync-function helper that rejects a document update unless the acting user's identity exactly matches one of the specified user(s) - a finer-grained gate than any role or channel check. Its own reference page carries a caveat none of its three sibling require*() pages state: an argument derived from the document body ('doc') is attacker-controlled and must be checked against 'oldDoc' instead when comparing against prior state.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Object is sgw:user, via the requiresUser predicate promoted this round."
+}

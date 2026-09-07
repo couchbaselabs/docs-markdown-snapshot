@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/channel-cache",
+  "label": "Channel cache (Sync Gateway)",
+  "type": "an in-memory, Enterprise-Edition-tunable cache of channel-to-document routing, growing unbounded with the total number of channels ever created (not just currently active ones) per running sgw:sync-gateway-instance. Deleted/expired tombstones are NOT automatically ejected from it - the compact operation is what removes purged tombstones from the cache.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Sibling of sgw:revision-cache; the two caches are tuned via similarly-shaped settings and both interact with tombstone volume, but no page states a relationship between the caches themselves, so they are kept as separate concepts."
+}

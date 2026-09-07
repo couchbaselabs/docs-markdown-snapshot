@@ -1,0 +1,44 @@
+{
+  "page_id": "sync-gateway/4.1/deploy/indexing",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/deploy/indexing.md",
+  "concepts": [
+    { "candidate_id": "index-type:gsi", "label": "Global Secondary Index (GSI)", "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted index-type:gsi) - this page states Sync Gateway itself relies on GSI for internal operations, a direct match to the existing registry concept" },
+    { "candidate_id": "service:index-service", "label": "Index service", "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted service:index-service) - the page requires at least one/two nodes running this service" },
+    { "candidate_id": "index-type:view", "label": "View", "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted index-type:view) - the legacy fallback for pre-GSI Sync Gateway/Server version combinations" },
+    { "candidate_id": "sgw:index-num-replicas-setting", "label": "index.num_replicas setting", "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's own configuration property controlling GSI index replica count" },
+    { "candidate_id": "sgw:use-views-setting", "label": "use_views setting", "registry_status": "minted",
+      "reused_or_minted": "minted - the configuration property that switches a database from GSI back to legacy Views" },
+    { "candidate_id": "sgw:index-partitioning", "label": "Partitioned indexes (Sync Gateway)", "registry_status": "minted",
+      "reused_or_minted": "minted here, elaborated fully in this batch's index-partitions.json" },
+    { "candidate_id": "version:sgw-3-3", "label": "Sync Gateway 3.3", "registry_status": "minted",
+      "reused_or_minted": "minted - new version: family member, kept separate from version:server-* per the established convention; the version at which partitioned-index support was introduced" }
+  ],
+  "relations": [
+    { "subject": "tool:sync-gateway", "predicate": "reliesOnMechanism", "object": "index-type:gsi",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted reliesOnMechanism)",
+      "evidence": "Sync Gateway uses GSI (Global Secondary Indexes) and SQL++ to perform a variety of internal operations, including authentication and replication." },
+    { "subject": "sgw:index-num-replicas-setting", "predicate": "requiresMinimumNodeCount", "object": "service:index-service",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted requiresMinimumNodeCount)",
+      "evidence": "Sync Gateway requires the Index Service to be running on at least two Couchbase Server nodes (required for index replica)." },
+    { "subject": "sgw:use-views-setting", "predicate": "mustUseInsteadWhen", "object": "index-type:gsi",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted mustUseInsteadWhen)",
+      "evidence": "Users wanting to run Sync Gateway 2.1 with an older version of Couchbase Server will need to continue to use views, by setting the `use_views` property." },
+    { "subject": "sgw:index-partitioning", "predicate": "availableSince", "object": "version:sgw-3-3",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted availableSince)",
+      "evidence": "Sync Gateway 3.3 supports partitioned indexes." },
+    { "subject": "index-type:gsi", "predicate": "seeAlso", "object": "sgw:index-partitioning",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted seeAlso, structural markdown link)",
+      "evidence": "For details, see [Partitioned Indexes](index-partitions.md)." }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The page states index.num_replicas CAN be set to zero to run with a single Index Service node ('users can run with a single Index Service node by setting Sync Gateway's `index.num_replicas` property to zero') but never states what the DEFAULT value actually is - only that using zero increases failover downtime risk. No default is recorded here for lack of textual evidence."
+  },
+  "cross_component_finding": "This very short page (68 lines) functions almost entirely as a hub: its only two substantive paragraphs each end in a cross-reference (to Partitioned Indexes, and by omission of detail, implicitly to the configuration schema reference for the two named properties) rather than explaining the GSI-vs-Views tradeoff in any depth itself. The one-sentence Enterprise/downtime benefit claim ('reduce the downtime ... from several hours to a few seconds') is asserted without the mechanism being explained on this page at all.",
+  "cross_product_finding": "GSI is reused here as literally the same registry concept (index-type:gsi) that the Couchbase Server Query-service reference tree already promoted, without any Sync-Gateway-specific variant or wrapper concept - Sync Gateway is a straightforward CONSUMER of Couchbase Server's own index type, not a product with its own parallel indexing technology. This is a clean, uncomplicated reuse case, worth contrasting with the more fraught fts:index-partitioning/sgw:index-partitioning near-duplicate flagged in index-partitions.json."
+}

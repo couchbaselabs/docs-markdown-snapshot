@@ -1,0 +1,57 @@
+{
+  "page_id": "sync-gateway/4.1/manage/sgcollect-info",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/sgcollect-info.md",
+  "concepts": [
+    {
+      "candidate_id": "tool:sgcollect-info",
+      "label": "sgcollect_info",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (Sync Gateway's own diagnostic-collection CLI tool, filed under tool: per round 26's shipped-binary convention) and promoted this round - now reused as promoted. Checked against the promoted tool:cbcollect-info (Couchbase Server's own diagnostic tool, a different product/binary) and kept separate since no page states a general relationship - the two tools have near-identical stated purpose (gather diagnostics for support) and near-identical names, but this page never says they are the same tool, run on the same node, or share output format overall, so the no-silent-merge rule applies exactly as it did for analytics:workbench vs capella:analytics-workbench. The one narrow, explicitly-stated exception (the redaction-hashing scheme) is filed below as hasEquivalentEffectAs, scoped only to that."
+    },
+    {
+      "candidate_id": "sgw:continuous-logging",
+      "label": "Continuous Logging (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (the four-leveled rotated log-file feature this page's File Concatenation section explicitly cross-references; first named on logging.md but this page's dependency on it is documented independently) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "tool:cbcollect-info",
+      "label": "cbcollect_info",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept from server/8.0/eventing/eventing-debugging-and-diagnosability, unchanged; added during reconciliation to back-fill the hasEquivalentEffectAs relation below, which tool:sgcollect-info.json's promotion note and this record's own cross_component_finding described as licensed but the relations array had not yet instantiated at the time the interrupted round was killed"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "tool:sgcollect-info",
+      "predicate": "reliesOnMechanism",
+      "object": "sgw:continuous-logging",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted on this page and promoted this round, object minted on this page and promoted this round",
+      "evidence": "SGCollect Info has been updated to use the [continuous logging](logging.md#continuous-logging) feature introduced in 2.1, and collects the four leveled files (**sg\\_error.log**, **sg\\_warn.log**, **sg\\_info.log** and **sg\\_debug.log**)."
+    },
+    {
+      "subject": "tool:sgcollect-info",
+      "predicate": "accessibleVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted on this page and promoted this round, object reused (already promoted)",
+      "evidence": "You can also run `sgcollect_info` from the Admin REST API using the [\\_sgcollect\\_info](../rest-api/rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fsgcollect%5Finfo) endpoint."
+    },
+    {
+      "subject": "tool:sgcollect-info",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "tool:cbcollect-info",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject promoted this round, object already promoted; added during reconciliation - scoped narrowly to the redaction-hashing scheme only, not a full-identity claim, per this record's own cross_component_finding",
+      "evidence": "When `--log-redaction-level` is set to partial, two zip files are produced, and tagged contents in the redacted one should be hashed in the same way as `cbcollect_info`:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "excludesFromCapture",
+    "finding": "This is the key near-miss finding for this round's sgcollect_info/cbcollect_info comparison. The promoted tool:cbcollect-info record states three explicit bounded-non-support facts ('does NOT collect audit logs or Eventing Application logs'), directly quoted from server-side eventing docs. This page, by contrast, describes sgcollect_info's output ENTIRELY in positive terms - a table enumerating what it DOES collect (logs, configuration, expvars, OS stats, Golang profiles) - and never states a single thing it deliberately does NOT collect. So the excludesFromCapture relation, which fit tool:cbcollect-info perfectly, has no textual support here and was not minted. This is itself evidence that the two tools, despite sharing a name pattern and stated purpose, are documented in different registers: cbcollect_info's own docs are written defensively (telling support engineers what they must gather separately), while sgcollect_info's docs are written as a simple positive inventory. Whether that reflects a real difference in the tools' actual scope (does sgcollect_info silently omit anything?) or just a documentation-style difference cannot be determined from this page alone."
+  },
+  "cross_component_finding": "This page's Log Redaction section states its redacted-hash format matches cbcollect_info's own convention directly: 'tagged contents in the redacted one should be hashed in the same way as `cbcollect_info`.' This is the ONE explicit textual link between the two tools on this page - not a statement that they are the same tool or share code, but a statement that their REDACTION HASHING SCHEME is shared/consistent. This licenses a narrow, specific relation (hasEquivalentEffectAs, scoped only to the hashing behavior) rather than a full identity claim, and is the single piece of evidence keeping tool:sgcollect-info and tool:cbcollect-info from being total strangers even though they remain separately minted. Reconciliation formalized this as tool:sgcollect-info -hasEquivalentEffectAs-> tool:cbcollect-info (see relations above).",
+  "cross_product_finding": "None beyond the redaction-hashing note above."
+}

@@ -1,0 +1,71 @@
+{
+  "page_id": "sync-gateway/4.1/manage/logging",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/logging.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:continuous-logging",
+      "label": "Continuous Logging (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (sgcollect-info.json); this page is its primary definition source"
+    },
+    {
+      "candidate_id": "sgw:console-logging",
+      "label": "Console Logging (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the independently-configurable diagnostic-output stream, explicitly stated to be independent of continuous logging; no precedent in round 3"
+    },
+    {
+      "candidate_id": "sgw:log-key",
+      "label": "Log Key (Sync Gateway console logging filter)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the fine-grained subsystem tag (HTTP, CRUD, DCP, Import, etc.) filtering console log verbosity by area; a fixed enumerated catalog on this page (Table 2), unlike sgw:channel which the registry notes is a freeform label with no catalog - a useful contrast between two similarly-shaped 'tag' concepts in the same product"
+    },
+    {
+      "candidate_id": "sgw:log-level-enum",
+      "label": "Log Level (Sync Gateway console logging: none/error/warn/info/debug/trace)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a 6-member ordered/inclusive enum ('if you enable info level, then warn and error logs are also enabled'), a different shape from sgw:database-lifecycle-state-enum (which is a transition graph, not an inclusive ordering)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:console-logging",
+      "predicate": "doesNotAffect",
+      "object": "sgw:continuous-logging",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer",
+      "evidence": "Changes to _console logging_ are independent of continuous logging, so you can, for example, tweak any of the following without compromising the core continuous logging streams"
+    },
+    {
+      "subject": "sgw:console-logging",
+      "predicate": "configurableVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused (promoted)",
+      "evidence": "You can define console log settings in the bootstrap configuration file, or more conveniently, you can use the Admin REST API's `_config` endpoint to set them"
+    },
+    {
+      "subject": "sgw:console-logging",
+      "predicate": "hasDefaultValue",
+      "object": "sgw:log-level-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object minted",
+      "evidence": "Console logs have six levels of verbosity — see: [Table 1](#tbl-loglevels). The default _log level_ is **`none`**"
+    },
+    {
+      "subject": "sgw:console-logging",
+      "predicate": "hasDefaultValue",
+      "object": "sgw:log-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object minted; the default MEMBER of the log-key catalog (HTTP) rather than the whole catalog",
+      "evidence": "By default, only **`HTTP`** related information is enabled, but a range of other keys are available to meet specific diagnostic needs"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "triggersImmediateExecutionOf",
+    "finding": "No 'run now' shape - logging configuration changes take effect through normal config application, with no scheduled task being bypassed."
+  },
+  "cross_component_finding": "sgw:log-key's fixed catalog (Table 2: Admin, Access, Auth, Bucket, Cache, Changes, CRUD, DCP, Events, gocb, HTTP, HTTP+, Import, Javascript, Migrate, Query, Replicate, SGCluster, Sync, SyncMsg, WS, WSFrame) is exactly the kind of enumerated-and-closed vocabulary the registry excerpt flagged sgw:channel as NOT having ('freeform label created implicitly by the sync function, no product-defined catalog'). Worth flagging for reconciliation: this batch mints two superficially similar 'tag' concepts (sgw:channel, freeform; sgw:log-key, closed enum) in the same product, and conflating them would be a mistake specific to this round's material.",
+  "cross_product_finding": "None stated on this page - it is entirely Sync-Gateway-internal, describing its own log file naming/rotation scheme (sg_error.log, sg_warn.log, etc.) with no comparison to Couchbase Server's log:log-file concept, even though the underlying problem (per-node log files needing retention/rotation policy) is structurally the same one Server's manage-logging.md solves. This is a genuine instance of the round's hypothesis being tested: this page needed its OWN sgw:-prefixed vocabulary (sgw:continuous-logging, sgw:console-logging, sgw:log-key, sgw:log-level-enum) rather than reusing log:log-file, confirming the round's own instruction ('Sync Gateway's own logging.md almost certainly needs its own sgw:-prefixed parallel rather than reuse')."
+}

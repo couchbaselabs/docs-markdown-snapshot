@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/metadata-migration-to-system-collection",
+  "label": "Metadata migration to _system._mobile (Sync Gateway 4.1+)",
+  "type": "the one-time, opt-in operation migrating a database's Sync Gateway internal metadata from the default collection (_default._default) into the reserved sgw:system-metadata-collection (_system._mobile), separating it from application data.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "First contact for both this operation and its target collection - 4.1-only material, genuinely new territory even within the sgw: namespace's existing configuration vocabulary."
+}

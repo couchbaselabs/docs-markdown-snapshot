@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/access-cmd",
+  "label": "access()",
+  "type": "the sync-function helper that grants a user (or, when the argument is prefixed 'role:', a role) access to one or more channels. Effects from every active document's access() calls are combined in a union - once any document has ever granted a user a channel, no other document's sync-function invocation can revoke it (only channel()-side routing changes or REST-API/role changes can). Cannot grant the all-channels wildcard - the REST API's channel-grant endpoint is the only way to do that.",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "First dedicated reference page for a function round 3's combined sync-function.json only summarised; corroborates and sharpens round 3's finding rather than contradicting it."
+}

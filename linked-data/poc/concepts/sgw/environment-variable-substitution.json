@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/environment-variable-substitution",
+  "label": "Environment variable substitution (Sync Gateway configuration)",
+  "type": "the ${VARNAME} placeholder syntax Sync Gateway resolves against process environment variables inside bootstrap or legacy Pre-3.0 configuration files. Case-sensitive (${username} != ${USERNAME}). Values are read once at startup - not detected while running - so a change only takes effect after a Sync Gateway restart, unless unsupported.allow_dbconfig_env_vars is set to false to skip expansion in database configs entirely.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Not available in persistent per-database config the same way - configured only via the two file-based surfaces (bootstrap, legacy)."
+}

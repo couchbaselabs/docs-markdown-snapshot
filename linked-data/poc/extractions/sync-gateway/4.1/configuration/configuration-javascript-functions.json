@@ -1,0 +1,149 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-javascript-functions",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-javascript-functions.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:javascript-function",
+      "label": "Configurable JavaScript Function (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - umbrella concept for the four database-configuration options that accept a JavaScript function body (Sync Function, Import Filter, Custom Conflict Resolver, Webhook Filter), each provisionable inline, from an external file, or from an external HTTP/HTTPS endpoint"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:import-filter",
+      "label": "Import Filter (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuine first contact; no import-filter concept exists in the registry at any layer prior to this batch. Fully detailed on configuration-schema-import-filter.md (same batch)"
+    },
+    {
+      "candidate_id": "sgw:custom-conflict-resolver",
+      "label": "Custom Conflict Resolver (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the JavaScript function resolving replication conflicts, distinct from Server/XDCR's own conflict-resolution mechanisms (xdcr:conflict-resolution-method), which are non-programmable enum choices, not user-authored code"
+    },
+    {
+      "candidate_id": "sgw:webhook-filter",
+      "label": "Webhook Filter (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the JavaScript function filtering which database change events fire a webhook"
+    },
+    {
+      "candidate_id": "sgw:inline-javascript-source",
+      "label": "Inline JavaScript function (backtick-enclosed)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of three provisioning shapes for sgw:javascript-function"
+    },
+    {
+      "candidate_id": "sgw:external-javascript-file-source",
+      "label": "External JavaScript file",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of three provisioning shapes for sgw:javascript-function, specified by absolute path"
+    },
+    {
+      "candidate_id": "sgw:external-javascript-http-source",
+      "label": "External HTTP/HTTPS JavaScript endpoint",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of three provisioning shapes for sgw:javascript-function, requires a registered CA certificate when HTTPS-hosted"
+    },
+    {
+      "candidate_id": "sgw:remote-config-tls-skip-verify",
+      "label": "unsupported.remote_config_tls_skip_verify setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - test-only flag that bypasses TLS certificate verification specifically for external JavaScript loaded over HTTPS; distinct from bootstrap.server_tls_skip_verify (verifies the Sync Gateway <-> Couchbase Server connection, already minted in security/secure-sgw-access.json)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "isSubtypeOf",
+      "object": "sgw:javascript-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isSubtypeOf)",
+      "evidence": "* Sync Function"
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "isSubtypeOf",
+      "object": "sgw:javascript-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isSubtypeOf)",
+      "evidence": "* Import Filter"
+    },
+    {
+      "subject": "sgw:custom-conflict-resolver",
+      "predicate": "isSubtypeOf",
+      "object": "sgw:javascript-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isSubtypeOf)",
+      "evidence": "* Custom Conflict Resolver"
+    },
+    {
+      "subject": "sgw:webhook-filter",
+      "predicate": "isSubtypeOf",
+      "object": "sgw:javascript-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted isSubtypeOf)",
+      "evidence": "* Webhook Filter"
+    },
+    {
+      "subject": "sgw:javascript-function",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:inline-javascript-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted offersConfigurationChoice)",
+      "evidence": "An inline Javascript function"
+    },
+    {
+      "subject": "sgw:javascript-function",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:external-javascript-file-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted offersConfigurationChoice)",
+      "evidence": "An external Javascript file"
+    },
+    {
+      "subject": "sgw:javascript-function",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:external-javascript-http-source",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted offersConfigurationChoice)",
+      "evidence": "An external HTTP/HTTPS endpoint serving a JS function"
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:import-filter",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3) - same predicate/pattern as sgw:admin-rest-api configuresProperty sgw:admin-channels-property, unpromoted",
+      "evidence": "Sync Gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\\_config/import\\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints."
+    },
+    {
+      "subject": "sgw:external-javascript-http-source",
+      "predicate": "requiresSetting",
+      "object": "sgw:remote-config-tls-skip-verify",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - inverse-flavoured: this setting is what an operator can use to bypass the normal CA-certificate requirement for this source type, for testing only",
+      "evidence": "For testing purposes you may use the unsupported configuration option `[unsupported.remote_config_tls_skip_verify](configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     )`. Setting this `true` will side-step essential security checks. Do not use in Production deployments."
+    },
+    {
+      "subject": "sgw:external-javascript-http-source",
+      "predicate": "requiresSetting",
+      "object": "cert:trust-store",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - reusing Couchbase Server's own cert:trust-store concept for the system certificate pool Sync Gateway itself must trust the external JS host against, since the page describes registering a CA certificate rather than a Sync Gateway-specific trust mechanism",
+      "evidence": "You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "None on this page - it is a short, complete conceptual + procedural page with a worked example rather than a schema/field enumeration."
+  },
+  "cross_component_finding": "This page is the first place in the batch establishing sgw:import-filter, sgw:custom-conflict-resolver and sgw:webhook-filter as siblings of the already-known sgw:sync-function under one umbrella (all four take a JavaScript function body and share the same three provisioning shapes and the same Admin REST API configuration pattern already seen for sgw:admin-channels-property). This is the clearest confirmation this round's framing question predicted: first contact with configuration/ mostly reuses vocabulary and patterns (configuresProperty via the Admin REST API, requiresSetting for TLS bypass) already established by access-control/ and security/, rather than inventing a wholly new mechanism shape.",
+  "cross_product_finding": "sgw:custom-conflict-resolver is explicitly distinguished in its own concept note from xdcr:conflict-resolution-method: Sync Gateway's conflict resolution is user-authored JavaScript, selectable per-replication, while XDCR's is a fixed enum (Sequence Number or Timestamp) chosen at bucket creation. No relationship is stated between the two on this page or elsewhere in the batch so far; kept separate."
+}

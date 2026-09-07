@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/prometheus-metrics-format",
+  "label": "Prometheus metrics format (Sync Gateway /metrics endpoint)",
+  "type": "the other of the two Metrics-REST-API formats, exposed via the /metrics endpoint, following the same pattern documented for the rest of the Couchbase product line ('As with all Couchbase services, Sync Gateway exposes a Prometheus-compatible format').",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The isAnalogousTo relation to prometheus:metrics-endpoint is a documented family-resemblance statement, not an identity claim - a third, distinct point on this round's same-shape-different-product spectrum, between sgcollect_info/cbcollect_info's silence and sgw:tombstone/storage:tombstone's stated conditional identity."
+}

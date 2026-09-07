@@ -1,0 +1,50 @@
+{
+  "page_id": "sync-gateway/4.1/security/audit-log-events",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/security/audit-log-events.md",
+  "concepts": [
+    { "candidate_id": "sgw:audit-event", "label": "Audit Event (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the individual, uniquely-numbered log entry Sync Gateway's audit-logging feature produces. First contact with Sync Gateway auditing in this project; checked against security:auditing (Server) and monitoring:event (Capella) and found no page stating an equivalence, so kept as its own concept per the no-silent-merge rule. See this record's cross_product_finding." },
+    { "candidate_id": "sgw:audit-event-type", "label": "Audit Event Type (Admin/Data/User enum)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a closed 3-value scheme discovered by table structure, same modeling pattern as the registry's other enum concepts (e.g. cluster-access-credential-type): 'Audit Events can be one of the following types: Admin ... Data ... User'." },
+    { "candidate_id": "sgw:audit-event-scope", "label": "Audit Event Scope (Global/Database enum)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the other closed 2-value scheme this page defines: 'Audit events have scope, this affects how they can be configured. The audit events scopes are: Database ... Global'." },
+    { "candidate_id": "sgw:audit-log-bootstrap-config", "label": "Audit logging bootstrap config (logging.audit block)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the global, file-based configuration surface named here as where Global-scope events are enabled/disabled; a stub filled in more fully by manage-audit-logs.md later in this batch." },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted", "reused_or_minted": "reused - named as the surface for configuring database-scope audit events." },
+    { "candidate_id": "sgw:sgcollect-info", "label": "SG Collect Info",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's own diagnostic-collection utility, named as the subject of three admin audit events (sgcollect_info status/start/stop) and linked in See Also. Distinct product surface from Server's promoted tool:cbcollect-info; no page states an equivalence between the two so they are kept separate, though both are independently documented as excluding audit-log data from what they collect - see cross_product_finding." }
+  ],
+  "relations": [
+    { "subject": "sgw:audit-event", "predicate": "usesEnum", "object": "sgw:audit-event-type",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "EventType       | The type of action performed by the event. This can be user, admin, or data." },
+    { "subject": "sgw:audit-event", "predicate": "usesEnum", "object": "sgw:audit-event-scope",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "EventScope      | The scope of the event. This can be Global or Database. You can configure global scope events via the [bootstrap config](../configuration/configuration-schema-bootstrap.md#logging-audit-audit%5Flog%5Ffile%5Fpath), and database events via the [Admin REST API](../rest-api/rest%5Fapi%5Fadmin.md). |" },
+    { "subject": "sgw:audit-event-scope", "predicate": "configuredVia", "object": "sgw:audit-log-bootstrap-config",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "`Global` \\- These events are considered global such as `AuditIDSyncGatewayStartup 53260`, and have to be enabled/disabled in the bootstrap config." },
+    { "subject": "sgw:audit-event-scope", "predicate": "configuredVia", "object": "sgw:admin-rest-api",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "EventScope      | The scope of the event. This can be Global or Database. You can configure global scope events via the [bootstrap config](../configuration/configuration-schema-bootstrap.md#logging-audit-audit%5Flog%5Ffile%5Fpath), and database events via the [Admin REST API](../rest-api/rest%5Fapi%5Fadmin.md). |" },
+    { "subject": "sgw:sgcollect-info", "predicate": "seeAlso", "object": "sync-gateway/4.1/security/audit-logging",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "* [Audit Logging](audit-logging.md)" },
+    { "subject": "sgw:audit-event", "predicate": "seeAlso", "object": "sync-gateway/4.1/security/manage-audit-logs",
+      "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "* [Manage Audit Logs](manage-audit-logs.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "hasPrivilege / requiresServerRole",
+    "finding": "This reference page lists ~50 audit event IDs across Auditing, Sync Gateway, Database, User/Role Administration, Replication and Document-related categories, but none of the individual event rows states which privilege or role is required to trigger or view them - that gating fact lives on audit-logging.md ('Viewing and managing audit logs permissions are enforced through Sync Gateway RBAC controls') and manage-audit-logs.md (the cbs/sgw domain split), not here. This page is purely a catalog of what gets recorded, not who can see it. Also notable: Database-scope events are stated to be 'segregated into per Sync Gateway database specific audit logs' but no promoted or minted predicate in this batch cleanly captures that per-database log-file segregation fact (storesDataIn's usual sense is storage-engine placement, not a log-file split, and scopedToKeyspace's range is keyspaces/roles/indexes, not an enum value) - left unrecorded as a relation rather than forced onto an ill-fitting predicate."
+  },
+  "cross_component_finding": "The EventScope enum (Global vs Database) ties directly into this batch's other two pages' configuration-surface split: Global-scope events are gated through sgw:audit-log-bootstrap-config (file-based, node-level), Database-scope events through sgw:admin-rest-api (runtime, per-database) - the same Global/Database split that manage-audit-logs.md's 'Audit Log Configuration' section describes in full. This page supplies the enum and its two example event IDs; manage-audit-logs.md supplies the operational detail.",
+  "cross_product_finding": "This page's event catalog (id/name/description/DefaultEnabled/Filterable/EventScope/EventType/Fields, ~50 rows) shares its general shape - a filterable, per-node, timestamped, immutable event log with an Admin/Data/User type split - with Server's security:auditing facility, but the two catalogs share no actual vocabulary: this page's ids are five-digit numbers in the 53000-55999 range specific to Sync Gateway's own operations (database CRUD, ISGR replication, sync-gateway-specific user/role administration), not Server's audit_event ids. No page in this batch, or in the round-3 Sync Gateway security pages read for context, states any equivalence between the two. Also notable: both tool:cbcollect-info (Server's collector, promoted, 'does not collect audit logs') and sgw:sgcollect-info (Sync Gateway's own collector, referenced via events 53300-53302 and the See Also link) independently exclude audit-log data from what they capture - the same documented non-support fact, arrived at independently for two different products' two different collection tools, with no page connecting the two."
+}

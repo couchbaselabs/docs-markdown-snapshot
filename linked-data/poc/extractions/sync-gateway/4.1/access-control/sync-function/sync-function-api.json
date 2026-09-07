@@ -1,0 +1,132 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api.md",
+  "concepts": [
+    { "candidate_id": "sgw:sync-function", "label": "Sync Function", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json - this page is its dedicated API reference" },
+    { "candidate_id": "sgw:access-cmd", "label": "access()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:expiry-cmd", "label": "expiry()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json - only sketched there, fully defined here" },
+    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:require-admin-cmd", "label": "requireAdmin()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json - only sketched there, fully defined here" },
+    { "candidate_id": "sgw:require-role-cmd", "label": "requireRole()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json/sync-function-api-require-role-cmd.json" },
+    { "candidate_id": "sgw:require-user-cmd", "label": "requireUser()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:role-cmd", "label": "role()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:throw-cmd", "label": "throw()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "'role:' string-prefix convention (Sync Gateway sync function)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:all-channels-wildcard", "label": "* (all-channels wildcard, Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Admin REST API (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:collection", "label": "Collection (Sync Gateway scope)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:all-channels-property", "label": "all_channels property (computed, read-only)", "registry_status": "minted", "reused_or_minted": "reused within this same batch - minted in access-control-how-verify-access.json" },
+    {
+      "candidate_id": "sgw:shared-bucket-access-setting",
+      "label": "shared-bucket-access setting (Enabled/Disabled)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the database-level toggle that determines whether an expired/purged document tombstones (Enabled) or is fully purged (Disabled); channels.json already referenced 'enable_shared_bucket_access' as a size-limit key without minting a dedicated concept for the setting itself - this page is where its behavioral consequence is actually documented"
+    },
+    {
+      "candidate_id": "sgw:sync-function-es5-dialect",
+      "label": "ES5 JavaScript syntax (Sync Function language constraint)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - an explicit, stated language-version ceiling on what the Sync Function may use; not previously captured despite sync-function.json's extensive treatment of the function's arguments and helpers"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "doesNotSupport",
+      "object": "sgw:all-channels-wildcard",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The sync function `access()` call does not support the wildcard ('**\\***') for granting access to all channels. To grant a user access to all channels, use the REST API channel grant endpoint."
+    },
+    {
+      "subject": "sgw:all-channels-wildcard",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; the wildcard grant is only reachable via the REST channel-grant endpoint, never via access()",
+      "evidence": "To grant a user access to all channels, use the REST API channel grant endpoint."
+    },
+    {
+      "subject": "sgw:all-channels-property",
+      "predicate": "mergesResultsFrom",
+      "object": "sgw:access-cmd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, same union-of-grants semantics minted in access-control-how-verify-access.json, corroborated here with this page's own quote and its own reasoning (repeated invocation across documents)",
+      "evidence": "The effects of all access calls by all active documents are effectively combined in a union, so if _any_ document grants a user access to a channel, that user has access to the channel."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "hasExecutionConstraint",
+      "object": "sgw:throw-cmd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; a channel()/access() call's effects are contingent on the sync function not subsequently rejecting the write",
+      "evidence": "Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "hasExecutionConstraint",
+      "object": "sgw:throw-cmd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, same constraint stated jointly for channel() and access() on this page",
+      "evidence": "Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur."
+    },
+    {
+      "subject": "sgw:expiry-cmd",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "sgw:shared-bucket-access-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; the same expiry() call produces a tombstone (Enabled) or a full purge (Disabled) of the document depending on this setting",
+      "evidence": "The impact on the resulting document when the expiry value is reached depends on the setting of shared-bucket-access:"
+    },
+    {
+      "subject": "sgw:expiry-cmd",
+      "predicate": "doesNotAffect",
+      "object": "sgw:document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; expiry/purge is strictly local and is never propagated to other replicas by replication",
+      "evidence": "This expiration time is not propagated when the document is replicated.\n\nThe purge of the document does not cause it to be deleted on any other database."
+    },
+    {
+      "subject": "sgw:all-channels-wildcard",
+      "predicate": "doesNotSatisfy",
+      "object": "sgw:require-access-cmd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in access-control-concepts.json; this page's own reference-level quote adds a fuller mechanistic reason (requireAccess only recognizes explicit named-channel grants)",
+      "evidence": "Note that `requireAccess()` will only recognize grants made explicitly using a channel name (not by a wildcard).\n\nSo, if a user was granted access using only the [all channels wildcard](../channels.md#lbl-all-channels)\\] (`*`), then `requireAccess('anychannelname')'` will fail because the user wasn't granted access to that channel (only to the `*` channel)."
+    },
+    {
+      "subject": "sgw:require-admin-cmd",
+      "predicate": "restrictedToContext",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; requireAdmin() is a positive whitelist check that ONLY the Admin REST API can satisfy, the inverse framing of the admin-bypass relation already established elsewhere in the batch",
+      "evidence": "Use the `requireAdmin()` function to reject document updates that are not made by the Sync Gateway Admin REST API."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "supportsLanguageConstruct",
+      "object": "sgw:sync-function-es5-dialect",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "The Sync Function uses the [ES5 standard](https://ecma-international.org/wp-content/uploads/ECMA-262%5F5.1%5Fedition%5Fjune%5F2011.pdf) of JavaScript syntax."
+    },
+    {
+      "subject": "sgw:throw-cmd",
+      "predicate": "preventsDocumentPersistence",
+      "object": "sgw:document",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - established in sync-function.json, restated here with this page's own quote",
+      "evidence": "Use `throw()` to prevent a document from persisting or syncing to any other users."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a (fail-silent role assignment, restated)",
+    "finding": "This page restates, with its own quote, the fail-silent role() behavior already flagged in access-control-how-assign-users-to-roles.json's notable_absence: 'Nonexistent roles don't cause an error, but have no effect on the user's access privileges.' It adds one genuinely new nuance not previously captured: role assignments can be made retroactively consistent-with-future-state - 'You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.' In other words, a role() call referencing a not-yet-created role is not just silently ignored once, it is silently RE-EVALUATED once the role comes into existence, and prior document revisions' role() calls will then take effect. This is a deferred-activation behavior with no described re-evaluation trigger (it is unclear from this page alone whether this happens on the next sync-function invocation for that document, or on some other schedule) and no analogue anywhere else in the corpus's privilege/role models, which are checked once, synchronously, at grant or operation time."
+  },
+  "cross_component_finding": "access()'s documented performance warning is worth surfacing: 'If you invoke the `access()` function multiple times to grant the same user access to the same channel, you could see negative performance effects, such as large fetches or request timeouts.' Combined with the union-of-all-active-documents semantics ('The effects of all access calls by all active documents are effectively combined in a union'), this means SGW's channel-grant model has a per-document, per-invocation COST that a hand-authored sync function can accidentally multiply across every document revision ever processed - there is no equivalent performance warning attached to any operation in server/'s RBAC or Capella's role model in the corpus so far, since granting a privilege or role there is a single, one-time administrative action rather than logic that re-runs on every document write.",
+  "cross_product_finding": "The 'Star Channel' cross-reference in this page's duplicated 'Default Sync Function Examples' section repeats the same malformed link target already flagged on auto-purge-channel-access-revocation.json: '[Star Channel](#2.7@sync-gateway-channels.adoc#star-channel)'. Its appearing verbatim, byte-for-byte, on two structurally unrelated pages (an API reference page and a revocation-behavior conceptual page) confirms this is a repeated build/authoring artifact - likely a single AsciiDoc include fragment reused on both source pages - rather than an isolated typo, strengthening the case for raising it as a docs-issue in reconciliation."
+}

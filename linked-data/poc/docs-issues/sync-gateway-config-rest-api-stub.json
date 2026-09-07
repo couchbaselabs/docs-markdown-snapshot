@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-config-rest-api-stub",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "configuration/configuration-rest-api.md is an unfinished stub: its entire Introduction section reads only 'Sync Gateway …' - three words plus an ellipsis - with no further prose, schema, examples, or endpoint list, despite the page's own title ('Configuration Rest API') and description promising a full treatment of the Config REST API. Every other page in the configuration/ batch links to it from a shared 'Topic Group' navigation strip, so a reader (or an AI agent) following that navigation to learn about the Config REST API specifically lands on empty content.",
+  "about": [
+    "sync-gateway/4.1/configuration/configuration-rest-api"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

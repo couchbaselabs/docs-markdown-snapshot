@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/channel-cmd",
+  "label": "channel()",
+  "type": "the sync-function helper that routes/assigns a document to one or more channels. A channel comes into existence implicitly the first time a document is routed to it - there is no separate creation step. Like access(), its effect is provisional: it only takes hold if the sync function goes on to accept the document revision (does not throw()).",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "Pairs with access() as the two 'mutate the access graph' helpers, as against the require*()/throw() family that gates the write itself."
+}

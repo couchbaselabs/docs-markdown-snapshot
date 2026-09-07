@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/delta-sync",
+  "label": "Delta Sync (Sync Gateway)",
+  "type": "an Enterprise-Edition-only replication optimisation sending only the changed fields of a document revision rather than the whole body. Enabled per-database (delta_sync.enabled) and required to be true before an ISGR replication's own enable_delta_sync setting has any effect.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Stated identically on both the embedded-database and standalone-ISGR replication schemas - the same cross-schema duplication pattern as conflict_resolution_type."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/configures-property",
+  "label": "configures property",
+  "kind": "relation (schema-level)",
+  "type": "the subject provisioning mechanism (an API surface like sgw:admin-rest-api, or a configuration method like sgw:legacy-pre-3-config) is stated to set or update the object property/setting. Distinct from configurableVia/configuredVia (a setting's OWN record naming what can configure it) - this predicate is filed from the mechanism's side, naming what it reaches.",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Genuine promotion-debt catch found during round 27's reconciliation gate-log review, not a round-27 mint: minted in round 3's access-control-concepts.json and reused across 6 of this round's configuration/ and access-control/ pages (configuration-schema-db-security.json, configuration-schema-isgr.json, configuration-javascript-functions.json, configuration-schema-access-control.json, access-control-how-use-xattrs-for-access-grants.json, and configuration-properties-legacy.json itself) without ever itself being promoted - 7 distinct files under the promotion metric, well above the bar. Caught while investigating a gate-log deny->allow(-2) pair on configuration-properties-legacy.json, which had dropped its own configuresProperty relation (to sgw:admin-channels-property) rather than re-quote it; recovering that relation during reconciliation made this page the 7th distinct file - see reconciliation.md's round 27 section for the recovered relation."
+}

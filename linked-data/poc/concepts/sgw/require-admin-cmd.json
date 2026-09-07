@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/require-admin-cmd",
+  "label": "requireAdmin()",
+  "type": "the sync-function helper that rejects a document update unless it arrived via the Sync Gateway Admin REST API. Takes zero arguments and checks no property of the acting user at all - structurally distinct from requireUser()/requireAccess()/requireRole(), which all check a property of the authenticated identity. Gates on API surface, not identity.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Deliberately NOT generalised under requiresRole or folded with requireUser/requireAccess: its own reference page has no Context section and never states the same throw-based rejection language its three siblings share verbatim, and its object (sgw:admin-rest-api) is an API surface rather than a user/channel/role. Object of the requiresAdminApi predicate promoted this round."
+}

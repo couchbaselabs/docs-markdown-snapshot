@@ -1,0 +1,57 @@
+{
+  "page_id": "sync-gateway/4.1/manage/stats-monitoring-prometheus",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/stats-monitoring-prometheus.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:prometheus-metrics-format",
+      "label": "Prometheus Metrics Format (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (stats-monitoring.json)"
+    },
+    {
+      "candidate_id": "sgw:prometheus-endpoint",
+      "label": "/metrics Endpoint (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the concrete REST endpoint (port 4986, path /metrics) serving sgw:prometheus-metrics-format; kept separate from the extraction-layer prometheus:metrics-endpoint (Couchbase Server's own /metrics, from server/8.0/manage/monitor/set-up-prometheus-for-monitoring.json) for the same reason the format itself was kept separate - a stated family resemblance ('Like other Couchbase services...'), not a stated shared implementation"
+    },
+    {
+      "candidate_id": "sgw:audit-log",
+      "label": "Audit Log (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's own audit-event log, monitored via sgw_audit_num_audits_logged/filtered_by_role/filtered_by_user counters on this page; no precedent in round 3's access-control extraction, which described role/user grants but never an audit trail of access decisions"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:prometheus-metrics-format",
+      "predicate": "accessibleVia",
+      "object": "sgw:prometheus-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "Use the `metrics` endpoint to request these metrics:"
+    },
+    {
+      "subject": "sgw:audit-log",
+      "predicate": "monitoredVia",
+      "object": "sgw:prometheus-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted",
+      "evidence": "sgw\\_audit\\_num\\_audits\\_logged3.2.1 counter The total number of audit events logged."
+    },
+    {
+      "subject": "sgw:prometheus-endpoint",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:prometheus-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both slots the same minted concept, kept despite the self-referential shape because the page's own point is that the endpoint's data collection (not its mere existence) is gated on a separate activation flag",
+      "evidence": "This endpoint's data will be scraped at configurable interval, when the `metricsInterface` is activated and Sync Gateway integrated with Prometheus"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "Individual Prometheus metrics on this page each carry an explicit version badge (e.g. sgw_cache_revision_cache_num_items at '3.2.1', sgw_database_total_sync_time at '3.2.0', sgw_audit_num_audits_logged at '3.2.1') - a per-metric availableSince fact repeated roughly 150 times across the page. Not minted as individual relations here: the round's guidance is against exhaustively extracting every reference-table row, and a per-metric availableSince relation for each of ~150 stats would overwhelm the record without adding ontological insight beyond 'this specific counter shipped in this specific patch version' - noted here as a deliberate scope decision rather than an oversight."
+  },
+  "cross_component_finding": "sgw_database_num_tombstones_compacted ('Number of tombstones compacted through tombstone compaction task on the database') is this page's own independent naming of the sgw:compact-operation's tombstone mode (minted in revisions.json) as a background 'task' - a third piece of vocabulary (alongside revisions.md's REST-triggered /{db}/_compact and stats-monitoring-json.md's compaction_tombstone_start_time timestamp) describing the same underlying mechanism from three different angles (operation, timing, count) across three different pages in this one batch, none of which cross-reference each other explicitly.",
+  "cross_product_finding": "This page states outright that Sync Gateway follows the same pattern as the rest of the product line: 'Like other Couchbase services, Sync Gateway offers Prometheus-compatible metrics in a flat JSON format' - the same isAnalogousTo family-resemblance statement already captured in stats-monitoring.json, restated here almost verbatim, confirming it is a stable, repeated framing across this sub-page group rather than a one-off phrasing."
+}

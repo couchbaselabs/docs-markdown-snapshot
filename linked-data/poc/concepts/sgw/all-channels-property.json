@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/all-channels-property",
+  "label": "all_channels (computed property, Sync Gateway)",
+  "type": "a user's or role's computed, effective channel set - the union of its own admin_channels (REST-granted), any access()-granted channels, and (for a user) every role it belongs to's own all_channels, recursively. Exposed as a first-class, queryable Admin-REST-API surface specifically because this union cannot be read off any single stored field.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Distinct from sgw:all-channels-wildcard (the '*' special grant VALUE) and sgw:all-documents-channel (the special channel value routing a document to every user) - three different things all involving 'all channels' in Sync Gateway's access model. No Server RBAC or Capella role-model equivalent introspection endpoint exists in the corpus so far; granting a privilege/role there is a one-time admin action, not a computed union re-evaluated per document."
+}

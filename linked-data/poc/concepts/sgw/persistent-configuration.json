@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/persistent-configuration",
+  "label": "Persistent (centralized modular) configuration (Sync Gateway)",
+  "type": "the configuration mode Sync Gateway 3.0+ defaults to: centralized, modular, and stored/propagated via the Admin REST API rather than a static file. Required for the Couchbase Server Eventing Service to have compatibility-check visibility into a database at all - a database created under legacy file-based config is 'not recorded in the registry' Eventing consults.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "The Eventing-Service dependency is the first source-stated case this round found of Sync Gateway's own configuration-mode choice reaching outward to affect a Couchbase Server-side service's behaviour, rather than merely reusing a Server identity or transport mechanism."
+}

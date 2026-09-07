@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/conflict-resolution-type-setting",
+  "label": "conflict_resolution_type setting (Sync Gateway ISGR/database replication)",
+  "type": "the per-replication setting choosing how Sync Gateway resolves a write conflict (Sequence Number, Timestamp, or 'custom' - which requires sgw:custom-conflict-resolver to be set). Changing it is an Enterprise-Edition-only operation.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Field-for-field identical across configuration-schema-database.md's embedded replications object and configuration-schema-isgr.md's standalone schema - see sgw:inter-sync-gateway-replication's own note for the shared-schema finding this comes from."
+}

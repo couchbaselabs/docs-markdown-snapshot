@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/sync-gateway-instance",
+  "label": "Sync Gateway instance",
+  "type": "a single running Sync Gateway process, typically deployed on a dedicated node/tier separate from Couchbase Server, using lightweight threads and async I/O (\"designed for multiprocessing\"). Serves the public REST API on port 4984 by default. A load balancer distributes requests across multiple instances; a reverse proxy can additionally terminate TLS for them.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Distinct from tool:sync-gateway (the shipped binary/software itself) - this concept is a specific deployed, running process."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-configuration-overview-corrupted-table",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "configuration-overview.md's Table 1 (Configuration Levels) has several 'Changeable?' cells corrupted by a markdown-conversion defect: two sentences are merged with no separating punctuation or whitespace, e.g. 'Yes, file-editRestart required' and 'Yes by the Admin REST APINo restart, but **not persisted**'. The restart/persistence axis for Node, System properties, Logging properties, Database and Replication properties levels is present in the source but not cleanly machine-extractable from this table without consulting the original AsciiDoc.",
+  "about": [
+    "sync-gateway/4.1/configuration/configuration-overview"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

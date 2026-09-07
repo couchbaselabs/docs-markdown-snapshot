@@ -1,0 +1,44 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-channel-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-channel-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:channel-cmd", "label": "channel()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:collection", "label": "Collection (Sync Function scope)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:sync-function", "label": "Sync Function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:channel-cmd", "predicate": "routesDocumentToChannel", "object": "sgw:channel",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Use the `channel()` function to route the document to the named channel(s)." },
+    { "subject": "sgw:channel-cmd", "predicate": "createsOnAction", "object": "sgw:channel",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "A channel implicitly comes into existence when a document is routed to it." },
+    { "subject": "sgw:sync-function", "predicate": "scopedToCollection", "object": "sgw:collection",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3)",
+      "evidence": "Couchbase Sync Gateway defines a Sync Function at the `collection` level. Defining at this level helps simplify data management and improve data reliability. Each collection in the system allows for only one Sync Function, which enables the specification of Access Control rules." },
+    { "subject": "sgw:sync-function", "predicate": "assignsDefaultChannelNamedAfter", "object": "sgw:collection",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3)",
+      "evidence": "By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name." },
+    { "subject": "sgw:channel-cmd", "predicate": "takesEffectOnlyOnCommit", "object": "sgw:document",
+      "registry_status": "minted", "reused_or_minted_predicate": "minted - no promoted predicate captures 'a side effect is provisional until the write actually commits'; distinct from doesNotSatisfy/doesNotSupport (both about grants, not about commit-timing) and from hasExecutionConstraint (deliberately scoped to topology/placement only, per that relation's own promotion note)",
+      "evidence": "Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur." }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page links to the 'Star Channel' concept with a malformed cross-reference target: '[Star Channel](#2.7@sync-gateway-channels.adoc#star-channel)' - this looks like a broken Antora xref left over from a doc-conversion pass (the '#2.7@...' fragment is not a valid link in this Markdown snapshot, unlike the clean relative-path links used everywhere else in this batch, e.g. '(sync-function-api-access-cmd.md)'). Not extracted as a seeAlso relation because the target cannot be resolved to a page id, but flagged here since it means an AI agent following this specific link would fail; round 3's access-control-concepts.json used the equivalent, working label 'All Documents / Star Channel' for the same concept, so the underlying ontology tie is intact even though this page's own link is broken."
+  },
+  "cross_component_finding": "This is the fullest first-hand statement in the batch of a rejection-semantics rule shared by channel() and access(): routing/grant side effects are provisional and are discarded together if the sync function goes on to reject the update (via throw() or any require*() check throwing). This directly connects the two 'mutate the access graph' helpers (channel(), access()) to the 'gate the write' helpers (throw(), requireRole(), requireUser(), requireAccess(), requireAdmin()) documented elsewhere in this same batch: all of them execute within one all-or-nothing sync-function invocation per document revision, and only a fully-accepted revision's channel()/access() calls actually take effect."
+}

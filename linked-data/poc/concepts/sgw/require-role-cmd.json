@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/require-role-cmd",
+  "label": "requireRole()",
+  "type": "the sync-function helper that rejects a document update unless the acting user holds the named role. The object of the already-promoted requiresRole predicate.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Promoted this round because a second, independent page (this round's scopes-and-collections-config.json) restates the mechanism round 3's dedicated reference page already documented - the concept itself had sat unfiled behind the requiresRole predicate record until now."
+}

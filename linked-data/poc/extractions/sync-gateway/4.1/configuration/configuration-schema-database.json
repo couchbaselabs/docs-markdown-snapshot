@@ -1,0 +1,369 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-database",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-database.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:database-configuration",
+      "label": "Database Configuration (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the persistent, per-database configuration object provisioned through the Admin REST API's Database Configuration endpoints; the umbrella subject for most of this page's schema"
+    },
+    {
+      "candidate_id": "version:sgw-4-1",
+      "label": "Sync Gateway 4.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first mention of this specific version anywhere in the registry (prior versions modeled: version:sgw-2-x, version:sgw-3-0); this batch's own release resolves to 4.1"
+    },
+    {
+      "candidate_id": "sgw:custom-scope",
+      "label": "Custom Scope (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - capped at 1 per database"
+    },
+    {
+      "candidate_id": "sgw:custom-collection",
+      "label": "Custom Collection (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - capped at 1000 across the cluster"
+    },
+    {
+      "candidate_id": "sgw:system-metadata-collection",
+      "label": "System Metadata Collection (_system._mobile)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - reserved collection introduced in 4.1 to isolate Sync Gateway's own metadata from user data; not user-configurable"
+    },
+    {
+      "candidate_id": "sgw:metadata-migration-to-system-collection",
+      "label": "Metadata Migration to System Collection",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the one-time migration event triggered by opting in to sgw:system-metadata-collection"
+    },
+    {
+      "candidate_id": "server:bucket",
+      "label": "Bucket (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page's own Table 1 draws the cross-product mapping"
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "server:system-scope",
+      "label": "_system scope",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; sgw:system-metadata-collection is the Sync Gateway-owned collection living inside this Couchbase Server-reserved scope"
+    },
+    {
+      "candidate_id": "sgw:import-docs-flag",
+      "label": "import_docs setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - edition-gated default (false on Community, true on Enterprise), requires enable_shared_bucket_access"
+    },
+    {
+      "candidate_id": "sgw:enable-shared-bucket-access",
+      "label": "enable_shared_bucket_access setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - prerequisite flag for sgw:import-docs-flag"
+    },
+    {
+      "candidate_id": "sgw:import-filter",
+      "label": "Import Filter (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-javascript-functions.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:import-partitions",
+      "label": "import_partitions setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Enterprise Edition-only import sharding tuning"
+    },
+    {
+      "candidate_id": "sgw:delta-sync",
+      "label": "delta_sync setting (database-level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Enterprise Edition-only; a per-replication enable_delta_sync flag (configuration-schema-isgr.md, same batch) additionally requires this database-level flag to be true"
+    },
+    {
+      "candidate_id": "sgw:custom-conflict-resolver",
+      "label": "Custom Conflict Resolver (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-javascript-functions.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:conflict-resolution-type-setting",
+      "label": "conflict_resolution_type setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Enterprise Edition-only to change from its default; custom_conflict_resolver is mandatory only when this is set to 'custom'"
+    },
+    {
+      "candidate_id": "sgw:inter-sync-gateway-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway node-to-node replication, checked against the registry's xdcr:* family (Couchbase Server cluster-to-cluster replication, a different product and topology) and no source page states a relationship, so kept separate per the no-silent-merge rule. This page's own `replications` property schema is field-for-field identical to configuration-schema-isgr.md's standalone replication schema (same batch) - see cross_component_finding."
+    },
+    {
+      "candidate_id": "sgw:revision-cache",
+      "label": "Revision Cache (cache.rev_cache)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - its memory-based eviction mode is Enterprise Edition-only"
+    },
+    {
+      "candidate_id": "sgw:suspendable-database",
+      "label": "suspendable setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - defaults differently depending on whether the node runs in serverless mode (see configuration-schema-bootstrap.json's sgw:unsupported-serverless-mode)"
+    },
+    {
+      "candidate_id": "sgw:guest-user",
+      "label": "GUEST user (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept; this page provides its full field schema (admin_channels, admin_roles, disabled, password, etc.)"
+    },
+    {
+      "candidate_id": "sgw:admin-channels-property",
+      "label": "admin_channels property (collection_access)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3) - this page's users/roles/guest schema all carry the same field"
+    },
+    {
+      "candidate_id": "sgw:oidc-provider",
+      "label": "OIDC Provider (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - an OpenID Connect identity provider configuration whose channels_claim/roles_claim can grant channel access and role membership"
+    },
+    {
+      "candidate_id": "sgw:local-jwt-provider",
+      "label": "Local JWT Provider (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling authentication mechanism to sgw:oidc-provider, validating self-issued/local JWTs rather than delegating to an external OIDC issuer"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:store-legacy-revtree-data",
+      "label": "store_legacy_revtree_data setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - governs whether legacy RevTree-ID pointer data is retained for pre-4.x client compatibility alongside the newer CV-based revision scheme"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:database-configuration",
+      "predicate": "storesDataIn",
+      "object": "server:bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted storesDataIn)",
+      "evidence": "Each Sync Gateway database maps to exactly one Couchbase Server bucket."
+    },
+    {
+      "subject": "sgw:custom-collection",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresPriorExecutionOf) - the Couchbase Server-side collection must be created before it can be referenced in a Sync Gateway database config; Sync Gateway itself never creates it",
+      "evidence": "The scope and collection must already exist on the Couchbase Server bucket before you reference them in the Sync Gateway database config. Sync Gateway does not create scopes or collections on Couchbase Server; you must create them there first."
+    },
+    {
+      "subject": "sgw:custom-scope",
+      "predicate": "hasMaximumCount",
+      "object": "1 per database",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - no promoted predicate captures an upper-bound cardinality constraint (the closest, hasMinimumMemoryQuota/hasMinimumNodeCount, are minimum-shaped); needed for this and the sibling custom-collection limit and likely reusable wherever the corpus states a hard maximum count",
+      "evidence": "1 custom scope per database"
+    },
+    {
+      "subject": "sgw:custom-collection",
+      "predicate": "hasMaximumCount",
+      "object": "1000 across the cluster",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted (same predicate as above, second occurrence)",
+      "evidence": "1000 custom collections across the cluster"
+    },
+    {
+      "subject": "sgw:database-configuration",
+      "predicate": "hasDefaultValue",
+      "object": "the default scope and collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "If you don't specify a custom scope and collection in your database configuration, the database will use the default scope and collection."
+    },
+    {
+      "subject": "server:system-scope",
+      "predicate": "hasInternalComponent",
+      "object": "sgw:system-metadata-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasInternalComponent) - `_system._mobile` names a collection ('_mobile') inside Couchbase Server's own reserved `_system` scope, already modeled as server:system-scope",
+      "evidence": "From Sync Gateway 4.1, you can opt in to using a reserved system collection, `_system._mobile`, to store Sync Gateway internal metadata separately from user application data. This collection is owned by Sync Gateway and is not a user-configurable scope or collection."
+    },
+    {
+      "subject": "sgw:system-metadata-collection",
+      "predicate": "triggersImmediateExecutionOf",
+      "object": "sgw:metadata-migration-to-system-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted triggersImmediateExecutionOf)",
+      "evidence": "Opting in migrates Sync Gateway internal metadata from the default collection (`_default._default`) to `_system._mobile`."
+    },
+    {
+      "subject": "sgw:import-docs-flag",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition) - the field's DEFAULT differs by edition rather than the field being edition-exclusive",
+      "evidence": "If the edition is the Community Edition, then this will default to `false` or else in the Enterprise Edition, it will default to `true`."
+    },
+    {
+      "subject": "sgw:import-docs-flag",
+      "predicate": "requiresSetting",
+      "object": "sgw:enable-shared-bucket-access",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+      "evidence": "This value requires `enable_shared_bucket_access=true`."
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "requiresSetting",
+      "object": "sgw:import-docs-flag",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+      "evidence": "`import_docs` must be true to make this field applicable."
+    },
+    {
+      "subject": "sgw:import-partitions",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition)",
+      "evidence": "\\*\\* This is an Enterprise Edition feature only\\*\\*"
+    },
+    {
+      "subject": "sgw:delta-sync",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition)",
+      "evidence": "Delta sync configuration settings.\n\n**This is an Enterprise Edition feature only**"
+    },
+    {
+      "subject": "sgw:custom-conflict-resolver",
+      "predicate": "requiresSetting",
+      "object": "sgw:conflict-resolution-type-setting",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting)",
+      "evidence": "This **must** be used when `conflict_resolution_type=custom`. This property will be ignored when `conflict_resolution_type` is not `custom`."
+    },
+    {
+      "subject": "sgw:conflict-resolution-type-setting",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition)",
+      "evidence": "Changing this is an Enterprise Edition only feature."
+    },
+    {
+      "subject": "sgw:inter-sync-gateway-replication",
+      "predicate": "requiresSetting",
+      "object": "sgw:delta-sync",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - a per-replication enable_delta_sync flag additionally requires this database-wide flag",
+      "evidence": "In order to enable delta-sync for a replication, the database level setting `delta_sync.enabled` must also be set to true."
+    },
+    {
+      "subject": "sgw:revision-cache",
+      "predicate": "requiresEdition",
+      "object": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresEdition) - only the memory-based eviction mode is edition-gated, not the cache itself",
+      "evidence": "The maximum amount of memory the revision cache should take up in MB, setting to 0 will disable any eviction based on memory at rev cache. There is a minimum value of 50 (50MB) for this config option. When set this memory limit will work in in hand with revision cache size parameter. So you will potentially get eviction at revision cache both based off memory footprint and number of items in the cache. **This is an Enterprise Edition feature only**"
+    },
+    {
+      "subject": "sgw:suspendable-database",
+      "predicate": "hasDefaultValue",
+      "object": "true when running in serverless mode, otherwise false",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "Defaults to true when running in serverless mode otherwise defaults to false."
+    },
+    {
+      "subject": "sgw:guest-user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess) - the guest object carries the same admin_channels field as an ordinary user",
+      "evidence": "A list of channels to explicitly grant to the user for the default collection. See `collection_access` for channels in named collections."
+    },
+    {
+      "subject": "sgw:oidc-provider",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess) - channel grants delivered via a JWT claim rather than a static admin_channels list",
+      "evidence": "If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's channels."
+    },
+    {
+      "subject": "sgw:oidc-provider",
+      "predicate": "grantsRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsRole)",
+      "evidence": "If set, the value(s) of the given OpenID Connect authentication token claim will be added to the user's roles."
+    },
+    {
+      "subject": "sgw:local-jwt-provider",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess) - identical claim-based mechanism to sgw:oidc-provider, but for self-issued/local JWTs",
+      "evidence": "If set, the value(s) of the given JSON Web Token claim will be added to the user's channels."
+    },
+    {
+      "subject": "sgw:local-jwt-provider",
+      "predicate": "grantsRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsRole)",
+      "evidence": "If set, the value(s) of the given JSON Web Token claim will be added to the user's roles."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "takesPrecedenceOver",
+      "object": "sgw:custom-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted takesPrecedenceOver) - when a per-collection `scopes.*.collections.*.sync` is configured, the database-level top-level `sync` property is ignored entirely",
+      "evidence": "If `scopes` parameter is set, this is ignored."
+    },
+    {
+      "subject": "sgw:store-legacy-revtree-data",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "version:sgw-4-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted retainedForLegacyCompatibility) - the setting exists purely to keep older RevTree-based clients working alongside 4.x's newer CV-based revision scheme",
+      "evidence": "Controls whether Sync Gateway stores additional legacy revision tree pointer data to support 3.x/early 4.x clients that still use RevTree IDs (for example when used as delta sources)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "sgw:oidc-provider and sgw:local-jwt-provider are described in near-identical terms (both grant channels/roles via a configurable claim name, both have register/disable_session/user_prefix fields) but the page never states outright that Local JWT is 'OIDC without the external issuer' or draws any explicit comparison between the two. An isAnalogousTo relation between them was considered and deliberately dropped rather than forced: isAnalogousTo's own promoted definition requires the DOCS themselves to draw the comparison, and no sentence on this page compares the two mechanisms to each other - the parallel is this extraction's own observation, not a documented statement."
+  },
+  "cross_component_finding": "The `replications.replication_id` schema on this page (adhoc, batch_size, collections_enabled, collections_local, collections_remote, conflict_resolution_type, continuous, custom_conflict_resolver, direction, enable_delta_sync, filter, initial_state, max_backoff_time, purge_on_removal, query_params, remote, remote_password, remote_username, replication_id, run_as) is FIELD-FOR-FIELD IDENTICAL to configuration-schema-isgr.md's standalone replication schema (same batch, same field list, same order, same descriptions verbatim in most cases) and to configuration-properties-legacy.md's worked `replications` example. This is strong, within-batch textual evidence that Sync Gateway has exactly one replication-configuration object (sgw:inter-sync-gateway-replication) exposed through three surfaces: embedded in a persistent database config (this page), embedded in the legacy config file, or addressed directly via the Admin REST API's dedicated `/{db}/_replication/{replicationId}` endpoint (configuration-schema-isgr.md). No page states this identity in so many words; it is established here by direct comparison of the two schema blocks within this same extraction batch, not by speculation about undocumented internals.",
+  "cross_product_finding": "server:system-scope hasInternalComponent sgw:system-metadata-collection is a concrete, newly-discovered (4.1) structural fact linking a Sync Gateway mobile-sync concern (isolating its own metadata) directly into a Couchbase Server-reserved namespace (the `_system` scope) that this registry already models from the server-side. This is a different flavour of cross-product coupling than the TLS-transport or Eventing-registry findings elsewhere in this batch: here Sync Gateway's data model literally nests inside a Couchbase Server structural primitive rather than merely depending on a Couchbase Server credential or service."
+}

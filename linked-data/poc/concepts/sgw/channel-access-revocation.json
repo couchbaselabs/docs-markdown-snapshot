@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/channel-access-revocation",
+  "label": "Channel Access Revocation (auto-purge on loss of channel access)",
+  "type": "the lifecycle event where a user loses access to a channel (directly, via role removal, or via a role losing the channel), which by default causes Couchbase Lite to auto-purge every document in that channel from its local database - a 3.0 breaking-change behaviour with no analogue in server/'s privilege model or Capella's; behaves the OPPOSITE way by default for sgw:inter-sync-gateway-replication (auto-purge is opt-in there, not on-by-default).",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Genuine promotion-debt catch, not a round-27 mint: minted in round 3's access-control-concepts.json and reused/extended this round by the dedicated auto-purge-channel-access-revocation.json deep-dive page (which this round's own framing specifically called out to check for additional detail) plus manage/channel-history.json and manage/resync.json, reaching 5 distinct files under the promotion metric - well above the bar. Caught during round 27's completeness check, alongside sgw:sync-function."
+}

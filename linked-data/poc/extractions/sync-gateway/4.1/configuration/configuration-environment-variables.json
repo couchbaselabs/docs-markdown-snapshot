@@ -1,0 +1,63 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-environment-variables",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-environment-variables.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:environment-variable-substitution",
+      "label": "Environment Variable Substitution (Sync Gateway configuration)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the `$VARNAME` / `${var:-default}` textual-substitution mechanism applied to configuration file contents before JSON parsing at startup"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-configuration",
+      "label": "Bootstrap Configuration (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-overview.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:sync-gateway-restart",
+      "label": "Sync Gateway Restart (configuration-triggered)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-overview.json, same batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:environment-variable-substitution",
+      "predicate": "configuredVia",
+      "object": "sgw:bootstrap-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia)",
+      "evidence": "Insert the required environment variable references in a [Bootstrap Configuration](configuration-schema-bootstrap.md), or in a [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) with `disable_persistent_config=true`."
+    },
+    {
+      "subject": "sgw:environment-variable-substitution",
+      "predicate": "configuredVia",
+      "object": "sgw:legacy-pre-3-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia) - same sentence names both surfaces the mechanism can be used within",
+      "evidence": "Insert the required environment variable references in a [Bootstrap Configuration](configuration-schema-bootstrap.md), or in a [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) with `disable_persistent_config=true`."
+    },
+    {
+      "subject": "sgw:environment-variable-substitution",
+      "predicate": "requiresRestartToApply",
+      "object": "sgw:sync-gateway-restart",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused (minted in configuration-overview.json, same batch) - environment variable values are read once at startup and are immutable at runtime, the same restart-dependency shape as bootstrap configuration itself",
+      "evidence": "The variables are immutable. This means changes to the values of the environment variables are not detected by Sync Gateway while it's running. Such changes only become effective after a restart of Sync Gateway."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page states 'Any references to undefined variables found in the configuration cause Sync Gateway to throw an error' - a validation/fail-fast behavior - but this was left as prose rather than forced into a relation, consistent with round 3's access-control-concepts.json which similarly left sgw:role-name-prefix-convention's 'throws if violated' behavior unmodeled as a triple. No promoted or extraction-layer predicate cleanly captures 'validation failure mode' as distinct from the settings it validates, and forcing one here for a single occurrence seemed premature."
+  },
+  "cross_component_finding": "Variable names are explicitly case-sensitive ('`${username}` and `${USERNAME}` are not the same variable'), a small but real footgun given that the same page's own Example 1 uses all-uppercase `${USERNAME}`/`${PASSWORD}` by convention with no enforcement - nothing on the page states or requires an uppercase naming convention, it is purely idiomatic in the example.",
+  "cross_product_finding": "None - this page's substitution mechanism is Sync Gateway's own configuration-file feature with no analogue invoked from or to Couchbase Server or Capella in this batch."
+}

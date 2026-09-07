@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-unrendered-sgw-attribute",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "scopes-and-collections-config.md's AsciiDoc `{sgw}` attribute reference was never resolved before publication - it appears literally as the four characters '{sgw}' at least eight times in running prose (e.g. '{sgw} uses a reserved system collection...', 'From {sgw} 4.1, you can opt in...', '{sgw} triggers this function...'). Every other page in the round-27 batch spells out 'Sync Gateway' in full; this is the only page with the raw, unrendered attribute leaking through to a reader (or an AI agent quoting the page verbatim).",
+  "about": [
+    "sync-gateway/4.1/configuration/scopes-and-collections-config"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

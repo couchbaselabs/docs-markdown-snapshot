@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/audit-event",
+  "label": "Audit event (Sync Gateway)",
+  "type": "a single recorded occurrence in sgw:audit-logging - ~50 distinct event ids (53000-55999 range) across Auditing, Sync Gateway, Database, User/Role Administration, Replication and Document categories, each carrying a default-enabled flag, a filterable flag, and an EventScope (Global vs. Database).",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Shares no actual vocabulary with Server's security:auditing audit_event catalogue (different id ranges, different category names) despite the same general shape (filterable, per-node, timestamped, immutable, Admin/Data/User-type split). No page states an equivalence between the two catalogues."
+}

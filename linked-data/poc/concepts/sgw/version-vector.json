@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/version-vector",
+  "label": "Version vector (Sync Gateway 4.0+ revision tracking)",
+  "type": "Sync Gateway 4.0+'s replacement for tree-based revision tracking (sgw:revision-tree), adopted for improved distributed conflict handling. Uses the same Hybrid Logical Vector (HLV) implementation Couchbase Server's XDCR uses for Cross Cluster Versioning - stated directly: 'Sync Gateway uses the Hybrid Logical Vector implementation described in HLV Data Maintained in xattr ... for XDCR compatibility.'",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "SIGNIFICANCE EXCEPTION, below the usual recurrence-2 bar (only revisions.json states this): resolves the round's flagged near-miss that revisions.json states SGW 4.0+ shares Server's XDCR HLV mechanism directly. This is a genuine mechanism-sharing statement, not a same-shape-different-product near-miss - the SAME versioning mechanism spans both products by design, evidenced directly on the page. Promoted specifically to carry the reliesOnMechanism relation into xdcr:cross-cluster-versioning (see relations); a fresh reconciliation agent minting this on a sample of one is exactly the kind of promotion the skill's significance-exception rule is for, and is flagged as such rather than silently applying a lower bar."
+}

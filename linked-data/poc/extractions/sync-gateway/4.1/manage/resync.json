@@ -1,0 +1,101 @@
+{
+  "page_id": "sync-gateway/4.1/manage/resync",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/resync.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's sync-function.json extraction as the JS-scripted access-control/validation/routing mechanism; this page describes the operational consequence of CHANGING it (resync), not the mechanism itself"
+    },
+    {
+      "candidate_id": "sgw:resync-operation",
+      "label": "Resync Operation (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the asynchronous, database-scoped reprocessing operation this whole page is about; no analogue anywhere in round 3's access-control extraction, which never described a bulk-recompute operation over existing documents"
+    },
+    {
+      "candidate_id": "sgw:database",
+      "label": "Database (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same round's batch (database-offline.json)"
+    },
+    {
+      "candidate_id": "sgw:require-user-cmd",
+      "label": "requireUser() (Sync Gateway sync function command)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-how-control-document-access.json extraction"
+    },
+    {
+      "candidate_id": "sgw:require-access-cmd",
+      "label": "requireAccess() (Sync Gateway sync function command)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-concepts.json extraction"
+    },
+    {
+      "candidate_id": "sgw:require-role-cmd",
+      "label": "requireRole() (Sync Gateway sync function command)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-how-control-document-access.json extraction"
+    },
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access, Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-concepts.json extraction as the CBL-side auto-purge event; this page states resync does NOT trigger it, extending the concept's documented behavior rather than redefining it"
+    },
+    {
+      "candidate_id": "sgw:persistent-configuration",
+      "label": "Persistent Configuration (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3, and already used in database-offline.json earlier in this batch"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration (Sync Gateway, file-based)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3, and already used in database-offline.json earlier in this batch"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "cascadesTo",
+      "object": "sgw:resync-operation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "If you change the Sync Function, Sync Gateway needs to reprocess all existing documents in the bucket to recalculate the routing and access assignments. A resync operation does this reprocessing."
+    },
+    {
+      "subject": "sgw:resync-operation",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "sgw:database",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer (sgw:database was minted in database-offline.json, first record in this batch)",
+      "evidence": "This updates the database configuration persisted in the bucket, and all nodes will go offline.\n  4. Run resync using [POST /{db}/\\_resync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/post%5Fdb-%5Fresync) (you can call this on any node or through Load Balancer)."
+    },
+    {
+      "subject": "sgw:resync-operation",
+      "predicate": "triggersPermissionModeChange",
+      "object": "sgw:sync-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted, minted for Java SDK transactions round 4, promoted on SQL++ transactions' independent sighting) - subject minted, object reused extraction-layer",
+      "evidence": "When running a resync operation, the context in the Sync Function is the admin user. For that reason, calling the methods `requireUser`, `requireAccess`, and `requireRole` always succeeds."
+    },
+    {
+      "subject": "sgw:resync-operation",
+      "predicate": "doesNotAffect",
+      "object": "sgw:channel-access-revocation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer",
+      "evidence": "If you change the sync function to revoke a user's access to a document, the access only takes effect once you save a new revision to that document on Sync Gateway. Running a resync operation does not revoke access to that document."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresExplicitCleanupOnFailure / triggersImmediateExecutionOf",
+    "finding": "The page warns about a hazard (running resync on more than one node in non-persistent-configuration mode: 'Starting resync on more than 1 node results in multiple instances running, with undefined system behavior') but never states a cleanup procedure to run if that hazard occurs - no requiresExplicitCleanupOnFailure shape, just a prevention warning. Nor does resync bypass any 'normal schedule' - it has no automatic/scheduled counterpart to pre-empt, unlike the eventing/xdcr scheduled-task 'run now' shape that triggersImmediateExecutionOf was minted for elsewhere in the registry - so that predicate does not apply here either."
+  },
+  "cross_component_finding": "The database.sync/Sync Function reference material (server-side JS, documented in access-control/) and this manage/ page describe two faces of the same object: what the Sync Function computes (access-control/sync-function.md) versus what happens when you change it after documents already exist (this page). Round 3's access-control extraction never anticipated 'what if the sync function changes after the fact' - it documented the function's write-time behavior only. This is the clearest piece of evidence in this batch that manage/ needed genuinely new vocabulary (sgw:resync-operation itself) even though it could reuse existing access-control concepts (sgw:sync-function, the require*Cmd family, sgw:channel-access-revocation) as the objects/subjects of its NEW relations - a middle case between round 26's Server node-lifecycle finding (zero precedent anywhere) and a hypothetical case where access-control vocabulary alone would have sufficed.",
+  "cross_product_finding": "None stated on this page."
+}

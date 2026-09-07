@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/webhook",
+  "label": "Webhook (Sync Gateway)",
+  "type": "a configured HTTP callback (via sgw:webhook-filter) firing on document changes - posts a document whole or not at all (no field-level redaction). Trades off against sgw:changes-feed; the two pages sharing this trade-off share an identical opening paragraph and comparison table, evidence they were authored as a matched pair.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Carries an explicit security caution: a webhook posts application data, including potentially sensitive user data, to configured URLs."
+}

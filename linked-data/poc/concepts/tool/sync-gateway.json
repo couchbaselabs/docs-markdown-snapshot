@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/tool/sync-gateway",
+  "label": "Sync Gateway (the product/binary)",
+  "type": "the Sync Gateway server software itself - the thing an operator installs, configures via command-line options, and deploys as one or more sgw:sync-gateway-instance processes. Distinct from any one running instance.",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Filed under tool: rather than service: because it is a standalone, separately-shipped server binary (like tool:cbbackupmgr), not a service running inside a Couchbase Server cluster the way service:data-service or service:query-service are. Not to be confused with sgw:sync-gateway-instance, a deployed running process of this software."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/write-access-control",
+  "label": "Write access control (Sync Gateway)",
+  "type": "Sync Gateway's write-side gate, enforced entirely by hand-authored requireUser()/requireRole()/requireAccess()/requireAdmin() calls inside the sync function - unlike read access (channel-based), write access is fail-open by default: any user who can read a document can update it unless the docs author writes an explicit require*() check. All such checks are unconditionally bypassed for calls made through the Admin REST API.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Sibling of sgw:read-access-control. Together the pair states this round's clearest access-control-layer finding: read access is a platform-enforced channel computation, write access is an opt-in, author-supplied set of function calls with no platform default beyond fail-open."
+}

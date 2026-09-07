@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/database",
+  "label": "Database (Sync Gateway)",
+  "type": "a Sync-Gateway-managed database, mapping onto a Couchbase Server bucket/scope/collection set, with its own online/offline lifecycle (sgw:database-lifecycle-state-enum). State changes are local to the specific Sync Gateway instance addressed and are not reflected by other instances serving the same database - coordinating a multi-instance state change is the operator's responsibility.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Round 3's access-control extraction never described database-level (as opposed to document/channel/user-level) state at all - directly confirming this round's hypothesis that manage/ holds vocabulary neither access-control nor any reference/conceptual page needed."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/shared-bucket-access-setting",
+  "label": "shared_bucket_access setting (Sync Gateway)",
+  "type": "the per-database setting controlling whether Sync Gateway and Couchbase Server applications share the same bucket. Changes the physical shape of a deletion (sgw:tombstone's isVariantOf relation to storage:tombstone is conditioned on this setting being true) and the impact of expiry() reaching its TTL.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The setting behind this round's headline tombstone finding - see sgw:tombstone."
+}

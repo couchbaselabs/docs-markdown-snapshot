@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/webhook-filter",
+  "label": "Webhook Filter (Sync Gateway)",
+  "type": "the user-authored JavaScript event handler a sgw:webhook fires on a document change - a sibling of sgw:import-filter and sgw:custom-conflict-resolver under the shared sgw:sync-function umbrella.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Subject to the same timeout setting Sync Gateway enforces on any external call it makes on the docs author's behalf."
+}

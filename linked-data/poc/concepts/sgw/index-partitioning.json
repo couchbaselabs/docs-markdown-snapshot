@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/index-partitioning",
+  "label": "Partitioned Indexes (Sync Gateway)",
+  "type": "a Sync Gateway-side GSI index optimisation for deployments using Memory-Optimized Indexes that have grown too large for one index node - splits an index across configurably-numbered partitions, trading query fan-out cost for storage headroom. Available since Sync Gateway 3.3.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Its only stated access-control guidance is informal ('advanced users... typically Architects or Admins') - no Sync Gateway or Server RBAC role gates this destructive, hard-to-reverse operation, matching sgw:import-docs-setting's identical operator-discipline-only pattern in this same batch."
+}

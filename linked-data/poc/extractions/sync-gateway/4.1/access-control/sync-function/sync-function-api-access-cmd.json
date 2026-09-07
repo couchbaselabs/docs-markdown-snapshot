@@ -1,0 +1,35 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-access-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-access-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:access-cmd", "label": "access()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "'role:' string-prefix convention (Sync Gateway sync function)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:all-channels-wildcard", "label": "All Channels Wildcard ('*' used in access grants)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page states access() itself cannot grant it, a new nuance on top of the already-promoted concept" }
+  ],
+  "relations": [
+    { "subject": "sgw:access-cmd", "predicate": "grantsChannelAccess", "object": "sgw:channel",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Use the `access()` function to grant a user access to a channel." },
+    { "subject": "sgw:access-cmd", "predicate": "appliesToRoleWhenPrefixed", "object": "sgw:role-name-prefix-convention",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Prefix the `username` argument value with `role:` to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role." },
+    { "subject": "sgw:access-cmd", "predicate": "doesNotSupport", "object": "sgw:all-channels-wildcard",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The sync function `access()` call does not support the wildcard ('**\\***') for granting access to all channels. To grant a user access to all channels, use the REST API channel grant endpoint." }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "Round 3's sync-function.json (extracted from the combined sync-function.md conceptual page) captured access() only as 'Use the access() function to grant a user access to a channel' - it never surfaced this page's explicit statement that access() cannot grant the all-channels wildcard at all, and that the REST API's channel-grant endpoint is the only way to do so. This is exactly the kind of fuller/authoritative detail the round asked to watch for: the per-command reference page is materially more precise than the conceptual page's passing mention, and the wildcard restriction is a genuine access-control boundary (not just a syntax nuance) that belongs in the graph."
+  },
+  "cross_component_finding": "This page also documents a merge-semantics detail with no prior formal relation: 'The effects of all access calls by all active documents are effectively combined in a union, so if any document grants a user access to a channel, that user has access to the channel.' This means access() grants are cumulative and monotonic across every document's sync-function execution - once any document has ever granted a user->channel access, no other document's sync function invocation can revoke it (only channel()-side routing changes or REST-API/role changes can). No promoted predicate cleanly captures 'union across all invocations' as a triple object without inventing a placeholder concept for 'the access grant set', so this is recorded here as a finding rather than forced into a relation. There is also a documented performance caveat - repeated access() calls granting the same user the same channel 'could see negative performance effects, such as large fetches or request timeouts' - which is operational guidance rather than an ontology fact."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/config-group",
+  "label": "Config Group (Sync Gateway)",
+  "type": "a named subset of a Sync Gateway cluster's nodes sharing common configuration, set via the bootstrap Config-Group-ID property. All nodes belong to the shared group 'default' unless assigned otherwise; a 'Homogeneous Sync Gateway Cluster' is the degenerate case of exactly one, all-encompassing, default group.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Deliberately not given a separate concept for 'homogeneous cluster' - the source's own three-row Key Terms table distinguishes cluster/homogeneous-cluster/config-group, but homogeneous-cluster is a special case of this mechanism, not a third structure."
+}

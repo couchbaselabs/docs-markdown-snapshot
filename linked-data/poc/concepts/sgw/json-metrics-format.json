@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/json-metrics-format",
+  "label": "JSON metrics format (Sync Gateway _expvar endpoint)",
+  "type": "one of the two formats (with sgw:prometheus-metrics-format) the Sync Gateway Metrics REST API can return statistics in, via the _expvar endpoint. Resets on every node restart - not persisted.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "No stated non-support/exclusion list the way tool:cbcollect-info's docs state - the sgcollect-info.json near-miss's own finding, restated: Sync Gateway's diagnostic surfaces are documented as bounded-positive inventories, never as bounded-negative exclusions."
+}

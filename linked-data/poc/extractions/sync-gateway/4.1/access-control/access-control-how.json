@@ -1,0 +1,138 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/access-control-how",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/access-control/access-control-how.md",
+  "concepts": [
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept" },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept" },
+    { "candidate_id": "sgw:user", "label": "User (Sync Gateway, Public API identity)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept" },
+    { "candidate_id": "sgw:guest-user", "label": "GUEST user (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept, shown here disabled in example configs" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Admin REST API (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept" },
+    { "candidate_id": "sgw:role-name-prefix-convention", "label": "'role:' string-prefix convention (Sync Gateway sync function)", "registry_status": "promoted", "reused_or_minted": "reused - promoted concept" },
+    { "candidate_id": "sgw:access-cmd", "label": "access()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json (round 3, same tree)" },
+    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:role-cmd", "label": "role()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:require-user-cmd", "label": "requireUser()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:require-role-cmd", "label": "requireRole()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:admin-channels-property", "label": "admin_channels property (collection_access)", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-concepts.json" },
+    { "candidate_id": "sgw:legacy-pre-3-config", "label": "Legacy Pre-3.0 Configuration File", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-concepts.json" },
+    { "candidate_id": "sgw:disable-persistent-config-flag", "label": "disable_persistent_config flag", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-how-control-document-access.json" },
+    { "candidate_id": "sgw:meta-xattr-arg", "label": "meta argument (XATTR access-grant data)", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:oidc-provider", "label": "OIDC Provider (SGW auth)", "registry_status": "extraction-layer", "reused_or_minted": "reused from users.json/access-control-how-create-users.json" },
+    { "candidate_id": "sgw:write-access-control", "label": "Write Access Control (Sync Function-implemented)", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-how-control-document-access.json" },
+    { "candidate_id": "sgw:read-access-control", "label": "Read Access Control (channel-grant-based)", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-how-control-document-access.json" }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "routesDocumentToChannel",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation",
+      "evidence": "Documents are assigned to channel using the Sync Function's [channel()](sync-function/sync-function-api-channel-cmd.md) API."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation",
+      "evidence": "User and-or roles are granted access to channels by one of the means defined in [Ways to configure access](#lst1)"
+    },
+    {
+      "subject": "sgw:oidc-provider",
+      "predicate": "autoRegistersUser",
+      "object": "sgw:user",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in users.json/access-control-how-create-users.json",
+      "evidence": "Use register=true to automatically create a Sync Gateway user on successful completion of validation."
+    },
+    {
+      "subject": "sgw:oidc-provider",
+      "predicate": "seeAlso",
+      "object": "sync-gateway/4.1/security/authentication-users",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link (seeAlso is always reused, never minted)",
+      "evidence": "Configure _OIDC_ authentication to auto-register a user following successful validation of an ID Token — [User Authentication](../security/authentication-users.md)."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "createdVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in access-control-how-create-roles.json",
+      "evidence": "Roles are created via the Sync Gateway Admin REST API — see: [Admin REST API](../rest-api/rest-api-admin.md)."
+    },
+    {
+      "subject": "sgw:user",
+      "predicate": "assignsRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in users.json",
+      "evidence": "Specify the roles to be assigned in the `admin_roles` array."
+    },
+    {
+      "subject": "sgw:role-cmd",
+      "predicate": "assignsRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in sync-function.json/access-control-how-assign-users-to-roles.json",
+      "evidence": "You can also use the Sync Function's [role()](sync-function/sync-function-api-role-cmd.md) function to assign users to roles programmatically."
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "revocationRevokesChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, already established for this exact deletion-cascade behavior in roles.json",
+      "evidence": "Removing a role effectively revokes access to the channel that role is associated with. This may mean users will lose access to required documents."
+    },
+    {
+      "subject": "sgw:read-access-control",
+      "predicate": "grantedVia",
+      "object": "sgw:access-cmd",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json",
+      "evidence": "Dynamically via Sync Function  \nProgrammatically within the sync function using the exposed helper function access() — see [Sync Function API](sync-function/sync-function-api.md)"
+    },
+    {
+      "subject": "sgw:write-access-control",
+      "predicate": "enforcedBy",
+      "object": "sgw:require-user-cmd",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json",
+      "evidence": "Do this using any combination of: [requireUser()](sync-function/sync-function-api-require-user-cmd.md), [requireRole()](sync-function/sync-function-api-require-role-cmd.md) or [requireAccess()](sync-function/sync-function-api-require-access-cmd.md)."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "bypassesRequireChecks",
+      "object": "sgw:write-access-control",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-how-control-document-access.json",
+      "evidence": "Note that when sending a change to Sync Gateway through the Admin REST API, the Sync Function executes with admin privileges. Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops, and will always appear successful."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "suppliedBy",
+      "object": "sgw:meta-xattr-arg",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - established in access-control-how-control-document-access.json",
+      "evidence": "Here we are using a specific XATTR to determine which users need access to the document's contents — for more on how to configure ths see [Use XATTRs for Access Grants](access-control-how-use-xattrs-for-access-grants.md)."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "appliesToRoleWhenPrefixed",
+      "object": "sgw:role-name-prefix-convention",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, established in access-control-how-control-document-access.json",
+      "evidence": "The access() function can also operate on roles. If a user name string begins with role: then the remainder of the string is interpreted as a role name."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege / any default write gate",
+    "finding": "Restated identically to access-control-how-control-document-access.json's finding, with this page's own quote: 'Channels enforce read access control to the documents. Any user who has access to a document can update the document.' Write access is fail-open by default in Sync Gateway; the only narrowing mechanism is hand-authored requireUser()/requireRole()/requireAccess() calls inside the sync function, none of which are enforced by the platform unless the docs author writes them, and all of which are unconditionally bypassed for calls made through the Admin REST API."
+  },
+  "cross_component_finding": "This page is a composite/merged index that reproduces, verbatim and in full, the content of four already-separately-extracted round-3 pages (access-control-how-create-users.md, access-control-how-create-roles.md, access-control-how-assign-users-to-roles.md, access-control-how-control-document-access.md) PLUS the entire content of this round's access-control-how-verify-access.md and access-control-how-use-xattrs-for-access-grants.md sections, all concatenated under one URL with anchored sub-headings (#lbl-acc-ctl-users, #lbl-acc-ctl-roles-create, #lbl-control-document-access, #lbl-verify-access, #lbl-xattrs). This looks like an Antora/AsciiDoc composite page assembled via include directives, rendered here as one flat markdown file alongside separately-rendered child pages carrying identical prose. Flagging for the coordinator: every relation captured here duplicates a relation already recorded (in this batch or round 3) against a different page_id for the identical sentence - a five-way content duplication (this page + 5 children) is a stronger version of the sync-function.json/sync-function-api-require-role-cmd.json duplication already noted in round 3's own finding. Reconciliation should treat this page_id as a low-priority alias-source rather than independent corroborating evidence when computing concept/relation recurrence counts.",
+  "cross_product_finding": "One page-local detail worth surfacing again in full: the 'Ways to configure access' list treats the Legacy Pre-3.0 config file, the Admin REST API's admin_channel field, and the Sync Function's access() call as three textually equal, interchangeable provisioning surfaces for the identical grantsChannelAccess relationship - there is no single canonical grant path the way a Capella role assignment or a Server RBAC GRANT statement is centralized through one mechanism. Example 1's caption ('Documents are assigned to channel using the Sync Function's channel() API' / 'User and-or roles are granted access to channels by one of the means defined in Ways to configure access') is the single clearest visual statement in the whole corpus of SGW's two-control-point model: one call (channel()) tags documents, a structurally unrelated set of calls/fields (admin_channels, access()) tags identities, and read access is the set-intersection of the two - reconfirming round 3's headline finding against this page's own independent restatement of it."
+}

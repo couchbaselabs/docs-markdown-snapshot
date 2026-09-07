@@ -1,0 +1,97 @@
+{
+  "page_id": "sync-gateway/4.1/manage/revisions",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/revisions.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:document",
+      "label": "Document (Sync Gateway sync-function context)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, unchanged"
+    },
+    {
+      "candidate_id": "sgw:version-vector",
+      "label": "Version Vector (Sync Gateway 4.0+ revision tracking)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (the Hybrid Logical Clock-based revision-tracking mechanism replacing revision trees as of 4.0+; no precedent anywhere in round 3, which predates 4.0's version-vector model entirely) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "sgw:revision-tree",
+      "label": "Revision Tree (Sync Gateway, legacy pre-4.0 revision tracking)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (the generation-ID/content-hash structure maintained in parallel for backward compatibility with pre-4.0 Couchbase Lite clients; explicitly no longer used for conflict resolution in 4.0+) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "sgw:revision-cache",
+      "label": "Revision Cache (Sync Gateway, rev_cache)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (the in-memory per-document-revision cache, distinct from sgw:channel-cache, minted in managing-tombstones.json earlier in this batch; the two caches are configured via entirely separate settings and this page never conflates them) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "sgw:compact-operation",
+      "label": "Compaction Operation (Sync Gateway, /{db}/_compact)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted on this page (the garbage-collection REST operation with two named modes, tombstone and attachment; no precedent in round 3) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "sgw:tombstone",
+      "label": "Tombstone (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - minted earlier in this same batch (managing-tombstones.json) and promoted this round - now reused as promoted"
+    },
+    {
+      "candidate_id": "xdcr:cross-cluster-versioning",
+      "label": "Cross Cluster Versioning (CCV)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept from cloud/clusters/xdcr/manage-xdcr-replications, unchanged; added during reconciliation to back-fill the reliesOnMechanism relation below, which sgw:version-vector.json's promotion note claimed but this record had not yet instantiated at the time the interrupted round was killed"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:version-vector",
+      "predicate": "renamedFrom",
+      "object": "sgw:revision-tree",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted on this page, both promoted this round",
+      "evidence": "Starting with Sync Gateway 4.0+, revision tracking changed from revision trees to [version vectors](../server-compatibility/server-compatibility-xdcr-mobile.md#version-vectors) for improved distributed system support."
+    },
+    {
+      "subject": "sgw:version-vector",
+      "predicate": "reliesOnMechanism",
+      "object": "xdcr:cross-cluster-versioning",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject promoted this round, object already promoted; added during reconciliation - the interrupted round's promotion note for sgw:version-vector.json described this relation as filed ('see relations') but the extraction record did not yet contain it",
+      "evidence": "Sync Gateway uses the Hybrid Logical Vector implementation described in [HLV Data Maintained in xattr](../../../server/current/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#hlv-data-maintained-in-xattr) for XDCR compatibility."
+    },
+    {
+      "subject": "sgw:revision-tree",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sgw:version-vector",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted on this page, both promoted this round; the pairing states the tree is not dead, just superseded for conflict resolution while still written for old clients",
+      "evidence": "Sync Gateway 4.0+ maintains parallel revision trees for backward compatibility with Couchbase Lite versions earlier than 4.0+."
+    },
+    {
+      "subject": "sgw:compact-operation",
+      "predicate": "cascadesTo",
+      "object": "sgw:tombstone",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted on this page, both promoted this round",
+      "evidence": "tombstone  \nPurges the JSON bodies of non-leaf revisions."
+    },
+    {
+      "subject": "sgw:document",
+      "predicate": "doesNotSatisfy",
+      "object": "sgw:revision-tree",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused (already promoted), object minted on this page and promoted this round; a pruned attachment reference does not count as satisfying a legacy-attachment retention requirement, since legacy attachments persist past reference removal unlike post-3.0 attachments",
+      "evidence": "Attachments added post 3.0 are automatically removed from the bucket upon reference removal, document delete or document purge."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf",
+    "finding": "Revision pruning is described as automatic ('It automatically runs whenever a new revision is generated') with no manual trigger and no ordering precondition relative to any other operation - unlike resync.md's ordering dependency on database-offline, pruning has no documented sequencing requirement at all."
+  },
+  "cross_component_finding": "The revision cache (sgw:revision-cache) and channel cache (sgw:channel-cache, minted in managing-tombstones.json) are two separate in-memory caches this batch had to distinguish carefully - both are tuned via similar-shaped settings (a size limit and a memory limit) and both interact with tombstones (chan_cache_tombstone_revs vs rev cache eviction), but this page and managing-tombstones.md never state a relationship between the two caches themselves, only that both are affected by tombstone volume. Kept separate.",
+  "cross_product_finding": "The Hybrid Logical Vector / HLV implementation this page describes for Sync Gateway 4.0+ is explicitly stated to be shared machinery with Couchbase Server's own XDCR cross-cluster versioning: 'Sync Gateway uses the Hybrid Logical Vector implementation described in HLV Data Maintained in xattr ... for XDCR compatibility.' This is a genuine cross-product mechanism-sharing statement (not a same-shape-different-product near-miss like sgcollect_info/cbcollect_info) - the SAME versioning mechanism spans both products by design, evidenced directly on the page rather than inferred. Reconciliation formalized this as sgw:version-vector -reliesOnMechanism-> xdcr:cross-cluster-versioning (see relations above)."
+}

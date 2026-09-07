@@ -1,0 +1,71 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/access-control-how-use-xattrs-for-access-grants",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/access-control/access-control-how-use-xattrs-for-access-grants.md",
+  "concepts": [
+    { "candidate_id": "sgw:meta-xattr-arg", "label": "meta argument (XATTR access-grant data)", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json - this page is the dedicated deep-dive on the mechanism sync-function.json only sketched" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Admin REST API (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:channel-cmd", "label": "channel()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    {
+      "candidate_id": "sgw:user-xattr-key",
+      "label": "user_xattr_key (Sync Gateway database config field)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the concrete, named database-config-schema field that designates WHICH single XATTR the sync function is allowed to read for access-grant purposes; distinct from sgw:meta-xattr-arg, which is the runtime argument (meta.xattrs.<name>) the sync function actually reads. This page's own Configuration/Setting/Use structure keeps these two as separate steps (name the key via REST config vs. consume its value at runtime), so they are kept as two concepts rather than one."
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from an earlier (java-sdk) batch - this page's C# example calls collection.LookupInAsync/MutateInAsync with isXattr:true, the identical sub-document mechanism, applied here for a cross-product purpose (a Couchbase Server SDK writes data that Sync Gateway later reads)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:user-xattr-key",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - the specific REST config call that names which XATTR is designated for this purpose",
+      "evidence": "Name the XATTR (see: [user\\_xattr\\_key](../configuration/configuration-schema-database.md#databases-this%5Fdb-user%5Fxattr%5Fkey)) to be used for channel routing by defining it using the Admin REST API's [Database Configuration](../configuration/configuration-schema-database.md)"
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "doesNotSupport",
+      "object": "sgw:user-xattr-key",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied here to a fresh case: the SGW REST surface can NAME the designated XATTR field but cannot write its actual value",
+      "evidence": "You can set and maintain the value of the XATTR using a Couchbase Server SDK API. You cannot set it using the Sync Gateway REST API."
+    },
+    {
+      "subject": "sgw:user-xattr-key",
+      "predicate": "configurableVia",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; the ONLY way to write this data is through a completely separate product's SDK, operating directly on the underlying Couchbase Server bucket, not through any Sync Gateway-owned surface at all",
+      "evidence": "You can set and maintain the value of the XATTR using a Couchbase Server SDK API."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "suppliedBy",
+      "object": "sgw:meta-xattr-arg",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - established in access-control-how-control-document-access.json for exactly this channel()-sourced-from-XATTR pattern",
+      "evidence": "The designated XATTR is exposed to the [Sync Function](sync-function/sync-function.md) as an additional argument `meta.xattrs.<xattr name>`"
+    },
+    {
+      "subject": "sgw:meta-xattr-arg",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/extended-attributes-fundamentals",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, cross-product to Couchbase Server's own XATTR reference",
+      "evidence": "For more on Couchbase Server metadata and extended attributes — see Couchbase Server topics: [Metadata](../../../server/current/learn/data/data.md#metadata) | [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a (mechanism classification)",
+    "finding": "This page directly answers the round's open question about whether XATTRs constitute a third/fourth access-grant mechanism alongside admin_channels (REST), access()/role() (sync function), and legacy config. They do not: the page's own three-step structure (Configuration -> Setting -> Use in a Sync Function) shows the XATTR is purely an alternative DATA SOURCE feeding the pre-existing channel()/access()/role() sync-function calls - 'Access grant information such as Channels and Roles can be derived or specified as a property within the document body... Alternatively, a more secure option is to store this information in user XATTRs.' The grant mechanism itself is unchanged (still channel()/access()/role() executing inside the sync function); only where the argument value comes FROM changes (document body property vs. meta.xattrs.<name>). What IS structurally new, and has no counterpart anywhere else in the batch, is the WRITE PATH for that data: it must be set via a Couchbase Server Key-Value SDK sub-document call (LookupIn/MutateIn with isXattr:true) against the underlying bucket - a write surface entirely outside Sync Gateway's own Admin REST API, config file, or sync-function surfaces. This means the access-grant metadata for XATTR-based routing is provisioned by a THIRD PRODUCT SURFACE (the Couchbase Server SDK, operating on the Server bucket underneath Sync Gateway) that Sync Gateway itself has no write access to at all - not a third grant mechanism, but a write-path dependency on a different product's API for the data one specific transport option relies on."
+  },
+  "cross_component_finding": "The stated motivation for XATTR-based routing is a genuine, quantified security/architecture trade-off unique to this mechanism in the whole batch: 'It provide an added level of security, users can no longer identify the channels and users a document is available to by reading its contents, because the information is in metadata that is inaccessible to them' and 'Separation of concerns. By separating access grant metadata from document contents, changes to access grants will not create a new document revision that is subsequently pushed to a client.' The second point is a direct callback to the batch's revocation/auto-purge findings: because access grants ordinarily live IN the document body (read by channel()/access()), changing them creates a new revision that must itself be synced and re-evaluated by every replica; routing that data through XATTR metadata instead means an access-grant change does not itself generate synced document traffic - it only changes what the (separately-triggered) sync function computes the next time it runs. No equivalent 'does changing the access grant itself generate replicated traffic' concern exists in server/'s or Capella's models, since neither replicates a privilege/role change to end-client devices the way SGW replicates document revisions to Couchbase Lite."
+}

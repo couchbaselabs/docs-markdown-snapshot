@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/4986",
+  "label": "Port 4986 (Sync Gateway Metrics REST API)",
+  "type": "the standard Sync Gateway Metrics REST API port.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Sibling of port:4984; both first contact for Sync Gateway-specific ports in the port: namespace."
+}

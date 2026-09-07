@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/load-balancer",
+  "label": "Load balancer / reverse proxy (Sync Gateway deployment)",
+  "type": "infrastructure distributing incoming requests across multiple sgw:sync-gateway-instance deployments (load-balancer role) and/or terminating TLS and hiding topology on their behalf (reverse-proxy role) - one NGINX configuration in the worked example performs both roles at once, though the source's own capability list treats them as logically distinct. Its keep-alive timeout must be tuned longer than the Couchbase Lite client's own replicator heartbeat interval, a three-product interaction (Couchbase Lite setting, Sync Gateway default, load-balancer infrastructure setting) stated only through cross-references.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Not usable for configuration changes made against sgw:legacy-pre-3-config; only supported in sgw:persistent-configuration mode."
+}

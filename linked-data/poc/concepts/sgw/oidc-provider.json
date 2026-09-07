@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/oidc-provider",
+  "label": "OpenID Connect provider (Sync Gateway)",
+  "type": "a configured external OIDC identity provider Sync Gateway can validate ID Tokens against, optionally auto-registering a Sync Gateway user on successful validation (register=true) and mapping token claims onto channels/roles.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Described in near-identical terms to sgw:local-jwt-provider (both grant channels/roles via a configurable claim name, both have register/disable_session/user_prefix fields), but no source page states Local JWT is 'OIDC without the external issuer' - an isAnalogousTo relation was considered and deliberately not minted, since that predicate requires the docs themselves to draw the comparison."
+}

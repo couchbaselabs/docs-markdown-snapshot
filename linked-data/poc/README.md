@@ -7,8 +7,8 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-six rounds so far, twenty-two of them deliberate escalations and
-four corrective passes over what they left behind:
+automating it. Twenty-seven rounds so far, twenty-three of them deliberate escalations
+and four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
    already-minted terms forward.
@@ -423,6 +423,21 @@ four corrective passes over what they left behind:
     *disagreement* (`xdcr:replication-status-enum`, recording that three surfaces
     publish three incompatible status vocabularies because no single enumeration
     exists to promote). 10 new `docs-issues/`.
+27. **49 pages closing out Sync Gateway's `access-control/`+`security/` surface
+    and making first contact with its operational core** (`configuration/`,
+    `deploy/`, `manage/`) — reconciled as a resumed pass after an interrupted
+    run, the first time this project verified an analysis phase rather than
+    performing it fresh. The inverted access-control model survived the
+    complete surface a second time; the operational core showed round 26's
+    reference-vs-procedural genre split recurring at a smaller grain, split by
+    which half of one directory's own operations a page covers rather than by
+    directory. Verification caught two more "narrated as promoted, never
+    filed" relations (round 25's defect, this time traced to an interruption
+    between drafting a promotion's prose and writing the data it depended on)
+    and one real gate-log thinning case, and surfaced two whole-corpus
+    promotion-debt catches (`sgw:sync-function` at recurrence 14,
+    `sgw:channel-access-revocation` at 5) that 24 prior rounds' reuse had never
+    promoted. 64 concepts, 4 relations promoted; 7 new `docs-issues/`.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -430,7 +445,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-950 pages total:
+999 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -599,6 +614,18 @@ time/cost projections and how they held up against the round-2 run's real number
   substantial body of **procedural** pages for Couchbase Server, and see round
   26's headline finding for why that genre distinction turned out to matter more
   than the product-area one every prior scope decision was made on.
+- **49 more, Sync Gateway's `access-control/`+`security/` remainder and first
+  contact with `configuration/`, `deploy/` and `manage/`** — the access-control
+  conceptual remainder and the full sync-function command reference (`access()`,
+  `channel()`, `expiry()`, the `require*()` family, `role()`, `throw()`), the
+  `security/` remainder (audit logging, OIDC, TLS), and first contact with the
+  operational core of running a Sync Gateway deployment: configuration schemas
+  and provisioning methods, deployment topology and tuning, and node/database
+  operations (resync, tombstone management, revisions). Dispatched as six
+  parallel batches. Reconciled as a resumed pass after the original run was
+  killed mid-task by an API rate limit — the first round this project verified
+  an already-completed analysis phase rather than performing one fresh. See
+  round 27 in `reconciliation.md`.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -1243,6 +1270,32 @@ from "still in `extractions/`."
   Console, a status-plus-`pauseRequested`-flag pair in the REST API), which is a
   use of a concept record this project arrived at only because picking one, or
   promoting nothing, would have destroyed the finding.
+  Round 27 promoted 64, reconciled from a run an API rate limit interrupted
+  mid-task: `port:4984`/`4986`, `prometheus:metrics-endpoint`,
+  `tool:sgcollect-info`/`tool:sync-gateway`, and 59 `sgw:` records covering the
+  sync-function command family (`access()`, `channel()`, `expiry()`, the
+  `require*()` family, `role()`, `throw()`), audit logging, TLS, configuration
+  mechanisms (bootstrap, persistent, legacy-pre-3.0, config groups) and
+  operational concepts (compaction, resync, restart, revision/channel caches,
+  version vectors). Two whole-corpus promotion-debt catches this round's own
+  verification surfaced rather than the interrupted run: `sgw:sync-function`
+  (recurrence 14 — the parent concept every command in the round's own
+  reference sub-batch depends on to state what it is a command *of*, minted in
+  round 3 and never promoted in 24 rounds of reuse) and
+  `sgw:channel-access-revocation` (recurrence 5, similarly minted round 3).
+  Two significance exceptions at recurrence 1 each, `sgw:version-vector` and
+  `sgw:revision-tree`, following round 26's family-cannot-be-defined-without-
+  its-sibling test. Three near-misses resolved and kept separate, each recorded
+  with the reasoning: `sgw:inter-sync-gateway-replication` against XDCR (no page
+  states the connection), `sgw:audit-logging` against Server's `security:auditing`
+  (near-verbatim per-node/manual-consolidation wording, coincidental), and
+  `tool:sgcollect-info` against `tool:cbcollect-info` (a narrow
+  `hasEquivalentEffectAs`, redaction-hashing only, not a full-identity claim).
+  `sgw:` now holds 73 members and was checked against the closed-axis-vs-
+  subject-area test directly: it spans RBAC, sync-function commands,
+  configuration mechanisms, operational commands, monitoring formats and
+  security — Sync Gateway's whole feature surface, a subject area like
+  `eventing:` or `capella:`, not an axis.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1469,14 +1522,38 @@ from "still in `extractions/`."
   `hasMinimumNodeCount` for the same thing, and `requires` vs. `has` is a
   different *word*, not different punctuation — round 18's cross-predicate blind
   spot recurring one layer down, in the verb rather than the object.
+  Round 27 added **four**, taking the directory to **118 records**:
+  `requiresAdminApi`, `requiresChannelAccess`, `requiresUser` (each recurrence
+  2, Sync Gateway's sync-function `require*()` family, kept separate from the
+  already-promoted `requiresRole` per that record's own standing note that
+  these three are distinct-nuance watchlist siblings, not a generalization) and
+  `configuresProperty` (recurrence 7, a round-3-minted, round-27-confirmed
+  promotion-debt catch this round's own verification surfaced — reused across
+  7 distinct files without ever being promoted). The round also found "narrated
+  as promoted, never actually filed" recurring for an eleventh and twelfth
+  time — `sgw:version-vector`'s `reliesOnMechanism` into
+  `xdcr:cross-cluster-versioning` and `tool:sgcollect-info`'s
+  `hasEquivalentEffectAs` into `tool:cbcollect-info` — both licensed by real
+  page text and back-filled into their extraction records, this time traced to
+  an interrupted run rather than an ordinary oversight.
 - **`docs-issues/`** — a deliberately minimal, deliberately promiscuous log of
   content-quality findings (missing documentation, apparent doc-duplication,
   unadapted shared-source content, empty stub pages) that are *about the docs*,
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **194
-  entries** as of round 26 (10 added that round, all from the `manage/` tree: the
+  issueType, description, about, status}` — minted with no gatekeeping. **201
+  entries** as of round 27 (7 added that round, all from Sync Gateway's
+  `access-control/`, `configuration/` and `security/` trees: a redirect-stub
+  access-control schema reference page; a malformed AsciiDoc xref build artifact
+  appearing verbatim on two pages; the custom-collection cap stated as both a
+  cluster-wide and a database-wide limit for the identical number; ~30
+  command-line-options.md table rows with empty Description cells; a REST API
+  reference page whose entire Introduction reads "Sync Gateway …"; a
+  configuration-overview.md table with markdown-conversion-corrupted
+  "Changeable?" cells; and an unresolved `{sgw}` AsciiDoc attribute appearing
+  literally eight times in running prose). 194
+  entries as of round 26 (10 added that round, all from the `manage/` tree: the
   XDCR replication-status three-vocabulary split described above; `edit-bucket.md`
   offering all four Minimum Durability Levels unqualified by bucket type where
   `create-bucket.md` correctly restricts Ephemeral buckets to two;
@@ -3257,6 +3334,52 @@ first contact, asking the mirror of rounds 5-7 and 12):**
      edge case, and it is the fifth instance of the round-13-to-17 pattern: **the more
      correctly reconciliation files a record, the less the audit can see it.**
 
+**Round 27 (49 pages, Sync Gateway's `access-control/`+`security/` remainder and
+first contact with `configuration/`, `deploy/` and `manage/` - reconciled as a
+resumed pass after an interrupted run):**
+
+124. **The inverted access-control model survived a second complete surface.**
+     Sync Gateway's channel/role model, established in round 3 and never since
+     tested against its own conceptual and operational remainder, held across the
+     whole of `access-control/` and `security/` with every near-miss (ISGR vs.
+     XDCR, `sgcollect_info` vs. `cbcollect_info`, Sync Gateway's own audit logging
+     vs. Server's `security:auditing`) resolving as a documented non-merge rather
+     than a correction.
+125. **Round 26's procedural-genre gap recurs at a smaller grain: inside one
+     round's own scope, not just across directories.** The access-flavoured half
+     of `manage/`'s operations (resync, tombstone management, channel history)
+     connected richly to vocabulary reused since round 3; the operational/
+     infrastructure half (`deploy/`'s OS tuning, load balancing, Prometheus
+     scrape configuration) needed wholesale minting with almost no precedent to
+     reuse. Same shape as round 26, split by which half of a directory's own
+     subject a page covers rather than by which directory it lives in.
+126. **"Narrated as promoted, never actually filed" recurred an eleventh and
+     twelfth time, and this time the cause was legible.** Two relations a
+     promoted concept's own note claimed were filed - `sgw:version-vector`'s
+     `reliesOnMechanism` into `xdcr:cross-cluster-versioning`, `tool:sgcollect-info`'s
+     `hasEquivalentEffectAs` into `tool:cbcollect-info` - were missing from their
+     extraction records because the run that promoted them was interrupted
+     between drafting the promotion's prose and writing the data edit it
+     depended on, not because of ordinary reconciliation carelessness. Both were
+     genuinely licensed by page text and back-filled. The defect is now confirmed
+     to be about the *shape of the work* - claim-writing and data-writing are two
+     separate, non-atomic steps - rather than about any one agent's diligence.
+127. **A gate-log denial can undercount what its own rewrite puts at risk.**
+     `configuration-properties-legacy.json`'s single logged deny named one bad
+     quote; the rewrite that followed dropped two relations, both independently
+     recoverable from the page. Round 26 established that a denial is not
+     relation-preserving because the whole record is re-authored; this adds that
+     the fail-fast denial log itself reports only the first problem found, not
+     every relation the eventual rewrite touches - so the log under-reports the
+     size of what a denial puts at risk, not just whether it preserves it.
+128. **Whole-corpus recurrence caught two promotions 24 rounds of reuse had
+     missed, inside the very namespace being reconciled.** `sgw:sync-function`
+     (recurrence 14 - the parent concept every command this round's own
+     dedicated reference sub-batch promoted depends on to state what it is a
+     command *of*) and `sgw:channel-access-revocation` (recurrence 5) were both
+     minted in round 3 and never promoted since, invisible to any single round's
+     own visibility exactly as round 24's `role:cluster-admin` finding predicted.
+
 ## What this is not
 
 The IRI base is settled, and `concepts/`/`relations/`/`pages/` have real candidate
@@ -3326,6 +3449,19 @@ document.
   commit, written pre-gate, 3 of them with unquotable evidence, and wave 1 promoted
   **22 concepts out of them**. Both defects found there were in a single record;
   nobody has checked the other six against their pages.
+- **Finish reading Sync Gateway.** Round 27 closed out `access-control/` +
+  `security/` (the conceptual and access-control surface) and made first
+  contact with `configuration/`, `deploy/` and `manage/` (the operational
+  core). What is left, unread by any round: `rest-api/` (8 pages),
+  `product-notes/` (3), `server-compatibility/` (8), `start-here/` (6),
+  `sync/` (9) and `use-kubernetes/` (1) — 35 pages in total — plus the whole
+  of Couchbase Lite and the Java SDK beyond what round 3 sampled (12 and 12
+  pages respectively, out of products this project has otherwise only
+  touched once). `rest-api/` is the highest-value next piece on round 26's
+  genre argument: this round's `configuration/`+`deploy/`+`manage/` batch was
+  procedural, and a REST reference layer for the same product, read next,
+  would be the same reference-vs-procedure pairing round 17 and round 26 both
+  found informative elsewhere.
 - **Build an admission test for reference-table instances.** `query-settings.md`
   documents `node-quota`, `prepared-limit`, `loglevel`, `controls`,
   `functions-limit`, `keep-alive-length`, `max-index-api` and

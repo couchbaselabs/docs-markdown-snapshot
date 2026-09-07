@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-admin-api",
+  "label": "requires admin API",
+  "kind": "relation (schema-level)",
+  "type": "the sync function's requireAdmin() check - the subject write operation is rejected unless it arrived via the Sync Gateway Admin REST API. Structurally distinct from requiresRole/requiresChannelAccess/requiresUser: its object is an API surface (sgw:admin-rest-api), not a role, channel, or user, and the check takes zero arguments - it gates on how the request arrived, not on any property of the authenticated identity.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Round 3 minted this alongside requiresUser/requiresChannelAccess as a watchlist sibling of requiresRole. Round 27's dedicated requireAdmin() reference page reuses it, crossing the promotion bar at 2 distinct files. This is the one member of the require*() family the round's own extraction explicitly argued should NOT generalize under requiresRole even loosely: requireAdmin()'s reference page has no Context section and never states the shared 'signals rejection by throwing an exception' language its three siblings state near-identically - the strongest textual signal in the batch that requireAdmin() is checking a different axis (API surface) rather than merely a different flavour of identity check."
+}

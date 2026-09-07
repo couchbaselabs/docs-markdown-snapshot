@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-access-control-schema-stub",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "configuration/configuration-schema-access-control.md is functionally a redirect stub - a two-sentence introduction plus one sentence pointing at a single REST endpoint, roughly 10 lines total. Its sibling page for the analogous mechanism, configuration-schema-import-filter.md, provides a full Provisioning Methods section, a JSON configuration-structure example, a field table, a curl example, and a dedicated schema/model subsection - roughly 100 lines. Both pages sit in the same 'Topic Group' navigation strip and the same Related Content list, so the depth asymmetry is a genuine content gap rather than a difference in how much there is to say: access control (via the sync function) is arguably the more consequential of the two mechanisms, and the page never mentions admin_channels, collection_access, all_channels, or jwt_channels by name at all - that schema instead lives, undiscoverable from this page, on configuration-schema-db-security.md and configuration-schema-database.md.",
+  "about": [
+    "sync-gateway/4.1/configuration/configuration-schema-access-control",
+    "sync-gateway/4.1/configuration/configuration-schema-import-filter"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

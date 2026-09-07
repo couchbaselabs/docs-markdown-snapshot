@@ -1,0 +1,68 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/access-control-how-verify-access",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/access-control/access-control-how-verify-access.md",
+  "concepts": [
+    { "candidate_id": "sgw:user", "label": "User (Sync Gateway, Public API identity)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Admin REST API (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:admin-channels-property", "label": "admin_channels property (collection_access)", "registry_status": "extraction-layer", "reused_or_minted": "reused from access-control-concepts.json" },
+    { "candidate_id": "sgw:access-cmd", "label": "access()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "sgw:role-cmd", "label": "role()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    {
+      "candidate_id": "sgw:all-channels-property",
+      "label": "all_channels property (computed, read-only)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the read-only, computed union of a user's or role's own admin_channels, its access()-derived grants, and (for a user) every role's own all_channels; distinct from sgw:admin-channels-property, which is the settable input field, not the computed effective-access output. This page is the fullest single statement of the computation and is where it belongs."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:all-channels-property",
+      "predicate": "mergesResultsFrom",
+      "object": "sgw:admin-channels-property",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate - the first of three named sources the computed all_channels union draws from",
+      "evidence": "The user's `admin_channels` property, which is set using the Admin REST API."
+    },
+    {
+      "subject": "sgw:all-channels-property",
+      "predicate": "mergesResultsFrom",
+      "object": "sgw:access-cmd",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate - the second named source",
+      "evidence": "The channels the user has been granted access to by [access()](sync-function/sync-function-api-access-cmd.md) calls from sync functions invoked for current revisions of documents."
+    },
+    {
+      "subject": "sgw:all-channels-property",
+      "predicate": "mergesResultsFrom",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate - the third named source: a user's effective channel set recursively includes every role's own computed all_channels",
+      "evidence": "The `all_channels` properties of any roles the user belongs to. These are themselves computed using the above rules."
+    },
+    {
+      "subject": "sgw:all-channels-property",
+      "predicate": "accessibleVia",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate",
+      "evidence": "Use the Admin REST API to see the:\n\n* Channels a user has access to\n* Channels a role has access to\n* Channels a document is assigned to"
+    },
+    {
+      "subject": "sgw:role",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted relation, restated here with this page's own worked example",
+      "evidence": "hoopy through the froods role's admin\\_channels setting in the default collection."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a (worked example)",
+    "finding": "This page's three-endpoint worked example (GET _user/pupshaw, GET _role/frood, GET _all_docs?channels=true) traces the entire access chain concretely in one place: the document ourdoc is assigned to channel hoopy via channel(); the role froods is granted hoopy via admin_channels; the user pupshaw belongs to role froods and therefore inherits hoopy into its own all_channels. The page states the causal chain explicitly: 'That assignment to hoopy is what makes it available to our froods role and therefore to our user pupshaw.' This is the clearest end-to-end illustration in the whole corpus (across both this round and round 3) of the full grantsChannelAccess + inheritsAccessFromRole + routesDocumentToChannel chain resolving to an actual read decision, and is worth flagging to reconciliation as strong corroborating evidence for keeping those three relations distinct rather than collapsing them."
+  },
+  "cross_component_finding": "There is no equivalent 'verify effective access' read-only introspection endpoint documented for server/'s RBAC model or Capella's role model in this corpus so far - both of those models are checked implicitly at operation time (privilege lookup, role-gated API call) rather than exposed as a queryable computed union a caller can inspect ahead of time. Sync Gateway's all_channels property, by contrast, is presented as a first-class debugging/verification surface precisely because the effective access set is itself a non-trivial computed union across three sources (own admin_channels, dynamic access() grants, and inherited role grants) that cannot be read off any single stored field - the docs treat 'what can this user actually see' as a question worth its own dedicated how-to page, which is a structural signal that SGW's channel model is harder to reason about statically than a fixed privilege/role lookup."
+}

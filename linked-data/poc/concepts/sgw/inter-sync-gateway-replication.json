@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/inter-sync-gateway-replication",
+  "label": "Inter-Sync Gateway Replication (ISGR)",
+  "type": "a Sync Gateway-to-Sync-Gateway (active/local to passive/remote) replication topology, configured through the identical replication schema as a database's embedded replications object (field-for-field identical across configuration-schema-database.md and configuration-schema-isgr.md). Auto-purge on channel-access revocation defaults OFF for ISGR (opt-in via purge_on_removal) - the exact reverse of the Sync-Gateway-to-Couchbase-Lite default.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Resolves the round's flagged near-miss: no source page anywhere in this batch names XDCR, Couchbase Server cross-cluster replication, or draws any comparison to the xdcr:* family - configuration-schema-isgr.md, the page most likely to state a connection if one existed, never uses the word 'XDCR' at all. Kept fully separate from xdcr:replication per the standing no-silent-merge rule; this is confirmation by absence, not a guess."
+}

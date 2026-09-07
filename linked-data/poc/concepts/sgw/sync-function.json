@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/sync-function",
+  "label": "Sync Function",
+  "type": "the single JavaScript function defined per collection that Sync Gateway runs against every new document revision, to decide routing (channel assignment), access control (via access()/role(), require*() checks) and validation (via throw()). Distinct from eventing:function (Server/Capella's Eventing, a general N1QL-triggered JS compute service with no access-control role at all) and from sgw:import-filter/sgw:custom-conflict-resolver/sgw:webhook-filter (other JavaScript-hook points in Sync Gateway that a sync function's logic can be reused in, per webhooks.md, but which are configured and invoked separately).",
+  "promoted": true,
+  "recurrence": 14,
+  "note": "Genuine promotion-debt catch, not a round-27 mint: minted in round 3's sync-function.json and reused across this batch's whole access-control/sync-function/ command-reference sub-scope (access(), channel(), expiry(), require*(), role(), throw() - all promoted this round as its constituent commands) plus configuration/, deploy/ and manage/ pages, without ever itself being promoted. recurrence.py's relation-slot metric puts it at 14 distinct files (16 by the any-mention metric) as of this round alone - well above the bar by a wide margin, and the parent concept every one of this round's require*Cmd/access-cmd/channel-cmd/role-cmd/throw-cmd records depends on to state what they are commands OF. Promoted now as part of round 27's completeness check rather than left as debt."
+}

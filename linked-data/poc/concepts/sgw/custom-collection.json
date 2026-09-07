@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/custom-collection",
+  "label": "Custom collection (Sync Gateway database config)",
+  "type": "a non-default Couchbase Server collection mapped into a Sync Gateway database config - must already exist on the Server bucket (Sync Gateway never creates one). Available since Couchbase Lite 3.1 / Sync Gateway 3.1; a pre-3.1 Sync Gateway or Capella App Services deployment must use server:default-collection instead.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Cluster-wide cap stated as 1000 by configuration-schema-database.md, but scopes-and-collections-config.md states the identical number 'per database' - a real, unreconciled discrepancy, filed as a docs-issue."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/read-access-control",
+  "label": "Read access control (Sync Gateway)",
+  "type": "Sync Gateway's read-side gate: a document is visible to a user if and only if it is routed (via channel()) to a channel the user's computed all_channels includes. Enforced automatically by the platform on every read, unlike write access control.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "'Channels enforce read access control to the documents. Any user who has access to a document can update the document.' - the source's own statement of the read/write asymmetry."
+}

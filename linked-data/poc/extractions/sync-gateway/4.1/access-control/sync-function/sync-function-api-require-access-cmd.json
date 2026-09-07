@@ -1,0 +1,26 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-require-access-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-require-access-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:all-channels-wildcard", "label": "All Channels Wildcard ('*' used in access grants)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:require-access-cmd", "predicate": "requiresChannelAccess", "object": "sgw:channel",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3) - per this round's framing, kept distinct from requiresRole rather than generalized",
+      "evidence": "Use the `requireAccess()` function to reject document updates that are not made by the a user with access to at least one of the given channels" },
+    { "subject": "sgw:all-channels-wildcard", "predicate": "doesNotSatisfy", "object": "sgw:require-access-cmd",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused - same relation round 3 minted from access-control-concepts.json, now backed by this page's own, more precise evidence",
+      "evidence": "then `requireAccess('anychannelname')'` will fail because the user wasn't granted access to that channel (only to the `*` channel)." }
+  ],
+  "notable_absence": null,
+  "cross_component_finding": "This page's statement of the wildcard/requireAccess() asymmetry is materially more precise than round 3's access-control-concepts.json version ('Users granted access using the all channels wildcard do not inherit requireAccess() rights to any specific channel'): this page spells out the actual mechanism - requireAccess() 'will only recognize grants made explicitly using a channel name (not by a wildcard)' - and gives a concrete failing call, requireAccess('anychannelname'), rather than describing the behavior only in the abstract. Per the round's instruction to extract the fuller/authoritative version when a per-command page adds detail beyond the conceptual page's passing mention, this record uses this page's own quote as the evidence for the doesNotSatisfy relation rather than round 3's. Also notable: Example 2 on this page shows requireAccess(oldDoc.channels) - checking access against the PREVIOUS revision's channel list rather than the current one - a pattern with no equivalent shown for requireRole()/requireUser() in this batch's material, though nothing states it is unique to requireAccess()."
+}

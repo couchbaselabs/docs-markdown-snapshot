@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/continuous-logging",
+  "label": "Continuous logging (Sync Gateway)",
+  "type": "Sync Gateway's per-level log file streaming (sg_error.log, sg_warn.log, sg_info.log, etc.), introduced in 2.1, and the mechanism sgcollect_info's own log collection relies on. Independent of console logging - changing console-logging settings does not affect the continuous-logging streams.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Sync Gateway needed its own sgw:-prefixed logging vocabulary (this concept, sgw:log-key, sgw:console-logging) rather than reusing the promoted log:log-file - confirming this round's own prediction that logging.md 'almost certainly needs its own sgw:-prefixed parallel rather than reuse.'"
+}

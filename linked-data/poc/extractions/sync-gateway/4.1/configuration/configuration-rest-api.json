@@ -1,0 +1,13 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-rest-api",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-rest-api.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page is an unfinished stub. Its entire Introduction section reads only: 'Sync Gateway …​' - three words plus an ellipsis - with no further prose, no schema, no examples, and no endpoint list, despite the page's own title ('Configuration Rest API') and description ('How to use the Config REST API to configure Sync Gateway for secure cloud-to-edge data sync') promising a full treatment of the Config REST API. Every other page in this batch links to this one from its 'Topic Group' navigation strip (alongside Configuration Schema, Javascript Functions, Environment Variables, Persistent Configuration), so a reader following that navigation to learn about 'the REST API' specifically lands on empty content. No concepts or relations could be extracted because there is no substantive text on the page to extract from."
+  },
+  "cross_component_finding": "n/a - page has no content to compare against sibling pages beyond the shared navigation/related-content boilerplate.",
+  "cross_product_finding": "n/a - page has no content."
+}

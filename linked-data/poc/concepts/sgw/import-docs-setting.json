@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/import-docs-setting",
+  "label": "import_docs setting (Sync Gateway)",
+  "type": "the per-database boolean enabling Sync Gateway's import of Couchbase-Server-side document mutations. Must be true on both clusters for xdcr:active-active-with-app-services. Operator discipline (not a platform-enforced limit) is the only guard against running import on more than one Sync Gateway node in a cluster.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Second instance in this batch of the same 'hazard managed by prose discouragement, not an enforced guardrail' pattern also seen on sgw:index-partitioning's partitioning settings."
+}

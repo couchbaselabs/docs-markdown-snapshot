@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/custom-scope",
+  "label": "Custom scope (Sync Gateway database config)",
+  "type": "a non-default Couchbase Server scope mapped into a Sync Gateway database config. Capped at 1 per database, available since Sync Gateway/Couchbase Lite 3.1.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Sibling of sgw:custom-collection; same version gate, same pre-3.1 fallback rule."
+}

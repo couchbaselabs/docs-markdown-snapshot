@@ -1,0 +1,83 @@
+{
+  "page_id": "sync-gateway/4.1/manage/channel-history",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/channel-history.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, unchanged"
+    },
+    {
+      "candidate_id": "sgw:document",
+      "label": "Document (Sync Gateway sync-function context)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept, unchanged"
+    },
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access, Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-concepts.json extraction; this page describes the metadata artifact (channel history entries) that RECORDS revocation events and that Couchbase Lite zero-checkpoint replication replays, extending rather than redefining the concept"
+    },
+    {
+      "candidate_id": "sgw:document-channel-history",
+      "label": "Document Channel History (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-document xattr record of channel assignment/removal events, keyed by sequence number rather than timestamp; new in this batch, no precedent in round 3's access-control extraction, which described channel assignment but never its accumulated history"
+    },
+    {
+      "candidate_id": "sgw:user-access-history",
+      "label": "User Access History (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-user metadata record of channel access grants/revocations, the user-scoped sibling of sgw:document-channel-history introduced on this same page"
+    },
+    {
+      "candidate_id": "sgw:zero-checkpoint-replication",
+      "label": "Zero-Checkpoint (Clear-Start) Replication (Couchbase Lite <-> Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific replication mode (after an app reinstall or checkpoint rollback) whose behavior motivates channel-history pruning; a Couchbase Lite-side event with a Sync Gateway-side consequence, no precedent in round 3"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:document-channel-history",
+      "predicate": "cascadesTo",
+      "object": "sgw:zero-checkpoint-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted",
+      "evidence": "When a Couchbase Lite client performs a zero-checkpoint (clear-start) replication, such as after an app reinstall or checkpoint rollback, Sync Gateway replays the full channel history. Old revocation entries in that history are re-sent to the client even for channels that are no longer relevant."
+    },
+    {
+      "subject": "sgw:document-channel-history",
+      "predicate": "doesNotAffect",
+      "object": "sgw:document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused (promoted)",
+      "evidence": "The operation removes only historical entries. It does not affect the document body, active channel assignments, or ongoing replications."
+    },
+    {
+      "subject": "sgw:user-access-history",
+      "predicate": "doesNotAffect",
+      "object": "sgw:channel-access-revocation",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer; the compact operation removes RECORDS of past revocations without affecting the user's CURRENT access state",
+      "evidence": "The operation does not affect the user's current channel access, does not modify underlying documents, and does not interrupt active continuous replications."
+    },
+    {
+      "subject": "sgw:user-access-history",
+      "predicate": "cascadesTo",
+      "object": "sgw:zero-checkpoint-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - both minted; note the doubled cascade shape - both the document-level and user-level channel history feed the SAME zero-checkpoint replay mechanism, from two different metadata locations",
+      "evidence": "Selectively removing channel entries from the history prevents Sync Gateway from sending revocations for those channels during future zero-checkpoint replications."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf",
+    "finding": "The page recommends retrieving history before compacting ('Before compacting, retrieve the current channel access history for a user to confirm which channels are recorded.') but frames this as a best-practice recommendation, not a stated hard precondition - the compact endpoint itself has no documented dependency check requiring the GET to have been called first. Kept out of requiresPriorExecutionOf as a result: that predicate is defined for a documented behavioral dependency, and this is advisory only."
+  },
+  "cross_component_finding": "This page's core problem statement - 'Document `_sync` attributes and user documents grow continuously, increasing storage overhead and degrading performance' - is a metadata-bloat concern structurally identical in shape to Couchbase Server's tombstone/metadata-purge-interval concern (storage:metadata-purge-interval, extraction-layer from server/8.0/manage/manage-settings/configure-compact-settings.json), but for a completely different metadata class (channel/access history vs. deleted-document tombstones) and a completely different trigger (zero-checkpoint replication replay vs. XDCR/replica propagation). No page states these are related; kept separate.",
+  "cross_product_finding": "The zero-checkpoint replication behavior (sgw:zero-checkpoint-replication) is fundamentally a Couchbase Lite client behavior with a Sync Gateway-side consequence - the clearest example in this batch of a manage/ page whose whole rationale is a cross-product mechanism (mobile client reinstall/rollback) rather than a Sync-Gateway-internal one. This directly supports the round's hypothesis that channel/access vocabulary (channels, revocation) already anticipates this operation: the page explicitly frames the whole feature around 'unnecessary revocations' - a term that only makes sense given the pre-existing sgw:channel-access-revocation concept from round 3's access-control batch."
+}

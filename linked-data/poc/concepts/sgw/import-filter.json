@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/import-filter",
+  "label": "Import Filter (Sync Gateway)",
+  "type": "a user-authored JavaScript predicate function, scoped per collection, deciding whether Sync Gateway imports a given Couchbase-Server-side document mutation. Defaults to importing all documents when unset. Sibling of sgw:custom-conflict-resolver and sgw:webhook-filter under the shared sgw:sync-function umbrella - all four are provisioned the same way (Admin REST API) and share the same JS-function-body shape.",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "configuration-schema-import-filter.md documents this mechanism in full (provisioning, schema, worked example); its access-control sibling page (configuration-schema-access-control.md, same batch) is a near-empty stub for the analogous sync-function/access-control mechanism - see docs-issues."
+}

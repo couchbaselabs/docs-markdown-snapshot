@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/revision-cache",
+  "label": "Revision cache (Sync Gateway)",
+  "type": "an in-memory, Enterprise-Edition-tunable cache of document revision bodies, sized by a memory limit with a stated 50MB minimum.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "See sgw:channel-cache for why the two caches are kept separate despite the structural parallel."
+}

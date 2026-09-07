@@ -1,0 +1,137 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/scopes-and-collections-config",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/scopes-and-collections-config.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:custom-scope",
+      "label": "Custom Scope (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:custom-collection",
+      "label": "Custom Collection (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:system-metadata-collection",
+      "label": "System Metadata Collection (_system._mobile)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch - this page restates the same fact independently"
+    },
+    {
+      "candidate_id": "sgw:metadata-migration-to-system-collection",
+      "label": "Metadata Migration to System Collection",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:import-filter",
+      "label": "Import Filter (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-javascript-functions.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:access-cmd",
+      "label": "access()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json/sync-function.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:channel-cmd",
+      "label": "channel()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json/sync-function.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:require-role-cmd",
+      "label": "requireRole()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function-api-require-role-cmd.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:channel",
+      "label": "Channel (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:role",
+      "label": "Role (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:custom-scope",
+      "predicate": "hasMaximumCount",
+      "object": "1 per database",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "reused (minted in configuration-schema-database.json, same batch) - restated independently on this page",
+      "evidence": "You can define 1 custom scope per database with up to 1000 custom collections."
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "scopedToCollection",
+      "object": "sgw:custom-collection",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from sync-function.json (round 3) - same predicate already used once there for the generic sync-function/collection relationship",
+      "evidence": "The sync function associated with collection1. {sgw} triggers this function when you create or update a document in the collection."
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "scopedToCollection",
+      "object": "sgw:custom-collection",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused (same predicate as above, applied to the sibling JavaScript function type)",
+      "evidence": "The import filter function associated with collection1. {sgw} uses this function when importing documents into the collection."
+    },
+    {
+      "subject": "sgw:system-metadata-collection",
+      "predicate": "triggersImmediateExecutionOf",
+      "object": "sgw:metadata-migration-to-system-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted triggersImmediateExecutionOf) - same fact independently restated on this page",
+      "evidence": "From {sgw} 4.1, you can opt in to migrating {sgw} internal metadata from the default collection (`_default._default`) to `_system._mobile`."
+    },
+    {
+      "subject": "sgw:access-cmd",
+      "predicate": "grantsChannelAccess",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted grantsChannelAccess)",
+      "evidence": "A function used to grant access to a user for a specific channel."
+    },
+    {
+      "subject": "sgw:channel-cmd",
+      "predicate": "routesDocumentToChannel",
+      "object": "sgw:channel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted routesDocumentToChannel)",
+      "evidence": "A function used to assign the document to a channel represented by the channelId."
+    },
+    {
+      "subject": "sgw:require-role-cmd",
+      "predicate": "requiresRole",
+      "object": "sgw:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresRole) - same predicate/pair already established in sync-function-api-require-role-cmd.json",
+      "evidence": "The requireRole(\"provider\") function checks whether the user performing the update has the \"provider\" role. If not, the update is not allowed."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page's AsciiDoc `{sgw}` attribute reference was never resolved before publication - it appears literally as the four characters `{sgw}` at least eight times in running prose ('{sgw} uses a reserved system collection...', 'From {sgw} 4.1, you can opt in...', '{sgw} triggers this function...', '{sgw} creates no replicas of indexes...'). Every other page in this batch spells out 'Sync Gateway' in full; this is the only page in the batch with the raw, unrendered attribute leaking through, a genuine publishing defect worth a docs-issue at reconciliation time."
+  },
+  "cross_component_finding": "This page's stated limit - 'You can define 1 custom scope per database with up to 1000 custom collections' (repeated verbatim twice on this page) - phrases the collection cap as PER DATABASE, while configuration-schema-database.json's Table/limits section states '1000 custom collections across the cluster' - a CLUSTER-wide cap. These are materially different constraints (a cluster with many databases could exhaust a cluster-wide 1000 far sooner than a per-database 1000 would suggest) and no page reconciles the discrepancy; both quotes are recorded faithfully on their respective records rather than silently normalized to one reading.",
+  "cross_product_finding": "None beyond what is already established (sgw:custom-scope, sgw:custom-collection, sgw:system-metadata-collection) elsewhere in this batch - this page is entirely about Sync Gateway's own database-configuration surface, with worked JavaScript examples reusing access-control primitives (access(), channel(), requireRole()) already modeled from round 3."
+}

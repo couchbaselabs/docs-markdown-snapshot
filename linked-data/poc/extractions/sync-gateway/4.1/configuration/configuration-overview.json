@@ -1,0 +1,167 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-overview",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:persistent-configuration",
+      "label": "Centralized Persistent Modular Configuration",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway 3.0's replacement for the legacy file-based configuration method; the umbrella concept for this whole batch's REST-API-driven, node/database-level, cluster-propagated configuration model"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product) - checked via candidate-evidence.py before reuse"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Sync Gateway Metrics REST API",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from security/secure-sgw-access.json (same product, unpromoted stub)"
+    },
+    {
+      "candidate_id": "sgw:rbac-user",
+      "label": "User (Sync Gateway, Admin/Metrics API - reused Couchbase Server RBAC)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:disable-persistent-config-flag",
+      "label": "disable_persistent_config flag",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-how-control-document-access.json (same product, unpromoted)"
+    },
+    {
+      "candidate_id": "version:sgw-3-0",
+      "label": "Sync Gateway 3.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "service:eventing-service",
+      "label": "Eventing Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept (Couchbase Server-side service); this page states a cross-product dependency from Sync Gateway's persistent-configuration mechanism onto it"
+    },
+    {
+      "candidate_id": "sgw:config-group",
+      "label": "Sync Gateway Config Group",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a named subset of a Sync Gateway cluster's nodes sharing common database configuration, distinct from the cluster itself and from the bootstrap.group_id setting that assigns a node to one"
+    },
+    {
+      "candidate_id": "sgw:sync-gateway-cluster",
+      "label": "Sync Gateway Cluster",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a collection of Sync Gateway nodes connected to a common Couchbase Server cluster, per this page's own Key Terms table"
+    },
+    {
+      "candidate_id": "sgw:bootstrap-configuration",
+      "label": "Bootstrap Configuration (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the minimal, node-specific JSON file used to attach a Sync Gateway node to its Couchbase Server cluster; fully detailed on configuration-schema-bootstrap.md (same batch)"
+    },
+    {
+      "candidate_id": "sgw:sync-gateway-restart",
+      "label": "Sync Gateway Restart (configuration-triggered)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the state-transition event that node- and some database-level configuration changes require, either manually (bootstrap config) or automatically (persistent config via the API); no dedicated lifecycle vocabulary for this existed anywhere in the registry prior to this batch, echoing round 26's finding that admin/config surfaces reveal state-transition vocabulary absent from conceptual/reference docs"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sgw:persistent-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted retainedForLegacyCompatibility) - the legacy file-based method is explicitly kept available only via an opt-out flag, superseded by persistent configuration as the new default",
+      "evidence": "Centralized persistent modular configuration replaces the established, file-based configuration method"
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:disable-persistent-config-flag",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresFlagToEnable) - confirms this batch's own prediction that the predicate would recur heavily",
+      "evidence": "To continue using legacy Pre-3.0 configuration you should start Sync Gateway with [disable\\_persistent\\_config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md)."
+    },
+    {
+      "subject": "service:eventing-service",
+      "predicate": "requiresSetting",
+      "object": "sgw:persistent-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresSetting) - a genuine cross-product dependency: a Couchbase Server-side feature (Eventing) requires a Sync Gateway-side configuration mode to have been chosen",
+      "evidence": "Using Sync Gateway with Couchbase Server's [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks"
+    },
+    {
+      "subject": "sgw:rbac-user",
+      "predicate": "requiredForApiAccess",
+      "object": "sgw:admin-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiredForApiAccess) - same predicate/pair already established in security/secure-sgw-access.json, this page's own evidence quote",
+      "evidence": "In order to submit Admin or Metrics REST API requests you should create specific Couchbase Server users for that purpose. You will then provide a valid set of Couchbase Server credentials for these RBAC-users in each API request."
+    },
+    {
+      "subject": "sgw:rbac-user",
+      "predicate": "requiredForApiAccess",
+      "object": "sgw:metrics-rest-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiredForApiAccess) - same evidence sentence names both APIs together",
+      "evidence": "In order to submit Admin or Metrics REST API requests you should create specific Couchbase Server users for that purpose. You will then provide a valid set of Couchbase Server credentials for these RBAC-users in each API request."
+    },
+    {
+      "subject": "sgw:config-group",
+      "predicate": "configuredVia",
+      "object": "sgw:bootstrap-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted configuredVia) - the group a node belongs to is set through a bootstrap-level property",
+      "evidence": "You can group Sync Gateway nodes into homogenous clusters using the `Config-Group-ID` property"
+    },
+    {
+      "subject": "sgw:config-group",
+      "predicate": "hasDefaultValue",
+      "object": "default",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue) - literal default group name, per round 11's practice of using a literal object rather than minting a concept for the value itself",
+      "evidence": "All nodes in a cluster belong, by default, to a common shared group `default`."
+    },
+    {
+      "subject": "sgw:sync-gateway-cluster",
+      "predicate": "hasInternalComponent",
+      "object": "sgw:config-group",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasInternalComponent) - a config group is an internal grouping within a cluster, not a separate top-level entity",
+      "evidence": "A group of Sync Gateway nodes within a Sync Gateway cluster sharing common configuration."
+    },
+    {
+      "subject": "sgw:bootstrap-configuration",
+      "predicate": "requiresRestartToApply",
+      "object": "sgw:sync-gateway-restart",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - node-level bootstrap configuration changes require a manual restart to take effect, unlike database-level changes made via the API (see triggersImmediateExecutionOf below); no promoted predicate captures a setting's dependency on a subsequent restart action, and the theme recurs across this whole batch",
+      "evidence": "This configuration is node-specific. Any changes require a Sync Gateway restart."
+    },
+    {
+      "subject": "sgw:persistent-configuration",
+      "predicate": "triggersImmediateExecutionOf",
+      "object": "sgw:sync-gateway-restart",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted triggersImmediateExecutionOf) - contrasts with the bootstrap case above: here Sync Gateway performs the restart automatically rather than requiring the operator to do so",
+      "evidence": "Sync Gateway initiates auto restarts for any change that requires one."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "Table 1 (Configuration Levels) suffered a markdown-conversion defect: several 'Changeable?' cells are corrupted merges of two sentences with no separating punctuation or whitespace, e.g. 'Yes, file-editRestart required' and 'Yes by the Admin REST APINo restart, but **not persisted**'. The restart/persistence axis for Node, System properties, Logging properties, Database and Replication properties levels is present in the source but not cleanly machine-extractable from this snapshot without consulting the original AsciiDoc; relations 8 and 9 above were built instead from clean prose sentences elsewhere on the page that make the same two points (manual restart for bootstrap/node config vs. automatic restart for persistent/database config)."
+  },
+  "cross_component_finding": "This page names three superficially similar collective nouns - 'Sync Gateway Cluster', 'Homogeneous Sync Gateway Cluster', and 'Sync Gateway Config Group' - in a single three-row Key Terms table, distinguishing a cluster (any nodes sharing one Couchbase Server cluster), a homogeneous cluster (a cluster where every node shares config), and a config group (a named subset of a cluster's nodes sharing config, the general case of which a homogeneous cluster is the trivial one-group instance). Only sgw:config-group and sgw:sync-gateway-cluster were minted as concepts here since they are the two structurally distinct entities; 'Homogeneous Sync Gateway Cluster' is a degenerate case of the config-group mechanism (a cluster with exactly one, default, all-encompassing group) rather than a third structure, so minting it separately was judged to add a label without a new mechanism.",
+  "cross_product_finding": "The Eventing Service dependency (service:eventing-service requiresSetting sgw:persistent-configuration) is the first concrete, source-stated coupling this round has found between Sync Gateway's own configuration mode and a Couchbase Server-side service's ability to function correctly - Eventing silently loses compatibility-check visibility into databases created under legacy file-based config because they are 'not recorded in the registry'. This is a genuine cross-product finding distinct from the two disjoint-identity-system findings established in round 3 (sgw:rbac-user vs sgw:user) and the TLS-transport-layer finding in secure-sgw-access.json: it shows Sync Gateway's internal configuration-mode choice reaching outward to affect a Couchbase Server feature's own behaviour, not merely reusing a Couchbase Server identity or transport mechanism."
+}

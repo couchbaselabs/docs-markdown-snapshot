@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-channel-access",
+  "label": "requires channel access",
+  "kind": "relation (schema-level)",
+  "type": "the sync function's requireAccess() check - the subject write operation is rejected unless the acting user already holds an explicit (non-wildcard) grant to the named channel. Distinct from requiresRole (checks role membership) and requiresUser (checks exact identity match); recognizes only grants made by channel name, never by the all-channels wildcard.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Round 3's sync-function.json minted this predicate alongside requiresUser/requiresAdminApi and kept them on a watchlist per requiresRole's own note ('kept as watchlist, distinct nuances, not merged in'). Round 27's dedicated requireAccess() reference page independently reuses the identical predicate for the same command, crossing the promotion bar at 2 distinct files with no forcing. Promoted rather than generalized into requiresRole because requireAccess()'s own reference page states a materially different check shape (a channel grant, not a role) and the round's own extraction record explicitly declined to fold it."
+}

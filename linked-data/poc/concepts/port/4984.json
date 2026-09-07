@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/port/4984",
+  "label": "Port 4984 (Sync Gateway public REST API)",
+  "type": "the standard Sync Gateway public REST API port, referenced in this round's load-balancer and command-line-options material.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Contributes to round 26's noted port: promotion-debt backlog; promoted here on this round's own evidence."
+}

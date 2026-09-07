@@ -6558,7 +6558,192 @@ above.
   bad merges; it is that it converts a guess an extraction agent cannot make into a
   lookup a reconciliation agent can.
 
-## Cumulative verdict (all twenty-six rounds)
+## Round 27 — Sync Gateway's `access-control/`+`security/` remainder, and first contact with `configuration/`, `deploy/` and `manage/`
+
+**Scope.** 49 pages across six batches: the access-control conceptual remainder and
+the sync-function command reference (`access()`, `channel()`, `expiry()`, the
+`require*()` family, `role()`, `throw()`), the `security/` remainder (audit logging,
+OIDC, TLS), and first contact with `configuration/`, `deploy/` and `manage/` - the
+operational core of running a Sync Gateway deployment that no prior round had read.
+This round's own extraction and analysis were done by a prior agent that was killed
+mid-task by an API rate limit before it could write this section or run the final
+checks; the work below is a resumed, independently-verified reconciliation of that
+agent's promotions, not a fresh redo.
+
+### Verifying the interrupted run: solid on the substance, two real gaps
+
+`verify-evidence.py` and `verify-registry-ids.py` both passed clean on the round's 49
+records and the full registry before any of this round's own changes were made.
+`candidate-evidence.py --audit` over the whole `sgw:` namespace plus the round's
+`tool:`/`prometheus:`/`port:` mints and its three new `requires*` relations found
+**zero** unquotable evidence attributable to any `sync-gateway/4.1/` file - every
+`!! UNQUOTABLE` flag in the namespace belongs to pre-existing round-3 records, a
+separate, already-standing issue this round did not introduce. The three named
+near-misses all held up on independent re-reading:
+
+- **`sgw:inter-sync-gateway-replication` vs `xdcr:replication`.** Confirmed by
+  absence: `configuration-schema-isgr.md`, the page most likely to draw the
+  comparison if one existed, never says "XDCR" anywhere. Kept separate correctly.
+- **`sgw:audit-logging` vs `security:auditing`.** The near-verbatim
+  per-node/manual-consolidation wording is real and striking on direct comparison
+  (`"the records must be manually consolidated by an administrator"` here against
+  `"individual per node records must be manually consolidated by the administrator"`
+  on Server's record) - and correctly left unmerged, since no page states the
+  equivalence.
+- **`tool:sgcollect-info` vs `tool:cbcollect-info`.** The scoped
+  `hasEquivalentEffectAs` resolution (redaction-hashing only, not a full-identity
+  claim) is the right call - but the relation itself had never been written into
+  `manage/sgcollect-info.json`, only asserted in the concept's own promotion note. Fixed
+  (below).
+
+The three new `requires*` relations (`requiresAdminApi`, `requiresChannelAccess`,
+`requiresUser`) were independently recomputed at exactly recurrence 2 each
+(the round 3 `sync-function.json` mention plus this round's own dedicated reference
+page, no overlap), consistent with the already-promoted `requiresRole` record's own
+standing note that these three are watchlist siblings deliberately not generalized
+into it - a decision this round's evidence reconfirms rather than revisits.
+
+**Two "narrated as promoted, never actually filed" gaps**, the same defect round 25
+first found inside a promoted record's own defining text: `sgw:version-vector`'s
+own concept record's note claimed a `reliesOnMechanism` relation into
+`xdcr:cross-cluster-versioning` "see relations"; `manage/revisions.json`'s relations
+array did not contain it.
+`tool:sgcollect-info`'s own concept record's note similarly claimed the `hasEquivalentEffectAs`
+relation to `tool:cbcollect-info` as licensed; `manage/sgcollect-info.json` did not
+contain it either. Both are genuinely licensed by quotable page text (verified against
+the raw source pages, not just the record's own paraphrase), so both were back-filled
+into their extraction records rather than the concept notes being walked back. Fixing
+the second also surfaced an inflated recurrence claim: the concept's `aliases_note`
+counted `security/audit-log-events.json` as a third corroborating file, but that
+file's only reference to the tool is a bare `concepts[]` entry plus a `seeAlso` link -
+neither counts toward the promotion metric - so the true combined recurrence is 2, not
+3. Corrected in the record with the miscount stated, not silently adjusted.
+
+**One case of real gate-induced thinning, caught via the gate-log deny/allow-count
+check.** `configuration-properties-legacy.json` shows `deny(6) -> allow(4)`: the first
+attempt's `requiresFlagToEnable` quote spanned an empty blockquote line and was
+correctly denied, but the rewrite dropped two relations entirely rather than
+re-quoting them, leaving two `concepts[]` entries (`sgw:persistent-configuration`,
+`sgw:admin-channels-property`) with no matching relation - the exact fingerprint the
+skill's gate-log check exists to find. Both were recoverable from the page: a standalone
+sentence ("Persistent Configuration is enabled by default from 3.0.") for the first,
+and the worked JSON example's `admin_channels` field on both an `admin`-labelled and an
+ordinary user for the second. Both recovered. The second needed a predicate that turned
+out to be its own separate promotion-debt catch: `configuresProperty` was minted in
+round 3, reused across 7 distinct files including 6 in this round (the recovered
+relation on this very page counting as one of them), and never itself promoted -
+fixed by promoting it now (`relations/configures-property.json`). The other
+18 deny-then-allow pairs in this round's 49-path gate-log slice all show the expected
+`deny(N) -> allow(N)` "found the quote" pattern, including two that instead show a
+deliberate, disclosed non-promotion (an `isAnalogousTo` between `sgw:oidc-provider` and
+`sgw:local-jwt-provider` considered and correctly declined, per that record's own
+`notable_absence`) rather than thinning.
+
+### Completeness: two promotion-debt misses caught, one non-issue confirmed
+
+Running the recurrence aggregation over the whole `sync-gateway/` scope (not just this
+round's 49 files) surfaced two concepts that were clearly above the promotion bar and
+central to this round's own narrative, but were never promoted in 24 prior rounds of
+reuse:
+
+- **`sgw:sync-function`** - the JavaScript function every `access()`/`channel()`/
+  `expiry()`/`require*()`/`role()`/`throw()` command in this round's own dedicated
+  reference sub-batch is a command *of*. Minted in round 3, reused across 14 distinct
+  files under the promotion metric as of this round (16 by the any-mention metric),
+  and never itself promoted until now.
+- **`sgw:channel-access-revocation`** - the auto-purge-on-loss-of-channel-access
+  lifecycle event, at recurrence 5, similarly minted in round 3 and extended this round
+  by `auto-purge-channel-access-revocation.json` (a page this round's own framing
+  specifically called out to check), `channel-history.json` and `resync.json`.
+
+Both are the same shape as round 24's `role:cluster-admin` finding: whole-corpus
+recurrence, not round-scoped recurrence, catching debt no single round's own visibility
+could see. Checked and confirmed as **non-issues**, needing no action: no new Sync
+Gateway version mention (3.1, 3.3, 4.0, 4.1, 2.8, each independently named once in this
+round) crosses the recurrence-2 bar anywhere in the whole corpus, so the absence of any
+new `version:sgw-*` promotion is correct, not an oversight. The `prometheus:`/`stats:`/
+`monitoring:` mentions from `deploy/stats-prometheus.json` and `manage/stats-monitoring*.json`
+do not collide: they name different, complementary halves of the Prometheus integration
+(shipping the scrape config vs. consuming the resulting metrics), independently checked
+against each other as this round's own namespace-coherence pass and reconfirmed here.
+`managing-tombstones.json`'s `isVariantOf` claim (a Sync Gateway tombstone becomes
+Server's `storage:tombstone` under `enable_shared_bucket_access`) was already correctly
+filed with the licensing quote. `revisions.json`'s claim that Sync Gateway 4.0+ shares
+Server's XDCR HLV mechanism needed the back-fill described above.
+
+### Namespace coherence: `sgw:` confirmed as a subject area, not an axis
+
+`sgw:` now holds 73 members after this round's promotions (59 direct plus the
+pre-existing `channel`/`role`/`user`/`document`/`collection` core and their `.jsonld`
+flagships). Applying the closed-axis-vs-subject-area test directly: membership spans
+REST/RBAC surfaces, sync-function commands, configuration mechanisms (bootstrap,
+persistent, legacy, config groups), operational commands (compact, resync, restart),
+monitoring formats, storage/replication concepts, and security mechanisms - the whole
+of Sync Gateway's own feature surface, not an enumerable list a page could close. This
+is a subject area like `eventing:` or `capella:`, exactly as the dispatch anticipated;
+no rename or dissolution is warranted.
+
+### Promotions
+
+**64 concepts promoted**, taking `concepts/` to 643: `port:4984`, `port:4986`,
+`prometheus:metrics-endpoint`, `tool:sgcollect-info` (recurrence corrected to 2, see
+above), `tool:sync-gateway`, 59 `sgw:` records including the two debt-catches above,
+and the flagged near-miss resolutions (`sgw:inter-sync-gateway-replication`,
+`sgw:audit-logging`, `sgw:tombstone`). Two significance exceptions below the usual
+recurrence-2 bar, following round 24's `alsoExposedAs` precedent for a promotion made
+to carry a relation rather than for its own recurrence: `sgw:version-vector` and
+`sgw:revision-tree` (recurrence 1 each - `revision-tree` cannot be defined without
+naming `version-vector` and vice versa, the same family-cannot-be-defined-without-
+its-sibling test round 26 applied to `server:full-recovery`/`server:delta-recovery`).
+
+**4 relations promoted**, taking `relations/` to 118: `requiresAdminApi`,
+`requiresChannelAccess`, `requiresUser` (each recurrence 2, kept separate from
+`requiresRole` per that record's own standing note) and `configuresProperty`
+(recurrence 7, the round-3-minted promotion-debt catch described above).
+
+**7 `docs-issues/` filed**, taking the total to 201: an access-control schema
+reference page that is functionally a redirect stub; a malformed AsciiDoc xref build
+artifact (`[Star Channel](#2.7@sync-gateway-channels.adoc#star-channel)`) appearing
+verbatim on two pages; the custom-collection cap stated as both a cluster-wide and a
+database-wide limit for the identical number; ~30 command-line-options.md table rows
+with empty Description cells; a REST API reference page whose entire Introduction is
+"Sync Gateway …"; a configuration-overview.md table with markdown-conversion-corrupted
+"Changeable?" cells; and an unresolved `{sgw}` AsciiDoc attribute appearing literally
+eight times in running prose on `scopes-and-collections-config.md`.
+
+### What this round taught about the method
+
+- **The operational core shows round 26's procedural-genre gap, but narrower and
+  mixed rather than uniform.** The access-related half of `manage/`'s operations
+  (resync, channel history, tombstone management) connected richly to existing
+  access-control vocabulary reused since round 3 - `sgw:sync-function`,
+  `sgw:channel-access-revocation`, the `require*Cmd` family - while the
+  operational/infrastructure half (`deploy/`'s OS-level tuning, load balancing,
+  Prometheus scrape configuration, deployment topology) needed wholesale minting
+  with almost no round-3 precedent to reuse. Round 26 found reference vs. procedural
+  as a clean genre split at the scale of a whole 83-page directory; this round finds
+  the same shape recurring *inside* one round's own scope, split by which half of the
+  operational surface a page is about rather than by directory.
+- **A gate denial can drop content even when the denial names only one relation.**
+  `gate-evidence.py`'s reported problem list is not exhaustive - `configuration-
+  properties-legacy.json`'s single logged deny named one bad quote, but the rewrite
+  that followed dropped two relations, not one. Round 26 established that a denial
+  is not relation-preserving because the agent re-authors the whole record; this adds
+  that the *log itself* undercounts what was at risk, since a fail-fast check reports
+  only the first problem it finds, not every relation the eventual rewrite touches.
+  The gate-log deny/allow relation-count comparison is what surfaces this, not the
+  denial reason text.
+- **The "narrated as promoted, never filed" defect keeps recurring in exactly the
+  same shape, across a different cause each time.** Round 25 found it as an ordinary
+  reconciliation oversight; this round finds two more instances, both introduced not
+  by carelessness but by an interruption mid-task (a promotion's write-up note was
+  drafted before the corresponding extraction-record edit, and the process was killed
+  between the two). The defect is now confirmed to be about the *shape of the work*
+  - writing the claim and writing the data are two separate steps with no atomic
+  link between them - rather than about any one agent's diligence, since a careful
+  interrupted agent produces the identical gap to a careless uninterrupted one.
+
+## Cumulative verdict (all twenty-seven rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -6945,6 +7130,27 @@ denial, however trivial its cause, an opportunity for unrelated loss. Rounds 13-
 established that a control's coverage is an unchecked claim; this adds that **a
 control's side effects are unchecked too**, and that nothing compares a denied record
 against the version eventually accepted in its place.
+
+Round 27 closed out Sync Gateway's `access-control/`+`security/` surface and made
+first contact with its operational core (`configuration/`, `deploy/`, `manage/`), and
+did so as a resumed reconciliation of a run an API rate limit killed mid-task rather
+than as a fresh pass - the first time this project has had to verify, rather than
+perform, the analysis phase. The inverted access-control model held across the
+complete surface, confirming round 3's finding a second time on different pages, and
+the operational core showed round 26's reference-vs-procedural genre split recurring
+at a smaller grain: not directory against directory, but the access-flavoured half of
+one directory's own operations (resync, tombstones, channel history, richly connected
+to vocabulary reused since round 3) against its infrastructure half (OS tuning, load
+balancing, Prometheus scrape configuration, needing wholesale minting). The round's
+own verification turned up two more instances of round 25's "narrated as promoted,
+never filed" defect, and this time the cause was legible: an interruption between
+drafting a promotion's prose and writing the extraction-record edit that data
+depended on, not carelessness - which reframes the defect as being about *the shape
+of the work* (claim-writing and data-writing are two separate, non-atomic steps) more
+than about any one agent's diligence. It also found a gate-log thinning case whose
+denial log named only one bad relation while the eventual rewrite had dropped two,
+confirming round 26's "denial is not relation-preserving" finding and adding that the
+log itself, being fail-fast, can undercount what a rewrite puts at risk.
 
 Round 10 also changed what this project believes about its own reliability. Up
 to round 9, the evidence quality of the corpus was assumed on the strength of

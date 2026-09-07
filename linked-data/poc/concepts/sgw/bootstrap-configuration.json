@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/bootstrap-configuration",
+  "label": "Bootstrap configuration (Sync Gateway)",
+  "type": "the node-specific, restart-required configuration surface (config-group ID, Couchbase Server connection string, node-level TLS/auth flags) that Sync Gateway reads at startup before any persistent, per-database configuration is fetched.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Sibling of sgw:persistent-configuration and sgw:legacy-pre-3-config as the third configuration-mode/tier this round found - node-level and always restart-required, as against database-level persistent config, which Sync Gateway can auto-restart itself for."
+}

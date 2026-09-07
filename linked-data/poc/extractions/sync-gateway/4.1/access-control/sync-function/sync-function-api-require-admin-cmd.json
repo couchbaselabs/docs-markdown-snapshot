@@ -1,0 +1,23 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-require-admin-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-require-admin-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:require-admin-cmd", "label": "requireAdmin()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:admin-rest-api", "label": "Sync Gateway Admin REST API",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:require-admin-cmd", "predicate": "requiresAdminApi", "object": "sgw:admin-rest-api",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3) - per this round's framing, kept distinct rather than generalized into requiresRole",
+      "evidence": "Use the `requireAdmin()` function to reject document updates that are not made by the Sync Gateway Admin REST API." }
+  ],
+  "notable_absence": {
+    "predicate": "signalsRejectionByThrowing (not a registry predicate - a pattern this batch's other three require* pages state explicitly)",
+    "finding": "requireAccess()'s and requireUser()'s reference pages both state verbatim: 'The function signals rejection by throwing an exception, so the rest of the sync function will not be run.' requireRole()'s page (round 3) states the same mechanism in slightly different words ('it signals rejection by throwing an exception'). requireAdmin()'s page has NO Context section at all and never states this - it goes straight from Arguments ('There are no arguments.') to Use. This is the strongest textual signal in the whole batch bearing on the round's central question: three of the four require* commands independently and near-identically describe throwing an exception as their rejection mechanism, strongly suggesting all four genuinely share ONE underlying mechanism (the same JS throw used explicitly by throw() itself, documented elsewhere in this batch) - but the docs are themselves inconsistent about saying so, which is itself evidence for why they were never merged into one relation. requireAdmin() is also the only one of the four with zero arguments and no identity/channel/role check on the ACTING USER at all - it gates on which API surface the request arrived through, a structurally different axis from the other three (which all check a property of the authenticated user). That is the concrete reason requiresAdminApi should stay its own predicate rather than folding into requiresRole: its object is an API surface, not a role, user, or channel."
+  },
+  "cross_component_finding": "This is the thinnest page in the batch: Purpose, a two-column Arguments table stating 'There are no arguments', and one Use example. It genuinely has only one relation to offer - there is no forced content here, consistent with the schema's allowance for thin reference pages."
+}

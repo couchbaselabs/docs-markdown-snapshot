@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-command-line-options-empty-descriptions",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "Roughly 30 rows of command-line-options.md's Table 1 - every logging.console/error/warn/info/debug/trace/stats.rotation.* and .collation_buffer_size sub-property - have a completely empty Description cell in the source markdown itself, verified against the raw file rather than an extraction gap. Only the log_level and log_keys rows in that family carry any description at all, leaving an operator with no in-page explanation of what most of the logging rotation settings do.",
+  "about": [
+    "sync-gateway/4.1/deploy/command-line-options"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

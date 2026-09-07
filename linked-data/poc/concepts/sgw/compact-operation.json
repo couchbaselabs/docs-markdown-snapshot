@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/compact-operation",
+  "label": "Compact operation (Sync Gateway)",
+  "type": "the REST-triggered operation (POST /{db}/_compact) purging the JSON bodies of non-leaf revisions and removing purged tombstones from the channel cache. Referred to independently, in different vocabulary, by three pages in this batch: as an operation (this concept), a timing statistic (compaction_tombstone_start_time), and a background 'task' name in a Prometheus metric - none of the three cross-reference each other.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "See sgw:tombstone for the headline cross-product finding this operation feeds into."
+}

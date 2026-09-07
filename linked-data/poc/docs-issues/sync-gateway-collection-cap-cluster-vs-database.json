@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/sync-gateway-collection-cap-cluster-vs-database",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "The custom-collection limit is stated as a CLUSTER-wide cap of 1000 by configuration-schema-database.md ('1000 custom collections across the cluster'), but scopes-and-collections-config.md states the identical number as a PER-DATABASE cap, repeated verbatim twice ('You can define 1 custom scope per database with up to 1000 custom collections'). These are materially different constraints - a cluster with many databases could exhaust a cluster-wide 1000 far sooner than a per-database reading would suggest - and no page reconciles the discrepancy.",
+  "about": [
+    "sync-gateway/4.1/configuration/configuration-schema-database",
+    "sync-gateway/4.1/configuration/scopes-and-collections-config"
+  ],
+  "foundDuring": "round-27-sync-gateway-access-control-configuration-deploy-manage",
+  "status": "open"
+}

@@ -1,0 +1,23 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-require-user-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-require-user-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:require-user-cmd", "label": "requireUser()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:user", "label": "User (Sync Gateway, Public API identity)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" }
+  ],
+  "relations": [
+    { "subject": "sgw:require-user-cmd", "predicate": "requiresUser", "object": "sgw:user",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3) - per this round's framing, kept distinct rather than generalized into requiresRole",
+      "evidence": "Use the `requireUser()` function to reject document updates that are not made by the specified user or users." }
+  ],
+  "notable_absence": {
+    "predicate": "(no registry predicate for a validation-trust warning)",
+    "finding": "This page carries a security caveat that appears on NONE of the other three require* pages in this batch (requireAccess, requireAdmin, requireRole): 'When validating a document, you should treat all properties of the doc parameter as untrusted... This may sound obvious, but it can be easy to make mistakes, like calling requireUser(doc.owners) instead of requireUser(oldDoc.owners). When using one document property to validate another, look up that property in oldDoc, not doc!' This is genuinely new content versus round 3's sync-function.json, which only captured the bare purpose statement. The principle (doc is attacker-controlled input, oldDoc is trusted prior state) logically applies to any require*() call whose argument is derived from a document property, not just requireUser() - but the warning is stated only here. Not modeled as a relation because no registry concept exists for 'the doc parameter' as an untrusted-input construct distinct from sgw:document itself, and minting one just to hold this single caveat seemed disproportionate; recorded as a finding instead."
+  },
+  "cross_component_finding": "Together with requireAccess()'s and requireRole()'s near-identical 'signals rejection by throwing an exception, so the rest of the sync function will not be run' Context-section language, this page reinforces that requireUser(), requireAccess() and requireRole() are documented as three instances of one real underlying throw-based rejection mechanism, differing only in what they check (username(s) vs channel(s) vs role(s)) - see the requireAdmin() record in this same batch for the fuller comparison and why requireAdmin() alone is structurally distinct enough to warrant its own predicate rather than a four-way merge."
+}

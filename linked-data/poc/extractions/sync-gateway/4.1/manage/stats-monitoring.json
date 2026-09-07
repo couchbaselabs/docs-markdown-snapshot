@@ -1,0 +1,57 @@
+{
+  "page_id": "sync-gateway/4.1/manage/stats-monitoring",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/stats-monitoring.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:metrics-rest-api",
+      "label": "Metrics REST API (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's secure-sgw-access.json extraction; this page is the first to describe its two output formats rather than just its existence as an API surface"
+    },
+    {
+      "candidate_id": "sgw:json-metrics-format",
+      "label": "JSON Metrics Format (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's own custom nested-JSON metrics encoding; kept under sgw: rather than the open stats:/prometheus: subject-area namespaces since it is a Sync-Gateway-specific format with no Server-side equivalent (Server's stats: namespace member stats:metrics-rest-api describes a different, Server-specific format)"
+    },
+    {
+      "candidate_id": "sgw:prometheus-metrics-format",
+      "label": "Prometheus Metrics Format (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - Sync Gateway's flat-JSON Prometheus-compatible encoding. Checked against the extraction-layer prometheus:metrics-endpoint (Couchbase Server's own /metrics endpoint, from server/8.0/manage/monitor/set-up-prometheus-for-monitoring.json) and kept separate per the same no-silent-merge convention used for tool:sgcollect-info vs tool:cbcollect-info: both are 'a Couchbase service exposing Prometheus-compatible metrics' in near-identical wording, but this page states only that Sync Gateway follows the SAME pattern as other services ('As with all Couchbase services, Sync Gateway exposes a Prometheus-compatible format'), not that it IS the same endpoint or shares implementation - a stated family resemblance, not a stated identity, so kept as its own concept rather than reusing prometheus:metrics-endpoint outright."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:json-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "Use the Metrics REST API to request the statistics in either [JSON](stats-monitoring-json.md) or [Prometheus](stats-monitoring-prometheus.md) format."
+    },
+    {
+      "subject": "sgw:metrics-rest-api",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:prometheus-metrics-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "Use the Metrics REST API to request the statistics in either [JSON](stats-monitoring-json.md) or [Prometheus](stats-monitoring-prometheus.md) format."
+    },
+    {
+      "subject": "sgw:prometheus-metrics-format",
+      "predicate": "isAnalogousTo",
+      "object": "prometheus:metrics-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject minted, object reused extraction-layer; the family-resemblance statement itself",
+      "evidence": "As with all Couchbase services, Sync Gateway exposes a [Prometheus](stats-monitoring-prometheus.md)\\-compatible format in flat JSON."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "This overview page names no individual stat or metric itself (that detail is deferred entirely to the JSON and Prometheus sub-pages) - so no monitoredVia relations are minted here; they belong to stats-monitoring-json.json and stats-monitoring-prometheus.json instead, written later in this batch."
+  },
+  "cross_component_finding": "None beyond what is captured above - this page is purely a format-choice overview with no operational/procedural content of its own.",
+  "cross_product_finding": "The isAnalogousTo relation above is this batch's second same-shape-different-product finding (after tool:sgcollect-info/tool:cbcollect-info and alongside sgw:tombstone/storage:tombstone), and it sits at a THIRD distinct point on the spectrum between them: sgcollect_info/cbcollect_info state no relationship at all (kept fully separate); sgw:tombstone/storage:tombstone state literal identity under a condition (isVariantOf); this page states neither identity nor silence but an explicit stated FAMILY RESEMBLANCE ('as with all Couchbase services') without claiming the endpoints are the same thing - motivating the choice of isAnalogousTo (a weaker, comparison-only predicate) over isVariantOf here."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/disable-persistent-config-flag",
+  "label": "disable_persistent_config setting (Sync Gateway)",
+  "type": "the boolean startup flag (config file or command line) that switches Sync Gateway from persistent/bootstrap configuration back to sgw:legacy-pre-3-config. Default false. Documented since Sync Gateway 2.x.",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "The gate between the two configuration eras - every legacy-vs-persistent behavioural difference in this batch (collections support, REST persistence, load-balancer compatibility) is stated relative to this one flag."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/sync-gateway-restart",
+  "label": "Sync Gateway restart",
+  "type": "the operation required to apply a bootstrap-configuration or environment-variable change - both are read only at process start. Persistent/database-level configuration changes, by contrast, trigger Sync Gateway to restart itself automatically.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The concrete distinction behind configuration-overview.md's 'manual restart for node config vs. automatic restart for database config' framing."
+}

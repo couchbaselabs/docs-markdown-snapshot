@@ -1,0 +1,105 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-import-filter",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-import-filter.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:import-filter",
+      "label": "Import Filter (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-javascript-functions.json, same batch - this page is its full dedicated reference entry"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product) - named here as the second provisioning method alongside the Admin REST API"
+    },
+    {
+      "candidate_id": "sgw:custom-scope",
+      "label": "Custom Scope (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch"
+    },
+    {
+      "candidate_id": "sgw:custom-collection",
+      "label": "Custom Collection (Sync Gateway database config)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from configuration-schema-database.json, same batch"
+    },
+    {
+      "candidate_id": "version:sgw-3-1",
+      "label": "Sync Gateway 3.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first mention of this specific version anywhere in the registry (siblings: version:sgw-2-x, version:sgw-3-0, version:sgw-4-1)"
+    },
+    {
+      "candidate_id": "version:cbl-3-1",
+      "label": "Couchbase Lite 3.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - following the version:cbl-3-3-0 naming pattern already in the registry; the minimum Couchbase Lite version for custom scopes/collections support"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:custom-scope",
+      "predicate": "availableSince",
+      "object": "version:sgw-3-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted availableSince)",
+      "evidence": "Custom scopes and collections require Couchbase Lite 3.1 or later and Sync Gateway 3.1 or later."
+    },
+    {
+      "subject": "sgw:custom-collection",
+      "predicate": "availableSince",
+      "object": "version:cbl-3-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted availableSince) - same sentence names both the Sync Gateway-side and Couchbase Lite-side minimum versions",
+      "evidence": "Custom scopes and collections require Couchbase Lite 3.1 or later and Sync Gateway 3.1 or later."
+    },
+    {
+      "subject": "sgw:custom-collection",
+      "predicate": "mustUseInsteadWhen",
+      "object": "server:default-collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted mustUseInsteadWhen) - the fallback when a Couchbase Lite 3.1+ client meets a pre-3.1 Sync Gateway that cannot support custom scopes/collections",
+      "evidence": "Capella App Services and Sync Gateway releases earlier than version 3.1 do not support custom scopes and collections. When using Couchbase Lite 3.1 or later with earlier Sync Gateway versions, use the default collection as an alternative."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "offersConfigurationChoice",
+      "object": "sgw:legacy-pre-3-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted offersConfigurationChoice) - the page names the Admin REST API and Legacy Configuration as the two provisioning methods for an import filter",
+      "evidence": "You can provision an import filter using:"
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "hasDefaultValue",
+      "object": "imports all documents (no filtering)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted hasDefaultValue)",
+      "evidence": "If you do not provide a filter function, Sync Gateway imports all documents."
+    },
+    {
+      "subject": "sgw:import-filter",
+      "predicate": "usesExecutionModel",
+      "object": "boolean-returning predicate function over the document body",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted usesExecutionModel)",
+      "evidence": "The function takes the document body as parameter and returns a boolean to indicate whether to import the document."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "None - this is a complete, well-structured reference page with introduction, provisioning methods, a configuration-structure example, a field table, a worked curl example, and a dedicated schema/model subsection. Its depth contrasts sharply with configuration-schema-access-control.json's near-empty stub for the analogous Sync Function/Access Control mechanism (see that record's cross_component_finding)."
+  },
+  "cross_component_finding": "The scope/collection version-gating on this page (sgw:custom-scope/sgw:custom-collection availableSince version:sgw-3-1 and version:cbl-3-1) is new version-pairing information not present on configuration-schema-database.json's own 'Understanding Buckets, Scopes, and Collections' section, which describes the 1-scope/1000-collection limits and the CBS/SGW/CBL name-matching rule but never states a minimum version for the feature at all. Reading both pages together is required to get the complete picture: database.md for the mechanism and its limits, this page for when it became available and what to do if the client is newer than the server.",
+  "cross_product_finding": "sgw:custom-collection mustUseInsteadWhen server:default-collection is a genuine cross-product compatibility rule spanning three products at once: a Couchbase Lite 3.1+ client, a pre-3.1 Sync Gateway or Capella App Services server, and Couchbase Server's own default-collection concept as the fallback keyspace both sides can agree on."
+}

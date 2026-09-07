@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/metrics-rest-api",
+  "label": "Metrics REST API (Sync Gateway)",
+  "type": "the Sync Gateway REST surface (port 4986 by default) exposing statistics in either JSON or Prometheus format, gated through the same Server-RBAC-reused identity system (sgw:rbac-user) as the Admin REST API. Configured via api.metricsInterface.",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "No authentication/authorization requirement is stated on the deploy-side stats-prometheus.md page for reaching this API at all - contrast with the bare, undescribed metrics_interface_authentication setting row in command-line-options.md. Left as an open question rather than assumed either way."
+}

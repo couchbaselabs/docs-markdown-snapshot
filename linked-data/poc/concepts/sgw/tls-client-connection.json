@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/tls-client-connection",
+  "label": "TLS client connection (Sync Gateway, public/admin ports)",
+  "type": "Sync Gateway's own TLS termination for its client-facing public and admin ports, configured via SSLCert/SSLKey (legacy) or bootstrap TLS settings. A single Sync Gateway instance cannot serve both HTTP and HTTPS at once - two instances are required to support both.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Kept separate from cert:client-certificate/cert:root-certificate (Sync Gateway's OWN reuse of Couchbase Server's PKI when it acts as a certificate-bearing CLIENT of Server, e.g. for Server-connection X.509 auth). Same page (authentication-certs.md) cleanly separates the two: 'Sync Gateway is a TLS server to its clients' (this concept, no reuse) versus 'Sync Gateway is a certificate-bearing client of Couchbase Server' (cert:* family, direct reuse)."
+}

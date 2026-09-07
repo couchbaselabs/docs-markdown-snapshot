@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/all-documents-channel",
+  "label": "All Documents Channel (Sync Gateway)",
+  "type": "the special channel value that, when a document is assigned to it via channel(), makes the document visible to every user (as against sgw:all-channels-wildcard, the '*' grant value making a USER able to see every channel). Round 3's own extraction states this distinction explicitly rather than leaving it implicit.",
+  "promoted": true,
+  "recurrence": 2,
+  "aliases_note": "This is round-3 promotion debt, not a round-27 finding: both corroborating files (access-control-concepts.json, channels.json) predate this round. Surfaced only because reconciliation runs recurrence.py over the whole corpus, not just the new batch.",
+  "note": "'This channel should not be confused with the use of the All Channels Wildcard in access grants' - the source's own non-conflation warning, extracted as shouldNotBeConfusedWith rather than left implicit."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/revision-tree",
+  "label": "Revision tree (Sync Gateway, pre-4.0 revision tracking)",
+  "type": "Sync Gateway's original tree-based revision-tracking scheme, retained in parallel with sgw:version-vector in 4.0+ deployments for backward compatibility with Couchbase Lite clients earlier than 4.0.",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "SIGNIFICANCE EXCEPTION alongside sgw:version-vector: promoted at recurrence 1 because sgw:version-vector's own record cannot state what it replaced, or why parallel trees are maintained, without naming this sibling - the same family-cannot-be-defined-without-its-sibling test round 26 applied to server:full-recovery/server:delta-recovery."
+}

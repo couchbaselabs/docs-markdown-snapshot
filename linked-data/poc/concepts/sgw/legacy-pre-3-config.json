@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/legacy-pre-3-config",
+  "label": "Legacy Pre-3.0 configuration (Sync Gateway)",
+  "type": "Sync Gateway's original, file-based configuration format, retained for backward compatibility behind the disable_persistent_config flag. Does not support scopes/collections at all. Not modifiable via the Admin REST API in a way that persists past a restart, and incompatible with load-balanced multi-instance configuration changes.",
+  "promoted": true,
+  "recurrence": 10,
+  "note": "Sibling of sgw:persistent-configuration (which replaces it) - the round's clearest 'configuration/ mostly reuses access-control/security vocabulary, but its OWN mode axis (legacy vs. persistent vs. bootstrap) is genuinely new' finding."
+}

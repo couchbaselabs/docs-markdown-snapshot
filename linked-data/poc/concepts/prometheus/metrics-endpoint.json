@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/prometheus/metrics-endpoint",
+  "label": "Prometheus /metrics endpoint",
+  "type": "the generic Prometheus scrape-target convention (an HTTP endpoint named /metrics serving text-format metrics) - the shape Sync Gateway's own sgw:prometheus-metrics-format is stated to follow, 'as with all Couchbase services.'",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Confirms round 26's 'no member above recurrence 1' note no longer holds for this one member; the other prometheus: members (alert-notification, alert-rule, recording-rule, scrape-config - all minted this round from deploy/stats-prometheus.json's deployment/integration side) remain at recurrence 1 and are not forced. No collision between the deploy/ and manage/ batches' independent prometheus: mints - they name different, complementary parts of the Prometheus integration (shipping the scrape config vs. consuming the resulting metrics) and were checked against each other as this round's namespace-coherence pass."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "https://docs.couchbase.com/ld/relations/requires-user",
+  "label": "requires user",
+  "kind": "relation (schema-level)",
+  "type": "the sync function's requireUser() check - the subject write operation is rejected unless the acting user's identity exactly matches one of the specified user(s). The finest-grained of Sync Gateway's four require*() gates: unlike requiresRole or requiresChannelAccess, it checks identity directly rather than a derived grant.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Round 3 minted this alongside requiresChannelAccess/requiresAdminApi as a watchlist sibling of requiresRole. Round 27's dedicated requireUser() reference page reuses it, crossing the promotion bar at 2 distinct files. Kept as its own predicate rather than folded: requireUser() checks a property of the ACTING USER identically in shape to requireRole()/requireAccess() (all three share the documented 'signals rejection by throwing an exception' language), but the object type differs (a user, not a role or a channel) - see requires-admin-api.json for the one sibling that is structurally different rather than merely differently-typed."
+}

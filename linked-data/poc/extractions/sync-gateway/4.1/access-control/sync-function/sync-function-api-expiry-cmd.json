@@ -1,0 +1,35 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/sync-function/sync-function-api-expiry-cmd",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/access-control/sync-function/sync-function-api-expiry-cmd.md",
+  "concepts": [
+    { "candidate_id": "sgw:expiry-cmd", "label": "expiry()",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from sync-function.json (round 3) - this page is its dedicated reference entry, read here in full for the first time" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:shared-bucket-access-setting", "label": "shared-bucket-access setting",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the configuration setting this page states governs whether an expired document's active revision is tombstoned (enabled) or purged outright (disabled); no existing concept names this setting" },
+    { "candidate_id": "data:expiration", "label": "Expiration (TTL)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from the server/ product's promoted concept - this page states SGW's expiry() sets this exact underlying mechanism on the Couchbase Server document" }
+  ],
+  "relations": [
+    { "subject": "sgw:expiry-cmd", "predicate": "setsDocumentExpiry", "object": "sgw:document",
+      "registry_status": "extraction-layer", "reused_or_minted_predicate": "reused from sync-function.json (round 3)",
+      "evidence": "Use `expiry(value)` to set the expiry value (TTL) on the document." },
+    { "subject": "sgw:expiry-cmd", "predicate": "behavesDifferentlyUnder", "object": "sgw:shared-bucket-access-setting",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "The impact on the resulting document when the expiry value is reached depends on the setting of shared-bucket-access:" },
+    { "subject": "sgw:expiry-cmd", "predicate": "reliesOnMechanism", "object": "data:expiration",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused",
+      "evidence": "Under the hood, the expiration time is set and managed on the Couchbase Server document (TTL is not supported for databases in walrus mode)." }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotAffect",
+    "finding": "The page states 'This expiration time is not propagated when the document is replicated' and 'The purge of the document does not cause it to be deleted on any other database' - i.e. expiry() is explicitly a LOCAL-database-only effect, never replicated. No promoted or extraction-layer concept for 'replication'/'Couchbase Lite replica' exists yet in the sgw: namespace from this batch's source material (round 3 never modeled SGW's replication mechanism itself, only its access-control layer), so this fact could not be attached to a real object concept without minting one just to hold a single throwaway relation. Recorded here rather than forced into a triple."
+  },
+  "cross_product_finding": "expiry() is not an independent Sync-Gateway-only TTL mechanism: this page states outright that it sets and is managed as the SAME underlying Couchbase Server document expiration/TTL mechanism (data:expiration, promoted from the server/ product batches), down to accepting 'a numeric Couchbase Server expiry value' and the identical Unix-time-vs-interval-below-30-days convention documented for Server's own TTLs. This is the first relation in the whole sgw: namespace tying a sync-function helper directly to a promoted server/ concept rather than to another sgw:-namespaced or product-siloed idea - round 3's access-control batch never crossed this boundary because it never touched expiry() at all. Also notable: the impact of hitting expiry depends on shared-bucket-access (a setting this page assumes context for but does not itself define/link to), and TTL is stated as unsupported for databases in walrus mode (Couchbase Lite's in-memory/test mode) - both genuinely new facts about this command absent from round 3's sync-function.json, which recorded only the bare 'sets the TTL' statement with no impact detail at all."
+}

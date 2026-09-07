@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/resync-operation",
+  "label": "Resync operation (Sync Gateway)",
+  "type": "the operation reprocessing every existing document in a database's bucket to recompute channel routing and access assignments after the sync function itself has changed - required because a sync-function edit has no effect on already-stored documents until they are next revised. Requires the database offline first; runs the sync function with admin-level permissions (requireUser/requireAccess/requireRole calls always succeed during a resync). Running it on more than one node without persistent configuration produces undefined behaviour, with no described recovery procedure if that happens.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Directly answers the round's framing question for manage/: reuses existing access-control vocabulary (sgw:sync-function, the require*Cmd family, sgw:channel-access-revocation) as the objects of genuinely NEW relations - a middle case between full reuse and round 26's zero-precedent state-transition family. Round 3's access-control extraction never anticipated 'what happens when the sync function changes after documents already exist.'"
+}

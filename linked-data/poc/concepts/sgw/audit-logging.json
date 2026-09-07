@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/audit-logging",
+  "label": "Audit Logging (Sync Gateway)",
+  "type": "Sync Gateway's own audit-log feature: opt-in and disabled by default, recording per-actor, action-based events per node with no built-in cross-node aggregation - 'the records must be manually consolidated by an administrator.' Configuration spans the bootstrap config (global-scope events), the per-database Admin REST API config, and a dedicated audit-specific Admin REST API endpoint (database-scope events).",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "A fourth/fifth genuinely independent audit mechanism in this ontology, alongside Server's security:auditing and Capella's monitoring:activity-log/monitoring:event. No page equates any of them. The per-node/manual-consolidation wording is close to verbatim to security:auditing's own promoted note - a striking coincidence recorded here rather than acted on, per the standing no-silent-merge rule: no sentence anywhere says 'like Server's auditing' or 'the same as Capella's Activity Log', and structural differences are real (opt-in and off by default here; no severity enum or alerting behaviour at all, unlike monitoring:event's Info/Warning/Critical and triggersAlert)."
+}

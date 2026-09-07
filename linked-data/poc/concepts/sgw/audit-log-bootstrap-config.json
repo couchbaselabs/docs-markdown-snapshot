@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/audit-log-bootstrap-config",
+  "label": "Audit log bootstrap configuration (Sync Gateway)",
+  "type": "the file-based, node-level configuration surface gating sgw:audit-event entries scoped Global (as against the per-database Admin REST API surface gating Database-scoped events).",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "The Global/Database EventScope split this concept and the Admin-REST-API surface implement is the same split audit-log-events.md's event catalogue and manage-audit-logs.md's operational guide each supply half of."
+}

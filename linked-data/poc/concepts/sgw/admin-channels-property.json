@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/admin-channels-property",
+  "label": "admin_channels property (Sync Gateway)",
+  "type": "the per-user (or per-role) property, set via the Admin REST API, granting static channel access - one of the three sources sgw:all-channels-property's computed union merges (the other two being access()-granted channels and inherited role channels).",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "The mechanism round 3's access-control-concepts.json first modelled; this round's dedicated verify-access and db-security reference pages corroborate it as the REST-configured leg of the union."
+}

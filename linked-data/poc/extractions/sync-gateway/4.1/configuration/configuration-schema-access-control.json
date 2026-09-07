@@ -1,0 +1,35 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-schema-access-control",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-schema-access-control.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product)"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "configuresProperty",
+      "object": "sgw:sync-function",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused from access-control-concepts.json (round 3) - same pattern as sgw:admin-rest-api configuresProperty sgw:admin-channels-property, unpromoted",
+      "evidence": "To set or update the sync function for a database, see [{keyspace}/\\_config/sync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-sync)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "configuresProperty",
+    "finding": "Despite its title 'Access Control Configuration' and this batch's explicit expectation (per the round framing) that this page would document the same admin_channels/collection_access mechanism already modeled in round 3's access-control-concepts.json (sgw:admin-channels-property), the page contains almost no content: a two-sentence Introduction describing the sync function's role, one sentence pointing to a single REST endpoint for setting the sync function, and the standard Related Content footer. It never mentions admin_channels, collection_access, all_channels, jwt_channels, or any channel-grant field by name - that entire schema instead lives on configuration-schema-db-security.md and configuration-schema-database.md (both in this same batch), which this page does not cross-link to. The relation the coordinator predicted (sgw:admin-rest-api configuresProperty sgw:admin-channels-property, established in access-control-concepts.json) could NOT be re-derived from this page's own text, so it was not repeated here to avoid inventing evidence; it remains correctly attributed to access-control-concepts.json and to configuration-schema-db-security.json (see that record) where the field is actually documented."
+  },
+  "cross_component_finding": "This page is functionally a redirect stub: its only substantive content beyond the Introduction is one sentence pointing at the sync-function REST endpoint. Compare configuration-schema-import-filter.md (same batch), which for the analogous Import Filter mechanism provides a full Provisioning Methods section, a JSON configuration-structure example, a field table, a curl example, and a dedicated Import Filter Model schema subsection - roughly 100 lines of real content against this page's roughly 10. The two pages are siblings in the same 'Topic Group' navigation strip and the same Related Content reference list, so the asymmetry in depth is a genuine content gap rather than a difference in how much there is to say: access control (via the sync function) is arguably the more consequential of the two mechanisms.",
+  "cross_product_finding": "n/a - no substantive product-spanning content on this page."
+}

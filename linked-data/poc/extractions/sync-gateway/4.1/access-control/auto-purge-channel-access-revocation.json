@@ -1,0 +1,92 @@
+{
+  "page_id": "sync-gateway/4.1/access-control/auto-purge-channel-access-revocation",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/access-control/auto-purge-channel-access-revocation.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:channel-access-revocation",
+      "label": "Channel Access Revocation (auto-purge on loss of channel access)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3) - this page is the dedicated deep-dive page this round's framing specifically asked to check for added detail"
+    },
+    { "candidate_id": "sgw:role", "label": "Role (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:channel", "label": "Channel (Sync Gateway)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:document", "label": "Document (Sync Gateway sync-function context)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:collection", "label": "Collection (Sync Gateway scope)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:sync-function", "label": "Sync Function", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    { "candidate_id": "version:sgw-2-x", "label": "Sync Gateway 2.x (legacy pre-3.0 config)", "registry_status": "promoted", "reused_or_minted": "reused" },
+    { "candidate_id": "sgw:require-access-cmd", "label": "requireAccess()", "registry_status": "extraction-layer", "reused_or_minted": "reused from sync-function.json" },
+    {
+      "candidate_id": "sgw:isgr-replication",
+      "label": "Inter-Sync Gateway Replication (ISGR)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a replication link between an active (local) and passive (remote) Sync Gateway node, distinct from Sync Gateway-to-Couchbase-Lite sync; not previously named in this corpus. First contact with this mechanism in the whole batch."
+    },
+    {
+      "candidate_id": "sgw:purge-on-removal-flag",
+      "label": "purge_on_removal (ISGR replicator-level option)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific opt-in REST config flag controlling whether ISGR auto-purges on channel-access revocation, defaulting to off (the reverse default of the Sync-Gateway-to-Couchbase-Lite case)"
+    },
+    {
+      "candidate_id": "sgw:replication-reset",
+      "label": "Replication reset (ISGR reset / Couchbase Lite reset checkpoint)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the corrective action required to make an already-running replication retroactively re-evaluate documents against currently-revoked channel access; named identically (as a concept, though with different concrete mechanics) on both the ISGR side and the Couchbase Lite side"
+    },
+    {
+      "candidate_id": "sgw:access-regain",
+      "label": "Access Regained (Sync Gateway channel-access lifecycle event)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the inverse lifecycle event to channel-access-revocation: a user regaining access to a channel it previously lost, with its own distinct pull/push/pushAndPull behavior table on this page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:channel-access-revocation",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "sgw:isgr-replication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate, applied here to a fresh axis (replication topology, not version) - the ISGR case is explicitly stated as the reverse default of the Sync-Gateway-to-Couchbase-Lite case",
+      "evidence": "By default, documents are **not** auto purged on the active sync gateway even if the user on the passive sync gateway loses channel access."
+    },
+    {
+      "subject": "sgw:isgr-replication",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:purge-on-removal-flag",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate (established for other SGW off-by-default flags in round 3)",
+      "evidence": "You can opt-in to auto-purge behavior using the replicator level option `purge_on_removal` in the REST API — see: [replication-purge_on_removal](../configuration/configuration-schema-isgr.md#replication-purge%5Fon%5Fremoval)."
+    },
+    {
+      "subject": "sgw:purge-on-removal-flag",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "sgw:replication-reset",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate; turning the flag on mid-replication does not retroactively purge already-synced documents unless a reset is also performed",
+      "evidence": "If you turn it on during an existing replication, **no** revocations occurring prior to that point are retro-actively purged. To have this done, execute a reset for ISGR (on Couchbase Lite a reset checkpoint must be carried out)."
+    },
+    {
+      "subject": "sgw:access-regain",
+      "predicate": "triggersAutoPull",
+      "object": "sgw:document",
+      "registry_status": "minted",
+      "reused_or_minted_predicate": "minted - a new, narrowly-scoped predicate: regaining access to a channel automatically triggers a re-pull of documents that were previously auto-purged when access was lost. No promoted predicate in the current list captures this specific 'access regained causes automatic re-fetch' shape (the closest, revocationRevokesChannelAccess, is its exact functional inverse and does not fit)",
+      "evidence": "If a user subsequently regains access to a lost channel then any previously auto-purged documents still assigned to any of their channels are automatically pulled down by the active Sync Gateway"
+    },
+    {
+      "subject": "sgw:sync-function",
+      "predicate": "assignsDefaultChannelNamedAfter",
+      "object": "sgw:collection",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - established in access-control-concepts.json/access-control-model.json",
+      "evidence": "By default, every document in the collection is automatically assigned to a channel with the same name as the collection. This system automatically creates a channel with the collection's name."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a (directional asymmetry)",
+    "finding": "The Access Revoked behavior table states plainly for the Push direction: 'Revocation has no impact during a 'push'. No purging will occur.' Auto-purge, in both the Sync-Gateway-to-Couchbase-Lite case and the ISGR case, is exclusively a PULL-direction phenomenon - it is about a downstream replica silently losing local copies of data it can no longer read. A push in the opposite direction has no auto-purge counterpart at all; the only consequence of losing channel access on a push is that the remote's own sync function subsequently REJECTS the write (via requireAccess(), per the PushAndPull row: 'Sync Function includes requireAccess(\"channel\")... Local changes continue to be pushed to remote but rejected by remote'). This is worth flagging clearly: there is no 'auto-purge of pushed writes,' only rejection - the revocation mechanism this whole page documents has a directional blind spot by design, not by omission."
+  },
+  "cross_component_finding": "This page substantially extends the extraction-layer sgw:channel-access-revocation concept beyond what access-control-concepts.json/access-control-model.json captured in round 3, which only documented the Sync-Gateway-to-Couchbase-Lite default-on auto-purge and its 2.x/3.0 breaking-change history. This page adds an entirely separate, previously undocumented-in-this-corpus axis: Inter-Sync-Gateway-Replication (ISGR), a replication topology between two Sync Gateway nodes (active/local and passive/remote) that is FIRST CONTACT in this batch. Critically, ISGR's default behavior is the exact reverse of the CBL case (no auto-purge unless explicitly opted in via purge_on_removal, versus auto-purge-by-default for CBL pull replication) - the page states this explicitly: 'This behavior is the reverse of that between Sync Gateway and Couchbase Lite.' Reconciliation should treat this as additive detail on the existing extraction-layer concept rather than a competing/duplicate definition: the underlying trigger (User loses direct access to channel / user removed from role / role's channel access revoked) and the underlying mechanism (documents no longer in the union of a user's channels become locally unreachable and are purged) are identical across both topologies; only the DEFAULT (on vs. off) and the retroactivity behavior (requiring an explicit reset to catch up on missed revocations) differ, and both are genuinely new facts this page adds, consistent with rather than contradicting round 3's finding.",
+  "cross_product_finding": "The 'Star Channel' cross-reference on this page uses a malformed link target: '[Star Channel](#2.7@sync-gateway-channels.adoc#star-channel)' - this is not a resolvable anchor or file path but appears to be a broken AsciiDoc xref artifact (a version-prefixed module/page reference that did not get rewritten to a real markdown link during site generation). The identical broken string appears verbatim on sync-function/sync-function-api.md as well (same duplicated 'Default Sync Function' example section), so this is a repeated, cross-page authoring/build defect rather than a one-off typo - worth raising as a docs-issue candidate for the reconciliation phase."
+}

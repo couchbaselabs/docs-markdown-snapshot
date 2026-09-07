@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/audit-log-filtering",
+  "label": "Audit log filtering (Sync Gateway)",
+  "type": "the disabled_users/disabled_roles configuration allowing an operator to exclude specific principals from audit logging. A single filter payload can name principals from both of Sync Gateway's disjoint identity systems at once (a cbs-domain user and an sgw-domain role side by side in one JSON body) - the only Sync Gateway feature found so far whose configuration surface spans both halves of the two-layer security model.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Resolves the round's second watch-for question: audit-logging.md's unqualified 'Sync Gateway RBAC controls' sentence is disambiguated by manage-audit-logs.md's own domain definitions to mean sgw:rbac-user, never sgw:role - the word 'RBAC' is used only for the cbs/Couchbase-Server-user domain on that page."
+}

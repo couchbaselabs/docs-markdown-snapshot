@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/expiry-cmd",
+  "label": "expiry()",
+  "type": "the sync-function helper that sets a document's TTL. Not an independent Sync-Gateway-only mechanism: it sets and is managed as the same underlying Couchbase Server document-expiration mechanism (data:expiration), down to the identical Unix-time-vs-interval-below-30-days convention. Not propagated on replication, and unsupported for databases in walrus (in-memory/test) mode.",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "The first relation in the sgw: namespace tying a sync-function helper directly to a promoted server/ concept rather than to another sgw:- or product-siloed idea."
+}

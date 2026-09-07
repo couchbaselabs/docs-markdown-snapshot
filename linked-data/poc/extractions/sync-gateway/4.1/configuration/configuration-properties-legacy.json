@@ -1,0 +1,105 @@
+{
+  "page_id": "sync-gateway/4.1/configuration/configuration-properties-legacy",
+  "source_version": "Sync Gateway 4.1",
+  "source_path": "sync-gateway/current/configuration/configuration-properties-legacy.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration File",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3, same product) - this page is its full dedicated reference entry; promoted this round"
+    },
+    {
+      "candidate_id": "sgw:disable-persistent-config-flag",
+      "label": "disable_persistent_config flag",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from access-control-how-control-document-access.json (same product); promoted this round"
+    },
+    {
+      "candidate_id": "sgw:persistent-configuration",
+      "label": "Centralized Persistent Modular Configuration",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from configuration-overview.json, same batch; promoted this round"
+    },
+    {
+      "candidate_id": "sgw:admin-rest-api",
+      "label": "Admin REST API (Sync Gateway)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted concept"
+    },
+    {
+      "candidate_id": "sgw:sync-function",
+      "label": "Sync Function",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from access-control-concepts.json; promoted this round"
+    },
+    {
+      "candidate_id": "sgw:admin-channels-property",
+      "label": "admin_channels property (collection_access)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused from access-control-concepts.json (round 3); promoted this round - the worked example on this page shows the same field on both an admin and an ordinary user"
+    },
+    {
+      "candidate_id": "sgw:legacy-config-relaxed-json",
+      "label": "Relaxed JSON with back-tick strings (Legacy Config)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the one non-standard JSON feature the legacy config file format relies on, enabling multi-line inline JavaScript with embedded double-quotes"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "doesNotSupport",
+      "object": "sgw:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted doesNotSupport) - a hard capability gap, not merely a legacy-vs-modern preference",
+      "evidence": "You cannot use `collections` in Sync Gateway's legacy Pre-3.0 configuration method."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "requiresFlagToEnable",
+      "object": "sgw:disable-persistent-config-flag",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted requiresFlagToEnable)",
+      "evidence": "To continue using legacy Pre-3.0 configuration you should start Sync Gateway with [disable\\_persistent\\_config](#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md)."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sgw:persistent-configuration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted retainedForLegacyCompatibility) - added during reconciliation to recover a relation the interrupted round dropped after its first evidence attempt (a two-line blockquote spanning an empty quoted line) was denied by the write-time gate, rather than re-quoting; this page's own concepts[] entry for sgw:persistent-configuration had no matching relation until now, the fingerprint the skill's gate-log check looks for",
+      "evidence": "Persistent Configuration is enabled by default from 3.0."
+    },
+    {
+      "subject": "sgw:admin-rest-api",
+      "predicate": "doesNotSupport",
+      "object": "sgw:legacy-pre-3-config",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted doesNotSupport) - changes made through the Admin REST API while running in legacy mode are accepted but silently dropped on restart, a real gotcha distinct from the API being unavailable outright",
+      "evidence": "You can change many configuration settings using the [Admin REST API](../rest-api/rest-api-admin.md) **but Sync Gateway does not persist these beyond a restart**."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "configuresProperty",
+      "object": "sgw:admin-channels-property",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted this round, see relations/configures-property.json) - added during reconciliation to recover the second relation this page's concepts[] entry for sgw:admin-channels-property implied but never got: the worked example's users object sets admin_channels for both an admin-labelled user and an ordinary user, evidencing the property directly rather than the UNQUOTABLE prose the interrupted round's first attempt apparently relied on",
+      "evidence": "\"admin\": {\"password\": \"password\", \"admin_channels\": [\"*\"]},\n                \"user1\": {\"password\": \"password\", \"admin_channels\":[\"channel.user1\"]}"
+    },
+    {
+      "subject": "sgw:legacy-config-relaxed-json",
+      "predicate": "supportsLanguageConstruct",
+      "object": "sgw:sync-function",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted supportsLanguageConstruct) - back-tick strings are specifically what makes inline sync/import_filter JavaScript possible in this file format",
+      "evidence": "The `sync-gateway-config.json` file relies on the use of one _relaxed_ JSON feature; the use of back ticks (`` ` ``). Text between back ticks is treated as a string. It can span multiple lines and contain double-quotes. Those features make it ideal for incorporating inline JavaScript, which you can use to provision, for example, `sync` and `import_filter` functions."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The '## Schema' heading (anchor #lbl-schema) on this page has NO content beneath it before the next '## Example' heading - the per-field schema table that every other page in this batch provides (bootstrap, database, db-security, import-filter, ISGR) is entirely missing for the legacy format. The only field documentation available for legacy config is inferable from the single large worked JSON example further down the page (users, admin_channels, replications with conflict_resolution_type/custom_conflict_resolver, sync), which is comprehensive but entirely undocumented prose-by-prose - no per-field type/default/description entries exist anywhere on this page. A hasDefaultValue relation for admin_channels or any other legacy field was deliberately not forced here for exactly this reason: the example shows values, not stated defaults."
+  },
+  "cross_component_finding": "The worked example embeds a full pre-3.0-style `replications` map (with `direction`, `conflict_resolution_type`, `custom_conflict_resolver`, `purge_on_removal`, `remote`, `filter`, `query_params`, `enable_delta_sync`, `batch_size`, `continuous`, `state`) directly inside a database block in the legacy config file - the same field set later found under both configuration-schema-database.md's `replications` property and configuration-schema-isgr.md's standalone replication schema (see those records' cross_component_finding for the full field-by-field match). This confirms, across three pages of the same batch, that Sync Gateway has exactly ONE replication-configuration object with three surfaces: embedded in the legacy config file, embedded in a persistent database config, or addressed directly via the Admin REST API's dedicated replication endpoint. The relation connecting sgw:custom-conflict-resolver to a required `conflict_resolution_type=custom` setting is recorded instead on configuration-schema-database.json and configuration-schema-isgr.json, where that constraint is actually stated in prose - this page's example shows the pairing but never states the dependency as a rule.",
+  "cross_product_finding": "None beyond what is already established (sgw:admin-channels-property, sgw:legacy-pre-3-config) - this page's example is entirely internal to Sync Gateway's own file format."
+}

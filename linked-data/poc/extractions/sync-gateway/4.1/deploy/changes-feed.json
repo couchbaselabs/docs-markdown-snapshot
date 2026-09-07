@@ -1,0 +1,45 @@
+{
+  "page_id": "sync-gateway/4.1/deploy/changes-feed",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/deploy/changes-feed.md",
+  "concepts": [
+    { "candidate_id": "sgw:changes-feed", "label": "Changes feed (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the REST-exposed, client-facing mechanism Sync Gateway offers for integrating with external systems; NOT merged with protocol:dcp (the promoted, already-existing Couchbase Server intra-cluster streaming protocol concept). This page never mentions DCP at all: it derives its four feed methods from the CouchDB HTTP API (polling/longpoll/continuous) plus one Sync-Gateway-specific addition (websocket), and describes the feed purely as a REST endpoint applications poll or hold open - never as a consumer of Couchbase Server's internal mutation stream. Whether Sync Gateway's changes feed is internally implemented on top of DCP against Couchbase Server is a real, unresolved question this page's own wording does not settle either way; flagged for reconciliation rather than assumed." },
+    { "candidate_id": "sgw:changes-feed-method", "label": "Changes feed method (polling / longpoll / continuous / websocket)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - modeled as a scheme with a flat literal list of values (same pattern as the promoted index-state and monitoring:event-severity-enum schemes), since nothing on this page references an individual method as its own concept" },
+    { "candidate_id": "sgw:websocket-feed-mode", "label": "WebSocket feed mode",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the one feed method the page states is Sync-Gateway-specific rather than inherited from the CouchDB API, and the one it recommends over 'continuous' for real-world mobile proxy compatibility" },
+    { "candidate_id": "server:keyspace", "label": "Keyspace",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (promoted server:keyspace) - the changes feed's own REST path is literally {keyspace}/_changes, addressing the identical bucket.scope.collection unit the Server/Query tree calls a keyspace" },
+    { "candidate_id": "sgw:webhook", "label": "Webhook (document_changed event handler)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted here, elaborated fully in this batch's webhooks.json - referenced on this page only via the comparison table and a structural link" }
+  ],
+  "relations": [
+    { "subject": "sgw:changes-feed", "predicate": "accessibleVia", "object": "server:keyspace",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted accessibleVia)",
+      "evidence": "The changes feed API is a REST API endpoint" },
+    { "subject": "sgw:changes-feed", "predicate": "hasBindingType", "object": "sgw:changes-feed-method",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted hasBindingType) - the feed is bound to one of four methods per request",
+      "evidence": "There are several methods of connecting to the changes feed (also know as the feed type). The first three methods (`polling`, `longpoll` and `continuous`) are based on the CouchDB API. The last method (`websocket`) is specific to Sync Gateway." },
+    { "subject": "sgw:websocket-feed-mode", "predicate": "hasEquivalentEffectAs", "object": "sgw:changes-feed-method",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted hasEquivalentEffectAs) - stated as behaviourally the same as continuous mode, differing only in transport robustness",
+      "evidence": "The WebSocket mode is conceptually the same as continuous mode but it should avoid issues with proxy servers and gateways that cause continuous mode to fail in many real-world mobile use cases." },
+    { "subject": "sgw:changes-feed", "predicate": "tradesOffAgainst", "object": "sgw:webhook",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted tradesOffAgainst, SYMMETRIC) - the page's own Table 1 sets the two mechanisms against each other across four scenario dimensions (ordering, access control granularity, scalability, replay-on-failure)",
+      "evidence": "you can initiate the sending of notifications, or specialist audit processes, when certain document changes are detected. This can be done using either the changes feed or" },
+    { "subject": "sgw:changes-feed", "predicate": "seeAlso", "object": "sgw:webhook",
+      "registry_status": "promoted", "reused_or_minted_predicate": "reused (promoted seeAlso, structural markdown link)",
+      "evidence": "Related _integration_ topics: [Webhooks](webhooks.md) | [Prometheus Integration](stats-prometheus.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "usesProtocol",
+    "finding": "The coordinator's briefing flagged this page as the place to check whether Sync Gateway's changes feed is DCP-based. It is NOT settled by this page: DCP is never named, referenced, or alluded to anywhere in changes-feed.md. The page frames the feed entirely as a REST/HTTP mechanism derived from CouchDB's historical _changes API, with Sync-Gateway's own WebSocket addition. No usesProtocol relation to protocol:dcp is recorded here for lack of textual evidence either way - this should be checked against Sync Gateway's own architecture/import-processing pages (outside this batch) before any merge or explicit non-merge is decided at reconciliation."
+  },
+  "cross_component_finding": "changes-feed.md and webhooks.md are near-mirror-image pages: both open with the identical sentence ('Sync Gateway provides the ability to extend the replication process and build responsive services that react to changes in documents...') and both carry the same 'Changes Feed vs Webhooks' comparison table verbatim. This is unusually strong internal consistency for the corpus - the two pages were evidently authored as a matched pair - and it is the direct textual basis for the tradesOffAgainst relation recorded on both extraction records.",
+  "cross_product_finding": "The changes feed's four connection methods are explicitly genealogized against another product's API rather than Couchbase's own: 'The first three methods (polling, longpoll and continuous) are based on the CouchDB API.' This is a rare instance of the corpus naming a non-Couchbase, non-competitor ancestor technology (CouchDB, Couchbase's own historical predecessor project) as the direct source of a current product's REST surface design."
+}

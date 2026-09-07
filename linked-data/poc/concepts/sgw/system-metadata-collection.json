@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/system-metadata-collection",
+  "label": "_system._mobile system collection (Sync Gateway)",
+  "type": "the reserved Couchbase Server system-scope collection (server:system-scope) Sync Gateway 4.1+ can opt into for storing its own internal metadata, isolated from application data in the default collection.",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "A concrete structural fact linking Sync Gateway's own mobile-sync data model directly into a Couchbase-Server-reserved namespace - Sync Gateway's metadata literally nests inside a Server structural primitive here, rather than merely depending on a Server credential or service the way other cross-product couplings in this batch do."
+}

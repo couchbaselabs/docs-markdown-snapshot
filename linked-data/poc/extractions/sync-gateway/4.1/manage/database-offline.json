@@ -1,0 +1,97 @@
+{
+  "page_id": "sync-gateway/4.1/manage/database-offline",
+  "source_version": "4.1",
+  "source_path": "sync-gateway/current/manage/database-offline.md",
+  "concepts": [
+    {
+      "candidate_id": "sgw:database",
+      "label": "Database (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the per-Sync-Gateway-instance database object that has an online/offline lifecycle, independent of other databases the same instance serves; no prior sgw: concept named this directly (round 3's access-control batch worked at the channel/document/user level, never the database-as-a-whole level)"
+    },
+    {
+      "candidate_id": "sgw:database-lifecycle-state-enum",
+      "label": "Database Lifecycle State (Sync Gateway: Offline/Starting/Online/Stopping)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a 4-member state enum with explicit transition edges, analogous in shape to the promoted eventing:function-lifecycle-state and index-state enums but for a wholly different product/object; no precedent in any prior sgw: extraction"
+    },
+    {
+      "candidate_id": "sgw:instance-level-operation",
+      "label": "Instance-Level Operation (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own named category, contrasted explicitly with sgw:database-level-operation"
+    },
+    {
+      "candidate_id": "sgw:database-level-operation",
+      "label": "Database-Level Operation (Sync Gateway)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the page's own named category for operations (offline/online/resync) scoped to one database independent of siblings; this is the operative granularity every other manage/ lifecycle page in this batch (resync, channel-history, tombstone management) implicitly assumes"
+    },
+    {
+      "candidate_id": "sgw:persistent-configuration",
+      "label": "Persistent Configuration (Sync Gateway)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-how-create-users.json extraction, never promoted; this page is the first to describe its actual online/offline mechanics rather than just its existence as a config mode"
+    },
+    {
+      "candidate_id": "sgw:legacy-pre-3-config",
+      "label": "Legacy Pre-3.0 Configuration (Sync Gateway, file-based)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted in round 3's access-control-concepts.json extraction as the file-based provisioning mechanism; this page's 'Non-Persistent Configuration (Legacy)' is the same mechanism, described here in its offline/online operational mode rather than its provisioning role"
+    },
+    {
+      "candidate_id": "sgw:load-balancer",
+      "label": "Load Balancer (Sync Gateway deployment)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a lightweight stub for the load-balancer concept this page gates persistent-vs-non-persistent config behavior on; the deploy/ sibling batch this round almost certainly covers this concept in full depth (deploy/load-balancer.md is linked from this very page) - expect reconciliation to find this as a near-duplicate needing a merge, noted here rather than silently deduplicated"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sgw:database",
+      "predicate": "hasLifecycleState",
+      "object": "sgw:database-lifecycle-state-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject and object both minted",
+      "evidence": "The state transition is asynchronous. Database states transition through: Offline → Starting → Online or Online → Stopping → Offline."
+    },
+    {
+      "subject": "sgw:instance-level-operation",
+      "predicate": "cascadesTo",
+      "object": "sgw:database",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject and object both minted",
+      "evidence": "**Instance-level operations**: Starting or stopping a Sync Gateway instance affects the connections to all of the databases that the instance serves."
+    },
+    {
+      "subject": "sgw:database-level-operation",
+      "predicate": "doesNotAffect",
+      "object": "sgw:database",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - explicit negation of the cascadesTo relation above: an instance-level operation cascades to every database, a database-level operation deliberately does not",
+      "evidence": "**Database-level operations**: You can perform operations on specific databases independently. For example, 2 databases could be online, while you take a third database offline, resynchronize it, and then bring it back online."
+    },
+    {
+      "subject": "sgw:persistent-configuration",
+      "predicate": "accessibleVia",
+      "object": "sgw:load-balancer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "You can use a Load Balancer for configuration changes in persistent configuration mode."
+    },
+    {
+      "subject": "sgw:legacy-pre-3-config",
+      "predicate": "incompatibleWithAccessSurface",
+      "object": "sgw:load-balancer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused (promoted) - subject reused extraction-layer, object minted",
+      "evidence": "You cannot use a Load Balancer for configuration changes."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPriorExecutionOf / triggersImmediateExecutionOf",
+    "finding": "This page never states an ordering precondition on the database-offline/online operations themselves (they are the base primitive, not built on top of anything else), nor does it describe them as bypassing any normal/automatic schedule - there is no automatic online/offline transition described anywhere on this page except at Sync Gateway startup (see the 'Starting with a Database Offline' section), which is a one-time default rather than a recurring schedule a manual call could pre-empt."
+  },
+  "cross_component_finding": "The change of status (online or offline) of a database occurs only in the specific Sync Gateway instance addressed. It's not reflected by other Sync Gateway instances using that database. If you want to make changes in multiple Sync Gateway instances, you need to coordinate individual change operations in each instance. This instance-level/database-level distinction is genuinely new vocabulary with no precedent in round 3's access-control extraction, which never described database-level (as opposed to document/channel/user-level) state at all - directly supporting this round's hypothesis that manage/ holds vocabulary neither the access-control docs nor any reference/conceptual page ever needed.",
+  "cross_product_finding": "None on this page specifically - it is entirely Sync-Gateway-internal state machine description, with no comparison drawn to Couchbase Server or Capella's own online/offline concepts (which round 26 found under manage/ as failover/node-recovery states). The shape is structurally similar (a state machine reachable only via manage/) but the page draws no explicit parallel."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sgw/require-access-cmd",
+  "label": "requireAccess()",
+  "type": "the sync-function helper that rejects a document update unless the acting user already holds an explicit (non-wildcard) grant to at least one of the named channels. Recognizes only grants made by channel name, not by the all-channels wildcard - a user granted only '*' fails a requireAccess() check naming a specific channel.",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Object is sgw:channel, via the requiresChannelAccess predicate promoted this round (see relations/requires-channel-access.json)."
+}
