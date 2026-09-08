@@ -1,7 +1,7 @@
 ---
 title: cbbackupmgr encryption
 description: Creating and managing encrypted backups
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-08T04:29:18.875Z
 antora:
   editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-encryption.adoc
   xref: xref:7.6@server:backup-restore:cbbackupmgr-encryption.adoc[]
@@ -111,13 +111,13 @@ The supported authorization techniques are:
 2. Via managed identity if `cbbackupmgr` is running on an Azure host with managed identity enabled.
 3. Providing a set of environment variables including:
 
-  * `CB_KM_ACCESS_KEY_ID`
-  * `CB_KM_SECRET_ACCESS_KEY`
+  * `CB_KM_ACCESS_KEY_ID` \- Client ID
+  * `CB_KM_SECRET_ACCESS_KEY` \- Client secret
   * `CB_KM_TENANT_ID`
 4. Providing static config/credentials using the cli flags:
 
-  * `--km-access-key-id`
-  * `--km-secret-access-key`
+  * `--km-access-key-id` \- Client ID
+  * `--km-secret-access-key` \- Client secret
   * `--km-tenant-id`
 
 An example of configuring an encrypted repository using Azure can be seen below.

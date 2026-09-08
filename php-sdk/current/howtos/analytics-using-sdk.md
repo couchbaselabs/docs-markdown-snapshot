@@ -2,7 +2,7 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-08T04:29:18.875Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:php-sdk:howtos:analytics-using-sdk.adoc[]
@@ -35,7 +35,12 @@ After familiarizing yourself with our [introductory primer](../../../server/curr
 In PHP SDK 2.x, Analytics was only available on the `Bucket` object; in PHP SDK 3.x, Analytics queries are submitted using the Cluster reference, not a Bucket or Collection:
 
 ```php
-Unresolved include directive in modules/howtos/pages/analytics-using-sdk.adoc - include::example$analytics.php[]
+$options = new \Couchbase\AnalyticsOptions();
+$result = $cluster->analyticsQuery('SELECT "hello" as greeting;', $options);
+
+foreach ($result->rows() as $row) {
+    printf("result: %s\n", $row["greeting"]);
+}
 ```
 
 ## [](#queries)Queries
@@ -43,13 +48,16 @@ Unresolved include directive in modules/howtos/pages/analytics-using-sdk.adoc - 
 A query can either be `simple` or be `parameterized`. If parameters are used, they can either be `positional` or `named`. Here is one example of each:
 
 ```php
-Unresolved include directive in modules/howtos/pages/analytics-using-sdk.adoc - include::example$analytics.php[]
+$options = new \Couchbase\AnalyticsOptions();
+$result = $cluster->analyticsQuery('SELECT airportname, country FROM airports WHERE country = "France";', $options);
 ```
 
 The query may be performed with positional parameters:
 
 ```php
-Unresolved include directive in modules/howtos/pages/analytics-using-sdk.adoc - include::example$analytics.php[]
+$options = new \Couchbase\AnalyticsOptions();
+$options->positionalParameters(["France"]);
+$result = $cluster->analyticsQuery('SELECT airportname, country FROM airports WHERE country = $1;', $options);
 ```
 
 Alternatively, the query may be performed with named parameters:

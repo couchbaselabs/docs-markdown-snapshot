@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-08T04:29:18.875Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
   xref: xref:rust-sdk:project-docs:compatibility.adoc[]
@@ -83,10 +83,10 @@ Note, Capella is offered as a fully provisioned service, so the underlying versi
 __Couchbase Server and SDK Supported Version Matrix__
 |                                  | Server 7.6.x     | Server 8.0       |
 | -------------------------------- | ---------------- | ---------------- |
-| KV Range Scan                    | All SDK versions |                  |
+| KV Range Scan                    | Unsupported      |                  |
 | Vector Search                    | All SDK versions |                  |
-| Zone aware replica reads         | All SDK versions |                  |
-| KV preferred server groups reads | All SDK versions |                  |
+| Zone aware replica reads         | Unsupported      |                  |
+| KV preferred server groups reads | Unsupported      |                  |
 | Vector Query using GSI           | N/A              | All SDK versions |
 
 This table is not an exhaustive list — just a few highlights — provided to help assess compatibility of older versions in particular. For a slightly fuller table, see the [Deployment page](deployment.md#couchbase-operational-cluster-feature-compatibility). For alignment of SDKs and new Server features, scroll down to the information below the [API Version table](#api-version).

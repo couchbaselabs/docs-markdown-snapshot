@@ -1,7 +1,7 @@
 ---
 title: cbbackupmgr cloud
 description: Storing cbbackupmgr archives directly in the cloud
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-08T04:29:18.875Z
 antora:
   editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-cloud.adoc
   xref: xref:7.6@server:backup-restore:cbbackupmgr-cloud.adoc[]
@@ -57,9 +57,9 @@ As with AWS, there are multiple accepted methods for authorizing against Azure. 
 
 1. Providing static credentials using the cli flags:
 
-  * `--obj-access-key-id`
-  * `--obj-secret-access-key`
-2. Providing a set of environment variables including:
+  * `--obj-access-key-id` \- Storage Account
+  * `--obj-secret-access-key` \- Storage Key
+2. Providing static credentials using a set of environment variables:
 
   * `AZURE_STORAGE_ACCOUNT`
   * `AZURE_STORAGE_KEY`
@@ -77,8 +77,9 @@ As with AWS, there are multiple accepted methods for authorizing against Azure. 
 
     * `AZURE_CLIENT_ID`
     * `AZURE_TENANT_ID`
-    * `AZURE_CERTIFICATE_PATH`
-  3. A username/password
+    * `AZURE_CLIENT_CERTIFICATE_PATH`
+    * `AZURE_CLIENT_CERTIFICATE_PASSWORD` (optional)
+  3. A username/password (deprecated)
 
     * `AZURE_CLIENT_ID`
     * `AZURE_TENANT_ID`
