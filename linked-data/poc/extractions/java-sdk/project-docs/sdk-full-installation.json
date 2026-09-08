@@ -1,0 +1,137 @@
+{
+  "page_id": "java-sdk/project-docs/sdk-full-installation",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/sdk-full-installation.md",
+  "concepts": [
+    {
+      "candidate_id": "server:collection",
+      "label": "Collection (server-side data-container concept)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:jdk-version-compatibility",
+      "label": "JDK version compatibility (the Java runtime versions the SDK is tested against, supports, and recommends)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json); this page independently restates the Java-8-minimum requirement in its own Prerequisites section"
+    },
+    {
+      "candidate_id": "sdk:alpine-linux-workaround",
+      "label": "Alpine Linux native-IO/TLS workaround",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "version:sdk-3-12-2",
+      "label": "Java SDK 3.12.2",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family; the specific latest patch release named on this page at time of writing"
+    },
+    {
+      "candidate_id": "sdk:maven-central-distribution",
+      "label": "Maven Central distribution (the SDK's stable-artifact distribution channel, installable via Maven, Gradle, or a bundled zip)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the SDK's packaging/distribution mechanism"
+    },
+    {
+      "candidate_id": "sdk:snapshot-artifacts",
+      "label": "Pre-release snapshot artifacts (published to the Central Portal Snapshots Repository, requiring an extra repository declaration to consume)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct distribution channel from sdk:maven-central-distribution (stable releases), with its own setup requirement"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:collection",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; same fact independently evidenced on this page as elsewhere in this batch",
+      "evidence": "providing a simpler surface area and adding support for Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md) (available in Couchbase Server 7.0+)."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "seeAlso",
+      "object": "java-sdk/concept-docs/collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an already-extracted page",
+      "evidence": "adding support for Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md)"
+    },
+    {
+      "subject": "sdk:maven-central-distribution",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/migrating-sdk-code-to-3.n",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "If you're upgrading your application from Java SDK 2.x, please read our [Migrating 2.x code to SDK 3.0 Guide](migrating-sdk-code-to-3.n.md)."
+    },
+    {
+      "subject": "sdk:jdk-version-compatibility",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/compatibility",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "The Java SDK is tested against LTS versions OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat)."
+    },
+    {
+      "subject": "sdk:alpine-linux-workaround",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/compatibility",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS."
+    },
+    {
+      "subject": "sdk:maven-central-distribution",
+      "predicate": "documentedForVersion",
+      "object": "version:sdk-3-12-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; exact fit for 'the product version whose doc tree the subject's page ships in'",
+      "evidence": "The latest version of the 3.12 SDK is [3.12.2]"
+    },
+    {
+      "subject": "sdk:maven-central-distribution",
+      "predicate": "configurableVia",
+      "object": "Maven (pom.xml) or Gradle (build.gradle) dependency declaration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "You can use your favorite dependency management tool to install the SDK."
+    },
+    {
+      "subject": "sdk:maven-central-distribution",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/sdk-release-notes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "Alternatively, we provide a zip file with all the dependencies bundled if you wish to manually include the `jar` files in your classpath. Refer to the [Release Notes](sdk-release-notes.md) for further details."
+    },
+    {
+      "subject": "sdk:snapshot-artifacts",
+      "predicate": "requiresSetting",
+      "object": "Central Portal Snapshots Repository added to the build tool's repository list",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "If you wish to use a snapshot version, you'll need to tell your build tool about this repository."
+    },
+    {
+      "subject": "sdk:snapshot-artifacts",
+      "predicate": "mutuallyExclusiveWith",
+      "object": "sdk:maven-central-distribution",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the snapshots repository explicitly disables releases ('<releases><enabled>false</enabled></releases>') so a project pulling from it is not using the stable-release channel for that dependency",
+      "evidence": "<releases>\n            <enabled>false</enabled>\n        </releases>"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresCapability",
+    "finding": "The Prerequisites section ('The Java SDK is tested against LTS versions OpenJDK... The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a workaround necessary') restates facts already captured with fuller evidence in compatibility.json (same batch). Rather than re-derive fresh relations here for the JDK-version and Alpine-workaround facts, this page only adds the seeAlso links back to compatibility.md, since the substantive claims themselves are identical, not new."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": "The Snapshot Version instructions are Maven/Gradle-build-tool-specific (pom.xml repository block, build.gradle mavenContent block) rather than Server- or Capella-specific - this page's only 'compatibility' axis is the JVM build ecosystem, not Couchbase's own product versions, which is why the only version concept minted here (version:sdk-3-12-2) is a bare distribution-channel fact rather than an availableSince/deprecatedIn claim."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-platform-help-metadata-says-scala",
+  "type": "docs-issue",
+  "issueType": "title-content-mismatch",
+  "description": "java-sdk/hello-world/platform-help.md's frontmatter `description` attribute reads 'A simple Java orientation intro for non-Java folk who are evaluating the Couchbase Scala SDK.' - the page is entirely about the Java SDK (its title is 'Platform Introduction' under the java-sdk product tree, and its body content orients non-Java developers to Java-specific concepts), but the description metadata names a different SDK product (Scala) that this page never otherwise mentions. Almost certainly a copy-paste artifact from an equivalent Scala SDK page's frontmatter, left unedited when the Java version was authored. Search-result snippets and AI-agent page summaries built from this attribute will describe the wrong product.",
+  "about": [
+    "java-sdk/hello-world/platform-help"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

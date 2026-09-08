@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/staged-mutation",
+  "label": "Staged mutation (transaction writes held in a document's XATTRs until commit)",
+  "type": "the mechanism by which sdk:distributed-transaction writes are technically stored inside a document's sdk:xattr fields and remain invisible to other actors until the transaction commits - the reason a document being staged is effectively locked from modification by other transactions until the attempt resolves or times out",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/transactions.json (reliesOnMechanism from sdk:distributed-transaction, acquiresLockOn sdk:kv-operations, seeAlso sdk:xattr) and concept-docs/transactions-error-handling.json (tradesOffAgainst sdk:transaction-timeout, still extraction-layer at recurrence 1)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/certificate-authentication",
+  "label": "Certificate (X.509 mTLS) Authentication from the SDK",
+  "type": "SDK-side client-certificate (mTLS) authentication - connecting with a certificate instead of a username/password, configured via a CertificateAuthenticator - distinct from sdk:tls-secure-connections (which secures the transport channel itself and can be used with either password or certificate authentication)",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Recurs across concept-docs/certificate-based-authentication.json (this round's dedicated concept page), project-docs/migrating-sdk-code-to-3.n.json, ref/glossary.json, and howtos/sdk-authentication.json (a round-3/4 pre-gate file whose one relation here carries the link-boundary evidence artifact - see round 30's pre-gate finding)."
+}

@@ -1,0 +1,43 @@
+{
+  "page_id": "java-sdk/howtos/concurrent-async-apis",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/concurrent-async-apis.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:reactive-async-apis",
+      "label": "Reactive and Async APIs (ReactiveCluster/AsyncCluster, CompletableFuture, backpressure)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - this page is the dedicated howto for the extraction-layer concept first minted in sqlpp-queries-with-sdk.json ('Reactive and Async Query APIs (ReactiveCluster/AsyncCluster, backpressure)'); broadening the label slightly since this page shows the same reactive()/async() accessor pattern applies across all blocking APIs (Cluster, Bucket, Collection), not just querying"
+    },
+    {
+      "candidate_id": "sdk:virtual-threads",
+      "label": "Java Virtual Threads (structured concurrency with the Java SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, named JDK 21 concurrency primitive the page recommends alongside (not as a replacement for) the reactive/async APIs; no existing registry concept covers it"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:reactive-async-apis",
+      "predicate": "supportsLanguageConstruct",
+      "object": "sdk:virtual-threads",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a subject supporting a named language/platform construct",
+      "evidence": "Couchbase fully supports and recommends virtual threads and structured concurrency with the Java SDK, as the modern threading solution."
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:reactive-async-apis",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "Each blocking API provides access to its reactive counterpart through the `reactive()` accessor methods:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresExplicitClose",
+    "finding": "The page describes Mono/Flux/CompletableFuture as lazy (an unsubscribed reactive call 'won't even be executed at all') but never states that a caller must explicitly cancel, dispose, or close an in-flight subscription or returned resource - unlike the already-promoted requiresExplicitClose relation elsewhere in the registry (eventing:n1ql-result-iterator, which the handler must .close()). Left unasserted for this page rather than assumed."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "The page ends by pointing Scala developers away from this Java-SDK reactive/RxJava/Akka interop path entirely: 'if you are working in the Scala world we recommend using our first-class Scala SDK directly instead!' - a direct cross-product redirect to a separate SDK product rather than a recommendation to keep using Java SDK interop shims."
+}

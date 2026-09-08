@@ -1,0 +1,13 @@
+{
+  "page_id": "java-sdk/project-docs/metadoc-about-these-sdk-docs",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/metadoc-about-these-sdk-docs.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page is a meta-documentation guide to the SDK docset's own information architecture (assumptions, section groupings, 'another route through', site search, older-versions pointer) - explicitly one of the batch's named expected-empty pages. It contains roughly twenty structural markdown links (one per major docs section: Hello World, Data Modelling, Querying, Transactions, Failure Considerations, Best Practices, Managing Couchbase, SDK Deployment, Reference Pages, and several sub-links within each), but every one of them is pure site-navigation chrome restating the left-hand nav - the same links a reader reaches directly from the nav without ever visiting this page. Capturing all twenty as seeAlso would catalog the entire java-sdk site tree from one page with no substantive claim attached to any single link, which is a worse signal-to-noise trade than the batch's own guidance to leave boilerplate pages empty. No concept on this page describes a capability, behavior, or version fact - it is entirely about how the docs are organized, not about the product."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

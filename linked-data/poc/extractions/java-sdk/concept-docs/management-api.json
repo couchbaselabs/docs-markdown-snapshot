@@ -1,0 +1,62 @@
+{
+  "page_id": "java-sdk/concept-docs/management-api",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/management-api.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:bucket-management",
+      "label": "BucketManager API (create/update/drop/flush bucket)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/provisioning-cluster-resources.json id; this page's 'Buckets and Clusters' section is a near-exact duplicate of buckets-and-clusters.json's own section, extracted earlier in this batch (same heading, same code, same closing sentence)."
+    },
+    {
+      "candidate_id": "sdk:user-management-example",
+      "label": "Managing Cluster RBAC Users via the UserManager API",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/sdk-user-management-example.json id. This page's entire 'User Management' section (upsertUser, getUsers, getUser, removeUser, the UserSettings/User/Role object shapes) is the conceptual explanation of the identical API round 3 already extracted procedurally - a textbook confirmation of this round's central hypothesis, not a new distinction."
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - see the requiresServerRole relation below, whose evidence is on the sibling howto page rather than this one (evidence_source used)."
+    },
+    {
+      "candidate_id": "auth-domain:local",
+      "label": "Local authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states a user created via upsertUser is 'locally' defined, and getUser/getUsers return a `domain` field of `local` or `external`."
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page explicitly states external users (LDAP-backed) must not be created via this SDK method, and names 'external' as the alternative `domain` value."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:user-management-example",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - an upgrade over round 3's own extraction of the identical fact, which could only cite a generic unnamed role placeholder because the howto page names the role solely as 'Admin' with no further identification; the role is now resolvable to the promoted concept",
+      "evidence": "Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users.",
+      "evidence_source": "java-sdk/current/howtos/sdk-user-management-example.md",
+      "evidence_provenance": "cross-page: this page's own User Management section describes the same upsertUser/getUsers/getUser/removeUser API but never itself states the gating role; the role statement is only on the sibling howto page, already extracted in round 3 with an unresolved role object."
+    },
+    {
+      "subject": "sdk:user-management-example",
+      "predicate": "doesNotSupport",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_external_ users (whose credentials reside on a network-available server, possibly accessed by means of LDAP) should not be created by this SDK method."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "This page's own 'Buckets and Clusters' section states no role/privilege requirement for bucket creation/removal, identical to buckets-and-clusters.json's own finding for the standalone page carrying the same content. The 'User Management' section on THIS page also never states the Admin-role gate itself (see the requiresServerRole relation's evidence_source) - the gate is only stated on the sibling howto page."
+  },
+  "cross_component_finding": "This page is essentially a merge of two other pages already in this batch/corpus: its 'Buckets and Clusters' section duplicates concept-docs/buckets-and-clusters.md near word-for-word (same heading, same createBucket/getBucket/updateBucket description, same closing sentence about the default Collection & Scope), and its 'User Management' section is the conceptual counterpart to round 3's howtos/sdk-user-management-example.json, describing the identical upsertUser/getUsers/getUser/removeUser API almost exactly (this page omits the Admin-role sentence that the howto states). I reused both existing ids (sdk:bucket-management, sdk:user-management-example) rather than minting page-specific duplicates. One concrete improvement over round 3's own extraction: that howto's requiresServerRole relation for the 'Admin role' fact had to point at a generic, unresolved role placeholder object; the identical fact can now resolve to the promoted role:full-administrator concept (internal name `admin`), which did not exist as a promoted concept when round 3 ran."
+}

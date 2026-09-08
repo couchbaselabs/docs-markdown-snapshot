@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/cas-optimistic-locking",
+  "label": "CAS-based optimistic locking (Java/Python SDK)",
+  "type": "the compare-and-swap concurrency control mechanism where a document's CAS value, read alongside its content, is passed back on a subsequent write so the server can detect and reject a write based on stale data - the SDK's default, always-on concurrency model, contrasted with the opt-in sdk:pessimistic-locking (getAndLock)",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "Round 3/4 backlog, closed. Recurs across cloud/ (creating-data.md, updating-data.md), java-sdk (data-durability-acid-transactions.json, start-using-sdk.json, concurrent-document-mutations.json, kv-operations.json, subdocument-operations.json, migrating-sdk-code-to-3.n.json, glossary.json) and python-sdk (data-durability-acid-transactions.json, error-handling.json, kv-operations.json) - a genuinely cross-product, cross-round mechanism. Some pre-gate java-sdk files in this list carry an unquotable link-boundary artifact (see round 30's pre-gate-formatting finding); the concept is independently well-evidenced from post-gate files regardless."
+}

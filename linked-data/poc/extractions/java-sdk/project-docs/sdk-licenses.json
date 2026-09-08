@@ -1,0 +1,85 @@
+{
+  "page_id": "java-sdk/project-docs/sdk-licenses",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/sdk-licenses.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:source-license",
+      "label": "Java SDK source/binary license (Apache License, Version 2.0)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the SDK's own source/binary licensing terms"
+    },
+    {
+      "candidate_id": "sdk:documentation-license",
+      "label": "Java SDK documentation license (Creative Commons CC-BY-NC-SA)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct from sdk:source-license; the docs' source carries a different license than the SDK's own source/binaries"
+    },
+    {
+      "candidate_id": "sdk:support-level",
+      "label": "Support level (tied to the Enterprise or Community Couchbase Cluster license agreement in use)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the mapping between cluster license agreement and SDK support level"
+    },
+    {
+      "candidate_id": "edition:enterprise",
+      "label": "Enterprise Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (pre-minted closed vocabulary)"
+    },
+    {
+      "candidate_id": "edition:community",
+      "label": "Community Edition",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (pre-minted closed vocabulary)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:source-license",
+      "predicate": "hasDefaultValue",
+      "object": "Apache License, Version 2.0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Source and any and all binaries for the Couchbase Java Client are distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)."
+    },
+    {
+      "subject": "sdk:documentation-license",
+      "predicate": "hasDefaultValue",
+      "object": "Creative Commons CC-BY-NC-SA",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license"
+    },
+    {
+      "subject": "sdk:support-level",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Support level will match the terms of your use of your Couchbase Cluster(s), under Couchbase's Enterprise or Community license agreements."
+    },
+    {
+      "subject": "edition:enterprise",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "Capella Operational (for support-level purposes)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; two differently-named plans that carry the identical support-level guarantee",
+      "evidence": "[Enterprise License Agreement](https://www.couchbase.com/license-agreement/) — this support level also applies to users of Capella Operational."
+    },
+    {
+      "subject": "edition:community",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "Capella Free Tier (for support-level purposes)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "[Community License Agreement](https://www.couchbase.com/community-license-agreement/) — this support level also applies to users of Capella Free Tier."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The Dependencies section ('Any dependencies may have their own, separate licenses') links to a generic third-party-components legal page with no per-dependency detail on this page itself - nothing to extract beyond the generic pointer, which is not a Couchbase-doc-tree structural link (it targets couchbase.com/legal, not another SDK doc page), so no seeAlso relation was added for it."
+  },
+  "cross_component_finding": "The edition-to-Capella-plan mapping (edition:enterprise <-> Capella Operational, edition:community <-> Capella Free Tier) is stated here purely in support-level terms, not in feature-availability terms - this page makes no claim that Capella Operational unlocks Enterprise-only features, only that its support entitlement matches the Enterprise license agreement. That's a narrower claim than the edition-gating relations (requiresEdition, behavesDifferentlyUnder) used elsewhere in the corpus for actual feature gates, and should not be conflated with them at reconciliation.",
+  "cross_product_finding": ""
+}

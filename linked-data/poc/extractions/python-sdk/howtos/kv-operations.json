@@ -1,0 +1,129 @@
+{
+  "page_id": "python-sdk/howtos/kv-operations",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/howtos/kv-operations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "CRUD Operations (insert/get/replace/remove via Collection API, with Options classes)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'The core interface to Couchbase Server is simple KV operations on full documents' matches the promoted definition exactly. Python's *Options()-class-plus-keyword-override pattern (InsertOptions(), GetOptions(), etc.) is a different configuration idiom from Java's builder style, but the underlying operation set (insert/get/replace/remove/upsert) is identical."
+    },
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS (Compare-And-Swap) Optimistic Locking",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches the Java SDK's extraction-layer sdk:cas-optimistic-locking exactly; Python's CAS section ('a value representing the current state of an item; each time the item is modified, its CAS changes') describes the identical mechanism, including the same get-modify-replace-with-cas pattern."
+    },
+    {
+      "candidate_id": "sdk:durability",
+      "label": "Durability Options (ServerDurability levels; ClientDurability/observe-based fallback)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches the Java SDK's extraction-layer sdk:durability ('client-library option wrapping a server durability feature'). Python additionally documents, on this same page, the pre-6.5 legacy 'client verified'/observe-based ClientDurability(ReplicateTo, PersistTo) fallback alongside the newer ServerDurability enum - both are the SDK-side durability OPTION, so both fall under this one id rather than needing a second concept."
+    },
+    {
+      "candidate_id": "sdk:document-expiration",
+      "label": "Document Expiration / TTL (expiry, touch, get_and_touch)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches Java's sdk:document-expiration; Python's Touch/get_and_touch operations are the same mechanism under the same names."
+    },
+    {
+      "candidate_id": "sdk:atomic-counters",
+      "label": "Atomic Counters (binary().increment()/.decrement())",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches Java's sdk:atomic-counters; Python's collection.binary().increment/decrement with IncrementOptions/DecrementOptions(delta=...) describes the identical counter-document mechanism, including the same 'seed with an initial value' pattern and the same XDCR atomicity caveat."
+    },
+    {
+      "candidate_id": "sdk:kv-range-scan",
+      "label": "KV Range Scan (RangeScan, PrefixScan, SamplingScan)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches Java's sdk:kv-range-scan ('KV Range Scan (rangeScan, prefixScan, samplingScan)') exactly, down to the same three scan-kind names (RangeScan/PrefixScan/SamplingScan vs Java's rangeScan/prefixScan/samplingScan) and the identical 'use SQL++ instead for low-latency/high-concurrency' framing."
+    },
+    {
+      "candidate_id": "sdk:preferred-server-group-replica-reads",
+      "label": "Preferred Server Group Replica Reads",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a Server-Group-aware read-routing feature (SDK 4.4.0+, Server 7.6.2+) with no equivalent concept in the registry excerpt supplied for this round; it is a replica-read/locality optimization, not a durability or KV-CRUD concept, so it doesn't fit any existing sdk:* id."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-majority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`Majority` \\- The server will ensure that the change is available in memory on the majority of configured replicas."
+    },
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-majority-and-persist-active",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`MajorityAndPersistToActive` \\- Majority level, plus persisted to disk on the active node."
+    },
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-persist-to-majority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`PersistToMajority` \\- Majority level, plus persisted to disk on the majority of configured replicas."
+    },
+    {
+      "subject": "sdk:sqlpp-queries-with-sdk",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:kv-range-scan",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan."
+    },
+    {
+      "subject": "python-sdk/howtos/kv-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/documents",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform."
+    },
+    {
+      "subject": "python-sdk/howtos/kv-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md)."
+    },
+    {
+      "subject": "python-sdk/howtos/kv-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "also precluding the use of [multi-document ACID transactions](../concept-docs/transactions.md)."
+    },
+    {
+      "subject": "python-sdk/howtos/kv-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++ (formerly N1QL)."
+    },
+    {
+      "subject": "python-sdk/howtos/kv-operations",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Couchbase Data Platform 6.5 refines these two options, with [Durable Writes](../../../server/current/learn/data/durability.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "mutuallyExclusiveWith",
+    "finding": "The CAUTION box states setting three replicas on a bucket 'disables durability for sync writes ... also precluding the use of multi-document ACID transactions' - a genuine mutual-exclusion fact between a bucket-topology setting and sdk:distributed-transaction. Not modeled as a relation because the subject side (a specific replica-count bucket configuration) has no registry concept of its own; capturing it would require minting a narrow bucket-config concept purely to hold one caveat, so it's flagged in prose (and repeated verbatim in this batch's data-durability-acid-transactions.json) instead."
+  },
+  "cross_component_finding": "This page duplicates, word-for-word, the entire 'Preferred Server Group Replica Reads' section (including the CAUTION box) found on concept-docs/data-durability-acid-transactions.md in this same batch - a structural content-duplication pattern (same prose block reused across a howto and its concept-doc sibling) rather than two independently-authored descriptions of the same feature.",
+  "cross_product_finding": "Strong reuse signal across five of Java's extraction-layer sdk:* ids in one page (kv-operations, cas-optimistic-locking, durability, document-expiration, atomic-counters, kv-range-scan) - Python's howto is structured almost identically to what the Java-derived labels describe, operation-name-for-operation-name (RangeScan/PrefixScan/SamplingScan vs Java's rangeScan/prefixScan/samplingScan; ServerDurability(Durability.MAJORITY) vs Java's DurabilityLevel enum). The one genuinely new mint, sdk:preferred-server-group-replica-reads, is NOT a rejected-Java-reuse case - it's a feature with no corresponding entry anywhere in the round's supplied registry excerpt, so it reads as either Python-specific novelty or (more likely) a feature the Java-SDK batches simply didn't cover in their chosen page set. Notably, Python documents BOTH the modern ServerDurability enum AND the legacy pre-6.5 ClientDurability(ReplicateTo, PersistTo) 'observe-based' fallback on the very same page under the same sdk:durability concept - if Java's sdk:durability extraction covered only the modern enum, this page shows the same id needs to stretch to cover a second, older API shape too."
+}

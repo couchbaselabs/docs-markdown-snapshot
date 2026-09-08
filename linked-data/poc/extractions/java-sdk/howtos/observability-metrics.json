@@ -1,0 +1,95 @@
+{
+  "page_id": "java-sdk/howtos/observability-metrics",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/observability-metrics.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:metrics-reporting",
+      "label": "SDK Metrics Reporting (operation-duration percentiles, aggregated across requests)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - umbrella concept for the page's subject: aggregated, non-per-request metrics, distinct from per-request tracing (observability-tracing.md) and from orphaned-request logging (observability-orphan-logger.md)"
+    },
+    {
+      "candidate_id": "sdk:logging-meter",
+      "label": "LoggingMeter (default periodic metrics-to-log emitter)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the SDK's default metrics sink; logs aggregated per-service, per-node percentile reports on a timer"
+    },
+    {
+      "candidate_id": "sdk:opentelemetry-metrics-integration",
+      "label": "OpenTelemetry Metrics Integration (metrics-opentelemetry module)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a pluggable alternative to sdk:logging-meter that exports the same underlying data as a db.couchbase.operations OpenTelemetry histogram"
+    },
+    {
+      "candidate_id": "sdk:micrometer-metrics-integration",
+      "label": "Micrometer Metrics Integration (metrics-micrometer module)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a second pluggable alternative to sdk:logging-meter, integrating via Micrometer rather than OpenTelemetry"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "monitoredVia",
+      "object": "sdk:logging-meter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "The SDK exposes metrics for operation durations, broken down into p50, p90, p99, p99.9, and p100 percentiles."
+    },
+    {
+      "subject": "sdk:logging-meter",
+      "predicate": "hasDefaultValue",
+      "object": "every 10 minutes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate whose object is frequently a literal rather than a concept",
+      "evidence": "By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well."
+    },
+    {
+      "subject": "sdk:metrics-reporting",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:logging-meter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "These metrics can either be logged periodically into the application logs, using the `LoggingMeter` (this is the default behaviour)."
+    },
+    {
+      "subject": "sdk:metrics-reporting",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:opentelemetry-metrics-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent on to the user's metrics infrastructure — such as Prometheus."
+    },
+    {
+      "subject": "sdk:metrics-reporting",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:micrometer-metrics-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent on to the user's metrics infrastructure — such as Prometheus."
+    },
+    {
+      "subject": "sdk:opentelemetry-metrics-integration",
+      "predicate": "accessibleVia",
+      "object": "prometheus:metrics-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a positive statement of an access surface",
+      "evidence": "`opentelemetry-collector` will store the metrics, and exposes port 10000 for Prometheus to periodically scrape."
+    },
+    {
+      "subject": "sdk:opentelemetry-metrics-integration",
+      "predicate": "seeAlso",
+      "object": "sdk:request-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This aligns well with tracing, where a recommended approach is also to send OpenTelemetry spans into `opentelemetry-collector`, where they can be processed and forwarded elsewhere. See [the Request Tracing documentation](observability-tracing.md) for more information."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasDefaultValue",
+    "finding": "The LoggingMeterConfig Properties table's description for `emitInterval` reads 'The interval where found orphans are emitted' - identical wording to the OrphanReporterConfig table on observability-orphan-logger.md, but LoggingMeter has nothing to do with orphaned requests. This looks like a copy-paste artifact between the two config-property tables rather than a real cross-reference, so no relation was extracted from it; flagged here rather than silently corrected, since correcting docs content is out of scope for extraction."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Both integration paths terminate in third-party, non-Couchbase infrastructure: the OpenTelemetry path names Jaeger/Zipkin-style OTLP receivers and Prometheus by name, and the Micrometer path wires directly to `io.prometheus:simpleclient` and a Prometheus HTTP server, with both testing instructions recommending Grafana for visualisation - the SDK's own metrics surfaces are designed to hand off entirely to a non-Couchbase observability stack rather than to any Couchbase-branded dashboard."
+}

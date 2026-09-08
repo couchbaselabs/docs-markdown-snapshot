@@ -1,0 +1,67 @@
+{
+  "page_id": "python-sdk/concept-docs/xattr",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/xattr.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:xattr",
+      "label": "Extended Attributes (XATTR)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - and properly evidenced for the first time. sdk:xattr was minted by java-sdk round 4 purely as a placeholder stub for an unextracted page (a link target inside distributed-acid-transactions-from-the-sdk.json, never itself read). This Python page IS a full, dedicated treatment of the identical mechanism: application-specific metadata exposed only to requesting frameworks, defined/searched/edited via the Sub-Document API with an `xattr=True` flag, capped by the same 20MB document-size ceiling. Nothing here is Python-specific - the mechanism, the framing ('not intended for use in general applications, only libraries and frameworks'), and the Sub-Document-API-extension delivery are all stated in language that would apply identically to any SDK, so reuse is correct rather than minting a Python-specific duplicate."
+    },
+    {
+      "candidate_id": "sdk:virtual-xattr",
+      "label": "Virtual Extended Attributes (e.g. $document.exptime)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct sub-mechanism from application-defined XATTRs: virtual XATTRs are server-generated on-demand (not stored, not application-set) and addressed via the reserved `$document` search-path prefix. No existing id covers this specifically; the parent sdk:xattr stub's label ('XATTR & Virtual XATTR') suggested it but never described the mechanism."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:xattr",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The SDK supports extended attributes by means of extensions to the _Sub-Document API_: so that extended attributes can be defined, searched for, edited, removed, and more."
+    },
+    {
+      "subject": "sdk:virtual-xattr",
+      "predicate": "isSubtypeOf",
+      "object": "sdk:xattr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_Virtual_ extended attributes consist of metadata on an individual document: this can be retrieved by specifying `$document` as a search-path"
+    },
+    {
+      "subject": "python-sdk/concept-docs/xattr",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For detailed information on the Subdocument API, see [Subdocument Operations](subdocument-operations.md), and the accompanying [practical doc](../howtos/subdocument-operations.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/xattr",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For detailed information on the Subdocument API, see [Subdocument Operations](subdocument-operations.md), and the accompanying [practical doc](../howtos/subdocument-operations.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/xattr",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/extended-attributes-fundamentals",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information, see [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "reservesXattrField",
+    "finding": "The java-sdk distributed-acid-transactions-from-the-sdk.json extraction records a minted predicate reservesXattrField (sdk:distributed-transaction reservesXattrField sdk:xattr) for the fact that transactions reserve the `txn` XATTR field. This Python xattr.md page says nothing about transaction field reservation at all - that fact lives entirely on the transactions-adjacent howto page, not here - so it is correctly absent from this record rather than fabricated."
+  },
+  "cross_component_finding": "This page is almost entirely a thin pointer to the Sub-Document API and to server/'s own XATTR fundamentals page - it defines the mechanism in terms of subdocument-operations.md ('extensions to the Sub-Document API') rather than restating XATTR semantics independently, so sdk:xattr's substantive definition really lives cross-page (server/8.0/learn/data/extended-attributes-fundamentals is where the full semantics are, per this page's own seeAlso).",
+  "cross_product_finding": "This is the flagged opportunity from the round instructions, realized cleanly: sdk:xattr existed only as an unevidenced Java-round placeholder stub, and Python's xattr.md is the first page in the corpus to actually describe the general XATTR mechanism end-to-end (definition, the xattr=True subdocument flag, the 20MB size cap, and virtual XATTRs via $document). Everything stated is language-and-SDK-agnostic - it describes a Couchbase Server mechanism the SDK merely exposes a flag for - so reusing sdk:xattr rather than minting sdk:xattr-python is correct, and this record should be treated as the id's real first evidencing rather than another placeholder. The one addition Python's page makes beyond the bare stub label is Virtual XATTRs ($document.exptime, etc.), which the stub's own title ('XATTR & Virtual XATTR') implied but which no prior extraction described - captured here as the new sdk:virtual-xattr id, isSubtypeOf sdk:xattr."
+}

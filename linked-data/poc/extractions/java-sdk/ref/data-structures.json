@@ -1,0 +1,59 @@
+{
+  "page_id": "java-sdk/ref/data-structures",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/ref/data-structures.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:data-structures-api",
+      "label": "Data Structures API (Bucket-level map/list/set/queue operations: mapAdd, listAppend, setAdd, queuePush, etc.)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuinely SDK-specific convenience API surface. The page states plainly this is a client-side wrapper, not a new server feature: 'the data structure API is actually a client-side wrapper around the key-value and sub-document API'."
+    },
+    {
+      "candidate_id": "sdk:collections-framework-integration",
+      "label": "Java Collections Framework Integration (CouchbaseMap, CouchbaseArrayList, CouchbaseArraySet, CouchbaseQueue)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a second, distinct access surface for the same underlying feature: thread-safe implementations of java.util.Map/List/Set/Queue backed by JSON documents in Couchbase Server, offered 'in addition to' the Bucket-level methods."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In fact, the data structure API is actually a client-side wrapper _around_ the key-value and sub-document API. Most of the data structure APIs wrap the sub-document API directly."
+    },
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Because the data structure API is just a wrapper around the various key-value APIs, you are free to switch between them in your code."
+    },
+    {
+      "subject": "sdk:collections-framework-integration",
+      "predicate": "isVariantOf",
+      "object": "sdk:data-structures-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - an alternate, language-native access surface for the same underlying feature",
+      "evidence": "In addition to the `Bucket` level methods for working with data structures, the Java SDK provides implementations of the `Map`, `List`, `Set`, and `Queue` interfaces from the Java Collections Framework."
+    },
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "seeAlso",
+      "object": "sdk:data-model",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "See our [Data Model pages](../concept-docs/data-model.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "isSubtypeOf",
+    "finding": "The page states 'there are only **two** basic types: map and list. Types such as _queue_ and _set_ are merely derivatives of _list_', and separately that 'a _set_ is just a list' and 'a queue is just a list' - a clean isSubtypeOf/isVariantOf shape at the level of individual data-structure kinds. I did not mint separate concepts for queue/set/list/map individually (they are table rows in a reference listing, not independently discussed features), so this relation is not captured at that granularity - flagging it here rather than force-fitting it onto the one page-level sdk:data-structures-api concept, which would lose the specific claim."
+  },
+  "cross_component_finding": "This page is a thin reference table (most rows are just an operation name plus an unresolved code-include directive) whose only real prose content is the wrapper relationship to KV/Sub-Document operations, both of which are already-promoted registry concepts. No new server-side feature is introduced here at all.",
+  "cross_product_finding": "Not applicable - this page describes SDK-side convenience APIs only; no Capella/Server-edition-specific behavior is mentioned."
+}

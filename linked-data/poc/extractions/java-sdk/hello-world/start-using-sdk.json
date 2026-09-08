@@ -1,0 +1,36 @@
+{
+  "page_id": "java-sdk/hello-world/start-using-sdk",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/start-using-sdk.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:cloud-native-gateway-connection",
+      "label": "Cloud Native Gateway connection string (couchbase2:// protocol)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - same concept as sdk:cloud-native-gateway, already minted this round from error-handling.json; this page shows the actual couchbase2:// connection-string usage that page only referenced via a link."
+    },
+    {
+      "candidate_id": "sdk:wait-until-ready",
+      "label": "waitUntilReady() (synchronizing on asynchronous bucket/resource opening)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific SDK method addressing the asynchronous-open problem: 'Opening resources such as buckets is asynchronous ... If not present, then the first key-value (KV) operation on the bucket will wait for it to be ready.'"
+    }
+  ],
+  "relations": [
+    { "subject": "sdk:start-using-sdk", "predicate": "seeAlso", "object": "sdk:sample-application", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "Elsewhere in this section you can find a fully worked-through [Quickstart in Couchbase with Spring Boot and Java](sample-application.md)" },
+    { "subject": "sdk:start-using-sdk", "predicate": "seeAlso", "object": "sdk:student-record-developer-tutorial", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "for those new to document (NoSQL) databases, our [Student Record Tutorial](student-record-developer-tutorial.md)." },
+    { "subject": "sdk:start-using-sdk", "predicate": "requiresRole", "object": "capella-role:organization-owner", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster." },
+    { "subject": "sdk:start-using-sdk", "predicate": "requiresServerRole", "object": "role:full-administrator", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster." },
+    { "subject": "sdk:cloud-native-gateway-connection", "predicate": "requiresCoDeployedService", "object": "sdk:managing-connections", "registry_status": "promoted", "reused_or_minted_predicate": "minted-leaning - the page states this connection form is only usable with a specific co-deployed component; requiresCoDeployedService is the closest registry predicate though its usual subject is a Server-side service rather than a client connection string", "evidence": "Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md)" },
+    { "subject": "sdk:wait-until-ready", "predicate": "seeAlso", "object": "sdk:kv-operations", "registry_status": "promoted", "reused_or_minted_predicate": "reused - stated ordering relationship between the two", "evidence": "If not present, then the first key-value (KV) operation on the bucket will wait for it to be ready." },
+    { "subject": "sdk:start-using-sdk", "predicate": "reliesOnMechanism", "object": "sdk:cas-optimistic-locking", "registry_status": "promoted", "reused_or_minted_predicate": "reused - explicit recommendation to use it when calling replace", "evidence": "When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time." },
+    { "subject": "sdk:start-using-sdk", "predicate": "seeAlso", "object": "sdk:error-handling", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "Read the [error handling page](../howtos/error-handling.md)." },
+    { "subject": "sdk:start-using-sdk", "predicate": "seeAlso", "object": "sdk:client-settings", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "The `ClusterEnvironment.Builder` is covered more fully on the [Client Settings](../ref/client-settings.md#the-environment-builder) page." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresRole",
+    "finding": "Both the Capella and Server prerequisite call-outs recommend a broad administrative role for getting-started purposes ('Organization Owner' / 'Full Admin') while explicitly warning against this for production ('Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security') - a documented tutorial-vs-production tension worth surfacing, though it does not name which more-granular role a production app should use instead, only gesturing at 'the Security documentation' generically."
+  },
+  "cross_component_finding": "This page repeats the exact same canonical KV upsert-with-durability code snippet used verbatim on hello-world/overview.md ('collection.upsert(\"my-document\", JsonObject.create().put(\"doc\", true), upsertOptions().durability(DurabilityLevel.MAJORITY));'), confirming the two pages are deliberately kept in sync on their shared first example rather than drifting.",
+  "cross_product_finding": "The page's 'Before You Start' / 'Prerequisites' / 'Connect to your Database' sections all carry parallel Capella-vs-self-managed-Server tab content throughout (separate bullet lists, separate role call-outs, separate connection-string code blocks for `couchbases://<capella-endpoint>` vs `couchbase://127.0.0.1`), making this one of the clearest examples in the batch of a single tutorial page maintaining two fully parallel product tracks rather than treating Capella as a variant/footnote of Server."
+}

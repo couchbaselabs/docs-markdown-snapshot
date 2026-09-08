@@ -1,0 +1,57 @@
+{
+  "page_id": "java-sdk/howtos/concurrent-document-mutations",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/concurrent-document-mutations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS (Compare-And-Swap) Optimistic Locking",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - this is the dedicated howto page for the extraction-layer concept first minted in kv-operations.json; this page's whole subject is CAS-based concurrency control, confirmed by re-reading rather than assumed ('CAS is an acronym for _Compare And Swap_, and is known as a form of optimistic locking.')"
+    },
+    {
+      "candidate_id": "sdk:pessimistic-locking",
+      "label": "Pessimistic Locking (get-and-lock / unlock operations)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a structurally distinct mechanism from CAS: an explicit, time-bounded exclusive lock on a document rather than an opportunistic version check performed only at mutation time"
+    },
+    {
+      "candidate_id": "data:document",
+      "label": "Document",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (concepts/data/document.json); this is the object that CAS values and locks apply to"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:pessimistic-locking",
+      "predicate": "acquiresLockOn",
+      "object": "data:document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted concurrency-control predicate for a subject taking an exclusive lock on an object before operating on it",
+      "evidence": "Documents can be locked using the _get-and-lock_ operation and unlocked either explicitly using the _unlock_ operation or implicitly by mutating the document with a valid CAS."
+    },
+    {
+      "subject": "sdk:pessimistic-locking",
+      "predicate": "hasDefaultValue",
+      "object": "15 seconds",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate whose object is frequently a literal rather than a concept",
+      "evidence": "Setting a lock greater than 30 seconds will cause Couchbase Server to set the lock duration at the Server's _default_ value, which is 15 seconds."
+    },
+    {
+      "subject": "sdk:pessimistic-locking",
+      "predicate": "tradesOffAgainst",
+      "object": "sdk:cas-optimistic-locking",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted comparative predicate for two strategies with opposite strengths/weaknesses; CAS is stated as the recommended default, pessimistic locking as the explicit alternative for stronger exclusivity guarantees",
+      "evidence": "While CAS is the recommended way to perform locking and concurrency control, Couchbase also offers explicit _locking_."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "determinesRetryabilityOf",
+    "finding": "The page's own retry loop for CasMismatchException is entirely manual application code (a `for` loop catching the exception and retrying up to `maxRetries` times), and never engages the SDK's own retry-classification mechanism (sdk:retry-strategy / RetryReason, documented in error-handling.md) - CAS mismatches are apparently not among the exceptions the SDK retries transparently on the application's behalf, but this page never states that connection either way, so it is left unasserted."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

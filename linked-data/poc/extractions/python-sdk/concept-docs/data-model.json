@@ -1,0 +1,61 @@
+{
+  "page_id": "python-sdk/concept-docs/data-model",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/data-model.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:data-structures-api",
+      "label": "Data Structures API (Map, List, Queue, Set)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the SDK's collection-data-structure abstraction (map_add-style high-level operations over JSON documents modelled as dict/list/queue/set). Not the same as sdk:kv-operations or sdk:subdocument-operations, which this page explicitly says the data-structures API sits ON TOP OF."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "python-sdk/concept-docs/data-model",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/nonjson",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-model",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-model",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "JSON's tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures."
+    },
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data structures can also be manipulated using the traditional sub-document and full-document key-value APIs."
+    },
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data structures can also be manipulated using the traditional sub-document and full-document key-value APIs."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "isAnalogousTo",
+    "finding": "The page draws explicit Python-native-type analogies ('Map is like Python dict', 'List is like a Python list') for every data structure - textbook isAnalogousTo material per the registry's own definition ('a construct in another data model offered as a teaching comparison'). Not modeled as a relation here because the object side (a bare Python built-in type name, not 'a construct in another data model' the registry otherwise tracks, e.g. relational:table) has no corresponding registry concept and minting one purely to hold a language-syntax comparison felt out of scope for a 33-line page; flagging the absence rather than force-minting."
+  },
+  "cross_component_finding": "This page's four data structures (Map/List/Queue/Set) are framed purely as a client-convenience layer over the same JSON documents that kv-operations and subdocument-operations already address - 'These data structures are stored as JSON documents in Couchbase, and can therefore be accessed using Query, Full Text Search, and normal key-value operations.' No new server-side mechanism is introduced; this is a thin wrapper concept.",
+  "cross_product_finding": "Structurally this page is a near-exact clone of what the Java SDK's data-model equivalent would describe (same four structures, same map_add-style rationale of 'Simplicity' and 'Efficiency'), but the Python-specific framing swaps Java collection types for Python's dict/list. No registry sdk:* id existed for this data-structures layer at all (Java rounds apparently never extracted an equivalent page, or filed it elsewhere) - sdk:data-structures-api is a first-time mint here, not a rejected-reuse case. The page's own 'both SDK and full-document key-value APIs' framing does directly confirm reuse of the already-promoted sdk:kv-operations and sdk:subdocument-operations ids as the underlying mechanisms, which IS the expected cross-language stability the round is testing for."
+}

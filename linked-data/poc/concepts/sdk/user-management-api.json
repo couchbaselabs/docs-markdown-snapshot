@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/user-management-api",
+  "label": "SDK User Management API (upsertUser/getUsers/getUser/removeUser)",
+  "type": "the SDK's client-library surface for programmatically creating/editing/removing Server RBAC users and assigning roles (UserManager in Java, an equivalent surface in Python) - the SDK-side counterpart to the Server's own CREATE USER/ALTER USER-type RBAC operations, but expressed as an object model over the cluster management REST API, not a SQL++ or REST call an application writes directly",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Cross-product namespace fork, resolved: python-sdk (howtos/sdk-user-management-example.json, concept-docs/rbac.json, concept-docs/sdk-user-management-overview.json) named this 'sdk:user-management-api'; java-sdk (howtos/sdk-user-management-example.json - a round-3/4 pre-gate file, concept-docs/management-api.json) independently named the identical UserManager-API mechanism 'sdk:user-management-example'. Filed under the clearer, referent-naming Python spelling; see aliases.",
+  "aliases": [
+    "sdk:user-management-example"
+  ]
+}

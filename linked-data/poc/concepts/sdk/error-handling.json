@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/error-handling",
+  "label": "SDK exception hierarchy and handling (CouchbaseException base class)",
+  "type": "the SDK's typed-exception model for KV/query/general operation failures, rooted at a common base exception class (CouchbaseException in Java, an analogous hierarchy in Python) - the general case that sdk:transaction-error-handling specializes for whole-transaction commit ambiguity specifically",
+  "promoted": true,
+  "recurrence": 4,
+  "note": "Round 3/4 backlog, closed. Recurs in java-sdk (best-practices.json, hello-world/overview.json, hello-world/start-using-sdk.json, howtos/error-handling.json, transactions-single-query.json, migrating-sdk-code-to-3.n.json, ref/error-codes.json) and python-sdk (howtos/error-handling.json) - the base-exception-class design is confirmed identical across both SDKs (python-sdk/howtos/error-handling.json's own cross_product_finding: 'sdk:error-handling ... DID reuse cleanly - the base-exception-class design ... is genuinely identical'). NOT the same concept as sdk:retry-strategy (client-side retry orchestration, which decides whether an exception surfaces at all) or sdk:query-error-mapping (still extraction-layer only at recurrence 1 - see below)."
+}

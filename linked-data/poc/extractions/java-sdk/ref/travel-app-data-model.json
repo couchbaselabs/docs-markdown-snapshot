@@ -1,0 +1,59 @@
+{
+  "page_id": "java-sdk/ref/travel-app-data-model",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/ref/travel-app-data-model.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:travel-sample-data-model",
+      "label": "Travel Sample Data Model (airline/route/airport/hotel document types)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the sample dataset's own document-type taxonomy (each document carries a primary-key-as-document-ID, an `id` field, and a `type` field), used across many SDK tutorial pages in this batch. No existing registry concept for this specific sample-data schema."
+    },
+    {
+      "candidate_id": "sdk:travel-sample-collections",
+      "label": "Travel Sample Collections-aware data model (7.0+, tenant agent scopes with users/bookings collections)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, later evolution of the same sample dataset that adds multi-tenant Scopes/Collections structure, explicitly gated on Server 7.0+ and stated to not exist by default."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:travel-sample-data-model",
+      "predicate": "seeAlso",
+      "object": "sdk:sample-application",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "The [tutorial introduction to using the SDK](../hello-world/sample-application.md) uses the _Travel Sample_ data bucket."
+    },
+    {
+      "subject": "sdk:travel-sample-collections",
+      "predicate": "isVariantOf",
+      "object": "sdk:travel-sample-data-model",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The new version of the Travel Sample application utilises [Collections](../concept-docs/collections.md), introduced in the 7.0 release of Couchbase Server. The application showcases the use of collections and scopes to represent a multi-tenant approach to organizing user and flight data."
+    },
+    {
+      "subject": "sdk:travel-sample-collections",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "minted-leaning - describes the join query technique required to use this data model, not a strict ordering dependency; kept as the closest fit rather than a weaker seeAlso, since the page frames JOIN/UNNEST as necessary to make sense of the model's foreign-key fields",
+      "evidence": "SQL++ provides the JOIN feature, something previously not possible in a document database. To join two documents in a SELECT statement, one of them must contain a field whose value is equal to the key of the other document."
+    },
+    {
+      "subject": "sdk:travel-sample-data-model",
+      "predicate": "seeAlso",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "structural markdown link",
+      "evidence": "Refer to the [Querying with SQL++](../concept-docs/n1ql-query.md) section for more information about using SQL++ with the SDKs."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The Collections-aware variant of the data model is gated on 'Couchbase Server 7.0 or later' in prose, but the page never links this to a version:server-7-0-style registry concept the way other pages in this batch do - it names the requirement inline ('To try this out you need Couchbase Server 7.0 or later') without a markdown link to a version-specific concept page, so I recorded the constraint via isVariantOf's own evidence rather than minting a separate availableSince relation on weaker textual grounds."
+  },
+  "cross_component_finding": "The airlineid foreign-key pattern described here (a field in one document type holding the primary key of another) is the same JOIN ON KEYS mechanism documented generically for SQL++, applied concretely to this specific sample dataset - a good illustration rather than a new fact.",
+  "cross_product_finding": "The page notes the travel-sample bucket configuration and installation are managed entirely outside the SDK (Server REST API / install-sample-buckets), reinforcing this batch's general pattern that sample-data provisioning is a Server/Capella-side concern the SDK docs merely consume."
+}

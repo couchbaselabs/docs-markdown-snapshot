@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/full-text-searching-with-sdk",
+  "label": "Running Search (FTS) Queries from the SDK",
+  "type": "the SDK's client API for issuing Full Text Search queries (SearchQuery/SearchResult) - the FTS-service sibling of sdk:sqlpp-queries-with-sdk, sdk:view-queries-with-sdk and sdk:vector-search-with-search-service in the family of 'querying-service-X-via-the-SDK' pages",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/full-text-search-overview.json and howtos/full-text-searching-with-sdk.json (a round-3/4 pre-gate file whose one relation here carries the link-boundary evidence artifact - see round 30's finding)."
+}

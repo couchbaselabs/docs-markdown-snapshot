@@ -1,0 +1,91 @@
+{
+  "page_id": "java-sdk/concept-docs/certificate-based-authentication",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/certificate-based-authentication.md",
+  "concepts": [
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states plainly that this is what it covers: 'Couchbase Server supports the use of x.509 certificates, for authentication between clients and servers.' This is the generic mechanism concept already promoted from server/'s security docs, not a server-internal storage concept, so reuse is legitimate per this round's judgment call about certs vs at-rest encryption."
+    },
+    {
+      "candidate_id": "sdk:certificate-authentication",
+      "label": "Certificate (X.509 mTLS) Authentication from the SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - this concept-docs page is the high-level framing counterpart to sdk-authentication.md's practical certificate-authentication section, which already minted sdk:certificate-authentication (java-sdk/howtos/sdk-authentication.json, round 3/4). This page explicitly cross-references that section: 'our practical guide to [authenticating an SDK client against Couchbase Server by certificate](../howtos/sdk-authentication.md#certificate-authentication.adoc)'. Reusing rather than minting a duplicate id for the same SDK-side topic."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "reliesOnMechanism",
+      "object": "auth-mechanism:x509-certificate",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the SDK's certificate-authentication capability depends on the generic x.509 mechanism as its underlying implementation",
+      "evidence": "Couchbase Server supports the use of x.509 certificates, for authentication between clients and servers."
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "Our [Client Certificate discussion doc](#7.1@server:learn:security/certificates.adoc);"
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "[Configure Client Certificates](#7.1@server:manage:manage-security/configure-client-certificates.adoc);"
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "The [Certificate Management Overview](#7.1@server:manage:manage-security/manage-certificates.adoc)…​"
+    },
+    {
+      "subject": "auth-mechanism:x509-certificate",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "…​ and [Certificate Configuration](#7.1@server:manage:manage-security/configure-server-certificates.adoc) pages."
+    },
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/sdk-authentication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "As well as our practical guide to [authenticating an SDK client against Couchbase Server by certificate](../howtos/sdk-authentication.md#certificate-authentication.adoc)."
+    },
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link (TLS section, distinct evidence/anchor from the earlier link to the same target page)",
+      "evidence": "Certificates are also used for [secure connection to the Server](#7.1@server:manage:manage-security/configure-client-certificates.adoc#enabling-client-security)"
+    },
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/managing-connections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link. Target page not yet extracted in this round (being covered by a concurrent batch); page id used per the java-sdk page_id convention.",
+      "evidence": "the [SDK guide](../howtos/managing-connections.md#ssl) gives practical details."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This page never names or links to Field-Level Encryption (concept-docs/encryption.md), even though both pages are 'concept-docs' security topics for the same SDK. The two are structurally unrelated (authentication vs. encryption), but a TW auditing the concept-docs section might expect a 'See also' cross-link between the SDK's other certificate/crypto-adjacent concept page; none exists here."
+  },
+  "cross_component_finding": "This page has essentially no original technical content of its own - every substantive claim is a pointer either into server/'s certificate documentation (the chain-of-trust, trust-store and configuration mechanics live entirely in server/8.0/learn/security/certificates and the manage-security pages) or into this SDK's own howtos/sdk-authentication.md and howtos/managing-connections.md pages. It functions as a disambiguation/redirect stub rather than a concept page with its own definitions - consistent with the judgment-call framing that auth-mechanism:x509-certificate, the cert:* chain-of-trust concepts, and tls:mutual-tls are genuinely generic and are legitimately reused here rather than reinvented.",
+  "cross_product_finding": "Every one of this page's four links into server/ documentation uses an Antora cross-version xref pinned to '#7.1@server:...' (Couchbase Server 7.1), while the corpus's extracted server/ tree (and the presumably-current docs) is versioned server/8.0. The java-sdk docs for this SDK version appear to still hard-reference Server 7.1-specific anchors for its certificate documentation rather than the current major version - a potential staleness signal in the docs' own cross-version linking, not something this agent can resolve from this page alone."
+}

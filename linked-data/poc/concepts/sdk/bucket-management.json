@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/bucket-management",
+  "label": "SDK Bucket Management API (BucketManager: create/update/drop/flush)",
+  "type": "the SDK's client-library surface for creating, updating, dropping and flushing buckets programmatically (BucketManager), as opposed to doing so via the Web Console or REST API directly",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Round 3/4 backlog, closed. Direct relation-slot recurrence is 2 (howtos/provisioning-cluster-resources.json's behavesDifferentlyUnder version:server-6-5, project-docs/sdk-release-notes.json's requiresCapability version:server-8-0), but the concept is named in concepts[] on 5 files total (also concept-docs/buckets-and-clusters.json, concept-docs/management-api.json, ref/glossary.json) - the seeAlso-heavy remainder is exactly the 'recurrence measures repetition, not the concept' effect reconciliation.md documents: most of this concept's own cross-references are seeAlso links, which the promotion metric deliberately excludes."
+}

@@ -1,0 +1,79 @@
+{
+  "page_id": "java-sdk/concept-docs/sdk-user-management-overview",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/sdk-user-management-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:server-user-management-api",
+      "label": "SDK User Management API (upsertUser/getUsers/getUser/removeUser)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - JUDGMENT CALL: this page documents the SDK's own generic programmatic surface for managing Couchbase Server RBAC users (create/list/get/remove), described entirely in the abstract - 'The _String_ specified as the role must correspond to a role supported by Couchbase Server' - with NO specific role name from Server's 56-member catalogue ever mentioned (contrast the paired howto, sdk-user-management-example.md, round 3, which names 'Admin', 'query_manage_index', etc. verbatim). Per this round's framing, since no concrete role:* catalogue entry is named, I minted an SDK-scoped id for the API mechanism itself rather than force-reusing any role:* id - the Server role catalogue is what this API MANAGES, not what this page IS."
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "a Server RBAC role (coarse data-plane placeholder)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's Role{role, bucket_name} object's 'role' field is documented only as a bare string that 'must correspond to a role supported by Couchbase Server', never naming a specific catalogue member, so the coarse generic-role placeholder is the correct fit rather than any individual role:* id."
+    },
+    {
+      "candidate_id": "auth-domain:local",
+      "label": "Local authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - upsertUser is stated to create a 'locally' defined user, matching the Server authentication domain already promoted as auth-domain:local."
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page explicitly names LDAP-backed external users as out of scope for this SDK method, matching the already-promoted auth-domain:external."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:server-user-management-api",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the UserSettings.roles array assigns roles to the user being created/updated",
+      "evidence": "The _String_ specified as the role must correspond to a role supported by Couchbase Server."
+    },
+    {
+      "subject": "sdk:server-user-management-api",
+      "predicate": "scopedToKeyspace",
+      "object": "a named bucket, or the asterisk character meaning all buckets",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - each Role grant is confined to the bucket named in bucket_name (or every bucket, via the wildcard), matching scopedToKeyspace's grant-confinement shape",
+      "evidence": "The _String_ specified as the bucket\\_name must either correspond to a bucket currently defined on Couchbase Server; or be the asterisk character (_\\*_), meaning _all buckets_."
+    },
+    {
+      "subject": "sdk:server-user-management-api",
+      "predicate": "createsOnAction",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - invoking upsertUser creates a user record in the local authentication domain as a side effect",
+      "evidence": "successful user-addition results in a user _locally_ defined, with _username_ and _password_ stored on Couchbase Server"
+    },
+    {
+      "subject": "sdk:server-user-management-api",
+      "predicate": "doesNotSupport",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - a stated, bounded non-support boundary: this SDK method must not be used to create external-domain users",
+      "evidence": "_external_ users (whose credentials reside on a network-available server, possibly accessed by means of LDAP) should not be created by this SDK method."
+    },
+    {
+      "subject": "sdk:server-user-management-api",
+      "predicate": "alsoExposedAs",
+      "object": "Couchbase Web Console Security panel",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the same underlying user resource created via this API is also visible through a separate access surface, the Web Console's Security panel",
+      "evidence": "The user will subsequently be visible in the **Security** panel of the Couchbase Web Console."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike its paired howto page (howtos/sdk-user-management-example.md, already extracted in round 3, which names 'Admin', 'data_reader', 'query_select', 'query_manage_index' etc. verbatim in code and prose), this overview documents the entire user-management API surface in the abstract - it never once names a single concrete Server RBAC role from the 56-member catalogue, nor does it state which role is required to CALL upsertUser/removeUser (the example page states this is the Admin role; this overview does not repeat that gate at all). requiresServerRole cannot be populated with any specific role:* object from this page's own text."
+  },
+  "cross_component_finding": "This page surfaces Server's local/external authentication-domain split (auth-domain:local / auth-domain:external) through the SDK's own User object's 'domain' field and through upsertUser's local-only creation behavior, without ever using the words 'authentication domain' - it just says a created user is 'locally' defined and that LDAP-backed 'external' users 'should not be created by this SDK method'. This is the SDK's client-object-model view of the exact same domain split server/'s own docs describe more formally, confirming the split is a real, cross-product-visible constraint rather than a server-internal-only detail.",
+  "cross_product_finding": "The Role{role, bucket_name} object described here is purely a Couchbase Server data-plane RBAC construct - bucket-scoped, or wildcarded to every bucket with '*' - with no Capella management-plane concept in view anywhere on this page. This confirms the second judgment call for this batch: this page's 'role' is Server's own RBAC catalogue (rbac-role:role/role:*), the fourth-to-sixth-distinct 'role' thing this ontology tracks, and has no connection on this page to capella-role:* (Capella's org/project-scoped management-plane roles), sgw:role (Sync Gateway's channel-grant bundles), or rbac-model:role (the abstract glossary term)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/atomic-counters",
+  "label": "Atomic Counters (binary increment/decrement)",
+  "type": "the SDK's atomic increment/decrement operation on a document's binary counter value - a Key-Value-level primitive distinct from sdk:data-structures-api's typed collection wrappers",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/documents.json and (per corpus-wide recount) howtos/kv-operations.json."
+}

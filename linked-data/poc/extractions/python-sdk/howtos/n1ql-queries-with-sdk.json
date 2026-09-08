@@ -1,0 +1,108 @@
+{
+  "page_id": "python-sdk/howtos/n1ql-queries-with-sdk",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/howtos/n1ql-queries-with-sdk.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL.'"
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own setup step: 'CREATE PRIMARY INDEX ON `travel-sample`'"
+    },
+    {
+      "candidate_id": "index-type:primary-index",
+      "label": "Primary Index",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well.'"
+    },
+    {
+      "candidate_id": "sdk:sqlpp-queries-with-sdk",
+      "label": "Querying via the SDK (SQL++)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already present in the registry from the Java SDK batch's ref/client-settings.json and ref/error-codes.json, promoted at reconciliation (round 30); this page is the Python SDK's own (legacy-named) instance of the identical mechanism - running SQL++ queries programmatically via the Cluster/Scope query() method"
+    },
+    {
+      "candidate_id": "sdk:query-result-streaming",
+      "label": "Streaming query result sets",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'By default, the Python SDK will stream the result set from the server, where the client will start a persistent connection with the server and only read the header until the Rows are enumerated'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:sqlpp-queries-with-sdk",
+      "predicate": "supportsLanguageConstruct",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Our query service uses SQL++ (formerly N1QL), which will be fairly familiar to anyone who's used any dialect of SQL."
+    },
+    {
+      "subject": "sdk:sqlpp-queries-with-sdk",
+      "predicate": "requiresIndex",
+      "object": "index-type:primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You can define a _primary_ index on a bucket. When a primary index is defined you can issue non-covered queries on the bucket as well."
+    },
+    {
+      "subject": "index-type:primary-index",
+      "predicate": "createdVia",
+      "object": "n1ql:create-primary-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "CREATE PRIMARY INDEX ON `travel-sample`"
+    },
+    {
+      "subject": "sdk:sqlpp-queries-with-sdk",
+      "predicate": "hasInternalComponent",
+      "object": "sdk:query-result-streaming",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "By default, the Python SDK will stream the result set from the server, where the client will start a persistent connection with the server and only read the header until the Rows are enumerated"
+    },
+    {
+      "subject": "python-sdk/howtos/n1ql-queries-with-sdk",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-intro/cbq",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "Use [cbq](#8.0@server::tools/cbq-shell.html), our interactive Query shell."
+    },
+    {
+      "subject": "python-sdk/howtos/n1ql-queries-with-sdk",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "you may wish to checkout the [SQL++ intro page](../../../server/current/n1ql/n1ql-language-reference/index.md)"
+    },
+    {
+      "subject": "python-sdk/howtos/n1ql-queries-with-sdk",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "Note that building indexes is covered in more detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building)"
+    },
+    {
+      "subject": "python-sdk/howtos/n1ql-queries-with-sdk",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/data-services",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "Be sure to check that [your use case fits your selection of query service](../concept-docs/data-services.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "supersedes",
+    "finding": "howtos/n1ql-queries-with-sdk.md (this page) and howtos/sqlpp-queries-with-sdk.md (same directory, not in this batch) are near-duplicate pages of almost identical length (341 vs 336 lines) covering the same topic - running SQL++ queries via the SDK - with the same section structure verbatim (Getting Started, Queries & Placeholders, The Query Result, Query Options, Scan Consistency, Client Context ID, ReadOnly, Streaming Large Result Sets, Async APIs, Querying at Scope Level, Additional Resources). The only substantive differences: this page says 'Our query service uses SQL++ (formerly N1QL)' and tells the reader to use the cbq shell tool to create a primary index; sqlpp-queries-with-sdk.md drops the N1QL parenthetical entirely and tells the reader to use the Admin UI's Query tab instead, and adds a 'SQL++ Compared to Key-Value' tip box this page lacks. Critically, NEITHER page links to, mentions, or otherwise acknowledges the other's existence anywhere in its body - there is no supersedes, renamedFrom, or retainedForLegacyCompatibility statement on either page, and this page does not tell the reader to use sqlpp-queries-with-sdk.md instead (so mustUseInsteadWhen is explicitly NOT warranted here, contrary to what a page-level rename convention might lead one to expect). This reads as an un-pruned legacy duplicate left behind after a page-level rename-and-partial-rewrite (N1QL -> SQL++ terminology, cbq -> Admin UI instructions), not a deliberate redirect/alias stub (which would be short and point at the other page) and not genuinely different content (the two are near word-for-word twins).",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/python-sdk-n1ql-sqlpp-queries-pages-near-duplicate"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "page_id": "java-sdk/howtos/observability-tracing",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/observability-tracing.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:request-tracer",
+      "label": "RequestTracer interface (pluggable per-request tracing)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in client-settings.json as the configuration knob (requestTracer); this page is the dedicated howto for the same interface, confirmed by re-reading ('the SDK provides a `RequestTracer` interface and ships with both a default implementation as well as modules that can be plugged into feed the traces to external systems')"
+    },
+    {
+      "candidate_id": "sdk:threshold-logging-tracer",
+      "label": "ThresholdLoggingTracer (default over-threshold request logging)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the default RequestTracer implementation; distinct from sdk:orphan-reporter (which fires on abandonment, not on exceeding a latency threshold)"
+    },
+    {
+      "candidate_id": "sdk:opentelemetry-tracing-integration",
+      "label": "OpenTelemetry Tracing Integration (tracing-opentelemetry module)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a pluggable RequestTracer implementation exporting OTLP spans"
+    },
+    {
+      "candidate_id": "sdk:opentracing-integration",
+      "label": "OpenTracing Integration (tracing-opentracing module, legacy)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a second pluggable RequestTracer implementation, explicitly framed on the page as legacy/sunsetted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "monitoredVia",
+      "object": "sdk:request-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "To give insight into a request/response flow, the SDK provides a `RequestTracer` interface and ships with both a default implementation as well as modules that can be plugged into feed the traces to external systems (including OpenTelemetry)."
+    },
+    {
+      "subject": "sdk:request-tracer",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:threshold-logging-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "To give insight into a request/response flow, the SDK provides a `RequestTracer` interface and ships with both a default implementation as well as modules that can be plugged into feed the traces to external systems (including OpenTelemetry)."
+    },
+    {
+      "subject": "sdk:request-tracer",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:opentelemetry-tracing-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "The built-in tracer is great if you do not have a centralized monitoring system, but if you already plug into the OpenTelemetry ecosystem we want to make sure to provide first-class support."
+    },
+    {
+      "subject": "sdk:request-tracer",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:opentracing-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a closed choice between named alternative configurations",
+      "evidence": "In addition to OpenTelemetry, we also provide support for OpenTracing for legacy systems which have not yet migrated to OpenTelemetry."
+    },
+    {
+      "subject": "sdk:threshold-logging-tracer",
+      "predicate": "hasDefaultValue",
+      "object": "every 10 seconds",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate whose object is frequently a literal rather than a concept",
+      "evidence": "By default, the SDK will emit information about requests that are over a configurable threshold every 10 seconds."
+    },
+    {
+      "subject": "sdk:opentracing-integration",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sdk:opentelemetry-tracing-integration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for an option retained only so older setups keep working, naming the modern construct that supersedes it",
+      "evidence": "In addition to OpenTelemetry, we also provide support for OpenTracing for legacy systems which have not yet migrated to OpenTelemetry. Note that we still recommend to migrate eventually since OpenTracing has been sunsetted."
+    },
+    {
+      "subject": "sdk:threshold-logging-tracer",
+      "predicate": "requiresFlagToEnable",
+      "object": "com.couchbase.thresholdRequestTracerNewOutputFormat system property",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a behavior that is off by default and needs an explicit config flag",
+      "evidence": "A new, yet to be stabilized, format can be enabled by setting the `com.couchbase.thresholdRequestTracerNewOutputFormat` system property to `true`."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresExplicitClose",
+    "finding": "The page shows OpenTelemetryRequestSpan.wrap()/parentSpan() creating and passing spans into SDK calls, but never states whether an application-created parent span, or a span the SDK creates internally, needs to be explicitly ended/closed by the caller - unlike the already-promoted requiresExplicitClose relation elsewhere in the registry (eventing:n1ql-result-iterator), span lifecycle management is left unaddressed on this page."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Like observability-metrics.md, this page's OpenTelemetry path hands off entirely to third-party tracing backends named explicitly in the text (Jaeger, Zipkin, opentelemetry-collector) rather than to any Couchbase-branded surface, and OpenTracing is explicitly framed as a sunset legacy protocol rather than a currently-maintained integration target."
+}

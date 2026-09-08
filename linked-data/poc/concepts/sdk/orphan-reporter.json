@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/orphan-reporter",
+  "label": "OrphanReporter (aggregated logging of orphaned/timed-out requests)",
+  "type": "a third distinct SDK observability mechanism (alongside sdk:request-tracer and general logging) that fires ONLY for responses whose original caller has already stopped listening (typically after a timeout) - aggregated and logged periodically (every 10s by default) rather than per-event",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Same-round cross-agent duplicate, resolved: howtos/observability-orphan-logger.json (this round's dedicated page) minted 'sdk:orphan-reporter' using the SDK's own class name, while ref/glossary.json and concept-docs/best-practices.json (both this round) independently minted 'sdk:orphaned-response-reporting' for the identical mechanism - glossary.json's own definition ('These cover Request Tracing, Observability Metrics, and Orphaned Response Reporting') and best-practices.json's ('Special reporting capabilities which explicitly collect information about responses which have been abandoned (i.e. timed out) at the time when the SDK tries to complete them') describe exactly what the dedicated page's 'The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore ...' describes. Filed under the class-name spelling from the dedicated page; see aliases.",
+  "aliases": [
+    "sdk:orphaned-response-reporting"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-python-sdk-rbac-page-structure-inconsistency",
+  "type": "docs-issue",
+  "issueType": "cross-product-structural-inconsistency",
+  "description": "Java SDK's documentation has NO dedicated RBAC concept page: java-sdk/concept-docs/sdk-user-management-overview.md covers both the SDK's UserManager API mechanism AND the underlying Server RBAC model (roles, privileges, auth domains) together on one page. Python SDK's documentation splits the identical territory into two separate pages: python-sdk/concept-docs/sdk-user-management-overview.md (the API mechanism) and a dedicated python-sdk/concept-docs/rbac.md (the RBAC model itself). Both products document the same underlying Server RBAC system and the same UserManager-shaped API (see the now-promoted concepts/sdk/user-management-api.json, filed under the Python spelling with the Java page aliased to it), but organize that content into a different number of pages with a different topic split. Not a factual error in either page - both are internally accurate - but a real information-architecture inconsistency between two SDK products documenting the same server-side feature. A second, independent instance of the same pattern was found in the same round: java-sdk/current/howtos/health-check.md places the SDK's ping()/diagnostics() health-check feature under howtos/ (a task page), while python-sdk/current/concept-docs/health-check.md places the identically-named, identically-scoped feature under concept-docs/ (a concept page) - even though that Python page's own content (raw method calls, JSON output, no numbered procedure) reads more like a howto than a concept page. Two confirmed cases of the same two SDKs disagreeing about which doc-taxonomy bucket the same feature belongs in.",
+  "about": [
+    "java-sdk/concept-docs/sdk-user-management-overview",
+    "python-sdk/concept-docs/sdk-user-management-overview",
+    "python-sdk/concept-docs/rbac",
+    "java-sdk/howtos/health-check",
+    "python-sdk/concept-docs/health-check"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

@@ -1,0 +1,53 @@
+{
+  "page_id": "java-sdk/howtos/observability-orphan-logger",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/observability-orphan-logger.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:orphan-reporter",
+      "label": "OrphanReporter (aggregated logging of orphaned/timed-out requests)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third distinct SDK observability mechanism alongside sdk:logging-meter and sdk:request-tracer: it only fires for responses whose original caller has already stopped listening, and works purely through built-in logging with no external-system plug-in point"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "monitoredVia",
+      "object": "sdk:orphan-reporter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this \"orphaned\" response to a reporting utility which aggregates all responses and in regular intervals logs them in a specific format."
+    },
+    {
+      "subject": "sdk:orphan-reporter",
+      "predicate": "hasDefaultValue",
+      "object": "every 10 seconds",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate whose object is frequently a literal rather than a concept",
+      "evidence": "By default they will be aggregated and logged every 10 seconds, but the event will be skipped if there are no orphans to report."
+    },
+    {
+      "subject": "sdk:orphan-reporter",
+      "predicate": "excludesFromCapture",
+      "object": "an emitted log entry when there are no orphans to report in the current interval",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a monitoring/logging mechanism deliberately omitting something from what it records",
+      "evidence": "By default they will be aggregated and logged every 10 seconds, but the event will be skipped if there are no orphans to report."
+    },
+    {
+      "subject": "sdk:orphan-reporter",
+      "predicate": "requiresFlagToEnable",
+      "object": "com.couchbase.orphanReporterNewOutputFormat system property",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a behavior that is off by default and needs an explicit config flag",
+      "evidence": "If you want to enable the new output format, for now you have to set the `com.couchbase.orphanReporterNewOutputFormat` system property to `true`."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The page states you can 'look for the output of the OrphanReporter and correlate' a TimeoutException with it, and that each entry carries a Channel ID field explicitly 'to correlate with the server logs', but never links to where those server-side logs or their own connection/channel identifiers are documented - the correlation is described as possible from the client side only, with the other end of it left completely unlinked."
+  },
+  "cross_component_finding": "The orphan-log entry's Channel ID field ('c': 'The Channel ID to correlate with the server logs') is explicitly designed to let an operator join a client-side orphaned-request log line to the corresponding entry in Couchbase Server's own logs - the only field in either JSON output format whose stated purpose is cross-component correlation rather than describing the request itself.",
+  "cross_product_finding": null
+}

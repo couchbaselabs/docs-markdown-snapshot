@@ -3,5 +3,7 @@
   "label": "tximplicit (query parameter)",
   "type": "the request parameter that runs a single DML statement as a self-contained ACID transaction, without BEGIN/COMMIT",
   "promoted": true,
-  "recurrence": 5
+  "recurrence": 5,
+  "aliases": ["sdk:single-query-transaction"],
+  "note": "Round 30 fold, same shape as round 10's sdk:transaction-query-mode -> n1ql:transaction-query-mode: the round-4-era backlog id sdk:single-query-transaction (java-sdk/howtos/transactions-single-query.json, java-sdk/project-docs/distributed-acid-transactions-migration-guide.json) is the SDK-side surface for this same query-language mechanism, not a separate concept. Licensed side by side: the Query-Workbench/server side states 'To execute a single statement as a transaction, enter the statement in the query editor and click **Run as TX**' (server/8.0/n1ql/n1ql-language-reference/transactions.json, tool:query-workbench-run-as-tx isSynonymOf n1ql:tximplicit) while the SDK howto states 'You will see reference elsewhere in Couchbase documentation to the `tximplicit` query parameter. Single query transactions internally are setting this parameter.' Three surfaces (SDK call, Query Workbench button, raw tximplicit parameter), one mechanism. The extraction records that used the sdk:single-query-transaction spelling are evidence and stay as they are."
 }

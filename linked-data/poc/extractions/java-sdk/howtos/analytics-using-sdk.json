@@ -1,0 +1,45 @@
+{
+  "page_id": "java-sdk/howtos/analytics-using-sdk",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/analytics-using-sdk.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:analytics-query",
+      "label": "Analytics Query API (Cluster.analyticsQuery / AnalyticsOptions / AnalyticsResult)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the SDK-side call surface for issuing queries to the Analytics Service (CBAS) from the Java SDK; distinct from the already-promoted server-side analytics:* vocabulary, which describes the service/data model itself rather than how a client talks to it"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:analytics-query",
+      "predicate": "dependsOnService",
+      "object": "service:analytics-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component's dependency on a named Couchbase service",
+      "evidence": "This page covers using our operational Java SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster."
+    },
+    {
+      "subject": "sdk:analytics-query",
+      "predicate": "seeAlso",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This is the analytic counterpart to our [operational data focussed Query Service](sqlpp-queries-with-sdk.md)."
+    },
+    {
+      "subject": "sdk:analytics-query",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:reactive-async-apis",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism, rather than dependsOnService (a service-to-service dependency, used above for a different fact on this page)",
+      "evidence": "In addition to the blocking API on `Cluster`, the SDK provides reactive and async APIs on `ReactiveCluster` or `AsyncCluster` respectively."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "The page shows AnalyticsResult.metaData().metrics().executionTime() as an in-application way to read query timing, but never states whether Analytics queries are also captured by the SDK's own ThresholdLoggingTracer/LoggingMeter observability surfaces documented elsewhere in this batch - those pages' sample JSON blobs break results out by service name ('kv', 'query'), but this page gives no equivalent 'cbas'/'analytics' example, so the connection is left unasserted rather than assumed."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "The page's own tip block draws a product-line distinction not otherwise foregrounded in the SDK docs: 'SDKs for Enterprise Analytics ... are available for the .NET, Go, Java, Node.js, and Python platforms' are ordinary operational SDKs, while 'Capella Analytics SDKs (also known as Columnar SDKs)' are a separate SDK family, because Capella Analytics 'does not have Enterprise Analytics' load balancer, and uses a different connection protocol.' This page's own cluster.analyticsQuery() API is neither of those - it talks only to self-managed/Capella-Operational CBAS - so 'the Java SDK' covers at least three distinct client libraries across the word 'Analytics'."
+}

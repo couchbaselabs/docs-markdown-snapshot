@@ -1,0 +1,70 @@
+{
+  "page_id": "java-sdk/concept-docs/data-model",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/data-model.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:data-structures-api",
+      "label": "SDK Data Structures API (Map/List/Queue/Set over a JSON document)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers this high-level convenience layer. The page is explicit that Map/List/Queue/Set are built ON TOP of existing document access ('These data structures are stored as JSON documents... can therefore be accessed using SQL++, Full Text Search, and normal key-value operations... can also be manipulated using the traditional sub-document and full-document KV APIs'), so it is a distinct, higher-level concept from sdk:kv-operations and sdk:subdocument-operations, not a synonym for either."
+    },
+    {
+      "candidate_id": "sdk:couchbase-map",
+      "label": "CouchbaseMap (java.util.Map-backed wrapper over a document)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific, named implementation class the page walks through in detail (2-subdocument-request put/remove semantics, casMismatchRetries), distinct enough from the general Data Structures API description to warrant its own id."
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "key-value operations",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states data structures 'can also be manipulated using the traditional sub-document and full-document KV APIs', i.e. full-document KV is one of the two underlying mechanisms; reusing the already-promoted concept rather than minting a duplicate."
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names the Sub-Document API twice as the other underlying mechanism behind the Data Structures API and behind CouchbaseMap specifically."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data structures can also be manipulated using the traditional sub-document and full-document KV APIs."
+    },
+    {
+      "subject": "sdk:data-structures-api",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Data structures can also be manipulated using the traditional sub-document and full-document KV APIs."
+    },
+    {
+      "subject": "sdk:couchbase-map",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "CouchbaseMap needs to make at least 2 subdocument requests: one request to get the current value, and a second request to update it."
+    },
+    {
+      "subject": "sdk:couchbase-map",
+      "predicate": "isSubtypeOf",
+      "object": "sdk:data-structures-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you need to feed a Couchbase document to an existing API that only works with `java.util.Map`, then CouchbaseMap may be a quick way to get started with tackling the task without delving into the [Sub-Document API](subdocument-operations.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The page never version-gates the Data Structures API or CouchbaseMap at all (unlike sibling concept-docs pages such as collections.md and buckets-and-clusters.md, which explicitly call out Server 7.x support). No availableSince relation could be extracted for this page's own concepts."
+  },
+  "cross_component_finding": "This is the batch's first direct test of the round's central hypothesis (does concept-docs describe the SAME thing as howtos, or something new?), and the answer here is a clean split: the page's HEADLINE concept (the Data Structures API / CouchbaseMap) is genuinely new - it's a convenience layer never mentioned in round 3/4's howto extractions of kv-operations.md or subdocument-operations.md - but the page is explicit that this new layer is built entirely out of the two already-promoted mechanisms sdk:kv-operations and sdk:subdocument-operations, naming both directly ('the traditional sub-document and full-document KV APIs'). So I minted two new concepts for the layer itself, but reused rather than re-minted for its foundations, which is exactly the reuse-vs-mint distinction this round asked to watch for."
+}

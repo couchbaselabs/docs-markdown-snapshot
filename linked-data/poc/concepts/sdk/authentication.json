@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/authentication",
+  "label": "SDK Client Authentication (PasswordAuthenticator, RBAC connection)",
+  "type": "the client-connection-establishment concern of how the SDK process proves its identity to the cluster (typically PasswordAuthenticator against Server RBAC, since Server 5.0) - a property of the client library's connection setup, distinct from sdk:certificate-authentication (the X.509 variant) and from the server-side rbac-role:role/privilege model itself",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/sdk-authentication.json (a round-3/4 pre-gate file - its two relations here carry the link-boundary evidence artifact, see round 30's finding) and reused with a clean, quotable relation in project-docs/migrating-sdk-code-to-3.n.json (requiresCapability version:server-5-0)."
+}

@@ -1,0 +1,100 @@
+{
+  "page_id": "python-sdk/concept-docs/rbac",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/rbac.md",
+  "concepts": [
+    {
+      "candidate_id": "rbac-model:role",
+      "label": "Role (Server RBAC model term)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - abstract TBox term, matches 'an _authorization_ process checks the _roles_ with which the user is associated'; the page never names a specific role catalogue member for this generic definition"
+    },
+    {
+      "candidate_id": "rbac-model:privilege",
+      "label": "Privilege (Server RBAC model term)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'If one or more of these roles correspond to _privileges_ that permit the user-requested level of resource-access, access is duly granted'"
+    },
+    {
+      "candidate_id": "rbac-model:resource",
+      "label": "Resource (Server RBAC model term)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - sibling of the already-promoted rbac-model:role/rbac-model:privilege glossary terms; this page names the third leg of the same abstract triple explicitly ('_Resources_ controlled by Couchbase RBAC') but the registry had no id for it yet"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (via alias role:admin) - 'Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users.' roles.md's display name is 'Full Admin' (internal name `admin`), matching this page's shorthand 'Admin role'"
+    },
+    {
+      "candidate_id": "auth-mechanism:username-password",
+      "label": "Username and password authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'these consist of a _username_ and (typically) a _password_' as the credentials passed for authentication"
+    },
+    {
+      "candidate_id": "sdk:user-management-api",
+      "label": "SDK User Management API (upsertUser/getUsers/getUser/removeUser)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - minted in the sibling record python-sdk/concept-docs/sdk-user-management-overview (this same batch), promoted at reconciliation (round 30); referenced here via 'The SDK provides APIs to support these activities.'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "rbac-model:role",
+      "predicate": "hasPrivilege",
+      "object": "rbac-model:privilege",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - restates the same abstract two-tier model claim the registry already tracks (promoted specifically for having no concrete instance anywhere in the corpus; this page adds another abstract-only occurrence)",
+      "evidence": "If one or more of these roles correspond to _privileges_ that permit the user-requested level of resource-access, access is duly granted; otherwise, it is denied."
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users."
+    },
+    {
+      "subject": "python-sdk/concept-docs/rbac",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/authorization-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "All aspects of the Couchbase RBAC system are covered in the section [Authorization](#7.1@server:learn:security/authorization-overview.adoc)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/rbac",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-users-and-roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "Adding _Users_ and assigning _roles_, by means of the Couchbase Web Console, see [Manage Users and Roles](#7.1@server:manage:manage-security/manage-users-and-roles.adoc)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/rbac",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/roles",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "_Roles_ required for resource-access, and the privileges they entail, see [Roles](#7.1@server:learn:security/roles.adoc)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/rbac",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/resources-under-access-control",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "_Resources_ controlled by Couchbase RBAC, see [Resources Under Access Control](#7.1@server:learn:security/resources-under-access-control.adoc)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "All four server:-scoped xrefs on this page are hardcoded to Server 7.1 ('#7.1@server:learn:security/...'), the same stale version pin found on the sibling certificate-based-authentication.md page in this batch. Current Server extraction in this registry is filed under server/8.0. This is a systematic pattern across the Python SDK's security-adjacent concept pages, not a one-off typo.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/python-sdk-security-pages-stale-server-7-1-xrefs"
+  },
+  "cross_component_finding": "rbac.md and sdk-user-management-overview.md divide the RBAC topic cleanly and without overlap, though neither page states the division explicitly. rbac.md is purely conceptual: it explains the Server RBAC model itself (users/resources/roles/privileges, the authentication-then-authorization flow) and points outward to four Server doc pages (Authorization, Manage Users and Roles, Roles, Resources Under Access Control) for the concrete catalogue - it contains no API syntax at all. sdk-user-management-overview.md is the mirror image: pure SDK API reference (upsertUser/getUsers/getUser/removeUser method signatures, the UserSettings/Role/User object shapes) with no explanation of what RBAC is or why roles matter - it treats 'role' as an opaque string parameter that 'must correspond to a role supported by Couchbase Server', deferring entirely to rbac.md (implicitly, via no cross-link) for what that means. Java's docs fold both halves into one page (concept-docs/sdk-user-management-overview.md, per the round framing); Python instead gives the RBAC-model half its own dedicated concept-docs/rbac.md page - a real structural difference, not just a content split, since Python's user-management overview page is consequently thinner than what a Java-only reader would expect from a page with the same title.",
+  "cross_product_finding": "First contact for python-sdk in this registry, and the headline structural asymmetry the round called out: Java's SDK docs tree has no rbac.md at all - Server-RBAC content there lives only inside concept-docs/sdk-user-management-overview.md and its paired howto. Python's docs tree splits this into a dedicated concept-docs/rbac.md (confirmed to exist at python-sdk/current/concept-docs/rbac.md) plus its own sdk-user-management-overview.md, meaning Python documents RBAC as a first-class SDK concept in its own right while Java treats it as a subsection of user management. This is a genuine information-architecture divergence between the two SDKs' doc sets for the same underlying Server feature, not merely a difference in prose. Filed as docs-issues/java-python-sdk-rbac-page-structure-inconsistency at reconciliation (round 30)."
+}

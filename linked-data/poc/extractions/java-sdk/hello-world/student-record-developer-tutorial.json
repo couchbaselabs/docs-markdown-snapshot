@@ -1,0 +1,25 @@
+{
+  "page_id": "java-sdk/hello-world/student-record-developer-tutorial",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/student-record-developer-tutorial.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:student-record-tutorial-data-model",
+      "label": "Student Record Tutorial Data Model (student/course/enrollment document types)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, named tutorial dataset (separate from sdk:travel-sample-data-model), explicitly designed to teach the document-model-vs-relational-model tradeoff via a worked example."
+    }
+  ],
+  "relations": [
+    { "subject": "sdk:student-record-developer-tutorial", "predicate": "isAnalogousTo", "object": "relational:table", "registry_status": "promoted", "reused_or_minted_predicate": "reused - the tutorial explicitly teaches the document model by direct comparison to a relational schema, the same pedagogical pattern this predicate was minted to capture elsewhere in the registry (server/'s data-model-by-analogy pages)", "evidence": "This tutorial teaches you about the key concepts behind Couchbase and how they differ from traditional SQL database systems like MySQL and Oracle." },
+    { "subject": "sdk:student-record-developer-tutorial", "predicate": "seeAlso", "object": "server:tutorials-couchbase-tutorial-student-records", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "If you wish to use a standalone or Docker installation of Couchbase, see the [Server Developer Tutorial](../../../server/current/tutorials/couchbase-tutorial-student-records.md)." },
+    { "subject": "sdk:student-record-developer-tutorial", "predicate": "seeAlso", "object": "sdk:start-using-sdk", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "for more information about the Java SDK installation, see the [full installation page](../project-docs/sdk-full-installation.md), or review the [Getting Started page](start-using-sdk.md)." },
+    { "subject": "sdk:student-record-developer-tutorial", "predicate": "requiresIndex", "object": "n1ql:create-index", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "Before you can retrieve your records with the query editor, you must first define an index in your bucket." }
+  ],
+  "notable_absence": {
+    "predicate": "hasEquivalentEffectAs",
+    "finding": "No sentence on the page claims the document model and the relational model are equivalent - the page's whole point is the OPPOSITE: it explains why the document model handles the student/course/enrollment relationship differently and better ('The enrollment table highlights a challenge with the relational model, each table is based on a fixed schema that only supports a single data object type ... With JSON, you can change the structure of the document without having to rebuild schemas'). Used isAnalogousTo instead, which captures the teaching-by-comparison shape without asserting a false equivalence."
+  },
+  "cross_component_finding": "The tutorial explicitly states a modeling anti-pattern as a caution, not just a design choice: 'You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the credit-points.' This is a genuinely SDK/data-modeling-specific piece of prescriptive guidance not captured by any single existing concept id, and is recorded here as page text rather than forced into a relation, since no registry predicate cleanly expresses 'anti-pattern warning against a specific document-nesting choice'.",
+  "cross_product_finding": "Unlike this batch's other getting-started pages, this tutorial is Capella-Operational-only by explicit design choice, not merely by convenience: 'This tutorial is designed for use with Capella Operational cloud services. If you wish to use a standalone or Docker installation of Couchbase, see the Server Developer Tutorial' - the two tracks are maintained as entirely separate tutorial pages on separate products (java-sdk/ vs server/) rather than as parallel tabs within one page, a different pattern from start-using-sdk.md's single-page-two-tracks approach."
+}

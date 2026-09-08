@@ -1,0 +1,91 @@
+{
+  "page_id": "python-sdk/howtos/error-handling",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/howtos/error-handling.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:error-handling",
+      "label": "Standardized Client Exception Hierarchy (CouchbaseException and derivatives)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - 'Couchbase-specific exceptions are all derived from CouchbaseException' matches the Java SDK's extraction-layer sdk:error-handling ('CouchbaseException and derivatives') exactly; both SDKs use the identical base-exception-class design, just in Python's native try/except idiom rather than Java's checked/unchecked hierarchy."
+    },
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS Mismatch handling (CASMismatchException)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - the 'CAS Mismatch' section's CASMismatchException is the failure mode of the same CAS mechanism documented in howtos/kv-operations.md under this id."
+    },
+    {
+      "candidate_id": "sdk:durability",
+      "label": "Durability Options (ServerDurability levels)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - the ambiguity-retry example configures `ServerDurability(level=Durability.PERSIST_TO_MAJORITY)`, the same SDK-side durability option documented in howtos/kv-operations.md."
+    },
+    {
+      "candidate_id": "sdk:custom-retry-decorator",
+      "label": "Application-authored retry decorator (allow_retries, fixed/linear/exponential backoff)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - REJECTED reuse of sdk:retry-strategy after checking the page. Java's extraction-layer sdk:retry-strategy is described as an SDK-BUILT-IN, transparent 'pre-exception decision layer' (RetryStrategy/RetryReason) that retries transparently retryable exceptions before the application ever sees them - 'With the SDK retrying all transparently retryable exceptions already ... you are only left with terminal exceptions.' This Python page shows the OPPOSITE shape: no built-in RetryStrategy/RetryReason object is named anywhere on the page; instead the application is shown writing and applying its OWN @allow_retries decorator, choosing which exception types to retry and which backoff curve to use, entirely in userland code. Same problem (transient-error retry), structurally different mechanism (SDK-internal orchestration vs. hand-rolled application decorator) - so a Python-specific id is minted rather than forcing reuse."
+    },
+    {
+      "candidate_id": "sdk:durability-write-ambiguity",
+      "label": "Durability write ambiguity (TimeoutException / DurabilitySyncWriteAmbiguousException on a single KV write)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a single-operation ambiguity distinct in SCOPE from the promoted sdk:transaction-error-handling, which the registry describes as 'whole-transaction commit ambiguity' documented on a dedicated transactions-error-handling page. This page's ambiguity concerns one durable KV write ('your application requests that a new document be created ... it's ambiguous to the app whether the operation succeeded or not'), not a multi-statement transaction, so it is not the same concept even though both use the word 'ambiguous'/'ambiguity' - no page states the two are the same, so per the no-silent-merge rule they stay apart."
+    },
+    {
+      "candidate_id": "sdk:query-error-context",
+      "label": "QueryErrorContext / AnalyticsErrorContext (structured error metadata on CouchbaseException)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - REJECTED reuse of sdk:query-error-mapping after checking the page. Java's extraction-layer sdk:query-error-mapping is a many-server-error-code-to-many-typed-exception MAPPING TABLE (PlanningFailureException, IndexFailure, PreparedStatementFailure, keyed by numbered ID ranges). This Python page shows one generic exception type (CouchbaseException) carrying a structured `.context` object (QueryErrorContext, with statement/first_error_code/first_error_message/client_context_id/endpoint fields) rather than a family of distinctly-typed exceptions per error class. Different shape - a single exception with an inspectable context object, not a typed-exception taxonomy - so minting rather than reusing."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:custom-retry-decorator",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:error-handling",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Consider a decorator that provides flexibility to determine which Exceptions to retry and how to retry (fixed, linear or exponential delay)."
+    },
+    {
+      "subject": "sdk:custom-retry-decorator",
+      "predicate": "doesNotSupport",
+      "object": "sdk:durability-write-ambiguity",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the decorator pattern shown is stated as unsuitable for non-idempotent ambiguous failures without an extra read-back step first",
+      "evidence": "After an ambiguous exception on a Non-Idempotent operation, you should first read the document to check for yourself whether or not that change was applied."
+    },
+    {
+      "subject": "python-sdk/howtos/error-handling",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/durability-replication-failure-considerations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "you also need to weigh up [concepts of durability](../concept-docs/durability-replication-failure-considerations.md)."
+    },
+    {
+      "subject": "python-sdk/howtos/error-handling",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/health-check",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Diagnostic methods are available to check on the [health if the cluster](health-check.md)"
+    },
+    {
+      "subject": "python-sdk/howtos/error-handling",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/collecting-information-and-logging",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "We offer [recommendations and practical examples](collecting-information-and-logging.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "usesEnum",
+    "finding": "No RetryReason-style enum appears anywhere on this page - the retry section is entirely prose-and-decorator, with retry STRATEGIES named only as bullet-point prose ('Retry with an exponentially increasing delay and a delay ceiling', etc.) rather than as a closed, named value set the SDK exposes as an enum. This absence is itself the evidence behind rejecting sdk:retry-strategy/sdk:retry-reason reuse - see cross_product_finding."
+  },
+  "cross_component_finding": "The page's 'Ambiguity' and 'Non-Idempotent Operations' sections are tightly coupled: idempotency classification (repeated-set vs. counter-increment) is presented as the deciding factor for whether an ambiguous-exception retry is safe to do blindly or needs a read-back first - 'Idempotent operations are much easier to handle, as on ambiguous error results ... the operation can simply be retried' vs. 'After an ambiguous exception on a Non-Idempotent operation, you should first read the document to check for yourself.' This is a real, page-stated coupling between two ideas that would otherwise look independent.",
+  "cross_product_finding": "This page is the batch's clearest case of correctly REJECTING a suggested reuse rather than forcing it. Three Java-derived extraction-layer ids looked like plausible targets and all three failed the check: (1) sdk:retry-strategy assumes an SDK-built-in, transparent RetryStrategy/RetryReason orchestration layer that simply isn't named anywhere on this Python page - the page instead shows the application hand-rolling its own @allow_retries decorator, a structurally different (userland, not SDK-internal) mechanism, so sdk:custom-retry-decorator was minted instead. (2) sdk:transaction-error-handling is explicitly scoped by the registry to 'whole-transaction commit ambiguity' - this page's ambiguity (TimeoutException / DurabilitySyncWriteAmbiguousException on ONE durable KV write, no transaction involved) is a different scope entirely, so sdk:durability-write-ambiguity was minted rather than reusing the transaction-scoped id despite the shared vocabulary word 'ambiguous'. (3) sdk:query-error-mapping is a many-error-code-to-many-typed-exception table; this page shows one generic exception type carrying a structured .context object instead, so sdk:query-error-context was minted. By contrast, sdk:error-handling, sdk:cas-optimistic-locking and sdk:durability DID reuse cleanly - the base-exception-class design, the CAS-mismatch mechanism, and the ServerDurability option are all genuinely identical mechanisms across the two SDKs. This page is a good stress test of the round's instruction to reject reuse when it doesn't actually hold."
+}

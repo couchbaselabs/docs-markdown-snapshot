@@ -1,0 +1,73 @@
+{
+  "page_id": "java-sdk/howtos/health-check",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/health-check.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:ping",
+      "label": "Ping (active health probe)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - an active, side-effecting health check that queries live services for status/latency; no existing registry concept covers SDK-side health probing"
+    },
+    {
+      "candidate_id": "sdk:diagnostics",
+      "label": "Diagnostics (passive health report)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - structurally distinct from sdk:ping: a passive, no-I/O snapshot of the SDK's already-known socket state rather than an active network probe"
+    },
+    {
+      "candidate_id": "sdk:cluster-state-enum",
+      "label": "ClusterState enum (ONLINE / DEGRADED / OFFLINE)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the closed enum returned by DiagnosticsResult.state(), consumed by sdk:diagnostics"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:managing-connections",
+      "predicate": "monitoredVia",
+      "object": "sdk:ping",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "`Ping` _actively_ queries the status of the specified services, giving status and latency information for every node reachable."
+    },
+    {
+      "subject": "sdk:managing-connections",
+      "predicate": "monitoredVia",
+      "object": "sdk:diagnostics",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "`Diagnostics` shows what the SDK _perceives_ as the current state of the network and services — it is without side-effects, but may not be up to date."
+    },
+    {
+      "subject": "sdk:diagnostics",
+      "predicate": "usesEnum",
+      "object": "sdk:cluster-state-enum",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a documented output drawing its values from a controlled vocabulary",
+      "evidence": "A `DiagnosticsResult` has one interesting property over a ping result — it provides a cumulative `ClusterState` through the `state()` method. The state can be `ONLINE`, `DEGRADED` or `OFFLINE`."
+    },
+    {
+      "subject": "sdk:ping",
+      "predicate": "tradesOffAgainst",
+      "object": "sdk:diagnostics",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted comparative predicate; ping is active/expensive/current, diagnostics is passive/cheap/possibly-stale",
+      "evidence": "Diagnostics works in a similar fashion to `ping` in the sense that it returns a report of how all the sockets/endpoints are doing, but the main difference is that it is passive."
+    },
+    {
+      "subject": "sdk:diagnostics",
+      "predicate": "doesNotSupport",
+      "object": "a binary yes/no answer about cluster health",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "This API does not provide binary yes/no answers about the health of the cluster; rather it summarizes as much information as possible, for the application developer to assemble a complete, contextual view and come to a conclusion."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "The Uses section lists third-party consumers of Ping/Diagnostics output (Splunk, ElasticSearch, Nagios, Kubernetes probes, Docker Health Check, AWS ELB), but the page never states whether Ping/Diagnostics results are also fed into the SDK's own observability stack (LoggingMeter, ThresholdLoggingTracer, OrphanReporter) documented elsewhere in this batch - the two families of mechanism are presented as entirely separate, with no cross-reference in either direction."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "The page positions Diagnostics explicitly as the backing mechanism for third-party container/cloud health-check conventions that are not Couchbase products at all: 'Kubernetes Liveness and Readiness Probes', 'Docker Health Check with CLI commands', and 'AWS ELB through HTTP' - making this the SDK's most direct integration point with external cloud-infrastructure health-check tooling in this batch."
+}

@@ -1,0 +1,95 @@
+{
+  "page_id": "python-sdk/concept-docs/documents",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/documents.md",
+  "concepts": [
+    {
+      "candidate_id": "data:document",
+      "label": "Document",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's own definition ('A document refers to an entry in the database ... has an ID ... and a value which contains the actual application data') matches the promoted data:document description verbatim in substance ('an item whose value is JSON ... the unit that SQL++, indexes and subdocument operations can address by field')."
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "Primitive Key-Value Operations (upsert/insert/replace/get/remove)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Python's upsert(docid, document)/insert/replace/get/remove pseudo-code block describes the exact same operation set as the promoted sdk:kv-operations ('the SDK's direct document get/insert/upsert/replace/remove API, as opposed to queries'), confirming cross-SDK stability of this id."
+    },
+    {
+      "candidate_id": "sdk:atomic-counters",
+      "label": "Atomic Counters (binary increment/decrement)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches the Java SDK's extraction-layer sdk:atomic-counters ('Atomic Counters (binary increment/decrement)') exactly: Python's counter() method / Binary.Collection increment/decrement operations describe the identical atomic-counter-document mechanism, down to the same XDCR-atomicity caveat."
+    },
+    {
+      "candidate_id": "sdk:document-expiration",
+      "label": "Document Expiration / TTL (expiry, get-and-touch, touch)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - matches the Java SDK's extraction-layer sdk:document-expiration ('Document Expiration / TTL (expiry, preserveExpiry, getAndTouch)'); Python's page independently describes the same get-and-touch / touch mechanics and the same 'most operations implicitly remove existing expiration' warning."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "python-sdk/concept-docs/documents",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/document-data-model",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "other databases may refer to the same concept as a [_row_](../../../server/current/learn/data/document-data-model.md#couchbase-server-and-json-the-benefits)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/documents",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "You can also use [SQL++ Queries](n1ql-query.md) (formerly N1QL) and [Full Text Search](full-text-search-overview.md) to access documents by means other than their IDs"
+    },
+    {
+      "subject": "python-sdk/concept-docs/documents",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents"
+    },
+    {
+      "subject": "python-sdk/concept-docs/documents",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "examples can be found in the [practical K-V Howto document](../howtos/kv-operations.md#atomic-counters)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/documents",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/expiration",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "it is possible that elsewhere in the server, an expiry value is being set for [every document in a bucket^](../../../server/current/learn/data/expiration.md)"
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "mayDelegateOperationTo",
+      "object": "n1ql:transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - this predicate captures a statement's implementation being able to fall through to a different execution path; used here for the documented SQL++-to-KV translation",
+      "evidence": "these query operations Couchbase eventually translate into primitive key-value operations, and exist as separate services outside the data store."
+    },
+    {
+      "subject": "sdk:atomic-counters",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This enables you to work with counters using `get()` and `upsert()` operations — allowing, _inter alia_, the use of durability options with the operations."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "isSubtypeOf",
+    "finding": "The promoted registry models data:document as 'a subset of data:item, not a synonym' but this Python page never uses the word 'item' at all, and defines a document purely in its own terms ('an entry in the database'). Nothing on this page asserts or denies the item/document distinction, so no isSubtypeOf relation is added from this page's evidence - it would have to come from a page that actually states it."
+  },
+  "cross_component_finding": "The page explicitly frames primary-key SQL++ lookups (SELECT ... USE KEYS / WHERE META(...).id = ...) as an alternative access path to the same primitive KV operations, 'though it is recommended to use the key-value API if the ID is known' - the same server-side document, reached through two different Couchbase surfaces (Query service vs Data service), exactly the kind of cross-service equivalence the registry already tracks elsewhere via mayDelegateOperationTo/hasEquivalentEffectAs.",
+  "cross_product_finding": "Direct confirmation of cross-SDK vocabulary reuse: Python's upsert/insert/replace/get/remove primitive set matches sdk:kv-operations' Java-derived definition operation-for-operation, and the counters section matches Java's extraction-layer sdk:atomic-counters and sdk:document-expiration ids closely enough to justify reuse rather than minting Python-specific duplicates - both mechanisms (increment/decrement atomicity constraints under XDCR, and 'most operations implicitly remove existing expiration') are stated in near-identical language to what the Java-derived labels describe. The one operation-naming difference worth flagging: Python exposes counters through `collection.binary().increment()/.decrement()` (a `Binary.Collection` sub-object) rather than the generic `get()`/`upsert()` pair the page's own 'Use Cases' section says the *newer* high-level abstraction wraps them in - so Python's docs describe TWO counter surfaces (legacy binary incr/decr, and get/upsert-based) on one page, whereas the registry's Java-derived label ('Atomic Counters (binary increment/decrement)') only names the first. Not a rejection of reuse, but the id's label is narrower than what Python's page actually documents."
+}

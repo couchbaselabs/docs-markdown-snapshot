@@ -1,0 +1,27 @@
+{
+  "page_id": "java-sdk/ref/index",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/ref/index.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:client-settings", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Client Settings](client-settings.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:error-codes", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Error Code Reference](error-codes.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:glossary", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Glossary](glossary.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:travel-app-data-model", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Travel Sample Data Model](travel-app-data-model.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:buckets-and-clusters", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Buckets & Clusters](../concept-docs/buckets-and-clusters.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:collections", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Collections & Scope](../concept-docs/collections.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:data-model", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Data Model](../concept-docs/data-model.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:durability-replication-failure-considerations", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:encryption", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Field Level Encryption](../concept-docs/encryption.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:querying-your-data", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Service Selection / Querying your Data](../concept-docs/querying-your-data.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:sdk-user-management-overview", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [User Management](../concept-docs/sdk-user-management-overview.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:management-api", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Managing Couchbase](../concept-docs/management-api.md)" },
+    { "subject": "sdk:ref-index", "predicate": "seeAlso", "object": "sdk:deployment", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [SDK Deployment](../project-docs/deployment.md)" }
+  ],
+  "notable_absence": {
+    "predicate": "concepts",
+    "finding": "This page has an empty concepts[] array by design: it is a pure link-list landing page ('This section contains the following reference docs' plus 'A Deeper Dive' - a list of concept-doc links interspersed with duplicated entries, e.g. Failure Considerations and Querying Your Data each appear twice in the source list). It introduces no new technical facts or terminology of its own, only navigation to pages the round's other batches (J1-J4, or unextracted concept-docs) cover. Recording it as a dense cluster of seeAlso relations from a single placeholder subject id (sdk:ref-index) rather than forcing an artificial 'concept' onto a page whose only content is a table of contents."
+  },
+  "cross_component_finding": "The 'A Deeper Dive' list on this page is internally inconsistent in a way worth flagging as a docs quality note rather than an ontology fact: 'Failure Considerations' and 'Querying Your Data' each appear twice (once nested under a category, once again as a flat top-level bullet later in the same list), both times pointing at the same two target pages (durability-replication-failure-considerations.md and querying-your-data.md respectively). No ontology relation captures this - it's a page-authoring duplication, not a genuine second relationship.",
+  "cross_product_finding": "Not applicable - this is a pure internal SDK-doc navigation page with no Capella/Server-edition-specific content."
+}

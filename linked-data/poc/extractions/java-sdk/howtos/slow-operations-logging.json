@@ -1,0 +1,43 @@
+{
+  "page_id": "java-sdk/howtos/slow-operations-logging",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/slow-operations-logging.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:slow-operations-logging",
+      "label": "Slow Operations Logging (umbrella: threshold logging + orphan logging + span metrics)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a short umbrella/overview page that groups threshold logging and orphaned-response logging under one debugging framing, without introducing a mechanism of its own"
+    },
+    {
+      "candidate_id": "sdk:threshold-logging-tracer",
+      "label": "ThresholdLoggingTracer (default over-threshold request logging)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this record is written before observability-tracing.json is known to be promoted, so declared minted here per this page's own first-contact reading; represents the same real mechanism this page calls 'ThresholdRequestTracer' and points readers to configure on observability-tracing.md"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:slow-operations-logging",
+      "predicate": "seeAlso",
+      "object": "sdk:threshold-logging-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "To configure threshold logging, adjust the [ThresholdRequestTracer](observability-tracing.md#the-default-thresholdloggingtracer)."
+    },
+    {
+      "subject": "sdk:slow-operations-logging",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:orphan-reporter",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "These include slow queries, responses taking beyond a certain threshold, and orphanned responses."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "isSynonymOf",
+    "finding": "This page's 'Configuring Threshold Logging' section reproduces a JSON entry format (total_duration_us, encode_duration_us, last_dispatch_duration_us, total_dispatch_duration_us, last_server_duration_us, operation_name, last_local_id, operation_id, last_local_socket, last_remote_socket) that is textually near-identical to observability-orphan-logger.md's 'Experimental JSON Output Format Descriptions' table for its new orphan-log format - but this page never states that it is describing the SAME experimental format rather than a similar-but-separate one for threshold logging, so no isSynonymOf relation could be safely extracted despite the two being, on inspection, near-identical field-for-field."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transcoder",
+  "label": "Transcoder (non-JSON document encode/decode)",
+  "type": "the SDK's pluggable serialization layer that converts an application object to/from bytes for storage - the default JsonTranscoder for JSON, with RawStringTranscoder/RawBinaryTranscoder/LegacyTranscoder etc. for non-JSON content types",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Minted independently, for the identical mechanism, across concept-docs/documents.json, concept-docs/nonjson.json and howtos/transcoders-nonjson.json."
+}

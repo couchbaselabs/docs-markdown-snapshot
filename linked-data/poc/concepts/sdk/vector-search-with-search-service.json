@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/vector-search-with-search-service",
+  "label": "Vector Search via the Search Service (VectorSearch/VectorQuery API)",
+  "type": "the SDK's client API for issuing vector/kNN similarity queries against the Search service (VectorSearch/VectorQuery), the vector-search sibling of sdk:sqlpp-queries-with-sdk, sdk:view-queries-with-sdk and sdk:full-text-searching-with-sdk in the 'querying-service-X-via-the-SDK' family",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/querying-your-data.json and howtos/vector-searching-with-sdk.json."
+}

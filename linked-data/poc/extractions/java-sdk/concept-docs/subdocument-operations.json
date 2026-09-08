@@ -1,0 +1,66 @@
+{
+  "page_id": "java-sdk/concept-docs/subdocument-operations",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/subdocument-operations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this is the SDK's own first-hand, conceptual definition of the promoted concept ('Sub-Document operations may be quicker and more network-efficient than _full-document_ operations... they only transmit the accessed sections of the document over the network'). See cross_component_finding: the concept file's own note states it was promoted purely from cloud/ guide pages, never from a Java SDK page directly - this record is the first Java SDK extraction to actually supply that first-hand source."
+    },
+    {
+      "candidate_id": "data:attribute",
+      "label": "Attribute",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the promoted concept's own description ('a named field within a JSON document, addressable by path. The unit subdocument operations and index key expressions target') is exactly what this page's 'path' concept is: 'In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document.'"
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "key-value operations",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page repeatedly contrasts Sub-Document operations against 'full-document operations such as _upsert_, _replace_ and _get_', i.e. against this concept."
+    },
+    {
+      "candidate_id": "sdk:sqlpp-queries-with-sdk",
+      "label": "Running SQL++ Queries from the Java SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's id, cited here specifically so the page can disambiguate its own topic from it."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly."
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the reciprocal half of the same sentence, recorded in both directions as round 3's kv-operations.json established for comparable pairs",
+      "evidence": "You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly."
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md).)"
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "reliesOnMechanism",
+      "object": "data:attribute",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document."
+    }
+  ],
+  "cross_component_finding": "This page is the strongest direct hit yet on the round's central hypothesis, in the OPPOSITE direction from a typical 'concept-docs is downstream of howtos' assumption: the promoted concepts/sdk/subdocument-operations.json file's own note says the concept was promoted from cloud/guides/reading-data.md, deleting-data.md and updating-data.md - explicitly NOT from 'the SDK's own reference page' - meaning sdk:subdocument-operations was promoted to the registry before either the Java SDK's concept-docs page (this one) or its howtos page (howtos/subdocument-operations.md, still unread as of this batch) had ever been extracted. This record supplies the first first-hand SDK-side definition for an already-promoted concept, confirming it describes the identical thing (atomic path-level get/upsert/replace/remove, network-efficiency framing) rather than a new distinction. It also produces the cleanest disambiguation relation in the batch: the page explicitly and directly states that Key-Value Sub-Document operations and 'Sub-Document SQL++ queries' are NOT the same thing, despite sharing the name 'sub-document' - a textbook shouldNotBeConfusedWith case, stated in the page's own words rather than inferred."
+}

@@ -7233,7 +7233,368 @@ can state what it is without naming either).
   substring, so neither `--variants` nor `--forks` would surface it unprompted;
   only reading the evidence quotes side by side does.
 
-## Cumulative verdict (all twenty-nine rounds)
+## Round 30 — Java SDK completion (63 pages) and Python SDK first contact (17
+pages): an 8-round-old backlog note gets re-checked rather than trusted, and a
+same-round Java/Python namespace fork surfaces four times in one pass
+
+**Scope.** `linked-data/poc/extractions/java-sdk/` finished end-to-end -
+`concept-docs/`, `hello-world/`, `project-docs/`, `ref/`, and the rest of
+`howtos/` - 63 new records on top of rounds 3/4's original 15 pages (78 total).
+`python-sdk/` got its first contact: 17 pages across `concept-docs/` and
+`howtos/`, deliberately chosen as a comparison batch against the now-complete
+Java vocabulary. 95 java-sdk+python-sdk records, 603 relations, checked whole.
+This is also the first round run as a pure reconciliation pass over a registry
+input that included an explicit instruction to re-verify an 8-round-old backlog
+note rather than trust it, and it was right to ask: of the round-4 backlog's six
+named ids, two (`sdk:kv-operations`, `sdk:transaction-query-mode`) were already
+closed by round 10, and this round closes the remaining four
+(`sdk:durability`, `sdk:cas-optimistic-locking`, `sdk:error-handling`,
+`sdk:bucket-management`) plus `sdk:sqlpp-queries-with-sdk` and
+`sdk:view-queries-with-sdk` - but `sdk:query-error-mapping` is genuinely still
+open, at whole-corpus recurrence 1 (`java-sdk/ref/error-codes.json` only;
+Python's `howtos/error-handling.json` explicitly checked and REJECTED reuse of
+it, minting `sdk:query-error-context` instead for a structurally different
+one-exception-with-a-context-object shape). Trusting the backlog note instead
+of recomputing would have both over- and under-corrected.
+
+### Pre-gate evidence-matching artifact, not fabrication (registry/pipeline
+finding, category 3 - see step 4's own framing)
+
+`verify-evidence.py` scoped to this round's new + pre-existing java-sdk/python-sdk
+files found 23 unquotable-evidence problems, spread across 11 files - `ref/glossary.json`,
+`ref/error-codes.json`, `ref/client-settings.json`, `howtos/kv-operations.json`,
+`howtos/sdk-authentication.json`, `howtos/sdk-user-management-example.json`,
+`howtos/sqlpp-queries-with-sdk.json`, `howtos/vector-searching-with-sdk.json`,
+`howtos/view-queries-with-sdk.json`, `howtos/working-with-collections.json`,
+`howtos/full-text-searching-with-sdk.json` - and every one of the 11 is a
+round-3/4 file, written before the write-time evidence gate existed. Confirmed
+by hand on `howtos/kv-operations.json`: the extraction record quotes `"SQL++
+(formerly N1QL) can also be used to perform many single-document operations..."`
+verbatim, but the source page actually reads `[SQL++ (formerly
+N1QL)](https://www.couchbase.com/products/n1ql) can also be used...` - the
+quote is real, on the page, word for word; the byte-exact substring match fails
+only because Markdown link syntax sits inside the quoted span and `verify-evidence.py`'s
+`norm()` does not strip it. This is a **verifier limitation crossed with a
+pre-gate quoting-style artifact**, not fabricated evidence - none of the 23
+problems involve a sentence that isn't genuinely on the page, unlike the
+fabrication case `verify-evidence.py`'s own docstring describes. Not fixed this
+round (out of scope, and editing pre-gate records to satisfy a check that
+postdates them would be exactly the "correct old records to match a later
+control" mistake `README.md`'s method notes warn against) - queued in
+`README.md`'s next steps as a possible future backfill: either teach `norm()`
+to strip inline Markdown link syntax the way it already strips backslash
+escaping (round 15's fix, same shape), or re-extract the 11 files under the
+current gate. Every one of this round's new (post-gate) records checked
+independently, at 0 problems.
+
+### Gate scoreboard: thinning happened, and it is visible
+
+Every one of this round's 80 new files passed through the write-time gate
+(80 logged paths in `hooks/gate-log.jsonl`, matching exactly). 15 files were
+denied at least once before landing - none were denied for evidence fabrication;
+every denial resolved into an `allow` with either the same relation count
+(the agent found the real quote or fixed a `registry_status` claim) or a
+**lower** one. Four files show the exact fingerprint step 1b's methodology
+warns about - a relation dropped rather than re-evidenced:
+
+```
+deny(35) -> allow(28)   java-sdk/ref/glossary.json            (7 relations dropped)
+deny(6)  -> allow(5)    java-sdk/hello-world/sample-application.json
+deny(3)  -> allow(2)    java-sdk/hello-world/spring-data-sample-application.json
+deny(6)  -> allow(4)    java-sdk/hello-world/student-record-developer-tutorial.json
+```
+
+Read individually, all four are the "couldn't find a quote, dropped the
+relation" failure mode exactly as predicted: `glossary.json`'s seven dropped
+relations (three `isSynonymOf`, one `eliminatesFetchFrom`, two `seeAlso`, one
+`grantsChannelAccess`) each carried the literal placeholder evidence string
+`"unused"` at the first attempt; the other three each carried a single relation
+with `"evidence": ""` (empty) or a `registry_status` mismatch. This is the gate
+converting fabrication-shaped omission into actual omission, working as
+intended - reported honestly rather than claimed as a clean run, per the
+scoreboard discipline. No denial in this batch was a false positive.
+
+### Headline finding: `sdk:xattr` and two round-4 migration-guide stubs
+resolved, per step 5
+
+Both flagged placeholder stubs from round 4 are now resolved with real,
+first-hand evidence, read directly rather than inherited from a forward link:
+
+- **`sdk:xattr`** was minted in round 4 purely as a placeholder for a link
+  target on `distributed-acid-transactions-from-the-sdk.md`, a page round 4
+  never itself read. This round's `java-sdk/concept-docs/xattr.json` AND
+  `python-sdk/concept-docs/xattr.json` both independently read the real page
+  (and its Python twin) and supply first-hand definitions - the id is
+  unchanged, promoted now at whole-corpus recurrence 6 across both SDKs.
+  Python's page additionally supplied `sdk:virtual-xattr` (a genuine
+  sub-concept the stub's own title implied but no record had described),
+  promoted alongside it.
+- **`sdk:transactions-migration-guide`** - `java-sdk/project-docs/distributed-acid-transactions-migration-guide.json`
+  is the real page behind this round-4 stub too; read directly, its opening
+  sentences match the stub's placeholder label almost verbatim, and the
+  `version:sdk-3-3-0` fact the stub's neighbour relation cited
+  (`sdk:distributed-transaction availableSince version:sdk-3-3-0`) is
+  independently restated on the page itself. The stub's guess is confirmed
+  accurate. But **this id stays unpromoted, and correctly so**: every one of
+  its two corpus references (this page and the round-4 stub page) is a
+  `seeAlso` link, never a substantive relation - the promotion metric
+  deliberately excludes both the subject and object of `seeAlso` (the same
+  rule that keeps documentation pages from outranking real concepts), so its
+  whole-corpus recurrence on the metric that actually decides promotion is 0,
+  not 2. `sdk:transactions-migration-guide` is, structurally, a page pointer -
+  the `page:`-candidate shape - not a concept anyone has ever asserted a fact
+  about. Resolving the stub means confirming the guess was right, not
+  promoting an id nothing about the corpus licenses promoting; conflating the
+  two would be exactly the "narrated as promoted, never actually filed"
+  failure this project has caught nine times before. The page's own
+  substantive content instead licensed a real promotion elsewhere:
+  `sdk:transaction-cleanup` (promoted below, recurrence 3 including this
+  page) and a rich single-page rename-migration-table family
+  (`sdk:legacy-transactions-library`, `sdk:transactions-config`,
+  `sdk:transaction-options`, `sdk:transactions-query-config`,
+  `sdk:single-query-transaction-options`,
+  `sdk:transaction-keyvalue-timeout-option`,
+  `sdk:transaction-durability-level-legacy`, `sdk:transactions-java-package`)
+  left at recurrence 1/extraction-layer - individually real but each observed
+  on only this one page, unlike the GRANT/REVOKE-shaped family exception step
+  2 allows, since nothing here requires them jointly to state what any single
+  promoted concept *is*.
+
+### `sdk:transaction-error-handling`'s promoted description corrected: three
+exceptions, not two
+
+`concepts/sdk/transaction-error-handling.json`'s label, promoted in round 4,
+named only `TransactionFailedException`/`TransactionCommitAmbiguousException`.
+This round's `java-sdk/concept-docs/transactions-error-handling.json` - the
+concept's own dedicated source page, read directly for the first time - states
+plainly: "There are three errors that transactions can raise to an application:
+* TransactionFailedException * TransactionExpiredException *
+TransactionCommitAmbiguousException." `TransactionExpiredException` (timeout-driven
+retry exhaustion, as distinct from `TransactionFailedException`'s fast-failure)
+is real and separately-behaved, not a paraphrase of the other two. Corrected
+additively - the label now names all three - without minting a fourth promoted
+id for the exception class alone; the sub-threshold `sdk:transaction-expired-exception`
+(recurrence 1, minted on the same page) stays at extraction-layer/watchlist,
+since the parent record's own corrected text now states what the page requires
+without needing it as a separate id.
+
+### `sdk:single-query-transaction` folded into the already-promoted
+`n1ql:tximplicit`
+
+The round-4 backlog note flagged `sdk:single-query-transaction` as "extraction-layer
+only, not yet promoted." Re-checking against the current registry (not the
+backlog note's memory of it) found it had, in effect, already been promoted -
+under a different id. `n1ql:tximplicit` (promoted round 10, recurrence 5:
+"the request parameter that runs a single DML statement as a self-contained
+ACID transaction, without BEGIN/COMMIT") is the identical mechanism. Licensed
+side by side: the Query Workbench states "To execute a single statement as a
+transaction, enter the statement in the query editor and click **Run as TX**"
+(`server/8.0/n1ql/n1ql-language-reference/transactions.json`), and this round's
+SDK howto states "You will see reference elsewhere in Couchbase documentation
+to the `tximplicit` query parameter. Single query transactions internally are
+setting this parameter." Three surfaces (SDK call, Query Workbench button, raw
+`tximplicit` parameter), one mechanism - the same shape as round 10's
+`sdk:transaction-query-mode` -> `n1ql:transaction-query-mode` fold. Folded as an
+alias on the surviving record; `concepts/sdk/transaction-durability.json` and
+`concepts/sdk/distributed-transaction.json`, both of which name the old id in
+their own notes, updated to point at the resolution.
+
+### Same-round Java/Python namespace fork, found four times in one pass
+
+Reading java-sdk and python-sdk's observability/user-management/health-check
+pages together (not separately, which is how they were extracted) surfaced the
+same defect shape four separate times: two agents, one per product, minting two
+different spellings for one referent, in the SAME round, each independently
+correct in isolation:
+
+- `sdk:user-management-api` (Python: `howtos/sdk-user-management-example.json`,
+  `concept-docs/rbac.json`, `concept-docs/sdk-user-management-overview.json`) vs.
+  `sdk:user-management-example` (Java: `howtos/sdk-user-management-example.json`
+  - a round-3/4 file - and this round's `concept-docs/management-api.json`,
+  which correctly reused the pre-existing Java spelling rather than forking
+  again). Filed under the Python spelling, which names the referent (the
+  UserManager API) rather than a page's own genre ("example").
+- `sdk:ping` / `sdk:diagnostics` (Java: `ref/glossary.json`,
+  `howtos/health-check.json`) vs. `sdk:ping-check` / `sdk:diagnostics-check`
+  (Python: `concept-docs/health-check.json`) for the identical two mechanisms,
+  quoted near-verbatim on both sides ("Ping actively queries the status of the
+  specified services, giving status and latency information for every node
+  reachable" vs. "`Ping` _actively_ queries the status of the specified
+  services, giving status and latency information for every node reachable").
+  Filed under Java's shorter spelling, matching the SDK's own method names.
+- `sdk:orphan-reporter` (Java's dedicated page, `howtos/observability-orphan-logger.json`,
+  using the SDK's own class name `OrphanReporter`) vs. `sdk:orphaned-response-reporting`
+  (Java's OWN `ref/glossary.json` and `concept-docs/best-practices.json` -
+  this is not even a cross-product fork, it is the SAME product forking
+  against its own dedicated page). Filed under the class-name spelling from
+  the dedicated page.
+
+None of these four pairs share enough substring for `recurrence.py --variants`
+to cluster them (`ping` vs. `ping-check` is the closest, and even that only
+surfaces because one is a strict prefix of the other) - three of the four are
+pure synonymy (`user-management-api`/`user-management-example`,
+`orphan-reporter`/`orphaned-response-reporting`), the exact shape the RBAC-role
+`internal_name`-vs-label convention exists to warn about, just recurring at the
+concept-id layer instead of the role-label layer this time. All four resolved
+as `aliases` on the surviving record, each with both defining quotes recorded
+side by side, per the fold-licensing rule.
+
+### Promotions
+
+**41 concepts promoted**, taking `concepts/` to 726:
+`sdk:durability`, `sdk:cas-optimistic-locking`, `sdk:error-handling`,
+`sdk:sqlpp-queries-with-sdk`, `sdk:bucket-management` (round-4 backlog, closed);
+`sdk:document-expiration`, `sdk:view-queries-with-sdk`, `sdk:kv-range-scan`, `sdk:request-tracer`,
+`sdk:xattr`, `sdk:virtual-xattr`, `sdk:certificate-authentication`,
+`sdk:data-structures-api`, `sdk:field-level-encryption`, `sdk:fle-keyring`,
+`sdk:pessimistic-locking`, `sdk:query-options`, `sdk:transcoder`,
+`sdk:transaction-cleanup`, `sdk:user-management-api` (aliasing
+`sdk:user-management-example`), `sdk:app-telemetry`, `sdk:atomic-counters`,
+`sdk:authentication`, `sdk:bucket-replica-count`,
+`sdk:cluster-connection-lifecycle`, `sdk:cluster-level-query`,
+`sdk:scope-level-query`, `sdk:managing-connections`, `sdk:dns-srv-bootstrap`,
+`sdk:tls-secure-connections`, `sdk:full-text-searching-with-sdk`,
+`sdk:health-check`, `sdk:ping` (aliasing `sdk:ping-check`), `sdk:diagnostics`
+(aliasing `sdk:diagnostics-check`), `sdk:orphan-reporter` (aliasing
+`sdk:orphaned-response-reporting`), `sdk:reactive-async-apis`,
+`sdk:retry-strategy`, `sdk:staged-mutation`,
+`sdk:vector-search-with-search-service`, `sdk:working-with-collections`, and
+`sdk:lost-transaction` (significance exception, recurrence 1 - see below).
+
+**1 significance exception**: `sdk:lost-transaction` promoted at recurrence 1
+alongside its parent `sdk:transaction-cleanup` (recurrence 3), per the
+family test - `transactions-cleanup.md` states outright that lost transactions
+are the reason the cleanup mechanism exists at all ("there are situations that
+inevitably created failed, or 'lost' transactions, such as an application
+crash. This requires an asynchronous cleanup task"), so `sdk:transaction-cleanup`
+cannot state what it *is* without naming it. The test also refused, correctly:
+`sdk:transaction-client-record` and `sdk:transaction-cleanup-event`, minted on
+the identical page at the identical recurrence, do NOT pass - `transaction-cleanup`'s
+own definition ("periodically scans ATR metadata documents for expired
+transactions and rolls back or completes them") names the ATR-scanning
+mechanism generically without needing either, so both stay at
+extraction-layer/watchlist.
+
+**1 existing concept corrected**: `sdk:transaction-error-handling`'s label
+updated to name a third exception (`TransactionExpiredException`), additive,
+not a fold.
+
+**1 fold into a pre-existing promoted concept**: `sdk:single-query-transaction`
+-> alias of `n1ql:tximplicit`.
+
+**6 new `docs-issues/` filed**: `java-python-sdk-rbac-page-structure-inconsistency`
+(Java's SDK docs have no dedicated RBAC page - `sdk-user-management-overview.md`
+covers both API mechanism and RBAC model together; Python splits them into
+`rbac.md` plus its own `sdk-user-management-overview.md` - with a second,
+independently-found instance of the same pattern folded in: `health-check.md`
+lives under `howtos/` for Java but `concept-docs/` for Python, for the
+identical feature); `python-sdk-health-check-leftover-nodejs-sample-output`
+(confirmed by reading the raw page: `couchnode`/`node`/`v8` identifiers in the
+mock JSON output, plus ```javascript```-fenced callback-style code examples,
+never adapted from the Node.js SDK's equivalent page); `python-sdk-n1ql-sqlpp-queries-pages-near-duplicate`
+(confirmed: `howtos/n1ql-queries-with-sdk.md` and `howtos/sqlpp-queries-with-sdk.md`
+are ~two-thirds-identical pages covering the same task, with the older page
+never acknowledging the newer one exists or vice versa - an un-pruned legacy
+duplicate, not a deliberate redirect stub); `java-sdk-hello-world-sdk-authentication-empty-stub`
+(confirmed: `hello-world/sdk-authentication.md` renders as the literal heading
+`# undefined` with no body content at all - a different, broken page from the
+substantive `howtos/sdk-authentication.md`); `java-sdk-platform-help-metadata-says-scala`
+(confirmed: `hello-world/platform-help.md`'s frontmatter `description` reads "...evaluating
+the Couchbase Scala SDK" on a page entirely about Java); `python-sdk-security-pages-stale-server-7-1-xrefs`
+(confirmed: `concept-docs/certificate-based-authentication.md` and
+`concept-docs/rbac.md` both hardcode `#7.1@server:...` xrefs against a corpus
+now filed under `server/8.0`).
+
+**Not promoted, on purpose**: `sdk:query-error-mapping` (recurrence 1, round-4
+backlog item genuinely still open - see above); the FLE sub-family
+`sdk:fle-algorithm`/`sdk:fle-jsonobjectcrypto`/`sdk:fle-annotation-based-encryption`
+(recurrence 1 each - `sdk:field-level-encryption`'s own definition doesn't need
+to name the specific algorithm or either of its two usage-mode APIs); the
+transaction-cleanup siblings `sdk:transaction-client-record`/`sdk:transaction-cleanup-event`
+(family test refused, see above); `sdk:transaction-timeout`/`sdk:transaction-expired-exception`/`sdk:unstaging-complete-flag`
+(recurrence 1 each, no significance case); Python's deliberately-rejected-reuse
+mints `sdk:custom-retry-decorator`, `sdk:durability-write-ambiguity`,
+`sdk:query-error-context` (recurrence 1 each, each documenting a REAL
+structural difference from a same-named Java concept - worth keeping visible
+as extraction-layer records precisely because they record a rejection, not
+worth promoting on a sample size of one); `sdk:cluster-state-enum`,
+`sdk:diagnostics-check`-family singles, and the rest of the observability/misc
+recurrence-1 mints.
+
+### `sdk:app-telemetry`: a documented finding, not a forced relation
+
+`howtos/collecting-information-and-logging.json` describes client
+tracing/metrics/logging being pushed BY the SDK TO Couchbase Server (8.0+
+self-managed, or Capella Operational) for Prometheus ingestion - promoted as
+`sdk:app-telemetry` (recurrence 2). It relates (extraction-layer,
+`server:application-telemetry`, recurrence 1 on its own) to the already-promoted
+`prometheus:metrics-endpoint`. No existing `monitoring:*` Capella concept
+matches the Prometheus-ingestion mechanism specifically, so per the round's own
+instruction this stays a documented cross-product finding rather than a forced
+relation to an ill-fitting id - a real answer, not a gap papered over.
+
+### What this round taught about the method
+
+- **A backlog note's own accuracy has a shelf life, and eight rounds is enough
+  for half of it to have expired.** Of round 4's six named backlog ids, two had
+  already been silently closed by round 10's corpus-wide recount (this note was
+  simply never updated to say so), and this round found a seventh, related id
+  (`sdk:single-query-transaction`) had *also* already been effectively promoted
+  under a different name for 20 rounds without the backlog note or the aliasing
+  id itself ever being cross-checked against each other. Re-deriving the
+  registry state from `registry-digest.py`/`recurrence.py` rather than trusting
+  a five-year-old sentence caught both the false debt and the still-real debt
+  in the same pass - trusting the note would have missed the fold and possibly
+  re-promoted an already-closed item.
+- **The same fork shape (one referent, two ids) can be a cross-product defect
+  in three of four instances and a same-product, same-agent-family defect in
+  the fourth**, and only reading the observability pages side by side surfaced
+  that `orphan-reporter`/`orphaned-response-reporting` wasn't Java-vs-Python at
+  all - it was Java's own `glossary.json` and `best-practices.json` diverging
+  from Java's own dedicated page. The fix (alias + side-by-side quotes) is
+  identical either way; the diagnosis of *why* it happened is not, and matters
+  for deciding where else to look for the same shape.
+- **A verifier's own matching logic can be the thing that's wrong, and the fix
+  belongs to the tool, not to the corpus.** Every one of round 30's 23
+  `verify-evidence.py` failures traced to one root cause - Markdown link syntax
+  inside a quoted span - confirmed on one example by reading the raw source
+  byte-for-byte. Round 15 fixed the exact same shape of false alarm (backslash
+  escaping) by editing `norm()`, not by editing 9 old records; this round
+  identifies the same fix is available here too, queued rather than applied,
+  since fixing `norm()` is out of this round's scope but editing eleven
+  pre-gate records to satisfy a check invented after they were written would
+  be applying today's control retroactively - exactly what the method says not
+  to do.
+- **A gate's own log is more informative than its exit code once you ask it
+  the right question.** 80/80 files passed cleanly by the time they landed, so
+  a bare pass/fail read of this round's gate activity would show a clean batch.
+  Sequencing every path's own history (`hooks/gate-log.jsonl`) instead surfaced
+  four real thinning events invisible to any other check available - proof
+  that "no denials in the final state" and "no fabrication was attempted" are
+  different claims, and only the sequence tells you which one held.
+- **Finishing a product's own coverage is, again, when a namespace fork
+  becomes visible in one place** - the fourth time this project has found this
+  exact shape (rounds 17, 26, 28, 29), and the second time in two consecutive
+  rounds. Round 29 found it in Sync Gateway's RBAC-role spellings once the REST
+  layer completed the product; round 30 finds it in Java/Python's
+  observability and user-management vocabulary once both SDKs were read
+  end-to-end together. The lesson generalizes past any one namespace: a
+  same-referent fork is latent in any two batches that never read each other's
+  output, and "finish the product, then read it whole" is the reliable moment
+  it surfaces.
+- **The step-8 checks catch real gaps in the round's own analysis, not just in
+  the corpus - which is exactly what they're for.** `sdk:document-expiration`
+  was correctly identified as a promotion candidate (recurrence 2, clean
+  evidence, cross-product corroboration) during this round's own aggregation
+  pass, but never made it into the batch of files actually written - a plain
+  slip, not a hidden defect. `recurrence.py --forks`, run as one of the
+  mandated closing checks rather than skipped because the round "already knew"
+  its promotion list, flagged it as a `[NO FILE]` local-name collision and
+  caught the omission before the round closed. Run the closing checks even
+  when confident the promotion decisions are already right; confidence in the
+  decision and completeness of its execution are different failure surfaces.
+
+## Cumulative verdict (all thirty rounds)
 
 The vocabulary has now been tested against eleven genuinely different kinds of
 "does this still fit": a different component within one product (round 1), a
@@ -8500,3 +8861,50 @@ once, so worth treating as durable rather than one-off:
   convention. Both findings came from doing exactly what the method always does
   (read the raw ids, open the actual page) at the scale one very large, very
   uniform directory made necessary for the first time.
+- **A promotion backlog note is a claim with a shelf life, not a fact fixed at
+  the moment it was written, and the check that catches its expiry is the same
+  corpus-wide recount the method already runs every round.** Round 30 was
+  explicitly asked to re-verify round 4's six-item Java SDK backlog rather than
+  trust it, and found it half stale in two different directions at once: two
+  items already silently closed by round 10, and a seventh, related id
+  (`sdk:single-query-transaction`) already effectively promoted for 20 rounds
+  under a completely different name (`n1ql:tximplicit`) that the backlog note
+  never mentioned and the aliasing id itself was never checked against. Both
+  the false debt and the real debt were only visible by recomputing from
+  `registry-digest.py`/`recurrence.py`, not from reading what a prior round
+  once wrote down about the state of the registry.
+- **Finishing a product's full coverage is now, for the fourth time (rounds 17,
+  26, 28, 29, and now 30), the specific moment a same-referent namespace fork
+  becomes visible** - and round 30 found this shape recur four times in one
+  pass once both SDKs' observability/user-management/health-check pages were
+  read side by side, including a variant of the shape no prior round had seen:
+  a product forking against its *own* dedicated page
+  (`sdk:orphan-reporter`/`sdk:orphaned-response-reporting`, both Java, one from
+  a dedicated concept page and two from the glossary and a best-practices
+  page), not against a sibling product's page. None of the four pairs shared
+  enough substring for `recurrence.py --variants` to cluster automatically -
+  three were pure synonymy, the same shape the RBAC-role
+  `internal_name`-vs-label convention exists to warn about, recurring at the
+  concept-id layer this time rather than the role-label layer.
+- **A write-time gate's log is strictly more informative than its exit code,
+  and the difference only shows up when you sequence one path's history rather
+  than read its final state.** Every one of round 30's 80 new files passed
+  cleanly by the time it landed - a bare pass/fail read would show a spotless
+  batch. Reading `hooks/gate-log.jsonl` sequentially per path instead surfaced
+  four real thinning events (a relation denied for unquotable evidence, then
+  dropped rather than re-evidenced on the next attempt) that no other
+  available check could have found, because an omitted relation leaves no
+  trace once the file lands clean. "No denials in the final state" and "no
+  fabrication was attempted" are different claims; only the sequence
+  distinguishes them.
+- **A verifier's own matching logic can be the defect, and when it is, the fix
+  belongs to the tool, not to the corpus it's checking.** All 23 of round 30's
+  `verify-evidence.py` failures - every one in a pre-write-time-gate round-3/4
+  record - traced to a single mechanical cause (Markdown link syntax inside a
+  quoted span breaking byte-exact matching), confirmed by hand against the raw
+  source. This is the same species of false alarm round 15 found and fixed by
+  editing `norm()` (backslash escaping, not fabrication), not by editing nine
+  old records - and the same fix is available here, queued rather than applied
+  this round, since editing pre-gate records to satisfy a control invented
+  after they were written would be the exact "correct old records to match a
+  later instrument" mistake the method exists to prevent.

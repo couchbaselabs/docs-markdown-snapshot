@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/data-structures-api",
+  "label": "SDK Data Structures API (Map/List/Queue/Set over a JSON document)",
+  "type": "the SDK's typed collection-like API (CouchbaseMap/CouchbaseList/CouchbaseQueue/CouchbaseSet) layered over Sub-Document operations against a single JSON document, letting application code manipulate a document's array/object fields with familiar collection semantics instead of raw path-based mutateIn calls",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Minted independently, for the identical referent, in java-sdk/ref/data-structures.json, java-sdk/concept-docs/data-model.json and python-sdk/concept-docs/data-model.json - three agents converging on the same id spelling without cross-checking each other, a good sign of a genuine, well-named concept rather than a collision."
+}

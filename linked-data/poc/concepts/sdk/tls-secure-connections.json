@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/tls-secure-connections",
+  "label": "TLS/SSL Secure Connections (couchbases://)",
+  "type": "the SDK's TLS-secured connection mode (couchbases:// scheme) - bundled Capella certificate, custom CA, or configurable cipher suites - secures the transport channel itself, orthogonal to which authentication method (password or sdk:certificate-authentication) is used over it",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/managing-connections.json; part of the connection-management family (see sdk:managing-connections)."
+}

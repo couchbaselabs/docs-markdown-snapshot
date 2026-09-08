@@ -1,0 +1,13 @@
+{
+  "page_id": "java-sdk/hello-world/sdk-authentication",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/sdk-authentication.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "concepts",
+    "finding": "This page is not merely thin - it is EMPTY. The rendered markdown has no title (the H1 renders literally as '# undefined'), no body text, and no links beyond the standard llms.txt/View-original-HTML boilerplate injected on every page in this snapshot. The frontmatter's own `link:` attribute (`xref:java-sdk:hello-world:sdk-authentication.adoc[]`) confirms the page is meant to exist and be a real cross-reference target, but the content itself did not render - most likely an Antora/AsciiDoc include or attribute-resolution failure in the source repo (docs-sdk-java, release/3.11 branch per the editUrl) rather than an intentionally blank page. concepts[] and relations[] are correctly empty because there is genuinely nothing on the page to extract, not because the topic is thin.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/java-sdk-hello-world-sdk-authentication-empty-stub"
+  },
+  "cross_component_finding": "The task briefing flagged this page as potentially a shorter getting-started duplicate of howtos/sdk-authentication.md (already extracted in round 3/4, minting sdk:authentication, sdk:certificate-authentication, sdk:ldap-authentication). Having now read the actual file, that comparison cannot be made: hello-world/sdk-authentication.md carries no content at all to compare against the howto version. This is NOT a duplication case - it's a broken/empty page. The frontmatter differs materially from the rest of this batch too: it lacks a `title`, uses an `editUrl` pointing at release/3.11 (every sibling page in hello-world/ and ref/ points at release/3.12), and uses a bare `link:` key instead of the `antora: {editUrl, xref}` block every other page in this batch uses - suggesting this page was left behind from an older release branch and never fully migrated/rendered into the current docs pipeline. Filed as docs-issues/java-sdk-hello-world-sdk-authentication-empty-stub at reconciliation (round 30), rather than asserting any technical fact about SDK authentication from it."
+}

@@ -1,0 +1,193 @@
+{
+  "page_id": "java-sdk/howtos/managing-connections",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/managing-connections.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:cluster-connection-lifecycle",
+      "label": "Cluster/ClusterEnvironment connection lifecycle (connect/disconnect, shared environments)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing registry concept covers the Java SDK's own Cluster/ClusterEnvironment object lifecycle and shutdown discipline"
+    },
+    {
+      "candidate_id": "sdk:tls-secure-connections",
+      "label": "TLS/SSL Secure Connections (couchbases://, bundled Capella cert, custom CA, cipher suites)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the client-side TLS configuration surface; distinct from server-side certificate-management concepts, which are out of this batch's scope"
+    },
+    {
+      "candidate_id": "sdk:cloud-native-gateway",
+      "label": "CloudNative Gateway (couchbase2:// protocol proxy for Kubernetes/OpenShift, with its own error-message shape)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in error-handling.json; this is the concept's dedicated section, giving its fuller feature/limitations treatment"
+    },
+    {
+      "candidate_id": "sdk:dns-srv-bootstrap",
+      "label": "DNS-SRV Bootstrapping",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the client-side mechanism for resolving a single hostname into a bootstrap node list via a DNS SRV record, distinct from Alternate Addresses (a server-side advertised-address mechanism also on this page)"
+    },
+    {
+      "candidate_id": "sdk:wait-until-ready",
+      "label": "waitUntilReady (bootstrap-completion wait)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct API call for avoiding premature KV timeouts during slow bootstrap, at both Cluster and Bucket scope"
+    },
+    {
+      "candidate_id": "protocol:grpc",
+      "label": "gRPC",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing protocol: concept for gRPC; the registry's only prior protocol: entries are DCP and TAP"
+    },
+    {
+      "candidate_id": "version:sdk-3-5",
+      "label": "Java SDK 3.5",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new entry in the version:sdk-* family established by version:sdk-3-3-0; this page cites it as the version introducing Cloud Native Gateway support"
+    },
+    {
+      "candidate_id": "version:sdk-3-4",
+      "label": "Java SDK 3.4",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new entry in the version:sdk-* family; this page cites it as the version from which a trusted-CA server certificate no longer needs explicit securityConfig setup"
+    },
+    {
+      "candidate_id": "operator:cloud-native-gateway",
+      "label": "Couchbase Autonomous Operator support for Cloud Native Gateway",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked cloud-native-gateway/current/intro/about-cng.md page, out of this batch's scope"
+    },
+    {
+      "candidate_id": "quarkus:quarkus-extension",
+      "label": "Couchbase Quarkus Java Extension",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked quarkus-extension/current/overview.md page, out of this batch's scope"
+    },
+    {
+      "candidate_id": "sdk:sdk-doctor",
+      "label": "SDK doctor (external cloud-connection diagnostic tool)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked troubleshooting-cloud-connections.md page's central tool, out of this record's own extraction depth but real content of the link on this page"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:cluster-connection-lifecycle",
+      "predicate": "requiresExplicitClose",
+      "object": "the `Cluster` (via disconnect()) and any manually created `ClusterEnvironment` (via shutdown())",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for an API surface that returns a resource the caller must explicitly close/release",
+      "evidence": "Before your application stops, gracefully shut down the client by calling the `disconnect()` method of each `Cluster` you created. If you created any `ClusterEnvironment` instances, call their `shutdown()` method after disconnecting the associated clusters."
+    },
+    {
+      "subject": "sdk:tls-secure-connections",
+      "predicate": "requiresEdition",
+      "object": "edition:enterprise",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a feature existing only in a named edition",
+      "evidence": "Couchbase Server Enterprise Edition and Couchbase Capella support full encryption of client-side traffic using Transport Layer Security (TLS)."
+    },
+    {
+      "subject": "sdk:tls-secure-connections",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-4",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for the earliest version in which a described behavior holds",
+      "evidence": "As of SDK 3.4, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for the earliest version in which a described behavior holds",
+      "evidence": "Couchbase's next generation connection protocol, introduced in Java SDK 3.5 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations)."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "seeAlso",
+      "object": "operator:cloud-native-gateway",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Couchbase's next generation connection protocol, introduced in Java SDK 3.5 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations)."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "usesProtocol",
+      "object": "protocol:grpc",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component communicating using a named wire protocol",
+      "evidence": "The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md))."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "doesNotSupport",
+      "object": "Authentication by client certificate.",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "Authentication by client certificate."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "doesNotSupport",
+      "object": "Multi-document ACID transactions.",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "Multi-document ACID transactions."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "seeAlso",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types))."
+    },
+    {
+      "subject": "sdk:cloud-native-gateway",
+      "predicate": "seeAlso",
+      "object": "bucket:ephemeral-bucket",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types))."
+    },
+    {
+      "subject": "sdk:dns-srv-bootstrap",
+      "predicate": "hasDefaultValue",
+      "object": "enabled",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate whose object is frequently a literal rather than a concept",
+      "evidence": "DNS SRV bootstrapping is enabled by default in the Java SDK."
+    },
+    {
+      "subject": "sdk:dns-srv-bootstrap",
+      "predicate": "doesNotSupport",
+      "object": "more than one seed node in the connection string",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:"
+    },
+    {
+      "subject": "sdk:wait-until-ready",
+      "predicate": "seeAlso",
+      "object": "sdk:sdk-doctor",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool."
+    },
+    {
+      "subject": "sdk:cluster-connection-lifecycle",
+      "predicate": "seeAlso",
+      "object": "quarkus:quarkus-extension",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Our [Couchbase Quarkus Java Extension docs](../../../quarkus-extension/current/overview.md) cover installing and connecting with the Quarkus extension in detail, but if you already have Quarkus installed and a project ready (with `quarkus-couchbase` in your `pom.xml` or `build.gradle`), then your `src/main/resources/application.properties` file needs to contain:"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "monitoredVia",
+    "finding": "The page describes waitUntilReady(), DNS-SRV, and Alternate Addresses in detail as ways of establishing and maintaining a healthy connection, but never cross-references sdk:ping/sdk:diagnostics (health-check.md, in this same batch) as the way to observe connection state after bootstrap - the two pages' subject matter overlaps (both are about the client's live relationship with the cluster) but neither links to the other."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "Cloud Native Gateway is documented as spanning three separately-versioned products at once: 'introduced in Java SDK 3.5 and Couchbase Autonomous Operator 2.6.1', and 'in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of Couchbase Autonomous Operator' - meaning the couchbase2:// protocol is gated on minimum versions of the SDK, the Operator, AND a Kubernetes/OpenShift-hosted Server simultaneously, not on the SDK version alone."
+}

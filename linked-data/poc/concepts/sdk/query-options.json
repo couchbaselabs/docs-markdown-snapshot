@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/query-options",
+  "label": "QueryOptions (client-side SQL++ request configuration)",
+  "type": "the options object passed to Cluster.query()/Scope.query() controlling per-request behavior - named parameters, scanConsistency, readonly, adhoc (prepared-statement caching), profile - distinct from the SQL++ statement text itself",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Recurs across concept-docs/n1ql-query.json, howtos/sqlpp-queries-with-sdk.json (whose one relation here carries the pre-gate link-boundary artifact) and ref/client-settings.json. dependsOnService/hasInternalComponent relations to sdk:sqlpp-queries-with-sdk."
+}

@@ -1,0 +1,74 @@
+{
+  "page_id": "python-sdk/concept-docs/encryption",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/encryption.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:field-level-encryption",
+      "label": "Field Level Encryption (FLE)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - fresh sdk:-scoped concept. This page describes client-side per-field encryption performed by the SDK before a document reaches the server ('This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK'). Deliberately NOT reusing encryption:native-encryption-at-rest, encryption:data-encryption-key or encryption:master-password - those describe Couchbase Server encrypting whole documents/files on disk with server-managed keys, a completely different mechanism from this page's field-level, client-managed, pre-transmission encryption. No page anywhere states a relationship between the two, so no relation is asserted between them either."
+    },
+    {
+      "candidate_id": "sdk:fle-keyring",
+      "label": "Keyring (FLE key store abstraction)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'A `Keyring` provides access to encryption keys', with native-key-store implementations and a pluggable interface for custom/external key management systems"
+    },
+    {
+      "candidate_id": "sdk:fle-legacy-algorithm",
+      "label": "legacy separate-key FLE algorithm variant (pre-SDK-3)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - 'Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately', deprecated in SDK 3 but still readable for backwards compatibility"
+    },
+    {
+      "candidate_id": "sdk:fle-storage-format",
+      "label": "Encrypted field storage format (mangled field name + alg/kid/ciphertext envelope)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the documented on-disk shape of an FLE-encrypted field, e.g. an 'encrypted$bar' field holding {alg, kid, ciphertext}"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:fle-keyring",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate already promoted",
+      "evidence": "A `Keyring` provides access to encryption keys."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "operatesOnFormat",
+      "object": "sdk:fle-storage-format",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate already promoted",
+      "evidence": "Note that the name of the \"bar\" field is mangled to indicate it holds an encrypted value:"
+    },
+    {
+      "subject": "sdk:fle-legacy-algorithm",
+      "predicate": "deprecatedIn",
+      "object": "Python SDK 3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate already promoted",
+      "evidence": "This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption."
+    },
+    {
+      "subject": "sdk:fle-legacy-algorithm",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sdk:field-level-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate already promoted",
+      "evidence": "Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility."
+    },
+    {
+      "subject": "python-sdk/concept-docs/encryption",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/encrypting-using-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "For a practical guide, see [Encrypting Your Data](../howtos/encrypting-using-sdk.md)."
+    }
+  ],
+  "cross_component_finding": "This page (titled 'Field Level Encryption' in its H1 and frontmatter) is the encryption/certificate judgment call flagged for this round: it is unambiguously client-side SDK field encryption, not Couchbase Server's server-side encryption-at-rest. The page states this directly - 'This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK' - and never once mentions disk encryption, the Data Encryption Key, the master password, or any node-level key material. The registry's promoted encryption:native-encryption-at-rest / encryption:data-encryption-key / encryption:master-password / encryption:key-rotation concepts all describe Couchbase Server encrypting bytes on disk with server-managed keys; none of that machinery appears here. I therefore minted a fresh sdk:field-level-encryption concept rather than reusing any encryption:* id, per the round's explicit instruction not to reuse the server-side ids just because both mechanisms use the word 'encryption'."
+}

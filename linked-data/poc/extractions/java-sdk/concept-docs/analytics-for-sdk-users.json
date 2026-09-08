@@ -1,0 +1,34 @@
+{
+  "page_id": "java-sdk/concept-docs/analytics-for-sdk-users",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/analytics-for-sdk-users.md",
+  "concepts": [
+    {
+      "candidate_id": "service:analytics-service",
+      "label": "Analytics service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's title is 'Analytics' and its one substantive sentence ('For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operation') matches the promoted concept's own description ('the service that runs analytical queries')."
+    },
+    {
+      "candidate_id": "sdk:analytics-using-sdk",
+      "label": "Using Analytics from the Java SDK",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder for a linked howto page (howtos/analytics-using-sdk.md) not itself in this batch, following the same pattern round 4 used for sdk:transactions-migration-guide."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "service:analytics-service",
+      "predicate": "accessibleVia",
+      "object": "sdk:analytics-using-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Read the practical introduction [using analytics from the SDK](../howtos/analytics-using-sdk.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "This is the thinnest page in the batch: a one-sentence description plus two outbound links, with no code, no SDK-specific API surface, and no version gate at all. Almost nothing beyond the already-promoted service:analytics-service concept could be extracted."
+  },
+  "cross_component_finding": "Sibling of advanced-analytics-querying.md (round 3, extraction-layer, empty body) and querying-your-data.md's own Analytics section in this batch: across three separate pages, the Java SDK's Analytics documentation is consistently thinner than its Query/Search/KV counterparts, with the substantive content deferred either to server/'s primer or to a not-yet-extracted howto page. This is the third page in the corpus so far to point at the same still-unread howtos/analytics-using-sdk.md without it ever having been extracted directly."
+}

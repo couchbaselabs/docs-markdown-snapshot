@@ -1,0 +1,16 @@
+{
+  "page_id": "java-sdk/hello-world/platform-help",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/platform-help.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "sdk:platform-help", "predicate": "seeAlso", "object": "sdk:overview", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "If this is not you, head back to the [rest of the Couchbase Java SDK documentation](overview.md)." },
+    { "subject": "sdk:platform-help", "predicate": "seeAlso", "object": "sdk:compatibility", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "The Couchbase Java SDK can run on any LTS (long-term support) JDK — see the [compatibility page](../project-docs/compatibility.md) for full information." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts",
+    "finding": "This page is pure onboarding/orientation prose for non-Java evaluators (software architects, QE, managers) working out whether to adopt the Java SDK, plus a walkthrough of installing a JDK via the third-party SDKMAN! tool. It states no Couchbase-specific fact - JVM/JDK/JRE distinctions and SDKMAN! usage are general Java-ecosystem knowledge, not Couchbase concepts - so concepts[] is correctly empty. This is exactly the 'thin narrative first-steps prose with no stated technical facts' case the batch framing anticipated."
+  },
+  "cross_component_finding": "None - the page's only Couchbase-specific content is the single link out to the compatibility page for the actual JDK version support matrix; it defers all substantive version-gating information there rather than stating it inline.",
+  "cross_product_finding": "The page's own title metadata ('A simple Java orientation intro for _non-Java_ folk who are evaluating the Couchbase Scala SDK') is a copy-paste artifact from the Scala SDK docs template - the body text is consistently about Java throughout, but the description attribute still says 'Scala SDK'. Filed as docs-issues/java-sdk-platform-help-metadata-says-scala at reconciliation (round 30) - a page-metadata bug, not a claim about the product."
+}

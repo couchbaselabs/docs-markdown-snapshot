@@ -1,0 +1,107 @@
+{
+  "page_id": "python-sdk/concept-docs/transactions",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/transactions.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Distributed ACID Transaction (cluster.transactions.run(txn_logic))",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Python's `def txn_logic(ctx): ...` / `cluster.transactions.run(txn_logic)` pattern matches the promoted definition ('a multi-document, multi-operation unit of work executed via a retryable lambda/callback passed to the SDK's transactions API — automatically committed on success or rolled back and retried on failure') almost word-for-word, including the automatic-retry-on-transient-conflict behavior stated explicitly on this page."
+    },
+    {
+      "candidate_id": "sdk:transaction-attempt-context",
+      "label": "Transaction Attempt Context (ctx.insert/ctx.get/ctx.replace)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Python's `ctx` parameter, with `ctx.insert(collection, 'doc1', ...)`/`ctx.get(...)`/`ctx.replace(...)`, matches the promoted definition ('the transaction-scoped CRUD/query API whose writes are staged and invisible to other actors until commit') exactly - same staged-and-invisible-until-commit behavior, same per-attempt context object shape, just lower_snake_case methods instead of Java's camelCase."
+    },
+    {
+      "candidate_id": "sdk:transaction-error-handling",
+      "label": "Transaction-level failure classification (TransactionCommitAmbiguous)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own worked example ('except TransactionCommitAmbiguous: # This exception can only be thrown at the commit point') is precisely the 'whole-transaction commit ambiguity' the promoted definition describes, confirming this id is not Java-specific despite its registry label parenthetically saying '(Java SDK)'."
+    },
+    {
+      "candidate_id": "n1ql:active-transaction-record",
+      "label": "Active Transaction Record (ATR)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Python's own 'Active Transaction Record Entries' section ('Are named Active Transaction Records, or ATRs. ... Begin with `_txn:atr-`') matches the promoted n1ql:active-transaction-record definition exactly, confirming this server-side bookkeeping mechanism is identical regardless of which SDK drives the transaction."
+    },
+    {
+      "candidate_id": "sdk:xattr",
+      "label": "Extended Attributes (XATTR) - staged mutation storage",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - 'the post-transaction version of the document is staged alongside the document (technically in its extended attributes (XATTRs))' is the same mechanism as concept-docs/xattr.md in this batch, and links directly to it."
+    },
+    {
+      "candidate_id": "n1ql:transactions",
+      "label": "SQL++ Transactions via BEGIN TRANSACTION",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Couchbase transactions can be initiated programmatically through the SDK, or by using the Query service directly with `BEGIN TRANSACTION`' matches the promoted n1ql:transactions definition exactly ('multi-statement ACID transactions expressed in SQL++ and executed by the Query service, as opposed to transactions driven through an SDK's transaction API') - this page states the identical opposition in the identical framing."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "hasInternalComponent",
+      "object": "n1ql:active-transaction-record",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "each of these attempts adds an entry to a metadata document in the Couchbase cluster. These metadata documents:\n\n* Are named Active Transaction Records, or ATRs."
+    },
+    {
+      "subject": "sdk:transaction-attempt-context",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:xattr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "mutating a document inside a transaction, does not directly change the body of the document. Instead, the post-transaction version of the document is staged alongside the document (technically in its [extended attributes (XATTRs)](xattr.md))."
+    },
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The latter is intended for those using Query via the REST API, or using the Couchbase UI, and it is strongly recommended that application writers instead use the SDK."
+    },
+    {
+      "subject": "sdk:transaction-attempt-context",
+      "predicate": "mayDelegateOperationTo",
+      "object": "n1ql:transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "After the first query statement in a transaction, subsequent Key-Value operations in the lambda are converted into SQL++ and executed by the Query service rather than the Key-Value data service."
+    },
+    {
+      "subject": "python-sdk/concept-docs/transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For a practical guide, see [Distributed ACID Transactions from the Python SDK](../howtos/distributed-acid-transactions-from-the-sdk.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/xattr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "the post-transaction version of the document is staged alongside the document (technically in its [extended attributes (XATTRs)](xattr.md))."
+    },
+    {
+      "subject": "python-sdk/concept-docs/transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/transactions-cleanup",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The cleanup process is detailed in the [Cleanup](transactions-cleanup.md) page."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "sdk:transaction-durability",
+    "finding": "Unlike the Java SDK round's finding of a transaction-scoped durability setting (sdk:transaction-durability), this Python concept-docs/transactions.md page never mentions durability at all - no DurabilityLevel-style parameter appears anywhere in the transaction-mechanics, rollback, or transaction-operations sections. If Python's SDK exposes an equivalent transaction-scoped durability option, it is documented elsewhere (most likely howtos/distributed-acid-transactions-from-the-sdk.md, out of this batch's scope) rather than on this concept page - so this record correctly omits sdk:transaction-durability rather than assuming it applies."
+  },
+  "cross_component_finding": "The 'Query Performance Advice' section states that once a query statement has run inside a transaction, subsequent key-value operations in the SAME transaction attempt are silently converted to SQL++ and routed through the Query service instead of the Data service - a documented cross-service behavior change triggered by transaction state, not by anything the application does explicitly.",
+  "cross_product_finding": "This is the batch's strongest confirmation of genuine cross-SDK vocabulary stability. Four Java-derived promoted ids (sdk:distributed-transaction, sdk:transaction-attempt-context, sdk:transaction-error-handling, n1ql:active-transaction-record) all reuse cleanly against this Python page, often matching sentence-for-sentence in structure: the lambda-plus-ctx pattern (`def txn_logic(ctx): ctx.insert(...)` / `cluster.transactions.run(txn_logic)`), the ATR naming and `_txn:atr-` prefix, and the TransactionCommitAmbiguous-at-commit-point framing are all identical in substance to what the registry's Java-derived labels describe - even though two of those labels literally say '(Java SDK)' in their own text (sdk:transaction-attempt-context: 'TransactionAttemptContext (Java SDK)'; sdk:transaction-error-handling: 'Transaction-level failure classification (Java SDK)'). This page is direct evidence those parenthetical qualifiers describe the SOURCE the id was first evidenced from, not a boundary on what the id actually means - the underlying mechanism is language-agnostic, and the registry labels should probably be read as 'as first documented in the Java SDK' rather than 'specific to the Java SDK'. Also notable: this page independently states the exact same SDK-vs-Query-service opposition that promoted n1ql:transactions already encodes ('Couchbase transactions can be initiated programmatically through the SDK, or by using the Query service directly with BEGIN TRANSACTION ... it is strongly recommended that application writers instead use the SDK'), confirming n1ql:transactions and sdk:distributed-transaction are correctly kept as two separate ids for two alternative entry points to the same underlying transaction mechanism."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/cluster-level-query",
+  "label": "Cluster-level query",
+  "type": "SQL++ queries executed via the Cluster object directly, without first opening a Bucket - an SDK-3.x API-shape capability (SDK 2.x required opening a Bucket first) - sibling of sdk:scope-level-query",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across project-docs/3.0-pre-release-notes.json and project-docs/migrating-sdk-code-to-3.n.json - an SDK-API-evolution fact (the client object model changed), not a query-language concept, so filed under sdk: rather than n1ql: despite naming a query capability."
+}

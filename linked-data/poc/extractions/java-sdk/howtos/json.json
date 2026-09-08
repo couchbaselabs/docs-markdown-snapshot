@@ -1,0 +1,65 @@
+{
+  "page_id": "java-sdk/howtos/json",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/json.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:json-modelling",
+      "label": "JSON Modelling (JsonObject/JsonArray, Map, POJO serialization via Jackson)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing registry concept covers how the Java SDK represents/serializes JSON values for KV operations; distinct from sdk:subdocument-operations (path-level access) and from the transcoder/serializer plumbing that carries the bytes"
+    },
+    {
+      "candidate_id": "sdk:custom-object-mapper",
+      "label": "Custom Jackson ObjectMapper / JsonSerializer configuration",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism for overriding the SDK's default Jackson-backed serialization (custom ObjectMapper, alternate libraries like Gson), distinct from sdk:json-modelling itself (the data representation) and from the transcoder concepts on transcoders-nonjson.md (which choose the wire Common Flag, not the object mapping)"
+    },
+    {
+      "candidate_id": "n1ql:date-functions",
+      "label": "SQL++ date functions",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked server/current/n1ql/n1ql-language-reference/datefun.md page, out of this batch's scope; the SDK page only recommends storing dates in a format those functions can consume"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:json-modelling",
+      "predicate": "seeAlso",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The JsonObjects work equally well with the [Sub-Document](subdocument-operations.md) API."
+    },
+    {
+      "subject": "sdk:json-modelling",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:custom-object-mapper",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "Though the SDK automatically uses your version of Jackson when it finds the library on the CLASSPATH, you may wish to be explicit, or use an already configured ObjectMapper, as in this example:"
+    },
+    {
+      "subject": "sdk:json-modelling",
+      "predicate": "seeAlso",
+      "object": "sdk:raw-json-transcoder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link (anchor into transcoders-nonjson.md)",
+      "evidence": "This approach could also be used to handle JSON created by other libraries such as Gson. See the [Transcoder documentation](transcoders-nonjson.md#rawjsontranscoder) for more details."
+    },
+    {
+      "subject": "sdk:json-modelling",
+      "predicate": "seeAlso",
+      "object": "n1ql:date-functions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "it may make sense to store the dates in Couchbase in a format that can be easily manipulated using the [date functions in SQL++](../../../server/current/n1ql/n1ql-language-reference/datefun.md)"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "The page states Map 'is capable of storing any valid Java value, including ones that can't be represented as JSON,' and that JsonObject 'offers validation to make sure that only the relevant datatypes are stored,' but never states what actually happens (which exception, if any) if an unrepresentable value stored in a Map is passed to upsert() - the boundary is implied but not spelled out for the Map case the way it is for JsonTranscoder's byte[] rejection on transcoders-nonjson.md."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

@@ -1,0 +1,74 @@
+{
+  "page_id": "python-sdk/concept-docs/certificate-based-authentication",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/certificate-based-authentication.md",
+  "concepts": [
+    {
+      "candidate_id": "auth-mechanism:x509-certificate",
+      "label": "X.509 certificate authentication",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - page states 'Couchbase Server supports the use of x.509 certificates, for authentication between clients and servers.'"
+    },
+    {
+      "candidate_id": "cert:client-certificate",
+      "label": "Client certificate",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named via the linked 'Client Certificate discussion doc', the page's first bullet point; thin mention (link text only, no independent description on this page)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "Our [Client Certificate discussion doc](#7.1@server:learn:security/certificates.adoc);"
+    },
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-client-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "[Configure Client Certificates](#7.1@server:manage:manage-security/configure-client-certificates.adoc);"
+    },
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/manage-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "The [Certificate Management Overview](#7.1@server:manage:manage-security/manage-certificates.adoc)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "server/8.0/manage/manage-security/configure-server-certificates",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "and [Certificate Configuration](#7.1@server:manage:manage-security/configure-server-certificates.adoc) pages."
+    },
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/sdk-authentication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "As well as our practical guide to [authenticating an SDK client against Couchbase Server by certificate](../howtos/sdk-authentication.md#certificate-authentication.adoc)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/certificate-based-authentication",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/managing-connections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "the [SDK guide](../howtos/managing-connections.md#ssl) gives practical details."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "Every server:-scoped xref on this page is hardcoded to Server 7.1 (e.g. '#7.1@server:learn:security/certificates.adoc') even though the registry's own extraction of these same target pages is filed under server/8.0 (the current documented version). A page whose title and content otherwise carry no version marker is silently pinned to a specific, now-superseded Server release through its cross-reference syntax alone - a version-drift risk that is invisible to a reader and only surfaces when the xref-resolution mismatch is checked mechanically, as happened here.",
+    "docsIssue": "https://docs.couchbase.com/ld/docs-issues/python-sdk-security-pages-stale-server-7-1-xrefs"
+  }
+}

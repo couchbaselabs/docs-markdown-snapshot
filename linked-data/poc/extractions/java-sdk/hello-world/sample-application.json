@@ -1,0 +1,27 @@
+{
+  "page_id": "java-sdk/hello-world/sample-application",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/sample-application.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:java-springboot-quickstart",
+      "label": "Java Spring Boot Quickstart App (java-springboot-quickstart REST API sample)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific, named clonable sample project (github.com/couchbase-examples/java-springboot-quickstart) with its own setup/run/test lifecycle, distinct from the general sdk:kv-operations/sdk:sqlpp-queries-with-sdk concepts it demonstrates."
+    }
+  ],
+  "relations": [
+    { "subject": "sdk:java-springboot-quickstart", "predicate": "reliesOnMechanism", "object": "sdk:kv-operations", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "How to create, read, update, and delete documents using [Key-Value operations](#howto:kv-operations). KV operations are unique to Couchbase and provide super fast (under millisecond) operations." },
+    { "subject": "sdk:java-springboot-quickstart", "predicate": "reliesOnMechanism", "object": "sdk:sqlpp-queries-with-sdk", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "How to write simple parametrized [SQL++ queries](#howtos:n1ql-queries-with-sdk.html) using the built-in travel-sample bucket." },
+    { "subject": "sdk:java-springboot-quickstart", "predicate": "seeAlso", "object": "sdk:travel-app-data-model", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "A [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster with the [travel-sample](../ref/travel-app-data-model.md) bucket loaded." },
+    { "subject": "sdk:java-springboot-quickstart", "predicate": "seeAlso", "object": "sdk:compatibility", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "Java SDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat)." },
+    { "subject": "sdk:java-springboot-quickstart", "predicate": "seeAlso", "object": "sdk:client-settings", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "refer to the [constrained network environments](../ref/client-settings.md#constrained-network-environments) section of the docs." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "The page instructs the reader to create 'the database credentials to access the travel-sample bucket (Read and Write) used in the application' but never names a specific Capella role or privilege (no privilege:* or capella-role:* id is stated) - it defers entirely to the linked database-users management page rather than stating an access requirement inline, consistent with this batch's general pattern of tutorial pages deferring privilege specifics to reference pages outside this batch's scope."
+  },
+  "cross_component_finding": "The 'Extending API by Adding New Entity' appendix explicitly frames creating a new Couchbase collection as doable 'using the [SDK] or via the [Couchbase Server interface]' - a clean, explicit statement of the same SDK-vs-UI dual-surface pattern already captured elsewhere in this batch (sdk:bucket-management wrapping the equivalent server-side operation)."
+  ,
+  "cross_product_finding": "This page runs the identical quickstart against both a Couchbase Capella cluster (the primary documented path) and a self-managed Couchbase Server 7+ cluster (the 'Running Self-Managed Couchbase Cluster' appendix): 'Couchbase Server version 7 or higher must be installed and running before running the Spring Boot Java app.' The only stated difference is where sample-bucket loading and credential generation happen; the Spring Boot application code itself is unchanged either way."
+}

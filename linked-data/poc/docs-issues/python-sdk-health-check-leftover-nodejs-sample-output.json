@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/python-sdk-health-check-leftover-nodejs-sample-output",
+  "type": "docs-issue",
+  "issueType": "unadapted-shared-source-content",
+  "description": "python-sdk/concept-docs/health-check.md's example JSON output (the mock DiagnosticsResult/PingResult payload shown twice in the page, at two separate anchors) contains an untranslated Node.js SDK identifier: `\"sdk\":\"libcouchbase/2.9.5-njs couchnode/2.6.9 (node/10.16.0; v8/6.8.275.32-node.52; ssl/1.1.1b)\"`. `couchnode` is the Node.js SDK's package name and `njs`/`node`/`v8` are Node.js-specific runtime identifiers - this is sample output copy-pasted from the Node.js SDK's own health-check documentation and never adapted for Python. A Python developer reading this page sees a runtime stack (Node/V8) their own client never produces.",
+  "about": [
+    "python-sdk/concept-docs/health-check"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

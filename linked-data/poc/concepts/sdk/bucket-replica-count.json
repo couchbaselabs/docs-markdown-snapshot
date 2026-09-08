@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/bucket-replica-count",
+  "label": "Bucket replica count",
+  "type": "the bucket-level setting for the number of replica copies kept of each document - stated by two SDK pages as a hard precondition for sdk:distributed-transaction and sdk:durability to succeed (must be 2 or more; single-node/dev clusters default to 1 and fail with DurabilityImpossibleException)",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across howtos/distributed-acid-transactions-from-the-sdk.json and concept-docs/durability-replication-failure-considerations.json. No existing concept in the registry names this setting (distinct from concepts/fts/index-replicas.json and concepts/n1ql/alter-index.json, which are unrelated replica-count contexts)."
+}

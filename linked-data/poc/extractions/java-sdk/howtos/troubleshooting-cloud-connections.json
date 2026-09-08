@@ -1,0 +1,93 @@
+{
+  "page_id": "java-sdk/howtos/troubleshooting-cloud-connections",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/troubleshooting-cloud-connections.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:cloud-connection-troubleshooting",
+      "label": "Cloud Connection Troubleshooting (Host-not-Found diagnosis, TLS/allowlist/proxy checklist)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - umbrella concept for this page's own troubleshooting checklist; distinct from sdk:sdk-doctor (a specific external tool it introduces) and from sdk:dns-srv-bootstrap (the mechanism being troubleshot)"
+    },
+    {
+      "candidate_id": "sdk:sdk-doctor",
+      "label": "SDK doctor (external cloud-connection diagnostic tool)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a couchbaselabs GitHub tool (not part of the Java SDK itself) that runs a standalone connectivity diagnostic and prints a WARN/ERRO summary; already forward-referenced as a placeholder from managing-connections.json, this page is its first full treatment"
+    },
+    {
+      "candidate_id": "sdk:dns-srv-bootstrap",
+      "label": "DNS-SRV Bootstrapping",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in managing-connections.json within this same batch; this page covers the troubleshooting angle of the identical mechanism (large-SRV-record DNS resolver failures)"
+    },
+    {
+      "candidate_id": "sdk:tls-secure-connections",
+      "label": "TLS/SSL Secure Connections (couchbases://, bundled Capella cert, custom CA, cipher suites)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in managing-connections.json within this same batch; this page's first troubleshooting step is verifying the same TLS configuration"
+    },
+    {
+      "candidate_id": "sdk:cluster-connection-lifecycle",
+      "label": "Cluster/ClusterEnvironment connection lifecycle (connect/disconnect, shared environments)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in managing-connections.json within this same batch; sdk-doctor diagnoses the same bootstrap/connect process from outside the application"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:cloud-connection-troubleshooting",
+      "predicate": "requiresPriorExecutionOf",
+      "object": "sdk:tls-secure-connections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for an ordering/sequencing precondition among documented steps",
+      "evidence": "Before carrying out other troubleshooting, please check that your application code is configured for TLS/SSL, using the default method of connecting (not http/https), and not specifying any port numbers."
+    },
+    {
+      "subject": "sdk:cluster-connection-lifecycle",
+      "predicate": "monitoredVia",
+      "object": "sdk:sdk-doctor",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "If you appear to be having connectivity issues, it'd be good to diagnostically check for lower level details with [SDK doctor](https://github.com/couchbaselabs/sdk-doctor)."
+    },
+    {
+      "subject": "sdk:sdk-doctor",
+      "predicate": "requiresCapability",
+      "object": "a stable cluster (no active rebalancing) for accurate diagnostic output",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability the underlying environment must have for the subject to be usable/reliable",
+      "evidence": "Diagnostics can only provide accurate results when your cluster\n is in a stable state.  Active rebalancing and other cluster configuration\n changes can cause the output of the doctor to be inconsistent or in the\n worst cases, completely incorrect."
+    },
+    {
+      "subject": "sdk:dns-srv-bootstrap",
+      "predicate": "doesNotSupport",
+      "object": "large DNS SRV responses on some older/caching DNS resolvers",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue."
+    },
+    {
+      "subject": "sdk:dns-srv-bootstrap",
+      "predicate": "requiresCapability",
+      "object": "a DNS provider/resolver that supports modern, large DNS SRV records",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability the underlying environment must have for the subject to be usable",
+      "evidence": "As a workaround, you can switch to a DNS provider which can support modern DNS SRV records."
+    },
+    {
+      "subject": "sdk:cloud-connection-troubleshooting",
+      "predicate": "requiresCapability",
+      "object": "trusting the Security Certificate used by a TLS-intercepting proxy, when connecting through one",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability the underlying environment must have for the subject to be usable",
+      "evidence": "That if you are connecting via a proxy that intercepts TLS connections, you have configured the SDK to trust the Security Certificate used by the proxy. This is a common issue when connecting from inside a corporate network."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "This page covers DNS-SRV troubleshooting in depth (the same mechanism managing-connections.md documents) and cluster/bootstrap diagnosis (the same territory health-check.md's ping/diagnostics cover), but contains no internal markdown links back to either page - both cross-references, if they exist, run only in the other direction (managing-connections.md links forward to this page)."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": "The page's own recommended diagnostic workflow routes entirely through non-Couchbase-core tooling: comparing `nslookup` results 'from a shell from your default DNS server to a public DNS server, like those from Google or Cloudflare', and running `sdk-doctor`, a couchbaselabs (community/labs, not core product) GitHub tool, rather than any Capella-branded or core-SDK-bundled diagnostic."
+}

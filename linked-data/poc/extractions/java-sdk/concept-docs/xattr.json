@@ -1,0 +1,56 @@
+{
+  "page_id": "java-sdk/concept-docs/xattr",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/xattr.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:xattr",
+      "label": "Extended Attributes (XATTR) - application-specific document metadata",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - this id was minted in round 4 (extractions/java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json) purely as a PLACEHOLDER for this exact page, which round 4 never read directly ('placeholder for the linked concept-docs/xattr.md page'). This record supplies the real, first-hand content behind that stub: 'Couchbase Server permits the addition of _extended attributes_ (XATTRs). These allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it.' The id is unchanged; only its evidentiary basis is upgraded from a forward-reference to an actual reading of the page."
+    },
+    {
+      "candidate_id": "sdk:virtual-xattr",
+      "label": "Virtual Extended Attributes ($document macro exposing storage-level metadata)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, on-demand-generated subset of XATTRs (not stored, computed from document metadata like expiry), given its own subsection and code example on the page."
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page states XATTR support is implemented as 'extensions to the _Sub-Document API_', with an `xattr` flag on a subdocument operation."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:xattr",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The SDK supports extended attributes by means of extensions to the _Sub-Document API_: so that extended attributes can be defined, searched for, edited, removed, and more."
+    },
+    {
+      "subject": "sdk:virtual-xattr",
+      "predicate": "isSubtypeOf",
+      "object": "sdk:xattr",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_Virtual_ extended attributes consist of metadata on an individual document: this can be retrieved by specifying `$document` as a search-path"
+    },
+    {
+      "subject": "sdk:virtual-xattr",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "collection.lookupIn(\n    \"airport_1254\",\n    Collections.singletonList(\n        LookupInSpec.get(LookupInMacro.EXPIRY_TIME).xattr())\n);"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasMaximumMemoryQuota",
+    "finding": "The page states 'The maximum content size for a document stored in Couchbase Server is 20MB. XATTRs — including Virtual XATTRs — will reduce the space available for the remainder of the document', a real trade-off fact, but no promoted predicate cleanly captures 'consumes space from a shared document-size budget' without overstating a configuration relationship (tradesOffAgainst is reserved in the registry for vector-index strategy comparisons specifically). Left as a finding rather than forced into a relation."
+  },
+  "cross_component_finding": "Directly resolves the round's flagged question about sdk:xattr: this page is the real, first-hand source for a concept that had existed in the extraction layer since round 4 purely as a placeholder minted from a forward link on a different page (distributed-acid-transactions-from-the-sdk.md). The id and registry_status (extraction-layer, not yet promoted) are unchanged - no new id was minted for the core XATTR concept - but this record is the first to actually read and describe it. Also notable: this page is markedly thinner than the howto it points to (`../howtos/subdocument-operations.md`) and thinner still than the server-side extended-attributes-fundamentals.md it defers to twice; its own content adds nothing beyond the Virtual XATTR distinction that those two pages don't already cover in more depth."
+}

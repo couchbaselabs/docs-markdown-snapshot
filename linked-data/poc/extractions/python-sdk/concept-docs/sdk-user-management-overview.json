@@ -1,0 +1,57 @@
+{
+  "page_id": "python-sdk/concept-docs/sdk-user-management-overview",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/sdk-user-management-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:user-management-api",
+      "label": "SDK User Management API (upsertUser/getUsers/getUser/removeUser)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "minted (extraction-layer) - this page is the primary definer: 'The SDK lets you programmatically create _users_, assign them _roles_ and associated _privileges_, and remove them from the system.' Covers upsertUser, getUsers, getUser, removeUser as one cohesive API surface."
+    },
+    {
+      "candidate_id": "rbac-role:role",
+      "label": "a Capella data-plane RBAC role (coarse placeholder)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names 'role' generically as a string parameter ('The _String_ specified as the role must correspond to a role supported by Couchbase Server') without naming any specific catalogue member, exactly the coarse-placeholder case this id exists for"
+    },
+    {
+      "candidate_id": "auth-domain:local",
+      "label": "Local authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'successful user-addition results in a user _locally_ defined, with _username_ and _password_ stored on Couchbase Server'"
+    },
+    {
+      "candidate_id": "auth-domain:external",
+      "label": "External authentication domain",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - '_external_ users (whose credentials reside on a network-available server, possibly accessed by means of LDAP) should not be created by this SDK method'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "assignsRole",
+      "object": "rbac-role:role",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The SDK lets you programmatically create _users_, assign them _roles_ and associated _privileges_, and remove them from the system."
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "identifiesUserVia",
+      "object": "auth-domain:local",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "successful user-addition results in a user _locally_ defined, with _username_ and _password_ stored on Couchbase Server"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "doesNotSupport",
+      "object": "auth-domain:external",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "_external_ users (whose credentials reside on a network-available server, possibly accessed by means of LDAP) should not be created by this SDK method."
+    }
+  ]
+}

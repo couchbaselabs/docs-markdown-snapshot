@@ -1,0 +1,81 @@
+{
+  "page_id": "java-sdk/concept-docs/encryption",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/encryption.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:field-level-encryption",
+      "label": "Field-Level Encryption (FLE)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - JUDGMENT CALL: this is NOT the same thing as the registry's promoted encryption:native-encryption-at-rest. The page states outright 'This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK' - it encrypts specific JSON document field VALUES inside the application, before the document is sent to Couchbase Server, using application-managed keys (a pluggable Keyring). encryption:native-encryption-at-rest, by contrast, is Couchbase Server encrypting whole buckets/logs/config/audit data ON DISK on the server, using server-managed DEKs protected by encryption:master-password. Different actor (client library vs. server), different scope (named fields vs. whole bucket), different key model (app-supplied Keyring vs. server-managed key hierarchy). Minting a fresh sdk:-scoped id rather than reusing encryption:native-encryption-at-rest or encryption:data-encryption-key, which would be exactly the same-word-different-thing collision the role:* family repeatedly hit."
+    },
+    {
+      "candidate_id": "sdk:fle-keyring",
+      "label": "Keyring (FLE key-access abstraction)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the pluggable interface FLE uses to obtain encryption keys, with native implementations for Java Key Store and Windows Certificate Store, and custom implementations for external KMS integration/key rotation."
+    },
+    {
+      "candidate_id": "sdk:fle-algorithm",
+      "label": "AEAD_AES_256_CBC_HMAC_SHA_512 (FLE algorithm)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific authenticated-encryption algorithm SDK 3's Field-Level Encryption uses, distinct from the deprecated SDK 2-era split-key variant."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "configuredVia",
+      "object": "sdk:fle-keyring",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the Keyring is the named mechanism through which FLE's encryption keys are supplied/assigned",
+      "evidence": "A `Keyring` provides access to encryption keys."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:fle-algorithm",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - FLE's encryption/decryption capability depends on this specific algorithm as its underlying implementation",
+      "evidence": "SDK 3 uses the `AEAD_AES_256_CBC_HMAC_SHA_512` algorithm to provide authenticated symmetric encryption of sensitive JSON fields."
+    },
+    {
+      "subject": "sdk:fle-algorithm",
+      "predicate": "supersedes",
+      "object": "the previous Field-Level Encryption algorithm variation that managed AES and HMAC keys separately (SDK 2-era)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the docs position the joined 64-byte-key algorithm as the preferred way forward without asserting the old algorithm has stopped working (it 'can still be read')",
+      "evidence": "Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately. This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption. Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "hasExecutionConstraint",
+      "object": "whole operation fails with an exception if any field's encryption or decryption errors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - an atomicity/placement-style constraint on how the subject executes, generalized here from topology placement to all-or-nothing field-crypto failure handling",
+      "evidence": "To prevent data loss under error conditions, an error in decryption or encryption in any part of an operation will cause the whole operation to fail with an exception."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/encrypting-using-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For a practical guide, see [Encrypting Your Data](../howtos/encrypting-using-sdk.md)."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/encrypting-using-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link (second occurrence, same target, different anchor point in the page)",
+      "evidence": "See the [sample code page](../howtos/encrypting-using-sdk.md) for examples of reading & writing encrypted fields."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasNoRelationshipTo",
+    "finding": "This page never mentions Couchbase Server's native/at-rest encryption at all - no comparison, no disambiguation, not even the word 'server-side'. It defines Field-Level Encryption entirely in isolation, purely as a client-side SDK capability. The explicit contrast between the two mechanisms only appears on the paired howto page (encrypting-using-sdk.md), not here - so this concept page alone gives no textual basis for a hasNoRelationshipTo or shouldNotBeConfusedWith triple, even though the two mechanisms are in fact unrelated. Recorded as a gap: a reader landing on this concept page first, without following through to the howto's tip box, has no signal that a completely different 'encryption at rest' feature exists on Server 8.x."
+  },
+  "cross_component_finding": "The page states plainly that 'Field Level Encryption for all SDKs is a separate package from the Couchbase SDK itself; the APIs are extensions of the SDK, but the SDK does not have a dependency on FLE' - meaning FLE is an optional, separately-versioned add-on library (java-couchbase-encryption) layered on top of the core Java SDK, not a built-in SDK feature. This is a packaging/dependency relationship worth distinguishing from a plain 'is a capability of' relationship, though no existing predicate in the registry cleanly captures 'optional extension package with no reverse dependency' - flagged rather than force-fit.",
+  "cross_product_finding": "JUDGMENT CALL FOR THE COORDINATOR: per this round's framing, I did NOT reuse encryption:native-encryption-at-rest, encryption:data-encryption-key, or encryption:master-password for anything on this page, and minted sdk:field-level-encryption, sdk:fle-keyring, and sdk:fle-algorithm instead. The determining evidence is the page's own words: 'This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK' (client-side, field-scoped, app-managed Keyring) versus the registry's encryption:native-encryption-at-rest, defined from server/8.0 pages as 'Couchbase Server's built-in encryption of data on disk' (server-side, whole-bucket-scoped, server-managed DEK/KEK/master-password hierarchy). These are two structurally unrelated mechanisms that happen to share the word 'encryption' - the same collision pattern already seen five times in the role:* family. The explicit docs-stated disambiguation between the two (via howtos/encrypting-using-sdk.md's tip box) is recorded in that page's own extraction record rather than here, since only that page contains the comparative text."
+}

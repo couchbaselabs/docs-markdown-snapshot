@@ -1,0 +1,115 @@
+{
+  "page_id": "java-sdk/howtos/transcoders-nonjson",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/transcoders-nonjson.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:json-transcoder",
+      "label": "JsonTranscoder (default global transcoder)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the SDK's default transcoder, pairing with DefaultJsonSerializer (or Jackson's JacksonJsonSerializer when detected); no existing registry concept covers transcoder/Common-Flag plumbing"
+    },
+    {
+      "candidate_id": "sdk:raw-json-transcoder",
+      "label": "RawJsonTranscoder (passthrough JSON transcoder)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a serializer-free transcoder for JSON already serialized by a third-party library (e.g. Gson); referenced from json.md's Sub-Document section as the recommended way to insert a pre-serialized JSON string"
+    },
+    {
+      "candidate_id": "sdk:raw-string-transcoder",
+      "label": "RawStringTranscoder (passthrough String transcoder)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - stores/retrieves raw strings under the String Common Flag, avoiding JSON quoting/escaping overhead"
+    },
+    {
+      "candidate_id": "sdk:raw-binary-transcoder",
+      "label": "RawBinaryTranscoder (passthrough binary transcoder)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - stores/retrieves raw byte[] under the Binary Common Flag with no serializer involved"
+    },
+    {
+      "candidate_id": "sdk:custom-json-serializer",
+      "label": "Custom JsonSerializer implementation (e.g. Gson-backed)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - implementing the JsonSerializer interface to swap the byte-conversion library while staying on JsonTranscoder/the JSON Common Flag; distinct from sdk:custom-object-mapper (json.json), which configures Jackson specifically rather than swapping serializer libraries entirely"
+    },
+    {
+      "candidate_id": "sdk:custom-transcoder",
+      "label": "Custom Transcoder implementation (e.g. MessagePack)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - implementing the Transcoder interface directly to choose a non-JSON Common Flag (e.g. Binary) for a non-JSON wire format such as MessagePack; a further step beyond sdk:custom-json-serializer, which only swaps the serializer under the existing JsonTranscoder"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:json-transcoder",
+      "predicate": "operatesOnFormat",
+      "object": "JSON",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a tool reading/writing data in a named encoded format",
+      "evidence": "The serialized bytes are then sent to the Couchbase Server, along with a Common Flag of JSON."
+    },
+    {
+      "subject": "sdk:json-transcoder",
+      "predicate": "doesNotSupport",
+      "object": "byte[] values (rejected with InvalidArgumentException)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "`JsonTranscoder` will pass any Object to its serializer, apart from a `byte[]`. It will reject this with an InvalidArgumentException, as it is ambiguous how it should be handled."
+    },
+    {
+      "subject": "sdk:raw-json-transcoder",
+      "predicate": "operatesOnFormat",
+      "object": "JSON",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a tool reading/writing data in a named encoded format",
+      "evidence": "The RawJsonTranscoder provides the ability for the application to explicitly specify that the data they are storing or retrieving is JSON. This transcoder does not accept a serializer, and always performs straight pass through of the data to the server."
+    },
+    {
+      "subject": "sdk:raw-string-transcoder",
+      "predicate": "operatesOnFormat",
+      "object": "String",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a tool reading/writing data in a named encoded format",
+      "evidence": "The RawStringTranscoder provides the ability for the user to explicitly store and retrieve raw string data with Couchbase."
+    },
+    {
+      "subject": "sdk:raw-binary-transcoder",
+      "predicate": "operatesOnFormat",
+      "object": "Binary",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a tool reading/writing data in a named encoded format",
+      "evidence": "The RawBinaryTranscoder provides the ability for the user to explicitly store and retrieve raw byte data to Couchbase."
+    },
+    {
+      "subject": "sdk:custom-transcoder",
+      "predicate": "operatesOnFormat",
+      "object": "MessagePack",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a tool reading/writing data in a named encoded format",
+      "evidence": "Let's look at a more complex example: encoding the JSON alternative, [MessagePack](https://msgpack.org)."
+    },
+    {
+      "subject": "sdk:custom-json-serializer",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:json-transcoder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that's not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set."
+    },
+    {
+      "subject": "sdk:custom-transcoder",
+      "predicate": "tradesOffAgainst",
+      "object": "sdk:raw-binary-transcoder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted comparative predicate; RawBinaryTranscoder sets the binary flag but only passes bytes through with no serializer, whereas a custom transcoder can both choose the binary flag AND run a serializer, which is why one had to be written for MessagePack",
+      "evidence": "MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag. The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer). So we need to write one."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "doesNotSupport",
+    "finding": "The page's own NOTE warns generically that Query/Indexes, Search, Analytics, and Eventing 'are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents,' but never states a specific, per-service doesNotSupport boundary for any of RawStringTranscoder/RawBinaryTranscoder/MessagePack output - unlike the precise byte[]-rejection boundary stated for JsonTranscoder itself, the cross-service impact of choosing a non-JSON transcoder is left as an unquantified generic warning."
+  },
+  "cross_component_finding": "The page's own NOTE block draws an explicit line from a Key-Value-service-level client choice (which transcoder/Common Flag a document is stored with) to the behavior of four OTHER Couchbase services on that same document: 'the Couchbase Data Platform includes multiple components other than the Key-Value store — including SQL++ (formerly N1QL) and its Indexes, Search Service, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.'",
+  "cross_product_finding": null
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/request-tracer",
+  "label": "Request Tracer (RequestTracer / OpenTelemetry/OpenTracing integration)",
+  "type": "the SDK's request-tracing mechanism - default lightweight ThresholdLoggingTracer or a pluggable OpenTelemetry/OpenTracing-backed RequestTracer - capturing per-request timing spans, the SDK's own answer to 'why was this operation slow'",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Recurs across concept-docs/best-practices.json, concept-docs/response-time-observability.json, howtos/observability-metrics.json, howtos/observability-tracing.json, howtos/transactions-tracing.json, ref/client-settings.json, ref/glossary.json - one of this round's observability family alongside sdk:orphan-reporter, sdk:health-check/sdk:ping/sdk:diagnostics and sdk:app-telemetry. NOT the same as sdk:orphan-reporter, which only fires for responses whose caller has already given up, or general request logging."
+}

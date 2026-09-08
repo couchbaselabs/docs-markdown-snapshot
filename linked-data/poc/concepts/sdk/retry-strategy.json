@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/retry-strategy",
+  "label": "Client-Side Retry Orchestration (RetryStrategy, RetryReason)",
+  "type": "a structurally distinct primitive from sdk:error-handling: a pre-exception decision layer (RetryStrategy/RetryReason, idempotency-gated) that transparently retries a request BEFORE it becomes a terminal exception, rather than classifying an exception once one occurs",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/error-handling.json (a round-3/4 pre-gate file) and reused in project-docs/migrating-sdk-code-to-3.n.json. NOT the same mechanism as python-sdk/howtos/error-handling.json's sdk:custom-retry-decorator (extraction-layer only, recurrence 1) - that page explicitly REJECTED reuse of this id, since Python's example hand-rolls its own @allow_retries decorator rather than using an SDK-internal, transparent orchestration layer; a genuinely different (userland vs. SDK-internal) mechanism, documented rather than merged."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/working-with-collections",
+  "label": "Collections/Scopes support in the SDK",
+  "type": "the SDK's 3.x-era API surface for opening/using a named Scope and Collection (rather than a single default collection per bucket) - the client-side counterpart to Server 7.x's Collections feature",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/working-with-collections.json (a round-3/4 pre-gate file - both its relations here carry the link-boundary evidence artifact, see round 30's finding) and reused in concept-docs/collections.json."
+}

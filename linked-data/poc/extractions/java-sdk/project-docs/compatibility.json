@@ -1,0 +1,293 @@
+{
+  "page_id": "java-sdk/project-docs/compatibility",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/compatibility.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:jdk-version-compatibility",
+      "label": "JDK version compatibility (the Java runtime versions the SDK is tested against, supports, and recommends)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the JDK runtime-version requirement/testing matrix; distinct from any Couchbase Server or Couchbase-product version axis, since this is a third-party runtime dependency"
+    },
+    {
+      "candidate_id": "sdk:alpine-linux-workaround",
+      "label": "Alpine Linux native-IO/TLS workaround (disabling Netty's native optimizations because Alpine uses musl instead of glibc)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a platform-specific configuration workaround with no existing counterpart in the registry"
+    },
+    {
+      "candidate_id": "sdk:kv-range-scan",
+      "label": "KV Range Scan (querying documents through the Data Service by document-ID range, without knowing exact keys)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not previously extracted in any java-sdk howtos batch seen so far; distinct from sdk:kv-operations (single-key get/insert/upsert) and from n1ql query features"
+    },
+    {
+      "candidate_id": "sdk:vector-search-with-search-service",
+      "label": "Vector Search (via the Search service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/vector-searching-with-sdk.json, same capability discussed here from the compatibility-matrix angle"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:sdk-3-6-0",
+      "label": "Java SDK 3.6.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new entry in the version:sdk-* family (the Java SDK's own independent release-numbering axis, per version:sdk-3-3-0's precedent), needed because the feature-availability matrix dates Vector Search's start to this specific SDK release, distinct from the Server-version gate it also carries"
+    },
+    {
+      "candidate_id": "sdk:vector-search-base64-encoding",
+      "label": "Base64-encoded vector support (for Vector Search queries)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a sub-feature of sdk:vector-search-with-search-service with its own, later version gate on both axes (Server 7.6.2 / SDK 3.7.0), so modeled as its own concept rather than folded into the parent"
+    },
+    {
+      "candidate_id": "version:sdk-3-7-0",
+      "label": "Java SDK 3.7.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family, the SDK release at which base64-encoded vector support became available"
+    },
+    {
+      "candidate_id": "sdk:preferred-server-group-replica-reads",
+      "label": "Preferred Server Group Replica Reads (KV reads that prefer replicas in the client's own server group)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept for this KV read-affinity feature"
+    },
+    {
+      "candidate_id": "version:server-7-6-2",
+      "label": "Couchbase Server 7.6.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:sdk-3-7-4",
+      "label": "Java SDK 3.7.4",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family, the SDK release at which Preferred Server Group Replica Reads became available"
+    },
+    {
+      "candidate_id": "n1ql:vector-query-via-gsi",
+      "label": "Vector Query using GSI (Global Secondary Indexes)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/vector-searching-with-sdk.json"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:sdk-3-9-0",
+      "label": "Java SDK 3.9.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family, the SDK release at which Vector Query using GSI became available; note this is Java's own release number 3.9.0, not the same axis as the abstract cross-SDK 'API 3.9' specification number discussed elsewhere on this page (see version:sdk-api-3-9 and the shouldNotBeConfusedWith relation below) - the two happen to share digits for this particular pair but are drawn from different tables on the page and do not correspond 1:1 in general"
+    },
+    {
+      "candidate_id": "sdk:capella-compatibility",
+      "label": "Capella compatibility (the Java SDK's compatibility with Couchbase Capella as a fully-hosted, continuously-upgraded backend)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing sdk: concept covers this; distinct from deployment:capella (a general deployment-model marker) since this is specifically about the SDK-to-Capella compatibility guarantee and its own dedicated compatibility page"
+    },
+    {
+      "candidate_id": "sdk:spring-data-couchbase-compatibility",
+      "label": "Spring Data Couchbase compatibility (Spring Data Couchbase's own version line and its Server-version compatibility, layered on top of the Java SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a third-party framework built on the Java SDK, with its own version family (SDC 5.4-5.5, SDC 6.0) independent of both the Java SDK's own version numbers and Server's"
+    },
+    {
+      "candidate_id": "version:server-7-2",
+      "label": "Couchbase Server 7.2",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "quarkus:extension",
+      "label": "Couchbase Quarkus Java Extension",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first concept in a new quarkus: namespace; a distinct downstream integration product (with its own doc tree at quarkus-extension/) that depends on a minimum Java SDK version, the reverse dependency direction from the usual Server-gates-SDK-feature shape"
+    },
+    {
+      "candidate_id": "version:sdk-3-7-7",
+      "label": "Java SDK 3.7.7",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family, the minimum Java SDK version required by the Couchbase Quarkus extension"
+    },
+    {
+      "candidate_id": "sdk:interface-stability-level",
+      "label": "SDK interface stability classifier (Committed / Uncommitted / Volatile, plus the Deprecated and Internal labels)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a closed-vocabulary documentation-annotation scheme with no existing counterpart, analogous in shape to other flat-enum concepts already in the registry (e.g. index-state)"
+    },
+    {
+      "candidate_id": "version:sdk-api-3-9",
+      "label": "SDK API 3.9 (the abstract, cross-language Couchbase SDK API specification version, shared by all Couchbase SDKs and versioned independently of any single SDK's own release number)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this is the third version axis this round's framing asked to watch for, distinct from both version:server-* (Server's own version) and version:sdk-* (a single SDK's own release number, e.g. Java's 3.x.y). The page states outright that these numbers only coincidentally align for some SDKs ('Whilst these two numbers match for the .NET SDK, this is not the case for the others'), which is exactly why it needs its own namespace rather than being folded into version:sdk-*"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:jdk-version-compatibility",
+      "predicate": "requiresCapability",
+      "object": "Java 8 (minimum JDK)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted (relations/requires-capability); object is a literal since no dedicated 'JDK version' concept family exists in the registry",
+      "evidence": "The 3.12 SDK requires Java 8 or later. _Java 25 is recommended_."
+    },
+    {
+      "subject": "sdk:jdk-version-compatibility",
+      "predicate": "offersConfigurationChoice",
+      "object": "OpenJDK 25 with HotSpot JVM (recommended)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the JDK list is presented as a set of tested/supported choices with one marked recommended",
+      "evidence": "OpenJDK 25 with HotSpot JVM"
+    },
+    {
+      "subject": "sdk:alpine-linux-workaround",
+      "predicate": "requiresSetting",
+      "object": "ioEnvironment.enableNativeIo=false / security.enableNativeTls=false",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Disable native IO and native TLS by setting both the `ioEnvironment.enableNativeIo` and `security.enableNativeTls` client settings to false, as in this example:"
+    },
+    {
+      "subject": "sdk:alpine-linux-workaround",
+      "predicate": "hasExecutionConstraint",
+      "object": "cannot complete bootstrapping on Alpine Linux without the workaround",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "the Java SDK is unable to complete bootstrapping on this platform."
+    },
+    {
+      "subject": "sdk:kv-range-scan",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the New Feature Availability Matrix places this fact in the Server 7.6 column",
+      "evidence": "| KV Range Scan                        | N/A        | All supported SDK versions                         |            |"
+    },
+    {
+      "subject": "sdk:vector-search-with-search-service",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Introduced support for Vector Search alongside Server 7.6 (and Capella)."
+    },
+    {
+      "subject": "sdk:vector-search-with-search-service",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-6-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; this is the SDK's-own-version axis, separate from the Server-version relation above for the same subject",
+      "evidence": "From SDK 3.6.0 (base64 encoded vectors from 3.7.0)"
+    },
+    {
+      "subject": "sdk:vector-search-base64-encoding",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Introduced support for base 64 encoded vector types alongside Server 7.6.2 (and Capella)."
+    },
+    {
+      "subject": "sdk:vector-search-base64-encoding",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; SDK's-own-version axis",
+      "evidence": "base64 encoded vectors from 3.7.0"
+    },
+    {
+      "subject": "sdk:preferred-server-group-replica-reads",
+      "predicate": "availableSince",
+      "object": "version:server-7-6-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "From SDK 3.7.4 (with Server 7.6.2 onwards)"
+    },
+    {
+      "subject": "sdk:preferred-server-group-replica-reads",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-7-4",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; SDK's-own-version axis, same source cell as the Server-version relation above",
+      "evidence": "From SDK 3.7.4 (with Server 7.6.2 onwards)"
+    },
+    {
+      "subject": "n1ql:vector-query-via-gsi",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search."
+    },
+    {
+      "subject": "n1ql:vector-query-via-gsi",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-9-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; SDK's-own-version axis",
+      "evidence": "From SDK 3.9.0"
+    },
+    {
+      "subject": "sdk:capella-compatibility",
+      "predicate": "seeAlso",
+      "object": "cloud/reference/sdk-compatibility",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an already-extracted page",
+      "evidence": "compatibility information between Capella and the SDK is available [on the Capella compatibility page](../../../cloud/reference/sdk-compatibility.md)."
+    },
+    {
+      "subject": "sdk:spring-data-couchbase-compatibility",
+      "predicate": "availableSince",
+      "object": "version:server-7-2",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the Spring Data Couchbase compatibility table's server-version floor",
+      "evidence": "Server 7.2 - 8.0"
+    },
+    {
+      "subject": "quarkus:extension",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-7-7",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; used here for a downstream integration's minimum-dependency-version requirement rather than the usual Server-gates-SDK-capability shape",
+      "evidence": "Couchbase Quarkus requires Java SDK 3.7.7 or newer."
+    },
+    {
+      "subject": "sdk:interface-stability-level",
+      "predicate": "hasDefaultValue",
+      "object": "Committed",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "This is the default — unless otherwise stated in the documentation, each API has **Committed** status."
+    },
+    {
+      "subject": "version:sdk-api-3-9",
+      "predicate": "shouldNotBeConfusedWith",
+      "object": "version:sdk-3-9-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; exact fit for warning that two version numbers from different axes can coincide numerically without being the same fact",
+      "evidence": "Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details."
+    },
+    {
+      "subject": "sdk:jdk-version-compatibility",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/sdk-release-notes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "As always, running the very latest version of the SDKs will pick up any fixes already made to platform support (see the [Release Notes](sdk-release-notes.md))."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "availableSince",
+    "finding": "The Serverless Environments paragraph ('Recent SDKs offer better resilience in handling errors that may occur when running your application in serverless environments... official support for AWS Lambda, Azure Functions, and GCP Functions') is a real capability-availability claim but names no SDK version and no Server version - 'recent SDKs' is not quotable as a version threshold. Rather than fabricate a version, this was left uncaptured. The same applies to the OS-compatibility lists (specific Linux distro/version support) - true facts, but enumerable platform support rather than a version-gated capability, and modeling each distro as its own concept would produce ~15 low-value single-relation concepts for one page."
+  },
+  "cross_component_finding": "quarkus:extension's dependency on version:sdk-3-7-7 inverts the direction every other availableSince relation on this page takes: elsewhere, a Server or SDK version is the threshold that gates a capability the SDK exposes; here, a downstream integration built ON TOP of the SDK (Quarkus) sets its own minimum-SDK-version requirement. Both are legitimately availableSince, but the 'who depends on whom' arrow points opposite ways, and reconciliation should not assume every availableSince edge on version:sdk-* objects flows from Server-capability-availability.",
+  "cross_product_finding": "This page surfaces at least three independent version axes in play simultaneously for one product: (1) version:server-* (Couchbase Server's own release number, e.g. 7.6, 8.0), (2) version:sdk-* (the Java SDK's own release number, e.g. 3.9.0, 3.12), and (3) version:sdk-api-* (the abstract, cross-language 'SDK API specification' version, e.g. 3.9, shared by all Couchbase SDKs but incremented on its own schedule - Java 3.9 & 3.10 both implement API 3.8, while Java 3.11 & 3.12 implement API 3.9). The page explicitly warns that axes (2) and (3) only coincidentally share digits for some SDKs ('these two numbers match for the .NET SDK, this is not the case for the others'), which is captured here via shouldNotBeConfusedWith rather than conflating version:sdk-3-9-0 (a real Java release) with version:sdk-api-3-9 (the abstract spec number). A fourth, even more independent axis appears in the Spring Data Couchbase table (SDC 5.4-5.5 / SDC 6.0), a third-party framework's own version line layered on top of both the Java SDK version and the Server version it targets - not modeled with its own version:* family here since only one SDC line boundary is evidenced on this page, but reconciliation should be aware a fourth axis exists if more SDC-versioned facts turn up elsewhere in the corpus."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/pessimistic-locking",
+  "label": "Pessimistic locking (getAndLock)",
+  "type": "the SDK's opt-in exclusive-lock alternative to the default sdk:cas-optimistic-locking - getAndLock() locks a document server-side for a bounded duration, blocking other writers until unlock or timeout, rather than merely detecting a conflicting write after the fact",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Cross-product recurrence: java-sdk/howtos/concurrent-document-mutations.json, java-sdk/concept-docs/data-durability-acid-transactions.json, python-sdk/concept-docs/data-durability-acid-transactions.json - both SDKs document it as the named alternative to CAS."
+}

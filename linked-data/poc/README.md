@@ -7,7 +7,7 @@ week of upfront ontology design?
 
 This is a review artefact, not production output — everything here was extracted
 and reconciled to see what the method actually produces before investing in
-automating it. Twenty-nine rounds so far, twenty-five of them deliberate escalations
+automating it. Thirty rounds so far, twenty-six of them deliberate escalations
 and four corrective passes over what they left behind:
 
 1. **8 pages, fully by hand** — one page at a time, carrying a running registry of
@@ -477,6 +477,38 @@ and four corrective passes over what they left behind:
     left deliberately unpromoted. 21 concepts, 1 relation promoted (`removedIn`, a
     slot reserved since round 10 and finally filled); 15 new `docs-issues/`, 2
     existing ones updated with a new occurrence.
+30. **80 pages — Java SDK finished end-to-end (63 pages on top of rounds 3/4's
+    original 15) and Python SDK's first contact (17 pages)**, run as a pure
+    reconciliation pass explicitly asked to re-verify round 4's 8-round-old
+    Java SDK promotion backlog rather than trust it. Found the note half
+    stale in both directions: two of its six items were already closed by
+    round 10 without the note being updated, and a seventh, related id
+    (`sdk:single-query-transaction`) had already been effectively promoted
+    for 20 rounds under a completely different name (`n1ql:tximplicit`,
+    round 10) that nobody had cross-checked against the backlog note. Closed
+    the remaining four backlog items (`sdk:durability`,
+    `sdk:cas-optimistic-locking`, `sdk:error-handling`,
+    `sdk:bucket-management`) plus `sdk:sqlpp-queries-with-sdk`/`sdk:view-queries-with-sdk`;
+    confirmed `sdk:query-error-mapping` is genuinely still open at recurrence 1.
+    Resolved two round-4 placeholder stubs with real first-hand evidence read
+    directly from their own pages for the first time: `sdk:xattr` (promoted,
+    see below) and `sdk:transactions-migration-guide` (confirmed accurate but
+    deliberately left unpromoted - every corpus reference to it is a `seeAlso`
+    link, so its real promotion metric is 0, not 2; a page pointer, not a
+    concept anyone has asserted a fact about). Corrected
+    `sdk:transaction-error-handling`'s promoted description (three
+    named exceptions, not two). Reading both SDKs' observability/user-management
+    pages together surfaced the same same-referent-two-ids fork four times in
+    one pass — three cross-product (Java vs. Python), one same-product
+    (Java's own dedicated page vs. Java's own glossary) — resolved as four
+    aliases with side-by-side evidence. 41 concepts promoted (1 a
+    significance exception, `sdk:lost-transaction`), 1 existing concept
+    corrected, 1 fold into an existing promoted concept, 6 new `docs-issues/`.
+    Also found and left unfixed (queued as a future backfill): 23
+    pre-write-time-gate evidence-matching false alarms, all traced to one
+    mechanical cause (Markdown link syntax inside a quoted span), and 4
+    genuine gate-thinning events (a denied relation dropped rather than
+    re-evidenced) visible only by reading `hooks/gate-log.jsonl` sequentially.
 
 See `reconciliation.md` for the full round-by-round log, findings, and a
 cumulative verdict at the end. See `../ingest-cost-and-time-estimate.md` for the
@@ -484,7 +516,7 @@ time/cost projections and how they held up against the round-2 run's real number
 
 ## Scope
 
-1,161 pages total:
+1,241 pages total:
 
 - **The original 8** — 5 pages from `server/7.2/n1ql/n1ql-language-reference/`
   (`CREATE INDEX`, `DROP INDEX`, `BUILD INDEX`, `DROP PRIMARY INDEX`,
@@ -691,6 +723,12 @@ time/cost projections and how they held up against the round-2 run's real number
   provenance (engineer-written, in each tool's own repo, lighter TW review than
   the rest of the Server tree) as a 12th stress-test axis on top of the eleven
   already run. See round 29 in `reconciliation.md`.
+- **80 more, `java-sdk/` (finished) + `python-sdk/` (first contact)** — 63
+  pages closing out `java-sdk/` end-to-end (`concept-docs/`, `hello-world/`,
+  `project-docs/`, `ref/`, and the rest of `howtos/`) on top of rounds 3/4's
+  original 15, plus 17 pages of Python SDK's `concept-docs/` and `howtos/` as a
+  deliberate comparison batch against the now-complete Java vocabulary. **Java
+  SDK is now fully covered.** See round 30 in `reconciliation.md`.
 
 Rounds 13 through 16 added **no pages**. All four worked the existing 582 records:
 round 13 the role slice and the variant sweep, rounds 14, 15 and 16 waves 1, 2 and 3
@@ -727,8 +765,8 @@ from "still in `extractions/`."
 ## How to read this directory
 
 - **`extractions/`** — one JSON record per source page, mirroring its path under
-  `server/<version>/`, `cloud/`, `couchbase-lite/`, `sync-gateway/`, or
-  `java-sdk/`. The `server/` records are version-scoped (`server/7.2/`,
+  `server/<version>/`, `cloud/`, `couchbase-lite/`, `sync-gateway/`,
+  `java-sdk/`, or `python-sdk/`. The `server/` records are version-scoped (`server/7.2/`,
   `server/8.0/`) because they have to be: the same page exists in every
   version tree, so a version-neutral layout silently overwrites one round's
   record with another's. They are scoped by **release number, never by the
@@ -804,15 +842,21 @@ from "still in `extractions/`."
   themselves are loose about it — filed as a docs-issue instead), and the
   individual `port:` concepts (an unresolved literal-vs-concept modelling
   question).
-  Round 3's Java SDK backlog — flagged here since round 4 — is now **partly
-  closed**: `sdk:kv-operations` was promoted in round 10, and
+  Round 3's Java SDK backlog — flagged here since round 4 — is now **fully
+  closed except one item**: `sdk:kv-operations` was promoted in round 10, and
   `sdk:transaction-query-mode` was re-namespaced to `n1ql:transaction-query-mode`
   (with the round-4 file kept as an alias stub recording the original record
   verbatim) once a Server page's own text showed the concept is the query
-  language's, not the SDK's. The rest of that backlog — `sdk:durability`,
-  `sdk:cas-optimistic-locking`, `sdk:error-handling`,
-  `sdk:query-error-mapping`, `sdk:sqlpp-queries-with-sdk`,
-  `sdk:bucket-management` — still sits at the extraction layer only.
+  language's, not the SDK's. Round 30 (re-verifying this note rather than
+  trusting it, and finding it already half stale) promoted the remaining four —
+  `sdk:durability`, `sdk:cas-optimistic-locking`, `sdk:error-handling`,
+  `sdk:bucket-management` — plus `sdk:sqlpp-queries-with-sdk`, and folded a
+  seventh, related backlog-adjacent id (`sdk:single-query-transaction`) into
+  the already-promoted `n1ql:tximplicit` (round 10), where it turns out to have
+  belonged the whole time. Only `sdk:query-error-mapping` is genuinely still
+  open, at whole-corpus recurrence 1 — Python's own SDK explicitly checked and
+  rejected reusing it for a structurally different exception shape, so it stays
+  unpromoted on real evidence, not neglect.
   Round 11 promoted 25, resolving round 10's deferred index taxonomy: the
   two index **classes** (`index-class:traditional`/`vector`) as an axis
   *crossing* the type and providing-service axes rather than sitting above them,
@@ -1421,6 +1465,32 @@ from "still in `extractions/`."
   one-member-per-binary convention - a namespace-hygiene defect this project has
   previously only seen accumulate across multiple rounds, found here fully-formed
   inside one round's own parallel batches. See round 29 in `reconciliation.md`.
+  Round 30 promoted 41 more, finishing the Java SDK's `sdk:` namespace and
+  closing round 4's 8-round-old backlog note (four of its six items, plus
+  `sdk:sqlpp-queries-with-sdk`/`sdk:view-queries-with-sdk`; the note's other two
+  items had already been silently closed by round 10 without ever being
+  updated to say so, and a seventh, related id turned out to already be
+  promoted for 20 rounds under a completely different name - see the
+  `n1ql:tximplicit` fold below). Resolved two round-4 placeholder stubs with
+  real first-hand evidence read directly from their own pages for the first
+  time: `sdk:xattr` (promoted) and `sdk:transactions-migration-guide`
+  (confirmed accurate, deliberately left unpromoted - every corpus reference
+  to it is a `seeAlso` link, so it is a page pointer, not a concept anyone has
+  asserted a fact about). Corrected `sdk:transaction-error-handling`'s
+  promoted label (three named
+  exceptions, not two - its own dedicated source page states this plainly).
+  Reading both the now-complete Java SDK and the newly-first-contacted Python
+  SDK together surfaced the same same-referent-two-ids fork four times in one
+  pass (`sdk:user-management-api`/`sdk:user-management-example`,
+  `sdk:ping`/`sdk:ping-check`, `sdk:diagnostics`/`sdk:diagnostics-check`,
+  `sdk:orphan-reporter`/`sdk:orphaned-response-reporting` - the last one not
+  even cross-product, but Java's own glossary forking against Java's own
+  dedicated page), each resolved as an alias with both defining quotes
+  recorded side by side. **1 significance exception**: `sdk:lost-transaction`
+  (recurrence 1, promoted alongside its recurrence-3 parent
+  `sdk:transaction-cleanup` because the parent's own definition cannot state
+  what it *is* without naming it - the family test also correctly refused two
+  sub-threshold siblings on the same page). See round 30 in `reconciliation.md`.
 - **`relations/`** — the *schema-level* terms: relation/predicate types minted
   because no existing vocabulary fit. Started with just `mustUseInsteadWhen`;
   round 2 added `requiresCapellaRole` (Capella's headline predicate),
@@ -1683,8 +1753,17 @@ from "still in `extractions/`."
   not about Couchbase — kept separate from `concepts/` and `relations/` so the
   product ontology doesn't grow a parallel meta-ontology of
   documentation-about-documentation. Each entry is just `{id, type: "docs-issue",
-  issueType, description, about, status}` — minted with no gatekeeping. **217
-  entries** as of round 29 (15 added that round, all from `cli/`, plus 2 existing
+  issueType, description, about, status}` — minted with no gatekeeping. **223
+  entries** as of round 30 (6 added that round: a cross-product SDK
+  information-architecture inconsistency found twice in one pass - Java's SDK
+  docs have no dedicated RBAC page and no dedicated concept-page placement for
+  `health-check.md` either, where Python's docs have both; a Python page with
+  Node.js `couchnode` code and output never adapted; a near-duplicate pair of
+  Python howto pages from an apparently unfinished N1QL-to-SQL++ page rename; a
+  broken/empty Java hello-world stub page (`# undefined`); a Java page's own
+  metadata claiming "Scala SDK"; and Python's security pages hardcoding stale
+  `#7.1@server:...` xrefs against a corpus now filed under `server/8.0`). As of
+  round 29 there were 217 entries (15 added that round, all from `cli/`, plus 2 existing
   entries updated with a new occurrence rather than duplicated: nine confirmed
   copy-paste bugs verified against the raw source page one at a time
   (`couchbase-cli-server-add.md`'s wrong flag names copied from
@@ -3620,6 +3699,65 @@ resumed pass after an interrupted run):**
      matching that shape - nine of the fifteen were copy-paste bugs, each
      verified against the raw source page rather than taken on the extraction
      batches' word.
+137. **A promotion backlog note has a shelf life, and trusting it instead of
+     recomputing can miss debt in both directions at once.** Round 30 was
+     asked to re-verify round 4's 8-round-old Java SDK backlog rather than
+     trust it, and found it stale two different ways: two of its six items had
+     already been silently closed by round 10 without the note being updated,
+     and a seventh, related id (`sdk:single-query-transaction`) had already
+     been effectively promoted for 20 rounds under a completely different name
+     (`n1ql:tximplicit`) the note never mentioned. Recomputing from
+     `registry-digest.py`/`recurrence.py` caught both the false debt and the
+     still-real debt in the same pass; trusting the note would have caught
+     neither.
+138. **The same same-referent-two-ids fork shape can appear four times in one
+     reconciliation pass, and one instance can be a product forking against its
+     own page rather than against a sibling product's.** Reading Java's
+     (now-complete) and Python's (first-contact) SDK observability and
+     user-management pages together surfaced `sdk:user-management-api`/`sdk:user-management-example`,
+     `sdk:ping`/`sdk:ping-check`, `sdk:diagnostics`/`sdk:diagnostics-check` (all
+     cross-product), and `sdk:orphan-reporter`/`sdk:orphaned-response-reporting`
+     - the last one Java's own dedicated page diverging from Java's own
+     glossary and best-practices page, not a Java-vs-Python split at all. None
+     of the four pairs shared enough substring for `recurrence.py --variants`
+     to cluster automatically; three were pure synonymy, the exact shape the
+     RBAC-role `internal_name`-vs-label convention exists to warn about,
+     recurring at the concept-id layer this time.
+139. **Finishing a product's coverage is, for the fourth time (rounds 17, 26,
+     28, 29), the specific moment a same-referent namespace fork becomes
+     visible - and this round it happened for the second consecutive round.**
+     Round 29 found it in Sync Gateway's RBAC-role spellings once the REST
+     layer completed that product; round 30 found it in Java/Python's
+     observability and user-management vocabulary once both SDKs were read
+     end-to-end together. A same-referent fork is latent in any two batches
+     that never read each other's output; "finish the product, then read it
+     whole" keeps being the moment it surfaces.
+140. **A promoted record's own description can under-count what its source
+     page actually states, and only reading the page directly (not the
+     record's summary of it) catches it.** `sdk:transaction-error-handling`,
+     promoted in round 4, named two exceptions; its own dedicated source page,
+     read directly for the first time in round 30, names three
+     (`TransactionExpiredException` alongside the two already recorded) in a
+     single explicit sentence. Corrected additively, without minting a fourth
+     id for the exception alone.
+141. **A write-time gate's log is strictly more informative than its exit
+     code, and reading it sequentially per path is what makes the difference
+     visible.** Every one of round 30's 80 new files passed cleanly by the
+     time it landed - a bare pass/fail read shows a spotless batch. Sequencing
+     `hooks/gate-log.jsonl` per path instead surfaced four real thinning
+     events (a relation denied for unquotable evidence, then dropped rather
+     than re-evidenced) invisible to any other available check, because an
+     omitted relation leaves no trace once the file lands clean.
+142. **A verifier's own matching logic can be the defect, and the fix belongs
+     to the tool, not to the corpus.** All 23 of round 30's `verify-evidence.py`
+     failures - every one in a pre-write-time-gate round-3/4 record - traced to
+     one mechanical cause (Markdown link syntax inside a quoted span breaking
+     byte-exact matching), confirmed by hand against the raw source. The same
+     species of false alarm round 15 found and fixed by editing `norm()`
+     (backslash escaping), not by editing old records; the same fix is
+     available here, queued rather than applied this round rather than
+     "correcting" pre-gate records to satisfy a control invented after they
+     were written.
 
 ## What this is not
 
@@ -3694,6 +3832,25 @@ document.
   documented fabrication-becomes-omission signal (which is the gate working) from
   collateral loss (which is the gate costing content), and it is currently the only
   known way a passing corpus can be quietly thinner than what was written.
+  **Round 30 ran exactly this check on its own 80-file batch** (the template above,
+  applied for the first time rather than just proposed) and found four real
+  instances - `java-sdk/ref/glossary.json` (deny 35 -> allow 28, seven relations
+  dropped, each originally carrying a literal `"unused"` placeholder evidence
+  string) and three `hello-world/` files each losing one or two relations to an
+  empty-evidence denial. Worth running as a matter of course on every future
+  batch, not just when a round happens to remember to ask.
+- **Teach `verify-evidence.py`'s `norm()` to strip inline Markdown link syntax.**
+  Round 30 found 23 unquotable-evidence failures across 11 pre-write-time-gate
+  java-sdk files, and traced every one to the same mechanical cause: the quoted
+  text is genuinely on the page, but a `[link text](url)` sits inside the quoted
+  span and breaks byte-exact matching. Confirmed by hand on `howtos/kv-operations.json`.
+  Exactly the shape round 15's backslash-escaping fix addressed in `norm()` itself
+  rather than by editing old records - the same fix (strip Markdown link syntax
+  before comparing) should close most or all of these 23 without touching a
+  single extraction record. Left open this round because fixing the shared
+  `norm()` used by both `verify-evidence.py` and the write-time gate is a
+  different kind of change than a reconciliation pass, and deserves its own
+  focused pass with `hooks/test-gate.py` re-run afterward.
 - **Re-extract round 3's `sync-gateway` (13 pages) and `couchbase-lite`
   (12 pages) batches.** `verify-evidence.py` puts them at 45% and 50%
   quotable-evidence respectively, affecting 12 of 13 and 10 of 12 records —
@@ -3704,17 +3861,28 @@ document.
   **`cloud/vector-index/` needs re-extraction too** — 7 records from the first POC
   commit, written pre-gate, 3 of them with unquotable evidence, and wave 1 promoted
   **22 concepts out of them**. Both defects found there were in a single record;
-  nobody has checked the other six against their pages.
-- **Read the rest of Couchbase Lite and the Java SDK.** Sync Gateway is now
-  fully covered (rounds 3 and 27-28) — the next largest touched-but-not-finished
-  product territory is Couchbase Lite and the Java SDK beyond what round 3's
-  original 37-page cross-product sample reached (12 pages each, out of products
-  this project has otherwise only touched once). Round 28's own `cbl:replication`
-  promotion-debt catch (minted round 3, first reused three rounds later) is a
-  small preview of what a dedicated Couchbase Lite pass would likely surface at
-  scale — round 3's pre-gate CBL batch is also still on the re-extraction
-  backlog below, so a fresh CBL round would need to decide whether to re-read
-  those 12 pages under the gate or extend past them first.
+  nobody has checked the other six against their pages. Round 30 found a fourth,
+  differently-shaped instance in the same family: 11 of round 3/4's original 15
+  pre-gate `java-sdk/` files fail `verify-evidence.py` (23 problems total), but
+  unlike the sync-gateway/couchbase-lite/vector-index cases, every one of these
+  23 traces to the single Markdown-link-boundary artifact described above, not
+  to varied fabrication - so fixing `norm()` (the bullet above) may close most
+  of this instance without any re-extraction at all, worth checking before
+  queuing these 11 files for a re-read.
+- **Read the rest of Couchbase Lite, and the rest of Python SDK.** Sync
+  Gateway and the Java SDK are now both fully covered (Sync Gateway: rounds 3
+  and 27-28; Java SDK: rounds 3/4 and 30) — the next largest
+  touched-but-not-finished product territory is Couchbase Lite, still at round
+  3's original 12-page cross-product sample, plus whatever remains of Python
+  SDK beyond round 30's deliberately partial 17-page first-contact batch
+  (`concept-docs/`+`howtos/` only - no `hello-world/`, `project-docs/`, `ref/`,
+  or the rest of `howtos/` yet, the same shape round 3/4 left for Java SDK for
+  26 rounds). Round 28's own `cbl:replication` promotion-debt catch (minted
+  round 3, first reused three rounds later) is a small preview of what a
+  dedicated Couchbase Lite pass would likely surface at scale — round 3's
+  pre-gate CBL batch is also still on the re-extraction backlog below, so a
+  fresh CBL round would need to decide whether to re-read those 12 pages under
+  the gate or extend past them first.
 - **Work the `role:sync-gateway-*` filing convention's remaining open question.**
   `role:bucket-application-access` (round 28, `rest-api-access-rbac-roles.md`)
   may be a fourth spelling of the already-aliased `role:bucket-full-access`/

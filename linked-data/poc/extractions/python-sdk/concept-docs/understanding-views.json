@@ -1,0 +1,59 @@
+{
+  "page_id": "python-sdk/concept-docs/understanding-views",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/understanding-views.md",
+  "concepts": [
+    {
+      "candidate_id": "index-type:view",
+      "label": "MapReduce View (design document with map/reduce functions)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own WARNING ('Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice ... for your application') matches the promoted index-type:view description ('the legacy/deprecated index kind produced by the Views engine') exactly."
+    },
+    {
+      "candidate_id": "sdk:design-document-management",
+      "label": "Design document management (create/retrieve/remove via the SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the SDK-level CRUD surface for design documents themselves ('The SDK provides convenient methods to create, retrieve, and remove design documents') is a client-library management concern distinct from the index-type:view mechanism it manages, with no existing id covering it."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:design-document-management",
+      "predicate": "reliesOnMechanism",
+      "object": "index-type:view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "To set up views, you create design documents that contain one or more view definitions, and then insert the design documents into a bucket."
+    },
+    {
+      "subject": "python-sdk/concept-docs/understanding-views",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/n1ql-query",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application"
+    },
+    {
+      "subject": "python-sdk/concept-docs/understanding-views",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/querying-your-data",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "see [our guide to choosing the right service](querying-your-data.md)."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "mustUseInsteadWhen",
+      "object": "index-type:view",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the page states the Query service should be preferred over Views for most applications",
+      "evidence": "Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n1ql:create-index",
+    "finding": "The relation objecting index-type:view against n1ql:create-index (via mustUseInsteadWhen) is a slight generalization: the page recommends the Query SERVICE generally ('our Query service'), not the specific CREATE INDEX statement. Flagging this because n1ql:create-index was the closest promoted concept available to stand in for 'the Query service' as a reuse target, and a reconciler may prefer a coarser 'n1ql query service' concept as the object instead if one gets promoted."
+  },
+  "cross_component_finding": "This is one of the thinnest pages in the batch (28 lines) and its entire technical content is two one-paragraph sections (creating and retrieving design documents) plus a legacy-status warning - there is no discussion of map/reduce function syntax, view querying, or stale/index-update parameters anywhere on this page, unlike a typical Views reference page.",
+  "cross_product_finding": "No Java-SDK-derived sdk:* id in the supplied registry excerpt addresses Views at all, so there is nothing to test reuse against here - this page's only substantive registry hit is the server-side index-type:view id, confirming Views is documented as the same legacy mechanism regardless of which SDK's docs describe it. The one genuinely SDK-flavored concept on the page (design-document CRUD via the SDK) is minted fresh (sdk:design-document-management) since no prior round appears to have covered it from either the Java or Python side."
+}

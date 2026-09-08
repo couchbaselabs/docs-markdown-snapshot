@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/app-telemetry",
+  "label": "SDK Telemetry pushed to Couchbase Server (Application Telemetry)",
+  "type": "client-side tracing/metrics/logging data the SDK pushes TO Couchbase Server (8.0+ self-managed, or Capella Operational) for ingestion into the Server's own Prometheus-based monitoring - a bridge concept, unlike sdk:request-tracer/sdk:orphan-reporter/sdk:health-check which are consumed purely client-side",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across howtos/collecting-information-and-logging.json and concept-docs/response-time-observability.json. Relates (extraction-layer, not yet independently promoted - only 1 file each) to server:application-telemetry and prometheus:metrics-endpoint (already promoted). No existing monitoring:* Capella concept fits the Prometheus-ingestion mechanism specifically, so the relation to server:application-telemetry is documented here rather than forced onto an unrelated monitoring:* id - see reconciliation.md round 30."
+}

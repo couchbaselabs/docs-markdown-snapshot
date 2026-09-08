@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/scope-level-query",
+  "label": "Querying at Scope Level (scope.query())",
+  "type": "SQL++ queries executed via a Scope object (available from Server 7.x) rather than Cluster or a legacy Bucket - an SDK-API-shape sibling of sdk:cluster-level-query, related to but distinct from n1ql:query-context (the setting scope-level querying implicitly establishes)",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/n1ql-query.json and howtos/sqlpp-queries-with-sdk.json."
+}

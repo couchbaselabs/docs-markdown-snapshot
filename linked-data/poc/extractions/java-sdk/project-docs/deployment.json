@@ -1,0 +1,103 @@
+{
+  "page_id": "java-sdk/project-docs/deployment",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/deployment.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:no-load-balancer-required",
+      "label": "No load balancer required (Couchbase's own cluster map handles load and data distribution between nodes; an external load balancer is discouraged)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a deployment-architecture recommendation with no existing counterpart in the registry"
+    },
+    {
+      "candidate_id": "sdk:development-vs-production-practices",
+      "label": "Development-vs-production practices (shortcuts acceptable during development - admin permissions, unsecured connections, disabled TLS verification - that must not carry over to production deployments)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers this dev/prod deployment-hygiene distinction"
+    },
+    {
+      "candidate_id": "deployment:capella",
+      "label": "Couchbase Capella (as a deployment/variant, distinct from an edition)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "server:self-managed-deployment",
+      "label": "Self-managed Couchbase Server deployment (Docker, Couchbase Autonomous Operator on Kubernetes/OpenShift, or a Cloud Marketplace listing)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder for server/'s own self-managed-deployment overview page (install/get-started.md) and its sub-options, not yet extracted in any round seen so far; grouped as one concept rather than one stub per linked sub-page (Docker/Operator/Kubernetes/OpenShift/AWS/Azure/GCP) since this page treats them as a single nested list under one heading"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:no-load-balancer-required",
+      "predicate": "doesNotSupport",
+      "object": "a load balancer between the app server and the Couchbase cluster",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "the use of a load balancer between your app server, where you're running the SDK and client code, and your Couchbase operational cluster, is strongly discouraged."
+    },
+    {
+      "subject": "sdk:no-load-balancer-required",
+      "predicate": "reliesOnMechanism",
+      "object": "the SDK's use of the cluster map",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Your Couchbase cluster will take care of balancing the load and distribution of data between nodes, in tandem with the SDK's use of the cluster map."
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "hasExecutionConstraint",
+      "object": "must not carry over-privileged access, geographic app/database separation, or skipped certificate verification into production",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "here is a non-exhaustive list of those development practices which should not be carried over to production deployments:\n\n* Over-priveleged access\n* Geographical separation of app server and database\n* Skipping certificate verification"
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/migrating-sdk-code-to-3.n",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "This section also contains information on [migrating from the previous major version of the SDK API](migrating-sdk-code-to-3.n.md)."
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/third-party-integrations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "[SDK Integrations](third-party-integrations.md)"
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/get-involved",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "[Contribute to the SDK](get-involved.md)"
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "seeAlso",
+      "object": "deployment:capella",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link, object reuses the already-promoted deployment:capella concept as the stand-in for the linked home/cloud.md page",
+      "evidence": "[Capella](../../../home/cloud.md) — Database as a Service"
+    },
+    {
+      "subject": "sdk:development-vs-production-practices",
+      "predicate": "seeAlso",
+      "object": "server:self-managed-deployment",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "[Self-managed Couchbase Server](../../../server/current/install/get-started.md):"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "The nested sub-list under 'Self-managed Couchbase Server' (Docker Install, Couchbase Autonomous Operator, Kubernetes, OpenShift, AWS/Azure/GCP Marketplace) links to six distinct pages across the operator/ and server/ doc trees, none of which have been extracted in any round encountered so far. Rather than mint one placeholder stub per sub-page - which would produce six single-use concepts for one bullet list - they are folded into a single server:self-managed-deployment concept, matching this page's own treatment of them as one nested list under one heading."
+  },
+  "cross_component_finding": "This page's only substantive technical claim (sdk:no-load-balancer-required) is an architectural recommendation that applies regardless of deployment target (Capella or self-managed) - it is about how the SDK's cluster-map-based routing interacts with the network path to the cluster, not a Capella-vs-self-managed distinction. That contrasts with howtos/distributed-acid-transactions-from-the-sdk.json's cross_product_finding from an earlier round, where Capella and self-managed Server prerequisites genuinely diverge (Capella drops the NTP and minimum-server-version checks). Deployment topology recommendations and prerequisite checklists don't diverge along the same Capella/self-managed line by default; each has to be checked on its own facts.",
+  "cross_product_finding": "The 'Deploying Couchbase Server' list treats Capella and self-managed Server as siblings under one 'Further Reading' heading with no comparative framing at all (no 'choose Capella if...' guidance) - deployment.md defers the actual deployment-model decision entirely to the linked pages, none of which this page's own content engages with."
+}

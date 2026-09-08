@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/document-expiration",
+  "label": "Document Expiration / TTL (expiry, preserveExpiry, getAndTouch)",
+  "type": "the SDK's client-side surface for setting/reading a document's time-to-live: an expiry option on write, preserveExpiry to keep an existing TTL across an update, and touch()/getAndTouch() to extend it - relies on the same underlying server-side mechanisms as data:expiration and data:max-ttl-setting",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Whole-corpus recurrence is much wider than the strict two-file promotion metric shows (also named in concepts[] on python-sdk/howtos/kv-operations.json, python-sdk/concept-docs/documents.json, java-sdk/concept-docs/documents.json, and three pre-round-30 cloud/ files: guides/reading-data.json, guides/creating-data.json, n1ql/n1ql-language-reference/indexing-meta-info.json, insert.json) - most of those are bare concepts[] mentions or seeAlso links, which the promotion metric deliberately excludes. The two relation-bearing files are java-sdk/howtos/kv-operations.json (a round-3/4 pre-gate file - its one relation here carries the Markdown-link-boundary evidence artifact documented in reconciliation.md round 30, not fabrication) and java-sdk/concept-docs/data-durability-acid-transactions.json (this round, clean). Cross-product: python-sdk/howtos/kv-operations.json's own record explicitly confirms 'Python's Touch/get_and_touch operations are the same mechanism under the same names.'"
+}

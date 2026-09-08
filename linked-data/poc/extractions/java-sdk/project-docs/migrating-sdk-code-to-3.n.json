@@ -1,0 +1,329 @@
+{
+  "page_id": "java-sdk/project-docs/migrating-sdk-code-to-3.n",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/migrating-sdk-code-to-3.n.md",
+  "concepts": [
+    {
+      "candidate_id": "server:collection",
+      "label": "Collection (server-side data-container concept)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-5-0",
+      "label": "Couchbase Server 5.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:sdk-3-0-0",
+      "label": "Java SDK 3.0.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - new entry in the version:sdk-* family, the Java SDK's own release-numbering axis, for the GA release this entire migration guide is written against"
+    },
+    {
+      "candidate_id": "sdk:document-class-legacy",
+      "label": "Document class/structure (SDK 2's codified read/write unit, completely removed in SDK 3)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the specific removed API surface this migration section documents"
+    },
+    {
+      "candidate_id": "sdk:result-type",
+      "label": "Result type (SDK 3's uniform return-value abstraction, e.g. GetResult/MutationResult/QueryResult)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the successor abstraction to sdk:document-class-legacy"
+    },
+    {
+      "candidate_id": "sdk:retry-strategy",
+      "label": "RetryStrategy (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/error-handling.json"
+    },
+    {
+      "candidate_id": "sdk:lazy-bootstrap",
+      "label": "Lazy bootstrapping (bucket/cluster errors deferred into the operation result rather than raised immediately on open/connect)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers this connection-lifecycle behavior change"
+    },
+    {
+      "candidate_id": "sdk:authentication",
+      "label": "Authentication (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/sdk-authentication.json"
+    },
+    {
+      "candidate_id": "sdk:certificate-authentication",
+      "label": "Certificate-based authentication (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/sdk-authentication.json"
+    },
+    {
+      "candidate_id": "sdk:cluster-level-query",
+      "label": "Cluster-level query (SQL++ queries executed via the Cluster object without first opening a Bucket)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/3.0-pre-release-notes.json); this page independently restates the same Server-6.5 threshold in prose"
+    },
+    {
+      "candidate_id": "sdk:transcoder",
+      "label": "Transcoder (SDK 3's binary/object encode-decode abstraction, extending the Serializer to non-JSON data)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the mechanism that replaced Document's implicit serialization handling"
+    },
+    {
+      "candidate_id": "sdk:view-queries-with-sdk",
+      "label": "View queries (MapReduce Views) with the SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/view-queries-with-sdk.json"
+    },
+    {
+      "candidate_id": "sdk:sqlpp-queries-with-sdk",
+      "label": "SQL++ queries with the SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept, recurs across multiple java-sdk batches"
+    },
+    {
+      "candidate_id": "storage-engine:couchstore",
+      "label": "Couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:view-scan-consistency",
+      "label": "ViewScanConsistency enum (SDK 3's unified view-staleness setting, replacing SDK 2's Stale enum)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific renamed enum with no existing counterpart"
+    },
+    {
+      "candidate_id": "sdk:query-index-manager",
+      "label": "Query Index Manager (SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:reactive-api",
+      "label": "Reactive API (Java SDK, built on Project Reactor's Flux/Mono)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the SDK's reactive-programming surface specifically, as distinct from the blocking or CompletableFuture-based async APIs"
+    },
+    {
+      "candidate_id": "sdk:error-handling",
+      "label": "Error handling (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/error-handling.json"
+    },
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS-based optimistic locking (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept, recurs across multiple java-sdk batches"
+    },
+    {
+      "candidate_id": "sdk:query-dsl-legacy",
+      "label": "Query DSL (SDK 2.x's fluent query-building API, not carried over to SDK 3.x)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific removed API surface, distinct from sdk:sqlpp-queries-with-sdk (the string-statement approach that replaced it)"
+    },
+    {
+      "candidate_id": "server:scopes-and-collections",
+      "label": "Scopes and Collections (server-side concept, learn/data/scopes-and-collections.md)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder for server/'s own scopes-and-collections page; the linked path is server/current/, and this project's server/ extractions to date use a numbered version segment (server/8.0/...), so the 'current' link cannot be safely resolved to a specific already-extracted page_id without guessing which release 'current' aliases to. Following the round-4 precedent (server:distributed-acid-transactions) of minting a placeholder rather than guessing a version segment."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "server:collection",
+      "predicate": "hasLifecycleState",
+      "object": "developer preview (Server 6.5)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "in version 6.5, and as a first class concept of the programming model from"
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; this is the GA/first-class threshold, distinct from the developer-preview relation above at Server 6.5",
+      "evidence": "version 7.0."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "seeAlso",
+      "object": "server:scopes-and-collections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "version 7.0."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-0-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the SDK's-own-version axis, separate from the two Server-version relations above for the same subject",
+      "evidence": "Note that the SDKs include the feature from SDK 3.0, to allow easier migration."
+    },
+    {
+      "subject": "sdk:result-type",
+      "predicate": "renamedFrom",
+      "object": "Document",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "The new API follows a clear scheme: each command takes required arguments explicitly, and an option block for all optional values. The returned value is always of type `Result`."
+    },
+    {
+      "subject": "sdk:document-class-legacy",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-0-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "As a result we have removed the `Document` class/structure completely from the API."
+    },
+    {
+      "subject": "sdk:retry-strategy",
+      "predicate": "configuresProperty",
+      "object": "temporary failures and locked documents retried by default",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "as an example, temporary failures or locked documents are now being retried by default"
+    },
+    {
+      "subject": "sdk:lazy-bootstrap",
+      "predicate": "hasExecutionConstraint",
+      "object": "bucket-open errors are deferred into the operation result rather than raised immediately",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "For example, opening a bucket is not raising an error anymore, but it will only show up once you perform an actual operation."
+    },
+    {
+      "subject": "sdk:lazy-bootstrap",
+      "predicate": "hasExecutionConstraint",
+      "object": "bucket(String) returns immediately even if the bucket is not yet fully opened",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "You'll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened."
+    },
+    {
+      "subject": "sdk:authentication",
+      "predicate": "requiresCapability",
+      "object": "version:server-5-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "The minimum cluster version supported by SDK 3 is Server 5.0, which means that only RBAC is supported."
+    },
+    {
+      "subject": "sdk:certificate-authentication",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/sdk-authentication",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "Please see the [documentation on certificate-based authentication](../howtos/sdk-authentication.md) for detailed information on how to configure this properly."
+    },
+    {
+      "subject": "sdk:cluster-level-query",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; same fact independently evidenced on this page as on 3.0-pre-release-notes.md",
+      "evidence": "If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open."
+    },
+    {
+      "subject": "sdk:transcoder",
+      "predicate": "supersedes",
+      "object": "sdk:document-class-legacy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Since documents also fundamentally handled the serialization aspects of content, two new concepts are introduced: the `Serializer` and the `Transcoder`."
+    },
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "deprecatedIn",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "MapReduce Views has been deprecated since Couchbase Server 7.0, and is deprecated in the current Java SDK."
+    },
+    {
+      "subject": "sdk:sqlpp-queries-with-sdk",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:view-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Use the SQL++ Query Service, which benefits from"
+    },
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "requiresCapability",
+      "object": "storage-engine:couchstore",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "they must run on a"
+    },
+    {
+      "subject": "sdk:view-scan-consistency",
+      "predicate": "renamedFrom",
+      "object": "Stale.TRUE",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; a naming-history fact from the View Staleness Mapping table",
+      "evidence": "| Stale.TRUE          | ViewScanConsistency.NOT\\_BOUNDED  |"
+    },
+    {
+      "subject": "sdk:query-index-manager",
+      "predicate": "renamedFrom",
+      "object": "BucketManager.createN1qlIndex",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; a naming-history fact from the ClusterManager/BucketManager mapping table",
+      "evidence": "| BucketManager.createN1qlIndex          | QueryIndexManager.createIndex          |"
+    },
+    {
+      "subject": "sdk:reactive-api",
+      "predicate": "renamedFrom",
+      "object": "RxJava",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "We also moved from `RxJava` to `Reactor` because it provides native Java 8 support and better performance out of the box."
+    },
+    {
+      "subject": "sdk:error-handling",
+      "predicate": "usesExecutionModel",
+      "object": "flat exception hierarchy unified under CouchbaseException",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "The exception hierachy is now flat and unified under a `CouchbaseException`."
+    },
+    {
+      "subject": "sdk:cas-optimistic-locking",
+      "predicate": "hasExecutionConstraint",
+      "object": "CasMismatchException is still thrown and requires app-level handling, unlike other transient errors",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "One notable exception from this is the `CasMismatchException`, which is still thrown since it requires more app-level code to handle (most likely identical to SDK 2)."
+    },
+    {
+      "subject": "sdk:query-dsl-legacy",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-0-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "For these reasons it is not amongst the features carried over to SDK 3.x."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "renamedFrom",
+    "finding": "Table 9 (Configuration Options Reference) lists roughly 60 SDK-2-to-SDK-3 setting-name mappings ('sslEnabled -> SecurityConfig.enableTls', 'kvTimeout -> TimeoutConfig.kvTimeout', etc.). Only a small representative sample was captured as renamedFrom relations (view staleness, query index manager) rather than all ~60 rows - each row is individually quotable and would individually pass the evidence gate, but promoting every settings-rename row to its own concept would produce dozens of single-relation, never-revisited concepts for one page. Flagged here so reconciliation can decide whether bulk settings-rename tables like this one warrant a different, lower-overhead representation (e.g. one concept per table with a structured value payload) rather than one concept per row."
+  },
+  "cross_component_finding": "sdk:view-queries-with-sdk carries two independent constraints layered on top of each other: deprecatedIn version:server-7-0 (a version-gated fact) AND requiresCapability storage-engine:couchstore (a capability-gated fact, unrelated to version - Views require Couchstore at any version). Both are true simultaneously and neither substitutes for the other, illustrating that availableSince/deprecatedIn's version axis and requiresCapability's capability axis are orthogonal, not alternative ways of saying the same thing.",
+  "cross_product_finding": "This page and 3.0-pre-release-notes.json (same batch) independently restate the identical Server-6.5 cluster-level-query threshold in different words ('cluster-level queries can now be performed without opening a bucket' here vs. 'cluster-level queries can now be performed without opening a bucket' in the alpha.6 changelog entry) - the fact survived unchanged from an alpha changelog entry all the way to the GA migration guide, giving sdk:cluster-level-query two independent verbatim-evidenced sources for the same availableSince relation rather than one guessed from context."
+}

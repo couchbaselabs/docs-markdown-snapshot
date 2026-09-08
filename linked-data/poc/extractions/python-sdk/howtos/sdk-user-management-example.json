@@ -1,0 +1,164 @@
+{
+  "page_id": "python-sdk/howtos/sdk-user-management-example",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/howtos/sdk-user-management-example.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:user-management-api",
+      "label": "SDK User Management API (upsertUser/getUsers/getUser/removeUser)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept minted in sibling record python-sdk/concept-docs/sdk-user-management-overview (this same batch); this page is its worked example, using 'UserManager API'"
+    },
+    {
+      "candidate_id": "role:full-administrator",
+      "label": "Full Admin / Full Administrator (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (via alias role:admin) - byte-identical sentence to rbac.md: 'Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users.'"
+    },
+    {
+      "candidate_id": "role:data-reader",
+      "label": "Data Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused (via alias rbac-role:data-reader) - Role(name=\"data_reader\", bucket=\"*\") in the example code"
+    },
+    {
+      "candidate_id": "role:query-select",
+      "label": "Query Select (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Role(name=\"query_select\", bucket=\"*\") in the example code"
+    },
+    {
+      "candidate_id": "role:data-writer",
+      "label": "Data Writer (Server RBAC role)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - not yet present in the promoted role:* catalogue (role:data-reader is present, its sibling role:data-writer is not). roles.md confirms 'Role: Data Writer (data_writer)' as one of the 56 Server RBAC roles ('The Data Writer role lets the user write data to one or more collections via key-value operations'), so this follows the exact same internal-name convention as the existing role:data-reader/role:query-select ids. Matches Role(name=\"data_writer\", bucket=bucket_name) in the example code. Must NOT be confused with capella-role:data-writer, the unrelated Capella project-scope role."
+    },
+    {
+      "candidate_id": "role:query-insert",
+      "label": "Query Insert (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Role(name=\"query_insert\", bucket=bucket_name) in the example code"
+    },
+    {
+      "candidate_id": "role:query-delete",
+      "label": "Query Delete (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Role(name=\"query_delete\", bucket=bucket_name) in the example code"
+    },
+    {
+      "candidate_id": "role:query-manage-index",
+      "label": "Query Manage Index (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Role(name=\"query_manage_index\", bucket=bucket_name) in the example code, explicitly commented '# Role required for idx creation on bucket'"
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "key-value operations",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the example uses collection.get(\"airline_10\") and collection.upsert(\"airline_11\", airline_11) to demonstrate the constrained user's access"
+    },
+    {
+      "candidate_id": "sdk:query-index-manager",
+      "label": "Query Index Manager (SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - user_cluster.query_indexes().create_primary_index(bucket_name, CreatePrimaryQueryIndexOptions(ignore_if_exists=True)) in the example code"
+    },
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the example runs user_cluster.query(\"SELECT * FROM `travel-sample` LIMIT 5;\") as the constrained user"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "requiresServerRole",
+      "object": "role:full-administrator",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users."
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:data-reader",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"data_reader\", bucket=\"*\"),"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:query-select",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"query_select\", bucket=\"*\"),"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:data-writer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"data_writer\", bucket=bucket_name),"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:query-insert",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"query_insert\", bucket=bucket_name),"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:query-delete",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"query_delete\", bucket=bucket_name),"
+    },
+    {
+      "subject": "sdk:user-management-api",
+      "predicate": "grantsRole",
+      "object": "role:query-manage-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Role(name=\"query_manage_index\", bucket=bucket_name),"
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "requiresRole",
+      "object": "role:data-writer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "# Roles require for writing data to bucket"
+    },
+    {
+      "subject": "sdk:query-index-manager",
+      "predicate": "requiresRole",
+      "object": "role:query-manage-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "# Role required for idx creation on bucket"
+    },
+    {
+      "subject": "python-sdk/howtos/sdk-user-management-example",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/sdk-user-management-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "A high-level summary of the APIs can be found in [User-Management](../concept-docs/sdk-user-management-overview.md)"
+    },
+    {
+      "subject": "python-sdk/howtos/sdk-user-management-example",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/provisioning-cluster-resources",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for a structural markdown link",
+      "evidence": "The SDK also contains management APIs for dealing with [Cluster resources](provisioning-cluster-resources.md)."
+    }
+  ],
+  "cross_component_finding": "The sentence 'Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users.' appears byte-for-byte identically on this page and on concept-docs/rbac.md within the same product - a literal within-product duplication (not just a paraphrase) of the same claim across two pages that otherwise serve very different purposes (concept explanation vs. worked code example)."
+}

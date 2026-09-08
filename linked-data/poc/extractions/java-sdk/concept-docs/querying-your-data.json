@@ -1,0 +1,128 @@
+{
+  "page_id": "java-sdk/concept-docs/querying-your-data",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/querying-your-data.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:querying-your-data",
+      "label": "Choosing a query/access service (Data Service vs Query vs Search vs Analytics vs Vector Search)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - this is a genuinely new distinction: a cross-service decision guide spanning five different services/APIs, framed around 'Choosing the right service to query your data' rather than describing any single service's mechanics. No single existing n1ql:*/fts:*/sdk:* concept covers a page whose entire purpose is comparing several of them."
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "key-value operations",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly as the fastest path 'When you already know the Key (ID) of the document'."
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly for path-known retrieval."
+    },
+    {
+      "candidate_id": "sdk:kv-range-scan",
+      "label": "KV Range Scan (rangeScan, prefixScan, samplingScan)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/kv-operations.json id; this page's own 'Range Scan' section restates the identical low-concurrency-batch-query framing."
+    },
+    {
+      "candidate_id": "index:sequential-scan",
+      "label": "Sequential scan",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'Query without Index' section, word-for-word identical to n1ql-query.json's own section (see cross_product_finding there)."
+    },
+    {
+      "candidate_id": "sdk:sqlpp-queries-with-sdk",
+      "label": "Running SQL++ Queries from the Java SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's id, named as the SQL-family path."
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly ('Couchbase also has a powerful Search Service')."
+    },
+    {
+      "candidate_id": "service:analytics-service",
+      "label": "Analytics service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page distinguishes this from Enterprise/Capella Analytics: 'Couchbase Analytics Service (CBAS) for traditional data analytics against your operational database cluster.'"
+    },
+    {
+      "candidate_id": "service:enterprise-analytics-service",
+      "label": "Enterprise Analytics Service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly and distinguished from Capella Analytics and from the operational Analytics Service."
+    },
+    {
+      "candidate_id": "sdk:vector-search-with-search-service",
+      "label": "Vector Search via the Search Service (VectorSearch/VectorQuery API)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/vector-searching-with-sdk.json id, cited generically here as 'Vector Search with the Java SDK'."
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:querying-your-data",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When you already know the Key (ID) of the document, then [Data Operations](../howtos/kv-operations.md) (using the KV — or _Key - Value_ Service) are by far the simplest way to retrieve or mutate it."
+    },
+    {
+      "subject": "sdk:kv-range-scan",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For low latency range queries, it is recommended that you use SQL++ with the necessary indexes."
+    },
+    {
+      "subject": "sdk:querying-your-data",
+      "predicate": "dependsOnService",
+      "object": "service:search-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase also has a powerful Search Service, supporting similarity and hybrid search, combining text, vector, range, and geospatial search."
+    },
+    {
+      "subject": "sdk:querying-your-data",
+      "predicate": "dependsOnService",
+      "object": "service:analytics-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Couchbase Analytics Service (CBAS)](../howtos/analytics-using-sdk.md) for traditional data analytics against your operational database cluster."
+    },
+    {
+      "subject": "sdk:querying-your-data",
+      "predicate": "dependsOnService",
+      "object": "service:enterprise-analytics-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "[Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) & [Capella Analytics](../../../analytics/intro/intro.md) for real-time analytics, with data stored elsewhere in your data lake."
+    },
+    {
+      "subject": "sdk:querying-your-data",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase Server 7.6 introduces Vector Search to enable AI integration, semantic search, and the RAG framework."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page mentions Capella iQ generating SQL++ and SDK code, and an Index Advisor, both under 'AI Help'/'Further Reading', but neither is developed with enough page-local substance to extract as a distinct relation beyond a bare mention - left unextracted rather than reconstructed."
+  },
+  "cross_product_finding": "This page's own 'Query without Index' section is word-for-word identical to n1ql-query.md's section of the same name, elsewhere in this batch - the same three sentences about sequential scans, verbatim, on two different concept-docs pages. Recorded here and on n1ql-query.json as the same finding (documentation duplication, not a semantic distinction)."
+}

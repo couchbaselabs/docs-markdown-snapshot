@@ -1,0 +1,29 @@
+{
+  "page_id": "java-sdk/hello-world/spring-data-sample-application",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/spring-data-sample-application.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:try-cb-spring-sample",
+      "label": "try-cb-spring Sample Application (Spring Data Couchbase travel-sample REST backend + frontend)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific, named clonable sample project (github.com/couchbaselabs/try-cb-spring), distinct from the java-springboot-quickstart sample minted from sample-application.md - the two are separate repos/apps despite both using Spring and the travel-sample bucket."
+    },
+    {
+      "candidate_id": "sdk:spring-data-couchbase-repository",
+      "label": "Spring Data Couchbase Repository abstraction (CouchbaseRepository, @Collection, @ScanConsistency)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuinely SDK-adjacent framework integration concept: an ORM-style repository interface that wraps SDK calls, reducing boilerplate. Not the same thing as sdk:kv-operations itself, since the whole point of this abstraction is to hide the direct Collection.upsert/get calls behind `.save()`/`.findById()`."
+    }
+  ],
+  "relations": [
+    { "subject": "sdk:try-cb-spring-sample", "predicate": "seeAlso", "object": "sdk:travel-app-data-model", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "See the [Travel App Data Model](../ref/travel-app-data-model.md) reference page for more information about the sample data set used." },
+    { "subject": "sdk:spring-data-couchbase-repository", "predicate": "reliesOnMechanism", "object": "sdk:kv-operations", "registry_status": "promoted", "reused_or_minted_predicate": "reused - the repository's own save() call is shown accepting the SDK's native durability option, confirming the abstraction wraps rather than replaces the KV API", "evidence": "Using the Spring Data Couchbase repository allows us to reduce boilerplate in our code and add a layer of abstraction to our cluster interactions." }
+  ],
+  "notable_absence": {
+    "predicate": "isAnalogousTo",
+    "finding": "The round framing flagged this page as a plausible site for isAnalogousTo ('a teaching comparison to another data model/framework'), given it's a Spring Data sample. Having read the full page, no such comparison is actually made: the page describes Spring Data Couchbase's own repository/service/CAS/durability code directly, without ever comparing it to another ORM or framework by name (no mention of JPA, Hibernate, or a relational-table analogy). Recording the absence explicitly rather than forcing a relation - the closest candidate sentence ('Using the Spring Data Couchbase repository allows us to reduce boilerplate in our code and add a layer of abstraction to our cluster interactions') is a benefit statement, not a comparison to a named alternative."
+  },
+  "cross_component_finding": "The `createLogin` code sample demonstrates sdk:durability being threaded through the Spring Data repository abstraction rather than bypassed: `UpsertOptions options = UpsertOptions.upsertOptions(); if (expiry.ordinal() > 0) { options.durability(expiry); }` is passed straight into `userRepository.withOptions(options).save(user)` - the abstraction layer is additive rather than replacing the underlying SDK vocabulary, a useful confirming data point for a coordinator reconciling sdk:durability across multiple pages in this round.",
+  "cross_product_finding": "Not applicable - this page is entirely about a self-managed/Docker-run sample stack (docker-compose, or a manually installed Couchbase Server 8.0 cluster with data/query/index/search nodes); it never mentions Capella."
+}

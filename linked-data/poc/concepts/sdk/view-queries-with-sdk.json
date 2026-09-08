@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/view-queries-with-sdk",
+  "label": "MapReduce Views from the SDK",
+  "type": "the SDK's client API for querying MapReduce Views (ViewQuery/ViewResult) - a legacy, still-supported query path, explicitly documented as the one service unable to benefit from Multi-Dimensional Scaling and rarely the best choice over sdk:sqlpp-queries-with-sdk",
+  "promoted": true,
+  "recurrence": 7,
+  "note": "Recurs across concept-docs/documents.json, concept-docs/nonjson.json, concept-docs/understanding-views.json, howtos/view-queries-with-sdk.json, project-docs/migrating-sdk-code-to-3.n.json, project-docs/sdk-release-notes.json, ref/glossary.json. One relation on howtos/view-queries-with-sdk.json (mustUseInsteadWhen) carries the same pre-gate link-boundary artifact as sqlpp-queries-with-sdk - see round 30's finding; the concept has ample other, clean evidence."
+}

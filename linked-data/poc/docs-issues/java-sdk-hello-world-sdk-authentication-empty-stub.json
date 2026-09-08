@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/java-sdk-hello-world-sdk-authentication-empty-stub",
+  "type": "docs-issue",
+  "issueType": "content-gap",
+  "description": "java-sdk/hello-world/sdk-authentication.md renders as a broken/empty stub: its only body content is the literal heading `# undefined`, with no prose, no code, no links beyond the standard llms.txt/original-HTML boilerplate. This is a DIFFERENT page from the substantive java-sdk/howtos/sdk-authentication.md (which has real content, and is one of the round-3/4 pre-gate files with the separately-tracked link-boundary evidence artifact) - the two share a filename but live under different directories (hello-world/ vs howtos/) and this hello-world/ copy appears to be entirely unpopulated. The write-time gate correctly logged 0 relations for this file's extraction record (see reconciliation.md round 30's gate scoreboard) rather than fabricating content for an empty page.",
+  "about": [
+    "java-sdk/hello-world/sdk-authentication"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

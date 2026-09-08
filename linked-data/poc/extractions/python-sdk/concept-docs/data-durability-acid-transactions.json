@@ -1,0 +1,123 @@
+{
+  "page_id": "python-sdk/concept-docs/data-durability-acid-transactions",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/data-durability-acid-transactions.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:durability",
+      "label": "Durability Options (durabilityLevel parameter, ServerDurability)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - same three-level ServerDurability option documented in howtos/kv-operations.md, restated here as 'the optional durabilityLevel parameter, which all mutating operations accept'."
+    },
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS-based concurrency control",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - 'You can use the CAS value to control how concurrent document modifications are handled' is the same mechanism as howtos/kv-operations.md's CAS section."
+    },
+    {
+      "candidate_id": "sdk:pessimistic-locking",
+      "label": "Pessimistic locking (get-and-lock / unlock)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct, explicit-locking alternative to CAS the page names directly ('Should you need the guarantees of explicit locking, documents can be locked using the _get-and-lock_ operation and unlocked either explicitly using the _unlock_ operation'). Not present anywhere in this round's supplied registry excerpt (which lists only sdk:cas-optimistic-locking), and the page itself frames it as the non-default alternative: 'With Couchbase, optimistic locking with CAS is the recommended way to perform locking and concurrency control.'"
+    },
+    {
+      "candidate_id": "sdk:replica-reads",
+      "label": "Reading from Replicas (active + replica reads, first-result vs all-results modes)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a read-path feature (accessing the active copy and/or one or all replicas, either racing for the first result or collecting all for consensus) with no equivalent id anywhere in the supplied registry excerpt."
+    },
+    {
+      "candidate_id": "sdk:preferred-server-group-replica-reads",
+      "label": "Preferred Server Group Replica Reads",
+      "registry_status": "minted",
+      "reused_or_minted": "reused within this batch - the identical section (same prose, same CAUTION box) also appears in howtos/kv-operations.md in this batch; filed under the same id there. See cross_component_finding."
+    },
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Multi-Document ACID Transactions",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Couchbase Distributed ACID (atomic, consistent, isolated, and durable) Transactions allow applications to perform a series of database operations as a single unit' is the same definition given in concept-docs/transactions.md, confirming this id's cross-page (and cross-SDK) stability."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-majority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`Majority` — The server will ensure that the change is available in memory on the majority of configured replicas."
+    },
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-majority-and-persist-active",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`MajorityAndPersistToActive` — Majority level, plus persisted to disk on the active node."
+    },
+    {
+      "subject": "sdk:durability",
+      "predicate": "usesEnum",
+      "object": "durability:level-persist-to-majority",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`PersistToMajority` — Majority level, plus persisted to disk on the majority of configured replicas."
+    },
+    {
+      "subject": "sdk:pessimistic-locking",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:cas-optimistic-locking",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - inverted framing: the page states CAS is preferred and pessimistic locking is reserved for when explicit-locking guarantees are needed",
+      "evidence": "Should you need the guarantees of explicit locking, documents can be locked using the _get-and-lock_ operation"
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-durability-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-durability-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-durability-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/concurrent-document-mutations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-durability-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Transactions are distributed and work across multiple documents, buckets, scopes, and collections, which can reside on multiple nodes. See the [Python SDK transactions documentation](transactions.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/data-durability-acid-transactions",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/data/transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Couchbase Distributed [ACID (atomic, consistent, isolated, and durable)](../../../server/current/learn/data/transactions.md#overview) Transactions"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "authorship-provenance",
+    "finding": "The page opens with a raw, unresolved porting marker directly in the rendered body text: '**TODO: Scala -→ Python**' - immediately followed by a paragraph and code sample that ARE in Python (UpsertOptions/ServerDurability), suggesting the page was copied from the Scala SDK's equivalent concept page and partially, but not completely, adapted; the TODO marker itself was never cleaned up before publishing. This is the same authorship-provenance class of issue flagged in round 29's CLI stress test, now found in the Python SDK's own docs tree - worth surfacing to the reconciler/docs-issues process even though this batch does not write to docs-issues directly."
+  },
+  "cross_component_finding": "The entire 'Preferred Server Group Replica Reads' section (heading, prose, and CAUTION box) is duplicated verbatim between this page and howtos/kv-operations.md in the same batch - both extraction records file it under the same minted id, sdk:preferred-server-group-replica-reads, since it is genuinely one piece of content appearing on two pages rather than two independent descriptions.",
+  "cross_product_finding": "This page is Python's closest analogue to whatever concept page anchors Java SDK round 4's sdk:transaction-durability/sdk:transaction-attempt-context findings, but its own leftover '**TODO: Scala -> Python**' marker is itself a strong signal that this specific page's prose should NOT be trusted as an authoritative, Python-native description - it may be describing Scala idioms that were only partially translated. Where this page's durability-levels bullet list is concerned, the content is identical to howtos/kv-operations.md's (same three ServerDurability levels, same wording), so reuse of sdk:durability/durability:level-majority/etc. here is safe despite the provenance flag. But sdk:pessimistic-locking and sdk:replica-reads are minted fresh from this page's prose with that caveat attached - if a future Scala-SDK extraction round turns up the same 'get-and-lock'/'unlock' language, that would be strong evidence this page's content did originate from Scala's docs and both should point to one shared underlying id rather than being SDK-independent mints."
+}

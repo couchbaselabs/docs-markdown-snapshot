@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/transaction-cleanup",
+  "label": "Background transaction cleanup",
+  "type": "the asynchronous task, spawned by an application's first sdk:distributed-transaction, that periodically scans Active Transaction Record (n1ql:active-transaction-record) metadata documents for expired transactions and rolls back or completes them - the mechanism that resolves both a sdk:lost-transaction and a TransactionCommitAmbiguousException's ambiguity",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Recurs across concept-docs/transactions-cleanup.json (this round's dedicated concept page), concept-docs/transactions-error-handling.json and project-docs/distributed-acid-transactions-migration-guide.json. None of the four round-3/4-promoted transaction concepts (sdk:distributed-transaction, sdk:transaction-attempt-context, sdk:transaction-durability, sdk:transaction-error-handling) described this mechanism at all - a genuine gap this round's dedicated page closes."
+}

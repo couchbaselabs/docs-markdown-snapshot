@@ -1,0 +1,109 @@
+{
+  "page_id": "java-sdk/howtos/subdocument-operations",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/subdocument-operations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (concepts/sdk/subdocument-operations.json); this is the HOWTO counterpart to concept-docs/subdocument-operations.md (already extracted in sibling batch J1 from the promoted concept), and this page's whole subject is the same feature from the task-oriented angle, confirmed by re-reading rather than assumed"
+    },
+    {
+      "candidate_id": "sdk:xattr",
+      "label": "Extended Attributes (XATTRs)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in distributed-acid-transactions-from-the-sdk.json; this page gives XATTRs' fuller treatment as a Sub-Document-API-based mechanism"
+    },
+    {
+      "candidate_id": "sdk:durability",
+      "label": "Durability Options (Majority, MajorityAndPersistToActive, PersistToMajority, client-verified durability)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in kv-operations.json; this page shows the same DurabilityLevel/PersistTo/ReplicateTo options applied to mutateIn rather than to whole-document operations"
+    },
+    {
+      "candidate_id": "sdk:cas-optimistic-locking",
+      "label": "CAS (Compare-And-Swap) Optimistic Locking",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in kv-operations.json and given its own howto in concurrent-document-mutations.json; this page shows CAS supplied to mutateInOptions() rather than to a full-document replace"
+    },
+    {
+      "candidate_id": "sdk:subdoc-replica-reads",
+      "label": "Sub-Document Replica Reads (lookupInAnyReplica / lookupInAllReplicas)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a version-gated (Server 7.6+) extension of lookupIn that reads from replica nodes as well as the active copy; structurally distinct from the base lookupIn/mutateIn operations"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "seeAlso",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Sub-Document SQL++ queries are explained in the section [Querying with SQL++](sqlpp-queries-with-sdk.md)."
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "seeAlso",
+      "object": "sdk:cas-optimistic-locking",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "So in some cases the application will not need to supply a [CAS](concurrent-document-mutations.md) value to protect against concurrent modifications."
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "sharesOptionSetWith",
+      "object": "sdk:durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for two concepts reusing the identical enum/option values at incompatible structural scopes; the DurabilityLevel enum recurs here at a further scope (mutateInOptions().durability(...)) beyond the per-KV-operation and per-transaction scopes already recorded in the registry",
+      "evidence": "mutateInOptions().durability(DurabilityLevel.MAJORITY));"
+    },
+    {
+      "subject": "sdk:xattr",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it."
+    },
+    {
+      "subject": "sdk:xattr",
+      "predicate": "doesNotSupport",
+      "object": "easy access from other Couchbase services such as Search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search."
+    },
+    {
+      "subject": "sdk:subdoc-replica-reads",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for the earliest version in which a described behavior holds",
+      "evidence": "Couchbase Server 7.6 and later support Sub-Doc lookup from replicas."
+    },
+    {
+      "subject": "sdk:subdoc-replica-reads",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "The `collection.lookupInAnyReplica()` method returns the first response — from active or replica:"
+    },
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "doesNotSupport",
+      "object": "arrayAddUnique when the target array contains JSON floats, objects, or arrays",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a stated, bounded non-support boundary",
+      "evidence": "Note that currently the _arrayAddUnique_ will fail with a _PathMismatchException_ if the array contains JSON _floats_, _objects_, or _arrays_."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasExecutionConstraint",
+    "finding": "The page states two hard numeric limits - 'You can submit up to 16 operations at a time' within a single lookupIn/mutateIn command, and 'paths cannot exceed 1024 characters, and cannot be more than 32 levels deep' - but no promoted or extraction-layer predicate in this registry cleanly captures a maximum-count/size constraint distinct from a version gate or a memory quota, so neither limit could be extracted as a relation without stretching an existing predicate's stated shape."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

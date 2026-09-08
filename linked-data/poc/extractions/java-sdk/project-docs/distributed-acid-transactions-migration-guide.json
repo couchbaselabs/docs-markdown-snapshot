@@ -1,0 +1,279 @@
+{
+  "page_id": "java-sdk/project-docs/distributed-acid-transactions-migration-guide",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/distributed-acid-transactions-migration-guide.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:transactions-migration-guide",
+      "label": "Transactions Migration Guide - for users of the transactions feature back when it was distributed as a separate library, before being folded into the SDK at version 3.3.0",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - THIS RESOLVES THE PLACEHOLDER STUB minted in round 4's java-sdk/howtos/distributed-acid-transactions-from-the-sdk.json ('placeholder for a linked migration-guide page not otherwise in this batch'). This page IS that previously-unextracted target; same candidate_id carried forward rather than minting a fresh one, now backed by this page's own evidence instead of only a linked-page placeholder."
+    },
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Distributed ACID Transaction (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:transaction-attempt-context",
+      "label": "TransactionAttemptContext (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:transaction-durability",
+      "label": "Transaction-scoped Durability Level (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:transaction-error-handling",
+      "label": "Transaction-level failure classification (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:legacy-transactions-library",
+      "label": "Legacy Couchbase Transactions library (the standalone Java transactions library that predated SDK integration)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the pre-3.3.0 standalone library this whole page is about migrating away from; distinct from sdk:distributed-transaction, which is the SDK-integrated replacement"
+    },
+    {
+      "candidate_id": "sdk:transactions-config",
+      "label": "TransactionsConfig (Java SDK) - cluster-level transactions configuration, created alongside the Cluster object",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the renamed, relocated successor to the legacy library's TransactionConfigBuilder"
+    },
+    {
+      "candidate_id": "sdk:transaction-options",
+      "label": "TransactionOptions (Java SDK) - per-transaction override options passed to an individual transactions().run() call",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the renamed successor to the legacy library's PerTransactionConfigBuilder"
+    },
+    {
+      "candidate_id": "sdk:transactions-query-config",
+      "label": "TransactionsQueryConfig (Java SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the renamed successor to the legacy library's TransactionQueryConfigBuilder"
+    },
+    {
+      "candidate_id": "sdk:single-query-transaction-options",
+      "label": "SingleQueryTransactionOptions (Java SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the renamed successor to the legacy library's SingleQueryTransactionConfigBuilder"
+    },
+    {
+      "candidate_id": "sdk:transaction-keyvalue-timeout-option",
+      "label": "keyValueTimeout (transaction-scoped KV timeout override, removed from TransactionsConfig/TransactionOptions when transactions were folded into the SDK)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific removed configuration option, not previously extracted"
+    },
+    {
+      "candidate_id": "sdk:transaction-durability-level-legacy",
+      "label": "TransactionDurabilityLevel (the legacy library's own durability enum, dropped in favour of the SDK's DurabilityLevel)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct from sdk:transaction-durability (the surviving, SDK-integrated concept that reuses DurabilityLevel); this concept exists specifically to record the enum that was dropped"
+    },
+    {
+      "candidate_id": "sdk:transactions-java-package",
+      "label": "com.couchbase.client.java.transactions (the SDK-integrated package namespace for transaction classes)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the renamed successor package to the legacy library's com.couchbase.transactions namespace"
+    },
+    {
+      "candidate_id": "sdk:single-query-transaction",
+      "label": "Single query transaction (Java SDK) - a transaction consisting of exactly one SQL++ statement",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept already on the registry watchlist per reconciliation.md round 4"
+    },
+    {
+      "candidate_id": "sdk:transaction-cleanup",
+      "label": "Transaction cleanup (the background process that finds and resolves expired/incomplete transactions)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the cleanup mechanism itself, as distinct from sdk:transaction-error-handling (which covers failure classification, not cleanup)"
+    },
+    {
+      "candidate_id": "server:distributed-acid-transactions",
+      "label": "Distributed ACID Transactions (server-side concept, learn/data/transactions.md)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted since the round-4 placeholder was minted (concepts/server/distributed-acid-transactions.json now exists)"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-3-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; same fact independently evidenced on this page as on howtos/distributed-acid-transactions-from-the-sdk.md",
+      "evidence": "We subsequently chose to integrate transactions directly into the SDKs with the release of Java SDK 3.3.0, to make it easier for users to get started."
+    },
+    {
+      "subject": "sdk:legacy-transactions-library",
+      "predicate": "retainedForLegacyCompatibility",
+      "object": "sdk:distributed-transaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; exact fit for a legacy option kept only for older clients while new development moves to the replacement",
+      "evidence": "will continue to be supported with bugfixes for some time, but new transaction features will only be added to the SDK and it is recommended that all users migrate."
+    },
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "supersedes",
+      "object": "sdk:legacy-transactions-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the SDK-integrated approach is positioned as preferred without a separate deprecation claim on this line specifically",
+      "evidence": "This is now done via a `Cluster` object. There is no longer any need to create a `Transactions` object."
+    },
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:legacy-transactions-library",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the page states migration is recommended specifically because new features stop landing in the legacy library",
+      "evidence": "but new transaction features will only be added to the SDK and it is recommended that all users migrate."
+    },
+    {
+      "subject": "sdk:transactions-config",
+      "predicate": "renamedFrom",
+      "object": "TransactionConfigBuilder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; a naming-history fact from the migration table",
+      "evidence": "| TransactionConfigBuilder            | TransactionsConfig            |  |"
+    },
+    {
+      "subject": "sdk:transactions-query-config",
+      "predicate": "renamedFrom",
+      "object": "TransactionQueryConfigBuilder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "| TransactionQueryConfigBuilder       | TransactionsQueryConfig       |  |"
+    },
+    {
+      "subject": "sdk:single-query-transaction-options",
+      "predicate": "renamedFrom",
+      "object": "SingleQueryTransactionConfigBuilder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "| SingleQueryTransactionConfigBuilder | SingleQueryTransactionOptions |  |"
+    },
+    {
+      "subject": "sdk:transaction-options",
+      "predicate": "renamedFrom",
+      "object": "PerTransactionConfigBuilder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "| PerTransactionConfigBuilder         | TransactionOptions            |  |"
+    },
+    {
+      "subject": "sdk:transaction-keyvalue-timeout-option",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-3-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; distinct from deprecatedIn since the page states this option is simply gone, not merely discouraged",
+      "evidence": "`keyValueTimeout` has been removed from `TransactionsConfig` and `TransactionOptions`."
+    },
+    {
+      "subject": "sdk:transaction-durability-level-legacy",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-3-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "`TransactionDurabilityLevel` has been dropped in favour of using the SDK's `DurabilityLevel`."
+    },
+    {
+      "subject": "sdk:transaction-durability",
+      "predicate": "supersedes",
+      "object": "sdk:transaction-durability-level-legacy",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the SDK's own DurabilityLevel is the direct replacement named in the same sentence as the removedIn fact above",
+      "evidence": "`TransactionDurabilityLevel` has been dropped in favour of using the SDK's `DurabilityLevel`."
+    },
+    {
+      "subject": "sdk:transaction-attempt-context",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-3-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "`ctx.commit()` has been removed, as it is redundant: commit automatically happens when the lambda successfully reaches the end."
+    },
+    {
+      "subject": "sdk:transaction-attempt-context",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-3-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "`ctx.rollback()` has been removed, as it too is redundant: the application can throw any exception from the lambda to trigger a rollback."
+    },
+    {
+      "subject": "sdk:transaction-attempt-context",
+      "predicate": "renamedFrom",
+      "object": "ctx.getOptional()",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; used loosely for a replaced-method naming-history fact, same shape as the class-rename table rows above",
+      "evidence": "`ctx.getOptional()` has been replaced with `ctx.get()` throwing a `DocumentExistsException`. This may be caught, allowing the transaction to continue."
+    },
+    {
+      "subject": "sdk:transactions-java-package",
+      "predicate": "renamedFrom",
+      "object": "com.couchbase.transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; a package-namespace rename rather than a class rename",
+      "evidence": "The simplest way to convert many of the classes to their new locations is to search for `import com.couchbase.transactions.` and replace it with `import com.couchbase.client.java.transactions.`."
+    },
+    {
+      "subject": "sdk:single-query-transaction",
+      "predicate": "configurableVia",
+      "object": "QueryOptions().asTransaction()",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "These are now integrated with the existing SDK `QueryOptions`."
+    },
+    {
+      "subject": "sdk:transaction-cleanup",
+      "predicate": "configuresProperty",
+      "object": "cleanup set (dynamically built from collections where transaction metadata was created)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Now, cleanup is dynamic. As transactions are run, the collection where metadata is created for that collection, is added to what we call the 'cleanup set'."
+    },
+    {
+      "subject": "sdk:transaction-error-handling",
+      "predicate": "renamedFrom",
+      "object": "TransactionFailed / TransactionCleanupAttempt",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "For example, `TransactionFailed` is now `TransactionFailedException`, and `TransactionCleanupAttempt` is now `TransactionCleanupAttemptEvent`."
+    },
+    {
+      "subject": "sdk:transactions-migration-guide",
+      "predicate": "seeAlso",
+      "object": "server:distributed-acid-transactions",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link",
+      "evidence": "There's plenty of explanation about how Transactions work in Couchbase in our [Transactions documentation](../../../server/current/learn/data/transactions.md)."
+    },
+    {
+      "subject": "sdk:transactions-migration-guide",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/distributed-acid-transactions-from-the-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an already-extracted page (round 4)",
+      "evidence": "The [Java SDK transactions documentation](../howtos/distributed-acid-transactions-from-the-sdk.md)."
+    },
+    {
+      "subject": "sdk:legacy-transactions-library",
+      "predicate": "seeAlso",
+      "object": "https://docs-archive.couchbase.com/java-sdk/3.2/project-docs/distributed-transactions-java-release-notes.html",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an external archive page",
+      "evidence": "will continue to be supported with bugfixes for some time"
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresExplicitCleanupOnFailure",
+    "finding": "The Cleanup section explicitly states the new dynamic cleanup-set behavior is designed so 'users without complex requirements should never need to think about or configure transaction cleanup' - i.e. the opposite of requiresExplicitCleanupOnFailure. No relation was forced for this since it is an absence-of-requirement claim, not a positive fact the predicate can express without inverting its own meaning; captured instead as prose here."
+  },
+  "cross_component_finding": "This page RESOLVES the round-4 placeholder stub sdk:transactions-migration-guide: the stub's label ('for users of the transactions feature back when it was distributed as a separate library, before being folded into the SDK at version 3.3.0') matches this page's own opening sentences almost verbatim, and the version:sdk-3-3-0 fact the stub's neighbour relation cited (sdk:distributed-transaction availableSince version:sdk-3-3-0) is independently restated on this page too ('integrate transactions directly into the SDKs with the release of Java SDK 3.3.0'). No fresh mint was needed or made; the same candidate_id now carries real page-of-its-own evidence instead of only a linked-page placeholder note. Separately, server:distributed-acid-transactions - also a round-4 placeholder - has since been promoted (concepts/server/distributed-acid-transactions.json exists), so it is declared 'promoted' here rather than 'extraction-layer'.",
+  "cross_product_finding": "Every renamedFrom/removedIn relation on this page is dated to the same single version, version:sdk-3-3-0 - the point at which the legacy standalone library was absorbed into the SDK. That is a materially different shape from compatibility.json's and sdk-release-notes.json's availableSince facts in this same batch, which are spread across a dozen different SDK and Server version numbers: a migration guide's version facts cluster at one boundary release by construction, while a release-notes/compatibility page's facts are inherently spread across many."
+}

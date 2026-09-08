@@ -1,0 +1,13 @@
+{
+  "page_id": "java-sdk/project-docs/get-involved",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/get-involved.md",
+  "concepts": [],
+  "relations": [],
+  "notable_absence": {
+    "predicate": "*",
+    "finding": "This page is pure community/contribution boilerplate (GitHub source link, CONTRIBUTING.md pointer, forum/Discord links, doc bug-report link) with no product concepts, capabilities, or version facts of any kind. Empty concepts/relations arrays are the correct answer, consistent with the batch framing's expectation for this page."
+  },
+  "cross_component_finding": "",
+  "cross_product_finding": ""
+}

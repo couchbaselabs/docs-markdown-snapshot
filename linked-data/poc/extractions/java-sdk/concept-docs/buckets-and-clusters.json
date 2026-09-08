@@ -1,0 +1,28 @@
+{
+  "page_id": "java-sdk/concept-docs/buckets-and-clusters",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/buckets-and-clusters.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:bucket-management",
+      "label": "BucketManager API (create/update/drop/flush bucket)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/provisioning-cluster-resources.json id; this page describes the identical `cluster.buckets()`/BucketManager surface ('call the bucket manager with the `buckets()` call on the cluster... This class is also used to expose information about an existing bucket... or to update an existing bucket')."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:bucket-management",
+      "predicate": "seeAlso",
+      "object": "sdk:provisioning-cluster-resources",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link, same target id round 3's working-with-collections.json already used for this page",
+      "evidence": "The SDK also comes with some convenience functionality for common Couchbase management requests — see the [Provisioning Cluster Resources](../howtos/provisioning-cluster-resources.md) guide."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "Unlike round 3's provisioning-cluster-resources.json (which named the exact roles 'Query Manage Index' and 'Manage Scopes'/'Data Reader' for index and collection management respectively), this page never states what role or privilege is required to create/remove/update a bucket via BucketManager."
+  },
+  "cross_component_finding": "This page's content is almost entirely duplicated, near word-for-word, by the 'Buckets and Clusters' section of concept-docs/management-api.md later in this same batch (same section heading, same code example, same closing sentence about the default Collection & Scope) - see management-api.json's own cross_component_finding for the full comparison. Both describe the identical sdk:bucket-management concept from round 3's howto layer; I reused that id in both records rather than minting page-specific duplicates."
+}

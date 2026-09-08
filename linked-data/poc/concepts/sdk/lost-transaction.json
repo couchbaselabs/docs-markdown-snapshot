@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/lost-transaction",
+  "label": "Lost transaction",
+  "type": "a failed sdk:distributed-transaction whose leftover staged changes were never cleaned up by the originating client (e.g. an application crash) - requiring recovery by sdk:transaction-cleanup rather than the client's own self-cleanup thread",
+  "promoted": true,
+  "recurrence": 1,
+  "note": "SIGNIFICANCE EXCEPTION, promoted below the usual two-file bar. Recurrence is 1 (concept-docs/transactions-cleanup.json only), but sdk:transaction-cleanup's own definition cannot be stated without it: the page states outright that lost transactions are the reason the mechanism exists at all ('there are situations that inevitably created failed, or \"lost\" transactions, such as an application crash. This requires an asynchronous cleanup task'). Promoted alongside its parent as the direct answer to 'what problem does cleanup solve', per the family-test precedent in reconciliation.md's methodology (a sibling that a promoted record cannot define itself without naming). sdk:transaction-client-record and sdk:transaction-cleanup-event, also minted on the same page at the same recurrence, do NOT pass this test - transaction-cleanup's own definition names the ATR-scanning mechanism generically without needing either, so both stay at extraction-layer/watchlist."
+}

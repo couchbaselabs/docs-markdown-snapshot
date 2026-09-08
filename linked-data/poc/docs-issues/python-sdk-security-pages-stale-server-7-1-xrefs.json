@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/python-sdk-security-pages-stale-server-7-1-xrefs",
+  "type": "docs-issue",
+  "issueType": "possible-content-inconsistency",
+  "description": "Multiple Python SDK security-related pages hardcode xref fragments pointing at `#7.1@server:...` - a pinned Server 7.1 documentation version - even though this corpus's own Server tree is now filed under server/8.0 (see round 26 onward). Confirmed instances: python-sdk/concept-docs/certificate-based-authentication.md (five separate `#7.1@server:...` links, to certificates.adoc, configure-client-certificates.adoc x2, manage-certificates.adoc, configure-server-certificates.adoc) and python-sdk/concept-docs/rbac.md (three separate `#7.1@server:...` links, to authorization-overview.adoc, manage-users-and-roles.adoc, roles.adoc). These links do not resolve against the current corpus layout and give a reader no way to reach the equivalent 8.0-era pages (concepts/role/security-admin.json and siblings, filed from server/8.0/learn/security/roles.md) without knowing to substitute the version themselves.",
+  "about": [
+    "python-sdk/concept-docs/certificate-based-authentication",
+    "python-sdk/concept-docs/rbac"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

@@ -1,0 +1,105 @@
+{
+  "page_id": "java-sdk/project-docs/third-party-integrations",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/third-party-integrations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:spring-data-couchbase-compatibility",
+      "label": "Spring Data Couchbase compatibility",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "quarkus:extension",
+      "label": "Couchbase Quarkus Java Extension",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "spark:connector",
+      "label": "Couchbase Spark Connector",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - first concept in a new spark: namespace; a distinct product with its own doc tree (spark-connector/)"
+    },
+    {
+      "candidate_id": "sdk:dataflow-tool-integrations",
+      "label": "Unofficial dataflow-tool integrations (Apache NiFi, Apache Camel, Apache Flink, Apache Zeppelin)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - grouping concept for community-maintained, Couchbase-unsupported dataflow-tool connectors listed together on this page"
+    },
+    {
+      "candidate_id": "sdk:couchmove",
+      "label": "Couchmove (open-source Java migration tool for Couchbase, inspired by Flyway, writing migrations in SQL++)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific community tool named and described on this page"
+    },
+    {
+      "candidate_id": "sdk:couchversion",
+      "label": "CouchVersion (Java-SDK-based migration tool using annotated change-set classes/methods)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific community tool, positioned on this page as an SDK-code-based alternative to Couchmove's SQL++-based approach"
+    },
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:spring-data-couchbase-compatibility",
+      "predicate": "seeAlso",
+      "object": "https://spring.io/projects/spring-data-couchbase",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an external project page",
+      "evidence": "The Couchbase Java SDK is a first class citizen in the [Spring Data](https://spring.io/projects/spring-data-couchbase) world"
+    },
+    {
+      "subject": "spark:connector",
+      "predicate": "seeAlso",
+      "object": "spark-connector/3.5/java-api",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link with an explicit version segment (3.5, not 'current'), so unlike this batch's other cross-product links the target page_id can be resolved directly rather than needing a placeholder concept",
+      "evidence": "Couchbase also supports integrating with [Spark](../../../spark-connector/3.5/java-api.md)."
+    },
+    {
+      "subject": "sdk:dataflow-tool-integrations",
+      "predicate": "seeAlso",
+      "object": "https://github.com/apache/nifi/tree/main/nifi-nar-bundles/nifi-couchbase-bundle",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an external project",
+      "evidence": "Many dataflow tools integrate with Couchbase, including [Apache NiFi](https://github.com/apache/nifi/tree/main/nifi-nar-bundles/nifi-couchbase-bundle)"
+    },
+    {
+      "subject": "sdk:couchmove",
+      "predicate": "reliesOnMechanism",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "In CouchMove you write your migrations in [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql)"
+    },
+    {
+      "subject": "sdk:couchversion",
+      "predicate": "isAnalogousTo",
+      "object": "sdk:couchmove",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; both are Couchbase migration tools with the same purpose, differing in implementation approach (SQL++ scripts vs Java SDK code)",
+      "evidence": "in [CouchVersion](https://github.com/couchbaselabs/CouchVersion) you can write them using the Java SDK, which essentially allow you to create more complex migrations."
+    },
+    {
+      "subject": "sdk:couchmove",
+      "predicate": "seeAlso",
+      "object": "https://github.com/differentway/couchmove",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; structural markdown link to an external project",
+      "evidence": "[Couchmove](https://github.com/differentway/couchmove) is an open-source Java migration tool for Couchbase, inspired by Flyway."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "seeAlso",
+    "finding": "Apache Camel, Apache Flink, and Apache Zeppelin are each named with their own external link in the same sentence/paragraph as Apache NiFi, but only NiFi was captured as a representative seeAlso relation; the other three would be three more single-purpose external links attached to the same grouping concept (sdk:dataflow-tool-integrations) with no additional distinguishing fact. The page itself explicitly disclaims completeness here ('There are too many third party integrations to evaluate and list... absence of a mention in these pages is no judgement on importance or quality'), which further supports treating this list as illustrative chrome rather than a set of individually load-bearing facts."
+  },
+  "cross_component_finding": "Both quarkus:extension and sdk:spring-data-couchbase-compatibility appear on this page purely as forward-references back to compatibility.json's own material ('Quarkus integration is covered in the Couchbase Quarkus Java Extension docs', 'many examples of using the SDK with Spring Boot and Spring Data') - this page adds no new version-gated facts for either, only restating that the integration exists and pointing elsewhere. No duplicate relations were added for them beyond the concept reuse itself, to avoid manufacturing near-identical relations from two pages that are, on this specific point, saying the same thing with less detail on this page.",
+  "cross_product_finding": "spark:connector's link is the only genuinely unambiguous cross-product link in this entire batch: every other cross-product link in the batch (server/current/, quarkus-extension/current/, operator/current/) uses the version-agnostic 'current' alias, which this project's server/ extractions have already shown can correspond to different concrete version folders (server/8.0/...) depending on when the source was captured - exactly the ambiguity that led this batch to mint placeholder concepts (server:scopes-and-collections, server:self-managed-deployment) rather than guess a page_id. spark-connector/3.5/java-api.md pins an explicit version instead, so it was safe to record directly as a page_id-shaped seeAlso object without a placeholder."
+}

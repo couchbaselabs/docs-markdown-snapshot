@@ -1,0 +1,76 @@
+{
+  "page_id": "java-sdk/concept-docs/nonjson",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/nonjson.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:transcoder",
+      "label": "Transcoder (non-JSON document encode/decode)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused from documents.json (extracted earlier in this same batch), which named the concept via its own link to this page ('using a [transcoder](nonjson.md)'). This page is the transcoder's own full first-hand definition: 'if your application requires a non-JSON format... you can write a _transcoder_ which handles the encoding and decoding of your documents to and from the server.'"
+    },
+    {
+      "candidate_id": "sdk:common-flags",
+      "label": "Common flags (32-bit item metadata field encoding JSON/UTF-8/RAW/PRIVATE format)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers this specific item-metadata mechanism. Distinct from data:item (the general item/metadata concept) in that this is specifically the type-code field a transcoder writes/reads to know how to (de)serialize."
+    },
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly as one of the two access surfaces non-JSON serialization breaks."
+    },
+    {
+      "candidate_id": "sdk:view-queries-with-sdk",
+      "label": "MapReduce Views from the Java SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/view-queries-with-sdk.json id; this page states non-JSON documents have only 'limited support' for MapReduce views, as against no support at all for Query/Search."
+    },
+    {
+      "candidate_id": "fts:full-text-search",
+      "label": "Full Text Search (capability)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - named directly as an access surface unavailable to non-JSON documents."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:transcoder",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:common-flags",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When the SDK serializes the Document, it notes the type of serialization performed (JSON) and sends a corresponding type code along with the serialized document to the server to be stored. This type code is stored in the flags field within the item's metadata."
+    },
+    {
+      "subject": "sdk:transcoder",
+      "predicate": "doesNotSupport",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that only JSON documents can be accessed using Query and Search."
+    },
+    {
+      "subject": "sdk:transcoder",
+      "predicate": "doesNotSupport",
+      "object": "fts:full-text-search",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Note that only JSON documents can be accessed using Query and Search."
+    },
+    {
+      "subject": "sdk:transcoder",
+      "predicate": "doesNotSupport",
+      "object": "sdk:view-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Limited support for non-JSON documents is available for MapReduce views."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "accessibleVia",
+    "finding": "The page states non-JSON documents are inaccessible via the Web UI too ('non-JSON documents will not be accessible using the Web UI (the contents will be shown in their Base64 equivalent)') but this is a degraded-view case, not a clean doesNotSupport boundary like Query/Search - the content is still shown, just Base64-encoded. Recorded here rather than forcing it into a relation that would overstate the constraint."
+  },
+  "cross_component_finding": "This page fills in the concept (sdk:transcoder, sdk:common-flags) that documents.json - extracted earlier in this same batch - could only name via a forward link, confirming the round's expectation that concept-docs pages sometimes supply the first full-content definition for a concept another concept-docs page in the same tree already had to reference. No howto page in rounds 3/4 touched transcoders or common flags at all, so both ids are new to the corpus."
+}

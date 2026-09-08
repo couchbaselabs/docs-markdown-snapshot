@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/diagnostics",
+  "label": "Diagnostics (passive health report)",
+  "type": "a passive, no-I/O snapshot of the SDK's already-known socket/connection state (no active network probe, may be stale) - contrasted with the active sdk:ping; exposes a cumulative ClusterState (ONLINE/DEGRADED/OFFLINE) unavailable from ping",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Cross-product namespace fork, resolved: python-sdk/concept-docs/health-check.json independently minted 'sdk:diagnostics-check' for the identical mechanism ('Diagnostics returns a list of the nodes that the SDK currently has (or had) a connection to ... does not actively poll the nodes' vs. java-sdk/howtos/health-check.json's '`Diagnostics` shows what the SDK _perceives_ as the current state of the network and services \u2014 it is without side-effects, but may not be up to date'). Filed under the shorter Java spelling, matching the SDK's own method name (diagnostics()); see aliases.",
+  "aliases": [
+    "sdk:diagnostics-check"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/dns-srv-bootstrap",
+  "label": "DNS-SRV Bootstrapping",
+  "type": "the SDK's connection-string resolution mechanism using a DNS SRV record to discover cluster nodes, instead of listing node addresses directly",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/managing-connections.json; part of the connection-management family (see sdk:managing-connections)."
+}

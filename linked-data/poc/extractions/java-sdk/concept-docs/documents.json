@@ -1,0 +1,124 @@
+{
+  "page_id": "java-sdk/concept-docs/documents",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/documents.md",
+  "concepts": [
+    {
+      "candidate_id": "data:document",
+      "label": "Document",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's own opening definition ('A document refers to an entry in the database... A document has an ID... The document also has a value which contains the actual application data') matches the promoted server-side data:document concept almost word for word. Strong cross-product reuse: the SDK's own concept-docs page independently restates the same definition server/ already supplied."
+    },
+    {
+      "candidate_id": "sdk:kv-operations",
+      "label": "key-value operations (upsert/insert/replace/get/remove)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's 'Primitive Key-Value Operations' section is a first-hand, conceptual explanation of the exact same upsert/insert/replace/get/remove operation set round 3's howtos/kv-operations.json already promoted this concept from."
+    },
+    {
+      "candidate_id": "sdk:document-expiration",
+      "label": "Document Expiration / TTL (expiry, get-and-touch, touch, expiry pager)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/kv-operations.json minted this id for 'expiry, preserveExpiry, getAndTouch'; this page's 'Expiration Overview' section is the conceptual counterpart, adding the expiry-pager internal mechanism and the get-and-touch/touch distinction, but describing the same underlying feature."
+    },
+    {
+      "candidate_id": "sdk:atomic-counters",
+      "label": "Atomic Counters (binary increment/decrement)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/kv-operations.json minted this id for the identical Binary.Collection increment/decrement API this page's 'Counters' section walks through."
+    },
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-document operations (lookupIn/mutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - this page's own lookupIn/mutateIn code samples for retrieving/updating parts of a document."
+    },
+    {
+      "candidate_id": "sdk:durability",
+      "label": "Durability Options",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - listed here as one of the additional options available when storing a document, matching round 3's extraction-layer concept exactly."
+    },
+    {
+      "candidate_id": "sdk:transcoder",
+      "label": "Transcoder (non-JSON document encode/decode)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted here, ahead of reading concept-docs/nonjson.md itself, because this page's own text is what first names it ('It is possible to store and retrieve non-JSON documents as well, using a [transcoder](nonjson.md)'); reused identically when nonjson.md is extracted later in this same batch."
+    },
+    {
+      "candidate_id": "sdk:view-queries-with-sdk",
+      "label": "MapReduce Views from the Java SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/view-queries-with-sdk.json id, cited here as an alternative secondary-lookup access path for documents."
+    },
+    {
+      "candidate_id": "n1ql:update",
+      "label": "UPDATE",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own worked example is a literal UPDATE statement, offered as the query-criteria-based alternative to a targeted sub-document mutation."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "data:document",
+      "predicate": "accessibleVia",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Primary key lookups are performed using the key-value API, which simplifies use and increases performance (as applications may interact with the KV store directly, rather than a secondary index or query processor)."
+    },
+    {
+      "subject": "data:document",
+      "predicate": "accessibleVia",
+      "object": "sdk:view-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Documents can also be accessed using secondary lookups via [SQL++ queries](n1ql-query.md) and [MapReduce Views](../howtos/view-queries-with-sdk.md)."
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:durability",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "* [Durability Requirements](durability-replication-failure-considerations.md)"
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "mustUseInsteadWhen",
+      "object": "n1ql:update",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - inverse direction from the usual case: here the sub-document/full-document write is the default and N1QL UPDATE is offered as the alternative for criteria-based updates",
+      "evidence": "or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:"
+    },
+    {
+      "subject": "sdk:kv-operations",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents"
+    },
+    {
+      "subject": "data:document",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:transcoder",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "It is possible to store and retrieve non-JSON documents as well, using a [transcoder](nonjson.md)."
+    },
+    {
+      "subject": "sdk:atomic-counters",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "You can also use [sub-document counter operations](subdocument-operations.md) to increment numeric values _within_ a document containing other content."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The page names CAS values, durability, and expiration as document-storage options but never states any RBAC role/privilege gate on basic CRUD operations themselves (unlike, e.g., provisioning-cluster-resources.json's index-management sections in round 3, which named 'Query Manage Index' explicitly). Basic KV CRUD appears to be documented as ungated by any specific named role on this page."
+  },
+  "cross_component_finding": "Strong confirmation of the round's reuse hypothesis at the server-cross-product level, not just within the SDK: this page's own definition of 'document' independently matches the promoted data:document concept almost verbatim ('A document refers to an entry in the database... has an ID... has a value'), and its Primitive Key-Value Operations section is the conceptual explanation of the exact operation set (upsert/insert/replace/get/remove) that sdk:kv-operations already covers - the same is true for sdk:document-expiration and sdk:atomic-counters, both minted from round 3's howtos/kv-operations.json and reused here unchanged. This page introduces exactly one new distinction the howto layer never named: sdk:transcoder, first surfaced by this page's own 'using a transcoder' phrase and only given full content two pages later in this same batch (nonjson.md)."
+}

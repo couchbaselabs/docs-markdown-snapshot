@@ -1,0 +1,127 @@
+{
+  "page_id": "java-sdk/howtos/encrypting-using-sdk",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/encrypting-using-sdk.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:field-level-encryption",
+      "label": "Field-Level Encryption (FLE)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - the practical howto counterpart to concept-docs/encryption.md, which minted this id. Confirmed here as client-side by the CryptoManager/Keyring/@Encrypted code shown throughout - encryption/decryption happen inside the Java application process, never on the server."
+    },
+    {
+      "candidate_id": "sdk:fle-keyring",
+      "label": "Keyring (FLE key-access abstraction)",
+      "registry_status": "minted",
+      "reused_or_minted": "reused - concept-docs/encryption.md's Keyring, shown here concretely as KeyStoreKeyring wrapping a Java KeyStore file."
+    },
+    {
+      "candidate_id": "sdk:fle-annotation-based-encryption",
+      "label": "@Encrypted annotation (Jackson data-binding mode)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - one of FLE's two usage modes: annotating a POJO field so Jackson transparently encrypts/decrypts it during data binding."
+    },
+    {
+      "candidate_id": "sdk:fle-jsonobjectcrypto",
+      "label": "JsonObjectCrypto (manual field-level crypto API)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - FLE's second usage mode: explicit get/put calls against specific fields of a JsonObject, for finer control than annotation-based binding."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "tradesOffAgainst",
+      "object": "encryption:native-encryption-at-rest",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - PRIMARY judgment-call relation for this batch. The page explicitly contrasts the two as different tools for different needs, not as the same mechanism under two names: native encryption at rest is comprehensive (whole non-ephemeral buckets, logs, config, audit data) while FLE trades that comprehensiveness for simpler key management on a limited number of fields. This is the strongest available textual evidence in this batch's four pages that the two encryption mechanisms are deliberately distinct, comparably-positioned alternatives - not a naming collision to fold together.",
+      "evidence": "Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "seeAlso",
+      "object": "server/8.0/learn/security/native-encryption-at-rest-overview",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link, same sentence as the tradesOffAgainst relation above",
+      "evidence": "Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md)."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "seeAlso",
+      "object": "java-sdk/concept-docs/encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link",
+      "evidence": "For a high-level overview of this feature, see [Field Level Encryption](../concept-docs/encryption.md)."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "seeAlso",
+      "object": "java-sdk/howtos/managing-connections",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso, structural Markdown link. Target page not yet extracted in this round (covered by a concurrent batch); page id used per the java-sdk page_id convention.",
+      "evidence": "To enable Field-Level Encryption, supply a `CryptoManager` when [configuring the Java SDK's ClusterEnvironment](managing-connections.md#cluster-environment)."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "availableSince",
+      "object": "Couchbase Java SDK 3.0.5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the stated minimum SDK version for this capability",
+      "evidence": "Couchbase Java SDK version `3.0.5` or later."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "dependsOnService",
+      "object": "HashiCorp Vault Transit",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - generalizing dependsOnService's service-to-service architectural dependency shape to an optional external KMS integration named by the docs, gated behind an additional Spring Vault dependency",
+      "evidence": "HashiCorp Vault Transit integration requires [Spring Vault](https://docs.spring.io/spring-vault/docs/current/reference/html/):"
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:fle-annotation-based-encryption",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - one of two closed usage modes the page enumerates",
+      "evidence": "Transparent encryption/decryption during Jackson data binding."
+    },
+    {
+      "subject": "sdk:field-level-encryption",
+      "predicate": "offersConfigurationChoice",
+      "object": "sdk:fle-jsonobjectcrypto",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the second of the two closed usage modes",
+      "evidence": "Manual field editing using `JsonObjectCrypto`."
+    },
+    {
+      "subject": "sdk:fle-annotation-based-encryption",
+      "predicate": "doesNotSatisfy",
+      "object": "field-level authentication guarantee (that a field's encrypted value has not been tampered with)",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - negative-requirement relation: enabling the FROM_UNENCRYPTED migration mode does not count toward the authentication guarantee encryption otherwise provides for a field",
+      "evidence": "Encryption means that document fields have been authenticated. Enabling this feature bypasses that protection, and so this should only be used in strictly limited circumstances, such as the migration from an unencrypted to an encrypted field."
+    },
+    {
+      "subject": "sdk:fle-keyring",
+      "predicate": "configuredVia",
+      "object": "Java KeyStore (JCEKS) file",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the mechanism through which a Keyring's key material is supplied",
+      "evidence": "Here's an example that shows how to create a Java key store file containing a suitable encryption key:"
+    },
+    {
+      "subject": "the encryption algorithms used by SDK 2",
+      "predicate": "deprecatedIn",
+      "object": "Couchbase Java SDK 3",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - the docs state outright that the SDK 2-era algorithms are deprecated and no longer used for new encryption as of SDK 3, distinct from and more specific to this migration-guidance page than concept-docs/encryption.md's supersedes relation on the same underlying fact",
+      "evidence": "The encryption algorithms used by SDK 2 are deprecated, and are no longer used for encrypting new data. Do not rely on the security of outdated encryption algorithms."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresEdition",
+    "finding": "The page states the encryption library 'is subject to the Couchbase License and Enterprise Subscription License agreements' and must be 'explicitly include[d]... as a dependency', which strongly implies Enterprise-only licensing, but it never says the words 'Enterprise Edition' or 'Community Edition' outright the way client-settings.json's TLS relation does ('This feature requires the Enterprise Edition of Couchbase Server'). I declined to assert requiresEdition -> edition:enterprise from this page alone since the evidence gate requires a verbatim statement, and this page's licensing language, while suggestive, does not use that phrase."
+  },
+  "cross_component_finding": "This page names two disjoint FLE usage modes - annotation-based Jackson data binding (@Encrypted) and manual JsonObjectCrypto field access - that share the same underlying CryptoManager/Keyring/algorithm configuration but are otherwise separate APIs a developer chooses between per use case, matching offersConfigurationChoice's closed-choice shape rather than one being a variant/subtype of the other.",
+  "cross_product_finding": "PRIMARY FINDING for this batch's central judgment call. This page is the ONE place across all four pages in this batch where Field-Level Encryption (client-side, application-managed keys, field-scoped) and Server's native encryption at rest (server-side, server-managed key hierarchy, whole-bucket-scoped) are named on the same page and explicitly contrasted: 'It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.' I used tradesOffAgainst rather than hasNoRelationshipTo because the text does not assert the two are simply unrelated - it positions them as comparable alternatives with different strengths (comprehensiveness vs. simplicity), which is a materially different and more informative relationship than the role:* family's collisions, where two things merely share a name with no comparative text at all. This confirms the coordinator's framing was correct to flag this as the batch's central judgment call, and shows the docs themselves already do the disambiguation work explicitly, in one tip box, rather than leaving it for the ontology to infer from a shared word."
+}

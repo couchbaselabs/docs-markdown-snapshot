@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/cluster-connection-lifecycle",
+  "label": "Cluster/ClusterEnvironment connection lifecycle",
+  "type": "the connect/disconnect lifecycle of a Cluster and its shared ClusterEnvironment object - one Cluster instance intended to be created once and reused/shared across an application, not per-request",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted in howtos/managing-connections.json; part of this round's connection-management family alongside sdk:managing-connections (the umbrella), sdk:tls-secure-connections and sdk:dns-srv-bootstrap, all independently at recurrence >= 2."
+}

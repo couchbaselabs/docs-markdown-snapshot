@@ -1,0 +1,42 @@
+{
+  "page_id": "java-sdk/concept-docs/understanding-views",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/understanding-views.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:view-queries-with-sdk",
+      "label": "MapReduce Views from the Java SDK (deprecated)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/view-queries-with-sdk.json id; this page's own warning ('Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application') closely echoes round 3's own extracted quote from the howto page, confirming this is the same deprecated-legacy-feature concept, not a distinct one."
+    },
+    {
+      "candidate_id": "sdk:views-management",
+      "label": "Views Management API (ViewIndexManager, DesignDocument)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/provisioning-cluster-resources.json id; this page's 'design documents' section (creating, retrieving, removing them) is exactly this management surface, described conceptually rather than procedurally."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "mustUseInsteadWhen",
+      "object": "sdk:sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](querying-your-data.md)."
+    },
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:views-management",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Views are stored in design documents. The SDK provides convenient methods to create, retrieve, and remove design documents."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The page describes no RBAC role or privilege gate for creating/retrieving/removing design documents, unlike the Search-service and Query-service pages elsewhere in this batch which both name specific roles."
+  },
+  "cross_component_finding": "This is another instance of the near-verbatim-duplication pattern found elsewhere in this batch (collections.md/working-with-collections.md): this page's deprecation warning and round 3's howtos/view-queries-with-sdk.json extracted quote both make the identical rhetorical move - conceding Views are 'still maintained and supported for legacy use' while steering the reader to the Query service instead - strong grounds for treating sdk:view-queries-with-sdk as one concept across both the concept-docs and howtos layers rather than two."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/xattr",
+  "label": "Extended Attributes (XATTR) - application-specific document metadata",
+  "type": "SDK-exposed access to Couchbase Server extended attributes, defined/read/edited/removed via extensions to the Sub-Document API (an xattr flag on a lookupIn/mutateIn spec) - visible only to the application(s) that request them, capped by the same 20MB document-size ceiling as the document body",
+  "promoted": true,
+  "recurrence": 6,
+  "note": "RESOLVES A ROUND-4 STUB. sdk:xattr was minted in round 4 purely as a placeholder for a link target on a page round 4 never read directly ('placeholder for the linked concept-docs/xattr.md page'). This round's java-sdk/concept-docs/xattr.json and python-sdk/concept-docs/xattr.json both independently read that page (and its Python twin) and supply the real first-hand definition - the id is unchanged, only its evidentiary basis is upgraded. Recurs across java-sdk (concept-docs/transactions.json, concept-docs/xattr.json, howtos/distributed-acid-transactions-from-the-sdk.json, howtos/subdocument-operations.json, ref/glossary.json) and python-sdk (concept-docs/transactions.json, concept-docs/xattr.json). NOT the same concept as concepts/search/xattrs-mapping.json (an FTS index-mapping kind for XATTR fields) or concepts/sgw/meta-xattr-arg.json (a Sync Gateway sync-function argument reading XATTR content) - both describe the same underlying Server mechanism from a different product's surface, but no source page states the three are one thing."
+}

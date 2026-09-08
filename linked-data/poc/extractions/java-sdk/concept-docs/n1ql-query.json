@@ -1,0 +1,155 @@
+{
+  "page_id": "java-sdk/concept-docs/n1ql-query",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/n1ql-query.md",
+  "concepts": [
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own subject."
+    },
+    {
+      "candidate_id": "n1ql:prepare",
+      "label": "PREPARE",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'Prepared Statements for Query Optimization' section describes exactly this statement's purpose and caching behaviour, gated through the SDK's `adhoc` option."
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement",
+      "label": "prepared statement",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own 'plan' terminology maps directly onto this concept."
+    },
+    {
+      "candidate_id": "sdk:query-options",
+      "label": "QueryOptions (client-side query configuration: parameters, scanConsistency, readonly, adhoc, profile, etc.)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/sqlpp-queries-with-sdk.json id; this page's `adhoc`, `parameters`, and `scanConsistency` code examples are all QueryOptions surface."
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - page shows both the raw SQL++ statement and the SDK's `indexManager.createIndex()` wrapper for it, same reasoning as round 3's provisioning-cluster-resources.json."
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - page shows both `CREATE PRIMARY INDEX ON users` and `indexManager.createPrimaryIndex()`."
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - page's 'Index Building' section shows both the raw statement and `indexManager.buildDeferredIndexes()`."
+    },
+    {
+      "candidate_id": "sdk:query-index-manager",
+      "label": "Query Index Manager (SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own `cluster.queryIndexes()` / QueryIndexManager code blocks are exactly this already-promoted concept, first found by round 5's cloud/ extraction; this is the Java SDK's own first-hand documentation of it."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index / Covered Query",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own definition ('When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service') matches the promoted concept's definition exactly."
+    },
+    {
+      "candidate_id": "index:sequential-scan",
+      "label": "Sequential scan",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'Query without Index' section describes it, sharing near-identical wording with querying-your-data.json's own 'Query without Index' section elsewhere in this batch."
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "scan_consistency",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's 'Index Consistency' section defines all four enum values (not_bounded/at_plus/request_plus/statement_plus) identically to the promoted concept."
+    },
+    {
+      "candidate_id": "n1ql:query-context",
+      "label": "query_context",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own 'Collections and Scopes, and the Query Context' section names it directly."
+    },
+    {
+      "candidate_id": "sdk:scope-level-query",
+      "label": "Querying at Scope Level (scope.query())",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/sqlpp-queries-with-sdk.json id, cited here as the SDK-side way to set a Query Context."
+    },
+    {
+      "candidate_id": "version:server-6-5",
+      "label": "Couchbase Server 6.5",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:query-options",
+      "predicate": "reliesOnMechanism",
+      "object": "n1ql:prepare",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "This is done for queries from the SDK by setting the `adhoc` query option to `false`."
+    },
+    {
+      "subject": "sdk:query-options",
+      "predicate": "behavesDifferentlyUnder",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For Couchbase Server 6.0 and earlier, the plan is cached by the SDK (up to a limit of 5000), as well as the Query Service. On Couchbase Server 6.5 and newer, the plan is stored by the Query Service — up to an adjustable limit of 16 384 plans per Query node."
+    },
+    {
+      "subject": "sdk:query-index-manager",
+      "predicate": "exposesOperationApi",
+      "object": "n1ql:create-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused - round 3/4's extraction-layer predicate for an SDK management interface exposing a specific statement as a typed method",
+      "evidence": "QueryIndexManager indexManager = cluster.queryIndexes();\n\nindexManager.createPrimaryIndex(bucketName);\nindexManager.createIndex(bucketName, \"ix_name\", Collections.singletonList(\"name\"));\nindexManager.createIndex(bucketName, \"ix_email\", Collections.singletonList(\"preferred_email\"));"
+    },
+    {
+      "subject": "sdk:query-index-manager",
+      "predicate": "exposesOperationApi",
+      "object": "n1ql:build-index",
+      "registry_status": "extraction-layer",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "indexManager.buildDeferredIndexes(bucketName);\nindexManager.watchIndexes(bucketName, Arrays.asList(\"ix_name\", \"ix_email\"), Duration.ofMinutes(5));"
+    },
+    {
+      "subject": "sdk:query-options",
+      "predicate": "configuresProperty",
+      "object": "n1ql:scan-consistency",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": ".scanConsistency(QueryScanConsistency.REQUEST_PLUS)"
+    },
+    {
+      "subject": "sdk:scope-level-query",
+      "predicate": "hasEquivalentEffectAs",
+      "object": "n1ql:query-context",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "As a convenience, you can also query a partial keyspace from the [Query Context](#8.0@server:n1ql:n1ql-intro:sysinfo.adoc#query-context) of a specific Scope."
+    },
+    {
+      "subject": "n1ql:create-index",
+      "predicate": "reliesOnMechanism",
+      "object": "index:covering-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "requiresServerRole",
+    "finding": "The page's Indexes section links out to server/'s indexes.md and to Covering Indexes for detail, but never itself repeats the privilege gate (Query Manage Index) that round 3's provisioning-cluster-resources.json already found and named explicitly on the same QueryIndexManager API. Not re-extracted here as it is not stated on THIS page."
+  },
+  "cross_component_finding": "The strongest case in the whole batch for the round's hypothesis that concept-docs describes the SAME underlying things as howtos/server: every single substantive concept on this page - prepared statements, CREATE/BUILD INDEX, covering indexes, sequential scan, scan_consistency, query_context - already exists as a promoted n1ql:* or index:* concept, most already at high recurrence from server/'s own statement-reference pages. I minted nothing new for this page at all; the only ids used that are not server-side promoted concepts are the two SDK-glue ids round 3 already minted (sdk:query-options, sdk:scope-level-query) and the already-promoted sdk:query-index-manager. This directly supports reusing rather than duplicating when a concept-docs page is fundamentally re-explaining a server-side mechanism through the SDK's own code examples, rather than introducing a genuinely new SDK-specific distinction.",
+  "cross_product_finding": "This page's 'Query without Index' paragraph is verbatim-identical (word for word, down to the same three sentences) to querying-your-data.md's own 'Query without Index' section, also in this batch - the same content has been duplicated across two concept-docs pages in the same product tree rather than one page linking to the other. Worth flagging for the reconciliation/docs-issues phase as a documentation duplication, not merely a shared concept."
+}

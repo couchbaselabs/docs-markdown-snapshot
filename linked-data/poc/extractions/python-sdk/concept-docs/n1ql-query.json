@@ -1,0 +1,103 @@
+{
+  "page_id": "python-sdk/concept-docs/n1ql-query",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/n1ql-query.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:query-options",
+      "label": "QueryOptions (adhoc, and other client-side query configuration)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - Python's `QueryOptions(adhoc=false)` matches Java's extraction-layer sdk:query-options ('QueryOptions (client-side query configuration: parameters, scanConsistency, readonly, adhoc, profile, etc.)') by name and by the exact same `adhoc` field."
+    },
+    {
+      "candidate_id": "n1ql:prepared-statement",
+      "label": "Prepared statement (adhoc=false plan caching)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'Often-used queries can be _prepared_ so that its _plan_ is generated only once' describes the same server-side compiled/cached plan the promoted n1ql:prepared-statement covers, here reached through the SDK's adhoc option rather than an explicit PREPARE statement."
+    },
+    {
+      "candidate_id": "n1ql:create-index",
+      "label": "CREATE INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own worked examples (`CREATE INDEX ix_name ON ...`) are literal instances of the promoted SQL++ statement."
+    },
+    {
+      "candidate_id": "n1ql:create-primary-index",
+      "label": "CREATE PRIMARY INDEX",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - `CREATE PRIMARY INDEX ON \\`users\\`` is a literal instance of the promoted statement."
+    },
+    {
+      "candidate_id": "n1ql:build-index",
+      "label": "BUILD INDEX (deferred index building)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'The indexes are not built until the `BUILD INDEX` statement is executed' matches the promoted statement's definition exactly."
+    },
+    {
+      "candidate_id": "index:covering-index",
+      "label": "Covering Index / Covered Query",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'When an index includes the actual values of all the fields specified in the query, the index _covers_ the query ... An index, in this case, is called a _covering index_' matches the promoted definition verbatim in substance."
+    },
+    {
+      "candidate_id": "index:sequential-scan",
+      "label": "Sequential scan (query without index)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - 'This uses a sequential scan, relying on a KV range scan to deliver the keys' matches the promoted definition of the Query service's no-index fallback."
+    },
+    {
+      "candidate_id": "n1ql:scan-consistency",
+      "label": "scan_consistency (not_bounded | at_plus | request_plus | statement_plus)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page documents all four enum values by the same names as the promoted concept's own value set, confirming the full four-member enum (not just a language-specific subset) is exposed at the Query-settings level regardless of SDK."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:query-options",
+      "predicate": "configuresProperty",
+      "object": "n1ql:prepared-statement",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "For the Python SDK, the `adhoc` parameter should be set to `false` for a plan to be prepared, or a prepared plan to be reused."
+    },
+    {
+      "subject": "python-sdk/concept-docs/n1ql-query",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "you probably just want to [dive into a practical example](../howtos/sqlpp-queries-with-sdk.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/n1ql-query",
+      "predicate": "seeAlso",
+      "object": "server/8.0/n1ql/n1ql-language-reference/prepare",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "see the [SQL++ reference](../../../server/current/n1ql/n1ql-language-reference/prepare.md), which gives more information on how to optimize queries using prepared statements"
+    },
+    {
+      "subject": "python-sdk/concept-docs/n1ql-query",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/covering-indexes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "For more information, see [Covering Indexes](../../../server/current/indexes/covering-indexes.md)."
+    },
+    {
+      "subject": "python-sdk/concept-docs/n1ql-query",
+      "predicate": "seeAlso",
+      "object": "server/8.0/indexes/query-without-index",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "This uses a [sequential scan](../../../server/current/indexes/query-without-index.md#sequential-scans), relying on a KV range scan to deliver the keys."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "authorship-provenance",
+    "finding": "Two of this Python SDK page's own code samples are not Python at all: the 'Defining an Index'/'Index Building' SDK examples are fenced as ```csharp and call .NET-idiomatic methods (`bucket.CreateManager()`, `CreateN1qlPrimaryIndexAsync()`, `BuildN1qlDeferredIndexesAsync()`, `WatchN1qlIndexes()`), and the 'Index Consistency' section's two worked examples are also fenced ```csharp, using `bucket.Upsert(...)`, `new QueryRequest(...)`, and `.ScanConsistency(ScanConsistency.RequestPlus)` - all .NET SDK API surface, not `couchbase-python-client`. No Python equivalent code is shown anywhere for index management via the SDK or for demonstrating scan_consistency in practice - the page's prose is Python-relevant but every single code sample after the initial `cluster.query(...)` call is copy-pasted from what reads like the .NET SDK's docs. This is the same authorship-provenance class of defect flagged for data-durability-acid-transactions.json's leftover Scala TODO marker, and arguably more severe here because there is no TODO comment warning the reader - the wrong-language code simply reads as if it were valid Python."
+  },
+  "cross_component_finding": "The page treats prepared-statement caching (adhoc option) and index consistency (scan_consistency) as two independent optimization knobs that both trade correctness/freshness for latency, but never cross-references them to each other even though both concern the same underlying query-plan lifecycle - each is documented as its own self-contained subsection with no relation stated between them.",
+  "cross_product_finding": "Where the prose is genuinely Python's own, reuse against the registry is clean and confirms cross-SDK stability: sdk:query-options' `adhoc` field matches Java's extraction-layer definition exactly, and n1ql:scan-consistency's full four-value enum (not_bounded/at_plus/request_plus/statement_plus) is documented identically to the promoted server-side concept - notably the REGISTRY ITSELF flags that 'the Java SDK's QueryScanConsistency exposes a two-member subset (Not Bounded / Request Plus)' of this same enum, but this Python page's prose lists and explains all four values with no such restriction stated, suggesting Python's SDK (or at least its docs) may expose the fuller set rather than Java's two-member subset - a genuine, specific cross-SDK divergence worth flagging for reconciliation to verify against Python's actual QueryScanConsistency enum. Beyond that generic finding, the bigger and more actionable discovery on this page is NOT about SDK vocabulary at all: most of the page's code examples are literally .NET SDK code mislabeled as this Python SDK's own howto content (see notable_absence) - a docs-quality defect that undermines any attempt to extract Python-specific SDK API concepts (CreateN1qlIndexAsync, QueryRequest, etc. are not this SDK's API) from the back half of this page."
+}

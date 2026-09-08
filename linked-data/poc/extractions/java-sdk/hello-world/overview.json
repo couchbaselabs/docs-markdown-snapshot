@@ -1,0 +1,23 @@
+{
+  "page_id": "java-sdk/hello-world/overview",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/overview.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:start-using-sdk", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "[Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:sample-application", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Quickstart in Couchbase with Spring Boot and Java](sample-application.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:student-record-developer-tutorial", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Beginners' Couchbase Tutorial](student-record-developer-tutorial.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:sqlpp-queries-with-sdk", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Query with a familiar, SQL-like language](../howtos/sqlpp-queries-with-sdk.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:vector-search-with-search-service", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Vector Search for your AI app](../howtos/vector-searching-with-sdk.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:kv-operations", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Data Operations](../howtos/kv-operations.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:error-handling", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Handling Errors](../howtos/error-handling.md)" },
+    { "subject": "sdk:overview", "predicate": "seeAlso", "object": "sdk:client-settings", "registry_status": "promoted", "reused_or_minted_predicate": "structural markdown link", "evidence": "* [Client Settings](../ref/client-settings.md)" },
+    { "subject": "sdk:overview", "predicate": "supportsCrossClusterOperation", "object": "sdk:capella", "registry_status": "promoted", "reused_or_minted_predicate": "reused - closest fit among registry predicates for 'this SDK targets both Capella and self-managed Server transparently', though the fit is imperfect - flagged in cross_product_finding rather than asserted confidently as the ideal predicate", "evidence": "The Couchbase Java SDK allows Java applications to access a Couchbase cluster — Capella or self-managed." }
+  ],
+  "notable_absence": {
+    "predicate": "concepts",
+    "finding": "This is the top-level 'Couchbase Java SDK 3.12' landing page: install snippet, three teaser code samples (KV upsert with durability, a parametrized SQL++ query, a vector search request), a list of ecosystem integrations (Spring Data, Spring Boot, Quarkus, Spark Connector), and two large link-listing sections ('Using Your Database', 'Resources'). Every technical term it touches (DurabilityLevel.MAJORITY, cluster.query, VectorSearch/VectorQuery) is already covered by dedicated howto pages elsewhere in this round's batches, so this page contributes no new concept - purely a navigation and marketing hub. concepts[] is correctly empty."
+  },
+  "cross_component_finding": "The teaser code block here (`collection.upsert(\"my-document\", JsonObject.create().put(\"doc\", true), upsertOptions().durability(DurabilityLevel.MAJORITY));`) is character-for-character identical to the one repeated in start-using-sdk.md, confirming both pages intentionally share the same canonical first example rather than drifting into inconsistent variants.",
+  "cross_product_finding": "The 'Analytics SDKs' tip box draws an explicit product-boundary distinction this batch has not seen stated so directly elsewhere: Enterprise Analytics (RT-OLAP) and Capella Analytics (Columnar) 'need different SDKs' because Capella Analytics 'does not have Enterprise Analytics' load balancer, and uses a different connection protocol' - i.e., even though both are called '(Enterprise/Capella) Analytics', they are NOT interchangeable at the SDK connection layer despite sharing a name, a same-name-different-product-surface pattern consistent with several other collisions already documented elsewhere in this registry (e.g., role:full-administrator's writeup, analytics:workbench vs capella:analytics-workbench)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/fle-keyring",
+  "label": "Keyring (FLE key-access abstraction)",
+  "type": "the pluggable interface sdk:field-level-encryption uses to obtain encryption keys - native implementations for Java Key Store / Windows Certificate Store, custom implementations for external KMS integration and key rotation",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Recurs across concept-docs/encryption.json, howtos/encrypting-using-sdk.json and ref/glossary.json - configuredVia relation from sdk:field-level-encryption on every occurrence."
+}

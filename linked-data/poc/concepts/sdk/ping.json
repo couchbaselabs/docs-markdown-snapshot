@@ -1,0 +1,11 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/ping",
+  "label": "Ping (active health probe)",
+  "type": "an active, side-effecting SDK health check that queries live services for status/latency across every reachable node - contrasted with the passive sdk:diagnostics",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Cross-product namespace fork, resolved: python-sdk/concept-docs/health-check.json independently minted 'sdk:ping-check' for the identical mechanism ('Ping actively queries the status of the specified services, giving status and latency information for every node reachable' - verbatim-equivalent to java-sdk/howtos/health-check.json's '`Ping` _actively_ queries the status of the specified services, giving status and latency information for every node reachable'). Filed under the shorter Java spelling, matching the SDK's own method name (ping()); see aliases.",
+  "aliases": [
+    "sdk:ping-check"
+  ]
+}

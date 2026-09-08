@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/field-level-encryption",
+  "label": "Field-Level Encryption (FLE)",
+  "type": "a client-side, optional add-on library (java-couchbase-encryption or equivalent) that encrypts specific JSON field VALUES inside the application before a document is sent to Couchbase Server, using an application-managed pluggable sdk:fle-keyring - NOT the same mechanism as encryption:native-encryption-at-rest (Couchbase Server's own server-side, server-key-managed, whole-bucket disk encryption); the two share only the word 'encryption'",
+  "promoted": true,
+  "recurrence": 3,
+  "note": "Recurs across concept-docs/encryption.json (java-sdk), howtos/encrypting-using-sdk.json, ref/glossary.json, and python-sdk/concept-docs/encryption.json. The java-sdk/concept-docs/encryption.json record explicitly checked and rejected reuse of encryption:native-encryption-at-rest/encryption:data-encryption-key/encryption:master-password before minting this id - the same same-word-different-thing collision pattern already documented five times in the role:* family. Client-side, field-scoped, app-managed keys vs. server-side, bucket-scoped, server-managed key hierarchy."
+}

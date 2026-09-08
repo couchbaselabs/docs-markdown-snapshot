@@ -1,0 +1,45 @@
+{
+  "page_id": "java-sdk/project-docs/3.0-pre-release-notes",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/3.0-pre-release-notes.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:cluster-level-query",
+      "label": "Cluster-level query (SQL++ queries executed via the Cluster object without first opening a Bucket)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept captures 'query executed at Cluster scope without opening a bucket first', which is a distinct capability from sdk:sqlpp-queries-with-sdk (the general howto for issuing SQL++ queries); this page's alpha.6 changelog entry is the earliest evidence of the capability being introduced, gated on a specific Server version"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:cluster-level-query",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted (relations/available-since.jsonld), exact fit for 'the earliest Server version a capability holds true'",
+      "evidence": "When using Couchbase Server 6.5 and later, cluster-level queries can now be performed without opening a bucket."
+    },
+    {
+      "subject": "sdk:prepared-statements-for-query-optimization",
+      "predicate": "availableSince",
+      "object": "version:server-6-5",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; object and subject both established elsewhere in the registry, sdk:prepared-statements-for-query-optimization being an extraction-layer concept from cloud/n1ql/n1ql-language-reference/prepare.json, reused here since this alpha.7 entry describes the same query-prepare mechanism gated on the same Server version",
+      "evidence": "A new query prepare mechanism is support when a cluster version 6.5 and later is used."
+    },
+    {
+      "subject": "sdk:cluster-level-query",
+      "predicate": "seeAlso",
+      "object": "java-sdk/project-docs/sdk-release-notes",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted (relations/see-also.json); structural markdown link",
+      "evidence": "The 3.0 series release notes proper can be found [here](sdk-release-notes.md), along with install instructions for all supported platforms."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "removedIn",
+    "finding": "This archive page documents dozens of API-shape changes across seven alpha/beta releases (e.g. JCBC-1497 'All deprecated APIs are removed', JCBC-1512 'ExpandMacro is gone', JVMCBC-731 'the CAS-based observe has been removed', JCBC-1355 'Spatial view API support has been removed since it is deprecated on the server') that would, on a GA release, be exactly the removedIn/deprecatedIn shape. None were captured as relations here: every one of these describes an unreleased, unsupported pre-GA API surface churning between alpha/beta builds rather than a real API a user could have been depending on, and the page itself states 'none of the pre-releases listed below are supported'. Treating alpha-to-alpha churn as removedIn facts would flood the registry with version-gated claims about an API shape that never shipped."
+  },
+  "cross_component_finding": "JCBC-1355's 'Spatial view API support has been removed since it is deprecated on the server' is a real, still-true cross-component fact (the Java SDK dropping a client API in step with server-side Spatial View deprecation) but the quote gives no version number for either side, so it cannot be expressed as a dated removedIn/deprecatedIn relation without fabricating a version. Left uncaptured for the same reason as the notable_absence above - better to omit than to guess a version.",
+  "cross_product_finding": "This page's only substantive, still-true facts (JVMCBC-694 cluster-level queries without an open bucket, JVMCBC-729 the query-prepare mechanism) are both gated on Couchbase Server 6.5 and later - not on Couchbase Java SDK 3.0 itself. Neither is worth restating in the 3.0 GA release notes because they're Server capabilities, not SDK-version-specific ones - consistent with this round's framing that Server-version facts and the SDK's own 3.x.y version numbering are two independent axes."
+}

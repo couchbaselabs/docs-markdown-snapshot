@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/virtual-xattr",
+  "label": "Virtual Extended Attributes ($document macro)",
+  "type": "a server-generated, on-demand subset of sdk:xattr - not stored, computed from document metadata (e.g. $document.exptime) and retrieved by specifying $document as a search-path via the Sub-Document API - isSubtypeOf sdk:xattr",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted independently in both java-sdk/concept-docs/xattr.json and python-sdk/concept-docs/xattr.json for the identical mechanism, each citing the same page sentence ('_Virtual_ extended attributes consist of metadata on an individual document ... retrieved by specifying $document as a search-path'). Promoted alongside its parent sdk:xattr as the one substantive addition Python's page makes beyond the bare round-4 stub label."
+}

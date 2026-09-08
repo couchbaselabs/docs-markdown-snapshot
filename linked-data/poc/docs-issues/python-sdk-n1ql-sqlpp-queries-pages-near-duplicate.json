@@ -1,0 +1,12 @@
+{
+  "id": "https://docs.couchbase.com/ld/docs-issues/python-sdk-n1ql-sqlpp-queries-pages-near-duplicate",
+  "type": "docs-issue",
+  "issueType": "possible-content-duplication",
+  "description": "python-sdk/howtos/n1ql-queries-with-sdk.md and python-sdk/howtos/sqlpp-queries-with-sdk.md cover the identical task (querying the travel-sample bucket via SQL++ from the Python SDK, including creating a primary index and running a first query) with substantially overlapping content - a line-level diff shows roughly a third of each file's lines differ, the rest being the same material reordered/reworded. The older-named page (n1ql-queries-with-sdk.md) still uses the pre-rename 'N1QL' framing throughout and a hardcoded, unresolvable xref (`#8.0@server::tools/cbq-shell.html`); the newer page (sqlpp-queries-with-sdk.md) uses the current SQL++ framing and cleaner section structure. This looks like an in-progress page migration (SQL++ rename) that left both the old and new version live rather than redirecting/retiring the old one, producing two near-duplicate howto pages under different filenames for the same task.",
+  "about": [
+    "python-sdk/howtos/n1ql-queries-with-sdk",
+    "python-sdk/howtos/sqlpp-queries-with-sdk"
+  ],
+  "foundDuring": "round-30-java-sdk-completion-and-python-sdk-first-contact",
+  "status": "open"
+}

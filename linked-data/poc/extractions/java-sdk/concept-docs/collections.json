@@ -1,0 +1,34 @@
+{
+  "page_id": "java-sdk/concept-docs/collections",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/collections.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:working-with-collections",
+      "label": "Collections/Scopes support in the 3.x Java SDK API",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3 minted this id from howtos/working-with-collections.md; this page's own opening sentence is near-verbatim identical ('The Collections feature in Couchbase Server is fully implemented in the 3.x API versions of the Couchbase SDK' here, vs. howtos/working-with-collections.md's 'The Collections feature in Couchbase Server 7.x is fully implemented in the 3.x API versions of the Couchbase SDKs' per round 3's own extraction) - the strongest textual match for 'same underlying thing' found anywhere in this batch, so reused rather than minted fresh despite the id being named after a howto page."
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "collection (Couchbase Server)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page defers entirely to server/'s own Collections page for the concept's substance ('Information on _Collections_ can be found in the server docs')."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:working-with-collections",
+      "predicate": "reliesOnMechanism",
+      "object": "server:collection",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Information on _Collections_ can be found in the [server docs](../../../server/current/learn/data/scopes-and-collections.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "n/a",
+    "finding": "The page's two Java code examples are both `Unresolved include directive` placeholders in this snapshot (the actual CollectionsExample.java source was not inlined), so no operation-level detail (which methods, which signatures) could be extracted beyond what the prose states."
+  },
+  "cross_component_finding": "This is the batch's cleanest case of a concept-docs page and a howto page being demonstrably the SAME underlying concept rather than two related-but-distinct ones: the page's own opening sentence is a near word-for-word restatement of round 3's extraction of howtos/working-with-collections.md's opening sentence, and its own 'Further Reading' section links directly back to that howto as 'Collections in action' for the identical feature. I reused sdk:working-with-collections rather than minting a second id, on the strength of that near-verbatim duplication - a stronger textual match than the more common case elsewhere in this batch of 'same capability, differently phrased'."
+}

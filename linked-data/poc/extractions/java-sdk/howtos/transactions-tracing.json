@@ -1,0 +1,57 @@
+{
+  "page_id": "java-sdk/howtos/transactions-tracing",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/transactions-tracing.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:transaction-tracing",
+      "label": "Transaction Tracing (parent spans for distributed ACID transactions)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a transaction-scoped application of the general sdk:request-tracer mechanism; distinct because it attaches a parent span to a whole retryable transaction lambda rather than to a single request"
+    },
+    {
+      "candidate_id": "sdk:request-tracer",
+      "label": "RequestTracer interface (pluggable per-request tracing)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - already minted in client-settings.json and given its own howto in observability-tracing.json; this page reuses the same `RequestTracer` abstraction to set a transaction's parent span"
+    },
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Distributed ACID Transaction (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted (concepts/sdk/distributed-transaction.json); this page is the transaction feature's dedicated tracing howto"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "monitoredVia",
+      "object": "sdk:transaction-tracing",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a component observed through a named metric/endpoint/log surface",
+      "evidence": "If configured, detailed telemetry on each transaction can be output that is compatible with various external systems including OpenTelemetry and its predecessor OpenTracing."
+    },
+    {
+      "subject": "sdk:transaction-tracing",
+      "predicate": "reliesOnMechanism",
+      "object": "sdk:request-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a capability depending on a shared underlying mechanism",
+      "evidence": "This can be done using the SDK's `RequestTracer` abstraction as so:"
+    },
+    {
+      "subject": "sdk:transaction-tracing",
+      "predicate": "seeAlso",
+      "object": "sdk:request-tracer",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "See the [SDK Request Tracing documentation](observability-tracing.md) for how to configure this."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "hasLifecycleState",
+    "finding": "The page states tracing 'should currently be regarded as developer preview functionality, as the spans and attributes output may change over time' - a lifecycle-maturity signal - but the only promoted hasLifecycleState relation in the registry is scoped to eventing:function/eventing:function-lifecycle-state, so it does not generalize to a non-Eventing subject like this one without stretching its stated range; left unassigned rather than forced onto a mismatched predicate."
+  },
+  "cross_component_finding": null,
+  "cross_product_finding": null
+}

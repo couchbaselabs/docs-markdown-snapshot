@@ -1,0 +1,291 @@
+{
+  "page_id": "java-sdk/project-docs/sdk-release-notes",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/project-docs/sdk-release-notes.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:bucket-management",
+      "label": "Bucket management API (Java SDK)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/provisioning-cluster-resources.json"
+    },
+    {
+      "candidate_id": "version:server-8-0",
+      "label": "Couchbase Server 8.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:vector-search-with-search-service",
+      "label": "Vector Search (via the Search service)",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "version:server-7-6",
+      "label": "Couchbase Server 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:kv-range-scan",
+      "label": "KV Range Scan",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "sdk:subdocument-replica-reads",
+      "label": "Sub-document replica reads (lookupInAnyReplica/lookupInAllReplicas)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct from sdk:subdocument-operations (the general lookupIn/mutateIn howto, not yet extracted in this round's scope) since this is specifically the replica-targeting variant with its own version gate"
+    },
+    {
+      "candidate_id": "sdk:query-read-from-replica",
+      "label": "SQL++ query read-from-replica (queryOptions().useReplica(true))",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers query-level (as against KV-level) replica reads"
+    },
+    {
+      "candidate_id": "sdk:distributed-transaction",
+      "label": "Distributed ACID Transaction (Java SDK)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-7-1",
+      "label": "Couchbase Server 7.1",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "server:collection",
+      "label": "Collection (server-side data-container concept)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "version:server-7-0",
+      "label": "Couchbase Server 7.0",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - already promoted"
+    },
+    {
+      "candidate_id": "sdk:scope-level-query",
+      "label": "Scope-level SQL++ query (Scope.query(), as against Cluster-level or bucket-level)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - distinct scoping level from sdk:sqlpp-queries-with-sdk and sdk:cluster-level-query"
+    },
+    {
+      "candidate_id": "sdk:scope-level-analytics-query",
+      "label": "Scope-level Analytics query",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - the Analytics-service counterpart to sdk:scope-level-query"
+    },
+    {
+      "candidate_id": "sdk:view-queries-with-sdk",
+      "label": "View queries (MapReduce Views) with the SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - extraction-layer concept from java-sdk/howtos/view-queries-with-sdk.json"
+    },
+    {
+      "candidate_id": "version:sdk-3-10-1",
+      "label": "Java SDK 3.10.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family; the release that deprecated the SDK-side Views API"
+    },
+    {
+      "candidate_id": "sdk:transaction-document-expiration",
+      "label": "Per-document expiration override for documents inserted/replaced inside a transaction",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a specific transaction feature with an unusually eventful version history (added, removed for a regression, re-added) documented entirely within this one release-notes page"
+    },
+    {
+      "candidate_id": "version:sdk-3-11-0",
+      "label": "Java SDK 3.11.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family"
+    },
+    {
+      "candidate_id": "version:sdk-3-11-1",
+      "label": "Java SDK 3.11.1",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family; the release that removed sdk:transaction-document-expiration due to a regression"
+    },
+    {
+      "candidate_id": "version:sdk-3-12-0",
+      "label": "Java SDK 3.12.0",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - version:sdk-* family; the release that reinstated sdk:transaction-document-expiration"
+    },
+    {
+      "candidate_id": "sdk:jvm-clients-bom",
+      "label": "Couchbase JVM clients Bill of Materials (BOM)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the BOM artifact"
+    },
+    {
+      "candidate_id": "version:sdk-3-9-0",
+      "label": "Java SDK 3.9.0",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - minted earlier in this same batch (java-sdk/project-docs/compatibility.json)"
+    },
+    {
+      "candidate_id": "sdk:jvm-mono-versioning",
+      "label": "JVM client mono-versioning strategy (Java, Scala, Kotlin, core, and optional modules aligned to one shared release number from Java SDK 3.9.0)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - no existing concept covers the cross-language JVM client release-alignment policy; directly corroborates compatibility.json's API-version-table footnote ③ about Scala/Kotlin adopting common release versions from Java 3.9"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:bucket-management",
+      "predicate": "requiresCapability",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "The bucket management API now supports specifying the number of VBuckets for a Magma bucket (requires Couchbase Server 8.0 or later)."
+    },
+    {
+      "subject": "sdk:vector-search-with-search-service",
+      "predicate": "requiresCapability",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; corroborates the same fact captured with different evidence in compatibility.json",
+      "evidence": "The `upsertIndex()` call now prevents vector indexes from being created on server versions before version 7.6.0, which do not support these index types."
+    },
+    {
+      "subject": "sdk:vector-search-with-search-service",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Added support for vector search, a new feature in Couchbase Server 7.6"
+    },
+    {
+      "subject": "sdk:kv-range-scan",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; corroborates compatibility.json's feature-matrix entry with clean release-notes prose",
+      "evidence": "These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later."
+    },
+    {
+      "subject": "sdk:subdocument-replica-reads",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later."
+    },
+    {
+      "subject": "sdk:query-read-from-replica",
+      "predicate": "availableSince",
+      "object": "version:server-7-6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Upcoming Couchbase server release 7.6 will support having SQL++ queries read from replicas, in scenarios where the active is unavailable (such as failover)."
+    },
+    {
+      "subject": "sdk:query-read-from-replica",
+      "predicate": "doesNotSupport",
+      "object": "Couchbase Server versions older than 7.6",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "It will only work against 7.6 and above: against older server versions, it will raise a `FeatureNotAvailableException`."
+    },
+    {
+      "subject": "sdk:distributed-transaction",
+      "predicate": "availableSince",
+      "object": "version:server-7-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Added support for a Couchbase Server 7.1 performance optimisation for transactions that reduces memory requirements in clients."
+    },
+    {
+      "subject": "server:collection",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; corroborates the same GA threshold captured elsewhere in this batch with different evidence",
+      "evidence": "It promotes to GA support for the scopes and collections provided by Couchbase Server 7.0, and also OpenTelemetry."
+    },
+    {
+      "subject": "sdk:scope-level-query",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Support for scope-level SQL++ queries has been added (needs at least Server 7.0 to be usable)."
+    },
+    {
+      "subject": "sdk:scope-level-analytics-query",
+      "predicate": "availableSince",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "Support for scope-level analytics queries has been added (needs at least Server 7.0 to be usable)."
+    },
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "deprecatedIn",
+      "object": "version:server-7-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; corroborates migrating-sdk-code-to-3.n.json's identical fact with independent evidence from this page",
+      "evidence": "Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release."
+    },
+    {
+      "subject": "sdk:view-queries-with-sdk",
+      "predicate": "deprecatedIn",
+      "object": "version:sdk-3-10-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the SDK-side deprecation is dated separately from the Server-side deprecation above, since the SDK deprecated its own Views API in a specific later release rather than at the moment Server first deprecated the feature",
+      "evidence": "Deprecated the Views API."
+    },
+    {
+      "subject": "sdk:transaction-document-expiration",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-11-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "When inserting or replacing a document inside a transaction, it is now possible to specify an expiration time for the document."
+    },
+    {
+      "subject": "sdk:transaction-document-expiration",
+      "predicate": "removedIn",
+      "object": "version:sdk-3-11-1",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; a regression-driven removal, distinct from a deliberate deprecation",
+      "evidence": "This feature was removed in `3.11.1` due to"
+    },
+    {
+      "subject": "sdk:transaction-document-expiration",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-12-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted; the feature was reinstated once the underlying regression (JVMCBC-1712) was fixed, giving this one subject two separate availableSince relations at two different releases either side of a removedIn",
+      "evidence": "When inserting or replacing a document inside a transaction, it is now possible to specify an expiration time for the document."
+    },
+    {
+      "subject": "sdk:jvm-clients-bom",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-9-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "A Bill of Materials (BOM) for Couchbase JVM clients is now available. It specifies compatible versions of the Java, Scala, and Kotlin clients, as well as the optional metrics and tracing components."
+    },
+    {
+      "subject": "sdk:jvm-mono-versioning",
+      "predicate": "availableSince",
+      "object": "version:sdk-3-9-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - predicate is promoted",
+      "evidence": "We've adopted a mono-versioning strategy for the Couchbase JVM client libraries. The Scala and Kotlin SDKs, along with the core library and optional modules, are now aligned with the Java SDK at version 3.9.0."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "deprecatedIn / removedIn",
+    "finding": "This release-notes page spans roughly six years and dozens of point releases (3.0 through 3.12), and contains far more deprecatedIn/removedIn-shaped bug-fix and API-churn entries than were captured here (e.g. JCBC-1625 maxTTL->maxExpiry, JCBC-1647 EjectionPolicy->EvictionPolicyType, JVMCBC-1579 NodeIdentifier package move, JCBC-2075 ArrayInsert.createPath() deprecation, JCBC-1763 CollectionManager::getScope deprecation, JVMCBC-1530 QueryException deprecation, and many more). Only a curated, representative subset was extracted - facts with a clear Server-version gate (the round's stated priority), a clean cross-file corroboration opportunity with compatibility.json, or an unusually complete version-history arc (sdk:transaction-document-expiration's add/remove/re-add). Exhaustively extracting every changelog line across 2,800+ lines of release notes was judged to be reconciliation-scale work, not a single extraction record's job; the full changelog remains on the page for a future, more targeted pass (e.g. one extraction batch per SDK minor-version line) if the registry ever needs that level of granularity."
+  },
+  "cross_component_finding": "sdk:transaction-document-expiration's version history (availableSince 3.11.0 -> removedIn 3.11.1 -> availableSince 3.12.0) is the one clean example in this batch of a feature legitimately having TWO availableSince relations bracketing a removedIn relation for the same subject - not a contradiction, but a real add/regress/re-add arc that happened to be fully documented on a single page. Reconciliation should not treat two availableSince relations on one subject as automatically suspicious without checking for an intervening removedIn.",
+  "cross_product_finding": "Three separate facts on this page independently corroborate compatibility.json's claim (same batch) that Java SDK 3.9.0 is a meaningful cross-language alignment point: the JVM clients BOM, the mono-versioning strategy statement, and (from compatibility.json) the API-version table's footnote that Scala/Kotlin adopted common release versions starting at Java 3.9/3.10. All three converge on version:sdk-3-9-0 as the point where Java's own release-numbering axis and the cross-SDK-family JVM alignment axis intersect, independently of the abstract cross-language 'SDK API' version axis (version:sdk-api-3-9) discussed in compatibility.json - three different axes, one coincidental release-number overlap worth flagging again here since it recurs."
+}

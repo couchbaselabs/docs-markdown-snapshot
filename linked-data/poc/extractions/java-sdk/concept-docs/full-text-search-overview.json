@@ -1,0 +1,90 @@
+{
+  "page_id": "java-sdk/concept-docs/full-text-search-overview",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/concept-docs/full-text-search-overview.md",
+  "concepts": [
+    {
+      "candidate_id": "fts:full-text-search",
+      "label": "Full Text Search (capability)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own definition ('The _Search Service_ lets you create, manage, and query specially purposed _indexes_, defined on JSON documents within a Couchbase bucket') matches the promoted concept."
+    },
+    {
+      "candidate_id": "service:search-service",
+      "label": "Search service",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own subject, 'the Search Service'."
+    },
+    {
+      "candidate_id": "sdk:full-text-searching-with-sdk",
+      "label": "Running Search (FTS) Queries from the Java SDK",
+      "registry_status": "extraction-layer",
+      "reused_or_minted": "reused - round 3's howtos/full-text-searching-with-sdk.json id, named directly by this page as 'Searching from the SDK'."
+    },
+    {
+      "candidate_id": "role:fts-admin",
+      "label": "Search Admin (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names it by its internal role string ('fts_admin') exactly as the promoted concept's alias records it."
+    },
+    {
+      "candidate_id": "role:fts-searcher",
+      "label": "Search Reader (Server RBAC role)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page names it by its internal role string ('fts_searcher')."
+    },
+    {
+      "candidate_id": "n1ql:sqlpp",
+      "label": "SQL++",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - the page's own 'Search from SQL++' section."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "dependsOnService",
+      "object": "service:search-service",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The _Search Service_ provides extensive capabilities for _natural-language querying_: this allows special search-constraints to be applied to text-queries."
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-admin",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The role `fts_admin` must therefore be assigned to those who intend to create indexes"
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "requiresServerRole",
+      "object": "role:fts-searcher",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "and the role `fts_searcher` to those who intend to perform searches."
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "accessibleVia",
+      "object": "n1ql:sqlpp",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "The search service can be accessed by [search functions in SQL++ Query](../../../server/7.2/n1ql/n1ql-language-reference/searchfun.md) (formerly N1QL)."
+    },
+    {
+      "subject": "fts:full-text-search",
+      "predicate": "accessibleVia",
+      "object": "sdk:full-text-searching-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "Couchbase SDKs provides an API for the support of Search querying. A detailed example of performing Search queries from the SDK is provided in [Searching from the SDK](../howtos/full-text-searching-with-sdk.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "documentedForVersion",
+    "finding": "Several of the page's own outbound links are pinned to server/7.2 paths (e.g. 'server/7.2/fts/fts-perform-searches.md') while others in the same list use server/current - an internal version inconsistency within the page's own 'Other information-sources' bullet list, not something I could resolve without guessing which is authoritative."
+  },
+  "cross_component_finding": "This page cleanly reuses two already-promoted Server RBAC roles (role:fts-admin, role:fts-searcher) by their literal internal names ('fts_admin', 'fts_searcher'), giving a clean requiresServerRole pair split by operation (index creation vs. searching) rather than one blanket role - a precise, low-risk reuse since the role strings match the promoted concepts' own aliases exactly."
+}

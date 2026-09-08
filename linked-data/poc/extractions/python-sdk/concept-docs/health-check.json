@@ -1,0 +1,53 @@
+{
+  "page_id": "python-sdk/concept-docs/health-check",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/health-check.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:health-check",
+      "label": "Health Check (ping/diagnostics)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - promoted at reconciliation (round 30), same spelling as java-sdk's. 'Health Check enables useful diagnostics on the state of Couchbase Clusters across networks.'"
+    },
+    {
+      "candidate_id": "sdk:ping-check",
+      "label": "Ping (active health check)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted at extraction time, folded at reconciliation (round 30) as an alias of sdk:ping (java-sdk's spelling for the identical mechanism). 'Ping actively queries the status of the specified services, giving status and latency information for every node reachable.'"
+    },
+    {
+      "candidate_id": "sdk:diagnostics-check",
+      "label": "Diagnostics (passive/cached health check)",
+      "registry_status": "promoted",
+      "reused_or_minted": "minted at extraction time, folded at reconciliation (round 30) as an alias of sdk:diagnostics (java-sdk's spelling for the identical mechanism). 'Diagnostics returns a list of the nodes that the SDK currently has (or had) a connection to, and the current status of the connection. However this call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node.'"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:health-check",
+      "predicate": "hasInternalComponent",
+      "object": "sdk:ping-check",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections."
+    },
+    {
+      "subject": "sdk:health-check",
+      "predicate": "hasInternalComponent",
+      "object": "sdk:diagnostics-check",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused",
+      "evidence": "`Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections."
+    },
+    {
+      "subject": "sdk:diagnostics-check",
+      "predicate": "seeAlso",
+      "object": "python-sdk/concept-docs/health-check",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - rdfs:seeAlso mapping for an in-page structural markdown anchor link (Diagnostics section pointing back to the Ping section of this same page)",
+      "evidence": "If you want the _current_ status, then use [Ping](#ping)."
+    }
+  ],
+  "cross_component_finding": "The code examples on this page are not Python. Both the Ping example ('let services = [couchbase.ServiceType.KeyValue, couchbase.ServiceType.Query]', 'bucket.ping(services, (err, res) => {...})') and the Diagnostics example ('bucket.diagnostics((err, res) => {...})') are fenced as ```javascript``` blocks using Node.js callback-style syntax, and the mock JSON output's embedded 'sdk' string literally reads 'libcouchbase/2.9.5-njs couchnode/2.6.9 (node/10.16.0; ...)' - couchnode is the Node.js SDK, not the Python SDK. This is a concrete content-quality finding, not just a modeling one: the page appears to have been copied from (or never updated from) the Node.js SDK's equivalent health-check documentation and never adapted to Python syntax - no ping()/diagnostics() call shown anywhere uses Python method-call or dict-return conventions. Filed as docs-issues/python-sdk-health-check-leftover-nodejs-sample-output at reconciliation (round 30).",
+  "cross_product_finding": "Placement difference confirmed by directory listing: Java's SDK docs have health-check.md only under howtos/ (java-sdk/current/howtos/health-check.md exists; there is no concept-docs/health-check.md for Java), treating Health Check as a task/how-to. Python's SDK docs place the identically-named page under concept-docs/ instead (python-sdk/current/concept-docs/health-check.md), treating the same ping()/diagnostics() feature as a concept to be explained rather than a task to be performed - even though this page's actual content (method calls, JSON output, no numbered procedure) reads more like a howto than a concept page. This is a page-type/taxonomy inconsistency between the two SDKs' doc trees for the same feature, independent of the content-quality (wrong-language-code-example) finding above. Folded into docs-issues/java-python-sdk-rbac-page-structure-inconsistency at reconciliation (round 30) as a second confirmed instance of the same cross-product IA pattern."
+}

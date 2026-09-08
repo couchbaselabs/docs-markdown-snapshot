@@ -1,0 +1,91 @@
+{
+  "page_id": "java-sdk/howtos/collecting-information-and-logging",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/howtos/collecting-information-and-logging.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:slf4j-logging",
+      "label": "SLF4J-based SDK Logging (Log4j 2 / JUL bindings)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - genuinely new client-SDK observability concept; the SDK routes its own log output through the SLF4J facade and relies on the application to supply a binding (Log4j 2, java.util.logging, etc.). No existing registry concept covers client-side logging configuration."
+    },
+    {
+      "candidate_id": "sdk:event-bus",
+      "label": "SDK Event Bus (real-time event subscription)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a distinct mechanism from sdk:slf4j-logging: it lets the application tap SDK events before they are logged, for real-time reaction rather than post-hoc log parsing."
+    },
+    {
+      "candidate_id": "sdk:log-redaction",
+      "label": "Client Log Redaction (LogRedaction.setRedactionLevel / RedactionLevel)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a two-stage, client-configured mechanism for tagging sensitive data in SDK logs so it can later be obfuscated; no existing registry concept covers SDK-side log redaction (distinct from security:auditing, which is a Server audit-log facility)."
+    },
+    {
+      "candidate_id": "sdk:app-telemetry",
+      "label": "SDK Telemetry pushed to Couchbase Server (Application Telemetry)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - a genuinely new bridge concept: client-side tracing/metrics/logging data sent BY the SDK TO the Server for ingestion into the Server's own Prometheus-based monitoring, rather than something consumed purely on the client side like the other concepts on this page."
+    },
+    {
+      "candidate_id": "server:application-telemetry",
+      "label": "Application Telemetry (Server REST API for ingesting client SDK telemetry)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked server/current/rest-api/application-telemetry.md page, which is out of this batch's scope; not deeply extracted here, but the SDK-side description of what it does (accept/expose SDK telemetry via settings/appTelemetry and /metrics) is real content on this page"
+    },
+    {
+      "candidate_id": "tool:cblogredaction",
+      "label": "cblogredaction (Server CLI log-obfuscation tool)",
+      "registry_status": "minted",
+      "reused_or_minted": "minted - placeholder concept for the linked server/7.2/cli/cbcli/cblogredaction.md page, out of this batch's scope; the SDK page states only that the tool is used downstream of client-side redaction tagging"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:log-redaction",
+      "predicate": "seeAlso",
+      "object": "tool:cblogredaction",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Once the SDK writes the logs with the tags to a file, you can then use the [cblogredaction tool](../../../server/7.2/cli/cbcli/cblogredaction.md) to obfuscate the log."
+    },
+    {
+      "subject": "sdk:app-telemetry",
+      "predicate": "seeAlso",
+      "object": "server:application-telemetry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "Further details can be found in the [Application Telemetry](../../../server/current/rest-api/application-telemetry.md) page."
+    },
+    {
+      "subject": "sdk:app-telemetry",
+      "predicate": "configurableVia",
+      "object": "server:application-telemetry",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a subject's behavior (whether telemetry is collected at all) being toggled by a named REST setting",
+      "evidence": "For self-managed Server, collection can be disabled and enabled through the REST API:"
+    },
+    {
+      "subject": "sdk:app-telemetry",
+      "predicate": "accessibleVia",
+      "object": "prometheus:metrics-endpoint",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for a positive statement of an access surface",
+      "evidence": "curl --user Administrator:password http://172.17.0.2:8091/metrics"
+    },
+    {
+      "subject": "sdk:app-telemetry",
+      "predicate": "availableSince",
+      "object": "version:server-8-0",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - promoted predicate for the earliest version in which a described behavior holds",
+      "evidence": "In addition to Tracing and other metrics, and client logging, SDK telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "excludesFromCapture",
+    "finding": "The page describes LogRedaction as a two-stage tagging process but never states which specific fields or data classes are tagged for redaction (that detail is deferred entirely to 'the RedactionLevel enum description' and a linked Server docs page), so no excludesFromCapture relation could be extracted from this page itself despite it being the most natural fit for that predicate in this batch."
+  },
+  "cross_component_finding": "SDK Telemetry from the Server is a genuine SDK-to-Server-component bridge: the same client that logs and traces its own requests locally also pushes that telemetry to Couchbase Server 8.0+ for ingestion 'with other Prometheus metrics' via the settings/appTelemetry REST toggle and the /metrics scrape endpoint, rather than the client-side observability surfaces (event bus, SLF4J logging, redaction) on this page staying purely local to the application process.",
+  "cross_product_finding": "The same Application Telemetry mechanism explicitly spans Server and Capella as separate products: 'available from 8.0, and in new Capella Operational clusters', and 'Capella Operatioal exposes these metrics through the UI' - meaning a Capella customer sees SDK-originated telemetry surfaced inside the Capella product's own console, not just in a self-hosted Prometheus/Grafana stack."
+}

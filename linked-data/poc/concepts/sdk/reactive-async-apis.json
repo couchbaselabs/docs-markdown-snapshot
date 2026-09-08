@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/reactive-async-apis",
+  "label": "Reactive and Async APIs (ReactiveCluster/AsyncCluster)",
+  "type": "the SDK's non-blocking API variants - ReactiveCluster (Project Reactor Mono/Flux) and AsyncCluster (CompletableFuture) - alternatives to the default synchronous Cluster API, for concurrent/high-throughput application code",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Recurs across concept-docs/best-practices.json and howtos/concurrent-async-apis.json (this round's dedicated page)."
+}

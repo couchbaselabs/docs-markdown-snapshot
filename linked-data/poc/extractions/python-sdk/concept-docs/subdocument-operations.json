@@ -1,0 +1,45 @@
+{
+  "page_id": "python-sdk/concept-docs/subdocument-operations",
+  "source_version": "Python SDK",
+  "source_path": "python-sdk/current/concept-docs/subdocument-operations.md",
+  "concepts": [
+    {
+      "candidate_id": "sdk:subdocument-operations",
+      "label": "Sub-Document operations (LookupIn/MutateIn)",
+      "registry_status": "promoted",
+      "reused_or_minted": "reused - Python's two top-level Collection methods LookupIn and MutateIn, addressing SQL++-syntax paths inside a document, describe precisely the promoted definition ('path-level get/upsert/replace/remove against a specific field inside a document, distinct from whole-document KV operations'). Confirms this id is genuinely language-agnostic rather than a Java-specific naming choice - Python uses the same LookupIn/MutateIn method names as the registry's Java-derived description."
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sdk:subdocument-operations",
+      "predicate": "sharesOptionSetWith",
+      "object": "sdk:kv-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - both operate on the same document via a structurally parallel but non-interchangeable API surface (whole-document vs. path-scoped)",
+      "evidence": "Sub-Document operations may be quicker and more network-efficient than _full-document_ operations such as _upsert_, _replace_ and _get_ because they only transmit the accessed sections of the document over the network."
+    },
+    {
+      "subject": "python-sdk/concept-docs/subdocument-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/sqlpp-queries-with-sdk",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](../howtos/sqlpp-queries-with-sdk.md).)"
+    },
+    {
+      "subject": "python-sdk/concept-docs/subdocument-operations",
+      "predicate": "seeAlso",
+      "object": "python-sdk/howtos/subdocument-operations",
+      "registry_status": "promoted",
+      "reused_or_minted_predicate": "reused - structural markdown link",
+      "evidence": "The object returned, and how to work with it, is extensively documented in our [practical guide to using Sub-Doc from the SDK](../howtos/subdocument-operations.md)."
+    }
+  ],
+  "notable_absence": {
+    "predicate": "shouldNotBeConfusedWith",
+    "finding": "The page explicitly warns 'The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries' - a textbook disambiguation statement. Not modeled as a shouldNotBeConfusedWith relation because the object side ('Sub-Document SQL++ queries') has no registry concept of its own (it is just ordinary SQL++ path syntax inside a SELECT, not a named statement) - minting a concept solely to hold this one disambiguation felt like manufacturing a near-empty id, so the distinction is flagged here in prose instead."
+  },
+  "cross_component_finding": "Sub-Document operations here are framed purely as an efficiency optimization over the full-document KV API ('quicker and more network-efficient... because they only transmit the accessed sections') and as atomic in the same all-or-nothing sense as a full-document mutation ('if one Sub-Document mutation fails then all will') - i.e. this concept inherits its atomicity/concurrency-control story from sdk:kv-operations rather than defining a new one.",
+  "cross_product_finding": "Clean, direct confirmation that sdk:subdocument-operations is a genuinely cross-SDK, language-agnostic concept: Python's LookupIn/MutateIn builders match the Java-derived registry label (lookupIn/mutateIn) closely enough that the difference is purely a capitalization/method-naming convention, not a structural divergence. No Python-specific mint was warranted here - this is the 'legitimate reuse target' case the round's framing anticipated, not the 'reject the reuse' case."
+}

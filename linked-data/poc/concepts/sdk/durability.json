@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/durability",
+  "label": "Per-operation Durability Level (Java/Python SDK)",
+  "type": "the DurabilityLevel option (None/Majority/MajorityAndPersistToActive/PersistToMajority) set on an individual KV write call (InsertOptions.durability()/etc.) - distinct from sdk:transaction-durability, which is the SAME enum but configured once for an entire transaction attempt rather than per call",
+  "promoted": true,
+  "recurrence": 9,
+  "note": "Round 3/4 backlog, closed. Recurs across 9 files in java-sdk and python-sdk (documents.json, data-durability-acid-transactions.json, kv-operations.json, subdocument-operations.json, error-handling.json, and the SDK-transactions pages that explicitly distinguish it from the transaction-scoped setting - see concepts/sdk/transaction-durability.json's own note, written in round 4, which already anticipated this promotion). Two of the ten referencing files (java-sdk/howtos/kv-operations.json, one relation in java-sdk/howtos/subdocument-operations.json) predate the write-time evidence gate and carry a quote that crosses a Markdown link boundary - see reconciliation.md round 30's pre-gate-formatting finding; not fabrication, the sentence is real on the page."
+}

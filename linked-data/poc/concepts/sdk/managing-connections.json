@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/managing-connections",
+  "label": "Managing Connections (TLS setup, DNS-SRV, Cloud Native Gateway)",
+  "type": "the deliberately coarse umbrella concept for the SDK's connection-establishment area - referenced from other pages as the general topic that sdk:cluster-connection-lifecycle, sdk:tls-secure-connections and sdk:dns-srv-bootstrap are specific facets of, and that sdk:ping/sdk:diagnostics monitor",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Named as a coarse supertype consistent with the ontology's existing pattern (e.g. concepts/index/index.json). Referenced from ref/client-settings.json (seeAlso), hello-world/start-using-sdk.json (requiresCoDeployedService) and howtos/health-check.json (monitoredVia, x2) - the page it names (howtos/managing-connections.json) itself decomposes entirely into its more granular sub-concepts rather than minting the umbrella id on its own page."
+}

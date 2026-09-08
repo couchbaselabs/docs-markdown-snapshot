@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/kv-range-scan",
+  "label": "KV Range Scan (rangeScan/prefixScan/samplingScan)",
+  "type": "the SDK's Key-Value-level range/prefix/sampling scan API - retrieving multiple documents by key range or prefix without going through the Query service - positioned by the SDK's own docs as the low-latency alternative to sdk:sqlpp-queries-with-sdk for exactly this use case",
+  "promoted": true,
+  "recurrence": 5,
+  "note": "Minted this round (concept-docs/querying-your-data.json) and recurs across concept-docs/data-model.json, concept-docs/documents.json, concept-docs/querying-your-data.json, howtos/kv-operations.json, ref/glossary.json - a coherent SDK-3.4+ feature, distinct from sdk:kv-operations (single-document get/insert/upsert/replace/remove)."
+}

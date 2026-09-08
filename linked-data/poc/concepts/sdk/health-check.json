@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/health-check",
+  "label": "Health Check (ping + diagnostics)",
+  "type": "the umbrella term for the SDK's two connection-health APIs, sdk:ping (active probe) and sdk:diagnostics (passive snapshot) - hasInternalComponent both",
+  "promoted": true,
+  "recurrence": 2,
+  "note": "Minted consistently under this spelling across java-sdk (ref/glossary.json, howtos/health-check.json) and python-sdk (concept-docs/health-check.json) - no cross-product fork on the umbrella term itself, unlike its two components (see sdk:ping/sdk:diagnostics aliases)."
+}

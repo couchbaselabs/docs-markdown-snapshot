@@ -1,0 +1,8 @@
+{
+  "id": "https://docs.couchbase.com/ld/concepts/sdk/sqlpp-queries-with-sdk",
+  "label": "Running SQL++ Queries from the SDK (Cluster.query()/Scope.query())",
+  "type": "the SDK's client API surface for issuing an arbitrary SQL++ statement (as opposed to KV or Sub-Document calls) - Cluster.query()/Scope.query(), QueryOptions, QueryResult - documented as its own howto page in both java-sdk and python-sdk",
+  "promoted": true,
+  "recurrence": 12,
+  "note": "Round 3/4 backlog, closed, and this round's single highest-recurrence sdk: candidate at 12 files (java-sdk's best-practices.json, querying-your-data.json, subdocument-operations.json, understanding-views.json, hello-world/overview.json, hello-world/sample-application.json, howtos/analytics-using-sdk.json, distributed-acid-transactions-from-the-sdk.json, kv-operations.json, managing-connections.json, sqlpp-queries-with-sdk.json, vector-searching-with-sdk.json, view-queries-with-sdk.json, migrating-sdk-code-to-3.n.json, ref/client-settings.json, ref/glossary.json, plus python-sdk's kv-operations.json and n1ql-queries-with-sdk.json, plus a round-27-era cloud/n1ql/prepare.json seeAlso). 8 of 35 total mentions (candidate-evidence.py --audit) cite a quote that is not byte-exact on its page - every one of them traced to a pre-gate round-3/4 file (kv-operations.json, sqlpp-queries-with-sdk.json, view-queries-with-sdk.json, ref/client-settings.json) hitting the Markdown-link-boundary formatting artifact documented in reconciliation.md round 30, not fabrication; the concept's promotion rests on the many other, clean, post-gate quotes."
+}

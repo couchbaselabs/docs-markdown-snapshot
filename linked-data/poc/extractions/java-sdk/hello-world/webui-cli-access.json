@@ -1,0 +1,17 @@
+{
+  "page_id": "java-sdk/hello-world/webui-cli-access",
+  "source_version": "Java SDK",
+  "source_path": "java-sdk/current/hello-world/webui-cli-access.md",
+  "concepts": [],
+  "relations": [
+    { "subject": "sdk:webui-cli-access", "predicate": "seeAlso", "object": "c-sdk:hello-world:cbc", "registry_status": "promoted", "reused_or_minted_predicate": "structural link (version-fragment style xref, same pattern as other cross-product links in this batch)", "evidence": "This is included in libcouchbase, our C SDK — see the [LCB Command Line Tools page](#3.0@c-sdk:hello-world:cbc.adoc) for details." },
+    { "subject": "sdk:webui-cli-access", "predicate": "accessibleVia", "object": "server:web-console", "registry_status": "promoted", "reused_or_minted_predicate": "reused", "evidence": "You can use the Couchbase Web Console to view, edit, and create JSON documents up to 256KB in size." },
+    { "subject": "sdk:webui-cli-access", "predicate": "seeAlso", "object": "server:query-workbench", "registry_status": "promoted", "reused_or_minted_predicate": "structural link", "evidence": "You can use the [Query Workbench](#7.1@server:tools:query-workbench.adoc) to issue queries using the web console." }
+  ],
+  "notable_absence": {
+    "predicate": "requiresPrivilege",
+    "finding": "The page states a hard size limit on the Web Console's document editor ('documents up to 256KB in size') but does not name any RBAC role or privilege required to use that editor - access control for the Web Console itself is left entirely to the linked Server manage-ui page rather than stated here."
+  },
+  "cross_component_finding": "This page is explicitly framed as a redirect stub rather than original content - its own summary states its role plainly: 'These are documented in the Server and the C SDK docs respectively.' It contributes no Java-SDK-specific technical fact of its own; every substantive claim (the 256KB Web Console limit, libcouchbase's cbc command-line tool, the Query Workbench) belongs to a different product's docs tree (server/ or c-sdk/) that this batch does not extract.",
+  "cross_product_finding": "Notably, this page is the one place in the whole hello-world/ tree that names libcouchbase (the C SDK) as the actual implementation underlying a piece of tooling ('command line interfaces to Couchbase using libcouchbase, our C SDK') - a rare explicit cross-SDK dependency statement, worth flagging since the rest of this batch treats the Java SDK as self-contained."
+}
