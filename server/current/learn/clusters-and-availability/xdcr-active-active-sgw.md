@@ -5,7 +5,7 @@ description: You can use XDCR with Sync Gateway mobile clusters in a
   the Server and the Sync Gateway versions support this option. Otherwise, using
   XDCR with Sync Gateway buckets in a bi-directional replication can cause data
   corruption.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-09T04:30:56.273Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-active-active-sgw.adoc
   xref: xref:server:learn:clusters-and-availability/xdcr-active-active-sgw.adoc[]
@@ -28,9 +28,9 @@ In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0.0, only an 
 For more information about how Sync Gateway 4.0 and later versions work with Couchbase Server's XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).
 
 > [!IMPORTANT]
-> Here are a few limitations to the XDCR Active-Active with Sync Gateway feature.
+> Note this limitation to the XDCR Active-Active with Sync Gateway feature.
 > 
-> * If you use the user created extended attributes (user xattrs) in your documents, and you have more than 10 user xattrs in a document, then you cannot use the feature XDCR Active-Active with Sync Gateway. This is due to an internal limitation of managing extended attributes in a document. If you try to use the feature XDCR Active-Active with Sync Gateway when you have more than 10 user xattrs in your document, the XDCR replication silently skips replicating that document. As a result, the data in the replication-skipped document will not be consistent between the target and source clusters. The only way you will know this skip occured is because the Prometheus stat `subdoc_cmd_docs_skipped` will be incremented and the document will not be consistent between the target and source.
+> * In Couchbase Server versions earlier than 8.5, you could not use XDCR Active-Active with Sync Gateway if a document contained more than 10 user-created extended attributes (user xattrs). This limitation is removed when both the source and target cluster Server versions are 8.5 and later.
 > * If you use Eventing service functions that update documents in XDCR-replicated buckets (Eventing source bucket mutations), ensure your functions do not cause continuous replication loops. In bi-directional active-active XDCR environments, Eventing functions that trigger document updates can lead to "ping-pong" replication unless you implement logic to prevent infinite loops. Always add safeguards to avoid redundant updates and unwanted replication behavior in bi-directional setups. For more information, see [XDCR Active-Active and Eventing](../../../../sync-gateway/current/server-compatibility/xdcr-active-active-eventing.md).
 
 You can configure XDCR Active-Active with Sync Gateway for XDCR-Mobile interoperability using one of the following methods:
