@@ -1,7 +1,7 @@
 ---
 title: Microsoft Azure
 description: Capella Analytics supports deploying clusters onto Microsoft Azure.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/azure.adoc
   xref: xref:analytics:reference:azure.adoc[]
@@ -51,8 +51,6 @@ __Table 1\. Azure compute configurations__
 | 8 vCPUs  | 64 GB  |
 | 16 vCPUs | 64 GB  |
 | 16 vCPUs | 128 GB |
-| 32 vCPUs | 128 GB |
-| 32 vCPUs | 256 GB |
 
 ## [](#see-also)See Also
 

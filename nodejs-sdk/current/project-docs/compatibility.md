@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/project-docs/pages/compatibility.adoc
   xref: xref:nodejs-sdk:project-docs:compatibility.adoc[]
@@ -108,7 +108,7 @@ Note, Capella is offered as a fully provisioned service, so the underlying versi
 ### [](#couchbase-new-feature-availability-matrix)Couchbase New Feature Availability Matrix
 
 __Couchbase Server and SDK Supported Version Matrix__
-|                                                                      | Server 7.0 & 7.1  | Server 7.2     | Server 7.6 |
+|                                                                      | Server 7.2        | Server 7.6     | Server 8.0 |
 | -------------------------------------------------------------------- | ----------------- | -------------- | ---------- |
 | Enhanced Durability                                                  | All SDK versions  |                |            |
 | Durable Writes                                                       | Since 3.0         |                |            |

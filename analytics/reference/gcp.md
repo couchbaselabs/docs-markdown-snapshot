@@ -1,7 +1,7 @@
 ---
 title: Google Cloud Platform (GCP)
 description: Capella Analytics supports deploying clusters onto Google Cloud Platform (GCP).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/gcp.adoc
   xref: xref:analytics:reference:gcp.adoc[]
@@ -38,7 +38,7 @@ This page describes the various regions and configurations that are available to
 | ------------------- | --------- |
 | **asia-southeast1** | Singapore |
 
-## [](#avaliability-zones)Avaliability Zones
+## [](#availability-zones)Availability Zones
 
 Every Capella Analytics cluster must be deployed across a single availabilty zone (AZ) or two availability zones in a single region to ensure they tolerate failure of an entire availability zone. You can select the desired number of availability zone deployments from Capella Analytics.
 
@@ -55,15 +55,18 @@ Clusters can have a minimum of 1 node and a maximum of 32 nodes.
 
 ### [](#compute)Compute
 
-Capella Analytics provides user-managed compute configurations for databases deployed onto GCP, when loading data, executing queries and performing other DML operations. This can be manually scaled up or down to increase or decrease performance.
+Capella Analytics provides user-managed compute configurations for databases deployed onto GCP. The compute resources are used when loading data, executing queries, and performing other DML operations. You can manually scale compute to increase or decrease performance.
 
-The following Compute Engine instances are supported:
+Capella Analytics supports the following compute configurations for GCP:
 
-* c4a-highmem-4-lssd
-* c4a-standard-8-lssd
-* c4a-highmem-8-lssd
-* c4a-standard-16-lssd
-* c4a-highmem-16-lssd
+__Table 1\. GCP compute configurations__
+| vCPU     | Memory |
+| -------- | ------ |
+| 4 vCPUs  | 32 GB  |
+| 8 vCPUs  | 32 GB  |
+| 8 vCPUs  | 64 GB  |
+| 16 vCPUs | 64 GB  |
+| 16 vCPUs | 128 GB |
 
 ## [](#see-also)See Also
 

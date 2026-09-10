@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/compatibility.adoc
   xref: xref:python-sdk:project-docs:compatibility.adoc[]
@@ -117,7 +117,7 @@ __Couchbase Server and SDK Supported Version Matrix__
 | ------------------------ | ---------- | -------------------------------------------------- | ---------- |
 | KV Range Scan            | N/A        | From SDK 4.2.0                                     |            |
 | Vector Search            | N/A        | From SDK 4.2.0 (base64 encoded vectors from 4.3.0) |            |
-| Zone aware replica reads | N/A        | From SDK 4.3.0                                     |            |
+| Zone aware replica reads | N/A        | From SDK 4.4.0                                     |            |
 | Vector Query using GSI   | N/A        | From SDK 4.5.0 ①                                   |            |
 
 ① As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested.

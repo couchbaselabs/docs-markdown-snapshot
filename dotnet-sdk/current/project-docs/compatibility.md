@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/compatibility.adoc
   xref: xref:dotnet-sdk:project-docs:compatibility.adoc[]
@@ -59,7 +59,7 @@ The .NET SDK is tested and supported on the following OSs and platforms:
 
 ### Mac OS X
 
-The current and previous two releases of OS X. At time of writing (April 2025): 15 (Sequoia), 14 (Sonoma), and 13 (Ventura). M1 ARM architecture is fully supported in the Scala SDK.
+The current and previous two releases of OS X. At time of writing (April 2025): 15 (Sequoia), 14 (Sonoma), and 13 (Ventura). M1 ARM architecture is fully supported in the .NET SDK.
 
 ### ARM Processor Support
 
@@ -86,7 +86,7 @@ Couchbase SDKs are tested against a variety of different environments to ensure 
 
 ### [](#couchbase-versionsdk-version-matrix)Couchbase Version/SDK Version Matrix
 
-The matrix below denotes the version of Couchbase Server, the version of the Scala SDK and whether the SDK is:
+The matrix below denotes the version of Couchbase Server, the version of the .NET SDK and whether the SDK is:
 
 * ✖ **Unsupported**: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
 * ◎ **Compatible**: This combination has been tested previously, and should be compatible. This combination is not recommended by our technical support organization. It is best to upgrade either the SDK or the Couchbase version you are using.
@@ -106,7 +106,7 @@ Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for 
 
 ### [](#capella-compatibility)Capella Compatibility
 
-The Couchbase Scala SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the SDK includes the Capella client certificate ready installed.
+The Couchbase .NET SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the SDK includes the Capella client certificate ready installed.
 
 Note, Capella is offered as a fully provisioned service, so the underlying version of Couchbase Server changes over time. For this reason, compatibility information between Capella and the SDK is available [on the Capella compatibility page](../../../cloud/reference/sdk-compatibility.md).
 

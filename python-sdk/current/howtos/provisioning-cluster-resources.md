@@ -2,7 +2,7 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-pubDate: 2026-08-27T06:24:49.597Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/provisioning-cluster-resources.adoc
   xref: xref:python-sdk:howtos:provisioning-cluster-resources.adoc[]
@@ -156,7 +156,7 @@ try:
 except CollectionNotFoundException as ex:
     print(ex)
 
-[data-source-url=https://github.com/couchbase/docs-sdk-python/blob/722f1181c4ff1badd4e8237b7224346fb3fbdf19/modules/devguide/examples/python/provisioning_resources_collections.py#L107-L110]
+[data-source-url=https://github.com/couchbase/docs-sdk-python/blob/7ab5f62171f70b7a45b261bc0075da4a57113758/modules/devguide/examples/python/provisioning_resources_collections.py#L107-L110]
 try:
     coll_manager.drop_scope("example-scope")
 except ScopeNotFoundException as ex:

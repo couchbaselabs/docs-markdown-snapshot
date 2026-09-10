@@ -1,7 +1,7 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/deployment.adoc
   xref: xref:cxx-sdk:project-docs:deployment.adoc[]
@@ -51,7 +51,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 | DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                  |            |
 | Circuit Breakers                                                                             | From 1.3.2   |                  |            |
 | OTel                                                                                         | From 1.3.0   |                  |            |
-| Field Level Encryption                                                                       | From 1.0.0   |                  |            |
+| Field Level Encryption                                                                       | From 1.2.0   |                  |            |
 | Cloud Native Gateway                                                                         | From 1.4.0 ② |                  |            |
 
 | **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |

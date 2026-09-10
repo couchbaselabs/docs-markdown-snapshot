@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-10T04:23:38.872Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/compatibility.adoc
   xref: xref:scala-sdk:project-docs:compatibility.adoc[]
@@ -138,7 +138,7 @@ __Couchbase Server and SDK Supported Version Matrix__
 |                                      | Server 7.2 | Server 7.6                                         | Server 8.0 |
 | ------------------------------------ | ---------- | -------------------------------------------------- | ---------- |
 | KV Range Scan                        | N/A        | All supported SDK versions                         |            |
-| Vector Search                        | N/A        | From SDK 3.6.0 (base64 encoded vectors from 3.7.0) |            |
+| Vector Search                        | N/A        | From SDK 1.6.0 (base64 encoded vectors from 1.7.0) |            |
 | Preferred Server Group Replica Reads | N/A        | From SDK 1.8.0 (with Server 7.6.2 onwards)         |            |
 | Vector Query using GSI               | N/A        | From SDK 3.9.0 ①                                   |            |
 
