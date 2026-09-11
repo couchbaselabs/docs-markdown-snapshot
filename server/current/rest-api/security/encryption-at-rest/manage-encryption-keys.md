@@ -2,7 +2,7 @@
 title: Manage Encryption-at-Rest Keys
 description: You must create encryption-at-rest keys before you can have
   Couchbase Server encrypt data as it saves it to disk.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-encryption-keys.adoc
   xref: xref:server:rest-api:security/encryption-at-rest/manage-encryption-keys.adoc[]
@@ -1225,4 +1225,7 @@ Returned if the key you tried to delete does not exist.
 
 The following example deletes the Couchbase Server managed key named Example Auto-Generated Key shown in earlier examples.
 
-Unresolved include directive in modules/rest-api/pages/security/encryption-at-rest/manage-encryption-keys.adoc - include::example$encryption-at-rest/manage-encryption-kets.adoc\[\]
+```bash
+ curl -v -u Administrator:password -X DELETE \
+      http://127.0.0.1:8091/settings/encryptionKeys/13 | jq
+```

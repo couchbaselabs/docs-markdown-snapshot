@@ -2,7 +2,7 @@
 title: Drop DEKs and Re-encrypt Data
 description: You can use the REST API to drop data encryption keys (DEKs) and
   re-encrypt the data encrypted with the old keys.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/drop-encryption-deks.adoc
   xref: xref:server:rest-api:security/encryption-at-rest/drop-encryption-deks.adoc[]
@@ -29,7 +29,7 @@ Dropping the DEKs is not the same as rotating them. When it rotates a DEK, Couch
 > [!IMPORTANT]
 > The process of dropping DEKs for a bucket with a large amount of data may take a long time and could affect performance. When you drop the DEKs, Couchbase Server has to re-encrypt all data in the bucket with the new DEK. Dropping DEKs for audit, configuration, or logs is less of a concern because it usually results in re-encrypting less data than a bucket.
 
-See [Manually Drop DEKs and Re-encrypt Data](#manage:security/manage-native-encryption-at-rest.adoc#drop-deks) for instructions on dropping DEKs using the Couchbase Server Web Console.
+See [Manually Drop DEKs and Re-encrypt Data](../../../manage/manage-security/manage-native-encryption-at-rest.md#drop-deks) for instructions on dropping DEKs using the Couchbase Server Web Console.
 
 ## [](#http-methods)HTTP Methods
 

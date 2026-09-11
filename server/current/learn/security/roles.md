@@ -1,7 +1,7 @@
 ---
 title: Roles
 description: Roles grant users access to one or more resources.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
   xref: xref:server:learn:security/roles.adoc[]
@@ -894,7 +894,7 @@ The mobile roles support connections with the Sync Gateway and related features.
 
 ### [](#sync-gateway)Sync Gateway
 
-The Sync Gateway role gives the user full access to the data Sync Gateway's data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server. Choose one or more buckets that contain mobile data that you want this user to manage. See [Configure Server for Sync Gateway](#sync-gateway::get-started-prepare.adoc#configure-server) for more information.
+The Sync Gateway role gives the user full access to the data Sync Gateway's data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server. Choose one or more buckets that contain mobile data that you want this user to manage. See [Configure Server for Sync Gateway](../../../../sync-gateway/current/start-here/get-started-prepare.md#configure-server) for more information.
 
 This role does not let the user log into Couchbase Server Web Console.
 

@@ -1,7 +1,7 @@
 ---
 title: Upload and Retrieve the Root Certificate
 description: The REST API can be used to upload and retrieve the cluster's root certificate.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/deprecated-security-apis/upload-retrieve-root-cert.adoc
   xref: xref:server:rest-api:deprecated-security-apis/upload-retrieve-root-cert.adoc[]
@@ -29,7 +29,7 @@ GET /pools/default/certificate
 
 ## [](#description)Description
 
-The `POST` method and `/controller/uploadClusterCA` URI (which are deprecated in 7.1) upload an appropriately configured certificate to the cluster, so that it becomes the root certificate for the cluster. Either the Full Admin or the Security Admin role is required. The certificate must be specified as binary data, in a location on the filesystem, for successful upload to occur. For security reasons, in versions 7.1 and after, by default, this method and URI can be used on _localhost_ only (see [Responses](#rest-api:upload-retrieve-root-cert.adoc#responses), below, for the associated error message). However, this default setting can be changed, by means of the `POST` method and `/settings/security/allowNonLocalCACertUpload` URI, with the `-d false` flag: this also can be used on _localhost_ only. The status of the current setting can be retrieved with the `GET` method and `/settings/security/allowNonLocalCACertUpload` URI. See [Configure On-the-Wire Security](../rest-setting-security.md), for more information.
+The `POST` method and `/controller/uploadClusterCA` URI (which are deprecated in 7.1) upload an appropriately configured certificate to the cluster, so that it becomes the root certificate for the cluster. Either the Full Admin or the Security Admin role is required. The certificate must be specified as binary data, in a location on the filesystem, for successful upload to occur. For security reasons, in versions 7.1 and after, by default, this method and URI can be used on _localhost_ only (see [Responses](#responses), below, for the associated error message). However, this default setting can be changed, by means of the `POST` method and `/settings/security/allowNonLocalCACertUpload` URI, with the `-d false` flag: this also can be used on _localhost_ only. The status of the current setting can be retrieved with the `GET` method and `/settings/security/allowNonLocalCACertUpload` URI. See [Configure On-the-Wire Security](../rest-setting-security.md), for more information.
 
 The `GET` method and `/pools/default/certificate` URI are deprecated in 7.1\. After the cluster has been upgraded to 7.1, they continue to return the most recent certificate uploaded by means of the deprecated API `POST /controller/uploadClusterCA`, until at least one new root certificate is uploaded using the new, 7.1 API `POST /node/controller/loadTrustedCAs` (as described in [Load Root Certificates](../load-trusted-cas.md)): following which they always return `400 Bad Request`, with the message `this API is disabled, please use GET /pools/default/trustedCAs` — see [Get Root Certificates](../get-trusted-cas.md), for details. This call is authorized for all Couchbase Server roles.
 

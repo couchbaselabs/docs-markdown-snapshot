@@ -3,7 +3,7 @@ title: Adding or Removing the Data Service on Existing Nodes
 description: You can add or remove the Data Service on an existing node of a
   cluster by adding or removing the node from the cluster, and then completing
   the addition or removal of the node by running a rebalance operation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/manage-data-service-and-rebalance.adoc
   xref: xref:server:manage:manage-nodes/manage-data-service-and-rebalance.adoc[]
@@ -28,7 +28,7 @@ You can add any service, including the Data Service (kv), when you add or join a
 To add the Data Service on an existing node of a cluster:
 
 1. Remove the node that you want to add the Data Service to using [Remove a Node and Rebalance](remove-node-and-rebalance.md).
-2. Then [add the node](#manage:manage-nodes/add-node-and-rebalance.html) back to the cluster after enabling the Data Service.
+2. Then [add the node](add-node-and-rebalance.md) back to the cluster after enabling the Data Service.
 
 Alternatively, you can add a new node with the necessary services configuration, including the Data Service, using [Add a New Node and Rebalance](add-node-and-rebalance.md). Then remove the extraneous node that you no longer need using [Remove a Node and Rebalance](remove-node-and-rebalance.md).
 
@@ -37,7 +37,7 @@ Alternatively, you can add a new node with the necessary services configuration,
 To remove the Data Service from an existing node of a cluster:
 
 1. Remove the node with the Data Service that you want to remove using [Remove a Node and Rebalance](remove-node-and-rebalance.md).
-2. Then [add the node](#manage:manage-nodes/add-node-and-rebalance.html) back to the cluster after disabling the Data Service.
+2. Then [add the node](add-node-and-rebalance.md) back to the cluster after disabling the Data Service.
 
 > [!NOTE]
 > During the node removal operation, if there are other services on the node that you're removing for the Data Service reconfiguration, and you do not want those services to be impacted when the node is removed from the cluster, you may need to add those services to another node temporarily. You can also add a new node temporarily with those services enabled.

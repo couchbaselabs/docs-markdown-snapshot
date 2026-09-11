@@ -4,7 +4,7 @@ description: In the event of data-loss, the <strong>cbrecovery</strong> tool can
   be used to restore data. The tool accesses remotely replicated buckets,
   previously created with XDCR, and copies appropriate subsets of their data
   back onto the original source-cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/recover-data-with-xdcr.adoc
   xref: xref:server:manage:manage-xdcr/recover-data-with-xdcr.adoc[]
@@ -54,7 +54,7 @@ To continue with the hard failover, check (once again) the checkboxes for the no
 ![clusterFollowingUnsafeFailover](../_images/manage-xdcr/clusterFollowingUnsafeFailover.png)
 2. Before attempting to recover the lost data, restore capacity to the local cluster, as appropriate. The illustration below shows the two nodes that were previously lost, cleansed of all data, powered up, and in the process of being re-added into the cluster:  
 ![XdcrCbRecoveryLocalServersBackUpAgain](../_images/manage-xdcr/XdcrCbRecoveryLocalServersBackUpAgain.png)  
-See [Add a Node and Rebalance](#manage:manage-nodes/add-a-node-and-rebalance.adoc), for information on adding nodes.  
+See [Add a Node and Rebalance](../manage-nodes/add-node-and-rebalance.md), for information on adding nodes.  
 _Do not_ at this point rebalance the cluster: the rebalance operation affects local vBucket data, and thereby prevents recovery of lost data from the remote cluster. Rebalance will be performed _after_ the lost data has been recovered.
 3. Use the **cbrecovery** tool to restore data to the bucket `travel-sample`, from the bucket established on the remote cluster, `travelSampleBackup`.  
 ```bourne  

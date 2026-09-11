@@ -2,7 +2,7 @@
 title: mctimings
 description: The <code class="cmd">mctimings</code> tool displays timing
   information for Data Service operations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/mctimings.adoc
   xref: xref:server:cli:mctimings.adoc[]
@@ -25,7 +25,7 @@ mctimings [options] [operation-name]*
 
 The `mctimings` tool displays timing information for Data-Service operations. The sampling period, during which timings are taken, starts at whichever of the following points in time is the more recent:
 
-* The last reset of Data-Service statistics by means of [cbstats-reset](#cli/cbstats/cbstats-reset.adoc).
+* The last reset of Data-Service statistics by means of [cbstats-reset](cbstats/cbstats-reset.md).
 * The last restart of the Data Service (which action itself resets Data-Service statistics).
 
 The sampling period ends when the Data Service receives the `mctimings` request.

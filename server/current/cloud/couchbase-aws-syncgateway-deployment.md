@@ -2,7 +2,7 @@
 title: Deploy Couchbase Sync Gateway Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-aws-syncgateway-deployment.adoc
   xref: xref:server:cloud:couchbase-aws-syncgateway-deployment.adoc[]
@@ -24,7 +24,7 @@ Couchbase Sync Gateway is available through AWS Marketplace with hourly pricing,
 * You need an AWS account. If you don't have one, [sign up](https://aws.amazon.com/) for one before proceeding.
 * You should review the [best practices](couchbase-cloud-deployment.md#aws-best-practices) for deploying Couchbase Server on AWS.
 * A Couchbase Server cluster deployed and running. You need the Cluster DNS or IP address where the server is running, the Couchbase username, Couchbase password. You also need the name of the bucket configured to use with Couchbase Sync Gateway.
-* If you have deployed the Couchbase cluster via the AWS Marketplace experience, you can get the Cluster DNS/IP from this [step](couchbase-aws-marketplace.md#logging-in). Follow the steps documented [here](#sync-gateway::get-started-prepare.adoc#step-1create-a-bucket) to configure the server to work with Couchbase Sync Gateway. The main steps are setting up the bucket, setting up an RBAC user, and ensuring that the network access is set up correctly.
+* If you have deployed the Couchbase cluster via the AWS Marketplace experience, you can get the Cluster DNS/IP from this [step](couchbase-aws-marketplace.md#logging-in). Follow the steps documented [here](../../../sync-gateway/current/start-here/get-started-prepare.md#lbl-create-bucket) to configure the server to work with Couchbase Sync Gateway. The main steps are setting up the bucket, setting up an RBAC user, and ensuring that the network access is set up correctly.
 
 ## [](#deploying-couchbase-sync-gateway)Deploying Couchbase Sync Gateway
 

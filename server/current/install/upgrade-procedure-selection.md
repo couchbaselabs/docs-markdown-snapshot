@@ -3,7 +3,7 @@ title: Upgrade-Procedure Selection
 description: Multiple procedures are available for the upgrade of Couchbase
   Server. An appropriate procedure should be selected, based on a variety of
   factors.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-procedure-selection.adoc
   xref: xref:server:install:upgrade-procedure-selection.adoc[]
@@ -88,7 +88,7 @@ For a multi-node cluster, an _online upgrade_ means that the cluster continues t
 
 #### [](#cluster-online-swap-rebalance-at-full-capacity)Cluster Online: Swap Rebalance at Full Capacity
 
-One or more spare nodes, which exist in addition to those committed to the cluster, are prepared for addition to the cluster. When these nodes are added to the cluster, the same number are removed. Addition occurs by means of either _joining_ or _adding_, as described in [Clusters](#learn:clusters-and-availability/nodes.html#clusters). Note that the configuration of the added nodes must match that of the removed nodes. When rebalance is triggered by the administrator, Couchbase Server performs a _swap rebalance_.
+One or more spare nodes, which exist in addition to those committed to the cluster, are prepared for addition to the cluster. When these nodes are added to the cluster, the same number are removed. Addition occurs by means of either _joining_ or _adding_, as described in [Clusters](../learn/clusters-and-availability/nodes.md#clusters). Note that the configuration of the added nodes must match that of the removed nodes. When rebalance is triggered by the administrator, Couchbase Server performs a _swap rebalance_.
 
 Removed nodes are kept _up_ and _network-accessible_: and in this state, are upgraded to the latest version of Couchbase Server. Then, following the upgrade procedure, the upgraded nodes are re-introduced into the cluster; and are given configurations that match the configurations of the spare nodes; and the spare nodes are themselves now removed. Finally, a further [Rebalance](../learn/clusters-and-availability/rebalance.md) is performed, and the upgraded nodes become full members of the cluster.
 

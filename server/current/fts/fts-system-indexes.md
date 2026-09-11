@@ -1,6 +1,6 @@
 ---
 title: System:indexes - FTS indexes which are eligible to be queried from SQL++
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-system-indexes.adoc
   xref: xref:server:fts:fts-system-indexes.adoc[]
@@ -17,7 +17,7 @@ SELECT * FROM system:indexes
 
 An additional link describes various scenarios in which the FTS Index becomes ineligible to be queried by SQL++.
 
-[Scenarios where FTS Index becomes ineligible to be queried by SQL++](#n1ql/pages/n1ql-language-reference/searchfun.adoc#limitations)
+[Scenarios where FTS Index becomes ineligible to be queried by SQL++](../n1ql/n1ql-language-reference/searchfun.md#limitations)
 
 > [!NOTE]
 > Querying system:indexes only returns indexes on non-system keyspaces. To return all indexes, including indexes on system keyspaces, use the query system:all\_indexes.

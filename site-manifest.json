@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1789014448822,
+  "generated": 1789101486784,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -86620,12 +86620,6 @@
               "path": "fts-creating-index-with-rest-api.adoc",
               "url": "/server/current/search/create-search-indexes.md",
               "title": "Create a Search Index"
-            },
-            {
-              "module": "fts",
-              "path": "fts-creating-indexes-common.adoc",
-              "url": "/server/current/fts/fts-creating-indexes-common.md",
-              "title": "Classic Editor Examples"
             },
             {
               "alias": true,

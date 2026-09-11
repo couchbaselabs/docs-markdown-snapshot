@@ -2,7 +2,7 @@
 title: Replicate Using Scopes and Collections
 description: XDCR can be performed with reference to scopes and collections
   within source and target buckets.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/replicate-using-scopes-and-collections.adoc
   xref: xref:server:manage:manage-xdcr/replicate-using-scopes-and-collections.adoc[]
@@ -37,7 +37,7 @@ A single-node cluster named `10.144.210.101` has been created, and features the 
 
 Before following the examples, familiarity should be gained with all XDCR management-basics explained on other pages. In particular, see [Prepare for XDCR](prepare-for-xdcr.md), [Create a Reference](create-xdcr-reference.md), and [Create a Replication](create-xdcr-replication.md).
 
-The subsequent examples provided on this page — in [CLI Procedures](#manage:manage-xdcr/replicate-using-scopes-andcollections.adoc#cli-procedures) and [REST API Procedures](#manage:manage-xdcr/replicate-using-scopes-andcollections.adoc#rest-api-procedures) — assume the same starting-points as those for the UI; and achieve the same goals, by means of the Couchbase CLI and REST API respectively.
+The subsequent examples provided on this page — in [CLI Procedures](#cli-procedures) and [REST API Procedures](#rest-api-procedures) — assume the same starting-points as those for the UI; and achieve the same goals, by means of the Couchbase CLI and REST API respectively.
 
 ## [](#replicate-data-between-collections-implicitly-with-the-ui)Replicate Data Between Collections Implicitly, with the UI
 
@@ -271,7 +271,7 @@ See [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md) for inform
 
 The procedures described above for the UI and CLI — covering XDCR replication between scopes and collections, based on implicit and explicit mapping; and migration — can also be effected by means of the Couchbase REST API. The required steps are provided below.
 
-For detailed information on all REST API options for XDCR replication, see the reference page for [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md). For more information on creating buckets, scopes, and collections with the REST API, see the reference pages for [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) and [Scopes and Collections REST API](#rest-api/scopes-and-collections-api.adoc).
+For detailed information on all REST API options for XDCR replication, see the reference page for [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md). For more information on creating buckets, scopes, and collections with the REST API, see the reference pages for [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) and [Scopes and Collections REST API](../../rest-api/scopes-and-collections-api.md).
 
 ### [](#replicate-data-implicitly-with-the-rest-api)Replicate Data Implicitly, with the REST API
 

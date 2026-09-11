@@ -2,7 +2,7 @@
 title: Manage Logging
 description: The Logging facility allows a record to be maintained of important
   events that occur on Couchbase Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
   xref: xref:server:manage:manage-logging/manage-logging.adoc[]
@@ -157,17 +157,17 @@ Logging levels control the level of detail that Couchbase Server writes to its l
 
 Some components and services in Couchbase Server let you adjust logging levels and other log settings using REST APIs. The following table lists these services and links to the relevant REST API settings:
 
-| Service or Component     | REST API settings link                                                                                              | Description                                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Full-Text Search Service | [enableVerboseLogging](../../fts/fts-advanced-settings-enableVerboseLogging.md)                                     | Enables or disables verbose logging for the Full-Text Search Service.                                       |
-| Full-Text Search Service | [setSlowQueryLogTimeout](../../fts/fts-advanced-settings-slowQueryLogTimeout.md)                                    | Enables the FTS to log when a query exceeds a time threshold.                                               |
-| Index Service            | [indexer.settings.log\_level](../../index-rest-settings/index.md#:~:text=Indexer%20logging%20level.)                | Sets the logging level for the Index Service.                                                               |
-| Index Service            | [indexer.settings.statsLogDumpInterval](#index-rest-settings:index.adoc:~:text=Statistics%20log%20dump%20interval.) | Sets how often the Index Service writes its statistics to the indexer-stats.log file.                       |
-| Index Service            | [projector.settings.log\_level](#index-rest-settings:index.adoc:~:text=Projector%20logging%20level.)                | Sets the logging level for the Index Service's projector component that provides data to the Index Service. |
-| Query Service            | [loglevel](../../n1ql/n1ql-manage/query-settings.md#loglevel)                                                       | Sets the logging level for the Query Service.                                                               |
+| Service or Component     | REST API settings link                                                                               | Description                                                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Full-Text Search Service | [enableVerboseLogging](../../fts/fts-advanced-settings-enableVerboseLogging.md)                      | Enables or disables verbose logging for the Full-Text Search Service.                                       |
+| Full-Text Search Service | [setSlowQueryLogTimeout](../../fts/fts-advanced-settings-slowQueryLogTimeout.md)                     | Enables the FTS to log when a query exceeds a time threshold.                                               |
+| Index Service            | [indexer.settings.log\_level](../../index-rest-settings/index.md#:~:text=Indexer%20logging%20level.) | Sets the logging level for the Index Service.                                                               |
+| Index Service            | [indexer.settings.statsLogDumpInterval](../../index-rest-settings/index.md)                          | Sets how often the Index Service writes its statistics to the indexer-stats.log file.                       |
+| Index Service            | [projector.settings.log\_level](../../index-rest-settings/index.md)                                  | Sets the logging level for the Index Service's projector component that provides data to the Index Service. |
+| Query Service            | [loglevel](../../n1ql/n1ql-manage/query-settings.md#loglevel)                                        | Sets the logging level for the Query Service.                                                               |
 
 > [!NOTE]
-> Couchbase Server auditing has its own log settings. See [Manage Audit Logs and Events](#https:manage:manage-security/manage-auditing.adoc#manage-audit-logs-and-events) for more information.
+> Couchbase Server auditing has its own log settings. See [Manage Audit Logs and Events](../manage-security/manage-auditing.md#manage-audit-logs-and-events) for more information.
 
 #### [](#persistent-changes)Change Logging Levels via a Configuration File
 

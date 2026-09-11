@@ -2,7 +2,7 @@
 title: Rotate Data Encryption Keys
 description: You can use the REST API have Couchbase Server immediately rotate
   an encryption-at-rest key that it manages.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/rotate-encryption-at-rest-key.adoc
   xref: xref:server:rest-api:security/encryption-at-rest/rotate-encryption-at-rest-key.adoc[]
@@ -19,7 +19,7 @@ antora:
 
 You can manually trigger the rotation of an encryption-at-rest key that Couchbase Server manages. You may want to manually rotate the key if you believe it's compromised.
 
-You can only rotate keys managed by an external KMS through that KMS. See [Manually Rotate Encryption-at-rest Keys](#manage:security/manage-native-encryption-at-rest.adoc#rotate-keys) for more information.
+You can only rotate keys managed by an external KMS through that KMS. See [Manually Rotate Encryption-at-rest Keys](../../../manage/manage-security/manage-native-encryption-at-rest.md#rotate-keys) for more information.
 
 When you rotate an encryption-at-rest key, Couchbase Server creates a new key and uses it to re-encrypt all DEKs that were encrypted with the previous version of the key.
 
@@ -43,7 +43,7 @@ Path Parameters
 
 `KEY_ID` (integer, required)
 
-The encryption-at-rest key to rotate identified by its `data.id` value. See [List Encryption-at-Rest Keys](#manage-encryption-keys.adoc#list-keys) to learn how to get the `data.id` value of the key you want to rotate.
+The encryption-at-rest key to rotate identified by its `data.id` value. See [List Encryption-at-Rest Keys](manage-encryption-keys.md#list-keys) to learn how to get the `data.id` value of the key you want to rotate.
 
 ### [](#curl-syntax)curl Syntax
 
@@ -72,7 +72,7 @@ Port number for the REST API. Defaults are 8091 for unencrypted and 18901 for en
 
 `KEY_ID` (integer, required)
 
-The encryption-at-rest key to rotate identified by its `data.id` value. See [List Encryption-at-Rest Keys](#manage-encryption-keys.adoc#list-keys) to learn how to get the `data.id` value of the key you want to rotate.
+The encryption-at-rest key to rotate identified by its `data.id` value. See [List Encryption-at-Rest Keys](manage-encryption-keys.md#list-keys) to learn how to get the `data.id` value of the key you want to rotate.
 
 ### [](#rotate-privs)Required Privileges
 

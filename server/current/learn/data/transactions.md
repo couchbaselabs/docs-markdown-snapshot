@@ -3,7 +3,7 @@ title: Transactions
 description: A transaction is an atomic unit of work that contains one or more
   operations. It is a group of operations that is either committed to the
   database together, or undone from the database.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/transactions.adoc
   xref: xref:server:learn:data/transactions.adoc[]
@@ -35,7 +35,7 @@ Couchbase transactions support ACID properties for protected actions on the data
 * `majorityAndPersistActive` — replicate to a majority of the replicas and persist to disk on the primary before acknowledging the write
 * `persistToMajority` — persist to disk on a majority of the replicas before acknowledging the write.
 
-`persistToMajority` provides the strongest protection from failures but is the least performant amongst the Durability levels. For more information, see [Durability Levels](#durability.adoc#durability-requirements).
+`persistToMajority` provides the strongest protection from failures but is the least performant amongst the Durability levels. For more information, see [Durability Levels](durability.md#durability-requirements).
 
 > [!NOTE]
 > Statement Level Atomicity is provided for SQL++ statements that are executed inside a transaction. This means that if a query statement fails during execution for a reason like a unique key violation that statement is completely rolled back and the rest of the transaction continues. It is as though the statement is not part of the transaction. No other work in the transaction is affected by the failure of this statement. If the query statement succeeds, it would be committed or rolled back based on the outcome of the overall transaction.

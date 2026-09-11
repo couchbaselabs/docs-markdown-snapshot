@@ -1,6 +1,6 @@
 ---
 title: Upgrade a Full-Capacity, Online Cluster
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-cluster-online-full-capacity.adoc
   xref: xref:server:install:upgrade-cluster-online-full-capacity.adoc[]
@@ -62,8 +62,7 @@ For the equivalent procedure as performed by the Backup Service, see [Run an Imm
 
 _Add_ the upgraded, removed node back into the cluster, and _remove_ a node that is currently part of the cluster. The node that is being added should be configured to run the same service (or services) as on the node that is to be removed. For example, if the node to be removed is running the Data Service, configure the node to be added to run the Data Service. Couchbase Server will execute the rebalance as a _swap rebalance_, to maximize efficiency.
 
-For an overview of node-removal, see [Removal](../learn/clusters-and-availability/removal.md); and for practical examples of performing removal, see [Clusters](#manage:manage-nodes/remove-node-and-rebalance.adoc.
-For an overview of node-addition, see xref:learn:clusters-and-availability/nodes.html#clusters); and for practical examples of node-addition, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
+For an overview of node-removal, see [Removal](../learn/clusters-and-availability/removal.md); and for practical examples of performing removal, see [Remove a Node and Rebalance](../manage/manage-nodes/remove-node-and-rebalance.md). For an overview of node-addition, see [Clusters](../learn/clusters-and-availability/nodes.md#clusters); and for practical examples of node-addition, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
 
 Note that for the CLI and REST API, the staging of a swap rebalance requires _two_ separate commands.
 

@@ -1,7 +1,7 @@
 ---
 title: Drop a Bucket
 description: Full, Cluster, and Bucket Administrators can drop a bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/delete-bucket.adoc
   xref: xref:server:manage:manage-buckets/delete-bucket.adoc[]
@@ -22,7 +22,7 @@ Note that _dropping_ a bucket means deleting the bucket, all its documents, and 
 
 To drop a bucket using Couchbase Web Console: access the console, and left-click on the **Buckets** tab, in the vertical navigation-bar at the left-hand side.
 
-![accessBucketTab](manage-buckets/accessBucketTab.png) 
+![accessBucketTab](../../clustersetup/_images/accessBucketTab.png) 
 
 The **Buckets** screen now appears, showing the buckets that have already been defined for your system:
 

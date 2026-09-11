@@ -3,7 +3,7 @@ title: Configure Server Certificates
 description: "Couchbase Server Enterprise Edition supports using X.509 and PKCS
   #12 certificates for authenticating and encrypting data between the nodes in
   the cluster."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-server-certificates.adoc
   xref: xref:server:manage:manage-security/configure-server-certificates.adoc[]
@@ -485,7 +485,7 @@ This example has the node's certificate directly signed by the root certificate.
 
 ## [](#encrypted-node-private-keys)Encrypted Node Private Keys
 
-You can choose to encrypt the private key for nodes when uploading them. You must register the passphrase so that the key can be securely retrieved and used when required. See [Upload and Retrieve a Node Certificate](#rest-api/upload-retrieve-node-cert.adoc) for details.
+You can choose to encrypt the private key for nodes when uploading them. You must register the passphrase so that the key can be securely retrieved and used when required. See [Upload and Retrieve a Node Certificate](../../rest-api/upload-retrieve-node-cert.md) for details.
 
 ## [](#configure-client-access-advanced)Configuring Client Access
 

@@ -2,7 +2,7 @@
 title: Manage Audit, Config, and Log Encryption at Rest
 description: You can use the REST API to view and change the state of encryption
   at rest for non-bucket data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
   xref: xref:server:rest-api:security/encryption-at-rest/manage-system-encryption-at-rest.adoc[]
@@ -198,15 +198,15 @@ Controls whether and how the data is encrypted. Allowed values are:
 
 `encryptionKeyId` (integer)
 
-The `id` field value of the encryption-at-rest-key that Couchbase Server uses to encrypt the data. See [List Encryption-at-Rest Keys](#manage-encryption-keys.adoc#list-keys) to learn how to get the `id` of the key you want to use. This field is required when you set `` encryptionMethod` `` to `encryptionKey`.
+The `id` field value of the encryption-at-rest-key that Couchbase Server uses to encrypt the data. See [List Encryption-at-Rest Keys](manage-encryption-keys.md#list-keys) to learn how to get the `id` of the key you want to use. This field is required when you set `` encryptionMethod` `` to `encryptionKey`.
 
 `dekRotationInterval` (integer)
 
-The duration of time, in seconds, that the data encryption key (DEK) Couchbase Server uses to encrypt the data is valid. Once this time elapses, Couchbase Server rotates the DEK automatically. Defaults to `2592000` (30 days). See [Encryption Key Rotation and Expiration](#learn:security:native-encryption-at-rest-overview.adoc) for more information about key rotation.
+The duration of time, in seconds, that the data encryption key (DEK) Couchbase Server uses to encrypt the data is valid. Once this time elapses, Couchbase Server rotates the DEK automatically. Defaults to `2592000` (30 days). See [Encryption Key Rotation and Expiration](../../../learn/security/native-encryption-at-rest-overview.md) for more information about key rotation.
 
 `dekLifetime` (integer)
 
-The period of time, in seconds, that Couchbase Server keeps expired DEKs before deleting them. Couchbase Server keeps expired DEKs until either the lifetime elapses or no data remains encrypted with the DEK. If the DEK's lifetime elapses while data is still encrypted with it, Couchbase Server re-encrypts the data using the active DEK and deletes the expired one. Defaults to `31536000` (1 year). See [Encryption Key Rotation and Expiration](#learn:security:native-encryption-at-rest-overview.adoc) for more information about key lifetime.
+The period of time, in seconds, that Couchbase Server keeps expired DEKs before deleting them. Couchbase Server keeps expired DEKs until either the lifetime elapses or no data remains encrypted with the DEK. If the DEK's lifetime elapses while data is still encrypted with it, Couchbase Server re-encrypts the data using the active DEK and deletes the expired one. Defaults to `31536000` (1 year). See [Encryption Key Rotation and Expiration](../../../learn/security/native-encryption-at-rest-overview.md) for more information about key lifetime.
 
 ### [](#change-privs)Required Privileges
 

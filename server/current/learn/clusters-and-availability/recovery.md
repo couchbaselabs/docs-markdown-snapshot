@@ -3,7 +3,7 @@ title: Recovery
 description: "After a node has been failed over, it can be <em>recovered</em>:
   that is, added back into the cluster from which it was failed over, by means
   of the <em>rebalance</em> operation."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/recovery.adoc
   xref: xref:server:learn:clusters-and-availability/recovery.adoc[]
@@ -59,7 +59,7 @@ In some cases, when Delta recovery is attempted, and all the requirements listed
 
 * Cluster-topology has changed since the node was last available within the cluster.
 * The node was _hard_ failed over, and is marked for removal.
-* The rebalance was configured to perform the Delta recovery while simultaneously moving other nodes in or out of the cluster, and the numbers of nodes intended respectively to leave and join the cluster were unequal. (Note that in this case, a [Swap Rebalance](#install:upgrade-online.adoc#swap-rebalance-example) can be performed instead.)
+* The rebalance was configured to perform the Delta recovery while simultaneously moving other nodes in or out of the cluster, and the numbers of nodes intended respectively to leave and join the cluster were unequal. (Note that in this case, a [Swap Rebalance](../../install/upgrade-procedure-selection.md#swap-rebalance) can be performed instead.)
 * Bucket-operations were performed while Delta recovery was pending: this changed configurations, and has made Delta recovery impossible.
 * Either the node being recovered or another node in the cluster has crashed, or become otherwise unavailable, at some point during the process of recovery and rebalance.
 

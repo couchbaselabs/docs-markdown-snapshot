@@ -1,7 +1,7 @@
 ---
 title: Monitor Clock Drift
 description: The progressive desynchronization of nodes can be monitored.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/monitor/xdcr-monitor-timestamp-conflict-resolution.adoc
   xref: xref:server:manage:monitor/xdcr-monitor-timestamp-conflict-resolution.adoc[]
@@ -22,7 +22,7 @@ During [Intra-Cluster Replication](../../learn/clusters-and-availability/replica
 
 During [XDCR](../../learn/clusters-and-availability/xdcr-overview.md), each active vBucket on the target cluster calculates drift; when it receives updates from its corresponding active vBucket, located on the source cluster. If drift is greater than 5 seconds (5000 milliseconds), an alert is raised on the destination cluster; with the following message: "`[<DATE>] - Remote or replica mutation received for bucket "<BUCKET>" on node "<IP>" with timestamp more than 5000 milliseconds ahead of local clock. Please ensure that NTP is set up correctly on all nodes across the replication topology and clocks are synchronized.`"
 
-Drift can be monitored by means of the [cbstats](#cli:cbstats/cbstats-intro.adoc) tool, using the `vbucket-details` and `all` commands; as described below.
+Drift can be monitored by means of the [cbstats](../../cli/cbstats-intro.md) tool, using the `vbucket-details` and `all` commands; as described below.
 
 ### [](#cbstats-vbucket-details)[cbstats vbucket-details](../../cli/cbstats/cbstats-vbucket-details.md)
 

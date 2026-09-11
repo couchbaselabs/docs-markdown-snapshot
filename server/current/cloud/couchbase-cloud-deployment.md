@@ -2,7 +2,7 @@
 title: Cloud and Container Deployment Overview
 description: Couchbase Server is designed to run in the most popular cloud and
   container environments.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-cloud-deployment.adoc
   xref: xref:server:cloud:couchbase-cloud-deployment.adoc[]
@@ -126,7 +126,7 @@ Security
 
 * You should configure a [security group](https://docs.microsoft.com/en-us/azure/virtual-network/security-overview) that closes off [unused ports](../install/install-ports.md). This configuration can be further secured by specifying CIDR blocks to whitelist XDCR and client connectivity. It's also recommended to restrict access to intra-cluster communication ports to the security group.
 * Disk encryption is recommended, and is [available for managed disks that use Premium Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption).
-* If using Couchbase Sync Gateway, it's recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](#sync-gateway:refer/config-properties.adoc).
+* If using Couchbase Sync Gateway, it's recommended that you secure the admin interface for access from `127.0.0.1` only. This can be configured using the Sync Gateway [configuration file](#sync-gateway:configuration-properties-legacy.adoc).
 
 ## [](#google-cloud-platform-gcp)Google Cloud Platform (GCP)
 

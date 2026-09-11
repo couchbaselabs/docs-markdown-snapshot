@@ -2,7 +2,7 @@
 title: Regenerate All Certificates
 description: The REST API can be used to <em>regenerate</em> the cluster's root
   and node certificates.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-regenerate-all-certs.adoc
   xref: xref:server:rest-api:rest-regenerate-all-certs.adoc[]
@@ -82,4 +82,4 @@ The root and node certificates for the cluster have all now been restored to def
 
 ## [](#see-also)See Also
 
-Information on uploading and retrieving root and node certificates with the REST API is provided in [Upload and Retrieve the Root Certificate](#rest-api:upload-retrieve-root-cert.adoc) and [Upload and Retrieve a Node Certificate](upload-retrieve-node-cert.md), respectively. A general introduction to certificates is provided in [Certificates](../learn/security/certificates.md). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively.
+Information on uploading and retrieving root and node certificates with the REST API is provided in [Upload and Retrieve the Root Certificate](deprecated-security-apis/upload-retrieve-root-cert.md) and [Upload and Retrieve a Node Certificate](upload-retrieve-node-cert.md), respectively. A general introduction to certificates is provided in [Certificates](../learn/security/certificates.md). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively.

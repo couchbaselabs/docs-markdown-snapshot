@@ -2,7 +2,7 @@
 title: Configure On-the-Wire Security
 description: Establish and retrieve cluster-wide settings for the use of
   encryption and cipher-suites.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-setting-security.adoc
   xref: xref:server:rest-api:rest-setting-security.adoc[]
@@ -87,7 +87,7 @@ Note that for Couchbase Server Version 7.6 and later, disablement of all three S
 
   * When the certificate is uploaded to the node
   * When the node's `hostname` changes during node-addition, or during cluster-initialization.
-  * When the node's `hostname` changes due to use of an API or CLI (for example, the [node-init](#cli:cbcli/couchbase-cli-node-iniit.adoc) command).  
+  * When the node's `hostname` changes due to use of an API or CLI (for example, the [node-init](../cli/cbcli/couchbase-cli-node-init.md) command).  
 These checks are performed to ensure that each node bears a certificate whose SAN matches the node's hostname, thereby ensuring that other nodes will be able to verify the node's identity when connecting with it.
 
 * `allowHashMigrationDuringAuth` controls whether Couchbase Server automatically rehashes a locally-stored password if it was hashed using an algorithm other than the one set by `passwordHashAlg`. If you set this value to `true`, the user's password is automatically rehashed using the new algorithm after authentication. See [Automatic Password Hash Migration](../learn/security/authentication-overview.md#password-hash-migration) for more information.

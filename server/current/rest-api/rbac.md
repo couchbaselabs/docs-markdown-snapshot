@@ -2,7 +2,7 @@
 title: Role-Based Access Control (RBAC)
 description: Full  and Security Administrators can manage the Couchbase
   <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rbac.adoc
   xref: xref:server:rest-api:rbac.adoc[]
@@ -614,7 +614,7 @@ A malformed URI gives `405 Method Not Allowed`. Failure to authenticate gives `4
 
 The creation of an already existing group or local or external user succeeds with `200 OK`: the user is recreated with the newly specified role-assignments and group-memberships; and the group is recreated with the newly specified role-assignments and, optionally, a newly specified mapping.
 
-## [](#backup-and-restore-users-and-groups)Backup and Restore Users and Groups
+## [](#backup-restore)Backup and Restore Users and Groups
 
 Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It's useful if you want to transfer or synchronize users between different database clusters.
 

@@ -2,7 +2,7 @@
 title: Manage Backup and Restore
 description: Couchbase Server allows one or more buckets, and selected subsets
   of their data, to be backed up, restored, and archived.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
   xref: xref:server:manage:manage-backup-and-restore/manage-backup-and-restore.adoc[]
@@ -115,7 +115,7 @@ To encrypt the backup data, select **Encrypted**.
   * **KM Region** (optional) is the region of the key manager, which is required only for AWS KMS.
   * **KM Endpoint** (optional) is the endpoint of the key manager to override the default endpoint for KMS.
   * **KMS Authentication Type** (optional) is the authentication type for the key manager with the options Environmental Auth, File Auth, and Access Key Auth.  
-For more information, see [Encryption](#backup-restore/ccbackupmgr-encryption.adoc).  
+For more information, see [Encryption](../../backup-restore/cbbackupmgr-encryption.md).  
 To confirm, left-click on the **Add** button:  
 This concludes the process for creating repository and plan.  
 The newly created repository, **hourlyBackupRepo**, is displayed with its associated plan, `HourlyBackupPlan`, with the affected bucket (`travel-sample`) and the next scheduled backup displayed. Data Service and Index Service data for `travel-sample` will now be backed up to the specified location on the specified schedule.

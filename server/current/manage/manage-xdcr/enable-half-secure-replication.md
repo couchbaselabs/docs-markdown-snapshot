@@ -2,7 +2,7 @@
 title: Enable Half-Secure Replications
 description: "<em>Half-Secure</em> replication secures the specified password
   only: it does not secure data."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/enable-half-secure-replication.adoc
   xref: xref:server:manage:manage-xdcr/enable-half-secure-replication.adoc[]
@@ -168,7 +168,7 @@ Output from a successful call, when formatted, appears as follows:
 
 The `secureType` field indicates that the edited reference is now `half` secure.
 
-For more information on using the REST API to create half-secure connections, see the complete reference, at [Create and Edit a Reference](#rest-api:rest-create-xdcr-ref.adoc).
+For more information on using the REST API to create half-secure connections, see the complete reference, at [Create and Edit a Reference](../../rest-api/rest-xdcr-create-ref.md).
 
 ## [](#next-xdcr-steps-after-half-secure-replication)Next Steps
 

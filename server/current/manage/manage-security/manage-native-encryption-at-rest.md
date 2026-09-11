@@ -2,7 +2,7 @@
 title: Manage Native Encryption at Rest
 description: Couchbase Server's native encryption at rest protects sensitive
   data by encrypting it when writing it to disk.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-native-encryption-at-rest.adoc
   xref: xref:server:manage:manage-security/manage-native-encryption-at-rest.adoc[]
@@ -120,7 +120,7 @@ This option has Couchbase Server manage the key. To complete creating the key:
 
   1. Choose whether you want to use the cluster's master password or another encryption key to encrypt your new key. If you want to use another encryption key, it must be configured as a Key Encryption Key (KEK).
   2. Decide whether you want Couchbase Server to cache the key. This setting lets Couchbase Server keep the key unencrypted in memory so it does not have to read and decrypt it for each encryption or decryption. Disabling this option increases processor resource use because Couchbase Server has to decrypt the key for each use. Disabling it does slightly improve security by reducing the chance of in-memory key exposure attacks.
-  3. Decide whether you want to have the encryption-at-rest key auto rotate. If you choose to rotate it, enter how often to rotate, a date and time for the first rotation. See [Encryption Key Rotation and Expiration](#learn:secrutiy/native-encryption-at-rest-overview.adoc#rotation-expiration) for more information about key rotation.
+  3. Decide whether you want to have the encryption-at-rest key auto rotate. If you choose to rotate it, enter how often to rotate, a date and time for the first rotation. See [Encryption Key Rotation and Expiration](../../learn/security/native-encryption-at-rest-overview.md#rotation-expiration) for more information about key rotation.
 
 ### [](#create-an-encryption-key-using-the-rest-api)Create an Encryption Key Using the REST API
 
@@ -220,8 +220,8 @@ For a new bucket:
 3. In the **Edit Bucket Settings** or **Add Data Bucket** dialog, expand the **Advanced bucket settings** section.
 4. Select **Enable Encryption at Rest**.
 5. In the **Available Encryption Keys** list, select the encryption key you want to use to encrypt the bucket.
-6. Edit the **DEK Rotation Interval** and **DEK Life Time** settings to configure the data encryption key rotation. See [Encryption Key Rotation and Expiration](#:learn:security/native-encryption-at-rest-overview.adoc#rotation-expiration) for more information about these settings.
-7. If you are adding a bucket, configure the rest of the settings for your bucket. See [Create a Bucket with the UI](#manage:manage-buckets/create-bucket.adocl#create-bucket-using-couchbase-web-console) for more information about creating buckets.
+6. Edit the **DEK Rotation Interval** and **DEK Life Time** settings to configure the data encryption key rotation. See [Encryption Key Rotation and Expiration](../../learn/security/native-encryption-at-rest-overview.md#rotation-expiration) for more information about these settings.
+7. If you are adding a bucket, configure the rest of the settings for your bucket. See [Create a Bucket with the UI](../manage-buckets/create-bucket.md#create-bucket-using-couchbase-web-console) for more information about creating buckets.
 8. Click **Add Bucket** or **Save Changes** to save your changes.
 
 #### [](#encrypt-a-bucket-using-the-rest-api)Encrypt a Bucket Using the REST API
@@ -270,7 +270,7 @@ To Use an Encryption-at-Rest Key
 
   1. Select **Encryption Key**.
   2. Under **Available Encryption Keys**, select the encryption key you want to use. You must have a key that you configured to encrypt the type of data you selected.
-  3. Optionally change the **DEK Rotation Interval** and **DEK Life Time** settings to configure the data encryption key rotation. See [Encryption Key Rotation and Expiration](#:learn:security/native-encryption-at-rest-overview.adoc#rotation-expiration) for more information about these settings.
+  3. Optionally change the **DEK Rotation Interval** and **DEK Life Time** settings to configure the data encryption key rotation. See [Encryption Key Rotation and Expiration](../../learn/security/native-encryption-at-rest-overview.md#rotation-expiration) for more information about these settings.
 5. Click **Save Changes** to save your changes.
 
 #### [](#change-audit-configuration-or-log-encryption-settings-via-the-rest-api)Change Audit, Configuration, or Log Encryption Settings via the REST API
@@ -312,7 +312,7 @@ To view the status of encryption at rest for audit, configuration, and log data 
 
 ### [](#viewing-encryption-status-using-the-rest-api)Viewing Encryption Status Using the REST API
 
-To view the encryption status of buckets using the REST API, send a GET request to the `/pools/default/buckets` endpoint. View the `encryptionAtRestKeyId` field in the response to see the encryption status of each bucket. If it's set to `-1`, the bucket is not encrypted. If it's set to any other value, the bucket is encrypted and the value is the ID of the encryption key Couchbase Server uses to encrypt it. Additional details, such as the encrypted status of the data, are in the `encryptionAtRestInfo` object. See [rest-api:rest-bucket-summary.adoc](#rest-api:rest-bucket-summary.adoc) for more information about the `/pools/default/buckets` endpoint.
+To view the encryption status of buckets using the REST API, send a GET request to the `/pools/default/buckets` endpoint. View the `encryptionAtRestKeyId` field in the response to see the encryption status of each bucket. If it's set to `-1`, the bucket is not encrypted. If it's set to any other value, the bucket is encrypted and the value is the ID of the encryption key Couchbase Server uses to encrypt it. Additional details, such as the encrypted status of the data, are in the `encryptionAtRestInfo` object. See [Getting Bucket Information](../../rest-api/rest-buckets-summary.md) for more information about the `/pools/default/buckets` endpoint.
 
 The following example shows how to view the encryption status of the bucket bucket named `testBucket`. It pipes the REST API result through the `jq` command to format and filter the output to show just the `encryptionAtRestKeyId` and `encryptionAtRestInfo` fields:
 

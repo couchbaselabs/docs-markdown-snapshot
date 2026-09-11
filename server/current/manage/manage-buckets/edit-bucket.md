@@ -2,7 +2,7 @@
 title: Edit a Bucket
 description: Full, Cluster, and Bucket Administrators can edit some settings of
   an existing bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/edit-bucket.adoc
   xref: xref:server:manage:manage-buckets/edit-bucket.adoc[]
@@ -67,7 +67,7 @@ Whether and how Couchbase Server compresses the bucket's data. For information o
 
 Ejection Method
 
-Controls how the bucket removes documents from memory when the bucket's memory use approaches its memory quota. You can only change this setting for Couchbase buckets. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies and [change-ejection-policy.adoc](#change-ejection-policy.adoc) for steps to change a bucket's ejection policy.
+Controls how the bucket removes documents from memory when the bucket's memory use approaches its memory quota. You can only change this setting for Couchbase buckets. See [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies and [Change a Bucket's Ejection Policy](change-ejection-policy.md) for steps to change a bucket's ejection policy.
 
 Minimum Durability Level
 
@@ -82,7 +82,7 @@ Overrides the cluster-wide default setting for compacting the bucket's data. See
 
 Encryption At Rest [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-Enables or disables encryption of data at rest for Couchbase buckets. This setting is only available for Couchbase buckets on Couchbase Server Enterprise Edition. See [Encryption at Rest](#learn:buckets-memory-and-storage/encryption-at-rest.adoc) for an overview of encryption at rest and [Manage Native Encryption at Rest](../manage-security/manage-native-encryption-at-rest.md) for steps you need to take in order to enable encryption at rest.
+Enables or disables encryption of data at rest for Couchbase buckets. This setting is only available for Couchbase buckets on Couchbase Server Enterprise Edition. See [Encryption at Rest](../../learn/security/native-encryption-at-rest-overview.md) for an overview of encryption at rest and [Manage Native Encryption at Rest](../manage-security/manage-native-encryption-at-rest.md) for steps you need to take in order to enable encryption at rest.
 
 Enable Cross Cluster Versioning
 

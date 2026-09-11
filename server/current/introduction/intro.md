@@ -1,6 +1,6 @@
 ---
 title: Couchbase Server
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/intro.adoc
   xref: xref:server:introduction:intro.adoc[]
@@ -8,8 +8,6 @@ antora:
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/introduction/intro.html)
-
-# Couchbase Server
 
 # Couchbase Server
 

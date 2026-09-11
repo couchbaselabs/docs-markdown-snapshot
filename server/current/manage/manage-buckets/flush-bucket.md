@@ -1,7 +1,7 @@
 ---
 title: Flush a Bucket
 description: <em>Flushing</em> deletes every object that a bucket contains.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/flush-bucket.adoc
   xref: xref:server:manage:manage-buckets/flush-bucket.adoc[]
@@ -18,7 +18,7 @@ antora:
 
 To edit an existing bucket-configuration, access Couchbase Web Console, and left-click on the **Buckets** tab, in the vertical navigation-bar at the left-hand side.
 
-![accessBucketTab](manage-buckets/accessBucketTab.png) 
+![accessBucketTab](../../clustersetup/_images/accessBucketTab.png) 
 
 The **Buckets** screen now appears, showing the buckets that have already been defined for your system:
 

@@ -2,7 +2,7 @@
 title: Storage Properties
 description: Couchbase Server stores certain items on disk as well as in memory
   to provide persistence and enhance reliability.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
   xref: xref:server:learn:buckets-memory-and-storage/storage-settings.adoc[]
@@ -122,7 +122,7 @@ To learn how to set the disk usage limit using the Couchbase Server Web Console,
 
 When mutating data, Couchbase Server only appends to data files, instead of rewriting them. This approach helps maintain file consistency and reduces the risk of file corruption. Every time you add, modify, or delete data, Couchbase Server creates a new entry at the end of the data files. As a result, files grow in size even when you delete data.
 
-To prevent data files from growing too large, Couchbase Server periodically compacts them. Compaction rewrites the file, applying additions, modifications, and deletions before saving a new version of the file. You can change the schedule Couchbase Server follows to compact data. See [Auto-Compaction](#manage:manage-settings/configure-compact-settings.asdoc) for more information. For information about configuring auto-compaction with the command line, see [setting-compaction](../../cli/cbcli/couchbase-cli-setting-compaction.md).
+To prevent data files from growing too large, Couchbase Server periodically compacts them. Compaction rewrites the file, applying additions, modifications, and deletions before saving a new version of the file. You can change the schedule Couchbase Server follows to compact data. See [Auto-Compaction](../../manage/manage-settings/configure-compact-settings.md) for more information. For information about configuring auto-compaction with the command line, see [setting-compaction](../../cli/cbcli/couchbase-cli-setting-compaction.md).
 
 You can also perform compaction manually on a specific bucket. For information about performing manual compaction with the command line, see [bucket-compact](../../cli/cbcli/couchbase-cli-bucket-compact.md).
 

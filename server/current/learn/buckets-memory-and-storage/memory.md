@@ -1,7 +1,7 @@
 ---
 title: Memory
 description: Couchbase Server memory-management ensures high performance and scalability.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/memory.adoc
   xref: xref:server:learn:buckets-memory-and-storage/memory.adoc[]
@@ -31,7 +31,7 @@ The firm limits for server memory allocation can be calculated by:
 
 where `total_memory` is the maximum memory on the node in GiB.
 
-The [Data Service](../services-and-indexes/services/data-service.md) must run on at least one node in any cluster. Every [bucket](#buckets.adoc) you create on a node has its own memory quota. The available memory for a bucket comes from the quota you assign to the Data Service. For more information on bucket memory quotas, see the [Bucket Memory Quotas](#bucket-memory) section.
+The [Data Service](../services-and-indexes/services/data-service.md) must run on at least one node in any cluster. Every [bucket](buckets.md) you create on a node has its own memory quota. The available memory for a bucket comes from the quota you assign to the Data Service. For more information on bucket memory quotas, see the [Bucket Memory Quotas](#bucket-memory) section.
 
 When you add a new node, you can use the same configuration and services from the first node in the cluster. You can also choose to customize the new node's settings and change its assigned services.
 

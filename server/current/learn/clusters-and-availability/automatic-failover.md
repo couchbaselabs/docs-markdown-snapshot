@@ -5,7 +5,7 @@ description: One or more nodes can be failed over automatically when they become
   auto-failover is performed only if all safety check conditions are met and the
   checks are done to maintain data safety; i.e. that no data loss occurs as a
   result of failover.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
   xref: xref:server:learn:clusters-and-availability/automatic-failover.adoc[]
@@ -48,15 +48,15 @@ Auto-failover occurs in response to failed/failing events. The following events 
   * Index Service non-responsiveness. Index Service running on a node sends heartbeat messages to the cluster manager as an indication of its health. If the Index Service fails to send a heartbeat, it is considered unhealthy, and if it stays unhealthy for the user-specified threshold time for auto-failover, the cluster manager will start the auto-failover checks for the node that the index service is on.
   * Data Service is unhealthy. Besides the Data Service disk read/write issues configured monitoring for auto-failover, the Data Service running on a node can be deemed unhealthy per various other internal monitoring. If the Data Service stays unhealthy for the user-specified threshold time for auto-failover, the cluster manager will start the auto-failover checks for the node that the data service is on.
 
-Note that the Data Service and Index Service health for auto-failover uses the same Timeout value set for node unresponsiveness (see [Configuring Auto-Failover](#learn:clusters-and-availability:automatic-failover.adoc)) — this is the user-specified threshold time for auto-failover mentioned in the Data Service and Index Service monitoring.
+Note that the Data Service and Index Service health for auto-failover uses the same Timeout value set for node unresponsiveness (see [Configuring Auto-Failover](automatic-failover.md)) — this is the user-specified threshold time for auto-failover mentioned in the Data Service and Index Service monitoring.
 
 Note that on a node where there are only Search, Eventing, Query, Analytics, or Backup services running, the services could become unhealthy, but as long as the cluster manager heartbeats are sent and processed by the rest of the cluster, an auto-failover of the node will not be attempted — this is because only the Data and Index Services health are monitored for node auto-failover.
 
 ## [](#auto-failover-constraints)Auto-Failover Constraints
 
-If a monitored or configured auto-failover event occurs, an auto-failover will not be performed if all the safety checks do not pass. These checks are explained in this section and the [Service-Specific Auto-Failover Policy](#learn:clusters-and-availability:automatic-failover.adoc#failover-policy) section.
+If a monitored or configured auto-failover event occurs, an auto-failover will not be performed if all the safety checks do not pass. These checks are explained in this section and the [Service-Specific Auto-Failover Policy](#failover-policy) section.
 
-The [quorum constraint](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) is a critical part of auto-failover since the cluster must be able to form a quorum to initiate a failover, following the failure of some of the nodes. For Server Groups, this means that if you have two server groups with equal number of nodes, for auto-failover of all nodes in one server group to be able to occur, you could deploy an [arbiter node](#learn:clusters-and-availability:nodes.adoc#adding-arbiter-nodes) (or another node) in a third physical server group which will allow the remaining nodes to form a quorum.
+The [quorum constraint](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) is a critical part of auto-failover since the cluster must be able to form a quorum to initiate a failover, following the failure of some of the nodes. For Server Groups, this means that if you have two server groups with equal number of nodes, for auto-failover of all nodes in one server group to be able to occur, you could deploy an [arbiter node](nodes.md#adding-arbiter-nodes) (or another node) in a third physical server group which will allow the remaining nodes to form a quorum.
 
 Another critical auto-failover constraint for Server Groups is the maximum number of nodes to be automatically failed over (`maxCount` in `/settings/autoFailover`) before administrator-intervention is required. If you want one entire server group of nodes to be able to be all automatically failed over, then the `maxCount` value should be at least the number of nodes in the server group. You can check the value of `maxCount` in `GET /settings/autoFailover` to see what the `maxCount` setting is. The value of `count` in the same `GET /settings/autoFailover` output tells you how many node auto-failovers have occurred since the parameter was last reset. Running a rebalance will reset the count value back to 0\. The count should not be reset manually unless guided by Support, since resetting manually will cause you to lose track of the number of auto-failovers that have already occurred without the cluster being rebalanced.
 

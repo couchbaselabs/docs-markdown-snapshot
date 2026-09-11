@@ -2,7 +2,7 @@
 title: Creating and Editing Buckets
 description: Buckets can be created, and their configurations subsequently
   edited, with the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-11T04:31:57.657Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-bucket-create.adoc
   xref: xref:server:rest-api:rest-bucket-create.adoc[]
@@ -1277,7 +1277,7 @@ See the examples provided above, in [Example: Specifying a Data Fragmentation Th
 
 ### [](#enablecrossclusterversioning)enableCrossClusterVersioning
 
-Enabling Cross Cluster Versioning is a pre-requisite to a few XDCR features. The bucket property `enableCrossClusterVersioning` can only be set to true after a bucket has been created. When enabled, for each document processed by XDCR, XDCR stores additional metadata, called the Hybrid Logical Vector (HLV), in the document extended attributes (xattrs). For more information, see [XDCR enableCrossClusterVersioning](#clusters-and-availability/xdcr-enable-crossclusterversioning.adoc).
+Enabling Cross Cluster Versioning is a pre-requisite to a few XDCR features. The bucket property `enableCrossClusterVersioning` can only be set to true after a bucket has been created. When enabled, for each document processed by XDCR, XDCR stores additional metadata, called the Hybrid Logical Vector (HLV), in the document extended attributes (xattrs). For more information, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 See the example provided in [Example: Turning on enableCrossClusterVersioning, when Editing](#example-enablecrossclusterversioning-edit)
 
@@ -1294,7 +1294,7 @@ curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
 
 ### [](#version-pruning-window-hrs-property)versionPruningWindowHrs
 
-Controls the pruning frequency of the Hybrid Logical Vector (HLV) metadata. The default value of versionPruningWindowHrs is 720 hours (30 days), which means that any HLV data older than 720 hours is pruned to remove the outdated entries. For more information, see [versionPruningWindowHrs](#clusters-and-availability/xdcr-enable-crossclusterversioning.adoc) in [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#version-pruning-window-hrs).
+Controls the pruning frequency of the Hybrid Logical Vector (HLV) metadata. The default value of versionPruningWindowHrs is 720 hours (30 days), which means that any HLV data older than 720 hours is pruned to remove the outdated entries. For more information, see [versionPruningWindowHrs](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md) in [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#version-pruning-window-hrs).
 
 See the example provided in [Example: Specifying time value for versionPruningWindowHrs, when Editing](#example-versionpruningwindowhrs-edit)
 
