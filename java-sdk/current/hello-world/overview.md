@@ -1,6 +1,6 @@
 ---
 title: Couchbase Java SDK 3.12
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-09-12T04:29:55.163Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
   xref: xref:java-sdk:hello-world:overview.adoc[]
@@ -50,7 +50,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.12.2</version>
+        <version>3.12.3</version>
     </dependency>
 </dependencies>
 ```
