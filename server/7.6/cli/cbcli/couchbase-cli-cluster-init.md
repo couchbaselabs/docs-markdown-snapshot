@@ -1,7 +1,7 @@
 ---
 title: cluster-init
 description: Initializes a Couchbase Server cluster
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-cluster-init.adoc
   xref: xref:7.6@server:cli:cbcli/couchbase-cli-cluster-init.adoc[]
@@ -18,8 +18,8 @@ Initializes a Couchbase Server cluster
 
 _couchbase-cli cluster-init_ [--cluster <url>] [--cluster-username <username>] [--cluster-password <password>]
     [--client-cert <path>] [--client-cert-password <password>] [--client-key <path>]
-    [--client-key-password <password>] [--cluster-port <port>]
-    [--cluster-ramsize <mebibytes>] [--cluster-name <name>]
+    [--client-key-password <password>] [--no-ssl-verify] [--cacert <path>]
+    [--cluster-port <port>] [--cluster-ramsize <mebibytes>] [--cluster-name <name>]
     [--cluster-index-ramsize <mebibytes>] [--cluster-fts-ramsize <mebibytes>]
     [--cluster-eventing-ramsize <mebibytes>]
     [--cluster-analytics-ramsize <mebibytes>] [--cluster-query-ramsize <mebibytes>]
@@ -46,6 +46,20 @@ When starting a new cluster you need to create the Couchbase Server built-in adm
 \--cluster-password
 
 When starting a new cluster you need to create the Couchbase Server built-in administrator user for the cluster. This user will be able to access the Couchbase Server Administration Console as well as be used for data access and future configuration. This option specifies the password for the administrator user.
+
+\-s
+
+\--ssl
+
+(Deprecated) Specifies that the connection should use SSL verification. If this flag is used then SSL will be used but the cluster certificate will not be verified by the Certificate Authority. This flag is deprecated and not recommended. If you wish to use SSL encryption it is recommended that you specify the cluster host name using either _couchbases://_ or _https://_. Each of these connection schemes will ensure that the connection is encrypted with SSL. You may then use either --no-ssl-verify or --cacert in order to customize how your SSL connection is set up.
+
+\--no-ssl-verify
+
+Specifies that SSL verification should be used but that verifying that the cluster certificate is valid should be skipped. Use of this flag is not recommended for production environments because it does not protect the user from a man-in-the-middle attack.
+
+\--cacert <path>
+
+Specifies that the SSL connection should use the cacert provided when connecting to the cluster. This argument takes the path the certificate file as its value. This is the most secure way to connect to your cluster.
 
 \--cluster-ramsize
 

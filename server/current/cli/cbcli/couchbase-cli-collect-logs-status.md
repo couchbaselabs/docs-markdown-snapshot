@@ -1,7 +1,7 @@
 ---
 title: collect-logs-status
 description: Get log collection status
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-collect-logs-status.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-collect-logs-status.adoc[]
@@ -18,7 +18,7 @@ Get log collection status
 
 _couchbase-cli collect-logs-status_ [--cluster <url>] [--username <user>] [--password <password>]
     [--client-cert <path>] [--client-cert-password <password>] [--client-key <path>]
-    [--client-key-password <password>]
+    [--client-key-password <password>] [--no-ssl-verify] [--cacert <path>]
 
 ## [](#description)DESCRIPTION
 
@@ -55,6 +55,20 @@ Specifies the username of the user executing the command. If you do not have a u
 \--password <password>
 
 Specifies the password of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error. If this argument is specified, but no password is given then the command will prompt the user for a password through non-echoed stdin. You may also specify your password by using the environment variable CB\_REST\_PASSWORD.
+
+\-s
+
+\--ssl
+
+(Deprecated) Specifies that the connection should use SSL verification. If this flag is used then SSL will be used but the cluster certificate will not be verified by the Certificate Authority. This flag is deprecated and not recommended. If you wish to use SSL encryption it is recommended that you specify the cluster host name using either _couchbases://_ or _https://_. Each of these connection schemes will ensure that the connection is encrypted with SSL. You may then use either --no-ssl-verify or --cacert in order to customize how your SSL connection is set up.
+
+\--no-ssl-verify
+
+Specifies that SSL verification should be used but that verifying that the cluster certificate is valid should be skipped. Use of this flag is not recommended for production environments because it does not protect the user from a man-in-the-middle attack.
+
+\--cacert <path>
+
+Specifies that the SSL connection should use the cacert provided when connecting to the cluster. This argument takes the path the certificate file as its value. This is the most secure way to connect to your cluster.
 
 \--client-cert <path>
 

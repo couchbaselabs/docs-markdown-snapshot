@@ -2,7 +2,7 @@
 title: SQL++ Query Strings
 description: How to use SQL++ Query Strings to build effective queries with
   Couchbase Lite on C
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-n1ql-mobile.adoc
   xref: xref:couchbase-lite:c:query-n1ql-mobile.adoc[]
@@ -56,7 +56,10 @@ if(!result) {
 ```
 
 ```cpp
-Unresolved include directive in modules/c/pages/query-n1ql-mobile.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+// Create a query to fetch documents of type SDK
+cbl::Query query(database, kCBLN1QLLanguage,
+                 "SELECT * FROM _ WHERE type = \"SDK\"");
+cbl::ResultSet result = query.execute();
 ```
 
 We are accessing the current database using the shorthand notation **`_`** — see the [FROM](#lbl-from) clause for more on data source selection and [Query Parameters](#lbl-query-params) for more on parameterized queries.
@@ -1348,7 +1351,14 @@ CBLResultSet_Release(result);
 C++
 
 ```c
-Unresolved include directive in modules/c/pages/query-n1ql-mobile.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+cbl::Query query(database, kCBLN1QLLanguage, "SELECT * FROM _ WHERE type = $type");
+
+fleece::MutableDict params = fleece::MutableDict::newDict();
+params["type"] = "hotel";
+query.setParameters(params);
+
+cbl::ResultSet result = query.execute();
+// ... process results as required
 ```
 
 cbl::Query query(database, kCBLN1QLLanguage, "SELECT \* FROM \_ WHERE type = $type");

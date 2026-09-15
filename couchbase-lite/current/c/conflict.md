@@ -1,7 +1,7 @@
 ---
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/conflict.adoc
   xref: xref:couchbase-lite:c:conflict.adoc[]
@@ -186,19 +186,38 @@ C++
 Local Wins
 
 ```cpp
-Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+static cbl::ConflictResolver localWinConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        return localDoc;
+    };
 ```
 
 Remote Wins
 
 ```cpp
-Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+static cbl::ConflictResolver remoteWinConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        return remoteDoc;
+    };
 ```
 
 Merge
 
 ```cpp
-Unresolved include directive in modules/c/pages/conflict.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+static cbl::ConflictResolver mergeConflictResolver =
+    [](std::string_view documentID, const cbl::Document localDoc, const cbl::Document remoteDoc) {
+        // Start from the local properties, then add any keys that exist only remotely
+        fleece::MutableDict mergedProps = localDoc.properties().mutableCopy();
+        for (fleece::Dict::iterator i(remoteDoc.properties()); i; ++i) {
+            if (!mergedProps.get(i.keyString())) {
+                mergedProps.set(i.keyString(), i.value());
+            }
+        }
+
+        cbl::MutableDocument mergeDocument(documentID);
+        mergeDocument.setProperties(mergedProps);
+        return mergeDocument;
+    };
 ```
 
 When a null document is returned by the resolver, the conflict will be resolved as a document deletion.

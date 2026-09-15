@@ -2,7 +2,7 @@
 title: Supported Operating System Versions
 description: Couchbase Lite on C#.Net -- the OS and SDK versions on which this
   framework is supported
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/csharp/pages/supported-os.adoc
   xref: xref:couchbase-lite:csharp:supported-os.adoc[]
@@ -14,7 +14,7 @@ antora:
 # Supported Operating System Versions
 
 > Description — _Couchbase Lite on C#.Net — the OS and SDK versions on which this framework is supported_  
-> Related Content — [What's New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
+> Related Content — [What's New](../cbl-whatsnew.md) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
 
 ## [](#officially-supported-versions)Officially Supported Versions
 

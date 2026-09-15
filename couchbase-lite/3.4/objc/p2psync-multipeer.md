@@ -2,7 +2,7 @@
 title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
   networks over Wi-Fi and Bluetooth Low Energy.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/objc/pages/p2psync-multipeer.adoc
   xref: xref:3.4@couchbase-lite:objc:p2psync-multipeer.adoc[]
@@ -85,14 +85,15 @@ NSLocalNetworkUsageDescription
 
 #### [](#bluetooth-transport)Bluetooth Transport
 
-To use Bluetooth transport, declare a Bluetooth usage description.
+To use Bluetooth transport, complete the following:
 
-NSBluetoothAlwaysUsageDescription
-
-```xml
-<key>NSBluetoothAlwaysUsageDescription</key>
-<string>Used for discovering and connecting to peers for peer-to-peer sync.</string>
+1. Declare the Bluetooth usage description in `Info.plist`.  
+NSBluetoothAlwaysUsageDescription  
+```xml  
+<key>NSBluetoothAlwaysUsageDescription</key>  
+<string>Used for discovering and connecting to peers for peer-to-peer sync.</string>  
 ```
+2. Link the `CoreBluetooth.framework` framework in your application target. In Xcode, add it under **General > Frameworks, Libraries, and Embedded Content**, or add it in the **Link Binary With Libraries** build phase.
 
 ## [](#configuration)Configuration
 

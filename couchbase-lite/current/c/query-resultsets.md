@@ -1,7 +1,7 @@
 ---
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-15T04:24:10.008Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-resultsets.adoc
   xref: xref:couchbase-lite:c:query-resultsets.adoc[]
@@ -85,7 +85,16 @@ for (cbl::Result result : results) {
 C++
 
 ```cpp
-Unresolved include directive in modules/c/pages/query-resultsets.adoc - include::c:example$code_snippets/cbl_cpp.cpp[]
+cbl::ResultSet results = query.execute();
+for (cbl::Result result : results) {
+    fleece::Dict dict = result["_"].asDict();
+
+    std::cout << "ID :: "   << dict["id"].asstring()   << std::endl;
+    std::cout << "Type :: " << dict["type"].asstring() << std::endl;
+    std::cout << "Name :: " << dict["name"].asstring() << std::endl;
+    std::cout << "City :: " << dict["city"].asstring() << std::endl;
+}
+// All results are available from the above query
 ```
 
 | **1** | Here we get the dictionary of document properties using the database name as the key. You can add this dictionary to an array of returned matches, for processing elsewhere in the app. |
