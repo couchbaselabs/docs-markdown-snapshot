@@ -1,6 +1,6 @@
 ---
 title: Configuration
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-16T04:27:48.460Z
 antora:
   editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/configuration.adoc
   xref: xref:elasticsearch-connector::configuration.adoc[]
@@ -11,7 +11,7 @@ antora:
 
 # Configuration
 
-> A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.15/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
+> A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.16/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
 
 > [!TIP]
 > If this is your first time working with the TOML config file format, check out Nate Finch's excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml).

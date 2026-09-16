@@ -1,5 +1,5 @@
 ---
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-16T04:27:48.460Z
 antora:
   editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-sink-config-reference.adoc
   xref: xref:kafka-connector::generated-sink-config-reference.adoc[]
@@ -79,7 +79,7 @@ If true, you must also tell the connector which certificate to trust. Specify a 
 * Type: boolean
 * Default: `false`
 * Importance: medium
-* Dependents: `[couchbase.trust.certificate.path](#couchbase.trust.certificate.path)`, `[couchbase.trust.store.path](#couchbase.trust.store.path)`, `[couchbase.trust.store.password](#couchbase.trust.store.password)`, `[couchbase.enable.hostname.verification](#couchbase.enable.hostname.verification)`, `[couchbase.client.certificate.path](#couchbase.client.certificate.path)`, `[couchbase.client.certificate.password](#couchbase.client.certificate.password)`
+* Dependents: `[couchbase.trust.certificate.path](#couchbase.trust.certificate.path)`, `[couchbase.trust.store.path](#couchbase.trust.store.path)`, `[couchbase.trust.store.password](#couchbase.trust.store.password)`, `[couchbase.enable.hostname.verification](#couchbase.enable.hostname.verification)`, `[couchbase.client.certificate.path](#couchbase.client.certificate.path)`, `[couchbase.client.certificate.password](#couchbase.client.certificate.password)`, `[couchbase.cipher.suites](#couchbase.cipher.suites)`
 
 ### [](#couchbase.enable.hostname.verification)`couchbase.enable.hostname.verification`
 
@@ -137,6 +137,16 @@ May be overridden with the KAFKA\_COUCHBASE\_CLIENT\_CERTIFICATE\_PASSWORD envir
 
 * Type: password
 * Default: `[hidden]`
+* Importance: medium
+
+### [](#couchbase.cipher.suites)`couchbase.cipher.suites`
+
+The custom list of ciphers to use when connecting to Couchbase using regular or DCP clients.
+
+Note that this config is considered advanced, please only customize the cipher list if you know what you are doing (for example if you want to shrink the cipher list down to a very specific subset for security or compliance reasons).
+
+* Type: list
+* Default: `""`
 * Importance: medium
 
 ## [](#logging)Logging

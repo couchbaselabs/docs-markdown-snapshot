@@ -3,7 +3,7 @@ title: XDCR Conflict Resolution
 description: <em>XDCR Conflict Resolution</em> automatically synchronizes
   document-copies that have been modified in different ways at different
   locations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-16T04:27:48.460Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-resolution.adoc
   xref: xref:server:learn:clusters-and-availability/xdcr-conflict-resolution.adoc[]
@@ -31,8 +31,6 @@ Conflicts can be resolved by referring to documents' _sequence numbers_. Sequenc
 2. Expiration (TTL) value
 3. Document flags
 
-When Cross Cluster Versioning is enabled, the Hybrid Logical Vector (HLV) metadata in the source and target documents' xattrs is also used in the conflict resolution processing. For more information about the `enableCrossClusterVersioning` property and the HLV metadata, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md).
-
 ## [](#timestamp-based-conflict-resolution)Timestamp-Based Conflict Resolution
 
 Timestamp-based conflict resolution (often referred to as _Last Write Wins_, or _LWW_) uses the document _timestamp_ (stored in the CAS) to resolve conflicts. The timestamps associated with the most recent updates of source and target documents are compared. The document whose update has the more recent timestamp prevails.
@@ -42,8 +40,6 @@ If both document-versions have the same timestamp-value, the conflict is resolve
 1. Sequence number
 2. Expiration (TTL) value
 3. Document flags
-
-When Cross Cluster Versioning is enabled, the Hybrid Logical Vector (HLV) metadata in the source and target documents' xattrs is also used in the conflict resolution processing. For more information about the `enableCrossClusterVersioning` property and the HLV metadata, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md).
 
 ### [](#time-synchronization)Time Synchronization
 
