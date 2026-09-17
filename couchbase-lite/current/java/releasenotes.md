@@ -1,7 +1,7 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Java Desktop
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/releasenotes.adoc
   xref: xref:couchbase-lite:java:releasenotes.adoc[]
@@ -12,17 +12,42 @@ antora:
 
 # Couchbase Lite Release Notes
 
+## [](#maint-4-1-2)4.1.2 — September 2026
+
+Version 4.1.2 for Java delivers the following fixes and enhancements:
+
+### [](#enhancements)Enhancements
+
+* [CBL-8668 — Upgrade mbedTLS to 3.6.7](https://jira.issues.couchbase.com/browse/CBL-8668)
+
+### [](#fixed-issues)Fixed Issues
+
+* [CBL-8663 — False "logging is disabled" warning on every database open when a file log sink is configured](https://jira.issues.couchbase.com/browse/CBL-8663)
+* [CBL-8735 — Crash when a database change occurs after a push replicator has stopped](https://jira.issues.couchbase.com/browse/CBL-8735)
+* [CBL-8813 — Crash when saving or replicating a previously synced document due to a mutable dictionary count error](https://jira.issues.couchbase.com/browse/CBL-8813)
+
+### [](#known-issues)Known Issues
+
+None for this release.
+
+### [](#deprecations)Deprecations
+
+None for this release.
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.1, see [New in 4.1](../cbl-whatsnew.md).
+
 ## [](#maint-4-1-0)4.1.0 — June 2026
 
 Version 4.1.0 for Java delivers the following features and enhancements:
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [CBL-7968 — Improve COUNT query performance on the default collection](https://jira.issues.couchbase.com/browse/CBL-7968)
 * [CBL-7970 — Improve checkpoint resolution for non-numeric (compound) Sync Gateway sequences](https://jira.issues.couchbase.com/browse/CBL-7970)
 * [CBL-7971 — API to access the Replicator's correlation ID](https://jira.issues.couchbase.com/browse/CBL-7971)
 
-### [](#fixed-issues)Fixed Issues
+### [](#fixed-issues-2)Fixed Issues
 
 * [CBL-7610 — QueryBuilder Unicode collation used null instead of the default system locale](https://jira.issues.couchbase.com/browse/CBL-7610)
 * [CBL-7960 — Purging a deleted document does not trigger query change listener events](https://jira.issues.couchbase.com/browse/CBL-7960)
@@ -33,11 +58,11 @@ Version 4.1.0 for Java delivers the following features and enhancements:
 * [CBL-8475 — Use-after-free crash (EXC\_BAD\_ACCESS) when a replicator is torn down](https://jira.issues.couchbase.com/browse/CBL-8475)
 * [CBL-8496 — A stalled inbound P2P TLS handshake can wedge the MultipeerReplicator](https://jira.issues.couchbase.com/browse/CBL-8496)
 
-### [](#known-issues)Known Issues
+### [](#known-issues-2)Known Issues
 
 None for this release.
 
-### [](#deprecations)Deprecations
+### [](#deprecations-2)Deprecations
 
 None for this release.
 

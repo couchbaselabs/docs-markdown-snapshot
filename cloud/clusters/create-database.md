@@ -1,7 +1,7 @@
 ---
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
   xref: xref:cloud:clusters:create-database.adoc[]
@@ -44,7 +44,7 @@ To create a new cluster in a Capella project:
 >  
 > If Couchbase has given your organization access to the restrict public access feature, this option appears here. When you restrict public access, you're restricting access to your cluster only through Capella's private networking options. For more information, see [Restrict Public Access](../security/security.md#public-access).
 9. Choose a version of Couchbase Server to deploy on your cluster. For more information about Couchbase Server versions, see [Supported Couchbase Server Version](databases.md#cluster-version).
-10. Do one of the following:
+10. Do 1 of the following:
 
   1. For a **Free** cluster, choose a cloud service provider and your preferred region.
   2. For a **Single Node** cluster, choose your Services and node compute and storage amount.

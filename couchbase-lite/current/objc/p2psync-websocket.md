@@ -1,7 +1,7 @@
 ---
 title: Data Sync Peer-to-Peer
 description: Couchbase Lite database peer-to-peer sync concepts using websockets
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/p2psync-websocket.adoc
   xref: xref:couchbase-lite:objc:p2psync-websocket.adoc[]
@@ -63,6 +63,11 @@ Example 1\. Simple workflow
 Here you can see configuration involves a [Passive Peer](p2psync-websocket-using-passive.md) and an [Active Peer](p2psync-websocket-using-active.md) and a user-friendly Listener configuration in [Basic Setup](#simple-configuration).
 
 You can also learn how to implement Peer-to-Peer synchronization by referring to our tutorial — see: [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md).
+
+## [](#channels)Channels
+
+> [!IMPORTANT]
+> `channels` is a Sync Gateway construct and is not supported in Peer-to-Peer or Database-to-Database replication. If your Sync Gateway Access Control and Data Validation Function assigns documents to channels, that channel information has no effect when replicating directly between two Couchbase Lite databases.
 
 ## [](#features)Features
 

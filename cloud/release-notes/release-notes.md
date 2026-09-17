@@ -1,6 +1,6 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-09-03T05:31:47.619Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
   xref: xref:cloud:release-notes:release-notes.adoc[]
@@ -13,6 +13,9 @@ antora:
 
 ## [](#september-2026-changelog)September 2026 Changelog
 
+* Increased node limits for GCP and Azure operational clusters  
+Couchbase Capella now supports scaling operational clusters on GCP and Azure beyond the previous 27-node limit up to 50 nodes. Higher node counts can also be accommodated based on your workload requirements.  
+To raise the node limit for your organization, open a [Support Ticket](../support/manage-support.md#create-support-ticket) with Couchbase Capella Support.
 * Couchbase Server 8.0.3  
 Creating a new operational cluster with Couchbase Server 8.0 now deploys the Couchbase Server 8.0.3 maintenance release. This version includes bug fixes.  
 For more information about this version of Couchbase Server, see [Couchbase Server 8.0.3](../../server/current/release-notes/relnotes.md#release-8-0-3).

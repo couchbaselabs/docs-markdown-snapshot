@@ -1,7 +1,7 @@
 ---
 title: Microsoft Azure
 description: Couchbase Capella supports deploying clusters onto Microsoft Azure.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/azure.adoc
   xref: xref:cloud:reference:azure.adoc[]
@@ -87,12 +87,14 @@ Customize the clusters you deploy with Microsoft Azure to fit your requirements 
 
 ### [](#nodes)Nodes
 
-Clusters have a minimum of 3 nodes and a maximum of 27.
+By default, paid operational clusters can have a minimum of 3 nodes and a maximum of 27\. As they're intended for evaluation purposes only, free tier operational clusters only include 1 node.
 
 > [!NOTE]
-> As they're intended for evaluation purposes only, free tier operational clusters only include 1 node.
+> Increase Cluster Node Limit
+> 
+> Upon request from Couchbase Support, you can raise the cluster node limit to 50 nodes, or more to accommodate your workload. To raise the node limit for your organization, open a [Support Ticket](../support/manage-support.md#create-support-ticket). Requests are typically processed within 2 business days.
 
-Clusters consist of Service Groups that include the services deployed and system resources. Each Service Group has a node quantity representing the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes but cannot collectively exceed 27\. The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
+Clusters consist of Service Groups that include the services deployed and system resources. Each Service Group has a node quantity representing the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes, but collectively cannot exceed 27 total nodes without a [Support limit increase](#support-limit-increase). The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
 
 ### [](#compute-and-memory)Compute and Memory
 

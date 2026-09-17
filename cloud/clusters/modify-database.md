@@ -1,7 +1,7 @@
 ---
 title: Modify a Paid Cluster
 description: Review, modify, and rename Couchbase Capella clusters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/modify-database.adoc
   xref: xref:cloud:clusters:modify-database.adoc[]
@@ -121,7 +121,7 @@ Once you add a service to a new or existing service group, you may need to adjus
 > Limitations
 > 
 > * Services require a minimum of 2 nodes, except for the Data Service, which needs a minimum of 3.
-> * A cluster can have a maximum of 27 nodes.
+> * A cluster has a default maximum of 27 nodes. Higher cluster node limits are available upon request from [Couchbase Support](../support/manage-support.md#create-support-ticket) for GCP and Azure operational clusters only. For more information, see [Node Configuration](databases.md#nodes).
 > * A Single Node cluster must scale out to at least 3 nodes for the first Service Group. For additional Service Groups, the 2 node option is available.
 > * After scaling out, you cannot scale back to a Single Node cluster. You can only scale back to a minimum of 3 nodes.
 

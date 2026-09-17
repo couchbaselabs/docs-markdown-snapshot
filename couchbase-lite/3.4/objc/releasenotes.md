@@ -1,7 +1,7 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/objc/pages/releasenotes.adoc
   xref: xref:3.4@couchbase-lite:objc:releasenotes.adoc[]
@@ -12,17 +12,42 @@ antora:
 
 # Couchbase Lite Release Notes
 
+## [](#maint-3-4-2)3.4.2 — September 2026
+
+Version 3.4.2 for Objective-C delivers the following features and enhancements:
+
+### [](#enhancements)Enhancements
+
+* [CBL-8669 — Upgrade mbedTLS to 3.6.7](https://jira.issues.couchbase.com/browse/CBL-8669)
+
+### [](#fixed-issues)Fixed Issues
+
+* [CBL-8587 — Carthage prebuilt XCFramework missing macOS framework](https://jira.issues.couchbase.com/browse/CBL-8587)
+* [CBL-8733 — Crash when a database change occurs after a push replicator has stopped](https://jira.issues.couchbase.com/browse/CBL-8733)
+* [CBL-8741 — App Store Connect validation requires NSBluetoothAlwaysUsageDescription even when the Bluetooth transport is not used](https://jira.issues.couchbase.com/browse/CBL-8741)
+
+### [](#known-issues)Known Issues
+
+None for this release.
+
+### [](#deprecations)Deprecations
+
+None for this release.
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.4, see [New in 3.4](../cbl-whatsnew.md).
+
 ## [](#maint-3-4-0)3.4.0 — June 2026
 
 Version 3.4.0 for Objective-C delivers the following features and enhancements:
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [CBL-7968 — Improve COUNT query performance on the default collection](https://jira.issues.couchbase.com/browse/CBL-7968)
 * [CBL-7970 — Improve checkpoint resolution for non-numeric (compound) Sync Gateway sequences](https://jira.issues.couchbase.com/browse/CBL-7970)
 * [CBL-7971 — API to access the Replicator's correlation ID](https://jira.issues.couchbase.com/browse/CBL-7971)
 
-### [](#fixed-issues)Fixed Issues
+### [](#fixed-issues-2)Fixed Issues
 
 * [CBL-7766 — SQL++ fails to parse the IN operator](https://jira.issues.couchbase.com/browse/CBL-7766)
 * [CBL-7873 — Replicator ignores proxy settings from a PAC file on iOS and Mac Catalyst](https://jira.issues.couchbase.com/browse/CBL-7873)
@@ -36,11 +61,11 @@ Version 3.4.0 for Objective-C delivers the following features and enhancements:
 * [CBL-8515 — A stalled inbound P2P TLS handshake can wedge the MultipeerReplicator](https://jira.issues.couchbase.com/browse/CBL-8515)
 * [CBL-8561 — Replicator may time out when replicating a large number of collections](https://jira.issues.couchbase.com/browse/CBL-8561)
 
-### [](#known-issues)Known Issues
+### [](#known-issues-2)Known Issues
 
 None for this release.
 
-### [](#deprecations)Deprecations
+### [](#deprecations-2)Deprecations
 
 None for this release.
 

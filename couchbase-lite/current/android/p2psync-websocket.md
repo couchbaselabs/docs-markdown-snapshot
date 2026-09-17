@@ -3,7 +3,7 @@ title: Active-Passive Peer-to-Peer Sync
 description: Where MultiPeer Sync is not available, Couchbase Lite's
   Active-Passive Peer-to-Peer Synchronization enables edge devices to
   synchronize securely without consuming centralized cloud-server resources
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/p2psync-websocket.adoc
   xref: xref:couchbase-lite:android:p2psync-websocket.adoc[]
@@ -19,15 +19,15 @@ antora:
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 > [!TIP]
-> [Multipeer P2P Replicator](p2psync-multipeer.md)
-
-Multipeer P2P Replicator is available for Android, offering:
-
-* Auto-discovery over Wi-Fi and Bluetooth Low Energy
-* Automatic transport switching between Wi-Fi and Bluetooth when both are enabled
-* Lightweight and low-maintenance configuration
-* Dynamic mesh topology for optimal peer connectivity
-* Secure communication via TLS and certificate-based authentication
+> Multipeer P2P Replicator
+> 
+> [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Android, offering:
+> 
+> * Auto-discovery over Wi-Fi and Bluetooth Low Energy
+> * Automatic transport switching between Wi-Fi and Bluetooth when both are enabled
+> * Lightweight and low-maintenance configuration
+> * Dynamic mesh topology for optimal peer connectivity
+> * Secure communication via TLS and certificate-based authentication
 
 ## [](#introduction)Introduction
 
@@ -70,6 +70,11 @@ Couchbase Lite supports different transport modes depending on the peer-to-peer 
 * Supports: Wi-Fi (IP-based transport modes only)
 
 You can also learn how to implement Peer-to-Peer synchronization by referring to our tutorial — see: [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md).
+
+## [](#channels)Channels
+
+> [!IMPORTANT]
+> `channels` is a Sync Gateway construct and is not supported in Peer-to-Peer or Database-to-Database replication. If your Sync Gateway Access Control and Data Validation Function assigns documents to channels, that channel information has no effect when replicating directly between two Couchbase Lite databases.
 
 ## [](#features)Features
 
@@ -209,7 +214,7 @@ repl.start(); (6)
 thisReplicator = repl;
 ```
 
-| **1** | Get the Listener's endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                 |
+| **1** | Get the Listener's' endpoint. Here we use a known URL, but it could be a URL established dynamically in a discovery phase.                |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Initialize the replicator configuration with the database to be synchronized and the Listener it is to synchronize with                   |
 | **3** | Configure the replicator to expect a self-signed certificate from the Listener                                                            |

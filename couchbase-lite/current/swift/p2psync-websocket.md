@@ -3,7 +3,7 @@ title: Active-Passive Peer-to-Peer Sync
 description: Where MultiPeer Sync is not available, Couchbase Lite's
   Active-Passive Peer-to-Peer Synchronization enables edge devices to
   synchronize securely without consuming centralized cloud-server resources.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/p2psync-websocket.adoc
   xref: xref:couchbase-lite:swift:p2psync-websocket.adoc[]
@@ -71,6 +71,11 @@ Couchbase Lite supports different transport modes depending on the peer-to-peer 
 * Supports: Wi-Fi (IP-based transport modes only)
 
 You can also learn how to implement Peer-to-Peer synchronization by referring to our tutorial — see: [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md).
+
+## [](#channels)Channels
+
+> [!IMPORTANT]
+> `channels` is a Sync Gateway construct and is not supported in Peer-to-Peer or Database-to-Database replication. If your Sync Gateway Access Control and Data Validation Function assigns documents to channels, that channel information has no effect when replicating directly between two Couchbase Lite databases.
 
 ## [](#features)Features
 

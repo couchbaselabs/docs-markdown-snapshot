@@ -2,7 +2,7 @@
 title: SG Collect Info
 description: Using <em>sgcollect_info</em> to gather system information,
   diagnostics and metrics
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/sgcollect-info.adoc
   xref: xref:sync-gateway:manage:sgcollect-info.adoc[]
@@ -111,9 +111,9 @@ The tool creates the following log files in the output file.
 
 SGCollect Info has been updated to use the [continuous logging](logging.md#continuous-logging) feature introduced in 2.1, and collects the four leveled files (**sg\_error.log**, **sg\_warn.log**, **sg\_info.log** and **sg\_debug.log**).
 
-These new log files are rotated and compressed by Sync Gateway, so `sgcollect_info` decompresses these rotated logs, and concatenates them back into a single file upon collection.
+These new log files are rotated and compressed by Sync Gateway. When you run `sgcollect_info`, rotated log files are preserved as separate compressed files rather than being concatenated into the main log file.
 
-For example, if you have **sg\_debug.log**, and **sg\_debug-2018-04-23T16-57-13.218.log.gz** and then run `sgcollect_info` as normal, both of these files get put into a **sg\_debug.log** file inside the zip output folder.
+For example, if you have **sg\_debug.log**, and **sg\_debug-2018-04-23T16-57-13.218.log.gz** and then run `sgcollect_info` as normal, both **sg\_debug.log** and **sg\_debug-2018-04-23T16-57-13.218.log.gz** appear as separate files inside the zip output folder.
 
 ## [](#log-redaction)Log Redaction
 

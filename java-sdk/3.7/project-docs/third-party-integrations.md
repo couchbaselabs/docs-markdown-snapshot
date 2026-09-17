@@ -3,7 +3,7 @@ title: 3<sup>rd</sup> Party Integrations
 description: The Couchbase Java SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/project-docs/pages/third-party-integrations.adoc
   xref: xref:3.7@java-sdk:project-docs:third-party-integrations.adoc[]
@@ -41,3 +41,5 @@ There are too many third party integrations to evaluate and list (and absence of
 [Couchmove](https://github.com/differentway/couchmove) is an open-source Java migration tool for Couchbase, inspired by Flyway. It can help you "track, manage and apply changes, in your Couchbase buckets." The philosophy of the project claims to "strongly favor simplicity and convention over configuration".
 
 In CouchMove you write your migrations in [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), while in [CouchVersion](https://github.com/couchbaselabs/CouchVersion) you can write them using the Java SDK, which essentially allow you to create more complex migrations. CouchVersion provides a new approach for adding changes (change sets) based on Java classes and methods with appropriate annotations.
+
+Liquibase manages schema changes, storing changes in text files as XML, YAML, JSON, or SQL. It is often used as a migration tool, and Liquibase have made available a [Couchbase extension for Liquibase](https://github.com/liquibase/liquibase-couchbase) for Couchbase Server 7.0+.

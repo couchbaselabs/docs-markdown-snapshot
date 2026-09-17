@@ -2,7 +2,7 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Android
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-17T04:28:05.491Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/gs-build.adoc
   xref: xref:3.2@couchbase-lite:android:gs-build.adoc[]
@@ -282,29 +282,6 @@ You should be able to create a document and persist it to the database.
 Mostly around Gradle and versions. You may find you need to change IDE Build Tools settings to use Java 11 for Gradle, for instance.
 
 Using this app with Sync Gateway and Couchbase Server obviously requires you have, or install, working versions of both. See also — [Install Sync Gateway](#sync-gateway::get-started-install.adoc)
-
-## [](#minification)Minification
-
-An application that enables minification must ensure that certain pieces of Couchbase Lite library code are not changed — see [Example 1](#ruleset) for a near-minimal rule set that retains the needed code:
-
-Example 1\. Ruleset
-
-```Kotlin
--keep class com.couchbase.lite.ConnectionStatus { <init>(...); }
--keep class com.couchbase.lite.LiteCoreException { static <methods>; }
--keep class com.couchbase.lite.internal.replicator.CBLTrustManager {
-    public java.util.List checkServerTrusted(java.security.cert.X509Certificate[], java.lang.String, java.lang.String);
-}
--keep class com.couchbase.lite.internal.ReplicationCollection {
-    static <methods>;
-    <fields>;
-}
--keep class com.couchbase.lite.internal.core.C4* {
-    static <methods>;
-    <fields>;
-    <init>(...);
- }
-```
 
 ## [](#related-content)Related Content
 
