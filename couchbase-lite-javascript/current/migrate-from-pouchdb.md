@@ -1,7 +1,7 @@
 ---
 title: Migrating from PouchDB
 description: Couchbase Lite JavaScript -- Migrating from PouchDB to Couchbase Lite
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/migrate-from-pouchdb.adoc
   xref: xref:couchbase-lite-javascript::migrate-from-pouchdb.adoc[]
@@ -149,22 +149,23 @@ Example 4\. After (Couchbase Lite)
 const collection = database.collections._default;
 
 // Create document
-await collection.save({
-  _id: 'doc1',
-  type: 'task',
-  title: 'Learn Couchbase',
-  completed: false
-});
+await collection.save(collection.createDocument(DocID('doc1'), {
+    type: 'task',
+    title: 'Learn Couchbase',
+    completed: false
+}));
 
 // Read document
-const doc = await collection.document('doc1');
+const doc = await collection.getDocument(DocID('doc1'));
 
-// Update document
-doc.completed = true;
-await collection.save(doc);
+if (doc) {
+    // Update document
+    doc.completed = true;
+    await collection.save(doc);
 
-// Delete document
-await collection.deleteDocument(doc);
+    // Delete document
+    await collection.delete(doc);
+}
 ```
 
 ### [](#step-4-queries)Step 4: Update Queries
@@ -198,27 +199,27 @@ Example 6\. After (Couchbase Lite - SQL++)
 ```javascript
 // Declare indexes in config (at database open)
 const config = {
-  name: 'myapp',
-  version: 1,
-  collections: {
-    _default: {
-      indexes: ['type', 'completed', 'title']
+    name: 'myapp',
+    version: 1,
+    collections: {
+        _default: {
+            indexes: ['type', 'completed', 'title']
+        }
     }
-  }
 };
 
 const database = await Database.open(config);
 
 // Query documents with SQL++
 const query = database.createQuery(`
-  SELECT *
-  FROM _default
-  WHERE type = 'task' AND completed = false
-  ORDER BY title
+    SELECT _default.*
+    FROM _default
+    WHERE type = 'task' AND completed = false
+    ORDER BY title
 `);
 
 await query.execute(row => {
-  console.log(row._default.title);
+    console.log(row.title);
 });
 ```
 
@@ -247,26 +248,25 @@ Example 8\. After (Couchbase Lite)
 import { Replicator } from '@couchbase/lite-js';
 
 const replicator = new Replicator({
-  database: database,
-  url: 'wss://localhost:4984/myapp',
-  collections: {
-    _default: { pull: {}, push: {} }
-  },
-  credentials: {
-    username: 'user',
-    password: 'pass'
-  },
-  continuous: true
+    database: database,
+    url: 'wss://localhost:4984/myapp',
+    collections: {
+        _default: { pull: { continuous: true }, push: { continuous: true } }
+    },
+    credentials: {
+        username: 'user',
+        password: 'pass'
+    }
 });
 
 replicator.onStatusChange = (status) => {
-  console.log('Status:', status.activity);
-  if (status.error) {
-    console.error('Error:', status.error);
-  }
+    console.log('Status:', status.status);
+    if (status.error) {
+        console.error('Error:', status.error);
+    }
 };
 
-await replicator.start();
+await replicator.run();
 ```
 
 ### [](#step-6-change-listeners)Step 6: Update Change Listeners
@@ -294,13 +294,13 @@ Example 10\. After (Couchbase Lite)
 const collection = database.collections._default;
 
 const token = collection.addChangeListener((changes) => {
-  changes.documentIDs.forEach(id => {
-    console.log('Document changed:', id);
-  });
+    for (const id of changes.keys()) {
+        console.log('Document changed:', id);
+    }
 });
 
 // Remove listener later
-collection.removeChangeListener(token);
+token.remove();
 ```
 
 ## [](#data-migration)Data Migration
@@ -478,7 +478,7 @@ Correct
 // Store token and remove when done
 const token = collection.addChangeListener(fn);
 // Later...
-collection.removeChangeListener(token);
+token.remove();
 ```
 
 ## [](#related-content)Related Content

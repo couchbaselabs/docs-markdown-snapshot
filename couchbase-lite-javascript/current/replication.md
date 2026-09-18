@@ -2,7 +2,7 @@
 title: Data Sync using Sync Gateway
 description: Couchbase Lite JavaScript -- Synchronizing data changes between
   local and remote databases using Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
   xref: xref:couchbase-lite-javascript::replication.adoc[]
@@ -255,21 +255,21 @@ Example 5\. Using Credentials in Replicator
 
 ```javascript
 const replicator = new Replicator({
-  database: database,
-  url: 'wss://sync-gateway.example.com:4984/myapp',
-  collections: {
-    tasks: {
-      pull: { continuous: true },
-      push: { continuous: true }
+    database: database,
+    url: 'wss://sync-gateway.example.com:4984/myapp',
+    collections: {
+        tasks: {
+            pull: { continuous: true },
+            push: { continuous: true }
+        }
+    },
+    credentials: {
+        username: 'alice',
+        password: 'secret123'
     }
-  },
-  credentials: {
-    username: 'alice',
-    password: 'secret123'
-  }
 });
 
-await replicator.start();
+await replicator.run();
 ```
 
 ### [](#lbl-repl-fltrs)Replication Filters

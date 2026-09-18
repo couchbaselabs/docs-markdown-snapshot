@@ -1,7 +1,7 @@
 ---
 title: Installing Couchbase Lite JavaScript
 description: How to install Couchbase Lite JavaScript
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-install.adoc
   xref: xref:couchbase-lite-javascript::gs-install.adoc[]
@@ -58,30 +58,30 @@ Test creating a database:
 import { Database } from '@couchbase/lite-js';
 
 async function test() {
-  try {
-    const db = await Database.open({
-      name: 'test-db',
-      version: 1,
-      collections: {
-      items: {}
-      }
-    });
+    try {
+        const db = await Database.open({
+            name: 'test-db',
+            version: 1,
+            collections: {
+                items: {}
+            }
+        });
 
-    console.log('✓ Database created successfully');
+        console.log('✓ Database created successfully');
 
-    await db.close();
-    console.log('✓ Database closed successfully');
+        db.close();
+        console.log('✓ Database closed successfully');
 
-    // Clean up
-    await Database.deleteDatabase('test-db');
-    console.log('✓ Database deleted successfully');
+        // Clean up
+        await Database.delete('test-db');
+        console.log('✓ Database deleted successfully');
 
-  } catch (error) {
-    console.error('✗ Installation test failed:', error);
-  }
+    } catch (error) {
+        console.error('✗ Installation test failed:', error);
+    }
 }
 
-test();
+await test();
 ```
 
 ## [](#related-content)Related Content

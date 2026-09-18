@@ -1,7 +1,7 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases in JavaScript
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
   xref: xref:couchbase-lite-javascript::database.adoc[]
@@ -189,26 +189,35 @@ Example 5\. Using multiple databases
 
 ```javascript
 // Open multiple databases
-const userDb = await Database.open('users', {
-  collections: { profiles: {} }
+const userDb = await Database.open({
+    name: 'users',
+    version: 1,
+    collections: { profiles: {} }
 });
 
-const contentDb = await Database.open('content', {
-  collections: { articles: {}, comments: {} }
+const contentDb = await Database.open({
+    name: 'content',
+    version: 1,
+    collections: { articles: {}, comments: {} }
 });
 
-const localDb = await Database.open('local-config', {
-  collections: { settings: {} }
+const localDb = await Database.open({
+    name: 'local-config',
+    version: 1,
+    collections: { settings: {} }
 });
 
 // Use them independently
-await userDb.collection.profiles.save({...});
-await contentDb.collection.articles.save({...});
+const profiles = userDb.collections.profiles;
+await profiles.save(profiles.createDocument(null, { name: 'Alice' }));
+
+const articles = contentDb.collections.articles;
+await articles.save(articles.createDocument(null, { title: 'Hello' }));
 
 // Close when done
-await userDb.close();
-await contentDb.close();
-await localDb.close();
+userDb.close();
+contentDb.close();
+localDb.close();
 ```
 
 ## [](#storage-management)Storage Management
@@ -315,16 +324,16 @@ The SDK provides two types of change listeners, depending on the granularity you
 Example 9\. Collection Change Listener Example
 
 ```javascript
-const collection = database.collection.tasks;
-
-// Fires when any document in the collection changes
-const token = collection.addChangeListener((changes) => {
-  console.log("Changed docs:", changes.documentIDs);
-  refreshUI();
+const tasks = database.collections.tasks;
+const token = tasks.addChangeListener(changes => {
+    console.log(`${changes.size} documents changed`);
+    for (const [docId, change] of changes) {
+        console.log('Changed document:', docId, change);
+    }
 });
 
 // Remove listener when done
-collection.removeChangeListener(token);
+token.remove();
 ```
 
 ### [](#document-change-listeners)Document Change Listeners
@@ -335,17 +344,14 @@ collection.removeChangeListener(token);
 Example 10\. Document Change Listener Example
 
 ```javascript
-const collection = database.collection.tasks;
-const docId = "task_001";
-
-// Fires only when the given document changes
-const token = collection.addDocumentChangeListener(docId, (change) => {
-  console.log("Document updated:", change.documentID);
-  updateTaskView(docId);
+const tasks = database.collections.tasks;
+const docId = DocID('task-001');
+const token = tasks.addDocumentChangeListener(docId, change => {
+    console.log('Document changed:', change.id);
 });
 
-// Remove listener when done
-collection.removeDocumentChangeListener(token);
+// Remove listener
+token.remove();
 ```
 
 ## [](#troubleshooting)Troubleshooting

@@ -1,7 +1,7 @@
 ---
 title: Documents
 description: Couchbase Lite concepts -- Data model -- Documents
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/document.adoc
   xref: xref:couchbase-lite-javascript::document.adoc[]
@@ -110,25 +110,25 @@ All of these sections can be merged into a Create and Save a Document in a Colle
 
 ```javascript
 // 2. Get the collection
-const coll = database.collection.hotels;
+const coll = database.collections.hotels;
 
-// 3. Create a typed hotel object
-const hotel: Hotel = {
-  type: "hotel",
-  name: "The Grand Plaza",
-  address: {
-    street: "123 Main Street",
-    city: "New York",
-    state: "NY",
-    country: "USA",
-    code: "10001"
-  },
-  phones: ["+1-555-123-4567"],
-  rate: 189.99
+// 3. Create a hotel object
+const hotel = {
+    type: "hotel",
+    name: "The Grand Plaza",
+    address: {
+        street: "123 Main Street",
+        city: "New York",
+        state: "NY",
+        country: "USA",
+        code: "10001"
+    },
+    phones: ["+1-555-123-4567"],
+    rate: 189.99
 };
 
-// 4. Create a document using the typed object
-const doc = coll.createDocument(hotel);
+// 4. Create a document using the object
+const doc = coll.createDocument(null, hotel);
 
 // 5. Save the document
 await coll.save(doc);
@@ -146,20 +146,22 @@ Learn more about [Using Dictionaries](#using-dictionaries) and [Using Arrays](#u
 
 ### [](#checking-a-documents-properties)Checking a Document's Properties
 
-To check whether a given property exists in the document, use standard JavaScript property access or the `hasOwnProperty()` method.
+To check whether a given property exists in the document, use standard JavaScript property access or the `Object.hasOwn()` method.
 
 ```javascript
-const coll = database.collection.hotels;
+const coll = database.collections.hotels;
 
 // Fetch a document
-const doc = await coll.get("hotel_123");
+const doc = await coll.getDocument(DocID("hotel_123"));
 
-// Access a known property
-console.log("Name:", doc.name);
+if (doc) {
+    // Access a known property
+    console.log("Name:", doc.name);
 
-// Check if a property exists
-if (doc.hasOwnProperty("rate")) {
-  console.log("Rate:", doc.rate);
+    // Check if a property exists
+    if (Object.hasOwn(doc, "rate")) {
+        console.log("Rate:", doc.rate);
+    }
 }
 ```
 
@@ -179,15 +181,15 @@ Example 1\. Date Handling
 This example demonstrates storing and retrieving dates.
 
 ```javascript
-const coll = database.collection("events");
+const coll = database.getCollection("events");
 
 const event = {
-  type: "event",
-  name: "Conference",
-  createdAt: new Date().toISOString(), // store ISO date string
+    type: "event",
+    name: "Conference",
+    createdAt: new Date().toISOString(), // store ISO date string
 };
 
-const doc = coll.createDocument(event);
+const doc = coll.createDocument(null, event);
 await coll.save(doc);
 ```
 
@@ -381,42 +383,42 @@ If you're making multiple changes to a database at once, it's faster to group th
 Example 7\. Batch operations
 
 ```javascript
-const coll = database.collection.tasks;
+const coll = database.collections.tasks;
 
 async function bulkUpdate() {
-  // Fetch two docs to update
-  const taskA = await coll.get("taskA");
-  const taskB = await coll.get("taskB");
+    // Fetch two docs to update
+    const taskA = await coll.getDocument(DocID("taskA"));
+    const taskB = await coll.getDocument(DocID("taskB"));
+    if (!taskA || !taskB) return;
 
-  // Modify them locally
-  taskA.status = "done";
-  taskB.status = "in-progress";
+    // Modify them locally
+    taskA.status = "done";
+    taskB.status = "in-progress";
 
-  // Prepare doc to delete
-  const obsolete = await coll.get("old_task");
+    // Prepare doc to delete
+    const obsolete = await coll.getDocument(DocID("old_task"));
+    if (!obsolete) return;
 
-  await coll.updateMultiple({
-    bestEffort: true, // Perform updates even if one fails
-    save: [taskA, taskB],    // Documents to save
-    delete: [obsolete],       // Documents to delete
+    await coll.updateMultiple({
+        bestEffort: true, // Perform updates even if one fails
+        save: [taskA, taskB],    // Documents to save
+        delete: [obsolete],       // Documents to delete
 
-    onConflict: (conflict) => {
-      // conflict.localDoc  - our version
-      // conflict.remoteDoc - version from the database
-      // conflict.documentID - id of the conflicting doc
+        onConflict: (mine, theirs /* conflicting */) => {
+            // mine   - our version
+            // theirs - version from the database
 
-      console.warn("Conflict detected for:",
-        conflict.documentID);
+            console.warn("Conflict detected for:", meta(mine).id);
 
-      // Choose to keep the remote version (remote wins)
-      return conflict.remoteDoc;
+            // Choose to keep the version in the database (remote wins)
+            return 'revert';
 
-      // OR return conflict.localDoc for local-wins
-      // OR return null to delete doc
-    }
-  });
+            // OR return 'replace' for local-wins
+            // OR return 'fail' to throw a ConflictError
+        }
+    });
 
-  console.log("Bulk update complete.");
+    console.log("Bulk update complete.");
 }
 ```
 

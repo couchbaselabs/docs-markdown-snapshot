@@ -1,7 +1,7 @@
 ---
 title: Database Encryption
 description: Encrypting Couchbase Lite Databases in JavaScript
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/encryption.adoc
   xref: xref:couchbase-lite-javascript::encryption.adoc[]
@@ -47,30 +47,31 @@ Example 1\. Configure Database Encryption
 
 ```javascript
 const database = await Database.open({
-  name: 'secure-app',
-  password: 'my-secure-password',
-  collections: {
-    users: {
-      // Index properties are not encrypted by default
-      indexes: ['username', 'email', 'createdAt']
+    name: 'secure-app',
+    version: 1,
+    password: 'my-secure-password',
+    collections: {
+        users: {
+            // Index properties are not encrypted by default
+            indexes: ['username', 'email', 'createdAt']
+        }
     }
-  }
 });
 
 // Get the users collection
 const users = database.getCollection("users");
 
-await users.save({
-  username: 'alice',        // Not encrypted (indexed property)
-  email: 'alice@example.com', // Not encrypted (indexed property)
-  createdAt: '2025-01-15',  // Not encrypted (indexed property)
-  ssn: '123-45-6789',      // Encrypted
-  creditCard: '4111-1111', // Encrypted
-  address: {               // Encrypted (entire object)
-    street: '123 Main St',
-    city: 'Springfield'
-  }
-});
+await users.save(users.createDocument(null, {
+    username: 'alice',        // Not encrypted (indexed property)
+    email: 'alice@example.com', // Not encrypted (indexed property)
+    createdAt: '2025-01-15',  // Not encrypted (indexed property)
+    ssn: '123-45-6789',      // Encrypted
+    creditCard: '4111-1111', // Encrypted
+    address: {               // Encrypted (entire object)
+        street: '123 Main St',
+        city: 'Springfield'
+    }
+}));
 ```
 
 ## [](#persisting-key)Persisting the Encryption Key
@@ -86,15 +87,16 @@ An encrypted database must be opened with the correct password:
 
 ```javascript
 try {
-  const database = await Database.open({
-    name: 'secure-app',
-    password: userEnteredPassword,
-    collections: { users: {} }
-  });
+    const database = await Database.open({
+        name: 'secure-app',
+        version: 1,
+        password: userEnteredPassword,
+        collections: { users: {} }
+    });
 } catch (error) {
-  if (error instanceof EncryptionError) {
-    console.error('Incorrect password');
-  }
+    if (error instanceof EncryptionError) {
+        console.error('Incorrect password');
+    }
 }
 ```
 
@@ -106,9 +108,11 @@ Example 2\. Change encryption key
 
 ```javascript
 // Open database with current password
-const database = await Database.open('secure-app', {
-  password: 'old-password',
-  collections: { users: {} }
+const database = await Database.open({
+    name: 'secure-app',
+    version: 1,
+    password: 'old-password',
+    collections: { users: {} }
 });
 
 // Change to new password
@@ -125,9 +129,11 @@ Example 3\. Remove encryption
 
 ```javascript
 // Open encrypted database
-const database = await Database.open('secure-app', {
-  password: 'current-password',
-  collections: { users: {} }
+const database = await Database.open({
+    name: 'secure-app',
+    version: 1,
+    password: 'current-password',
+    collections: { users: {} }
 });
 
 // Remove encryption

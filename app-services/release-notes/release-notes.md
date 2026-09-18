@@ -2,7 +2,7 @@
 title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
-pubDate: 2026-08-21T04:43:23.418Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
   xref: xref:app-services::release-notes/release-notes.adoc[]
@@ -16,6 +16,40 @@ antora:
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#september-2026)September 2026
+
+* App Services 4.1.2  
+New App Services deployments now deploy Sync Gateway 4.1.2\. This release includes the following fixed issues and enhancements:
+
+  * [CBG-5540](https://issues.couchbase.com/browse/CBG-5540) — Fixed an issue where cluster compatibility version tracking retained a reference to a bucket from a deleted database.
+  * [CBG-5594](https://issues.couchbase.com/browse/CBG-5594) — Fixed an issue where resync status was reported as completed instead of stopped.
+  * [CBG-5756](https://issues.couchbase.com/browse/CBG-5756) — Fixed an issue where resync could drop pre-4.0 attachment metadata on documents that had not yet completed attachment metadata migration.
+  * [CBG-5773](https://issues.couchbase.com/browse/CBG-5773) — Fixed an issue where inter-Sync Gateway replications between 4.x clusters did not update channel and access information.
+  * [CBG-5800](https://issues.couchbase.com/browse/CBG-5800) — Fixed an issue where deleting a user did not update the changes feed.
+  * [CBG-5818](https://issues.couchbase.com/browse/CBG-5818) — Fixed an issue where deleting a role with `purge=true` allocated a sequence that was never released.
+  * [CBG-5591](https://issues.couchbase.com/browse/CBG-5591) — Indexes are now created on `_default._default` only when the database is configured to use it.
+  * [CBG-5769](https://issues.couchbase.com/browse/CBG-5769) — Indexes are now created on `_system._mobile` only when the database is configured to use it.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.1.2 Release Notes](../../sync-gateway/current/product-notes/release-notes.md#maint-4-1-2).
+* New App Services deployments now deploy Sync Gateway 4.0.8  
+This release includes the following fixed issues and enhancements:
+
+  * [CBG-5410](https://issues.couchbase.com/browse/CBG-5410) — Fixed an issue where one-time sessions incorrectly set a `Set-Cookie` header.
+  * [CBG-5755](https://issues.couchbase.com/browse/CBG-5755) — Fixed an issue where resync could drop pre-4.0 attachment metadata on documents that had not yet completed attachment metadata migration.
+  * [CBG-5772](https://issues.couchbase.com/browse/CBG-5772) — Fixed an issue where inter-Sync Gateway replications between 4.x clusters did not update channel and access information.
+  * [CBG-5799](https://issues.couchbase.com/browse/CBG-5799) — Fixed an issue where deleting a user did not update the changes feed.
+  * [CBG-5814](https://issues.couchbase.com/browse/CBG-5814) — Fixed an issue where an incorrect revision tree was built for client pushes following a legacy revision pull.
+  * [CBG-5819](https://issues.couchbase.com/browse/CBG-5819) — Fixed an issue where deleting a role with `purge=true` allocated a sequence that was never released.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 4.0.8 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md#maint-4-0-8).
+* New App Services deployments now deploy Sync Gateway 3.3.8  
+This release includes the following fixed issues and enhancements:
+
+  * [CBG-5409](https://issues.couchbase.com/browse/CBG-5409) — Fixed an issue where one-time sessions incorrectly set a `Set-Cookie` header.
+  * [CBG-5632](https://issues.couchbase.com/browse/CBG-5632) — Fixed an issue where documents with a `_mou` XATTR could not be imported on Couchbase Server versions earlier than 7.6.
+  * [CBG-5798](https://issues.couchbase.com/browse/CBG-5798) — Fixed an issue where deleting a user did not update the changes feed.
+  * [CBG-5816](https://issues.couchbase.com/browse/CBG-5816) — Fixed a slow channel cache memory leak caused by skipped sequences during active replications.
+  * [CBG-5820](https://issues.couchbase.com/browse/CBG-5820) — Fixed an issue where deleting a role with `purge=true` allocated a sequence that was never released.  
+For more information about all changes within this maintenance release, see the [Sync Gateway 3.3.8 Release Notes](../../sync-gateway/3.3/product-notes/release-notes.md#maint-3-3-8).
 
 ## [](#august-2026)August 2026
 

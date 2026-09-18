@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/product-notes/pages/release-notes.adoc
   xref: xref:sync-gateway:product-notes:release-notes.adoc[]
@@ -23,6 +23,41 @@ Quicklinks
 > One Way Upgrade
 > 
 > The migration to a 4.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
+
+## [](#maint-4-1-2)4.1.2 — September 2026
+
+### [](#fixed-issues)Fixed Issues
+
+* [CBG-5476 — Have handling in place for non metadata keys prefixed with \_sync that may not be recognised](https://jira.issues.couchbase.com/browse/CBG-5476)
+* [CBG-5477 — Deleting a db that has not been migrated when another has been can hold up bootstrap migration](https://jira.issues.couchbase.com/browse/CBG-5477)
+* [CBG-5540 — Cluster compat version trackedBuckets keeps hold of a reference to bucket from now deleted databases](https://jira.issues.couchbase.com/browse/CBG-5540)
+* [CBG-5542 — Config polling won't pick up new db that has not opted into mobile collection when bootstrap migration is done for the bucket](https://jira.issues.couchbase.com/browse/CBG-5542)
+* [CBG-5546 — RecheckPendingBucketMetadataMigrations log warning for not found on missing migration status doc](https://jira.issues.couchbase.com/browse/CBG-5546)
+* [CBG-5593 — sharded resync: checkpoint on latest sequence instead of snapshot sequence](https://jira.issues.couchbase.com/browse/CBG-5593)
+* [CBG-5594 — Resync status returns as completed instead of Stopped](https://jira.issues.couchbase.com/browse/CBG-5594)
+* [CBG-5614 — slow channel cache data leak with skipped sequences and active replications](https://jira.issues.couchbase.com/browse/CBG-5614)
+* [CBG-5714 — Incorrect revision tree being built for client pushes when a previous pull was legacy revision](https://jira.issues.couchbase.com/browse/CBG-5714)
+* [CBG-5740 — Channel cache compact\_low\_watermark\_pct config not wired up correctly](https://jira.issues.couchbase.com/browse/CBG-5740)
+* [CBG-5743 — passing invalid collections to /db/\_resync?action=start will cause resync to be stuck in running](https://jira.issues.couchbase.com/browse/CBG-5743)
+* [CBG-5756 — Resync can drop pre 4.0 attachment metadata if run on a document that has not yet had its attachment metadata migrated](https://jira.issues.couchbase.com/browse/CBG-5756) [CBG-5773 — ISGR replications from 4.x <→ 4.x will not update channel, access information](https://jira.issues.couchbase.com/browse/CBG-5773)
+* [CBG-5776 — Failed to release sequence after 404 error on getAvailable1xRev inside recalculateSyncFnForActiveRev](https://jira.issues.couchbase.com/browse/CBG-5776)
+* [CBG-5800 — deleting a user doesn't update the changes feed](https://jira.issues.couchbase.com/browse/CBG-5800)
+* [CBG-5818 — Role deletion with purge=true allocates a sequence and never releases it](https://jira.issues.couchbase.com/browse/CBG-5818)
+
+### [](#enhancements)Enhancements
+
+* [CBG-5544 — Better handling for when \_default doesn't exist and you attempt to create db without use\_system\_metadata\_collection true](https://jira.issues.couchbase.com/browse/CBG-5544)
+* [CBG-5590 — Avoid counting tombstoned docs for resync docs\_targeted](https://jira.issues.couchbase.com/browse/CBG-5590)
+* [CBG-5591 — Only create indexes on \_default.\_default when configured to use it](https://jira.issues.couchbase.com/browse/CBG-5591)
+* [CBG-5769 — Only create indexes on \_system.\_mobile when configured to use it](https://jira.issues.couchbase.com/browse/CBG-5769)
+
+### [](#known-issues)Known Issues
+
+None for this release.
+
+### [](#deprecations)Deprecations
+
+None for this release.
 
 ## [](#maint-4-1-1)4.1.1 — July 2026
 
@@ -57,7 +92,7 @@ For more information, see [Migrate Metadata to System Collection](../migrate-met
 
 For a full overview of new features in this release, see [New in 4.1](../whatsnew.md).
 
-### [](#fixed-issues)Fixed Issues
+### [](#fixed-issues-2)Fixed Issues
 
 * [CBG-3214 — Unhandled cbgt panic after removing database](https://jira.issues.couchbase.com/browse/CBG-3214)
 * [CBG-4345 — Couchbase Server timeout error causes panic in GetUser](https://jira.issues.couchbase.com/browse/CBG-4345)
@@ -76,7 +111,7 @@ For a full overview of new features in this release, see [New in 4.1](../whatsne
 * [CBG-5541 — Metadata migration never reaches 'completed' state with non-metadata \_sync: docs stored in the \_default](https://jira.issues.couchbase.com/browse/CBG-5541)
 * [CBG-5552 — activeOnly replication can miss documents for channels over the pagination limit](https://jira.issues.couchbase.com/browse/CBG-5552)
 
-### [](#enhancements)Enhancements
+### [](#enhancements-2)Enhancements
 
 * [CBG-3848 — Distributed resync via sharding for improved throughput and HA](https://jira.issues.couchbase.com/browse/CBG-3848)
 * [CBG-4363 — Enable xattr only DCP stream for Sync Gateway caching feed](https://jira.issues.couchbase.com/browse/CBG-4363)
@@ -92,11 +127,11 @@ For a full overview of new features in this release, see [New in 4.1](../whatsne
 * [CBG-5253 — REST endpoint for pruning user channel history](https://jira.issues.couchbase.com/browse/CBG-5253)
 * [CBG-5254 — REST endpoint for pruning document channel history](https://jira.issues.couchbase.com/browse/CBG-5254)
 
-### [](#known-issues)Known Issues
+### [](#known-issues-2)Known Issues
 
 None for this release.
 
-### [](#deprecations)Deprecations
+### [](#deprecations-2)Deprecations
 
 None for this release.
 

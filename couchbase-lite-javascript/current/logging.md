@@ -1,7 +1,7 @@
 ---
 title: Logging
 description: Couchbase Lite JavaScript -- Logging and Debugging
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/logging.adoc
   xref: xref:couchbase-lite-javascript::logging.adoc[]
@@ -414,21 +414,21 @@ Example 12\. Replication Logging
 
 ```javascript
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: [LogCategory, 'Sync'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: [LogCategory, 'Sync'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 
 // Replication activity will now be logged
 const replicator = new Replicator(config);
-await replicator.start();
+await replicator.run();
 ```
 
 ## [](#production-logging)Production Logging
@@ -579,24 +579,24 @@ Example 16\. Debug Specific Operation
 ```javascript
 // Enable debug logging temporarily
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: [LogCategory, 'Sync'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: [LogCategory, 'Sync'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 
 // Perform the operation
 try {
-  await replicator.start();
-  // Check console for detailed sync logs
+    await replicator.run();
+    // Check console for detailed sync logs
 } catch (error) {
-  console.error('Replication failed:', error);
+    console.error('Replication failed:', error);
 }
 ```
 
@@ -655,19 +655,19 @@ Example 18\. Change Log Level at Runtime
 ```javascript
 // Enable verbose logging
 window.enableDebugLogging = async () => {
-  await configure({
-    sinks: {
-      console: getConsoleSink(),
-    },
-    loggers: [
-      {
-        category: LogCategory,
-        lowestLevel: 'debug',
-        sinks: ['console'],
-      }
-    ],
-  });
-  console.log('Debug logging enabled');
+    await configure({
+        sinks: {
+            console: getConsoleSink(),
+        },
+        loggers: [
+            {
+                category: LogCategory,
+                lowestLevel: 'debug',
+                sinks: ['console'],
+            }
+        ],
+    });
+    console.log('Debug logging enabled');
 };
 
 // Call from browser console: enableDebugLogging()

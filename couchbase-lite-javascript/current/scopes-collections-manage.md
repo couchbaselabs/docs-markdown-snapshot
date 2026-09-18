@@ -1,7 +1,7 @@
 ---
 title: Manage Scopes and Collections
 description: Scopes and collections allow you to organize your documents within a database.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-18T04:31:08.992Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/scopes-collections-manage.adoc
   xref: xref:couchbase-lite-javascript::scopes-collections-manage.adoc[]
@@ -97,7 +97,7 @@ const travelDatabase = await Database.open(travelConfig);
 
 ## [](#access-collections)Access Collections
 
-Once declared, you access collections through the `database.collection` object:
+Once declared, you access collections through the `database.collections` object:
 
 Example 2\. Access collections
 
@@ -115,7 +115,7 @@ const inventoryAirlines = travelDatabase.collections['inventory.airline'];
 | **2** | Access collection in custom scope using bracket notation |
 
 > [!NOTE]
-> When accessing collections with custom scopes, use bracket notation with the full `"scope.collection"` string: `database.collection['scope.collection']`
+> When accessing collections with custom scopes, use bracket notation with the full `"scope.collection"` string: `database.collections['scope.collection']`
 
 ## [](#collection-configuration)Collection Configuration
 
@@ -124,27 +124,29 @@ Each collection can have its own configuration when declared:
 Example 3\. Configure collections
 
 ```javascript
-const database = await Database.open('secure-app', {
-  password: 'encryption-password',
-  collections: {
-    // Collection with default configuration
-    tasks: {},
+const database = await Database.open({
+    name: 'secure-app',
+    version: 1,
+    password: 'encryption-password',
+    collections: {
+        // Collection with default configuration
+        tasks: {},
 
-    // Collection with indexes (indexed properties are not encrypted)
-    users: {
-      indexes: ['username', 'email', 'role']
-    },
+        // Collection with indexes (indexed properties are not encrypted)
+        users: {
+            indexes: ['username', 'email', 'role']
+        },
 
-    // Collection in custom scope with configuration
-    'private.documents': {
-      indexes: ['type', 'category', 'createdAt']
+        // Collection in custom scope with configuration
+        'private.documents': {
+            indexes: ['type', 'category', 'createdAt']
+        }
     }
-  }
 });
 
 // Access configured collections
-const users = database.collection.users;
-const privateDocuments = database.collection['private.documents'];
+const users = database.collections.users;
+const privateDocuments = database.collections['private.documents'];
 ```
 
 | **1** | Default configuration (all properties encrypted if database has password) |
@@ -191,24 +193,28 @@ Example 5\. Remove a collection
 
 ```javascript
 // Database with three collections
-const database = await Database.open('myapp', {
-  collections: {
-    tasks: {},
-    users: {},
-    archived: {}
-  }
+const database = await Database.open({
+    name: 'myapp',
+    version: 1,
+    collections: {
+        tasks: {},
+        users: {},
+        archived: {}
+    }
 });
 
 // Close the database
 database.close();
 
 // Reopen without the 'archived' collection
-const updatedDatabase = await Database.open('myapp', {
-  collections: {
-    tasks: {},
-    users: {}
-    // 'archived' collection omitted
-  }
+const updatedDatabase = await Database.open({
+    name: 'myapp',
+    version: 2,
+    collections: {
+        tasks: {},
+        users: {}
+        // 'archived' collection omitted
+    }
 });
 
 // The 'archived' collection is no longer accessible
@@ -236,33 +242,35 @@ To permanently delete a collection's data:
 Example 6\. Purge collection data before removing
 
 ```javascript
-const database = await Database.open('myapp', {
-  collections: {
-    tasks: {},
-    archived: {}
-  }
+const database = await Database.open({
+    name: 'myapp',
+    version: 1,
+    collections: {
+        tasks: {},
+        archived: {}
+    }
 });
 
 // Get all documents in the collection
-const archived = database.collection.archived;
-const query = database.createQuery('SELECT META().id FROM archived');
-const results = await query.execute();
+const archived = database.collections.archived;
+const docIds = await archived.documentIDs();
 
 // Purge all documents
-for (const row of results) {
-  const docId = row.id;
-  await archived.purge(docId);
+for (const docId of docIds) {
+    await archived.purge(docId);
 }
 
 console.log('All documents purged from archived collection');
 
 // Now close and reopen without the collection
 database.close();
-const updatedDatabase = await Database.open('myapp', {
-  collections: {
-    tasks: {}
-    // 'archived' removed after purging its data
-  }
+const updatedDatabase = await Database.open({
+    name: 'myapp',
+    version: 2,
+    collections: {
+        tasks: {}
+        // 'archived' removed after purging its data
+    }
 });
 ```
 
@@ -321,16 +329,16 @@ Example 9\. Get a collection
 
 ```javascript
 // Get collection from default scope
-const tasks = database.collection.tasks;
+const tasks = database.collections.tasks;
 
 // Get collection from custom scope
-const inventoryAirlines = database.collection['inventory.airlines'];
+const inventoryAirlines = database.collections['inventory.airlines'];
 
 // Check if collection exists
-if (database.collection['archive.old']) {
-  console.log('Collection exists');
+if (database.collections['archive.old']) {
+    console.log('Collection exists');
 } else {
-  console.log('Collection not found');
+    console.log('Collection not found');
 }
 ```
 
