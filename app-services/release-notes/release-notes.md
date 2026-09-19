@@ -2,7 +2,7 @@
 title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-19T04:29:46.846Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
   xref: xref:app-services::release-notes/release-notes.adoc[]
@@ -133,7 +133,7 @@ For more information, see [Connect OpenID Connect (OIDC) Providers](../security/
 
 * App Services 4.0 with Bidirectional XDCR Support  
 This App Services release introduces the ability to set up bidirectional XDCR between two active App Services clusters. With this capability, you can set up App Services in active standby mode for failover and disaster recovery use cases. Couchbase Lite clients on v4.0 can seamlessly switch between App Services clusters running this version.  
-App Services 4.0 is compatible with Couchbase Server versions 7.6.4 and above. However, the minimum version of Couchbase Server required for the bidirectional XDCR capability is 7.6.6.  
+App Services 4.0 is compatible with Couchbase Server versions 7.6.0 and above. However, the minimum version of Couchbase Server required for the bidirectional XDCR capability is 7.6.6.  
 For more information about all changes within this major release, see the [Sync Gateway 4.0 Release Notes](../../sync-gateway/4.0/product-notes/release-notes.md).
 
 ## [](#september-2025)September 2025
