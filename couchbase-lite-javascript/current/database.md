@@ -1,7 +1,7 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases in JavaScript
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-21T04:27:56.975Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
   xref: xref:couchbase-lite-javascript::database.adoc[]
@@ -243,14 +243,14 @@ Example 6\. Check storage quota
 
 ```javascript
 if (navigator.storage && navigator.storage.estimate) {
-  const estimate = await navigator.storage.estimate();
+    const { quota = 0, usage = 0 } = await navigator.storage.estimate();
 
-  console.log('Quota:', estimate.quota);
-  console.log('Usage:', estimate.usage);
-  console.log('Available:', estimate.quota - estimate.usage);
+    console.log('Quota:', quota);
+    console.log('Usage:', usage);
+    console.log('Available:', quota - usage);
 
-  const percentUsed = (estimate.usage / estimate.quota) * 100;
-  console.log(`Storage: ${percentUsed.toFixed(2)}% used`);
+    const percentUsed = (usage / quota) * 100;
+    console.log(`Storage: ${percentUsed.toFixed(2)}% used`);
 }
 ```
 
@@ -262,13 +262,13 @@ Example 7\. Request persistent storage
 
 ```javascript
 if (navigator.storage && navigator.storage.persist) {
-  const isPersistent = await navigator.storage.persist();
+    const isPersistent = await navigator.storage.persist();
 
-  if (isPersistent) {
-    console.log('Persistent storage granted');
-  } else {
-    console.log('Persistent storage not granted');
-  }
+    if (isPersistent) {
+        console.log('Persistent storage granted');
+    } else {
+        console.log('Persistent storage not granted');
+    }
 }
 ```
 
@@ -363,21 +363,22 @@ For more on using Couchbase logs — see: [Using Logs](logging.md).
 Example 11\. Increase level of database log messages
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 // Configure logging for database operations
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: [LogCategory, 'DB'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: [LogCategory, 'DB'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 ```
 

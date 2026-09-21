@@ -1,7 +1,7 @@
 ---
 title: Migrating from PouchDB
 description: Couchbase Lite JavaScript -- Migrating from PouchDB to Couchbase Lite
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-21T04:27:56.975Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/migrate-from-pouchdb.adoc
   xref: xref:couchbase-lite-javascript::migrate-from-pouchdb.adoc[]
@@ -108,11 +108,11 @@ Example 2\. After (Couchbase Lite)
 import { Database } from '@couchbase/lite-js';
 
 const config = {
-  name: 'myapp',
-  version: 1,
-  collections: {
-    _default: {} // Default collection
-  }
+    name: 'myapp',
+    version: 1,
+    collections: {
+        _default: {} // Default collection
+    }
 };
 
 const database = await Database.open(config);
@@ -126,10 +126,10 @@ Example 3\. Before (PouchDB)
 ```javascript
 // Create document
 await db.put({
-  _id: 'doc1',
-  type: 'task',
-  title: 'Learn Couchbase',
-  completed: false
+    _id: 'doc1',
+    type: 'task',
+    title: 'Learn Couchbase',
+    completed: false
 });
 
 // Read document
@@ -175,22 +175,22 @@ Example 5\. Before (PouchDB - Mango Query)
 ```javascript
 // Create index
 await db.createIndex({
-  index: {
-    fields: ['type', 'completed']
-  }
+    index: {
+        fields: ['type', 'completed']
+    }
 });
 
 // Query documents
 const result = await db.find({
-  selector: {
-    type: 'task',
-    completed: false
-  },
-  sort: ['title']
+    selector: {
+        type: 'task',
+        completed: false
+    },
+    sort: ['title']
 });
 
 result.docs.forEach(doc => {
-  console.log(doc.title);
+    console.log(doc.title);
 });
 ```
 
@@ -229,16 +229,16 @@ Example 7\. Before (PouchDB)
 
 ```javascript
 const sync = PouchDB.sync('myapp', 'http://localhost:4984/myapp', {
-  live: true,
-  retry: true
+    live: true,
+    retry: true
 });
 
 sync.on('change', info => {
-  console.log('Change:', info);
+    console.log('Change:', info);
 });
 
 sync.on('error', err => {
-  console.error('Error:', err);
+    console.error('Error:', err);
 });
 ```
 
@@ -275,13 +275,13 @@ Example 9\. Before (PouchDB)
 
 ```javascript
 const changes = db.changes({
-  since: 'now',
-  live: true,
-  include_docs: true
+    since: 'now',
+    live: true,
+    include_docs: true
 });
 
 changes.on('change', change => {
-  console.log('Document changed:', change.id);
+    console.log('Document changed:', change.id);
 });
 
 // Cancel later
@@ -312,22 +312,22 @@ Example 11\. Export All Documents
 ```javascript
 // Export all documents from PouchDB
 const result = await pouchDB.allDocs({
-  include_docs: true,
-  attachments: true
+    include_docs: true,
+    attachments: true
 });
 
 const docs = result.rows.map(row => row.doc);
 
 // Save to file or prepare for import
 const dataExport = {
-  docs: docs,
-  timestamp: new Date().toISOString()
+    docs: docs,
+    timestamp: new Date().toISOString()
 };
 
 // Download as JSON
 const blob = new Blob(
-  [JSON.stringify(dataExport, null, 2)],
-  { type: 'application/json' }
+    [JSON.stringify(dataExport, null, 2)],
+    { type: 'application/json' }
 );
 const url = URL.createObjectURL(blob);
 const a = document.createElement('a');
@@ -354,19 +354,20 @@ const dataExport = await response.json();
 // Import documents in batches
 const batchSize = 100;
 for (let i = 0; i < dataExport.docs.length; i += batchSize) {
-  const batch = dataExport.docs.slice(i, i + batchSize);
+    const batch = dataExport.docs.slice(i, i + batchSize);
 
-  const docsToSave = batch.map(doc => {
-    // Remove PouchDB metadata if desired
-    const { _rev, ...cleanDoc } = doc;
-    return cleanDoc;
-  });
+    const docsToSave = [];
+    for (const doc of batch) {
+        // Remove PouchDB metadata if desired
+        const { _rev, ...cleanDoc } = doc;
+        docsToSave.push(cleanDoc);
+    }
 
-  await collection.updateMultiple({
-    save: docsToSave
-  });
+    await collection.updateMultiple({
+        save: docsToSave
+    });
 
-  console.log(`Imported ${Math.min(i + batchSize, dataExport.docs.length)} of ${dataExport.docs.length}`);
+    console.log(`Imported ${Math.min(i + batchSize, dataExport.docs.length)} of ${dataExport.docs.length}`);
 }
 
 console.log('Migration complete!');
@@ -432,13 +433,13 @@ Correct
 
 ```javascript
 const config = {
-  name: 'myapp',
-  version: 1,
-  collections: {
-    _default: {
-      indexes: ['field1', 'field2'] // Declare indexes here
+    name: 'myapp',
+    version: 1,
+    collections: {
+        _default: {
+            indexes: ['field1', 'field2'] // Declare indexes here
+        }
     }
-  }
 };
 const database = await Database.open(config);
 ```
@@ -458,7 +459,7 @@ Correct
 
 ```javascript
 // Use SQL++
-database.createQuery('SELECT * FROM _default WHERE type = "task"')
+database.createQuery('SELECT * FROM _default WHERE type = "task"');
 ```
 
 ### [](#pitfall-4-change-listeners)4\. Change Listener Cleanup

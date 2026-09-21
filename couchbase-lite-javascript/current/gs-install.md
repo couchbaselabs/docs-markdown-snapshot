@@ -1,7 +1,7 @@
 ---
 title: Installing Couchbase Lite JavaScript
 description: How to install Couchbase Lite JavaScript
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-21T04:27:56.975Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-install.adoc
   xref: xref:couchbase-lite-javascript::gs-install.adoc[]
@@ -30,7 +30,8 @@ npm install @couchbase/lite-js
 Then import Couchbase Lite in your JavaScript/TypeScript code:
 
 ```javascript
-import { Database, Replicator } from '@couchbase/lite-js';
+import { Database } from '@couchbase/lite-js';
+import { Replicator } from '@couchbase/lite-js';
 ```
 
 That's it! You're all set to begin developing offline-first web applications.
@@ -45,7 +46,8 @@ Create a simple test file:
 
 ```javascript
 // test.js
-import { Database, Version } from '@couchbase/lite-js';
+import { Database } from '@couchbase/lite-js';
+import { Version } from '@couchbase/lite-js';
 
 console.log('Couchbase Lite version:', Version);
 ```

@@ -1,7 +1,7 @@
 ---
 title: Logging
 description: Couchbase Lite JavaScript -- Logging and Debugging
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-21T04:27:56.975Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/logging.adoc
   xref: xref:couchbase-lite-javascript::logging.adoc[]
@@ -68,16 +68,16 @@ import * as cbl from '@couchbase/lite-js';
 import * as logtape from '@logtape/logtape';
 
 await logtape.configure({
-  sinks: {
-    console: logtape.getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: cbl.LogCategory,
-      lowestLevel: 'info',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: logtape.getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: cbl.LogCategory,
+            lowestLevel: 'info',
+            sinks: ['console'],
+        }
+    ],
 });
 ```
 
@@ -110,20 +110,21 @@ LogTape supports these log levels (from least to most verbose):
 Example 2\. Configure All Couchbase Lite Logs
 
 ```javascript
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
-import { configure, getConsoleSink } from '@logtape/logtape';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 ```
 
@@ -134,39 +135,40 @@ Configure different log levels for different Couchbase Lite subsystems:
 Example 3\. Configure Subcategories
 
 ```javascript
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
-import { configure, getConsoleSink } from '@logtape/logtape';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    // General Couchbase Lite logs at info level
-    {
-      category: LogCategory,
-      lowestLevel: 'info',
-      sinks: ['console'],
+    sinks: {
+        console: getConsoleSink(),
     },
-    // Verbose database logs
-    {
-      category: [LogCategory, 'DB'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    },
-    // Verbose query logs
-    {
-      category: [LogCategory, 'Query'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    },
-    // Verbose sync logs
-    {
-      category: [LogCategory, 'Sync'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    },
-  ],
+    loggers: [
+        // General Couchbase Lite logs at info level
+        {
+            category: LogCategory,
+            lowestLevel: 'info',
+            sinks: ['console'],
+        },
+        // Verbose database logs
+        {
+            category: [LogCategory, 'DB'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        },
+        // Verbose query logs
+        {
+            category: [LogCategory, 'Query'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        },
+        // Verbose sync logs
+        {
+            category: [LogCategory, 'Sync'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        },
+    ],
 });
 ```
 
@@ -187,20 +189,21 @@ The console sink outputs logs to the browser console:
 Example 4\. Console Sink
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'info',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'info',
+            sinks: ['console'],
+        }
+    ],
 });
 ```
 
@@ -211,21 +214,21 @@ For Node.js environments (like Electron), you can log to files:
 Example 5\. File Sink (Node.js/Electron)
 
 ```javascript
-import { getFileSink } from '@logtape/file';
 import { configure } from '@logtape/logtape';
+import { getFileSink } from '@logtape/file';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    file: getFileSink('cbl.log'),
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'debug',
-      sinks: ['file'],
-    }
-  ],
+    sinks: {
+        file: getFileSink('cbl.log'),
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'debug',
+            sinks: ['file'],
+        }
+    ],
 });
 ```
 
@@ -239,28 +242,30 @@ Send logs to multiple destinations:
 Example 6\. Multiple Sinks
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
+import { fromAsyncSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-    remote: async (record) => {
-      // Send to remote logging service
-      await fetch('/api/logs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(record),
-      });
+    sinks: {
+        console: getConsoleSink(),
+        remote: fromAsyncSink(async (record) => {
+            // Send to remote logging service
+            await fetch('/api/logs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(record),
+            });
+        }),
     },
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'info',
-      sinks: ['console', 'remote'],
-    }
-  ],
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'info',
+            sinks: ['console', 'remote'],
+        }
+    ],
 });
 ```
 
@@ -268,39 +273,42 @@ await configure({
 
 Create custom sinks for specialized logging needs:
 
+> [!NOTE]
+> This example uses the third-party [idb](https://www.npmjs.com/package/idb) package for IndexedDB access. Install it with `npm install idb`.
+
 Example 7\. Custom Sink
 
 ```javascript
 import { configure } from '@logtape/logtape';
+import { fromAsyncSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
-
-// Custom sink that stores logs in IndexedDB
-const indexedDBSink = async (record) => {
-  const db = await openDB('logs', 1, {
-    upgrade(db) {
-      db.createObjectStore('entries', { autoIncrement: true });
-    },
-  });
-
-  await db.add('entries', {
-    timestamp: record.timestamp,
-    level: record.level,
-    category: record.category,
-    message: record.message,
-  });
-};
+import { openDB } from 'idb';
 
 await configure({
-  sinks: {
-    indexedDB: indexedDBSink,
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'info',
-      sinks: ['indexedDB'],
-    }
-  ],
+    sinks: {
+        // Custom sink that stores logs in IndexedDB
+        indexedDB: fromAsyncSink(async (record) => {
+            const db = await openDB('logs', 1, {
+                upgrade(db) {
+                    db.createObjectStore('entries', { autoIncrement: true });
+                },
+            });
+
+            await db.add('entries', {
+                timestamp: record.timestamp,
+                level: record.level,
+                category: record.category,
+                message: record.message,
+            });
+        }),
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'info',
+            sinks: ['indexedDB'],
+        }
+    ],
 });
 ```
 
@@ -311,26 +319,28 @@ LogTape uses a hierarchical category system where child loggers inherit sinks fr
 Example 8\. Sink Inheritance Example
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
+import { getFileSink } from '@logtape/file';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-    file: getFileSink('db.log'),
-  },
-  loggers: [
-    // Parent logger - all Couchbase Lite logs to console
-    {
-      category: LogCategory,
-      sinks: ['console'],
+    sinks: {
+        console: getConsoleSink(),
+        file: getFileSink('db.log'),
     },
-    // Child logger - DB logs also go to file
-    {
-      category: [LogCategory, 'DB'],
-      sinks: ['file'], // Inherits 'console' from parent
-    },
-  ],
+    loggers: [
+        // Parent logger - all Couchbase Lite logs to console
+        {
+            category: LogCategory,
+            sinks: ['console'],
+        },
+        // Child logger - DB logs also go to file
+        {
+            category: [LogCategory, 'DB'],
+            sinks: ['file'], // Inherits 'console' from parent
+        },
+    ],
 });
 ```
 
@@ -340,21 +350,21 @@ Example 9\. Override Inherited Sinks
 
 ```javascript
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-    file: getFileSink('sync.log'),
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      sinks: ['console'],
+    sinks: {
+        console: getConsoleSink(),
+        file: getFileSink('sync.log'),
     },
-    {
-      category: [LogCategory, 'Sync'],
-      sinks: ['file'],
-      parentSinks: 'override', // Don't inherit console sink
-    },
-  ],
+    loggers: [
+        {
+            category: LogCategory,
+            sinks: ['console'],
+        },
+        {
+            category: [LogCategory, 'Sync'],
+            sinks: ['file'],
+            parentSinks: 'override', // Don't inherit console sink
+        },
+    ],
 });
 ```
 
@@ -365,20 +375,21 @@ await configure({
 Example 10\. Database Logging
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: [LogCategory, 'DB'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: [LogCategory, 'DB'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 
 // Now database operations will be logged
@@ -391,16 +402,16 @@ Example 11\. Query Logging
 
 ```javascript
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: [LogCategory, 'Query'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: [LogCategory, 'Query'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        }
+    ],
 });
 
 // Query execution will now be logged
@@ -440,26 +451,28 @@ In production, use less verbose logging:
 Example 13\. Production Setup
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
+import { fromAsyncSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-    remote: async (record) => {
-      // Only send errors and warnings to remote service
-      if (record.level === 'error' || record.level === 'fatal') {
-        await sendToLoggingService(record);
-      }
+    sinks: {
+        console: getConsoleSink(),
+        remote: fromAsyncSink(async (record) => {
+            // Only send errors and warnings to remote service
+            if (record.level === 'error' || record.level === 'fatal') {
+                await sendToLoggingService(record);
+            }
+        }),
     },
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'warning', // Only warnings and errors
-      sinks: ['console', 'remote'],
-    }
-  ],
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'warning', // Only warnings and errors
+            sinks: ['console', 'remote'],
+        }
+    ],
 });
 ```
 
@@ -470,34 +483,33 @@ Integrate with error tracking services like Sentry:
 Example 14\. Sentry Integration
 
 ```javascript
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import * as Sentry from '@sentry/browser';
-import { configure, getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
-const sentrySink = (record) => {
-  if (record.level === 'error' || record.level === 'fatal') {
-    Sentry.captureException(new Error(record.message), {
-      level: record.level,
-      extra: {
-        category: record.category.join('.'),
-        timestamp: record.timestamp,
-      },
-    });
-  }
-};
-
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-    sentry: sentrySink,
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: 'error',
-      sinks: ['console', 'sentry'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+        sentry: (record) => {
+            if (record.level === 'error' || record.level === 'fatal') {
+                Sentry.captureException(new Error(record.message.join('')), {
+                    level: record.level,
+                    extra: {
+                        category: record.category.join('.'),
+                        timestamp: record.timestamp,
+                    },
+                });
+            }
+        },
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: 'error',
+            sinks: ['console', 'sentry'],
+        }
+    ],
 });
 ```
 
@@ -510,27 +522,28 @@ The meta logger uses the category `["logtape", "meta"]` and is automatically ena
 Example 15\. Configure Meta Logger
 
 ```javascript
-import { configure, getConsoleSink } from '@logtape/logtape';
+import { configure } from '@logtape/logtape';
+import { getConsoleSink } from '@logtape/logtape';
 import { LogCategory } from '@couchbase/lite-js';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    // Your app logging
-    {
-      category: LogCategory,
-      lowestLevel: 'info',
-      sinks: ['console'],
+    sinks: {
+        console: getConsoleSink(),
     },
-    // LogTape internal logging
-    {
-      category: ['logtape', 'meta'],
-      lowestLevel: 'debug',
-      sinks: ['console'],
-    },
-  ],
+    loggers: [
+        // Your app logging
+        {
+            category: LogCategory,
+            lowestLevel: 'info',
+            sinks: ['console'],
+        },
+        // LogTape internal logging
+        {
+            category: ['logtape', 'meta'],
+            lowestLevel: 'debug',
+            sinks: ['console'],
+        },
+    ],
 });
 ```
 
@@ -633,16 +646,16 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const logLevel = isDevelopment ? 'debug' : 'warning';
 
 await configure({
-  sinks: {
-    console: getConsoleSink(),
-  },
-  loggers: [
-    {
-      category: LogCategory,
-      lowestLevel: logLevel,
-      sinks: ['console'],
-    }
-  ],
+    sinks: {
+        console: getConsoleSink(),
+    },
+    loggers: [
+        {
+            category: LogCategory,
+            lowestLevel: logLevel,
+            sinks: ['console'],
+        }
+    ],
 });
 ```
 
