@@ -1,6 +1,6 @@
 ---
 title: Project Roles
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-23T04:31:20.427Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/project-roles.adoc
   xref: xref:cloud:projects:project-roles.adoc[]
@@ -13,7 +13,7 @@ antora:
 
 > Project roles are used to grant privileges to project collaborators. 
 
-Each project collaborator is assigned one or more project roles that determine their privileges within the project. Project roles are separate from [organization roles](../organizations/organization-user-roles.md), which grant overall privileges to Couchbase Capella. Project roles control who can create cluster credentials and their level of access to cluster and App Services data.
+Each [project collaborator](manage-projects.md) is assigned 1 or more project roles that determine their privileges within the project. Project roles are separate from [organization roles](../organizations/organization-user-roles.md), which grant overall privileges to Couchbase Capella. Project roles control who can create cluster credentials and their level of access to cluster and App Services data.
 
 ## [](#list-of-project-roles)List of Project Roles
 
