@@ -3,7 +3,7 @@ title: Add a GCP Private Service Connection
 description: Add a GCP Private Service Connection that connects your GCP network
   with a Capella cluster using GCP as its cloud provider. This connection can
   reduce latency and egress costs for applications hosted in the same region.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-24T04:27:44.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-gcp-private-link.adoc
   xref: xref:cloud:security:add-gcp-private-link.adoc[]
@@ -19,7 +19,7 @@ antora:
 > [!IMPORTANT]
 > XDCR and Prometheus Metrics
 > 
-> GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions.
+> GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket) and are subject to specific conditions.
 > 
 > For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md).
 

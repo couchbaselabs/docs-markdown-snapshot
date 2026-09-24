@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1790138231068,
+  "generated": 1790224443675,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -84962,6 +84962,12 @@
             },
             {
               "module": "cli",
+              "path": "cbcli/couchbase-cli-operational-insights-link-setup.adoc",
+              "url": "/server/current/cli/cbcli/couchbase-cli-operational-insights-link-setup.md",
+              "title": "operational-insights-link-setup"
+            },
+            {
+              "module": "cli",
               "path": "cbcli/couchbase-cli-rebalance-status.adoc",
               "url": "/server/current/cli/cbcli/couchbase-cli-rebalance-status.md",
               "title": "rebalance-status"
@@ -85109,6 +85115,12 @@
               "path": "cbcli/couchbase-cli-setting-notification.adoc",
               "url": "/server/current/cli/cbcli/couchbase-cli-setting-notification.md",
               "title": "setting-notification"
+            },
+            {
+              "module": "cli",
+              "path": "cbcli/couchbase-cli-setting-operational-insights.adoc",
+              "url": "/server/current/cli/cbcli/couchbase-cli-setting-operational-insights.md",
+              "title": "setting-operational-insights"
             },
             {
               "module": "cli",

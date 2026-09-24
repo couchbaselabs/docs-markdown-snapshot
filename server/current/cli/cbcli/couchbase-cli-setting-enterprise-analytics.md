@@ -1,7 +1,7 @@
 ---
 title: setting-enterprise-analytics
-description: Manage Enterprise Analytics service settings
-pubDate: 2026-09-15T04:24:10.008Z
+description: Manage Operational Insights service settings (deprecated)
+pubDate: 2026-09-24T04:27:44.823Z
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-enterprise-analytics.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-setting-enterprise-analytics.adoc[]
@@ -12,162 +12,21 @@ antora:
 
 # setting-enterprise-analytics
 
-Manage Enterprise Analytics service settings
+Manage Operational Insights service settings (deprecated)
 
 ## [](#synopsis)SYNOPSIS
 
-_couchbase-cli setting-enterprise-analytics_ [--cluster <url>] [--username <user>]
-    [--password <password>] [--client-cert <path>] [--client-cert-password <password>]
-    [--client-key <path>] [--client-key-password <password>] [--get] [--set]
-    [--partitions <num>] [--scheme <scheme>] [--bucket <bucket>]
-    [--prefix <prefix>] [--region <region>] [--endpoint <endpoint>]
-    [--anonymous-auth <0|1>] [--path-style-addressing <0|1>]
+_couchbase-cli setting-enterprise-analytics_ [<options>]
 
 ## [](#description)DESCRIPTION
 
-Manage Enterprise Analytics service settings
+DEPRECATED: Please use the [setting-operational-insights](couchbase-cli-setting-operational-insights.md)command, which provides the same functionality as this command and takes the same options. This command is retained only so that scripts written against the former product name keep working, and it will be removed in a future release.
+
+This command addresses the cluster through the REST endpoint of the former product name, so it remains usable against a cluster which is older than the `setting-operational-insights` command.
 
 ## [](#options)OPTIONS
 
-\-c
-
-\--cluster
-
-Specifies the hostname of a node in the cluster. See the HOST FORMATS section for more information on specifying a hostname.
-
-\-u
-
-\--username <username>
-
-Specifies the username of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error.
-
-\-p
-
-\--password <password>
-
-Specifies the password of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error. If this argument is specified, but no password is given then the command will prompt the user for a password through non-echoed stdin. You may also specify your password by using the environment variable CB\_REST\_PASSWORD.
-
-\-s
-
-\--ssl
-
-(Deprecated) Specifies that the connection should use SSL verification. If this flag is used then SSL will be used but the cluster certificate will not be verified by the Certificate Authority. This flag is deprecated and not recommended. If you wish to use SSL encryption it is recommended that you specify the cluster host name using either _couchbases://_ or _https://_. Each of these connection schemes will ensure that the connection is encrypted with SSL. You may then use either --no-ssl-verify or --cacert in order to customize how your SSL connection is set up.
-
-\--no-ssl-verify
-
-Specifies that SSL verification should be used but that verifying that the cluster certificate is valid should be skipped. Use of this flag is not recommended for production environments because it does not protect the user from a man-in-the-middle attack.
-
-\--cacert <path>
-
-Specifies that the SSL connection should use the cacert provided when connecting to the cluster. This argument takes the path the certificate file as its value. This is the most secure way to connect to your cluster.
-
-\--client-cert <path>
-
-The path to a client certificate used to authenticate when connecting to a cluster. May be supplied with `--client-key` as an alternative to the `--username` and `--password` flags. See the CERTIFICATE AUTHENTICATION section for more information.
-
-\--client-cert-password <password>
-
-The password for the certificate provided to the `--client-cert` flag, when using this flag, the certificate/key pair is expected to be in the PKCS#12 format. See the CERTIFICATE AUTHENTICATION section for more information.
-
-\--client-key <path>
-
-The path to the client private key whose public key is contained in the certificate provided to the `--client-cert` flag. May be supplied with `--client-cert` as an alternative to the `--username` and `--password`flags. See the CERTIFICATE AUTHENTICATION section for more information.
-
-\--client-key-password <password>
-
-The password for the key provided to the `--client-key` flag, when using this flag, the key is expected to be in the PKCS#8 format. See the CERTIFICATE AUTHENTICATION section for more information.
-
-\--get
-
-Retrieve current Enterprise Analytics service settings.
-
-\--set
-
-Set Enterprise Analytics settings.
-
-\--partitions <num>
-
-The number of storage partitions (positive integer, lower than the configured maximum)
-
-\--scheme <scheme>
-
-The BLOB storage scheme (e.g. s3)
-
-\--bucket <bucket>
-
-The BLOB storage bucket
-
-\--prefix <prefix>
-
-The BLOB storage prefix
-
-\--region <region>
-
-The BLOB storage region
-
-\--endpoint <endpoint>
-
-The BLOB storage endpoint
-
-\--anonymous-auth <0|1>
-
-Allow BLOB storage anonymous auth
-
-\--path-style-addressing <0|1>
-
-Use BLOB storage path style addressing
-
-## [](#host-formats)HOST FORMATS
-
-When specifying a host for the couchbase-cli command the following formats are expected:
-
-* `couchbase://<addr>` or `couchbases://<addr>`
-* `http://<addr>:<port>` or `https://<addr>:<port>`
-* `<addr>:<port>`
-
-It is recommended to use the couchbase://<addr> or couchbases://<addr> format for standard installations. The other formats allow an option to take a port number which is needed for non-default installations where the admin port has been set up on a port other that 8091 (or 18091 for https).
-
-## [](#certificate-authentication-mtls-authentication)CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION)
-
-This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication). To use certificate based authentication a certificate/key must be supplied, there a currently multiple ways this may be done.
-
-### [](#pem-encoded-certificatekey)PEM ENCODED CERTIFICATE/KEY
-
-An unencrypted PEM encoded certificate/key may be supplied by using: - `--client-cert <path>`\- `--client-key <path>`
-
-The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
-
-The file passed to `--client-key` must contain at most one private key, the key can be in one of the following formats: - PKCS#1 - PKCS#8
-
-Currently, only the following key types are supported: - RSA - DSA
-
-### [](#pem-encoded-certificatepem-or-der-encrypted-pkcs8-key)PEM ENCODED CERTIFICATE/PEM OR DER ENCRYPTED PKCS#8 KEY
-
-An encrypted PKCS#8 formatted key may be provided using: - `--client-cert <path>`\- `--client-key <path>`\- `--client-key-password <password>`
-
-The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
-
-Currently, only the following key types are supported: - RSA - DSA
-
-### [](#encrypted-pkcs12-certificatekey)ENCRYPTED PKCS#12 CERTIFICATE/KEY
-
-An encrypted PKCS#12 certificate/key may be provided using: - `--client-cert <path>`\- `--client-cert-password <password>`
-
-The file passed to `--client-cert` must contain the client certificate and exactly one private key. It may also contain the chain required to authenticate the client certificate.
-
-Currently, only the following key types are supported: - RSA - DSA
-
-## [](#examples)EXAMPLES
-
-To retrieve the Enterprise Analytics service settings:
-
-$ couchbase-cli setting-enterprise-analytics -c 127.0.01:8091 -u Administrator \
- -p password --get
-
-To set the BLOB storage scheme to s3:
-
-$ couchbase-cli setting-enterprise-analytics -c 127.0.01:8091 -u Administrator \
- -p password --set --scheme s3
+See [setting-operational-insights](couchbase-cli-setting-operational-insights.md).
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 
@@ -197,7 +56,7 @@ The password for the key provided to the `CB_CLIENT_KEY` variable, when using th
 
 ## [](#see-also)SEE ALSO
 
-[couchbase-cli](couchbase-cli.md)
+[setting-operational-insights](couchbase-cli-setting-operational-insights.md)
 
 ## [](#couchbase-cli)COUCHBASE-CLI
 

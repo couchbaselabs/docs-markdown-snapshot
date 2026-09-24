@@ -4,7 +4,7 @@ description: The Couchbase .NET SDK uses the <em>Task-based Asynchronous Pattern
   (TAP)</em> using types in the System.Threading.Tasks namespace to represent
   asynchronous operations against the Couchbase Server which can be awaited via
   the <code>await</code> keyword.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-24T04:27:44.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:dotnet-sdk:howtos:concurrent-async-apis.adoc[]
@@ -134,6 +134,6 @@ await Task.WhenAll(tasks);
 // can iterate task list to get results
 foreach (var task in tasks)
 {
-    var result = tasks.Result;
+    var result = task.Result;
 }
 ```

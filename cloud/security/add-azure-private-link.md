@@ -3,7 +3,7 @@ title: Add an Azure Private Link Connection
 description: Add an Azure Private Link connection that peers your Azure network
   with a Capella cluster using Azure as its cloud provider. This connection can
   reduce latency and egress costs for applications hosted in the same region.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-24T04:27:44.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-azure-private-link.adoc
   xref: xref:cloud:security:add-azure-private-link.adoc[]
@@ -17,7 +17,11 @@ antora:
 > Add an Azure Private Link connection that peers your Azure network with a Capella cluster using Azure as its cloud provider. This connection can reduce latency and egress costs for applications hosted in the same region. 
 
 > [!IMPORTANT]
-> Azure Private Link connections do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md).
+> XDCR and Prometheus Metrics
+> 
+> Azure Private Link connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket) and are subject to specific conditions.
+> 
+> For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md).
 
 ## [](#prerequisites)Prerequisites
 

@@ -1,6 +1,6 @@
 ---
 title: Prerequisites and System Requirements
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-24T04:27:44.823Z
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/prerequisite-and-setup.adoc
   xref: xref:operator::prerequisite-and-setup.adoc[]
@@ -75,7 +75,7 @@ This release supports the following Kubernetes platforms:
 
 | Platform                             | Version     |
 | ------------------------------------ | ----------- |
-| Open Source Kubernetes               | 1.31 - 1.35 |
+| Open Source Kubernetes               | 1.31 - 1.36 |
 | Red Hat OpenShift Container Platform | 4.18 - 4.20 |
 
 The following diagrams depict Couchbase Operator compatibility with Kubernetes and OpenShift platforms, and can be used to calculate upgrade paths:
