@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1790224443675,
+  "generated": 1790311038478,
   "url": "https://docs.couchbase.com/",
   "components": [
     {
@@ -1212,6 +1212,12 @@
               "path": "app-endpoint.adoc",
               "url": "/app-services/app-endpoints/creating-an-app-endpoint.md",
               "title": "Create App Endpoints"
+            },
+            {
+              "module": "ROOT",
+              "path": "app-endpoints/about-access-control.adoc",
+              "url": "/app-services/app-endpoints/about-access-control.md",
+              "title": "About Access Control"
             },
             {
               "module": "ROOT",
