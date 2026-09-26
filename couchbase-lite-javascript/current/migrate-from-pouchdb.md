@@ -1,7 +1,7 @@
 ---
 title: Migrating from PouchDB
 description: Couchbase Lite JavaScript -- Migrating from PouchDB to Couchbase Lite
-pubDate: 2026-09-21T04:27:56.975Z
+pubDate: 2026-09-26T04:22:55.186Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/migrate-from-pouchdb.adoc
   xref: xref:couchbase-lite-javascript::migrate-from-pouchdb.adoc[]
@@ -36,16 +36,16 @@ This guide helps developers migrate from PouchDB to Couchbase Lite JavaScript.
 ### [](#core-operations)Core Operations
 
 __Table 1\. Database and Document Operations__
-| PouchDB API         | Couchbase Lite JS API                           | Notes                    |
-| ------------------- | ----------------------------------------------- | ------------------------ |
-| new PouchDB('mydb') | await Database.open(config)                     | Async operation          |
-| db.info()           | database.name, database.path                    | Properties, not method   |
-| db.put(doc)         | await collection.save(doc)                      | Collection-based         |
-| db.get(id)          | await collection.document(id)                   | Returns document or null |
-| db.remove(doc)      | await collection.deleteDocument(doc)            | Requires document object |
-| db.bulkDocs(\[…​\]) | await collection.updateMultiple({save: \[…​\]}) | Batch operations         |
-| db.allDocs()        | collection.documents()                          | Iterator pattern         |
-| db.destroy()        | await Database.delete(name)                     | Static method            |
+| PouchDB API         | Couchbase Lite JS API                           | Notes                         |
+| ------------------- | ----------------------------------------------- | ----------------------------- |
+| new PouchDB('mydb') | await Database.open(config)                     | Async operation               |
+| db.info()           | database.name, database.path                    | Properties, not method        |
+| db.put(doc)         | await collection.save(doc)                      | Collection-based              |
+| db.get(id)          | await collection.getDocument(id)                | Returns document or undefined |
+| db.remove(doc)      | await collection.delete(doc)                    | Requires document object      |
+| db.bulkDocs(\[…​\]) | await collection.updateMultiple({save: \[…​\]}) | Batch operations              |
+| db.allDocs()        | collection.documents()                          | Iterator pattern              |
+| db.destroy()        | await Database.delete(name)                     | Static method                 |
 
 ### [](#query-operations)Query Operations
 

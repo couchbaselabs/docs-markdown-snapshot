@@ -1,7 +1,7 @@
 ---
 title: Documents
 description: Couchbase Lite concepts -- Data model -- Documents
-pubDate: 2026-09-18T04:31:08.992Z
+pubDate: 2026-09-26T04:22:55.186Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/document.adoc
   xref: xref:couchbase-lite-javascript::document.adoc[]
@@ -328,7 +328,7 @@ For more on working with blobs, see [Blobs](blob.md)
 
 ## [](#document-retrieval)Retrieving Documents
 
-You can retrieve documents by their ID using the collection's `document()` method.
+You can retrieve documents by their ID using the collection's `getDocument()` method.
 
 Example 4\. Retrieve a document
 
@@ -363,7 +363,7 @@ if (docToUpdate) {
 
 ## [](#document-delete)Deleting Documents
 
-You can delete a document using the collection's `deleteDocument()` method.
+You can delete a document using the collection's `delete()` method.
 
 Example 6\. Delete a document
 
