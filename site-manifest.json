@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1790570291414,
+  "generated": 1790656363952,
   "url": "https://docs.couchbase.com",
   "components": [
     {
@@ -6993,13 +6993,6 @@
               "path": "external-azure.adoc",
               "url": "/analytics/sources/external-azure.md",
               "title": "Azure Blob Storage"
-            },
-            {
-              "alias": true,
-              "module": "sources",
-              "path": "external-azureblob.adoc",
-              "url": "/enterprise-analytics/current/sources/external-azureblob.md",
-              "title": "Query Data in Azure Blob Storage"
             },
             {
               "alias": true,
