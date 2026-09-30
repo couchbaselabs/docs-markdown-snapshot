@@ -2,7 +2,7 @@
 title: Certificates
 description: Couchbase Server supports using certificates for client and server
   security and  authentication.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/certificates.adoc
   xref: xref:server:learn:security/certificates.adoc[]
@@ -71,6 +71,31 @@ Couchbase Server requires that certificates for nodes meet the following require
   * A PKCS #12 format file. See [PKCS #12 Certificates for Nodes](#pkcs12) for more information about this format.
 
 See [Create and Deploy Cluster and Node Certificates](../../manage/manage-security/configure-server-certificates.md#root-and-node-certificates) for step-by-step instructions on creating the new CA and node certificates.
+
+### [](#internal-client-certificates)Internal Client Certificates
+
+The certificates described so far identify a node as a server, or an application as a client. A node also acts as a _client_ when it connects to another node in the cluster. It presents an internal client certificate to do so.
+
+Couchbase Server generates internal client certificates automatically, signed by the default self-signed root certificate. If you delete that root certificate from the trust store, the internal client certificates it signed are no longer trusted, and the Couchbase Server Web Console reports them as invalid. Replace the internal client certificates before removing the root certificate that signed them.
+
+An internal client certificate must meet the following requirements:
+
+* It must be signed by a certificate that the cluster trusts.
+* Its key usage and extended key usage must be suitable for a TLS client.
+* It must carry the internal identity as an email subject alternative name, `internal@internal.couchbase.com`. A certificate without that SAN is rejected.
+
+#### [](#uploading-custom-internal-client-certificates)Uploading Custom Internal Client Certificates
+
+Uploading a custom internal client certificate follows the same pattern as uploading a node certificate. This is an Enterprise Edition feature.
+
+1. Place the certificate files in the `inbox` directory on the node, under the node's data directory. The file names are fixed, and the endpoint reads only from `inbox`.
+
+  * In PEM format, `inbox/client_chain.pem` for the certificate chain and `inbox/client_pkey.key` for the matching private key.
+  * In PKCS #12 format, `inbox/couchbase_client.p12`.  
+The CA that signed the certificate must already be trusted by the cluster.
+2. Trigger the reload:  
+curl -X POST -u <username>:<password> http://<node>:8091/node/controller/reloadClientCertificate  
+The call accepts an optional JSON body with `forceReload`, to reload even when the certificate is unchanged, and `privateKeyPassphrase`, if the private key is encrypted. A successful call returns `200 OK` with a list of warnings. A failure returns `400 Bad Request` with a message.
 
 ### [](#supported-certificate-formats)Supported Certificate Formats
 

@@ -2,7 +2,7 @@
 title: Setting Storage Thread Allocations
 description: Couchbase Server has several settings that let you change how it
   allocates and uses threads for storage across the entire cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-reader-writer-thread-config.adoc
   xref: xref:server:rest-api:rest-reader-writer-thread-config.adoc[]
@@ -108,8 +108,8 @@ To set the global thread allocations for Couchbase Server, send a `POST` to the 
 ```bash
 curl -X POST http[s]://{host}:{port}/pools/default/settings/memcached/global
   -u $USER:$PASSWORD
-  [-d num_reader_threads=<integer>]
-  [-d num_writer_threads=<integer>]
+  [-d num_reader_threads=<integer>|disk_io_optimized]
+  [-d num_writer_threads=<integer>|disk_io_optimized]
   [-d num_nonio_threads=<integer>]
   [-d num_auxio_threads=<integer>]
   [-d num_storage_threads=<integer>]
@@ -138,11 +138,11 @@ The password for the user.
 
 `num_reader_threads`
 
-(optional) Sets the number of threads Couchbase Server uses to read data.
+(optional) Sets the number of threads Couchbase Server uses to read data. Accepts an integer, or `disk_io_optimized` to allocate threads equal to the number of CPU cores on the node. For guidance on when to choose `disk_io_optimized`, particularly for buckets that use the Magma storage engine, see [Data Settings](../manage/manage-settings/general-settings.md#data-settings).
 
 `num_writer_threads`
 
-(optional) Sets the number of threads Couchbase Server uses to write data.
+(optional) Sets the number of threads Couchbase Server uses to write data. Accepts an integer, or `disk_io_optimized` to allocate threads equal to the number of CPU cores on the node. For guidance on when to choose `disk_io_optimized`, particularly for buckets that use the Magma storage engine, see [Data Settings](../manage/manage-settings/general-settings.md#data-settings).
 
 `num_nonio_threads`
 

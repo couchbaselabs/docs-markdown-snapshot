@@ -2,7 +2,7 @@
 title: Cloud and Container Deployment Overview
 description: Couchbase Server is designed to run in the most popular cloud and
   container environments.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-cloud-deployment.adoc
   xref: xref:server:cloud:couchbase-cloud-deployment.adoc[]
@@ -41,7 +41,7 @@ Deploy Couchbase Server on AWS using a set of fully-featured, open source Terraf
 
 Orchestrated Deployment
 
-* [Kubernetes (EKS and Unmanaged)](#operator:ROOT:install-eks.adoc)  
+* [Kubernetes (EKS and Unmanaged)](../../../operator/current/install-kubernetes.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on Amazon Elastic Kubernetes Service (EKS) or open source Kubernetes clusters running in AWS.
 * [Red Hat OpenShift](../../../operator/current/install-openshift.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on OpenShift clusters running in AWS.
@@ -91,7 +91,7 @@ Couchbase provides several Azure Resource Manager templates on GitHub to assist 
 
 Orchestrated Deployment
 
-* [Kubernetes (AKS and Unmanaged)](#operator:ROOT:install-aks.adoc)  
+* [Kubernetes (AKS and Unmanaged)](../../../operator/current/install-kubernetes.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on Azure Kubernetes Service (AKS) or open source Kubernetes clusters running in Azure.
 * [Red Hat OpenShift](../../../operator/current/install-openshift.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on OpenShift clusters running in Azure.
@@ -141,7 +141,7 @@ Couchbase provides several GCP Deployment Manager templates on GitHub to assist 
 
 Orchestrated Deployment
 
-* [Kubernetes (GKE and Unmanaged)](#operator:ROOT:install-gke.adoc)  
+* [Kubernetes (GKE and Unmanaged)](../../../operator/current/install-kubernetes.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on Google Kubernetes Engine (GKE) or open source Kubernetes clusters running in GCP.
 * [Red Hat OpenShift](../../../operator/current/install-openshift.md)  
 Use the Couchbase Autonomous Operator to deploy and manage Couchbase Server on OpenShift clusters running in GCP.

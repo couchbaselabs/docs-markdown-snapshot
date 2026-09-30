@@ -1,6 +1,6 @@
 ---
 title: Release Notes for Couchbase Server 7.2
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
   xref: xref:7.2@server:release-notes:relnotes.adoc[]
@@ -250,6 +250,12 @@ This maintenance release contains new features and fixes.
 
 ### [](#fixed-issues-724)Fixed Issues
 
+### [](#data-service-4)Data Service
+
+| Issue                                                     | Description                                                                                                                    | Resolution                                                                                                                 |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [MB-59746](https://issues.couchbase.com/browse/MB-59746/) | After a lock timeout, a document's CAS was left set to a special locked value, encoded as all ones (0xffff\_ffff\_ffff\_ffff). | Issue resolved. After a lock timeout, the document's CAS now reverts to its original value. This is a change in behaviour. |
+
 ### [](#index-service-3)Index Service
 
 | Issue                                                     | Description                                                                                                                             | Resolution                                                                 |
@@ -407,7 +413,7 @@ This release contains the following fixes.
 | [MB-57588](https://issues.couchbase.com/browse/MB-57588) | Query results could be unnecessarily converted twice to JSON when documents were large.                                                                                                                                                                              | The Query result is now converted to JSON once for all documents.                                                                                                                         |
 | [MB-57615](https://issues.couchbase.com/browse/MB-57615) | When the Prometheus stats returned from Analytics exceeded four kilobytes, the status code was inadvertently set to 500 (Internal Error), and this resulted in a large number of warnings in the Analytics warning log. Couchbase Server discarded these statistics. | This has been fixed to properly return a 200 (OK) status code when the size of Prometheus stats exceeds 4KiB, allowing these stats to be recorded properly. The warning is not displayed. |
 
-#### [](#data-service-4)Data Service
+#### [](#data-service-5)Data Service
 
 | Issue                                                    | Description                                                                                                                                                                                                                                                                                                      | Resolution                                                                                                                 |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |

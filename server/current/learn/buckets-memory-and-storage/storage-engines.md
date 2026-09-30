@@ -2,7 +2,7 @@
 title: Storage Engines
 description: "Couchbase supports two different backend storage engines:
   Couchstore and Magma."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
   xref: xref:server:learn:buckets-memory-and-storage/storage-engines.adoc[]
@@ -81,6 +81,8 @@ You should use the Magma backend with 1024 vBuckets if any of the following are 
 * You need to store and access large amounts of data (multiple terabytes) using a small amount of memory. In this case, the 1024 vBucket configuration is less likely to have data imbalance issues than the 128 vBucket configuration. Also, Magma with 1024 vBuckets uses less CPU for operations such as compaction verse the 128 vBucket configuration.
 * Your applications make heavy use of transactions with persistence-based durability.
 * Your dataset will grow beyond Couchstore's 3 TB limit.
+* You can allocate at least 1 GiB of memory per node to the bucket. The 1024 vBucket configuration gives better performance at scale.
+* You need to replicate into the bucket by XDCR from a cluster running a version earlier than Couchbase Server 8.0\. Those versions require both buckets to have the same number of vBuckets, and do not support 128 vBuckets, so the target bucket must use 1024\. See [Cross Data Center Replication (XDCR)](../clusters-and-availability/xdcr-overview.md) for the full compatibility rules.
 
 When should you choose Couchstore?
 

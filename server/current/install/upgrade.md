@@ -2,7 +2,7 @@
 title: Upgrade
 description: To upgrade a Couchbase-Server cluster means to upgrade the version
   of Couchbase Server that's running on every node.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade.adoc
   xref: xref:server:install:upgrade.adoc[]
@@ -50,6 +50,20 @@ For more information about storage backends, see [Storage Engines](../learn/buck
 
 When running on x86-64 processors, Couchbase Server 8.0 and later requires that the CPU support the AVX2 instruction set. Most Intel processors manufactured since 2013 and AMD processors manufactured since 2015 support AVX2\. If you attempt to run Couchbase Server 8.0 or later on a CPU that does not support AVX2, the server exits with an error. See [Instruction Set Requirements for x86 Processors](pre-install.md#avx2-requirement-for-x86-processors) for more information.
 
+### [](#client-certificate-authentication-with-node-to-node-encryption-in-couchbase-server-version-8-0-and-later)Client-Certificate Authentication with Node-to-Node Encryption in Couchbase Server Version 8.0 and Later
+
+Full mutual TLS support for the Index Service was introduced in Couchbase Server 8.0\. It is not supported on 7.6 clusters or on mixed-version clusters, even though it can be enabled on them.
+
+During a rolling upgrade of a cluster that has both node-to-node encryption and client-certificate authentication enabled, an upgraded Index Service node enforces client-certificate verification on its internal ports, which nodes still running 7.6 cannot satisfy. The rebalance that brings the first upgraded Index Service node into the cluster then fails.
+
+Before starting the upgrade, disable client-certificate authentication:
+
+```console
+$ couchbase-cli ssl-manage -c <cluster-url> -u <username> -p <password> --set-client-auth-state disabled
+```
+
+Re-enable it once every node, and in particular every Index Service node, is running 8.0 or later.
+
 ### [](#memcached-buckets-have-been-removed-in-couchbase-server-version-8-0-and-later)Memcached Buckets Have Been Removed in Couchbase Server Version 8.0 and Later
 
 Memcached buckets have been removed in Couchbase Server 8.0 and later. The upgrade process exits with an error if you attempt to upgrade a cluster with Memcached buckets. If your cluster has Memcached buckets, you must replace them with ephemeral buckets before upgrading. See [Bucket Capabilities in the Version 6.6 documentation](https://docs-archive.couchbase.com/server/6.6/learn/buckets-memory-and-storage/buckets.html#bucket-capabilities) for a summary of the differences between Memcached and ephemeral buckets.
@@ -76,6 +90,8 @@ You cannot directly upgrade from version 6.6 to version 7.2.4\. A compatibility 
 To `upgrade` a Couchbase-Server cluster means to upgrade the version of the server that's running on every node. For example, modifying a cluster where all of its nodes are running Couchbase Server Enterprise Edition Version 6.6, so that each of its nodes subsequently runs Couchbase Server Enterprise Edition Version 7.6.x.
 
 An `upgrade procedure` involves both preparation routines and specific upgrade commands that you perform on each node. To upgrade a cluster, you must individually upgrade each node in turn. You must select the upgrade procedure for the cluster depending on whether the cluster needs to continue or cease serving data during the cluster-upgrade. A review of the factors that determine the appropriateness of an upgrade-procedure is provided in [Upgrade Procedure-Selection](upgrade-procedure-selection.md).
+
+A cluster running more than one version of Couchbase Server is in mixed mode. Mixed mode is supported only while an upgrade is in progress. Running a cluster in mixed mode outside of an upgrade is not supported.
 
 ## [](#version-numbers)Couchbase Server Version Numbers
 

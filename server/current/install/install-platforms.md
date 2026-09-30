@@ -3,7 +3,7 @@ title: Supported Platforms
 description: Couchbase Server supports several popular operating systems and
   virtual environments. The Couchbase Server Web Console supports most recent
   major browsers.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-platforms.adoc
   xref: xref:server:install:install-platforms.adoc[]
@@ -47,6 +47,9 @@ __Table 2\. Supported Operating Systems for Development and Testing Only__
 ## [](#supported-virtualization-and-container-platforms)Supported Virtualization and Container Platforms
 
 When running Couchbase Server in virtualized or containerized environments, base the container or VM on one of the operating systems listed under [Supported Operating Systems](#oses). Couchbase Server has no operating system requirements for the system hosting the VM or container.
+
+> [!NOTE]
+> When a cluster runs on virtual machines from a cloud provider, every node in that cluster must use the same cloud provider. A cluster with nodes spread across more than one cloud provider is not supported.
 
 __Table 3\. Supported VM and Container Platforms__
 | Platform                           | Notes                                                                                                                                                                                                                                          |

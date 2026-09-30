@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/project-docs/pages/compatibility.adoc
   xref: xref:3.7@ruby-sdk:project-docs:compatibility.adoc[]
@@ -86,15 +86,17 @@ The matrix below denotes the version of Couchbase Server, the version of the Rub
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                      | 3.5   | 3.6   | 3.7   |
-| -------------------- | ----- | ----- | ----- |
-| **Server 7.0 - 7.2** | **✔** | **✔** | **✔** |
-| **Server 7.6** ①     | **✔** | **✔** | \*    |
-| **Server 8.0** ①     | **✔** | **✔** | **✔** |
+|                        | 3.5   | 3.6   | 3.7   |
+| ---------------------- | ----- | ----- | ----- |
+| **Server 7.0 - 7.2** ② | **✔** | **✔** | **✔** |
+| **Server 7.6** ①       | **✔** | **✔** | \*    |
+| **Server 8.0** ①       | **✔** | **✔** | **✔** |
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 
 ① Server 7.6 & 8.0 are compatible with all supported (not yet End-of-Life) versions of the Ruby SDK, but for full support of the latest features you need to upgrade to a recent version of the SDK. See the [Feature Availablity matrix below](#couchbase-new-feature-availability-matrix) and the [Release Notes page](sdk-release-notes.md).
+
+② Earlier versions of Server, back to 7.0, should be compatible with newer releases of the SDK (unless the release notes mention specific deprecations), but these older Server versions are EOL and no longer supported.
 
 ### [](#capella-compatibility)Capella Compatibility
 

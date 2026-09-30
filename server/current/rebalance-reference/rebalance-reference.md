@@ -3,7 +3,7 @@ title: Rebalance Reference
 description: Couchbase Server creates a <em>report</em> for every rebalance that
   is performed. This section explains how to obtain the report, and how to read
   it.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rebalance-reference/pages/rebalance-reference.adoc
   xref: xref:server:rebalance-reference:rebalance-reference.adoc[]
@@ -22,7 +22,7 @@ Couchbase Server automatically creates a _rebalance report_ for every rebalance 
 
 * By means of Couchbase Web Console, as described in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md).
 * By means of the REST API, as described in [Getting Cluster Tasks](../rest-api/rest-get-cluster-tasks.md).
-* By accessing the directory `/opt/couchbase/var/lib/couchbase/logs/reblance` on _any_ of the cluster nodes. A rebalance report is maintained here for (up to) the last _five_ rebalances performed. Each report is provided as a `*.json` file, whose name indicates the time at which the report was run — for example, `rebalance_report_2020-03-17T11:10:17Z.json`.  
+* By accessing the directory `/opt/couchbase/var/lib/couchbase/logs/rebalance` on _any_ of the cluster nodes. A rebalance report is maintained here for (up to) the last _five_ rebalances performed. Each report is provided as a `*.json` file, whose name indicates the time at which the report was run — for example, `rebalance_report_2020-03-17T11:10:17Z.json`.  
 For more information on logging, see [Manage Logging](../manage/manage-logging/manage-logging.md).
 
 ## [](#reading-a-rebalance-report)Reading a Rebalance Report

@@ -1,6 +1,6 @@
 ---
 title: Getting Rebalance-Retry Status
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-get-rebalance-retry.adoc
   xref: xref:server:rest-api:rest-get-rebalance-retry.adoc[]
@@ -32,7 +32,7 @@ Success gives `200 OK`, and returns an object containing status on pending rebal
 
 ## [](#example)Example
 
-The following example obtains information on pending reblance-retries. Note that the command is piped to the [jq](https://stedolan.github.io/jq/) tool, to facilitate output-readability.
+The following example obtains information on pending rebalance-retries. Note that the command is piped to the [jq](https://stedolan.github.io/jq/) tool, to facilitate output-readability.
 
 curl -u Administrator:password -v -X GET \
 http://10.143.192.101:8091/pools/default/pendingRetryRebalance | jq '.'

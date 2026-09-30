@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/compatibility.adoc
   xref: xref:3.8@dotnet-sdk:project-docs:compatibility.adoc[]
@@ -92,14 +92,15 @@ The matrix below denotes the version of Couchbase Server, the version of the Sca
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                      | 3.4     | 3.5   | 3.6 - 3.7 | 3.8   |
-| -------------------- | ------- | ----- | --------- | ----- |
-| **Server 7.0 - 7.2** | **✔**   | **✔** | **✔**     | **✔** |
-| **Server 7.6**       | **✔** ① | **✔** | **✔**     | **✔** |
-| **Server 8.0**       | **◎** ① | **◎** | **✔**     | **✔** |
+|                        | 3.4     | 3.5   | 3.6 - 3.7 | 3.8   |
+| ---------------------- | ------- | ----- | --------- | ----- |
+| **Server 7.0 - 7.2** ② | **✔**   | **✔** | **✔**     | **✔** |
+| **Server 7.6**         | **✔** ① | **✔** | **✔**     | **✔** |
+| **Server 8.0**         | **◎** ① | **◎** | **✔**     | **✔** |
 
 | **1** | If you are on SDK versions 3.4.11 - 3.4.15, we strongly encourage you to upgrade to .NET SDK v3.5.1+. While these versions will continue be compatible and supported with server 7.6.0+, you may encounter timeout exceptions during rebalances under KV high workload. 3.6.1+ is recommended for Server 7.6.0+ — more information is on the [Release Notes page](sdk-release-notes.md). |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Earlier versions of Server, back to 7.0, should be compatible with newer releases of the SDK (unless the release notes mention specific deprecations), but these older Server versions are EOL and no longer supported.                                                                                                                                                                  |
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 

@@ -2,7 +2,7 @@
 title: Enable Client-Certificate Handling
 description: Couchbase Server can be enabled to support certificate-based client
   authentication.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/enable-client-certificate-handling.adoc
   xref: xref:server:manage:manage-security/enable-client-certificate-handling.adoc[]
@@ -156,3 +156,5 @@ This confirms that the settings have been successfully updated.
 ## [](#client-certificates-and-server-upgrade)Client Certificates and Server Upgrade
 
 On a cluster's upgrade to the current version of Couchbase Server, the cluster will continue to return client-certificate authentication-settings in the format of the earlier version until the cluster is completely upgraded. Once the cluster has been upgraded, any existing client-certificate authentication-settings from earlier versions are automatically transformed into the new format.
+
+Client-certificate authentication combined with node-to-node encryption is not supported on a mixed-version cluster. Disable client-certificate authentication before a rolling upgrade from 7.6 to 8.0, and re-enable it once every node is running 8.0 or later. See [Before You Upgrade](../../install/upgrade.md#before-you-upgrade) for the procedure.

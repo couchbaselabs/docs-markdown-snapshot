@@ -2,7 +2,7 @@
 title: Regenerate All Certificates
 description: The REST API can be used to <em>regenerate</em> the cluster's root
   and node certificates.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-regenerate-all-certs.adoc
   xref: xref:server:rest-api:rest-regenerate-all-certs.adoc[]
@@ -36,6 +36,11 @@ Note that on Couchbase Server Version 7.1 and later, when regeneration is perfor
 The curl syntax is as follows:
 
 curl -X POST http://<ip-address-or-domain-name>:8091/controller/regenerateCertificate \
+-u <username>:<password>
+
+By default, node certificates that were uploaded by the administrator are dropped. To regenerate certificates without dropping them, set the `dropUploadedCertificates` parameter to `false`:
+
+curl -X POST http://<ip-address-or-domain-name>:8091/controller/regenerateCertificate?dropUploadedCertificates=false \
 -u <username>:<password>
 
 ## [](#required-privileges)Required Privileges

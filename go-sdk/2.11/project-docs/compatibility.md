@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/compatibility.adoc
   xref: xref:2.11@go-sdk:project-docs:compatibility.adoc[]
@@ -75,11 +75,13 @@ The matrix below denotes the version of Couchbase Server, the version of the Go 
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                | SDK 2.6 - 2.7 | 2.8 - 2.9 | 2.10  | 2.11  |
-| -------------- | ------------- | --------- | ----- | ----- |
-| **Server 8.0** | **◎**         | **◎**     | **✔** | **✔** |
-| **Server 7.6** | **◎**         | **✔**     | **✔** | **✔** |
-| **Server 7.2** | **✔**         | **✔**     | **✔** | **✔** |
+|                  | SDK 2.6 - 2.7 | 2.8 - 2.9 | 2.10  | 2.11  |
+| ---------------- | ------------- | --------- | ----- | ----- |
+| **Server 8.0**   | **◎**         | **◎**     | **✔** | **✔** |
+| **Server 7.6**   | **◎**         | **✔**     | **✔** | **✔** |
+| **Server 7.2** ① | **✔**         | **✔**     | **✔** | **✔** |
+
+① Earlier versions of Server, back to 7.0, should be compatible with newer releases of the SDK (unless the release notes mention specific deprecations), but these older Server versions are EOL and no longer supported.
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 

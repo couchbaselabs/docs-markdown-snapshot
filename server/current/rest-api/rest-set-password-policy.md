@@ -4,7 +4,7 @@ description: The REST API allows the  <em>password policy</em> for a cluster to
   be established and retrieved by means of the <code>POST</code> and
   <code>GET</code> methods respectively, using the
   <code>/settings/passwordPolicy</code> URI.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-set-password-policy.adoc
   xref: xref:server:rest-api:rest-set-password-policy.adoc[]
@@ -41,7 +41,7 @@ curl -X GET http://<ip-address-or-domain-name>:8091/settings/passwordPolicy
 
 The `minLength` parameter establishes a minimum length for the password: this must be an integer between `0` and `100`, inclusive. Note that specifying `0` permits the definition of zero-length passwords — which in practical terms, means the enablement of password-free authentication. This is highly insecure, and therefore _not_ recommended.
 
-The `enforceUppercase` and `enforceLowercase` flags establish whether the password must contain at least one uppercase or lowercase character, respectively: the value of each must be either `true` or `false`. The `enforceDigits` and `enforceSpecialChars` flags establish whether the password must contain at least one digit or special character, respectively: the value of each must be either `true` or `false`. Acceptable special characters are the following: `@`, `%`, `+`, `/`, `'`, `\`, `"`, `!`, `#`, `$`, `^`, `?`, `:`, `,`, `(`, `)`, `{`, `}`, `[`, `]`, `~`, `` ` ``, `-`, and `_`.
+The `enforceUppercase` and `enforceLowercase` flags establish whether the password must contain at least one uppercase or lowercase character, respectively: the value of each must be either `true` or `false`. The `enforceDigits` and `enforceSpecialChars` flags establish whether the password must contain at least one digit or special character, respectively: the value of each must be either `true` or `false`. Acceptable special characters are the following: `@`, `%`, `+`, `/`, `'`, `\`, `"`, `!`, `#`, `$`, `^`, `?`, `:`, `,`, `(`, `)`, `{`, `}`, `[`, `]`, `~`, `` ` ``, `-`, `_`, `*`, `=`, `&`, `.`, `;`, `<`, `>`, and `|`.
 
 ## [](#required-privileges)Required Privileges
 

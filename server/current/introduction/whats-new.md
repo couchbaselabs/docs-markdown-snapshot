@@ -1,7 +1,7 @@
 ---
 title: What&#8217;s New in Version 8.0
 description: Couchbase is the modern database for enterprise applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/whats-new.adoc
   xref: xref:server:introduction:whats-new.adoc[]
@@ -92,7 +92,7 @@ You can enable a cluster-level option that allows durable writes to succeed even
 > 
 > Enabling this feature degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. This setting makes durable writes during a failover no more safe from data loss as an asynchronous write. It also means transactions do not provide the same guarantees when this feature is off. Use this setting only in special cases such as when you're performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
-See [Auto-Failover and Ephemeral Buckets](../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets) for more information about this feature.
+See [Maintaining Durable Writes During Replica Failovers](../learn/data/durability.md#maintaining-durable-writes) for more information about this feature.
 
 #### [](#configurable-warmup-behavior-background-warmup)Configurable Warmup Behavior (Background Warmup)
 

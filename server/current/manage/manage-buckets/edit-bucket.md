@@ -2,7 +2,7 @@
 title: Edit a Bucket
 description: Full, Cluster, and Bucket Administrators can edit some settings of
   an existing bucket.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/edit-bucket.adoc
   xref: xref:server:manage:manage-buckets/edit-bucket.adoc[]
@@ -44,7 +44,7 @@ This setting is only available for Couchbase buckets on Couchbase Server Enterpr
 
 Number of vBuckets [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-For Couchbase buckets using the Magma storage backend, you can change the number of vBuckets.
+For Couchbase buckets using the Magma storage backend, the number of vBuckets is chosen when you create the bucket and cannot be changed afterwards.
 
 Memory Quota
 

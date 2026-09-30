@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/compatibility.adoc
   xref: xref:cxx-sdk:project-docs:compatibility.adoc[]
@@ -82,9 +82,11 @@ __Recommended SDK per Server Version Matrix__
 | ---------------- | ----- | ----- | -------- | ----- |
 | **Server 8.0** ① | **✔** | **✔** | **✔**    | **✔** |
 | **Server 7.6** ① | **✔** | **✔** | **✔**    | **✔** |
-| **Server 7.2**   | **◎** | **◎** | **✔**    | **✔** |
+| **Server 7.2** ② | **◎** | **◎** | **✔**    | **✔** |
 
 ① Server 7.6 & 8.0 are compatible with all supported (not yet End-of-Life) versions of the C++ SDK, but for full support of the latest features you need to upgrade to a recent version of the SDK. See the [Feature Availablity matrix below](#couchbase-new-feature-availability-matrix) and the [Release Notes page](sdk-release-notes.md).
+
+② Earlier versions of Server, back to 7.0, should be compatible with newer releases of the SDK (unless the release notes mention specific deprecations), but these older Server versions are EOL and no longer supported.
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 

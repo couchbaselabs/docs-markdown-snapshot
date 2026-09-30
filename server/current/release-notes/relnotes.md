@@ -2,7 +2,7 @@
 title: Release Notes for Couchbase Server 8.0
 description: Couchbase Server 8.0.0 introduces many fixes, as well as some
   deprecations and removals.
-pubDate: 2026-09-03T05:31:47.619Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
   xref: xref:server:release-notes:relnotes.adoc[]
@@ -40,6 +40,10 @@ The `/metrics` REST API reported certain low-cardinality statistics twice. This 
 [MB-70640](https://jira.issues.couchbase.com/browse/MB-70640)
 
 This fix addresses a rebalance hang observed during node scaling and swap rebalance operations. The issue was related to socket receive buffer management on specific Linux kernels.
+
+[MB-71423](https://jira.issues.couchbase.com/browse/MB-71423)
+
+This fix makes Magma truncate the disk space it preallocates for sstable files once a file is closed for writing. Without it, the preallocated space was never released, so actual disk usage exceeded the usage reported by the `magma_total_disk_usage` and `db_file_size` statistics and in the Couchbase Server Web Console. The difference reached up to 25 GB per bucket and had most impact on buckets holding a small amount of data.
 
 #### [](#analytics-service)Analytics Service
 
@@ -373,6 +377,10 @@ A new REST API has been introduced to facilitate the deletion of specific global
 Data Service
 
 The Data-Service `external_auth_request_timeout` is now configurable, allowing users to set a value between 0 and the maximum 32-bit unsigned integer value. The default is set to 60 seconds, and the value can be passed in seconds.
+
+**[MB-66015](https://jira.issues.couchbase.com/browse/MB-66015/)**
+
+Subdoc get operations are now correctly permitted against locked documents. This is a change in behaviour: the operation now returns `SUCCESS`, where previously it returned `LOCKED`. The CAS is set to a special locked value, encoded as all ones (`0xffff_ffff_ffff_ffff`).
 
 **[MB-67106](https://jira.issues.couchbase.com/browse/MB-67106/)**
 

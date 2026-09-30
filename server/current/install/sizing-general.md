@@ -3,7 +3,7 @@ title: Sizing Guidelines
 description: Evaluate the overall performance and capacity goals that you have
   for Couchbase and use that information to determine the necessary resources
   that you'll need in your deployment.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
   xref: xref:server:install:sizing-general.adoc[]
@@ -86,6 +86,7 @@ To better support Couchbase Server, keep in mind the following:
 
 * Disk space continues to grow if the fragmentation ratio keeps climbing. To mitigate this, add enough buffer in your disk space to store all the data. Monitor your cluster's fragmentation ratio in the Couchbase Server Web Console and trigger compaction processes as needed.
 * Couchbase recommends using Solid State Drives (SSD) when possible. An SSD gives much better performance than a Hard Disk Drive (HDD) when it comes to disk throughput and latency.
+* Couchbase recommends storing data on a disk other than the one Couchbase Server is installed on. Couchbase Server uses the installation disk by default.
 
 Network
 

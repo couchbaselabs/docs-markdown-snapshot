@@ -4,7 +4,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/general-settings.adoc
   xref: xref:server:manage:manage-settings/general-settings.adoc[]
@@ -150,7 +150,7 @@ Couchbase Server sets the number of threads to a balanced value suitable for mos
 
 Disk i/o optimized
 
-Couchbase Server sets the number of threads equal to the number of CPU cores on the node. For buckets using the Magma storage engine, consider using this setting for the following conditions:
+Couchbase Server sets the number of threads to twice the number of CPU cores on the node. For buckets using the Magma storage engine, consider using this setting for the following conditions:
 
 For Writes
 

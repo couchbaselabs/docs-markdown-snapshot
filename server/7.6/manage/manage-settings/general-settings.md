@@ -4,7 +4,7 @@ description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
   availability</em> for the cluster; and of <em>advanced settings</em> for the
   Index and Query Services.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-settings/general-settings.adoc
   xref: xref:7.6@server:manage:manage-settings/general-settings.adoc[]
@@ -119,7 +119,7 @@ Left-clicking on the **Advanced Data Settings** tab displays radio buttons for *
 Each group has the same, three radio buttons, which are as follows:
 
 * **Default**. The number of threads allocated is set to a balanced value which is reasonable for most workloads.
-* **Disk i/o optimized**. The number of threads allocated is equal to the number of CPU cores for the node.  
+* **Disk i/o optimized**. The number of threads allocated is equal to twice the number of CPU cores for the node.  
 In order to get maximum performance from Magma for disk-oriented workloads, it is recommended to set the Writer Threads to 'Disk i/o optimized'. This setting will ensure there are enough threads to sustain high write rates.  
 To Learn more about the Magma Storage Engine, see [Storage Engines — Magma Storage Engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma).
 * **Fixed value**. The number of threads allocated is equal to the value selected from the pull-down menu.  

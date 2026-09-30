@@ -1,7 +1,7 @@
 ---
 title: Roles
 description: Roles grant users access to one or more resources.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
   xref: xref:server:learn:security/roles.adoc[]
@@ -118,28 +118,28 @@ This role lets the user log into the Couchbase Server Web Console.
 
 ### [](#ro-security-admin)Read-Only Security Admin
 
-The Read-Only Security Admin role lets the user view all security settings except for listing users and groups.
+The Read-Only Security Admin role lets the user view all security settings. As of Couchbase Server 8.0.1, this includes viewing the list of users and groups.
 
 This role lets the user log into the Couchbase Server Web Console.
 
 > [!NOTE]
 > This role is new in Couchbase Server 8.0\. It was created to separate security privileges from the Read-Only Admin role. The upgrade process from prior versions to Couchbase Server 8.0 or later grants this role to users that had the Read-Only Admin. This grant ensures the user retains the privileges they had in prior versions.
 
-| Role: Read-Only Security Admin (ro\_security\_admin) |                                                                                 |                                                                                      |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Resource                                             | Permissions                                                                     | Restrictions                                                                         |
-| **Servers**                                          | View configuration and statistics                                               | Cannot add, failover, remove, modify services, or rebalance                          |
-| **Buckets**                                          | List buckets, scopes, and collections                                           | Cannot create, drop, or edit settings, or read or write data                         |
-| **Backup**                                           | None                                                                            | All                                                                                  |
-| **XDCR**                                             | List outgoing replications                                                      | Cannot create, start, alter connections                                              |
-| **Security**                                         | View LDAP, SAML, certificates, encryption at rest, audit, and logging settings. | Cannot make any changes to security settings. Cannot view or change users or groups. |
-| **Settings**                                         | View                                                                            | Change                                                                               |
-| **Logs**                                             | View                                                                            | Collect Information                                                                  |
-| **Query**                                            | None                                                                            | All                                                                                  |
-| **Search**                                           | None                                                                            | All                                                                                  |
-| **Analytics**                                        | None                                                                            | All                                                                                  |
-| **Eventing**                                         | None                                                                            | All                                                                                  |
-| **Views**                                            | None                                                                            | All                                                                                  |
+| Role: Read-Only Security Admin (ro\_security\_admin) |                                                                                                        |                                                                                              |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Resource                                             | Permissions                                                                                            | Restrictions                                                                                 |
+| **Servers**                                          | View configuration and statistics                                                                      | Cannot add, failover, remove, modify services, or rebalance                                  |
+| **Buckets**                                          | List buckets, scopes, and collections                                                                  | Cannot create, drop, or edit settings, or read or write data                                 |
+| **Backup**                                           | None                                                                                                   | All                                                                                          |
+| **XDCR**                                             | List outgoing replications                                                                             | Cannot create, start, alter connections                                                      |
+| **Security**                                         | View LDAP, SAML, certificates, encryption at rest, audit, and logging settings. View users and groups. | Cannot make any changes to security settings. Cannot add, remove, or change users or groups. |
+| **Settings**                                         | View                                                                                                   | Change                                                                                       |
+| **Logs**                                             | View                                                                                                   | Collect Information                                                                          |
+| **Query**                                            | None                                                                                                   | All                                                                                          |
+| **Search**                                           | None                                                                                                   | All                                                                                          |
+| **Analytics**                                        | None                                                                                                   | All                                                                                          |
+| **Eventing**                                         | None                                                                                                   | All                                                                                          |
+| **Views**                                            | None                                                                                                   | All                                                                                          |
 
 ### [](#local-user-security-admin)Local User Admin
 

@@ -2,7 +2,7 @@
 title: Modify Services and Rebalance
 description: Add or remove non-Data Services on existing nodes in a cluster and
   rebalance the cluster without adding or removing nodes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/modify-services-and-rebalance.adoc
   xref: xref:server:manage:manage-nodes/modify-services-and-rebalance.adoc[]
@@ -92,7 +92,7 @@ To modify non-Data services on the existing nodes of a cluster using the CLI, us
 couchbase-cli rebalance -c <network_address> \
 --username <username> \
 --password <password> \
---update-services [--index-[add|remove] <list-of-nodes>] [--n1ql-[add|remove] <list-of-nodes>] [--fts-[add|remove] <list-of-nodes>] [--cbas-[add|remove] <list-of-nodes>] [--eventing-[add|remove] <list-of-nodes>] [--backup-[add|remove] <list-of-nodes>]
+--update-services [--index-[add|remove] <list-of-nodes>] [--query-[add|remove] <list-of-nodes>] [--fts-[add|remove] <list-of-nodes>] [--analytics-[add|remove] <list-of-nodes>] [--eventing-[add|remove] <list-of-nodes>] [--backup-[add|remove] <list-of-nodes>]
 
 These are the options for modifying non-data services:
 

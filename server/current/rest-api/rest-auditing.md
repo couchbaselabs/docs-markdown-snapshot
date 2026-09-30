@@ -1,7 +1,7 @@
 ---
 title: Configure Auditing
 description: Couchbase Server <em>event auditing</em> can be configured, per node.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-09-30T04:29:45.253Z
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-auditing.adoc
   xref: xref:server:rest-api:rest-auditing.adoc[]
@@ -71,7 +71,7 @@ The parameters for the POST method are all optional, and are as follows:
 
 * The `pruneAge` parameter sets the number of seconds Couchbase Server keeps rotated audit logs. When set to the minimum value 0 (the default), Couchbase Server does not prune rotated audit logs. If set to a value greater than 0, Couchbase Server deletes rotated audit logs that are older than this value in seconds. The maximum value for this setting is 35791394 (1 year, 45 days, 15 hours, 29 minutes, and 54 seconds).
 * The `rotateInterval` parameter specifies the maximum time-period that is to elapse between log-rotations. Its value must be a number of seconds and must be a multiple of 60\. The value must also be in the range of 900 (15 minutes) to 604800 (7 days), inclusive.
-* The `rotateSize` parameter specifes the maximum size to which the `audit.log` file is permitted to grow, before being rotated. Its value must be a number of bytes, in the range of 11048576 to 524288000 (1 MiB to 500 MiB), inclusive. The default is 20971520 (20 MiB).
+* The `rotateSize` parameter specifes the maximum size to which the `audit.log` file is permitted to grow, before being rotated. Its value must be a number of bytes, in the range of 1048576 to 524288000 (1 MiB to 500 MiB), inclusive. The default is 20971520 (20 MiB).
 * The `disabled` parameter indicates which individual _filterable_ events are disabled. Its value must be one or more filterable-event ids, specified as a comma-separated list, without spaces. Filterable-event ids can be retrieved by means of the `GET /settings/audit/descriptors` method and URI.
 * The `disabledUsers` parameter disables filterable-event auditing on a per user basis. Its value must be a list of users, specified as a comma-separated list, with no spaces. Each user may be:
 
