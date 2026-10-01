@@ -1,7 +1,7 @@
 ---
 title: server-add
 description: Adds a server to the cluster
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-01T04:32:27.613Z
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-server-add.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-server-add.adoc[]
@@ -90,6 +90,10 @@ Adding a server to the cluster can only be done by a user with the appropriate c
 \--server-add-password <password>
 
 Adding a server to the cluster can only be done by a user with the appropriate credentials. This flag specifies the password for a user who has the ability to modify the cluster topology on the server being added.
+
+\--use-client-cert
+
+Authenticate to the server being added with this node's internal client certificate instead of a username and password. The server being added must have client certificate authentication enabled. Credentials may be given as well, and are required if that server is configured to not accept the internal client certificate as proof of identity on its own.
 
 \--group-name <name>
 

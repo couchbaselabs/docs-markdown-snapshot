@@ -4,7 +4,7 @@ description: Couchbase provides several SDKs to allow applications to access a
   Couchbase cluster (Capella or self-managed), as well as Couchbase Lite — an
   embedded, NoSQL JSON Document Style database for your mobile apps. To exchange
   data with other platforms, we offer various Big Data Connectors.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-01T04:32:27.613Z
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/sdk.adoc
   xref: xref:home::sdk.adoc[]
@@ -131,14 +131,15 @@ SDK doctor is a tool to diagnose application-server-side connectivity issues wit
 
 ## Mobile Development with Couchbase Lite
 
-| Mobile Platform                                              | Documentation                                           | API Reference                                                                            |
-| ------------------------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Couchbase Lite Android (Java and Kotlin)                     | [Docs](../couchbase-lite/current/android/quickstart.md) | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/)         |
-| Couchbase Lite C and C++                                     | [Docs](../couchbase-lite/current/c/quickstart.md)       | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c)                |
-| Couchbase Lite .NET (C#)                                     | [Docs](../couchbase-lite/current/csharp/quickstart.md)  | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-net)              |
-| Couchbase Lite Java                                          | [Docs](../couchbase-lite/current/java/quickstart.md)    | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/index.html?) |
-| Couchbase Lite JavaScript (Ionic, Flutter, and React Native) | [Docs](#couchbase-lite::javascript.adoc)                |                                                                                          |
-| Couchbase Lite Swift                                         | [Docs](../couchbase-lite/current/swift/quickstart.md)   | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift)            |
+| Mobile Platform                               | Documentation                                           | API Reference                                                                            |
+| --------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Couchbase Lite Android (Java and Kotlin)      | [Docs](../couchbase-lite/current/android/quickstart.md) | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-android/)         |
+| Couchbase Lite C and C++                      | [Docs](../couchbase-lite/current/c/quickstart.md)       | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-c)                |
+| Couchbase Lite .NET (C#)                      | [Docs](../couchbase-lite/current/csharp/quickstart.md)  | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-net)              |
+| Couchbase Lite Java                           | [Docs](../couchbase-lite/current/java/quickstart.md)    | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-java/index.html?) |
+| Couchbase Lite JavaScript (Ionic and Flutter) | [Docs](#couchbase-lite::javascript.adoc)                |                                                                                          |
+| Couchbase Lite React Native                   | [Docs](../cbl-reactnative/current/intro.md)             |                                                                                          |
+| Couchbase Lite Swift                          | [Docs](../couchbase-lite/current/swift/quickstart.md)   | [API Reference](https://docs.couchbase.com/mobile/4.1.0/couchbase-lite-swift)            |
 
 ###### 
 

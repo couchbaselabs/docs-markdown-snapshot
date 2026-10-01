@@ -1,7 +1,7 @@
 ---
 title: Full Installation of the C&#43;&#43; SDK
 description: Installation instructions for the Couchbase C&#43;&#43; Client.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-01T04:32:27.613Z
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:cxx-sdk:project-docs:sdk-full-installation.adoc[]
@@ -179,5 +179,7 @@ apt install couchbase-cxx-client-tools
 Currently supported platforms are `aarch64` and `x86_64` for the following distributions:
 
 * `bookworm` Debian 12 (<https://www.debian.org/releases/bookworm/>).
+* `trixie` Debian 12 (<https://www.debian.org/releases/trixie/>).
 * `jammy` Ubuntu 22.04 (<https://www.releases.ubuntu.com/jammy/>).
 * `noble` Ubuntu 24.04 (<https://www.releases.ubuntu.com/noble/>).
+* `resolute` Ubuntu 26.04 (<https://www.releases.ubuntu.com/resolute/>).

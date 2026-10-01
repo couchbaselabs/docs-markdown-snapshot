@@ -6,7 +6,7 @@ description: Couchbase Mobile brings the power of NoSQL to the edge. The
   data between the edge and the cloud. This lets you deploy fully featured
   mobile and embedded applications with greater agility on premises or in any
   cloud.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-01T04:32:27.613Z
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/mobile.adoc
   xref: xref:home::mobile.adoc[]
@@ -71,6 +71,11 @@ Couchbase Lite JavaScript
 
 Couchbase Lite JavaScript is a lightweight, fully featured embedded NoSQL JSON document database for browser-based apps. It provides query, indexing, and data synchronization with Capella App Services or Sync Gateway.  
 [Go to Couchbase Lite JavaScript Docs](#couchbase-lite-javascript::introduction.adoc)
+
+Couchbase Lite React Native
+
+Couchbase Lite React Native is a Native Module that brings Couchbase Lite's embedded NoSQL database and data sync to React Native and Expo apps on iOS and Android, with a TypeScript/JavaScript developer experience.  
+[Go to Couchbase Lite React Native Docs](../cbl-reactnative/current/intro.md)
 
 Tutorials
 

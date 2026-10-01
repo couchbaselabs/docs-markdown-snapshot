@@ -1,0 +1,242 @@
+---
+title: Using Logs for Troubleshooting
+pubDate: 2026-10-01T04:32:27.613Z
+antora:
+  editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-react-native/edit/release/1.1/modules/troubleshooting/pages/using-logs.adoc
+  xref: xref:cbl-reactnative:troubleshooting:using-logs.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/cbl-reactnative/current/troubleshooting/using-logs.html)
+
+# Using Logs for Troubleshooting
+
+> Description - _Couchbase Lite on React Native - Using Logs for Troubleshooting_  
+> Related Content - [Troubleshooting Queries](../queries/query-troubleshooting.md) | [Troubleshooting Crashes](troubleshoot-crashes.md)
+
+> [!NOTE]
+> * The retrieval of logs from the device is out of scope of this feature.
+
+## [](#introduction)Introduction
+
+Couchbase Lite provides a robust Logging API - see: API References for Logging classes - which make debugging and troubleshooting easier during development and in production. It delivers flexibility in terms of how logs are generated and retained, whilst also maintaining the level of logging required by Couchbase Support for investigation of issues.
+
+Log output is split into the following streams:
+
+* File based logging  
+Here logs are written to separate log files filtered by log level, with each log level supporting individual retention policies.
+* Console based logging  
+You can independently configure and control console logs, which provides a convenient method of accessing diagnostic information during debugging scenarios. With console logging, you can fine-tune diagnostic output to suit specific debug scenarios, without interfering with any logging required by Couchbase Support for the investigation of issues.
+* Custom logging  
+For greater flexibility you can implement a custom logging class using the ILogger interface.
+
+## [](#log-sink-api)Log Sink API
+
+Version 1.0 introduces the Log Sink API which provides three types of log sinks for flexible logging control.
+
+Version 1.1 improves file logging by forwarding React Native wrapper diagnostics into configured file and custom log sinks. These wrapper-originated lines are prefixed with `RN ::LEVEL::`, for example \`RN ::DEBUG
+
+database\_Open\`, so they can be distinguished from native Couchbase Lite SDK logs.
+
+### [](#log-levels)Log Levels
+
+| Level            | Value | Description              |
+| ---------------- | ----- | ------------------------ |
+| LogLevel.DEBUG   | 0     | Most verbose - all logs  |
+| LogLevel.VERBOSE | 1     | Detailed diagnostic logs |
+| LogLevel.INFO    | 2     | Informational messages   |
+| LogLevel.WARNING | 3     | Warning messages only    |
+| LogLevel.ERROR   | 4     | Error messages only      |
+| LogLevel.NONE    | 5     | No logging               |
+
+### [](#log-domains)Log Domains
+
+| Domain               | Description                  |
+| -------------------- | ---------------------------- |
+| LogDomain.DATABASE   | Database operations          |
+| LogDomain.QUERY      | Query execution and planning |
+| LogDomain.REPLICATOR | Replication activity         |
+| LogDomain.NETWORK    | Network operations           |
+| LogDomain.LISTENER   | Change listeners             |
+| LogDomain.ALL        | All domains (new in 1.0)     |
+
+## [](#console-log-sink)Console Log Sink
+
+Console based logging outputs logs to the system console (stdout/stderr), useful for development and debugging.
+
+#### Example 1\. Enable Console Logging
+
+```typescript
+import { LogSinks, LogLevel, LogDomain } from '@couchbase/couchbase-lite-react-native';
+
+// Enable verbose logging for all domains
+await LogSinks.setConsole({
+  level: LogLevel.VERBOSE,
+  domains: [LogDomain.ALL]
+});
+```
+
+#### Example 2\. Console with Specific Domains
+
+```typescript
+// Log only replication and network activity
+await LogSinks.setConsole({
+  level: LogLevel.INFO,
+  domains: [LogDomain.REPLICATOR, LogDomain.NETWORK]
+});
+```
+
+#### Example 3\. Disable Console Logging
+
+```typescript
+// Disable console logging
+await LogSinks.setConsole(null);
+```
+
+## [](#file-log-sink)File Log Sink
+
+File logging writes logs to files on the device with automatic rotation and retention policies.
+
+#### Example 4\. Enable File Logging
+
+```typescript
+import { Platform } from 'react-native';
+import RNFS from 'react-native-fs';
+
+// Determine platform-specific log directory
+const logDirectory = Platform.OS === 'ios'
+  ? RNFS.DocumentDirectoryPath + '/logs'
+  : RNFS.ExternalDirectoryPath + '/logs';
+
+await LogSinks.setFile({
+  level: LogLevel.INFO,
+  directory: logDirectory,
+  maxKeptFiles: 5,          // Keep 5 old log files
+  maxFileSize: 1024 * 1024, // 1MB max file size
+  usePlaintext: true        // Use plaintext format
+});
+```
+
+> [!NOTE]
+> File Rotation
+> 
+> When a log file reaches `maxFileSize`, it's closed and a new one is created. Old files exceeding `maxKeptFiles` are automatically deleted.
+
+#### Example 5\. Disable File Logging
+
+```typescript
+await LogSinks.setFile(null);
+```
+
+### [](#react-native-wrapper-logs-in-file-logging)React Native Wrapper Logs in File Logging
+
+When file logging is enabled, version 1.1 can include diagnostics from the React Native wrapper in the same log files as native Couchbase Lite logs. This helps troubleshoot issues that cross the JavaScript/native boundary, such as listener registration, database open/close calls, query execution, and replication operations.
+
+Wrapper log lines use the `RN` marker:
+
+```text
+RN ::DEBUG:: database_Open
+RN ::WARNING:: query_RemoveChangeListener rejected: no listener for token
+RN ::ERROR:: collection_Save failed
+```
+
+The wrapper avoids forwarding sensitive payloads such as document bodies, blob contents, encryption keys, and raw filesystem paths.
+
+You can use `FileSystem.getFilesInDirectory(path)` to list generated log files in the log directory:
+
+```typescript
+import { FileSystem } from '@couchbase/couchbase-lite-react-native';
+
+const fileSystem = new FileSystem();
+const files = await fileSystem.getFilesInDirectory(logDirectory);
+console.log('Log files:', files);
+```
+
+## [](#custom-log-sink)Custom Log Sink
+
+Custom logging allows you to implement your own logging logic with a callback function.
+
+#### Example 6\. Custom Logging with Callback
+
+```typescript
+await LogSinks.setCustom({
+  level: LogLevel.ERROR,
+  domains: [LogDomain.ALL],
+  callback: (level, domain, message) => {
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] [${domain}] ${message}`);
+
+    // You can also send to analytics, log to database, etc.
+  }
+});
+```
+
+#### Example 7\. Disable Custom Logging
+
+```typescript
+await LogSinks.setCustom(null);
+```
+
+## [](#writing-app-logs-to-couchbase-lite-sinks)Writing App Logs to Couchbase Lite Sinks
+
+Version 1.1 adds `LogSinks.write()` for writing your own application log messages into the configured Couchbase Lite logging pipeline. These messages are delivered to enabled sinks such as file, console, and custom sinks.
+
+```typescript
+import { LogSinks, LogLevel, LogDomain } from '@couchbase/couchbase-lite-react-native';
+
+await LogSinks.write(
+  LogLevel.WARNING,
+  LogDomain.DATABASE,
+  'Retrying database open after transient failure'
+);
+```
+
+`LogSinks.write()` accepts concrete domains such as `DATABASE`, `QUERY`, `REPLICATOR`, `NETWORK`, and `LISTENER`. `LogDomain.ALL` is for sink configuration and is not accepted for a single written log line.
+
+## [](#using-multiple-log-sinks)Using Multiple Log Sinks
+
+You can enable multiple log sinks simultaneously for different purposes.
+
+#### Example 8\. Development and Production Configuration
+
+```typescript
+if (__DEV__) {
+  // Development: Verbose console logging
+  await LogSinks.setConsole({
+    level: LogLevel.VERBOSE,
+    domains: [LogDomain.ALL]
+  });
+} else {
+  // Production: File logging for warnings and errors
+  await LogSinks.setFile({
+    level: LogLevel.WARNING,
+    directory: logDirectory,
+    maxKeptFiles: 7,
+    maxFileSize: 2 * 1024 * 1024,
+    usePlaintext: true
+  });
+
+  // Also send errors to analytics
+  await LogSinks.setCustom({
+    level: LogLevel.ERROR,
+    domains: [LogDomain.ALL],
+    callback: (level, domain, message) => {
+      Analytics.logError({ level, domain, message });
+    }
+  });
+}
+```
+
+## [](#platform-considerations)Platform Considerations
+
+**iOS:**
+
+* Log files are stored in the app's Documents directory
+* Path: `RNFS.DocumentDirectoryPath + '/logs'`
+* Accessible via iTunes File Sharing if enabled in Info.plist
+
+**Android:**
+
+* Log files are stored in the app's external directory
+* Path: `RNFS.ExternalDirectoryPath + '/logs'`
+* May require storage permissions in AndroidManifest.xml

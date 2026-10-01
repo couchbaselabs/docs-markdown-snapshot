@@ -2,7 +2,7 @@
 title: Couchbase Lite on Hybrid Platforms
 description: Start your Couchbase Lite for Mobile and Edge adventure. Get up and
   running with Couchbase Lite on hybrid platforms.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-01T04:32:27.613Z
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/hybrid/pages/quickstart.adoc
   xref: xref:couchbase-lite:hybrid:quickstart.adoc[]
@@ -28,10 +28,3 @@ You can use Couchbase Lite as a standalone embedded database within your mobile 
 * [Capacitor](https://capacitorjs.com/docs/plugins)
 * [Plugin Documentation](https://cbl-ionic.dev)
 * [Tutorial](https://ionic.io/docs/couchbase-lite/tutorials/hotel-search)
-
-###  Get started with React Native
-
-* [React Native](react.md)
-* [React Native Modules](https://reactnative.dev/docs/native-modules-intro)
-* [Plugin Documentation](https://cbl-reactnative.dev)
-* [Example Project](https://github.com/couchbase-examples/expo-cbl-travel)
