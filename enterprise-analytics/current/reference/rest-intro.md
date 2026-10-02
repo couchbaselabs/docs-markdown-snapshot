@@ -1,7 +1,7 @@
 ---
 title: REST API reference
 description: The REST API supports the management of Couchbase-Server clusters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-02T04:29:37.653Z
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-intro.adoc
   xref: xref:enterprise-analytics:reference:rest-intro.adoc[]
@@ -256,6 +256,27 @@ The _Analytics Service_ provides a REST API for querying, configuration, and the
 | PUT         | /api/v1/link/{name} | [Edit Link](../analytics-rest-links/index.md#tag/Single-Links/operation/put%5Flink)        |
 | DELETE      | /api/v1/link/{name} | [Delete Link](../analytics-rest-links/index.md#tag/Single-Links/operation/delete%5Flink)   |
 | GET         | /api/v1/link        | [Query All Links](../analytics-rest-links/index.md#tag/Multiple-Links/operation/get%5Fall) |
+
+### [](#enterprise-analytics-iceberg-api)Enterprise Analytics Iceberg API
+
+| HTTP Method | URI                                                                  | Documented at                                                                                           |
+| ----------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| GET         | /api/v1/iceberg/catalog                                              | [List Catalogs](../analytics-rest-iceberg/index.md#tag/Iceberg/operation/list%5Ficeberg%5Fcatalogs)     |
+| GET         | /api/v1/iceberg/catalog/{catalogName}/namespace                      | [List Namespaces](../analytics-rest-iceberg/index.md#tag/Iceberg/operation/list%5Ficeberg%5Fnamespaces) |
+| GET         | /api/v1/iceberg/catalog/{catalogName}/namespace/{namespace}/table    | [List Tables](../analytics-rest-iceberg/index.md#tag/Iceberg/operation/list%5Ficeberg%5Ftables)         |
+| GET         | /api/v1/iceberg/snapshot/{databaseName}/{scopeName}/{collectionName} | [List Snapshots](../analytics-rest-iceberg/index.md#tag/Iceberg/operation/list%5Ficeberg%5Fsnapshots)   |
+
+### [](#enterprise-analytics-logging-api)Enterprise Analytics Logging API
+
+| HTTP Method | URI                              | Documented at                                                                              |
+| ----------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
+| GET         | /api/v1/cluster/logging          | [View Configured Loggers](../analytics-rest-logging/index.md#operation/get%5Floggers)      |
+| PUT         | /api/v1/cluster/logging          | [Modify Logger Levels](../analytics-rest-logging/index.md#operation/put%5Floggers)         |
+| DELETE      | /api/v1/cluster/logging          | [Reset All Loggers](../analytics-rest-logging/index.md#operation/delete%5Floggers)         |
+| GET         | /api/v1/cluster/logging/all      | [List Available Loggers](../analytics-rest-logging/index.md#operation/get%5Fall%5Floggers) |
+| GET         | /api/v1/cluster/logging/{logger} | [View Logger Level](../analytics-rest-logging/index.md#operation/get%5Flogger)             |
+| PUT         | /api/v1/cluster/logging/{logger} | [Modify Logger Level](../analytics-rest-logging/index.md#operation/put%5Flogger)           |
+| DELETE      | /api/v1/cluster/logging/{logger} | [Reset Logger Level](../analytics-rest-logging/index.md#operation/delete%5Flogger)         |
 
 ## [](#http-request-headers)HTTP Request Headers
 

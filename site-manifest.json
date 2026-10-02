@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1790829529549,
+  "generated": 1790915779018,
   "url": "https://docs.couchbase.com",
   "components": [
     {
@@ -34121,6 +34121,13 @@
             {
               "alias": true,
               "module": "analytics",
+              "path": "rest-iceberg.adoc",
+              "url": "/enterprise-analytics/current/analytics-rest-iceberg/index.md",
+              "title": "Analytics Iceberg REST API"
+            },
+            {
+              "alias": true,
+              "module": "analytics",
               "path": "rest-links.adoc",
               "url": "/enterprise-analytics/current/analytics-rest-links/index.md",
               "title": "Analytics Links REST API"
@@ -34159,10 +34166,22 @@
               "title": "Analytics Configuration REST API"
             },
             {
+              "module": "analytics-rest-iceberg",
+              "path": "index.adoc",
+              "url": "/enterprise-analytics/current/analytics-rest-iceberg/index.md",
+              "title": "Analytics Iceberg REST API"
+            },
+            {
               "module": "analytics-rest-links",
               "path": "index.adoc",
               "url": "/enterprise-analytics/current/analytics-rest-links/index.md",
               "title": "Analytics Links REST API"
+            },
+            {
+              "module": "analytics-rest-logging",
+              "path": "index.adoc",
+              "url": "/enterprise-analytics/current/analytics-rest-logging/index.md",
+              "title": "Analytics Logging REST API"
             },
             {
               "module": "analytics-rest-service",
