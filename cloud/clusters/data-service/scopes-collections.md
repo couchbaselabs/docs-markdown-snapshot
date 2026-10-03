@@ -2,7 +2,12 @@
 title: Manage Scopes and Collections
 description: Create, view, and delete scopes and collections to categorize and
   organize documents within a bucket in a Capella operational cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/scopes-collections.adoc
   xref: xref:cloud:clusters:data-service/scopes-collections.adoc[]

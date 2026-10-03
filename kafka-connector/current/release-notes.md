@@ -1,6 +1,10 @@
 ---
 title: Release Notes
-pubDate: 2026-09-16T04:27:48.460Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kafka Connector
+    version: "4.3"
 antora:
   editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/release-notes.adoc
   xref: xref:kafka-connector::release-notes.adoc[]

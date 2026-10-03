@@ -3,7 +3,12 @@ title: Network Flow and Connectivity
 description: How requests flow from client applications through Cloud Native
   Gateway to Couchbase Server services, including request routing, topology
   awareness, and metadata propagation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/architecture/pages/network-flow-connectivity.adoc
   xref: xref:cloud-native-gateway:architecture:network-flow-connectivity.adoc[]

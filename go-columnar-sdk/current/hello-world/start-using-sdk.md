@@ -2,7 +2,11 @@
 title: Hello Columnar&#8201;&#8212;&#8201;Go SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Go Columnar SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:go-columnar-sdk:hello-world:start-using-sdk.adoc[]

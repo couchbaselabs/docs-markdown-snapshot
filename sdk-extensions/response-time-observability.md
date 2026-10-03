@@ -2,7 +2,12 @@
 title: Response Time Observability
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: SDK Extension Libraries
+    version: master
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/response-time-observability.adoc
   xref: xref:sdk-extensions::response-time-observability.adoc[]

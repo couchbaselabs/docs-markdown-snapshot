@@ -1,7 +1,11 @@
 ---
 title: Analytics Service Metrics
 description: A list of the metrics provided by the Analytics Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/metrics-reference/pages/analytics-service-metrics.adoc
   xref: xref:analytics:metrics-reference:analytics-service-metrics.adoc[]

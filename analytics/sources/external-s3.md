@@ -2,7 +2,12 @@
 title: Amazon S3
 description: To provide query access to OLAP data in an AWS S3 bucket, you
   create an external link and associate it with an external collection.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-s3.adoc
   xref: xref:analytics:sources:external-s3.adoc[]

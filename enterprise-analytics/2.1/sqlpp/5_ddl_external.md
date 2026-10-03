@@ -3,7 +3,12 @@ title: CREATE an External Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a collection so that you can query OLAP data on an external data
   source.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_external.adoc
   xref: xref:2.1@enterprise-analytics:sqlpp:5_ddl_external.adoc[]

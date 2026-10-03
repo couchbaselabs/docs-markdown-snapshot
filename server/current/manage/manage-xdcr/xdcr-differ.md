@@ -3,7 +3,11 @@ title: xdcrDiffer Utility
 description: The <code>xdcrDiffer</code> utility helps you verify data
   consistency between XDCR clusters by comparing document metadata and values,
   and reporting missing or mismatched documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/xdcr-differ.adoc
   xref: xref:server:manage:manage-xdcr/xdcr-differ.adoc[]

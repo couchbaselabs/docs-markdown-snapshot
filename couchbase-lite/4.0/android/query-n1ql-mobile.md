@@ -2,7 +2,11 @@
 title: SQL++ Query Strings
 description: How to use SQL++ query strings to build effective queries with
   Couchbase Lite on Android
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-n1ql-mobile.adoc
   xref: xref:4.0@couchbase-lite:android:query-n1ql-mobile.adoc[]

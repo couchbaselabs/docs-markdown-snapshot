@@ -2,7 +2,12 @@
 title: Introduction
 description: The Couchbase Apache Superset Connector lets you visualize data
   from Tabular Analytics Views (TAV) in Apache Superset.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Apache Superset Connector
+    version: "1.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-connectors-superset/edit/release/1.0/modules/ROOT/pages/index.adoc
   xref: xref:superset-connector::index.adoc[]

@@ -2,7 +2,11 @@
 title: Listing Incoming Replications
 description: Incoming replications details for a target cluster in XDCR can be
   retrieved using the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-list-incoming-replications.adoc
   xref: xref:server:rest-api:rest-xdcr-list-incoming-replications.adoc[]

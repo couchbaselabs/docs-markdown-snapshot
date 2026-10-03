@@ -1,7 +1,11 @@
 ---
 title: Eventing Terminology
 description: The following terminology is used by the Eventing Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-Terminologies.adoc
   xref: xref:server:eventing:eventing-Terminologies.adoc[]

@@ -1,6 +1,11 @@
 ---
 title: Working With RDDs
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Spark Connector
+    version: "4.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-spark/edit/release/4.0/modules/ROOT/pages/working-with-rdds.adoc
   xref: xref:spark-connector::working-with-rdds.adoc[]

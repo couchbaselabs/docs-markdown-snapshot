@@ -2,7 +2,12 @@
 title: Child Field Options
 description: You can configure a child field from the Couchbase Server Web
   Console to control how its data is added to your Search index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/child-field-options-reference.adoc
   xref: xref:server:search:child-field-options-reference.adoc[]

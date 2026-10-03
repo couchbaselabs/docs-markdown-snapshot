@@ -2,7 +2,13 @@
 title: Field Level Encryption
 description: Fields within a document can be securely encrypted by the SDK, to
   support FIPS-140-2 compliance.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.4"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/encryption.adoc
   xref: xref:4.4@php-sdk:concept-docs:encryption.adoc[]

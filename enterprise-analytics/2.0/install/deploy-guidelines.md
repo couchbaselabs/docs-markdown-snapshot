@@ -2,7 +2,12 @@
 title: Deployment Guidelines
 description: Before you install Enterprise Analytics, follow the recommended
   deployment guidelines for setting up your production environment.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/deploy-guidelines.adoc
   xref: xref:2.0@enterprise-analytics:install:deploy-guidelines.adoc[]

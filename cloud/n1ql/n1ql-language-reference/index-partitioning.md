@@ -3,7 +3,12 @@ title: Index Partitioning
 description: Index partitioning enables you to increase aggregate query
   performance by dividing and spreading a large index of documents across
   multiple nodes, horizontally scaling out an index as needed.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/index-partitioning.adoc
   xref: xref:cloud:n1ql:n1ql-language-reference/index-partitioning.adoc[]

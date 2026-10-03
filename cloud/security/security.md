@@ -3,7 +3,11 @@ title: Security Best Practices
 description: Security is a process and Couchbase Capella strives to achieve the
   best ways to protect your data, from Zero Trust, through adaptive access, to
   centralized management and proactive monitoring.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security.adoc
   xref: xref:cloud:security:security.adoc[]

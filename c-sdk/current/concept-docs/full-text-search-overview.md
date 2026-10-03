@@ -1,6 +1,10 @@
 ---
 title: Search
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/full-text-search-overview.adoc
   xref: xref:c-sdk:concept-docs:full-text-search-overview.adoc[]

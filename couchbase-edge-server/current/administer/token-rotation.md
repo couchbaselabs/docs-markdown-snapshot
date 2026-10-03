@@ -2,7 +2,11 @@
 title: Rotate Replication Credentials Without Restart
 description: Configure Couchbase Edge Server to load JWT replication credentials
   from a file path, enabling credential rotation without restarting the server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/administer/pages/token-rotation.adoc
   xref: xref:couchbase-edge-server:administer:token-rotation.adoc[]

@@ -1,7 +1,12 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/transactions-error-handling.adoc
   xref: xref:python-sdk:concept-docs:transactions-error-handling.adoc[]

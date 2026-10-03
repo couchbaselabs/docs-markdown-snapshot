@@ -1,7 +1,12 @@
 ---
 title: Performance Tuning
 description: This topic describes options for Capella Analytics query performance tuning.
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_2_parameters.adoc
   xref: xref:analytics:sqlpp:appendix_2_parameters.adoc[]

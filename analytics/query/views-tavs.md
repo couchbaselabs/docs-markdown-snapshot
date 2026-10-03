@@ -2,7 +2,12 @@
 title: Save Views or Tabular Views
 description: You can save the results of queries that use selection syntax in a
   view or tabular view.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/views-tavs.adoc
   xref: xref:analytics:query:views-tavs.adoc[]

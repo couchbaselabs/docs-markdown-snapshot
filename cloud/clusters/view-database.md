@@ -2,7 +2,11 @@
 title: View Your Clusters
 description: You can view, copy, or download a list of all Couchbase Capella
   clusters in a project, along with their status and key configuration details.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/view-database.adoc
   xref: xref:cloud:clusters:view-database.adoc[]

@@ -2,7 +2,11 @@
 title: Create Documents After Expiration
 description: When a document in an existing collection is about to expire, use
   the Eventing Service to create a new document in a different collection.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docexpiry.adoc
   xref: xref:cloud:eventing:eventing-examples-docexpiry.adoc[]

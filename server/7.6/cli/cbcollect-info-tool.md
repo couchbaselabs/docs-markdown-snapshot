@@ -2,7 +2,12 @@
 title: cbcollect_info
 description: The <code class="cmd">cbcollect_info</code> tool provides detailed
   statistics for a specific node.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbcollect-info-tool.adoc
   xref: xref:7.6@server:cli:cbcollect-info-tool.adoc[]

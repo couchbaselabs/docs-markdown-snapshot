@@ -2,7 +2,12 @@
 title: Receive Alerts for a Capella Analytics Cluster
 description: Alerts notify you when events with the warning or critical severity
   level occur in a Capella Analytics cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/receive-alerts.adoc
   xref: xref:analytics:admin:monitoring/receive-alerts.adoc[]

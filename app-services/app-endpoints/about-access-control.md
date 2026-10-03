@@ -2,7 +2,11 @@
 title: About Access Control
 description: Learn about Access Control in App Services, how Users, Roles, and
   Channels work together, and how to secure your data.
-pubDate: 2026-09-25T04:30:57.829Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/about-access-control.adoc
   xref: xref:app-services::app-endpoints/about-access-control.adoc[]

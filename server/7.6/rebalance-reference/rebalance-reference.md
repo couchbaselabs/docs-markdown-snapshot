@@ -3,7 +3,11 @@ title: Rebalance Reference
 description: Couchbase Server creates a <em>report</em> for every rebalance that
   is performed. This section explains how to obtain the report, and how to read
   it.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rebalance-reference/pages/rebalance-reference.adoc
   xref: xref:7.6@server:rebalance-reference:rebalance-reference.adoc[]

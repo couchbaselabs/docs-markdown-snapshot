@@ -2,7 +2,12 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase Node.js SDK,
   from cloud connection to sub-document.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.3"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/ref/pages/error-codes.adoc
   xref: xref:4.3@nodejs-sdk:ref:error-codes.adoc[]

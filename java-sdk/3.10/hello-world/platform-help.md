@@ -2,7 +2,11 @@
 title: Platform Introduction
 description: A simple Java orientation intro for <em>non-Java</em> folk who are
   evaluating the Couchbase Scala SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/hello-world/pages/platform-help.adoc
   xref: xref:3.10@java-sdk:hello-world:platform-help.adoc[]

@@ -3,7 +3,12 @@ title: Create a Custom Token Filter
 description: Create a custom token filter with the Couchbase Server Web Console
   to change how the Search Service creates tokens from Search index content and
   Search queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-custom-token-filter.adoc
   xref: xref:server:search:create-custom-token-filter.adoc[]

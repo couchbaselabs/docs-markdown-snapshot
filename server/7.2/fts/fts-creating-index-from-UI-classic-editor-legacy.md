@@ -1,6 +1,10 @@
 ---
 title: Classic Editor
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-legacy.adoc
   xref: xref:7.2@server:fts:fts-creating-index-from-UI-classic-editor-legacy.adoc[]

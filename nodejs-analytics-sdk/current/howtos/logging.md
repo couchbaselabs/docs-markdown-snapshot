@@ -1,7 +1,11 @@
 ---
 title: Logging
 description: Logging with the Analytics Node.js SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/howtos/pages/logging.adoc
   xref: xref:nodejs-analytics-sdk:howtos:logging.adoc[]

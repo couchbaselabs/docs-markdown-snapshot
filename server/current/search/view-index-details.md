@@ -2,7 +2,12 @@
 title: View Index Details with the Web Console
 description: Use the Index Details page in the Couchbase Server Web Console to
   view partition layouts and query execution times.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/view-index-details.adoc
   xref: xref:server:search:view-index-details.adoc[]

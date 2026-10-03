@@ -2,7 +2,11 @@
 title: Configuring S3-Compatible Storage
 description: You can set up Couchbase Enterprise Analytics to use an
   S3-Compatible storage solution.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/s3-compatible-storage.adoc
   xref: xref:2.1@enterprise-analytics:manage:manage-nodes/s3-compatible-storage.adoc[]

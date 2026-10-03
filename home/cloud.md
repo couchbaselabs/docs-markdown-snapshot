@@ -8,7 +8,11 @@ description: Capella operational is the easiest way to use Couchbase Server. Get
   Couchbase under the Capella family of products. The Couchbase AI Data Plane is
   a fully managed set of tools that help you build, deploy, and scale your
   agentic and retrieval-augmented generation (RAG) AI applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/cloud.adoc
   xref: xref:home::cloud.adoc[]

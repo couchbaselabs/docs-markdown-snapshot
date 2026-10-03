@@ -2,7 +2,13 @@
 title: Field Level Encryption from the SDK
 description: Fields within a document can be securely encrypted by the SDK, to
   support FIPS-140-2 compliance.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: howto
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:c-sdk:howtos:encrypting-using-sdk.adoc[]

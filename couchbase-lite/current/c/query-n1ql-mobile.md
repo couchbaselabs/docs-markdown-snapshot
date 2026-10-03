@@ -2,7 +2,11 @@
 title: SQL++ Query Strings
 description: How to use SQL++ Query Strings to build effective queries with
   Couchbase Lite on C
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/query-n1ql-mobile.adoc
   xref: xref:couchbase-lite:c:query-n1ql-mobile.adoc[]

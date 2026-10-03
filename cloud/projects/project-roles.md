@@ -1,6 +1,10 @@
 ---
 title: Project Roles
-pubDate: 2026-09-23T04:31:20.427Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/project-roles.adoc
   xref: xref:cloud:projects:project-roles.adoc[]

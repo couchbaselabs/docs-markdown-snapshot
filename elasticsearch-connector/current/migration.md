@@ -1,6 +1,10 @@
 ---
 title: Migration Considerations
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Elasticsearch Connector
+    version: "4.4"
 antora:
   editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/migration.adoc
   xref: xref:elasticsearch-connector::migration.adoc[]

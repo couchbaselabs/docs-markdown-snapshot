@@ -3,7 +3,12 @@ title: Get Started with Capella iQ
 description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to generate SQL++ queries, sample data, build indexes, and
   more.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/get-started-with-iq.adoc
   xref: xref:cloud:get-started:capella-iq/get-started-with-iq.adoc[]

@@ -3,7 +3,12 @@ title: Migrating to SDK 3 API
 description: The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.5"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:php-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]

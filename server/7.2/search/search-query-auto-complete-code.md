@@ -2,7 +2,12 @@
 title: Add Autocomplete to Your Application
 description: Use autocomplete to add suggestions for a user's Search query as
   they type in your application.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-query-auto-complete-code.adoc
   xref: xref:7.2@server:search:search-query-auto-complete-code.adoc[]

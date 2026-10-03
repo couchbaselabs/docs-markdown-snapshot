@@ -2,7 +2,11 @@
 title: Monitor Indexes
 description: The Indexes screen in Couchbase Web Console enables you to see
   statistics for a specific primary index or global secondary index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/monitor/monitoring-indexes.adoc
   xref: xref:server:manage:monitor/monitoring-indexes.adoc[]

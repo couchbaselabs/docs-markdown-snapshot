@@ -2,7 +2,12 @@
 title: Spring Data Sample Application
 description: Discover how to program interactions with Spring Data and Couchbase
   via the Data, Query, and Search services.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.12"
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/spring-data-sample-application.adoc
   xref: xref:java-sdk:hello-world:spring-data-sample-application.adoc[]

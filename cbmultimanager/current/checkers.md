@@ -1,6 +1,10 @@
 ---
 title: Cluster Monitor checkers
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Cluster Monitor
+    version: "0.2"
 antora:
   editUrl: https://github.com/couchbaselabs/cbmultimanager/edit/0.2.x/docs/modules/ROOT/pages/checkers.adoc
   xref: xref:cbmultimanager::checkers.adoc[]

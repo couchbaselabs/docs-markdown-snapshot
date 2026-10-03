@@ -3,7 +3,11 @@ title: Writing MapReduce Views
 description: During the view creation process, the output structure, field
   order, content, and any summary or grouping information desired in the view is
   defined.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing.adoc
   xref: xref:server:learn:views/views-writing.adoc[]

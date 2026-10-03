@@ -1,7 +1,13 @@
 ---
 title: Logging
 description: Logging with the SDK using the default logger implementation in PHP.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.2"
+  topic_type: howto
+  status: UNDER CONSTRUCTION
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/collecting-information-and-logging.adoc
   xref: xref:4.2@php-sdk:howtos:collecting-information-and-logging.adoc[]

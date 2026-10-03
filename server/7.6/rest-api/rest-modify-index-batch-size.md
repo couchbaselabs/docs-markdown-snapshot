@@ -3,7 +3,11 @@ title: Modify Index Batch Size
 description: Couchbase Server breaks the rebuilding of indexes during a
   rebalance into batches to limit the performance impact. You can use the REST
   API to change the size of these batches.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-modify-index-batch-size.adoc
   xref: xref:7.6@server:rest-api:rest-modify-index-batch-size.adoc[]

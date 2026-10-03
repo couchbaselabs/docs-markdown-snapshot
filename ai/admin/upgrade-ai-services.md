@@ -2,7 +2,12 @@
 title: Upgrades for the AI Data Plane
 description: Your Couchbase AI Data Plane components run regular maintenance
   jobs to maintain health and reliability.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/upgrade-ai-services.adoc
   xref: xref:ai:admin:upgrade-ai-services.adoc[]

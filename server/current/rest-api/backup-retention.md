@@ -2,7 +2,11 @@
 title: Retain a Backup
 description: The Backup Service REST API supports the configuration of retention
   settings for backups in a specified, active repository.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-retention.adoc
   xref: xref:server:rest-api:backup-retention.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Glossary
 description: Sync Gateway Glossary of Terms
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/glossary.adoc
   xref: xref:sync-gateway::glossary.adoc[]

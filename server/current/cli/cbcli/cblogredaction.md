@@ -1,7 +1,11 @@
 ---
 title: cblogredaction
 description: Redacts log files
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/cblogredaction.adoc
   xref: xref:server:cli:cbcli/cblogredaction.adoc[]

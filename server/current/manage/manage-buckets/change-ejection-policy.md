@@ -2,7 +2,11 @@
 title: Change a Bucket&#8217;s Ejection Policy
 description: You can change the ejection method of a bucket using the Couchbase
   Server Web Console or the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/change-ejection-policy.adoc
   xref: xref:server:manage:manage-buckets/change-ejection-policy.adoc[]

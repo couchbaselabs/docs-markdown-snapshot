@@ -1,7 +1,11 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java Analytics SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/deployment.adoc
   xref: xref:1.0@java-analytics-sdk:project-docs:deployment.adoc[]

@@ -3,7 +3,12 @@ title: CURL Function
 description: The CURL() function implements a subset of cURL functionality and
   enables SQL++ queries to interact and integrate with external JSON data
   sources available over HTTP/REST.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/curl.adoc
   xref: xref:server:n1ql:n1ql-language-reference/curl.adoc[]

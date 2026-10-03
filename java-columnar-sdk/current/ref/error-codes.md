@@ -2,7 +2,11 @@
 title: Error Messages
 description: The standardized error codes returned by the Columnar Java SDK,
   from Capella connection to SQL++ query.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/ref/pages/error-codes.adoc
   xref: xref:java-columnar-sdk:ref:error-codes.adoc[]

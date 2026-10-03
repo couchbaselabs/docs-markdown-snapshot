@@ -2,7 +2,12 @@
 title: Configure Allowed IP Addresses
 description: Before a client can connect to a Capella Analytics cluster, you
   must add the client's IP address to the cluster's allowed IP list.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/ip-allowed-list.adoc
   xref: xref:analytics:admin:ip-allowed-list.adoc[]

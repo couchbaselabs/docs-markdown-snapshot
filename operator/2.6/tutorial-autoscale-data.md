@@ -1,6 +1,10 @@
 ---
 title: Auto-scaling the Couchbase Data Service
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.6"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/tutorial-autoscale-data.adoc
   xref: xref:2.6@operator::tutorial-autoscale-data.adoc[]

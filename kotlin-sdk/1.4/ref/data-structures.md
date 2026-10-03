@@ -2,7 +2,11 @@
 title: Data Structures Reference
 description: You can use complex data structures such as dictionaries and lists
   in Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.4"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/ref/pages/data-structures.adoc
   xref: xref:1.4@kotlin-sdk:ref:data-structures.adoc[]

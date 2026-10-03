@@ -1,7 +1,11 @@
 ---
 title: Preparing for Couchbase Lite on Android
 description: Prerequisites for the installation of Couchbase Lite
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.4"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/android/pages/gs-prereqs.adoc
   xref: xref:3.4@couchbase-lite:android:gs-prereqs.adoc[]

@@ -2,7 +2,12 @@
 title: Copy Results to a Couchbase Collection
 description: From Capella Analytics, you can write the results of an analytical
   query to a Capella or Couchbase Server collection.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/copy-to-kv.adoc
   xref: xref:analytics:query:copy-to-kv.adoc[]

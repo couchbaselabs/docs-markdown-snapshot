@@ -2,7 +2,11 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/response-time-observability.adoc
   xref: xref:3.10@scala-sdk:concept-docs:response-time-observability.adoc[]

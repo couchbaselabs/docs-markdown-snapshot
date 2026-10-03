@@ -1,7 +1,11 @@
 ---
 title: Full Installation
 description: Installation instructions for the Python Analytics SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:python-analytics-sdk:project-docs:sdk-full-installation.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Changing the Master Password
 description: The master password can be changed, by means of the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/change-master-password.adoc
   xref: xref:7.6@server:rest-api:change-master-password.adoc[]

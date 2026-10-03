@@ -2,7 +2,11 @@
 title: Remote Sync with App Services / Sync Gateway
 description: Read and write data or listen for data changes from Edge Server
   over a RESTful interface from any HTTP client.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/remote-sync.adoc
   xref: xref:1.0@couchbase-edge-server:sync:remote-sync.adoc[]

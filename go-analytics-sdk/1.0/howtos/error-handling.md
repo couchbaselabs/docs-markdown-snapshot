@@ -2,7 +2,11 @@
 title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go Analytics SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/howtos/pages/error-handling.adoc
   xref: xref:1.0@go-analytics-sdk:howtos:error-handling.adoc[]

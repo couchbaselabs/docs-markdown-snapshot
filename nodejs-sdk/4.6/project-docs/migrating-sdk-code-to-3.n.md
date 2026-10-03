@@ -3,7 +3,12 @@ title: Migrating to SDK API 3
 description: The SDK API 3 (used in Node.js SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Node.js SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:4.6@nodejs-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]

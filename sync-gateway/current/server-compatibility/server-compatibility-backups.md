@@ -2,7 +2,11 @@
 title: Backup and Restore&#8201;&#8212;&#8201;Server Compatibility
 description: Important details concerning the use of backup and restore in
   conjunction with Sync Gateway.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-backups.adoc
   xref: xref:sync-gateway:server-compatibility:server-compatibility-backups.adoc[]

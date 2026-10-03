@@ -2,7 +2,11 @@
 title: Authentication
 description: Couchbase Edge Server supports multiple authentication mechanisms
   to control client access to the REST API and sync connections.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/configuration/pages/authentication.adoc
   xref: xref:couchbase-edge-server:configuration:authentication.adoc[]

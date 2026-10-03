@@ -2,7 +2,11 @@
 title: Licenses
 description: Couchbase SDKs' source code and binaries are licensed under the
   Apache Licence 2.0.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/sdk-licenses.adoc
   xref: xref:c-sdk:project-docs:sdk-licenses.adoc[]

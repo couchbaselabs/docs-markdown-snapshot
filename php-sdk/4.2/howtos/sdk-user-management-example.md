@@ -3,7 +3,12 @@ title: User Management
 description: The PHP SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.2"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/sdk-user-management-example.adoc
   xref: xref:4.2@php-sdk:howtos:sdk-user-management-example.adoc[]

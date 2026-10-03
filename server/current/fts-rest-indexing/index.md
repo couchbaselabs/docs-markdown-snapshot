@@ -2,7 +2,12 @@
 title: Couchbase Search Index Management and Monitoring API
 description: The Search Indexing REST API is provided by the Search Service.
   This API enables you to manage and monitor your Search indexes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-indexing/pages/index.adoc
   xref: xref:server:fts-rest-indexing:index.adoc[]

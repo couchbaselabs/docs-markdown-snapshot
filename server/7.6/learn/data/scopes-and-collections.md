@@ -2,7 +2,11 @@
 title: Scopes and Collections
 description: Couchbase Server provides <em>scopes</em> and <em>collections</em>;
   allowing documents to be categorized and organized, within a bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/scopes-and-collections.adoc
   xref: xref:7.6@server:learn:data/scopes-and-collections.adoc[]

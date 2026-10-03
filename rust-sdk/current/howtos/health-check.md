@@ -3,7 +3,11 @@ title: Health Check
 description: Health Check provides <code>ping()</code> and
   <code>diagnostics()</code> tests for the health of the network and the
   cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Rust SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/health-check.adoc
   xref: xref:rust-sdk:howtos:health-check.adoc[]

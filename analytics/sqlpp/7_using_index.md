@@ -1,7 +1,12 @@
 ---
 title: Indexes
 description: You use indexes to accelerate queries on remote and standalone collections.
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/7_using_index.adoc
   xref: xref:analytics:sqlpp:7_using_index.adoc[]

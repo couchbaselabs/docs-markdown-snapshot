@@ -2,7 +2,11 @@
 title: Deploy Sync Gateway with Docker
 description: Deploy <em>Sync Gateway</em> using Docker; securely sync enterprise
   data from cloud to edge.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/start-here/pages/get-started-install-docker.adoc
   xref: xref:sync-gateway:start-here:get-started-install-docker.adoc[]

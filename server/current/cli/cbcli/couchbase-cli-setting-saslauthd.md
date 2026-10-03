@@ -1,7 +1,11 @@
 ---
 title: setting-saslauthd
 description: Modifies saslauthd settings
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-saslauthd.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-setting-saslauthd.adoc[]

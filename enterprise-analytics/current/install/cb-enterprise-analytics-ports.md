@@ -2,7 +2,12 @@
 title: Enterprise Analytics Ports
 description: Enterprise Analytics uses multiple TCP ports for communication
   between components and with Couchbase clients.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/install/pages/cb-enterprise-analytics-ports.adoc
   xref: xref:enterprise-analytics:install:cb-enterprise-analytics-ports.adoc[]

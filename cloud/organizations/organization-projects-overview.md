@@ -1,7 +1,12 @@
 ---
 title: Manage Organizations and Access
 description: All clusters in Couchbase Capella are grouped into organizations and projects.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/organization-projects-overview.adoc
   xref: xref:cloud:organizations:organization-projects-overview.adoc[]

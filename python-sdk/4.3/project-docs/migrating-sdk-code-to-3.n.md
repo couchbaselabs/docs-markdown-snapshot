@@ -3,7 +3,12 @@ title: Migrating to SDK 3 API
 description: The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking
   changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to
   provide a number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.3"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:4.3@python-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]

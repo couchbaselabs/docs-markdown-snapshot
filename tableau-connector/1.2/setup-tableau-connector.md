@@ -2,7 +2,12 @@
 title: Download Couchbase Tableau Connector
 description: Download and install the Couchbase Tableau Connector to connect
   your data sources to Tableau Desktop or Tableau Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Tableau Connector
+    version: "1.2"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.2/modules/ROOT/pages/setup-tableau-connector.adoc
   xref: xref:1.2@tableau-connector::setup-tableau-connector.adoc[]

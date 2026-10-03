@@ -1,7 +1,11 @@
 ---
 title: rebalance-stop
 description: Stops the current rebalance task
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-rebalance-stop.adoc
   xref: xref:7.6@server:cli:cbcli/couchbase-cli-rebalance-stop.adoc[]

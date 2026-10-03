@@ -3,7 +3,11 @@ title: Upgrading to RBAC
 description: Couchbase provides an upgrade path, whereby users can seamlessly
   transition their activities from Couchbase Server 4.6 and earlier (which are
   all pre-RBAC releases) to 5.0 and post-5.0 (which are RBAC-enabled releases).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/upgrading-to-rbac.adoc
   xref: xref:7.6@server:learn:security/upgrading-to-rbac.adoc[]

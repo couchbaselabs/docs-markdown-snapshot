@@ -2,7 +2,12 @@
 title: Command Line Tools
 description: Use Couchbase command line tools to import and export data, manage
   backups, and interact with your cluster from the command line.
-pubDate: 2026-09-03T05:31:47.619Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
   xref: xref:cloud:reference:command-line-tools.adoc[]

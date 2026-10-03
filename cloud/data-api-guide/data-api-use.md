@@ -1,7 +1,12 @@
 ---
 title: Make an API Call with the Data API
 description: How to make an API call with the Couchbase Capella Data API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-use.adoc
   xref: xref:cloud:data-api-guide:data-api-use.adoc[]

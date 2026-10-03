@@ -1,7 +1,11 @@
 ---
 title: Errors and Diagnostics
 description: When the unexpected happens, take a step-by-step approach.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/errors.adoc
   xref: xref:2.10@go-sdk:concept-docs:errors.adoc[]

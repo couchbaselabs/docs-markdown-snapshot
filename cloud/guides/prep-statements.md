@@ -2,7 +2,12 @@
 title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/prep-statements.adoc
   xref: xref:cloud:guides:prep-statements.adoc[]

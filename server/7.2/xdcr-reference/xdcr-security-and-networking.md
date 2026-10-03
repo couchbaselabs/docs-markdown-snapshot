@@ -3,7 +3,11 @@ title: XDCR Security and Networking
 description: Specific requirements must be satisfied in order to ensure the
   successful creation of XDCR replications over different network
   configurations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/xdcr-reference/pages/xdcr-security-and-networking.adoc
   xref: xref:7.2@server:xdcr-reference:xdcr-security-and-networking.adoc[]

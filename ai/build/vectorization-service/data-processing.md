@@ -2,7 +2,12 @@
 title: Process Your Data For the Couchbase AI Data Plane
 description: Use the Couchbase AI Data Plane Workflows to prepare, process, and
   vectorize text for use with other AI Data Plane features.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
   xref: xref:ai:build:vectorization-service/data-processing.adoc[]

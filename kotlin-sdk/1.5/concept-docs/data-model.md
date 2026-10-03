@@ -2,7 +2,12 @@
 title: The Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.5"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/concept-docs/pages/data-model.adoc
   xref: xref:1.5@kotlin-sdk:concept-docs:data-model.adoc[]

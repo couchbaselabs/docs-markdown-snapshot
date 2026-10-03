@@ -1,7 +1,11 @@
 ---
 title: Database Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage databases
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/configuration-schema-database.adoc
   xref: xref:3.0@sync-gateway::configuration-schema-database.adoc[]

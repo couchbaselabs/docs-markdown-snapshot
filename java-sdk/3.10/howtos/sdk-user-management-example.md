@@ -3,7 +3,11 @@ title: User Management
 description: The Java SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/sdk-user-management-example.adoc
   xref: xref:3.10@java-sdk:howtos:sdk-user-management-example.adoc[]

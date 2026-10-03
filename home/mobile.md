@@ -6,7 +6,11 @@ description: Couchbase Mobile brings the power of NoSQL to the edge. The
   data between the edge and the cloud. This lets you deploy fully featured
   mobile and embedded applications with greater agility on premises or in any
   cloud.
-pubDate: 2026-10-01T04:32:27.613Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/mobile.adoc
   xref: xref:home::mobile.adoc[]

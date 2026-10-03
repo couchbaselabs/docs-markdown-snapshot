@@ -3,7 +3,12 @@ title: Data Enrichment
 description: Given a legacy document set containing attributes whose format
   makes them difficult to search on. In order to correct this search deficiency,
   new searchable attributes will be added to the document.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-example-data-enrichment.adoc
   xref: xref:7.6@server:eventing:eventing-example-data-enrichment.adoc[]

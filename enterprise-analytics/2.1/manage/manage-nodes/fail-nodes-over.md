@@ -3,7 +3,11 @@ title: Failover
 description: Nodes can be <em>failed over</em>, and thereby removed safely from
   a cluster in the event of unavoidable downtime, without any break in the
   serving of data to applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/fail-nodes-over.adoc
   xref: xref:2.1@enterprise-analytics:manage:manage-nodes/fail-nodes-over.adoc[]

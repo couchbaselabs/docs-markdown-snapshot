@@ -1,6 +1,12 @@
 ---
 title: Certificate-Based Authentication
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.12"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/certificate-based-authentication.adoc
   xref: xref:go-sdk:concept-docs:certificate-based-authentication.adoc[]

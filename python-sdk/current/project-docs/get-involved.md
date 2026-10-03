@@ -1,6 +1,10 @@
 ---
 title: Get Involved
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.6"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/project-docs/pages/get-involved.adoc
   xref: xref:python-sdk:project-docs:get-involved.adoc[]

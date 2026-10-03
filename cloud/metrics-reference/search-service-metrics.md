@@ -1,7 +1,11 @@
 ---
 title: Search Service Metrics
 description: A list of the metrics provided by the Search Service.
-pubDate: 2026-08-18T04:50:45.818Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/search-service-metrics.adoc
   xref: xref:cloud:metrics-reference:search-service-metrics.adoc[]

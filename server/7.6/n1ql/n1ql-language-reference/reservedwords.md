@@ -2,7 +2,12 @@
 title: Reserved Words
 description: SQL++ defines an extensive list of keywords that are reserved
   words. You cannot use these keywords as identifiers unless you escape them.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/reservedwords.adoc
   xref: xref:7.6@server:n1ql:n1ql-language-reference/reservedwords.adoc[]

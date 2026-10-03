@@ -3,7 +3,12 @@ title: Request Prompt Action for Cluster Recovery
 description: You can choose to authorize Couchbase Capella Support to
   automatically take remedial actions to a specific cluster, in case a failure
   is detected.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/support-pre-auth.adoc
   xref: xref:cloud:billing:support-pre-auth.adoc[]

@@ -2,7 +2,12 @@
 title: Run a Geospatial Search Query with the Capella UI
 description: Search for geospatial data in your Couchbase Capella operational
   cluster with a compatible Search index and the Capella UI.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/geo-search-ui.adoc
   xref: xref:cloud:search:geo-search-ui.adoc[]

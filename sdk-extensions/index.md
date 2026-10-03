@@ -2,7 +2,11 @@
 title: SDK Extension Libraries
 description: Field Level Encryption and Response Time Observability (Tracing)
   libraries ship separately from each SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: SDK Extension Libraries
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/index.adoc
   xref: xref:sdk-extensions::index.adoc[]

@@ -3,7 +3,12 @@ title: Iceberg Tables
 description: Enterprise Analytics provides read-only query access to Apache
   Iceberg tables through external catalogs, enabling unified queries across data
   lake and operational data without moving data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_iceberg.adoc
   xref: xref:enterprise-analytics:sqlpp:5_ddl_iceberg.adoc[]

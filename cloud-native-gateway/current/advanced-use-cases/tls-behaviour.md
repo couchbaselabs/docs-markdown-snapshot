@@ -3,7 +3,12 @@ title: TLS Behavior
 description: Cloud Native Gateway supports TLS on the client and server side.
   Cloud Native Gateway acts as a proxy that terminates the incoming client TLS
   connection and forms a separate connection to the Cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/advanced-use-cases/pages/tls-behaviour.adoc
   xref: xref:cloud-native-gateway:advanced-use-cases:tls-behaviour.adoc[]

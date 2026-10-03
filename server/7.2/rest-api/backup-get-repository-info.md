@@ -2,7 +2,11 @@
 title: Get Information on Repositories
 description: The Backup Service REST API allows information to be retrieved on
   active, imported, or archived repositories.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-get-repository-info.adoc
   xref: xref:7.2@server:rest-api:backup-get-repository-info.adoc[]

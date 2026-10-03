@@ -2,7 +2,12 @@
 title: Create Search Index Aliases
 description: A Search index alias lets you run a Search query against a Search
   index without using the original Search index name.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/index-aliases.adoc
   xref: xref:cloud:search:index-aliases.adoc[]

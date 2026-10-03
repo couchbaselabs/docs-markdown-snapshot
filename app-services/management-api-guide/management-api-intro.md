@@ -2,7 +2,12 @@
 title: Manage Deployments with the Capella App Services Management API
 description: The Capella App Services Management API is a secure REST API that
   enables you to configure and manage your Capella App Services clusters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/management-api-guide/management-api-intro.adoc
   xref: xref:app-services::management-api-guide/management-api-intro.adoc[]

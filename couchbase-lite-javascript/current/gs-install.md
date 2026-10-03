@@ -1,7 +1,11 @@
 ---
 title: Installing Couchbase Lite JavaScript
 description: How to install Couchbase Lite JavaScript
-pubDate: 2026-09-21T04:27:56.975Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite JavaScript
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-install.adoc
   xref: xref:couchbase-lite-javascript::gs-install.adoc[]

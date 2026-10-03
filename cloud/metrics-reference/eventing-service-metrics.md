@@ -1,7 +1,11 @@
 ---
 title: Eventing Service Metrics
 description: A list of the metrics provided by the Eventing Service.
-pubDate: 2026-08-18T04:50:45.818Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/eventing-service-metrics.adoc
   xref: xref:cloud:metrics-reference:eventing-service-metrics.adoc[]

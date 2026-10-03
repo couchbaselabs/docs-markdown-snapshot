@@ -2,7 +2,11 @@
 title: Storage Engines
 description: "Couchbase supports two different backend storage engines:
   Couchstore and Magma."
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
   xref: xref:server:learn:buckets-memory-and-storage/storage-engines.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Compatibility
 description: Couchbase Lite framework and Sync Gateway compatibility
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/compatibility.adoc
   xref: xref:couchbase-lite:java:compatibility.adoc[]

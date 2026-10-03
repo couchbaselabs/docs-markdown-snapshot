@@ -2,7 +2,13 @@
 title: finderr
 description: The <code class="cmd">finderr</code> tool returns the full details
   of any Query service or cbq shell error.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
+  status: Couchbase Server 7.6.4
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/finderr.adoc
   xref: xref:7.6@server:cli:finderr.adoc[]

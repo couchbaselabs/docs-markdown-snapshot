@@ -3,7 +3,12 @@ title: Deployment Considerations for Virtual Machines and Containers
 description: Use virtualized platforms such as AWS and Docker containers to get
   hardware scalability and complement Enterprise Analytics's software
   scalability.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/vm-container-guidelines.adoc
   xref: xref:2.0@enterprise-analytics:install:vm-container-guidelines.adoc[]

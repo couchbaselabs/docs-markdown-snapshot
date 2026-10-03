@@ -2,7 +2,11 @@
 title: Manage Buckets
 description: <em>Buckets</em>, which Couchbase Server uses to store data, can be
   created, edited, flushed, and deleted.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/bucket-management-overview.adoc
   xref: xref:server:manage:manage-buckets/bucket-management-overview.adoc[]

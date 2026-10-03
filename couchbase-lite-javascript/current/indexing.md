@@ -1,7 +1,11 @@
 ---
 title: Indexing
 description: Couchbase Lite JavaScript -- Indexing for Query Performance
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite JavaScript
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/indexing.adoc
   xref: xref:couchbase-lite-javascript::indexing.adoc[]

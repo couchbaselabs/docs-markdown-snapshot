@@ -1,7 +1,12 @@
 ---
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.3"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/ref/pages/travel-app-data-model.adoc
   xref: xref:1.3@cxx-sdk:ref:travel-app-data-model.adoc[]

@@ -1,7 +1,12 @@
 ---
 title: Connect To Your Cluster
 description: Use the Connect page to choose how you want to connect to your cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/connect.adoc
   xref: xref:cloud:get-started:connect.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: REST API reference
 description: The REST API supports the management of Couchbase-Server clusters.
-pubDate: 2026-10-02T04:29:37.653Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/reference/pages/rest-intro.adoc
   xref: xref:enterprise-analytics:reference:rest-intro.adoc[]

@@ -2,7 +2,12 @@
 title: Backup and Restore Considerations
 description: How Cloud Native Gateway relates to Couchbase backup and restore
   operations, and what to consider for disaster recovery.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/backup-restore-considerations.adoc
   xref: xref:cloud-native-gateway:availability-and-failover:backup-restore-considerations.adoc[]

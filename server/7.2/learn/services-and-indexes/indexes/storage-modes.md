@@ -2,7 +2,12 @@
 title: Storage Settings
 description: "A Secondary Index can be saved in either of two ways:
   memory-optimized or standard."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/storage-modes.adoc
   xref: xref:7.2@server:learn:services-and-indexes/indexes/storage-modes.adoc[]

@@ -3,7 +3,11 @@ title: Deployment Considerations for Virtual Machines and Containers
 description: Virtualized platforms such as VMware, AWS/Azure/GCP, and Docker
   (containers) are popular ways of achieving hardware scalability to complement
   Couchbase Server's software scalability.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/best-practices-vm.adoc
   xref: xref:7.6@server:install:best-practices-vm.adoc[]

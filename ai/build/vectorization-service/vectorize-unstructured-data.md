@@ -3,7 +3,12 @@ title: Process and Vectorize Unstructured Data
 description: Use an Couchbase AI Data Plane Unstructured Data Workflow to
   automatically preprocess data for a Retrieval Augmented Generation (RAG)
   application or other use cases inside Capella.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-unstructured-data.adoc
   xref: xref:ai:build:vectorization-service/vectorize-unstructured-data.adoc[]

@@ -1,6 +1,11 @@
 ---
 title: Working with Collections
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.11"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/working-with-collections.adoc
   xref: xref:3.11@java-sdk:howtos:working-with-collections.adoc[]

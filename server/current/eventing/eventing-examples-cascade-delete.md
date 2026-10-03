@@ -2,7 +2,12 @@
 title: Cascade Delete
 description: This example illustrates how to leverage the Eventing Service to
   perform a cascade delete operation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples-cascade-delete.adoc
   xref: xref:server:eventing:eventing-examples-cascade-delete.adoc[]

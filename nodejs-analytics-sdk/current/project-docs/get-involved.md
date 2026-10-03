@@ -1,6 +1,10 @@
 ---
 title: Get Involved
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.1/modules/project-docs/pages/get-involved.adoc
   xref: xref:nodejs-analytics-sdk:project-docs:get-involved.adoc[]

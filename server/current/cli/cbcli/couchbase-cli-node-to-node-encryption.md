@@ -1,7 +1,11 @@
 ---
 title: node-to-node-encryption
 description: Changes node-to-node encryption
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-node-to-node-encryption.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-node-to-node-encryption.adoc[]

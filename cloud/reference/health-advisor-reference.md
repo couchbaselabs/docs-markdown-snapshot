@@ -2,7 +2,12 @@
 title: Health Advisor Reference
 description: Use the following as a reference for the different kinds of advice
   available in a Health Advisor report.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/health-advisor-reference.adoc
   xref: xref:cloud:reference:health-advisor-reference.adoc[]

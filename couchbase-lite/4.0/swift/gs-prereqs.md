@@ -1,7 +1,11 @@
 ---
 title: Prerequisites for Couchbase Lite on Swift
 description: Prerequisites for the installation of Couchbase Lite
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-prereqs.adoc
   xref: xref:4.0@couchbase-lite:swift:gs-prereqs.adoc[]

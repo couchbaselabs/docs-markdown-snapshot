@@ -1,6 +1,10 @@
 ---
 title: Couchbase Java SDK 3.12
-pubDate: 2026-09-12T04:29:55.163Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.12"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
   xref: xref:java-sdk:hello-world:overview.adoc[]

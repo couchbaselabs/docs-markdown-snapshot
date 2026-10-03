@@ -3,7 +3,12 @@ title: Cloud Native Gateway Architecture
 description: An architectural overview of how Cloud Native Gateway translates
   Protostellar gRPC requests into native Couchbase protocols, multiplexes
   services over a single endpoint, and manages cluster discovery.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/architecture/pages/cng-architecture.adoc
   xref: xref:cloud-native-gateway:architecture:cng-architecture.adoc[]

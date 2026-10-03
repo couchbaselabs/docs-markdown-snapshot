@@ -1,7 +1,11 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.9"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:3.9@java-sdk:project-docs:sdk-full-installation.adoc[]

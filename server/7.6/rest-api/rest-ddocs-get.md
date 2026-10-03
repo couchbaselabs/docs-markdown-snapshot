@@ -3,7 +3,12 @@ title: Getting Design Doc Information
 description: To retrieve a design document, use the <code>GET
   /bucket/_design/[ddoc-name]</code> HTTP method and URI on the
   <code>8092</code> port.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-ddocs-get.adoc
   xref: xref:7.6@server:rest-api:rest-ddocs-get.adoc[]

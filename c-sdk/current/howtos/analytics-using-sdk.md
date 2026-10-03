@@ -2,7 +2,13 @@
 title: Analytics using the C SDK
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: howto
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:c-sdk:howtos:analytics-using-sdk.adoc[]

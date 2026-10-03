@@ -2,7 +2,12 @@
 title: Token Functions
 description: Tokenization is the process of breaking a stream of text up into
   words, phrases, symbols, or other meaningful elements called tokens.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/tokenfun.adoc
   xref: xref:server:n1ql:n1ql-language-reference/tokenfun.adoc[]

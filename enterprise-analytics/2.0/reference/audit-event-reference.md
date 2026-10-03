@@ -1,7 +1,11 @@
 ---
 title: Audit Event Reference
 description: A complete list of the events audited by Enterprise Analytics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/audit-event-reference.adoc
   xref: xref:2.0@enterprise-analytics:reference:audit-event-reference.adoc[]

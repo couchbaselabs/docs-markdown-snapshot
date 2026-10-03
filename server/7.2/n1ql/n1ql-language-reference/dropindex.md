@@ -2,7 +2,12 @@
 title: DROP INDEX
 description: The DROP INDEX statement allows you to drop a named primary index
   or a secondary index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/dropindex.adoc
   xref: xref:7.2@server:n1ql:n1ql-language-reference/dropindex.adoc[]

@@ -1,6 +1,11 @@
 ---
 title: MapReduce Views
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.4"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/understanding-views.adoc
   xref: xref:4.4@php-sdk:concept-docs:understanding-views.adoc[]

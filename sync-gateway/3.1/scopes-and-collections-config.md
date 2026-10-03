@@ -1,7 +1,11 @@
 ---
 title: Scopes and Collections Configuration for Sync Gateway
 description: Configure Scopes and Collections for Sync Gateway - Examples with descriptions.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/scopes-and-collections-config.adoc
   xref: xref:3.1@sync-gateway::scopes-and-collections-config.adoc[]

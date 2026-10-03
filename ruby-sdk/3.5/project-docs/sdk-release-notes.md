@@ -2,7 +2,11 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Ruby Client.
-pubDate: 2026-09-04T04:31:22.095Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.5"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:3.5@ruby-sdk:project-docs:sdk-release-notes.adoc[]

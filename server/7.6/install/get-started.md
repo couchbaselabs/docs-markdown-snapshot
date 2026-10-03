@@ -3,7 +3,11 @@ title: Couchbase Server Deployment Options
 description: Couchbase Server can be deployed on a variety of platforms, from
   traditional bare metal servers, to containers running in a public or private
   cloud.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/get-started.adoc
   xref: xref:7.6@server:install:get-started.adoc[]

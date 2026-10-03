@@ -3,7 +3,11 @@ title: Query
 description: You can query for documents in Couchbase using the
   https://www.couchbase.com/products/n1ql[SQL++] query language, a language
   based on SQL, but designed for structured and flexible JSON documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.6"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
   xref: xref:python-sdk:howtos:sqlpp-queries-with-sdk.adoc[]

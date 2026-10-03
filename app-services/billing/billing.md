@@ -3,7 +3,11 @@ title: Billing
 description: The cost for App Services is based on the cost of the linked
   Cluster, and comprises a fixed cost, plus a variable amount based on the data
   usage.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/billing/billing.adoc
   xref: xref:app-services::billing/billing.adoc[]

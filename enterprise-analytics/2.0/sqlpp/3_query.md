@@ -1,7 +1,12 @@
 ---
 title: SELECT Statements
 description: This topic describes the syntax used by SQL++ for Enterprise Analytics queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/3_query.adoc
   xref: xref:2.0@enterprise-analytics:sqlpp:3_query.adoc[]

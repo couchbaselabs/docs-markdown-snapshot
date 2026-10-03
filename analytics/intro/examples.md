@@ -2,7 +2,12 @@
 title: Access Data
 description: You can set up different data sources to work with sample data in
   Capella Analytics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/intro/pages/examples.adoc
   xref: xref:analytics:intro:examples.adoc[]

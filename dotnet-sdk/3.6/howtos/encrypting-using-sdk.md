@@ -2,7 +2,13 @@
 title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the .NET SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.6"
+  topic_type: howto
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:3.6@dotnet-sdk:howtos:encrypting-using-sdk.adoc[]

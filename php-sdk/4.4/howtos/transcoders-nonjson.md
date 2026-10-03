@@ -1,7 +1,12 @@
 ---
 title: Transcoders and Non-JSON Documents
 description: The PHP SDK supports common JSON document requirements out-of-the-box.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.4"
+  topic_type: howtos
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/transcoders-nonjson.adoc
   xref: xref:4.4@php-sdk:howtos:transcoders-nonjson.adoc[]

@@ -2,7 +2,11 @@
 title: Migrating from SDK2 to SDK3 API
 description: This is the first release of the Couchbase Scala SDK -- you will
   not have any code based upon older API versions.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:1.1@cxx-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]

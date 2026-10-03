@@ -2,7 +2,11 @@
 title: Configure a Sync Gateway Install
 description: Configure your <em>Sync Gateway</em> installation; securely sync
   enterprise data from cloud to edge!
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-configure.adoc
   xref: xref:4.0@sync-gateway:start-here:get-started-configure.adoc[]

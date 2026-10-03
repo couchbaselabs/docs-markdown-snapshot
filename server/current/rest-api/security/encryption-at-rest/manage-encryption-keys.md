@@ -2,7 +2,13 @@
 title: Manage Encryption-at-Rest Keys
 description: You must create encryption-at-rest keys before you can have
   Couchbase Server encrypt data as it saves it to disk.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-encryption-keys.adoc
   xref: xref:server:rest-api:security/encryption-at-rest/manage-encryption-keys.adoc[]

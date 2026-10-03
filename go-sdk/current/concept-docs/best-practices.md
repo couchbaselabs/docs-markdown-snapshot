@@ -2,7 +2,11 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.12"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/best-practices.adoc
   xref: xref:go-sdk:concept-docs:best-practices.adoc[]

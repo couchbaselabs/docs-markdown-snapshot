@@ -4,7 +4,11 @@ description: You can query for documents in Couchbase using the
   https://www.couchbase.com/products/n1ql[SQL++] (formerly N1QL) query language,
   a language based on SQL, but designed for structured and flexible JSON
   documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.9"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
   xref: xref:3.9@java-sdk:howtos:sqlpp-queries-with-sdk.adoc[]

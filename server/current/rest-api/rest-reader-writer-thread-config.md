@@ -2,7 +2,12 @@
 title: Setting Storage Thread Allocations
 description: Couchbase Server has several settings that let you change how it
   allocates and uses threads for storage across the entire cluster.
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-reader-writer-thread-config.adoc
   xref: xref:server:rest-api:rest-reader-writer-thread-config.adoc[]

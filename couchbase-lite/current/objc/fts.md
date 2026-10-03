@@ -2,7 +2,11 @@
 title: Using Full-Text Search
 description: Working with Couchbase Lite's data model  -- Querying the database
   using full text search
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/fts.adoc
   xref: xref:couchbase-lite:objc:fts.adoc[]

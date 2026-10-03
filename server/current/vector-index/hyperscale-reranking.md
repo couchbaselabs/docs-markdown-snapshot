@@ -2,7 +2,12 @@
 title: Hyperscale Vector Index Reranking and Full Vector Persistence
 description: You can enable reranking in queries using a Hyperscale Vector index
   to potentially improve the query results.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/hyperscale-reranking.adoc
   xref: xref:server:vector-index:hyperscale-reranking.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Collections&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> can work with <em>Couchbase Server's Collections</em>
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-collections.adoc
   xref: xref:sync-gateway:server-compatibility:server-compatibility-collections.adoc[]

@@ -3,7 +3,12 @@ title: User Management
 description: The .NET SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.6"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/sdk-user-management-example.adoc
   xref: xref:3.6@dotnet-sdk:howtos:sdk-user-management-example.adoc[]

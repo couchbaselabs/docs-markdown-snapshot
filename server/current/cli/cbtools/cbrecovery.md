@@ -2,7 +2,11 @@
 title: cbrecovery
 description: Restores data to a local cluster, from a bucket on a remote cluster
   that was previously established as an XDCR remote replica
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbtools/cbrecovery.adoc
   xref: xref:server:cli:cbtools/cbrecovery.adoc[]

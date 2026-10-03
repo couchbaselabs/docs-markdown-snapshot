@@ -2,7 +2,12 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.8"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/concept-docs/pages/documents.adoc
   xref: xref:2.8@go-sdk:concept-docs:documents.adoc[]

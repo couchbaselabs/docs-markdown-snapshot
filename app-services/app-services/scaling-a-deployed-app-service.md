@@ -2,7 +2,11 @@
 title: Scale a Deployed App Service
 description: Having deployed an App Service, you may wish to scale it up or down
   by adjusting its configuration.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/scaling-a-deployed-app-service.adoc
   xref: xref:app-services::app-services/scaling-a-deployed-app-service.adoc[]

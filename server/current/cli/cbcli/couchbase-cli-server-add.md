@@ -1,7 +1,11 @@
 ---
 title: server-add
 description: Adds a server to the cluster
-pubDate: 2026-10-01T04:32:27.613Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-server-add.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-server-add.adoc[]

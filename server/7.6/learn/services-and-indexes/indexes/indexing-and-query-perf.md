@@ -3,7 +3,12 @@ title: Types of Primary and Secondary Index
 description: This topic provides an overview of the types of index that you can
   create using the Index Service, and explains how they help to query for data
   efficiently and improve query performance.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/indexing-and-query-perf.adoc
   xref: xref:7.6@server:learn:services-and-indexes/indexes/indexing-and-query-perf.adoc[]

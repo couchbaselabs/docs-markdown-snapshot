@@ -1,6 +1,10 @@
 ---
 title: Get Involved
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/project-docs/pages/get-involved.adoc
   xref: xref:3.10@kotlin-sdk:project-docs:get-involved.adoc[]

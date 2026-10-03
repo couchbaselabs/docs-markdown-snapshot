@@ -1,7 +1,11 @@
 ---
 title: operational-insights-link-setup
 description: Manage Operational Insights links
-pubDate: 2026-09-24T04:27:44.823Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-operational-insights-link-setup.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-operational-insights-link-setup.adoc[]

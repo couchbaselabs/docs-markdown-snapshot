@@ -1,7 +1,12 @@
 ---
 title: Full Installation
 description: Installation instructions, and download archive for the Couchbase PHP Client.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.2"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:4.2@php-sdk:project-docs:sdk-full-installation.adoc[]

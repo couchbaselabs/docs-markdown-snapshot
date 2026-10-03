@@ -3,7 +3,12 @@ title: SQL++ for Capella Analytics
 description: Capella Analytics extends the grammar, statements, and capabilities
   of  SQL++ for Analytics used with the Analytics Service in Couchbase Server
   and Capella.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/1_intro.adoc
   xref: xref:analytics:sqlpp:1_intro.adoc[]

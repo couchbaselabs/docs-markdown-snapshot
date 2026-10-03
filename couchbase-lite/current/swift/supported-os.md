@@ -2,7 +2,11 @@
 title: Supported Operating System Versions
 description: Couchbase Lite for Swift -- the OS and SDK versions on which this
   framework is supported
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/swift/pages/supported-os.adoc
   xref: xref:couchbase-lite:swift:supported-os.adoc[]

@@ -2,7 +2,11 @@
 title: Views in a Schema-less Database
 description: A schema-less database along with view definitions provide for a
   flexible document structure.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-schemaless.adoc
   xref: xref:7.6@server:learn:views/views-schemaless.adoc[]

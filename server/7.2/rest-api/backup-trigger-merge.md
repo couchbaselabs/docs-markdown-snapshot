@@ -2,7 +2,11 @@
 title: Perform an Immediate Merge
 description: The Backup Service REST API allows an immediate merge to be
   performed, on existing backups within a specified repository.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-trigger-merge.adoc
   xref: xref:7.2@server:rest-api:backup-trigger-merge.adoc[]

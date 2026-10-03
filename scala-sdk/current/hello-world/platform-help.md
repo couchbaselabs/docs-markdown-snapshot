@@ -2,7 +2,11 @@
 title: Platform Introduction
 description: A simple Scala orientation intro for <em>non-Scala</em> folk who
   are evaluating the Couchbase Scala SDK.
-pubDate: 2026-09-12T04:29:55.163Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.12"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/platform-help.adoc
   xref: xref:scala-sdk:hello-world:platform-help.adoc[]

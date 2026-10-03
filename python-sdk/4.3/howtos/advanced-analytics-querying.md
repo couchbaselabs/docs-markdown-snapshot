@@ -1,6 +1,10 @@
 ---
 title: Advanced Analytics Querying
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/advanced-analytics-querying.adoc
   xref: xref:4.3@python-sdk:howtos:advanced-analytics-querying.adoc[]

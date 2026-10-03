@@ -2,7 +2,13 @@
 title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Go SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.8"
+  topic_type: howto
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:2.8@go-sdk:howtos:encrypting-using-sdk.adoc[]

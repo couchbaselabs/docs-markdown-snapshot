@@ -2,7 +2,11 @@
 title: Set Up an Authentication Provider
 description: Capella supports a number of authentication providers, which can be
   configured from the Capella UI.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/set-up-authentication-provider.adoc
   xref: xref:app-services::security/set-up-authentication-provider.adoc[]

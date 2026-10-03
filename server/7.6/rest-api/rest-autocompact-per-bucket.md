@@ -2,7 +2,11 @@
 title: "Auto-Compaction: Per Bucket"
 description: Auto-compaction settings can be established and retrieved for
   individual buckets.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-autocompact-per-bucket.adoc
   xref: xref:7.6@server:rest-api:rest-autocompact-per-bucket.adoc[]

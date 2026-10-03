@@ -1,7 +1,11 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/releasenotes.adoc
   xref: xref:3.3@couchbase-lite:objc:releasenotes.adoc[]

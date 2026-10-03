@@ -1,5 +1,9 @@
 ---
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.8"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/ref/pages/data-structures.adoc
   xref: xref:3.8@dotnet-sdk:ref:data-structures.adoc[]

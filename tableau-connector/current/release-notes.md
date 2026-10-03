@@ -2,7 +2,12 @@
 title: Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Tableau Connector.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Tableau Connector
+    version: "2.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-tableau/edit/release/2.0/modules/ROOT/pages/release-notes.adoc
   xref: xref:tableau-connector::release-notes.adoc[]

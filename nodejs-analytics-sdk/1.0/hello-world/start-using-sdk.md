@@ -2,7 +2,11 @@
 title: Node.js Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Node.js Analytics SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js Analytics SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:1.0@nodejs-analytics-sdk:hello-world:start-using-sdk.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Manage Inter-Sync Gateway Replications
 description: Managing inter-Sync Gateway replications
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/sync/pages/sync-inter-syncgateway-manage.adoc
   xref: xref:sync-gateway:sync:sync-inter-syncgateway-manage.adoc[]

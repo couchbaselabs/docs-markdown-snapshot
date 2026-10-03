@@ -3,7 +3,12 @@ title: Rebalance
 description: When one or more nodes have been brought into or taken out of a
   cluster, <em>rebalance</em> redistributes data, indexes, event processing, and
   query processing among available nodes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-rebalance-overview.adoc
   xref: xref:2.1@enterprise-analytics:reference:rest-rebalance-overview.adoc[]

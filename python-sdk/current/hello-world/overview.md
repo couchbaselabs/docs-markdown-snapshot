@@ -1,6 +1,10 @@
 ---
 title: Couchbase Python SDK 4.6
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.6"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/hello-world/pages/overview.adoc
   xref: xref:python-sdk:hello-world:overview.adoc[]

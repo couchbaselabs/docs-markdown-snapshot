@@ -2,7 +2,12 @@
 title: Default Analyzers
 description: Use an analyzer to filter and modify search strings to improve
   matches for search results.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/default-analyzers-reference.adoc
   xref: xref:7.6@server:search:default-analyzers-reference.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Client Settings
 description: Most settings can be changed through the connection string.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.1/modules/ref/pages/client-settings.adoc
   xref: xref:python-analytics-sdk:ref:client-settings.adoc[]

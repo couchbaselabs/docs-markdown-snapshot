@@ -2,7 +2,12 @@
 title: OAuth Authentication
 description: Secure the Couchbase MCP Server's Streamable HTTP endpoint with
   OAuth 2.1 JWT token verification and scope-based authorization.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase MCP Server
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/release/1.0/modules/configuration/pages/oauth-overview.adoc
   xref: xref:mcp-server:configuration:oauth-overview.adoc[]

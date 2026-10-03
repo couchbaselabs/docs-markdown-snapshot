@@ -1,6 +1,11 @@
 ---
 title: Include Examples and Partials
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
+  status: OUT OF DATE
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/includes.adoc
   xref: xref:home:contribute:includes.adoc[]

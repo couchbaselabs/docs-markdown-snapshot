@@ -1,7 +1,11 @@
 ---
 title: Querying Your Data
 description: Choosing the right service to query your data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.11"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/concept-docs/pages/querying-your-data.adoc
   xref: xref:3.11@scala-sdk:concept-docs:querying-your-data.adoc[]

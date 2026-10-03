@@ -3,7 +3,12 @@ title: INFER
 description: The INFER statement enables you to infer the metadata of documents
   in a keyspace, for example the structure of documents, data types of various
   attributes, sample values, and so on.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/infer.adoc
   xref: xref:cloud:n1ql:n1ql-language-reference/infer.adoc[]

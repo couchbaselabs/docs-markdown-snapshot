@@ -1,6 +1,10 @@
 ---
 title: System Event Reference
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/system-event-reference/pages/system-event-reference.adoc
   xref: xref:7.6@server:system-event-reference:system-event-reference.adoc[]

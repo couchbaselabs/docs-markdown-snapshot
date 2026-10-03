@@ -1,7 +1,11 @@
 ---
 title: Compatibility
 description: Couchbase Lite framework and Sync Gateway compatibility
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/compatibility.adoc
   xref: xref:4.0@couchbase-lite:swift:compatibility.adoc[]

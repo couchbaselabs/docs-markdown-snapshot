@@ -2,7 +2,12 @@
 title: Migrating from SDK2 to SDK3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:c-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]

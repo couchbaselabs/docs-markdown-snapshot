@@ -1,6 +1,11 @@
 ---
 title: Glossary
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.5"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/ref/pages/glossary.adoc
   xref: xref:3.5@dotnet-sdk:ref:glossary.adoc[]

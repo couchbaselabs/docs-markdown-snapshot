@@ -4,7 +4,12 @@ description: The Couchbase Capella Data API is a secure REST API that enables
   you to create, read, update, and delete data. It also provides passthrough
   access to the Query Service and the Search Service, so that you can run SQL++
   queries and full-text searches.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-intro.adoc
   xref: xref:cloud:data-api-guide:data-api-intro.adoc[]

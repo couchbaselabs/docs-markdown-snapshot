@@ -3,7 +3,12 @@ title: Configure HSTS
 description: Establish an HTTP Secure Transport Header (HSTS); so as to inform
   the Web-Console browser never to load a site using HTTP; and instead, to
   automatically convert all access-requests from HTTP to HTTPS.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-setting-hsts.adoc
   xref: xref:server:rest-api:rest-setting-hsts.adoc[]

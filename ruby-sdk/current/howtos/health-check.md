@@ -1,7 +1,12 @@
 ---
 title: Diagnosing and preventing Network Problems with Health Check
 description: The Health Check API is not a part of the initial 3.0 Ruby SDK release.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/health-check.adoc
   xref: xref:ruby-sdk:howtos:health-check.adoc[]

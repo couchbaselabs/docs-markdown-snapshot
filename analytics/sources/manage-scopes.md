@@ -3,7 +3,12 @@ title: Manage Capella Analytics Services Scopes
 description: Scopes are intermediary containers within a database to group
   related objects like collections, indexes, links, and functions. You can add
   or delete scopes using the UI or SQL++ for Capella Analytics statements.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-scopes.adoc
   xref: xref:analytics:sources:manage-scopes.adoc[]

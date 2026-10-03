@@ -2,7 +2,11 @@
 title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
   networks over Wi-Fi and Bluetooth Low Energy.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.4"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/android/pages/p2psync-multipeer.adoc
   xref: xref:3.4@couchbase-lite:android:p2psync-multipeer.adoc[]

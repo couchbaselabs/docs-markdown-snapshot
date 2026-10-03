@@ -1,7 +1,11 @@
 ---
 title: Release Notes
 description: Couchbase Sync Gateway
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/release-notes.adoc
   xref: xref:3.0@sync-gateway::release-notes.adoc[]

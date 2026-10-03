@@ -3,7 +3,12 @@ title: Private Endpoints for App Services
 description: Private endpoints for App Services enable you to connect a client
   app directly to Couchbase App Services, assuming that they both use the same
   cloud service provider (CSP).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints.adoc
   xref: xref:app-services::private-endpoints/app-services-private-endpoints.adoc[]

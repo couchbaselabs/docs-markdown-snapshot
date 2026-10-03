@@ -5,7 +5,11 @@ description: One or more nodes can be failed over automatically when they become
   auto-failover is performed only if all safety check conditions are met and the
   checks are done to maintain data safety; i.e. that no data loss occurs as a
   result of failover.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
   xref: xref:server:learn:clusters-and-availability/automatic-failover.adoc[]

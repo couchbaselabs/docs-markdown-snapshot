@@ -2,7 +2,12 @@
 title: User-Defined Functions for Queries
 description: How to extend the SQL++ query language by adding your own
   user-defined functions.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/javascript-udfs.adoc
   xref: xref:cloud:guides:javascript-udfs.adoc[]

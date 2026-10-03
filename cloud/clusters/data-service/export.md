@@ -2,7 +2,11 @@
 title: Export and Migrate Data from Capella
 description: Learn how to export data from Capella to other Capella clusters, to
   self-managed Couchbase Server, or to third-party databases.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/export.adoc
   xref: xref:cloud:clusters:data-service/export.adoc[]

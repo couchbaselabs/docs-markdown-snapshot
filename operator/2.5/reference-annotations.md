@@ -1,6 +1,10 @@
 ---
 title: Annotation Documentation
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.5"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/reference-annotations.adoc
   xref: xref:2.5@operator::reference-annotations.adoc[]

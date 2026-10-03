@@ -2,7 +2,12 @@
 title: Connecting to Data Sources
 description: You can import datasets from multiple sources to work with sample
   data in Enterprise Analytics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/connecting-to-data-sources.adoc
   xref: xref:2.1@enterprise-analytics:intro:connecting-to-data-sources.adoc[]

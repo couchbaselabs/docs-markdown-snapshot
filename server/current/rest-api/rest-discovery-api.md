@@ -2,7 +2,11 @@
 title: Prometheus Discovery API
 description: The discovery API generates a list of Couchbase Server nodes that
   tools such Prometheus can use to collect metrics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-discovery-api.adoc
   xref: xref:server:rest-api:rest-discovery-api.adoc[]

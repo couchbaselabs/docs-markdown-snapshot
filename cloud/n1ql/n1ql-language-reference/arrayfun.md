@@ -3,7 +3,12 @@ title: Array Functions
 description: You can use array functions to evaluate arrays, perform
   computations on elements in an array, and to return a new array based on a
   transformation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/arrayfun.adoc
   xref: xref:cloud:n1ql:n1ql-language-reference/arrayfun.adoc[]

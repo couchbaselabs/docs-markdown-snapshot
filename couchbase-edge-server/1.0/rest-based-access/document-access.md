@@ -2,7 +2,11 @@
 title: Document Access with Edge Server
 description: You can create, read, update, and delete documents in a keyspace
   using the REST API's document operations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/document-access.adoc
   xref: xref:1.0@couchbase-edge-server:rest-based-access:document-access.adoc[]

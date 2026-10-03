@@ -2,7 +2,12 @@
 title: Glossary
 description: Unpicking the tangled alphabet soup of the Capella Columnar
   Platform, from an SDK perspective.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python Columnar SDK
+    version: "1.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/ref/pages/glossary.adoc
   xref: xref:python-columnar-sdk:ref:glossary.adoc[]

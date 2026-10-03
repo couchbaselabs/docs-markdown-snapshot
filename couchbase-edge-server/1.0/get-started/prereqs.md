@@ -1,7 +1,11 @@
 ---
 title: Prerequisites
 description: View the minimum platform specifications needed to run Couchbase Edge Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/prereqs.adoc
   xref: xref:1.0@couchbase-edge-server:get-started:prereqs.adoc[]

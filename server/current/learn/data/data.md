@@ -1,7 +1,11 @@
 ---
 title: Data
 description: Couchbase Server saves data as items, each of which has a key and a value.
-pubDate: 2026-09-22T04:29:51.068Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/data.adoc
   xref: xref:server:learn:data/data.adoc[]

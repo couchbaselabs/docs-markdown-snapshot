@@ -2,7 +2,12 @@
 title: Health Check
 description: In today's distributed and virtual environments, users will often
   not have full administrative control over their whole network.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.8"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.8/modules/howtos/pages/health-check.adoc
   xref: xref:2.8@go-sdk:howtos:health-check.adoc[]

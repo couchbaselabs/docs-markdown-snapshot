@@ -1,7 +1,11 @@
 ---
 title: Edge Server Configuration
 description: Configure Couchbase Edge Server using a JSON configuration file.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/edge-server-configuration.adoc
   xref: xref:1.0@couchbase-edge-server:configuration:edge-server-configuration.adoc[]

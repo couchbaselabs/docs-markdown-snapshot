@@ -2,7 +2,12 @@
 title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index-scans.adoc
   xref: xref:7.6@server:learn:services-and-indexes/indexes/index-scans.adoc[]

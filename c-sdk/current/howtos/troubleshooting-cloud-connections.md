@@ -2,7 +2,11 @@
 title: Troubleshooting Cloud Connections
 description: Diagnose DNS-SRV problems. Troubleshoot other network connection
   trouble with SDK doctor.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/troubleshooting-cloud-connections.adoc
   xref: xref:c-sdk:howtos:troubleshooting-cloud-connections.adoc[]

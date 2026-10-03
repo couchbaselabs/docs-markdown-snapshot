@@ -1,7 +1,12 @@
 ---
 title: Licenses
 description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java Columnar SDK
+    version: "1.0"
+  topic_type: project-doc
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-licenses.adoc
   xref: xref:java-columnar-sdk:project-docs:sdk-licenses.adoc[]

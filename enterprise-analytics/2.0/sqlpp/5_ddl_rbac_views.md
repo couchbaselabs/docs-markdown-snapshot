@@ -3,7 +3,11 @@ title: Views
 description: Use `GRANT` and `REVOKE` statements to manage view privileges
   including SELECT operations and view creation/deletion rights for users and
   roles.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_rbac_views.adoc
   xref: xref:2.0@enterprise-analytics:sqlpp:5_ddl_rbac_views.adoc[]

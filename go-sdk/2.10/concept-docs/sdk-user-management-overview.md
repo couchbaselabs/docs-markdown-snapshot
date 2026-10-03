@@ -1,6 +1,11 @@
 ---
 title: User Management
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.10"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/sdk-user-management-overview.adoc
   xref: xref:2.10@go-sdk:concept-docs:sdk-user-management-overview.adoc[]

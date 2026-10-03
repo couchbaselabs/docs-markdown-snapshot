@@ -6,7 +6,11 @@ description: In connection with Couchbase’s provision of our on-premise
   the latest version available, and (2) collect information about use and
   experience with the product every time an administrator interacts with the
   administrator user interface (the “Admin UI”) using HTTPS Post.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/ROOT/pages/product-privacy-faq.adoc
   xref: xref:7.2@server::product-privacy-faq.adoc[]

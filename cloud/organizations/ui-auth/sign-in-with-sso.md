@@ -3,7 +3,11 @@ title: Sign in to Capella with SSO
 description: Once federated authentication with single sign-on (SSO) is
   configured for your organization, you can sign in to Couchbase Capella with
   SSO.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sign-in-with-sso.adoc
   xref: xref:cloud:organizations:ui-auth/sign-in-with-sso.adoc[]

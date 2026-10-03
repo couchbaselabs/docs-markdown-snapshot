@@ -1,7 +1,11 @@
 ---
 title: throw()
 description: Rejecting a document change in Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function-api-throw-cmd.adoc
   xref: xref:3.0@sync-gateway::sync-function-api-throw-cmd.adoc[]

@@ -2,7 +2,12 @@
 title: Azure Private Endpoint Connection
 description: Add an Azure Private Link connection that peers your Azure network
   with a Capella Analytics cluster using Azure as its cloud provider.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/azure-private-endpoint.adoc
   xref: xref:analytics:admin:azure-private-endpoint.adoc[]

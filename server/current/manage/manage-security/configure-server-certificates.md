@@ -3,7 +3,11 @@ title: Configure Server Certificates
 description: "Couchbase Server Enterprise Edition supports using X.509 and PKCS
   #12 certificates for authenticating and encrypting data between the nodes in
   the cluster."
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-server-certificates.adoc
   xref: xref:server:manage:manage-security/configure-server-certificates.adoc[]

@@ -1,6 +1,10 @@
 ---
 title: Administer Queries and Indexes
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/index.adoc
   xref: xref:cloud:n1ql:n1ql-manage/index.adoc[]

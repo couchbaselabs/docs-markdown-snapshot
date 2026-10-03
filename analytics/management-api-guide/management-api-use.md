@@ -1,7 +1,12 @@
 ---
 title: Make an API Call with the Capella Analytics Management API
 description: How to make an API call with the Capella Analytics Management API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-guide/pages/management-api-use.adoc
   xref: xref:analytics:management-api-guide:management-api-use.adoc[]

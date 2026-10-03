@@ -4,7 +4,11 @@ description: Couchbase provides several SDKs to allow applications to access a
   Couchbase cluster (Capella or self-managed), as well as Couchbase Lite — an
   embedded, NoSQL JSON Document Style database for your mobile apps. To exchange
   data with other platforms, we offer various Big Data Connectors.
-pubDate: 2026-10-01T04:32:27.613Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/sdk.adoc
   xref: xref:home::sdk.adoc[]

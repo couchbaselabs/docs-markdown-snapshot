@@ -2,7 +2,12 @@
 title: View Traces in Agent Tracer
 description: Use the Agent Tracer inside the Couchbase AI Data Plane to view
   logs from an agent app integrated with Agent Catalog.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/view-traces.adoc
   xref: xref:ai:build:agent-tracer/view-traces.adoc[]

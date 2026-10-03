@@ -2,7 +2,11 @@
 title: Prepare for XDCR
 description: Before setting up a replication, make sure you have the appropriate
   administrative roles.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/prepare-for-xdcr.adoc
   xref: xref:7.2@server:manage:manage-xdcr/prepare-for-xdcr.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Querying Your Data
 description: Querying Capella Columnar from the Node.js SDK, with SQL++.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
   xref: xref:nodejs-columnar-sdk:concept-docs:querying-your-data.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Couchbase .NET SDK Release Notes and Archives
 description: Release notes and download archive for the Couchbase .NET Client.
-pubDate: 2026-09-05T04:29:08.075Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.7"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:3.7@dotnet-sdk:project-docs:sdk-release-notes.adoc[]

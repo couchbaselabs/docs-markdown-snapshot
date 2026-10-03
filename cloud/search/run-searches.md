@@ -1,7 +1,12 @@
 ---
 title: Run a Search With a Search Index
 description: Run a Search query to search and return the contents of a Search index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/run-searches.adoc
   xref: xref:cloud:search:run-searches.adoc[]

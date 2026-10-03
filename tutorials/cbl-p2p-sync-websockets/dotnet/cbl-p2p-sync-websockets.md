@@ -1,6 +1,10 @@
 ---
 title: Getting Started with Peer-to-Peer Sync on Xamarin (UWP, iOS, and Android)
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: tutorials
+    version: master
 antora:
   editUrl: https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/edit/master/content/modules/cbl-p2p-sync-websockets/pages/dotnet/cbl-p2p-sync-websockets.adoc
   xref: xref:tutorials:cbl-p2p-sync-websockets:dotnet/cbl-p2p-sync-websockets.adoc[]

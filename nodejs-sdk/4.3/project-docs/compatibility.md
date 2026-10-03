@@ -3,7 +3,11 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/project-docs/pages/compatibility.adoc
   xref: xref:4.3@nodejs-sdk:project-docs:compatibility.adoc[]

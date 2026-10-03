@@ -1,6 +1,11 @@
 ---
 title: Set Up an External Data Source
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/manage-external.adoc
   xref: xref:2.0@enterprise-analytics:sources:manage-external.adoc[]

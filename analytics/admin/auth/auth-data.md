@@ -2,7 +2,12 @@
 title: Manage Access to Cluster Data
 description: Access control accounts provide granular, programmatic and
   application-level access to data on a cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-data.adoc
   xref: xref:analytics:admin:auth/auth-data.adoc[]

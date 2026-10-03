@@ -2,7 +2,12 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.4"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/concept-docs/pages/documents.adoc
   xref: xref:4.4@nodejs-sdk:concept-docs:documents.adoc[]

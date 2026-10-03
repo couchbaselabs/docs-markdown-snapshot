@@ -2,7 +2,12 @@
 title: Manage Audit Logs
 description: Administrators can manage audit logs to track operational
   irregularities and to support regulatory and security compliance standards.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
+  edition: Enterprise
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/security/pages/manage-audit-logs.adoc
   xref: xref:sync-gateway:security:manage-audit-logs.adoc[]

@@ -2,7 +2,12 @@
 title: Bi-directional XDCR with Mobile Clusters
 description: Enable active-active deployments between mobile clusters using
   bi-directional Cross Data Center Replication (XDCR) with Sync Gateway 4.0.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
+  status: Sync Gateway 4.0
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/server-compatibility/pages/server-compatibility-xdcr-mobile.adoc
   xref: xref:sync-gateway:server-compatibility:server-compatibility-xdcr-mobile.adoc[]

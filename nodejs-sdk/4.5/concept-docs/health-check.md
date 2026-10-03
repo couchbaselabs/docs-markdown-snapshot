@@ -2,7 +2,12 @@
 title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.5"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/concept-docs/pages/health-check.adoc
   xref: xref:4.5@nodejs-sdk:concept-docs:health-check.adoc[]

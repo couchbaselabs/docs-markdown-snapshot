@@ -1,7 +1,12 @@
 ---
 title: About Prompts and Prompt Engineering
 description: Learn how prompts, context, and orchestration work together in agentic apps.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/prompts.adoc
   xref: xref:ai:agent-tutorial:prompts.adoc[]

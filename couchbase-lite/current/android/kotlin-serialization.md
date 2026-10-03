@@ -2,7 +2,11 @@
 title: Kotlin Serialization
 description: Couchbase Lite for Android -- Using native Kotlin serialization to
   save, retrieve, and query domain model objects
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/kotlin-serialization.adoc
   xref: xref:couchbase-lite:android:kotlin-serialization.adoc[]

@@ -2,7 +2,11 @@
 title: Create and Edit Plans
 description: The Backup Service REST API allows <em>plans</em> to be created and
   edited. A plan specifies one or more <em>tasks</em>.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-create-and-edit-plans.adoc
   xref: xref:7.6@server:rest-api:backup-create-and-edit-plans.adoc[]

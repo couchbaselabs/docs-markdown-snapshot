@@ -3,7 +3,11 @@ title: XDCR Filtering Expressions
 description: XDCR filtering expressions allow a document to be included in or
   excluded from a filtered replication, based on the document's fields and
   values.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-filtering-expressions.adoc
   xref: xref:server:xdcr-reference:xdcr-filtering-expressions.adoc[]

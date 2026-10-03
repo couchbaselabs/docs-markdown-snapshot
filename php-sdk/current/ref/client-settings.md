@@ -1,7 +1,12 @@
 ---
 title: Client Settings
 description: Client settings
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.5"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.5/modules/ref/pages/client-settings.adoc
   xref: xref:php-sdk:ref:client-settings.adoc[]

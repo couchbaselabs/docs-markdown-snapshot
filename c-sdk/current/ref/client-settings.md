@@ -1,7 +1,12 @@
 ---
 title: Client Settings
 description: Client settings
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/client-settings.adoc
   xref: xref:c-sdk:ref:client-settings.adoc[]

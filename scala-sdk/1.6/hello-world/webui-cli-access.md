@@ -1,6 +1,11 @@
 ---
 title: Browser and CLI Access
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "1.6"
+  topic_type: landing-page
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/hello-world/pages/webui-cli-access.adoc
   xref: xref:1.6@scala-sdk:hello-world:webui-cli-access.adoc[]

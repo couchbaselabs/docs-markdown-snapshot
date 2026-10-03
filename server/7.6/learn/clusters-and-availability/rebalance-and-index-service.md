@@ -3,7 +3,11 @@ title: Index Rebalance
 description: This page explains how rebalance operations impact the Index
   Service in Couchbase Server, covering file-based rebalance, shard affinity,
   index redistribution, and node failover.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/rebalance-and-index-service.adoc
   xref: xref:7.6@server:learn:clusters-and-availability/rebalance-and-index-service.adoc[]

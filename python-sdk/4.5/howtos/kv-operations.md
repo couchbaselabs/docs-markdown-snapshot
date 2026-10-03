@@ -2,7 +2,12 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.5"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/kv-operations.adoc
   xref: xref:4.5@python-sdk:howtos:kv-operations.adoc[]

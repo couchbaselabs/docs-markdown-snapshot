@@ -1,7 +1,11 @@
 ---
 title: Transactions Migration Guide
 description: For those transitioning from using the Couchbase Transactions library for Java.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.8"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.8/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
   xref: xref:3.8@java-sdk:project-docs:distributed-acid-transactions-migration-guide.adoc[]

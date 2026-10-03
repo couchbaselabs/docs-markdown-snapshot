@@ -3,7 +3,11 @@ title: Product Notes
 description: View product notes for Couchbase Edge Server. You can assess
   product, compatibility, review supported platforms, or read release notes for
   current and past releases.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/product-notes/pages/product-notes-landing.adoc
   xref: xref:1.0@couchbase-edge-server:product-notes:product-notes-landing.adoc[]

@@ -1,6 +1,10 @@
 ---
 title: Travel Mobile App
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: tutorials
+    version: master
 antora:
   editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/installation/travel-mobile-app.adoc
   xref: xref:tutorials:mobile-travel-tutorial:java/installation/travel-mobile-app.adoc[]

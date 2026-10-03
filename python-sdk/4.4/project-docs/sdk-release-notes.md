@@ -2,7 +2,11 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Python Client.
-pubDate: 2026-08-27T06:24:49.597Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.4"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:4.4@python-sdk:project-docs:sdk-release-notes.adoc[]

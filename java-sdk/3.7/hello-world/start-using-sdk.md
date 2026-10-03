@@ -1,7 +1,12 @@
 ---
 title: Start Using the Java SDK
 description: A quick start guide to get you up and running with Couchbase and the Java SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.7"
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:3.7@java-sdk:hello-world:start-using-sdk.adoc[]

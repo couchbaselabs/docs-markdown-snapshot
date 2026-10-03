@@ -3,7 +3,12 @@ title: Early Filters, Order, and Pagination
 description: When covering indexes and index pushdowns are not available, the
   Query Service may use early filtering, early ordering, and early pagination to
   improve the query response time.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/early-filters-and-pagination.adoc
   xref: xref:cloud:indexes:early-filters-and-pagination.adoc[]

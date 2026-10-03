@@ -1,7 +1,11 @@
 ---
 title: cbtransfer
 description: Enables the transfer of Couchbase data from clusters and various file formats
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbtools/cbtransfer.adoc
   xref: xref:7.6@server:cli:cbtools/cbtransfer.adoc[]

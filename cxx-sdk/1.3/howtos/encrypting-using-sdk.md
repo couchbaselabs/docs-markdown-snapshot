@@ -2,7 +2,12 @@
 title: Field Level Encryption from the SDK
 description: The Field Level Encryption library enables encryption and
   decryption of JSON fields, to support FIPS-140-2 compliance.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.3"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/encrypting-using-sdk.adoc
   xref: xref:1.3@cxx-sdk:howtos:encrypting-using-sdk.adoc[]

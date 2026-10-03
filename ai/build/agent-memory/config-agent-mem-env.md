@@ -2,7 +2,12 @@
 title: Agent Memory Environment Variable Reference
 description: Reference for environment variables that configure the Agent Memory
   server, organized by functional area.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/config-agent-mem-env.adoc
   xref: xref:ai:build:agent-memory/config-agent-mem-env.adoc[]

@@ -1,7 +1,12 @@
 ---
 title: Create a Search Index
 description: Create a Search index to get started with the Search Service in your database.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-indexes.adoc
   xref: xref:7.2@server:search:create-search-indexes.adoc[]

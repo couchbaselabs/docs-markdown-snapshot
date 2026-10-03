@@ -2,7 +2,11 @@
 title: Using the Command Line
 description: Start a Sync Gateway instance using command line options and
   securely sync enterprise data from cloud to edge
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/command-line-options.adoc
   xref: xref:3.1@sync-gateway::command-line-options.adoc[]

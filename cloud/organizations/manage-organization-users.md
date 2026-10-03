@@ -1,6 +1,10 @@
 ---
 title: Manage Organization Users
-pubDate: 2026-09-23T04:31:20.427Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-organization-users.adoc
   xref: xref:cloud:organizations:manage-organization-users.adoc[]

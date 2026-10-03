@@ -3,7 +3,11 @@ title: Manage On-the-Wire Security
 description: To support secure communications between nodes, clusters, and
   clients, Couchbase Server provides interfaces for the configuration of
   on-the-wire security settings.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-tls.adoc
   xref: xref:server:manage:manage-security/manage-tls.adoc[]

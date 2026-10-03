@@ -2,7 +2,12 @@
 title: Limits, Pricing, and Performance Considerations
 description: Rate limits, message size constraints, and performance
   characteristics of the Data API served by Cloud Native Gateway.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/data-api/pages/limits-pricing-performance-considerations.adoc
   xref: xref:cloud-native-gateway:data-api:limits-pricing-performance-considerations.adoc[]

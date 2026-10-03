@@ -2,7 +2,12 @@
 title: Run a Vector Search with the Capella UI
 description: Run a Vector Search query from the Couchbase Capella UI to preview
   and test the search results from a Search Vector Index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/run-vector-search-ui.adoc
   xref: xref:cloud:vector-search:run-vector-search-ui.adoc[]

@@ -5,7 +5,12 @@ description: The expiration setting for a document determines if and when it
   <em>maximum time to live</em> (maxTTL) value on buckets and collections that
   imposes a default expiration on their documents. It also imposes an upper
   limit on explicitly-set expiration times.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/data/expiration.adoc
   xref: xref:7.2@server:learn:data/expiration.adoc[]

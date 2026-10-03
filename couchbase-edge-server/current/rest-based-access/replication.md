@@ -2,7 +2,11 @@
 title: Manage Replication with Edge Server
 description: The replicate endpoint enables you to synchronize Edge Server with
   another server, for example Sync Gateway or Couchbase Capella App Services.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/rest-based-access/pages/replication.adoc
   xref: xref:couchbase-edge-server:rest-based-access:replication.adoc[]

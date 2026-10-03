@@ -2,7 +2,12 @@
 title: "Function: Advanced UPSERT Operation"
 description: Perform the Advanced UPSERT operation where Eventing interacts with
   the Data Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advancedUpsertOp.adoc
   xref: xref:cloud:eventing:eventing-handler-advancedUpsertOp.adoc[]

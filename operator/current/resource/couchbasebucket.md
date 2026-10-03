@@ -1,6 +1,10 @@
 ---
 title: CouchbaseBucket Resource
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.9"
 antora:
   editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasebucket.adoc
   xref: xref:operator::resource/couchbasebucket.adoc[]
@@ -633,7 +637,7 @@ NumVBuckets defines the number of virtual buckets (vBuckets) to be used by the b
 
 #### [](#description-47)Description
 
-OnlineEvictionPolicyChange controls whether eviction policy changes can be made online without requiring a bucket restart. If set the eviction policy change will only take effect on the bucket nodes after a swap rebalance, delta recovery, or full recovery. If EnableBucketMigrationRoutines is set to true, on the cluster the operator will perform the swap rebalances. This field defaults to false. This field is only supported for Couchbase Server 8.0.0+. **DEVELOPER PREVIEW**: This feature is in developer preview and should not be used in production clusters.
+OnlineEvictionPolicyChange controls whether eviction policy changes can be made online without requiring a bucket restart. When set to true, the operator sends the eviction policy change to Couchbase Server with noRestart=true, which changes the bucket-level setting but leaves per-node overrides with the old policy. To apply the new policy to all nodes, either set this field back to false (the operator will trigger a bucket restart that clears all per-node overrides) or set enableBucketMigrationRoutines to true (the operator will cycle nodes to converge them to the new policy). This field defaults to false. This field is only supported for Couchbase Server 8.0.0+. **DEVELOPER PREVIEW**: This feature is in developer preview and should not be used in production clusters.
 
 ### [](#couchbasebuckets-spec-rank)couchbasebuckets.spec.rank
 

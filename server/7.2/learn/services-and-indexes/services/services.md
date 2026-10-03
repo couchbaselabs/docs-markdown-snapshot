@@ -1,7 +1,11 @@
 ---
 title: Services
 description: Couchbase <em>Services</em> support access to and maintenance of data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/services-and-indexes/services/services.adoc
   xref: xref:7.2@server:learn:services-and-indexes/services/services.adoc[]

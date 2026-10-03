@@ -2,7 +2,11 @@
 title: Storage Properties
 description: Couchbase Server provides persistence, whereby certain items are
   stored on disk as well as in memory; and reliability is thereby enhanced.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
   xref: xref:7.2@server:learn:buckets-memory-and-storage/storage-settings.adoc[]

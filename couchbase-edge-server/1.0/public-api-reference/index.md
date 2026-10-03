@@ -1,6 +1,10 @@
 ---
 title: Edge Server Public REST API
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/edge-server/edit/release/1.0/docs/modules/public-api-reference/pages/index.adoc
   xref: xref:1.0@couchbase-edge-server:public-api-reference:index.adoc[]

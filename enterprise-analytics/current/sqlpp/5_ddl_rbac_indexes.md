@@ -2,7 +2,11 @@
 title: Indexes
 description: The `GRANT` statement supports the granting of privileges on
   resources to users or roles as well as the assignment of roles to users.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/sqlpp/pages/5_ddl_rbac_indexes.adoc
   xref: xref:enterprise-analytics:sqlpp:5_ddl_rbac_indexes.adoc[]

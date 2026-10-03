@@ -1,7 +1,12 @@
 ---
 title: Managing Links
 description: Managing Remote Links and External Links with the Analytics Workbench.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/manage-links.adoc
   xref: xref:7.6@server:analytics:manage-links.adoc[]

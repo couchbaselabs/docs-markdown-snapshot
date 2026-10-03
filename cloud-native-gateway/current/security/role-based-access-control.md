@@ -3,7 +3,12 @@ title: Role-Based Access Control
 description: How Cloud Native Gateway enforces Couchbase Server's role-based
   access control (RBAC) for all operations through the Protostellar and Data API
   interfaces.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/security/pages/role-based-access-control.adoc
   xref: xref:cloud-native-gateway:security:role-based-access-control.adoc[]

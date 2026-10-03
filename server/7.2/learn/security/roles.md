@@ -2,7 +2,11 @@
 title: Roles
 description: A Couchbase <em>role</em> permits one or more <em>resources</em> to
   be accessed according to defined <em>privileges</em>.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/roles.adoc
   xref: xref:7.2@server:learn:security/roles.adoc[]

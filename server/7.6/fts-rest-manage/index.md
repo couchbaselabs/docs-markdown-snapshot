@@ -3,7 +3,12 @@ title: Search Manager Options REST API
 description: The Search Manager Options REST API is provided by the Search
   Service. This API enables you to set cluster-level Search settings; in
   particular, to configure rebalance based on file transfer.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-manage/pages/index.adoc
   xref: xref:7.6@server:fts-rest-manage:index.adoc[]

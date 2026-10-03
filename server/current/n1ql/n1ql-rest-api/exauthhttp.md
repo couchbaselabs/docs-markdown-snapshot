@@ -2,7 +2,12 @@
 title: Request with Authentication&#8201;&#8212;&#8201;HTTP Header
 description: In this example, the credentials (user="simon", pass="fizzbuzz")
   are given in the request header using basic authentication.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/n1ql/pages/n1ql-rest-api/exauthhttp.adoc
   xref: xref:server:n1ql:n1ql-rest-api/exauthhttp.adoc[]

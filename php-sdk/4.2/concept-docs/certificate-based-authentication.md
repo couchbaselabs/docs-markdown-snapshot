@@ -1,6 +1,12 @@
 ---
 title: Certificate-Based Authentication
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.2"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/concept-docs/pages/certificate-based-authentication.adoc
   xref: xref:4.2@php-sdk:concept-docs:certificate-based-authentication.adoc[]

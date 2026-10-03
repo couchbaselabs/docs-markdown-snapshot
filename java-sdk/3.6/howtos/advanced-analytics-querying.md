@@ -1,6 +1,10 @@
 ---
 title: Advanced Analytics Querying
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.6"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/howtos/pages/advanced-analytics-querying.adoc
   xref: xref:3.6@java-sdk:howtos:advanced-analytics-querying.adoc[]

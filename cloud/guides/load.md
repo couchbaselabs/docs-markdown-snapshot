@@ -1,7 +1,11 @@
 ---
 title: Import and Export Data
 description: How to import data from files, and how to export data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/load.adoc
   xref: xref:cloud:guides:load.adoc[]

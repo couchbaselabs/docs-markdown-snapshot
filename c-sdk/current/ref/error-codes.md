@@ -2,7 +2,12 @@
 title: Errors &amp; Exceptions Reference
 description: The standardized error codes returned by the Couchbase C SDK, from
   cloud connection to sub-document.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: ref
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/error-codes.adoc
   xref: xref:c-sdk:ref:error-codes.adoc[]

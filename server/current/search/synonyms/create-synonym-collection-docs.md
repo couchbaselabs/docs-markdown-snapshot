@@ -2,7 +2,13 @@
 title: Create a Synonym Collection and Documents
 description: Create a synonym collection and documents to define synonym
   mappings for search terms in a Search index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
+  status: Couchbase Server 8.0
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/create-synonym-collection-docs.adoc
   xref: xref:server:search:synonyms/create-synonym-collection-docs.adoc[]

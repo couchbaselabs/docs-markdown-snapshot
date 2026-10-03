@@ -2,7 +2,12 @@
 title: SQL++ Error Codes
 description: The following table lists all of the SQL++ error codes, their error
   message, and some tips to resolve them.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/n1ql-error-codes.adoc
   xref: xref:cloud:n1ql:n1ql-language-reference/n1ql-error-codes.adoc[]

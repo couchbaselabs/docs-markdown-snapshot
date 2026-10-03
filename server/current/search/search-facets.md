@@ -2,7 +2,12 @@
 title: Collect Additional Information with Search Facets
 description: Use Search facets to collect specific, additional information about
   the documents included in results for a specific search query.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/search-facets.adoc
   xref: xref:server:search:search-facets.adoc[]

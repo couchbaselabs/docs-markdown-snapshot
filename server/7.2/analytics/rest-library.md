@@ -1,7 +1,13 @@
 ---
 title: Analytics Library REST API
 description: A description of the Library REST API for Couchbase Analytics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  status: Developer Preview
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-library.adoc
   xref: xref:7.2@server:analytics:rest-library.adoc[]

@@ -2,7 +2,12 @@
 title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
   xref: xref:cloud:tutorials:couchbase-tutorial-student-records.adoc[]

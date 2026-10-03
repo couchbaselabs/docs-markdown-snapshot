@@ -1,7 +1,11 @@
 ---
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/ref/pages/index.adoc
   xref: xref:3.10@scala-sdk:ref:index.adoc[]

@@ -1,6 +1,10 @@
 ---
 title: Configure Public Networking
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.7"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-public-networking.adoc
   xref: xref:2.7@operator::howto-public-networking.adoc[]

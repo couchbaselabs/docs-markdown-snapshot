@@ -3,7 +3,11 @@ title: Migrate a Bucket&#8217;s Storage Backend
 description: Full and Cluster Administrators can migrate a bucket's storage
   backend by calling the REST API and then performing full restores on the nodes
   containing the bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-buckets/migrate-bucket.adoc
   xref: xref:7.6@server:manage:manage-buckets/migrate-bucket.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Managing Couchbase Clusters from the SDK
 description: Cluster management from the SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.6"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/release/4.6/modules/concept-docs/pages/management-api.adoc
   xref: xref:python-sdk:concept-docs:management-api.adoc[]

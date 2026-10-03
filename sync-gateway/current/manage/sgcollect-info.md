@@ -2,7 +2,11 @@
 title: SG Collect Info
 description: Using <em>sgcollect_info</em> to gather system information,
   diagnostics and metrics
-pubDate: 2026-09-17T04:28:05.491Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/sgcollect-info.adoc
   xref: xref:sync-gateway:manage:sgcollect-info.adoc[]

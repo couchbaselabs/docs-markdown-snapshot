@@ -1,7 +1,11 @@
 ---
 title: setting-notification
 description: Modifies notification settings (EE only)
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/cli/pages/couchbase-cli-setting-notification.adoc
   xref: xref:enterprise-analytics:cli:couchbase-cli-setting-notification.adoc[]

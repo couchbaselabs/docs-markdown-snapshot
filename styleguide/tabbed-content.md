@@ -1,6 +1,10 @@
 ---
 title: Tabbed Content
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Docs Style Guide
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabbed-content.adoc
   xref: xref:styleguide::tabbed-content.adoc[]

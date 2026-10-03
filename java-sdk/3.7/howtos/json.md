@@ -1,7 +1,12 @@
 ---
 title: JSON Modelling
 description: The Java SDK supports multiple options for working with JSON.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.7"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/howtos/pages/json.adoc
   xref: xref:3.7@java-sdk:howtos:json.adoc[]

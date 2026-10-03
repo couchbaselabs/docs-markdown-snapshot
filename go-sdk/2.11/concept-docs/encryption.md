@@ -1,7 +1,13 @@
 ---
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.11"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/encryption.adoc
   xref: xref:2.11@go-sdk:concept-docs:encryption.adoc[]

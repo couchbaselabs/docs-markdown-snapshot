@@ -3,7 +3,12 @@ title: Vector Search Using Hyperscale Vector Indexes
 description: Hyperscale Vector Indexes are optimized to index a single vector
   column. They offer the highest performance of any index when it comes to
   vector data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/hyperscale-vector-index.adoc
   xref: xref:server:vector-index:hyperscale-vector-index.adoc[]

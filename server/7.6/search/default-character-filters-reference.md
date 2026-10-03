@@ -1,7 +1,12 @@
 ---
 title: Default Character Filters
 description: Character filters remove unwanted characters from your search input.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/default-character-filters-reference.adoc
   xref: xref:7.6@server:search:default-character-filters-reference.adoc[]

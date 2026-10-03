@@ -2,7 +2,11 @@
 title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
-pubDate: 2026-09-17T04:28:05.491Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
   xref: xref:cloud:clusters:databases.adoc[]

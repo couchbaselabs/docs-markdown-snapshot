@@ -1,6 +1,11 @@
 ---
 title: Couchbase Capella Support
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kafka Connector
+    version: "4.3"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/cloud.adoc
   xref: xref:kafka-connector::cloud.adoc[]

@@ -2,7 +2,11 @@
 title: Back Up and Restore Bucket Data
 description: Couchbase recommends a robust scheduled backup and retention time
   policy as part of an overall disaster recovery plan for production data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/backup-restore.adoc
   xref: xref:cloud:clusters:backup-restore.adoc[]

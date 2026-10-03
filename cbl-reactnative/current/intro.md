@@ -2,7 +2,11 @@
 title: Couchbase Lite for React Native
 description: Couchbase Lite is an embedded, document-style NoSQL database that
   is syncable and makes it easy to build offline-enabled applications.
-pubDate: 2026-10-01T04:32:27.613Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite React Native
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-react-native/edit/release/1.1/modules/ROOT/pages/intro.adoc
   xref: xref:cbl-reactnative::intro.adoc[]

@@ -2,7 +2,11 @@
 title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "1.7"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.7/modules/concept-docs/pages/documents.adoc
   xref: xref:1.7@scala-sdk:concept-docs:documents.adoc[]

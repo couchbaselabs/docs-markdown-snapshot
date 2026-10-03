@@ -2,7 +2,12 @@
 title: Get Root Certificates
 description: Trusted CA (or 'root') certificates previously loaded into the
   Couchbase-Server cluster can be retrieved and inspected.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/get-trusted-cas.adoc
   xref: xref:2.0@enterprise-analytics:reference:get-trusted-cas.adoc[]

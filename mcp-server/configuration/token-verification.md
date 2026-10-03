@@ -2,7 +2,12 @@
 title: Token Verification &amp; PRM
 description: Configure JWT token verification and optional Protected Resource
   Metadata (PRM) for OAuth on the Couchbase MCP Server.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase MCP Server
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/release/1.0/modules/configuration/pages/token-verification.adoc
   xref: xref:mcp-server:configuration:token-verification.adoc[]

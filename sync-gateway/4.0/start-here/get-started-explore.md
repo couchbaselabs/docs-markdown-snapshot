@@ -2,7 +2,12 @@
 title: Explore Sync Gateway
 description: Add a database, create users, and run a CRUD cycle to explore your
   <em>Sync Gateway</em> installation end-to-end.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.0"
+  topic_type: procedure
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-explore.adoc
   xref: xref:4.0@sync-gateway:start-here:get-started-explore.adoc[]

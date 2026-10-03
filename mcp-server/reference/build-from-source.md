@@ -2,7 +2,12 @@
 title: Build from Source
 description: Build and run the Couchbase MCP Server from source, including
   Docker image builds.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase MCP Server
+    version: ""
+  topic_type: procedure
 antora:
   editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/release/1.0/modules/reference/pages/build-from-source.adoc
   xref: xref:mcp-server:reference:build-from-source.adoc[]

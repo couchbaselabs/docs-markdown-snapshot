@@ -2,7 +2,11 @@
 title: Edit a Bucket
 description: Full, Cluster, and Bucket Administrators can edit some settings of
   an existing bucket.
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/edit-bucket.adoc
   xref: xref:server:manage:manage-buckets/edit-bucket.adoc[]

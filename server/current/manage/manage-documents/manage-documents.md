@@ -2,7 +2,12 @@
 title: Manage Documents in the Couchbase Web Console
 description: Couchbase Web Console provides a graphical interface that you can
   use to view and edit documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-documents/manage-documents.adoc
   xref: xref:server:manage:manage-documents/manage-documents.adoc[]

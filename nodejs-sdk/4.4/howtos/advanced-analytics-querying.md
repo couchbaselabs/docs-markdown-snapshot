@@ -1,6 +1,10 @@
 ---
 title: Advanced Analytics Querying
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.4"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/advanced-analytics-querying.adoc
   xref: xref:4.4@nodejs-sdk:howtos:advanced-analytics-querying.adoc[]

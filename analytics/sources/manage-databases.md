@@ -3,7 +3,12 @@ title: Manage Capella Analytics Services Databases
 description: In a Capella Analytics cluster, a database is the top-level
   container for organizing related information. You can add or delete databases
   using the UI or SQL++ for Capella Analytics statements.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-databases.adoc
   xref: xref:analytics:sources:manage-databases.adoc[]

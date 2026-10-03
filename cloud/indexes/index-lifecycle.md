@@ -2,7 +2,12 @@
 title: Index Lifecycle
 description: An overview of the lifecycle of a Global Secondary Index, from
   creation and building to updates and scans.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index-lifecycle.adoc
   xref: xref:cloud:indexes:index-lifecycle.adoc[]

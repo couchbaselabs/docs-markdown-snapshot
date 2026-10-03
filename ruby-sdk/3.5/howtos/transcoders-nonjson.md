@@ -1,7 +1,12 @@
 ---
 title: Transcoders and Non-JSON Documents
 description: The Ruby SDK supports common JSON document requirements out-of-the-box.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.5"
+  topic_type: howtos
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/transcoders-nonjson.adoc
   xref: xref:3.5@ruby-sdk:howtos:transcoders-nonjson.adoc[]

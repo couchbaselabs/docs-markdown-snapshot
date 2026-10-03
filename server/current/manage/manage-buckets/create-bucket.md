@@ -2,7 +2,12 @@
 title: Create a Bucket
 description: Full, Cluster, and Backup  Administrators can use Couchbase Web
   Console, the CLI, or the REST API to create a bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/create-bucket.adoc
   xref: xref:server:manage:manage-buckets/create-bucket.adoc[]

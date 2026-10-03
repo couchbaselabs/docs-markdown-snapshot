@@ -2,7 +2,12 @@
 title: Configuration
 description: Overview of the environment variable and command-line options
   available for configuring the Couchbase MCP Server.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase MCP Server
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-mcp-server/edit/release/1.0/modules/configuration/pages/index.adoc
   xref: xref:mcp-server:configuration:index.adoc[]

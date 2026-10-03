@@ -1,6 +1,10 @@
 ---
 title: Search
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.9"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/concept-docs/pages/full-text-search-overview.adoc
   xref: xref:3.9@scala-sdk:concept-docs:full-text-search-overview.adoc[]

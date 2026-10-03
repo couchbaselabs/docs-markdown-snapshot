@@ -3,7 +3,12 @@ title: Unstable Nodes
 description: Nodes that periodically become unavailable but recover before the
   auto failover timeout expires are considered unstable. This page describes
   what unstable nodes are and how to detect them.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/unstable-nodes.adoc
   xref: xref:7.6@server:learn:clusters-and-availability/unstable-nodes.adoc[]

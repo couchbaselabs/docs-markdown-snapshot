@@ -1,6 +1,11 @@
 ---
 title: Service Selection
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.3"
+  topic_type: landing-page
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/data-services.adoc
   xref: xref:4.3@php-sdk:concept-docs:data-services.adoc[]

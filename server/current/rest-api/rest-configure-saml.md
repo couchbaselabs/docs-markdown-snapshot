@@ -2,7 +2,11 @@
 title: Configure SAML
 description: You can configure Couchbase Server to authenticate a Couchbase
   Server Web Console user via a SAML Identity Provider.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-configure-saml.adoc
   xref: xref:server:rest-api:rest-configure-saml.adoc[]

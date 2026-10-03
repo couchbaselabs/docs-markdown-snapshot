@@ -1,7 +1,12 @@
 ---
 title: Nodes and Clusters API
 description: The REST API permits management of nodes and clusters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-intro.adoc
   xref: xref:7.6@server:rest-api:rest-cluster-intro.adoc[]

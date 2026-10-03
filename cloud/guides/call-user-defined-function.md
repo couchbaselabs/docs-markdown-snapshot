@@ -1,7 +1,12 @@
 ---
 title: Call a User-Defined Function
 description: How to call a user-defined function from SQL++ statements.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/call-user-defined-function.adoc
   xref: xref:cloud:guides:call-user-defined-function.adoc[]

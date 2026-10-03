@@ -2,7 +2,12 @@
 title: Failure Considerations
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.6/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
   xref: xref:3.6@java-sdk:concept-docs:durability-replication-failure-considerations.adoc[]

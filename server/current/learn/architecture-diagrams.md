@@ -2,7 +2,11 @@
 title: List of Architecture Diagrams
 description: A quick reference to some of the architecture diagrams in Couchbase
   documentation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/architecture-diagrams.adoc
   xref: xref:server:learn:architecture-diagrams.adoc[]

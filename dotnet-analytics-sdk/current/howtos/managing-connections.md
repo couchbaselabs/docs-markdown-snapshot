@@ -2,7 +2,11 @@
 title: Managing Connections
 description: This section describes how to connect the .NET Analytics SDK to an
   Analytics cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.1/modules/howtos/pages/managing-connections.adoc
   xref: xref:dotnet-analytics-sdk:howtos:managing-connections.adoc[]

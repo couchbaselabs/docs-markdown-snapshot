@@ -1,6 +1,10 @@
 ---
 title: Creating Index from UI
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-creating-index-from-UI.adoc
   xref: xref:server:fts:fts-creating-index-from-UI.adoc[]

@@ -5,7 +5,11 @@ description: Couchbase is the modern database for enterprise applications.
   in-built operational and analytical capabilities. It brings the power of NoSQL
   to the edge and provides fast, efficient bidirectional synchronization of data
   between the edge and the cloud.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/index.adoc
   xref: xref:home::index.adoc[]

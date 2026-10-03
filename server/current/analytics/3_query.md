@@ -1,7 +1,12 @@
 ---
 title: Queries
 description: A description of Couchbase SQL++ for Analytics queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/3_query.adoc
   xref: xref:server:analytics:3_query.adoc[]

@@ -1,7 +1,12 @@
 ---
 title: Document Expiry
 description: Setting an expiry lets you control how long Couchbase keeps a document.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.4"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/howtos/pages/document-expiry.adoc
   xref: xref:1.4@kotlin-sdk:howtos:document-expiry.adoc[]

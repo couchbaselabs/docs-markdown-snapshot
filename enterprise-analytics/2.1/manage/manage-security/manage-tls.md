@@ -3,7 +3,11 @@ title: Manage On-the-Wire Security
 description: To support secure communications between nodes, clusters, and
   clients, Enterprise Analytics provides interfaces for the configuration of
   on-the-wire security settings.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-tls.adoc
   xref: xref:2.1@enterprise-analytics:manage:manage-security/manage-tls.adoc[]

@@ -3,7 +3,11 @@ title: Restrict Node-Addition
 description: The REST API allows node-naming conventions to be configured such
   that only nodes whose names conform to those conventions can be added to the
   cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-specify-node-addition-conventions.adoc
   xref: xref:2.1@enterprise-analytics:reference:rest-specify-node-addition-conventions.adoc[]

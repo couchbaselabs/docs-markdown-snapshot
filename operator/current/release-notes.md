@@ -1,6 +1,10 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.9
-pubDate: 2026-09-02T04:32:36.823Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.9"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/release-notes.adoc
   xref: xref:operator::release-notes.adoc[]

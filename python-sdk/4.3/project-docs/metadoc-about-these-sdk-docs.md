@@ -2,7 +2,11 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
   xref: xref:4.3@python-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]

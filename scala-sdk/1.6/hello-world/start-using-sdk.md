@@ -2,7 +2,12 @@
 title: Start Using the Scala SDK
 description: Get up and running quickly, installing the Couchbase Scala SDK, and
   running our Hello World example.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "1.6"
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:1.6@scala-sdk:hello-world:start-using-sdk.adoc[]

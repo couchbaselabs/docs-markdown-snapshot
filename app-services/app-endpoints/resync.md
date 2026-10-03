@@ -1,6 +1,10 @@
 ---
 title: Resync your App Endpoint
-pubDate: 2026-08-21T04:43:23.418Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/resync.adoc
   xref: xref:app-services::app-endpoints/resync.adoc[]

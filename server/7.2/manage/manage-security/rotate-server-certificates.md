@@ -1,7 +1,11 @@
 ---
 title: Certificate Rotation
 description: Certificates should be rotated periodically, to ensure optimal security.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/rotate-server-certificates.adoc
   xref: xref:7.2@server:manage:manage-security/rotate-server-certificates.adoc[]

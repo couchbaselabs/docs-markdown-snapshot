@@ -1,7 +1,11 @@
 ---
 title: Glossary
 description: Couchbase Lite Glossary of Terms
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/refer-glossary.adoc
   xref: xref:4.0@couchbase-lite:android:refer-glossary.adoc[]

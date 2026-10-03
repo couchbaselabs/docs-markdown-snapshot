@@ -3,7 +3,11 @@ title: General Settings
 description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>blob storage</em>, <em>memory quotas</em>, <em>storage
   modes</em>, and <em>node availability</em> for the cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-settings/general-settings.adoc
   xref: xref:2.1@enterprise-analytics:manage:manage-settings/general-settings.adoc[]

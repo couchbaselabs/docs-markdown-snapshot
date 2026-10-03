@@ -3,7 +3,12 @@ title: Covering Indexes
 description: When an index includes the actual values of all the fields
   specified in the query, the index covers the query and does not require an
   additional step to fetch the actual values from the data service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/covering-indexes.adoc
   xref: xref:server:indexes:covering-indexes.adoc[]

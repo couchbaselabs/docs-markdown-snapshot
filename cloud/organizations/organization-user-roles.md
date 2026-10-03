@@ -2,7 +2,12 @@
 title: Organization Roles
 description: Use organization roles in Couchbase Capella to manage the
   privileges of your organization's users.
-pubDate: 2026-09-23T04:31:20.427Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/organization-user-roles.adoc
   xref: xref:cloud:organizations:organization-user-roles.adoc[]

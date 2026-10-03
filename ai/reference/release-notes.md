@@ -1,6 +1,11 @@
 ---
 title: Couchbase AI Data Plane Release Notes
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/release-notes.adoc
   xref: xref:ai:reference:release-notes.adoc[]

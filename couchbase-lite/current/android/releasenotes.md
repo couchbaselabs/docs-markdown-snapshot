@@ -1,7 +1,11 @@
 ---
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Android
-pubDate: 2026-09-17T04:28:05.491Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/android/pages/releasenotes.adoc
   xref: xref:couchbase-lite:android:releasenotes.adoc[]

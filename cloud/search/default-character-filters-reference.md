@@ -1,7 +1,12 @@
 ---
 title: Default Character Filters
 description: Character filters remove unwanted characters from your search input.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/default-character-filters-reference.adoc
   xref: xref:cloud:search:default-character-filters-reference.adoc[]

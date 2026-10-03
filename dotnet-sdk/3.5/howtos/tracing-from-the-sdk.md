@@ -1,7 +1,12 @@
 ---
 title: Tracing from the .NET SDK
 description: Threshold logging
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.5"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/tracing-from-the-sdk.adoc
   xref: xref:3.5@dotnet-sdk:howtos:tracing-from-the-sdk.adoc[]

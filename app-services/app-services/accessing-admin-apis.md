@@ -3,7 +3,11 @@ title: Grant Admin Access to REST APIs
 description: In order to maintain a high level of security, the REST APIs used
   to administer App Services can only be accessed from a set of defined IP
   addresses.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/accessing-admin-apis.adoc
   xref: xref:app-services::app-services/accessing-admin-apis.adoc[]

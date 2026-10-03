@@ -2,7 +2,11 @@
 title: Deployment
 description: When deploying your application for production use you will need to
   use Sync Gateway and Couchbase Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/deployment.adoc
   xref: xref:3.0@sync-gateway::deployment.adoc[]

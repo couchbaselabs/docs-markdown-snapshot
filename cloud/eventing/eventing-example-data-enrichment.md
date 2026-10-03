@@ -1,7 +1,11 @@
 ---
 title: Improve Document Searchability
 description: Make searching documents easier by adding new attributes to existing documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-example-data-enrichment.adoc
   xref: xref:cloud:eventing:eventing-example-data-enrichment.adoc[]

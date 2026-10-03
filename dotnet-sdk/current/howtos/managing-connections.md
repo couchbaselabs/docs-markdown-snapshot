@@ -1,7 +1,12 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the .NET SDK to a Couchbase cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.9"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/managing-connections.adoc
   xref: xref:dotnet-sdk:howtos:managing-connections.adoc[]

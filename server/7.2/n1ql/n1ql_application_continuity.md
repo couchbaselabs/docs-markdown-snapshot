@@ -3,7 +3,11 @@ title: SQL++ Application Continuity
 description: No special strategy is required to ensure SQL++ application
   continuity during Couchbase Server upgrades if you are already running
   Couchbase Server 5.0 or later.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql_application_continuity.adoc
   xref: xref:7.2@server:n1ql:n1ql_application_continuity.adoc[]

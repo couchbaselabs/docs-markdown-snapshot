@@ -2,7 +2,11 @@
 title: Data Modelling
 description: <em>Couchbase Sync Gateway's</em> data model; for secure
   cloud-to-edge synchronization of enterprise data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/ROOT/pages/data-modeling.adoc
   xref: xref:sync-gateway::data-modeling.adoc[]

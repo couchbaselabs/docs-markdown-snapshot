@@ -1,7 +1,12 @@
 ---
 title: Logging
 description: Node.js SDK logging.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.6"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/collecting-information-and-logging.adoc
   xref: xref:4.6@nodejs-sdk:howtos:collecting-information-and-logging.adoc[]

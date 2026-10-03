@@ -2,7 +2,11 @@
 title: Import Data with the Capella UI
 description: Use the Capella Import page to import data from your local drive
   into your cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/import-data-documents.adoc
   xref: xref:cloud:clusters:data-service/import-data-documents.adoc[]

@@ -3,7 +3,11 @@ title: Using Couchbase Transactions
 description: Distributed ACID Transactions are not currently available for the
   Rust SDK. Strong durable gurarantees within a single bucket, and some
   re-architecture, may achieve similar ends within the Rust SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Rust SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
   xref: xref:rust-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]

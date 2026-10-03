@@ -1,7 +1,11 @@
 ---
 title: Couchbase Lite JavaScript Release Notes
 description: Couchbase Lite JavaScript release notes
-pubDate: 2026-09-10T04:23:38.872Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite JavaScript
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/releasenotes.adoc
   xref: xref:couchbase-lite-javascript::releasenotes.adoc[]

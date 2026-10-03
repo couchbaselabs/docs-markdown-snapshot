@@ -2,7 +2,12 @@
 title: Set GSI Settings
 description: To set the global secondary index settings use <code>POST
   /settings/indexes</code>.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/post-settings-indexes.adoc
   xref: xref:7.6@server:rest-api:post-settings-indexes.adoc[]

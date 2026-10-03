@@ -1,7 +1,11 @@
 ---
 title: Analytics Configuration REST API
 description: A description of the Configuration REST API for Couchbase Enterprise Analytics.
-pubDate: 2026-10-02T04:29:37.653Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/analytics-rest-config/pages/index.adoc
   xref: xref:enterprise-analytics:analytics-rest-config:index.adoc[]

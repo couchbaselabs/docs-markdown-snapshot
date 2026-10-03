@@ -2,7 +2,11 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase
   Lite on Objective-C
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.2"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/gs-build.adoc
   xref: xref:3.2@couchbase-lite:objc:gs-build.adoc[]

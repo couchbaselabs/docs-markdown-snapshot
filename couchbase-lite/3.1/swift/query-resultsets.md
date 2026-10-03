@@ -1,7 +1,11 @@
 ---
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/swift/pages/query-resultsets.adoc
   xref: xref:3.1@couchbase-lite:swift:query-resultsets.adoc[]

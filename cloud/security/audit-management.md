@@ -3,7 +3,11 @@ title: Manage Audits
 description: You can use the Management API to audit actions performed on
   Capella. This allows users to ensure that system-management tasks are being
   appropriately performed.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/audit-management.adoc
   xref: xref:cloud:security:audit-management.adoc[]

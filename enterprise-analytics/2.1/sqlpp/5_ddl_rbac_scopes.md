@@ -2,7 +2,11 @@
 title: Scopes
 description: Use `GRANT` and `REVOKE` statements to control scope creation and
   deletion privileges for users and roles in Enterprise Analytics databases.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_rbac_scopes.adoc
   xref: xref:2.1@enterprise-analytics:sqlpp:5_ddl_rbac_scopes.adoc[]

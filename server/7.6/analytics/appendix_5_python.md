@@ -1,7 +1,13 @@
 ---
 title: "Appendix 5: Python UDFs"
 description: A short guide and tutorial regarding the use of Python user-defined functions
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  status: Developer Preview
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_5_python.adoc
   xref: xref:7.6@server:analytics:appendix_5_python.adoc[]

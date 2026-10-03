@@ -1,7 +1,11 @@
 ---
 title: reset-cipher-suites
 description: Resets the Couchbase Server cipher suites to the default
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-reset-cipher-suites.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-reset-cipher-suites.adoc[]

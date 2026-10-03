@@ -2,7 +2,11 @@
 title: Optimizing Performance
 description: These guides explain some of the features that you can use to
   optimize the performance of SQL++ queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/optimize.adoc
   xref: xref:7.2@server:guides:optimize.adoc[]

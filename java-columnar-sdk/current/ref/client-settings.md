@@ -1,7 +1,11 @@
 ---
 title: Client Settings
 description: Change the SDK's behavior by configuring client settings.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/ref/pages/client-settings.adoc
   xref: xref:java-columnar-sdk:ref:client-settings.adoc[]

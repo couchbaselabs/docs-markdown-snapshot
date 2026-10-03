@@ -2,7 +2,11 @@
 title: Analyze Large Datasets
 description: The Analytics Service provides a parallel data-management
   capability, allowing the running of complex analytical queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-service.adoc
   xref: xref:cloud:clusters:analytics-service/analytics-service.adoc[]

@@ -2,7 +2,13 @@
 title: Call JavaScript from SQL++
 description: You can use user-defined functions (UDFs) to call JavaScript code
   from SQL++ queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/calling-javascript-from-n1ql.adoc
   xref: xref:7.6@server:javascript-udfs:calling-javascript-from-n1ql.adoc[]

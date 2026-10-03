@@ -1,6 +1,11 @@
 ---
 title: Travel App Data Model
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "3.10"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.10/modules/ref/pages/travel-app-data-model.adoc
   xref: xref:3.10@kotlin-sdk:ref:travel-app-data-model.adoc[]

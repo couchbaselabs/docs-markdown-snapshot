@@ -2,7 +2,11 @@
 title: Troubleshooting Cloud Connections
 description: Diagnose DNS-SRV problems. Troubleshoot other network connection
   trouble with SDK doctor.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.7"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/howtos/pages/troubleshooting-cloud-connections.adoc
   xref: xref:nodejs-sdk:howtos:troubleshooting-cloud-connections.adoc[]

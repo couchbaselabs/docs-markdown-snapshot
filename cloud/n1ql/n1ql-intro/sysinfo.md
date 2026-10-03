@@ -3,7 +3,12 @@ title: Get System Information
 description: SQL++ has a system namespace that stores metadata about data
   containers, the Query service, and the system as a whole. You can query the
   system namespace to get this information.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-intro/sysinfo.adoc
   xref: xref:cloud:n1ql:n1ql-intro/sysinfo.adoc[]

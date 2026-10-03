@@ -2,7 +2,11 @@
 title: Starter Kits
 description: Starter kits are repositories containing example code to get you
   started with various development projects.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/starter-kits.adoc
   xref: xref:server:getting-started:starter-kits.adoc[]

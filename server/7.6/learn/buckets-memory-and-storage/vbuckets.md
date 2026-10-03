@@ -2,7 +2,11 @@
 title: vBuckets
 description: <em>vBuckets</em> are virtual buckets that help distribute data
   effectively across a cluster, and support replication across multiple nodes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/vbuckets.adoc
   xref: xref:7.6@server:learn:buckets-memory-and-storage/vbuckets.adoc[]

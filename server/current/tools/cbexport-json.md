@@ -1,7 +1,11 @@
 ---
 title: cbexport json
 description: Exports JSON data from Couchbase
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbexport-json.adoc
   xref: xref:server:tools:cbexport-json.adoc[]

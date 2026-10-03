@@ -2,7 +2,11 @@
 title: Import Documents with the Couchbase Web Console
 description: Couchbase Web Console provides a graphical interface for the
   importing of data, in both JSON and other formats.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/import-documents/import-documents.adoc
   xref: xref:server:manage:import-documents/import-documents.adoc[]

@@ -1,6 +1,10 @@
 ---
 title: CouchbaseCluster Resource
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.9"
 antora:
   editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
   xref: xref:operator::resource/couchbasecluster.adoc[]
@@ -987,7 +991,7 @@ Buckets defines whether the Operator should manage buckets, and how to lookup bu
 
 #### [](#description-41)Description
 
-Used to define whether managed bucket storage backend migration routines should be enabled. This value defaults to false.
+Used to define whether bucket migration routines should be enabled. When true, the operator cycles nodes that have per-node overrides for storage backend or eviction policy that differ from the bucket spec, by swap rebalance or, when the upgrade process is InPlaceUpgrade, by failover and recovery. This value defaults to false.
 
 ### [](#couchbaseclusters-spec-buckets-managed)couchbaseclusters.spec.buckets.managed
 

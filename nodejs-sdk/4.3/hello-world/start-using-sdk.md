@@ -3,7 +3,12 @@ title: Start Using the Node.js SDK
 description: The Couchbase Node.js SDK enables you to interact with a Couchbase
   Server or Capella cluster from the Node.js runtime, using TypeScript or
   JavaScript.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.3"
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.3/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:4.3@nodejs-sdk:hello-world:start-using-sdk.adoc[]

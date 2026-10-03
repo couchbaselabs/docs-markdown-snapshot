@@ -2,7 +2,11 @@
 title: Data Sync using Sync Gateway
 description: Couchbase Lite for Objective-C -- Synchronizing data changes
   between local and remote databases using Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.2"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/replication.adoc
   xref: xref:3.2@couchbase-lite:objc:replication.adoc[]

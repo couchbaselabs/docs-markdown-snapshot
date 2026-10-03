@@ -1,6 +1,10 @@
 ---
 title: Upgrade
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: tutorials
+    version: master
 antora:
   editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/deploy/upgrade.adoc
   xref: xref:tutorials:todo-app:deploy/upgrade.adoc[]

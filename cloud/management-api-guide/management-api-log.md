@@ -1,7 +1,11 @@
 ---
 title: Capella Operational Management API Change Log
 description: The change log for the Couchbase Capella Operational Management API.
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-log.adoc
   xref: xref:cloud:management-api-guide:management-api-log.adoc[]

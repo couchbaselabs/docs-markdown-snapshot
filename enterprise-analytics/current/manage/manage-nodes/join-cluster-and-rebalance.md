@@ -1,7 +1,11 @@
 ---
 title: Join a Cluster and Rebalance
 description: An independent Enterprise Analytics-node can be joined to an existing cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.2/modules/manage/pages/manage-nodes/join-cluster-and-rebalance.adoc
   xref: xref:enterprise-analytics:manage:manage-nodes/join-cluster-and-rebalance.adoc[]

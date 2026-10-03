@@ -3,7 +3,11 @@ title: Understanding Authentication
 description: To access Couchbase Server, users must be authenticated.
   <em>Authentication</em> is a process for identifying who is attempting to
   access a system.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/authentication-overview.adoc
   xref: xref:server:learn:security/authentication-overview.adoc[]

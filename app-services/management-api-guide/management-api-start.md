@@ -3,7 +3,12 @@ title: Get Started with the Capella App Services Management API
 description: To get started with the Capella App Services Management API, you
   must create an API key. An API key authenticates and authorizes you to access
   the Capella App Services Management API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/management-api-guide/management-api-start.adoc
   xref: xref:app-services::management-api-guide/management-api-start.adoc[]

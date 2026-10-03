@@ -2,7 +2,11 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Scala Client.
-pubDate: 2026-09-26T04:22:55.186Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "1.8"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/1.8/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:1.8@scala-sdk:project-docs:sdk-release-notes.adoc[]

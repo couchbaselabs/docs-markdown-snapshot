@@ -1,7 +1,12 @@
 ---
 title: Fleece C API
 description: Introducing the key concepts of the Fleece C API
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.2"
+  status: "{prerelease}"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/c_fleece.adoc
   xref: xref:3.2@couchbase-lite:c:c_fleece.adoc[]

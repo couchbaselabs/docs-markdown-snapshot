@@ -2,7 +2,12 @@
 title: Design a Location Path
 description: To make querying an external data source more efficient, you supply
   a location path that consists of prefixes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/dynamic-prefixes.adoc
   xref: xref:analytics:sources:dynamic-prefixes.adoc[]

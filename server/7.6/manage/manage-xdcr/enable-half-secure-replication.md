@@ -2,7 +2,11 @@
 title: Enable Half-Secure Replications
 description: "<em>Half-Secure</em> replication secures the specified password
   only: it does not secure data."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/enable-half-secure-replication.adoc
   xref: xref:7.6@server:manage:manage-xdcr/enable-half-secure-replication.adoc[]

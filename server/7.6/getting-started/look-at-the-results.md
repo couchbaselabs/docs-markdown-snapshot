@@ -3,7 +3,11 @@ title: Explore the Server Configuration
 description: Once you have Couchbase Server running, you can log into the
   Couchbase Server Web Console and start to examine the different features that
   it provides.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/look-at-the-results.adoc
   xref: xref:7.6@server:getting-started:look-at-the-results.adoc[]

@@ -2,7 +2,11 @@
 title: Big Data Integration Using Couchbase Connectors
 description: Couchbase Connectors enable you to exchange data with a number of
   other platforms.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/integrations.adoc
   xref: xref:home::integrations.adoc[]

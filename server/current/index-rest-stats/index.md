@@ -1,6 +1,11 @@
 ---
 title: Index Statistics REST API
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/index-rest-stats/pages/index.adoc
   xref: xref:server:index-rest-stats:index.adoc[]

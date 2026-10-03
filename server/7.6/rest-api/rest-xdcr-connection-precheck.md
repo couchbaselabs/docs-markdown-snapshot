@@ -1,7 +1,12 @@
 ---
 title: Checking Connections
 description: Node-connectivity can be checked, prior to the creation of an XDCR reference.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-connection-precheck.adoc
   xref: xref:7.6@server:rest-api:rest-xdcr-connection-precheck.adoc[]

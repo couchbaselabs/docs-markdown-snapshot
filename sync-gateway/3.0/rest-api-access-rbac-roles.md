@@ -1,7 +1,13 @@
 ---
 title: RBAC Role&#8201;&#8212;&#8201;Endpoint Cross-reference
 description: Server RBAC Role -- Rest API endpoint cross reference tabley
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
+  status: "{prerelease}"
+  edition: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/rest-api-access-rbac-roles.adoc
   xref: xref:3.0@sync-gateway::rest-api-access-rbac-roles.adoc[]

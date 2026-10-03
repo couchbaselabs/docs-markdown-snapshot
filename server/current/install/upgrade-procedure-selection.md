@@ -3,7 +3,11 @@ title: Upgrade-Procedure Selection
 description: Multiple procedures are available for the upgrade of Couchbase
   Server. An appropriate procedure should be selected, based on a variety of
   factors.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-procedure-selection.adoc
   xref: xref:server:install:upgrade-procedure-selection.adoc[]

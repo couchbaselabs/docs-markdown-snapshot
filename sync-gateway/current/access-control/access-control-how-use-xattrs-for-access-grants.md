@@ -1,7 +1,11 @@
 ---
 title: Use Extended Attributes (XATTRs) for Access Grants
 description: How to set access grants using extended attributes (xattrs).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/access-control/pages/access-control-how-use-xattrs-for-access-grants.adoc
   xref: xref:sync-gateway:access-control:access-control-how-use-xattrs-for-access-grants.adoc[]

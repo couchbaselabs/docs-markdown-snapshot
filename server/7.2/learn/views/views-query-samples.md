@@ -1,7 +1,11 @@
 ---
 title: View and Query Examples
 description: This section provides general information and query examples.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-query-samples.adoc
   xref: xref:7.2@server:learn:views/views-query-samples.adoc[]

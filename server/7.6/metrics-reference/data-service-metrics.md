@@ -1,7 +1,11 @@
 ---
 title: Data Service Metrics
 description: A list of the metrics provided by the Data Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/data-service-metrics.adoc
   xref: xref:7.6@server:metrics-reference:data-service-metrics.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: server-eshell
 description: Opens a shell to talk to the cluster manager process
-pubDate: 2026-09-15T04:24:10.008Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-server-eshell.adoc
   xref: xref:server:cli:cbcli/couchbase-cli-server-eshell.adoc[]

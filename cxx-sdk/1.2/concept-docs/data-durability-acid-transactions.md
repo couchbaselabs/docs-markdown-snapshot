@@ -2,7 +2,11 @@
 title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.2"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/data-durability-acid-transactions.adoc
   xref: xref:1.2@cxx-sdk:concept-docs:data-durability-acid-transactions.adoc[]

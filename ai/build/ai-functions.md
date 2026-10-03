@@ -2,7 +2,12 @@
 title: Use Couchbase AI Data Plane AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
-pubDate: 2026-08-21T04:43:23.418Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
   xref: xref:ai:build:ai-functions.adoc[]

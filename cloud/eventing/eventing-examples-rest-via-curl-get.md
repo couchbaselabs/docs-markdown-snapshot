@@ -2,7 +2,11 @@
 title: Create a Recurring Timer with a REST API
 description: Create a recurring Timer that fetches documents from an external
   REST endpoint until you manually cancel it.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-rest-via-curl-get.adoc
   xref: xref:cloud:eventing:eventing-examples-rest-via-curl-get.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: expiry()
 description: Setting an expiry value on a document in a local database
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/access-control/pages/sync-function/sync-function-api-expiry-cmd.adoc
   xref: xref:sync-gateway:access-control:sync-function/sync-function-api-expiry-cmd.adoc[]

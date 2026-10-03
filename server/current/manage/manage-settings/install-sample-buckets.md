@@ -2,7 +2,11 @@
 title: Sample Buckets
 description: You can install buckets containing example scopes, collections, and
   documents that you can experiment with.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/install-sample-buckets.adoc
   xref: xref:server:manage:manage-settings/install-sample-buckets.adoc[]

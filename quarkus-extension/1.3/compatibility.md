@@ -1,7 +1,11 @@
 ---
 title: Compatibility Guide
 description: Quarkus Couchbase 1.1 needs Quarkus 3.20 or newer.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Quarkus Java Extension
+    version: "1.3"
 antora:
   editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.3/modules/ROOT/pages/compatibility.adoc
   xref: xref:1.3@quarkus-extension::compatibility.adoc[]

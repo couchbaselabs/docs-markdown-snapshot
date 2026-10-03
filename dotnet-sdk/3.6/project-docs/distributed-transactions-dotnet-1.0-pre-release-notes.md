@@ -3,7 +3,12 @@ title: Couchbase Distributed ACID Transactions for .NET SDK Pre-release Archive
   Release Notes
 description: Historic release notes archive for the 1.0 pre-GA (Alpha &amp;
   Beta) Couchbase .NET Distributed ACID Transactions Releases.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.6"
+  topic_type: project-doc
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-1.0-pre-release-notes.adoc
   xref: xref:3.6@dotnet-sdk:project-docs:distributed-transactions-dotnet-1.0-pre-release-notes.adoc[]

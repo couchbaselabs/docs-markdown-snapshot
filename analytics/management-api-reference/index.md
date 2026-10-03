@@ -1,6 +1,10 @@
 ---
 title: Capella Analytics Management API Reference
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-reference/pages/index.adoc
   xref: xref:analytics:management-api-reference:index.adoc[]

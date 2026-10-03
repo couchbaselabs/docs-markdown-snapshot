@@ -2,7 +2,12 @@
 title: Get Started with the Data API
 description: To get started with the Couchbase Capella Data API, you must create
   a cluster access credential and enable the Data API for the cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-start.adoc
   xref: xref:cloud:data-api-guide:data-api-start.adoc[]

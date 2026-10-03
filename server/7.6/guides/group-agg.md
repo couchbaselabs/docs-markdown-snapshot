@@ -1,7 +1,12 @@
 ---
 title: Calculate Aggregates and Group Results
 description: How to calculate aggregates and group the results.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/group-agg.adoc
   xref: xref:7.6@server:guides:group-agg.adoc[]

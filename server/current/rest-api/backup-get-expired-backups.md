@@ -2,7 +2,11 @@
 title: Get Expired Backup Information
 description: The Backup Service REST API lets you retrieve information about the
   expired backups in a repository.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-get-expired-backups.adoc
   xref: xref:server:rest-api:backup-get-expired-backups.adoc[]

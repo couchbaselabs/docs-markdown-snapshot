@@ -1,6 +1,10 @@
 ---
 title: Delivery Guarantees
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kafka Connector
+    version: "4.3"
 antora:
   editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/delivery-guarantees.adoc
   xref: xref:kafka-connector::delivery-guarantees.adoc[]

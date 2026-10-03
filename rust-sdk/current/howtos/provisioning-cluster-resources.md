@@ -2,7 +2,11 @@
 title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
-pubDate: 2026-09-16T04:27:48.460Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Rust SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/provisioning-cluster-resources.adoc
   xref: xref:rust-sdk:howtos:provisioning-cluster-resources.adoc[]

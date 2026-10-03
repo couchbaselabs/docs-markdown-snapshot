@@ -1,7 +1,11 @@
 ---
 title: cbbackupmgr encryption
 description: Creating and managing encrypted backups
-pubDate: 2026-09-08T04:29:18.875Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-encryption.adoc
   xref: xref:7.6@server:backup-restore:cbbackupmgr-encryption.adoc[]

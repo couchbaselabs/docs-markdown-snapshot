@@ -2,7 +2,12 @@
 title: Agent Memory for Persistent Memory Storage
 description: Couchbase Agent Memory provides a unified, persistent memory layer
   for agentic applications to maintain context across user sessions.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-memory/about-agent-mem.adoc
   xref: xref:ai:build:agent-memory/about-agent-mem.adoc[]

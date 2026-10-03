@@ -1,6 +1,10 @@
 ---
 title: Using Logs for Troubleshooting
-pubDate: 2026-10-01T04:32:27.613Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite React Native
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-react-native/edit/release/1.1/modules/troubleshooting/pages/using-logs.adoc
   xref: xref:cbl-reactnative:troubleshooting:using-logs.adoc[]

@@ -1,6 +1,10 @@
 ---
 title: Release Notes for Couchbase Server 7.2
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
   xref: xref:7.2@server:release-notes:relnotes.adoc[]

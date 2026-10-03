@@ -1,7 +1,12 @@
 ---
 title: Client Settings
 description: Client settings.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/ref/pages/client-settings.adoc
   xref: xref:ruby-sdk:ref:client-settings.adoc[]

@@ -5,7 +5,11 @@ description: You can use XDCR with Sync Gateway mobile clusters in a
   the Server and the Sync Gateway versions support this option. Otherwise, using
   XDCR with Sync Gateway buckets in a bi-directional replication can cause data
   corruption.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-active-active-sgw.adoc
   xref: xref:7.6@server:learn:clusters-and-availability/xdcr-active-active-sgw.adoc[]

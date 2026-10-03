@@ -2,7 +2,11 @@
 title: System Requirements
 description: Couchbase Server has a basic set of installation and networking
   requirements that apply to nearly every deployment.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/plan-for-production.adoc
   xref: xref:server:install:plan-for-production.adoc[]

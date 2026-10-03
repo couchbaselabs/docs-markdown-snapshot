@@ -2,7 +2,11 @@
 title: Replicate Using Scopes and Collections
 description: XDCR can be performed with reference to scopes and collections
   within source and target buckets.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/replicate-using-scopes-and-collections.adoc
   xref: xref:7.2@server:manage:manage-xdcr/replicate-using-scopes-and-collections.adoc[]

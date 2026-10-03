@@ -2,7 +2,12 @@
 title: View Query Metrics or Plan
 description: The workbench for Capella Analytics provides metrics for each query
   you run, and a detailed query plan in both text and graphical format.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/metrics-plan.adoc
   xref: xref:analytics:query:metrics-plan.adoc[]

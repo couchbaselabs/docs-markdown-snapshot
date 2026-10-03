@@ -1,7 +1,11 @@
 ---
 title: New In 1.0
 description: Couchbase Lite for JavaScript -- What's new in the latest release
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite JavaScript
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/whats-new.adoc
   xref: xref:couchbase-lite-javascript::whats-new.adoc[]

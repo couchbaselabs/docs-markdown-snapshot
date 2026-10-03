@@ -1,7 +1,11 @@
 ---
 title: SQL for Mobile -- Differences from SQL for Server
 description: SQL++ differences between Couchbase Server and Couchbase Lite
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/java/pages/query-n1ql-mobile-server-diffs.adoc
   xref: xref:couchbase-lite:java:query-n1ql-mobile-server-diffs.adoc[]

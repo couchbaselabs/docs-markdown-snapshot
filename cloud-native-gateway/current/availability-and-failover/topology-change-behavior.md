@@ -3,7 +3,12 @@ title: Topology Change Behavior
 description: How Cloud Native Gateway handles cluster topology changes including
   rebalances, failovers, node additions, and service configuration changes,
   transparently to client applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/availability-and-failover/pages/topology-change-behavior.adoc
   xref: xref:cloud-native-gateway:availability-and-failover:topology-change-behavior.adoc[]

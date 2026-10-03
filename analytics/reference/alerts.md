@@ -2,7 +2,12 @@
 title: Capella Analytics Services Alert Reference
 description: This reference lists the alerts that Capella Analytics services can
   emit, the conditions in which they occur, and a description for each.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/alerts.adoc
   xref: xref:analytics:reference:alerts.adoc[]

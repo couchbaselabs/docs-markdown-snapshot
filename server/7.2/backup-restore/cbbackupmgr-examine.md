@@ -1,7 +1,11 @@
 ---
 title: cbbackupmgr examine
 description: Searches one or more backups by key for a specific document
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-examine.adoc
   xref: xref:7.2@server:backup-restore:cbbackupmgr-examine.adoc[]

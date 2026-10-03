@@ -3,7 +3,12 @@ title: Built-in _count Function
 description: The <code>_count</code> function provides a simple count of the
   input rows from the <code>map()</code> function, using the keys and group
   level.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-count.adoc
   xref: xref:server:learn:views/views-writing-count.adoc[]

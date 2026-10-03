@@ -2,7 +2,12 @@
 title: Manage AWS Private Endpoints for the Data API
 description: How to configure and manage private endpoints for the Data API
   using Amazon Web Services (AWS).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-aws.adoc
   xref: xref:cloud:data-api-guide:data-api-private-aws.adoc[]

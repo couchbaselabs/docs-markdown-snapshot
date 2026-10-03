@@ -1,7 +1,13 @@
 ---
 title: ALTER USER
 description: The ALTER USER statement enables you to alter the details of an existing user.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
+  status: Couchbase Server 8.0
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alteruser.adoc
   xref: xref:cloud:n1ql:n1ql-language-reference/alteruser.adoc[]

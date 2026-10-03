@@ -3,7 +3,12 @@ title: Hyperscale and Composite Vector Index Best Practices
 description: When creating and querying Hyperscale and Composite Vector indexes,
   you have several options to set that can affect the speed and accuracy of your
   results.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vector-index-best-practices.adoc
   xref: xref:server:vector-index:vector-index-best-practices.adoc[]

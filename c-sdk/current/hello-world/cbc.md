@@ -1,7 +1,12 @@
 ---
 title: Browser and CLI Access
 description: Web and command line interfaces to Couchbase Server are available.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: landing-page
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/cbc.adoc
   xref: xref:c-sdk:hello-world:cbc.adoc[]

@@ -2,7 +2,12 @@
 title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
-pubDate: 2026-08-26T04:30:42.267Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/subdocument-operations.adoc
   xref: xref:ruby-sdk:howtos:subdocument-operations.adoc[]

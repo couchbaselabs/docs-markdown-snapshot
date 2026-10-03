@@ -2,7 +2,11 @@
 title: Create App Users
 description: Creating and editing App Users for a synchronized application using
   the Capella UI
-pubDate: 2026-08-19T04:43:28.923Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-user.adoc
   xref: xref:app-services::security/create-user.adoc[]

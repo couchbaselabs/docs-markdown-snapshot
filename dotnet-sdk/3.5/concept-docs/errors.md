@@ -1,7 +1,12 @@
 ---
 title: Errors and Diagnostics
 description: When the unexpected happens, take a step-by-step approach.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.5"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/concept-docs/pages/errors.adoc
   xref: xref:3.5@dotnet-sdk:concept-docs:errors.adoc[]

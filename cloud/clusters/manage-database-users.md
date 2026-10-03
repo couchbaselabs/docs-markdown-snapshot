@@ -2,7 +2,12 @@
 title: Manage Cluster Access Credentials
 description: Cluster access credentials provide programmatic and
   application-level access to data on a cluster.
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-database-users.adoc
   xref: xref:cloud:clusters:manage-database-users.adoc[]

@@ -1,7 +1,12 @@
 ---
 title: Make an API Call with the Couchbase AI Data Plane APIs
 description: How to make an API call with the Couchbase AI Data Plane APIs.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
   xref: xref:ai:api-guide:api-use.adoc[]

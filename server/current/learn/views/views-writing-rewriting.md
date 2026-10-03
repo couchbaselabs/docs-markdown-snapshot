@@ -4,7 +4,12 @@ description: "Using this model as a template, it is possible to write the full
   implementation of the built-in functions <code>_sum</code> and
   <code>_count</code> when working with the sales data and the standard
   <code>map()</code> function below:"
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-rewriting.adoc
   xref: xref:server:learn:views/views-writing-rewriting.adoc[]

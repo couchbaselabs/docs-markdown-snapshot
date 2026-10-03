@@ -1,7 +1,11 @@
 ---
 title: Backup Service Metrics
 description: A list of the metrics provided by the Backup Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/metrics-reference/pages/backup-service-metrics.adoc
   xref: xref:7.2@server:metrics-reference:backup-service-metrics.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: New Logging API
 description: A new Logging API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/new-logging-api.adoc
   xref: xref:3.3@couchbase-lite:java:new-logging-api.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
-pubDate: 2026-09-17T04:28:05.491Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
   xref: xref:cloud:clusters:create-database.adoc[]

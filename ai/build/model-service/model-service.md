@@ -2,7 +2,12 @@
 title: Deploy Models with the AI Data Plane Model Service
 description: Deploy and manage Large Language Models (LLMs) and embedding models
   in Capella to power your AI-driven applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/model-service.adoc
   xref: xref:ai:build:model-service/model-service.adoc[]

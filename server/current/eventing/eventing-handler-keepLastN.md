@@ -2,7 +2,12 @@
 title: "Function: Keep the Last N User Items"
 description: Keep the last N user notifications seen related to a user ID (these
   could be any documents).
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-keepLastN.adoc
   xref: xref:server:eventing:eventing-handler-keepLastN.adoc[]

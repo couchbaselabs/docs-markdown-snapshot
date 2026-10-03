@@ -2,7 +2,11 @@
 title: Columnar SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Capella Columnar Node.js Client.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/columnar-sdk-release-notes.adoc
   xref: xref:nodejs-columnar-sdk:project-docs:columnar-sdk-release-notes.adoc[]

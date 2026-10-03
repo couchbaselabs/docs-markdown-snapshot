@@ -2,7 +2,12 @@
 title: Upgrade Your Account
 description: Add an Activation ID or a credit card to upgrade from a free tier
   plan and access all Couchbase Capella features for your operational clusters.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/upgrade-account.adoc
   xref: xref:cloud:billing:upgrade-account.adoc[]

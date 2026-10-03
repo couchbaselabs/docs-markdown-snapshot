@@ -2,7 +2,11 @@
 title: Eventing Role-Based Access Control (RBAC)
 description: Full Administrators or users with proper <em>Role-Based Access
   Control</em> (RBAC) roles can create and manage Eventing Functions.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-rbac.adoc
   xref: xref:7.2@server:eventing:eventing-rbac.adoc[]

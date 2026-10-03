@@ -1,7 +1,12 @@
 ---
 title: Microsoft Azure
 description: Capella Analytics supports deploying clusters onto Microsoft Azure.
-pubDate: 2026-09-10T04:23:38.872Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/azure.adoc
   xref: xref:analytics:reference:azure.adoc[]

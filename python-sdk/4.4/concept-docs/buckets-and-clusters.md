@@ -2,7 +2,12 @@
 title: Buckets and Clusters
 description: The Couchbase Python SDK provides an API for managing a Couchbase
   cluster programmatically.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python SDK
+    version: "4.4"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/concept-docs/pages/buckets-and-clusters.adoc
   xref: xref:4.4@python-sdk:concept-docs:buckets-and-clusters.adoc[]

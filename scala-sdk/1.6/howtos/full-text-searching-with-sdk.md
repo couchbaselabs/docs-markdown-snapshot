@@ -2,7 +2,12 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server, and to perform vector searches.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "1.6"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/temp/1.6/modules/howtos/pages/full-text-searching-with-sdk.adoc
   xref: xref:1.6@scala-sdk:howtos:full-text-searching-with-sdk.adoc[]

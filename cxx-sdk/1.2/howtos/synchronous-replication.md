@@ -1,7 +1,12 @@
 ---
 title: Synchronous Replication
 description: Durability
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.2"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/synchronous-replication.adoc
   xref: xref:1.2@cxx-sdk:howtos:synchronous-replication.adoc[]

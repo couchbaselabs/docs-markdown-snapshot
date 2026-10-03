@@ -3,7 +3,12 @@ title: App Endpoint Resource Requirements
 description: Understand the minimum and recommended memory requirements for App
   Endpoints to ensure reliable App Service performance and avoid resource
   contention.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/resource-requirements.adoc
   xref: xref:app-services::app-endpoints/resource-requirements.adoc[]

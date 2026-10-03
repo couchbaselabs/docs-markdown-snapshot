@@ -1,6 +1,10 @@
 ---
 title: Capella Columnar Support
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Spark Connector
+    version: "3.5"
 antora:
   editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/columnar.adoc
   xref: xref:3.5@spark-connector::columnar.adoc[]

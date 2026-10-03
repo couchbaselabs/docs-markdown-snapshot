@@ -3,7 +3,11 @@ title: Sample Application
 description: Discover how to program interactions with the Couchbase Server via
   the data, Query, and search services -- using the Travel Sample Application
   with the built-in Travel Sample data Bucket.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/hello-world/pages/sample-application.adoc
   xref: xref:2.10@go-sdk:hello-world:sample-application.adoc[]

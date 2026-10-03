@@ -3,7 +3,12 @@ title: Query
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-08-26T04:30:42.267Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/howtos/pages/n1ql-queries-with-sdk.adoc
   xref: xref:ruby-sdk:howtos:n1ql-queries-with-sdk.adoc[]

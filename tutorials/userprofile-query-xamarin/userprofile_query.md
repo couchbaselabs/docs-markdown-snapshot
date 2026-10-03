@@ -1,6 +1,10 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query Introduction"
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: tutorials
+    version: master
 antora:
   editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/query/content/modules/userprofile-query-xamarin/pages/userprofile_query.adoc
   xref: xref:tutorials:userprofile-query-xamarin:userprofile_query.adoc[]

@@ -1,7 +1,13 @@
 ---
 title: Upload and Retrieve the Root Certificate
 description: The REST API can be used to upload and retrieve the cluster's root certificate.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: reference
+  status: deprecated
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/deprecated-security-apis/upload-retrieve-root-cert.adoc
   xref: xref:server:rest-api:deprecated-security-apis/upload-retrieve-root-cert.adoc[]

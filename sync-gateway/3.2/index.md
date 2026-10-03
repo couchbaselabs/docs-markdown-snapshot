@@ -1,7 +1,11 @@
 ---
 title: Sync Gateway Quick Start
 description: Start your Couchbase Mobile adventure, get up and running with Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.2"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/index.adoc
   xref: xref:3.2@sync-gateway::index.adoc[]

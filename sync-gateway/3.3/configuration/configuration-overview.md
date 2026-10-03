@@ -1,7 +1,11 @@
 ---
 title: Configuration Overview
 description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
-pubDate: 2026-09-02T04:32:36.823Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-overview.adoc
   xref: xref:3.3@sync-gateway:configuration:configuration-overview.adoc[]

@@ -2,7 +2,11 @@
 title: Introduction
 description: A short introduction to <em>Couchbase's Sync Gateway</em> and how
   to get started using it.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/introduction.adoc
   xref: xref:3.0@sync-gateway::introduction.adoc[]

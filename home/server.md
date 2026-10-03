@@ -7,7 +7,11 @@ description: Couchbase is the modern database for enterprise applications.
   query engine for executing SQL-like queries. For mobile and Internet of Things
   environments Couchbase also runs natively on-device and manages
   synchronization to the server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/server.adoc
   xref: xref:home::server.adoc[]

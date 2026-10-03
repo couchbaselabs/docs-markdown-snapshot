@@ -1,7 +1,11 @@
 ---
 title: Deploying a Sync Gateway Cluster
 description: Connect Sync Gateway to a Server Cluster Deployed with CAO 1.2.x
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/use-kubernetes/pages/deploy-cluster-to-kubernetes.adoc
   xref: xref:sync-gateway:use-kubernetes:deploy-cluster-to-kubernetes.adoc[]

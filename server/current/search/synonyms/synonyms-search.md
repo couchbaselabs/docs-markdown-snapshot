@@ -2,7 +2,13 @@
 title: Add Synonyms to a Search Index
 description: Add synonyms to a Search index to return matches for words with
   similar meanings when running a Search with the Search Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
+  status: Couchbase Server 8.0
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/synonyms-search.adoc
   xref: xref:server:search:synonyms/synonyms-search.adoc[]

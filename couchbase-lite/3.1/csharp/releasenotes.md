@@ -1,7 +1,11 @@
 ---
 title: Release Notes
 description: Couchbase Lite on C#.Net
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/csharp/pages/releasenotes.adoc
   xref: xref:3.1@couchbase-lite:csharp:releasenotes.adoc[]

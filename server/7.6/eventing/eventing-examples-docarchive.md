@@ -4,7 +4,12 @@ description: Create a JavaScript Function that contains an
   <strong>OnUpdate</strong> handler, which when a document in an existing
   collection is about to expire, a perfect copy is created in a different
   collection.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-docarchive.adoc
   xref: xref:7.6@server:eventing:eventing-examples-docarchive.adoc[]

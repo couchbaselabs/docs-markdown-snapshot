@@ -1,6 +1,11 @@
 ---
 title: Fluent Bit deployment
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Monitoring and Observability Stack
+    version: "0.2"
+  status: Developer Preview
 antora:
   editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/deployment-fluentbit.adoc
   xref: xref:cmos::deployment-fluentbit.adoc[]

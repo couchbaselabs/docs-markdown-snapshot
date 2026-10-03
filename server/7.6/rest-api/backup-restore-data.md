@@ -3,7 +3,11 @@ title: Restore Data
 description: The Backup Service REST API supports the restoration of data from
   an active, imported, or archived repository into either the host cluster or
   into another cluster running the Backup Service.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-restore-data.adoc
   xref: xref:7.6@server:rest-api:backup-restore-data.adoc[]

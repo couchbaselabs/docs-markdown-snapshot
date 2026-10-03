@@ -1,7 +1,11 @@
 ---
 title: Secure API Access
 description: Sync Gateway REST API Access
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.2"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/rest-api-access.adoc
   xref: xref:3.2@sync-gateway::rest-api-access.adoc[]

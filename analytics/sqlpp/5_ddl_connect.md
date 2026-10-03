@@ -3,7 +3,12 @@ title: CONNECT Statements
 description: This topic describes how you use <code>CONNECT</code> statements to
   connect all of the remote collections on a given link or links to their
   specified data sources, and start data ingestion.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_connect.adoc
   xref: xref:analytics:sqlpp:5_ddl_connect.adoc[]

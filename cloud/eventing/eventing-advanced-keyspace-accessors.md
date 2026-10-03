@@ -1,7 +1,11 @@
 ---
 title: Advanced Keyspace Accessors
 description: Use Advanced Keyspace Accessors to access advanced Key Value functionality.
-pubDate: 2026-09-02T04:32:36.823Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
   xref: xref:cloud:eventing:eventing-advanced-keyspace-accessors.adoc[]

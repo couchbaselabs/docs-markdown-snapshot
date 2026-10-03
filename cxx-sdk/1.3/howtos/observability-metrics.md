@@ -2,7 +2,11 @@
 title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/observability-metrics.adoc
   xref: xref:1.3@cxx-sdk:howtos:observability-metrics.adoc[]

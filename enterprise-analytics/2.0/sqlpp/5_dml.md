@@ -3,7 +3,12 @@ title: DML Statements
 description: This section describes the SQL++ for Enterprise Analytics Data
   Manipulation Language (DML) statements you use to query and manipulate data in
   collections.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_dml.adoc
   xref: xref:2.0@enterprise-analytics:sqlpp:5_dml.adoc[]

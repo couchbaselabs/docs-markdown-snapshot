@@ -2,7 +2,11 @@
 title: Version Vectors
 description: Couchbase Lite 4.0 -- Version Vectors -- Document versioning and
   conflict resolution
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/c/pages/version-vectors.adoc
   xref: xref:couchbase-lite:c:version-vectors.adoc[]

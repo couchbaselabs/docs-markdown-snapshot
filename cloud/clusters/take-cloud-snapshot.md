@@ -2,7 +2,12 @@
 title: Take or Schedule a Cluster Backup
 description: You can take an on-demand cluster backup to back up your entire
   Couchbase Capella cluster, or schedule backups.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/take-cloud-snapshot.adoc
   xref: xref:cloud:clusters:take-cloud-snapshot.adoc[]

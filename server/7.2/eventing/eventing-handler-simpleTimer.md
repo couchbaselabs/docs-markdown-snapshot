@@ -1,7 +1,12 @@
 ---
 title: "Function: Simple Timer"
 description: Create a Simple Timer that triggers in the future on each mutation.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-simpleTimer.adoc
   xref: xref:7.2@server:eventing:eventing-handler-simpleTimer.adoc[]

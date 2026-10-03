@@ -1,7 +1,11 @@
 ---
 title: Advanced Keyspace Accessors
 description: Use Advanced Keyspace Accessors to access advanced Key Value functionality.
-pubDate: 2026-09-03T05:31:47.619Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
   xref: xref:7.6@server:eventing:eventing-advanced-keyspace-accessors.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Sync with Couchbase Lite
 description: Use Sync Gateway to sync with Couchbase Lite apps.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-using-app.adoc
   xref: xref:3.0@sync-gateway::sync-using-app.adoc[]

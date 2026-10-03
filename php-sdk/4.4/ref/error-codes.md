@@ -2,7 +2,12 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase PHP SDK,
   from cloud connection to sub-document.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: PHP SDK
+    version: "4.4"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/ref/pages/error-codes.adoc
   xref: xref:4.4@php-sdk:ref:error-codes.adoc[]

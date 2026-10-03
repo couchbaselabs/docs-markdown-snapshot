@@ -1,7 +1,11 @@
 ---
 title: Resync
 description: Recalculating routing and data access following Sync Function changes
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/resync.adoc
   xref: xref:4.0@sync-gateway:manage:resync.adoc[]

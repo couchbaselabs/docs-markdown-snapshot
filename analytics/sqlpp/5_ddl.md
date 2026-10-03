@@ -2,7 +2,12 @@
 title: DDL Statements
 description: This section describes the SQL++ for Capella Analytics Data
   Definition Language (DDL) statements.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl.adoc
   xref: xref:analytics:sqlpp:5_ddl.adoc[]

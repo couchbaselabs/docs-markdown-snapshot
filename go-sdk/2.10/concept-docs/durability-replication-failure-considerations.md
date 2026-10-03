@@ -2,7 +2,11 @@
 title: Failure Considerations
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
   xref: xref:2.10@go-sdk:concept-docs:durability-replication-failure-considerations.adoc[]

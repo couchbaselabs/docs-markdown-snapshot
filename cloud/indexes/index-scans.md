@@ -2,7 +2,12 @@
 title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index-scans.adoc
   xref: xref:cloud:indexes:index-scans.adoc[]

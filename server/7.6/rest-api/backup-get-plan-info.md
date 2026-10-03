@@ -1,7 +1,11 @@
 ---
 title: Get Backup Plan Information
 description: The Backup Service REST API lets you get information about backup plans.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-get-plan-info.adoc
   xref: xref:7.6@server:rest-api:backup-get-plan-info.adoc[]

@@ -2,7 +2,12 @@
 title: Upgrading Sync Gateway
 description: This page documents various implementation details and
   functionalities to consider when performing an upgrade to Sync Gateway 4.0.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.0"
+  status: Sync Gateway 4.0
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
   xref: xref:4.0@sync-gateway::upgrading.adoc[]

@@ -3,7 +3,12 @@ title: Create a Custom Tokenizer
 description: Create a custom tokenizer with the Couchbase Server Web Console to
   change how the Search Service creates tokens for matching Search index content
   to a Search query.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-custom-tokenizer.adoc
   xref: xref:7.6@server:search:create-custom-tokenizer.adoc[]

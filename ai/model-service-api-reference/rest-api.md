@@ -1,6 +1,10 @@
 ---
 title: Inference API Reference
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/model-service-api-reference/pages/rest-api.adoc
   xref: xref:ai:model-service-api-reference:rest-api.adoc[]

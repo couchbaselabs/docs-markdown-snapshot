@@ -1,7 +1,11 @@
 ---
 title: Query Tab
 description: Use the Query tab to develop and run SQL++ queries from your browser.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/query-service/query-workbench.adoc
   xref: xref:cloud:clusters:query-service/query-workbench.adoc[]

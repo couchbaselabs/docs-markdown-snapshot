@@ -1,7 +1,11 @@
 ---
 title: Indexes and Indexing
 description: Couchbase mobile database indexing concepts
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.1/modules/objc/pages/indexing.adoc
   xref: xref:couchbase-lite:objc:indexing.adoc[]

@@ -2,7 +2,12 @@
 title: Default Wordlists
 description: A wordlist can contain articles, conjunctions, prepositions, or
   other terms that limit matches in a search.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/default-wordlists-reference.adoc
   xref: xref:cloud:search:default-wordlists-reference.adoc[]

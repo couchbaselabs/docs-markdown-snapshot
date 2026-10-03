@@ -3,7 +3,11 @@ title: XDCR Reference
 description: XDCR can be configured by means of <em>Advanced Settings</em>, and
   the replicated content determined through <em>Advanced Filtering
   Expressions</em>.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-reference-intro.adoc
   xref: xref:server:xdcr-reference:xdcr-reference-intro.adoc[]

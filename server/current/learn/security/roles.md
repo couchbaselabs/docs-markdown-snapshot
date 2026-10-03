@@ -1,7 +1,11 @@
 ---
 title: Roles
 description: Roles grant users access to one or more resources.
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
   xref: xref:server:learn:security/roles.adoc[]

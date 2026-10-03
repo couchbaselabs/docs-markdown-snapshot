@@ -1,6 +1,10 @@
 ---
 title: Couchbase Capella Release Notes
-pubDate: 2026-09-17T04:28:05.491Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
   xref: xref:cloud:release-notes:release-notes.adoc[]

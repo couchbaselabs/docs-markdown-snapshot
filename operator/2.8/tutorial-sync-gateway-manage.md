@@ -1,6 +1,10 @@
 ---
 title: Managing a Sync Gateway Cluster
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.8"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-sync-gateway-manage.adoc
   xref: xref:2.8@operator::tutorial-sync-gateway-manage.adoc[]

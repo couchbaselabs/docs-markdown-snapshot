@@ -2,7 +2,12 @@
 title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.6"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/data-model.adoc
   xref: xref:4.6@nodejs-sdk:concept-docs:data-model.adoc[]

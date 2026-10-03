@@ -1,6 +1,10 @@
 ---
 title: Couchbase Kotlin SDK 1.3
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/hello-world/pages/overview.adoc
   xref: xref:1.3@kotlin-sdk:hello-world:overview.adoc[]

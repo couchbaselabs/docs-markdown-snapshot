@@ -1,6 +1,10 @@
 ---
 title: "User Profile Sample: Data Sync Fundamentals"
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: tutorials
+    version: master
 antora:
   editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/sync/content/modules/userprofile-sync-android/pages/userprofile_sync.adoc
   xref: xref:tutorials:userprofile-sync-android:userprofile_sync.adoc[]

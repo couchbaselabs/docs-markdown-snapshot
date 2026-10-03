@@ -1,7 +1,12 @@
 ---
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.3"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/concept-docs/pages/nonjson.adoc
   xref: xref:1.3@kotlin-sdk:concept-docs:nonjson.adoc[]

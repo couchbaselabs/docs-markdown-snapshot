@@ -2,7 +2,12 @@
 title: Deleting Groups
 description: Server groups can be deleted with the <code>DELETE
   /pools/default/serverGroups/<:uuid></code> HTTP method and URI.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.0"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-servergroup-delete.adoc
   xref: xref:2.0@enterprise-analytics:reference:rest-servergroup-delete.adoc[]

@@ -6,7 +6,11 @@ description: The Developer Data Platform for Critical Applications in Our AI
   offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen
   popular programming languages, for real-time analytics, and build agentic
   apps.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Documentation
+    version: master
 antora:
   editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/ROOT/pages/developer.adoc
   xref: xref:home::developer.adoc[]

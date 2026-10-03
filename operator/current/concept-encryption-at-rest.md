@@ -2,7 +2,11 @@
 title: Encryption At Rest
 description: Understand encryption at rest in Couchbase Server and how to
   configure it using the Autonomous Operator.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kubernetes Operator
+    version: "2.9"
 antora:
   editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-encryption-at-rest.adoc
   xref: xref:operator::concept-encryption-at-rest.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Java SDK to a Couchbase cluster.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.9"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
   xref: xref:3.9@java-sdk:howtos:managing-connections.adoc[]

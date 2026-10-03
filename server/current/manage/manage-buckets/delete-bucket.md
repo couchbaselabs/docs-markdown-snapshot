@@ -1,7 +1,11 @@
 ---
 title: Drop a Bucket
 description: Full, Cluster, and Bucket Administrators can drop a bucket.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/delete-bucket.adoc
   xref: xref:server:manage:manage-buckets/delete-bucket.adoc[]

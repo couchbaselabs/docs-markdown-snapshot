@@ -2,7 +2,11 @@
 title: Install Couchbase Server on SUSE Linux Enterprise Server
 description: Couchbase Server can be installed on SUSE Linux Enterprise Server
   for production and development use-cases.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install_suse.adoc
   xref: xref:7.2@server:install:install_suse.adoc[]

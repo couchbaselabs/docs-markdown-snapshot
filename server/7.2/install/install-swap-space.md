@@ -2,7 +2,12 @@
 title: Swap Space and Kernel Swappiness
 description: On Linux, the kernel's <em>swappiness</em> level indicates how
   likely the system is to swap pages out of physical memory based on RAM usage.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-swap-space.adoc
   xref: xref:7.2@server:install:install-swap-space.adoc[]

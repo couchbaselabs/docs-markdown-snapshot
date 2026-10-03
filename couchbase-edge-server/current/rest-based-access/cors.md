@@ -3,7 +3,11 @@ title: Configure CORS
 description: Configure Cross-Origin Resource Sharing (CORS) in Couchbase Edge
   Server to enable browser-based clients and JavaScript SDKs to replicate
   directly with Couchbase Edge Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.1/modules/rest-based-access/pages/cors.adoc
   xref: xref:couchbase-edge-server:rest-based-access:cors.adoc[]

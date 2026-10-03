@@ -1,7 +1,11 @@
 ---
 title: Troubleshooting Queries
 description: Couchbase Lite on Objective-C -- Using query.explain()
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.1/modules/objc/pages/troubleshooting-queries.adoc
   xref: xref:3.1@couchbase-lite:objc:troubleshooting-queries.adoc[]

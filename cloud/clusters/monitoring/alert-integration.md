@@ -2,7 +2,12 @@
 title: Alert Integrations
 description: Use alert integrations in Capella to send metrics-based alerts to a
   third-party tool.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alert-integration.adoc
   xref: xref:cloud:clusters:monitoring/alert-integration.adoc[]

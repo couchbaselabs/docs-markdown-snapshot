@@ -1,6 +1,11 @@
 ---
 title: Sub-Documents
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.5"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/subdocument-operations.adoc
   xref: xref:3.5@ruby-sdk:concept-docs:subdocument-operations.adoc[]

@@ -3,7 +3,12 @@ title: Search
 description: You can use the Full Text Search (FTS) service to find JSON
   documents that have certain words, phrases, or geographic coordinates -- and
   for vector searches against Server 7.6.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "1.4"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/howtos/pages/full-text-search.adoc
   xref: xref:1.4@kotlin-sdk:howtos:full-text-search.adoc[]

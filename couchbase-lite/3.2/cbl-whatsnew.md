@@ -1,6 +1,10 @@
 ---
 title: New in 3.2
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.2"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
   xref: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]

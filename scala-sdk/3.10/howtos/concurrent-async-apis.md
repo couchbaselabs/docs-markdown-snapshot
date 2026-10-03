@@ -2,7 +2,11 @@
 title: Async &amp; Reactive APIs
 description: "The Couchbase Scala SDK allows the use, and mixing, of three
   distinct APIs: blocking, asynchronous, and reactive."
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Scala SDK
+    version: "3.10"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:3.10@scala-sdk:howtos:concurrent-async-apis.adoc[]

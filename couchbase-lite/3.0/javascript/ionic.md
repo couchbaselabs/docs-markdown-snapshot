@@ -1,7 +1,12 @@
 ---
 title: Ionic
 description: Using Couchbase Lite with Javascript Ionic applications
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.0"
+  edition: Enterprise
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/javascript/pages/ionic.adoc
   xref: xref:3.0@couchbase-lite:javascript:ionic.adoc[]

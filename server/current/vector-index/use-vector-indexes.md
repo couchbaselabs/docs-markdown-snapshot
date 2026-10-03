@@ -2,7 +2,12 @@
 title: Choose the Right Vector Index
 description: Use Couchbase Server's vector indexes to find documents based on
   content similarity or semantic meaning.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/use-vector-indexes.adoc
   xref: xref:server:vector-index:use-vector-indexes.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the C++ SDK to a Couchbase cluster.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.4"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.4/modules/howtos/pages/managing-connections.adoc
   xref: xref:cxx-sdk:howtos:managing-connections.adoc[]

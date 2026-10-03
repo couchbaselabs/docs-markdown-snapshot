@@ -1,6 +1,10 @@
 ---
 title: Get Involved
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Go Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
   xref: xref:go-columnar-sdk:project-docs:get-involved.adoc[]

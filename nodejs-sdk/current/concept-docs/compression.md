@@ -3,7 +3,13 @@ title: Compression
 description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform now provides data compression between the SDK and
   Couchbase Server.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Node.js SDK
+    version: "4.7"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.7/modules/concept-docs/pages/compression.adoc
   xref: xref:nodejs-sdk:concept-docs:compression.adoc[]

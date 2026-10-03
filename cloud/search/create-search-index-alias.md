@@ -2,7 +2,12 @@
 title: Create a Search Index Alias with the Capella UI
 description: Use a Search index alias to run a Search query across multiple
   buckets, scopes, or Search indexes.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-index-alias.adoc
   xref: xref:cloud:search:create-search-index-alias.adoc[]

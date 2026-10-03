@@ -1,7 +1,11 @@
 ---
 title: Manage Projects
 description: Create and manage projects to organize and allow access to Couchbase clusters.
-pubDate: 2026-09-23T04:31:20.427Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/manage-projects.adoc
   xref: xref:cloud:projects:manage-projects.adoc[]

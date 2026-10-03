@@ -2,7 +2,12 @@
 title: Getting Information on Nodes
 description: Information on a cluster's individual nodes can be retrieved, by
   means of the REST API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-node-get-info.adoc
   xref: xref:7.6@server:rest-api:rest-node-get-info.adoc[]

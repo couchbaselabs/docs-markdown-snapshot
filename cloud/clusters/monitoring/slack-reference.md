@@ -2,7 +2,12 @@
 title: Slack Alert Payload
 description: Learn more about the JSON payload structure used in Capella Slack
   alert integrations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/slack-reference.adoc
   xref: xref:cloud:clusters:monitoring/slack-reference.adoc[]

@@ -2,7 +2,11 @@
 title: XATTR &amp; Virtual XATTR
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/concept-docs/pages/xattr.adoc
   xref: xref:1.1@cxx-sdk:concept-docs:xattr.adoc[]

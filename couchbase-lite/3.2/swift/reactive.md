@@ -2,7 +2,12 @@
 title: Reactive APIs
 description: The Reactive APIs are enhanced APIs for Swift that streamline data
   modeling and enable reactive programming patterns.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.2"
+  status: Couchbase Lite 3.2.3
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/reactive.adoc
   xref: xref:3.2@couchbase-lite:swift:reactive.adoc[]

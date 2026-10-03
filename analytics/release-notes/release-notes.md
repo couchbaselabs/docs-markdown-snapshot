@@ -1,6 +1,11 @@
 ---
 title: Capella Analytics Release Notes
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/release-notes/pages/release-notes.adoc
   xref: xref:analytics:release-notes:release-notes.adoc[]

@@ -2,7 +2,11 @@
 title: Revisions
 description: About Sync Gateway's revision tracking using version vectors and
   revision caches in 4.0+.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/manage/pages/revisions.adoc
   xref: xref:sync-gateway:manage:revisions.adoc[]

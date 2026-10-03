@@ -2,7 +2,11 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase C&#43;&#43; Client.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.2"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:1.2@cxx-sdk:project-docs:sdk-release-notes.adoc[]

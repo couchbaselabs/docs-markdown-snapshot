@@ -3,7 +3,12 @@ title: React Native
 description: The React Native plugin for Couchbase Lite is now in public
   preview. This is an open-source, community-supported project developed by
   Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.4"
+  edition: Public Preview
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/javascript/pages/react.adoc
   xref: xref:3.4@couchbase-lite:javascript:react.adoc[]

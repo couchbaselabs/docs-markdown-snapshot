@@ -3,7 +3,11 @@ title: Core Files
 description: When a process panics, a core dump occurs and the system creates a
   core file. These files are intended for troubleshooting and to help diagnose
   faults.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/troubleshoot/core-files.adoc
   xref: xref:7.6@server:manage:troubleshoot/core-files.adoc[]

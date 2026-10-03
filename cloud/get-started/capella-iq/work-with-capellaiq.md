@@ -2,7 +2,12 @@
 title: Work Faster with Capella iQ
 description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to create SQL++ queries, sample data, and more.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/work-with-capellaiq.adoc
   xref: xref:cloud:get-started:capella-iq/work-with-capellaiq.adoc[]

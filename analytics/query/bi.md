@@ -4,7 +4,12 @@ description: You can apply features available for visualizing and analyzing data
   in the Tableau from Salesforce, Microsoft Power BI, or Apache Superset
   interactive data visualization platforms to the query results you obtain in
   Capella Analytics.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/bi.adoc
   xref: xref:analytics:query:bi.adoc[]

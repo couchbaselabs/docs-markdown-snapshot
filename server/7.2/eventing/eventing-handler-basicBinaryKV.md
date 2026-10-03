@@ -1,7 +1,12 @@
 ---
 title: "Function: Basic Binary KV"
 description: Show Basic Bucket Op Binary Write and Read.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-basicBinaryKV.adoc
   xref: xref:7.2@server:eventing:eventing-handler-basicBinaryKV.adoc[]

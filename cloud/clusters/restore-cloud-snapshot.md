@@ -2,7 +2,12 @@
 title: Restore a Cluster Backup
 description: You can restore a cluster backup in a disaster recovery situation
   to restore your cluster to a previous point in time.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/restore-cloud-snapshot.adoc
   xref: xref:cloud:clusters:restore-cloud-snapshot.adoc[]

@@ -3,7 +3,12 @@ title: SDK Compatibility Issues
 description: Troubleshooting compatibility issues between Couchbase SDKs and
   Cloud Native Gateway, including connection scheme errors, unsupported
   operations, and version requirements.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/troubleshooting/pages/SDK-compatibility-issues.adoc
   xref: xref:cloud-native-gateway:troubleshooting:SDK-compatibility-issues.adoc[]

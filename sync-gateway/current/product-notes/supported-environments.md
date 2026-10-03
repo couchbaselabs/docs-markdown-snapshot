@@ -1,7 +1,11 @@
 ---
 title: Supported Environments
 description: Sync Gateway's Supported Operating System and Cloud environments
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/product-notes/pages/supported-environments.adoc
   xref: xref:sync-gateway:product-notes:supported-environments.adoc[]

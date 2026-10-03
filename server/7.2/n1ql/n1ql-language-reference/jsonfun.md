@@ -1,6 +1,10 @@
 ---
 title: JSON Functions
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/jsonfun.adoc
   xref: xref:7.2@server:n1ql:n1ql-language-reference/jsonfun.adoc[]

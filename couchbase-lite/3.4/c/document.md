@@ -1,7 +1,11 @@
 ---
 title: Documents
 description: Couchbase Lite concepts -- Data model -- Documents
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.4"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/c/pages/document.adoc
   xref: xref:3.4@couchbase-lite:c:document.adoc[]

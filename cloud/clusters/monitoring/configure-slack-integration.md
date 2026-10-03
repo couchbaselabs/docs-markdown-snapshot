@@ -2,7 +2,12 @@
 title: Configure a Slack Alert Integration
 description: Send Capella metrics-based alerts to your Slack workspace with an
   alert integration.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: task
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-slack-integration.adoc
   xref: xref:cloud:clusters:monitoring/configure-slack-integration.adoc[]

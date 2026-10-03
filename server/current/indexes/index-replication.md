@@ -3,7 +3,12 @@ title: Index Availability and Performance
 description: The Index Service ensures availability and performance through
   replication and partitioning. You can control the scan consistency for
   individual queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/index-replication.adoc
   xref: xref:server:indexes:index-replication.adoc[]

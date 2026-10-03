@@ -2,7 +2,11 @@
 title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase Rust Client.
-pubDate: 2026-09-16T04:27:48.460Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Rust SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
   xref: xref:rust-sdk:project-docs:sdk-release-notes.adoc[]

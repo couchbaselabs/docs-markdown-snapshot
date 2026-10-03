@@ -3,7 +3,12 @@ title: Explore iQ Insights
 description: iQ Insights uses the power of AI to provide you with key insights
   into your query results. Use it to better understand your data with generated
   questions and visualizations.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/explore-iq-insights.adoc
   xref: xref:cloud:get-started:capella-iq/explore-iq-insights.adoc[]

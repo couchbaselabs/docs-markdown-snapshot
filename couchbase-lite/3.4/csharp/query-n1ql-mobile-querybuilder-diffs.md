@@ -1,7 +1,11 @@
 ---
 title: SQL++ for Mobile&#8201;&#8212;&#8201;Differences from Querybuilder
 description: Differences between Couchbase Lite's Querybuilder and SQL++ for Mobile
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Lite
+    version: "3.4"
 antora:
   editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.4/modules/csharp/pages/query-n1ql-mobile-querybuilder-diffs.adoc
   xref: xref:3.4@couchbase-lite:csharp:query-n1ql-mobile-querybuilder-diffs.adoc[]

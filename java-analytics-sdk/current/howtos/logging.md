@@ -1,7 +1,11 @@
 ---
 title: Logging
 description: Configuring logging with the Analytics Java SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java Analytics SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.1/modules/howtos/pages/logging.adoc
   xref: xref:java-analytics-sdk:howtos:logging.adoc[]

@@ -2,7 +2,12 @@
 title: Migrating from Relational Databases
 description: Migration guidelines for relational database users. In this
   section, we use MySQL as an example relational database.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/migrate-mysql.adoc
   xref: xref:7.2@server:install:migrate-mysql.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: requireAccess()
 description: Enabling Sync Gateway data access
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-require-access-cmd.adoc
   xref: xref:3.3@sync-gateway:access-control:sync-function/sync-function-api-require-access-cmd.adoc[]

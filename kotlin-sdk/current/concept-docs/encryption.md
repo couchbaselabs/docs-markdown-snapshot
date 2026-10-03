@@ -1,7 +1,13 @@
 ---
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "3.12"
+  topic_type: concept
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/concept-docs/pages/encryption.adoc
   xref: xref:kotlin-sdk:concept-docs:encryption.adoc[]

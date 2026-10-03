@@ -3,7 +3,11 @@ title: Adding or Removing the Data Service on Existing Nodes
 description: You can add or remove the Data Service on an existing node of a
   cluster by adding or removing the node from the cluster, and then completing
   the addition or removal of the node by running a rebalance operation.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/manage-data-service-and-rebalance.adoc
   xref: xref:server:manage:manage-nodes/manage-data-service-and-rebalance.adoc[]

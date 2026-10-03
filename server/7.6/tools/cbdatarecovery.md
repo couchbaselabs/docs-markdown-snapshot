@@ -1,6 +1,10 @@
 ---
 title: cbdatarecovery
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/tools/pages/cbdatarecovery.adoc
   xref: xref:7.6@server:tools:cbdatarecovery.adoc[]

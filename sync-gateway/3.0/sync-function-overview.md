@@ -3,7 +3,11 @@ title: Sync Function Overview
 description: Use Sync Gateway's Sync Functions to implement effective data
   routing and access control in the cloud-to-edge synchronization of enterprise
   data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.0/modules/ROOT/pages/sync-function-overview.adoc
   xref: xref:3.0@sync-gateway::sync-function-overview.adoc[]

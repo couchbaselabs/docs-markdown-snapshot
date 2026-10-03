@@ -1,7 +1,12 @@
 ---
 title: Verify the Enterprise Analytics Installation
 description: You can test your connection to Enterprise Analytics in multiple ways.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Enterprise Analytics
+    version: "2.1"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/verify-installation.adoc
   xref: xref:2.1@enterprise-analytics:install:verify-installation.adoc[]

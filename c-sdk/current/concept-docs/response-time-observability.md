@@ -2,7 +2,12 @@
 title: Request Tracing and Metrics
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/response-time-observability.adoc
   xref: xref:c-sdk:concept-docs:response-time-observability.adoc[]

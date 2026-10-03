@@ -1,7 +1,11 @@
 ---
 title: Access Control Configuration
 description: Using Sync Gateway's Admin REST API and the Sync function to configure access
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/configuration/pages/configuration-schema-access-control.adoc
   xref: xref:sync-gateway:configuration:configuration-schema-access-control.adoc[]

@@ -2,7 +2,11 @@
 title: Enabling Timestamp-based Conflict Resolution for Migrated Data
 description: The Timestamp-based Conflict Resolution method is the latest
   conflict resolution type available for a bucket.
-pubDate: 2026-09-11T04:31:57.657Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/migration.adoc
   xref: xref:server:install:migration.adoc[]

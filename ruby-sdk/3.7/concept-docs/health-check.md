@@ -1,7 +1,12 @@
 ---
 title: Health Check
 description: The Health Check API is not a part of the initial 3.0 Ruby SDK release.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.7"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/concept-docs/pages/health-check.adoc
   xref: xref:3.7@ruby-sdk:concept-docs:health-check.adoc[]

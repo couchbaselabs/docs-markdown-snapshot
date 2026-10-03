@@ -2,7 +2,11 @@
 title: Access Control Concepts
 description: An introduction to the key concepts behind the provision of
   effective access control in Sync Gateway
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.1/modules/ROOT/pages/access-control-concepts.adoc
   xref: xref:3.1@sync-gateway::access-control-concepts.adoc[]

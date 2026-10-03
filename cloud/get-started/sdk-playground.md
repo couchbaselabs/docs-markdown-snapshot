@@ -1,7 +1,12 @@
 ---
 title: Explore the Playground
 description: Use the Playground to practice and learn more about SQL++.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
+  topic_type: tutorial
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/sdk-playground.adoc
   xref: xref:cloud:get-started:sdk-playground.adoc[]

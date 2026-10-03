@@ -2,7 +2,11 @@
 title: Collecting Information and Logging in the C (libcouchbase) SDK
 description: This page describes how to enable debug logging in the C SDK and
   debug application crashes and potential bugs.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C SDK
+    version: "3.3"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/collecting-information-and-logging.adoc
   xref: xref:c-sdk:howtos:collecting-information-and-logging.adoc[]

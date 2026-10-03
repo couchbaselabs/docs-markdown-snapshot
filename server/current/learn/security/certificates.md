@@ -2,7 +2,11 @@
 title: Certificates
 description: Couchbase Server supports using certificates for client and server
   security and  authentication.
-pubDate: 2026-09-30T04:29:45.253Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "8.0"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/certificates.adoc
   xref: xref:server:learn:security/certificates.adoc[]

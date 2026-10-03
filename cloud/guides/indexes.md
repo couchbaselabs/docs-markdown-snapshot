@@ -2,7 +2,11 @@
 title: Use Primary and Secondary Indexes
 description: These guides explain how to create and use primary and secondary
   indexes for SQL++ queries.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/indexes.adoc
   xref: xref:cloud:guides:indexes.adoc[]

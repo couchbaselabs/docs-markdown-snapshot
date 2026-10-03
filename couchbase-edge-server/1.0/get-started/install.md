@@ -1,7 +1,11 @@
 ---
 title: Install and Verify
 description: Install Couchbase Edge Server for use in your applications.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Edge Server
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/install.adoc
   xref: xref:1.0@couchbase-edge-server:get-started:install.adoc[]

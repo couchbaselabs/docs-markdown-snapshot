@@ -2,7 +2,12 @@
 title: Data Operations
 description: The Key Value (KV) service, sometimes called the "data service", is
   often the best way to get or change a document when you know its ID.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Kotlin SDK
+    version: "3.12"
+  topic_type: howto
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/kv-operations.adoc
   xref: xref:kotlin-sdk:howtos:kv-operations.adoc[]

@@ -3,7 +3,11 @@ title: Change History
 description: When Magma storage is used for a bucket, the changes made to
   documents within the bucket's collections can be recorded, in a <em>change
   history</em>.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/change-history.adoc
   xref: xref:7.6@server:learn:data/change-history.adoc[]

@@ -2,7 +2,12 @@
 title: Add Spans and Callbacks to Your Agent
 description: Add spans and callbacks to your agentic app code to generate logs
   through the Agent Catalog.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase AI Data Plane
+    version: ""
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/add-spans-callbacks.adoc
   xref: xref:ai:build:agent-tracer/add-spans-callbacks.adoc[]

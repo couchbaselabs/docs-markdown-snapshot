@@ -1,7 +1,11 @@
 ---
 title: Capella App Services Management API Change Log
 description: The change log for the Capella App Services Management API.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella App Services
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/management-api-guide/management-api-log.adoc
   xref: xref:app-services::management-api-guide/management-api-log.adoc[]

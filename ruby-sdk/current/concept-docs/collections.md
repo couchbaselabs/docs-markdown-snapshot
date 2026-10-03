@@ -1,7 +1,12 @@
 ---
 title: Collections and Scopes
 description: Fully supported in Couchbase Server 7.0.
-pubDate: 2026-08-26T04:30:42.267Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Ruby SDK
+    version: "3.8"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.8/modules/concept-docs/pages/collections.adoc
   xref: xref:ruby-sdk:concept-docs:collections.adoc[]

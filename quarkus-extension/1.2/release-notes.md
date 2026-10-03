@@ -1,7 +1,11 @@
 ---
 title: Couchbase Quarkus Release Notes
 description: Release notes for the Couchbase Quarkus Java Extension.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Quarkus Java Extension
+    version: "1.2"
 antora:
   editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.2/modules/ROOT/pages/release-notes.adoc
   xref: xref:1.2@quarkus-extension::release-notes.adoc[]

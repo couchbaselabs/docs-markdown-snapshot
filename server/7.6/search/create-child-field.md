@@ -2,7 +2,12 @@
 title: Create a Child Field
 description: Create a child field with the Couchbase Server Web Console to add
   or remove a specific field's content from a Search index.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.6"
+  topic_type: guide
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-child-field.adoc
   xref: xref:7.6@server:search:create-child-field.adoc[]

@@ -1,7 +1,11 @@
 ---
 title: Logging
 description: Logging with the Columnar Python SDK.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Python Columnar SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/howtos/pages/logging.adoc
   xref: xref:python-columnar-sdk:howtos:logging.adoc[]

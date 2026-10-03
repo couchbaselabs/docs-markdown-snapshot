@@ -1,6 +1,10 @@
 ---
 title: Couchbase Mobile - Embedded Database on the Edge
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Mobile
+    version: "3.1"
 antora:
   editUrl: https://github.com/couchbase/docs-mobile/edit/release/3.1/modules/ROOT/pages/siteintro.adoc
   xref: xref:shared-mobile::siteintro.adoc[]

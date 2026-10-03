@@ -2,7 +2,11 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and the RAG framework.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/vector-searching-with-sdk.adoc
   xref: xref:1.1@cxx-sdk:howtos:vector-searching-with-sdk.adoc[]

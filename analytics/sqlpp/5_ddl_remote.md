@@ -2,7 +2,12 @@
 title: CREATE a Remote Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a collection that shadows OLTP data from a remote data source.
-pubDate: 2026-08-25T04:30:40.250Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Analytics
+    version: ""
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_remote.adoc
   xref: xref:analytics:sqlpp:5_ddl_remote.adoc[]

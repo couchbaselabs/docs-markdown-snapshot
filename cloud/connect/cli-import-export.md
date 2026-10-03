@@ -1,7 +1,11 @@
 ---
 title: Import and Export Data with Command Line Tools
 description: Use Couchbase command line tools to import and export large amounts of data.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/connect/pages/cli-import-export.adoc
   xref: xref:cloud:connect:cli-import-export.adoc[]

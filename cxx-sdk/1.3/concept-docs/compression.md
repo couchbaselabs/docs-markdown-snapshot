@@ -1,7 +1,12 @@
 ---
 title: Compression
 description: Data compression to reduce traffic costs from app to Server.
-pubDate: 2026-08-22T04:32:17.641Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.3"
+  edition: Enterprise Edition
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/compression.adoc
   xref: xref:1.3@cxx-sdk:concept-docs:compression.adoc[]

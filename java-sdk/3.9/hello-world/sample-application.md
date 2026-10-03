@@ -2,7 +2,11 @@
 title: Quickstart in Couchbase with Spring Boot and Java
 description: Quickstart app to build a REST API using Couchbase Capella in Java
   using Spring Boot
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.9"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/hello-world/pages/sample-application.adoc
   xref: xref:3.9@java-sdk:hello-world:sample-application.adoc[]

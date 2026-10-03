@@ -3,7 +3,11 @@ title: cbrestorewrapper
 description: A wrapper around cbrestore that was made to improve performance for
   enterprise users. Superseded by cbbackupmgr, which should be used instead of
   this tool.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
 antora:
   editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbrestorewrapper.adoc
   xref: xref:7.2@server:cli:cbtools/cbrestorewrapper.adoc[]

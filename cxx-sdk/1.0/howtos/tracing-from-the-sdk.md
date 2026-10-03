@@ -1,7 +1,11 @@
 ---
 title: Tracing from the .NET SDK
 description: Threshold logging
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: C++ SDK
+    version: "1.0"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/tracing-from-the-sdk.adoc
   xref: xref:1.0@cxx-sdk:howtos:tracing-from-the-sdk.adoc[]

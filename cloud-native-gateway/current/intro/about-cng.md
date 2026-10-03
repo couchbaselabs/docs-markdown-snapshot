@@ -3,7 +3,12 @@ title: About Cloud Native Gateway
 description: Cloud Native Gateway (CNG) is a gRPC-based ingress to consolidate
   application connectivity to Couchbase Server for public and private cloud
   environments.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Cloud Native Gateway
+    version: "1.2"
+  topic_type: concept
 antora:
   editUrl: https://github.com/couchbaselabs/docs-cloud-native-gateway/edit/release/1.2/modules/intro/pages/about-cng.adoc
   xref: xref:cloud-native-gateway:intro:about-cng.adoc[]

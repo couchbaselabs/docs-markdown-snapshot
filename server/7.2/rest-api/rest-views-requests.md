@@ -3,7 +3,12 @@ title: Limiting Views Requests
 description: To limit the number of simultaneous view request on a server node,
   use the <code>POST /internalSettings</code> HTTP method and URI and a
   port-related request parameter.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-views-requests.adoc
   xref: xref:7.2@server:rest-api:rest-views-requests.adoc[]

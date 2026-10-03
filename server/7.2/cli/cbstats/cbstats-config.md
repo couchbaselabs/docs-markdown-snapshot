@@ -2,7 +2,12 @@
 title: config
 description: The <code>config</code> command, used by <code>cbstats</code>,
   returns configuration statistics on a specified bucket, on a specified node.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Couchbase Server
+    version: "7.2"
+  topic_type: reference
 antora:
   editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-config.adoc
   xref: xref:7.2@server:cli:cbstats/cbstats-config.adoc[]

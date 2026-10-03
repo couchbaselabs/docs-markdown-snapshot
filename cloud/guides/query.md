@@ -1,7 +1,11 @@
 ---
 title: Select Data with Queries
 description: These guides explain how to read data with a SQL++ query.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Capella Operational
+    version: ""
 antora:
   editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/query.adoc
   xref: xref:cloud:guides:query.adoc[]

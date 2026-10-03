@@ -1,6 +1,10 @@
 ---
 title: Sync Gateway Metrics API Reference
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Sync Gateway
+    version: "4.1"
 antora:
   editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.1/modules/rest-api/pages/rest_api_metric.adoc
   xref: xref:sync-gateway:rest-api:rest_api_metric.adoc[]

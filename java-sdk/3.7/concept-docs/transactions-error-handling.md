@@ -1,7 +1,11 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-08-17T09:53:44.266Z
+pubDate: 2026-10-03T04:27:21.374Z
+meta:
+  component:
+    title: Java SDK
+    version: "3.7"
 antora:
   editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/concept-docs/pages/transactions-error-handling.adoc
   xref: xref:3.7@java-sdk:concept-docs:transactions-error-handling.adoc[]
