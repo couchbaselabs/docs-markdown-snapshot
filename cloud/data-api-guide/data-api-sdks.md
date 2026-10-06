@@ -1,7 +1,7 @@
 ---
 title: Data API vs. Couchbase SDKs
 description: This page explains when to use the Data API and when to use Couchbase SDKs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-06T04:29:29.001Z
 meta:
   component:
     title: Capella Operational
@@ -81,7 +81,7 @@ Web browser applications with scaling and security
 
 Use Capella App Services for access to Couchbase Capella from browser applications where scaling and security considerations are important.
 
-For more information, see [Manage App Services for Mobile and Edge](../../app-services/index.md).
+For more information, see [Welcome to Capella App Services](../../app-services/index.md).
 
 ## [](#see-also)See Also
 

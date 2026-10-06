@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1791175034847,
+  "generated": 1791261306259,
   "url": "https://docs.couchbase.com",
   "components": [
     {
@@ -1190,7 +1190,7 @@
               "module": "mobile",
               "path": "index.adoc",
               "url": "/app-services/index.md",
-              "title": "Manage App Services for Mobile and Edge"
+              "title": "Welcome to Capella App Services"
             },
             {
               "alias": true,
@@ -1352,7 +1352,7 @@
               "module": "ROOT",
               "path": "index.adoc",
               "url": "/app-services/index.md",
-              "title": "Manage App Services for Mobile and Edge"
+              "title": "Welcome to Capella App Services"
             },
             {
               "module": "ROOT",

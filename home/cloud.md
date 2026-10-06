@@ -8,7 +8,7 @@ description: Capella operational is the easiest way to use Couchbase Server. Get
   Couchbase under the Capella family of products. The Couchbase AI Data Plane is
   a fully managed set of tools that help you build, deploy, and scale your
   agentic and retrieval-augmented generation (RAG) AI applications.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-06T04:29:29.001Z
 meta:
   component:
     title: Couchbase Documentation
@@ -48,7 +48,7 @@ Get set up with an account and deploy a free tier Capella operational cluster.
 Create your account and start building mobile and edge apps with Capella App Services.
 
 * [Sign Up](https://cloud.couchbase.com/sign-up)
-* [Manage App Services for Mobile and Edge](../app-services/index.md)
+* [Welcome to Capella App Services](../app-services/index.md)
 * [Configure Your Free Tier App Services (Mobile sync)](../app-services/get-started/configuring-app-services.md)
 * [Create an App Service](../app-services/app-services/creating-an-app-service.md)
 * [Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services](../app-services/migrating/on-prem-to-capella.md)

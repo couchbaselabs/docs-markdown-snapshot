@@ -1,8 +1,11 @@
 ---
-title: Manage App Services for Mobile and Edge
-description: App Services synchronizes data between the Couchbase Capella
-  cluster and your apps running on mobile applications.
-pubDate: 2026-10-03T04:27:21.374Z
+title: Welcome to Capella App Services
+description: App Services is a fully managed application backend that
+  synchronizes data between Capella and your mobile and IoT apps, with low
+  latency, data integrity, and high availability. Pair it with Couchbase Lite to
+  build offline-first apps that keep working without a network connection and
+  sync their changes to Capella when the connection returns.
+pubDate: 2026-10-06T04:29:29.001Z
 meta:
   component:
     title: Capella App Services
@@ -15,37 +18,72 @@ antora:
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/index.html)
 
-# Manage App Services for Mobile and Edge
+# Welcome to Capella App Services
 
-> App Services synchronizes data between the Couchbase Capella cluster and your apps running on mobile applications. 
+# Welcome to Capella App Services
 
-**App Services** is a fully managed application backend designed to provide data synchronization for mobile/IoT applications and the Capella Cloud Service. The service provides:
+App Services is a fully managed application backend that synchronizes data between Capella and your mobile and IoT apps, with low latency, data integrity, and high availability. Pair it with Couchbase Lite to build offline-first apps that keep working without a network connection and sync their changes to Capella when the connection returns.
 
-* Responsive and reliable data synchronization between devices and the NoSQL Couchbase backend. Synchronization is handled automatically, without the need for developer or user intervention, ensuring low latency, data integrity and high availability for mobile applications.
-* A mobile database (Couchbase Lite) that support the creation of off-line apps: users can work within a mobile applications, without the need for an always-available network connection. Changes to data stored with the app are synced with the Capella backend when the internet is available.  
-![cb mobile illustrations 2](_images/cb-mobile-illustrations_2.png)
-* Automatic conflict resolution: concurrent changes across clients are handled through predefined policies, or custom conflict resolvers.
-* Seamless OIDC authentication support.
-* Peer-to-peer synchronization between mobile/IoT devices.
-* Development frameworks and tooling for:
+## How Do You Want To Start Building Today?
 
-  * [Swift (iOs, macOS)](../couchbase-lite/current/swift/gs-install.md)
-  * [Kotlin (Android)](../couchbase-lite/current/android/kotlin.md)
-  * [Java (Android](../couchbase-lite/current/android/gs-install.md))
-  * [.Net (Desktop, Xamarin)](../couchbase-lite/current/csharp/gs-install.md)
-  * [C (Desktop, Mobile, Embedded)](../couchbase-lite/current/c/gs-install.md)
-  * [Java (Desktop)](../couchbase-lite/current/java/gs-install.md)
-  * [Obj-C (iOS, macOS)](../couchbase-lite/current/objc/gs-install.md)
-  * [Javascript](#couchbase-lite:javascript:quickstart.adoc)
-  * [A REST API](references/rest-api-introduction.md) for commuting with the Couchbase engine across a secure web connection.
+###  Get Started With App Services
 
-App Services is the synchronization service for Couchbase Capella, designed to provide data synchronization for large-scale interactive web, mobile, and IoT applications.
+Deploy an App Service, create an App Endpoint, and sync your first app.
 
-App Services maintain secure access using:
+* [Sign Up](https://cloud.couchbase.com/sign-up)
+* [Configure Free Tier App Services](get-started/configuring-app-services.md)
+* [Create an App Service](app-services/creating-an-app-service.md)
+* [Create an App Endpoint](app-endpoints/creating-an-app-endpoint.md)
+* [Connect your Apps to an App Endpoint](app-endpoints/connect-apps-to-endpoint.md)
 
-* **User authentication**, which ensures that only authorized users can connect to Sync Gateway.
-* **Data Routing**, which ensures that authorized users can only access documents in the channels assigned to them and only in accordance with their assigned privileges.
+###  Sync Data With App Endpoints
 
-## [](#see-also)See Also
+Link your buckets, scopes, and collections to an App Endpoint and control how data syncs to your apps.
 
-For more information about the underlying product, see [Couchbase Mobile Sync Gateway](../sync-gateway/current/introduction.md).
+* [About App Endpoints](app-endpoints/about-app-endpoints.md)
+* [Advanced Settings for App Endpoints](app-endpoints/advanced-settings.md)
+* [Delta Sync](app-endpoints/delta-sync.md)
+* [Import Filters](app-endpoints/import-filters.md)
+* [Resync your App Endpoint](app-endpoints/resync.md)
+
+###  Manage Access And Security
+
+Control which users can connect, and which documents each user can read and write.
+
+* [About Access Control](app-endpoints/about-access-control.md)
+* [Access Control and Data Validation](app-endpoints/access-control-data-validation.md)
+* [Create App Users](security/create-user.md)
+* [Create App Roles](security/create-app-role.md)
+* [Add Security with Channels](security/channels.md)
+* [Set Up an Authentication Provider](security/set-up-authentication-provider.md)
+* [Private Endpoints for App Services](private-endpoints/app-services-private-endpoints.md)
+
+###  Monitor And Scale
+
+Track the health of your App Services and size them to match your workload.
+
+* [Monitor through the UI](monitoring/monitoring-in-ui.md)
+* [Alert Integrations for App Services](monitoring/alert-integration.md)
+* [Log Streaming](monitoring/log-streaming.md)
+* [Audit Logging](monitoring/audit-logging.md)
+* [Scale a Deployed App Service](app-services/scaling-a-deployed-app-service.md)
+* [Turn App Services Off or On](app-services/turn-on-off.md)
+
+###  Develop With App Services
+
+Build your apps with the Couchbase Lite SDKs, and automate your deployments with the REST APIs.
+
+* [Couchbase Lite SDKs](../couchbase-lite/current/index.md)
+* [REST API Introduction](references/rest-api-introduction.md)
+* [Manage Deployments with the Capella App Services Management API](management-api-guide/management-api-intro.md)
+* [Grant Admin Access to REST APIs](app-services/accessing-admin-apis.md)
+
+###  Migrate And Upgrade
+
+Move from self-managed Sync Gateway to App Services, and keep your deployment up to date.
+
+* [Migrate from Self-Managed Servers](migrating/on-prem-to-capella.md)
+* [Upgrade App Services](maintenance/upgrading-app-services.md)
+* [Sync Metadata Isolation](migrating/migrate-sync-metadata.md)
+* [App Services Billing](billing/billing.md)
+* [Capella App Services Release Notes](release-notes/release-notes.md)

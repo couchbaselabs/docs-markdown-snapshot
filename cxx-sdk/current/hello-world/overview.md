@@ -1,6 +1,6 @@
 ---
 title: Couchbase C++ SDK 1.4
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-06T04:29:29.001Z
 meta:
   component:
     title: C++ SDK
@@ -141,27 +141,6 @@ Deployment
   
   
 ##  Couchbase Operational Cluster Feature Compatibility
-
-All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the C++ SDK and Couchbase Server with which some features were introduced.
-
-__Table 1\. Couchbase Server and SDK Supported Version Matrix__
-|                                                                                              | Server 7.2   | Server 7.6.x     | Server 8.0 |
-| -------------------------------------------------------------------------------------------- | ------------ | ---------------- | ---------- |
-| KV Range Scan                                                                                | N/A          | From 1.0.0       |            |
-| Zone aware replica reads                                                                     | N/A          | From 1.0.0       |            |
-| Vector Search with Search Vector Index                                                       | N/A          | From 1.0.0       |            |
-| Vector Query using Hyperscale Vector Index                                                   | N/A          | From SDK 1.2.0 ① |            |
-| Vector Query using Composite (GSI & vector) index                                            | N/A          | From SDK 1.2.0 ① |            |
-| Distributed ACID Transactions                                                                | From 1.0.0   |                  |            |
-| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.0.0   |                  |            |
-| Circuit Breakers                                                                             | From 1.3.2   |                  |            |
-| OTel                                                                                         | From 1.3.0   |                  |            |
-| Field Level Encryption                                                                       | From 1.2.0   |                  |            |
-| Cloud Native Gateway                                                                         | From 1.4.0 ② |                  |            |
-
-| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Interface Stability = Uncommitted (See [API Stability Guide](#compatibility.adoc#interface-stability)).                           |
 
   
 > [!TIP]

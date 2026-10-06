@@ -2,7 +2,7 @@
 title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Ruby Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-06T04:29:29.001Z
 meta:
   component:
     title: Ruby SDK
@@ -70,223 +70,6 @@ where "platform" placeholder can take values: `arm64-darwin`, `x86_64-darwin`, `
 ruby -rrbconfig -e 'puts RbConfig::CONFIG["platform"]'
 ```
 
-## [](#latest-release)Ruby SDK 3.8 Releases
-
-We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
-
-### [](#version-3-8-2-2-september-2026)Version 3.8.2 (2 September 2026)
-
-```bash
-gem install couchbase -v 3.8.2
-```
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.8.2/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.8.1...3.8.2) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.8.2)
-
-#### [](#download-links)Download Links
-
-| Platform             | File                                                                                                                                    |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Checksums            | [couchbase-3.8.2.sha256.txt](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2.sha256.txt)                          |
-| Source Archive       | [couchbase-3.8.2.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2.gem)                                        |
-| Source Archive       | [couchbase-opentelemetry-3.8.2.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-opentelemetry-3.8.2.gem)            |
-| Linux x86\_64        | [couchbase-3.8.2-x86\_64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2-x86%5F64-linux.gem)           |
-| Linux arm64          | [couchbase-3.8.2-aarch64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2-aarch64-linux.gem)            |
-| Linux x86\_64 (musl) | [couchbase-3.8.2-x86\_64-linux-musl.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2-x86%5F64-linux-musl.gem) |
-| macOS x86\_64        | [couchbase-3.8.2-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2-x86%5F64-darwin.gem)         |
-| macOS arm64          | [couchbase-3.8.2-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.2/couchbase-3.8.2-arm64-darwin.gem)              |
-
-#### [](#fixes-and-enhancements)Fixes and Enhancements
-
-* [RCBC-557](https://jira.issues.couchbase.com/browse/RCBC-557): Add parent\_span to Ping options (#241).
-* Update C++ core to 1.3.3 (#245, #244, #242). Includes bug fixes for [CXXCBC-839](https://jira.issues.couchbase.com/browse/CXXCBC-839), [CXXCBC-841](https://jira.issues.couchbase.com/browse/CXXCBC-841) and [CXXCBC-864](https://jira.issues.couchbase.com/browse/CXXCBC-864).
-
-### [](#version-3-8-1-2-july-2026)Version 3.8.1 (2 July 2026)
-
-```bash
-gem install couchbase -v 3.8.1
-```
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.8.1/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.8.0...3.8.1) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.8.1)
-
-#### [](#download-links-2)Download Links
-
-| Platform             | File                                                                                                                                    |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Checksums            | [couchbase-3.8.1.sha256.txt](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1.sha256.txt)                          |
-| Source Archive       | [couchbase-3.8.1.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1.gem)                                        |
-| Source Archive       | [couchbase-opentelemetry-3.8.1.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-opentelemetry-3.8.1.gem)            |
-| Linux x86\_64        | [couchbase-3.8.1-x86\_64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86%5F64-linux.gem)           |
-| Linux arm64          | [couchbase-3.8.1-aarch64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-aarch64-linux.gem)            |
-| Linux x86\_64 (musl) | [couchbase-3.8.1-x86\_64-linux-musl.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86%5F64-linux-musl.gem) |
-| macOS x86\_64        | [couchbase-3.8.1-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86%5F64-darwin.gem)         |
-| macOS arm64          | [couchbase-3.8.1-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-arm64-darwin.gem)              |
-
-#### [](#fixes-and-enhancements-2)Fixes and Enhancements
-
-* [RCBC-542](https://issues.couchbase.com/browse/RCBC-542): Forward the supplied CAS value to the C++ core in `Append` and `Prepend` operations, so that compare-and-swap is now honored for these mutations ([#225](https://github.com/couchbase/couchbase-ruby-client/pull/225)).
-* [RCBC-550](https://issues.couchbase.com/browse/RCBC-550): Access the C++ core log level through the core API instead of spdlog's default logger ([#229](https://github.com/couchbase/couchbase-ruby-client/pull/229)).
-* [RCBC-540](https://issues.couchbase.com/browse/RCBC-540), [RCBC-541](https://issues.couchbase.com/browse/RCBC-541): Updated the Protostellar protocol definitions to the latest version ([#226](https://github.com/couchbase/couchbase-ruby-client/pull/226)).
-* Updated core to 1.3.2 ([#232](https://github.com/couchbase/couchbase-ruby-client/pull/232), [#224](https://github.com/couchbase/couchbase-ruby-client/pull/224)).
-
-#### [](#build-and-test-infrastructure-improvements)Build and Test Infrastructure Improvements
-
-* [RCBC-535](https://issues.couchbase.com/browse/RCBC-535): Upgraded the test suite to Minitest 6 ([#228](https://github.com/couchbase/couchbase-ruby-client/pull/228)).
-* [RCBC-543](https://issues.couchbase.com/browse/RCBC-543): Added a consistency helper for `update_collection` tests ([#227](https://github.com/couchbase/couchbase-ruby-client/pull/227)).
-* [RCBC-541](https://issues.couchbase.com/browse/RCBC-541): Added GitHub Actions testing against Couchbase Cloud Native Gateway (CNG) ([#226](https://github.com/couchbase/couchbase-ruby-client/pull/226)).
-* Fixed `rubocop` `Lint/SafeNavigationWithEmpty` offenses ([#230](https://github.com/couchbase/couchbase-ruby-client/pull/230)).
-* Updated GitHub Actions versions ([#231](https://github.com/couchbase/couchbase-ruby-client/pull/231)).
-
-### [](#version-3-8-0-31-march-2026)Version 3.8.0 (31 March 2026)
-
-[Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.7.0...3.8.0)
-
-Version 3.8.0 is a minor release of the third generation Ruby SDK, bringing a number of improvements. Most notably the 4.6.0 release adds observability support (with the ability to integrate with `OpenTelemetry`, via the `couchbase-opentelemetry` extension), and adds support for Ruby 4.0 — see [Ruby Version Compatibility](compatibility.md#ruby-version-compatibility) for details of supported Ruby versions. Support is also added for JWT authentication and for credential rotation without downtime.
-
-#### [](#ruby-sdk)Ruby SDK
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.8.0/index.html) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.8.0)
-
-##### [](#installing-the-sdk)Installing the SDK
-
-Command line installation
-
-```bash
-$ gem install couchbase -v 3.8.0
-```
-
-Gemfile
-
-```ruby
-# rubygems.org version
-gem "couchbase", "3.8.0"
-
-# using official repository
-gem "couchbase", "3.8.0", :source => "https://packages.couchbase.com/clients/ruby"
-```
-
-#### [](#opentelemetry-extension)OpenTelemetry Extension
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-opentelemetry-3.8.0/index.html) | [Rubygems](https://rubygems.org/gems/couchbase-opentelemetry/versions/3.8.0)
-
-##### [](#installing-the-opentelemetry-extension)Installing the OpenTelemetry Extension
-
-Command line installation
-
-```bash
-$ gem install couchbase-opentelemetry -v 3.8.0
-```
-
-Gemfile
-
-```ruby
-# rubygems.org version
-gem "couchbase-opentelemetry", "3.8.0"
-
-# using official repository
-gem "couchbase-opentelemetry", "3.8.0", :source => "https://packages.couchbase.com/clients/ruby"
-```
-
-#### [](#download-links-3)Download Links
-
-| Platform             | File                                                                                                                                    |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Checksums            | [couchbase-3.8.0.sha256.txt](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0.sha256.txt)                          |
-| Source Archive       | [couchbase-3.8.0.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0.gem)                                        |
-| Source Archive       | [couchbase-opentelemetry-3.8.0.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-opentelemetry-3.8.0.gem)            |
-| Linux x86\_64        | [couchbase-3.8.0-x86\_64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86%5F64-linux.gem)           |
-| Linux arm64          | [couchbase-3.8.0-aarch64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-aarch64-linux.gem)            |
-| Linux x86\_64 (musl) | [couchbase-3.8.0-x86\_64-linux-musl.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86%5F64-linux-musl.gem) |
-| macOS x86\_64        | [couchbase-3.8.0-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86%5F64-darwin.gem)         |
-| macOS arm64          | [couchbase-3.8.0-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-arm64-darwin.gem)              |
-
-#### [](#fixes-and-enhancements-3)Fixes and Enhancements
-
-* [RCBC-524](https://issues.couchbase.com/browse/RCBC-524), [RCBC-525](https://issues.couchbase.com/browse/RCBC-525), [RCBC-526](https://issues.couchbase.com/browse/RCBC-526): OpenTelemetry integration ([#216](https://github.com/couchbase/couchbase-ruby-client/pull/216), [#195](https://github.com/couchbase/couchbase-ruby-client/pull/195), [#197](https://github.com/couchbase/couchbase-ruby-client/pull/197)).  
-Full support for distributed tracing and metrics using the `OpenTelemetry` API. Operations now create spans and record latency and throughput metrics that can be exported to backends like Jaeger or Prometheus.
-* [RCBC-522](https://issues.couchbase.com/browse/RCBC-522): Support for JWT authentication ([#218](https://github.com/couchbase/couchbase-ruby-client/pull/218)).  
-Added `Couchbase::Management::Options::User::JwtAuthenticator` to enable authentication using JSON Web Tokens.
-* [RCBC-521](https://issues.couchbase.com/browse/RCBC-521): The new `Couchbase::Cluster#update_authenticator` method allows rotating credentials (passwords or certificates) on an active cluster connection without requiring a restart ([#191](https://github.com/couchbase/couchbase-ruby-client/pull/191)).
-* [RCBC-503](https://issues.couchbase.com/browse/RCBC-503): New configuration settings in `Couchbase::Options::Cluster` to control the SDK's internal telemetry collection, including endpoint overrides and connection backoff ([#190](https://github.com/couchbase/couchbase-ruby-client/pull/190)).
-* [RCBC-528](https://issues.couchbase.com/browse/RCBC-528): Migrated all Key-Value operations to use the high-performance C++ backend, ensuring feature parity and consistent behavior across Couchbase SDKs ([#196](https://github.com/couchbase/couchbase-ruby-client/pull/196)).
-* [RCBC-529](https://issues.couchbase.com/browse/RCBC-529): Standardized management operation options: Added parent span for search, user, and view management options, and moved to the `Management::Options` module, and added support for distributed tracing across administrative tasks ([#192](https://github.com/couchbase/couchbase-ruby-client/pull/192)).
-* [RCBC-527](https://issues.couchbase.com/browse/RCBC-527): Enhanced observability by surfacing internal C++ core timing spans (e.g., encoding, dispatch, decoding) within the Ruby span hierarchy ([#210](https://github.com/couchbase/couchbase-ruby-client/pull/210)).
-* [RCBC-536](https://issues.couchbase.com/browse/RCBC-536): Added cluster name and cluster uuid span/metric attributes ([#202](https://github.com/couchbase/couchbase-ruby-client/pull/202)). Automatically attaches `db.couchbase.cluster_name` and `db.couchbase.cluster_uuid` to all telemetry signals.
-* [RCBC-530](https://issues.couchbase.com/browse/RCBC-530): Deprecated Support for MapReduce Views ([#194](https://github.com/couchbase/couchbase-ruby-client/pull/194)). MapReduce View APIs are now marked as deprecated in alignment with the Couchbase Server deprecation schedule.
-* [RCBC-525](https://issues.couchbase.com/browse/RCBC-525): Fixed names of `lookup_in_all_replicas` and `lookup_in_any_replica` spans ([#220](https://github.com/couchbase/couchbase-ruby-client/pull/220)).
-* [RCBC-534](https://issues.couchbase.com/browse/RCBC-534): Correctly set tracer to external tracer if one is provided ([#199](https://github.com/couchbase/couchbase-ruby-client/pull/199)).
-* Added support for Ruby 4.0 ([#198](https://github.com/couchbase/couchbase-ruby-client/pull/198)).
-* Added `inventory_with_opentelemetry` example for the `couchbase-opentelemetry` gem ([#222](https://github.com/couchbase/couchbase-ruby-client/pull/222)).
-* Updated core to 1.3.1 ([#221](https://github.com/couchbase/couchbase-ruby-client/pull/221), [#219](https://github.com/couchbase/couchbase-ruby-client/pull/219)).
-
-## [](#ruby-sdk-3-7-releases)Ruby SDK 3.7 Releases
-
-### [](#version-3-7-0-29-september-2025)Version 3.7.0 (29 September 2025)
-
-```bash
-gem install couchbase -v 3.7.0
-```
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.7.0/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.6.0...3.7.0) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.7.0)
-
-#### [](#download-links-4)Download Links
-
-| Platform             | File                                                                                                                                    |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Checksums            | [couchbase-3.7.0.sha256sum](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0.sha256sum)                            |
-| Source Archive       | [couchbase-3.7.0.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0.gem)                                        |
-| Linux x86\_64        | [couchbase-3.7.0-x86\_64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0-x86%5F64-linux.gem)           |
-| Linux arm64          | [couchbase-3.7.0-aarch64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0-aarch64-linux.gem)            |
-| Linux x86\_64 (musl) | [couchbase-3.7.0-x86\_64-linux-musl.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0-x86%5F64-linux-musl.gem) |
-| macOS x86\_64        | [couchbase-3.7.0-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0-x86%5F64-darwin.gem)         |
-| macOS arm64          | [couchbase-3.7.0-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.7.0/couchbase-3.7.0-arm64-darwin.gem)              |
-
-#### [](#new-features)New Features
-
-* [RCBC-517](https://jira.issues.couchbase.com/browse/RCBC-517): Added support vector search prefilter ([#180](https://github.com/couchbase/couchbase-ruby-client/pull/180)).
-* [RCBC-518](https://jira.issues.couchbase.com/browse/RCBC-518): Added way to disable enterprise analytics check programmatically ([#186](https://github.com/couchbase/couchbase-ruby-client/pull/186)).
-* Updated core to `1.2.0` ([#188](https://github.com/couchbase/couchbase-ruby-client/pull/188), [#181](https://github.com/couchbase/couchbase-ruby-client/pull/181)).
-
-#### [](#build-and-test-infrastructure-improvements-2)Build and Test Infrastructure Improvements
-
-* Fixed `rubocop` error & warnings ([#185](https://github.com/couchbase/couchbase-ruby-client/pull/185), [#187](https://github.com/couchbase/couchbase-ruby-client/pull/187)).
-* Fix `simplecov` error in test helper ([#184](https://github.com/couchbase/couchbase-ruby-client/pull/184)).
-* Github Actions:
-
-  * Pinned `clang` tools in linters workflow ([#183](https://github.com/couchbase/couchbase-ruby-client/pull/183));
-  * Updated Windows runners ([#182](https://github.com/couchbase/couchbase-ruby-client/pull/182)).
-
-## [](#ruby-sdk-3-6-releases)Ruby SDK 3.6 Releases
-
-### [](#version-3-6-0-2-june-2025)Version 3.6.0 (2 June 2025)
-
-```bash
-gem install couchbase -v 3.6.0
-```
-
-[API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.6.0/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.7...3.6.0) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.6.0)
-
-#### [](#download-links-5)Download Links
-
-| Platform             | File                                                                                                                                    |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Checksums            | [couchbase-3.6.0.sha256sum](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0.sha256sum)                            |
-| Source Archive       | [couchbase-3.6.0.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0.gem)                                        |
-| Linux x86\_64        | [couchbase-3.6.0-x86\_64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86%5F64-linux.gem)           |
-| Linux arm64          | [couchbase-3.6.0-aarch64-linux.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-aarch64-linux.gem)            |
-| Linux x86\_64 (musl) | [couchbase-3.6.0-x86\_64-linux-musl.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86%5F64-linux-musl.gem) |
-| macOS x86\_64        | [couchbase-3.6.0-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86%5F64-darwin.gem)         |
-| macOS arm64          | [couchbase-3.6.0-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-arm64-darwin.gem)              |
-
-#### [](#new-features-2)New Features
-
-* [RCBC-516](https://issues.couchbase.com/browse/516): Include `storage_backend` in `get_bucket/get_all_buckets` results ([#173](https://github.com/couchbase/couchbase-ruby-client/pull/173)).
-* [RCBC-510](https://issues.couchbase.com/browse/510): Added `BucketSettings#num_vbuckets` ([#174](https://github.com/couchbase/couchbase-ruby-client/pull/174)).
-
-#### [](#fixes)Fixes
-
-* [RCBC-511](https://issues.couchbase.com/browse/511): Updated core to pick up improved user lock/unlock error messages & logs ([#177](https://github.com/couchbase/couchbase-ruby-client/pull/177)).
-* Updated core to 1.1.0\. Release notes: [C++ SDK 1.1.0](../../../cxx-sdk/current/project-docs/sdk-release-notes.md#version-1-1-0-01-june-2025).
-
 ## [](#ruby-sdk-3-5-releases)Ruby SDK 3.5 Releases
 
 ### [](#version-3-5-7-31-march-2025)Version 3.5.7 (31 March 2025)
@@ -297,7 +80,7 @@ gem install couchbase -v 3.5.7
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.7/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.6...3.5.7) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.7)
 
-#### [](#download-links-6)Download Links
+#### [](#download-links)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -309,7 +92,7 @@ gem install couchbase -v 3.5.7
 | macOS x86\_64        | [couchbase-3.5.7-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.7/couchbase-3.5.7-x86%5F64-darwin.gem)         |
 | macOS arm64          | [couchbase-3.5.7-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.7/couchbase-3.5.7-arm64-darwin.gem)              |
 
-#### [](#fixes-2)Fixes
+#### [](#fixes)Fixes
 
 * [RCBC-514](https://issues.couchbase.com/browse/RCBC-514): Added support for Ruby 3.4 and Linux/arm64 ([#170](https://github.com/couchbase/couchbase-ruby-client/pull/)).
 * [RCBC-515](https://issues.couchbase.com/browse/RCBC-515): Enforce `CMAKE_POLICY_VERSION_MINIMUM` to be `3.5` for `snappy` and `cmake` `4.x` ([#172](https://github.com/couchbase/couchbase-ruby-client/pull/172)).
@@ -322,7 +105,7 @@ gem install couchbase -v 3.5.6
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.6/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.5...3.5.6) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.6)
 
-#### [](#download-links-7)Download Links
+#### [](#download-links-2)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -333,7 +116,7 @@ gem install couchbase -v 3.5.6
 | macOS x86\_64        | [couchbase-3.5.6-x86\_64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.6/couchbase-3.5.6-x86%5F64-darwin.gem)         |
 | macOS arm64          | [couchbase-3.5.6-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.6/couchbase-3.5.6-arm64-darwin.gem)              |
 
-#### [](#fixes-3)Fixes
+#### [](#fixes-2)Fixes
 
 * [RCBC-512](https://issues.couchbase.com/browse/RCBC-512): Invoke fork hooks to protect SDK internal state ([#165](https://github.com/couchbase/couchbase-ruby-client/pull/156)).
 * Updated core to 1.0.6\. Release notes: [C++ SDK 1.0.6](../../../cxx-sdk/current/project-docs/sdk-release-notes.md#version-1-0-6-12-march-2025).
@@ -346,7 +129,7 @@ gem install couchbase -v 3.5.5
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.5/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.4...3.5.5) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.5)
 
-#### [](#download-links-8)Download Links
+#### [](#download-links-3)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -357,7 +140,7 @@ gem install couchbase -v 3.5.5
 | macOS x86\_64        | [couchbase-3.5.5-x86\_64-darwin-20.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-x86%5F64-darwin.gem)      |
 | macOS arm64          | [couchbase-3.5.5-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-arm64-darwin.gem)              |
 
-#### [](#fixes-4)Fixes
+#### [](#fixes-3)Fixes
 
 * [RCBC-487](https://issues.couchbase.com/browse/RCBC-487): New APIs added to allow getting KV documents from a preferred server group. This feature allows the implementation of network optimization when traffic cost between server groups is higher than in the local group. In this case the application might select preferred server group in the connection options, and later opt-in for local operations during replica reads ([#163](https://github.com/couchbase/couchbase-ruby-client/pull/163)).
 * [RCBC-504](https://issues.couchbase.com/browse/RCBC-504): Updated core and version generation ([#162](https://github.com/couchbase/couchbase-ruby-client/pull/162)).
@@ -371,7 +154,7 @@ gem install couchbase -v 3.5.4
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.4/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.3...3.5.4) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.4)
 
-#### [](#download-links-9)Download Links
+#### [](#download-links-4)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -382,7 +165,7 @@ gem install couchbase -v 3.5.4
 | macOS x86\_64        | [couchbase-3.5.4-x86\_64-darwin-20.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86%5F64-darwin.gem)      |
 | macOS arm64          | [couchbase-3.5.4-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-arm64-darwin.gem)              |
 
-#### [](#fixes-5)Fixes
+#### [](#fixes-4)Fixes
 
 * Updated core to 1.0.3 ([#161](https://github.com/couchbase/couchbase-ruby-client/pull/161)). Release notes: [C++ SDK 1.0.3](../../../cxx-sdk/current/project-docs/sdk-release-notes.md#version-1-0-3-22-october-2024).
 * Added CI scripts for Rocky Linux ([#159](https://github.com/couchbase/couchbase-ruby-client/pull/159)).
@@ -395,7 +178,7 @@ gem install couchbase -v 3.5.3
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.3/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.2...3.5.3) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.3)
 
-#### [](#download-links-10)Download Links
+#### [](#download-links-5)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -406,7 +189,7 @@ gem install couchbase -v 3.5.3
 | macOS x86\_64        | [couchbase-3.5.3-x86\_64-darwin-20.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.3/couchbase-3.5.3-x86%5F64-darwin.gem)      |
 | macOS arm64          | [couchbase-3.5.3-arm64-darwin.gem](https://packages.couchbase.com/clients/ruby/sdk-3.5.3/couchbase-3.5.3-arm64-darwin.gem)              |
 
-#### [](#fixes-6)Fixes
+#### [](#fixes-5)Fixes
 
 * [RCBC-496](https://issues.couchbase.com/browse/RCBC-496): Removed `googletest` from release package ([#154](https://github.com/couchbase/couchbase-ruby-client/pull/154)).
 * Updated core to 1.0.1 ([#157](https://github.com/couchbase/couchbase-ruby-client/pull/157)). Release notes: [C++ SDK 1.0.1](../../../cxx-sdk/current/project-docs/sdk-release-notes.md#version-1-0-1-22-august-2024).
@@ -419,7 +202,7 @@ gem install couchbase -v 3.5.2
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.2/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.1...3.5.2) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.2)
 
-#### [](#download-links-11)Download Links
+#### [](#download-links-6)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -433,7 +216,7 @@ gem install couchbase -v 3.5.2
 
 * [RCBC-489](https://issues.couchbase.com/browse/RCBC-489): Support added for base64 encoded vector types ([#146](https://github.com/couchbase/couchbase-ruby-client/pull/146)).
 
-#### [](#fixes-7)Fixes
+#### [](#fixes-6)Fixes
 
 * [RCBC-490](https://issues.couchbase.com/browse/RCBC-490), [RCBC-492](https://issues.couchbase.com/browse/RCBC-492): Raise `Error::InvalidArgument` for invalid search queries ([#145](https://github.com/couchbase/couchbase-ruby-client/pull/145), [#147](https://github.com/couchbase/couchbase-ruby-client/pull/147), [#148](https://github.com/couchbase/couchbase-ruby-client/pull/148)).
 * Updated core to 1.0.0 ([#152](https://github.com/couchbase/couchbase-ruby-client/pull/152)). Release notes: [C++ SDK 1.0.0](https://docs.couchbase.com/cxx-sdk/current/project-docs/sdk-release-notes.html#version-1-0-0-26-june-2024).
@@ -446,7 +229,7 @@ gem install couchbase -v 3.5.1
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.1/index.html) | [Full Changelog](https://github.com/couchbase/couchbase-ruby-client/compare/3.5.0...3.5.1) | [Rubygems](https://rubygems.org/gems/couchbase/versions/3.5.1)
 
-#### [](#download-links-12)Download Links
+#### [](#download-links-7)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -472,7 +255,7 @@ gem install couchbase -v 3.5.1
 * [CXXCBC-489](https://issues.couchbase.com/browse/CXXCBC-489): Added support for scoped eventing functions ([#548](https://github.com/couchbaselabs/couchbase-cxx-client/pull/548), [#554](https://github.com/couchbaselabs/couchbase-cxx-client/pull/554)).
 * [CXXCBC-470](https://issues.couchbase.com/browse/CXXCBC-470): Distinguish between 'unset' and 'off' `query_profile` ([#551](https://github.com/couchbaselabs/couchbase-cxx-client/pull/551)).
 
-##### [](#fixes-8)Fixes
+##### [](#fixes-7)Fixes
 
 * [CXXCBC-487](https://issues.couchbase.com/browse/CXXCBC-487): Added logic during bootstrap to check if alternate addressing is being used ([#545](https://github.com/couchbaselabs/couchbase-cxx-client/pull/545)).
 * [CXXCBC-503](https://issues.couchbase.com/browse/CXXCBC-503): Added logic to ignore configuration if it contains an empty vBucket map ([#556](https://github.com/couchbaselabs/couchbase-cxx-client/pull/556), [#558](https://github.com/couchbaselabs/couchbase-cxx-client/pull/558)).
@@ -585,7 +368,7 @@ Fixes
 * [CXXCBC-387](https://issues.couchbase.com/browse/CXXCBC-387): Optimising tags for `noop_tracer` and cache formatted `mbcp_session` endpoints ([#461](https://github.com/couchbaselabs/couchbase-cxx-client/pull/461), [#462](https://github.com/couchbaselabs/couchbase-cxx-client/pull/462), [#464](https://github.com/couchbaselabs/couchbase-cxx-client/pull/464))..
 * Added more information to diagnose timeouts on NMV responses ([#475](https://github.com/couchbaselabs/couchbase-cxx-client/pull/475)).
 
-#### [](#download-links-13)Download Links
+#### [](#download-links-8)Download Links
 
 | Platform             | File                                                                                                                                    |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -620,7 +403,7 @@ gem install couchbase -v 3.4.5
 * [CXXCBC-119](https://issues.couchbase.com/browse/CXXCBC-119): Return booleans for subdocument 'exists' operation, instead of error code ([#444](https://github.com/couchbaselabs/couchbase-cxx-client/pull/444), [#452](https://github.com/couchbaselabs/couchbase-cxx-client/pull/452)).
 * Detect `collection_not_found` error in `update_collection` response ([#450](https://github.com/couchbaselabs/couchbase-cxx-client/pull/450)).
 
-#### [](#download-links-14)Download Links
+#### [](#download-links-9)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -669,7 +452,7 @@ Couchbase::Backend.enable_protocol_logger_to_save_network_traffic_to_file("/tmp/
 ```
 * [CXXCBC-350](https://issues.couchbase.com/browse/CXXCBC-350): Collection ID was resolved on a per-request basis — which could result in situations where results from a single scan can originate from more than one collection. This could happen if a collection was dropped and then immediately recreated with the same name. We now resolve collection ID before performing any scan operations ([#433](https://github.com/couchbaselabs/couchbase-cxx-client/pull/433)).
 
-#### [](#download-links-15)Download Links
+#### [](#download-links-10)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -720,7 +503,7 @@ Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /mozilla/}
 ```
 * Introduced connection string option `dump_configuration` for debugging ([#398](https://github.com/couchbaselabs/couchbase-cxx-client/pull/398)). It logs cluster configuration at trace level.
 
-#### [](#download-links-16)Download Links
+#### [](#download-links-11)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -758,7 +541,7 @@ gem install couchbase -v 3.4.2
 * [CXXCBC-31](https://issues.couchbase.com/browse/CXXCBC-31): Allow the use of schemaless connection strings (e.g. `"cb1.example.com,cb2.example.com"`) ([#394](https://github.com/couchbaselabs/couchbase-cxx-client/pull/395)).
 * [CXXCBC-318](https://issues.couchbase.com/browse/CXXCBC-318): Always try TCP if UDP fails in DNS-SRV resolver ([#390](https://github.com/couchbaselabs/couchbase-cxx-client/pull/390)).
 
-#### [](#download-links-17)Download Links
+#### [](#download-links-12)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -795,7 +578,7 @@ gem install couchbase -v 3.4.1
 * [CXXCBC-144](https://issues.couchbase.com/browse/CXXCBC-144): Search query on collections no longer requires you to pass in the scope name — it is inferred from the index ([#379](https://github.com/couchbaselabs/couchbase-cxx-client/pull/379)).
 * [CXXCBC-145](https://issues.couchbase.com/browse/CXXCBC-145): Search query request, raw option added ([#380](https://github.com/couchbaselabs/couchbase-cxx-client/pull/380)).
 
-#### [](#download-links-18)Download Links
+#### [](#download-links-13)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -918,7 +701,7 @@ gem install couchbase -v 3.4.0
 * [CXXCBC-176](https://issues.couchbase.com/browse/CXXCBC-176): ignore 'is\_primary' for named primary indexes when dropping ([#202](https://github.com/couchbaselabs/couchbase-cxx-client/pull/202))
 * Return subdocument error context from future-based subdoc methods ([#258](https://github.com/couchbaselabs/couchbase-cxx-client/pull/258))
 
-#### [](#download-links-19)Download Links
+#### [](#download-links-14)Download Links
 
 | Platform             | Ruby ABI | File                                                                                                                                                |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
