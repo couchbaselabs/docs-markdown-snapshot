@@ -2,7 +2,7 @@
 title: Configuring Google Cloud Storage (GCS)
 description: You can set up Couchbase Enterprise Analytics to use Google Cloud
   Storage as its storage solution.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -30,7 +30,7 @@ antora:
 Use the Couchbase UI or REST API to configure Enterprise Analytics to use Google Cloud Storage as its object storage.
 
 > [!NOTE]
-> You can only configure the blob storage settings during the initial cluster setup.
+> The storage scheme and the number of storage partitions can only be configured during the initial cluster setup, and cannot be changed afterwards. The SSL verification setting can be modified after setup, and the bucket and path prefix can be changed to another location that already holds the cluster's data: see [Blob Storage Settings](../manage-settings/general-settings.md#blob-storage-settings).
 
 ### [](#set-up-a-cluster-using-the-ui)Set Up a Cluster Using the UI
 

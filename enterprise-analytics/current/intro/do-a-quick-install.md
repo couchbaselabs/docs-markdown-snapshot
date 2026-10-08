@@ -3,7 +3,7 @@ title: Do a Quick Install
 description: First-time users can get Enterprise Analytics running simply and
   rapidly by using Docker. Once you install Docker, you can use a single command
   to download and install Enterprise Analytics on your computer.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -55,7 +55,7 @@ This starts the S3Mock container with a pre-created persistent bucket named `clo
 
 docker run -d --name ea --network ea \
   -p 8091:8091 -p 8095:8095 \
-  couchbase/enterprise-analytics:2.2.0
+  couchbase/enterprise-analytics:2.2.1
 
 This exposes the Enterprise Analytics UI and REST APIs on ports `8091` and `8095` respectively.
 

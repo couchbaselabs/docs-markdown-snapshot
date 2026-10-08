@@ -2,7 +2,7 @@
 title: Install Enterprise Analytics Using Docker
 description: Enterprise Analytics can be installed using Couchbase-provided
   images from Docker Hub.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -101,7 +101,7 @@ $ docker run -d --name ea1 couchbase/enterprise-analytics
 $ docker run -d --name ea2 couchbase/enterprise-analytics  
 ```  
 ```console  
-$ docker run -d --name ea3 -p 8091-8096:8091-8096 -p 11210-11211:11210-11211 couchbase/enterprise-analytics  
+$ docker run -d --name ea3 -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
 ```  
 After you run the above commands, Docker downloads and runs 3 instances (`ea1`, `ea2`, `ea3`) of the latest [official Enterprise Analytics container image](https://hub.docker.com/%5F/couchbase/) on your host computer. If a traditional installation of Enterprise Analytics is running locally on the host computer, the port mappings specified using the `-p` option might fail. Make sure that you stop any local instance of Enterprise Analytics before running these commands.  
 \+ For instructions on starting or stopping Enterprise Analytics, see [Start and Stop Enterprise Analytics](start-stop-cb-enterprise-analytics.md).  
@@ -191,12 +191,12 @@ To set up Docker on the host computer,see Docker's [installation instructions](h
 2. Install 2 instances of the official Enterprise Analytics container image.  
 Make sure to run each of the following commands:  
 ```console  
-$ docker run -d --name ea -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
+$ docker run -d --name ea1 -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
 ```  
 ```console  
-$ docker run -d --name ea -p 8091:8091 -p 8095:8095 -p 18091:18091 -p 18095:18095 -p 11207:11207 -p 11210:11210 couchbase/enterprise-analytics  
+$ docker run -d --name ea2 -p 9091:8091 -p 9095:8095 -p 19091:18091 -p 19095:18095 -p 12207:11207 -p 12210:11210 couchbase/enterprise-analytics  
 ```  
-After you run the above command, Docker downloads and runs a 2 instances (`ea1` and `ea2`) of the latest [official Enterprise Analytics container image](https://hub.docker.com/r/couchbase/enterprise-analytics) on your host computer. If a traditional installation of Enterprise Analytics is running locally on the host computer, the port mappings specified using the `-p` option may fail. Make sure that you stop any local instance of Enterprise Analytics before running these commands.  
+After you run the above commands, Docker downloads and runs 2 instances (`ea1` and `ea2`) of the latest [official Enterprise Analytics container image](https://hub.docker.com/r/couchbase/enterprise-analytics) on your host computer. Because both containers run on the same host, `ea2` maps its ports to different host ports so that they do not clash with `ea1`. If a traditional installation of Enterprise Analytics is running locally on the host computer, the port mappings specified using the `-p` option may fail. Make sure that you stop any local instance of Enterprise Analytics before running these commands.  
 For instructions on starting or stopping Enterprise Analytics, see [Start and Stop Enterprise Analytics](start-stop-cb-enterprise-analytics.md).
 3. You can check the Docker logs to verify that each container has started:  
 ```console  

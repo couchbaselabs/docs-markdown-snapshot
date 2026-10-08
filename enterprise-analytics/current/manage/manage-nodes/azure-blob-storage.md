@@ -2,7 +2,7 @@
 title: Configuring Azure Blob Storage
 description: You can set up Couchbase Enterprise Analytics to use Azure Blob
   Storage as its storage solution.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -30,7 +30,7 @@ antora:
 Use the Couchbase CLI, UI or REST API to configure each Enterprise Analytics node to use the Azure Blob Storage as its object storage.
 
 > [!NOTE]
-> You can only configure the blob storage settings during the initial cluster setup.
+> The storage scheme and the number of storage partitions can only be configured during the initial cluster setup, and cannot be changed afterwards. The endpoint and credential settings can be modified after setup, and the container and path prefix can be changed to another location that already holds the cluster's data: see [Blob Storage Settings](../manage-settings/general-settings.md#blob-storage-settings).
 
 ### [](#set-up-a-cluster-using-the-ui)Set Up a Cluster Using the UI
 

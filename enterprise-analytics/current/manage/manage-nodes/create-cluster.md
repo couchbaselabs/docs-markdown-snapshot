@@ -3,7 +3,7 @@ title: Create a Cluster
 description: A new Enterprise Analytics node can be <em>provisioned</em>, to
   establish its Full Administrator credentials, its service-assignments, and its
   memory quotas. At this point, it becomes a <em>cluster</em> of one node.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -87,22 +87,29 @@ The displayed fields are:
 
 The total RAM available is displayed below this figure, at the center. If your memory allocation is excessive, a notification warns you, and you must lessen your allocation.
 
-* **Blob Storage Configuration**: This category allows you to specify the path and region to the directory in which blob data is stored.
+* **Blob Storage Configuration**: This category allows you to specify the object store in which blob data is stored. Which fields are displayed depends on the storage scheme you select. **Use Path-Style Addressing**, **Disable SSL Verification**, **Override Checksum Behavior** and **Storage Partitions** are under **Advanced**, which you click to expand.
 
-  * **Blob Storage Scheme**: Select the storage scheme to be used for blob data. The options are **AWS S3** (the default) and [S3-Compatible Storage](object-storage.md).
-  * **Bucket name**: Enter the name of the bucket to be used for blob data.
-  * **Bucket path prefix**: Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
-  * **Bucket Region**: Enter the region to be used for blob data.
-  * **Use Anonymous Authentication**: When enabled, you can interact with the blob storage without requiring explicit credentials.
-  * **Use Path Style Addressing**: When enabled, the S3-compatible storage uses path-style URLs for accessing storage.
-  * **Disable SSL Verification**: When enabled, SSL certificate verification is disabled for S3-compatible storage.
+  * **Storage Scheme**: Select the storage scheme to be used for blob data. The options are [AWS S3](aws-s3.md) (the default), [S3-Compatible Storage](s3-compatible-storage.md), [Azure Blob Storage](azure-blob-storage.md), and [Google Cloud Storage (GCS)](google-cloud-storage.md).
+  * **Storage Endpoint** / **Blob Storage Endpoint**: Enter the endpoint URL of the storage service. Displayed for S3-compatible storage and Azure Blob Storage.
+  * **Bucket Name** / **Container Name**: Enter the name of the bucket, or of the container for Azure Blob Storage, to be used for blob data.
+  * **Azure Client ID**: Enter the client ID to use with a user-assigned managed identity. Displayed for Azure Blob Storage.
+  * **Bucket Region**: Enter the region to be used for blob data. Displayed for AWS S3 and S3-compatible storage.
+  * **Bucket Path Prefix** / **Container Path Prefix**: Enter the path prefix to be used for blob data. This is the path to the directory in which blob data is stored.
+  * **Storage Endpoint Certificate(s)**: Provide the certificate chain used to verify the storage endpoint. Displayed for S3-compatible storage.
+  * **Authentication**: Select how Enterprise Analytics authenticates to the object store: **Standard Credential Chain**, **Static Credentials** (which requires an **Access Key ID** and **Secret Access Key**), or **Anonymous** to interact with the storage without explicit credentials. Displayed for AWS S3 and S3-compatible storage.
+  * **Use Path-Style Addressing**: When enabled, the S3-compatible storage uses path-style URLs for accessing storage. Displayed for S3-compatible storage.
+  * **Disable SSL Verification**: When enabled, SSL certificate verification is disabled for the storage endpoint.
+  * **Override Checksum Behavior**: When enabled, select whether checksums are sent **When Required** or **When Supported**. Use this for S3-compatible stores that do not accept the default behavior. Displayed for S3-compatible storage.
+  * **Storage Partitions**: Enter the number of partitions used to store data in the object store. The default is 128, and the value can be from 1 to 1024.
 * **Local Storage Configuration**: This category allows you to specify the path to the directory in which local data is stored.
 
   * **Metadata Disk Path**: Enter the path to the directory in which metadata is stored. This is the directory in which Enterprise Analytics stores its metadata, such as cluster configuration and user data.
   * **Cache Disk Path(s)**: Enter the path to the directory in which cache data is stored.
 
 > [!NOTE]
-> Path(s) cannot be changed after setup.
+> The **Storage Scheme** and **Storage Partitions** settings, marked with an asterisk in the Web Console, are fixed once the cluster is initialized and cannot be changed afterwards. The remaining blob storage settings can be modified later, although the bucket, region and path prefix can only be changed to a location that already holds the cluster's data. See [Blob Storage Settings](../manage-settings/general-settings.md#blob-storage-settings).
+> 
+> Local storage path(s) also cannot be changed after setup.
 
 When you have finished entering your configuration-details, click on the **Save & Finish** button, at the lower right. This configures the server accordingly, and brings up the Enterprise Analytics Web Console **Dashboard**, for the first time.
 

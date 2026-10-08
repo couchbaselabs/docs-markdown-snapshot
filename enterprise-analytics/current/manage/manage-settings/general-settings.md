@@ -3,7 +3,7 @@ title: General Settings
 description: <em>General</em> settings allow configuration of <em>cluster
   name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
   availability</em> for the cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -66,6 +66,36 @@ The **Node Availability** panel also contains a **For Ephemeral Buckets** option
 #### [](#auto-failover-and-durability)Auto-Failover and Durability
 
 Enterprise Analytics provides _durability_, which ensures the greatest likelihood of data-writes surviving unexpected anomalies, such as node-outages. The auto-failover maximum should be established to support guarantees of durability. See [Durability](../../../../server/current/learn/data/durability.md), for information.
+
+### [](#blob-storage-settings)Blob Storage Settings
+
+The **Blob Storage Settings** panel displays the object storage configuration that was supplied when the cluster was initialized, and allows most of it to be changed.
+
+The **Storage Scheme** is displayed for reference only and cannot be modified, because it is fixed when the cluster is initialized. The number of **Storage Partitions** is likewise fixed at initialization, and is displayed read-only under **Advanced**. For details of the initial configuration, see [Create a Cluster](../manage-nodes/create-cluster.md#configure-couchbase-server).
+
+The remaining settings can be modified by Full and Cluster Administrators. Which of them are displayed depends on the storage scheme the cluster was initialized with. Some are under **Advanced**, which you click to expand.
+
+The connection and credential settings can be changed freely:
+
+* **Storage Endpoint** / **Blob Storage Endpoint** — S3-compatible storage and Azure Blob Storage only
+* **Azure Client ID** — Azure Blob Storage only
+* **Storage Endpoint Certificate(s)** — S3-compatible storage only
+* **Authentication** — **Standard Credential Chain**, **Static Credentials** (with **Access Key ID** and **Secret Access Key**), or **Anonymous**; AWS S3 and S3-compatible storage only
+* **Use Path-Style Addressing** (under **Advanced**) — S3-compatible storage only
+* **Disable SSL Verification** (under **Advanced**)
+* **Override Checksum Behavior**, and whether checksums are sent **When Required** or **When Supported** (under **Advanced**) — S3-compatible storage only
+
+The settings that identify where the data is held can also be changed, but only to a location that already holds the data of the initialized cluster:
+
+* **Bucket Name** / **Container Name**
+* **Bucket Region** — AWS S3 and S3-compatible storage only
+* **Bucket Path Prefix** / **Container Path Prefix**
+
+Use these to point the cluster at its own data after it has been moved or renamed, not to switch the cluster to a different, empty location. Enterprise Analytics validates the location when the settings are saved, and rejects the change if it does not find the cluster's data there.
+
+Changes take effect when you click **Save**, as described in [Saving Settings](#saving-settings).
+
+The equivalent CLI and REST API operations are [couchbase-cli setting-enterprise-analytics](../../cli/couchbase-cli-setting-enterprise-analytics.md) and the `/settings/analytics` endpoint.
 
 ### [](#rebalance-settings)Rebalance Settings
 

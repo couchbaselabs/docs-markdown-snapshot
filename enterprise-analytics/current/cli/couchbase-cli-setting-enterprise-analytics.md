@@ -1,7 +1,7 @@
 ---
 title: setting-enterprise-analytics
 description: Manage Enterprise Analytics service settings
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Enterprise Analytics
@@ -30,6 +30,10 @@ _couchbase-cli setting-enterprise-analytics_ [--cluster <url>] [--username <user
 ## [](#description)DESCRIPTION
 
 Manage Enterprise Analytics service settings
+
+Most of these settings can be changed at any time. The exceptions are `--scheme` and `--partitions`, which are fixed when the cluster is initialized; attempting to change either afterwards fails with the error `This value cannot be modified once the cluster has been initialized`.
+
+The settings that identify where the data is held — `--bucket`, `--prefix` and `--region` — can be changed after initialization, but only to a location that already holds the data of the initialized cluster. Enterprise Analytics validates the location before applying the change and rejects it if the cluster's data is not found there.
 
 ## [](#options)OPTIONS
 
@@ -77,15 +81,15 @@ Set Enterprise Analytics settings.
 
 \--partitions <num>
 
-The number of storage partitions (positive integer, lower than the configured maximum)
+The number of storage partitions (positive integer, lower than the configured maximum). Can only be set during initial cluster setup.
 
 \--scheme <scheme>
 
-The BLOB storage scheme (e.g. s3)
+The BLOB storage scheme. One of `s3` (AWS S3 or S3-compatible storage), `azblob` (Azure Blob Storage), or `gs` (Google Cloud Storage). Can only be set during initial cluster setup.
 
 \--bucket <bucket>
 
-The BLOB storage bucket
+The BLOB storage bucket, or container for Azure Blob Storage
 
 \--prefix <prefix>
 
@@ -93,7 +97,7 @@ The BLOB storage prefix
 
 \--region <region>
 
-The BLOB storage region
+The BLOB storage region. Applies only when `--scheme` is `s3`.
 
 \--endpoint <endpoint>
 
@@ -101,7 +105,7 @@ The BLOB storage endpoint
 
 \--anonymous-auth <0|1>
 
-Allow BLOB storage anonymous auth
+Allow BLOB storage anonymous auth. Not supported when `--scheme` is `azblob`.
 
 \--path-style-addressing <0|1>
 
@@ -154,10 +158,10 @@ To retrieve the Enterprise Analytics service settings:
 $ couchbase-cli setting-enterprise-analytics -c 127.0.01:8091 -u Administrator \
  -p password --get
 
-To set the BLOB storage scheme to s3:
+To change the BLOB storage endpoint after the cluster has been initialized:
 
 $ couchbase-cli setting-enterprise-analytics -c 127.0.01:8091 -u Administrator \
- -p password --set --scheme s3
+ -p password --set --endpoint https://my-object-storage:18082
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

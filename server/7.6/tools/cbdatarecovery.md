@@ -1,6 +1,6 @@
 ---
 title: cbdatarecovery
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-08T04:28:10.357Z
 meta:
   component:
     title: Couchbase Server
@@ -29,11 +29,12 @@ cbdatarecovery [--cluster <connection_string>] [--cacert <path>]
                [--replace-ttl-with <timestamp>]
                [--include-data <collection_strings>]
                [--exclude-data <collection_strings>]
+               [--auto-create-collections]
                [--vbucket-state <state>] [--log-file <path>]
                [--threads <threads>] [--force-updates]
-               [--create-missing-collections] [--no-ssl-verify]
-               [--skip-wal-recovery] [--verbose] [--no-progress-bar]
-               [--start-seqno <seqno> [--end-seqno <seqno>] [--version]
+               [--no-ssl-verify] [--skip-wal-recovery] [--verbose]
+               [--no-progress-bar] [--start-seqno <seqno>]
+               [--end-seqno <seqno>] [--version]
 
 ## [](#description)DESCRIPTION
 
@@ -113,6 +114,10 @@ Only transfer data included in this comma list of collection strings. Note that 
 
 Don't transfer the data for the buckets/scopes/collections in this comma separated list of collection strings. Note that this flag can't be specified at the same time as `--include-data`.
 
+\--auto-create-collections
+
+Create scopes/collections on the target cluster based on the list of scopes/collections found in the data files we are recovering.
+
 \--vbucket-state <state>
 
 Only transfer vBuckets which are in the provided stated. Accepts the values `active`, `replica` or `dead`.
@@ -124,10 +129,6 @@ Specifies the number of concurrent clients to use when transferring data. Fewer 
 \--force-updates
 
 Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer. By default updates are not forced and all updates use Couchbase's conflict resolution mechanism to ensure that if newer data exists on the cluster that is not overwritten by older restore data.
-
-\--create-missing-collections
-
-Automatically create any scopes/collections which exist in the data directory on disk but not in the remote cluster. This behavior is disabled by default.
 
 \--no-ssl-verify
 
