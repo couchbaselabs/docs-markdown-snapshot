@@ -1,6 +1,6 @@
 ---
 title: Edge Server Public REST API
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-10T04:31:31.292Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -45,10 +45,12 @@ antora:
   * postRun an ad-hoc query
   * getRun a pre-defined query
   * postRun a pre-defined query
+* Session
+  * postCreate a one-time session
 
 [API docs by Redocly](https://redocly.com/redoc/)
 
-# Edge Server (1.0)
+# Edge Server (1.1)
 
 Download OpenAPI specification:
 
@@ -1727,4 +1729,78 @@ Copy
   * "faa": "MPI",
   * "tz": "America/Los_Angeles"  
 }
+}`
+
+## [](#tag/Session)Session
+
+A browser-based application authenticates a replication connection with a one-time session token.
+
+## [](#tag/Session/operation/post%5Fdb-%5Fsession-)Create a one-time session 
+
+Authenticates the caller and returns a single-use session token that is valid for five minutes.
+
+### Scope and lifetime
+
+* `one_time=true` is **required**. Edge Server does not issue long-lived or reusable session tokens.
+* The token is **single-use**. It is consumed on first use and cannot be presented again.
+* The token expires after **five minutes** if it is not used.
+* The token is **scoped to one database**. A token issued for one database is rejected when presented for another. You must create a separate session for each database you replicate.
+
+A session token has the same permissions as the user who created it. It is refused if the user has no read or write permission on any collection in the database.
+
+##### path Parameters
+
+| dbrequired | string Example: db1The name of the database. A keyspace with a scope or collection is not accepted. |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+
+##### query Parameters
+
+| one\_timerequired | boolean Value: true Example: one\_time=trueSets the session to only be valid for a single authentication. This session will expire in 5 minutes if not used. Must be true. Edge Server issues one-time session tokens only. |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**200** 
+
+Session created successfully
+
+**400** 
+
+The `one_time` query parameter was missing or not `true`. Edge Server issues one-time session tokens only.
+
+**401** 
+
+Authentication is required, or the supplied credentials are invalid.
+
+**403** 
+
+The authenticated user has no read or write permission on any collection in this database.
+
+**404** 
+
+Resource could not be found
+
+post/{db}/\_session
+
+Public API
+
+{protocol}://{hostname}:59840/{db}/\_session
+
+### Response samples 
+
+* 200
+* 400
+* 401
+* 403
+* 404
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "ok": true,
+* "one_time_session_id": "3f9c2a7b1e8d4c6f9a0b5e2d7c1f8a4b"
 }`
