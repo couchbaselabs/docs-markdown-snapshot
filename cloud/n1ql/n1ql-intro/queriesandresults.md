@@ -2,7 +2,7 @@
 title: Query Concepts
 description: An overview of common concepts that you will need to understand in
   order to use the Query service.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-13T04:35:53.698Z
 meta:
   component:
     title: Capella Operational
@@ -121,7 +121,7 @@ For compatibility with legacy versions of Couchbase Server, a keyspace reference
 
 ## [](#query-context)Query Context
 
-The query context specifies the the namespace, bucket, and scope used to resolve partial keyspace references.
+The query context specifies the namespace, bucket, and scope used to resolve partial keyspace references.
 
 When the query context is set, you can refer to a collection using just the collection name, without having to enter the keyspace path. When the query context is not set, it defaults to the `default` namespace, with no bucket, scope, or collection.
 

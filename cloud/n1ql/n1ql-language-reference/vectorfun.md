@@ -1,7 +1,7 @@
 ---
 title: Vector Functions
 description: Vector functions enable you to work with vector values.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-13T04:35:53.698Z
 meta:
   component:
     title: Capella Operational
@@ -82,9 +82,9 @@ Returns a numeric value representing the approximate vector distance.
 
 To try the examples in this section, you must do the following:
 
-* Install the `rgb` and `rgb-questions` collections from the supplied vector sample, as described in [Prerequisites](../../vector-index/hyperscale-vector-index.md#prerequisites).
-* Create a Composite Vector index in the `rbg` collection on the field named `colorvect_l2`, as described in [CREATE INDEX Example 6](createindex.md#ex-create-rgb-idx).
-* Create a Hyperscale Vector index in the `rbg` collection on the field named `embedding-vector-dot`, as described in [CREATE VECTOR INDEX Example 1](createvectorindex.md#ex-create-rgb-idx).
+1. Install the `rgb` and `rgb-questions` collections from the supplied vector sample, as described in [Prerequisites](../../vector-index/hyperscale-vector-index.md#prerequisites).
+2. Create a Composite Vector index in the `rbg` collection on the field named `colorvect_l2`, as described in [CREATE INDEX Example 6](createindex.md#ex-create-rgb-idx).
+3. Create a Hyperscale Vector index in the `rbg` collection on the field named `embedding-vector-dot`, as described in [CREATE VECTOR INDEX Example 1](createvectorindex.md#ex-create-rgb-idx).
 
 APPROX\_VECTOR\_DISTANCE() Example 1
 
@@ -222,7 +222,7 @@ WITH question_vec AS (
 colors AS (
     SELECT b.color
     FROM `color-vector-sample`.`color`.`rgb` AS b
-    ORDER BY VECTOR_DISTANCE(b.embedding_vector_dot, question_vec[0], "l2") (2)
+    ORDER BY APPROX_VECTOR_DISTANCE(b.embedding_vector_dot, question_vec[0], "l2") (2)
     LIMIT 10 )
 SELECT RAW colors;
 ```
@@ -238,34 +238,34 @@ Results
 ```json
 [
     [{
-            "color": "deep sky blue"
-        },
-        {
-            "color": "sky blue"
-        },
-        {
-            "color": "light sky blue"
-        },
-        {
             "color": "pale turquoise"
-        },
-        {
-            "color": "blue"
         },
         {
             "color": "slate blue"
         },
         {
-            "color": "light cyan"
-        },
-        {
             "color": "cadet blue"
         },
         {
-            "color": "light blue"
+            "color": "teal"
         },
         {
-            "color": "medium blue"
+            "color": "snow"
+        },
+        {
+            "color": "medium turquoise"
+        },
+        {
+            "color": "slate gray"
+        },
+        {
+            "color": "grey"
+        },
+        {
+            "color": "medium slate blue"
+        },
+        {
+            "color": "linen"
         }
     ]
 ]
