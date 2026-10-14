@@ -2,7 +2,7 @@
 title: Edge Server Configuration Schema
 description: Full reference for all Couchbase Edge Server configuration
   properties and their default values.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-14T04:27:20.555Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -29,6 +29,11 @@ For an overview of authentication configuration, see [Authentication](authentica
 
 {
    [$schema](#$schema): "https://packages.couchbase.com/couchbase-edge-server/config_schema.json",
+   [cors](#cors): {
+      [headers](#cors-headers): ["string"...],
+      [max_age](#cors-max%5Fage): 5,
+      [origin](#cors-origin): ["string"...]
+   },
    [databases](#databases): {
       [{database_name...}](#databases-{database%5Fname}): {
          [collections](#databases-{database%5Fname}-collections): array,object,
@@ -36,16 +41,25 @@ For an overview of authentication configuration, see [Authentication](authentica
          [enable_adhoc_queries](#databases-{database%5Fname}-enable%5Fadhoc%5Fqueries): false,
          [enable_client_sync](#databases-{database%5Fname}-enable%5Fclient%5Fsync): boolean or string,
          [enable_client_writes](#databases-{database%5Fname}-enable%5Fclient%5Fwrites): false,
+         [enable_user_access_control](#databases-{database%5Fname}-enable%5Fuser%5Faccess%5Fcontrol): false,
          [password](#databases-{database%5Fname}-password): "string",
          [path](#databases-{database%5Fname}-path): "string",
          [placeholder_uuid](#databases-{database%5Fname}-placeholder%5Fuuid): "string",
          [queries](#databases-{database%5Fname}-queries): {
-            [{query...}](#databases-{database%5Fname}-queries-{query}): "string"
+            [{query...}](#databases-{database%5Fname}-queries-{query}): {
+               [allow](#databases-{database%5Fname}-queries-{query}-allow): {
+                  [collections](#databases-{database%5Fname}-queries-{query}-allow-collections): ["string"...]
+               },
+               [statement](#databases-{database%5Fname}-queries-{query}-statement): "string"
+            }
          }
       }
    },
    [enable_anonymous_users](#enable%5Fanonymous%5Fusers): false,
+   [enable_user_access_control](#enable%5Fuser%5Faccess%5Fcontrol): false,
    [https](#https): {
+      [client_cert_organization](#https-client%5Fcert%5Forganization): "string",
+      [client_cert_organization_unit](#https-client%5Fcert%5Forganization%5Funit): "string",
       [client_cert_path](#https-client%5Fcert%5Fpath): "string",
       [tls_cert_path](#https-tls%5Fcert%5Fpath): "string",
       [tls_key_path](#https-tls%5Fkey%5Fpath): "string"
@@ -60,7 +74,7 @@ For an overview of authentication configuration, see [Authentication](authentica
       },
       [console](#logging-console): true,
       [domains](#logging-domains): {
-         [{domain...}](#logging-domains-{domain}): "warning"
+         [{domain...}](#logging-domains-{domain}): "string"
       },
       [file](#logging-file): {
          [dir](#logging-file-dir): "string",
@@ -71,8 +85,9 @@ For an overview of authentication configuration, see [Authentication](authentica
    },
    [replications](#replications): [
       [auth](#replications-auth): {
-         [openid_token](#replications-auth-openid%5Ftoken): "string",
+         [openid_token](#replications-auth-openid%5Ftoken): string or object,
          [password](#replications-auth-password): "string",
+         [reconnect_on_token_change](#replications-auth-reconnect%5Fon%5Ftoken%5Fchange): false,
          [session_cookie](#replications-auth-session%5Fcookie): "string",
          [tls_client_cert](#replications-auth-tls%5Fclient%5Fcert): "string",
          [tls_client_cert_key](#replications-auth-tls%5Fclient%5Fcert%5Fkey): "string",
@@ -119,6 +134,54 @@ https://packages.couchbase.com/couchbase-edge-server/config\_schema.json
 Description
 
 Allows config files to declare they conform to this schema. Otherwise ignored.
+
+#### `cors`
+
+Type
+
+object
+
+Description
+
+Cross-Origin Resource Sharing (CORS) configuration. If present, `origin` and `headers` are required. CORS is disabled by default.
+
+#### `cors.headers`
+
+Type
+
+array
+
+Description
+
+List of HTTP headers that browser clients are allowed to include in requests.
+
+#### `cors.max_age`
+
+Type
+
+integer
+
+Default
+
+5
+
+Description
+
+Duration in seconds that browsers can cache preflight response results.
+
+Sets the value of the `Access-Control-Max-Age` response header.
+
+#### `cors.origin`
+
+Type
+
+array
+
+Description
+
+List of allowed origins.
+
+Use `["*"]` to allow all origins. This is recommended for development only; in production, restrict origins to known client hosts.
 
 #### `databases`
 
@@ -182,6 +245,8 @@ Description
 
 Enables client sync connections. `pull` is read-only, `push` is write-only, `bidirectional` or true enables both. Defaults to `false`, that is, sync is not allowed.
 
+Accepted values: `pull`: clients can only pull (read) from this database. `push`: clients can only push (write) to this database. `bidirectional` or `true`: clients can both push and pull. If omitted or `false`, all client sync is disabled.
+
 #### `databases.{database_name…​}.enable_client_writes`
 
 Type
@@ -193,6 +258,18 @@ Description
 Enables writing to database via PUT / POST / DELETE requests. Lets clients write to the documents via the REST API. It does not affect clients syncing. So it's possible to disallow writes via REST but allow them via push replication, or vice versa.
 
 This does not affect upstream replication or client sync. To prevent clients from writing to the database via sync, `enable_client_sync` must be omitted or set to `pull`.
+
+#### `databases.{database_name…​}.enable_user_access_control`
+
+Type
+
+boolean
+
+Description
+
+Enables per-collection access control for this database.
+
+Overrides the top-level `enable_user_access_control` setting, which applies when this property is omitted. When enabled, each user's `access` rules in the users file are enforced for this database, and users without explicit access to one of its keyspaces receive `403 Forbidden`.
 
 #### `databases.{database_name…​}.password`
 
@@ -238,11 +315,45 @@ SQL++ queries clients can invoke. Keys are query names, values are SQL++.
 
 Type
 
+object
+
+Description
+
+A named query: either a SQL++ `SELECT` query string, or an object containing the query `statement` and optional `allow` access control settings.
+
+Use the object form to restrict which users can run the query when `enable_user_access_control` is enabled. Without an `allow` property, any user with read access to the database can run the query.
+
+#### `databases.{database_name…​}.queries.{query…​}.allow`
+
+Type
+
+object
+
+Description
+
+Access control for this query.
+
+#### `databases.{database_name…​}.queries.{query…​}.allow.collections`
+
+Type
+
+array
+
+Description
+
+Collection patterns, relative to the database. A user needs read access to at least one listed collection to run the query.
+
+Patterns can be `collection`, `scope.collection`, `scope.*`, or `*`.
+
+#### `databases.{database_name…​}.queries.{query…​}.statement`
+
+Type
+
 string
 
 Description
 
-A SQL++ 'SELECT' query.
+A SQL++ `SELECT` query.
 
 #### `enable_anonymous_users`
 
@@ -254,6 +365,18 @@ Description
 
 If true, unauthenticated requests are allowed (guest access).
 
+#### `enable_user_access_control`
+
+Type
+
+boolean
+
+Description
+
+Default per-collection access control setting for all databases.
+
+When enabled, each user's `access` rules in the users file are enforced, and users without explicit access to a keyspace receive `403 Forbidden`. Individual databases can override this setting with their own `enable_user_access_control` property.
+
 #### `https`
 
 Type
@@ -263,6 +386,30 @@ object
 Description
 
 TLS settings. If present, `tls_cert_path` and `tls_key_path` are required.
+
+#### `https.client_cert_organization`
+
+Type
+
+string
+
+Description
+
+Required Organization (O) field of client certificates (mTLS). Optional.
+
+If set, a connecting client's certificate must have this exact Organization (O) subject field, or the connection is rejected. If omitted, the O field is not checked.
+
+#### `https.client_cert_organization_unit`
+
+Type
+
+string
+
+Description
+
+Required Organizational Unit (OU) field of client certificates (mTLS). Optional.
+
+If set, a connecting client's certificate must have this exact Organizational Unit (OU) subject field, or the connection is rejected. If omitted, the OU field is not checked.
 
 #### `https.client_cert_path`
 
@@ -274,7 +421,7 @@ Description
 
 Path of file containing CA cert for authenticating clients (mTLS).
 
-If present, clients must connect using TLS client certificates. Only certs signed by this CA cert will be accepted. The Common Name (CN) field of the client cert will be used as the username for purposes of logging.
+If present, enables mTLS: clients may authenticate using a TLS client certificate. Only certificates signed by this CA cert will be accepted. The Common Name (CN) field of the client cert will be used as the username for logging. mTLS and HTTP Basic auth can be active simultaneously; clients may use either method.
 
 #### `https.tls_cert_path`
 
@@ -384,7 +531,7 @@ true
 
 Description
 
-Whether to log to stdout/stderr.
+Whether to log to stdout/stderr. On/off only; the levels logged are those set by `domains`.
 
 #### `logging.domains`
 
@@ -402,13 +549,11 @@ Type
 
 string
 
-Default
-
-warning
-
 Description
 
-Log level of the domain: `verbose`, `info`, `warning` or `error`
+Minimum level to log for this domain: `debug`, `verbose`, `info`, `warning`, `error` or `none`. Applies to both console and log files.
+
+Defaults vary by domain: `info` for `Server`, `REST`, `Listener`, `Replicate` and `ClientSync`; `warning` for most others. The `debug` level requires a debug build.
 
 #### `logging.file`
 
@@ -478,6 +623,8 @@ Description
 
 Replications to run when the server starts.
 
+An array of replication configuration objects. Each element defines one replication. The properties below (`source`, `target`, `auth`, and so on) belong to each individual array item.
+
 #### `replications.auth`
 
 Type
@@ -492,11 +639,13 @@ Authorization credentials.
 
 Type
 
-string
+string or object
 
 Description
 
-An OpenID Connect token.
+An OpenID Connect token: either an inline JWT string, or an object with a `path` property referencing a file that contains the JWT.
+
+Use the file form, for example `{"path": "/etc/edge-server/token.jwt"}`, to support token rotation. The path can be absolute or relative. The file is read when the replication starts and is monitored for changes.
 
 #### `replications.auth.password`
 
@@ -507,6 +656,18 @@ string
 Description
 
 Password for HTTP Basic auth to remote server. Requires 'user'.
+
+#### `replications.auth.reconnect_on_token_change`
+
+Type
+
+boolean
+
+Description
+
+If true, force a disconnect and reconnect when the JWT token file changes on disk.
+
+Only effective when `openid_token` uses the file form. When `true`, Edge Server proactively disconnects and reconnects with the new token whenever the file changes. When `false`, a log message is emitted and the new token is used the next time the replication starts.
 
 #### `replications.auth.session_cookie`
 

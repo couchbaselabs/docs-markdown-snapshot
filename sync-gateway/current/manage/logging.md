@@ -1,7 +1,7 @@
 ---
 title: Logging
 description: Introducing Couchbase Sync Gateway's logging functionality
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-14T04:27:20.555Z
 meta:
   component:
     title: Sync Gateway
@@ -229,17 +229,19 @@ The log files output from continuous logging are intended **solely** for the use
 > [!TIP]
 > If you require special log handling, for example for centralized logging, then use the [Redirect Console Log](#lbl-log-redirect) feature to create a log file for this purpose from the console output stream.
 
-Sync Gateway produces four separate log files, split by log level. Each log file has its own guaranteed retention period - as shown in [Table 3](#tbl-contlogoutputs)
+Sync Gateway produces six separate log files, split by log level. Each log file has its own guaranteed retention period — as shown in [Table 3](#tbl-contlogoutputs)
 
 You can collect the log files, for analysis by Couchbase Support when diagnosing Sync Gateway issues, using [SGCollect Info](sgcollect-info.md).
 
-__Table 3\. Continuos Logging - Log File Outputs__
-| Log File | Level                                                | Description   | Default enabled | Default max\_age | Minimum max\_age |
-| -------- | ---------------------------------------------------- | ------------- | --------------- | ---------------- | ---------------- |
-| ERROR    | Critical error messages.                             | sg\_error.log | true            | 360 Days         | 180 Days         |
-| WARN     | Something is wrong but SG can still service requests | sg\_warn.log  | true            | 180 Days         | 90 Days          |
-| INFO     | Important diagnostics for support and customers      | sg\_info.log  | true            | 6 Days           | 3 Days           |
-| DEBUG    | Lower level development analysis                     | sg\_debug.log | false           | 2 Days           | 1 Day            |
+__Table 3\. Continuous Logging - Log File Outputs__
+| Level | Description                                                        | Log File      | Default enabled | Default max\_age | Minimum max\_age |
+| ----- | ------------------------------------------------------------------ | ------------- | --------------- | ---------------- | ---------------- |
+| ERROR | Critical error messages.                                           | sg\_error.log | true            | 360 Days         | 180 Days         |
+| WARN  | Something is wrong but SG can still service requests               | sg\_warn.log  | true            | 180 Days         | 90 Days          |
+| INFO  | Important diagnostics for support and customers                    | sg\_info.log  | true            | 6 Days           | 3 Days           |
+| DEBUG | Lower level development analysis                                   | sg\_debug.log | false           | 2 Days           | 1 Day            |
+| TRACE | Extremely verbose diagnostic output, used for deep troubleshooting | sg\_trace.log | false           | 2 Days           | 1 Day            |
+| STATS | Periodic snapshot of Sync Gateway's internal runtime statistics    | sg\_stats.log | true            | 90 Days          | 3 Days           |
 
 > [!TIP]
 > Each log level and its parameters are defined using the [logging.console.log\_level](../configuration/configuration-schema-bootstrap.md#logging-console-log%5Flevel) property.

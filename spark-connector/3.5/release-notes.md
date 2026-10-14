@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-14T04:27:20.555Z
 meta:
   component:
     title: Spark Connector
@@ -17,6 +17,10 @@ antora:
 # Release Notes
 
 > Release notes for the Spark Connector. 
+
+## [](#couchbase-spark-connector-3-5-6-13-october-2026)Couchbase Spark Connector 3.5.6 (13 October 2026)
+
+Version 3.5.6 is built and tested against Spark 3.5.9, and supports Scala 2.12 and 2.13\. The only change from 3.5.5 is to bump the underlying Couchbase Scala SDK to 3.13.0 to pick up fixes.
 
 ## [](#couchbase-spark-connector-3-5-5-4-august-2026)Couchbase Spark Connector 3.5.5 (4 August 2026)
 

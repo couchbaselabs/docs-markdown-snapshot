@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-14T04:27:20.555Z
 meta:
   component:
     title: Spark Connector
@@ -17,6 +17,43 @@ antora:
 # Release Notes
 
 > Release notes for the Couchbase Spark Connector. 
+
+## [](#couchbase-spark-connector-4-0-1-13-october-2026)Couchbase Spark Connector 4.0.1 (13 October 2026)
+
+This release bumps the underlying Scala SDK to 3.13.0 to pick up fixes.
+
+This connector release was built against these versions:
+
+| Dependency                         | Version |
+| ---------------------------------- | ------- |
+| Scala                              | 2.13.18 |
+| Jackson                            | 2.21.2  |
+| Jackson annotations                | 2.21    |
+| Couchbase operational SDK          | 3.13.0  |
+| Couchbase Enterprise Analytics SDK | 1.1.0   |
+
+Spark versions actively tested:
+
+| Spark minor | Spark version | Jackson | Jackson annotations |
+| ----------- | ------------- | ------- | ------------------- |
+| 4.1         | 4.1.3         | 2.21.2  | 2.21                |
+| 4.2         | 4.2.0         | 2.21.2  | 2.21                |
+
+The support matrix for Apache Spark releases is:
+
+| Apache Spark version | Supported by Apache until | Status                                                                                         |
+| -------------------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| 4.3 and above        | \-                        | Currently unreleased; status unknown                                                           |
+| 4.2.0                | 2028-01-11                | Tested and supported                                                                           |
+| 4.1.3                | 2027-07-11                | Tested and supported                                                                           |
+| 4.0.X                | 2026-11-23                | Untested and unsupported; may not work due to very low Jackson version (2.18.2) Spark 4.0 uses |
+| 3.X                  | \-                        | Does not work due to Apache Spark binary changes at 4.x                                        |
+
+The source of the Apache support dates is the community site [endoflife.date](https://endoflife.date/apache-spark) along with the [Apache Spark versioning policy](https://spark.apache.org/versioning-policy.html).
+
+Users may try Apache Spark 4.x releases that are not listed here, though untested combinations will not be officially supported.
+
+The 4.x series is built exclusively with Scala 2.13.
 
 ## [](#couchbase-spark-connector-4-0-0-20-august-2026)Couchbase Spark Connector 4.0.0 (20 August 2026)
 
