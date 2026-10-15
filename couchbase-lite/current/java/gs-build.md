@@ -1,7 +1,7 @@
 ---
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on Java
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-15T04:23:30.340Z
 meta:
   component:
     title: Couchbase Lite
@@ -17,23 +17,24 @@ antora:
 # Build and Run
 
 > Description — _Build and run a starter app to validate your install of Couchbase Lite on Java_  
-> _Abstract — This content provides sample code and instructions that enable you to test your Couchbase Lite for java installation._  
+> _Abstract — This content provides sample code and instructions that enable you to test your Couchbase Lite for Java installation._  
 > Related Content — [Install](gs-install.md) | [Prerequisites](gs-prereqs.md) | [Build and Run](gs-build.md) |
 
 ## [](#build-a-getting-started-app)Build a Getting Started App
 
-This section explains how to validate your configured build environment by building a starter app that uses many of Couchbase Lite's more common features.
+This section explains how to validate your configured build environment by building a starter app that uses common Couchbase Lite features.
 
 The GettingStarted app demonstrates how to use Couchbase Lite. Console and Web App versions are available.
 
-Example 1\. Development-type Scenarios
+Development-type Scenarios
 
-Desktop App
+* Desktop App
+* Web App
 
 > [!TIP]
-> Ensure you added the Couchbase Lite dependency to your `build.gradle` file
+> Make sure you added the Couchbase Lite dependency to your `build.gradle` file
 
-Create, build and run a new project using the following `GettingStarted.java` code:
+Create, build, and run a new project using the following `GettingStarted.java` code:
 
 ```java
 
@@ -131,17 +132,15 @@ private Replicator startRepl(String uri, Collection collection) throws URISyntax
 | **5** | Retrieve document and log its ID                                               |
 | **6** | Retrieve the document as mutable and change the language to Kotlin and save it |
 | **7** | Query the database output count and id to log                                  |
-| **8** | Optionally, initiate a replication                                             |
+| **8** | Optionally, start a replication                                                |
 
-On running the app, you should see the document ID and property printed to the console together with a query result showing the number of rows in the database.
+When you run the app, the console displays the document ID and property. It also displays a query result showing the number of rows in the database.
 
-This shows the document was successfully persisted to the database.
+This shows that the app persisted the document to the database.
 
-See [\[About the Getting Started App\]](#About the Getting Started App) for more on the app itself
+See [About the Getting Started App](#about-the-getting-started-app) for more on the app itself.
 
-Web App
-
-This section explains how to set-up a build project to create Couchbase Lite web apps using gradle and Intellij IDEA.
+This section explains how to configure a build project to create Couchbase Lite web apps using Gradle and IntelliJ IDEA.
 
 **Steps**
 
@@ -149,9 +148,9 @@ This section explains how to set-up a build project to create Couchbase Lite web
 ```groovy  
 include::example$GetStartedWS/build.gradle.sample  
 ```
-2. Within Intellij IDEA, open the new project folder  
-If you don't have auto-import enabled, then accept the **Import from Gradle** prompt that appears at the bottom right of the screen.
-3. Create a Java class _DBManager_ using this code:  
+2. Within IntelliJ IDEA, open the new project folder.  
+If you do not have auto-import enabled, accept the **Import from Gradle** prompt.
+3. Create a Java class `DBManager` using this code:  
 ```java  
 (1)  
 // One-off initialization  
@@ -229,40 +228,36 @@ public Replication startReplicator(Collection collection, ReplicatorChangeListen
     return new Replication(replicator, token);  
 }  
 ```
-4. Create a Servlet similar to the one found in the example GettingStartedServlet
-5. Create an `index.html` file in `src/main/web app` with the following content:  
+4. Create a Servlet similar to the one found in the example `GettingStartedServlet`.
+5. Create an `index.html` file in `src/main/webapp` with the following content:  
 ```html  
 include::example$GetStartedWS/src/main/webapp/index.html  
 ```
-6. Create a `showDbItems.jsp` file in `src/main/web app` with the following content:  
+6. Create a `showDbItems.jsp` file in `src/main/webapp` with the following content:  
 ```html  
 include::example$GetStartedWS/src/main/webapp/showDbItems.jsp  
 ```
-7. Build, deploy and run the app using `jettyRun`  
+7. Build, deploy, and run the app using `jettyRun`  
 ![GradleMenuWebApp](_images/GradleMenuWebApp.png)  
 
-  1. Point your browser to: \`localhost:8080/'  
-  This opens the browser at your index.html page.
+  1. Point your browser to: `localhost:8080/`  
+  This opens the browser at your `index.html` page.
   2. Select the **here** link  
-  This launches the servlet and displays the results in `showdDbItems.jsp`.
+  This launches the servlet and displays the results in `showDbItems.jsp`.
 
-\+ About the Starter App::
+## [](#about-the-getting-started-app)About the Getting Started App
 
-+
-
-The GettingStarted app will:
+The GettingStarted app does the following:
 
 * Create a database  
-The app creates its database in the `/getting-started.cblite2` directory relative to its root location when run (See: [Finding a Database File](database.md#lbl-find-db-loc)).
-
-> [!TIP]
-> Explicitly state your required database location when creating your database (see: [Finding a Database File](database.md#lbl-find-db-loc) for how to do this)
-
+The app creates its database in the `/getting-started.cblite2` directory relative to its root location when run. See [Finding a Database File](database.md#lbl-find-db-loc).  
+> [!TIP]  
+> Explicitly state your required database location when creating your database. For more information, see [Finding a Database File](database.md#lbl-find-db-loc).
 * Add content to the DB
-* Run a simple query counting the DB rows
-* Start a one-shot, bi-directional replication using _Sync Gateway and \_Couchbase Server_
-* Produce a simple report on the db Contents  
+* Run a query counting the DB rows
+* Start a one-shot, bidirectional replication using Sync Gateway and Couchbase Server
+* Produce a report on the DB contents  
 ![cblOutput](_images/cblOutput.png)
 
 > [!NOTE]
-> Before starting your app ensure you have started both your _Couchbase Server_ and \_Sync Gateway instances.
+> Before starting your app, make sure you have started both your Couchbase Server and Sync Gateway instances.

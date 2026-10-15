@@ -1,7 +1,7 @@
 ---
 title: Databases
 description: Working with Couchbase Lite Databases
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-15T04:23:30.340Z
 meta:
   component:
     title: Couchbase Lite
@@ -156,6 +156,11 @@ An encrypted database can only be opened with the same platform that was used to
 
 To change an existing encryption key, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)to set the required new encryption-key value.
 
+> [!WARNING]
+> This operation is not safe to interrupt. `Database.ChangeEncryptionKey()` updates the SQLite database and its attachments in separate steps, not as a single atomic operation. An interruption partway through, such as a crash, force quit, or power loss, can leave some attachments encrypted under the old key while the rest use the new one. SQLite's own re-key behavior under power loss has not been independently verified by Couchbase.
+> 
+> Take a full backup of the `<databaseName>.cblite2` folder immediately before changing the encryption key — see [Backup and Restore](#lbl-backup-restore). This gives you something to restore to if the process is interrupted.
+
 ### [](#removing)Removing
 
 To remove encryption, open the database using its existing encryption-key and use [Database.ChangeEncryptionKey()](https://docs.couchbase.com/mobile/4.1.1/couchbase-lite-net/api/Couchbase.Lite.Database.html#Couchbase%5FLite%5FDatabase%5FChangeEncryptionKey%5FCouchbase%5FLite%5FEncryptionKey%5F)with a null value as the encryption key.
@@ -172,6 +177,29 @@ Where a database goes by default depends on the platform it is running on. Here 
 * WinUI: `Windows.Storage.ApplicationData.Current.LocalFolder.Path` (Inside the installed app sandbox. Note that this sandbox gets deleted sometimes when debugging from inside Visual Studio when the app is shutdown)
 * iOS: In a folder named CouchbaseLite inside of `ApplicationSupportDirectory` (this can be retrieved more easily from the simulator using the [SimPholders](https://simpholders.com/3/) utility)
 * Android: Using the `Context` passed in the `Activate()` method, `Context.FilesDir.AbsolutePath` (database can be retrieved using adb)
+
+## [](#lbl-backup-restore)Backup and Restore
+
+To back up a Couchbase Lite database, take a cold backup: a full filesystem copy of the `<databaseName>.cblite2` folder while the database is closed.
+
+Back up a database
+
+1. Close the database using `Database.Close()` — see [Close Database](#close-database) — or make sure the running process has not opened it.
+2. Copy the entire `<databaseName>.cblite2` folder, not individual files inside it, to your backup destination. The default location of the folder depends on the platform your app runs on — see [Finding a Database File](#lbl-find-db-loc).
+
+Restore a database
+
+1. Make sure the database is closed, or that your app has not yet opened it.
+2. Replace the existing `<databaseName>.cblite2` folder with the backed up copy. If you're restoring to a new device, copy the backed up folder into place.
+
+_Couchbase Lite on C#.Net_ has no separate backup API. You use the operating system's standard file copy tools.
+
+Copying the entire folder while the database is closed is the only supported backup method. Copying individual files, or copying the folder while the database is open, can produce a corrupt or unusable copy.
+
+A restore replaces the whole folder. It does not merge. After a restore, the database's contents are exactly what they were at the time of the backup.
+
+> [!WARNING]
+> Restoring the `<databaseName>.cblite2` folder only rewinds the database itself. Couchbase Lite has no visibility into, and does not restore, any application state your app keeps outside that folder, such as counters, cached files, preference stores, or other databases. If your application compares such external state against values held inside the database, for example to detect corruption, a partial restore can leave the two out of sync.
 
 ## [](#lbl-db-util)Database Maintenance
 

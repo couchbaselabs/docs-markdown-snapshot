@@ -2,7 +2,7 @@
 title: Indexes
 description: Couchbase Server uses indexes to improve the performance of queries
   and searches.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-15T04:23:30.340Z
 meta:
   component:
     title: Couchbase Server
@@ -50,7 +50,7 @@ Views
 [Couchbase Views](../../views/views-intro.md) extract fields and information from documents to create their own index.
 
 > [!IMPORTANT]
-> Views were deprecated in Couchbase Server 7.0 and will be removed in a future release.
+> Views were deprecated in Couchbase Server 7.0 and will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../services/index-service.md) (GSI) and the [Query Service](../services/query-service.md) (SQL++). The [Magma storage engine](../../buckets-memory-and-storage/storage-engines.md) does not support Views.
 
 ## [](#vector-indexes)Vector Indexes
 

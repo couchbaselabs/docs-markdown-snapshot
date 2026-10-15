@@ -3,7 +3,7 @@ title: Hyperscale and Composite Vector Index Best Practices
 description: When creating and querying Hyperscale and Composite Vector indexes,
   you have several options to set that can affect the speed and accuracy of your
   results.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-15T04:23:30.340Z
 meta:
   component:
     title: Couchbase Server
@@ -49,9 +49,9 @@ Hyperscale Vector indexes tend to perform better with larger centroids (smaller 
 The `train_list` setting controls the number of vectors that Couchbase Server considers when searching for centroids in the dataset. You set it using the `train_list` argument in the `WITH` clause when you create your index. The default value depends on the size of the dataset:
 
 * If there are less than 10,000 vectors, Couchbase Server samples all of the vectors.
-* If there are 10,000 or more vectors, Couchbase Server samples the number of vectors divided by 10 or 10 times the number of centroids, whichever is larger. Couchbase Server limits the trainlist to a maximum of 1 million vectors.
+* If there are 10,000 or more vectors, Couchbase Server samples the number of vectors divided by 10 or 10 times the number of centroids, whichever is larger. Couchbase Server limits the training list to a maximum of 1 million vectors.
 
-Tests show that increasing the `trainlist` improves QPS and reduces latency, but slightly increases memory usage for the index.
+Tests show that increasing the `train_list` improves QPS and reduces latency, but slightly increases memory usage for the index.
 
 **Recommendation:** if you find that increasing the `nList` does not improve your query performance, you can try increasing the `train_list` value.
 
@@ -64,6 +64,13 @@ ON  `demo`.`squad`.`context`(`vector` VECTOR)
                "description":"IVF,SQ8", 
                "train_list":15000};
 ```
+
+> [!IMPORTANT]
+> Training list greater than the number of qualifying documents
+> 
+> If you encounter an error in index training, stating that the training list is greater than the number of qualifying documents, drop the index and create it again without specifying `train_list`.
+> 
+> As an alternative, to avoid this error you can try increasing the `nList` or decreasing `train_list` until the error stops occurring. This approach is not deterministic and may not stop the error in all circumstances.
 
 ### [](#partitions)Partitions
 
