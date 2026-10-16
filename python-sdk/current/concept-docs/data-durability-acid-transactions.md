@@ -2,7 +2,7 @@
 title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T04:26:35.873Z
 meta:
   component:
     title: Python SDK
@@ -18,8 +18,6 @@ antora:
 # Data Modelling, Durability, and Consistency
 
 > Performance, availability, consistency — balance your priorities, and model your data to achieve these goals. 
-
-**TODO: Scala -→ Python**
 
 You want to query your data, but does that always mean a SQL++ query to the Query Service? The CRUD API of the SQL++ Query service is mirrored by the Data Service's API, but without the need for indexes, and using a binary protocol gives faster access than streaming JSON from the Query Service.
 
