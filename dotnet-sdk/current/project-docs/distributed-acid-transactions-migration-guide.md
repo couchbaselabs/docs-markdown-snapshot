@@ -1,13 +1,13 @@
 ---
 title: Transactions Migration Guide
 description: For those transitioning from using the Couchbase Transactions library for .NET.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/project-docs/pages/distributed-acid-transactions-migration-guide.adoc
   xref: xref:dotnet-sdk:project-docs:distributed-acid-transactions-migration-guide.adoc[]
 ---
 

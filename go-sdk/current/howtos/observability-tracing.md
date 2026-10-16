@@ -2,14 +2,14 @@
 title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/observability-tracing.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/observability-tracing.adoc
   xref: xref:go-sdk:howtos:observability-tracing.adoc[]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Update Documents
 description: How to update documents with a command line tool or an SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -91,11 +91,7 @@ Use the `UpsertAsync()` method to update a document in the database. If it does 
 The example below updates the existing document `hotel-123`.
 
 ```csharp
-// Update or create a document in the hotel collection.
-var upsertResult = await hotelCollection.UpsertAsync("hotel-123", document);
-
-// Print the result's CAS metadata to the console.
-Console.WriteLine($"Cas: {upsertResult.Cas}");
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -235,30 +231,7 @@ A new `CAS` value is provided in the returned `MutationResult` object.
 The example below adds a new entry to the `reviews` array in document `hotel-123`.
 
 ```csharp
-// Fetch an existing hotel document.
-var getResult = await hotelCollection.GetAsync("hotel-123");
-var existingDoc = getResult.ContentAs<JObject>();
-
-// Get the current CAS value.
-var currentCas = getResult.Cas;
-Console.WriteLine($"Current Cas: {currentCas}");
-
-// Add a new review to the reviews array.
-var reviews = (JArray)existingDoc["reviews"];
-reviews.Add(new JObject(
-	new JProperty("content", "This hotel was cozy, conveniently located and clean."),
-	new JProperty("author", "Carmella O'Keefe"),
-	new JProperty("date", DateTime.UtcNow))
-);
-
-// Update the document with new data and pass the current CAS value. 
-var replaceResult = await hotelCollection.ReplaceAsync("hotel-123", existingDoc, options =>
-{
-	options.Cas(currentCas);
-});
-
-// Print the new CAS value.
-Console.WriteLine($"New Cas: {replaceResult.Cas}");
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 > [!NOTE]
@@ -413,10 +386,7 @@ A `MutateInResult` object is returned, containing the result and metadata releva
 The example below upserts a `pets_ok` field in document `hotel-123` and sets the value to true.
 
 ```csharp
-var mutateInResult = await hotelCollection.MutateInAsync("hotel-123",
-	specs => specs.Upsert("pets_ok", true)
-);
-Console.WriteLine($"Cas: {mutateInResult.Cas}");
+Unresolved include directive in modules/guides/pages/updating-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 Click the  View button to see this code in context.

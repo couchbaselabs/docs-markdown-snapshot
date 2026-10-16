@@ -1,13 +1,13 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Scala SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/managing-connections.adoc
   xref: xref:scala-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -424,7 +424,7 @@ The protocol implements a gRPC-style interface between the SDK and Couchbase Ser
 
 ### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 
@@ -507,7 +507,3 @@ ReactiveCluster.connect("127.0.0.1", "username", "password") match {
   case Failure(err) => println(s"Failure: $err")
 }
 ```
-
-## [](#next-steps)Next Steps
-
-* [Certificate Authentication](#secure-connections.adoc)

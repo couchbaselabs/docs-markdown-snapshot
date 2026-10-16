@@ -2,13 +2,13 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/vector-searching-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/vector-searching-with-sdk.adoc
   xref: xref:dotnet-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -60,7 +60,7 @@ await foreach (var row in result.Rows)
 }
 ```
 
-Parameterizing the query, as with [regular queries](#sqlpp-queries-with-sdk.adoc#parameterized-queries), will allow the reuse of the [Query Plan](../../../server/current/n1ql/n1ql-intro/queriesandresults.md#prepare-stmts). This can be more efficient, unless you are doing a lot of optimization to your query.
+Parameterizing the query, as with [regular queries](sqlpp-queries-with-sdk.md#parameterized-queries), will allow the reuse of the [Query Plan](../../../server/current/n1ql/n1ql-intro/queriesandresults.md#prepare-stmts). This can be more efficient, unless you are doing a lot of optimization to your query.
 
 Parameterized Vector Query
 

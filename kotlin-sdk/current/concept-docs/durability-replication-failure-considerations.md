@@ -2,14 +2,14 @@
 title: Durability &amp; Failure
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
   xref: xref:kotlin-sdk:concept-docs:durability-replication-failure-considerations.adoc[]
 ---
 
@@ -28,7 +28,7 @@ Writes in Couchbase (from the SDK or elsewhere) are written to a single node. Fr
 
 ### [](#durable-writes)Durable Writes
 
-All supported versions of Couchbase Server (since 6.5) offer [Durable Writes](../../../server/current/learn/data/durability.md), under which mutations will not be visible to other clients until they have met their durability requirements.
+All supported versions of Couchbase Server offer [Durable Writes](../../../server/current/learn/data/durability.md), under which mutations will not be visible to other clients until they have met their durability requirements.
 
 The optional `durabilityLevel` parameter, which all mutating operations accept, allows the application to wait until this replication (or persistence) is successful before proceeding. If `durabilityLevel()` is used with no argument, the application will report success back as soon as the primary node has acknowledged the mutation in its memory. The three replication level options are:
 

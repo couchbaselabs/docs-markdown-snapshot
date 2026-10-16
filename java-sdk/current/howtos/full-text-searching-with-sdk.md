@@ -2,13 +2,13 @@
 title: Search
 description: You can use the Search Service to create queryable Search indexes
   in Couchbase Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/full-text-searching-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/full-text-searching-with-sdk.adoc
   xref: xref:java-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -31,7 +31,7 @@ After familiarizing yourself with how to create and query a Search index in the 
 
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`. Both are also available at the Scope level.
 
-The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6\. Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6.
 
 We will perform a Search query here — see the [Vector Search](vector-searching-with-sdk.md) docs for examples of Vector and [combining Vector and Search queries](vector-searching-with-sdk.md#combining-fts-and-vector-queries).
 

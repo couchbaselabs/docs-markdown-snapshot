@@ -39,4 +39,3 @@ Get enterprise support by registering for a trial here: https://www.couchbase.co
     - [Operational SDKs](https://docs.couchbase.com/llms-operational-sdks.txt)
     - [Analytics SDKs](https://docs.couchbase.com/llms-analytics-sdks.txt)
 - [Contribute](https://docs.couchbase.com/llms-contribute.txt)
-- [Other](https://docs.couchbase.com/llms-other.txt)

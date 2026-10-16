@@ -1,13 +1,13 @@
 ---
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/nonjson.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/concept-docs/pages/nonjson.adoc
   xref: xref:scala-sdk:concept-docs:nonjson.adoc[]
 ---
 
@@ -18,7 +18,7 @@ antora:
 
 > Binary formats & Transcoders 
 
-> Couchbase is a document database and functions best when document contents are JSON. Nevertheless Couchbase may be used to store non-JSON data for various use cases. 
+> Binary formats & Transcoders Couchbase is a document database and functions best when document contents are JSON. Nevertheless Couchbase may be used to store non-JSON data for various use cases. 
 
 Non-JSON formats may be more efficient in terms of memory and processing power (for example, if storing only flat strings, JSON adds an additional syntactical overhead of two bytes per string). Non-JSON documents may be desirable if migrating a legacy application, which is using a customized binary format.
 
@@ -38,7 +38,7 @@ Couchbase SDKs accept native object types (integers, strings, arrays, dictionari
 
 Later, when retrieving the document from the server, the SDK checks the type code which informs it about the type of serialization used to encode the document, and thus how the SDK should de-serialize the document.
 
-By default, SDKs will only accept document types which can serialize to JSON and will only serialize them to JSON. However applications can configure the SDK to use non-JSON serialization and accept other types of inputs as documents. Note that using non-JSON serialization will prevent the document from being accessible via Query and MapReduce.
+By default, SDKs will only accept document types which can serialize to JSON and will only serialize them to JSON. However applications can configure the SDK to use non-JSON serialization and accept other types of inputs as documents. Note that using non-JSON serialization will prevent the document from being accessible via SQL++.
 
 The table below shows the built-in formats available in most SDKs. The _name_ column displays the format name; the _native type_ column displays the native language type which is used as input and output for the document, the _description_ contains the properties of such a type, and the _flags value_ contains the actual code used for the format. The format code is discussed more in depth below.
 

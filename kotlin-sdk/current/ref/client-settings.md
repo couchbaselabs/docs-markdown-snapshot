@@ -2,14 +2,14 @@
 title: Client Settings for the Java SDK
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: reference
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/ref/pages/client-settings.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/ref/pages/client-settings.adoc
   xref: xref:kotlin-sdk:ref:client-settings.adoc[]
 ---
 

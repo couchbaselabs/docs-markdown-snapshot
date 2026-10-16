@@ -3,13 +3,13 @@ title: Orphaned Requests Logging
 description: In addition to request tracing and metrics reporting, logging
   orphaned requests provides additional insight into why an operation might have
   timed out (or got cancelled for a different reason).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/observability-orphan-logger.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/observability-orphan-logger.adoc
   xref: xref:java-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 

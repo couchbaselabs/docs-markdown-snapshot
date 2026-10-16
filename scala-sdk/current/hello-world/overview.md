@@ -1,23 +1,23 @@
 ---
-title: Couchbase Scala SDK 3.12
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Scala SDK 3.13
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/hello-world/pages/overview.adoc
   xref: xref:scala-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/scala-sdk/current/hello-world/overview.html)
 
-# Couchbase Scala SDK 3.12
+# Couchbase Scala SDK 3.13
 
-# Couchbase Scala SDK 3.12
+# Couchbase Scala SDK 3.13
 
-The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster — Capella or self-managed.
+The Couchbase Scala SDK allows Scala applications to access a Couchbase operational cluster — Capella or self-managed.
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Scala SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html) | [Scala SDK source code](https://github.com/couchbase/couchbase-jvm-clients/tree/master/scala-client)
 
@@ -55,7 +55,7 @@ Couchbase is a large platform — covering many services — and Couchbase SDKs 
 Installing the SDK via Scala Build Tool
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.12.3"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
 ```
 
 The Scala SDK is provided with builds for Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive). `%%` takes care of selecting the right version in Scala Build Tool. If you are using another build tool such as Maven or Gradle, then specify `scala-client_2.12`, `scala-client_2.13`, or `scala-client_3`, as appropriate. The Scala 3 build can be used from applications compiled with Scala 3.3 through 3.7 inclusive, and even Scala 2.13\. It is the recommended build for all users, except those on 2.12.
@@ -117,7 +117,33 @@ Deployment
 * [Compatibility](../project-docs/compatibility.md)
 * [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
 * [Couchbase Scala SDK Installation](../project-docs/sdk-full-installation.md)
+  
+  
+##  Couchbase Operational Cluster Feature Compatibility
 
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Scala SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2 | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ---------- | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A        | From 1.4.1       |            |
+| Zone aware replica reads                                                                     | N/A        | From 1.8.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A        | From 1.6.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A        | From SDK 3.9.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A        | From SDK 3.9.0 ① |            |
+| Distributed ACID Transactions                                                                | From 1.5.0 |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.4.0 |                  |            |
+| Circuit Breakers                                                                             | From 1.0.0 |                  |            |
+| Response Time Observability with OTel                                                        | From 1.2.0 |                  |            |
+| Field Level Encryption                                                                       | From 1.0.0 |                  |            |
+| Cloud Native Gateway                                                                         | From 1.5.0 |                  |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
+
+Note, from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier for users to track changes. Thus the Scala SDK jumped from 1.8 to 3.9 as a minor version bump.\*
+
+  
 > [!TIP]
 > Analytics SDKs
 > 

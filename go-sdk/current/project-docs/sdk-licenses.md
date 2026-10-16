@@ -2,13 +2,13 @@
 title: Licenses
 description: Couchbase SDKs' source code and binaries are licensed under the
   Apache Licence 2.0.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/sdk-licenses.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/project-docs/pages/sdk-licenses.adoc
   xref: xref:go-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -34,4 +34,4 @@ Any dependencies may have their [own, separate licenses](https://www.couchbase.c
 
 ## [](#documentation-license)Documentation License
 
-This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-go/blob/release/2.12/LICENSE>.
+This documentation is copyright Couchbase Inc. The docs' source is licensed under the Creative Commons [CC-by-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en) license, see <https://github.com/couchbase/docs-sdk-go/blob/release/2.13/LICENSE>.

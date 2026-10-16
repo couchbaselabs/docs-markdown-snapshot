@@ -1,7 +1,7 @@
 ---
 title: Read Documents
 description: How to read documents with a command line tool or an SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Capella Operational
@@ -82,11 +82,7 @@ A `GetResult` object is returned, which includes the `content`, `cas` value, and
 The example below retrieves document `hotel-123` from the `hotel` keyspace in the `inventory` scope.
 
 ```csharp
-var getResult = await hotelCollection.GetAsync("hotel-123");
-
-// Print some result metadata to the console.
-Console.WriteLine($"CAS: {getResult.Cas}");
-Console.WriteLine($"Data: {getResult.ContentAs<JObject>()}");
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 > [!NOTE]
@@ -235,15 +231,7 @@ A `GetResult` object is returned, which may include extra metadata, depending on
 The example below retrieves a document `hotel-123` with additional expiry metadata.
 
 ```csharp
-var getResult = await hotelCollection.GetAsync("hotel-456", options =>
-{
-	options.Expiry();
-});
-
-// Print some result metadata to the console.
-Console.WriteLine($"CAS: {getResult.Cas}");
-Console.WriteLine($"Data: {getResult.ContentAs<JObject>()}");
-Console.WriteLine($"Expiry: {getResult.ExpiryTime}");
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -379,12 +367,7 @@ A `LookupInResult` object is returned, containing the result and metadata releva
 The example below fetches the `geo` data from the `hotel-123` document.
 
 ```csharp
-var lookupInResult = await hotelCollection.LookupInAsync("hotel-123",
-		specs => specs.Get("geo")
-);
-
-Console.WriteLine($"CAS: {lookupInResult.Cas}");
-Console.WriteLine($"Geo: {lookupInResult.ContentAs<JObject>(0)}");
+Unresolved include directive in modules/guides/pages/reading-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 Click the  View button to see this code in context.

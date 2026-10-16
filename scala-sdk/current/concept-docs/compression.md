@@ -1,14 +1,14 @@
 ---
 title: Compression
 description: Data compression to reduce traffic costs from app to Server.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/compression.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/concept-docs/pages/compression.adoc
   xref: xref:scala-sdk:concept-docs:compression.adoc[]
 ---
 

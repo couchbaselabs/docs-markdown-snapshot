@@ -1,7 +1,7 @@
 ---
 title: Create Documents
 description: How to create documents with a command line tool or an SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -114,39 +114,7 @@ A `MutationResult` object is returned containing the result and metadata relevan
 The example below inserts a new JSON document in the `hotel` keyspace in the `inventory` scope.
 
 ```csharp
-// Create a document object.
-var document = new
-{
-	id = 123,
-	name = "Medway Youth Hostel ",
-	address = "Capstone Road, ME7 3JE",
-	url = "http://www.yha.org.uk",
-	geo = new
-	{
-		lat = 51.35785,
-		lon = 0.55818,
-		accuracy = "RANGE_INTERPOLATED"
-	},
-	country = "United Kingdom",
-	city = "Medway",
-	state = (string)null,
-	reviews = new[]
-	{
-		new {
-			content = "This was our 2nd trip here and we enjoyed it more than last year.",
-			author = "Ozella Sipes",
-			date = DateTime.UtcNow
-		}
-	},
-	vacancy = true,
-	description = "40 bed summer hostel about 3 miles from Gillingham."
-};
-
-// Insert the document in the hotel collection.
-var insertResult = await hotelCollection.InsertAsync("hotel-123", document);
-
-// Print the result's CAS metadata to the console.
-Console.WriteLine($"Cas: {insertResult.Cas}");
+Unresolved include directive in modules/guides/pages/creating-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 > [!NOTE]
@@ -341,28 +309,7 @@ For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchb
 The example below inserts a new JSON document and sets it to expire after 60 seconds. The document will be automatically deleted once expired.
 
 ```csharp
-var document = new
-{
-	id = 456,
-	title = "Ardèche",
-	name = "La Pradella",
-	address = "rue du village, 07290 Preaux, France",
-	phone = "+33 4 75 32 08 52",
-	url = "http://www.lapradella.fr",
-	country = "France",
-	city = "Preaux",
-	state = "Rhône-Alpes",
-	vacancy = false
-};
-
-// Insert the document with an expiry time option of 60 seconds.
-var insertResult = await hotelCollection.InsertAsync("hotel-456", document, options =>
-{
-	options.Expiry(TimeSpan.FromSeconds(60));
-});
-
-// Print the result's CAS metadata to the console.
-Console.WriteLine($"CAS: {insertResult.Cas}");
+Unresolved include directive in modules/guides/pages/creating-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 Click the  View button to see this code in context.

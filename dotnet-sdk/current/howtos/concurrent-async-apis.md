@@ -4,14 +4,14 @@ description: The Couchbase .NET SDK uses the <em>Task-based Asynchronous Pattern
   (TAP)</em> using types in the System.Threading.Tasks namespace to represent
   asynchronous operations against the Couchbase Server which can be awaited via
   the <code>await</code> keyword.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:dotnet-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -116,6 +116,9 @@ var result = collection.GetAsync("TheKey").ConfigureAwait(false);
 This will configure the Task to not use the synchronization context even if it exists.
 
 ## [](#batching)Batching
+
+> [!TIP]
+> This bulk-get example is given for the .NET SDK as there are times when business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. This will not be more efficient — for Cluster or for network — but will comply with the results handling need of this particular case.
 
 Asynchronous clients inherently batch operations: because the application receives the response at a later stage in the application, batching will be the result of issuing many requests in sequence.
 

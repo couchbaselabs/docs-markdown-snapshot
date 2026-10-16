@@ -1,7 +1,7 @@
 ---
 title: Work with Documents in Bulk
 description: How to perform bulk CRUD operations with a command line tool or an SDK.
-pubDate: 2026-10-13T04:35:53.698Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Capella Operational
@@ -85,29 +85,7 @@ For more information, see [Mutating](https://couchbase.sh/docs/#%5Fmutating) in 
 The example below inserts multiple JSON documents in the `users` keyspace in the `tenant_agent_00` scope.
 
 ```csharp
-var documents = new[]
-{
-	new { id = "user_111", email = "tom_the_cat@gmail.com"},
-	new { id = "user_222", email = "jerry_mouse@gmail.com"},
-	new { id = "user_333", email = "mickey_mouse@gmail.com"}
-};
-	// Collection of things that will complete in the future.
-	var tasks = new List<Task<IMutationResult>>();
-
-	// Create tasks to be executed concurrently.
-	foreach (var document in documents)
-	{
-		Console.WriteLine($"Inserting document: {document.id}");
-		var task = usersCollection.InsertAsync(document.id, document);
-		tasks.Add(task);
-	}
-
-	// Wait until all of the tasks have completed.
-	await Task.WhenAll(tasks);
-
-	// Iterate task list to get results.
-	foreach (var task in tasks)
-		Console.WriteLine($"CAS: {task.Result.Cas}");
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::dotnet-sdk:hello-world:example$KvBulkHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -286,29 +264,7 @@ For more information, see [Reading](https://couchbase.sh/docs/#%5Freading) in th
 The example below fetches multiple JSON documents from the `users` keyspace in the `tenant_agent_00` scope.
 
 ```csharp
-var documents = new[]
-{
-	new { id = "user_111", email = "tom_the_cat@gmail.com"},
-	new { id = "user_222", email = "jerry_mouse@gmail.com"},
-	new { id = "user_333", email = "mickey_mouse@gmail.com"}
-};
-	// Collection of things that will complete in the future.
-	var tasks = new List<Task<IGetResult>>();
-
-	// Create tasks to be executed concurrently.
-	foreach (var document in documents)
-	{
-		Console.WriteLine($"Getting document: {document.id}");
-		var task = usersCollection.GetAsync(document.id);
-		tasks.Add(task);
-	}
-
-	// Wait until all of the tasks have completed.
-	await Task.WhenAll(tasks);
-
-	// Iterate task list to get results.
-	foreach (var task in tasks)
-		Console.WriteLine($"Document: {task.Result.ContentAs<dynamic>()}");
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::dotnet-sdk:hello-world:example$KvBulkHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -462,29 +418,7 @@ For more information, see [Mutating](https://couchbase.sh/docs/#%5Fmutating) in 
 The example below inserts multiple JSON documents in the `users` keyspace in the `tenant_agent_00` scope.
 
 ```csharp
-var documents = new[]
-{
-	new { id = "user_111", email = "tom_the_cat@gmail.com"},
-	new { id = "user_222", email = "jerry_mouse@gmail.com"},
-	new { id = "user_333", email = "mickey_mouse@gmail.com"}
-};
-	// Collection of things that will complete in the future.
-	var tasks = new List<Task<IMutationResult>>();
-
-	// Create tasks to be executed concurrently.
-	foreach (var document in documents)
-	{
-		Console.WriteLine($"Inserting document: {document.id}");
-		var task = usersCollection.InsertAsync(document.id, document);
-		tasks.Add(task);
-	}
-
-	// Wait until all of the tasks have completed.
-	await Task.WhenAll(tasks);
-
-	// Iterate task list to get results.
-	foreach (var task in tasks)
-		Console.WriteLine($"CAS: {task.Result.Cas}");
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::dotnet-sdk:hello-world:example$KvBulkHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -652,26 +586,7 @@ For more information, see [Removing](https://couchbase.sh/docs/#%5Fremoving) in 
 The example below deletes multiple JSON documents from the `users` keyspace in the `tenant_agent_00` scope.
 
 ```csharp
-var documents = new[]
-{
-	new { id = "user_111", email = "tom_the_cat@gmail.com"},
-	new { id = "user_222", email = "jerry_mouse@gmail.com"},
-	new { id = "user_333", email = "mickey_mouse@gmail.com"}
-};
-	// Collection of things that will complete in the future.
-	var tasks = new List<Task>();
-
-	// Create tasks to be executed concurrently.
-	foreach (var document in documents)
-	{
-		Console.WriteLine($"Removing document: {document.id}");
-		var task = usersCollection.RemoveAsync(document.id);
-		tasks.Add(task);
-	}
-
-	// Wait until all of the tasks have completed.
-	// NOTE: RemoveAsync returns void, so no need to loop through each task.
-	await Task.WhenAll(tasks);
+Unresolved include directive in modules/guides/pages/bulk-operations.adoc - include::dotnet-sdk:hello-world:example$KvBulkHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.

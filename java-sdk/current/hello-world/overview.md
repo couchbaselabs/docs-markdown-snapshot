@@ -1,23 +1,23 @@
 ---
-title: Couchbase Java SDK 3.12
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Java SDK 3.13
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/hello-world/pages/overview.adoc
   xref: xref:java-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/java-sdk/current/hello-world/overview.html)
 
-# Couchbase Java SDK 3.12
+# Couchbase Java SDK 3.13
 
-# Couchbase Java SDK 3.12
+# Couchbase Java SDK 3.13
 
-The Couchbase Java SDK allows Java applications to access a Couchbase cluster — Capella or self-managed.
+The Couchbase Java SDK allows Java applications to access a Couchbase operational cluster — Capella or self-managed.
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Java SDK API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/) | [Java SDK source code](https://github.com/couchbase/couchbase-jvm-clients/)
 
@@ -54,7 +54,7 @@ Installing the SDK via Maven
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```
@@ -127,7 +127,31 @@ Deployment
 * [3rd Party Integrations](../project-docs/third-party-integrations.md)
 * [Couchbase Quarkus Java Extension](../../../quarkus-extension/current/overview.md)
 * [Full Installation](../project-docs/sdk-full-installation.md)
+  
+  
+##  Couchbase Operational Cluster Feature Compatibility
 
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Java SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2 | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ---------- | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A        | From 3.4.1       |            |
+| Zone aware replica reads                                                                     | N/A        | From 3.6.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A        | From 3.6.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A        | From SDK 3.9.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A        | From SDK 3.9.0 ① |            |
+| Distributed ACID Transactions                                                                | From 3.0.0 |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 3.4.0 |                  |            |
+| Circuit Breakers                                                                             | From 3.0.0 |                  |            |
+| Response Time Observability with OTel                                                        | From 3.0.7 |                  |            |
+| Field Level Encryption                                                                       | From 2.6.0 |                  |            |
+| Cloud Native Gateway                                                                         | From 3.5.0 |                  |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
+
+  
 > [!TIP]
 > Analytics SDKs
 > 

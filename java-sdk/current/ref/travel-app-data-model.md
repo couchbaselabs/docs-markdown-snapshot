@@ -1,14 +1,13 @@
 ---
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
-  topic_type: reference
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/ref/pages/travel-app-data-model.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/ref/pages/travel-app-data-model.adoc
   xref: xref:java-sdk:ref:travel-app-data-model.adoc[]
 ---
 
@@ -203,7 +202,7 @@ Refer to the [Querying with SQL++](../concept-docs/n1ql-query.md) section for mo
 
 ## [](#collections)Collections
 
-The new version of the Travel Sample application utilises [Collections](../concept-docs/collections.md), introduced in the 7.0 release of Couchbase Server. The application showcases the use of collections and scopes to represent a multi-tenant approach to organizing user and flight data.
+The new version of the Travel Sample application utilises [Collections](../concept-docs/data-durability-acid-transactions.md), introduced in the 7.0 release of Couchbase Server. The application showcases the use of collections and scopes to represent a multi-tenant approach to organizing user and flight data.
 
 To try this out you need Couchbase Server 7.0 or later and the [travel-sample](#7.1@server:manage:manage-settings/install-sample-buckets.adoc#configuring-sample-buckets) bucket configuration.
 

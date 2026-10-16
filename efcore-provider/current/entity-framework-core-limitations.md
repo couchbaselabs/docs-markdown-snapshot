@@ -2,7 +2,7 @@
 title: Couchbase EFCore Provider Limitations
 description: The Couchbase EFCore Provider is still evolving and does not
   currently support all features of EF Core or Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET Entity Framework
@@ -30,7 +30,7 @@ antora:
 ## [](#unsupported-couchbase-features)Unsupported Couchbase Features
 
 * All queries use [NOT\_BOUNDED](../../dotnet-sdk/current/concept-docs/n1ql-query.md#index-consistency). This means that the query will not wait for the index to be updated before returning results. This is the default behavior for Couchbase queries.
-* Only [default values](../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md#query-options) are used for all queries generated and executed against Couchbase.
+* Only [default values](#dotnet-sdk:howtos:n1ql-queries-with-sdk.adoc#query-options) are used for all queries generated and executed against Couchbase.
 * Only [default values](../../dotnet-sdk/current/ref/client-settings.md) are used for K/V CRUD operations.
 * [Transactions](../../dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md) are not currently supported.
 * [Enhanced durability](../../dotnet-sdk/current/concept-docs/durability-replication-failure-considerations.md#durability) is not currently supported.

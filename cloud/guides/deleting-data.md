@@ -1,7 +1,7 @@
 ---
 title: Delete Documents
 description: How to delete documents with a command line tool or an SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Capella Operational
@@ -75,7 +75,7 @@ Use the `RemoveAsync()` method to delete a document from the database.
 The example below deletes document `hotel-123` from the database.
 
 ```csharp
-await hotelCollection.RemoveAsync("hotel-123");
+Unresolved include directive in modules/guides/pages/deleting-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 > [!NOTE]
@@ -190,10 +190,7 @@ A `MutateInResult` object is returned containing the result and metadata relevan
 The example below deletes the `url` field from document `hotel-123`.
 
 ```csharp
-var mutateInResult = await hotelCollection.MutateInAsync("hotel-123",
-	specs => specs.Remove("url")
-);
-Console.WriteLine($"Cas: {mutateInResult.Cas}");
+Unresolved include directive in modules/guides/pages/deleting-data.adoc - include::dotnet-sdk:hello-world:example$KvHelloWorldScoped.csx[]
 ```
 
 > [!NOTE]

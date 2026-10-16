@@ -1,13 +1,13 @@
 ---
 title: Couchbase Scala SDK Installation
 description: Installation instructions for the Couchbase Scala Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/sdk-full-installation.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:scala-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -35,7 +35,7 @@ The Couchbase Scala SDK is available on the Maven repository, packaged for Scala
 It can be included in your SBT build like this:
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.12.3"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
 ```
 
 This will automatically use the correct build for your Scala version.
@@ -46,7 +46,7 @@ It can be included in your `build.gradle` like this for 2.12:
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '3.12.3'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '3.13.0'
 }
 ```
 
@@ -54,7 +54,7 @@ or 2.13 or 3.3 through 3.7:
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.12.3'
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.13.0'
 }
 ```
 
@@ -62,7 +62,7 @@ There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '3.12.3'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '3.13.0'
 }
 ```
 
@@ -75,7 +75,7 @@ It can be included in your Maven `pom.xml` like this for 2.12:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```
@@ -87,7 +87,7 @@ or 2.13 or 3.3 through 3.7:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_3</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```
@@ -99,7 +99,7 @@ There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.13</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```

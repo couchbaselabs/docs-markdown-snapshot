@@ -1,7 +1,7 @@
 ---
 title: Deferring Indexes
 description: How to create deferred indexes and build them later.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -90,19 +90,11 @@ To defer a primary or secondary index to be built later:
 The following examples create a set of primary and secondary indexes in the specified keyspace, with build deferred until later.
 
 ```csharp
-await cluster.QueryIndexes.CreatePrimaryIndexAsync(
-	"`travel-sample`",
-	 options => options.Deferred(true)
-);
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 ```csharp
-await cluster.QueryIndexes.CreateIndexAsync(
-	"`travel-sample`",
-	"idx_name_email",
-	new[] { "name", "email" },
-	options => options.Deferred(true)
-);
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -240,15 +232,7 @@ To build all deferred indexes in a keyspace, use the task `BuildDeferredIndexesA
 The following example builds all deferred indexes in the specified keyspace.
 
 ```csharp
-// Start building any deferred indexes which were previously created.
-await cluster.QueryIndexes.BuildDeferredIndexesAsync("`travel-sample`");
-
-// Wait for the deferred indexes to be ready for use.
-await cluster.QueryIndexes.WatchIndexesAsync(
-	"`travel-sample`",
-	new[] { "idx_name_email" },
-	options => options.WatchPrimary(true)
-);
+Unresolved include directive in modules/guides/pages/defer-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.

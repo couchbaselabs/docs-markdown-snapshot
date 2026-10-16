@@ -1,14 +1,14 @@
 ---
 title: Query
 description: You can query for documents in Couchbase using the SQL++ query language.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/n1ql-queries.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/howtos/pages/n1ql-queries.adoc
   xref: xref:kotlin-sdk:howtos:n1ql-queries.adoc[]
 ---
 

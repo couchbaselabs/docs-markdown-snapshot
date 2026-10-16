@@ -1,13 +1,13 @@
 ---
 title: Transcoders &amp; Non-JSON Documents
 description: The Scala SDK supports common JSON document requirements out-of-the-box.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/transcoders-nonjson.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/transcoders-nonjson.adoc
   xref: xref:scala-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 

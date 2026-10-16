@@ -1,0 +1,30 @@
+---
+title: Get Involved
+description: Get involved with Couchbase's Open Source SDKs.
+pubDate: 2026-10-16T07:26:40.932Z
+meta:
+  component:
+    title: Rust SDK
+    version: "1.0"
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
+  xref: xref:1.0@rust-sdk:project-docs:get-involved.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/rust-sdk/1.0/project-docs/get-involved.html)
+
+# Get Involved
+
+> Get involved with Couchbase's Open Source SDKs. 
+
+## [](#contributing)Contributing
+
+Couchbase welcomes community contributions to the Rust SDK. The [Rust SDK source code](https://github.com/couchbase/couchbase-rs/tree/main/sdk/couchbase) is available on GitHub. Please see the [README](https://github.com/couchbase/couchbase-rs/blob/main/README.md) file for further information.
+
+## [](#other-ways-to-contribute)Other Ways to Contribute
+
+Other Ways to Contribute
+
+* Join the discussion in our [forum](https://forums.couchbase.com/) and on our [Discord server](https://discord.com/invite/sQ5qbPZuTh).
+* Improve the documentation — [bug reports and pull requests are welcome](https://docs.couchbase.com/home/contribute/index.html).

@@ -2,13 +2,13 @@
 title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/data-model.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/concept-docs/pages/data-model.adoc
   xref: xref:go-sdk:concept-docs:data-model.adoc[]
 ---
 

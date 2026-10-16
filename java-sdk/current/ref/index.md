@@ -1,13 +1,13 @@
 ---
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/ref/pages/index.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/ref/pages/index.adoc
   xref: xref:java-sdk:ref:index.adoc[]
 ---
 
@@ -32,8 +32,6 @@ The Couchbase SDK docs aim to be practical, and example-led, to get you working 
 
 These are interspersed with the howto guides — but the complete set of discussion docs for the SDK is listed and linked below:
 
-* [Buckets & Clusters](../concept-docs/buckets-and-clusters.md)
-* [Collections & Scope](../concept-docs/collections.md)
 * [Compression](../concept-docs/compression.md)
 * [Data Model](../concept-docs/data-model.md)
 
@@ -49,18 +47,18 @@ These are interspersed with the howto guides — but the complete set of discuss
 * [Field Level Encryption](../concept-docs/encryption.md)
 * [Service Selection / Querying your Data](../concept-docs/querying-your-data.md)
 
-  * [Analytics](../concept-docs/analytics-for-sdk-users.md)
-  * [Map Reduce Views](../concept-docs/understanding-views.md)
+  * [Map Reduce Views](../concept-docs/understanding-views.md) \[Deprecated\]
   * [Query](../concept-docs/n1ql-query.md)
   * [Search](../concept-docs/full-text-search-overview.md)
 * [User Management](../concept-docs/sdk-user-management-overview.md)
 
   * [Cert Auth](../concept-docs/certificate-based-authentication.md)
-  * [RBAC](../concept-docs/best-practices.md)
 
-* [Data Modelling, Durability, and Consistency](../concept-docs/data-durability-acid-transactions.md)
-* [Querying Your Data](../concept-docs/querying-your-data.md)
-* [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
+### [](#key-discussion-documents)Key Discussion Documents
+
 * [Best Practices](../concept-docs/best-practices.md)
+* [Data Modelling, Durability, and Consistency](../concept-docs/data-durability-acid-transactions.md)
+* [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
 * [Managing Couchbase](../concept-docs/management-api.md)
+* [Querying Your Data](../concept-docs/querying-your-data.md)
 * [SDK Deployment](../project-docs/deployment.md)

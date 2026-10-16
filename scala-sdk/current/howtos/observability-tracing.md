@@ -2,13 +2,13 @@
 title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/observability-tracing.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/observability-tracing.adoc
   xref: xref:scala-sdk:howtos:observability-tracing.adoc[]
 ---
 

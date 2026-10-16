@@ -1,13 +1,13 @@
 ---
 title: Get Involved
 description: Get involved with Couchbase's Open Source SDKs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/get-involved.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/project-docs/pages/get-involved.adoc
   xref: xref:scala-sdk:project-docs:get-involved.adoc[]
 ---
 

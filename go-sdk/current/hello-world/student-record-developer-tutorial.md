@@ -2,13 +2,13 @@
 title: "Developer Tutorial: Student Record System"
 description: Learn how to create and deploy a student records database on
   Capella Operational and connect it to your application, using the Go SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/student-record-developer-tutorial.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/hello-world/pages/student-record-developer-tutorial.adoc
   xref: xref:go-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 

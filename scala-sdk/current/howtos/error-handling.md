@@ -2,13 +2,13 @@
 title: Handling Errors
 description: Errors are inevitable. Scala offers several flexible approaches to
   handling them.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/error-handling.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/error-handling.adoc
   xref: xref:scala-sdk:howtos:error-handling.adoc[]
 ---
 

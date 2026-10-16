@@ -3,13 +3,13 @@ title: 3<sup>rd</sup> Party Integrations
 description: The Couchbase Java SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/project-docs/pages/third-party-integrations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/project-docs/pages/third-party-integrations.adoc
   xref: xref:java-sdk:project-docs:third-party-integrations.adoc[]
 ---
 

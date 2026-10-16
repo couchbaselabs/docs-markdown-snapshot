@@ -1,14 +1,14 @@
 ---
 title: Error Handling
 description: Handling transaction errors with Couchbase.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/transactions-error-handling.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/transactions-error-handling.adoc
   xref: xref:dotnet-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 

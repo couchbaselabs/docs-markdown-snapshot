@@ -2,14 +2,14 @@
 title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/health-check.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/health-check.adoc
   xref: xref:dotnet-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -20,13 +20,11 @@ antora:
 
 > Health Check provides ping() and diagnostics() tests for the health of the network and the cluster. 
 
-Working in distributed environments is _hard_. Latencies come and go, so do connections in their entirety. Is it a network glitch, or is the remote cluster down? Sometimes just knowing the likely cause is enough to get a good start on a workaround, or at least avoid hours wasted on an inappropriate solution.
+Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::3.10@sdk:pages:partial$health-check.adoc\[\]
 
-Health Check enables useful diagnostics on the state of Couchbase Clusters across networks. `Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections.
+Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::3.10@sdk:pages:partial$health-check.adoc\[\]
 
-## [](#ping)Ping
-
-`Ping` _actively_ queries the status of the specified services,giving status and latency information for every node reachable. In addition to its use as a monitoring tool, a regular `Ping` can be used in an environment which does not respect keep alive values for a connection.
+Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::3.10@sdk:pages:partial$health-check.adoc\[\]
 
 A `ping` can be performed either at the `Cluster` or at the `Bucket` level. They are very similar, although at the `Bucket` level also the Key/Value and View connections for the specific bucket are taken into account.
 
@@ -88,9 +86,7 @@ You will see an output similar to this:
 
 Notice the `scope` of each service. Bucket level services like key/value will have a bucket name as scope, while cluster level services will have "Cluster" as their scope.
 
-## [](#diagnostics)Diagnostics
-
-`Diagnostics` returns a list of the nodes that the SDK currently has (or had) a connection to, and the current status of the connection. However this call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node. If you want the _current_ status, then use [Ping](#ping).
+Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::3.10@sdk:pages:partial$health-check.adoc\[\]
 
 ```javascript
 IDiagnosticsReport diagnosticsReport = await cluster.DiagnosticsAsync();

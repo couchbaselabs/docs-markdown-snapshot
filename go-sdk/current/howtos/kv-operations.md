@@ -2,13 +2,13 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/kv-operations.adoc
   xref: xref:go-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -19,7 +19,7 @@ antora:
 
 > Key Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
-The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.12/modules/devguide/examples/go/kv-crud%5Ftest.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
+The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.13/modules/devguide/examples/go/kv-crud%5Ftest.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
 
 ## [](#documents)Documents
 

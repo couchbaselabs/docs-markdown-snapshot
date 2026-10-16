@@ -2,13 +2,13 @@
 title: Async &amp; Reactive APIs
 description: "The Couchbase Scala SDK allows the use, and mixing, of three
   distinct APIs: blocking, asynchronous, and reactive."
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:scala-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -219,6 +219,9 @@ While it's beyond the scope of this guide to teach reactive programming, it's im
 3. Always subscribe. A `Mono` or `Flux` will not start until it's subscribed to.
 
 ### [](#bulk-operations)Bulk Operations
+
+> [!TIP]
+> This bulk-get example is given for the Scala SDK as there are times when business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. This will not be more efficient — for Cluster or for network — but will comply with the results handling need of this particular case.
 
 For bulk operations, and applying the golden rules above, call `flatMap` inside `SFlux`, as in the `upsert` example following:
 

@@ -2,13 +2,13 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/best-practices.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/concept-docs/pages/best-practices.adoc
   xref: xref:go-sdk:concept-docs:best-practices.adoc[]
 ---
 
@@ -64,6 +64,12 @@ Choosing between the blocking, asynchronous, and reactive APIs for the Scala SDK
 * The reactive API is a more natural fit for network-aware, fault tolerant programs, and will provide full back pressure for streaming results from large SQL++ or Search queries.
 
 See the [Async & Reactive APIs page](../howtos/concurrent-async-apis.md) for further discussion and practical examples.
+
+### [](#bulk-get-multi-get-and-network-latency)Bulk Get, Multi-Get, and Network Latency
+
+In traditional databases, a bulk get or multi-get is often an efficient way of overcoming network latencies as a bottleneck, or simply making more efficent use of your database's performance.
+
+Couchbase is a distributed database, efficiently fetching data from vbuckets spread across several nodes: bulk gets can be an anti-pattern, holding things up on the Server side, compared with the efficiency of fetching your data asynchronously. However, this depends upon your platform language's availability of asynchronous APIs — see the [bulk get and async API page](../howtos/concurrent-async-apis.md) for the specifics for the Go SDK.
 
 ## [](#error-handling)Error Handling
 

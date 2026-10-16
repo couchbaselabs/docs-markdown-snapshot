@@ -2,13 +2,13 @@
 title: Migrating to SDK 3 API
 description: The SDK 3.x API used in Go SDK 2.x breaks the existing 2.x APIs
   (used in Go SDK 1.6) in order to provide a number of improvements.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:go-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -259,6 +259,4 @@ func Example_migrating() {
 }
 ```
 
-## [](#comparing-older-documentation)Comparing Older Documentation
-
-You may want to visit documentation for older versions of the SDK, to help to understand application code that you are migrating. Versions that have reached end of life can be found in the [archive](https://docs-archive.couchbase.com/home/index.html). In the release notes pages of these older docs, you will also find links to the API reference for each no-longer-supported release.
+Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::3.10@sdk:shared:partial$archive.adoc\[\]

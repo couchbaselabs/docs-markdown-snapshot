@@ -1,13 +1,13 @@
 ---
 title: Service Selection
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: landing-page
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/concept-docs/pages/data-services.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/concept-docs/pages/data-services.adoc
   xref: xref:kotlin-sdk:concept-docs:data-services.adoc[]
 ---
 
@@ -16,7 +16,7 @@ antora:
 
 # Service Selection
 
-> Data in the Couchbase Data Platform can be accessed through Key Value (KV) Operations (including the Sub-Document API), the Analytics Service, the Query Service, the Search Service, or even MapReduce Views: how do you pick the right service for your application? 
+> Data in the Couchbase Data Platform can be accessed through Key Value (KV) Operations (including the Sub-Document API), the Analytics Service, the Query Service, Full Text Search, or even MapReduce Views: how do you pick the right service for your application? 
 
 Couchbase Data Platform features several services to enable efficient information retrieval at a speed and scale to suit every use case. Although each service uses a different API, exposed on a different port, and often addressing different protocols, the Couchbase SDKs abstract away many of the differences — offering consistency across different language SDKs where it is reasonable to do so.
 
@@ -28,7 +28,7 @@ Couchbase Data Services
 * [Sub-Document API](#howtos:subdocument-operations.adoc)
 * [Couchbase Analytics Service (CBAS)](analytics-for-sdk-users.md)
 * [Query Service](n1ql-query.md)
-* [Search Service](full-text-search-overview.md)
+* [Full Text Search](full-text-search-overview.md)
 * [MapReduce Views](understanding-views.md)
 * [Connectors](#7.1@server:connectors:intro.adoc)
 
@@ -36,7 +36,7 @@ Couchbase Data Services
 
 It's an understandable temptation to reach for the familiar, and Couchbase's SQL-like SQL++ (formerly N1QL) makes the Query service an easy starting point for many, but it's important to take time to match your use case to the best tool for the job.
 
-### [](#known-documents)Known Documents
+### [](#known-documents)Known documents
 
 When you already know the _Key_ (ID) of the document, then _KV Operations_ is by far the simplest way to retrieve or mutate it. The binary protocol used is far quicker than streaming JSON.
 
@@ -64,13 +64,13 @@ MapReduce Views uses distributed Map-Reduce for very fast aggregation operations
 
 For queries over a larger number of documents, CBAS would be the best tool here, otherwise, for high throughput, simple queries, pick our Query Service.
 
-### [](#fuzzy-searches)Fuzzy Searches
+### [](#fuzzy-searches)Fuzzy searches
 
-Use the Search Service when you want to take advantage of natural-language querying. For phrase matching, over free-form text, or matching over word stems, the Search Service is a powerful solution.
+Use the Full Text Search (FTS) service when you want to take advantage of natural-language querying. For phrase matching, over free-form text, or matching over word stems, FTS is a powerful solution.
 
-There are more concepts to learn, as the Search Service offers a very flexible service. In particular, care should be taken over building indexes, to stop them becoming unnecessarily large — see our [The Search Service Documentation](#7.1@server:fts:full-text-intro.adoc). Once again, the SDK abstracts away much of the complexity from deeply nested queries, and the interface is similar to our Query Service.
+There are more concepts to learn, as FTS offers a very flexible service. In particular, care should be taken over building indexes, to stop them becoming unnecessarily large — see our [FTS documentation](#7.1@server:fts:full-text-intro.adoc). Once again, the SDK abstracts away much of the complexity from deeply nested queries, and the interface is similar to our Query Service.
 
-From Couchbase Server 6.5, [Search Functions](#7.1@server:n1ql:n1ql-language-reference/searchfun.adoc) allow the use of the Search Service _within_ SQL++ queries.
+From Couchbase Server 6.5, [Search Functions](#7.1@server:n1ql:n1ql-language-reference/searchfun.adoc) allow the use of FTS _within_ SQL++ queries.
 
 ### [](#querying)Querying
 

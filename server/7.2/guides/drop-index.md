@@ -1,7 +1,7 @@
 ---
 title: Dropping Indexes
 description: How to drop primary and secondary indexes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -90,16 +90,13 @@ To drop a primary index, use the task `DropPrimaryIndexAsync()` on the interface
 The following example drops an unnamed primary index from the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.DropPrimaryIndexAsync("`travel-sample`");
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 The following example drops a named primary index from the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.DropPrimaryIndexAsync(
-	"`travel-sample`",
-	options => options.IndexName("named_primary_index")
-);
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -230,7 +227,7 @@ To drop a secondary index, use the task `DropIndexAsync()` on the interface `IQu
 The following example drops a named index from the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.DropIndexAsync("`travel-sample`", "index_name");
+Unresolved include directive in modules/guides/pages/drop-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.

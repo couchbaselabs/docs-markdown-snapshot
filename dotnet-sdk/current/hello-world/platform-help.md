@@ -2,14 +2,14 @@
 title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase .NET SDK 3.0+ using <code>Visual Studio Code</code>.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: tutorial
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/hello-world/pages/platform-help.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/hello-world/pages/platform-help.adoc
   xref: xref:dotnet-sdk:hello-world:platform-help.adoc[]
 ---
 

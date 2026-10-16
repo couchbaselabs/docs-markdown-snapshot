@@ -1,14 +1,13 @@
 ---
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
-  topic_type: reference
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/travel-app-data-model.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/ref/pages/travel-app-data-model.adoc
   xref: xref:rust-sdk:ref:travel-app-data-model.adoc[]
 ---
 

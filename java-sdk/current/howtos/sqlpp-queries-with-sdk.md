@@ -4,13 +4,13 @@ description: You can query for documents in Couchbase using the
   https://www.couchbase.com/products/n1ql[SQL++] (formerly N1QL) query language,
   a language based on SQL, but designed for structured and flexible JSON
   documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
   xref: xref:java-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -270,7 +270,7 @@ This query will stream all rows as they become available from the server, automa
 
 ## [](#querying-at-scope-level)Querying at Scope Level
 
-It is possible to query off the [Scope level](../concept-docs/n1ql-query.md#collections-and-scopes-and-the-query-context), _with Couchbase Server release 7.x_, using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
+It is possible to query off the [Scope level](../concept-docs/n1ql-query.md#collections-and-scopes-and-the-query-context), using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
 
 A complete list of `QueryOptions` can be found in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/AsyncScope.html#query-java.lang.String-).
 

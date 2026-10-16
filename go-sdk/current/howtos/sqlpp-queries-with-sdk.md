@@ -3,13 +3,13 @@ title: Query
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
   xref: xref:go-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 

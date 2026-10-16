@@ -1,21 +1,21 @@
 ---
-title: Couchbase Kotlin SDK 3.12
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Kotlin SDK 3.13
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/hello-world/pages/overview.adoc
   xref: xref:kotlin-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/current/hello-world/overview.html)
 
-# Couchbase Kotlin SDK 3.12
+# Couchbase Kotlin SDK 3.13
 
-# Couchbase Kotlin SDK 3.12
+# Couchbase Kotlin SDK 3.13
 
 The Couchbase Kotlin SDK is built on top of the same high performance I/O core as the Couchbase Java SDK.  
 It provides idiomatic Kotlin features like default arguments, suspend functions, and tasteful DSLs.

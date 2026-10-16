@@ -2,13 +2,13 @@
 title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/concept-docs/pages/data-durability-acid-transactions.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/concept-docs/pages/data-durability-acid-transactions.adoc
   xref: xref:scala-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 ---
 
@@ -70,7 +70,7 @@ Writes in Couchbase (from the SDK or elsewhere) are written to a single node. Fr
 
 ### [](#durable-writes)Durable Writes
 
-All supported versions of Couchbase Server (since 6.5) offer [Durable Writes](../../../server/current/learn/data/durability.md), under which mutations will not be visible to other clients until they have met their durability requirements.
+All supported versions of Couchbase Server offer [Durable Writes](../../../server/current/learn/data/durability.md), under which mutations will not be visible to other clients until they have met their durability requirements.
 
 The optional `durabilityLevel` parameter, which all mutating operations accept, allows the application to wait until this replication (or persistence) is successful before proceeding. If `durabilityLevel()` is used with no argument, the application will report success back as soon as the primary node has acknowledged the mutation in its memory. The three replication level options are:
 

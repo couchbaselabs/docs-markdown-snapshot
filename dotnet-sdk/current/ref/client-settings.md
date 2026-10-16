@@ -2,14 +2,14 @@
 title: Client Settings
 description: The <code>ClusterOptions</code> class enables you to configure .NET
   SDK options for bootstrapping, timeouts, reliability, and performance.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: reference
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/ref/pages/client-settings.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/ref/pages/client-settings.adoc
   xref: xref:dotnet-sdk:ref:client-settings.adoc[]
 ---
 

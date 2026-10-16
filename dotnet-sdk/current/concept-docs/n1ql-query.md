@@ -2,14 +2,14 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/n1ql-query.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/n1ql-query.adoc
   xref: xref:dotnet-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -20,7 +20,7 @@ antora:
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
-The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](../howtos/n1ql-queries-with-sdk.md).
+The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](../../../server/current/n1ql/n1ql-language-reference/index.md), but you probably just want to [dive into a practical example](#howtos:n1ql-queries-with-sdk.adoc).
 
 Below, we fill in some of the gaps between reference and rolling-up-your-sleeves practicality, with discussion of a few areas of the Query Service where more background knowledge will help you to better program your application.
 
@@ -48,11 +48,11 @@ var result = await cluster.QueryAsync<dynamic>(
 ```
 
 > [!CAUTION]
-> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](#8.0.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server's behaviour.
+> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](#3.10@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server's behaviour.
 
 ## [](#indexes)Indexes
 
-The Couchbase query service makes use of [_indexes_](#8.0.1@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#8.0.1@server:learn:services-and-indexes/services/services.adoc) topologies.
+The Couchbase query service makes use of [_indexes_](#3.10@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#3.10@server:learn:services-and-indexes/services/services.adoc) topologies.
 
 > [!IMPORTANT]
 > In order to make a bucket queryable, it must have at least one index defined.
@@ -87,7 +87,7 @@ CREATE INDEX ix_users_email ON `users`(email);
 SELECT name, email FROM `users` WHERE name="Monty Python" OR email="monty@python.org";
 ```
 
-Indexes help improve the performance of a query. When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service. An index, in this case, is called a _covering index_, and the query is called a _covered_ query. For more information, see [Covering Indexes](#8.0.1@server:n1ql:n1ql-language-reference/covering-indexes.adoc).
+Indexes help improve the performance of a query. When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service. An index, in this case, is called a _covering index_, and the query is called a _covered_ query. For more information, see [Covering Indexes](#3.10@server:n1ql:n1ql-language-reference/covering-indexes.adoc).
 
 You can also create and define indexes in the SDK using:
 
@@ -132,7 +132,13 @@ With default query options, the query service will rely on the current index sta
 
 The following options are available:
 
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::8.0.1@server:learn:page$services-and-indexes/indexes/index-replication.adoc\[\]
+## [](#index-consistency-2)Index Consistency
+
+Because indexes are by design outside the Data Service, they are _eventually consistent_ with respect to changes to documents and, depending on how you issue the query, may at times not contain the most up-to-date information. This may especially be the case when deployed in a write-heavy environment: changes may take some time to propagate over to the index nodes.
+
+The asynchronous updating nature of [Global Secondary Indexes (GSIs)](../../../server/current/indexes/indexing-overview.md) means that they can be very quick to query and do not require the additional overhead of index recaclculations at the time documents are modified. SQL++ queries are forwarded to the relevant indexes, and the queries are done based on indexed information, rather than the documents as they exist in the data service.
+
+With default query options, the query service will rely on the current index state: the most up-to-date document versions are not retrieved, and only the indexed versions are queried. This provides the best performance. Only updates occurring with a small time frame may not yet have been indexed. For cases where consistency is more important than performance, the `scan_consistency` property of a query may be set to `REQUEST_PLUS`. ensuring that indexes are synchronized with the data service before querying.
 
 Consider the following snippet:
 

@@ -2,14 +2,13 @@
 title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
-  topic_type: howto
+    version: "3.10"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/subdocument-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/subdocument-operations.adoc
   xref: xref:dotnet-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -31,7 +30,7 @@ Starting with Couchbase Server 4.5 you can atomically and efficiently update and
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 > [!IMPORTANT]
-> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ (formerly N1QL) queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](n1ql-queries-with-sdk.md).)
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ (formerly N1QL) queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](#n1ql-queries-with-sdk.adoc).)
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#Path syntax). Considering the document:
 
@@ -436,4 +435,6 @@ If you need to combine both JSON _and_ path-syntax literals you can do so by esc
 
 ## [](#extended-attributes)Extended Attributes
 
-Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework. They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.
+Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework.
+
+They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.

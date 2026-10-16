@@ -2,13 +2,13 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/n1ql-query.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/concept-docs/pages/n1ql-query.adoc
   xref: xref:rust-sdk:concept-docs:n1ql-query.adoc[]
 ---
 

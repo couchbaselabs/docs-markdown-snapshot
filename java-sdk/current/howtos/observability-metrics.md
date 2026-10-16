@@ -2,13 +2,13 @@
 title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/observability-metrics.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/observability-metrics.adoc
   xref: xref:java-sdk:howtos:observability-metrics.adoc[]
 ---
 

@@ -1,0 +1,22 @@
+---
+title: Choosing &amp; Using a JSON Library
+pubDate: 2026-10-16T07:26:40.932Z
+meta:
+  component:
+    title: .NET SDK
+    version: "3.9"
+  topic_type: howto
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/json.adoc
+  xref: xref:3.9@dotnet-sdk:howtos:json.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/dotnet-sdk/3.9/howtos/json.html)
+
+# Choosing &amp; Using a JSON Library
+
+Third-party JSON libraries are rarely necessary for most use cases with the Couchbase SDKs, and the default library will give you everything that you are likely to need. Just [get started](../hello-world/start-using-sdk.md#hello-couchbase) on your application and see.
+
+> [!NOTE]
+> The [Scala SDK supports multiple options for working with JSON](#1.0@scala-sdk:howtos:json.adoc), and has its own page covering this topic.

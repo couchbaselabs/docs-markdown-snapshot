@@ -1,13 +1,13 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/deployment.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/project-docs/pages/deployment.adoc
   xref: xref:scala-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -42,6 +42,30 @@ The Scala SDK docs note whenever a shortcut is being taken, but here is a non-ex
 The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
 
 For the Scala SDK, that is to keep a separate properties file for your development and production environments.
+
+## [](#couchbase-operational-cluster-feature-compatibility)Couchbase Operational Cluster Feature Compatibility
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Scala SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2 | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ---------- | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A        | From 1.4.1       |            |
+| Zone aware replica reads                                                                     | N/A        | From 1.8.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A        | From 1.6.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A        | From SDK 3.9.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A        | From SDK 3.9.0 ① |            |
+| Distributed ACID Transactions                                                                | From 1.5.0 |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 1.4.0 |                  |            |
+| Circuit Breakers                                                                             | From 1.0.0 |                  |            |
+| Response Time Observability with OTel                                                        | From 1.2.0 |                  |            |
+| Field Level Encryption                                                                       | From 1.0.0 |                  |            |
+| Cloud Native Gateway                                                                         | From 1.5.0 |                  |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
+
+Note, from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier for users to track changes. Thus the Scala SDK jumped from 1.8 to 3.9 as a minor version bump.\*
 
 ## [](#further-reading)Further Reading
 

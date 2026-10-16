@@ -2,13 +2,13 @@
 title: Query
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/concept-docs/pages/n1ql-query.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/concept-docs/pages/n1ql-query.adoc
   xref: xref:java-sdk:concept-docs:n1ql-query.adoc[]
 ---
 

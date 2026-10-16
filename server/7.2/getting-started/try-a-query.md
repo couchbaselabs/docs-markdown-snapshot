@@ -3,7 +3,7 @@ title: Run Your First SQL++ Query
 description: Now that you have a basic understanding of buckets, scopes and
   collections, and documents, you can try querying them using SQL++, the
   Couchbase Server query language.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -238,7 +238,7 @@ On the Query Workbench, you can set the _query context_ by selecting a bucket an
 ## [](#other-destinations)Other Destinations
 
 * Execute SQL++ queries programmatically using the official Couchbase SDKs:  
-[C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md) | [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md) | [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md) | [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md) | [Python](#3.0@python-sdk:howtos:n1ql-queries-with-sdk.adoc) | [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+[C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md) | [.NET](#dotnet-sdk:howtos:n1ql-queries-with-sdk.adoc) | [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md) | [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md) | [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md) | [Python](#3.0@python-sdk:howtos:n1ql-queries-with-sdk.adoc) | [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 * [SQL++ Query Language Tutorial](https://query-tutorial.couchbase.com/tutorial/#1): Provides interactive web modules where you can learn about SQL++ without having Couchbase Server installed in your own environment. The modules are self-contained and let you modify and run sample queries. The tutorial covers `SELECT` statements in detail, including examples of `JOIN`, `NEST`, `GROUP BY`, and other typical clauses.
 * [SQL++ Cheat Sheet](http://docs.couchbase.com/files/Couchbase-N1QL-CheatSheet.pdf): Provides a concise summary of the basic syntax elements of SQL++. Print it out and keep it on your desk where it'll be handy for quick reference.
 * [SQL++ Language Reference](../n1ql/n1ql-language-reference/index.md): Describes the SQL++ language structure, including syntax and usage.

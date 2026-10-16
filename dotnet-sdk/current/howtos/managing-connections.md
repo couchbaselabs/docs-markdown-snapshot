@@ -1,14 +1,14 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the .NET SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/managing-connections.adoc
   xref: xref:dotnet-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -389,7 +389,7 @@ The protocol implements a gRPC-style interface between the SDK and Couchbase Ser
 
 ### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](#howtos:n1ql-queries-with-sdk.adoc) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 

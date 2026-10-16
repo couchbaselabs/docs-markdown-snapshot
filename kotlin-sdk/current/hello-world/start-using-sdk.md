@@ -2,14 +2,14 @@
 title: Start Using the Kotlin SDK
 description: A Kotlin application running on the JVM can use the Couchbase
   Kotlin SDK to access a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: tutorial
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:kotlin-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -27,7 +27,7 @@ The Couchbase Kotlin SDK is built on top of the same high performance I/O core a
 
 ## [](#prerequisites)Before You Start
 
-* You should know [how to set up a new Kotlin project using Gradle](https://kotlinlang.org/docs/gradle.html) (or [using Maven](https://kotlinlang.org/docs/maven.html)). The SDK requires Kotlin 2.1.0 or later.
+* You should know [how to set up a new Kotlin project using Gradle](https://kotlinlang.org/docs/gradle.html) (or [using Maven](https://kotlinlang.org/docs/maven.html)). The SDK requires Kotlin 2.2.0 or later.
 * You will need Java 8 or later. We recommend running the latest Java LTS version with the highest patch version available.
 
 ## [](#installing-the-sdk)Installing the SDK
@@ -41,18 +41,18 @@ You can use your favorite dependency management tool to include the SDK in your 
 * Maven
 
 ```kotlin
-implementation("com.couchbase.client:kotlin-client:3.12.3")
+implementation("com.couchbase.client:kotlin-client:3.13.0")
 ```
 
 ```groovy
-implementation "com.couchbase.client:kotlin-client:3.12.3"
+implementation "com.couchbase.client:kotlin-client:3.13.0"
 ```
 
 ```xml
 <dependency>
   <groupId>com.couchbase.client</groupId>
   <artifactId>kotlin-client</artifactId>
-  <version>3.12.3</version>
+  <version>3.13.0</version>
 </dependency>
 ```
 

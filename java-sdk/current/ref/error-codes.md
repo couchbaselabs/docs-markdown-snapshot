@@ -2,13 +2,13 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase Java SDK,
   from cloud connection to sub-document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/ref/pages/error-codes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/ref/pages/error-codes.adoc
   xref: xref:java-sdk:ref:error-codes.adoc[]
 ---
 
@@ -412,5 +412,4 @@ WARNING: [com.couchbase.core][DnsSrvLookupFailedEvent][86ms] DNS SRV lookup fail
 
 * Our practical look at [error handling with the SDK](../howtos/error-handling.md).
 * [Diagnostics](../howtos/health-check.md#diagnostics) with Health Check.
-* [Discussion document](../concept-docs/best-practices.md) on handling exceptions.
 * Further reference material in the [API Guide](https://docs.couchbase.com/sdk-api/couchbase-java-client/index.html).

@@ -1,21 +1,21 @@
 ---
-title: Couchbase Rust SDK 1.0
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Rust SDK 1.1
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/hello-world/pages/overview.adoc
   xref: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/hello-world/overview.html)
 
-# Couchbase Rust SDK 1.0
+# Couchbase Rust SDK 1.1
 
-# Couchbase Rust SDK 1.0
+# Couchbase Rust SDK 1.1
 
 The Couchbase Rust SDK allows Rust applications to access a Couchbase cluster — Capella or self-managed.
 

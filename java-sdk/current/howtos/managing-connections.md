@@ -1,13 +1,13 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Java SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/managing-connections.adoc
   xref: xref:java-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -30,17 +30,13 @@ Collection collection = bucket.defaultCollection();
 // You can access multiple buckets using the same Cluster object.
 Bucket anotherBucket = cluster.bucket("beer-sample");
 
-// You can access collections other than the default
-// if your version of Couchbase Server supports this feature.
+// You can access multiple collections, too
 Scope customerA = bucket.scope("customer-a");
 Collection widgets = customerA.collection("widgets");
 
 // For a graceful shutdown, disconnect from the cluster when the program ends.
 cluster.disconnect();
 ```
-
-> [!NOTE]
-> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 7.0 and earlier, need to open a `Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -155,7 +151,7 @@ sharedEnvironment.shutdown();
 
 If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
-On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
+On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command — see the [reference](../../../server/current/cli/cbcli/couchbase-cli-setting-alternate-address.md) for further information. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
 On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports in the connection string when calling `Cluster.connect()`.
 
@@ -283,13 +279,13 @@ quarkus.couchbase.password=password
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Java SDK 3.5 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, is compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift), or [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
 
-The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+It can be enabled by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 ### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 
@@ -393,6 +389,8 @@ If you are working at the _Bucket_ level, then the [Bucket-level waitUntilReady]
 
 Other timeout issues may occur when using the SDK located geographically separately from the Couchbase Server cluster — this is [not recommended](../project-docs/compatibility.md#network-requirements). See the [Cloud section](#working-in-the-cloud) below for some suggestions of settings adjustments.
 
+## [](#working-in-the-cloud)Working in the Cloud
+
 For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
@@ -453,3 +451,5 @@ ReactiveBucket bucket = cluster.bucket("travel-sample");
 // `block()`.
 cluster.disconnect().block();
 ```
+
+See the [Async and Reactive APIs](concurrent-async-apis.md) page for more information.

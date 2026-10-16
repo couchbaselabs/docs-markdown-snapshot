@@ -1,13 +1,13 @@
 ---
 title: MapReduce Views
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/understanding-views.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/understanding-views.adoc
   xref: xref:dotnet-sdk:concept-docs:understanding-views.adoc[]
 ---
 
@@ -19,7 +19,7 @@ antora:
 > You can use MapReduce views to create queryable indexes in Couchbase Server. 
 
 > [!WARNING]
-> Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](data-services.md).
+> Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](querying-your-data.md).
 
 # [](#mapreduce-views)MapReduce Views
 

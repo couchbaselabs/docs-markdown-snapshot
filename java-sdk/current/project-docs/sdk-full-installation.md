@@ -1,13 +1,13 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase Java Client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/project-docs/pages/sdk-full-installation.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/project-docs/pages/sdk-full-installation.adoc
   xref: xref:java-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -20,17 +20,17 @@ antora:
 
 The Couchbase Java SDK allows Java applications to access a Couchbase cluster. It offers synchronous APIs as well as reactive and asynchronous equivalents to maximize flexibility and performance.
 
-The Couchbase Java SDK 3._x_ is a complete rewrite of the 2.x API, providing a simpler surface area and adding support for Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md) (available in Couchbase Server 7.0+). The (reactive) API also migrated from `RxJava` to `Reactor`, along with other improvements to performance, logging, debugging and timeout troubleshooting. If you're upgrading your application from Java SDK 2.x, please read our [Migrating 2.x code to SDK 3.0 Guide](migrating-sdk-code-to-3.n.md).
+The Couchbase Java SDK 3._x_ is a complete rewrite of the 2.x API, providing a simpler surface area and adding support for Couchbase Server features like [Collections and Scopes](../concept-docs/data-durability-acid-transactions.md) (available in Couchbase Server 7.0+). The (reactive) API also migrated from `RxJava` to `Reactor`, along with other improvements to performance, logging, debugging and timeout troubleshooting. If you're upgrading your application from Java SDK 2.x, please read our [Migrating 2.x code to SDK 3.x Guide](migrating-sdk-code-to-3.n.md).
 
 ## [](#prerequisites)Prerequisites
 
-The Java SDK is tested against LTS versions OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
+The Java SDK is tested against LTS versions of OpenJDK — see our [compatibility docs](compatibility.md#jdk-compat). The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a [workaround](compatibility.md#alpine-linux-compatibility) necessary for this OS.
 
 ## [](#installing-the-sdk)Installing the SDK
 
 At least Java 8 is required for current releases; see the [Compatibility](compatibility.md#jdk-compat) section for details. We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
-Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.12 SDK is [3.12.3](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.12.3/jar).
+Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client). The latest version of the 3.13 SDK is [3.13.0](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.0/jar).
 
 You can use your favorite dependency management tool to install the SDK.
 
@@ -43,7 +43,7 @@ For [Maven](https://maven.apache.org), you can insert the following into the dep
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 ```
 
@@ -52,7 +52,7 @@ Refer to the [Maven Documentation](https://maven.apache.org/guides/introduction/
 For [Gradle](https://gradle.org/), you can use:
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.12.3'
+implementation 'com.couchbase.client:java-client:3.13.0'
 ```
 
 Alternatively, we provide a zip file with all the dependencies bundled if you wish to manually include the `jar` files in your classpath. Refer to the [Release Notes](sdk-release-notes.md) for further details. You can also find links to the hosted javadocs there.

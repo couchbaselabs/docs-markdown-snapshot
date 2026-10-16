@@ -1,13 +1,13 @@
 ---
 title: Browser and CLI Access
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: landing-page
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/webui-cli-access.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/hello-world/pages/webui-cli-access.adoc
   xref: xref:java-sdk:hello-world:webui-cli-access.adoc[]
 ---
 

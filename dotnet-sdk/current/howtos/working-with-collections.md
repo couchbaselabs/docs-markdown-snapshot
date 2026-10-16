@@ -1,13 +1,13 @@
 ---
 title: Working with Collections
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/working-with-collections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/working-with-collections.adoc
   xref: xref:dotnet-sdk:howtos:working-with-collections.adoc[]
 ---
 
@@ -23,7 +23,7 @@ The [Collections feature](../../../server/current/learn/data/scopes-and-collecti
 > [!NOTE]
 > When working with versions earlier than 7.0, the `defaultcollection` is used from the SDK.
 
-Read more about [Collections and Scopes](../concept-docs/collections.md).
+Read more about [Collections and Scopes](../concept-docs/data-durability-acid-transactions.md).
 
 ## [](#sample-application)Sample Application
 

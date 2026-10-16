@@ -3,14 +3,14 @@ title: Search
 description: You can use the Search Service to find JSON documents that have
   certain words, phrases, or geographic coordinates -- and for vector searches
   against Server 7.6.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/full-text-search.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/howtos/pages/full-text-search.adoc
   xref: xref:kotlin-sdk:howtos:full-text-search.adoc[]
 ---
 

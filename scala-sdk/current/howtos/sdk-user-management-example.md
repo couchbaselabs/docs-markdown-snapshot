@@ -3,13 +3,13 @@ title: User Management
 description: The Java SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/sdk-user-management-example.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/sdk-user-management-example.adoc
   xref: xref:scala-sdk:howtos:sdk-user-management-example.adoc[]
 ---
 

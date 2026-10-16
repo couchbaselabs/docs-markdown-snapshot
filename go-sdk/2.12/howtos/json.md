@@ -1,0 +1,22 @@
+---
+title: Choosing &amp; Using a JSON Library
+pubDate: 2026-10-16T07:26:40.932Z
+meta:
+  component:
+    title: Go SDK
+    version: "2.12"
+  topic_type: howto
+antora:
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/json.adoc
+  xref: xref:2.12@go-sdk:howtos:json.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-sdk/2.12/howtos/json.html)
+
+# Choosing &amp; Using a JSON Library
+
+Third-party JSON libraries are rarely necessary for most use cases with the Couchbase SDKs, and the default library will give you everything that you are likely to need. Just [get started](../hello-world/start-using-sdk.md#hello-couchbase) on your application and see.
+
+> [!NOTE]
+> The [Scala SDK supports multiple options for working with JSON](#1.0@scala-sdk:howtos:json.adoc), and has its own page covering this topic.

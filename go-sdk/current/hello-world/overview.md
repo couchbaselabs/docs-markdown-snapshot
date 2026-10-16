@@ -1,21 +1,21 @@
 ---
-title: Couchbase Go SDK 2.12
-pubDate: 2026-10-03T04:27:21.374Z
+title: Couchbase Go SDK 2.13
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/hello-world/pages/overview.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/hello-world/pages/overview.adoc
   xref: xref:go-sdk:hello-world:overview.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/current/hello-world/overview.html)
 
-# Couchbase Go SDK 2.12
+# Couchbase Go SDK 2.13
 
-# Couchbase Go SDK 2.12
+# Couchbase Go SDK 2.13
 
 The Couchbase Go SDK allows Go applications to access a Couchbase cluster — Capella or self-managed.
 
@@ -70,7 +70,7 @@ Installing the SDK
 $ go get github.com/couchbase/gocb/v2
 ```
 
-In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. At time of writing (February 2026), this is 1.25 and 1.26\. Older versions may remain compatible, but are not supported.
+In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. At time of writing (October 2026), this is 1.27 and 1.26\. Older versions may remain compatible, but are not supported.
 
 The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don't know exactly where you need to go, try one of the following:
 

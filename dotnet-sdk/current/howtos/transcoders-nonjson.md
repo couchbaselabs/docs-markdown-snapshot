@@ -1,14 +1,14 @@
 ---
 title: Transcoders and Non-JSON Documents
 description: The .NET SDK supports common JSON document requirements out-of-the-box.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: howtos
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/transcoders-nonjson.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/transcoders-nonjson.adoc
   xref: xref:dotnet-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
@@ -350,6 +350,6 @@ await collection.UpsertAsync("john-smith", user2, options => options.Transcoder(
 
 ## [](#further-reading)Further reading
 
-* For _Common flags_, setting the data format used, see the [Data Structures reference](../ref/data-structures.md#common-flags).
-* _Format flags_ for ancient SDKs are still available for compatibility, if you are porting a long-lived legacy app. See the [Legacy formats reference](../ref/data-structures.md#legacy-formats).
+* For _Common flags_, setting the data format used, see the [Data Structures reference](#ref:data-structures.adoc#common-flags).
+* _Format flags_ for ancient SDKs are still available for compatibility, if you are porting a long-lived legacy app. See the [Legacy formats reference](#ref:data-structures.adoc#legacy-formats).
 * If you want to work with binary documents and our Search service, you might like to take a look at <https://github.com/khanium/couchbase-fts-binary>

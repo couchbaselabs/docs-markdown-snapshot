@@ -2,14 +2,14 @@
 title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
   topic_type: concept
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
   xref: xref:dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -65,10 +65,10 @@ Now that you are familiar with the general theme of the migration, the next sect
 
 ## [](#installation-and-configuration)Installation and Configuration
 
-The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.9.6:
+The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.10.0:
 
-* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.9.6`
-* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.9.6>
+* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.10.0`
+* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.10.0>
 * (Not officially supported) By cloning and building the source code directly on [github](https://github.com/couchbase/couchbase-net-client/tree/master)
 
 Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
@@ -79,7 +79,7 @@ Couchbase strongly recommends using the [latest LTS version of .NET that's offic
 
 ### [](#dependencies)Dependencies
 
-There are several dependency changes from SDK 2.x to 3.9.x. Use NuGet so that these dependencies will all be handled for you by the NuGet Package Manager tool in Visual Studio or Visual Studio Code. See the [Start Using](../hello-world/start-using-sdk.md) document for information on adding it via NuGet.
+There are several dependency changes from SDK 2.x to 3.10.x. Use NuGet so that these dependencies will all be handled for you by the NuGet Package Manager tool in Visual Studio or Visual Studio Code. See the [Start Using](../hello-world/start-using-sdk.md) document for information on adding it via NuGet.
 
 ### [](#configuring-the-environment)Configuring the Environment
 
@@ -833,6 +833,4 @@ __Table 8\. SDK 2.x vs SDK 3.x Environment Configs__
 | CertificateFactory                    | X509CertificateFactory                |
 | Serializer                            | Serializer                            |
 
-## [](#comparing-older-documentation)Comparing Older Documentation
-
-You may want to visit documentation for older versions of the SDK, to help to understand application code that you are migrating. Versions that have reached end of life can be found in the [archive](https://docs-archive.couchbase.com/home/index.html). In the release notes pages of these older docs, you will also find links to the API reference for each no-longer-supported release.
+Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::3.10@sdk:shared:partial$archive.adoc\[\]

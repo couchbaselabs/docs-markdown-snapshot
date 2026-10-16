@@ -2,13 +2,13 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -20,7 +20,7 @@ antora:
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Scala SDK. 
 
 > [!NOTE]
-> From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x.
+> From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the Scala SDK version jumped from 1.8.x to 3.9.x, then incremented through dotminor bumps again to the current 3.13\.
 
 Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the Scala SDK.
 
@@ -34,7 +34,10 @@ collection.upsert(docId, json) match {
 }
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Scala's functional programming approach as we go), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)after walking through a quick installation.
+
+> [!TIP]
+> This page walks you through a quick installation, and CRUD examples against the Data Service. Elsewhere in this section you can find a fully worked-through [Sample Application](sample-application.md).
 
 ## [](#before-you-start)Before You Start
 
@@ -43,9 +46,9 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to a trial of Couchbase Capella](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
-Install Couchbase Server locally, or in your private Cloud:
+You may want to look at one of the self-managed installation options:
 
 * [Deployment overview](../../../server/current/install/get-started.md)
 * [Docker Install](../../../server/current/install/getting-started-docker.md)
@@ -59,12 +62,10 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
-
 ### [](#prerequisites)Prerequisites
 
 * The Scala SDK is tested against LTS versions of OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).
-* The Couchbase Scala SDK 3.12 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
+* The Couchbase Scala SDK 3.13 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 The code examples also assume:
 
@@ -72,7 +73,7 @@ The code examples also assume:
 * Self-Managed Couchbase Server
 
 * You have signed up to [Couchbase Capella](https://cloud.couchbase.com/sign-up).
-* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
+* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically by the Capella free trial.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
 > [!IMPORTANT]
@@ -94,7 +95,7 @@ More details of the installation process are in the [full installation guide](..
 * Maven
 
 ```sbt
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.12.3"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "3.13.0"
 ```
 
 This will automatically use the correct build for your Scala version.
@@ -103,7 +104,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your `build.gr
 
 ```groovy
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.12.3'
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '3.13.0'
 }
 ```
 
@@ -116,7 +117,7 @@ For Scala 2.13 or Scala 3.3 through 3.7, include the following in your Maven `po
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_3</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```
@@ -133,169 +134,14 @@ If you're all set up and in a real hurry, just grab this code sample and add in 
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
-/*
- * Copyright (c) 2024 Couchbase, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-// tag::imports[]
-import com.couchbase.client.scala.durability.Durability
-import com.couchbase.client.scala.env.{
-  ClusterEnvironment,
-  SecurityConfig,
-  TimeoutConfig
-}
-import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
-import com.couchbase.client.scala.kv.ReplaceOptions
-import com.couchbase.client.scala.{Cluster, ClusterOptions}
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory
-
-import java.nio.file.Path
-import java.util.UUID
-import scala.concurrent.duration._
-import scala.util.{Failure, Success, Try}
-// end::imports[]
-
-object Cloud {
-  def main(args: Array[String]): Unit = {
-    // tag::connect[]
-    // Update this to your cluster
-    val endpoint = "cb.<your-endpoint>.cloud.couchbase.com"
-    val username = "username"
-    val password = "Password!123"
-    val bucketName = "travel-sample"
-
-    val env = ClusterEnvironment.builder
-      .securityConfig(
-        SecurityConfig()
-          .enableTls(true)
-      )
-      // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-      // when accessing Capella from a different Wide Area Network
-      // or Availability Zone (e.g. your laptop).
-      .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
-      .build
-      .get
-
-    val cluster = Cluster
-      .connect(
-        "couchbases://" + endpoint,
-        ClusterOptions
-          .create(username, password)
-          .environment(env)
-      )
-      .get
-    // end::connect[]
-
-    // tag::bucket[]
-    val bucket = cluster.bucket(bucketName)
-    bucket.waitUntilReady(30.seconds).get
-    // end::bucket[]
-
-    // tag::collection[]
-    val collection = bucket.scope("inventory").collection("airport")
-    // end::collection[]
-
-    // tag::json[]
-    val json = JsonObject("status" -> "awesome")
-    // end::json[]
-
-    // tag::upsert[]
-    val docId = UUID.randomUUID().toString
-    collection.upsert(docId, json) match {
-      case Success(result)    =>
-      case Failure(exception) => println("Error: " + exception)
-    }
-    // end::upsert[]
-
-    // tag::get[]
-    // Get a document
-    collection.get(docId) match {
-      case Success(result) =>
-        // Convert the content to a JsonObjectSafe
-        result.contentAs[JsonObjectSafe] match {
-          case Success(json) =>
-            // Pull out the JSON's status field, if it exists
-            json.str("status") match {
-              case Success(hello) => println(s"Couchbase is $hello")
-              case _              => println("Field 'status' did not exist")
-            }
-          case Failure(err) => println("Error decoding result: " + err)
-        }
-      case Failure(err) => println("Error getting document: " + err)
-    }
-    // end::get[]
-
-    def getFor() {
-      // tag::get-for[]
-      val result: Try[String] = for {
-        result <- collection.get(docId)
-        json <- result.contentAs[JsonObjectSafe]
-        status <- json.str("status")
-      } yield status
-
-      result match {
-        case Success(status) => println(s"Couchbase is $status")
-        case Failure(err)    => println("Error: " + err)
-      }
-      // end::get-for[]
-    }
-
-    def getMap() {
-      // tag::get-map[]
-      val result: Try[String] = collection
-        .get(docId)
-        .flatMap(_.contentAs[JsonObjectSafe])
-        .flatMap(_.str("status"))
-
-      result match {
-        case Success(status) => println(s"Couchbase is $status")
-        case Failure(err)    => println("Error: " + err)
-      }
-      // end::get-map[]
-    }
-
-    def replaceOptions() {
-      // tag::replace-options[]
-      collection.replace(
-        docId,
-        json,
-        ReplaceOptions()
-          .expiry(10.seconds)
-          .durability(Durability.Majority)
-      ) match {
-        case Success(status) =>
-        case Failure(err)    => println("Error: " + err)
-      }
-      // end::replace-options[]
-    }
-
-    def replaceNamed() {
-      // tag::replace-named[]
-      collection.replace(docId, json, durability = Durability.Majority) match {
-        case Success(status) =>
-        case Failure(err)    => println("Error: " + err)
-      }
-      // end::replace-named[]
-    }
-  }
-}
+```scala
+include::devguide:example$scala/Cloud.scala[]
+```
 
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on the page, and a **Copy** icon to grab just the snippet shown.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -539,15 +385,17 @@ collection.remove("document-key") match {
 
 ## [](#data-modeling)Data Modeling
 
-Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong." Developers usually put documents of the same type in the same collection.
+Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong". Developers usually put documents of the same type in the same collection.
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
 Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes.
 
-More details can be found on the [Data Model page](../concept-docs/data-model.md).
+Each collection belongs to just one scope. A collection's name is unique within the scope.
+
+More details can be found on the [Data Model page](#concept-docs.data-model.adoc). The [Student Records Tutorial](student-record-developer-tutorial.md) gives an introduction to data modeling in a document database alongside using the Scala SDK.
 
 ## [](#what-next)What Next?
 
@@ -555,12 +403,13 @@ More details can be found on the [Data Model page](../concept-docs/data-model.md
 
 * [Troubleshooting common network problems](../howtos/troubleshooting-cloud-connections.md).
 * [Help forum](https://www.couchbase.com/forums/c/scala-sdk/37).
-* [Discord channel](https://discord.com/channels/915294689681362954/1217642561645318194).
+* [Discord channel](https://discord.com/channels/915294689681362954/955424070076338177).
 * Read the [error handling page](../howtos/error-handling.md).
 * [Get help from Couchbase iQ](../../../cloud/get-started/capella-iq/get-started-with-iq.md#generate-sdk-code-preview).
 
 ### [](#next-steps)Next Steps
 
+* Take a look at the [Sample Application](sample-application.md).
 * [Learn more about the Data Service](../concept-docs/data-durability-acid-transactions.md).
 * [Discover SQL++](../concept-docs/querying-your-data.md) — our SQL-family querying language.
 * Explore some of the [third party integrations](../project-docs/third-party-integrations.md) with Couchbase and the Scala SDK, across the Scala ecosystem.

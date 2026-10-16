@@ -1,7 +1,7 @@
 ---
 title: Create Indexes
 description: How to create primary indexes and secondary indexes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Capella Operational
@@ -81,19 +81,13 @@ If you do not specify a name, the index is called `#primary`.
 The following example creates an unnamed primary index.
 
 ```csharp
-await cluster.QueryIndexes.CreatePrimaryIndexAsync(
-	"`travel-sample`",
-	options => options.IgnoreIfExists(true)
-);
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 The following example creates a named primary index on the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.CreatePrimaryIndexAsync(
-	"`travel-sample`",
-	options => options.IndexName("named_primary_index")
-);
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -247,11 +241,7 @@ To create a secondary index, use the task `CreateIndexAsync()` on the interface 
 The following example creates a secondary index on the `name` field in the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.CreateIndexAsync(
-	"`travel-sample`",
-	"index_name",
-	new[] { "name" }
-);
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.
@@ -353,11 +343,7 @@ To create a composite index, specify multiple fields in the index definition.
 The following example creates a secondary index on the `name`, `id`, `icao`, and `iata` fields in the specified keyspace.
 
 ```csharp
-await cluster.QueryIndexes.CreateIndexAsync(
-	"`travel-sample`",
-	"index_travel_info",
-	new[] { "name", "id", "icao", "iata" }
-);
+Unresolved include directive in modules/guides/pages/create-index.adoc - include::dotnet-sdk:hello-world:example$IndexHelloWorld.csx[]
 ```
 
 Click the  View button to see this code in context.

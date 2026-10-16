@@ -2,14 +2,14 @@
 title: Error Codes
 description: The standardized error codes returned by the Couchbase Kotlin SDK,
   from cloud connection to sub-document.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: ref
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/ref/pages/error-codes.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/ref/pages/error-codes.adoc
   xref: xref:kotlin-sdk:ref:error-codes.adoc[]
 ---
 

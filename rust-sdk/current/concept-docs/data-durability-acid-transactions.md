@@ -2,13 +2,13 @@
 title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/data-durability-acid-transactions.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/concept-docs/pages/data-durability-acid-transactions.adoc
   xref: xref:rust-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 ---
 

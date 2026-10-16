@@ -2,14 +2,14 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/sdk-authentication.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/sdk-authentication.adoc
   xref: xref:java-sdk:howtos:sdk-authentication.adoc[]
 ---
 
@@ -22,7 +22,7 @@ antora:
 
 Our [Getting Started](../hello-world/start-using-sdk.md) guide covered the basics for authorizing against a Couchbase cluster, but you may need to use alternative authentication methods such as Certification.
 
-## [](#rbac)RBAC
+## [](#basic-authentication)Basic Authentication
 
 Our [Getting Started](../hello-world/start-using-sdk.md) guide introduced basic authentication against a Couchbase cluster:
 
@@ -48,6 +48,8 @@ Cluster cluster = Cluster.connect("127.0.0.1", clusterOptions(authenticator));
 ```
 
 In this example, the `PLAIN` authentication mechanism is enabled as well, which is needed if LDAP is enabled on the server side and no TLS encrypted connection is used.
+
+## [](#rbac)RBAC
 
 Couchbase uses Role Base Access Control (RBAC), and has since Server 5.0 was released. For a general overview of Couchbase-Server authorization, see [Authorization](../../../server/current/learn/security/authorization-overview.md). For a list of available roles and corresponding privileges, see [Roles](../../../server/current/learn/security/roles.md).
 

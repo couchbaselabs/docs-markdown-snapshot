@@ -5,14 +5,14 @@ description: Individual request tracing presents a very specific (though
   information that aggregates request data (i.e. requests per second), but also
   data which is not tied to a specific request at all (i.e. resource
   utilization).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/observability-metrics.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/observability-metrics.adoc
   xref: xref:go-sdk:howtos:observability-metrics.adoc[]
 ---
 

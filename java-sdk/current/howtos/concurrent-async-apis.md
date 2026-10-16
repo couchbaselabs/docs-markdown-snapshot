@@ -2,13 +2,13 @@
 title: Async and Reactive APIs
 description: The Java SDK offers efficient, non-blocking alternatives to the
   regular blocking API.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:java-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -94,6 +94,9 @@ We recommend using this API only if you are either writing integration code for 
 
 ## [](#batching)Batching
 
+> [!TIP]
+> This bulk-get example is given for the Java SDK as there are times when business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. This will not be more efficient — for Cluster or for network — but will comply with the results handling need of this particular case.
+
 The SDK itself does not provide explicit APIs for batching, because using the reactive mechanisms it allows you to build batching code applied to your use case much better than a generic implementation could in the first place.
 
 While it can be done with the async API as well, we recommend using the reactive API so you can use async retry and fallback mechanisms that are supplied out of the box. The most simplistic bulk fetch (without error handling or anything) looks like this:
@@ -143,7 +146,7 @@ Finally, it is also possible to retry individual failures before giving up. The 
           .block();
 ```
 
-It is recommended to check out the `retry` and `retryBackoff` methods for their configuration options and overloads. Of course, all the operators shown here can be combined to achieve exactly the semantics you need. Finally, for even advanced retry policies you can utilize the retry functionality in the [reactor-extra](https://projectreactor.io/docs/extra/release/api/reactor/retry/Retry.html) package.
+It is recommended to check out the `retry` and `retryBackoff` methods for their configuration options and overloads. Of course, all the operators shown here can be combined to achieve exactly the semantics you need. Finally, for even more advanced retry policies you can utilize the retry functionality in the [reactor-extra](https://projectreactor.io/docs/extra/release/api/reactor/retry/Retry.html) package.
 
 ## [](#reactive-streams-integration)Reactive Streams Integration
 

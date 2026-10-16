@@ -3,13 +3,13 @@ title: Async and Batching APIs
 description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/concurrent-async-apis.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/concurrent-async-apis.adoc
   xref: xref:go-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
@@ -222,6 +222,50 @@ Once we've built up our batches we can send them via the `collection.Do` interfa
 
 	cluster.Close(nil)
 	log.Println("Completed")
+```
+
+### [](#other-operations)Other Operations
+
+The above example was for an `Upsert`, but the advice and techniques are the same for other CRUD operations. Here is an example of a bulk get:
+
+```golang
+	var getOps []gocb.BulkOp
+	for _, id := range docIDs {
+		getOps = append(getOps, &gocb.GetOp{
+			ID: id,
+		})
+	}
+[data-source-url=https://github.com/couchbase/docs-sdk-go/blob/7b5aa90f422302916aca31f5a8ef1d99b6587979/modules/devguide/examples/go/bulk_get.go#L61-L90]
+	err = collection.Do(getOps, nil)
+	if err != nil {
+		log.Println(err)
+	}
+
+	// Be sure to check each individual operation for errors too.
+	var fetchedCount int
+	for _, op := range getOps {
+		getOp, ok := op.(*gocb.GetOp)
+		if !ok {
+			log.Println("failed to type assert BulkOp to *gocb.GetOp")
+			continue
+		}
+
+		if getOp.Err != nil {
+			log.Printf("failed to fetch document %s: %v\n", getOp.ID, getOp.Err)
+			continue
+		}
+
+		var docContent interface{}
+		if err := getOp.Result.Content(&docContent); err != nil {
+			log.Printf("failed to decode document %s content: %v\n", getOp.ID, err)
+			continue
+		}
+
+		fetchedCount++
+		fmt.Printf("Fetched document #%d: ID: %s, Content: %v\n", fetchedCount, getOp.ID, docContent)
+	}
+
+	log.Printf("Completed fetching %d/%d documents\n", fetchedCount, len(docIDs))
 ```
 
 ### [](#batching-guidelines)Batching guidelines

@@ -1,150 +1,91 @@
 ---
-title: Start Using the .NET SDK
-description: The Couchbase .NET SDK enables you to interact with a Couchbase
-  Server cluster from .NET using C# and other .NET languages.
-pubDate: 2026-10-03T04:27:21.374Z
+title: Hello World
+description: Install, connect, try. A quick start guide to get you up and
+  running with Couchbase and the .NET SDK.
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
+    version: "3.10"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:dotnet-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/dotnet-sdk/current/hello-world/start-using-sdk.html)
 
-# Start Using the .NET SDK
+# Hello World
 
-> The Couchbase .NET SDK enables you to interact with a Couchbase Server cluster from .NET using C# and other .NET languages. It offers an asynchronous API based on the [_Task-based Asynchronous Pattern (TAP)_](https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap). 
+> Install, connect, try. A quick start guide to get you up and running with Couchbase and the .NET SDK. 
 
-The Couchbase .NET client allows applications to connect to Couchbase Server using any Common Language Runtime (CLR) language, including C#, F#, and VB.NET. The SDK is written in C#, and some of its idiomatic patterns reflect that choice.
+Couchbase has a simple interface for creating and modifying records in a document, based upon the **collection** into which the documents are organized. You can read more about data modeling [below](#data-modeling), but first let's look at those data operations, and installing the .NET SDK.
 
-In this guide, you will learn:
-
-* How to [connect to Couchbase Capella or Couchbase Server](#connect).
-* How to [add and retrieve Documents](#add-and-retrieve-documents).
-* How to [lookup documents](#sql-lookup) with the [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) query language.
-
-## [](#hello-couchbase)Hello Couchbase
-
-We will go through the code sample step by step, but for those in a hurry to see it, here it is:
-
-* Couchbase Capella Sample
-* Local Couchbase Server
-
-If you are connecting to [Couchbase Capella](https://docs.couchbase.com/cloud/index.html), be sure to get the correct endpoint as well as user, password — and see the [Cloud section](#cloud-connections), below.
+Creating a new database entry with the .NET SDK, using `upsert()`
 
 ```csharp
-using System;
-using System.Threading.Tasks;
-
-namespace Couchbase.Net.DevGuide.Cloud;
-
-class CloudExample
-{
-    public async Task RunAsync()
+var document = new { foo = "bar", bar = "foo" };
+var result = await collection.UpsertAsync("document-key", document,
+    options =>
     {
-        var options = new ClusterOptions
-        {
-            // Update these credentials for your Capella instance
-            UserName = "username",
-            Password = "Password!123",
-        };
-
-        // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-        // when accessing Capella from a different Wide Area Network
-        // or Availability Zone (e.g. your laptop).
-        options.ApplyProfile("wan-development");
-
-        var cluster = await Cluster.ConnectAsync(
-            // Update these credentials for your Capella instance
-            "couchbases://cb.<your-endpoint>.cloud.couchbase.com",
-            options
-        );
-
-        // get a bucket reference
-        var bucket = await cluster.BucketAsync("travel-sample");
-
-        // get a user-defined collection reference
-        var scope = await bucket.ScopeAsync("tenant_agent_00");
-        var collection = await scope.CollectionAsync("users");
-
-        // Upsert Document
-        var upsertResult = await collection.UpsertAsync("my-document-key", new { Name = "Ted", Age = 31 });
-        using var getResult = await collection.GetAsync("my-document-key");
-
-        Console.WriteLine(getResult.ContentAs<dynamic>());
-
-        // Call the QueryAsync() function on the scope object and store the result.
-        var inventoryScope = bucket.Scope("inventory");
-        var queryResult = await inventoryScope.QueryAsync<dynamic>("SELECT * FROM airline WHERE id = 10");
-        
-        // Iterate over the rows to access result data and print to the terminal.
-        await foreach (var row in queryResult) {
-            Console.WriteLine(row);
-        }
+        options.Expiry(TimeSpan.FromMinutes(1));
+        options.Durability(DurabilityLevel.Majority);
+        options.Timeout(TimeSpan.FromSeconds(5));
     }
-}
+);
 ```
 
-The Couchbase Capella free tier version comes with the Travel Sample Bucket, and its Query indexes, loaded and ready.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)after walking through a quick installation.
 
-```csharp
-using System;
-using System.Threading.Tasks;
-using Couchbase;
+## [](#before-you-start)Before You Start
 
-namespace Couchbase.Docs.Examples.HelloWorld.StartUsing;
+Couchbase Capella, our Database-as-a-Service, lets you get on with what matters, while we take care of the administration for you. Alternately, if you need to control every aspect of deployment — or just want to run the Server in a VM on your laptop — there are several self-managed options available:
 
-internal static class StartUsingExample
-{
-    static async Task ExampleUsing()
-    {
-    var cluster = await Cluster.ConnectAsync(
-        // Update these credentials for your Local Couchbase instance!
-        "couchbase://localhost",
-        "Administrator",
-        "password");
+* Couchbase Capella
+* Self-Managed Couchbase Server
 
-    // get a bucket reference
-    var bucket = await cluster.BucketAsync("travel-sample");
+If you haven't already got a cluster set up, the easiest route is to [sign up to a trial of Couchbase Capella](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
-    // get a user-defined collection reference
-    var scope = await bucket.ScopeAsync("tenant_agent_00");
-    var collection = await scope.CollectionAsync("users");
+You may want to look at one of the self-managed installation options:
 
-    // Upsert Document
-    var upsertResult = await collection.UpsertAsync("my-document-key", new { Name = "Ted", Age = 31 });
-    var getResult = await collection.GetAsync("my-document-key");
+* [Deployment overview](../../../server/current/install/get-started.md)
+* [Docker Install](../../../server/current/install/getting-started-docker.md)
+* [Couchbase Autonomous Operator](../../../operator/current/overview.md)
 
-    Console.WriteLine(getResult.ContentAs<dynamic>());
+  * [Kubernetes](../../../operator/current/install-kubernetes.md)
+  * [Openshift](../../../operator/current/install-openshift.md)
+* [Cloud Marketplace](#8.0server:cloud:couchbase-cloud-deployment.adoc):
 
-    // Call the QueryAsync() function on the scope object and store the result.
-    var inventoryScope = bucket.Scope("inventory");
-    var queryResult = await inventoryScope.QueryAsync<dynamic>("SELECT * FROM airline WHERE id = 10");
+  * [AWS Marketplace](../../../server/current/cloud/couchbase-aws-marketplace.md)
+  * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
+  * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
 
-    // Iterate over the rows to access result data and print to the terminal.
-    await foreach (var row in queryResult) {
-        Console.WriteLine(row);
-    }
-    }
-}
-```
-
-As well as the .NET SDK (see below), and a running instance of Couchbase Server, you will need to load up the Travel Sample Bucket using either the [Web interface](../../../server/7.2/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui)or the [command line](../../../server/7.2/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-cli).
-
-## [](#installing-the-sdk)Installing the SDK
+### [](#prerequisites)Prerequisites
 
 The Couchbase .NET SDK is compatible with [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 2.0 and .NET Standard 2.1, via the currently supported Microsoft .NET SDKs. Currently, that includes [.NET 6.0 and later](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for .NET Standard 2.1 and [.NET Framework 4.6.2 and later](https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-framework) for .NET Standard 2.0\. The [.NET Standard documentation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and [.NET Standard version chart](https://dotnet.microsoft.com/platform/dotnet-standard#versions) may be useful to help understand other available options.
 
 Couchbase strongly recommends using the [latest LTS version of .NET that's officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren't tested, and are outside the scope of technical support. See the [Compatibility](../project-docs/compatibility.md#dotnet-compatibility) section for more details.
 
-> [!NOTE]
-> Capella's root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
+The code examples also assume:
 
-### [](#quick-installation)Quick Installation
+* Couchbase Capella
+* Self-Managed Couchbase Server
+
+* You have signed up to [Couchbase Capella](https://cloud.couchbase.com/sign-up).
+* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically by the Capella free trial.
+* A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
+
+> [!IMPORTANT]
+> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
+
+* [Couchbase Server](#8.0@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
+* You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
+* A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md) for more details.
+
+> [!IMPORTANT]
+> Couchbase Server uses [Role-Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to cluster resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
+
+## [](#installation)Installation
 
 The quickest way to get up and running is with NuGet, from the Package Manager Console, within your project:
 
@@ -160,47 +101,32 @@ Install-Package CouchbaseNetClient
 
 All other installation methods can be found in our [full installation guide](../project-docs/sdk-full-installation.md).
 
-## [](#prerequisites)Prerequisites
+### [](#ide-plugins)IDE Plugins
 
-The following code samples assume:
+To make development easier, Couchbase plugins are available for VSCode and the IntelliJ family of IDEs and editors. For links and more information on these and other integrations across the .NET ecosystem, check out the [3rd Party Integrations](../project-docs/third-party-integrations.md) page.
 
-* Couchbase Capella
-* Local Couchbase Server
+### [](#grab-the-code)Grab the Code
 
-* You have signed up to [Couchbase Capella](https://cloud.couchbase.com/sign-up).
-* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
-* A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
+If you're all set up and in a real hurry, just grab this code sample and add in your Capella details.
 
-> [!IMPORTANT]
-> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
-
-* [Couchbase Server](#8.0@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
-* You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
-* A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md) for more details.
-
-> [!IMPORTANT]
-> Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings.
-
-## [](#step-by-step)Step by Step
-
-Start a new console project (in Visual Studio or VS Code, etc). Go to our [Platform Introduction](platform-help.md) if you don't already have an editor or IDE setup for working in .NET — e.g. you are evaluating the .NET SDK, but .NET is not your normal platform.
-
-Firstly, you will need to have a few `using` statements at the top of **Program.cs** in your console program:
+Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
 ```csharp
-using System;
-using System.Threading.Tasks;
-using Couchbase;
+include::devguide:example$dotnet/StartUsingCapella.cs[]
 ```
 
-### [](#connect)Connect
+Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
-Connect to your cluster by calling the `Cluster.ConnectAsync()` method and pass it your connection details. The basic connection details that you'll need are given below — for more background information, see [Managing Connections](../howtos/managing-connections.md).
+> [!TIP]
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on the page, and a **Copy** icon to grab just the snippet shown.
 
-* Capella Connection
-* Local Server Connection
+## [](#connect-to-your-database)Connect to your Database
 
-From version 3.3, the .NET SDK includes Capella's standard certificates by default, so you do not need to additional configuration. You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
+Connect to your Couchbase Capella operational cluster (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
+
+* Couchbase Capella
+* Self-Managed Couchbase Server
+* Cloud Native Gateway (CNG)
 
 ```csharp
 var options = new ClusterOptions
@@ -222,11 +148,6 @@ var cluster = await Cluster.ConnectAsync(
 );
 ```
 
-When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 3.4 introduces a `wan-development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
-
-> [!CAUTION]
-> The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
-
 ```csharp
 var cluster = await Cluster.ConnectAsync(
     // Update these credentials for your Local Couchbase instance!
@@ -235,28 +156,75 @@ var cluster = await Cluster.ConnectAsync(
     "password");
 ```
 
-For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost`. For production deployments, you will want to use a secure server, with `couchbases://`.
-
-Following successful authentication, add this code snippet to access your `Bucket`:
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) or [install alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md):
 
 ```csharp
-// get a bucket reference
-var bucket = await cluster.BucketAsync("travel-sample");
+    var cluster = await Cluster.ConnectAsync(
+        // Update these credentials for your Local Couchbase instance!
+        "couchbase2://<your-ip-address>",
+        "Administrator",
+        "password");
 ```
 
-### [](#add-and-retrieve-documents)Add and Retrieve Documents
+Read more on the [Connections](../howtos/managing-connections.md#cloud-native-gateway) page.
 
-Collections allow Documents to be grouped by purpose or theme, according to specified _Scope_. Our Travel Sample bucket has separate scopes for inventory (flights, etc.), and for tenants (different travel agents).
+For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
+
+> [!TIP]
+> The connection code for getting started uses the Administrator password that you were given during set up. In any production app you should create a role restricted to the permissions needed for your app — more on this in [the Security documentation](../concept-docs/best-practices.md#roles-and-rbac).
+
+### [](#opening-a-bucket)Opening a Bucket
+
+Following successful authentication, open the bucket with:
 
 ```csharp
-// get a user-defined collection reference
-var scope = await bucket.ScopeAsync("tenant_agent_00");
-var collection = await scope.CollectionAsync("users");
+public class ClusterExample
+{
+    public async Task ExecuteAsync()
+    {
+        var cluster = await Cluster.ConnectAsync("your-ip", "Administrator", "password");
+        await cluster.WaitUntilReadyAsync(TimeSpan.FromSeconds(10));
+        var bucket = await cluster.BucketAsync("travel-sample");
+        var collection = bucket.DefaultCollection();
+        //..
+    }
+}
 ```
 
-[Data operations](../howtos/kv-operations.md), like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.GetAsync()` and `Collection.UpsertAsync()`.
+`waitUntilReady` is an optional call, but it is good practice to use it. Opening resources such as buckets is asynchronous — that is, the `cluster.bucket` call returns immediately and proceeds in the background. `waitUntilReady` ensures that the bucket resource is fully loaded before proceeding. If not present, then the first key-value (KV) operation on the bucket will wait for it to be ready.
 
-To get you started the following code creates a new document in a custom scope and collection and then fetches it again, printing the result.
+**Collections** allow documents to be grouped by purpose or theme, according to a specified **scope** — see data modeling, [below](#data-modeling). Here we will use the `airport` collection within the `inventory` scope from `travel-sample` bucket as an example.
+
+```csharp
+var scope = await bucket.ScopeAsync("inventory");
+var collection = await scope.CollectionAsync("airport");
+```
+
+## [](#create-read-update-delete)Create, Read, Update, Delete
+
+Couchbase documents are organized into buckets, scopes, and collections. [CRUD operations](https://en.wikipedia.org/wiki/CRUD) — Create, Read, Update, Delete — can be performed upon documents in a collection.
+
+### [](#insert-create-and-upsert)Insert (Create) and Upsert
+
+[Data operations](../howtos/kv-operations.md), like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.InsertAsync()` and `Collection.UpsertAsync()`. `insert` and `upsert` will both create a new document. The difference between the two is that if a document with that key already exists, the `insert` operation will fail, throwing a `DocumentExistsException` — while the `upsert` operation will succeed, replacing the content.
+
+Insert
+
+```csharp
+var document = new {foo = "bar", bar = "foo"};
+try {
+    var result = await collection.InsertAsync("document-key", document);
+}
+catch (DocumentExistsException) {
+    Console.WriteLine("Document already exists");
+}
+```
+
+### [](#get-read)Get (Read)
+
+The `get` method reads a document from a collection. If the collection does not have a document with this ID, the `get` method also throws `DocumentNotFoundException`.
+
+The following code snippet creates a new document in a custom scope and collection and then fetches it again, printing the result.
 
 ```csharp
 // Upsert Document
@@ -266,45 +234,76 @@ var getResult = await collection.GetAsync("my-document-key");
 Console.WriteLine(getResult.ContentAs<dynamic>());
 ```
 
-### [](#sql-lookup)SQL++ Lookup
+### [](#replace-update-and-overloads)Replace (Update) and Overloads
 
-Couchbase SQL++ queries can be performed at the `Cluster` or `Scope` level by invoking `Cluster.QueryAsync()` or `Scope.QueryAsync()`.
-
-Cluster level queries require you to specify the fully qualified keyspace each time (e.g. `travel-sample.inventory.airline`). However, with a Scope level query you only need to specify the Collection name — which in this case is `airline`:
+The replace method updates the value of an existing document. Here we add a couple of useful options for expiry and timeout — read more on our [using the Data Service](../howtos/kv-operations.md) page.
 
 ```csharp
-// Call the QueryAsync() function on the scope object and store the result.
-var inventoryScope = bucket.Scope("inventory");
-var queryResult = await inventoryScope.QueryAsync<dynamic>("SELECT * FROM airline WHERE id = 10");
+var previousResult = await collection.GetAsync("document-key");
+var cas = previousResult.Cas;
 
-// Iterate over the rows to access result data and print to the terminal.
-await foreach (var row in queryResult) {
-    Console.WriteLine(row);
-}
+var document = new {foo = "bar", bar = "foo"};
+
+var result = await collection.ReplaceAsync("document-key", document,
+    options =>
+    {
+        options.Cas(cas);
+        options.Expiry(TimeSpan.FromMinutes(1));
+        options.Timeout(TimeSpan.FromSeconds(5));
+    }
+);
 ```
 
-You can learn more about SQL++ queries on the [Query page](../howtos/n1ql-queries-with-sdk.md).
+> [!CAUTION]
+> When you replace a document, it's usually good practice to use [optimistic locking](../howtos/kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
-## [](#next-steps)Next Steps
+### [](#remove-delete)Remove (Delete)
 
-Now you're up and running, try one of the following:
+When removing a document, you will have the same concern for durability as with any additive modification to the Bucket:
 
-* Our [Travel Sample Application](sample-application.md) demonstrates all the basics you need to know;
-* Explore [Key Value Operations](../howtos/kv-operations.md) against a document database;
-* Or [Query](../howtos/n1ql-queries-with-sdk.md) with our SQL-based SQL++ query language;
-* Or read up on [which service fits your use case](../concept-docs/data-services.md).
+Remove (with options)
 
-### [](#additional-resources)Additional Resources
+```csharp
+var previousResult = await collection.GetAsync("document-key");
 
-The [API reference](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/index.html) is generated for each release. Older API references are linked from their respective sections in the [Release Notes](../project-docs/sdk-release-notes.md).
+await collection.RemoveAsync("document-key",
+    options =>
+    {
+        options.Cas(previousResult.Cas);
+        options.Timeout(TimeSpan.FromSeconds(5));
+    }
+);
+```
 
-[The Migrating from SDK2 to 3 page](../project-docs/migrating-sdk-code-to-3.n.md) highlights the main differences to be aware of when migrating your code from our earlier 2.x .NET SDK.
+Like `Replace`, `Remove` also optionally takes the [CAS value](../howtos/kv-operations.md#what-is-cas) if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
 
-### [](#troubleshooting)Troubleshooting
+## [](#data-modeling)Data Modeling
 
-* Couchbase Server is designed to work in the same WAN or availability zone as the client application. If you're running the SDK on your laptop against a Capella cluster, see further information on:
+Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong". Developers usually put documents of the same type in the same collection.
 
-  * Notes on [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
-  * [Network Requirements](../project-docs/compatibility.md#network-requirements).
-  * If you have a consumer-grade router which has problems with DNS-SRV records review our [Troubleshooting Guide](../howtos/troubleshooting-cloud-connections.md#troubleshooting-host-not-found).
-* Our [community forum](https://forums.couchbase.com/c/net-sdk/6) is a great source of help.
+For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
+
+Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
+
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes.
+
+Each collection belongs to just one scope. A collection's name is unique within the scope.
+
+More details can be found on the [Data Model page](#concept-docs.data-model.adoc). The [Student Records Tutorial](#student-record-developer-tutorial.adoc) gives an introduction to data modeling in a document database alongside using the .NET SDK.
+
+## [](#what-next)What Next?
+
+### [](#help-and-troubleshooting)Help and Troubleshooting
+
+* [Troubleshooting common network problems](../howtos/troubleshooting-cloud-connections.md).
+* [Help forum](https://www.couchbase.com/forums/c/scala-sdk/37).
+* [Discord channel](https://discord.com/channels/915294689681362954/955424070076338177).
+* Read the [error handling page](../howtos/error-handling.md).
+* [Get help from Couchbase iQ](../../../cloud/get-started/capella-iq/get-started-with-iq.md#generate-sdk-code-preview).
+
+### [](#next-steps)Next Steps
+
+* Take a look at the [Sample Application](sample-application.md).
+* [Learn more about the Data Service](../concept-docs/data-durability-acid-transactions.md).
+* [Discover SQL++](../concept-docs/querying-your-data.md) — our SQL-family querying language.
+* Explore some of the [third party integrations](../project-docs/third-party-integrations.md) with Couchbase and the .NET SDK, across the .NET ecosystem.

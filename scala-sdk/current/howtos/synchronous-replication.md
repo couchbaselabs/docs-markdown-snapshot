@@ -1,14 +1,14 @@
 ---
 title: Synchronous Replication
 description: Durability
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/synchronous-replication.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/synchronous-replication.adoc
   xref: xref:scala-sdk:howtos:synchronous-replication.adoc[]
 ---
 

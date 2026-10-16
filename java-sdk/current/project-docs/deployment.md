@@ -1,13 +1,13 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/project-docs/pages/deployment.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/project-docs/pages/deployment.adoc
   xref: xref:java-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -46,6 +46,28 @@ For the Java SDK, that is to keep a separate properties file for your developmen
 ## [](#migration)Migration
 
 This section also contains information on [migrating from the previous major version of the SDK API](migrating-sdk-code-to-3.n.md).
+
+## [](#couchbase-operational-cluster-feature-compatibility)Couchbase Operational Cluster Feature Compatibility
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational Clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Java SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                                                                              | Server 7.2 | Server 7.6.x     | Server 8.0 |
+| -------------------------------------------------------------------------------------------- | ---------- | ---------------- | ---------- |
+| KV Range Scan                                                                                | N/A        | From 3.4.1       |            |
+| Zone aware replica reads                                                                     | N/A        | From 3.6.0       |            |
+| Vector Search with Search Vector Index                                                       | N/A        | From 3.6.0       |            |
+| Vector Query using Hyperscale Vector Index                                                   | N/A        | From SDK 3.9.0 ① |            |
+| Vector Query using Composite (GSI & vector) index                                            | N/A        | From SDK 3.9.0 ① |            |
+| Distributed ACID Transactions                                                                | From 3.0.0 |                  |            |
+| DNS SRV refresh for serverless environments (AWS Lambda, Azure Functions, and GCP Functions) | From 3.4.0 |                  |            |
+| Circuit Breakers                                                                             | From 3.0.0 |                  |            |
+| Response Time Observability with OTel                                                        | From 3.0.7 |                  |            |
+| Field Level Encryption                                                                       | From 2.6.0 |                  |            |
+| Cloud Native Gateway                                                                         | From 3.5.0 |                  |            |
+
+| **1** | As part of the standard SDK SQL++ API, it should be compatible with all earlier versions of the SDK — but it has not been tested. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#further-reading)Further Reading
 

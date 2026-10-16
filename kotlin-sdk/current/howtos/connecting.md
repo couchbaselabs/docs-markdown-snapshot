@@ -1,14 +1,14 @@
 ---
 title: Connecting
 description: Connecting to a Couchbase Server cluster and configuring client settings.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Kotlin SDK
-    version: "3.12"
+    version: "3.13"
   topic_type: howto
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.12/modules/howtos/pages/connecting.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.13/modules/howtos/pages/connecting.adoc
   xref: xref:kotlin-sdk:howtos:connecting.adoc[]
 ---
 
@@ -149,7 +149,7 @@ The protocol implements a gRPC-style interface between the SDK and Couchbase Ser
 
 #### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 

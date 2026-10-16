@@ -1,13 +1,12 @@
 ---
 title: Sub-Documents
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
-  topic_type: concept
+    version: "3.10"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/subdocument-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/subdocument-operations.adoc
   xref: xref:dotnet-sdk:concept-docs:subdocument-operations.adoc[]
 ---
 
@@ -29,7 +28,7 @@ While full-document retrievals retrieve the entire document and full document up
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 > [!IMPORTANT]
-> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](../howtos/n1ql-queries-with-sdk.md).)
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](#howtos:n1ql-queries-with-sdk.adoc).)
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#Path syntax). Considering the document:
 
@@ -62,7 +61,7 @@ customer123.json
 }
 ```
 
-The paths `name`, `addresses.billing.country` and `purchases.complete[0]` are all valid paths.
+The paths `name`, `addresses.billing.country`, and `purchases.complete[0]` are all valid paths.
 
 ## [](#sub-doc-from-the-sdk)Sub-Doc from the SDK
 

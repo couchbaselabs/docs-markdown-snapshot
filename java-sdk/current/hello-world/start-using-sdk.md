@@ -2,13 +2,13 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Java SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:java-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -28,7 +28,7 @@ collection.upsert("my-document", JsonObject.create().put("doc", true),
     upsertOptions().durability(DurabilityLevel.MAJORITY));
 ```
 
-`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)(and touch lightly upon a little of Java's functional programming approach as we go), after walking through a quick installation.
+`upsert` inserts (creates) the document if it does not exist, or replaces it if it does. We'll explore creating and retrieving data records in more detail [below](#create-read-update-delete)after walking through a quick installation.
 
 > [!TIP]
 > This page walks you through a quick installation, and CRUD examples against the Data Service. Elsewhere in this section you can find a fully worked-through [Quickstart in Couchbase with Spring Boot and Java](sample-application.md) and, for those new to document (NoSQL) databases, our [Student Record Tutorial](student-record-developer-tutorial.md).
@@ -40,9 +40,9 @@ Couchbase Capella, our Database-as-a-Service, lets you get on with what matters,
 * Couchbase Capella
 * Self-Managed Couchbase Server
 
-If you haven't already got a cluster set up, the easiest route is to [sign up to Couchbase Capella and deploy a free tier cluster](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
+If you haven't already got a cluster set up, the easiest route is to [sign up to a trial of Couchbase Capella](https://cloud.couchbase.com/sign-up), then come back to this page. Make a note of the [endpoint](../../../cloud/get-started/connect.md) to connect to, and remember the credentials for the user that you set up.
 
-Install Couchbase Server locally, or in your private Cloud:
+You may want to look at one of the self-managed installation options:
 
 * [Deployment overview](../../../server/current/install/get-started.md)
 * [Docker Install](../../../server/current/install/getting-started-docker.md)
@@ -56,8 +56,6 @@ Install Couchbase Server locally, or in your private Cloud:
   * [Azure Marketplace](../../../server/current/cloud/couchbase-azure-marketplace.md)
   * [GCP Marketplace](../../../server/current/cloud/couchbase-gcp-cloud-launcher.md)
 
-For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
-
 ### [](#prerequisites)Prerequisites
 
 * The Java SDK is tested against LTS versions of OpenJDK — see the [compatibility docs](../project-docs/compatibility.md#jdk-compat).  
@@ -69,7 +67,7 @@ The code examples also assume:
 * Self-Managed Couchbase Server
 
 * You have signed up to [Couchbase Capella](https://cloud.couchbase.com/sign-up).
-* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
+* You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically by the Capella free trial.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
 > [!IMPORTANT]
@@ -86,7 +84,7 @@ The code examples also assume:
 
 We recommend running the latest Java LTS version (i.e. at the time of writing JDK 25) with the highest patch version available. Couchbase publishes all stable artifacts to [Maven Central](https://central.sonatype.com/namespace/com.couchbase.client).
 
-The latest version of 3.12.x is [3.12.3](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.12.3/jar).
+The latest version of 3.13.x is [3.13.0](https://central.sonatype.com/artifact/com.couchbase.client/java-client/3.13.0/jar).
 
 More details of the installation process are in the [full installation guide](../project-docs/sdk-full-installation.md). In most cases, given the above prerequisites, use your favorite dependency management tool to install the SDK.
 
@@ -98,13 +96,13 @@ More details of the installation process are in the [full installation guide](..
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>java-client</artifactId>
-        <version>3.12.3</version>
+        <version>3.13.0</version>
     </dependency>
 </dependencies>
 ```
 
 ```groovy
-implementation 'com.couchbase.client:java-client:3.12.3'
+implementation 'com.couchbase.client:java-client:3.13.0'
 ```
 
 ### [](#ide-plugins)IDE Plugins
@@ -117,141 +115,14 @@ If you're all set up and in a real hurry, just grab this code sample and add in 
 
 Complete Hello World code sample \[**Click to open or collapse the listing**\] 
 
-/*
- * Copyright (c) 2025 Couchbase, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-// tag::imports[]
-import com.couchbase.client.core.env.WanDevelopmentProfile;
-import com.couchbase.client.core.error.CouchbaseException;
-import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.ClusterOptions;
-import com.couchbase.client.java.Collection;
-import com.couchbase.client.java.env.ClusterEnvironment;
-import com.couchbase.client.java.json.JsonObject;
-import com.couchbase.client.java.kv.GetResult;
-import com.couchbase.client.java.kv.ReplaceOptions;
-
-import java.time.Duration;
-import java.util.UUID;
-
-import static com.couchbase.client.core.msg.kv.DurabilityLevel.MAJORITY;
-// end::imports[]
-
-public class StartUsingCapella {
-    public static void main(String[] args) {
-        // tag::connect[]
-        // Update this to your cluster
-        String endpoint = "cb.<your-endpoint>.cloud.couchbase.com";
-        String username = "username";
-        String password = "Password!123";
-        String bucketName = "travel-sample";
-
-        ClusterEnvironment env = ClusterEnvironment.builder()
-            .securityConfig(sc -> sc.enableTls(true))
-            // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-            // when accessing Capella from a different Wide Area Network
-            // or Availability Zone (e.g. your laptop).
-            .applyProfile(new WanDevelopmentProfile().name())
-            .build();
-
-        Cluster cluster = Cluster.connect(
-            "couchbases://" + endpoint,
-            ClusterOptions.clusterOptions(username, password).environment(env)
-        );
-        // end::connect[]
-
-        // tag::bucket[]
-        Bucket bucket = cluster.bucket(bucketName);
-        bucket.waitUntilReady(Duration.ofSeconds(30));
-        // end::bucket[]
-
-        // tag::collection[]
-        Collection collection = bucket.scope("inventory").collection("airport");
-        // end::collection[]
-
-        // tag::json[]
-        JsonObject json = JsonObject.create().put("status", "awesome");
-        // end::json[]
-
-        // tag::upsert[]
-        String docId = UUID.randomUUID().toString();
-        try {
-            collection.upsert(docId, json);
-        } catch (CouchbaseException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-        // end::upsert[]
-
-        // tag::get[]
-        // Get a document
-        try {
-            GetResult result = collection.get(docId);
-            JsonObject content = result.contentAsObject();
-            String status = content.getString("status");
-            System.out.println("Couchbase is " + status);
-        } catch (Exception e) {
-            System.err.println("Error getting document: " + e.getMessage());
-        }
-        // end::get[]
-
-        // tag::get-for[]
-        try {
-            String status = collection.get(docId)
-                .contentAsObject()
-                .getString("status");
-            System.out.println("Couchbase is " + status);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-        // end::get-for[]
-
-        // tag::replace-options[]
-        try {
-            collection.replace(
-                docId,
-                json,
-                ReplaceOptions.replaceOptions()
-                    .expiry(Duration.ofSeconds(10))
-                    .durability(MAJORITY)
-            );
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-        // end::replace-options[]
-
-        // tag::replace-named[]
-        try {
-            collection.replace(
-                docId,
-                json,
-                ReplaceOptions.replaceOptions()
-                    .durability(MAJORITY)
-            );
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-        // end::replace-named[]
-    }
-}
+```java
+include::devguide:example$java/StartUsingCapella.java[]
+```
 
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
 > [!TIP]
-> There's a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
+> There's a **View** link to the complete sample code on GitHub above each of the snippets on the page, and a **Copy** icon to grab just the snippet shown.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -303,7 +174,7 @@ Cluster cluster = Cluster.connect(
 
 Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md):
 
-```scala
+```java
 Cluster cluster = Cluster.connect(
   "couchbase2://10.12.14.16",
   ClusterOptions
@@ -362,7 +233,7 @@ Couchbase documents are organized into buckets, scopes, and collections. [CRUD o
 
 ### [](#json)JSON
 
-We'll create a snippet of JSON to work with, using the client's own JSON library, but you can read about the Scala SDK's support for other JSON libraries on the [JSON Modelling](../howtos/json.md) page.
+We'll create a snippet of JSON to work with, using the client's own JSON library, but you can read about the Java SDK's support for other JSON libraries on the [JSON Modelling](../howtos/json.md) page.
 
 ```java
 JsonObject json = JsonObject.create().put("status", "awesome");
@@ -389,7 +260,7 @@ try {
 
 The `get` method reads a document from a collection.
 
-Wrapping the method in a `Try` / `Catch` is a good way to handle exceptions:
+Wrapping the method in a `try` / `catch` is a good way to handle exceptions:
 
 ```java
 // Get a document
@@ -436,32 +307,35 @@ try {
 }
 ```
 
-Like `replace`, `remove` also optionally takes the CAS value if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
+Like `replace`, `remove` also optionally takes the [CAS value](../howtos/kv-operations.md#what-is-cas) if you want to make sure you are only removing the document if it hasn't changed since you last fetched it.
 
 ## [](#data-modeling)Data Modeling
 
-Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong." Developers usually put documents of the same type in the same collection.
+Documents are organized into collections — collections of documents that belong together. You get to decide what it means to "belong". Developers usually put documents of the same type in the same collection.
 
 For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
 Each document belongs to exactly one collection. A document's ID is unique _within_ the collection.
 
-Different scopes can hold collections with different names. There is no relationship between collections in different scopes. Each collection belongs to just one scope and a collection's name is unique within the scope.
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes.
 
-More details can be found on the [Data Model page](../concept-docs/data-model.md).
+Each collection belongs to just one scope. A collection's name is unique within the scope.
+
+More details can be found on the [Data Model page](#concept-docs.data-model.adoc). The [Student Records Tutorial](student-record-developer-tutorial.md) gives an introduction to data modeling in a document database alongside using the Java SDK.
 
 ## [](#what-next)What Next?
 
 ### [](#help-and-troubleshooting)Help and Troubleshooting
 
 * [Troubleshooting common network problems](../howtos/troubleshooting-cloud-connections.md).
-* [Help forum](https://www.couchbase.com/forums/c/java-sdk/5).
-* [Discord channel](https://discord.com/channels/915294689681362954/1217642561645318194).
+* [Help forum](https://www.couchbase.com/forums/c/scala-sdk/37).
+* [Discord channel](https://discord.com/channels/915294689681362954/955424070076338177).
 * Read the [error handling page](../howtos/error-handling.md).
 * [Get help from Couchbase iQ](../../../cloud/get-started/capella-iq/get-started-with-iq.md#generate-sdk-code-preview).
 
 ### [](#next-steps)Next Steps
 
+* Take a look at the [Quickstart in Couchbase with Spring Boot and Java](sample-application.md).
 * [Learn more about the Data Service](../concept-docs/data-durability-acid-transactions.md).
 * [Discover SQL++](../concept-docs/querying-your-data.md) — our SQL-family querying language.
 * Explore some of the [third party integrations](../project-docs/third-party-integrations.md) with Couchbase and the Java SDK, across the Java ecosystem.

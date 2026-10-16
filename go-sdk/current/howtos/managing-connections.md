@@ -1,13 +1,13 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Go SDK to a Couchbase cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/managing-connections.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/managing-connections.adoc
   xref: xref:go-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -314,13 +314,13 @@ Proceeding with normal bootstrap.
 
 ## [](#cloud-native-gateway)Cloud Native Gateway
 
-Couchbase's next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../cloud-native-gateway/current/intro/about-cng.md), is enabled by changing the connection string to `couchbase2://` — but there are a few differences to be aware of, described [below](#limitations).
+Couchbase's next generation connection protocol, is compatible with recent versions of [Couchbase Autonomous Operator](../../../cloud-native-gateway/current/intro/about-cng.md) (running on Kubernetes or OpenShift), or [installed alongside self-managed Server](../../../cloud-native-gateway/current/intro/about-cng.md). The protocol implements a gRPC-style interface between the SDK and Couchbase Server.
 
-The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+It can be enabled by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
 
 ### [](#limitations)Limitations
 
-The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.3@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
 
 The following are not currently implemented over the `couchbase2://` protocol:
 

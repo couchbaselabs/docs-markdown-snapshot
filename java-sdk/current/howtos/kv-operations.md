@@ -1,14 +1,14 @@
 ---
 title: Data Operations
-description: Data service offers the simplest way to retrieve or mutate data
+description: The Data Service offers the simplest way to retrieve or mutate data
   where the key is known.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/howtos/pages/kv-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/howtos/pages/kv-operations.adoc
   xref: xref:java-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -17,54 +17,20 @@ antora:
 
 # Data Operations
 
-> Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS — as well as KV Range scan, for querying without an index. 
+> The Data Service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS — as well as KV Range scan, for querying without an index. 
 
-The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-java/blob/release/3.12/modules/devguide/examples/java/KvOperations.java).
+The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-java/blob/release/3.13/modules/devguide/examples/java/KvOperations.java).
 
-At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
+At its heart Couchbase Server is a high-performance key-value store, and the key-value (KV) interface outlined below is the fastest and best method to perform operations involving single documents.
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_). A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located. The document also has a value which contains the actual application data. See [the concept guide to _Documents_](../concept-docs/documents.md) for a deeper dive into documents in the Couchbase Data Platform.
 
 Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
-The code samples below will use these imports:
-
-```java
-import static com.couchbase.client.java.kv.GetOptions.getOptions;
-import static com.couchbase.client.java.kv.InsertOptions.insertOptions;
-import static com.couchbase.client.java.kv.ReplaceOptions.replaceOptions;
-import static com.couchbase.client.java.kv.UpsertOptions.upsertOptions;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.time.Period;
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import com.couchbase.client.core.error.CasMismatchException;
-import com.couchbase.client.core.error.CouchbaseException;
-import com.couchbase.client.core.error.DocumentExistsException;
-import com.couchbase.client.core.error.DocumentNotFoundException;
-import com.couchbase.client.core.error.DurabilityImpossibleException;
-import com.couchbase.client.core.error.ReplicaNotConfiguredException;
-import com.couchbase.client.core.msg.kv.DurabilityLevel;
-import com.couchbase.client.java.AsyncCollection;
-import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.Collection;
-import com.couchbase.client.java.ReactiveCollection;
-import com.couchbase.client.java.Scope;
-import com.couchbase.client.java.json.JsonObject;
-import com.couchbase.client.java.kv.GetResult;
-import com.couchbase.client.java.kv.MutationResult;
-import com.couchbase.client.java.kv.PersistTo;
-import com.couchbase.client.java.kv.ReplicateTo;
-```
-
 > [!TIP]
 > SQL++ vs. Key-Value
 > 
-> [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient. The request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
+> [SQL++](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value (KV) API of the Data Service for this instead, as it can be much more efficient. The request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
@@ -223,7 +189,7 @@ collection.upsert("my-document", JsonObject.create().put("doc", true),
 
 If no argument is provided the application will report success back as soon as the primary node has acknowledged the mutation in its memory. However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
-The options differ depend on what Couchbase Server version is in use. If 6.5 or above is being used, you can take advantage of the [Durable Write](../concept-docs/durability-replication-failure-considerations.md#durable-writes) feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved. The three replication levels are:
+If you need stronger durability guarantees, you can take advantage of the [Durable Write](../concept-docs/durability-replication-failure-considerations.md#durable-writes) feature, in which Couchbase Server (self-managed or Capella) will only return success to the SDK after the requested replication level has been achieved. The three replication levels are:
 
 * `Majority` — The server will ensure that the change is available in memory on the majority of configured replicas.
 * `MajorityAndPersistToActive` — Majority level, plus persisted to disk on the active node.
@@ -231,12 +197,7 @@ The options differ depend on what Couchbase Server version is in use. If 6.5 or 
 
 The options are in increasing levels of safety. Note that nothing comes for free — for a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory. These tradeoffs, as well as which settings may be tuned, are discussed in the [durability page](../concept-docs/durability-replication-failure-considerations.md#durable-writes).
 
-If a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to ['client verified' durability](../concept-docs/durability-replication-failure-considerations.md#older-server-versions). Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved. This can be achieved like this:
-
-```java
-collection.upsert("my-document", JsonObject.create().put("doc", true),
-    upsertOptions().durability(PersistTo.NONE, ReplicateTo.TWO));
-```
+This durability is enforced by the cluster. A client verified durability API was necessary with older, no longer supported version of Couchbase Server. This API is still avaialable, but there are few cases where you would want to use this less performant option. Details can be found [in our archived docs](https://docs-archive.couchbase.com/java-sdk/3.3/concept-docs/durability-replication-failure-considerations.html#older-server-versions).
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
 
@@ -268,20 +229,11 @@ Optional<Instant> expiry = result.expiryTime();
 System.out.println("Expiry of found doc: " + expiry);
 ```
 
-Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. If you are using Couchbase Server 7.0 or later, set the `preserveExpiry` option when updating the document:
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. Set the `preserveExpiry` option when updating the document:
 
 ```java
 collection.replace("my-document3", json,
     replaceOptions().preserveExpiry(true));
-```
-
-Prior to Couchbase 7.0, it's necessary to fetch the previous expiry and set it again:
-
-```java
-GetResult found = collection.get("my-document3", getOptions().withExpiry(true));
-
-MutationResult result = collection.replace("my-document3", json,
-    replaceOptions().expiry(found.expiryTime().get()));
 ```
 
 Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field. It can be used like this:
@@ -295,7 +247,7 @@ GetResult result = collection.getAndTouch("my-document3", Duration.ofDays(1));
 The value of a document can be increased or decreased atomically using `collecion.binary().increment()` and `collection.binary().decrement()`.
 
 > [!NOTE]
-> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
+> Increment & Decrement are considered part of the "binary" API and as such may still be subject to change
 
 See the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/kv/Increment.html) for full details.
 
@@ -310,7 +262,7 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 ## [](#scoped-kv-operations)Scoped KV Operations
 
-It is possible to perform scoped key-value operations on named [Collections](../../../server/current/learn/data/scopes-and-collections.md) _with Couchbase Server release 7.x_. See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html) for more information.
+It is possible to perform scoped key-value operations on named [Collections](../../../server/current/learn/data/scopes-and-collections.md). See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/Collection.html) for more information.
 
 Here is an example showing an upsert in the `users` collection, which lives in the `travel-sample.tenant_agent_00` keyspace:
 
@@ -404,12 +356,8 @@ Setting `idsOnly` to true also works with the other scan types described above.
 
 ## [](#additional-resources)Additional resources
 
-Working on just a specific path within a JSON document will reduce network bandwidth requirements — see the [Sub-Document](subdocument-operations.md) pages.
-
-For a significant performance speed up with large volumes of data, reference our [asynchronous programming options](concurrent-async-apis.md).
-
-Another way of increasing network performance is to _pipeline_ operations with [Batching Operations](concurrent-async-apis.md#batching).
-
-As well as various [Formats](../concept-docs/data-model.md) of JSON, Couchbase can work directly with [arbitrary bytes, or binary format](../concept-docs/nonjson.md).
-
-Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++.
+* Working on just a specific path within a JSON document will reduce network bandwidth requirements — see the [Sub-Document](subdocument-operations.md) pages.
+* For a significant performance speed up with large volumes of data, reference our [asynchronous programming options](concurrent-async-apis.md).
+* Another way of increasing network performance is to _pipeline_ operations with [Batching Operations](concurrent-async-apis.md#batching).
+* As well as various [Formats](../concept-docs/data-model.md) of JSON, Couchbase can work directly with [arbitrary bytes, or binary format](../concept-docs/nonjson.md).
+* Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of SQL++.

@@ -2,13 +2,13 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
   xref: xref:scala-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -19,7 +19,7 @@ antora:
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
-Welcome to the [Scala SDK 3.12](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+Welcome to the [Scala SDK 3.13](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 
@@ -59,7 +59,7 @@ This section also contains details of interacting with our super fast [Data Serv
 
 For developers with an RDBMS, Couchbase's SQL implementation, SQL++, makes querying familiar. But don't be so quick to jump straight to SQL++ — assess your use case carefully.
 
-In addition to [SQL++ queries](../howtos/sqlpp-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and the [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service's speedy binary protocol.
+In addition to [SQL++ queries](../howtos/sqlpp-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service's speedy binary protocol.
 
 ## [](#distributed-acid-transactions)Distributed ACID Transactions
 
@@ -99,7 +99,7 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 * [Reference Pages](../ref/index.md)
 
-The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Scala SDK's API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Scala SDK's API. Any error here should be filed directly against the individual SDKs bug tracker (raise an issue in the GH repo for the source code), although a ticket against the docs [DOCs](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project — and the simplest way to file a DOC ticket is to click the _Leave Additional Feedback_, usually found at the end of the right-hand page nav.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](sdk-release-notes.md).
 

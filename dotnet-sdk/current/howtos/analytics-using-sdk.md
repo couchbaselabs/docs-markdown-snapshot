@@ -2,15 +2,14 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
-  topic_type: howto
+    version: "3.10"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/analytics-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/howtos/pages/analytics-using-sdk.adoc
   xref: xref:dotnet-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -30,7 +29,7 @@ This page covers using our operational .NET SDK to connect to the Analytics Serv
 > 
 > Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
-For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md).
+For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](#n1ql-queries-with-sdk.adoc).
 
 The analytics service is available in [Capella operational](../../../cloud/clusters/analytics-service/analytics-service.md)or the Enterprise Edition of self-managed Couchbase Server.
 
@@ -135,7 +134,7 @@ Console.WriteLine($”Result count: {result.MetaData.Metrics.ResultCount}”);
 Console.WriteLine($”Error count: {result.MetaData.Metrics.ErrorCount}”);
 ```
 
-For a listing of available `Metrics` in `MetaData`, see the [Understanding Analytics](../concept-docs/analytics-for-sdk-users.md) SDK doc.
+For a listing of available `Metrics` in `MetaData`, see the [Understanding Analytics](#concept-docs:analytics-for-sdk-users.adoc) SDK doc.
 
 ## [](#advanced-analytics-topics)Advanced Analytics Topics
 

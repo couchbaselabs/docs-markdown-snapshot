@@ -1,7 +1,7 @@
 ---
 title: Import Data with an SDK
 description: How to import documents into Couchbase with an SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -202,39 +202,15 @@ The details of how to parse the import data vary depending on the chosen input f
 To parse CSV and TSV data, use the [CsvHelper](https://joshclose.github.io/CsvHelper/) library.
 
 ```csharp
-using CsvHelper;
-using CsvHelper.Configuration;
-using System.Globalization;
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 ```csharp
-public async Task importCSV(string filename)
-{
-    using (var reader = new StreamReader(filename))
-    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-    {
-        var records = csv.GetRecords<dynamic>();
-        foreach (dynamic record in records) {
-            await upsertDocument(record);
-        }
-    }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 ```csharp
-public async Task importTSV(string filename)
-{
-    using (var reader = new StreamReader("import.tsv"))
-    using (var tsv = new CsvReader(reader,
-        new CsvConfiguration(CultureInfo.InvariantCulture)
-            { Delimiter = "\t" }))
-    {
-        var records = tsv.GetRecords<dynamic>();
-        foreach (dynamic record in records) {
-            await upsertDocument(record);
-        }
-    }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -399,42 +375,15 @@ Click the  View button to see any code sample in context.
 To parse JSON and JSONL data, use [Newtonsoft](https://www.newtonsoft.com/json).
 
 ```csharp
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 ```csharp
-public async Task importJSON(string filename)
-{
-    using (var reader = new StreamReader("import.json"))
-    {
-        var jsonReader = new JsonTextReader(reader);
-        JArray arr = (JArray)JToken.ReadFrom(jsonReader);
-        
-        foreach (JObject record in arr)
-        {
-            await upsertDocument(record);
-        }
-    }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 ```csharp
-public async Task importJSONL(string filename)
-{
-    using (var reader = new StreamReader("import.jsonl"))
-    {
-        var jsonlReader = new JsonTextReader(reader)
-        {
-            SupportMultipleContent = true
-        };
-        while (jsonlReader.Read())
-        {
-            var record = (JObject)JToken.ReadFrom(jsonlReader);
-            await upsertDocument(record);
-        }
-    }
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -589,12 +538,7 @@ Now decide which bucket and [scope and collection](../tutorials/buckets-scopes-a
 * Python
 
 ```csharp
-var cluster = await Cluster.ConnectAsync(
-    "couchbase://your-ip",
-    "Administrator", "password");
-var bucket =  await cluster.BucketAsync("travel-sample");
-var scope = await bucket.ScopeAsync("inventory");
-var _collection = await scope.CollectionAsync("airline");
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 Click the  View button to see any code sample in context.
@@ -670,35 +614,7 @@ To store the data, hook the prepared data into an `upsert` routine.
 > As CsvHelper and Newtonsoft generate different outputs, we have provided some overloaded options that work for either.
 
 ```csharp
-// CsvHelper emits `dynamic` records
-public async Task upsertDocument(dynamic record) {
-    // define the key
-    string key = record.type + "_" + record.id;
-
-    // do any additional processing
-    record.importer = ".NET SDK";
-
-    // upsert the document
-    await _collection.UpsertAsync(key, record);
-
-    // any required logging
-    Console.WriteLine(key);
-}
-
-// Newtonsoft.Json.Linq emits `JObjects`
-public async Task upsertDocument(JObject record) {
-    // define the key
-    string key = record["type"] + "_" + record["id"];
-
-    // do any additional processing
-    record["importer"] = ".NET SDK";
-    
-    // upsert the document
-    await _collection.UpsertAsync(key, record);
-    
-    // any required logging
-    Console.WriteLine(key);
-}
+Unresolved include directive in modules/guides/pages/import.adoc - include::dotnet-sdk:howtos:example$Import.csx[]
 ```
 
 Click the  View button to see any code sample in context.

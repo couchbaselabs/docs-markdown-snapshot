@@ -2,13 +2,13 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/best-practices.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/concept-docs/pages/best-practices.adoc
   xref: xref:rust-sdk:concept-docs:best-practices.adoc[]
 ---
 
@@ -54,6 +54,16 @@ If you need pessimistic logging, in particular if you need to lock documents for
 
 * `waitUntilReady` should be the default setting for `Cluster.connect` and `Cluster.bucket` in most cases, so that resources are fully loaded before the client proceeds with CRUD calls to the cluster.
 * LAN-type connection of client and server is recommended in production, but WAN development is a reality pre-production. Ensure that you're familiar with the [best timeout options for WAN environments](../ref/client-settings.md#constrained-network-environments), or at least set a [WAN development Configuration Profile](../ref/client-settings.md#wan-development).
+
+### [](#bulk-get-multi-get-and-network-latency)Bulk Get, Multi-Get, and Network Latency
+
+In traditional databases, a bulk get or multi-get is often an efficient way of overcoming network latencies as a bottleneck, or simply making more efficent use of your database's performance.
+
+Couchbase is a distributed database, efficiently fetching data from vbuckets spread across several nodes: bulk gets can be an anti-pattern, holding things up on the Server side, compared with the efficiency of fetching your data asynchronously. However, this depends upon your platform language's availability of asynchronous APIs — see the [bulk get and async API page](../howtos/concurrent-async-apis.md) for the specifics for the Rust SDK.
+
+#### [](#when-to-use-bulk-get)When to Use Bulk Get
+
+As stated above, bulk gets are rarely the best way to fetch data from different documents efficently. Nevertheless, if your business logic dictates that all of, say five, results need to be returned before processing for the application's next step, then a bulk get will give you all of the results together, as needed by your app. For this reason we do provide a [batching example](../howtos/concurrent-async-apis.md#batching) for the Rust SDK.
 
 ## [](#testing)Testing
 

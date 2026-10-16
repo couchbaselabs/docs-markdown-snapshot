@@ -2,13 +2,13 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Rust SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Rust SDK
-    version: "1.0"
+    version: "1.1"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.1/modules/hello-world/pages/start-using-sdk.adoc
   xref: xref:rust-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -71,7 +71,7 @@ For the example code below to run, you'll need the username and password of the 
 
 ### [](#prerequisites)Prerequisites
 
-* The Couchbase Rust SDK 1.0 Client is tested against Rust 1.90.
+* The Couchbase Rust SDK 1.1 Client supports Rust 1.88+.
 
 The code examples also assume:
 

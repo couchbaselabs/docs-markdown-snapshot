@@ -1,15 +1,14 @@
 ---
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: .NET SDK
-    version: "3.9"
-  topic_type: concept
+    version: "3.10"
   edition: Enterprise Edition
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/encryption.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.10/modules/concept-docs/pages/encryption.adoc
   xref: xref:dotnet-sdk:concept-docs:encryption.adoc[]
 ---
 
@@ -21,6 +20,11 @@ antora:
 > A high-level overview of Field-Level Encryption concepts. 
 
 For a practical guide, see [Encrypting Your Data](../howtos/encrypting-using-sdk.md).
+
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It's a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#architecture)Overview
 

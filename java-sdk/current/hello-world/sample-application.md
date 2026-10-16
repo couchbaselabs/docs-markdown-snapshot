@@ -2,13 +2,13 @@
 title: Quickstart in Couchbase with Spring Boot and Java
 description: Quickstart app to build a REST API using Couchbase Capella in Java
   using Spring Boot.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Java SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.12/modules/hello-world/pages/sample-application.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.13/modules/hello-world/pages/sample-application.adoc
   xref: xref:java-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -26,7 +26,7 @@ Often, the first step developers take after creating their database is to create
 1. How to create, read, update, and delete documents using [Key-Value operations](#howto:kv-operations). KV operations are unique to Couchbase and provide super fast (under millisecond) operations.
 2. How to write simple parametrized [SQL++ queries](#howtos:n1ql-queries-with-sdk.html) using the built-in travel-sample bucket.
 
-This documentation — and a number of other useful developer tutorials — can be found on the [Couchbase Developer Portal](https://developer.couchbase.com/tutorial-quickstart-java-springboot/).
+This documentation — and a number of other useful developer tutorials — can be found on the [Couchbase Developer Portal](https://github.com/couchbase-examples/java-springboot-quickstart).
 
 ## [](#prerequisites)Prerequisites
 
@@ -34,10 +34,10 @@ To run this prebuilt project, you will need:
 
 * A [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster with the [travel-sample](../ref/travel-app-data-model.md) bucket loaded.  
 To run this tutorial using a self-managed Couchbase cluster, please refer to the [Running Self-Managed Couchbase Cluster](#running-self-managed-couchbase-cluster) section.
-* Java SDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).  
+* The Travel Sample Bucket is pre-loaded in Capella Free Tier. If you need to load it manually, see the [sample data impost page](../../../cloud/clusters/data-service/import-data-documents.md#import-sample-data).
+* Java JDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).  
 > [!NOTE]  
 > The application is tested with Java 17 and 21\. If you are using a different version of Java, please update the `pom.xml` file accordingly.
-* The Travel Sample Bucket — pre-loaded in Capella Free Tier, or see [cloud:clusters:data-service/import-data-documents.adoc#import-sample-data](../../../cloud/clusters/data-service/import-data-documents.md#import-sample-data).
 * [Maven 3.6.3+](https://maven.apache.org/install.html).
 
 ## [](#app-setup)App Setup
@@ -162,7 +162,7 @@ $ mvn test -Dtest=org.couchbase.quickstart.springboot.controllers.RouteIntegrati
 
 For this quickstart, we use three collections, `airport`, `airline` and `routes` that contain sample airports, airlines and airline routes respectively. The routes collection connects the airports and airlines as seen in the figure below. We use these connections in the quickstart to generate airports that are directly connected and airlines connecting to a destination airport. Note that these are just examples to highlight how you can use SQL++ queries to join the collections.
 
-![travel-sample data model](_images/travel_sample_data_model.png) 
+![travel-sample data model](ref:image$travel_sample_data_model.png) 
 
 ### [](#extending-api-by-adding-new-entity)Extending API by Adding New Entity
 
@@ -174,12 +174,6 @@ If you would like to add another entity to the APIs, these are the steps to foll
 * Define the repository in a new class in the `repositories` package similar to the existing repositories like `AirportRepository.java`.
 
 ### [](#running-self-managed-couchbase-cluster)Running Self-Managed Couchbase Cluster
-
-If you are running this quickstart with a self-managed Couchbase cluster, you need to \[load\](<https://docs.couchbase.com/server/current/manage/manage-settings/install-sample-buckets.html>) the travel-sample data bucket in your cluster and generate the credentials for the bucket.
-
-You need to update the connection string and the credentials in the `application.properties` file in the `src/main/resources` folder.
-
-Note: Couchbase Server version 7 or higher must be installed and running before running the Spring Boot Java app.
 
 ### [](#swagger-documentation)Swagger Documentation
 

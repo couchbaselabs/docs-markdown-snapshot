@@ -1,7 +1,7 @@
 ---
 title: Connect to Couchbase Server
 description: How to connect to a Couchbase Cluster.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Couchbase Server
@@ -140,8 +140,7 @@ Collection collection = bucket.defaultCollection();
 // You can access multiple buckets using the same Cluster object.
 Bucket anotherBucket = cluster.bucket("beer-sample");
 
-// You can access collections other than the default
-// if your version of Couchbase Server supports this feature.
+// You can access multiple collections, too
 Scope customerA = bucket.scope("customer-a");
 Collection widgets = customerA.collection("widgets");
 

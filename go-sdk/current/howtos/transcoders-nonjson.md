@@ -1,13 +1,13 @@
 ---
 title: Transcoders and Non-JSON Documents
 description: The Go SDK supports common JSON document requirements out-of-the-box.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/transcoders-nonjson.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/howtos/pages/transcoders-nonjson.adoc
   xref: xref:go-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 

@@ -3,13 +3,13 @@ title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Scala SDK
-    version: "3.12"
+    version: "3.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.12/modules/howtos/pages/kv-operations.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.13/modules/howtos/pages/kv-operations.adoc
   xref: xref:scala-sdk:howtos:kv-operations.adoc[]
 ---
 

@@ -2,13 +2,13 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-16T07:26:40.932Z
 meta:
   component:
     title: Go SDK
-    version: "2.12"
+    version: "2.13"
 antora:
-  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/analytics-for-sdk-users.adoc
+  editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.13/modules/concept-docs/pages/analytics-for-sdk-users.adoc
   xref: xref:go-sdk:concept-docs:analytics-for-sdk-users.adoc[]
 ---
 
