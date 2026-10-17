@@ -1,7 +1,7 @@
 ---
 title: Modify a Paid Cluster
 description: Review, modify, and rename Couchbase Capella clusters.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Capella Operational
@@ -243,7 +243,7 @@ The cluster [rebalances](scale-database.md#rebalance) and redistributes service 
 
 ## [](#deletion-protection)Change Your Deletion Protection
 
-Turn on deletion protection to stop accidental deletion of a cluster from the Capella UI, the [Management API](../management-api-reference/index.md#tag/Clusters/operation/deleteCluster), or any other external tools, such as Terraform. If you turn on deletion protection, Capella will also automatically turn on deletion protection for any [App Services](#app-services:index.adoc) linked to your cluster.
+Turn on deletion protection to stop accidental deletion of a cluster from the Capella UI, the [Management API](../management-api-reference/index.md#tag/Clusters/operation/deleteCluster), or any other external tools, such as Terraform. If you turn on deletion protection, Capella will also automatically turn on deletion protection for any [App Services](../../app-services/index.md) linked to your cluster.
 
 Cluster deletion protection also prevents bucket deletion or [bucket flushing](data-service/manage-buckets.md#flush).
 

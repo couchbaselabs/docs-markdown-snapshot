@@ -4,7 +4,7 @@ description: Each Capella cluster runs a specific version of Couchbase Server.
   Upgrading a cluster means upgrading its underlying Server version, which may
   include enhancements or changes to performance and compatibility. These best
   practices help ensure a secure and smooth upgrade process.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Capella Operational
@@ -92,7 +92,7 @@ The settings you choose affect your staging environment's performance. The goal 
 3. Connect your application to your staging cluster:
 
   * Connect your application from [SDK, cbsh, CLI, or IDE](../get-started/connect.md).
-  * Connect your mobile and IoT applications with [App Services](#app-services:index.adoc).  
+  * Connect your mobile and IoT applications with [App Services](../../app-services/index.md).  
 Test the application connection by verifying that you can read and write data to the staging cluster.
 
 When a minor or major release version becomes available, use this staging cluster to [test the upgrade with your application](#test-application).

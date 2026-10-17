@@ -2,7 +2,7 @@
 title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Couchbase Server
@@ -24,7 +24,7 @@ antora:
 
 Having Couchbase Server collect telemetry from your applications can help you troubleshoot client issues. This visibility into metrics data from the application's point of view is useful to diagnose issues such as poor performance or timeouts.
 
-![Telemetry Architecture](_images/diag-adcaf9fcded364fc485c5699f432f36452c5f0a8.svg) 
+![Telemetry Architecture](_images/diag-2668065c83a9cfc85b0889aeb4967fe33e9cb3cb.svg) 
 
 Figure 1\. Telemetry Architecture
 
@@ -35,7 +35,7 @@ Couchbase Server uses this connection to periodically gather telemetry data from
 > [!NOTE]
 > Application telemetry is off by default in Couchbase Server 8.0\. Future versions of Couchbase Server may enable it by default.
 
-Couchbase Server reports the telemetry data it collects through the same Prometheus metrics endpoint it uses to publish its own metrics. Couchbase Server reports aggregated application telemetry metrics instead of reporting metrics on a per-client basis. See [Configure Prometheus to Collect Couchbase Metrics](../manage/monitor/set-up-prometheus-for-monitoring.md) to learn how to set up Prometheus to collect metrics from your Couchbase Server cluster.
+Couchbase Server reports the telemetry data it collects through the same Prometheus metrics endpoint it uses to publish its own metrics. Couchbase Server reports aggregated application telemetry metrics instead of reporting metrics on a per-client basis. See [Configure Prometheus to Collect Couchbase Metrics](../manage/monitor/set-up-prometheus-for-monitoring.md) to learn how to set up Prometheus to collect metrics from your Couchbase Server cluster. For information about the metrics API in general, see [Metrics Reference](../metrics-reference/metrics-reference.md).
 
 ### [](#prerequisites)Prerequisites
 

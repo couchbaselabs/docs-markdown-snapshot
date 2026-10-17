@@ -2,7 +2,7 @@
 title: Remote Sync with App Services / Sync Gateway
 description: Read and write data or listen for data changes from Edge Server
   over a RESTful interface from any HTTP client.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Couchbase Edge Server
@@ -38,7 +38,7 @@ To replicate with a Couchbase Capella database:
 * You must have allowed [IP access](../../../app-services/app-services/accessing-admin-apis.md) from the address that the Edge Server client uses.
 * You must have copied the public connection URL for the App Endpoint.
 
-For more information about Capella App Services, see [cloud:app-services:index.adoc](#cloud:app-services:index.adoc).
+For more information about Capella App Services, see [Welcome to Capella App Services](../../../app-services/index.md).
 
 To replicate with a remote Sync Gateway:
 

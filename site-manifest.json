@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1792136016509,
+  "generated": 1792211170354,
   "url": "https://docs.couchbase.com",
   "components": [
     {
@@ -2706,6 +2706,13 @@
               "path": "deployment/xattrs-for-app-services.adoc",
               "url": "/app-services/app-endpoints/xattrs-for-app-services.md",
               "title": "Extended Attributes (XATTRs)"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
+              "path": "index.adoc",
+              "url": "/app-services/index.md",
+              "title": "Welcome to Capella App Services"
             },
             {
               "alias": true,
@@ -36109,12 +36116,6 @@
             },
             {
               "module": "reference",
-              "path": "best-practices.adoc",
-              "url": "/enterprise-analytics/current/reference/best-practices.md",
-              "title": "Best Practices - Load Balancer [WIP]"
-            },
-            {
-              "module": "reference",
               "path": "cloud_read_write_permissions.adoc",
               "url": "/enterprise-analytics/current/reference/cloud_read_write_permissions.md",
               "title": "Cloud Read/Write Permissions"
@@ -38643,12 +38644,6 @@
               "path": "audit-event-reference.adoc",
               "url": "/enterprise-analytics/2.1/reference/audit-event-reference.md",
               "title": "Audit Event Reference"
-            },
-            {
-              "module": "reference",
-              "path": "best-practices.adoc",
-              "url": "/enterprise-analytics/2.1/reference/best-practices.md",
-              "title": "Best Practices - Load Balancer [WIP]"
             },
             {
               "module": "reference",

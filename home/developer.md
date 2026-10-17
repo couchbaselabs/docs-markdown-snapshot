@@ -6,7 +6,7 @@ description: The Developer Data Platform for Critical Applications in Our AI
   offline-first Couchbase Lite, for transactional workloads with SDKs in a dozen
   popular programming languages, for real-time analytics, and build agentic
   apps.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Couchbase Documentation
@@ -57,7 +57,7 @@ Build your app with [Couchbase Lite](../couchbase-lite/current/index.md) for off
 * [Develop for iOS on Swift](../couchbase-lite/current/swift/quickstart.md)(and [Objective-C](../couchbase-lite/current/objc/quickstart.md))
 * [Develop for Edge devices in C](../couchbase-lite/current/c/quickstart.md)
 * Couchbase Lite [on C# .NET](../couchbase-lite/current/csharp/quickstart.md) | [Java](../couchbase-lite/current/java/quickstart.md) | [JavaScript — Ionic and React](#couchbase-lite:javascript:quickstart.adoc)
-* Sync your data with [App Services](#cloud:app-services:index.adoc) / self-managed [SyncGateway](../sync-gateway/current/introduction.md) / [Edge Server](../couchbase-edge-server/current/introduction/intro.md) — or run [peer-to-peer](../couchbase-lite/current/swift/p2psync-websocket.md).
+* Sync your data with [App Services](../app-services/index.md) / self-managed [SyncGateway](../sync-gateway/current/introduction.md) / [Edge Server](../couchbase-edge-server/current/introduction/intro.md) — or run [peer-to-peer](../couchbase-lite/current/swift/p2psync-websocket.md).
 
 ###  Develop RAG and Agentic AI Applications
 

@@ -2,7 +2,7 @@
 title: Getting Started with Hashicorp Terraform Deployment
 description: Use Terraform Provider to deploy and manage your clusters with
   declarative configuration.
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Capella Operational
@@ -61,7 +61,7 @@ More than one [allowlist](../security/security.md#access-management) gives extra
 * [Create & manage buckets](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/blob/main/examples/bucket):  
 The [buckets](../clusters/data-service/about-buckets-scopes-collections.md#buckets) is the top-level storage container for data in a Capella cluster.
 * [Configure App Services](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/tree/main/examples/appservice):  
-Create and manage [App Services](#app-services:index.adoc) in Capella.
+Create and manage [App Services](../../app-services/index.md) in Capella.
 * [Configure Bucket Backup & Restore](https://github.com/couchbasecloud/terraform-provider-couchbase-capella/tree/main/examples/backup):  
 Create and manage [Backups](../clusters/backup-restore.md) in Capella.
 

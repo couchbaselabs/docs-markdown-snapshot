@@ -1,6 +1,6 @@
 ---
 title: Upgrade the Operator
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Kubernetes Operator
@@ -23,6 +23,10 @@ Upgrading the Couchbase Kubernetes Operator is a five-step process:
 * [Step 4: Update Existing Resources](#update-existing-resources)
 * [Step 5: Install the New Operator](#install-operator)
 
+For guidance on Operator Rollbacks:
+
+* [Rolling Back](#rollback-operator)
+
 > [!IMPORTANT]
 > When upgrading Couchbase Operator, you must use the uninstaller from the same version of the software you used to install it, then use the newer installer to upgrade.
 > 
@@ -40,7 +44,7 @@ Make sure to consult the [Release Notes](release-notes.md) and the [What's New?]
 > There is no direct upgrade path to this release from versions prior to 2.0.x. To upgrade from a 1.x.x release, you must first upgrade to 2.0.x, paying particular attention to supported Kubernetes platforms and Couchbase Server versions. Refer to the [2.0.x version of this page](#2.0@operator::howto-operator-upgrade.adoc) if upgrading from a 1.x.x release.
 
 > [!WARNING]
-> The Operator should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](https://docs.couchbase.com/operator/current/concept-hibernation.html) documentation.
+> The Operator should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](concept-hibernation.md) documentation.
 
 ## [](#download-operator)Step 1: Download the New Operator Package
 
@@ -93,3 +97,63 @@ Please refer to the Release Notes and add any new items to your existing resourc
 ## [](#install-operator)Step 5: Install the New Operator
 
 After all the previous steps, you can move on to upgrading the Operator itself. Upgrading the Operator is exactly the same as the initial installation, except that you don't re-install the CRD. To re-install the Operator in all namespaces where previous instances operated on, see the relevant documentation for [Kubernetes](install-kubernetes.md) or [OpenShift](install-openshift.md).
+
+## [](#rollback-operator)Operator Rollbacks
+
+While Operator releases are thoroughly tested, there may be scenarios where you need to roll back to a different version. Rolling back the Operator cannot occur while it is orchestrating Couchbase Server pods. Instead, we can use [hibernation](concept-hibernation.md) to temporarily remove Couchbase Server pods but retain their volumes and give us a window to change the Operator image. During this window, the cluster will be unavailable.
+
+> [!IMPORTANT]
+> Rollbacks are only supported between maintenance versions of the Couchbase Operator due to CRD changes between versions that break backwards compatibility. Rollbacks across major or minor versions are not supported (major.minor.maintenance). For example, 2.9.3 can be rolled back to 2.9.1, but cannot be rolled back to 2.8.2.
+
+### [](#step-1-hibernate-the-clusters)Step 1: Hibernate the Clusters
+
+All clusters managed by the Couchbase Operator being rolled back must be hibernated:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+spec:
+  hibernate: true (1)
+```
+
+| **1** | hibernate defaults to false. Change it to true to trigger the hibernation process. |
+| ----- | ---------------------------------------------------------------------------------- |
+
+> [!WARNING]
+> Hibernating your cluster will delete Couchbase Server pods, making it unavailable. It's important to understand how this works before progressing.
+
+### [](#step-2-change-the-operator-image)Step 2: Change the Operator Image
+
+Change the Operator image to the version you want to roll back to:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: couchbase-operator
+spec:
+  template:
+    spec:
+      containers:
+      - name: couchbase-operator
+        image: couchbase/operator:2.9.1 (1)
+```
+
+| **1** | The image you want to roll back to. This should be the same major.minor as the previous image. |
+| ----- | ---------------------------------------------------------------------------------------------- |
+
+### [](#step-3-wake-the-clusters)Step 3: Wake the Clusters
+
+Once the Couchbase Operator pod has been redeployed, wake the clusters we hibernated earlier by reversing the hibernation field change:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+spec:
+  hibernate: false (1)
+```
+
+| **1** | End hibernation by switching this field back to false. |
+| ----- | ------------------------------------------------------ |
+
+The Operator will now recreate the pods and mount the old volumes to them. At this point the rollback has been completed.

@@ -1,7 +1,7 @@
 ---
 title: Google Cloud Platform (GCP)
 description: Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP).
-pubDate: 2026-10-03T04:27:21.374Z
+pubDate: 2026-10-17T04:21:50.088Z
 meta:
   component:
     title: Capella Operational
@@ -24,7 +24,7 @@ Couchbase Capella provides fully managed Couchbase Server clusters that can be d
 
 Couchbase Capella's fully managed DBaaS supports the following GCP regions.
 
-* ✔ [App Services](#app-services:index.adoc) are supported in this region.
+* ✔ [App Services](../../app-services/index.md) are supported in this region.
 
 * Americas
 * Europe
